@@ -55,7 +55,7 @@ class OpenAIFileTest : ShouldSpec() {
             //modelInstance.`object` shouldBe ("TODO")
         }
 
-        // to test the property `purpose` - The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+        // to test the property `purpose` - The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
         should("test purpose") {
             // uncomment below to test the property
             //modelInstance.purpose shouldBe ("TODO")

@@ -13,8 +13,7 @@ API.Client.ChatCompletionRequestToolMessage = function() {}
 API.Client.ChatCompletionRequestToolMessage.prototype.role;
 
 /**
- * The contents of the tool message.
- * @type {!string}
+ * @type {!API.Client.ChatCompletionRequestToolMessage_content}
  * @export
  */
 API.Client.ChatCompletionRequestToolMessage.prototype.content;

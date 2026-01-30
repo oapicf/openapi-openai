@@ -11,6 +11,8 @@
    (ds/req :hatethreatening) boolean?
    (ds/req :harassment) boolean?
    (ds/req :harassmentthreatening) boolean?
+   (ds/req :illicit) boolean?
+   (ds/req :illicitviolent) boolean?
    (ds/req :self-harm) boolean?
    (ds/req :self-harmintent) boolean?
    (ds/req :self-harminstructions) boolean?

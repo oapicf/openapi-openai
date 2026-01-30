@@ -1,0 +1,20 @@
+package models
+
+// RealtimeServerEventErrorError - Details of the error.
+type RealtimeServerEventErrorError struct {
+
+	// The type of error (e.g., \"invalid_request_error\", \"server_error\"). 
+	Type string `json:"type"`
+
+	// Error code, if any.
+	Code *string `json:"code,omitempty"`
+
+	// A human-readable error message.
+	Message string `json:"message"`
+
+	// Parameter related to the error, if any.
+	Param *string `json:"param,omitempty"`
+
+	// The event_id of the client event that caused the error, if applicable. 
+	EventId *string `json:"event_id,omitempty"`
+}

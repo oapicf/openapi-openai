@@ -44,7 +44,7 @@ configuration = openapiopenai.Configuration(
 with openapiopenai.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapiopenai.ModelsApi(api_client)
-    model = 'ft:gpt-3.5-turbo:acemeco:suffix:abc123' # str | The model to delete
+    model = 'ft:gpt-4o-mini:acemeco:suffix:abc123' # str | The model to delete
 
     try:
         # Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
@@ -192,7 +192,7 @@ configuration = openapiopenai.Configuration(
 with openapiopenai.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapiopenai.ModelsApi(api_client)
-    model = 'gpt-3.5-turbo' # str | The ID of the model to use for this request
+    model = 'gpt-4o-mini' # str | The ID of the model to use for this request
 
     try:
         # Retrieves a model instance, providing basic information about the model such as the owner and permissioning.

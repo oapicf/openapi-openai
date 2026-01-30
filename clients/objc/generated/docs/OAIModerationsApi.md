@@ -4,7 +4,7 @@ All URIs are relative to *https://api.openai.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createModeration**](OAIModerationsApi.md#createmoderation) | **POST** /moderations | Classifies if text is potentially harmful.
+[**createModeration**](OAIModerationsApi.md#createmoderation) | **POST** /moderations | Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 
 # **createModeration**
@@ -13,7 +13,7 @@ Method | HTTP request | Description
         completionHandler: (void (^)(OAICreateModerationResponse* output, NSError* error)) handler;
 ```
 
-Classifies if text is potentially harmful.
+Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 ### Example
 ```objc
@@ -24,7 +24,7 @@ OAICreateModerationRequest* createModerationRequest = [[OAICreateModerationReque
 
 OAIModerationsApi*apiInstance = [[OAIModerationsApi alloc] init];
 
-// Classifies if text is potentially harmful.
+// Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 [apiInstance createModerationWithCreateModerationRequest:createModerationRequest
           completionHandler: ^(OAICreateModerationResponse* output, NSError* error) {
                         if (output) {

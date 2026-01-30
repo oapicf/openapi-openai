@@ -1,0 +1,41 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server VectorStoreExpirationAfter"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a VectorStoreExpirationAfter"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  VectorStoreExpirationAfter {
+    title = VectorStoreExpirationAfter
+    description = VectorStoreExpirationAfter
+    derivedFrom = Root
+    properties {
+        anchor {
+          type =  string
+          description = "Anchor timestamp after which the expiration policy applies. Supported anchors: &#x60;last_active_at&#x60;."
+          enum = ["last_active_at"]
+          optional = true
+        }
+        days {
+          type =  integer
+          description = "The number of days after the anchor time that the vector store will expire."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  VectorStoreExpirationAfter {
+    title = VectorStoreExpirationAfter
+    description = VectorStoreExpirationAfter
+    implements = openapi_server.resourceTypes.VectorStoreExpirationAfter
+
+  }
+}

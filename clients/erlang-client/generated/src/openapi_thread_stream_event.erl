@@ -5,13 +5,16 @@
 -export_type([openapi_thread_stream_event/0]).
 
 -type openapi_thread_stream_event() ::
-    #{ 'event' := binary(),
+    #{ 'enabled' => boolean(),
+       'event' := binary(),
        'data' := openapi_thread_object:openapi_thread_object()
      }.
 
-encode(#{ 'event' := Event,
+encode(#{ 'enabled' := Enabled,
+          'event' := Event,
           'data' := Data
         }) ->
-    #{ 'event' => Event,
+    #{ 'enabled' => Enabled,
+       'event' => Event,
        'data' => Data
      }.

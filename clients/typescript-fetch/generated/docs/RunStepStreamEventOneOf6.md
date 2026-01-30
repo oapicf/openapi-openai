@@ -1,7 +1,7 @@
 
 # RunStepStreamEventOneOf6
 
-Occurs when a [run step](/docs/api-reference/runs/step-object) expires.
+Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires.
 
 ## Properties
 

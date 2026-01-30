@@ -18,7 +18,7 @@ model: CreateEmbeddingRequestModel,
   encodingFormat: Option[EncodingFormat],
 /* The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models.  */
   dimensions: Option[Integer],
-/* A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  */
+/* A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  */
   user: Option[String])
 
 object CreateEmbeddingRequest {

@@ -10,6 +10,7 @@
 
 -type openapi_create_thread_and_run_request_tools_inner() ::
   [ {'type', binary() }
+  | {'file_search', openapi_assistant_tools_file_search_file_search:openapi_assistant_tools_file_search_file_search() }
   | {'function', openapi_function_object:openapi_function_object() }
   ].
 
@@ -18,7 +19,8 @@ openapi_create_thread_and_run_request_tools_inner() ->
     openapi_create_thread_and_run_request_tools_inner([]).
 
 openapi_create_thread_and_run_request_tools_inner(Fields) ->
-  Default = [ {'type', elements([<<"code_interpreter">>, <<"retrieval">>, <<"function">>]) }
+  Default = [ {'type', elements([<<"code_interpreter">>, <<"file_search">>, <<"function">>]) }
+            , {'file_search', openapi_assistant_tools_file_search_file_search:openapi_assistant_tools_file_search_file_search() }
             , {'function', openapi_function_object:openapi_function_object() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).

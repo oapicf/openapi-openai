@@ -1,0 +1,40 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when an earlier assistant audio message item is truncated by the  client with a `conversation.item.truncate` event. This event is used to  synchronize the server's understanding of the audio with the client's playback.  This action will truncate the audio and remove the server-side text transcript  to ensure there is no text in the context that hasn't been heard by the user. ",
+  "name": "RealtimeServerEventConversationItemTruncated",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventConversationItemTruncated_type",
+        "symbols": [
+          "conversation_item_truncated"
+        ]
+      },
+      "doc": "The event type, must be `conversation.item.truncated`."
+    },
+    {
+      "name": "item_id",
+      "type": "string",
+      "doc": "The ID of the assistant message item that was truncated."
+    },
+    {
+      "name": "content_index",
+      "type": "int",
+      "doc": "The index of the content part that was truncated."
+    },
+    {
+      "name": "audio_end_ms",
+      "type": "int",
+      "doc": "The duration up to which the audio was truncated, in milliseconds. "
+    }
+  ]
+
+}

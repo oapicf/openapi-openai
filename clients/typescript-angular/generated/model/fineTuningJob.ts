@@ -7,6 +7,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { FineTuneMethod } from './fineTuneMethod';
 import { FineTuningJobHyperparameters } from './fineTuningJobHyperparameters';
 import { FineTuningJobIntegrationsInner } from './fineTuningJobIntegrationsInner';
 import { FineTuningJobError } from './fineTuningJobError';
@@ -74,6 +75,11 @@ export interface FineTuningJob {
      * The seed used for the fine-tuning job.
      */
     seed: number;
+    /**
+     * The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+     */
+    estimated_finish?: number | null;
+    method?: FineTuneMethod;
 }
 export namespace FineTuningJob {
     export const ObjectEnum = {

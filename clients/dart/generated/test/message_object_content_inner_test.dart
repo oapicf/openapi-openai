@@ -27,8 +27,18 @@ void main() {
       // TODO
     });
 
+    // MessageContentImageUrlObjectImageUrl imageUrl
+    test('to test the property `imageUrl`', () async {
+      // TODO
+    });
+
     // MessageContentTextObjectText text
     test('to test the property `text`', () async {
+      // TODO
+    });
+
+    // String refusal
+    test('to test the property `refusal`', () async {
       // TODO
     });
 

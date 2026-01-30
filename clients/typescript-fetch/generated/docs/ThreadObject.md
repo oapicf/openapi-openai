@@ -10,6 +10,7 @@ Name | Type
 `id` | string
 `object` | string
 `createdAt` | number
+`toolResources` | [ModifyThreadRequestToolResources](ModifyThreadRequestToolResources.md)
 `metadata` | object
 
 ## Example
@@ -22,6 +23,7 @@ const example = {
   "id": null,
   "object": null,
   "createdAt": null,
+  "toolResources": null,
   "metadata": null,
 } satisfies ThreadObject
 

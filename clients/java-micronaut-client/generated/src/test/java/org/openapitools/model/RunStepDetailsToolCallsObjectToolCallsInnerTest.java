@@ -3,9 +3,10 @@ package org.openapitools.model;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.model.RunStepDetailsToolCallsCodeObject;
 import org.openapitools.model.RunStepDetailsToolCallsCodeObjectCodeInterpreter;
+import org.openapitools.model.RunStepDetailsToolCallsFileSearchObject;
+import org.openapitools.model.RunStepDetailsToolCallsFileSearchObjectFileSearch;
 import org.openapitools.model.RunStepDetailsToolCallsFunctionObject;
 import org.openapitools.model.RunStepDetailsToolCallsFunctionObjectFunction;
-import org.openapitools.model.RunStepDetailsToolCallsRetrievalObject;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -50,11 +51,11 @@ public class RunStepDetailsToolCallsObjectToolCallsInnerTest {
     }
 
     /**
-     * Test the property 'retrieval'
+     * Test the property 'fileSearch'
      */
     @Test
-    public void retrievalTest() {
-        // TODO: test retrieval
+    public void fileSearchTest() {
+        // TODO: test fileSearch
     }
 
     /**

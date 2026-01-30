@@ -1,7 +1,9 @@
 package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import org.openapitools.model.FineTuningJobHyperparametersNEpochs;
+import org.openapitools.model.CreateFineTuningJobRequestHyperparametersBatchSize;
+import org.openapitools.model.CreateFineTuningJobRequestHyperparametersLearningRateMultiplier;
+import org.openapitools.model.CreateFineTuningJobRequestHyperparametersNEpochs;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -19,6 +21,22 @@ public class FineTuningJobHyperparametersTest {
     @Test
     public void testFineTuningJobHyperparameters() {
         // TODO: test FineTuningJobHyperparameters
+    }
+
+    /**
+     * Test the property 'batchSize'
+     */
+    @Test
+    public void batchSizeTest() {
+        // TODO: test batchSize
+    }
+
+    /**
+     * Test the property 'learningRateMultiplier'
+     */
+    @Test
+    public void learningRateMultiplierTest() {
+        // TODO: test learningRateMultiplier
     }
 
     /**

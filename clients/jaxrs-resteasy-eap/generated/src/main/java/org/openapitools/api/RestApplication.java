@@ -8,6 +8,7 @@ import java.util.HashSet;
 
 import org.openapitools.api.impl.AssistantsApiServiceImpl;
 import org.openapitools.api.impl.AudioApiServiceImpl;
+import org.openapitools.api.impl.BatchesApiServiceImpl;
 import org.openapitools.api.impl.ChatApiServiceImpl;
 import org.openapitools.api.impl.CompletionsApiServiceImpl;
 import org.openapitools.api.impl.EmbeddingsApiServiceImpl;
@@ -16,7 +17,11 @@ import org.openapitools.api.impl.FineTuningApiServiceImpl;
 import org.openapitools.api.impl.ImagesApiServiceImpl;
 import org.openapitools.api.impl.ModelsApiServiceImpl;
 import org.openapitools.api.impl.ModerationsApiServiceImpl;
+import org.openapitools.api.impl.OrganizationApiServiceImpl;
+import org.openapitools.api.impl.RealtimeApiServiceImpl;
 import org.openapitools.api.impl.ThreadsApiServiceImpl;
+import org.openapitools.api.impl.UploadsApiServiceImpl;
+import org.openapitools.api.impl.VectorStoresApiServiceImpl;
 
 @ApplicationPath("/v1")
 public class RestApplication extends Application {
@@ -26,6 +31,7 @@ public class RestApplication extends Application {
         Set<Class<?>> resources = new HashSet<Class<?>>();
         resources.add(AssistantsApiServiceImpl.class);
         resources.add(AudioApiServiceImpl.class);
+        resources.add(BatchesApiServiceImpl.class);
         resources.add(ChatApiServiceImpl.class);
         resources.add(CompletionsApiServiceImpl.class);
         resources.add(EmbeddingsApiServiceImpl.class);
@@ -34,7 +40,11 @@ public class RestApplication extends Application {
         resources.add(ImagesApiServiceImpl.class);
         resources.add(ModelsApiServiceImpl.class);
         resources.add(ModerationsApiServiceImpl.class);
+        resources.add(OrganizationApiServiceImpl.class);
+        resources.add(RealtimeApiServiceImpl.class);
         resources.add(ThreadsApiServiceImpl.class);
+        resources.add(UploadsApiServiceImpl.class);
+        resources.add(VectorStoresApiServiceImpl.class);
 
         return resources;
     }

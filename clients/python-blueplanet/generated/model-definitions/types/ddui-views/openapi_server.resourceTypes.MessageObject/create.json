@@ -23,7 +23,7 @@
       {"model": "content" },
       {"model": "assistant_id" },
       {"model": "run_id" },
-      {"model": "file_ids" },
+      {"model": "attachments" },
       {"model": "metadata" },
     ]
   }]

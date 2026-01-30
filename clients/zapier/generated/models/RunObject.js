@@ -47,7 +47,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}status`,
-                label: `The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`. - [${labelPrefix}status]`,
+                label: `The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`. - [${labelPrefix}status]`,
                 required: true,
                 type: 'string',
                 choices: [
@@ -58,6 +58,7 @@ module.exports = {
                     'cancelled',
                     'failed',
                     'completed',
+                    'incomplete',
                     'expired',
                 ],
             },
@@ -112,15 +113,8 @@ module.exports = {
                 children: AssistantObject_tools_inner.fields(`${keyPrefix}tools${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
-                key: `${keyPrefix}file_ids`,
-                label: `The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run. - [${labelPrefix}file_ids]`,
-                required: true,
-                list: true,
-                type: 'string',
-            },
-            {
                 key: `${keyPrefix}metadata`,
-                label: `Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  - [${labelPrefix}metadata]`,
+                label: `Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  - [${labelPrefix}metadata]`,
                 required: true,
                 dict: true,
             },
@@ -128,6 +122,11 @@ module.exports = {
             {
                 key: `${keyPrefix}temperature`,
                 label: `The sampling temperature used for this run. If not set, defaults to 1. - [${labelPrefix}temperature]`,
+                type: 'number',
+            },
+            {
+                key: `${keyPrefix}top_p`,
+                label: `The nucleus sampling value used for this run. If not set, defaults to 1. - [${labelPrefix}top_p]`,
                 type: 'number',
             },
             {
@@ -144,6 +143,12 @@ module.exports = {
             },
             ...TruncationObject.fields(`${keyPrefix}truncation_strategy`, isInput),
             ...AssistantsApiToolChoiceOption.fields(`${keyPrefix}tool_choice`, isInput),
+            {
+                key: `${keyPrefix}parallel_tool_calls`,
+                label: `Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. - [${labelPrefix}parallel_tool_calls]`,
+                required: true,
+                type: 'boolean',
+            },
             ...AssistantsApiResponseFormatOption.fields(`${keyPrefix}response_format`, isInput),
         ]
     },
@@ -167,14 +172,15 @@ module.exports = {
             'model': bundle.inputData?.[`${keyPrefix}model`],
             'instructions': bundle.inputData?.[`${keyPrefix}instructions`],
             'tools': utils.childMapping(bundle.inputData?.[`${keyPrefix}tools`], `${keyPrefix}tools`, AssistantObject_tools_inner),
-            'file_ids': bundle.inputData?.[`${keyPrefix}file_ids`],
             'metadata': bundle.inputData?.[`${keyPrefix}metadata`],
             'usage': utils.removeIfEmpty(RunCompletionUsage.mapping(bundle, `${keyPrefix}usage`)),
             'temperature': bundle.inputData?.[`${keyPrefix}temperature`],
+            'top_p': bundle.inputData?.[`${keyPrefix}top_p`],
             'max_prompt_tokens': bundle.inputData?.[`${keyPrefix}max_prompt_tokens`],
             'max_completion_tokens': bundle.inputData?.[`${keyPrefix}max_completion_tokens`],
             'truncation_strategy': utils.removeIfEmpty(TruncationObject.mapping(bundle, `${keyPrefix}truncation_strategy`)),
             'tool_choice': utils.removeIfEmpty(AssistantsApiToolChoiceOption.mapping(bundle, `${keyPrefix}tool_choice`)),
+            'parallel_tool_calls': bundle.inputData?.[`${keyPrefix}parallel_tool_calls`],
             'response_format': utils.removeIfEmpty(AssistantsApiResponseFormatOption.mapping(bundle, `${keyPrefix}response_format`)),
         }
     },

@@ -3,7 +3,9 @@ package org.openapitools.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.CreateChatCompletionStreamResponseChoicesInner;
+import org.openapitools.model.CreateChatCompletionStreamResponseUsage;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -56,6 +58,14 @@ public class CreateChatCompletionStreamResponseTest {
     }
 
     /**
+     * Test the property 'serviceTier'
+     */
+    @Test
+    public void serviceTierTest() {
+        // TODO: test serviceTier
+    }
+
+    /**
      * Test the property 'systemFingerprint'
      */
     @Test
@@ -69,6 +79,14 @@ public class CreateChatCompletionStreamResponseTest {
     @Test
     public void _objectTest() {
         // TODO: test _object
+    }
+
+    /**
+     * Test the property 'usage'
+     */
+    @Test
+    public void usageTest() {
+        // TODO: test usage
     }
 
 }

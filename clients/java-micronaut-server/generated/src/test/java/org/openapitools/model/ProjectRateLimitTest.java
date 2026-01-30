@@ -1,0 +1,94 @@
+package org.openapitools.model;
+
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
+
+/**
+ * Model tests for ProjectRateLimit
+ */
+@MicronautTest
+public class ProjectRateLimitTest {
+    private final ProjectRateLimit model = null;
+
+    /**
+     * Model tests for ProjectRateLimit
+     */
+    @Test
+    public void testProjectRateLimit() {
+        // TODO: test ProjectRateLimit
+    }
+
+    /**
+     * Test the property '_object'
+     */
+    @Test
+    public void _objectTest() {
+        // TODO: test _object
+    }
+
+    /**
+     * Test the property 'id'
+     */
+    @Test
+    public void idTest() {
+        // TODO: test id
+    }
+
+    /**
+     * Test the property 'model'
+     */
+    @Test
+    public void modelTest() {
+        // TODO: test model
+    }
+
+    /**
+     * Test the property 'maxRequestsPer1Minute'
+     */
+    @Test
+    public void maxRequestsPer1MinuteTest() {
+        // TODO: test maxRequestsPer1Minute
+    }
+
+    /**
+     * Test the property 'maxTokensPer1Minute'
+     */
+    @Test
+    public void maxTokensPer1MinuteTest() {
+        // TODO: test maxTokensPer1Minute
+    }
+
+    /**
+     * Test the property 'maxImagesPer1Minute'
+     */
+    @Test
+    public void maxImagesPer1MinuteTest() {
+        // TODO: test maxImagesPer1Minute
+    }
+
+    /**
+     * Test the property 'maxAudioMegabytesPer1Minute'
+     */
+    @Test
+    public void maxAudioMegabytesPer1MinuteTest() {
+        // TODO: test maxAudioMegabytesPer1Minute
+    }
+
+    /**
+     * Test the property 'maxRequestsPer1Day'
+     */
+    @Test
+    public void maxRequestsPer1DayTest() {
+        // TODO: test maxRequestsPer1Day
+    }
+
+    /**
+     * Test the property 'batch1DayMaxInputTokens'
+     */
+    @Test
+    public void batch1DayMaxInputTokensTest() {
+        // TODO: test batch1DayMaxInputTokens
+    }
+
+}

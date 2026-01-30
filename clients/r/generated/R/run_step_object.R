@@ -21,7 +21,7 @@
 #' @field cancelled_at The Unix timestamp (in seconds) for when the run step was cancelled. integer
 #' @field failed_at The Unix timestamp (in seconds) for when the run step failed. integer
 #' @field completed_at The Unix timestamp (in seconds) for when the run step completed. integer
-#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. object
+#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. object
 #' @field usage  \link{RunStepCompletionUsage}
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -63,7 +63,7 @@ RunStepObject <- R6::R6Class(
     #' @param cancelled_at The Unix timestamp (in seconds) for when the run step was cancelled.
     #' @param failed_at The Unix timestamp (in seconds) for when the run step failed.
     #' @param completed_at The Unix timestamp (in seconds) for when the run step completed.
-    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
+    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
     #' @param usage usage
     #' @param ... Other optional arguments.
     initialize = function(`id`, `object`, `created_at`, `assistant_id`, `thread_id`, `run_id`, `type`, `status`, `step_details`, `last_error`, `expired_at`, `cancelled_at`, `failed_at`, `completed_at`, `metadata`, `usage`, ...) {

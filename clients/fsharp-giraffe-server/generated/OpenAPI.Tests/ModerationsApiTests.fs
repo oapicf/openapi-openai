@@ -26,7 +26,7 @@ module ModerationsApiHandlerTests =
   // ---------------------------------
 
   [<Fact>]
-  let ``CreateModeration - Classifies if text is potentially harmful. returns 200 where OK`` () =
+  let ``CreateModeration - Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation).  returns 200 where OK`` () =
     task {
       use server = new TestServer(createHost())
       use client = server.CreateClient()

@@ -1,7 +1,7 @@
 /*
  * CreateModerationRequest_input.h
  *
- * The input text to classify
+ * Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models. 
  */
 
 #ifndef _CreateModerationRequest_input_H_
@@ -9,6 +9,7 @@
 
 
 #include <string>
+#include "CreateModerationRequest_input_oneOf_inner.h"
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API
@@ -20,7 +21,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief The input text to classify
+/*! \brief Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models. 
  *
  *  \ingroup Models
  *

@@ -5,7 +5,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **String** | Always &#x60;image_file&#x60;. | 
 **ImageFile** | [**MessageContentImageFileObjectImageFile**](MessageContentImageFileObjectImageFile.md) |  | 
+**ImageUrl** | [**MessageContentImageUrlObjectImageUrl**](MessageContentImageUrlObjectImageUrl.md) |  | 
 **Text** | [**MessageContentTextObjectText**](MessageContentTextObjectText.md) |  | 
+**Refusal** | **String** |  | 
 
 ## Examples
 
@@ -13,7 +15,9 @@ Name | Type | Description | Notes
 ```powershell
 $MessageObjectContentInner = Initialize-PSOpenAPIToolsMessageObjectContentInner  -Type null `
  -ImageFile null `
- -Text null
+ -ImageUrl null `
+ -Text null `
+ -Refusal null
 ```
 
 - Convert the resource to JSON

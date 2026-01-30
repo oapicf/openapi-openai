@@ -1,0 +1,36 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AutoChunkingStrategy"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AutoChunkingStrategy"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  AutoChunkingStrategy {
+    title = AutoChunkingStrategy
+    description = AutoChunkingStrategy
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "Always &#x60;auto&#x60;."
+          enum = ["auto"]
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AutoChunkingStrategy {
+    title = AutoChunkingStrategy
+    description = AutoChunkingStrategy
+    implements = openapi_server.resourceTypes.AutoChunkingStrategy
+
+  }
+}

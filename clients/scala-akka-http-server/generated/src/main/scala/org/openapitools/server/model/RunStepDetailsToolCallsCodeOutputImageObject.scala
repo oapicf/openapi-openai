@@ -2,7 +2,7 @@ package org.openapitools.server.model
 
 
 /**
- * = Code interpreter image output =
+ * = Code Interpreter image output =
  *
  * @param `type` Always `image`. for example: ''null''
  * @param image  for example: ''null''

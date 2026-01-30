@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"type", @"lastMessages"];
+  NSArray *optionalProperties = @[@"lastMessages"];
   return [optionalProperties containsObject:propertyName];
 }
 

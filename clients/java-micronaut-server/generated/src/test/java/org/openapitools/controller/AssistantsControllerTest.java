@@ -1,23 +1,18 @@
 package org.openapitools.controller;
 
-import org.openapitools.model.AssistantFileObject;
 import org.openapitools.model.AssistantObject;
-import org.openapitools.model.CreateAssistantFileRequest;
 import org.openapitools.model.CreateAssistantRequest;
 import org.openapitools.model.CreateMessageRequest;
 import org.openapitools.model.CreateRunRequest;
 import org.openapitools.model.CreateThreadAndRunRequest;
 import org.openapitools.model.CreateThreadRequest;
-import org.openapitools.model.DeleteAssistantFileResponse;
 import org.openapitools.model.DeleteAssistantResponse;
+import org.openapitools.model.DeleteMessageResponse;
 import org.openapitools.model.DeleteThreadResponse;
-import org.openapitools.model.ListAssistantFilesResponse;
 import org.openapitools.model.ListAssistantsResponse;
-import org.openapitools.model.ListMessageFilesResponse;
 import org.openapitools.model.ListMessagesResponse;
 import org.openapitools.model.ListRunStepsResponse;
 import org.openapitools.model.ListRunsResponse;
-import org.openapitools.model.MessageFileObject;
 import org.openapitools.model.MessageObject;
 import org.openapitools.model.ModifyAssistantRequest;
 import org.openapitools.model.ModifyMessageRequest;
@@ -109,7 +104,7 @@ public class AssistantsControllerTest {
             put("run_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, null)
-            .accept("[Ljava.lang.String;@67521a79");
+            .accept("[Ljava.lang.String;@4e853286");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, RunObject.class);
@@ -151,56 +146,10 @@ public class AssistantsControllerTest {
         CreateAssistantRequest body = new CreateAssistantRequest(null);
         String uri = UriTemplate.of("/assistants").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@73839f22");
+            .accept("[Ljava.lang.String;@6ea4403f");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, AssistantObject.class);
-
-        // then
-        Assertions.assertEquals(HttpStatus.OK, response.status());
-    }
-
-    /**
-     * This test is used to validate the implementation of createAssistantFile() method
-     *
-     * The method should: Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     *
-     * TODO fill in the parameters and test return value.
-     */
-    @Test
-    @Disabled("Not Implemented")
-    void createAssistantFileMethodTest() {
-        // given
-        String assistantId = "file-abc123";
-        CreateAssistantFileRequest createAssistantFileRequest = new CreateAssistantFileRequest("example");
-
-        // when
-        AssistantFileObject result = controller.createAssistantFile(assistantId, createAssistantFileRequest).block();
-
-        // then
-        Assertions.assertTrue(true);
-    }
-
-    /**
-     * This test is used to check that the api available to client through
-     * '/assistants/{assistant_id}/files' to the features of createAssistantFile() works as desired.
-     *
-     * TODO fill in the request parameters and test response.
-     */
-    @Test
-    @Disabled("Not Implemented")
-    void createAssistantFileClientApiTest() throws IOException {
-        // given
-        CreateAssistantFileRequest body = new CreateAssistantFileRequest("example");
-        String uri = UriTemplate.of("/assistants/{assistant_id}/files").expand(new HashMap<String, Object>(){{
-            // Fill in the path variables
-            put("assistant_id", "file-abc123");
-        }});
-        MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@1512efe9");
-
-        // when
-        HttpResponse<?> response = client.toBlocking().exchange(request, AssistantFileObject.class);
 
         // then
         Assertions.assertEquals(HttpStatus.OK, response.status());
@@ -218,7 +167,7 @@ public class AssistantsControllerTest {
     void createMessageMethodTest() {
         // given
         String threadId = "example";
-        CreateMessageRequest createMessageRequest = new CreateMessageRequest("example", "example");
+        CreateMessageRequest createMessageRequest = new CreateMessageRequest("example", null);
 
         // when
         MessageObject result = controller.createMessage(threadId, createMessageRequest).block();
@@ -237,13 +186,13 @@ public class AssistantsControllerTest {
     @Disabled("Not Implemented")
     void createMessageClientApiTest() throws IOException {
         // given
-        CreateMessageRequest body = new CreateMessageRequest("example", "example");
+        CreateMessageRequest body = new CreateMessageRequest("example", null);
         String uri = UriTemplate.of("/threads/{thread_id}/messages").expand(new HashMap<String, Object>(){{
             // Fill in the path variables
             put("thread_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@7cc7e441");
+            .accept("[Ljava.lang.String;@1d5e16a9");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, MessageObject.class);
@@ -265,9 +214,10 @@ public class AssistantsControllerTest {
         // given
         String threadId = "example";
         CreateRunRequest createRunRequest = new CreateRunRequest("example");
+        List<String> include = Arrays.asList("example");
 
         // when
-        RunObject result = controller.createRun(threadId, createRunRequest).block();
+        RunObject result = controller.createRun(threadId, createRunRequest, include).block();
 
         // then
         Assertions.assertTrue(true);
@@ -289,7 +239,9 @@ public class AssistantsControllerTest {
             put("thread_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@bb1b872");
+            .accept("[Ljava.lang.String;@6d1aa79c");
+        request.getParameters()
+            .add("include[]", Arrays.asList("example")); // The query format should be multi
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, RunObject.class);
@@ -331,7 +283,7 @@ public class AssistantsControllerTest {
         CreateThreadRequest body = new CreateThreadRequest();
         String uri = UriTemplate.of("/threads").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@64245ca9");
+            .accept("[Ljava.lang.String;@a6ca9bb");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, ThreadObject.class);
@@ -373,7 +325,7 @@ public class AssistantsControllerTest {
         CreateThreadAndRunRequest body = new CreateThreadAndRunRequest("example");
         String uri = UriTemplate.of("/threads/runs").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@66cb9a63");
+            .accept("[Ljava.lang.String;@4605a571");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, RunObject.class);
@@ -417,7 +369,7 @@ public class AssistantsControllerTest {
             put("assistant_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.DELETE(uri)
-            .accept("[Ljava.lang.String;@256d8f17");
+            .accept("[Ljava.lang.String;@2b831846");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, DeleteAssistantResponse.class);
@@ -427,21 +379,21 @@ public class AssistantsControllerTest {
     }
 
     /**
-     * This test is used to validate the implementation of deleteAssistantFile() method
+     * This test is used to validate the implementation of deleteMessage() method
      *
-     * The method should: Delete an assistant file.
+     * The method should: Deletes a message.
      *
      * TODO fill in the parameters and test return value.
      */
     @Test
     @Disabled("Not Implemented")
-    void deleteAssistantFileMethodTest() {
+    void deleteMessageMethodTest() {
         // given
-        String assistantId = "example";
-        String fileId = "example";
+        String threadId = "example";
+        String messageId = "example";
 
         // when
-        DeleteAssistantFileResponse result = controller.deleteAssistantFile(assistantId, fileId).block();
+        DeleteMessageResponse result = controller.deleteMessage(threadId, messageId).block();
 
         // then
         Assertions.assertTrue(true);
@@ -449,24 +401,24 @@ public class AssistantsControllerTest {
 
     /**
      * This test is used to check that the api available to client through
-     * '/assistants/{assistant_id}/files/{file_id}' to the features of deleteAssistantFile() works as desired.
+     * '/threads/{thread_id}/messages/{message_id}' to the features of deleteMessage() works as desired.
      *
      * TODO fill in the request parameters and test response.
      */
     @Test
     @Disabled("Not Implemented")
-    void deleteAssistantFileClientApiTest() throws IOException {
+    void deleteMessageClientApiTest() throws IOException {
         // given
-        String uri = UriTemplate.of("/assistants/{assistant_id}/files/{file_id}").expand(new HashMap<String, Object>(){{
+        String uri = UriTemplate.of("/threads/{thread_id}/messages/{message_id}").expand(new HashMap<String, Object>(){{
             // Fill in the path variables
-            put("assistant_id", "example");
-            put("file_id", "example");
+            put("thread_id", "example");
+            put("message_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.DELETE(uri)
-            .accept("[Ljava.lang.String;@2319c1e0");
+            .accept("[Ljava.lang.String;@139d7ced");
 
         // when
-        HttpResponse<?> response = client.toBlocking().exchange(request, DeleteAssistantFileResponse.class);
+        HttpResponse<?> response = client.toBlocking().exchange(request, DeleteMessageResponse.class);
 
         // then
         Assertions.assertEquals(HttpStatus.OK, response.status());
@@ -507,7 +459,7 @@ public class AssistantsControllerTest {
             put("thread_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.DELETE(uri)
-            .accept("[Ljava.lang.String;@659e003e");
+            .accept("[Ljava.lang.String;@7c532e54");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, DeleteThreadResponse.class);
@@ -551,56 +503,10 @@ public class AssistantsControllerTest {
             put("assistant_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@5f3c866c");
+            .accept("[Ljava.lang.String;@17163282");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, AssistantObject.class);
-
-        // then
-        Assertions.assertEquals(HttpStatus.OK, response.status());
-    }
-
-    /**
-     * This test is used to validate the implementation of getAssistantFile() method
-     *
-     * The method should: Retrieves an AssistantFile.
-     *
-     * TODO fill in the parameters and test return value.
-     */
-    @Test
-    @Disabled("Not Implemented")
-    void getAssistantFileMethodTest() {
-        // given
-        String assistantId = "example";
-        String fileId = "example";
-
-        // when
-        AssistantFileObject result = controller.getAssistantFile(assistantId, fileId).block();
-
-        // then
-        Assertions.assertTrue(true);
-    }
-
-    /**
-     * This test is used to check that the api available to client through
-     * '/assistants/{assistant_id}/files/{file_id}' to the features of getAssistantFile() works as desired.
-     *
-     * TODO fill in the request parameters and test response.
-     */
-    @Test
-    @Disabled("Not Implemented")
-    void getAssistantFileClientApiTest() throws IOException {
-        // given
-        String uri = UriTemplate.of("/assistants/{assistant_id}/files/{file_id}").expand(new HashMap<String, Object>(){{
-            // Fill in the path variables
-            put("assistant_id", "example");
-            put("file_id", "example");
-        }});
-        MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@16e0afab");
-
-        // when
-        HttpResponse<?> response = client.toBlocking().exchange(request, AssistantFileObject.class);
 
         // then
         Assertions.assertEquals(HttpStatus.OK, response.status());
@@ -643,58 +549,10 @@ public class AssistantsControllerTest {
             put("message_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@7b9b6a56");
+            .accept("[Ljava.lang.String;@2464490e");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, MessageObject.class);
-
-        // then
-        Assertions.assertEquals(HttpStatus.OK, response.status());
-    }
-
-    /**
-     * This test is used to validate the implementation of getMessageFile() method
-     *
-     * The method should: Retrieves a message file.
-     *
-     * TODO fill in the parameters and test return value.
-     */
-    @Test
-    @Disabled("Not Implemented")
-    void getMessageFileMethodTest() {
-        // given
-        String threadId = "thread_abc123";
-        String messageId = "msg_abc123";
-        String fileId = "file-abc123";
-
-        // when
-        MessageFileObject result = controller.getMessageFile(threadId, messageId, fileId).block();
-
-        // then
-        Assertions.assertTrue(true);
-    }
-
-    /**
-     * This test is used to check that the api available to client through
-     * '/threads/{thread_id}/messages/{message_id}/files/{file_id}' to the features of getMessageFile() works as desired.
-     *
-     * TODO fill in the request parameters and test response.
-     */
-    @Test
-    @Disabled("Not Implemented")
-    void getMessageFileClientApiTest() throws IOException {
-        // given
-        String uri = UriTemplate.of("/threads/{thread_id}/messages/{message_id}/files/{file_id}").expand(new HashMap<String, Object>(){{
-            // Fill in the path variables
-            put("thread_id", "thread_abc123");
-            put("message_id", "msg_abc123");
-            put("file_id", "file-abc123");
-        }});
-        MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@6e111aeb");
-
-        // when
-        HttpResponse<?> response = client.toBlocking().exchange(request, MessageFileObject.class);
 
         // then
         Assertions.assertEquals(HttpStatus.OK, response.status());
@@ -737,7 +595,7 @@ public class AssistantsControllerTest {
             put("run_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@55a5eea3");
+            .accept("[Ljava.lang.String;@5ce6337b");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, RunObject.class);
@@ -760,9 +618,10 @@ public class AssistantsControllerTest {
         String threadId = "example";
         String runId = "example";
         String stepId = "example";
+        List<String> include = Arrays.asList("example");
 
         // when
-        RunStepObject result = controller.getRunStep(threadId, runId, stepId).block();
+        RunStepObject result = controller.getRunStep(threadId, runId, stepId, include).block();
 
         // then
         Assertions.assertTrue(true);
@@ -785,7 +644,9 @@ public class AssistantsControllerTest {
             put("step_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@46ab8e4b");
+            .accept("[Ljava.lang.String;@39a2973d");
+        request.getParameters()
+            .add("include[]", Arrays.asList("example")); // The query format should be multi
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, RunStepObject.class);
@@ -829,63 +690,10 @@ public class AssistantsControllerTest {
             put("thread_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@66428512");
+            .accept("[Ljava.lang.String;@1f0630a9");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, ThreadObject.class);
-
-        // then
-        Assertions.assertEquals(HttpStatus.OK, response.status());
-    }
-
-    /**
-     * This test is used to validate the implementation of listAssistantFiles() method
-     *
-     * The method should: Returns a list of assistant files.
-     *
-     * TODO fill in the parameters and test return value.
-     */
-    @Test
-    @Disabled("Not Implemented")
-    void listAssistantFilesMethodTest() {
-        // given
-        String assistantId = "example";
-        Integer limit = 20;
-        String order = "desc";
-        String after = "example";
-        String before = "example";
-
-        // when
-        ListAssistantFilesResponse result = controller.listAssistantFiles(assistantId, limit, order, after, before).block();
-
-        // then
-        Assertions.assertTrue(true);
-    }
-
-    /**
-     * This test is used to check that the api available to client through
-     * '/assistants/{assistant_id}/files' to the features of listAssistantFiles() works as desired.
-     *
-     * TODO fill in the request parameters and test response.
-     */
-    @Test
-    @Disabled("Not Implemented")
-    void listAssistantFilesClientApiTest() throws IOException {
-        // given
-        String uri = UriTemplate.of("/assistants/{assistant_id}/files").expand(new HashMap<String, Object>(){{
-            // Fill in the path variables
-            put("assistant_id", "example");
-        }});
-        MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@e21d73");
-        request.getParameters()
-            .add("limit", String.valueOf(20)) // The query parameter format should be 
-            .add("order", "desc") // The query parameter format should be 
-            .add("after", "example") // The query parameter format should be 
-            .add("before", "example"); // The query parameter format should be 
-
-        // when
-        HttpResponse<?> response = client.toBlocking().exchange(request, ListAssistantFilesResponse.class);
 
         // then
         Assertions.assertEquals(HttpStatus.OK, response.status());
@@ -926,7 +734,7 @@ public class AssistantsControllerTest {
         // given
         String uri = UriTemplate.of("/assistants").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@7a482b3a");
+            .accept("[Ljava.lang.String;@19ac267e");
         request.getParameters()
             .add("limit", String.valueOf(20)) // The query parameter format should be 
             .add("order", "desc") // The query parameter format should be 
@@ -935,61 +743,6 @@ public class AssistantsControllerTest {
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, ListAssistantsResponse.class);
-
-        // then
-        Assertions.assertEquals(HttpStatus.OK, response.status());
-    }
-
-    /**
-     * This test is used to validate the implementation of listMessageFiles() method
-     *
-     * The method should: Returns a list of message files.
-     *
-     * TODO fill in the parameters and test return value.
-     */
-    @Test
-    @Disabled("Not Implemented")
-    void listMessageFilesMethodTest() {
-        // given
-        String threadId = "example";
-        String messageId = "example";
-        Integer limit = 20;
-        String order = "desc";
-        String after = "example";
-        String before = "example";
-
-        // when
-        ListMessageFilesResponse result = controller.listMessageFiles(threadId, messageId, limit, order, after, before).block();
-
-        // then
-        Assertions.assertTrue(true);
-    }
-
-    /**
-     * This test is used to check that the api available to client through
-     * '/threads/{thread_id}/messages/{message_id}/files' to the features of listMessageFiles() works as desired.
-     *
-     * TODO fill in the request parameters and test response.
-     */
-    @Test
-    @Disabled("Not Implemented")
-    void listMessageFilesClientApiTest() throws IOException {
-        // given
-        String uri = UriTemplate.of("/threads/{thread_id}/messages/{message_id}/files").expand(new HashMap<String, Object>(){{
-            // Fill in the path variables
-            put("thread_id", "example");
-            put("message_id", "example");
-        }});
-        MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@20ad64c");
-        request.getParameters()
-            .add("limit", String.valueOf(20)) // The query parameter format should be 
-            .add("order", "desc") // The query parameter format should be 
-            .add("after", "example") // The query parameter format should be 
-            .add("before", "example"); // The query parameter format should be 
-
-        // when
-        HttpResponse<?> response = client.toBlocking().exchange(request, ListMessageFilesResponse.class);
 
         // then
         Assertions.assertEquals(HttpStatus.OK, response.status());
@@ -1035,7 +788,7 @@ public class AssistantsControllerTest {
             put("thread_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@39a03ccc");
+            .accept("[Ljava.lang.String;@74bca3db");
         request.getParameters()
             .add("limit", String.valueOf(20)) // The query parameter format should be 
             .add("order", "desc") // The query parameter format should be 
@@ -1067,9 +820,10 @@ public class AssistantsControllerTest {
         String order = "desc";
         String after = "example";
         String before = "example";
+        List<String> include = Arrays.asList("example");
 
         // when
-        ListRunStepsResponse result = controller.listRunSteps(threadId, runId, limit, order, after, before).block();
+        ListRunStepsResponse result = controller.listRunSteps(threadId, runId, limit, order, after, before, include).block();
 
         // then
         Assertions.assertTrue(true);
@@ -1091,12 +845,13 @@ public class AssistantsControllerTest {
             put("run_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@4db45d");
+            .accept("[Ljava.lang.String;@f406ea2");
         request.getParameters()
             .add("limit", String.valueOf(20)) // The query parameter format should be 
             .add("order", "desc") // The query parameter format should be 
             .add("after", "example") // The query parameter format should be 
-            .add("before", "example"); // The query parameter format should be 
+            .add("before", "example") // The query parameter format should be 
+            .add("include[]", Arrays.asList("example")); // The query format should be multi
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, ListRunStepsResponse.class);
@@ -1144,7 +899,7 @@ public class AssistantsControllerTest {
             put("thread_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@89178b4");
+            .accept("[Ljava.lang.String;@1ef3b6ea");
         request.getParameters()
             .add("limit", String.valueOf(20)) // The query parameter format should be 
             .add("order", "desc") // The query parameter format should be 
@@ -1195,7 +950,7 @@ public class AssistantsControllerTest {
             put("assistant_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@5c7d675c");
+            .accept("[Ljava.lang.String;@113e5e93");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, AssistantObject.class);
@@ -1243,7 +998,7 @@ public class AssistantsControllerTest {
             put("message_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@64836643");
+            .accept("[Ljava.lang.String;@5f18ed13");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, MessageObject.class);
@@ -1291,7 +1046,7 @@ public class AssistantsControllerTest {
             put("run_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@981d9d2");
+            .accept("[Ljava.lang.String;@5321ad2c");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, RunObject.class);
@@ -1337,7 +1092,7 @@ public class AssistantsControllerTest {
             put("thread_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@ad6448e");
+            .accept("[Ljava.lang.String;@50e60544");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, ThreadObject.class);
@@ -1385,7 +1140,7 @@ public class AssistantsControllerTest {
             put("run_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@3da6950f");
+            .accept("[Ljava.lang.String;@334f130d");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, RunObject.class);

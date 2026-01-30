@@ -8,6 +8,7 @@
 (def message-delta-content-image-file-object-image-file-data
   {
    (ds/opt :file_id) string?
+   (ds/opt :detail) string?
    })
 
 (def message-delta-content-image-file-object-image-file-spec

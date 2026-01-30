@@ -56,7 +56,7 @@ Protected Class CreateImageRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
-			A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+			A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 		#tag EndNote
 		user As Xoson.O.OptionalString
 	#tag EndProperty

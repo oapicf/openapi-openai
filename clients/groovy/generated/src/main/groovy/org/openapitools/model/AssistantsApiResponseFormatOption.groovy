@@ -3,7 +3,10 @@ package org.openapitools.model;
 import groovy.transform.Canonical
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.model.AssistantsApiResponseFormat;
+import org.openapitools.model.ResponseFormatJsonObject;
+import org.openapitools.model.ResponseFormatJsonSchema;
+import org.openapitools.model.ResponseFormatJsonSchemaJsonSchema;
+import org.openapitools.model.ResponseFormatText;
 
 @Canonical
 class AssistantsApiResponseFormatOption {
@@ -12,7 +15,9 @@ class AssistantsApiResponseFormatOption {
     
         TEXT("text"),
         
-        JSON_OBJECT("json_object")
+        JSON_OBJECT("json_object"),
+        
+        JSON_SCHEMA("json_schema")
     
         private final String value
     
@@ -30,6 +35,8 @@ class AssistantsApiResponseFormatOption {
         }
     }
 
-    /* Must be one of `text` or `json_object`. */
-    TypeEnum type = TypeEnum.TEXT
+    /* The type of response format being defined: `text` */
+    TypeEnum type
+    
+    ResponseFormatJsonSchemaJsonSchema jsonSchema
 }

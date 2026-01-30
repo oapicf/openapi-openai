@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.model.ChatCompletionRequestToolMessageContent;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -16,7 +17,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("ChatCompletionRequestToolMessage")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestToolMessage   {
   public enum RoleEnum {
 
@@ -66,7 +67,7 @@ public class ChatCompletionRequestToolMessage   {
 }
 
   private RoleEnum role;
-  private String content;
+  private ChatCompletionRequestToolMessageContent content;
   private String toolCallId;
 
   public ChatCompletionRequestToolMessage() {
@@ -75,7 +76,7 @@ public class ChatCompletionRequestToolMessage   {
   @JsonCreator
   public ChatCompletionRequestToolMessage(
     @JsonProperty(required = true, value = "role") RoleEnum role,
-    @JsonProperty(required = true, value = "content") String content,
+    @JsonProperty(required = true, value = "content") ChatCompletionRequestToolMessageContent content,
     @JsonProperty(required = true, value = "tool_call_id") String toolCallId
   ) {
     this.role = role;
@@ -104,22 +105,21 @@ public class ChatCompletionRequestToolMessage   {
   }
 
   /**
-   * The contents of the tool message.
    **/
-  public ChatCompletionRequestToolMessage content(String content) {
+  public ChatCompletionRequestToolMessage content(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
     return this;
   }
 
   
-  @ApiModelProperty(required = true, value = "The contents of the tool message.")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(required = true, value = "content")
-  @NotNull public String getContent() {
+  @NotNull @Valid public ChatCompletionRequestToolMessageContent getContent() {
     return content;
   }
 
   @JsonProperty(required = true, value = "content")
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
   }
 

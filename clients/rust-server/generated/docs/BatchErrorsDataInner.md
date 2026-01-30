@@ -1,0 +1,13 @@
+# BatchErrorsDataInner
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**code** | **String** | An error code identifying the error type. | [optional] [default to None]
+**message** | **String** | A human-readable message providing more details about the error. | [optional] [default to None]
+**param** | **swagger::Nullable<String>** | The name of the parameter that caused the error, if applicable. | [optional] [default to None]
+**line** | **i32** | The line number of the input file where the error occurred, if applicable. | [optional] [default to None]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

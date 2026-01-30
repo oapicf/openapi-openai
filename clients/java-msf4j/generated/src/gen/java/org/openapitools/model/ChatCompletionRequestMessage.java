@@ -9,9 +9,12 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.ChatCompletionMessageToolCall;
 import org.openapitools.model.ChatCompletionRequestAssistantMessage;
+import org.openapitools.model.ChatCompletionRequestAssistantMessageAudio;
 import org.openapitools.model.ChatCompletionRequestAssistantMessageFunctionCall;
+import org.openapitools.model.ChatCompletionRequestDeveloperMessage;
 import org.openapitools.model.ChatCompletionRequestFunctionMessage;
 import org.openapitools.model.ChatCompletionRequestSystemMessage;
 import org.openapitools.model.ChatCompletionRequestToolMessage;
@@ -20,7 +23,7 @@ import org.openapitools.model.ChatCompletionRequestUserMessage;
 /**
  * ChatCompletionRequestMessage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestMessage   {
   @JsonProperty("content")
   private String content;
@@ -59,6 +62,12 @@ public class ChatCompletionRequestMessage   {
 
   @JsonProperty("name")
   private String name;
+
+  @JsonProperty("refusal")
+  private String refusal;
+
+  @JsonProperty("audio")
+  private ChatCompletionRequestAssistantMessageAudio audio;
 
   @JsonProperty("tool_calls")
   private List<@Valid ChatCompletionMessageToolCall> toolCalls = null;
@@ -121,6 +130,42 @@ public class ChatCompletionRequestMessage   {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public ChatCompletionRequestMessage refusal(String refusal) {
+    this.refusal = refusal;
+    return this;
+  }
+
+   /**
+   * The refusal message by the assistant.
+   * @return refusal
+  **/
+  @ApiModelProperty(value = "The refusal message by the assistant.")
+  public String getRefusal() {
+    return refusal;
+  }
+
+  public void setRefusal(String refusal) {
+    this.refusal = refusal;
+  }
+
+  public ChatCompletionRequestMessage audio(ChatCompletionRequestAssistantMessageAudio audio) {
+    this.audio = audio;
+    return this;
+  }
+
+   /**
+   * Get audio
+   * @return audio
+  **/
+  @ApiModelProperty(value = "")
+  public ChatCompletionRequestAssistantMessageAudio getAudio() {
+    return audio;
+  }
+
+  public void setAudio(ChatCompletionRequestAssistantMessageAudio audio) {
+    this.audio = audio;
   }
 
   public ChatCompletionRequestMessage toolCalls(List<@Valid ChatCompletionMessageToolCall> toolCalls) {
@@ -198,6 +243,8 @@ public class ChatCompletionRequestMessage   {
     return Objects.equals(this.content, chatCompletionRequestMessage.content) &&
         Objects.equals(this.role, chatCompletionRequestMessage.role) &&
         Objects.equals(this.name, chatCompletionRequestMessage.name) &&
+        Objects.equals(this.refusal, chatCompletionRequestMessage.refusal) &&
+        Objects.equals(this.audio, chatCompletionRequestMessage.audio) &&
         Objects.equals(this.toolCalls, chatCompletionRequestMessage.toolCalls) &&
         Objects.equals(this.functionCall, chatCompletionRequestMessage.functionCall) &&
         Objects.equals(this.toolCallId, chatCompletionRequestMessage.toolCallId);
@@ -205,7 +252,7 @@ public class ChatCompletionRequestMessage   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(content, role, name, toolCalls, functionCall, toolCallId);
+    return Objects.hash(content, role, name, refusal, audio, toolCalls, functionCall, toolCallId);
   }
 
   @Override
@@ -216,6 +263,8 @@ public class ChatCompletionRequestMessage   {
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
+    sb.append("    audio: ").append(toIndentedString(audio)).append("\n");
     sb.append("    toolCalls: ").append(toIndentedString(toolCalls)).append("\n");
     sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
     sb.append("    toolCallId: ").append(toIndentedString(toolCallId)).append("\n");

@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -22,11 +22,20 @@ var _ MappedNullable = &FineTuningJobEvent{}
 
 // FineTuningJobEvent Fine-tuning job event object
 type FineTuningJobEvent struct {
-	Id string `json:"id"`
-	CreatedAt int32 `json:"created_at"`
-	Level string `json:"level"`
-	Message string `json:"message"`
+	// The object type, which is always \"fine_tuning.job.event\".
 	Object string `json:"object"`
+	// The object identifier.
+	Id string `json:"id"`
+	// The Unix timestamp (in seconds) for when the fine-tuning job was created.
+	CreatedAt int32 `json:"created_at"`
+	// The log level of the event.
+	Level string `json:"level"`
+	// The message of the event.
+	Message string `json:"message"`
+	// The type of event.
+	Type *string `json:"type,omitempty"`
+	// The data associated with the event.
+	Data map[string]interface{} `json:"data,omitempty"`
 }
 
 type _FineTuningJobEvent FineTuningJobEvent
@@ -35,13 +44,13 @@ type _FineTuningJobEvent FineTuningJobEvent
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFineTuningJobEvent(id string, createdAt int32, level string, message string, object string) *FineTuningJobEvent {
+func NewFineTuningJobEvent(object string, id string, createdAt int32, level string, message string) *FineTuningJobEvent {
 	this := FineTuningJobEvent{}
+	this.Object = object
 	this.Id = id
 	this.CreatedAt = createdAt
 	this.Level = level
 	this.Message = message
-	this.Object = object
 	return &this
 }
 
@@ -51,6 +60,30 @@ func NewFineTuningJobEvent(id string, createdAt int32, level string, message str
 func NewFineTuningJobEventWithDefaults() *FineTuningJobEvent {
 	this := FineTuningJobEvent{}
 	return &this
+}
+
+// GetObject returns the Object field value
+func (o *FineTuningJobEvent) GetObject() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Object
+}
+
+// GetObjectOk returns a tuple with the Object field value
+// and a boolean to check if the value has been set.
+func (o *FineTuningJobEvent) GetObjectOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Object, true
+}
+
+// SetObject sets field value
+func (o *FineTuningJobEvent) SetObject(v string) {
+	o.Object = v
 }
 
 // GetId returns the Id field value
@@ -149,28 +182,68 @@ func (o *FineTuningJobEvent) SetMessage(v string) {
 	o.Message = v
 }
 
-// GetObject returns the Object field value
-func (o *FineTuningJobEvent) GetObject() string {
-	if o == nil {
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *FineTuningJobEvent) GetType() string {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
-
-	return o.Object
+	return *o.Type
 }
 
-// GetObjectOk returns a tuple with the Object field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FineTuningJobEvent) GetObjectOk() (*string, bool) {
-	if o == nil {
+func (o *FineTuningJobEvent) GetTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Object, true
+	return o.Type, true
 }
 
-// SetObject sets field value
-func (o *FineTuningJobEvent) SetObject(v string) {
-	o.Object = v
+// HasType returns a boolean if a field has been set.
+func (o *FineTuningJobEvent) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *FineTuningJobEvent) SetType(v string) {
+	o.Type = &v
+}
+
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *FineTuningJobEvent) GetData() map[string]interface{} {
+	if o == nil || IsNil(o.Data) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FineTuningJobEvent) GetDataOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Data) {
+		return map[string]interface{}{}, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *FineTuningJobEvent) HasData() bool {
+	if o != nil && !IsNil(o.Data) {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given map[string]interface{} and assigns it to the Data field.
+func (o *FineTuningJobEvent) SetData(v map[string]interface{}) {
+	o.Data = v
 }
 
 func (o FineTuningJobEvent) MarshalJSON() ([]byte, error) {
@@ -183,11 +256,17 @@ func (o FineTuningJobEvent) MarshalJSON() ([]byte, error) {
 
 func (o FineTuningJobEvent) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["object"] = o.Object
 	toSerialize["id"] = o.Id
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["level"] = o.Level
 	toSerialize["message"] = o.Message
-	toSerialize["object"] = o.Object
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
+	}
 	return toSerialize, nil
 }
 
@@ -196,11 +275,11 @@ func (o *FineTuningJobEvent) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"object",
 		"id",
 		"created_at",
 		"level",
 		"message",
-		"object",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The expiration policy for a vector store.",
+  "name": "VectorStoreExpirationAfter",
+  "fields": [
+    {
+      "name": "anchor",
+      "type": {
+        "type": "enum",
+        "name": "VectorStoreExpirationAfter_anchor",
+        "symbols": [
+          "last_active_at"
+        ]
+      },
+      "doc": "Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`."
+    },
+    {
+      "name": "days",
+      "type": "int",
+      "doc": "The number of days after the anchor time that the vector store will expire."
+    }
+  ]
+
+}

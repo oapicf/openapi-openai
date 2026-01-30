@@ -22,19 +22,18 @@ void main() {
       // TODO
     });
 
-    // The content of the message.
-    // String content
+    // CreateMessageRequestContent content
     test('to test the property `content`', () async {
       // TODO
     });
 
-    // A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like `retrieval` and `code_interpreter` that can access and use files.
-    // List<String> fileIds (default value: const [])
-    test('to test the property `fileIds`', () async {
+    // A list of files attached to the message, and the tools they should be added to.
+    // List<CreateMessageRequestAttachmentsInner> attachments (default value: const [])
+    test('to test the property `attachments`', () async {
       // TODO
     });
 
-    // Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+    // Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
     // Object metadata
     test('to test the property `metadata`', () async {
       // TODO

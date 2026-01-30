@@ -4,11 +4,11 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
-import org.openapitools.vertxweb.server.model.AssistantsApiNamedToolChoice;
-import org.openapitools.vertxweb.server.model.ChatCompletionNamedToolChoiceFunction;
+import org.openapitools.vertxweb.server.model.AssistantsNamedToolChoice;
+import org.openapitools.vertxweb.server.model.AssistantsNamedToolChoiceFunction;
 
 /**
- * Controls which (if any) tool is called by the model. &#x60;none&#x60; means the model will not call any tools and instead generates a message. &#x60;auto&#x60; is the default value and means the model can pick between generating a message or calling a tool. Specifying a particular tool like &#x60;{\&quot;type\&quot;: \&quot;TOOL_TYPE\&quot;}&#x60; or &#x60;{\&quot;type\&quot;: \&quot;function\&quot;, \&quot;function\&quot;: {\&quot;name\&quot;: \&quot;my_function\&quot;}}&#x60; forces the model to call that tool. 
+ * Controls which (if any) tool is called by the model. &#x60;none&#x60; means the model will not call any tools and instead generates a message. &#x60;auto&#x60; is the default value and means the model can pick between generating a message or calling one or more tools. &#x60;required&#x60; means the model must call one or more tools before responding to the user. Specifying a particular tool like &#x60;{\&quot;type\&quot;: \&quot;file_search\&quot;}&#x60; or &#x60;{\&quot;type\&quot;: \&quot;function\&quot;, \&quot;function\&quot;: {\&quot;name\&quot;: \&quot;my_function\&quot;}}&#x60; forces the model to call that tool. 
  **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AssistantsApiToolChoiceOption   {
@@ -18,7 +18,7 @@ public class AssistantsApiToolChoiceOption   {
   public enum TypeEnum {
     FUNCTION("function"),
     CODE_INTERPRETER("code_interpreter"),
-    RETRIEVAL("retrieval");
+    FILE_SEARCH("file_search");
 
     private String value;
 
@@ -34,13 +34,13 @@ public class AssistantsApiToolChoiceOption   {
   }
 
   private TypeEnum type;
-  private ChatCompletionNamedToolChoiceFunction function;
+  private AssistantsNamedToolChoiceFunction function;
 
   public AssistantsApiToolChoiceOption () {
 
   }
 
-  public AssistantsApiToolChoiceOption (TypeEnum type, ChatCompletionNamedToolChoiceFunction function) {
+  public AssistantsApiToolChoiceOption (TypeEnum type, AssistantsNamedToolChoiceFunction function) {
     this.type = type;
     this.function = function;
   }
@@ -56,10 +56,10 @@ public class AssistantsApiToolChoiceOption   {
 
     
   @JsonProperty("function")
-  public ChatCompletionNamedToolChoiceFunction getFunction() {
+  public AssistantsNamedToolChoiceFunction getFunction() {
     return function;
   }
-  public void setFunction(ChatCompletionNamedToolChoiceFunction function) {
+  public void setFunction(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
   }
 

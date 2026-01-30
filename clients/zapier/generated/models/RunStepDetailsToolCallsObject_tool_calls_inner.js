@@ -1,9 +1,10 @@
 const utils = require('../utils/utils');
 const RunStepDetailsToolCallsCodeObject = require('../models/RunStepDetailsToolCallsCodeObject');
 const RunStepDetailsToolCallsCodeObject_code_interpreter = require('../models/RunStepDetailsToolCallsCodeObject_code_interpreter');
+const RunStepDetailsToolCallsFileSearchObject = require('../models/RunStepDetailsToolCallsFileSearchObject');
+const RunStepDetailsToolCallsFileSearchObject_file_search = require('../models/RunStepDetailsToolCallsFileSearchObject_file_search');
 const RunStepDetailsToolCallsFunctionObject = require('../models/RunStepDetailsToolCallsFunctionObject');
 const RunStepDetailsToolCallsFunctionObject_function = require('../models/RunStepDetailsToolCallsFunctionObject_function');
-const RunStepDetailsToolCallsRetrievalObject = require('../models/RunStepDetailsToolCallsRetrievalObject');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
@@ -22,17 +23,12 @@ module.exports = {
                 type: 'string',
                 choices: [
                     'code_interpreter',
-                    'retrieval',
+                    'file_search',
                     'function',
                 ],
             },
             ...RunStepDetailsToolCallsCodeObject_code_interpreter.fields(`${keyPrefix}code_interpreter`, isInput),
-            {
-                key: `${keyPrefix}retrieval`,
-                label: `For now, this is always going to be an empty object. - [${labelPrefix}retrieval]`,
-                required: true,
-                dict: true,
-            },
+            ...RunStepDetailsToolCallsFileSearchObject_file_search.fields(`${keyPrefix}file_search`, isInput),
             ...RunStepDetailsToolCallsFunctionObject_function.fields(`${keyPrefix}function`, isInput),
         ]
     },
@@ -42,7 +38,7 @@ module.exports = {
             'id': bundle.inputData?.[`${keyPrefix}id`],
             'type': bundle.inputData?.[`${keyPrefix}type`],
             'code_interpreter': utils.removeIfEmpty(RunStepDetailsToolCallsCodeObject_code_interpreter.mapping(bundle, `${keyPrefix}code_interpreter`)),
-            'retrieval': bundle.inputData?.[`${keyPrefix}retrieval`],
+            'file_search': utils.removeIfEmpty(RunStepDetailsToolCallsFileSearchObject_file_search.mapping(bundle, `${keyPrefix}file_search`)),
             'function': utils.removeIfEmpty(RunStepDetailsToolCallsFunctionObject_function.mapping(bundle, `${keyPrefix}function`)),
         }
     },

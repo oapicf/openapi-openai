@@ -10,15 +10,15 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Controls which (if any) tool is called by the model. &#x60;none&#x60; means the model will not call any tools and instead generates a message. &#x60;auto&#x60; is the default value and means the model can pick between generating a message or calling a tool. Specifying a particular tool like &#x60;{\&quot;type\&quot;: \&quot;TOOL_TYPE\&quot;}&#x60; or &#x60;{\&quot;type\&quot;: \&quot;function\&quot;, \&quot;function\&quot;: {\&quot;name\&quot;: \&quot;my_function\&quot;}}&#x60; forces the model to call that tool.  */
+/** Controls which (if any) tool is called by the model. &#x60;none&#x60; means the model will not call any tools and instead generates a message. &#x60;auto&#x60; is the default value and means the model can pick between generating a message or calling one or more tools. &#x60;required&#x60; means the model must call one or more tools before responding to the user. Specifying a particular tool like &#x60;{\&quot;type\&quot;: \&quot;file_search\&quot;}&#x60; or &#x60;{\&quot;type\&quot;: \&quot;function\&quot;, \&quot;function\&quot;: {\&quot;name\&quot;: \&quot;my_function\&quot;}}&#x60; forces the model to call that tool.  */
 public enum AssistantsApiToolChoiceOption: Codable, JSONEncodable, Hashable {
-    case typeAssistantsApiNamedToolChoice(AssistantsApiNamedToolChoice)
+    case typeAssistantsNamedToolChoice(AssistantsNamedToolChoice)
     case typeString(String)
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .typeAssistantsApiNamedToolChoice(let value):
+        case .typeAssistantsNamedToolChoice(let value):
             try container.encode(value)
         case .typeString(let value):
             try container.encode(value)
@@ -27,8 +27,8 @@ public enum AssistantsApiToolChoiceOption: Codable, JSONEncodable, Hashable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = try? container.decode(AssistantsApiNamedToolChoice.self) {
-            self = .typeAssistantsApiNamedToolChoice(value)
+        if let value = try? container.decode(AssistantsNamedToolChoice.self) {
+            self = .typeAssistantsNamedToolChoice(value)
         } else if let value = try? container.decode(String.self) {
             self = .typeString(value)
         } else {

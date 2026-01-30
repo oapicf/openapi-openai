@@ -9,7 +9,7 @@
 
 
 #include <string>
-#include "ChatCompletionNamedToolChoice_function.h"
+#include "AssistantsNamedToolChoice_function.h"
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API
@@ -55,15 +55,15 @@ public:
 	void setType(std::string  type);
 	/*! \brief Get 
 	 */
-	ChatCompletionNamedToolChoice_function getFunction();
+	AssistantsNamedToolChoice_function getFunction();
 
 	/*! \brief Set 
 	 */
-	void setFunction(ChatCompletionNamedToolChoice_function  function);
+	void setFunction(AssistantsNamedToolChoice_function  function);
 
 private:
 	std::string type;
-	ChatCompletionNamedToolChoice_function function;
+	AssistantsNamedToolChoice_function function;
 	void __init();
 	void __cleanup();
 

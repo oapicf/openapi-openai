@@ -8,7 +8,7 @@ import org.openapitools._
 import org.openapitools.models.ChatCompletionRequestUserMessageContent
 
 /**
- * 
+ * Messages sent by an end user, containing prompts or additional context information. 
  * @param content 
  * @param role The role of the messages author, in this case `user`.
  * @param name An optional name for the participant. Provides the model information to differentiate between participants of the same role.

@@ -6,9 +6,9 @@ namespace App\DTO;
 use Articus\DataTransfer\Annotation as DTA;
 
 /**
- * @DTA\Strategy(name="ObjectList", options={"type":\App\DTO\RunToolCallObject::class})
+ * @DTA\Strategy(name="ObjectList", options={"type":\App\DTO\FineTuningJobCheckpoint::class})
  * @DTA\Validator(name="Collection", options={"validators":{
- *     {"name":"TypeCompliant", "options":{"type":\App\DTO\RunToolCallObject::class}}
+ *     {"name":"TypeCompliant", "options":{"type":\App\DTO\FineTuningJobCheckpoint::class}}
  * }})
  */
 class Collection45 extends \ArrayObject

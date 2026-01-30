@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -23,10 +23,11 @@ var _ MappedNullable = &CreateFineTuningJobRequest{}
 // CreateFineTuningJobRequest struct for CreateFineTuningJobRequest
 type CreateFineTuningJobRequest struct {
 	Model CreateFineTuningJobRequestModel `json:"model"`
-	// The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
+	// The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
 	TrainingFile string `json:"training_file"`
+	// Deprecated
 	Hyperparameters *CreateFineTuningJobRequestHyperparameters `json:"hyperparameters,omitempty"`
-	// A string of up to 18 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-3.5-turbo:openai:custom-model-name:7p4lURel`. 
+	// A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`. 
 	Suffix NullableString `json:"suffix,omitempty"`
 	// The ID of an uploaded file that contains validation data.  If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the fine-tuning results file. The same data should not be present in both train and validation files.  Your dataset must be formatted as a JSONL file. You must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
 	ValidationFile NullableString `json:"validation_file,omitempty"`
@@ -34,6 +35,7 @@ type CreateFineTuningJobRequest struct {
 	Integrations []CreateFineTuningJobRequestIntegrationsInner `json:"integrations,omitempty"`
 	// The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed is not specified, one will be generated for you. 
 	Seed NullableInt32 `json:"seed,omitempty"`
+	Method *FineTuneMethod `json:"method,omitempty"`
 }
 
 type _CreateFineTuningJobRequest CreateFineTuningJobRequest
@@ -106,6 +108,7 @@ func (o *CreateFineTuningJobRequest) SetTrainingFile(v string) {
 }
 
 // GetHyperparameters returns the Hyperparameters field value if set, zero value otherwise.
+// Deprecated
 func (o *CreateFineTuningJobRequest) GetHyperparameters() CreateFineTuningJobRequestHyperparameters {
 	if o == nil || IsNil(o.Hyperparameters) {
 		var ret CreateFineTuningJobRequestHyperparameters
@@ -116,6 +119,7 @@ func (o *CreateFineTuningJobRequest) GetHyperparameters() CreateFineTuningJobReq
 
 // GetHyperparametersOk returns a tuple with the Hyperparameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *CreateFineTuningJobRequest) GetHyperparametersOk() (*CreateFineTuningJobRequestHyperparameters, bool) {
 	if o == nil || IsNil(o.Hyperparameters) {
 		return nil, false
@@ -133,6 +137,7 @@ func (o *CreateFineTuningJobRequest) HasHyperparameters() bool {
 }
 
 // SetHyperparameters gets a reference to the given CreateFineTuningJobRequestHyperparameters and assigns it to the Hyperparameters field.
+// Deprecated
 func (o *CreateFineTuningJobRequest) SetHyperparameters(v CreateFineTuningJobRequestHyperparameters) {
 	o.Hyperparameters = &v
 }
@@ -296,6 +301,38 @@ func (o *CreateFineTuningJobRequest) UnsetSeed() {
 	o.Seed.Unset()
 }
 
+// GetMethod returns the Method field value if set, zero value otherwise.
+func (o *CreateFineTuningJobRequest) GetMethod() FineTuneMethod {
+	if o == nil || IsNil(o.Method) {
+		var ret FineTuneMethod
+		return ret
+	}
+	return *o.Method
+}
+
+// GetMethodOk returns a tuple with the Method field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateFineTuningJobRequest) GetMethodOk() (*FineTuneMethod, bool) {
+	if o == nil || IsNil(o.Method) {
+		return nil, false
+	}
+	return o.Method, true
+}
+
+// HasMethod returns a boolean if a field has been set.
+func (o *CreateFineTuningJobRequest) HasMethod() bool {
+	if o != nil && !IsNil(o.Method) {
+		return true
+	}
+
+	return false
+}
+
+// SetMethod gets a reference to the given FineTuneMethod and assigns it to the Method field.
+func (o *CreateFineTuningJobRequest) SetMethod(v FineTuneMethod) {
+	o.Method = &v
+}
+
 func (o CreateFineTuningJobRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -322,6 +359,9 @@ func (o CreateFineTuningJobRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Seed.IsSet() {
 		toSerialize["seed"] = o.Seed.Get()
+	}
+	if !IsNil(o.Method) {
+		toSerialize["method"] = o.Method
 	}
 	return toSerialize, nil
 }

@@ -14,17 +14,13 @@ public struct MessageContentTextAnnotationsFileCitationObjectFileCitation: Codab
 
     /** The ID of the specific File the citation is from. */
     public var fileId: String
-    /** The specific quote in the file. */
-    public var quote: String
 
-    public init(fileId: String, quote: String) {
+    public init(fileId: String) {
         self.fileId = fileId
-        self.quote = quote
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case fileId = "file_id"
-        case quote
     }
 
     // Encodable protocol methods
@@ -32,7 +28,6 @@ public struct MessageContentTextAnnotationsFileCitationObjectFileCitation: Codab
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(fileId, forKey: .fileId)
-        try container.encode(quote, forKey: .quote)
     }
 }
 

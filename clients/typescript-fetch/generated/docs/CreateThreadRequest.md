@@ -7,6 +7,7 @@
 Name | Type
 ------------ | -------------
 `messages` | [Array&lt;CreateMessageRequest&gt;](CreateMessageRequest.md)
+`toolResources` | [CreateThreadRequestToolResources](CreateThreadRequestToolResources.md)
 `metadata` | object
 
 ## Example
@@ -17,6 +18,7 @@ import type { CreateThreadRequest } from ''
 // TODO: Update the object below with actual values
 const example = {
   "messages": null,
+  "toolResources": null,
   "metadata": null,
 } satisfies CreateThreadRequest
 

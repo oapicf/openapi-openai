@@ -1,0 +1,52 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CostsResult"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CostsResult"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  CostsResultAmount = openapi_server.resourceTypes.CostsResultAmount
+}
+resourceTypes {
+
+  CostsResult {
+    title = CostsResult
+    description = CostsResult
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          enum = ["organization.costs.result"]
+          optional = true
+        }
+        amount {
+          type = CostsResultAmount
+          description = ""
+          optional = false
+        }
+        line_item {
+          type =  string
+          description = "When &#x60;group_by&#x3D;line_item&#x60;, this field provides the line item of the grouped costs result."
+          optional = false
+        }
+        project_id {
+          type =  string
+          description = "When &#x60;group_by&#x3D;project_id&#x60;, this field provides the project ID of the grouped costs result."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CostsResult {
+    title = CostsResult
+    description = CostsResult
+    implements = openapi_server.resourceTypes.CostsResult
+
+  }
+}

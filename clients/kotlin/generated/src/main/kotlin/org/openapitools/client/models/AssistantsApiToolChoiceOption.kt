@@ -15,14 +15,14 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AssistantsApiNamedToolChoice
-import org.openapitools.client.models.ChatCompletionNamedToolChoiceFunction
+import org.openapitools.client.models.AssistantsNamedToolChoice
+import org.openapitools.client.models.AssistantsNamedToolChoiceFunction
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Controls which (if any) tool is called by the model. `none` means the model will not call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling a tool. Specifying a particular tool like `{\"type\": \"TOOL_TYPE\"}` or `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool. 
+ * Controls which (if any) tool is called by the model. `none` means the model will not call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling one or more tools. `required` means the model must call one or more tools before responding to the user. Specifying a particular tool like `{\"type\": \"file_search\"}` or `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool. 
  *
  * @param type The type of the tool. If type is `function`, the function name must be set
  * @param function 
@@ -36,20 +36,20 @@ data class AssistantsApiToolChoiceOption (
     val type: AssistantsApiToolChoiceOption.Type,
 
     @Json(name = "function")
-    val function: ChatCompletionNamedToolChoiceFunction? = null
+    val function: AssistantsNamedToolChoiceFunction? = null
 
 ) {
 
     /**
      * The type of the tool. If type is `function`, the function name must be set
      *
-     * Values: function,code_interpreter,retrieval
+     * Values: function,code_interpreter,file_search
      */
     @JsonClass(generateAdapter = false)
     enum class Type(val value: kotlin.String) {
         @Json(name = "function") function("function"),
         @Json(name = "code_interpreter") code_interpreter("code_interpreter"),
-        @Json(name = "retrieval") retrieval("retrieval");
+        @Json(name = "file_search") file_search("file_search");
     }
 
 }

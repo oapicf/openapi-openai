@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -28,6 +28,12 @@ type CreateModerationResponseResultsInnerCategoryScores struct {
 
 	// The score for the category 'harassment/threatening'.
 	HarassmentThreatening float32 `json:"harassment/threatening"`
+
+	// The score for the category 'illicit'.
+	Illicit float32 `json:"illicit"`
+
+	// The score for the category 'illicit/violent'.
+	IllicitViolent float32 `json:"illicit/violent"`
 
 	// The score for the category 'self-harm'.
 	SelfHarm float32 `json:"self-harm"`
@@ -58,6 +64,8 @@ func AssertCreateModerationResponseResultsInnerCategoryScoresRequired(obj Create
 		"hate/threatening": obj.HateThreatening,
 		"harassment": obj.Harassment,
 		"harassment/threatening": obj.HarassmentThreatening,
+		"illicit": obj.Illicit,
+		"illicit/violent": obj.IllicitViolent,
 		"self-harm": obj.SelfHarm,
 		"self-harm/intent": obj.SelfHarmIntent,
 		"self-harm/instructions": obj.SelfHarmInstructions,

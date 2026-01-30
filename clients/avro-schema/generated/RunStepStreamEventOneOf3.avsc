@@ -1,7 +1,7 @@
 {
   "namespace": "model",
   "type": "record",
-  "doc": "Occurs when a [run step](/docs/api-reference/runs/step-object) is completed.",
+  "doc": "Occurs when a [run step](/docs/api-reference/run-steps/step-object) is completed.",
   "name": "RunStepStreamEventOneOf3",
   "fields": [
     {

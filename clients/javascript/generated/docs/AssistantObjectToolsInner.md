@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **String** | The type of tool being defined: &#x60;code_interpreter&#x60; | 
+**fileSearch** | [**AssistantToolsFileSearchFileSearch**](AssistantToolsFileSearchFileSearch.md) |  | [optional] 
 **_function** | [**FunctionObject**](FunctionObject.md) |  | 
 
 
@@ -14,7 +15,7 @@ Name | Type | Description | Notes
 
 * `code_interpreter` (value: `"code_interpreter"`)
 
-* `retrieval` (value: `"retrieval"`)
+* `file_search` (value: `"file_search"`)
 
 * `function` (value: `"function"`)
 

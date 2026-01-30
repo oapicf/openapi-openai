@@ -71,9 +71,9 @@ MESSAGE_CREATION(String.valueOf("message_creation")), TOOL_CALLS(String.valueOf(
   private RunStepDeltaStepDetailsMessageCreationObjectMessageCreation messageCreation;
 
  /**
-  * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+  * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
   */
-  @ApiModelProperty(value = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. ")
+  @ApiModelProperty(value = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. ")
 
   @Valid
 
@@ -119,7 +119,7 @@ MESSAGE_CREATION(String.valueOf("message_creation")), TOOL_CALLS(String.valueOf(
   }
 
  /**
-   * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: &#x60;code_interpreter&#x60;, &#x60;retrieval&#x60;, or &#x60;function&#x60;. 
+   * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: &#x60;code_interpreter&#x60;, &#x60;file_search&#x60;, or &#x60;function&#x60;. 
    * @return toolCalls
   **/
   @JsonProperty("tool_calls")

@@ -1,0 +1,41 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server MessageRequestContentTextObject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a MessageRequestContentTextObject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  MessageRequestContentTextObject {
+    title = MessageRequestContentTextObject
+    description = MessageRequestContentTextObject
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "Always &#x60;text&#x60;."
+          enum = ["text"]
+          optional = true
+        }
+        text {
+          type =  string
+          description = "Text content to be sent to the model"
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MessageRequestContentTextObject {
+    title = MessageRequestContentTextObject
+    description = MessageRequestContentTextObject
+    implements = openapi_server.resourceTypes.MessageRequestContentTextObject
+
+  }
+}

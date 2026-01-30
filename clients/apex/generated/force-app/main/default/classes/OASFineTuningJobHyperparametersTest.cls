@@ -73,6 +73,8 @@ private class OASFineTuningJobHyperparametersTest {
     private static void maintainRenamedProperties() {
         OASFineTuningJobHyperparameters fineTuningJobHyperparameters = new OASFineTuningJobHyperparameters();
         Map<String, String> x-property-mappings = fineTuningJobHyperparameters.getx-property-mappings();
+        System.assertEquals('batchSize', x-property-mappings.get('batch_size'));
+        System.assertEquals('learningRateMultiplier', x-property-mappings.get('learning_rate_multiplier'));
         System.assertEquals('nEpochs', x-property-mappings.get('n_epochs'));
     }
 }

@@ -5,13 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FileId** | **string** | The ID of the specific File the citation is from. | 
-**Quote** | **string** | The specific quote in the file. | 
 
 ## Methods
 
 ### NewMessageContentTextAnnotationsFileCitationObjectFileCitation
 
-`func NewMessageContentTextAnnotationsFileCitationObjectFileCitation(fileId string, quote string, ) *MessageContentTextAnnotationsFileCitationObjectFileCitation`
+`func NewMessageContentTextAnnotationsFileCitationObjectFileCitation(fileId string, ) *MessageContentTextAnnotationsFileCitationObjectFileCitation`
 
 NewMessageContentTextAnnotationsFileCitationObjectFileCitation instantiates a new MessageContentTextAnnotationsFileCitationObjectFileCitation object
 This constructor will assign default values to properties that have it defined,
@@ -44,26 +43,6 @@ and a boolean to check if the value has been set.
 `func (o *MessageContentTextAnnotationsFileCitationObjectFileCitation) SetFileId(v string)`
 
 SetFileId sets FileId field to given value.
-
-
-### GetQuote
-
-`func (o *MessageContentTextAnnotationsFileCitationObjectFileCitation) GetQuote() string`
-
-GetQuote returns the Quote field if non-nil, zero value otherwise.
-
-### GetQuoteOk
-
-`func (o *MessageContentTextAnnotationsFileCitationObjectFileCitation) GetQuoteOk() (*string, bool)`
-
-GetQuoteOk returns a tuple with the Quote field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQuote
-
-`func (o *MessageContentTextAnnotationsFileCitationObjectFileCitation) SetQuote(v string)`
-
-SetQuote sets Quote field to given value.
 
 
 

@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -25,8 +28,8 @@ import javax.annotation.Generated;
  */
 
 @Deprecated
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
-public class ChatCompletionRequestFunctionMessage implements ChatCompletionRequestMessage {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class ChatCompletionRequestFunctionMessage implements ChatCompletionRequestMessage, FineTuneChatRequestInputMessagesInner {
 
   /**
    * The role of the messages author, in this case `function`.

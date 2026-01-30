@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The text content that is part of a message.",
+  "name": "MessageRequestContentTextObject",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "MessageRequestContentTextObject_type",
+        "symbols": [
+          "text"
+        ]
+      },
+      "doc": "Always `text`."
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "doc": "Text content to be sent to the model"
+    }
+  ]
+
+}

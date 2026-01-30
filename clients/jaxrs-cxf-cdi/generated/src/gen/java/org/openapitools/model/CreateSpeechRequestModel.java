@@ -6,14 +6,14 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * One of the available [TTS models](/docs/models/tts): &#x60;tts-1&#x60; or &#x60;tts-1-hd&#x60; 
+ * One of the available [TTS models](/docs/models#tts): &#x60;tts-1&#x60; or &#x60;tts-1-hd&#x60; 
  **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-@ApiModel(description = "One of the available [TTS models](/docs/models/tts): `tts-1` or `tts-1-hd` ")
+@ApiModel(description = "One of the available [TTS models](/docs/models#tts): `tts-1` or `tts-1-hd` ")
 public class CreateSpeechRequestModel   {
   
 

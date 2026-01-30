@@ -1,0 +1,31 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateMessageRequestContent"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateMessageRequestContent"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ArrayOfContentPartsInner = openapi_server.resourceTypes.ArrayOfContentPartsInner
+}
+resourceTypes {
+
+  CreateMessageRequestContent {
+    title = CreateMessageRequestContent
+    description = CreateMessageRequestContent
+    derivedFrom = Root
+    properties {
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateMessageRequestContent {
+    title = CreateMessageRequestContent
+    description = CreateMessageRequestContent
+    implements = openapi_server.resourceTypes.CreateMessageRequestContent
+
+  }
+}

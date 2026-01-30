@@ -1,5 +1,7 @@
 package org.openapitools.model;
 
+import org.openapitools.model.CompletionUsageCompletionTokensDetails;
+import org.openapitools.model.CompletionUsagePromptTokensDetails;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -41,6 +43,22 @@ public class CompletionUsageTest {
     @Test
     public void totalTokensTest() {
         // TODO: test totalTokens
+    }
+
+    /**
+     * Test the property 'completionTokensDetails'
+     */
+    @Test
+    public void completionTokensDetailsTest() {
+        // TODO: test completionTokensDetails
+    }
+
+    /**
+     * Test the property 'promptTokensDetails'
+     */
+    @Test
+    public void promptTokensDetailsTest() {
+        // TODO: test promptTokensDetails
     }
 
 }

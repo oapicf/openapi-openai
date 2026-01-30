@@ -11,7 +11,9 @@
         "name": "MessageObjectContentInner_type",
         "symbols": [
           "image_file",
-          "text"
+          "image_url",
+          "text",
+          "refusal"
         ]
       },
       "doc": "Always `image_file`."
@@ -22,8 +24,18 @@
       "doc": ""
     },
     {
+      "name": "image_url",
+      "type": "model.MessageContentImageUrlObjectImageUrl",
+      "doc": ""
+    },
+    {
       "name": "text",
       "type": "model.MessageContentTextObjectText",
+      "doc": ""
+    },
+    {
+      "name": "refusal",
+      "type": "string",
       "doc": ""
     }
   ]

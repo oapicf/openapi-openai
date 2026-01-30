@@ -6,6 +6,7 @@ import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 
+import org.openapitools.model.AudioResponseFormat;
 import java.math.BigDecimal;
 import org.openapitools.model.CreateSpeechRequest;
 import org.openapitools.model.CreateTranscription200Response;
@@ -22,7 +23,7 @@ import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T10:45:31.742862961Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T14:09:29.020322047Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class AudioApiServiceImpl implements AudioApi {
       public Response createSpeech(CreateSpeechRequest createSpeechRequest,SecurityContext securityContext) {
       // do some magic!

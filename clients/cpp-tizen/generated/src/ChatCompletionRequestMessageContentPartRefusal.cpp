@@ -1,0 +1,135 @@
+#include <map>
+#include <cstdlib>
+#include <glib-object.h>
+#include <json-glib/json-glib.h>
+#include "Helpers.h"
+
+
+#include "ChatCompletionRequestMessageContentPartRefusal.h"
+
+using namespace std;
+using namespace Tizen::ArtikCloud;
+
+ChatCompletionRequestMessageContentPartRefusal::ChatCompletionRequestMessageContentPartRefusal()
+{
+	//__init();
+}
+
+ChatCompletionRequestMessageContentPartRefusal::~ChatCompletionRequestMessageContentPartRefusal()
+{
+	//__cleanup();
+}
+
+void
+ChatCompletionRequestMessageContentPartRefusal::__init()
+{
+	//type = std::string();
+	//refusal = std::string();
+}
+
+void
+ChatCompletionRequestMessageContentPartRefusal::__cleanup()
+{
+	//if(type != NULL) {
+	//
+	//delete type;
+	//type = NULL;
+	//}
+	//if(refusal != NULL) {
+	//
+	//delete refusal;
+	//refusal = NULL;
+	//}
+	//
+}
+
+void
+ChatCompletionRequestMessageContentPartRefusal::fromJson(char* jsonStr)
+{
+	JsonObject *pJsonObject = json_node_get_object(json_from_string(jsonStr,NULL));
+	JsonNode *node;
+	const gchar *typeKey = "type";
+	node = json_object_get_member(pJsonObject, typeKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&type, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *refusalKey = "refusal";
+	node = json_object_get_member(pJsonObject, refusalKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&refusal, node, "std::string", "");
+		} else {
+			
+		}
+	}
+}
+
+ChatCompletionRequestMessageContentPartRefusal::ChatCompletionRequestMessageContentPartRefusal(char* json)
+{
+	this->fromJson(json);
+}
+
+char*
+ChatCompletionRequestMessageContentPartRefusal::toJson()
+{
+	JsonObject *pJsonObject = json_object_new();
+	JsonNode *node;
+	if (isprimitive("std::string")) {
+		std::string obj = getType();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *typeKey = "type";
+	json_object_set_member(pJsonObject, typeKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getRefusal();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *refusalKey = "refusal";
+	json_object_set_member(pJsonObject, refusalKey, node);
+	node = json_node_alloc();
+	json_node_init(node, JSON_NODE_OBJECT);
+	json_node_take_object(node, pJsonObject);
+	char * ret = json_to_string(node, false);
+	json_node_free(node);
+	return ret;
+}
+
+std::string
+ChatCompletionRequestMessageContentPartRefusal::getType()
+{
+	return type;
+}
+
+void
+ChatCompletionRequestMessageContentPartRefusal::setType(std::string  type)
+{
+	this->type = type;
+}
+
+std::string
+ChatCompletionRequestMessageContentPartRefusal::getRefusal()
+{
+	return refusal;
+}
+
+void
+ChatCompletionRequestMessageContentPartRefusal::setRefusal(std::string  refusal)
+{
+	this->refusal = refusal;
+}
+
+

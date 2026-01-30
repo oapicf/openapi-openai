@@ -1,5 +1,6 @@
 package controllers;
 
+import apimodels.AudioResponseFormat;
 import java.math.BigDecimal;
 import apimodels.CreateSpeechRequest;
 import apimodels.CreateTranscription200Response;
@@ -29,7 +30,7 @@ import com.typesafe.config.Config;
 
 import openapitools.OpenAPIUtils.ApiAction;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class AudioApiController extends Controller {
     private final AudioApiControllerImpInterface imp;
     private final ObjectMapper mapper;
@@ -86,11 +87,11 @@ public class AudioApiController extends Controller {
             prompt = null;
         }
         String[] valueresponseFormat = request.body().asMultipartFormData().asFormUrlEncoded().get("response_format");
-        String responseFormat;
+        AudioResponseFormat responseFormat;
         if (valueresponseFormat != null) {
             responseFormat = valueresponseFormat[0];
         } else {
-            responseFormat = "json";
+            responseFormat = json;
         }
         String[] valuetemperature = request.body().asMultipartFormData().asFormUrlEncoded().get("temperature");
         BigDecimal temperature;
@@ -133,11 +134,11 @@ public class AudioApiController extends Controller {
             prompt = null;
         }
         String[] valueresponseFormat = request.body().asMultipartFormData().asFormUrlEncoded().get("response_format");
-        String responseFormat;
+        AudioResponseFormat responseFormat;
         if (valueresponseFormat != null) {
             responseFormat = valueresponseFormat[0];
         } else {
-            responseFormat = "json";
+            responseFormat = json;
         }
         String[] valuetemperature = request.body().asMultipartFormData().asFormUrlEncoded().get("temperature");
         BigDecimal temperature;

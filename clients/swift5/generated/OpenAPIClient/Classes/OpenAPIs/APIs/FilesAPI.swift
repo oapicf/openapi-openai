@@ -16,15 +16,17 @@ open class FilesAPI {
      * enum for parameter purpose
      */
     public enum Purpose_createFile: String, CaseIterable {
-        case fineTune = "fine-tune"
         case assistants = "assistants"
+        case batch = "batch"
+        case fineTune = "fine-tune"
+        case vision = "vision"
     }
 
     /**
-     Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
      
      - parameter file: (form) The File object (not file name) to be uploaded.  
-     - parameter purpose: (form) The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning.  
+     - parameter purpose: (form) The intended purpose of the uploaded file.  Use \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\&quot;vision\\\&quot; for Assistants image file inputs, \\\&quot;batch\\\&quot; for [Batch API](/docs/guides/batch), and \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning).  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -41,13 +43,13 @@ open class FilesAPI {
     }
 
     /**
-     Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
      - POST /files
      - Bearer Token:
        - type: http
        - name: ApiKeyAuth
      - parameter file: (form) The File object (not file name) to be uploaded.  
-     - parameter purpose: (form) The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning.  
+     - parameter purpose: (form) The intended purpose of the uploaded file.  Use \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\&quot;vision\\\&quot; for Assistants image file inputs, \\\&quot;batch\\\&quot; for [Batch API](/docs/guides/batch), and \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning).  
      - returns: RequestBuilder<OpenAIFile> 
      */
     open class func createFileWithRequestBuilder(file: URL, purpose: Purpose_createFile) -> RequestBuilder<OpenAIFile> {
@@ -173,15 +175,26 @@ open class FilesAPI {
     }
 
     /**
-     Returns a list of files that belong to the user's organization.
+     * enum for parameter order
+     */
+    public enum Order_listFiles: String, CaseIterable {
+        case asc = "asc"
+        case desc = "desc"
+    }
+
+    /**
+     Returns a list of files.
      
      - parameter purpose: (query) Only return files with the given purpose. (optional)
+     - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000.  (optional, default to 10000)
+     - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to .desc)
+     - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listFiles(purpose: String? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: ListFilesResponse?, _ error: Error?) -> Void)) -> RequestTask {
-        return listFilesWithRequestBuilder(purpose: purpose).execute(apiResponseQueue) { result in
+    open class func listFiles(purpose: String? = nil, limit: Int? = nil, order: Order_listFiles? = nil, after: String? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: ListFilesResponse?, _ error: Error?) -> Void)) -> RequestTask {
+        return listFilesWithRequestBuilder(purpose: purpose, limit: limit, order: order, after: after).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -192,15 +205,18 @@ open class FilesAPI {
     }
 
     /**
-     Returns a list of files that belong to the user's organization.
+     Returns a list of files.
      - GET /files
      - Bearer Token:
        - type: http
        - name: ApiKeyAuth
      - parameter purpose: (query) Only return files with the given purpose. (optional)
+     - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000.  (optional, default to 10000)
+     - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to .desc)
+     - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
      - returns: RequestBuilder<ListFilesResponse> 
      */
-    open class func listFilesWithRequestBuilder(purpose: String? = nil) -> RequestBuilder<ListFilesResponse> {
+    open class func listFilesWithRequestBuilder(purpose: String? = nil, limit: Int? = nil, order: Order_listFiles? = nil, after: String? = nil) -> RequestBuilder<ListFilesResponse> {
         let localVariablePath = "/files"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -208,6 +224,9 @@ open class FilesAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "purpose": (wrappedValue: purpose?.encodeToJSON(), isExplode: true),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "order": (wrappedValue: order?.encodeToJSON(), isExplode: true),
+            "after": (wrappedValue: after?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

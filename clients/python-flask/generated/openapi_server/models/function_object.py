@@ -12,7 +12,7 @@ class FunctionObject(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, description=None, name=None, parameters=None):  # noqa: E501
+    def __init__(self, description=None, name=None, parameters=None, strict=False):  # noqa: E501
         """FunctionObject - a model defined in OpenAPI
 
         :param description: The description of this FunctionObject.  # noqa: E501
@@ -21,22 +21,27 @@ class FunctionObject(Model):
         :type name: str
         :param parameters: The parameters of this FunctionObject.  # noqa: E501
         :type parameters: Dict[str, object]
+        :param strict: The strict of this FunctionObject.  # noqa: E501
+        :type strict: bool
         """
         self.openapi_types = {
             'description': str,
             'name': str,
-            'parameters': Dict[str, object]
+            'parameters': Dict[str, object],
+            'strict': bool
         }
 
         self.attribute_map = {
             'description': 'description',
             'name': 'name',
-            'parameters': 'parameters'
+            'parameters': 'parameters',
+            'strict': 'strict'
         }
 
         self._description = description
         self._name = name
         self._parameters = parameters
+        self._strict = strict
 
     @classmethod
     def from_dict(cls, dikt) -> 'FunctionObject':
@@ -101,7 +106,7 @@ class FunctionObject(Model):
     def parameters(self) -> Dict[str, object]:
         """Gets the parameters of this FunctionObject.
 
-        The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.  # noqa: E501
+        The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.  # noqa: E501
 
         :return: The parameters of this FunctionObject.
         :rtype: Dict[str, object]
@@ -112,10 +117,33 @@ class FunctionObject(Model):
     def parameters(self, parameters: Dict[str, object]):
         """Sets the parameters of this FunctionObject.
 
-        The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.  # noqa: E501
+        The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.  # noqa: E501
 
         :param parameters: The parameters of this FunctionObject.
         :type parameters: Dict[str, object]
         """
 
         self._parameters = parameters
+
+    @property
+    def strict(self) -> bool:
+        """Gets the strict of this FunctionObject.
+
+        Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).  # noqa: E501
+
+        :return: The strict of this FunctionObject.
+        :rtype: bool
+        """
+        return self._strict
+
+    @strict.setter
+    def strict(self, strict: bool):
+        """Sets the strict of this FunctionObject.
+
+        Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).  # noqa: E501
+
+        :param strict: The strict of this FunctionObject.
+        :type strict: bool
+        """
+
+        self._strict = strict

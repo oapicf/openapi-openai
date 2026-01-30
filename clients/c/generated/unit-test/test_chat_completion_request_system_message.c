@@ -16,19 +16,20 @@
 #include "../model/chat_completion_request_system_message.h"
 chat_completion_request_system_message_t* instantiate_chat_completion_request_system_message(int include_optional);
 
+#include "test_chat_completion_request_system_message_content.c"
 
 
 chat_completion_request_system_message_t* instantiate_chat_completion_request_system_message(int include_optional) {
   chat_completion_request_system_message_t* chat_completion_request_system_message = NULL;
   if (include_optional) {
     chat_completion_request_system_message = chat_completion_request_system_message_create(
-      "0",
+      null,
       openai_api_chat_completion_request_system_message_ROLE_system,
       "0"
     );
   } else {
     chat_completion_request_system_message = chat_completion_request_system_message_create(
-      "0",
+      null,
       openai_api_chat_completion_request_system_message_ROLE_system,
       "0"
     );

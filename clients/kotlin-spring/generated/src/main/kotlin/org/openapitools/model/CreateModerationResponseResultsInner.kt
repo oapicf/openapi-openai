@@ -3,6 +3,7 @@ package org.openapitools.model
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.openapitools.model.CreateModerationResponseResultsInnerCategories
+import org.openapitools.model.CreateModerationResponseResultsInnerCategoryAppliedInputTypes
 import org.openapitools.model.CreateModerationResponseResultsInnerCategoryScores
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -20,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param flagged Whether any of the below categories are flagged.
  * @param categories 
  * @param categoryScores 
+ * @param categoryAppliedInputTypes 
  */
 data class CreateModerationResponseResultsInner(
 
@@ -32,7 +34,11 @@ data class CreateModerationResponseResultsInner(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("category_scores", required = true) val categoryScores: CreateModerationResponseResultsInnerCategoryScores
+    @get:JsonProperty("category_scores", required = true) val categoryScores: CreateModerationResponseResultsInnerCategoryScores,
+
+    @field:Valid
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("category_applied_input_types", required = true) val categoryAppliedInputTypes: CreateModerationResponseResultsInnerCategoryAppliedInputTypes
 ) {
 
 }

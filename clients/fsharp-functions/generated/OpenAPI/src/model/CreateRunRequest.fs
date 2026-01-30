@@ -36,6 +36,8 @@ module CreateRunRequest =
     Metadata : obj;
     [<JsonProperty(PropertyName = "temperature")>]
     Temperature : decimal option;
+    [<JsonProperty(PropertyName = "top_p")>]
+    TopP : decimal option;
     [<JsonProperty(PropertyName = "stream")>]
     Stream : bool option;
     [<JsonProperty(PropertyName = "max_prompt_tokens")>]
@@ -46,6 +48,8 @@ module CreateRunRequest =
     TruncationStrategy : TruncationObject;
     [<JsonProperty(PropertyName = "tool_choice")>]
     ToolChoice : AssistantsApiToolChoiceOption;
+    [<JsonProperty(PropertyName = "parallel_tool_calls")>]
+    ParallelToolCalls : bool;
     [<JsonProperty(PropertyName = "response_format")>]
     ResponseFormat : AssistantsApiResponseFormatOption;
   }

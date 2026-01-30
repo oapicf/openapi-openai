@@ -16,17 +16,20 @@ public struct CreateModerationResponseResultsInner: Codable, JSONEncodable, Hash
     public var flagged: Bool
     public var categories: CreateModerationResponseResultsInnerCategories
     public var categoryScores: CreateModerationResponseResultsInnerCategoryScores
+    public var categoryAppliedInputTypes: CreateModerationResponseResultsInnerCategoryAppliedInputTypes
 
-    public init(flagged: Bool, categories: CreateModerationResponseResultsInnerCategories, categoryScores: CreateModerationResponseResultsInnerCategoryScores) {
+    public init(flagged: Bool, categories: CreateModerationResponseResultsInnerCategories, categoryScores: CreateModerationResponseResultsInnerCategoryScores, categoryAppliedInputTypes: CreateModerationResponseResultsInnerCategoryAppliedInputTypes) {
         self.flagged = flagged
         self.categories = categories
         self.categoryScores = categoryScores
+        self.categoryAppliedInputTypes = categoryAppliedInputTypes
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case flagged
         case categories
         case categoryScores = "category_scores"
+        case categoryAppliedInputTypes = "category_applied_input_types"
     }
 
     // Encodable protocol methods
@@ -36,6 +39,7 @@ public struct CreateModerationResponseResultsInner: Codable, JSONEncodable, Hash
         try container.encode(flagged, forKey: .flagged)
         try container.encode(categories, forKey: .categories)
         try container.encode(categoryScores, forKey: .categoryScores)
+        try container.encode(categoryAppliedInputTypes, forKey: .categoryAppliedInputTypes)
     }
 }
 

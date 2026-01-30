@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"hate": @"hate", @"hateThreatening": @"hate/threatening", @"harassment": @"harassment", @"harassmentThreatening": @"harassment/threatening", @"selfHarm": @"self-harm", @"selfHarmIntent": @"self-harm/intent", @"selfHarmInstructions": @"self-harm/instructions", @"sexual": @"sexual", @"sexualMinors": @"sexual/minors", @"violence": @"violence", @"violenceGraphic": @"violence/graphic" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"hate": @"hate", @"hateThreatening": @"hate/threatening", @"harassment": @"harassment", @"harassmentThreatening": @"harassment/threatening", @"illicit": @"illicit", @"illicitViolent": @"illicit/violent", @"selfHarm": @"self-harm", @"selfHarmIntent": @"self-harm/intent", @"selfHarmInstructions": @"self-harm/instructions", @"sexual": @"sexual", @"sexualMinors": @"sexual/minors", @"violence": @"violence", @"violenceGraphic": @"violence/graphic" }];
 }
 
 /**

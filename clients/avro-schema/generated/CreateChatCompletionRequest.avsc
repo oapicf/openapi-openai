@@ -10,7 +10,7 @@
         "type": "array",
         "items": "model.ChatCompletionRequestMessage"
       },
-      "doc": "A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models)."
+      "doc": "A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). "
     },
     {
       "name": "model",
@@ -18,9 +18,38 @@
       "doc": ""
     },
     {
+      "name": "store",
+      "type": ["boolean", "null"],
+      "doc": "Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. ",
+      "default": false
+    },
+    {
+      "name": "reasoning_effort",
+      "type": [{
+        "type": "enum",
+        "name": "CreateChatCompletionRequest_reasoningUnderscoreeffort",
+        "symbols": [
+          "low",
+          "medium",
+          "high"
+        ]
+      }, "null"],
+      "doc": "**o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. ",
+      "default": ReasoningUnderscoreeffortEnum.MEDIUM
+    },
+    {
+      "name": "metadata",
+      "type": ["null", {
+        "type": "map",
+        "items": "string"
+      }],
+      "doc": "Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). ",
+      "default": null
+    },
+    {
       "name": "frequency_penalty",
       "type": ["double", "null"],
-      "doc": "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ",
+      "doc": "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. ",
       "default": 0
     },
     {
@@ -35,19 +64,25 @@
     {
       "name": "logprobs",
       "type": ["boolean", "null"],
-      "doc": "Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.",
+      "doc": "Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. ",
       "default": false
     },
     {
       "name": "top_logprobs",
       "type": ["null", "int"],
-      "doc": "An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.",
+      "doc": "An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. ",
       "default": null
     },
     {
       "name": "max_tokens",
       "type": ["null", "int"],
-      "doc": "The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. ",
+      "doc": "The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). ",
+      "default": null
+    },
+    {
+      "name": "max_completion_tokens",
+      "type": ["null", "int"],
+      "doc": "An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). ",
       "default": null
     },
     {
@@ -57,9 +92,34 @@
       "default": 1
     },
     {
+      "name": "modalities",
+      "type": ["null", {
+        "type": "enum",
+        "name": "CreateChatCompletionRequest_modalities",
+        "symbols": [
+          "text",
+          "audio"
+        ]
+      }],
+      "doc": "Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` ",
+      "default": null
+    },
+    {
+      "name": "prediction",
+      "type": ["null", "model.PredictionContent"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "audio",
+      "type": ["null", "model.CreateChatCompletionRequestAudio"],
+      "doc": "",
+      "default": null
+    },
+    {
       "name": "presence_penalty",
       "type": ["double", "null"],
-      "doc": "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ",
+      "doc": "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. ",
       "default": 0
     },
     {
@@ -75,6 +135,19 @@
       "default": null
     },
     {
+      "name": "service_tier",
+      "type": [{
+        "type": "enum",
+        "name": "CreateChatCompletionRequest_serviceUnderscoretier",
+        "symbols": [
+          "auto",
+          "default"
+        ]
+      }, "null"],
+      "doc": "Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. ",
+      "default": ServiceUnderscoretierEnum.AUTO
+    },
+    {
       "name": "stop",
       "type": ["null", "model.CreateChatCompletionRequestStop"],
       "doc": "",
@@ -87,9 +160,15 @@
       "default": false
     },
     {
+      "name": "stream_options",
+      "type": ["null", "model.ChatCompletionStreamOptions"],
+      "doc": "",
+      "default": null
+    },
+    {
       "name": "temperature",
       "type": ["double", "null"],
-      "doc": "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both. ",
+      "doc": "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. ",
       "default": 1
     },
     {
@@ -114,9 +193,15 @@
       "default": null
     },
     {
+      "name": "parallel_tool_calls",
+      "type": ["boolean", "null"],
+      "doc": "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.",
+      "default": true
+    },
+    {
       "name": "user",
       "type": ["null", "string"],
-      "doc": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ",
+      "doc": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ",
       "default": null
     },
     {

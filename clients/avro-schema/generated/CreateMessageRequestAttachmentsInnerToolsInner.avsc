@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateMessageRequestAttachmentsInnerToolsInner",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "CreateMessageRequestAttachmentsInnerToolsInner_type",
+        "symbols": [
+          "code_interpreter",
+          "file_search"
+        ]
+      },
+      "doc": "The type of tool being defined: `code_interpreter`"
+    }
+  ]
+
+}

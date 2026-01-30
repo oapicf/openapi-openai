@@ -1,0 +1,50 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when a content part is done streaming in an assistant message item. Also emitted when a Response is interrupted, incomplete, or cancelled. ",
+  "name": "RealtimeServerEventResponseContentPartDone",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventResponseContentPartDone_type",
+        "symbols": [
+          "response_content_part_done"
+        ]
+      },
+      "doc": "The event type, must be `response.content_part.done`."
+    },
+    {
+      "name": "response_id",
+      "type": "string",
+      "doc": "The ID of the response."
+    },
+    {
+      "name": "item_id",
+      "type": "string",
+      "doc": "The ID of the item."
+    },
+    {
+      "name": "output_index",
+      "type": "int",
+      "doc": "The index of the output item in the response."
+    },
+    {
+      "name": "content_index",
+      "type": "int",
+      "doc": "The index of the content part in the item's content array."
+    },
+    {
+      "name": "part",
+      "type": "model.RealtimeServerEventResponseContentPartDonePart",
+      "doc": ""
+    }
+  ]
+
+}

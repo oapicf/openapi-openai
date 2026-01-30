@@ -9,6 +9,7 @@ const RunStreamEvent_oneOf_5 = require('../models/RunStreamEvent_oneOf_5');
 const RunStreamEvent_oneOf_6 = require('../models/RunStreamEvent_oneOf_6');
 const RunStreamEvent_oneOf_7 = require('../models/RunStreamEvent_oneOf_7');
 const RunStreamEvent_oneOf_8 = require('../models/RunStreamEvent_oneOf_8');
+const RunStreamEvent_oneOf_9 = require('../models/RunStreamEvent_oneOf_9');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {

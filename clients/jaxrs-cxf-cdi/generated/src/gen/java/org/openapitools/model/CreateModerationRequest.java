@@ -19,7 +19,7 @@ public class CreateModerationRequest   {
   
   private CreateModerationRequestInput input;
 
-  private CreateModerationRequestModel model = text-moderation-latest;
+  private CreateModerationRequestModel model = omni-moderation-latest;
 
   /**
    **/

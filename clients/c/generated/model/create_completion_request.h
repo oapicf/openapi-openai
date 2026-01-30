@@ -15,6 +15,7 @@
 
 typedef struct create_completion_request_t create_completion_request_t;
 
+#include "chat_completion_stream_options.h"
 #include "create_completion_request_model.h"
 #include "create_completion_request_prompt.h"
 #include "create_completion_request_stop.h"
@@ -35,6 +36,7 @@ typedef struct create_completion_request_t {
     int seed; //numeric
     struct create_completion_request_stop_t *stop; //model
     int stream; //boolean
+    struct chat_completion_stream_options_t *stream_options; //model
     char *suffix; // string
     double temperature; //numeric
     double top_p; //numeric
@@ -57,6 +59,7 @@ __attribute__((deprecated)) create_completion_request_t *create_completion_reque
     int seed,
     create_completion_request_stop_t *stop,
     int stream,
+    chat_completion_stream_options_t *stream_options,
     char *suffix,
     double temperature,
     double top_p,

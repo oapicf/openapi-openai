@@ -5,6 +5,7 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
+from openapi_server.models.chat_completion_request_tool_message_content import ChatCompletionRequestToolMessageContent
 from openapi_server import util
 
 
@@ -14,7 +15,7 @@ class ChatCompletionRequestToolMessage(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, role: str=None, content: str=None, tool_call_id: str=None):
+    def __init__(self, role: str=None, content: ChatCompletionRequestToolMessageContent=None, tool_call_id: str=None):
         """ChatCompletionRequestToolMessage - a model defined in OpenAPI
 
         :param role: The role of this ChatCompletionRequestToolMessage.
@@ -23,7 +24,7 @@ class ChatCompletionRequestToolMessage(Model):
         """
         self.openapi_types = {
             'role': str,
-            'content': str,
+            'content': ChatCompletionRequestToolMessageContent,
             'tool_call_id': str
         }
 
@@ -79,10 +80,9 @@ class ChatCompletionRequestToolMessage(Model):
     def content(self):
         """Gets the content of this ChatCompletionRequestToolMessage.
 
-        The contents of the tool message.
 
         :return: The content of this ChatCompletionRequestToolMessage.
-        :rtype: str
+        :rtype: ChatCompletionRequestToolMessageContent
         """
         return self._content
 
@@ -90,10 +90,9 @@ class ChatCompletionRequestToolMessage(Model):
     def content(self, content):
         """Sets the content of this ChatCompletionRequestToolMessage.
 
-        The contents of the tool message.
 
         :param content: The content of this ChatCompletionRequestToolMessage.
-        :type content: str
+        :type content: ChatCompletionRequestToolMessageContent
         """
         if content is None:
             raise ValueError("Invalid value for `content`, must not be `None`")

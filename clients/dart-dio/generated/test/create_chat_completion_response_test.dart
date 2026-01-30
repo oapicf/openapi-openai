@@ -31,6 +31,12 @@ void main() {
       // TODO
     });
 
+    // The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+    // String serviceTier
+    test('to test the property `serviceTier`', () async {
+      // TODO
+    });
+
     // This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
     // String systemFingerprint
     test('to test the property `systemFingerprint`', () async {

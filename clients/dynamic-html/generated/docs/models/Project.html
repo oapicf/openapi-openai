@@ -1,0 +1,43 @@
+
+<h2>Project</h2>
+<ul class="parameter">
+  <li class="param-required-true">id : String
+    <br/>The identifier, which can be referenced in API endpoints
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">object : String
+    <br/>The object type, which is always &#x60;organization.project&#x60;
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>organization.project</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">name : String
+    <br/>The name of the project. This appears in reporting.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">createdUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) of when the project was created.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">archivedUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) of when the project was archived or &#x60;null&#x60;.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">status : String
+    <br/>&#x60;active&#x60; or &#x60;archived&#x60;
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>active</dd>
+            <dd>archived</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>

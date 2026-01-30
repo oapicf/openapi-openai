@@ -7,7 +7,7 @@ model_instance <- CreateChatCompletionRequest$new()
 
 test_that("messages", {
   # tests for the property `messages` (array[ChatCompletionRequestMessage])
-  # A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).
+  # A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`messages`, "EXPECTED_RESULT")
@@ -20,9 +20,33 @@ test_that("model", {
   #expect_equal(model.instance$`model`, "EXPECTED_RESULT")
 })
 
+test_that("store", {
+  # tests for the property `store` (character)
+  # Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. 
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`store`, "EXPECTED_RESULT")
+})
+
+test_that("reasoning_effort", {
+  # tests for the property `reasoning_effort` (character)
+  # **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are &#x60;low&#x60;, &#x60;medium&#x60;, and &#x60;high&#x60;. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`reasoning_effort`, "EXPECTED_RESULT")
+})
+
+test_that("metadata", {
+  # tests for the property `metadata` (map(character))
+  # Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). 
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`metadata`, "EXPECTED_RESULT")
+})
+
 test_that("frequency_penalty", {
   # tests for the property `frequency_penalty` (numeric)
-  # Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+  # Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`frequency_penalty`, "EXPECTED_RESULT")
@@ -38,7 +62,7 @@ test_that("logit_bias", {
 
 test_that("logprobs", {
   # tests for the property `logprobs` (character)
-  # Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the &#x60;content&#x60; of &#x60;message&#x60;.
+  # Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the &#x60;content&#x60; of &#x60;message&#x60;. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`logprobs`, "EXPECTED_RESULT")
@@ -46,7 +70,7 @@ test_that("logprobs", {
 
 test_that("top_logprobs", {
   # tests for the property `top_logprobs` (integer)
-  # An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. &#x60;logprobs&#x60; must be set to &#x60;true&#x60; if this parameter is used.
+  # An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. &#x60;logprobs&#x60; must be set to &#x60;true&#x60; if this parameter is used. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`top_logprobs`, "EXPECTED_RESULT")
@@ -54,10 +78,18 @@ test_that("top_logprobs", {
 
 test_that("max_tokens", {
   # tests for the property `max_tokens` (integer)
-  # The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model&#39;s context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
+  # The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of &#x60;max_completion_tokens&#x60;, and is not compatible with [o1 series models](/docs/guides/reasoning). 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`max_tokens`, "EXPECTED_RESULT")
+})
+
+test_that("max_completion_tokens", {
+  # tests for the property `max_completion_tokens` (integer)
+  # An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). 
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`max_completion_tokens`, "EXPECTED_RESULT")
 })
 
 test_that("n", {
@@ -68,9 +100,31 @@ test_that("n", {
   #expect_equal(model.instance$`n`, "EXPECTED_RESULT")
 })
 
+test_that("modalities", {
+  # tests for the property `modalities` (array[character])
+  # Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  &#x60;[\&quot;text\&quot;]&#x60;  The &#x60;gpt-4o-audio-preview&#x60; model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  &#x60;[\&quot;text\&quot;, \&quot;audio\&quot;]&#x60; 
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`modalities`, "EXPECTED_RESULT")
+})
+
+test_that("prediction", {
+  # tests for the property `prediction` (PredictionContent)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`prediction`, "EXPECTED_RESULT")
+})
+
+test_that("audio", {
+  # tests for the property `audio` (CreateChatCompletionRequestAudio)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`audio`, "EXPECTED_RESULT")
+})
+
 test_that("presence_penalty", {
   # tests for the property `presence_penalty` (numeric)
-  # Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+  # Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`presence_penalty`, "EXPECTED_RESULT")
@@ -91,6 +145,14 @@ test_that("seed", {
   #expect_equal(model.instance$`seed`, "EXPECTED_RESULT")
 })
 
+test_that("service_tier", {
+  # tests for the property `service_tier` (character)
+  # Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to &#39;auto&#39;, and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to &#39;auto&#39;, and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to &#39;default&#39;, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is &#39;auto&#39;.    When this parameter is set, the response body will include the &#x60;service_tier&#x60; utilized. 
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`service_tier`, "EXPECTED_RESULT")
+})
+
 test_that("stop", {
   # tests for the property `stop` (CreateChatCompletionRequestStop)
 
@@ -106,9 +168,16 @@ test_that("stream", {
   #expect_equal(model.instance$`stream`, "EXPECTED_RESULT")
 })
 
+test_that("stream_options", {
+  # tests for the property `stream_options` (ChatCompletionStreamOptions)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`stream_options`, "EXPECTED_RESULT")
+})
+
 test_that("temperature", {
   # tests for the property `temperature` (numeric)
-  # What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or &#x60;top_p&#x60; but not both. 
+  # What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or &#x60;top_p&#x60; but not both. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`temperature`, "EXPECTED_RESULT")
@@ -137,9 +206,17 @@ test_that("tool_choice", {
   #expect_equal(model.instance$`tool_choice`, "EXPECTED_RESULT")
 })
 
+test_that("parallel_tool_calls", {
+  # tests for the property `parallel_tool_calls` (character)
+  # Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`parallel_tool_calls`, "EXPECTED_RESULT")
+})
+
 test_that("user", {
   # tests for the property `user` (character)
-  # A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+  # A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`user`, "EXPECTED_RESULT")

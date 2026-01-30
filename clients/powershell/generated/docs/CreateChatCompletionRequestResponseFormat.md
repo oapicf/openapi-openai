@@ -3,13 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** | Must be one of &#x60;text&#x60; or &#x60;json_object&#x60;. | [optional] [default to "text"]
+**Type** | **String** | The type of response format being defined: &#x60;text&#x60; | 
+**JsonSchema** | [**ResponseFormatJsonSchemaJsonSchema**](ResponseFormatJsonSchemaJsonSchema.md) |  | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$CreateChatCompletionRequestResponseFormat = Initialize-PSOpenAPIToolsCreateChatCompletionRequestResponseFormat  -Type json_object
+$CreateChatCompletionRequestResponseFormat = Initialize-PSOpenAPIToolsCreateChatCompletionRequestResponseFormat  -Type null `
+ -JsonSchema null
 ```
 
 - Convert the resource to JSON

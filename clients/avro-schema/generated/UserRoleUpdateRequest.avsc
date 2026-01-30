@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "UserRoleUpdateRequest",
+  "fields": [
+    {
+      "name": "role",
+      "type": {
+        "type": "enum",
+        "name": "UserRoleUpdateRequest_role",
+        "symbols": [
+          "owner",
+          "reader"
+        ]
+      },
+      "doc": "`owner` or `reader`"
+    }
+  ]
+
+}

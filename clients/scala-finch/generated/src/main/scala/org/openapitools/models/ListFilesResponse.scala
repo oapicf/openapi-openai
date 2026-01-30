@@ -10,11 +10,17 @@ import scala.collection.immutable.Seq
 
 /**
  * 
- * @param data 
  * @param _object 
+ * @param data 
+ * @param firstUnderscoreid 
+ * @param lastUnderscoreid 
+ * @param hasUnderscoremore 
  */
-case class ListFilesResponse(data: Seq[OpenAIFile],
-                _object: String
+case class ListFilesResponse(_object: String,
+                data: Seq[OpenAIFile],
+                firstUnderscoreid: String,
+                lastUnderscoreid: String,
+                hasUnderscoremore: Boolean
                 )
 
 object ListFilesResponse {

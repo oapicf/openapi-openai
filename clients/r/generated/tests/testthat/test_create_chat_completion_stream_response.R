@@ -15,7 +15,7 @@ test_that("id", {
 
 test_that("choices", {
   # tests for the property `choices` (array[CreateChatCompletionStreamResponseChoicesInner])
-  # A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1.
+  # A list of chat completion choices. Can contain more than one elements if &#x60;n&#x60; is greater than 1. Can also be empty for the last chunk if you set &#x60;stream_options: {\&quot;include_usage\&quot;: true}&#x60;. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`choices`, "EXPECTED_RESULT")
@@ -37,6 +37,14 @@ test_that("model", {
   #expect_equal(model.instance$`model`, "EXPECTED_RESULT")
 })
 
+test_that("service_tier", {
+  # tests for the property `service_tier` (character)
+  # The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`service_tier`, "EXPECTED_RESULT")
+})
+
 test_that("system_fingerprint", {
   # tests for the property `system_fingerprint` (character)
   # This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. 
@@ -51,4 +59,11 @@ test_that("object", {
 
   # uncomment below to test the property
   #expect_equal(model.instance$`object`, "EXPECTED_RESULT")
+})
+
+test_that("usage", {
+  # tests for the property `usage` (CreateChatCompletionStreamResponseUsage)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`usage`, "EXPECTED_RESULT")
 })

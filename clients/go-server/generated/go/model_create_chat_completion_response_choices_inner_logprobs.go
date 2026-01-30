@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -19,12 +19,16 @@ type CreateChatCompletionResponseChoicesInnerLogprobs struct {
 
 	// A list of message content tokens with log probability information.
 	Content *[]ChatCompletionTokenLogprob `json:"content"`
+
+	// A list of message refusal tokens with log probability information.
+	Refusal *[]ChatCompletionTokenLogprob `json:"refusal"`
 }
 
 // AssertCreateChatCompletionResponseChoicesInnerLogprobsRequired checks if the required fields are not zero-ed
 func AssertCreateChatCompletionResponseChoicesInnerLogprobsRequired(obj CreateChatCompletionResponseChoicesInnerLogprobs) error {
 	elements := map[string]interface{}{
 		"content": obj.Content,
+		"refusal": obj.Refusal,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {
@@ -39,6 +43,13 @@ func AssertCreateChatCompletionResponseChoicesInnerLogprobsRequired(obj CreateCh
 			}
 		}
 	}
+	if obj.Refusal != nil {
+		for _, el := range *obj.Refusal {
+			if err := AssertChatCompletionTokenLogprobRequired(el); err != nil {
+				return err
+			}
+		}
+	}
 	return nil
 }
 
@@ -46,6 +57,13 @@ func AssertCreateChatCompletionResponseChoicesInnerLogprobsRequired(obj CreateCh
 func AssertCreateChatCompletionResponseChoicesInnerLogprobsConstraints(obj CreateChatCompletionResponseChoicesInnerLogprobs) error {
     if obj.Content != nil {
      	for _, el := range *obj.Content {
+     		if err := AssertChatCompletionTokenLogprobConstraints(el); err != nil {
+     			return err
+     		}
+     	}
+    }
+    if obj.Refusal != nil {
+     	for _, el := range *obj.Refusal {
      		if err := AssertChatCompletionTokenLogprobConstraints(el); err != nil {
      			return err
      		}

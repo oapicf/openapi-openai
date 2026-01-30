@@ -6,7 +6,7 @@ namespace App\DTO;
 use Articus\DataTransfer\Annotation as DTA;
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is created.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is created.
  */
 class RunStepStreamEventOneOf
 {

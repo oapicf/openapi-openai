@@ -10,7 +10,7 @@ import javax.validation.Valid;
 /**
  * MessageContentImageFileObjectImageFile
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class MessageContentImageFileObjectImageFile   {
   @JsonProperty("file_id")
@@ -18,13 +18,50 @@ public class MessageContentImageFileObjectImageFile   {
 
   private String fileId;
 
+  /**
+   * Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
+   */
+  public enum DetailEnum {
+    AUTO("auto"),
+    
+    LOW("low"),
+    
+    HIGH("high");
+
+    private final String value;
+
+    DetailEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static DetailEnum fromValue(String value) {
+      for (DetailEnum b : DetailEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @JsonProperty("detail")
+  
+  private DetailEnum detail = DetailEnum.AUTO;
+
   public MessageContentImageFileObjectImageFile fileId(String fileId) {
     this.fileId = fileId;
     return this;
   }
 
    /**
-   * The [File](/docs/api-reference/files) ID of the image in the message content.
+   * The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content.
    * @return fileId
   **/
   public String getFileId() {
@@ -33,6 +70,23 @@ public class MessageContentImageFileObjectImageFile   {
 
   public void setFileId(String fileId) {
     this.fileId = fileId;
+  }
+
+  public MessageContentImageFileObjectImageFile detail(DetailEnum detail) {
+    this.detail = detail;
+    return this;
+  }
+
+   /**
+   * Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
+   * @return detail
+  **/
+  public DetailEnum getDetail() {
+    return detail;
+  }
+
+  public void setDetail(DetailEnum detail) {
+    this.detail = detail;
   }
 
 
@@ -45,12 +99,13 @@ public class MessageContentImageFileObjectImageFile   {
       return false;
     }
     MessageContentImageFileObjectImageFile messageContentImageFileObjectImageFile = (MessageContentImageFileObjectImageFile) o;
-    return Objects.equals(fileId, messageContentImageFileObjectImageFile.fileId);
+    return Objects.equals(fileId, messageContentImageFileObjectImageFile.fileId) &&
+        Objects.equals(detail, messageContentImageFileObjectImageFile.detail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileId);
+    return Objects.hash(fileId, detail);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -60,6 +115,7 @@ public class MessageContentImageFileObjectImageFile   {
     sb.append("class MessageContentImageFileObjectImageFile {\n");
     
     sb.append("    fileId: ").append(toIndentedString(fileId)).append("\n");
+    sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("}");
     return sb.toString();
   }

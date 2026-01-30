@@ -25,7 +25,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param model 
  * @param input The text to generate audio for. The maximum length is 4096 characters.
- * @param voice The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+ * @param voice The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
  * @param responseFormat The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
  * @param speed The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.
  */
@@ -40,7 +40,7 @@ data class CreateSpeechRequest (
     @Json(name = "input")
     val input: kotlin.String,
 
-    /* The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options). */
+    /* The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options). */
     @Json(name = "voice")
     val voice: CreateSpeechRequest.Voice,
 
@@ -50,12 +50,12 @@ data class CreateSpeechRequest (
 
     /* The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default. */
     @Json(name = "speed")
-    val speed: java.math.BigDecimal? = java.math.BigDecimal("1.0")
+    val speed: java.math.BigDecimal? = java.math.BigDecimal("1")
 
 ) {
 
     /**
-     * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+     * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
      *
      * Values: alloy,echo,fable,onyx,nova,shimmer
      */

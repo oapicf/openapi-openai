@@ -17,7 +17,7 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * The hyperparameters used for the fine-tuning job.
+ * The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of `method`, and should be passed in under the `method` parameter. 
  * @param batchSize 
  * @param learningRateMultiplier 
  * @param nEpochs 

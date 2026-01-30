@@ -8,7 +8,7 @@ api_instance <- ModerationsApi$new()
 test_that("CreateModeration", {
   # tests for CreateModeration
   # base path: https://api.openai.com/v1
-  # Classifies if text is potentially harmful.
+  # Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
   # @param create_moderation_request CreateModerationRequest 
   # @return [CreateModerationResponse]
 

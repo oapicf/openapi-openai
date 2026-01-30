@@ -35,7 +35,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "RunObject", description = "Represents an execution run on a [thread](/docs/api-reference/threads).")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunObject {
 
   private String id;
@@ -82,7 +82,7 @@ public class RunObject {
   private String assistantId;
 
   /**
-   * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+   * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
    */
   public enum StatusEnum {
     QUEUED("queued"),
@@ -98,6 +98,8 @@ public class RunObject {
     FAILED("failed"),
     
     COMPLETED("completed"),
+    
+    INCOMPLETE("incomplete"),
     
     EXPIRED("expired");
 
@@ -153,14 +155,13 @@ public class RunObject {
   @Valid
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
 
-  @Valid
-  private List<String> fileIds = new ArrayList<>();
-
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
   private JsonNullable<RunCompletionUsage> usage = JsonNullable.<RunCompletionUsage>undefined();
 
   private JsonNullable<BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
+
+  private JsonNullable<BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
 
   private JsonNullable<@Min(value = 256) Integer> maxPromptTokens = JsonNullable.<Integer>undefined();
 
@@ -169,6 +170,8 @@ public class RunObject {
   private TruncationObject truncationStrategy;
 
   private AssistantsApiToolChoiceOption toolChoice;
+
+  private Boolean parallelToolCalls = true;
 
   private AssistantsApiResponseFormatOption responseFormat;
 
@@ -179,7 +182,7 @@ public class RunObject {
   /**
    * Constructor with only required parameters
    */
-  public RunObject(String id, ObjectEnum _object, Integer createdAt, String threadId, String assistantId, StatusEnum status, RunObjectRequiredAction requiredAction, RunObjectLastError lastError, Integer expiresAt, Integer startedAt, Integer cancelledAt, Integer failedAt, Integer completedAt, RunObjectIncompleteDetails incompleteDetails, String model, String instructions, List<AssistantObjectToolsInner> tools, List<String> fileIds, Object metadata, RunCompletionUsage usage, Integer maxPromptTokens, Integer maxCompletionTokens, TruncationObject truncationStrategy, AssistantsApiToolChoiceOption toolChoice, AssistantsApiResponseFormatOption responseFormat) {
+  public RunObject(String id, ObjectEnum _object, Integer createdAt, String threadId, String assistantId, StatusEnum status, RunObjectRequiredAction requiredAction, RunObjectLastError lastError, Integer expiresAt, Integer startedAt, Integer cancelledAt, Integer failedAt, Integer completedAt, RunObjectIncompleteDetails incompleteDetails, String model, String instructions, List<AssistantObjectToolsInner> tools, Object metadata, RunCompletionUsage usage, Integer maxPromptTokens, Integer maxCompletionTokens, TruncationObject truncationStrategy, AssistantsApiToolChoiceOption toolChoice, Boolean parallelToolCalls, AssistantsApiResponseFormatOption responseFormat) {
     this.id = id;
     this._object = _object;
     this.createdAt = createdAt;
@@ -197,13 +200,13 @@ public class RunObject {
     this.model = model;
     this.instructions = instructions;
     this.tools = tools;
-    this.fileIds = fileIds;
     this.metadata = JsonNullable.of(metadata);
     this.usage = JsonNullable.of(usage);
     this.maxPromptTokens = JsonNullable.of(maxPromptTokens);
     this.maxCompletionTokens = JsonNullable.of(maxCompletionTokens);
     this.truncationStrategy = truncationStrategy;
     this.toolChoice = toolChoice;
+    this.parallelToolCalls = parallelToolCalls;
     this.responseFormat = responseFormat;
   }
 
@@ -313,11 +316,11 @@ public class RunObject {
   }
 
   /**
-   * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+   * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
    * @return status
    */
   @NotNull 
-  @Schema(name = "status", description = "The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "status", description = "The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("status")
   public StatusEnum getStatus() {
     return status;
@@ -555,45 +558,17 @@ public class RunObject {
     this.tools = tools;
   }
 
-  public RunObject fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  public RunObject addFileIdsItem(String fileIdsItem) {
-    if (this.fileIds == null) {
-      this.fileIds = new ArrayList<>();
-    }
-    this.fileIds.add(fileIdsItem);
-    return this;
-  }
-
-  /**
-   * The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
-   * @return fileIds
-   */
-  @NotNull 
-  @Schema(name = "file_ids", description = "The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("file_ids")
-  public List<String> getFileIds() {
-    return fileIds;
-  }
-
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-  }
-
   public RunObject metadata(Object metadata) {
     this.metadata = JsonNullable.of(metadata);
     return this;
   }
 
   /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
   @NotNull 
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;
@@ -641,6 +616,26 @@ public class RunObject {
 
   public void setTemperature(JsonNullable<BigDecimal> temperature) {
     this.temperature = temperature;
+  }
+
+  public RunObject topP(BigDecimal topP) {
+    this.topP = JsonNullable.of(topP);
+    return this;
+  }
+
+  /**
+   * The nucleus sampling value used for this run. If not set, defaults to 1.
+   * @return topP
+   */
+  @Valid 
+  @Schema(name = "top_p", description = "The nucleus sampling value used for this run. If not set, defaults to 1.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("top_p")
+  public JsonNullable<BigDecimal> getTopP() {
+    return topP;
+  }
+
+  public void setTopP(JsonNullable<BigDecimal> topP) {
+    this.topP = topP;
   }
 
   public RunObject maxPromptTokens(Integer maxPromptTokens) {
@@ -725,6 +720,26 @@ public class RunObject {
     this.toolChoice = toolChoice;
   }
 
+  public RunObject parallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+    return this;
+  }
+
+  /**
+   * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+   * @return parallelToolCalls
+   */
+  @NotNull 
+  @Schema(name = "parallel_tool_calls", description = "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("parallel_tool_calls")
+  public Boolean getParallelToolCalls() {
+    return parallelToolCalls;
+  }
+
+  public void setParallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+  }
+
   public RunObject responseFormat(AssistantsApiResponseFormatOption responseFormat) {
     this.responseFormat = responseFormat;
     return this;
@@ -771,14 +786,15 @@ public class RunObject {
         Objects.equals(this.model, runObject.model) &&
         Objects.equals(this.instructions, runObject.instructions) &&
         Objects.equals(this.tools, runObject.tools) &&
-        Objects.equals(this.fileIds, runObject.fileIds) &&
         Objects.equals(this.metadata, runObject.metadata) &&
         Objects.equals(this.usage, runObject.usage) &&
         equalsNullable(this.temperature, runObject.temperature) &&
+        equalsNullable(this.topP, runObject.topP) &&
         Objects.equals(this.maxPromptTokens, runObject.maxPromptTokens) &&
         Objects.equals(this.maxCompletionTokens, runObject.maxCompletionTokens) &&
         Objects.equals(this.truncationStrategy, runObject.truncationStrategy) &&
         Objects.equals(this.toolChoice, runObject.toolChoice) &&
+        Objects.equals(this.parallelToolCalls, runObject.parallelToolCalls) &&
         Objects.equals(this.responseFormat, runObject.responseFormat);
   }
 
@@ -788,7 +804,7 @@ public class RunObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, threadId, assistantId, status, requiredAction, lastError, expiresAt, startedAt, cancelledAt, failedAt, completedAt, incompleteDetails, model, instructions, tools, fileIds, metadata, usage, hashCodeNullable(temperature), maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, responseFormat);
+    return Objects.hash(id, _object, createdAt, threadId, assistantId, status, requiredAction, lastError, expiresAt, startedAt, cancelledAt, failedAt, completedAt, incompleteDetails, model, instructions, tools, metadata, usage, hashCodeNullable(temperature), hashCodeNullable(topP), maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, parallelToolCalls, responseFormat);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -819,14 +835,15 @@ public class RunObject {
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
     sb.append("    maxPromptTokens: ").append(toIndentedString(maxPromptTokens)).append("\n");
     sb.append("    maxCompletionTokens: ").append(toIndentedString(maxCompletionTokens)).append("\n");
     sb.append("    truncationStrategy: ").append(toIndentedString(truncationStrategy)).append("\n");
     sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
+    sb.append("    parallelToolCalls: ").append(toIndentedString(parallelToolCalls)).append("\n");
     sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();

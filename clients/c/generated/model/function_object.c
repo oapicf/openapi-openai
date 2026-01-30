@@ -8,7 +8,8 @@
 static function_object_t *function_object_create_internal(
     char *description,
     char *name,
-    list_t* parameters
+    list_t* parameters,
+    int strict
     ) {
     function_object_t *function_object_local_var = malloc(sizeof(function_object_t));
     if (!function_object_local_var) {
@@ -17,6 +18,7 @@ static function_object_t *function_object_create_internal(
     function_object_local_var->description = description;
     function_object_local_var->name = name;
     function_object_local_var->parameters = parameters;
+    function_object_local_var->strict = strict;
 
     function_object_local_var->_library_owned = 1;
     return function_object_local_var;
@@ -25,12 +27,14 @@ static function_object_t *function_object_create_internal(
 __attribute__((deprecated)) function_object_t *function_object_create(
     char *description,
     char *name,
-    list_t* parameters
+    list_t* parameters,
+    int strict
     ) {
     return function_object_create_internal (
         description,
         name,
-        parameters
+        parameters,
+        strict
         );
 }
 
@@ -99,6 +103,14 @@ cJSON *function_object_convertToJSON(function_object_t *function_object) {
     }
     }
 
+
+    // function_object->strict
+    if(function_object->strict) {
+    if(cJSON_AddBoolToObject(item, "strict", function_object->strict) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -164,11 +176,24 @@ function_object_t *function_object_parseFromJSON(cJSON *function_objectJSON){
     }
     }
 
+    // function_object->strict
+    cJSON *strict = cJSON_GetObjectItemCaseSensitive(function_objectJSON, "strict");
+    if (cJSON_IsNull(strict)) {
+        strict = NULL;
+    }
+    if (strict) { 
+    if(!cJSON_IsBool(strict))
+    {
+    goto end; //Bool
+    }
+    }
+
 
     function_object_local_var = function_object_create_internal (
         description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
         strdup(name->valuestring),
-        parameters ? parametersList : NULL
+        parameters ? parametersList : NULL,
+        strict ? strict->valueint : 0
         );
 
     return function_object_local_var;

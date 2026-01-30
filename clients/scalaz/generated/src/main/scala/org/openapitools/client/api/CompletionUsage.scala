@@ -17,7 +17,9 @@ case class CompletionUsage (
 /* Number of tokens in the prompt. */
   promptTokens: Integer,
 /* Total number of tokens used in the request (prompt + completion). */
-  totalTokens: Integer)
+  totalTokens: Integer,
+completionTokensDetails: Option[CompletionUsageCompletionTokensDetails],
+promptTokensDetails: Option[CompletionUsagePromptTokensDetails])
 
 object CompletionUsage {
   import DateTimeCodecs._

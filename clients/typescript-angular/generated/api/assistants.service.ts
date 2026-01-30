@@ -17,11 +17,7 @@ import { Observable }                                        from 'rxjs';
 import { OpenApiHttpParams, QueryParamStyle } from '../query.params';
 
 // @ts-ignore
-import { AssistantFileObject } from '../model/assistantFileObject';
-// @ts-ignore
 import { AssistantObject } from '../model/assistantObject';
-// @ts-ignore
-import { CreateAssistantFileRequest } from '../model/createAssistantFileRequest';
 // @ts-ignore
 import { CreateAssistantRequest } from '../model/createAssistantRequest';
 // @ts-ignore
@@ -33,25 +29,19 @@ import { CreateThreadAndRunRequest } from '../model/createThreadAndRunRequest';
 // @ts-ignore
 import { CreateThreadRequest } from '../model/createThreadRequest';
 // @ts-ignore
-import { DeleteAssistantFileResponse } from '../model/deleteAssistantFileResponse';
-// @ts-ignore
 import { DeleteAssistantResponse } from '../model/deleteAssistantResponse';
+// @ts-ignore
+import { DeleteMessageResponse } from '../model/deleteMessageResponse';
 // @ts-ignore
 import { DeleteThreadResponse } from '../model/deleteThreadResponse';
 // @ts-ignore
-import { ListAssistantFilesResponse } from '../model/listAssistantFilesResponse';
-// @ts-ignore
 import { ListAssistantsResponse } from '../model/listAssistantsResponse';
-// @ts-ignore
-import { ListMessageFilesResponse } from '../model/listMessageFilesResponse';
 // @ts-ignore
 import { ListMessagesResponse } from '../model/listMessagesResponse';
 // @ts-ignore
 import { ListRunStepsResponse } from '../model/listRunStepsResponse';
 // @ts-ignore
 import { ListRunsResponse } from '../model/listRunsResponse';
-// @ts-ignore
-import { MessageFileObject } from '../model/messageFileObject';
 // @ts-ignore
 import { MessageObject } from '../model/messageObject';
 // @ts-ignore
@@ -220,79 +210,6 @@ export class AssistantsService extends BaseService {
     }
 
     /**
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     * @endpoint post /assistants/{assistant_id}/files
-     * @param assistantId The ID of the assistant for which to create a File. 
-     * @param createAssistantFileRequest 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     * @param options additional options
-     */
-    public createAssistantFile(assistantId: string, createAssistantFileRequest: CreateAssistantFileRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<AssistantFileObject>;
-    public createAssistantFile(assistantId: string, createAssistantFileRequest: CreateAssistantFileRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<AssistantFileObject>>;
-    public createAssistantFile(assistantId: string, createAssistantFileRequest: CreateAssistantFileRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<AssistantFileObject>>;
-    public createAssistantFile(assistantId: string, createAssistantFileRequest: CreateAssistantFileRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-        if (assistantId === null || assistantId === undefined) {
-            throw new Error('Required parameter assistantId was null or undefined when calling createAssistantFile.');
-        }
-        if (createAssistantFileRequest === null || createAssistantFileRequest === undefined) {
-            throw new Error('Required parameter createAssistantFileRequest was null or undefined when calling createAssistantFile.');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        // authentication (ApiKeyAuth) required
-        localVarHeaders = this.configuration.addCredentialToHeaders('ApiKeyAuth', 'Authorization', localVarHeaders, 'Bearer ');
-
-        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
-            'application/json'
-        ]);
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
-
-        const localVarTransferCache: boolean = options?.transferCache ?? true;
-
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
-        }
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/assistants/${this.configuration.encodeParam({name: "assistantId", value: assistantId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/files`;
-        const { basePath, withCredentials } = this.configuration;
-        return this.httpClient.request<AssistantFileObject>('post', `${basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                body: createAssistantFileRequest,
-                responseType: <any>responseType_,
-                ...(withCredentials ? { withCredentials } : {}),
-                headers: localVarHeaders,
-                observe: observe,
-                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Create a message.
      * @endpoint post /threads/{thread_id}/messages
      * @param threadId The ID of the [thread](/docs/api-reference/threads) to create a message for.
@@ -370,20 +287,32 @@ export class AssistantsService extends BaseService {
      * @endpoint post /threads/{thread_id}/runs
      * @param threadId The ID of the thread to run.
      * @param createRunRequest 
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public createRun(threadId: string, createRunRequest: CreateRunRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<RunObject>;
-    public createRun(threadId: string, createRunRequest: CreateRunRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<RunObject>>;
-    public createRun(threadId: string, createRunRequest: CreateRunRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<RunObject>>;
-    public createRun(threadId: string, createRunRequest: CreateRunRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public createRun(threadId: string, createRunRequest: CreateRunRequest, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<RunObject>;
+    public createRun(threadId: string, createRunRequest: CreateRunRequest, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<RunObject>>;
+    public createRun(threadId: string, createRunRequest: CreateRunRequest, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<RunObject>>;
+    public createRun(threadId: string, createRunRequest: CreateRunRequest, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (threadId === null || threadId === undefined) {
             throw new Error('Required parameter threadId was null or undefined when calling createRun.');
         }
         if (createRunRequest === null || createRunRequest === undefined) {
             throw new Error('Required parameter createRunRequest was null or undefined when calling createRun.');
         }
+
+        let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'include[]',
+            <any>include,
+            QueryParamStyle.Form,
+            true,
+        );
+
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -428,6 +357,7 @@ export class AssistantsService extends BaseService {
             {
                 context: localVarHttpContext,
                 body: createRunRequest,
+                params: localVarQueryParameters.toHttpParams(),
                 responseType: <any>responseType_,
                 ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
@@ -633,23 +563,23 @@ export class AssistantsService extends BaseService {
     }
 
     /**
-     * Delete an assistant file.
-     * @endpoint delete /assistants/{assistant_id}/files/{file_id}
-     * @param assistantId The ID of the assistant that the file belongs to.
-     * @param fileId The ID of the file to delete.
+     * Deletes a message.
+     * @endpoint delete /threads/{thread_id}/messages/{message_id}
+     * @param threadId The ID of the thread to which this message belongs.
+     * @param messageId The ID of the message to delete.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public deleteAssistantFile(assistantId: string, fileId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<DeleteAssistantFileResponse>;
-    public deleteAssistantFile(assistantId: string, fileId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<DeleteAssistantFileResponse>>;
-    public deleteAssistantFile(assistantId: string, fileId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<DeleteAssistantFileResponse>>;
-    public deleteAssistantFile(assistantId: string, fileId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-        if (assistantId === null || assistantId === undefined) {
-            throw new Error('Required parameter assistantId was null or undefined when calling deleteAssistantFile.');
+    public deleteMessage(threadId: string, messageId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<DeleteMessageResponse>;
+    public deleteMessage(threadId: string, messageId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<DeleteMessageResponse>>;
+    public deleteMessage(threadId: string, messageId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<DeleteMessageResponse>>;
+    public deleteMessage(threadId: string, messageId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (threadId === null || threadId === undefined) {
+            throw new Error('Required parameter threadId was null or undefined when calling deleteMessage.');
         }
-        if (fileId === null || fileId === undefined) {
-            throw new Error('Required parameter fileId was null or undefined when calling deleteAssistantFile.');
+        if (messageId === null || messageId === undefined) {
+            throw new Error('Required parameter messageId was null or undefined when calling deleteMessage.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -680,9 +610,9 @@ export class AssistantsService extends BaseService {
             }
         }
 
-        let localVarPath = `/assistants/${this.configuration.encodeParam({name: "assistantId", value: assistantId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/files/${this.configuration.encodeParam({name: "fileId", value: fileId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        let localVarPath = `/threads/${this.configuration.encodeParam({name: "threadId", value: threadId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/messages/${this.configuration.encodeParam({name: "messageId", value: messageId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
         const { basePath, withCredentials } = this.configuration;
-        return this.httpClient.request<DeleteAssistantFileResponse>('delete', `${basePath}${localVarPath}`,
+        return this.httpClient.request<DeleteMessageResponse>('delete', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -814,69 +744,6 @@ export class AssistantsService extends BaseService {
     }
 
     /**
-     * Retrieves an AssistantFile.
-     * @endpoint get /assistants/{assistant_id}/files/{file_id}
-     * @param assistantId The ID of the assistant who the file belongs to.
-     * @param fileId The ID of the file we\&#39;re getting.
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     * @param options additional options
-     */
-    public getAssistantFile(assistantId: string, fileId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<AssistantFileObject>;
-    public getAssistantFile(assistantId: string, fileId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<AssistantFileObject>>;
-    public getAssistantFile(assistantId: string, fileId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<AssistantFileObject>>;
-    public getAssistantFile(assistantId: string, fileId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-        if (assistantId === null || assistantId === undefined) {
-            throw new Error('Required parameter assistantId was null or undefined when calling getAssistantFile.');
-        }
-        if (fileId === null || fileId === undefined) {
-            throw new Error('Required parameter fileId was null or undefined when calling getAssistantFile.');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        // authentication (ApiKeyAuth) required
-        localVarHeaders = this.configuration.addCredentialToHeaders('ApiKeyAuth', 'Authorization', localVarHeaders, 'Bearer ');
-
-        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
-            'application/json'
-        ]);
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
-
-        const localVarTransferCache: boolean = options?.transferCache ?? true;
-
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/assistants/${this.configuration.encodeParam({name: "assistantId", value: assistantId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/files/${this.configuration.encodeParam({name: "fileId", value: fileId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        const { basePath, withCredentials } = this.configuration;
-        return this.httpClient.request<AssistantFileObject>('get', `${basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                responseType: <any>responseType_,
-                ...(withCredentials ? { withCredentials } : {}),
-                headers: localVarHeaders,
-                observe: observe,
-                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Retrieve a message.
      * @endpoint get /threads/{thread_id}/messages/{message_id}
      * @param threadId The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
@@ -927,73 +794,6 @@ export class AssistantsService extends BaseService {
         let localVarPath = `/threads/${this.configuration.encodeParam({name: "threadId", value: threadId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/messages/${this.configuration.encodeParam({name: "messageId", value: messageId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
         const { basePath, withCredentials } = this.configuration;
         return this.httpClient.request<MessageObject>('get', `${basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                responseType: <any>responseType_,
-                ...(withCredentials ? { withCredentials } : {}),
-                headers: localVarHeaders,
-                observe: observe,
-                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Retrieves a message file.
-     * @endpoint get /threads/{thread_id}/messages/{message_id}/files/{file_id}
-     * @param threadId The ID of the thread to which the message and File belong.
-     * @param messageId The ID of the message the file belongs to.
-     * @param fileId The ID of the file being retrieved.
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     * @param options additional options
-     */
-    public getMessageFile(threadId: string, messageId: string, fileId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<MessageFileObject>;
-    public getMessageFile(threadId: string, messageId: string, fileId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<MessageFileObject>>;
-    public getMessageFile(threadId: string, messageId: string, fileId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<MessageFileObject>>;
-    public getMessageFile(threadId: string, messageId: string, fileId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-        if (threadId === null || threadId === undefined) {
-            throw new Error('Required parameter threadId was null or undefined when calling getMessageFile.');
-        }
-        if (messageId === null || messageId === undefined) {
-            throw new Error('Required parameter messageId was null or undefined when calling getMessageFile.');
-        }
-        if (fileId === null || fileId === undefined) {
-            throw new Error('Required parameter fileId was null or undefined when calling getMessageFile.');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        // authentication (ApiKeyAuth) required
-        localVarHeaders = this.configuration.addCredentialToHeaders('ApiKeyAuth', 'Authorization', localVarHeaders, 'Bearer ');
-
-        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
-            'application/json'
-        ]);
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
-
-        const localVarTransferCache: boolean = options?.transferCache ?? true;
-
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/threads/${this.configuration.encodeParam({name: "threadId", value: threadId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/messages/${this.configuration.encodeParam({name: "messageId", value: messageId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/files/${this.configuration.encodeParam({name: "fileId", value: fileId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        const { basePath, withCredentials } = this.configuration;
-        return this.httpClient.request<MessageFileObject>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -1075,14 +875,15 @@ export class AssistantsService extends BaseService {
      * @param threadId The ID of the thread to which the run and run step belongs.
      * @param runId The ID of the run to which the run step belongs.
      * @param stepId The ID of the run step to retrieve.
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public getRunStep(threadId: string, runId: string, stepId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<RunStepObject>;
-    public getRunStep(threadId: string, runId: string, stepId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<RunStepObject>>;
-    public getRunStep(threadId: string, runId: string, stepId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<RunStepObject>>;
-    public getRunStep(threadId: string, runId: string, stepId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public getRunStep(threadId: string, runId: string, stepId: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<RunStepObject>;
+    public getRunStep(threadId: string, runId: string, stepId: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<RunStepObject>>;
+    public getRunStep(threadId: string, runId: string, stepId: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<RunStepObject>>;
+    public getRunStep(threadId: string, runId: string, stepId: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (threadId === null || threadId === undefined) {
             throw new Error('Required parameter threadId was null or undefined when calling getRunStep.');
         }
@@ -1092,6 +893,17 @@ export class AssistantsService extends BaseService {
         if (stepId === null || stepId === undefined) {
             throw new Error('Required parameter stepId was null or undefined when calling getRunStep.');
         }
+
+        let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'include[]',
+            <any>include,
+            QueryParamStyle.Form,
+            true,
+        );
+
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -1126,6 +938,7 @@ export class AssistantsService extends BaseService {
         return this.httpClient.request<RunStepObject>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                params: localVarQueryParameters.toHttpParams(),
                 responseType: <any>responseType_,
                 ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
@@ -1196,114 +1009,12 @@ export class AssistantsService extends BaseService {
     }
 
     /**
-     * Returns a list of assistant files.
-     * @endpoint get /assistants/{assistant_id}/files
-     * @param assistantId The ID of the assistant the file belongs to.
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     * @param options additional options
-     */
-    public listAssistantFiles(assistantId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ListAssistantFilesResponse>;
-    public listAssistantFiles(assistantId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ListAssistantFilesResponse>>;
-    public listAssistantFiles(assistantId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ListAssistantFilesResponse>>;
-    public listAssistantFiles(assistantId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-        if (assistantId === null || assistantId === undefined) {
-            throw new Error('Required parameter assistantId was null or undefined when calling listAssistantFiles.');
-        }
-
-        let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
-
-        localVarQueryParameters = this.addToHttpParams(
-            localVarQueryParameters,
-            'limit',
-            <any>limit,
-            QueryParamStyle.Form,
-            true,
-        );
-
-
-        localVarQueryParameters = this.addToHttpParams(
-            localVarQueryParameters,
-            'order',
-            <any>order,
-            QueryParamStyle.Form,
-            true,
-        );
-
-
-        localVarQueryParameters = this.addToHttpParams(
-            localVarQueryParameters,
-            'after',
-            <any>after,
-            QueryParamStyle.Form,
-            true,
-        );
-
-
-        localVarQueryParameters = this.addToHttpParams(
-            localVarQueryParameters,
-            'before',
-            <any>before,
-            QueryParamStyle.Form,
-            true,
-        );
-
-
-        let localVarHeaders = this.defaultHeaders;
-
-        // authentication (ApiKeyAuth) required
-        localVarHeaders = this.configuration.addCredentialToHeaders('ApiKeyAuth', 'Authorization', localVarHeaders, 'Bearer ');
-
-        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
-            'application/json'
-        ]);
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
-
-        const localVarTransferCache: boolean = options?.transferCache ?? true;
-
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/assistants/${this.configuration.encodeParam({name: "assistantId", value: assistantId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/files`;
-        const { basePath, withCredentials } = this.configuration;
-        return this.httpClient.request<ListAssistantFilesResponse>('get', `${basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                params: localVarQueryParameters.toHttpParams(),
-                responseType: <any>responseType_,
-                ...(withCredentials ? { withCredentials } : {}),
-                headers: localVarHeaders,
-                observe: observe,
-                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Returns a list of assistants.
      * @endpoint get /assistants
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
@@ -1396,119 +1107,13 @@ export class AssistantsService extends BaseService {
     }
 
     /**
-     * Returns a list of message files.
-     * @endpoint get /threads/{thread_id}/messages/{message_id}/files
-     * @param threadId The ID of the thread that the message and files belong to.
-     * @param messageId The ID of the message that the files belongs to.
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     * @param options additional options
-     */
-    public listMessageFiles(threadId: string, messageId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ListMessageFilesResponse>;
-    public listMessageFiles(threadId: string, messageId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ListMessageFilesResponse>>;
-    public listMessageFiles(threadId: string, messageId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ListMessageFilesResponse>>;
-    public listMessageFiles(threadId: string, messageId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-        if (threadId === null || threadId === undefined) {
-            throw new Error('Required parameter threadId was null or undefined when calling listMessageFiles.');
-        }
-        if (messageId === null || messageId === undefined) {
-            throw new Error('Required parameter messageId was null or undefined when calling listMessageFiles.');
-        }
-
-        let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
-
-        localVarQueryParameters = this.addToHttpParams(
-            localVarQueryParameters,
-            'limit',
-            <any>limit,
-            QueryParamStyle.Form,
-            true,
-        );
-
-
-        localVarQueryParameters = this.addToHttpParams(
-            localVarQueryParameters,
-            'order',
-            <any>order,
-            QueryParamStyle.Form,
-            true,
-        );
-
-
-        localVarQueryParameters = this.addToHttpParams(
-            localVarQueryParameters,
-            'after',
-            <any>after,
-            QueryParamStyle.Form,
-            true,
-        );
-
-
-        localVarQueryParameters = this.addToHttpParams(
-            localVarQueryParameters,
-            'before',
-            <any>before,
-            QueryParamStyle.Form,
-            true,
-        );
-
-
-        let localVarHeaders = this.defaultHeaders;
-
-        // authentication (ApiKeyAuth) required
-        localVarHeaders = this.configuration.addCredentialToHeaders('ApiKeyAuth', 'Authorization', localVarHeaders, 'Bearer ');
-
-        const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
-            'application/json'
-        ]);
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
-
-        const localVarTransferCache: boolean = options?.transferCache ?? true;
-
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/threads/${this.configuration.encodeParam({name: "threadId", value: threadId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/messages/${this.configuration.encodeParam({name: "messageId", value: messageId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/files`;
-        const { basePath, withCredentials } = this.configuration;
-        return this.httpClient.request<ListMessageFilesResponse>('get', `${basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                params: localVarQueryParameters.toHttpParams(),
-                responseType: <any>responseType_,
-                ...(withCredentials ? { withCredentials } : {}),
-                headers: localVarHeaders,
-                observe: observe,
-                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Returns a list of messages for a given thread.
      * @endpoint get /threads/{thread_id}/messages
      * @param threadId The ID of the [thread](/docs/api-reference/threads) the messages belong to.
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      * @param runId Filter messages by the run ID that generated them. 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -1621,15 +1226,16 @@ export class AssistantsService extends BaseService {
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public listRunSteps(threadId: string, runId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ListRunStepsResponse>;
-    public listRunSteps(threadId: string, runId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ListRunStepsResponse>>;
-    public listRunSteps(threadId: string, runId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ListRunStepsResponse>>;
-    public listRunSteps(threadId: string, runId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public listRunSteps(threadId: string, runId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ListRunStepsResponse>;
+    public listRunSteps(threadId: string, runId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ListRunStepsResponse>>;
+    public listRunSteps(threadId: string, runId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ListRunStepsResponse>>;
+    public listRunSteps(threadId: string, runId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (threadId === null || threadId === undefined) {
             throw new Error('Required parameter threadId was null or undefined when calling listRunSteps.');
         }
@@ -1670,6 +1276,15 @@ export class AssistantsService extends BaseService {
             localVarQueryParameters,
             'before',
             <any>before,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'include[]',
+            <any>include,
             QueryParamStyle.Form,
             true,
         );
@@ -1726,7 +1341,7 @@ export class AssistantsService extends BaseService {
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      * @param options additional options

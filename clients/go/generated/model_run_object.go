@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -32,7 +32,7 @@ type RunObject struct {
 	ThreadId string `json:"thread_id"`
 	// The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run.
 	AssistantId string `json:"assistant_id"`
-	// The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+	// The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
 	Status string `json:"status"`
 	RequiredAction NullableRunObjectRequiredAction `json:"required_action"`
 	LastError NullableRunObjectLastError `json:"last_error"`
@@ -53,19 +53,21 @@ type RunObject struct {
 	Instructions string `json:"instructions"`
 	// The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
 	Tools []AssistantObjectToolsInner `json:"tools"`
-	// The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
-	FileIds []string `json:"file_ids"`
-	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	Metadata map[string]interface{} `json:"metadata"`
 	Usage NullableRunCompletionUsage `json:"usage"`
 	// The sampling temperature used for this run. If not set, defaults to 1.
 	Temperature NullableFloat32 `json:"temperature,omitempty"`
+	// The nucleus sampling value used for this run. If not set, defaults to 1.
+	TopP NullableFloat32 `json:"top_p,omitempty"`
 	// The maximum number of prompt tokens specified to have been used over the course of the run. 
 	MaxPromptTokens NullableInt32 `json:"max_prompt_tokens"`
 	// The maximum number of completion tokens specified to have been used over the course of the run. 
 	MaxCompletionTokens NullableInt32 `json:"max_completion_tokens"`
 	TruncationStrategy TruncationObject `json:"truncation_strategy"`
 	ToolChoice AssistantsApiToolChoiceOption `json:"tool_choice"`
+	// Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+	ParallelToolCalls bool `json:"parallel_tool_calls"`
 	ResponseFormat AssistantsApiResponseFormatOption `json:"response_format"`
 }
 
@@ -75,7 +77,7 @@ type _RunObject RunObject
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRunObject(id string, object string, createdAt int32, threadId string, assistantId string, status string, requiredAction NullableRunObjectRequiredAction, lastError NullableRunObjectLastError, expiresAt NullableInt32, startedAt NullableInt32, cancelledAt NullableInt32, failedAt NullableInt32, completedAt NullableInt32, incompleteDetails NullableRunObjectIncompleteDetails, model string, instructions string, tools []AssistantObjectToolsInner, fileIds []string, metadata map[string]interface{}, usage NullableRunCompletionUsage, maxPromptTokens NullableInt32, maxCompletionTokens NullableInt32, truncationStrategy TruncationObject, toolChoice AssistantsApiToolChoiceOption, responseFormat AssistantsApiResponseFormatOption) *RunObject {
+func NewRunObject(id string, object string, createdAt int32, threadId string, assistantId string, status string, requiredAction NullableRunObjectRequiredAction, lastError NullableRunObjectLastError, expiresAt NullableInt32, startedAt NullableInt32, cancelledAt NullableInt32, failedAt NullableInt32, completedAt NullableInt32, incompleteDetails NullableRunObjectIncompleteDetails, model string, instructions string, tools []AssistantObjectToolsInner, metadata map[string]interface{}, usage NullableRunCompletionUsage, maxPromptTokens NullableInt32, maxCompletionTokens NullableInt32, truncationStrategy TruncationObject, toolChoice AssistantsApiToolChoiceOption, parallelToolCalls bool, responseFormat AssistantsApiResponseFormatOption) *RunObject {
 	this := RunObject{}
 	this.Id = id
 	this.Object = object
@@ -94,13 +96,13 @@ func NewRunObject(id string, object string, createdAt int32, threadId string, as
 	this.Model = model
 	this.Instructions = instructions
 	this.Tools = tools
-	this.FileIds = fileIds
 	this.Metadata = metadata
 	this.Usage = usage
 	this.MaxPromptTokens = maxPromptTokens
 	this.MaxCompletionTokens = maxCompletionTokens
 	this.TruncationStrategy = truncationStrategy
 	this.ToolChoice = toolChoice
+	this.ParallelToolCalls = parallelToolCalls
 	this.ResponseFormat = responseFormat
 	return &this
 }
@@ -110,6 +112,8 @@ func NewRunObject(id string, object string, createdAt int32, threadId string, as
 // but it doesn't guarantee that properties required by API are set
 func NewRunObjectWithDefaults() *RunObject {
 	this := RunObject{}
+	var parallelToolCalls bool = true
+	this.ParallelToolCalls = parallelToolCalls
 	return &this
 }
 
@@ -537,30 +541,6 @@ func (o *RunObject) SetTools(v []AssistantObjectToolsInner) {
 	o.Tools = v
 }
 
-// GetFileIds returns the FileIds field value
-func (o *RunObject) GetFileIds() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.FileIds
-}
-
-// GetFileIdsOk returns a tuple with the FileIds field value
-// and a boolean to check if the value has been set.
-func (o *RunObject) GetFileIdsOk() ([]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.FileIds, true
-}
-
-// SetFileIds sets field value
-func (o *RunObject) SetFileIds(v []string) {
-	o.FileIds = v
-}
-
 // GetMetadata returns the Metadata field value
 // If the value is explicit nil, the zero value for map[string]interface{} will be returned
 func (o *RunObject) GetMetadata() map[string]interface{} {
@@ -653,6 +633,48 @@ func (o *RunObject) SetTemperatureNil() {
 // UnsetTemperature ensures that no value is present for Temperature, not even an explicit nil
 func (o *RunObject) UnsetTemperature() {
 	o.Temperature.Unset()
+}
+
+// GetTopP returns the TopP field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RunObject) GetTopP() float32 {
+	if o == nil || IsNil(o.TopP.Get()) {
+		var ret float32
+		return ret
+	}
+	return *o.TopP.Get()
+}
+
+// GetTopPOk returns a tuple with the TopP field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RunObject) GetTopPOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TopP.Get(), o.TopP.IsSet()
+}
+
+// HasTopP returns a boolean if a field has been set.
+func (o *RunObject) HasTopP() bool {
+	if o != nil && o.TopP.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTopP gets a reference to the given NullableFloat32 and assigns it to the TopP field.
+func (o *RunObject) SetTopP(v float32) {
+	o.TopP.Set(&v)
+}
+// SetTopPNil sets the value for TopP to be an explicit nil
+func (o *RunObject) SetTopPNil() {
+	o.TopP.Set(nil)
+}
+
+// UnsetTopP ensures that no value is present for TopP, not even an explicit nil
+func (o *RunObject) UnsetTopP() {
+	o.TopP.Unset()
 }
 
 // GetMaxPromptTokens returns the MaxPromptTokens field value
@@ -755,6 +777,30 @@ func (o *RunObject) SetToolChoice(v AssistantsApiToolChoiceOption) {
 	o.ToolChoice = v
 }
 
+// GetParallelToolCalls returns the ParallelToolCalls field value
+func (o *RunObject) GetParallelToolCalls() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ParallelToolCalls
+}
+
+// GetParallelToolCallsOk returns a tuple with the ParallelToolCalls field value
+// and a boolean to check if the value has been set.
+func (o *RunObject) GetParallelToolCallsOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ParallelToolCalls, true
+}
+
+// SetParallelToolCalls sets field value
+func (o *RunObject) SetParallelToolCalls(v bool) {
+	o.ParallelToolCalls = v
+}
+
 // GetResponseFormat returns the ResponseFormat field value
 func (o *RunObject) GetResponseFormat() AssistantsApiResponseFormatOption {
 	if o == nil {
@@ -806,7 +852,6 @@ func (o RunObject) ToMap() (map[string]interface{}, error) {
 	toSerialize["model"] = o.Model
 	toSerialize["instructions"] = o.Instructions
 	toSerialize["tools"] = o.Tools
-	toSerialize["file_ids"] = o.FileIds
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
@@ -814,10 +859,14 @@ func (o RunObject) ToMap() (map[string]interface{}, error) {
 	if o.Temperature.IsSet() {
 		toSerialize["temperature"] = o.Temperature.Get()
 	}
+	if o.TopP.IsSet() {
+		toSerialize["top_p"] = o.TopP.Get()
+	}
 	toSerialize["max_prompt_tokens"] = o.MaxPromptTokens.Get()
 	toSerialize["max_completion_tokens"] = o.MaxCompletionTokens.Get()
 	toSerialize["truncation_strategy"] = o.TruncationStrategy
 	toSerialize["tool_choice"] = o.ToolChoice
+	toSerialize["parallel_tool_calls"] = o.ParallelToolCalls
 	toSerialize["response_format"] = o.ResponseFormat
 	return toSerialize, nil
 }
@@ -844,13 +893,13 @@ func (o *RunObject) UnmarshalJSON(data []byte) (err error) {
 		"model",
 		"instructions",
 		"tools",
-		"file_ids",
 		"metadata",
 		"usage",
 		"max_prompt_tokens",
 		"max_completion_tokens",
 		"truncation_strategy",
 		"tool_choice",
+		"parallel_tool_calls",
 		"response_format",
 	}
 

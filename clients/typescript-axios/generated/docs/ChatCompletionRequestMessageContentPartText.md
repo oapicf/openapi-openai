@@ -1,5 +1,6 @@
 # ChatCompletionRequestMessageContentPartText
 
+Learn about [text inputs](/docs/guides/text-generation). 
 
 ## Properties
 

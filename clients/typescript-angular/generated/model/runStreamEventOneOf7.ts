@@ -11,7 +11,7 @@ import { RunObject } from './runObject';
 
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
+ * Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.
  */
 export interface RunStreamEventOneOf7 { 
     event: RunStreamEventOneOf7.EventEnum;
@@ -19,7 +19,7 @@ export interface RunStreamEventOneOf7 {
 }
 export namespace RunStreamEventOneOf7 {
     export const EventEnum = {
-        ThreadRunCancelled: 'thread.run.cancelled'
+        ThreadRunCancelling: 'thread.run.cancelling'
     } as const;
     export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

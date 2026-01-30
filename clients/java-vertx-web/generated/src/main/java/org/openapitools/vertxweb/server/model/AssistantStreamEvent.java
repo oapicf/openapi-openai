@@ -17,6 +17,7 @@ import org.openapitools.vertxweb.server.model.ThreadStreamEvent;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AssistantStreamEvent   {
   
+  private Boolean enabled;
 
 
   public enum EventEnum {
@@ -60,9 +61,19 @@ public class AssistantStreamEvent   {
 
   }
 
-  public AssistantStreamEvent (EventEnum event, DataEnum data) {
+  public AssistantStreamEvent (Boolean enabled, EventEnum event, DataEnum data) {
+    this.enabled = enabled;
     this.event = event;
     this.data = data;
+  }
+
+    
+  @JsonProperty("enabled")
+  public Boolean getEnabled() {
+    return enabled;
+  }
+  public void setEnabled(Boolean enabled) {
+    this.enabled = enabled;
   }
 
     
@@ -93,13 +104,14 @@ public class AssistantStreamEvent   {
       return false;
     }
     AssistantStreamEvent assistantStreamEvent = (AssistantStreamEvent) o;
-    return Objects.equals(event, assistantStreamEvent.event) &&
+    return Objects.equals(enabled, assistantStreamEvent.enabled) &&
+        Objects.equals(event, assistantStreamEvent.event) &&
         Objects.equals(data, assistantStreamEvent.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(event, data);
+    return Objects.hash(enabled, event, data);
   }
 
   @Override
@@ -107,6 +119,7 @@ public class AssistantStreamEvent   {
     StringBuilder sb = new StringBuilder();
     sb.append("class AssistantStreamEvent {\n");
     
+    sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
     sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");

@@ -5,13 +5,10 @@
 -export_type([openapi_message_content_text_annotations_file_citation_object_file_citation/0]).
 
 -type openapi_message_content_text_annotations_file_citation_object_file_citation() ::
-    #{ 'file_id' := binary(),
-       'quote' := binary()
+    #{ 'file_id' := binary()
      }.
 
-encode(#{ 'file_id' := FileId,
-          'quote' := Quote
+encode(#{ 'file_id' := FileId
         }) ->
-    #{ 'file_id' => FileId,
-       'quote' => Quote
+    #{ 'file_id' => FileId
      }.

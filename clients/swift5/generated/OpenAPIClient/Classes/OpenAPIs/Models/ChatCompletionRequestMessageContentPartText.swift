@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Learn about [text inputs](/docs/guides/text-generation).  */
 public struct ChatCompletionRequestMessageContentPartText: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {

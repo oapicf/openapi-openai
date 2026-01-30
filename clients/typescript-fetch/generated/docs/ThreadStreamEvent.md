@@ -7,6 +7,7 @@ Occurs when a new [thread](/docs/api-reference/threads/object) is created.
 
 Name | Type
 ------------ | -------------
+`enabled` | boolean
 `event` | string
 `data` | [ThreadObject](ThreadObject.md)
 
@@ -17,6 +18,7 @@ import type { ThreadStreamEvent } from ''
 
 // TODO: Update the object below with actual values
 const example = {
+  "enabled": null,
   "event": null,
   "data": null,
 } satisfies ThreadStreamEvent

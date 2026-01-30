@@ -28,4 +28,12 @@ public class MessageContentImageFileObjectImageFileTest {
         // TODO: test fileId
     }
 
+    /**
+     * Test the property 'detail'
+     */
+    @Test
+    public void detailTest() {
+        // TODO: test detail
+    }
+
 }

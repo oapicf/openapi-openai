@@ -10,6 +10,8 @@ Name | Type
 `type` | string
 `imageFile` | [MessageDeltaContentImageFileObjectImageFile](MessageDeltaContentImageFileObjectImageFile.md)
 `text` | [MessageDeltaContentTextObjectText](MessageDeltaContentTextObjectText.md)
+`refusal` | string
+`imageUrl` | [MessageDeltaContentImageUrlObjectImageUrl](MessageDeltaContentImageUrlObjectImageUrl.md)
 
 ## Example
 
@@ -22,6 +24,8 @@ const example = {
   "type": null,
   "imageFile": null,
   "text": null,
+  "refusal": null,
+  "imageUrl": null,
 } satisfies MessageDeltaObjectDeltaContentInner
 
 console.log(example)

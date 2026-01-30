@@ -39,12 +39,17 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}metadata`,
-                label: `Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  - [${labelPrefix}metadata]`,
+                label: `Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  - [${labelPrefix}metadata]`,
                 dict: true,
             },
             {
                 key: `${keyPrefix}temperature`,
                 label: `What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  - [${labelPrefix}temperature]`,
+                type: 'number',
+            },
+            {
+                key: `${keyPrefix}top_p`,
+                label: `An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.  - [${labelPrefix}top_p]`,
                 type: 'number',
             },
             {
@@ -54,16 +59,21 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}max_prompt_tokens`,
-                label: `The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info.  - [${labelPrefix}max_prompt_tokens]`,
+                label: `The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info.  - [${labelPrefix}max_prompt_tokens]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}max_completion_tokens`,
-                label: `The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `complete`. See `incomplete_details` for more info.  - [${labelPrefix}max_completion_tokens]`,
+                label: `The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info.  - [${labelPrefix}max_completion_tokens]`,
                 type: 'integer',
             },
             ...TruncationObject.fields(`${keyPrefix}truncation_strategy`, isInput),
             ...AssistantsApiToolChoiceOption.fields(`${keyPrefix}tool_choice`, isInput),
+            {
+                key: `${keyPrefix}parallel_tool_calls`,
+                label: `Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. - [${labelPrefix}parallel_tool_calls]`,
+                type: 'boolean',
+            },
             ...AssistantsApiResponseFormatOption.fields(`${keyPrefix}response_format`, isInput),
         ]
     },
@@ -78,11 +88,13 @@ module.exports = {
             'tools': utils.childMapping(bundle.inputData?.[`${keyPrefix}tools`], `${keyPrefix}tools`, AssistantObject_tools_inner),
             'metadata': bundle.inputData?.[`${keyPrefix}metadata`],
             'temperature': bundle.inputData?.[`${keyPrefix}temperature`],
+            'top_p': bundle.inputData?.[`${keyPrefix}top_p`],
             'stream': bundle.inputData?.[`${keyPrefix}stream`],
             'max_prompt_tokens': bundle.inputData?.[`${keyPrefix}max_prompt_tokens`],
             'max_completion_tokens': bundle.inputData?.[`${keyPrefix}max_completion_tokens`],
             'truncation_strategy': utils.removeIfEmpty(TruncationObject.mapping(bundle, `${keyPrefix}truncation_strategy`)),
             'tool_choice': utils.removeIfEmpty(AssistantsApiToolChoiceOption.mapping(bundle, `${keyPrefix}tool_choice`)),
+            'parallel_tool_calls': bundle.inputData?.[`${keyPrefix}parallel_tool_calls`],
             'response_format': utils.removeIfEmpty(AssistantsApiResponseFormatOption.mapping(bundle, `${keyPrefix}response_format`)),
         }
     },

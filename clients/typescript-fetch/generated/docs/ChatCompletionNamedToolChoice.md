@@ -8,7 +8,7 @@ Specifies a tool the model should use. Use to force the model to call a specific
 Name | Type
 ------------ | -------------
 `type` | string
-`_function` | [ChatCompletionNamedToolChoiceFunction](ChatCompletionNamedToolChoiceFunction.md)
+`_function` | [AssistantsNamedToolChoiceFunction](AssistantsNamedToolChoiceFunction.md)
 
 ## Example
 

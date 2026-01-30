@@ -25,6 +25,16 @@ Protected Class CompletionUsage
 	#tag EndProperty
 
 
+	#tag Property, Flags = &h0
+		completion_tokens_details As OpenAPIClient.Models.CompletionUsageCompletionTokensDetails
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		prompt_tokens_details As OpenAPIClient.Models.CompletionUsagePromptTokensDetails
+	#tag EndProperty
+
+
 
 
 
@@ -83,6 +93,22 @@ Protected Class CompletionUsage
 			Group="Behavior"
 			InitialValue=""
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="completion_tokens_details"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="CompletionUsageCompletionTokensDetails"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="prompt_tokens_details"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="CompletionUsagePromptTokensDetails"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

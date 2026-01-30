@@ -2,7 +2,7 @@
 
 # RunStepStreamEventOneOf3
 
-Occurs when a [run step](/docs/api-reference/runs/step-object) is completed.
+Occurs when a [run step](/docs/api-reference/run-steps/step-object) is completed.
 
 The class is defined in **[RunStepStreamEventOneOf3.java](../../src/main/java/org/openapitools/model/RunStepStreamEventOneOf3.java)**
 

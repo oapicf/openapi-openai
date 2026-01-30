@@ -70,8 +70,9 @@ private class OASCreateChatCompletionRequestResponTest {
     }
 
     @isTest
-    private static void defaultValuesPopulated() {
+    private static void maintainRenamedProperties() {
         OASCreateChatCompletionRequestRespon createChatCompletionRequestResponseFormat = new OASCreateChatCompletionRequestRespon();
-        System.assertEquals(TypeEnum.TEXT, createChatCompletionRequestResponseFormat.type);
+        Map<String, String> x-property-mappings = createChatCompletionRequestResponseFormat.getx-property-mappings();
+        System.assertEquals('jsonSchema', x-property-mappings.get('json_schema'));
     }
 }

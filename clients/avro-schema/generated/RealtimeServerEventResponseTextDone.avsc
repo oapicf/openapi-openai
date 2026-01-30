@@ -1,0 +1,50 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when the text value of a \"text\" content part is done streaming. Also emitted when a Response is interrupted, incomplete, or cancelled. ",
+  "name": "RealtimeServerEventResponseTextDone",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventResponseTextDone_type",
+        "symbols": [
+          "response_text_done"
+        ]
+      },
+      "doc": "The event type, must be `response.text.done`."
+    },
+    {
+      "name": "response_id",
+      "type": "string",
+      "doc": "The ID of the response."
+    },
+    {
+      "name": "item_id",
+      "type": "string",
+      "doc": "The ID of the item."
+    },
+    {
+      "name": "output_index",
+      "type": "int",
+      "doc": "The index of the output item in the response."
+    },
+    {
+      "name": "content_index",
+      "type": "int",
+      "doc": "The index of the content part in the item's content array."
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "doc": "The final text content."
+    }
+  ]
+
+}

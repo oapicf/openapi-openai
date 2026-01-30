@@ -8,7 +8,8 @@
 #' @description CreateThreadRequest Class
 #' @format An \code{R6Class} generator object
 #' @field messages A list of [messages](/docs/api-reference/messages) to start the thread with. list(\link{CreateMessageRequest}) [optional]
-#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. object [optional]
+#' @field tool_resources  \link{CreateThreadRequestToolResources} [optional]
+#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. object [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -16,19 +17,25 @@ CreateThreadRequest <- R6::R6Class(
   "CreateThreadRequest",
   public = list(
     `messages` = NULL,
+    `tool_resources` = NULL,
     `metadata` = NULL,
 
     #' @description
     #' Initialize a new CreateThreadRequest class.
     #'
     #' @param messages A list of [messages](/docs/api-reference/messages) to start the thread with.
-    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
+    #' @param tool_resources tool_resources
+    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
     #' @param ... Other optional arguments.
-    initialize = function(`messages` = NULL, `metadata` = NULL, ...) {
+    initialize = function(`messages` = NULL, `tool_resources` = NULL, `metadata` = NULL, ...) {
       if (!is.null(`messages`)) {
         stopifnot(is.vector(`messages`), length(`messages`) != 0)
         sapply(`messages`, function(x) stopifnot(R6::is.R6(x)))
         self$`messages` <- `messages`
+      }
+      if (!is.null(`tool_resources`)) {
+        stopifnot(R6::is.R6(`tool_resources`))
+        self$`tool_resources` <- `tool_resources`
       }
       if (!is.null(`metadata`)) {
         self$`metadata` <- `metadata`
@@ -70,6 +77,10 @@ CreateThreadRequest <- R6::R6Class(
         CreateThreadRequestObject[["messages"]] <-
           lapply(self$`messages`, function(x) x$toSimpleType())
       }
+      if (!is.null(self$`tool_resources`)) {
+        CreateThreadRequestObject[["tool_resources"]] <-
+          self$`tool_resources`$toSimpleType()
+      }
       if (!is.null(self$`metadata`)) {
         CreateThreadRequestObject[["metadata"]] <-
           self$`metadata`
@@ -86,6 +97,11 @@ CreateThreadRequest <- R6::R6Class(
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`messages`)) {
         self$`messages` <- ApiClient$new()$deserializeObj(this_object$`messages`, "array[CreateMessageRequest]", loadNamespace("openapi"))
+      }
+      if (!is.null(this_object$`tool_resources`)) {
+        `tool_resources_object` <- CreateThreadRequestToolResources$new()
+        `tool_resources_object`$fromJSON(jsonlite::toJSON(this_object$`tool_resources`, auto_unbox = TRUE, digits = NA))
+        self$`tool_resources` <- `tool_resources_object`
       }
       if (!is.null(this_object$`metadata`)) {
         self$`metadata` <- this_object$`metadata`
@@ -112,6 +128,7 @@ CreateThreadRequest <- R6::R6Class(
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`messages` <- ApiClient$new()$deserializeObj(this_object$`messages`, "array[CreateMessageRequest]", loadNamespace("openapi"))
+      self$`tool_resources` <- CreateThreadRequestToolResources$new()$fromJSON(jsonlite::toJSON(this_object$`tool_resources`, auto_unbox = TRUE, digits = NA))
       self$`metadata` <- this_object$`metadata`
       self
     },

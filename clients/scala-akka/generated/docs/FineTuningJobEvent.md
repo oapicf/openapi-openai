@@ -8,11 +8,18 @@ Fine-tuning job event object
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | 
-**createdAt** | **Int** |  | 
-**level** | [**Level**](#Level) |  | 
-**message** | **String** |  | 
-**`object`** | [**`Object`**](#`Object`) |  | 
+**`object`** | [**`Object`**](#`Object`) | The object type, which is always \&quot;fine_tuning.job.event\&quot;. | 
+**id** | **String** | The object identifier. | 
+**createdAt** | **Int** | The Unix timestamp (in seconds) for when the fine-tuning job was created. | 
+**level** | [**Level**](#Level) | The log level of the event. | 
+**message** | **String** | The message of the event. | 
+**`type`** | [**`Type`**](#`Type`) | The type of event. |  [optional]
+**data** | **Any** | The data associated with the event. |  [optional]
+
+
+## Enum: `Object`
+Allowed values: [fine_tuning.job.event]
+
 
 
 ## Enum: Level
@@ -20,8 +27,8 @@ Allowed values: [info, warn, error]
 
 
 
-## Enum: `Object`
-Allowed values: [fine_tuning.job.event]
+## Enum: `Type`
+Allowed values: [message, metrics]
 
 
 

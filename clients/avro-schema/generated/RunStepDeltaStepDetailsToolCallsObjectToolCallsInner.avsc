@@ -22,7 +22,7 @@
         "name": "RunStepDeltaStepDetailsToolCallsObjectToolCallsInner_type",
         "symbols": [
           "code_interpreter",
-          "retrieval",
+          "file_search",
           "function"
         ]
       },
@@ -35,10 +35,9 @@
       "default": null
     },
     {
-      "name": "retrieval",
-      "type": ["null", "model.object"],
-      "doc": "For now, this is always going to be an empty object.",
-      "default": null
+      "name": "file_search",
+      "type": "model.object",
+      "doc": "For now, this is always going to be an empty object."
     },
     {
       "name": "function",

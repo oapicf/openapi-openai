@@ -20,13 +20,13 @@ public class ModerationsApi extends RouteBuilder {
         
 
         /**
-        POST /moderations : Classifies if text is potentially harmful.
+        POST /moderations : Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
         **/
         rest()
             .securityDefinitions()
                 .bearerToken("ApiKeyAuth").end()
             .post("/moderations")
-                .description("Classifies if text is potentially harmful.")
+                .description("Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). ")
                 .id("createModerationApi")
                 .produces("application/json")
                 .outType(CreateModerationResponse.class)

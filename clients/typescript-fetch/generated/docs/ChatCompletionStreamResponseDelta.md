@@ -11,6 +11,7 @@ Name | Type
 `functionCall` | [ChatCompletionStreamResponseDeltaFunctionCall](ChatCompletionStreamResponseDeltaFunctionCall.md)
 `toolCalls` | [Array&lt;ChatCompletionMessageToolCallChunk&gt;](ChatCompletionMessageToolCallChunk.md)
 `role` | string
+`refusal` | string
 
 ## Example
 
@@ -23,6 +24,7 @@ const example = {
   "functionCall": null,
   "toolCalls": null,
   "role": null,
+  "refusal": null,
 } satisfies ChatCompletionStreamResponseDelta
 
 console.log(example)

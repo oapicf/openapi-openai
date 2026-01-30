@@ -1,0 +1,15 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Configuration for the supervised fine-tuning method.",
+  "name": "FineTuneSupervisedMethod",
+  "fields": [
+    {
+      "name": "hyperparameters",
+      "type": ["null", "model.FineTuneSupervisedMethodHyperparameters"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

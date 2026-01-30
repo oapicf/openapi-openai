@@ -1,0 +1,46 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeClientEventResponseCancel"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeClientEventResponseCancel"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeClientEventResponseCancel {
+    title = RealtimeClientEventResponseCancel
+    description = RealtimeClientEventResponseCancel
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "Optional client-generated ID used to identify this event."
+          optional = false
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;response.cancel&#x60;."
+          enum = ["response.cancel"]
+          optional = true
+        }
+        response_id {
+          type =  string
+          description = "A specific response ID to cancel - if not provided, will cancel an  in-progress response in the default conversation. "
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeClientEventResponseCancel {
+    title = RealtimeClientEventResponseCancel
+    description = RealtimeClientEventResponseCancel
+    implements = openapi_server.resourceTypes.RealtimeClientEventResponseCancel
+
+  }
+}

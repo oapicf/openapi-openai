@@ -24,13 +24,15 @@ function_object_t* instantiate_function_object(int include_optional) {
     function_object = function_object_create(
       "0",
       "0",
-      list_createList()
+      list_createList(),
+      1
     );
   } else {
     function_object = function_object_create(
       "0",
       "0",
-      list_createList()
+      list_createList(),
+      1
     );
   }
 

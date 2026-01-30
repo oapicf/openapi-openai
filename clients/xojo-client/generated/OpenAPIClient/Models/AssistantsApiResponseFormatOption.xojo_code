@@ -3,9 +3,14 @@ Protected Class AssistantsApiResponseFormatOption
 
 	#tag Property, Flags = &h0
 		#tag Note
-			Must be one of `text` or `json_object`.
+			The type of response format being defined: `text`
 		#tag EndNote
-		type As Xoson.O.OptionalString
+		type As String
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		json_schema As OpenAPIClient.Models.ResponseFormatJsonSchemaJsonSchema
 	#tag EndProperty
 
 
@@ -13,6 +18,7 @@ Protected Class AssistantsApiResponseFormatOption
         
         Text
         JsonObject
+        JsonSchema
         
     #tag EndEnum
 
@@ -25,6 +31,8 @@ Protected Class AssistantsApiResponseFormatOption
 		      Return "text"
 		    Case TypeEnum.JsonObject
 		      Return "json_object"
+		    Case TypeEnum.JsonSchema
+		      Return "json_schema"
 		    
 		  End Select
 		  Return ""
@@ -63,6 +71,14 @@ Protected Class AssistantsApiResponseFormatOption
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="json_schema"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="ResponseFormatJsonSchemaJsonSchema"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

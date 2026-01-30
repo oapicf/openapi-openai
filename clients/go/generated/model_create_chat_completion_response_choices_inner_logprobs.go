@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -24,6 +24,8 @@ var _ MappedNullable = &CreateChatCompletionResponseChoicesInnerLogprobs{}
 type CreateChatCompletionResponseChoicesInnerLogprobs struct {
 	// A list of message content tokens with log probability information.
 	Content []ChatCompletionTokenLogprob `json:"content"`
+	// A list of message refusal tokens with log probability information.
+	Refusal []ChatCompletionTokenLogprob `json:"refusal"`
 }
 
 type _CreateChatCompletionResponseChoicesInnerLogprobs CreateChatCompletionResponseChoicesInnerLogprobs
@@ -32,9 +34,10 @@ type _CreateChatCompletionResponseChoicesInnerLogprobs CreateChatCompletionRespo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateChatCompletionResponseChoicesInnerLogprobs(content []ChatCompletionTokenLogprob) *CreateChatCompletionResponseChoicesInnerLogprobs {
+func NewCreateChatCompletionResponseChoicesInnerLogprobs(content []ChatCompletionTokenLogprob, refusal []ChatCompletionTokenLogprob) *CreateChatCompletionResponseChoicesInnerLogprobs {
 	this := CreateChatCompletionResponseChoicesInnerLogprobs{}
 	this.Content = content
+	this.Refusal = refusal
 	return &this
 }
 
@@ -72,6 +75,32 @@ func (o *CreateChatCompletionResponseChoicesInnerLogprobs) SetContent(v []ChatCo
 	o.Content = v
 }
 
+// GetRefusal returns the Refusal field value
+// If the value is explicit nil, the zero value for []ChatCompletionTokenLogprob will be returned
+func (o *CreateChatCompletionResponseChoicesInnerLogprobs) GetRefusal() []ChatCompletionTokenLogprob {
+	if o == nil {
+		var ret []ChatCompletionTokenLogprob
+		return ret
+	}
+
+	return o.Refusal
+}
+
+// GetRefusalOk returns a tuple with the Refusal field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateChatCompletionResponseChoicesInnerLogprobs) GetRefusalOk() ([]ChatCompletionTokenLogprob, bool) {
+	if o == nil || IsNil(o.Refusal) {
+		return nil, false
+	}
+	return o.Refusal, true
+}
+
+// SetRefusal sets field value
+func (o *CreateChatCompletionResponseChoicesInnerLogprobs) SetRefusal(v []ChatCompletionTokenLogprob) {
+	o.Refusal = v
+}
+
 func (o CreateChatCompletionResponseChoicesInnerLogprobs) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -85,6 +114,9 @@ func (o CreateChatCompletionResponseChoicesInnerLogprobs) ToMap() (map[string]in
 	if o.Content != nil {
 		toSerialize["content"] = o.Content
 	}
+	if o.Refusal != nil {
+		toSerialize["refusal"] = o.Refusal
+	}
 	return toSerialize, nil
 }
 
@@ -94,6 +126,7 @@ func (o *CreateChatCompletionResponseChoicesInnerLogprobs) UnmarshalJSON(data []
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"content",
+		"refusal",
 	}
 
 	allProperties := make(map[string]interface{})

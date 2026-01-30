@@ -1,0 +1,51 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeResponseCreateParamsToolsInner"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeResponseCreateParamsToolsInner"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeResponseCreateParamsToolsInner {
+    title = RealtimeResponseCreateParamsToolsInner
+    description = RealtimeResponseCreateParamsToolsInner
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "The type of the tool, i.e. &#x60;function&#x60;."
+          enum = ["function"]
+          optional = false
+        }
+        name {
+          type =  string
+          description = "The name of the function."
+          optional = false
+        }
+        description {
+          type =  string
+          description = "The description of the function, including guidance on when and how  to call it, and guidance about what to tell the user when calling  (if anything). "
+          optional = false
+        }
+        parameters {
+          type =  
+          description = "Parameters of the function in JSON Schema."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeResponseCreateParamsToolsInner {
+    title = RealtimeResponseCreateParamsToolsInner
+    description = RealtimeResponseCreateParamsToolsInner
+    implements = openapi_server.resourceTypes.RealtimeResponseCreateParamsToolsInner
+
+  }
+}

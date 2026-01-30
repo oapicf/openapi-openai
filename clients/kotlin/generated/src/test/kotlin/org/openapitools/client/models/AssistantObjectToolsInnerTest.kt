@@ -20,8 +20,9 @@ import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.AssistantObjectToolsInner
 import org.openapitools.client.models.AssistantToolsCode
+import org.openapitools.client.models.AssistantToolsFileSearch
+import org.openapitools.client.models.AssistantToolsFileSearchFileSearch
 import org.openapitools.client.models.AssistantToolsFunction
-import org.openapitools.client.models.AssistantToolsRetrieval
 import org.openapitools.client.models.FunctionObject
 
 class AssistantObjectToolsInnerTest : ShouldSpec() {
@@ -39,6 +40,12 @@ class AssistantObjectToolsInnerTest : ShouldSpec() {
         should("test function") {
             // uncomment below to test the property
             //modelInstance.function shouldBe ("TODO")
+        }
+
+        // to test the property `fileSearch`
+        should("test fileSearch") {
+            // uncomment below to test the property
+            //modelInstance.fileSearch shouldBe ("TODO")
         }
 
     }

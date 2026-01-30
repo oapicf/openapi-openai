@@ -7,6 +7,7 @@ open FSharp.Control.Tasks.V2.ContextInsensitive
 open AudioApiHandlerParams
 open AudioApiServiceInterface
 open AudioApiServiceImplementation
+open OpenAPI.Model.AudioResponseFormat
 open OpenAPI.Model.CreateSpeechRequest
 open OpenAPI.Model.CreateTranscription200Response
 open OpenAPI.Model.CreateTranscriptionRequestModel

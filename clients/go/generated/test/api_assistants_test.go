@@ -49,20 +49,6 @@ func Test_openapi_AssistantsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test AssistantsAPIService CreateAssistantFile", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var assistantId string
-
-		resp, httpRes, err := apiClient.AssistantsAPI.CreateAssistantFile(context.Background(), assistantId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test AssistantsAPIService CreateMessage", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -129,14 +115,14 @@ func Test_openapi_AssistantsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test AssistantsAPIService DeleteAssistantFile", func(t *testing.T) {
+	t.Run("Test AssistantsAPIService DeleteMessage", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var assistantId string
-		var fileId string
+		var threadId string
+		var messageId string
 
-		resp, httpRes, err := apiClient.AssistantsAPI.DeleteAssistantFile(context.Background(), assistantId, fileId).Execute()
+		resp, httpRes, err := apiClient.AssistantsAPI.DeleteMessage(context.Background(), threadId, messageId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -172,21 +158,6 @@ func Test_openapi_AssistantsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test AssistantsAPIService GetAssistantFile", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var assistantId string
-		var fileId string
-
-		resp, httpRes, err := apiClient.AssistantsAPI.GetAssistantFile(context.Background(), assistantId, fileId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test AssistantsAPIService GetMessage", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -195,22 +166,6 @@ func Test_openapi_AssistantsAPIService(t *testing.T) {
 		var messageId string
 
 		resp, httpRes, err := apiClient.AssistantsAPI.GetMessage(context.Background(), threadId, messageId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test AssistantsAPIService GetMessageFile", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var threadId string
-		var messageId string
-		var fileId string
-
-		resp, httpRes, err := apiClient.AssistantsAPI.GetMessageFile(context.Background(), threadId, messageId, fileId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -263,40 +218,11 @@ func Test_openapi_AssistantsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test AssistantsAPIService ListAssistantFiles", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var assistantId string
-
-		resp, httpRes, err := apiClient.AssistantsAPI.ListAssistantFiles(context.Background(), assistantId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test AssistantsAPIService ListAssistants", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.AssistantsAPI.ListAssistants(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test AssistantsAPIService ListMessageFiles", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var threadId string
-		var messageId string
-
-		resp, httpRes, err := apiClient.AssistantsAPI.ListMessageFiles(context.Background(), threadId, messageId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

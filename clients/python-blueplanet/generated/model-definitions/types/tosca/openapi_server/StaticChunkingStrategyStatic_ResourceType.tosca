@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server StaticChunkingStrategyStatic"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a StaticChunkingStrategyStatic"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  StaticChunkingStrategyStatic {
+    title = StaticChunkingStrategyStatic
+    description = StaticChunkingStrategyStatic
+    derivedFrom = Root
+    properties {
+        max_chunk_size_tokens {
+          type =  integer
+          description = "The maximum number of tokens in each chunk. The default value is &#x60;800&#x60;. The minimum value is &#x60;100&#x60; and the maximum value is &#x60;4096&#x60;."
+          optional = true
+        }
+        chunk_overlap_tokens {
+          type =  integer
+          description = "The number of tokens that overlap between chunks. The default value is &#x60;400&#x60;.  Note that the overlap must not exceed half of &#x60;max_chunk_size_tokens&#x60;. "
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  StaticChunkingStrategyStatic {
+    title = StaticChunkingStrategyStatic
+    description = StaticChunkingStrategyStatic
+    implements = openapi_server.resourceTypes.StaticChunkingStrategyStatic
+
+  }
+}

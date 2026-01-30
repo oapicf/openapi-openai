@@ -9,7 +9,7 @@
 #' @format An \code{R6Class} generator object
 #' @field model  \link{CreateSpeechRequestModel}
 #' @field input The text to generate audio for. The maximum length is 4096 characters. character
-#' @field voice The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options). character
+#' @field voice The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options). character
 #' @field response_format The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`. character [optional]
 #' @field speed The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default. numeric [optional]
 #' @importFrom R6 R6Class
@@ -29,11 +29,11 @@ CreateSpeechRequest <- R6::R6Class(
     #'
     #' @param model model
     #' @param input The text to generate audio for. The maximum length is 4096 characters.
-    #' @param voice The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+    #' @param voice The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
     #' @param response_format The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.. Default to "mp3".
-    #' @param speed The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.. Default to 1.0.
+    #' @param speed The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.. Default to 1.
     #' @param ... Other optional arguments.
-    initialize = function(`model`, `input`, `voice`, `response_format` = "mp3", `speed` = 1.0, ...) {
+    initialize = function(`model`, `input`, `voice`, `response_format` = "mp3", `speed` = 1, ...) {
       if (!missing(`model`)) {
         stopifnot(R6::is.R6(`model`))
         self$`model` <- `model`
@@ -248,7 +248,7 @@ CreateSpeechRequest <- R6::R6Class(
         return(FALSE)
       }
 
-      if (self$`speed` > 4.0) {
+      if (self$`speed` > 4) {
         return(FALSE)
       }
       if (self$`speed` < 0.25) {
@@ -283,8 +283,8 @@ CreateSpeechRequest <- R6::R6Class(
         invalid_fields["voice"] <- "Non-nullable required field `voice` cannot be null."
       }
 
-      if (self$`speed` > 4.0) {
-        invalid_fields["speed"] <- "Invalid value for `speed`, must be smaller than or equal to 4.0."
+      if (self$`speed` > 4) {
+        invalid_fields["speed"] <- "Invalid value for `speed`, must be smaller than or equal to 4."
       }
       if (self$`speed` < 0.25) {
         invalid_fields["speed"] <- "Invalid value for `speed`, must be bigger than or equal to 0.25."

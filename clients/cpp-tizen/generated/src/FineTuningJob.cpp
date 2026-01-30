@@ -39,6 +39,8 @@ FineTuningJob::__init()
 	//validation_file = std::string();
 	//new std::list()std::list> integrations;
 	//seed = int(0);
+	//estimated_finish = int(0);
+	//method = new FineTuneMethod();
 }
 
 void
@@ -123,6 +125,16 @@ FineTuningJob::__cleanup()
 	//
 	//delete seed;
 	//seed = NULL;
+	//}
+	//if(estimated_finish != NULL) {
+	//
+	//delete estimated_finish;
+	//estimated_finish = NULL;
+	//}
+	//if(method != NULL) {
+	//
+	//delete method;
+	//method = NULL;
 	//}
 	//
 }
@@ -338,6 +350,31 @@ FineTuningJob::fromJson(char* jsonStr)
 			
 		}
 	}
+	const gchar *estimated_finishKey = "estimated_finish";
+	node = json_object_get_member(pJsonObject, estimated_finishKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("int")) {
+			jsonToValue(&estimated_finish, node, "int", "");
+		} else {
+			
+		}
+	}
+	const gchar *methodKey = "method";
+	node = json_object_get_member(pJsonObject, methodKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("FineTuneMethod")) {
+			jsonToValue(&method, node, "FineTuneMethod", "FineTuneMethod");
+		} else {
+			
+			FineTuneMethod* obj = static_cast<FineTuneMethod*> (&method);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
 }
 
 FineTuningJob::FineTuningJob(char* json)
@@ -526,6 +563,29 @@ FineTuningJob::toJson()
 	}
 	const gchar *seedKey = "seed";
 	json_object_set_member(pJsonObject, seedKey, node);
+	if (isprimitive("int")) {
+		int obj = getEstimatedFinish();
+		node = converttoJson(&obj, "int", "");
+	}
+	else {
+		
+	}
+	const gchar *estimated_finishKey = "estimated_finish";
+	json_object_set_member(pJsonObject, estimated_finishKey, node);
+	if (isprimitive("FineTuneMethod")) {
+		FineTuneMethod obj = getMethod();
+		node = converttoJson(&obj, "FineTuneMethod", "");
+	}
+	else {
+		
+		FineTuneMethod obj = static_cast<FineTuneMethod> (getMethod());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *methodKey = "method";
+	json_object_set_member(pJsonObject, methodKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -724,6 +784,30 @@ void
 FineTuningJob::setSeed(int  seed)
 {
 	this->seed = seed;
+}
+
+int
+FineTuningJob::getEstimatedFinish()
+{
+	return estimated_finish;
+}
+
+void
+FineTuningJob::setEstimatedFinish(int  estimated_finish)
+{
+	this->estimated_finish = estimated_finish;
+}
+
+FineTuneMethod
+FineTuningJob::getMethod()
+{
+	return method;
+}
+
+void
+FineTuningJob::setMethod(FineTuneMethod  method)
+{
+	this->method = method;
 }
 
 

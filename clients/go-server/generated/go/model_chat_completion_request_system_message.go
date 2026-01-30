@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -14,10 +14,10 @@ package openapi
 
 
 
+// ChatCompletionRequestSystemMessage - Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. 
 type ChatCompletionRequestSystemMessage struct {
 
-	// The contents of the system message.
-	Content string `json:"content"`
+	Content ChatCompletionRequestSystemMessageContent `json:"content"`
 
 	// The role of the messages author, in this case `system`.
 	Role string `json:"role"`
@@ -38,10 +38,16 @@ func AssertChatCompletionRequestSystemMessageRequired(obj ChatCompletionRequestS
 		}
 	}
 
+	if err := AssertChatCompletionRequestSystemMessageContentRequired(obj.Content); err != nil {
+		return err
+	}
 	return nil
 }
 
 // AssertChatCompletionRequestSystemMessageConstraints checks if the values respects the defined constraints
 func AssertChatCompletionRequestSystemMessageConstraints(obj ChatCompletionRequestSystemMessage) error {
+	if err := AssertChatCompletionRequestSystemMessageContentConstraints(obj.Content); err != nil {
+		return err
+	}
 	return nil
 }

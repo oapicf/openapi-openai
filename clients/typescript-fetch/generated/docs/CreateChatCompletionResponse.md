@@ -11,6 +11,7 @@ Name | Type
 `choices` | [Array&lt;CreateChatCompletionResponseChoicesInner&gt;](CreateChatCompletionResponseChoicesInner.md)
 `created` | number
 `model` | string
+`serviceTier` | string
 `systemFingerprint` | string
 `object` | string
 `usage` | [CompletionUsage](CompletionUsage.md)
@@ -26,6 +27,7 @@ const example = {
   "choices": null,
   "created": null,
   "model": null,
+  "serviceTier": scale,
   "systemFingerprint": null,
   "object": null,
   "usage": null,

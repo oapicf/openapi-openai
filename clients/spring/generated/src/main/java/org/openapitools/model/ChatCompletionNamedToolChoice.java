@@ -5,7 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import org.openapitools.model.ChatCompletionNamedToolChoiceFunction;
+import org.openapitools.model.AssistantsNamedToolChoiceFunction;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "ChatCompletionNamedToolChoice", description = "Specifies a tool the model should use. Use to force the model to call a specific function.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionNamedToolChoice implements ChatCompletionToolChoiceOption {
 
   /**
@@ -60,7 +60,7 @@ public class ChatCompletionNamedToolChoice implements ChatCompletionToolChoiceOp
 
   private TypeEnum type;
 
-  private ChatCompletionNamedToolChoiceFunction function;
+  private AssistantsNamedToolChoiceFunction function;
 
   public ChatCompletionNamedToolChoice() {
     super();
@@ -69,7 +69,7 @@ public class ChatCompletionNamedToolChoice implements ChatCompletionToolChoiceOp
   /**
    * Constructor with only required parameters
    */
-  public ChatCompletionNamedToolChoice(TypeEnum type, ChatCompletionNamedToolChoiceFunction function) {
+  public ChatCompletionNamedToolChoice(TypeEnum type, AssistantsNamedToolChoiceFunction function) {
     this.type = type;
     this.function = function;
   }
@@ -94,7 +94,7 @@ public class ChatCompletionNamedToolChoice implements ChatCompletionToolChoiceOp
     this.type = type;
   }
 
-  public ChatCompletionNamedToolChoice function(ChatCompletionNamedToolChoiceFunction function) {
+  public ChatCompletionNamedToolChoice function(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
     return this;
   }
@@ -106,11 +106,11 @@ public class ChatCompletionNamedToolChoice implements ChatCompletionToolChoiceOp
   @NotNull @Valid 
   @Schema(name = "function", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("function")
-  public ChatCompletionNamedToolChoiceFunction getFunction() {
+  public AssistantsNamedToolChoiceFunction getFunction() {
     return function;
   }
 
-  public void setFunction(ChatCompletionNamedToolChoiceFunction function) {
+  public void setFunction(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
   }
 

@@ -25,7 +25,7 @@ public class ModerationsApiTest {
 
     
     /**
-     * Classifies if text is potentially harmful.
+     * Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
      */
     @Test
     @Disabled("Not Implemented")

@@ -6,10 +6,15 @@ import org.openapitools.model.ChatCompletionRequestMessageContentPartImageImageU
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Learn about [image inputs](/docs/guides/vision). 
+ */
+@ApiModel(description="Learn about [image inputs](/docs/guides/vision). ")
 
 public class ChatCompletionRequestMessageContentPartImage  {
   

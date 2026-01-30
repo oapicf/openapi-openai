@@ -5,14 +5,15 @@ import io.finch.circe._
 import io.circe.generic.semiauto._
 import io.circe.java8.time._
 import org.openapitools._
+import org.openapitools.models.ChatCompletionRequestSystemMessageContent
 
 /**
- * 
- * @param content The contents of the system message.
+ * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. 
+ * @param content 
  * @param role The role of the messages author, in this case `system`.
  * @param name An optional name for the participant. Provides the model information to differentiate between participants of the same role.
  */
-case class ChatCompletionRequestSystemMessage(content: String,
+case class ChatCompletionRequestSystemMessage(content: ChatCompletionRequestSystemMessageContent,
                 role: String,
                 name: Option[String]
                 )

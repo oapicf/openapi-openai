@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ChatCompletionRequestAssistantMessageAudio"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ChatCompletionRequestAssistantMessageAudio"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ChatCompletionRequestAssistantMessageAudio {
+    title = ChatCompletionRequestAssistantMessageAudio
+    description = ChatCompletionRequestAssistantMessageAudio
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "Unique identifier for a previous audio response from the model. "
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ChatCompletionRequestAssistantMessageAudio {
+    title = ChatCompletionRequestAssistantMessageAudio
+    description = ChatCompletionRequestAssistantMessageAudio
+    implements = openapi_server.resourceTypes.ChatCompletionRequestAssistantMessageAudio
+
+  }
+}

@@ -8,6 +8,7 @@
 
 (def thread-stream-event-data
   {
+   (ds/opt :enabled) boolean?
    (ds/req :event) string?
    (ds/req :data) thread-object-spec
    })

@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) fails.
+ * Occurs when a [run](/docs/api-reference/runs/object) ends with status `incomplete`.
  *
  * @param event 
  * @param `data` 
@@ -41,11 +41,11 @@ data class RunStreamEventOneOf5 (
     /**
      * 
      *
-     * Values: threadPeriodRunPeriodFailed
+     * Values: threadPeriodRunPeriodIncomplete
      */
     @JsonClass(generateAdapter = false)
     enum class Event(val value: kotlin.String) {
-        @Json(name = "thread.run.failed") threadPeriodRunPeriodFailed("thread.run.failed");
+        @Json(name = "thread.run.incomplete") threadPeriodRunPeriodIncomplete("thread.run.incomplete");
     }
 
 }

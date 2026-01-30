@@ -3,8 +3,8 @@ package org.openapitools.model;
 import groovy.transform.Canonical
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.model.AssistantsApiNamedToolChoice;
-import org.openapitools.model.ChatCompletionNamedToolChoiceFunction;
+import org.openapitools.model.AssistantsNamedToolChoice;
+import org.openapitools.model.AssistantsNamedToolChoiceFunction;
 
 @Canonical
 class AssistantsApiToolChoiceOption {
@@ -15,7 +15,7 @@ class AssistantsApiToolChoiceOption {
         
         CODE_INTERPRETER("code_interpreter"),
         
-        RETRIEVAL("retrieval")
+        FILE_SEARCH("file_search")
     
         private final String value
     
@@ -36,5 +36,5 @@ class AssistantsApiToolChoiceOption {
     /* The type of the tool. If type is `function`, the function name must be set */
     TypeEnum type
     
-    ChatCompletionNamedToolChoiceFunction function
+    AssistantsNamedToolChoiceFunction function
 }

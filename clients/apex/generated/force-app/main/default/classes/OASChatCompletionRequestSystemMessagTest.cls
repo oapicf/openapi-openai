@@ -2,70 +2,70 @@
 private class OASChatCompletionRequestSystemMessagTest {
     @isTest
     private static void equalsSameInstance() {
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage1 = OASChatCompletionRequestSystemMessag.getExample();
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage2 = chatCompletionRequestSystemMessage1;
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage3 = new OASChatCompletionRequestSystemMessag();
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage4 = chatCompletionRequestSystemMessage3;
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent1 = OASChatCompletionRequestSystemMessag.getExample();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent2 = chatCompletionRequestSystemMessageContent1;
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent3 = new OASChatCompletionRequestSystemMessag();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent4 = chatCompletionRequestSystemMessageContent3;
 
-        System.assert(chatCompletionRequestSystemMessage1.equals(chatCompletionRequestSystemMessage2));
-        System.assert(chatCompletionRequestSystemMessage2.equals(chatCompletionRequestSystemMessage1));
-        System.assert(chatCompletionRequestSystemMessage1.equals(chatCompletionRequestSystemMessage1));
-        System.assert(chatCompletionRequestSystemMessage3.equals(chatCompletionRequestSystemMessage4));
-        System.assert(chatCompletionRequestSystemMessage4.equals(chatCompletionRequestSystemMessage3));
-        System.assert(chatCompletionRequestSystemMessage3.equals(chatCompletionRequestSystemMessage3));
+        System.assert(chatCompletionRequestSystemMessageContent1.equals(chatCompletionRequestSystemMessageContent2));
+        System.assert(chatCompletionRequestSystemMessageContent2.equals(chatCompletionRequestSystemMessageContent1));
+        System.assert(chatCompletionRequestSystemMessageContent1.equals(chatCompletionRequestSystemMessageContent1));
+        System.assert(chatCompletionRequestSystemMessageContent3.equals(chatCompletionRequestSystemMessageContent4));
+        System.assert(chatCompletionRequestSystemMessageContent4.equals(chatCompletionRequestSystemMessageContent3));
+        System.assert(chatCompletionRequestSystemMessageContent3.equals(chatCompletionRequestSystemMessageContent3));
     }
 
     @isTest
     private static void equalsIdenticalInstance() {
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage1 = OASChatCompletionRequestSystemMessag.getExample();
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage2 = OASChatCompletionRequestSystemMessag.getExample();
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage3 = new OASChatCompletionRequestSystemMessag();
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage4 = new OASChatCompletionRequestSystemMessag();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent1 = OASChatCompletionRequestSystemMessag.getExample();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent2 = OASChatCompletionRequestSystemMessag.getExample();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent3 = new OASChatCompletionRequestSystemMessag();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent4 = new OASChatCompletionRequestSystemMessag();
 
-        System.assert(chatCompletionRequestSystemMessage1.equals(chatCompletionRequestSystemMessage2));
-        System.assert(chatCompletionRequestSystemMessage2.equals(chatCompletionRequestSystemMessage1));
-        System.assert(chatCompletionRequestSystemMessage3.equals(chatCompletionRequestSystemMessage4));
-        System.assert(chatCompletionRequestSystemMessage4.equals(chatCompletionRequestSystemMessage3));
+        System.assert(chatCompletionRequestSystemMessageContent1.equals(chatCompletionRequestSystemMessageContent2));
+        System.assert(chatCompletionRequestSystemMessageContent2.equals(chatCompletionRequestSystemMessageContent1));
+        System.assert(chatCompletionRequestSystemMessageContent3.equals(chatCompletionRequestSystemMessageContent4));
+        System.assert(chatCompletionRequestSystemMessageContent4.equals(chatCompletionRequestSystemMessageContent3));
     }
 
     @isTest
     private static void notEqualsDifferentType() {
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage1 = OASChatCompletionRequestSystemMessag.getExample();
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage2 = new OASChatCompletionRequestSystemMessag();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent1 = OASChatCompletionRequestSystemMessag.getExample();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent2 = new OASChatCompletionRequestSystemMessag();
 
-        System.assertEquals(false, chatCompletionRequestSystemMessage1.equals('foo'));
-        System.assertEquals(false, chatCompletionRequestSystemMessage2.equals('foo'));
+        System.assertEquals(false, chatCompletionRequestSystemMessageContent1.equals('foo'));
+        System.assertEquals(false, chatCompletionRequestSystemMessageContent2.equals('foo'));
     }
 
     @isTest
     private static void notEqualsNull() {
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage1 = OASChatCompletionRequestSystemMessag.getExample();
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage2 = new OASChatCompletionRequestSystemMessag();
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage3;
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent1 = OASChatCompletionRequestSystemMessag.getExample();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent2 = new OASChatCompletionRequestSystemMessag();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent3;
 
-        System.assertEquals(false, chatCompletionRequestSystemMessage1.equals(chatCompletionRequestSystemMessage3));
-        System.assertEquals(false, chatCompletionRequestSystemMessage2.equals(chatCompletionRequestSystemMessage3));
+        System.assertEquals(false, chatCompletionRequestSystemMessageContent1.equals(chatCompletionRequestSystemMessageContent3));
+        System.assertEquals(false, chatCompletionRequestSystemMessageContent2.equals(chatCompletionRequestSystemMessageContent3));
     }
 
     @isTest
     private static void consistentHashCodeValue() {
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage1 = OASChatCompletionRequestSystemMessag.getExample();
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage2 = new OASChatCompletionRequestSystemMessag();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent1 = OASChatCompletionRequestSystemMessag.getExample();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent2 = new OASChatCompletionRequestSystemMessag();
 
-        System.assertEquals(chatCompletionRequestSystemMessage1.hashCode(), chatCompletionRequestSystemMessage1.hashCode());
-        System.assertEquals(chatCompletionRequestSystemMessage2.hashCode(), chatCompletionRequestSystemMessage2.hashCode());
+        System.assertEquals(chatCompletionRequestSystemMessageContent1.hashCode(), chatCompletionRequestSystemMessageContent1.hashCode());
+        System.assertEquals(chatCompletionRequestSystemMessageContent2.hashCode(), chatCompletionRequestSystemMessageContent2.hashCode());
     }
 
     @isTest
     private static void equalInstancesHaveSameHashCode() {
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage1 = OASChatCompletionRequestSystemMessag.getExample();
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage2 = OASChatCompletionRequestSystemMessag.getExample();
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage3 = new OASChatCompletionRequestSystemMessag();
-        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessage4 = new OASChatCompletionRequestSystemMessag();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent1 = OASChatCompletionRequestSystemMessag.getExample();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent2 = OASChatCompletionRequestSystemMessag.getExample();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent3 = new OASChatCompletionRequestSystemMessag();
+        OASChatCompletionRequestSystemMessag chatCompletionRequestSystemMessageContent4 = new OASChatCompletionRequestSystemMessag();
 
-        System.assert(chatCompletionRequestSystemMessage1.equals(chatCompletionRequestSystemMessage2));
-        System.assert(chatCompletionRequestSystemMessage3.equals(chatCompletionRequestSystemMessage4));
-        System.assertEquals(chatCompletionRequestSystemMessage1.hashCode(), chatCompletionRequestSystemMessage2.hashCode());
-        System.assertEquals(chatCompletionRequestSystemMessage3.hashCode(), chatCompletionRequestSystemMessage4.hashCode());
+        System.assert(chatCompletionRequestSystemMessageContent1.equals(chatCompletionRequestSystemMessageContent2));
+        System.assert(chatCompletionRequestSystemMessageContent3.equals(chatCompletionRequestSystemMessageContent4));
+        System.assertEquals(chatCompletionRequestSystemMessageContent1.hashCode(), chatCompletionRequestSystemMessageContent2.hashCode());
+        System.assertEquals(chatCompletionRequestSystemMessageContent3.hashCode(), chatCompletionRequestSystemMessageContent4.hashCode());
     }
 }

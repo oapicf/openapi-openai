@@ -1,0 +1,22 @@
+
+<h2>RealtimeClientEventInputAudioBufferAppend</h2>
+<ul class="parameter">
+  <li class="param-required-false">eventUnderscoreid : String
+    <br/>Optional client-generated ID used to identify this event.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">type : String
+    <br/>The event type, must be &#x60;input_audio_buffer.append&#x60;.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>input_audio_buffer.append</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">audio : String
+    <br/>Base64-encoded audio bytes. This must be in the format specified by the  &#x60;input_audio_format&#x60; field in the session configuration. 
+  </li>
+</ul>

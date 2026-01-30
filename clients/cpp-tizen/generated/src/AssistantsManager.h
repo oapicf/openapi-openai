@@ -5,24 +5,19 @@
 #include <cstring>
 #include <list>
 #include <glib.h>
-#include "AssistantFileObject.h"
 #include "AssistantObject.h"
-#include "CreateAssistantFileRequest.h"
 #include "CreateAssistantRequest.h"
 #include "CreateMessageRequest.h"
 #include "CreateRunRequest.h"
 #include "CreateThreadAndRunRequest.h"
 #include "CreateThreadRequest.h"
-#include "DeleteAssistantFileResponse.h"
 #include "DeleteAssistantResponse.h"
+#include "DeleteMessageResponse.h"
 #include "DeleteThreadResponse.h"
-#include "ListAssistantFilesResponse.h"
 #include "ListAssistantsResponse.h"
-#include "ListMessageFilesResponse.h"
 #include "ListMessagesResponse.h"
 #include "ListRunStepsResponse.h"
 #include "ListRunsResponse.h"
-#include "MessageFileObject.h"
 #include "MessageObject.h"
 #include "ModifyAssistantRequest.h"
 #include "ModifyMessageRequest.h"
@@ -32,6 +27,7 @@
 #include "RunStepObject.h"
 #include "SubmitToolOutputsRunRequest.h"
 #include "ThreadObject.h"
+#include <list>
 #include "Error.h"
 
 /** \defgroup Operations API Endpoints
@@ -106,35 +102,6 @@ bool createAssistantAsync(char * accessToken,
 	, void* userData);
 
 
-/*! \brief Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).. *Synchronous*
- *
- * 
- * \param assistantId The ID of the assistant for which to create a File.  *Required*
- * \param createAssistantFileRequest  *Required*
- * \param handler The callback function to be invoked on completion. *Required*
- * \param accessToken The Authorization token. *Required*
- * \param userData The user data to be passed to the callback function.
- */
-bool createAssistantFileSync(char * accessToken,
-	std::string assistantId, std::shared_ptr<CreateAssistantFileRequest> createAssistantFileRequest, 
-	void(* handler)(AssistantFileObject, Error, void* )
-	, void* userData);
-
-/*! \brief Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).. *Asynchronous*
- *
- * 
- * \param assistantId The ID of the assistant for which to create a File.  *Required*
- * \param createAssistantFileRequest  *Required*
- * \param handler The callback function to be invoked on completion. *Required*
- * \param accessToken The Authorization token. *Required*
- * \param userData The user data to be passed to the callback function.
- */
-bool createAssistantFileAsync(char * accessToken,
-	std::string assistantId, std::shared_ptr<CreateAssistantFileRequest> createAssistantFileRequest, 
-	void(* handler)(AssistantFileObject, Error, void* )
-	, void* userData);
-
-
 /*! \brief Create a message.. *Synchronous*
  *
  * 
@@ -169,12 +136,13 @@ bool createMessageAsync(char * accessToken,
  * 
  * \param threadId The ID of the thread to run. *Required*
  * \param createRunRequest  *Required*
+ * \param includeLeft_Square_BracketRight_Square_Bracket A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool createRunSync(char * accessToken,
-	std::string threadId, std::shared_ptr<CreateRunRequest> createRunRequest, 
+	std::string threadId, std::shared_ptr<CreateRunRequest> createRunRequest, std::list<std::string> includeLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(RunObject, Error, void* )
 	, void* userData);
 
@@ -183,12 +151,13 @@ bool createRunSync(char * accessToken,
  * 
  * \param threadId The ID of the thread to run. *Required*
  * \param createRunRequest  *Required*
+ * \param includeLeft_Square_BracketRight_Square_Bracket A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool createRunAsync(char * accessToken,
-	std::string threadId, std::shared_ptr<CreateRunRequest> createRunRequest, 
+	std::string threadId, std::shared_ptr<CreateRunRequest> createRunRequest, std::list<std::string> includeLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(RunObject, Error, void* )
 	, void* userData);
 
@@ -274,32 +243,32 @@ bool deleteAssistantAsync(char * accessToken,
 	, void* userData);
 
 
-/*! \brief Delete an assistant file.. *Synchronous*
+/*! \brief Deletes a message.. *Synchronous*
  *
  * 
- * \param assistantId The ID of the assistant that the file belongs to. *Required*
- * \param fileId The ID of the file to delete. *Required*
+ * \param threadId The ID of the thread to which this message belongs. *Required*
+ * \param messageId The ID of the message to delete. *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
-bool deleteAssistantFileSync(char * accessToken,
-	std::string assistantId, std::string fileId, 
-	void(* handler)(DeleteAssistantFileResponse, Error, void* )
+bool deleteMessageSync(char * accessToken,
+	std::string threadId, std::string messageId, 
+	void(* handler)(DeleteMessageResponse, Error, void* )
 	, void* userData);
 
-/*! \brief Delete an assistant file.. *Asynchronous*
+/*! \brief Deletes a message.. *Asynchronous*
  *
  * 
- * \param assistantId The ID of the assistant that the file belongs to. *Required*
- * \param fileId The ID of the file to delete. *Required*
+ * \param threadId The ID of the thread to which this message belongs. *Required*
+ * \param messageId The ID of the message to delete. *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
-bool deleteAssistantFileAsync(char * accessToken,
-	std::string assistantId, std::string fileId, 
-	void(* handler)(DeleteAssistantFileResponse, Error, void* )
+bool deleteMessageAsync(char * accessToken,
+	std::string threadId, std::string messageId, 
+	void(* handler)(DeleteMessageResponse, Error, void* )
 	, void* userData);
 
 
@@ -357,35 +326,6 @@ bool getAssistantAsync(char * accessToken,
 	, void* userData);
 
 
-/*! \brief Retrieves an AssistantFile.. *Synchronous*
- *
- * 
- * \param assistantId The ID of the assistant who the file belongs to. *Required*
- * \param fileId The ID of the file we're getting. *Required*
- * \param handler The callback function to be invoked on completion. *Required*
- * \param accessToken The Authorization token. *Required*
- * \param userData The user data to be passed to the callback function.
- */
-bool getAssistantFileSync(char * accessToken,
-	std::string assistantId, std::string fileId, 
-	void(* handler)(AssistantFileObject, Error, void* )
-	, void* userData);
-
-/*! \brief Retrieves an AssistantFile.. *Asynchronous*
- *
- * 
- * \param assistantId The ID of the assistant who the file belongs to. *Required*
- * \param fileId The ID of the file we're getting. *Required*
- * \param handler The callback function to be invoked on completion. *Required*
- * \param accessToken The Authorization token. *Required*
- * \param userData The user data to be passed to the callback function.
- */
-bool getAssistantFileAsync(char * accessToken,
-	std::string assistantId, std::string fileId, 
-	void(* handler)(AssistantFileObject, Error, void* )
-	, void* userData);
-
-
 /*! \brief Retrieve a message.. *Synchronous*
  *
  * 
@@ -412,37 +352,6 @@ bool getMessageSync(char * accessToken,
 bool getMessageAsync(char * accessToken,
 	std::string threadId, std::string messageId, 
 	void(* handler)(MessageObject, Error, void* )
-	, void* userData);
-
-
-/*! \brief Retrieves a message file.. *Synchronous*
- *
- * 
- * \param threadId The ID of the thread to which the message and File belong. *Required*
- * \param messageId The ID of the message the file belongs to. *Required*
- * \param fileId The ID of the file being retrieved. *Required*
- * \param handler The callback function to be invoked on completion. *Required*
- * \param accessToken The Authorization token. *Required*
- * \param userData The user data to be passed to the callback function.
- */
-bool getMessageFileSync(char * accessToken,
-	std::string threadId, std::string messageId, std::string fileId, 
-	void(* handler)(MessageFileObject, Error, void* )
-	, void* userData);
-
-/*! \brief Retrieves a message file.. *Asynchronous*
- *
- * 
- * \param threadId The ID of the thread to which the message and File belong. *Required*
- * \param messageId The ID of the message the file belongs to. *Required*
- * \param fileId The ID of the file being retrieved. *Required*
- * \param handler The callback function to be invoked on completion. *Required*
- * \param accessToken The Authorization token. *Required*
- * \param userData The user data to be passed to the callback function.
- */
-bool getMessageFileAsync(char * accessToken,
-	std::string threadId, std::string messageId, std::string fileId, 
-	void(* handler)(MessageFileObject, Error, void* )
 	, void* userData);
 
 
@@ -481,12 +390,13 @@ bool getRunAsync(char * accessToken,
  * \param threadId The ID of the thread to which the run and run step belongs. *Required*
  * \param runId The ID of the run to which the run step belongs. *Required*
  * \param stepId The ID of the run step to retrieve. *Required*
+ * \param includeLeft_Square_BracketRight_Square_Bracket A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool getRunStepSync(char * accessToken,
-	std::string threadId, std::string runId, std::string stepId, 
+	std::string threadId, std::string runId, std::string stepId, std::list<std::string> includeLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(RunStepObject, Error, void* )
 	, void* userData);
 
@@ -496,12 +406,13 @@ bool getRunStepSync(char * accessToken,
  * \param threadId The ID of the thread to which the run and run step belongs. *Required*
  * \param runId The ID of the run to which the run step belongs. *Required*
  * \param stepId The ID of the run step to retrieve. *Required*
+ * \param includeLeft_Square_BracketRight_Square_Bracket A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool getRunStepAsync(char * accessToken,
-	std::string threadId, std::string runId, std::string stepId, 
+	std::string threadId, std::string runId, std::string stepId, std::list<std::string> includeLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(RunStepObject, Error, void* )
 	, void* userData);
 
@@ -533,48 +444,13 @@ bool getThreadAsync(char * accessToken,
 	, void* userData);
 
 
-/*! \brief Returns a list of assistant files.. *Synchronous*
- *
- * 
- * \param assistantId The ID of the assistant the file belongs to. *Required*
- * \param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
- * \param order Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
- * \param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
- * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
- * \param handler The callback function to be invoked on completion. *Required*
- * \param accessToken The Authorization token. *Required*
- * \param userData The user data to be passed to the callback function.
- */
-bool listAssistantFilesSync(char * accessToken,
-	std::string assistantId, int limit, std::string order, std::string after, std::string before, 
-	void(* handler)(ListAssistantFilesResponse, Error, void* )
-	, void* userData);
-
-/*! \brief Returns a list of assistant files.. *Asynchronous*
- *
- * 
- * \param assistantId The ID of the assistant the file belongs to. *Required*
- * \param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
- * \param order Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
- * \param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
- * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
- * \param handler The callback function to be invoked on completion. *Required*
- * \param accessToken The Authorization token. *Required*
- * \param userData The user data to be passed to the callback function.
- */
-bool listAssistantFilesAsync(char * accessToken,
-	std::string assistantId, int limit, std::string order, std::string after, std::string before, 
-	void(* handler)(ListAssistantFilesResponse, Error, void* )
-	, void* userData);
-
-
 /*! \brief Returns a list of assistants.. *Synchronous*
  *
  * 
  * \param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
  * \param order Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
  * \param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
- * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+ * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
@@ -590,7 +466,7 @@ bool listAssistantsSync(char * accessToken,
  * \param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
  * \param order Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
  * \param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
- * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+ * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
@@ -601,43 +477,6 @@ bool listAssistantsAsync(char * accessToken,
 	, void* userData);
 
 
-/*! \brief Returns a list of message files.. *Synchronous*
- *
- * 
- * \param threadId The ID of the thread that the message and files belong to. *Required*
- * \param messageId The ID of the message that the files belongs to. *Required*
- * \param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
- * \param order Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
- * \param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
- * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
- * \param handler The callback function to be invoked on completion. *Required*
- * \param accessToken The Authorization token. *Required*
- * \param userData The user data to be passed to the callback function.
- */
-bool listMessageFilesSync(char * accessToken,
-	std::string threadId, std::string messageId, int limit, std::string order, std::string after, std::string before, 
-	void(* handler)(ListMessageFilesResponse, Error, void* )
-	, void* userData);
-
-/*! \brief Returns a list of message files.. *Asynchronous*
- *
- * 
- * \param threadId The ID of the thread that the message and files belong to. *Required*
- * \param messageId The ID of the message that the files belongs to. *Required*
- * \param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
- * \param order Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
- * \param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
- * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
- * \param handler The callback function to be invoked on completion. *Required*
- * \param accessToken The Authorization token. *Required*
- * \param userData The user data to be passed to the callback function.
- */
-bool listMessageFilesAsync(char * accessToken,
-	std::string threadId, std::string messageId, int limit, std::string order, std::string after, std::string before, 
-	void(* handler)(ListMessageFilesResponse, Error, void* )
-	, void* userData);
-
-
 /*! \brief Returns a list of messages for a given thread.. *Synchronous*
  *
  * 
@@ -645,7 +484,7 @@ bool listMessageFilesAsync(char * accessToken,
  * \param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
  * \param order Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
  * \param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
- * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+ * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
  * \param runId Filter messages by the run ID that generated them. 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
@@ -663,7 +502,7 @@ bool listMessagesSync(char * accessToken,
  * \param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
  * \param order Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
  * \param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
- * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+ * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
  * \param runId Filter messages by the run ID that generated them. 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
@@ -683,13 +522,14 @@ bool listMessagesAsync(char * accessToken,
  * \param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
  * \param order Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
  * \param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
- * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+ * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+ * \param includeLeft_Square_BracketRight_Square_Bracket A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool listRunStepsSync(char * accessToken,
-	std::string threadId, std::string runId, int limit, std::string order, std::string after, std::string before, 
+	std::string threadId, std::string runId, int limit, std::string order, std::string after, std::string before, std::list<std::string> includeLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(ListRunStepsResponse, Error, void* )
 	, void* userData);
 
@@ -701,13 +541,14 @@ bool listRunStepsSync(char * accessToken,
  * \param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
  * \param order Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
  * \param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
- * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+ * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+ * \param includeLeft_Square_BracketRight_Square_Bracket A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool listRunStepsAsync(char * accessToken,
-	std::string threadId, std::string runId, int limit, std::string order, std::string after, std::string before, 
+	std::string threadId, std::string runId, int limit, std::string order, std::string after, std::string before, std::list<std::string> includeLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(ListRunStepsResponse, Error, void* )
 	, void* userData);
 
@@ -719,7 +560,7 @@ bool listRunStepsAsync(char * accessToken,
  * \param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
  * \param order Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
  * \param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
- * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+ * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
@@ -736,7 +577,7 @@ bool listRunsSync(char * accessToken,
  * \param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
  * \param order Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
  * \param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
- * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+ * \param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.

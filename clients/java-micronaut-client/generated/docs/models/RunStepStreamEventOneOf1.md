@@ -2,7 +2,7 @@
 
 # RunStepStreamEventOneOf1
 
-Occurs when a [run step](/docs/api-reference/runs/step-object) moves to an `in_progress` state.
+Occurs when a [run step](/docs/api-reference/run-steps/step-object) moves to an `in_progress` state.
 
 The class is defined in **[RunStepStreamEventOneOf1.java](../../src/main/java/org/openapitools/model/RunStepStreamEventOneOf1.java)**
 

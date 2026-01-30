@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeClientEventResponseCreate"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeClientEventResponseCreate"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RealtimeResponseCreateParams = openapi_server.resourceTypes.RealtimeResponseCreateParams
+}
+resourceTypes {
+
+  RealtimeClientEventResponseCreate {
+    title = RealtimeClientEventResponseCreate
+    description = RealtimeClientEventResponseCreate
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "Optional client-generated ID used to identify this event."
+          optional = false
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;response.create&#x60;."
+          enum = ["response.create"]
+          optional = true
+        }
+        response {
+          type = RealtimeResponseCreateParams
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeClientEventResponseCreate {
+    title = RealtimeClientEventResponseCreate
+    description = RealtimeClientEventResponseCreate
+    implements = openapi_server.resourceTypes.RealtimeClientEventResponseCreate
+
+  }
+}

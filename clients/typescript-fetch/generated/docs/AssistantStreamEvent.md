@@ -7,6 +7,7 @@ Represents an event emitted when streaming a Run.  Each event in a server-sent e
 
 Name | Type
 ------------ | -------------
+`enabled` | boolean
 `event` | string
 `data` | string
 
@@ -17,6 +18,7 @@ import type { AssistantStreamEvent } from ''
 
 // TODO: Update the object below with actual values
 const example = {
+  "enabled": null,
   "event": null,
   "data": null,
 } satisfies AssistantStreamEvent

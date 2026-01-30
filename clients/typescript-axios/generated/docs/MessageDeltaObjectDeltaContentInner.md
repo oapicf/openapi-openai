@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **type** | **string** | Always &#x60;image_file&#x60;. | [default to undefined]
 **image_file** | [**MessageDeltaContentImageFileObjectImageFile**](MessageDeltaContentImageFileObjectImageFile.md) |  | [optional] [default to undefined]
 **text** | [**MessageDeltaContentTextObjectText**](MessageDeltaContentTextObjectText.md) |  | [optional] [default to undefined]
+**refusal** | **string** |  | [optional] [default to undefined]
+**image_url** | [**MessageDeltaContentImageUrlObjectImageUrl**](MessageDeltaContentImageUrlObjectImageUrl.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -20,6 +22,8 @@ const instance: MessageDeltaObjectDeltaContentInner = {
     type,
     image_file,
     text,
+    refusal,
+    image_url,
 };
 ```
 

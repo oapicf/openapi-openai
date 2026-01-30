@@ -1,0 +1,41 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server InviteProjectsInner"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a InviteProjectsInner"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  InviteProjectsInner {
+    title = InviteProjectsInner
+    description = InviteProjectsInner
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "Project&#39;s public ID"
+          optional = false
+        }
+        role {
+          type =  string
+          description = "Project membership role"
+          enum = ["member", "owner"]
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  InviteProjectsInner {
+    title = InviteProjectsInner
+    description = InviteProjectsInner
+    implements = openapi_server.resourceTypes.InviteProjectsInner
+
+  }
+}

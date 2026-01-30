@@ -4,6 +4,7 @@ import org.openapitools.OpenApiExceptions
 import javax.inject.{Inject, Singleton}
 import play.api.libs.json._
 import play.api.mvc._
+import model.AudioResponseFormat
 import model.BigDecimal
 import model.CreateSpeechRequest
 import model.CreateTranscription200Response
@@ -11,7 +12,7 @@ import model.CreateTranscriptionRequestModel
 import model.CreateTranslation200Response
 import play.api.libs.Files.TemporaryFile
 
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T10:48:27.489746113Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @Singleton
 class AudioApiController @Inject()(cc: ControllerComponents, api: AudioApi) extends AbstractController(cc) {
   /**
@@ -59,6 +60,7 @@ class AudioApiController @Inject()(cc: ControllerComponents, api: AudioApi) exte
       val responseFormat = (request.body.asMultipartFormData.map(_.asFormUrlEncoded) orElse request.body.asFormUrlEncoded)
         .flatMap(_.get("response_format"))
         .flatMap(_.headOption)
+        .map(value => )
         
       val temperature = (request.body.asMultipartFormData.map(_.asFormUrlEncoded) orElse request.body.asFormUrlEncoded)
         .flatMap(_.get("temperature"))
@@ -103,6 +105,7 @@ class AudioApiController @Inject()(cc: ControllerComponents, api: AudioApi) exte
       val responseFormat = (request.body.asMultipartFormData.map(_.asFormUrlEncoded) orElse request.body.asFormUrlEncoded)
         .flatMap(_.get("response_format"))
         .flatMap(_.headOption)
+        .map(value => )
         
       val temperature = (request.body.asMultipartFormData.map(_.asFormUrlEncoded) orElse request.body.asFormUrlEncoded)
         .flatMap(_.get("temperature"))

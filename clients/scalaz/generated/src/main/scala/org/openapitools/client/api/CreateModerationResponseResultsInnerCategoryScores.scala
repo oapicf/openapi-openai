@@ -20,6 +20,10 @@ case class CreateModerationResponseResultsInnerCategoryScores (
   harassment: BigDecimal,
 /* The score for the category 'harassment/threatening'. */
   harassmentThreatening: BigDecimal,
+/* The score for the category 'illicit'. */
+  illicit: BigDecimal,
+/* The score for the category 'illicit/violent'. */
+  illicitViolent: BigDecimal,
 /* The score for the category 'self-harm'. */
   selfHarm: BigDecimal,
 /* The score for the category 'self-harm/intent'. */

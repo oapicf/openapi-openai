@@ -3,13 +3,15 @@ package org.openapitools.client.model
 
 
 case class FineTuningJobHyperparameters (
-    _nEpochs: FineTuningJobHyperparametersNEpochs
+    _batchSize: Option[CreateFineTuningJobRequestHyperparametersBatchSize],
+    _learningRateMultiplier: Option[CreateFineTuningJobRequestHyperparametersLearningRateMultiplier],
+    _nEpochs: Option[CreateFineTuningJobRequestHyperparametersNEpochs]
 )
 object FineTuningJobHyperparameters {
-    def toStringBody(var_nEpochs: Object) =
+    def toStringBody(var_batchSize: Object, var_learningRateMultiplier: Object, var_nEpochs: Object) =
         s"""
         | {
-        | "nEpochs":$var_nEpochs
+        | "batchSize":$var_batchSize,"learningRateMultiplier":$var_learningRateMultiplier,"nEpochs":$var_nEpochs
         | }
         """.stripMargin
 }

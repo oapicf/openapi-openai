@@ -1,0 +1,51 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventResponseContentPartAddedPart"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventResponseContentPartAddedPart"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeServerEventResponseContentPartAddedPart {
+    title = RealtimeServerEventResponseContentPartAddedPart
+    description = RealtimeServerEventResponseContentPartAddedPart
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "The content type (\&quot;text\&quot;, \&quot;audio\&quot;)."
+          enum = ["audio", "text"]
+          optional = false
+        }
+        text {
+          type =  string
+          description = "The text content (if type is \&quot;text\&quot;)."
+          optional = false
+        }
+        audio {
+          type =  string
+          description = "Base64-encoded audio data (if type is \&quot;audio\&quot;)."
+          optional = false
+        }
+        transcript {
+          type =  string
+          description = "The transcript of the audio (if type is \&quot;audio\&quot;)."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventResponseContentPartAddedPart {
+    title = RealtimeServerEventResponseContentPartAddedPart
+    description = RealtimeServerEventResponseContentPartAddedPart
+    implements = openapi_server.resourceTypes.RealtimeServerEventResponseContentPartAddedPart
+
+  }
+}

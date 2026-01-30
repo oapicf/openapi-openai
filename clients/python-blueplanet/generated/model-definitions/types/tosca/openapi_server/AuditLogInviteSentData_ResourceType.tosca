@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AuditLogInviteSentData"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AuditLogInviteSentData"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  AuditLogInviteSentData {
+    title = AuditLogInviteSentData
+    description = AuditLogInviteSentData
+    derivedFrom = Root
+    properties {
+        email {
+          type =  string
+          description = "The email invited to the organization."
+          optional = false
+        }
+        role {
+          type =  string
+          description = "The role the email was invited to be. Is either &#x60;owner&#x60; or &#x60;member&#x60;."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AuditLogInviteSentData {
+    title = AuditLogInviteSentData
+    description = AuditLogInviteSentData
+    implements = openapi_server.resourceTypes.AuditLogInviteSentData
+
+  }
+}

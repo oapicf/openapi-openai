@@ -12,9 +12,9 @@ class SubmitToolOutputsRunRequest
     /**
      * A list of tools for which the outputs are being submitted.
      * @DTA\Data(field="tool_outputs")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection51::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection51::class})
-     * @var \App\DTO\Collection51|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection145::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection145::class})
+     * @var \App\DTO\Collection145|null
      */
     public $tool_outputs;
 

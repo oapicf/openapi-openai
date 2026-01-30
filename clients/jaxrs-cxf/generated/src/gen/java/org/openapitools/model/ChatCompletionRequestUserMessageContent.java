@@ -2,7 +2,7 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
-import org.openapitools.model.ChatCompletionRequestMessageContentPart;
+import org.openapitools.model.ChatCompletionRequestUserMessageContentPart;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 

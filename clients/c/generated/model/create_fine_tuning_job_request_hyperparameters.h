@@ -1,7 +1,7 @@
 /*
  * create_fine_tuning_job_request_hyperparameters.h
  *
- * The hyperparameters used for the fine-tuning job.
+ * The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of &#x60;method&#x60;, and should be passed in under the &#x60;method&#x60; parameter. 
  */
 
 #ifndef _create_fine_tuning_job_request_hyperparameters_H_

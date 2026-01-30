@@ -19,19 +19,19 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) expires.
+ * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
  */
 
-@Schema(name = "RunStreamEvent_oneOf_8", description = "Occurs when a [run](/docs/api-reference/runs/object) expires.")
+@Schema(name = "RunStreamEvent_oneOf_8", description = "Occurs when a [run](/docs/api-reference/runs/object) is cancelled.")
 @JsonTypeName("RunStreamEvent_oneOf_8")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStreamEventOneOf8 implements RunStreamEvent {
 
   /**
    * Gets or Sets event
    */
   public enum EventEnum {
-    THREAD_RUN_EXPIRED("thread.run.expired");
+    THREAD_RUN_CANCELLED("thread.run.cancelled");
 
     private final String value;
 

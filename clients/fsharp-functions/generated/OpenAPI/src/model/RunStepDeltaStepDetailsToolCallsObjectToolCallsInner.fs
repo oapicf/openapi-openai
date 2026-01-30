@@ -5,9 +5,9 @@ open System.Collections.Generic
 open Newtonsoft.Json
 open OpenAPI.Model.RunStepDeltaStepDetailsToolCallsCodeObject
 open OpenAPI.Model.RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+open OpenAPI.Model.RunStepDeltaStepDetailsToolCallsFileSearchObject
 open OpenAPI.Model.RunStepDeltaStepDetailsToolCallsFunctionObject
 open OpenAPI.Model.RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
-open OpenAPI.Model.RunStepDeltaStepDetailsToolCallsRetrievalObject
 
 module RunStepDeltaStepDetailsToolCallsObjectToolCallsInner =
 
@@ -23,8 +23,8 @@ module RunStepDeltaStepDetailsToolCallsObjectToolCallsInner =
     Type : string;
     [<JsonProperty(PropertyName = "code_interpreter")>]
     CodeInterpreter : RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter;
-    [<JsonProperty(PropertyName = "retrieval")>]
-    Retrieval : obj;
+    [<JsonProperty(PropertyName = "file_search")>]
+    FileSearch : obj;
     [<JsonProperty(PropertyName = "function")>]
     Function : RunStepDeltaStepDetailsToolCallsFunctionObjectFunction;
   }

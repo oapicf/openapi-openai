@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.vertxweb.server.model.CompletionUsage;
 import org.openapitools.vertxweb.server.model.CreateChatCompletionResponseChoicesInner;
 
@@ -20,6 +21,26 @@ public class CreateChatCompletionResponse   {
   private List<CreateChatCompletionResponseChoicesInner> choices = new ArrayList<>();
   private Integer created;
   private String model;
+
+
+  public enum ServiceTierEnum {
+    SCALE("scale"),
+    DEFAULT("default");
+
+    private String value;
+
+    ServiceTierEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return value;
+    }
+  }
+
+  private ServiceTierEnum serviceTier;
   private String systemFingerprint;
 
 
@@ -46,11 +67,12 @@ public class CreateChatCompletionResponse   {
 
   }
 
-  public CreateChatCompletionResponse (String id, List<CreateChatCompletionResponseChoicesInner> choices, Integer created, String model, String systemFingerprint, ObjectEnum _object, CompletionUsage usage) {
+  public CreateChatCompletionResponse (String id, List<CreateChatCompletionResponseChoicesInner> choices, Integer created, String model, ServiceTierEnum serviceTier, String systemFingerprint, ObjectEnum _object, CompletionUsage usage) {
     this.id = id;
     this.choices = choices;
     this.created = created;
     this.model = model;
+    this.serviceTier = serviceTier;
     this.systemFingerprint = systemFingerprint;
     this._object = _object;
     this.usage = usage;
@@ -90,6 +112,15 @@ public class CreateChatCompletionResponse   {
   }
   public void setModel(String model) {
     this.model = model;
+  }
+
+    
+  @JsonProperty("service_tier")
+  public ServiceTierEnum getServiceTier() {
+    return serviceTier;
+  }
+  public void setServiceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
   }
 
     
@@ -133,6 +164,7 @@ public class CreateChatCompletionResponse   {
         Objects.equals(choices, createChatCompletionResponse.choices) &&
         Objects.equals(created, createChatCompletionResponse.created) &&
         Objects.equals(model, createChatCompletionResponse.model) &&
+        Objects.equals(serviceTier, createChatCompletionResponse.serviceTier) &&
         Objects.equals(systemFingerprint, createChatCompletionResponse.systemFingerprint) &&
         Objects.equals(_object, createChatCompletionResponse._object) &&
         Objects.equals(usage, createChatCompletionResponse.usage);
@@ -140,7 +172,7 @@ public class CreateChatCompletionResponse   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, choices, created, model, systemFingerprint, _object, usage);
+    return Objects.hash(id, choices, created, model, serviceTier, systemFingerprint, _object, usage);
   }
 
   @Override
@@ -152,6 +184,7 @@ public class CreateChatCompletionResponse   {
     sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    serviceTier: ").append(toIndentedString(serviceTier)).append("\n");
     sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");

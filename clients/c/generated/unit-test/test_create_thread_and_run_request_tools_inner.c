@@ -16,6 +16,7 @@
 #include "../model/create_thread_and_run_request_tools_inner.h"
 create_thread_and_run_request_tools_inner_t* instantiate_create_thread_and_run_request_tools_inner(int include_optional);
 
+#include "test_assistant_tools_file_search_file_search.c"
 #include "test_function_object.c"
 
 
@@ -25,11 +26,14 @@ create_thread_and_run_request_tools_inner_t* instantiate_create_thread_and_run_r
     create_thread_and_run_request_tools_inner = create_thread_and_run_request_tools_inner_create(
       openai_api_create_thread_and_run_request_tools_inner_TYPE_code_interpreter,
        // false, not to have infinite recursion
+      instantiate_assistant_tools_file_search_file_search(0),
+       // false, not to have infinite recursion
       instantiate_function_object(0)
     );
   } else {
     create_thread_and_run_request_tools_inner = create_thread_and_run_request_tools_inner_create(
       openai_api_create_thread_and_run_request_tools_inner_TYPE_code_interpreter,
+      NULL,
       NULL
     );
   }

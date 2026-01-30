@@ -68,4 +68,11 @@ private class OASModifyThreadRequestTest {
         System.assertEquals(modifyThreadRequest1.hashCode(), modifyThreadRequest2.hashCode());
         System.assertEquals(modifyThreadRequest3.hashCode(), modifyThreadRequest4.hashCode());
     }
+
+    @isTest
+    private static void maintainRenamedProperties() {
+        OASModifyThreadRequest modifyThreadRequest = new OASModifyThreadRequest();
+        Map<String, String> x-property-mappings = modifyThreadRequest.getx-property-mappings();
+        System.assertEquals('toolResources', x-property-mappings.get('tool_resources'));
+    }
 }

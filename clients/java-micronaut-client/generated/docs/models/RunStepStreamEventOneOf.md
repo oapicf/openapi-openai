@@ -2,7 +2,7 @@
 
 # RunStepStreamEventOneOf
 
-Occurs when a [run step](/docs/api-reference/runs/step-object) is created.
+Occurs when a [run step](/docs/api-reference/run-steps/step-object) is created.
 
 The class is defined in **[RunStepStreamEventOneOf.java](../../src/main/java/org/openapitools/model/RunStepStreamEventOneOf.java)**
 

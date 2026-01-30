@@ -8,7 +8,7 @@ import org.openapitools._
 import org.openapitools.models.RunObject
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
+ * Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.
  * @param event 
  * @param data 
  */

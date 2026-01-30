@@ -11,6 +11,7 @@
     "label": "Details",
     "model": "properties",
     "children": [
+      {"model": "tool_resources" },
       {"model": "metadata" },
     ]
   }]

@@ -6,11 +6,13 @@ Fine-tuning job event object
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
-**created_at** | **int** |  | 
-**level** | **str** |  | 
-**message** | **str** |  | 
-**object** | **str** |  | 
+**object** | **str** | The object type, which is always \&quot;fine_tuning.job.event\&quot;. | 
+**id** | **str** | The object identifier. | 
+**created_at** | **int** | The Unix timestamp (in seconds) for when the fine-tuning job was created. | 
+**level** | **str** | The log level of the event. | 
+**message** | **str** | The message of the event. | 
+**type** | **str** | The type of event. | [optional] 
+**data** | **object** | The data associated with the event. | [optional] 
 
 ## Example
 

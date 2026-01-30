@@ -1,0 +1,44 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server VectorStoreFileObjectChunkingStrategy"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a VectorStoreFileObjectChunkingStrategy"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  OtherChunkingStrategyResponseParam = openapi_server.resourceTypes.OtherChunkingStrategyResponseParam
+  StaticChunkingStrategy = openapi_server.resourceTypes.StaticChunkingStrategy
+  StaticChunkingStrategyResponseParam = openapi_server.resourceTypes.StaticChunkingStrategyResponseParam
+}
+resourceTypes {
+
+  VectorStoreFileObjectChunkingStrategy {
+    title = VectorStoreFileObjectChunkingStrategy
+    description = VectorStoreFileObjectChunkingStrategy
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "Always &#x60;static&#x60;."
+          enum = ["static", "other"]
+          optional = true
+        }
+        static {
+          type = StaticChunkingStrategy
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  VectorStoreFileObjectChunkingStrategy {
+    title = VectorStoreFileObjectChunkingStrategy
+    description = VectorStoreFileObjectChunkingStrategy
+    implements = openapi_server.resourceTypes.VectorStoreFileObjectChunkingStrategy
+
+  }
+}

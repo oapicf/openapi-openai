@@ -5,9 +5,13 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.openapitools.model.ChatCompletionRequestToolMessageContent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -22,8 +26,8 @@ import javax.annotation.Generated;
  * ChatCompletionRequestToolMessage
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
-public class ChatCompletionRequestToolMessage implements ChatCompletionRequestMessage {
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class ChatCompletionRequestToolMessage implements ChatCompletionRequestMessage, FineTuneChatRequestInputMessagesInner {
 
   /**
    * The role of the messages author, in this case `tool`.
@@ -60,7 +64,7 @@ public class ChatCompletionRequestToolMessage implements ChatCompletionRequestMe
 
   private RoleEnum role;
 
-  private String content;
+  private ChatCompletionRequestToolMessageContent content;
 
   private String toolCallId;
 
@@ -71,7 +75,7 @@ public class ChatCompletionRequestToolMessage implements ChatCompletionRequestMe
   /**
    * Constructor with only required parameters
    */
-  public ChatCompletionRequestToolMessage(RoleEnum role, String content, String toolCallId) {
+  public ChatCompletionRequestToolMessage(RoleEnum role, ChatCompletionRequestToolMessageContent content, String toolCallId) {
     this.role = role;
     this.content = content;
     this.toolCallId = toolCallId;
@@ -97,23 +101,23 @@ public class ChatCompletionRequestToolMessage implements ChatCompletionRequestMe
     this.role = role;
   }
 
-  public ChatCompletionRequestToolMessage content(String content) {
+  public ChatCompletionRequestToolMessage content(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
     return this;
   }
 
   /**
-   * The contents of the tool message.
+   * Get content
    * @return content
    */
-  @NotNull 
-  @Schema(name = "content", description = "The contents of the tool message.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull @Valid 
+  @Schema(name = "content", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("content")
-  public String getContent() {
+  public ChatCompletionRequestToolMessageContent getContent() {
     return content;
   }
 
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
   }
 

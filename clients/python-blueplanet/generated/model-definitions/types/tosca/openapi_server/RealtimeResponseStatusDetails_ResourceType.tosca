@@ -1,0 +1,48 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeResponseStatusDetails"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeResponseStatusDetails"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RealtimeResponseStatusDetailsError = openapi_server.resourceTypes.RealtimeResponseStatusDetailsError
+}
+resourceTypes {
+
+  RealtimeResponseStatusDetails {
+    title = RealtimeResponseStatusDetails
+    description = RealtimeResponseStatusDetails
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "The type of error that caused the response to fail, corresponding  with the &#x60;status&#x60; field (&#x60;completed&#x60;, &#x60;cancelled&#x60;, &#x60;incomplete&#x60;,  &#x60;failed&#x60;). "
+          enum = ["completed", "cancelled", "failed", "incomplete"]
+          optional = false
+        }
+        reason {
+          type =  string
+          description = "The reason the Response did not complete. For a &#x60;cancelled&#x60; Response,  one of &#x60;turn_detected&#x60; (the server VAD detected a new start of speech)  or &#x60;client_cancelled&#x60; (the client sent a cancel event). For an  &#x60;incomplete&#x60; Response, one of &#x60;max_output_tokens&#x60; or &#x60;content_filter&#x60;  (the server-side safety filter activated and cut off the response). "
+          enum = ["turn_detected", "client_cancelled", "max_output_tokens", "content_filter"]
+          optional = false
+        }
+        error {
+          type = RealtimeResponseStatusDetailsError
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeResponseStatusDetails {
+    title = RealtimeResponseStatusDetails
+    description = RealtimeResponseStatusDetails
+    implements = openapi_server.resourceTypes.RealtimeResponseStatusDetails
+
+  }
+}

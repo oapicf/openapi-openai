@@ -15,7 +15,7 @@
 
 typedef struct chat_completion_named_tool_choice_t chat_completion_named_tool_choice_t;
 
-#include "chat_completion_named_tool_choice_function.h"
+#include "assistants_named_tool_choice_function.h"
 
 // Enum TYPE for chat_completion_named_tool_choice
 
@@ -29,14 +29,14 @@ openai_api_chat_completion_named_tool_choice_TYPE_e chat_completion_named_tool_c
 
 typedef struct chat_completion_named_tool_choice_t {
     openai_api_chat_completion_named_tool_choice_TYPE_e type; //enum
-    struct chat_completion_named_tool_choice_function_t *function; //model
+    struct assistants_named_tool_choice_function_t *function; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } chat_completion_named_tool_choice_t;
 
 __attribute__((deprecated)) chat_completion_named_tool_choice_t *chat_completion_named_tool_choice_create(
     openai_api_chat_completion_named_tool_choice_TYPE_e type,
-    chat_completion_named_tool_choice_function_t *function
+    assistants_named_tool_choice_function_t *function
 );
 
 void chat_completion_named_tool_choice_free(chat_completion_named_tool_choice_t *chat_completion_named_tool_choice);

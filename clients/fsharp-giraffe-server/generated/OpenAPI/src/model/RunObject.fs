@@ -21,7 +21,7 @@ module RunObject =
   type ObjectEnum = ThreadRunEnum of string  
   //#endregion
   //#region enums
-  type StatusEnum = QueuedEnum of string  |  InProgressEnum of string  |  RequiresActionEnum of string  |  CancellingEnum of string  |  CancelledEnum of string  |  FailedEnum of string  |  CompletedEnum of string  |  ExpiredEnum of string  
+  type StatusEnum = QueuedEnum of string  |  InProgressEnum of string  |  RequiresActionEnum of string  |  CancellingEnum of string  |  CancelledEnum of string  |  FailedEnum of string  |  CompletedEnum of string  |  IncompleteEnum of string  |  ExpiredEnum of string  
   //#endregion
 
   type RunObject = {
@@ -42,14 +42,15 @@ module RunObject =
     Model : string;
     Instructions : string;
     Tools : AssistantObjectToolsInner[];
-    FileIds : string[];
     Metadata : obj;
     Usage : RunCompletionUsage;
     Temperature : decimal option;
+    TopP : decimal option;
     MaxPromptTokens : int option;
     MaxCompletionTokens : int option;
     TruncationStrategy : TruncationObject;
     ToolChoice : AssistantsApiToolChoiceOption;
+    ParallelToolCalls : bool;
     ResponseFormat : AssistantsApiResponseFormatOption;
   }
   //#endregion

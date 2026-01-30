@@ -8,6 +8,7 @@ authors     = ["F. Bar (foo@bar.baz)"]
 imports {
   Root = tosca.resourceTypes.Root
   CreateChatCompletionStreamResponseChoicesInner = openapi_server.resourceTypes.CreateChatCompletionStreamResponseChoicesInner
+  CreateChatCompletionStreamResponseUsage = openapi_server.resourceTypes.CreateChatCompletionStreamResponseUsage
 }
 resourceTypes {
 
@@ -24,7 +25,7 @@ resourceTypes {
         choices {
           type = array
           items.type = CreateChatCompletionStreamResponseChoicesInner
-          description = "A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1."
+          description = "A list of chat completion choices. Can contain more than one elements if &#x60;n&#x60; is greater than 1. Can also be empty for the last chunk if you set &#x60;stream_options: {\&quot;include_usage\&quot;: true}&#x60;. "
           optional = true
         }
         created {
@@ -37,6 +38,12 @@ resourceTypes {
           description = "The model to generate the completion."
           optional = true
         }
+        service_tier {
+          type =  string
+          description = "The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request."
+          enum = ["scale", "default"]
+          optional = false
+        }
         system_fingerprint {
           type =  string
           description = "This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. "
@@ -47,6 +54,11 @@ resourceTypes {
           description = "The object type, which is always &#x60;chat.completion.chunk&#x60;."
           enum = ["chat.completion.chunk"]
           optional = true
+        }
+        usage {
+          type = CreateChatCompletionStreamResponseUsage
+          description = ""
+          optional = false
         }
     }
   }

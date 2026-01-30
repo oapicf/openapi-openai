@@ -3,7 +3,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * OpenAPI document version: 2.0.0
+ * OpenAPI document version: 2.3.0
  * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -20,9 +20,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 
+/**
+ * Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
+ */
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T10:45:08.090000084Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description = "Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class TruncationObject   {
   
 
@@ -56,7 +59,7 @@ public class TruncationObject   {
   }
 
   
-  @ApiModelProperty(value = "The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.")
+  @ApiModelProperty(required = true, value = "The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.")
   @JsonProperty("type")
   public TypeEnum getType() {
     return type;

@@ -16,6 +16,8 @@
 typedef struct modify_assistant_request_t modify_assistant_request_t;
 
 #include "assistant_object_tools_inner.h"
+#include "assistants_api_response_format_option.h"
+#include "modify_assistant_request_tool_resources.h"
 #include "object.h"
 
 
@@ -26,8 +28,11 @@ typedef struct modify_assistant_request_t {
     char *description; // string
     char *instructions; // string
     list_t *tools; //nonprimitive container
-    list_t *file_ids; //primitive container
+    struct modify_assistant_request_tool_resources_t *tool_resources; //model
     object_t *metadata; //object
+    double temperature; //numeric
+    double top_p; //numeric
+    struct assistants_api_response_format_option_t *response_format; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } modify_assistant_request_t;
@@ -38,8 +43,11 @@ __attribute__((deprecated)) modify_assistant_request_t *modify_assistant_request
     char *description,
     char *instructions,
     list_t *tools,
-    list_t *file_ids,
-    object_t *metadata
+    modify_assistant_request_tool_resources_t *tool_resources,
+    object_t *metadata,
+    double temperature,
+    double top_p,
+    assistants_api_response_format_option_t *response_format
 );
 
 void modify_assistant_request_free(modify_assistant_request_t *modify_assistant_request);

@@ -4,7 +4,7 @@ All URIs are relative to *https://api.openai.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-Moderation**](ModerationsApi.md#New-Moderation) | **POST** /moderations | Classifies if text is potentially harmful.
+[**New-Moderation**](ModerationsApi.md#New-Moderation) | **POST** /moderations | Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 
 <a id="New-Moderation"></a>
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 > CreateModerationResponse New-Moderation<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-CreateModerationRequest] <PSCustomObject><br>
 
-Classifies if text is potentially harmful.
+Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 ### Example
 ```powershell
@@ -23,7 +23,7 @@ $CreateModerationRequestInput = Initialize-CreateModerationRequestInput
 $CreateModerationRequestModel = Initialize-CreateModerationRequestModel 
 $CreateModerationRequest = Initialize-CreateModerationRequest -VarInput $CreateModerationRequestInput -Model $CreateModerationRequestModel # CreateModerationRequest | 
 
-# Classifies if text is potentially harmful.
+# Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 try {
     $Result = New-Moderation -CreateModerationRequest $CreateModerationRequest
 } catch {

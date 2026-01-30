@@ -10,8 +10,11 @@
        'description' => binary(),
        'instructions' => binary(),
        'tools' => list(),
-       'file_ids' => list(),
-       'metadata' => maps:map()
+       'tool_resources' => openapi_create_assistant_request_tool_resources:openapi_create_assistant_request_tool_resources(),
+       'metadata' => maps:map(),
+       'temperature' => integer(),
+       'top_p' => integer(),
+       'response_format' => openapi_assistants_api_response_format_option:openapi_assistants_api_response_format_option()
      }.
 
 encode(#{ 'model' := Model,
@@ -19,14 +22,20 @@ encode(#{ 'model' := Model,
           'description' := Description,
           'instructions' := Instructions,
           'tools' := Tools,
-          'file_ids' := FileIds,
-          'metadata' := Metadata
+          'tool_resources' := ToolResources,
+          'metadata' := Metadata,
+          'temperature' := Temperature,
+          'top_p' := TopP,
+          'response_format' := ResponseFormat
         }) ->
     #{ 'model' => Model,
        'name' => Name,
        'description' => Description,
        'instructions' => Instructions,
        'tools' => Tools,
-       'file_ids' => FileIds,
-       'metadata' => Metadata
+       'tool_resources' => ToolResources,
+       'metadata' => Metadata,
+       'temperature' => Temperature,
+       'top_p' => TopP,
+       'response_format' => ResponseFormat
      }.

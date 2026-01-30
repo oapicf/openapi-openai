@@ -29,6 +29,7 @@ import org.openapitools.client.models.RunStreamEventOneOf5
 import org.openapitools.client.models.RunStreamEventOneOf6
 import org.openapitools.client.models.RunStreamEventOneOf7
 import org.openapitools.client.models.RunStreamEventOneOf8
+import org.openapitools.client.models.RunStreamEventOneOf9
 
 class RunStreamEventTest : ShouldSpec() {
     init {

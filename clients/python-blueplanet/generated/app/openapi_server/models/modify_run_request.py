@@ -46,7 +46,7 @@ class ModifyRunRequest(Model):
     def metadata(self) -> object:
         """Gets the metadata of this ModifyRunRequest.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.   # noqa: E501
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.   # noqa: E501
 
         :return: The metadata of this ModifyRunRequest.
         :rtype: object
@@ -57,7 +57,7 @@ class ModifyRunRequest(Model):
     def metadata(self, metadata: object):
         """Sets the metadata of this ModifyRunRequest.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.   # noqa: E501
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.   # noqa: E501
 
         :param metadata: The metadata of this ModifyRunRequest.
         :type metadata: object

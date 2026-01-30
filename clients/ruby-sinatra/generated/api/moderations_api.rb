@@ -3,7 +3,7 @@ require 'json'
 
 MyApp.add_route('POST', '/v1/moderations', {
   "resourcePath" => "/Moderations",
-  "summary" => "Classifies if text is potentially harmful.",
+  "summary" => "Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). ",
   "nickname" => "create_moderation",
   "responseClass" => "CreateModerationResponse",
   "endpoint" => "/moderations",

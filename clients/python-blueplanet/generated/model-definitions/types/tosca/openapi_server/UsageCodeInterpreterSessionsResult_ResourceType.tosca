@@ -1,0 +1,46 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server UsageCodeInterpreterSessionsResult"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a UsageCodeInterpreterSessionsResult"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  UsageCodeInterpreterSessionsResult {
+    title = UsageCodeInterpreterSessionsResult
+    description = UsageCodeInterpreterSessionsResult
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          enum = ["organization.usage.code_interpreter_sessions.result"]
+          optional = true
+        }
+        sessions {
+          type =  integer
+          description = "The number of code interpreter sessions."
+          optional = true
+        }
+        project_id {
+          type =  string
+          description = "When &#x60;group_by&#x3D;project_id&#x60;, this field provides the project ID of the grouped usage result."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  UsageCodeInterpreterSessionsResult {
+    title = UsageCodeInterpreterSessionsResult
+    description = UsageCodeInterpreterSessionsResult
+    implements = openapi_server.resourceTypes.UsageCodeInterpreterSessionsResult
+
+  }
+}

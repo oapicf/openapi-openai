@@ -2,7 +2,7 @@
 
 # RunStreamEventOneOf7
 
-Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
+Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.
 
 ## Properties
 
@@ -17,7 +17,7 @@ Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
 
 | Name | Value |
 |---- | -----|
-| THREAD_RUN_CANCELLED | &quot;thread.run.cancelled&quot; |
+| THREAD_RUN_CANCELLING | &quot;thread.run.cancelling&quot; |
 
 
 

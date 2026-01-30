@@ -5,8 +5,17 @@ context("Test FineTuningJobEvent")
 
 model_instance <- FineTuningJobEvent$new()
 
+test_that("object", {
+  # tests for the property `object` (character)
+  # The object type, which is always \&quot;fine_tuning.job.event\&quot;.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`object`, "EXPECTED_RESULT")
+})
+
 test_that("id", {
   # tests for the property `id` (character)
+  # The object identifier.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`id`, "EXPECTED_RESULT")
@@ -14,6 +23,7 @@ test_that("id", {
 
 test_that("created_at", {
   # tests for the property `created_at` (integer)
+  # The Unix timestamp (in seconds) for when the fine-tuning job was created.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`created_at`, "EXPECTED_RESULT")
@@ -21,6 +31,7 @@ test_that("created_at", {
 
 test_that("level", {
   # tests for the property `level` (character)
+  # The log level of the event.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`level`, "EXPECTED_RESULT")
@@ -28,14 +39,24 @@ test_that("level", {
 
 test_that("message", {
   # tests for the property `message` (character)
+  # The message of the event.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`message`, "EXPECTED_RESULT")
 })
 
-test_that("object", {
-  # tests for the property `object` (character)
+test_that("type", {
+  # tests for the property `type` (character)
+  # The type of event.
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`object`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`type`, "EXPECTED_RESULT")
+})
+
+test_that("data", {
+  # tests for the property `data` (object)
+  # The data associated with the event.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`data`, "EXPECTED_RESULT")
 })

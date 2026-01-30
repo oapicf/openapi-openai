@@ -32,5 +32,11 @@ class CreateChatCompletionResponseChoicesInnerLogprobsTest : ShouldSpec() {
             //modelInstance.content shouldBe ("TODO")
         }
 
+        // to test the property `refusal` - A list of message refusal tokens with log probability information.
+        should("test refusal") {
+            // uncomment below to test the property
+            //modelInstance.refusal shouldBe ("TODO")
+        }
+
     }
 }

@@ -6,6 +6,7 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from app.openapi_server.models.base_model import Model
+from app.openapi_server.models.chat_completion_request_system_message_content import ChatCompletionRequestSystemMessageContent  # noqa: F401,E501
 from openapi_server import util
 
 
@@ -15,18 +16,18 @@ class ChatCompletionRequestSystemMessage(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, content: str=None, role: str=None, name: str=None):  # noqa: E501
+    def __init__(self, content: ChatCompletionRequestSystemMessageContent=None, role: str=None, name: str=None):  # noqa: E501
         """ChatCompletionRequestSystemMessage - a model defined in Swagger
 
         :param content: The content of this ChatCompletionRequestSystemMessage.  # noqa: E501
-        :type content: str
+        :type content: ChatCompletionRequestSystemMessageContent
         :param role: The role of this ChatCompletionRequestSystemMessage.  # noqa: E501
         :type role: str
         :param name: The name of this ChatCompletionRequestSystemMessage.  # noqa: E501
         :type name: str
         """
         self.swagger_types = {
-            'content': str,
+            'content': ChatCompletionRequestSystemMessageContent,
             'role': str,
             'name': str
         }
@@ -53,24 +54,22 @@ class ChatCompletionRequestSystemMessage(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def content(self) -> str:
+    def content(self) -> ChatCompletionRequestSystemMessageContent:
         """Gets the content of this ChatCompletionRequestSystemMessage.
 
-        The contents of the system message.  # noqa: E501
 
         :return: The content of this ChatCompletionRequestSystemMessage.
-        :rtype: str
+        :rtype: ChatCompletionRequestSystemMessageContent
         """
         return self._content
 
     @content.setter
-    def content(self, content: str):
+    def content(self, content: ChatCompletionRequestSystemMessageContent):
         """Sets the content of this ChatCompletionRequestSystemMessage.
 
-        The contents of the system message.  # noqa: E501
 
         :param content: The content of this ChatCompletionRequestSystemMessage.
-        :type content: str
+        :type content: ChatCompletionRequestSystemMessageContent
         """
         if content is None:
             raise ValueError("Invalid value for `content`, must not be `None`")  # noqa: E501

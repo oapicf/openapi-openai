@@ -7,12 +7,15 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
+/**
+ * Learn about [text inputs](/docs/guides/text-generation). 
+ **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-
+@ApiModel(description = "Learn about [text inputs](/docs/guides/text-generation). ")
 public class ChatCompletionRequestMessageContentPartText   {
   
 

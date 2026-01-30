@@ -7,7 +7,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { MessageContentImageUrlObjectImageUrl } from './messageContentImageUrlObjectImageUrl';
+import { MessageContentRefusalObject } from './messageContentRefusalObject';
 import { MessageContentImageFileObject } from './messageContentImageFileObject';
+import { MessageContentImageUrlObject } from './messageContentImageUrlObject';
 import { MessageContentTextObjectText } from './messageContentTextObjectText';
 import { MessageContentImageFileObjectImageFile } from './messageContentImageFileObjectImageFile';
 import { MessageContentTextObject } from './messageContentTextObject';
@@ -17,5 +20,5 @@ import { MessageContentTextObject } from './messageContentTextObject';
  * @type MessageObjectContentInner
  * @export
  */
-export type MessageObjectContentInner = MessageContentImageFileObject | MessageContentTextObject;
+export type MessageObjectContentInner = MessageContentImageFileObject | MessageContentImageUrlObject | MessageContentRefusalObject | MessageContentTextObject;
 

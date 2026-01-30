@@ -12,7 +12,7 @@ import org.openapitools.model.RunStepDeltaStepDetailsToolCallsFunctionObjectFunc
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStepDeltaStepDetailsToolCallsFunctionObject   {
   @JsonProperty("index")
   private Integer index;

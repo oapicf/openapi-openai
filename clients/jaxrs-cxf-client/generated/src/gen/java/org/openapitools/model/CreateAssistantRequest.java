@@ -1,11 +1,14 @@
 package org.openapitools.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.AssistantObjectToolsInner;
+import org.openapitools.model.AssistantsApiResponseFormatOption;
 import org.openapitools.model.CreateAssistantRequestModel;
+import org.openapitools.model.CreateAssistantRequestToolResources;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
@@ -40,25 +43,40 @@ public class CreateAssistantRequest  {
   private String instructions;
 
  /**
-  * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. 
+  * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
   */
-  @ApiModelProperty(value = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. ")
+  @ApiModelProperty(value = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
 
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
 
- /**
-  * A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. 
-  */
-  @ApiModelProperty(value = "A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. ")
+  @ApiModelProperty(value = "")
 
-  private List<String> fileIds = new ArrayList<>();
+  private CreateAssistantRequestToolResources toolResources;
 
  /**
-  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
   */
-  @ApiModelProperty(value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+  @ApiModelProperty(value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
 
   private Object metadata;
+
+ /**
+  * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+  */
+  @ApiModelProperty(example = "1", value = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. ")
+
+  private BigDecimal temperature = new BigDecimal("1");
+
+ /**
+  * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+  */
+  @ApiModelProperty(example = "1", value = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ")
+
+  private BigDecimal topP = new BigDecimal("1");
+
+  @ApiModelProperty(value = "")
+
+  private AssistantsApiResponseFormatOption responseFormat;
  /**
    * Get model
    * @return model
@@ -132,7 +150,7 @@ public class CreateAssistantRequest  {
   }
 
  /**
-   * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;retrieval&#x60;, or &#x60;function&#x60;. 
+   * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;file_search&#x60;, or &#x60;function&#x60;. 
    * @return tools
   **/
   @JsonProperty("tools")
@@ -155,30 +173,25 @@ public class CreateAssistantRequest  {
   }
 
  /**
-   * A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. 
-   * @return fileIds
+   * Get toolResources
+   * @return toolResources
   **/
-  @JsonProperty("file_ids")
-  public List<String> getFileIds() {
-    return fileIds;
+  @JsonProperty("tool_resources")
+  public CreateAssistantRequestToolResources getToolResources() {
+    return toolResources;
   }
 
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public void setToolResources(CreateAssistantRequestToolResources toolResources) {
+    this.toolResources = toolResources;
   }
 
-  public CreateAssistantRequest fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  public CreateAssistantRequest addFileIdsItem(String fileIdsItem) {
-    this.fileIds.add(fileIdsItem);
+  public CreateAssistantRequest toolResources(CreateAssistantRequestToolResources toolResources) {
+    this.toolResources = toolResources;
     return this;
   }
 
  /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
   **/
   @JsonProperty("metadata")
@@ -192,6 +205,64 @@ public class CreateAssistantRequest  {
 
   public CreateAssistantRequest metadata(Object metadata) {
     this.metadata = metadata;
+    return this;
+  }
+
+ /**
+   * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+   * minimum: 0
+   * maximum: 2
+   * @return temperature
+  **/
+  @JsonProperty("temperature")
+  public BigDecimal getTemperature() {
+    return temperature;
+  }
+
+  public void setTemperature(BigDecimal temperature) {
+    this.temperature = temperature;
+  }
+
+  public CreateAssistantRequest temperature(BigDecimal temperature) {
+    this.temperature = temperature;
+    return this;
+  }
+
+ /**
+   * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+   * minimum: 0
+   * maximum: 1
+   * @return topP
+  **/
+  @JsonProperty("top_p")
+  public BigDecimal getTopP() {
+    return topP;
+  }
+
+  public void setTopP(BigDecimal topP) {
+    this.topP = topP;
+  }
+
+  public CreateAssistantRequest topP(BigDecimal topP) {
+    this.topP = topP;
+    return this;
+  }
+
+ /**
+   * Get responseFormat
+   * @return responseFormat
+  **/
+  @JsonProperty("response_format")
+  public AssistantsApiResponseFormatOption getResponseFormat() {
+    return responseFormat;
+  }
+
+  public void setResponseFormat(AssistantsApiResponseFormatOption responseFormat) {
+    this.responseFormat = responseFormat;
+  }
+
+  public CreateAssistantRequest responseFormat(AssistantsApiResponseFormatOption responseFormat) {
+    this.responseFormat = responseFormat;
     return this;
   }
 
@@ -209,13 +280,16 @@ public class CreateAssistantRequest  {
         Objects.equals(this.description, createAssistantRequest.description) &&
         Objects.equals(this.instructions, createAssistantRequest.instructions) &&
         Objects.equals(this.tools, createAssistantRequest.tools) &&
-        Objects.equals(this.fileIds, createAssistantRequest.fileIds) &&
-        Objects.equals(this.metadata, createAssistantRequest.metadata);
+        Objects.equals(this.toolResources, createAssistantRequest.toolResources) &&
+        Objects.equals(this.metadata, createAssistantRequest.metadata) &&
+        Objects.equals(this.temperature, createAssistantRequest.temperature) &&
+        Objects.equals(this.topP, createAssistantRequest.topP) &&
+        Objects.equals(this.responseFormat, createAssistantRequest.responseFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, name, description, instructions, tools, fileIds, metadata);
+    return Objects.hash(model, name, description, instructions, tools, toolResources, metadata, temperature, topP, responseFormat);
   }
 
   @Override
@@ -228,8 +302,11 @@ public class CreateAssistantRequest  {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
+    sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();
   }

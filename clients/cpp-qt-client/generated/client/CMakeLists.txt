@@ -11,17 +11,76 @@ include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
 add_library(${PROJECT_NAME}
-  OAIAssistantFileObject.h
+  OAIAdminApiKey.h
+  OAIAdminApiKey_owner.h
+  OAIAdmin_api_keys_create_request.h
+  OAIAdmin_api_keys_delete_200_response.h
+  OAIApiKeyList.h
+  OAIArray_of_content_parts_inner.h
   OAIAssistantObject.h
+  OAIAssistantObject_tool_resources.h
+  OAIAssistantObject_tool_resources_code_interpreter.h
+  OAIAssistantObject_tool_resources_file_search.h
   OAIAssistantObject_tools_inner.h
   OAIAssistantStreamEvent.h
   OAIAssistantToolsCode.h
+  OAIAssistantToolsFileSearch.h
+  OAIAssistantToolsFileSearchTypeOnly.h
+  OAIAssistantToolsFileSearch_file_search.h
   OAIAssistantToolsFunction.h
-  OAIAssistantToolsRetrieval.h
-  OAIAssistantsApiNamedToolChoice.h
-  OAIAssistantsApiResponseFormat.h
   OAIAssistantsApiResponseFormatOption.h
   OAIAssistantsApiToolChoiceOption.h
+  OAIAssistantsNamedToolChoice.h
+  OAIAssistantsNamedToolChoice_function.h
+  OAIAudioResponseFormat.h
+  OAIAuditLog.h
+  OAIAuditLogActor.h
+  OAIAuditLogActorApiKey.h
+  OAIAuditLogActorServiceAccount.h
+  OAIAuditLogActorSession.h
+  OAIAuditLogActorUser.h
+  OAIAuditLogEventType.h
+  OAIAuditLog_api_key_created.h
+  OAIAuditLog_api_key_created_data.h
+  OAIAuditLog_api_key_deleted.h
+  OAIAuditLog_api_key_updated.h
+  OAIAuditLog_api_key_updated_changes_requested.h
+  OAIAuditLog_invite_accepted.h
+  OAIAuditLog_invite_sent.h
+  OAIAuditLog_invite_sent_data.h
+  OAIAuditLog_login_failed.h
+  OAIAuditLog_organization_updated.h
+  OAIAuditLog_organization_updated_changes_requested.h
+  OAIAuditLog_organization_updated_changes_requested_settings.h
+  OAIAuditLog_project.h
+  OAIAuditLog_project_archived.h
+  OAIAuditLog_project_created.h
+  OAIAuditLog_project_created_data.h
+  OAIAuditLog_project_updated.h
+  OAIAuditLog_project_updated_changes_requested.h
+  OAIAuditLog_rate_limit_deleted.h
+  OAIAuditLog_rate_limit_updated.h
+  OAIAuditLog_rate_limit_updated_changes_requested.h
+  OAIAuditLog_service_account_created.h
+  OAIAuditLog_service_account_created_data.h
+  OAIAuditLog_service_account_deleted.h
+  OAIAuditLog_service_account_updated.h
+  OAIAuditLog_service_account_updated_changes_requested.h
+  OAIAuditLog_user_added.h
+  OAIAuditLog_user_added_data.h
+  OAIAuditLog_user_deleted.h
+  OAIAuditLog_user_updated.h
+  OAIAuditLog_user_updated_changes_requested.h
+  OAIAutoChunkingStrategyRequestParam.h
+  OAIAuto_Chunking_Strategy.h
+  OAIBatch.h
+  OAIBatchRequestInput.h
+  OAIBatchRequestOutput.h
+  OAIBatchRequestOutput_error.h
+  OAIBatchRequestOutput_response.h
+  OAIBatch_errors.h
+  OAIBatch_errors_data_inner.h
+  OAIBatch_request_counts.h
   OAIChatCompletionFunctionCallOption.h
   OAIChatCompletionFunctions.h
   OAIChatCompletionMessageToolCall.h
@@ -29,34 +88,58 @@ add_library(${PROJECT_NAME}
   OAIChatCompletionMessageToolCallChunk_function.h
   OAIChatCompletionMessageToolCall_function.h
   OAIChatCompletionNamedToolChoice.h
-  OAIChatCompletionNamedToolChoice_function.h
   OAIChatCompletionRequestAssistantMessage.h
+  OAIChatCompletionRequestAssistantMessageContentPart.h
+  OAIChatCompletionRequestAssistantMessage_audio.h
+  OAIChatCompletionRequestAssistantMessage_content.h
   OAIChatCompletionRequestAssistantMessage_function_call.h
+  OAIChatCompletionRequestDeveloperMessage.h
+  OAIChatCompletionRequestDeveloperMessage_content.h
   OAIChatCompletionRequestFunctionMessage.h
   OAIChatCompletionRequestMessage.h
-  OAIChatCompletionRequestMessageContentPart.h
+  OAIChatCompletionRequestMessageContentPartAudio.h
+  OAIChatCompletionRequestMessageContentPartAudio_input_audio.h
   OAIChatCompletionRequestMessageContentPartImage.h
   OAIChatCompletionRequestMessageContentPartImage_image_url.h
+  OAIChatCompletionRequestMessageContentPartRefusal.h
   OAIChatCompletionRequestMessageContentPartText.h
   OAIChatCompletionRequestSystemMessage.h
+  OAIChatCompletionRequestSystemMessage_content.h
   OAIChatCompletionRequestToolMessage.h
+  OAIChatCompletionRequestToolMessage_content.h
   OAIChatCompletionRequestUserMessage.h
+  OAIChatCompletionRequestUserMessageContentPart.h
   OAIChatCompletionRequestUserMessage_content.h
   OAIChatCompletionResponseMessage.h
+  OAIChatCompletionResponseMessage_audio.h
+  OAIChatCompletionResponseMessage_function_call.h
   OAIChatCompletionRole.h
+  OAIChatCompletionStreamOptions.h
   OAIChatCompletionStreamResponseDelta.h
   OAIChatCompletionStreamResponseDelta_function_call.h
   OAIChatCompletionTokenLogprob.h
   OAIChatCompletionTokenLogprob_top_logprobs_inner.h
   OAIChatCompletionTool.h
   OAIChatCompletionToolChoiceOption.h
+  OAIChunkingStrategyRequestParam.h
+  OAICompleteUploadRequest.h
   OAICompletionUsage.h
-  OAICreateAssistantFileRequest.h
+  OAICompletionUsage_completion_tokens_details.h
+  OAICompletionUsage_prompt_tokens_details.h
+  OAICostsResult.h
+  OAICostsResult_amount.h
   OAICreateAssistantRequest.h
   OAICreateAssistantRequest_model.h
+  OAICreateAssistantRequest_tool_resources.h
+  OAICreateAssistantRequest_tool_resources_code_interpreter.h
+  OAICreateAssistantRequest_tool_resources_file_search.h
+  OAICreateAssistantRequest_tool_resources_file_search_vector_stores_inner.h
+  OAICreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy.h
+  OAICreateBatch_request.h
   OAICreateChatCompletionFunctionResponse.h
   OAICreateChatCompletionFunctionResponse_choices_inner.h
   OAICreateChatCompletionRequest.h
+  OAICreateChatCompletionRequest_audio.h
   OAICreateChatCompletionRequest_function_call.h
   OAICreateChatCompletionRequest_model.h
   OAICreateChatCompletionRequest_response_format.h
@@ -66,6 +149,7 @@ add_library(${PROJECT_NAME}
   OAICreateChatCompletionResponse_choices_inner_logprobs.h
   OAICreateChatCompletionStreamResponse.h
   OAICreateChatCompletionStreamResponse_choices_inner.h
+  OAICreateChatCompletionStreamResponse_usage.h
   OAICreateCompletionRequest.h
   OAICreateCompletionRequest_model.h
   OAICreateCompletionRequest_prompt.h
@@ -90,20 +174,32 @@ add_library(${PROJECT_NAME}
   OAICreateImageRequest.h
   OAICreateImageRequest_model.h
   OAICreateMessageRequest.h
+  OAICreateMessageRequest_attachments_inner.h
+  OAICreateMessageRequest_attachments_inner_tools_inner.h
+  OAICreateMessageRequest_content.h
   OAICreateModerationRequest.h
   OAICreateModerationRequest_input.h
+  OAICreateModerationRequest_input_oneOf_inner.h
+  OAICreateModerationRequest_input_oneOf_inner_oneOf.h
+  OAICreateModerationRequest_input_oneOf_inner_oneOf_1.h
+  OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url.h
   OAICreateModerationRequest_model.h
   OAICreateModerationResponse.h
   OAICreateModerationResponse_results_inner.h
   OAICreateModerationResponse_results_inner_categories.h
+  OAICreateModerationResponse_results_inner_category_applied_input_types.h
   OAICreateModerationResponse_results_inner_category_scores.h
   OAICreateRunRequest.h
   OAICreateRunRequest_model.h
   OAICreateSpeechRequest.h
   OAICreateSpeechRequest_model.h
   OAICreateThreadAndRunRequest.h
+  OAICreateThreadAndRunRequest_tool_resources.h
   OAICreateThreadAndRunRequest_tools_inner.h
   OAICreateThreadRequest.h
+  OAICreateThreadRequest_tool_resources.h
+  OAICreateThreadRequest_tool_resources_file_search.h
+  OAICreateThreadRequest_tool_resources_file_search_vector_stores_inner.h
   OAICreateTranscriptionRequest_model.h
   OAICreateTranscriptionResponseJson.h
   OAICreateTranscriptionResponseVerboseJson.h
@@ -111,17 +207,41 @@ add_library(${PROJECT_NAME}
   OAICreateTranslationResponseJson.h
   OAICreateTranslationResponseVerboseJson.h
   OAICreateTranslation_200_response.h
-  OAIDeleteAssistantFileResponse.h
+  OAICreateUploadRequest.h
+  OAICreateVectorStoreFileBatchRequest.h
+  OAICreateVectorStoreFileRequest.h
+  OAICreateVectorStoreRequest.h
+  OAICreateVectorStoreRequest_chunking_strategy.h
+  OAIDefaultProjectErrorResponse.h
   OAIDeleteAssistantResponse.h
   OAIDeleteFileResponse.h
   OAIDeleteMessageResponse.h
   OAIDeleteModelResponse.h
   OAIDeleteThreadResponse.h
+  OAIDeleteVectorStoreFileResponse.h
+  OAIDeleteVectorStoreResponse.h
   OAIDoneEvent.h
   OAIEmbedding.h
   OAIError.h
   OAIErrorEvent.h
   OAIErrorResponse.h
+  OAIFileSearchRankingOptions.h
+  OAIFineTuneChatCompletionRequestAssistantMessage.h
+  OAIFineTuneChatRequestInput.h
+  OAIFineTuneChatRequestInput_messages_inner.h
+  OAIFineTuneCompletionRequestInput.h
+  OAIFineTuneDPOMethod.h
+  OAIFineTuneDPOMethod_hyperparameters.h
+  OAIFineTuneDPOMethod_hyperparameters_batch_size.h
+  OAIFineTuneDPOMethod_hyperparameters_beta.h
+  OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier.h
+  OAIFineTuneDPOMethod_hyperparameters_n_epochs.h
+  OAIFineTuneMethod.h
+  OAIFineTunePreferenceRequestInput.h
+  OAIFineTunePreferenceRequestInput_input.h
+  OAIFineTunePreferenceRequestInput_preferred_completion_inner.h
+  OAIFineTuneSupervisedMethod.h
+  OAIFineTuneSupervisedMethod_hyperparameters.h
   OAIFineTuningIntegration.h
   OAIFineTuningJob.h
   OAIFineTuningJobCheckpoint.h
@@ -129,25 +249,36 @@ add_library(${PROJECT_NAME}
   OAIFineTuningJobEvent.h
   OAIFineTuningJob_error.h
   OAIFineTuningJob_hyperparameters.h
-  OAIFineTuningJob_hyperparameters_n_epochs.h
   OAIFineTuningJob_integrations_inner.h
   OAIFunctionObject.h
   OAIImage.h
   OAIImagesResponse.h
-  OAIListAssistantFilesResponse.h
+  OAIInvite.h
+  OAIInviteDeleteResponse.h
+  OAIInviteListResponse.h
+  OAIInviteRequest.h
+  OAIInviteRequest_projects_inner.h
+  OAIInvite_projects_inner.h
   OAIListAssistantsResponse.h
+  OAIListAuditLogsResponse.h
+  OAIListBatchesResponse.h
   OAIListFilesResponse.h
   OAIListFineTuningJobCheckpointsResponse.h
   OAIListFineTuningJobEventsResponse.h
-  OAIListMessageFilesResponse.h
   OAIListMessagesResponse.h
   OAIListModelsResponse.h
   OAIListPaginatedFineTuningJobsResponse.h
   OAIListRunStepsResponse.h
   OAIListRunsResponse.h
   OAIListThreadsResponse.h
+  OAIListVectorStoreFilesResponse.h
+  OAIListVectorStoresResponse.h
+  OAIList_audit_logs_effective_at_parameter.h
   OAIMessageContentImageFileObject.h
   OAIMessageContentImageFileObject_image_file.h
+  OAIMessageContentImageUrlObject.h
+  OAIMessageContentImageUrlObject_image_url.h
+  OAIMessageContentRefusalObject.h
   OAIMessageContentTextAnnotationsFileCitationObject.h
   OAIMessageContentTextAnnotationsFileCitationObject_file_citation.h
   OAIMessageContentTextAnnotationsFilePathObject.h
@@ -157,6 +288,9 @@ add_library(${PROJECT_NAME}
   OAIMessageContentTextObject_text_annotations_inner.h
   OAIMessageDeltaContentImageFileObject.h
   OAIMessageDeltaContentImageFileObject_image_file.h
+  OAIMessageDeltaContentImageUrlObject.h
+  OAIMessageDeltaContentImageUrlObject_image_url.h
+  OAIMessageDeltaContentRefusalObject.h
   OAIMessageDeltaContentTextAnnotationsFileCitationObject.h
   OAIMessageDeltaContentTextAnnotationsFileCitationObject_file_citation.h
   OAIMessageDeltaContentTextAnnotationsFilePathObject.h
@@ -167,10 +301,10 @@ add_library(${PROJECT_NAME}
   OAIMessageDeltaObject.h
   OAIMessageDeltaObject_delta.h
   OAIMessageDeltaObject_delta_content_inner.h
-  OAIMessageFileObject.h
   OAIMessageObject.h
   OAIMessageObject_content_inner.h
   OAIMessageObject_incomplete_details.h
+  OAIMessageRequestContentTextObject.h
   OAIMessageStreamEvent.h
   OAIMessageStreamEvent_oneOf.h
   OAIMessageStreamEvent_oneOf_1.h
@@ -179,10 +313,108 @@ add_library(${PROJECT_NAME}
   OAIMessageStreamEvent_oneOf_4.h
   OAIModel.h
   OAIModifyAssistantRequest.h
+  OAIModifyAssistantRequest_tool_resources.h
+  OAIModifyAssistantRequest_tool_resources_code_interpreter.h
+  OAIModifyAssistantRequest_tool_resources_file_search.h
   OAIModifyMessageRequest.h
   OAIModifyRunRequest.h
   OAIModifyThreadRequest.h
+  OAIModifyThreadRequest_tool_resources.h
+  OAIModifyThreadRequest_tool_resources_file_search.h
   OAIOpenAIFile.h
+  OAIOtherChunkingStrategyResponseParam.h
+  OAIPredictionContent.h
+  OAIPredictionContent_content.h
+  OAIProject.h
+  OAIProjectApiKey.h
+  OAIProjectApiKeyDeleteResponse.h
+  OAIProjectApiKeyListResponse.h
+  OAIProjectApiKey_owner.h
+  OAIProjectCreateRequest.h
+  OAIProjectListResponse.h
+  OAIProjectRateLimit.h
+  OAIProjectRateLimitListResponse.h
+  OAIProjectRateLimitUpdateRequest.h
+  OAIProjectServiceAccount.h
+  OAIProjectServiceAccountApiKey.h
+  OAIProjectServiceAccountCreateRequest.h
+  OAIProjectServiceAccountCreateResponse.h
+  OAIProjectServiceAccountDeleteResponse.h
+  OAIProjectServiceAccountListResponse.h
+  OAIProjectUpdateRequest.h
+  OAIProjectUser.h
+  OAIProjectUserCreateRequest.h
+  OAIProjectUserDeleteResponse.h
+  OAIProjectUserListResponse.h
+  OAIProjectUserUpdateRequest.h
+  OAIRealtimeClientEventConversationItemCreate.h
+  OAIRealtimeClientEventConversationItemDelete.h
+  OAIRealtimeClientEventConversationItemTruncate.h
+  OAIRealtimeClientEventInputAudioBufferAppend.h
+  OAIRealtimeClientEventInputAudioBufferClear.h
+  OAIRealtimeClientEventInputAudioBufferCommit.h
+  OAIRealtimeClientEventResponseCancel.h
+  OAIRealtimeClientEventResponseCreate.h
+  OAIRealtimeClientEventSessionUpdate.h
+  OAIRealtimeConversationItem.h
+  OAIRealtimeConversationItem_content_inner.h
+  OAIRealtimeResponse.h
+  OAIRealtimeResponseCreateParams.h
+  OAIRealtimeResponseCreateParams_conversation.h
+  OAIRealtimeResponseCreateParams_max_response_output_tokens.h
+  OAIRealtimeResponseCreateParams_tools_inner.h
+  OAIRealtimeResponse_status_details.h
+  OAIRealtimeResponse_status_details_error.h
+  OAIRealtimeResponse_usage.h
+  OAIRealtimeResponse_usage_input_token_details.h
+  OAIRealtimeResponse_usage_output_token_details.h
+  OAIRealtimeServerEventConversationCreated.h
+  OAIRealtimeServerEventConversationCreated_conversation.h
+  OAIRealtimeServerEventConversationItemCreated.h
+  OAIRealtimeServerEventConversationItemDeleted.h
+  OAIRealtimeServerEventConversationItemInputAudioTranscriptionCompleted.h
+  OAIRealtimeServerEventConversationItemInputAudioTranscriptionFailed.h
+  OAIRealtimeServerEventConversationItemInputAudioTranscriptionFailed_error.h
+  OAIRealtimeServerEventConversationItemTruncated.h
+  OAIRealtimeServerEventError.h
+  OAIRealtimeServerEventError_error.h
+  OAIRealtimeServerEventInputAudioBufferCleared.h
+  OAIRealtimeServerEventInputAudioBufferCommitted.h
+  OAIRealtimeServerEventInputAudioBufferSpeechStarted.h
+  OAIRealtimeServerEventInputAudioBufferSpeechStopped.h
+  OAIRealtimeServerEventRateLimitsUpdated.h
+  OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner.h
+  OAIRealtimeServerEventResponseAudioDelta.h
+  OAIRealtimeServerEventResponseAudioDone.h
+  OAIRealtimeServerEventResponseAudioTranscriptDelta.h
+  OAIRealtimeServerEventResponseAudioTranscriptDone.h
+  OAIRealtimeServerEventResponseContentPartAdded.h
+  OAIRealtimeServerEventResponseContentPartAdded_part.h
+  OAIRealtimeServerEventResponseContentPartDone.h
+  OAIRealtimeServerEventResponseContentPartDone_part.h
+  OAIRealtimeServerEventResponseCreated.h
+  OAIRealtimeServerEventResponseDone.h
+  OAIRealtimeServerEventResponseFunctionCallArgumentsDelta.h
+  OAIRealtimeServerEventResponseFunctionCallArgumentsDone.h
+  OAIRealtimeServerEventResponseOutputItemAdded.h
+  OAIRealtimeServerEventResponseOutputItemDone.h
+  OAIRealtimeServerEventResponseTextDelta.h
+  OAIRealtimeServerEventResponseTextDone.h
+  OAIRealtimeServerEventSessionCreated.h
+  OAIRealtimeServerEventSessionUpdated.h
+  OAIRealtimeSession.h
+  OAIRealtimeSessionCreateRequest.h
+  OAIRealtimeSessionCreateRequest_turn_detection.h
+  OAIRealtimeSessionCreateResponse.h
+  OAIRealtimeSessionCreateResponse_client_secret.h
+  OAIRealtimeSessionCreateResponse_turn_detection.h
+  OAIRealtimeSession_input_audio_transcription.h
+  OAIRealtimeSession_model.h
+  OAIRealtimeSession_turn_detection.h
+  OAIResponseFormatJsonObject.h
+  OAIResponseFormatJsonSchema.h
+  OAIResponseFormatJsonSchema_json_schema.h
+  OAIResponseFormatText.h
   OAIRunCompletionUsage.h
   OAIRunObject.h
   OAIRunObject_incomplete_details.h
@@ -201,11 +433,11 @@ add_library(${PROJECT_NAME}
   OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject.h
   OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image.h
   OAIRunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.h
+  OAIRunStepDeltaStepDetailsToolCallsFileSearchObject.h
   OAIRunStepDeltaStepDetailsToolCallsFunctionObject.h
   OAIRunStepDeltaStepDetailsToolCallsFunctionObject_function.h
   OAIRunStepDeltaStepDetailsToolCallsObject.h
   OAIRunStepDeltaStepDetailsToolCallsObject_tool_calls_inner.h
-  OAIRunStepDeltaStepDetailsToolCallsRetrievalObject.h
   OAIRunStepDetailsMessageCreationObject.h
   OAIRunStepDetailsMessageCreationObject_message_creation.h
   OAIRunStepDetailsToolCallsCodeObject.h
@@ -214,11 +446,15 @@ add_library(${PROJECT_NAME}
   OAIRunStepDetailsToolCallsCodeOutputImageObject.h
   OAIRunStepDetailsToolCallsCodeOutputImageObject_image.h
   OAIRunStepDetailsToolCallsCodeOutputLogsObject.h
+  OAIRunStepDetailsToolCallsFileSearchObject.h
+  OAIRunStepDetailsToolCallsFileSearchObject_file_search.h
+  OAIRunStepDetailsToolCallsFileSearchRankingOptionsObject.h
+  OAIRunStepDetailsToolCallsFileSearchResultObject.h
+  OAIRunStepDetailsToolCallsFileSearchResultObject_content_inner.h
   OAIRunStepDetailsToolCallsFunctionObject.h
   OAIRunStepDetailsToolCallsFunctionObject_function.h
   OAIRunStepDetailsToolCallsObject.h
   OAIRunStepDetailsToolCallsObject_tool_calls_inner.h
-  OAIRunStepDetailsToolCallsRetrievalObject.h
   OAIRunStepObject.h
   OAIRunStepObject_last_error.h
   OAIRunStepObject_step_details.h
@@ -240,8 +476,14 @@ add_library(${PROJECT_NAME}
   OAIRunStreamEvent_oneOf_6.h
   OAIRunStreamEvent_oneOf_7.h
   OAIRunStreamEvent_oneOf_8.h
+  OAIRunStreamEvent_oneOf_9.h
   OAIRunToolCallObject.h
   OAIRunToolCallObject_function.h
+  OAIStaticChunkingStrategy.h
+  OAIStaticChunkingStrategyRequestParam.h
+  OAIStaticChunkingStrategyResponseParam.h
+  OAIStatic_Chunking_Strategy.h
+  OAIStatic_Chunking_Strategy_static.h
   OAISubmitToolOutputsRunRequest.h
   OAISubmitToolOutputsRunRequest_tool_outputs_inner.h
   OAIThreadObject.h
@@ -249,16 +491,52 @@ add_library(${PROJECT_NAME}
   OAITranscriptionSegment.h
   OAITranscriptionWord.h
   OAITruncationObject.h
+  OAIUpdateVectorStoreRequest.h
+  OAIUpload.h
+  OAIUploadPart.h
+  OAIUsageAudioSpeechesResult.h
+  OAIUsageAudioTranscriptionsResult.h
+  OAIUsageCodeInterpreterSessionsResult.h
+  OAIUsageCompletionsResult.h
+  OAIUsageEmbeddingsResult.h
+  OAIUsageImagesResult.h
+  OAIUsageModerationsResult.h
+  OAIUsageResponse.h
+  OAIUsageTimeBucket.h
+  OAIUsageTimeBucket_result_inner.h
+  OAIUsageVectorStoresResult.h
+  OAIUser.h
+  OAIUserDeleteResponse.h
+  OAIUserListResponse.h
+  OAIUserRoleUpdateRequest.h
+  OAIVectorStoreExpirationAfter.h
+  OAIVectorStoreFileBatchObject.h
+  OAIVectorStoreFileBatchObject_file_counts.h
+  OAIVectorStoreFileObject.h
+  OAIVectorStoreFileObject_chunking_strategy.h
+  OAIVectorStoreFileObject_last_error.h
+  OAIVectorStoreObject.h
+  OAIVectorStoreObject_file_counts.h
   OAIAssistantsApi.h
   OAIAudioApi.h
+  OAIAuditLogsApi.h
+  OAIBatchApi.h
   OAIChatApi.h
   OAICompletionsApi.h
+  OAIDefaultApi.h
   OAIEmbeddingsApi.h
   OAIFilesApi.h
   OAIFineTuningApi.h
   OAIImagesApi.h
+  OAIInvitesApi.h
   OAIModelsApi.h
   OAIModerationsApi.h
+  OAIProjectsApi.h
+  OAIRealtimeApi.h
+  OAIUploadsApi.h
+  OAIUsageApi.h
+  OAIUsersApi.h
+  OAIVectorStoresApi.h
   OAIHelpers.h
   OAIHttpRequest.h
   OAIObject.h
@@ -267,17 +545,76 @@ add_library(${PROJECT_NAME}
   OAIServerConfiguration.h
   OAIServerVariable.h
   OAIOauth.h
-  OAIAssistantFileObject.cpp
+  OAIAdminApiKey.cpp
+  OAIAdminApiKey_owner.cpp
+  OAIAdmin_api_keys_create_request.cpp
+  OAIAdmin_api_keys_delete_200_response.cpp
+  OAIApiKeyList.cpp
+  OAIArray_of_content_parts_inner.cpp
   OAIAssistantObject.cpp
+  OAIAssistantObject_tool_resources.cpp
+  OAIAssistantObject_tool_resources_code_interpreter.cpp
+  OAIAssistantObject_tool_resources_file_search.cpp
   OAIAssistantObject_tools_inner.cpp
   OAIAssistantStreamEvent.cpp
   OAIAssistantToolsCode.cpp
+  OAIAssistantToolsFileSearch.cpp
+  OAIAssistantToolsFileSearchTypeOnly.cpp
+  OAIAssistantToolsFileSearch_file_search.cpp
   OAIAssistantToolsFunction.cpp
-  OAIAssistantToolsRetrieval.cpp
-  OAIAssistantsApiNamedToolChoice.cpp
-  OAIAssistantsApiResponseFormat.cpp
   OAIAssistantsApiResponseFormatOption.cpp
   OAIAssistantsApiToolChoiceOption.cpp
+  OAIAssistantsNamedToolChoice.cpp
+  OAIAssistantsNamedToolChoice_function.cpp
+  OAIAudioResponseFormat.cpp
+  OAIAuditLog.cpp
+  OAIAuditLogActor.cpp
+  OAIAuditLogActorApiKey.cpp
+  OAIAuditLogActorServiceAccount.cpp
+  OAIAuditLogActorSession.cpp
+  OAIAuditLogActorUser.cpp
+  OAIAuditLogEventType.cpp
+  OAIAuditLog_api_key_created.cpp
+  OAIAuditLog_api_key_created_data.cpp
+  OAIAuditLog_api_key_deleted.cpp
+  OAIAuditLog_api_key_updated.cpp
+  OAIAuditLog_api_key_updated_changes_requested.cpp
+  OAIAuditLog_invite_accepted.cpp
+  OAIAuditLog_invite_sent.cpp
+  OAIAuditLog_invite_sent_data.cpp
+  OAIAuditLog_login_failed.cpp
+  OAIAuditLog_organization_updated.cpp
+  OAIAuditLog_organization_updated_changes_requested.cpp
+  OAIAuditLog_organization_updated_changes_requested_settings.cpp
+  OAIAuditLog_project.cpp
+  OAIAuditLog_project_archived.cpp
+  OAIAuditLog_project_created.cpp
+  OAIAuditLog_project_created_data.cpp
+  OAIAuditLog_project_updated.cpp
+  OAIAuditLog_project_updated_changes_requested.cpp
+  OAIAuditLog_rate_limit_deleted.cpp
+  OAIAuditLog_rate_limit_updated.cpp
+  OAIAuditLog_rate_limit_updated_changes_requested.cpp
+  OAIAuditLog_service_account_created.cpp
+  OAIAuditLog_service_account_created_data.cpp
+  OAIAuditLog_service_account_deleted.cpp
+  OAIAuditLog_service_account_updated.cpp
+  OAIAuditLog_service_account_updated_changes_requested.cpp
+  OAIAuditLog_user_added.cpp
+  OAIAuditLog_user_added_data.cpp
+  OAIAuditLog_user_deleted.cpp
+  OAIAuditLog_user_updated.cpp
+  OAIAuditLog_user_updated_changes_requested.cpp
+  OAIAutoChunkingStrategyRequestParam.cpp
+  OAIAuto_Chunking_Strategy.cpp
+  OAIBatch.cpp
+  OAIBatchRequestInput.cpp
+  OAIBatchRequestOutput.cpp
+  OAIBatchRequestOutput_error.cpp
+  OAIBatchRequestOutput_response.cpp
+  OAIBatch_errors.cpp
+  OAIBatch_errors_data_inner.cpp
+  OAIBatch_request_counts.cpp
   OAIChatCompletionFunctionCallOption.cpp
   OAIChatCompletionFunctions.cpp
   OAIChatCompletionMessageToolCall.cpp
@@ -285,34 +622,58 @@ add_library(${PROJECT_NAME}
   OAIChatCompletionMessageToolCallChunk_function.cpp
   OAIChatCompletionMessageToolCall_function.cpp
   OAIChatCompletionNamedToolChoice.cpp
-  OAIChatCompletionNamedToolChoice_function.cpp
   OAIChatCompletionRequestAssistantMessage.cpp
+  OAIChatCompletionRequestAssistantMessageContentPart.cpp
+  OAIChatCompletionRequestAssistantMessage_audio.cpp
+  OAIChatCompletionRequestAssistantMessage_content.cpp
   OAIChatCompletionRequestAssistantMessage_function_call.cpp
+  OAIChatCompletionRequestDeveloperMessage.cpp
+  OAIChatCompletionRequestDeveloperMessage_content.cpp
   OAIChatCompletionRequestFunctionMessage.cpp
   OAIChatCompletionRequestMessage.cpp
-  OAIChatCompletionRequestMessageContentPart.cpp
+  OAIChatCompletionRequestMessageContentPartAudio.cpp
+  OAIChatCompletionRequestMessageContentPartAudio_input_audio.cpp
   OAIChatCompletionRequestMessageContentPartImage.cpp
   OAIChatCompletionRequestMessageContentPartImage_image_url.cpp
+  OAIChatCompletionRequestMessageContentPartRefusal.cpp
   OAIChatCompletionRequestMessageContentPartText.cpp
   OAIChatCompletionRequestSystemMessage.cpp
+  OAIChatCompletionRequestSystemMessage_content.cpp
   OAIChatCompletionRequestToolMessage.cpp
+  OAIChatCompletionRequestToolMessage_content.cpp
   OAIChatCompletionRequestUserMessage.cpp
+  OAIChatCompletionRequestUserMessageContentPart.cpp
   OAIChatCompletionRequestUserMessage_content.cpp
   OAIChatCompletionResponseMessage.cpp
+  OAIChatCompletionResponseMessage_audio.cpp
+  OAIChatCompletionResponseMessage_function_call.cpp
   OAIChatCompletionRole.cpp
+  OAIChatCompletionStreamOptions.cpp
   OAIChatCompletionStreamResponseDelta.cpp
   OAIChatCompletionStreamResponseDelta_function_call.cpp
   OAIChatCompletionTokenLogprob.cpp
   OAIChatCompletionTokenLogprob_top_logprobs_inner.cpp
   OAIChatCompletionTool.cpp
   OAIChatCompletionToolChoiceOption.cpp
+  OAIChunkingStrategyRequestParam.cpp
+  OAICompleteUploadRequest.cpp
   OAICompletionUsage.cpp
-  OAICreateAssistantFileRequest.cpp
+  OAICompletionUsage_completion_tokens_details.cpp
+  OAICompletionUsage_prompt_tokens_details.cpp
+  OAICostsResult.cpp
+  OAICostsResult_amount.cpp
   OAICreateAssistantRequest.cpp
   OAICreateAssistantRequest_model.cpp
+  OAICreateAssistantRequest_tool_resources.cpp
+  OAICreateAssistantRequest_tool_resources_code_interpreter.cpp
+  OAICreateAssistantRequest_tool_resources_file_search.cpp
+  OAICreateAssistantRequest_tool_resources_file_search_vector_stores_inner.cpp
+  OAICreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy.cpp
+  OAICreateBatch_request.cpp
   OAICreateChatCompletionFunctionResponse.cpp
   OAICreateChatCompletionFunctionResponse_choices_inner.cpp
   OAICreateChatCompletionRequest.cpp
+  OAICreateChatCompletionRequest_audio.cpp
   OAICreateChatCompletionRequest_function_call.cpp
   OAICreateChatCompletionRequest_model.cpp
   OAICreateChatCompletionRequest_response_format.cpp
@@ -322,6 +683,7 @@ add_library(${PROJECT_NAME}
   OAICreateChatCompletionResponse_choices_inner_logprobs.cpp
   OAICreateChatCompletionStreamResponse.cpp
   OAICreateChatCompletionStreamResponse_choices_inner.cpp
+  OAICreateChatCompletionStreamResponse_usage.cpp
   OAICreateCompletionRequest.cpp
   OAICreateCompletionRequest_model.cpp
   OAICreateCompletionRequest_prompt.cpp
@@ -346,20 +708,32 @@ add_library(${PROJECT_NAME}
   OAICreateImageRequest.cpp
   OAICreateImageRequest_model.cpp
   OAICreateMessageRequest.cpp
+  OAICreateMessageRequest_attachments_inner.cpp
+  OAICreateMessageRequest_attachments_inner_tools_inner.cpp
+  OAICreateMessageRequest_content.cpp
   OAICreateModerationRequest.cpp
   OAICreateModerationRequest_input.cpp
+  OAICreateModerationRequest_input_oneOf_inner.cpp
+  OAICreateModerationRequest_input_oneOf_inner_oneOf.cpp
+  OAICreateModerationRequest_input_oneOf_inner_oneOf_1.cpp
+  OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url.cpp
   OAICreateModerationRequest_model.cpp
   OAICreateModerationResponse.cpp
   OAICreateModerationResponse_results_inner.cpp
   OAICreateModerationResponse_results_inner_categories.cpp
+  OAICreateModerationResponse_results_inner_category_applied_input_types.cpp
   OAICreateModerationResponse_results_inner_category_scores.cpp
   OAICreateRunRequest.cpp
   OAICreateRunRequest_model.cpp
   OAICreateSpeechRequest.cpp
   OAICreateSpeechRequest_model.cpp
   OAICreateThreadAndRunRequest.cpp
+  OAICreateThreadAndRunRequest_tool_resources.cpp
   OAICreateThreadAndRunRequest_tools_inner.cpp
   OAICreateThreadRequest.cpp
+  OAICreateThreadRequest_tool_resources.cpp
+  OAICreateThreadRequest_tool_resources_file_search.cpp
+  OAICreateThreadRequest_tool_resources_file_search_vector_stores_inner.cpp
   OAICreateTranscriptionRequest_model.cpp
   OAICreateTranscriptionResponseJson.cpp
   OAICreateTranscriptionResponseVerboseJson.cpp
@@ -367,17 +741,41 @@ add_library(${PROJECT_NAME}
   OAICreateTranslationResponseJson.cpp
   OAICreateTranslationResponseVerboseJson.cpp
   OAICreateTranslation_200_response.cpp
-  OAIDeleteAssistantFileResponse.cpp
+  OAICreateUploadRequest.cpp
+  OAICreateVectorStoreFileBatchRequest.cpp
+  OAICreateVectorStoreFileRequest.cpp
+  OAICreateVectorStoreRequest.cpp
+  OAICreateVectorStoreRequest_chunking_strategy.cpp
+  OAIDefaultProjectErrorResponse.cpp
   OAIDeleteAssistantResponse.cpp
   OAIDeleteFileResponse.cpp
   OAIDeleteMessageResponse.cpp
   OAIDeleteModelResponse.cpp
   OAIDeleteThreadResponse.cpp
+  OAIDeleteVectorStoreFileResponse.cpp
+  OAIDeleteVectorStoreResponse.cpp
   OAIDoneEvent.cpp
   OAIEmbedding.cpp
   OAIError.cpp
   OAIErrorEvent.cpp
   OAIErrorResponse.cpp
+  OAIFileSearchRankingOptions.cpp
+  OAIFineTuneChatCompletionRequestAssistantMessage.cpp
+  OAIFineTuneChatRequestInput.cpp
+  OAIFineTuneChatRequestInput_messages_inner.cpp
+  OAIFineTuneCompletionRequestInput.cpp
+  OAIFineTuneDPOMethod.cpp
+  OAIFineTuneDPOMethod_hyperparameters.cpp
+  OAIFineTuneDPOMethod_hyperparameters_batch_size.cpp
+  OAIFineTuneDPOMethod_hyperparameters_beta.cpp
+  OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier.cpp
+  OAIFineTuneDPOMethod_hyperparameters_n_epochs.cpp
+  OAIFineTuneMethod.cpp
+  OAIFineTunePreferenceRequestInput.cpp
+  OAIFineTunePreferenceRequestInput_input.cpp
+  OAIFineTunePreferenceRequestInput_preferred_completion_inner.cpp
+  OAIFineTuneSupervisedMethod.cpp
+  OAIFineTuneSupervisedMethod_hyperparameters.cpp
   OAIFineTuningIntegration.cpp
   OAIFineTuningJob.cpp
   OAIFineTuningJobCheckpoint.cpp
@@ -385,25 +783,36 @@ add_library(${PROJECT_NAME}
   OAIFineTuningJobEvent.cpp
   OAIFineTuningJob_error.cpp
   OAIFineTuningJob_hyperparameters.cpp
-  OAIFineTuningJob_hyperparameters_n_epochs.cpp
   OAIFineTuningJob_integrations_inner.cpp
   OAIFunctionObject.cpp
   OAIImage.cpp
   OAIImagesResponse.cpp
-  OAIListAssistantFilesResponse.cpp
+  OAIInvite.cpp
+  OAIInviteDeleteResponse.cpp
+  OAIInviteListResponse.cpp
+  OAIInviteRequest.cpp
+  OAIInviteRequest_projects_inner.cpp
+  OAIInvite_projects_inner.cpp
   OAIListAssistantsResponse.cpp
+  OAIListAuditLogsResponse.cpp
+  OAIListBatchesResponse.cpp
   OAIListFilesResponse.cpp
   OAIListFineTuningJobCheckpointsResponse.cpp
   OAIListFineTuningJobEventsResponse.cpp
-  OAIListMessageFilesResponse.cpp
   OAIListMessagesResponse.cpp
   OAIListModelsResponse.cpp
   OAIListPaginatedFineTuningJobsResponse.cpp
   OAIListRunStepsResponse.cpp
   OAIListRunsResponse.cpp
   OAIListThreadsResponse.cpp
+  OAIListVectorStoreFilesResponse.cpp
+  OAIListVectorStoresResponse.cpp
+  OAIList_audit_logs_effective_at_parameter.cpp
   OAIMessageContentImageFileObject.cpp
   OAIMessageContentImageFileObject_image_file.cpp
+  OAIMessageContentImageUrlObject.cpp
+  OAIMessageContentImageUrlObject_image_url.cpp
+  OAIMessageContentRefusalObject.cpp
   OAIMessageContentTextAnnotationsFileCitationObject.cpp
   OAIMessageContentTextAnnotationsFileCitationObject_file_citation.cpp
   OAIMessageContentTextAnnotationsFilePathObject.cpp
@@ -413,6 +822,9 @@ add_library(${PROJECT_NAME}
   OAIMessageContentTextObject_text_annotations_inner.cpp
   OAIMessageDeltaContentImageFileObject.cpp
   OAIMessageDeltaContentImageFileObject_image_file.cpp
+  OAIMessageDeltaContentImageUrlObject.cpp
+  OAIMessageDeltaContentImageUrlObject_image_url.cpp
+  OAIMessageDeltaContentRefusalObject.cpp
   OAIMessageDeltaContentTextAnnotationsFileCitationObject.cpp
   OAIMessageDeltaContentTextAnnotationsFileCitationObject_file_citation.cpp
   OAIMessageDeltaContentTextAnnotationsFilePathObject.cpp
@@ -423,10 +835,10 @@ add_library(${PROJECT_NAME}
   OAIMessageDeltaObject.cpp
   OAIMessageDeltaObject_delta.cpp
   OAIMessageDeltaObject_delta_content_inner.cpp
-  OAIMessageFileObject.cpp
   OAIMessageObject.cpp
   OAIMessageObject_content_inner.cpp
   OAIMessageObject_incomplete_details.cpp
+  OAIMessageRequestContentTextObject.cpp
   OAIMessageStreamEvent.cpp
   OAIMessageStreamEvent_oneOf.cpp
   OAIMessageStreamEvent_oneOf_1.cpp
@@ -435,10 +847,108 @@ add_library(${PROJECT_NAME}
   OAIMessageStreamEvent_oneOf_4.cpp
   OAIModel.cpp
   OAIModifyAssistantRequest.cpp
+  OAIModifyAssistantRequest_tool_resources.cpp
+  OAIModifyAssistantRequest_tool_resources_code_interpreter.cpp
+  OAIModifyAssistantRequest_tool_resources_file_search.cpp
   OAIModifyMessageRequest.cpp
   OAIModifyRunRequest.cpp
   OAIModifyThreadRequest.cpp
+  OAIModifyThreadRequest_tool_resources.cpp
+  OAIModifyThreadRequest_tool_resources_file_search.cpp
   OAIOpenAIFile.cpp
+  OAIOtherChunkingStrategyResponseParam.cpp
+  OAIPredictionContent.cpp
+  OAIPredictionContent_content.cpp
+  OAIProject.cpp
+  OAIProjectApiKey.cpp
+  OAIProjectApiKeyDeleteResponse.cpp
+  OAIProjectApiKeyListResponse.cpp
+  OAIProjectApiKey_owner.cpp
+  OAIProjectCreateRequest.cpp
+  OAIProjectListResponse.cpp
+  OAIProjectRateLimit.cpp
+  OAIProjectRateLimitListResponse.cpp
+  OAIProjectRateLimitUpdateRequest.cpp
+  OAIProjectServiceAccount.cpp
+  OAIProjectServiceAccountApiKey.cpp
+  OAIProjectServiceAccountCreateRequest.cpp
+  OAIProjectServiceAccountCreateResponse.cpp
+  OAIProjectServiceAccountDeleteResponse.cpp
+  OAIProjectServiceAccountListResponse.cpp
+  OAIProjectUpdateRequest.cpp
+  OAIProjectUser.cpp
+  OAIProjectUserCreateRequest.cpp
+  OAIProjectUserDeleteResponse.cpp
+  OAIProjectUserListResponse.cpp
+  OAIProjectUserUpdateRequest.cpp
+  OAIRealtimeClientEventConversationItemCreate.cpp
+  OAIRealtimeClientEventConversationItemDelete.cpp
+  OAIRealtimeClientEventConversationItemTruncate.cpp
+  OAIRealtimeClientEventInputAudioBufferAppend.cpp
+  OAIRealtimeClientEventInputAudioBufferClear.cpp
+  OAIRealtimeClientEventInputAudioBufferCommit.cpp
+  OAIRealtimeClientEventResponseCancel.cpp
+  OAIRealtimeClientEventResponseCreate.cpp
+  OAIRealtimeClientEventSessionUpdate.cpp
+  OAIRealtimeConversationItem.cpp
+  OAIRealtimeConversationItem_content_inner.cpp
+  OAIRealtimeResponse.cpp
+  OAIRealtimeResponseCreateParams.cpp
+  OAIRealtimeResponseCreateParams_conversation.cpp
+  OAIRealtimeResponseCreateParams_max_response_output_tokens.cpp
+  OAIRealtimeResponseCreateParams_tools_inner.cpp
+  OAIRealtimeResponse_status_details.cpp
+  OAIRealtimeResponse_status_details_error.cpp
+  OAIRealtimeResponse_usage.cpp
+  OAIRealtimeResponse_usage_input_token_details.cpp
+  OAIRealtimeResponse_usage_output_token_details.cpp
+  OAIRealtimeServerEventConversationCreated.cpp
+  OAIRealtimeServerEventConversationCreated_conversation.cpp
+  OAIRealtimeServerEventConversationItemCreated.cpp
+  OAIRealtimeServerEventConversationItemDeleted.cpp
+  OAIRealtimeServerEventConversationItemInputAudioTranscriptionCompleted.cpp
+  OAIRealtimeServerEventConversationItemInputAudioTranscriptionFailed.cpp
+  OAIRealtimeServerEventConversationItemInputAudioTranscriptionFailed_error.cpp
+  OAIRealtimeServerEventConversationItemTruncated.cpp
+  OAIRealtimeServerEventError.cpp
+  OAIRealtimeServerEventError_error.cpp
+  OAIRealtimeServerEventInputAudioBufferCleared.cpp
+  OAIRealtimeServerEventInputAudioBufferCommitted.cpp
+  OAIRealtimeServerEventInputAudioBufferSpeechStarted.cpp
+  OAIRealtimeServerEventInputAudioBufferSpeechStopped.cpp
+  OAIRealtimeServerEventRateLimitsUpdated.cpp
+  OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner.cpp
+  OAIRealtimeServerEventResponseAudioDelta.cpp
+  OAIRealtimeServerEventResponseAudioDone.cpp
+  OAIRealtimeServerEventResponseAudioTranscriptDelta.cpp
+  OAIRealtimeServerEventResponseAudioTranscriptDone.cpp
+  OAIRealtimeServerEventResponseContentPartAdded.cpp
+  OAIRealtimeServerEventResponseContentPartAdded_part.cpp
+  OAIRealtimeServerEventResponseContentPartDone.cpp
+  OAIRealtimeServerEventResponseContentPartDone_part.cpp
+  OAIRealtimeServerEventResponseCreated.cpp
+  OAIRealtimeServerEventResponseDone.cpp
+  OAIRealtimeServerEventResponseFunctionCallArgumentsDelta.cpp
+  OAIRealtimeServerEventResponseFunctionCallArgumentsDone.cpp
+  OAIRealtimeServerEventResponseOutputItemAdded.cpp
+  OAIRealtimeServerEventResponseOutputItemDone.cpp
+  OAIRealtimeServerEventResponseTextDelta.cpp
+  OAIRealtimeServerEventResponseTextDone.cpp
+  OAIRealtimeServerEventSessionCreated.cpp
+  OAIRealtimeServerEventSessionUpdated.cpp
+  OAIRealtimeSession.cpp
+  OAIRealtimeSessionCreateRequest.cpp
+  OAIRealtimeSessionCreateRequest_turn_detection.cpp
+  OAIRealtimeSessionCreateResponse.cpp
+  OAIRealtimeSessionCreateResponse_client_secret.cpp
+  OAIRealtimeSessionCreateResponse_turn_detection.cpp
+  OAIRealtimeSession_input_audio_transcription.cpp
+  OAIRealtimeSession_model.cpp
+  OAIRealtimeSession_turn_detection.cpp
+  OAIResponseFormatJsonObject.cpp
+  OAIResponseFormatJsonSchema.cpp
+  OAIResponseFormatJsonSchema_json_schema.cpp
+  OAIResponseFormatText.cpp
   OAIRunCompletionUsage.cpp
   OAIRunObject.cpp
   OAIRunObject_incomplete_details.cpp
@@ -457,11 +967,11 @@ add_library(${PROJECT_NAME}
   OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject.cpp
   OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image.cpp
   OAIRunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.cpp
+  OAIRunStepDeltaStepDetailsToolCallsFileSearchObject.cpp
   OAIRunStepDeltaStepDetailsToolCallsFunctionObject.cpp
   OAIRunStepDeltaStepDetailsToolCallsFunctionObject_function.cpp
   OAIRunStepDeltaStepDetailsToolCallsObject.cpp
   OAIRunStepDeltaStepDetailsToolCallsObject_tool_calls_inner.cpp
-  OAIRunStepDeltaStepDetailsToolCallsRetrievalObject.cpp
   OAIRunStepDetailsMessageCreationObject.cpp
   OAIRunStepDetailsMessageCreationObject_message_creation.cpp
   OAIRunStepDetailsToolCallsCodeObject.cpp
@@ -470,11 +980,15 @@ add_library(${PROJECT_NAME}
   OAIRunStepDetailsToolCallsCodeOutputImageObject.cpp
   OAIRunStepDetailsToolCallsCodeOutputImageObject_image.cpp
   OAIRunStepDetailsToolCallsCodeOutputLogsObject.cpp
+  OAIRunStepDetailsToolCallsFileSearchObject.cpp
+  OAIRunStepDetailsToolCallsFileSearchObject_file_search.cpp
+  OAIRunStepDetailsToolCallsFileSearchRankingOptionsObject.cpp
+  OAIRunStepDetailsToolCallsFileSearchResultObject.cpp
+  OAIRunStepDetailsToolCallsFileSearchResultObject_content_inner.cpp
   OAIRunStepDetailsToolCallsFunctionObject.cpp
   OAIRunStepDetailsToolCallsFunctionObject_function.cpp
   OAIRunStepDetailsToolCallsObject.cpp
   OAIRunStepDetailsToolCallsObject_tool_calls_inner.cpp
-  OAIRunStepDetailsToolCallsRetrievalObject.cpp
   OAIRunStepObject.cpp
   OAIRunStepObject_last_error.cpp
   OAIRunStepObject_step_details.cpp
@@ -496,8 +1010,14 @@ add_library(${PROJECT_NAME}
   OAIRunStreamEvent_oneOf_6.cpp
   OAIRunStreamEvent_oneOf_7.cpp
   OAIRunStreamEvent_oneOf_8.cpp
+  OAIRunStreamEvent_oneOf_9.cpp
   OAIRunToolCallObject.cpp
   OAIRunToolCallObject_function.cpp
+  OAIStaticChunkingStrategy.cpp
+  OAIStaticChunkingStrategyRequestParam.cpp
+  OAIStaticChunkingStrategyResponseParam.cpp
+  OAIStatic_Chunking_Strategy.cpp
+  OAIStatic_Chunking_Strategy_static.cpp
   OAISubmitToolOutputsRunRequest.cpp
   OAISubmitToolOutputsRunRequest_tool_outputs_inner.cpp
   OAIThreadObject.cpp
@@ -505,16 +1025,52 @@ add_library(${PROJECT_NAME}
   OAITranscriptionSegment.cpp
   OAITranscriptionWord.cpp
   OAITruncationObject.cpp
+  OAIUpdateVectorStoreRequest.cpp
+  OAIUpload.cpp
+  OAIUploadPart.cpp
+  OAIUsageAudioSpeechesResult.cpp
+  OAIUsageAudioTranscriptionsResult.cpp
+  OAIUsageCodeInterpreterSessionsResult.cpp
+  OAIUsageCompletionsResult.cpp
+  OAIUsageEmbeddingsResult.cpp
+  OAIUsageImagesResult.cpp
+  OAIUsageModerationsResult.cpp
+  OAIUsageResponse.cpp
+  OAIUsageTimeBucket.cpp
+  OAIUsageTimeBucket_result_inner.cpp
+  OAIUsageVectorStoresResult.cpp
+  OAIUser.cpp
+  OAIUserDeleteResponse.cpp
+  OAIUserListResponse.cpp
+  OAIUserRoleUpdateRequest.cpp
+  OAIVectorStoreExpirationAfter.cpp
+  OAIVectorStoreFileBatchObject.cpp
+  OAIVectorStoreFileBatchObject_file_counts.cpp
+  OAIVectorStoreFileObject.cpp
+  OAIVectorStoreFileObject_chunking_strategy.cpp
+  OAIVectorStoreFileObject_last_error.cpp
+  OAIVectorStoreObject.cpp
+  OAIVectorStoreObject_file_counts.cpp
   OAIAssistantsApi.cpp
   OAIAudioApi.cpp
+  OAIAuditLogsApi.cpp
+  OAIBatchApi.cpp
   OAIChatApi.cpp
   OAICompletionsApi.cpp
+  OAIDefaultApi.cpp
   OAIEmbeddingsApi.cpp
   OAIFilesApi.cpp
   OAIFineTuningApi.cpp
   OAIImagesApi.cpp
+  OAIInvitesApi.cpp
   OAIModelsApi.cpp
   OAIModerationsApi.cpp
+  OAIProjectsApi.cpp
+  OAIRealtimeApi.cpp
+  OAIUploadsApi.cpp
+  OAIUsageApi.cpp
+  OAIUsersApi.cpp
+  OAIVectorStoresApi.cpp
   OAIHelpers.cpp
   OAIHttpRequest.cpp
   OAIHttpFileElement.cpp

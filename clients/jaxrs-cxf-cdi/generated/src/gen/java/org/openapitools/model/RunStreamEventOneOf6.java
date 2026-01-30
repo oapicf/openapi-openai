@@ -10,20 +10,20 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) moves to a &#x60;cancelling&#x60; status.
+ * Occurs when a [run](/docs/api-reference/runs/object) fails.
  **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-@ApiModel(description = "Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.")
+@ApiModel(description = "Occurs when a [run](/docs/api-reference/runs/object) fails.")
 public class RunStreamEventOneOf6   {
   
 
 public enum EventEnum {
 
-    @JsonProperty("thread.run.cancelling") THREAD_RUN_CANCELLING(String.valueOf("thread.run.cancelling"));
+    @JsonProperty("thread.run.failed") THREAD_RUN_FAILED(String.valueOf("thread.run.failed"));
 
 
     private String value;

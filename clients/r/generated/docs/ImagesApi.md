@@ -75,7 +75,7 @@ var_model <- CreateImageEditRequest_model$new() # CreateImageEditRequestModel | 
 var_n <- 1 # integer | The number of images to generate. Must be between 1 and 10. (Optional)
 var_size <- "1024x1024" # character | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. (Optional)
 var_response_format <- "url" # character | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. (Optional)
-var_user <- "user_example" # character | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (Optional)
+var_user <- "user_example" # character | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (Optional)
 
 api_instance <- ImagesApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
  **n** | **integer**| The number of images to generate. Must be between 1 and 10. | [optional] [default to 1]
  **size** | Enum [256x256, 512x512, 1024x1024] | The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | [optional] [default to &quot;1024x1024&quot;]
  **response_format** | Enum [url, b64_json] | The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | [optional] [default to &quot;url&quot;]
- **user** | **character**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  | [optional] 
+ **user** | **character**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  | [optional] 
 
 ### Return type
 
@@ -134,7 +134,7 @@ var_model <- CreateImageEditRequest_model$new() # CreateImageEditRequestModel | 
 var_n <- 1 # integer | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. (Optional)
 var_response_format <- "url" # character | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. (Optional)
 var_size <- "1024x1024" # character | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. (Optional)
-var_user <- "user_example" # character | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (Optional)
+var_user <- "user_example" # character | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (Optional)
 
 api_instance <- ImagesApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
  **n** | **integer**| The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported. | [optional] [default to 1]
  **response_format** | Enum [url, b64_json] | The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | [optional] [default to &quot;url&quot;]
  **size** | Enum [256x256, 512x512, 1024x1024] | The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | [optional] [default to &quot;1024x1024&quot;]
- **user** | **character**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  | [optional] 
+ **user** | **character**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  | [optional] 
 
 ### Return type
 

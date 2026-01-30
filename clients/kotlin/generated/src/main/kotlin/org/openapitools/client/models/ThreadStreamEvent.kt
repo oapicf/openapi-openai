@@ -25,6 +25,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param event 
  * @param `data` 
+ * @param enabled Whether to enable input audio transcription.
  */
 
 
@@ -34,7 +35,11 @@ data class ThreadStreamEvent (
     val event: ThreadStreamEvent.Event,
 
     @Json(name = "data")
-    val `data`: ThreadObject
+    val `data`: ThreadObject,
+
+    /* Whether to enable input audio transcription. */
+    @Json(name = "enabled")
+    val enabled: kotlin.Boolean? = null
 
 ) {
 

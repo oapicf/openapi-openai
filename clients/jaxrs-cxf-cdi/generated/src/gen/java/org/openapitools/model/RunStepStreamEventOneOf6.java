@@ -10,14 +10,14 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) expires.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires.
  **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-@ApiModel(description = "Occurs when a [run step](/docs/api-reference/runs/step-object) expires.")
+@ApiModel(description = "Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires.")
 public class RunStepStreamEventOneOf6   {
   
 

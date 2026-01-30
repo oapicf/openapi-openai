@@ -1,0 +1,48 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FineTuneSupervisedMethodHyperparameters"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FineTuneSupervisedMethodHyperparameters"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  FineTuneDPOMethodHyperparametersBatchSize = openapi_server.resourceTypes.FineTuneDPOMethodHyperparametersBatchSize
+  FineTuneDPOMethodHyperparametersLearningRateMultiplier = openapi_server.resourceTypes.FineTuneDPOMethodHyperparametersLearningRateMultiplier
+  FineTuneDPOMethodHyperparametersNEpochs = openapi_server.resourceTypes.FineTuneDPOMethodHyperparametersNEpochs
+}
+resourceTypes {
+
+  FineTuneSupervisedMethodHyperparameters {
+    title = FineTuneSupervisedMethodHyperparameters
+    description = FineTuneSupervisedMethodHyperparameters
+    derivedFrom = Root
+    properties {
+        batch_size {
+          type = FineTuneDPOMethodHyperparametersBatchSize
+          description = ""
+          optional = false
+        }
+        learning_rate_multiplier {
+          type = FineTuneDPOMethodHyperparametersLearningRateMultiplier
+          description = ""
+          optional = false
+        }
+        n_epochs {
+          type = FineTuneDPOMethodHyperparametersNEpochs
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  FineTuneSupervisedMethodHyperparameters {
+    title = FineTuneSupervisedMethodHyperparameters
+    description = FineTuneSupervisedMethodHyperparameters
+    implements = openapi_server.resourceTypes.FineTuneSupervisedMethodHyperparameters
+
+  }
+}

@@ -35,6 +35,22 @@ Protected Class CreateModerationResponseResultsInnerCategoryScores
 
 	#tag Property, Flags = &h0
 		#tag Note
+			The score for the category 'illicit'.
+		#tag EndNote
+		illicit As Double
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			The score for the category 'illicit/violent'.
+		#tag EndNote
+		illicit_violent As Double
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
 			The score for the category 'self-harm'.
 		#tag EndNote
 		self_harm As Double
@@ -151,6 +167,22 @@ Protected Class CreateModerationResponseResultsInnerCategoryScores
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="harassment_threatening"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="illicit"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="illicit_violent"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

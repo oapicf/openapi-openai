@@ -26,16 +26,34 @@ class ListFilesResponseTest : ShouldSpec() {
         // uncomment below to create an instance of ListFilesResponse
         //val modelInstance = ListFilesResponse()
 
+        // to test the property ``object``
+        should("test `object`") {
+            // uncomment below to test the property
+            //modelInstance.`object` shouldBe ("TODO")
+        }
+
         // to test the property ``data``
         should("test `data`") {
             // uncomment below to test the property
             //modelInstance.`data` shouldBe ("TODO")
         }
 
-        // to test the property ``object``
-        should("test `object`") {
+        // to test the property `firstId`
+        should("test firstId") {
             // uncomment below to test the property
-            //modelInstance.`object` shouldBe ("TODO")
+            //modelInstance.firstId shouldBe ("TODO")
+        }
+
+        // to test the property `lastId`
+        should("test lastId") {
+            // uncomment below to test the property
+            //modelInstance.lastId shouldBe ("TODO")
+        }
+
+        // to test the property `hasMore`
+        should("test hasMore") {
+            // uncomment below to test the property
+            //modelInstance.hasMore shouldBe ("TODO")
         }
 
     }

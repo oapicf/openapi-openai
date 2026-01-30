@@ -11,11 +11,13 @@
     "label": "Details",
     "model": "properties",
     "children": [
+      {"model": "object" },
       {"model": "id" },
       {"model": "created_at" },
       {"model": "level" },
       {"model": "message" },
-      {"model": "object" },
+      {"model": "type" },
+      {"model": "data" },
     ]
   }]
 }

@@ -8,9 +8,9 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) expires.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires.
  */
-@ApiModel(description="Occurs when a [run step](/docs/api-reference/runs/step-object) expires.")
+@ApiModel(description="Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires.")
 
 public class RunStepStreamEventOneOf6  {
   

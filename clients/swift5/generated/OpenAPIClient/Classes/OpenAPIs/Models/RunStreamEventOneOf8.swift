@@ -10,11 +10,11 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Occurs when a [run](/docs/api-reference/runs/object) expires. */
+/** Occurs when a [run](/docs/api-reference/runs/object) is cancelled. */
 public struct RunStreamEventOneOf8: Codable, JSONEncodable, Hashable {
 
     public enum Event: String, Codable, CaseIterable {
-        case threadPeriodRunPeriodExpired = "thread.run.expired"
+        case threadPeriodRunPeriodCancelled = "thread.run.cancelled"
     }
     public var event: Event
     public var data: RunObject

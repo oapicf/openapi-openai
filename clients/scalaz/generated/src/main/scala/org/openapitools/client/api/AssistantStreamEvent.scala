@@ -12,7 +12,9 @@ import org.joda.time.DateTime
 import AssistantStreamEvent._
 
 case class AssistantStreamEvent (
-  event: Event,
+  /* Whether to enable input audio transcription. */
+  enabled: Option[Boolean],
+event: Event,
 data: Data)
 
 object AssistantStreamEvent {

@@ -9,6 +9,14 @@ Protected Class CreateChatCompletionResponseChoicesInnerLogprobs
 	#tag EndProperty
 
 
+	#tag Property, Flags = &h0
+		#tag Note
+			A list of message refusal tokens with log probability information.
+		#tag EndNote
+		refusal() As OpenAPIClient.Models.ChatCompletionTokenLogprob
+	#tag EndProperty
+
+
 
 
 
@@ -47,6 +55,14 @@ Protected Class CreateChatCompletionResponseChoicesInnerLogprobs
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="content"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="ChatCompletionTokenLogprob"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="refusal"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

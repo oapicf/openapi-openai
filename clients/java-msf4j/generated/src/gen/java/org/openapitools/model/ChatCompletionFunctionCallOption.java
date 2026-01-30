@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Specifying a particular function via &#x60;{\&quot;name\&quot;: \&quot;my_function\&quot;}&#x60; forces the model to call that function. 
  */
 @ApiModel(description = "Specifying a particular function via `{\"name\": \"my_function\"}` forces the model to call that function. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionFunctionCallOption   {
   @JsonProperty("name")
   private String name;

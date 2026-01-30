@@ -11,15 +11,21 @@ import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.ChatCompletionMessageToolCall;
+import org.openapitools.model.ChatCompletionRequestAssistantMessageAudio;
+import org.openapitools.model.ChatCompletionRequestAssistantMessageContent;
 import org.openapitools.model.ChatCompletionRequestAssistantMessageFunctionCall;
 
 /**
- * ChatCompletionRequestAssistantMessage
+ * Messages sent by the model in response to user messages. 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description = "Messages sent by the model in response to user messages. ")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestAssistantMessage   {
   @JsonProperty("content")
-  private String content;
+  private ChatCompletionRequestAssistantMessageContent content;
+
+  @JsonProperty("refusal")
+  private String refusal;
 
   /**
    * The role of the messages author, in this case `assistant`.
@@ -56,28 +62,49 @@ public class ChatCompletionRequestAssistantMessage   {
   @JsonProperty("name")
   private String name;
 
+  @JsonProperty("audio")
+  private ChatCompletionRequestAssistantMessageAudio audio;
+
   @JsonProperty("tool_calls")
   private List<@Valid ChatCompletionMessageToolCall> toolCalls = null;
 
   @JsonProperty("function_call")
   private ChatCompletionRequestAssistantMessageFunctionCall functionCall;
 
-  public ChatCompletionRequestAssistantMessage content(String content) {
+  public ChatCompletionRequestAssistantMessage content(ChatCompletionRequestAssistantMessageContent content) {
     this.content = content;
     return this;
   }
 
    /**
-   * The contents of the assistant message. Required unless `tool_calls` or `function_call` is specified. 
+   * Get content
    * @return content
   **/
-  @ApiModelProperty(value = "The contents of the assistant message. Required unless `tool_calls` or `function_call` is specified. ")
-  public String getContent() {
+  @ApiModelProperty(value = "")
+  public ChatCompletionRequestAssistantMessageContent getContent() {
     return content;
   }
 
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestAssistantMessageContent content) {
     this.content = content;
+  }
+
+  public ChatCompletionRequestAssistantMessage refusal(String refusal) {
+    this.refusal = refusal;
+    return this;
+  }
+
+   /**
+   * The refusal message by the assistant.
+   * @return refusal
+  **/
+  @ApiModelProperty(value = "The refusal message by the assistant.")
+  public String getRefusal() {
+    return refusal;
+  }
+
+  public void setRefusal(String refusal) {
+    this.refusal = refusal;
   }
 
   public ChatCompletionRequestAssistantMessage role(RoleEnum role) {
@@ -114,6 +141,24 @@ public class ChatCompletionRequestAssistantMessage   {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public ChatCompletionRequestAssistantMessage audio(ChatCompletionRequestAssistantMessageAudio audio) {
+    this.audio = audio;
+    return this;
+  }
+
+   /**
+   * Get audio
+   * @return audio
+  **/
+  @ApiModelProperty(value = "")
+  public ChatCompletionRequestAssistantMessageAudio getAudio() {
+    return audio;
+  }
+
+  public void setAudio(ChatCompletionRequestAssistantMessageAudio audio) {
+    this.audio = audio;
   }
 
   public ChatCompletionRequestAssistantMessage toolCalls(List<@Valid ChatCompletionMessageToolCall> toolCalls) {
@@ -171,15 +216,17 @@ public class ChatCompletionRequestAssistantMessage   {
     }
     ChatCompletionRequestAssistantMessage chatCompletionRequestAssistantMessage = (ChatCompletionRequestAssistantMessage) o;
     return Objects.equals(this.content, chatCompletionRequestAssistantMessage.content) &&
+        Objects.equals(this.refusal, chatCompletionRequestAssistantMessage.refusal) &&
         Objects.equals(this.role, chatCompletionRequestAssistantMessage.role) &&
         Objects.equals(this.name, chatCompletionRequestAssistantMessage.name) &&
+        Objects.equals(this.audio, chatCompletionRequestAssistantMessage.audio) &&
         Objects.equals(this.toolCalls, chatCompletionRequestAssistantMessage.toolCalls) &&
         Objects.equals(this.functionCall, chatCompletionRequestAssistantMessage.functionCall);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(content, role, name, toolCalls, functionCall);
+    return Objects.hash(content, refusal, role, name, audio, toolCalls, functionCall);
   }
 
   @Override
@@ -188,8 +235,10 @@ public class ChatCompletionRequestAssistantMessage   {
     sb.append("class ChatCompletionRequestAssistantMessage {\n");
     
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    audio: ").append(toIndentedString(audio)).append("\n");
     sb.append("    toolCalls: ").append(toIndentedString(toolCalls)).append("\n");
     sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
     sb.append("}");

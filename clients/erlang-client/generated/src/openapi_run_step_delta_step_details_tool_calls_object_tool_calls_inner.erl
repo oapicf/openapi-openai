@@ -9,7 +9,7 @@
        'id' => binary(),
        'type' := binary(),
        'code_interpreter' => openapi_run_step_delta_step_details_tool_calls_code_object_code_interpreter:openapi_run_step_delta_step_details_tool_calls_code_object_code_interpreter(),
-       'retrieval' => maps:map(),
+       'file_search' := maps:map(),
        'function' => openapi_run_step_delta_step_details_tool_calls_function_object_function:openapi_run_step_delta_step_details_tool_calls_function_object_function()
      }.
 
@@ -17,13 +17,13 @@ encode(#{ 'index' := Index,
           'id' := Id,
           'type' := Type,
           'code_interpreter' := CodeInterpreter,
-          'retrieval' := Retrieval,
+          'file_search' := FileSearch,
           'function' := Function
         }) ->
     #{ 'index' => Index,
        'id' => Id,
        'type' => Type,
        'code_interpreter' => CodeInterpreter,
-       'retrieval' => Retrieval,
+       'file_search' => FileSearch,
        'function' => Function
      }.

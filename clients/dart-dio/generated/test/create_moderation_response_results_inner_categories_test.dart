@@ -31,6 +31,18 @@ void main() {
       // TODO
     });
 
+    // Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
+    // bool illicit
+    test('to test the property `illicit`', () async {
+      // TODO
+    });
+
+    // Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+    // bool illicitSlashViolent
+    test('to test the property `illicitSlashViolent`', () async {
+      // TODO
+    });
+
     // Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
     // bool selfHarm
     test('to test the property `selfHarm`', () async {

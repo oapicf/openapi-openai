@@ -1,0 +1,51 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventInputAudioBufferSpeechStopped"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventInputAudioBufferSpeechStopped"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeServerEventInputAudioBufferSpeechStopped {
+    title = RealtimeServerEventInputAudioBufferSpeechStopped
+    description = RealtimeServerEventInputAudioBufferSpeechStopped
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "The unique ID of the server event."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;input_audio_buffer.speech_stopped&#x60;."
+          enum = ["input_audio_buffer.speech_stopped"]
+          optional = true
+        }
+        audio_end_ms {
+          type =  integer
+          description = "Milliseconds since the session started when speech stopped. This will  correspond to the end of audio sent to the model, and thus includes the  &#x60;min_silence_duration_ms&#x60; configured in the Session. "
+          optional = true
+        }
+        item_id {
+          type =  string
+          description = "The ID of the user message item that will be created."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventInputAudioBufferSpeechStopped {
+    title = RealtimeServerEventInputAudioBufferSpeechStopped
+    description = RealtimeServerEventInputAudioBufferSpeechStopped
+    implements = openapi_server.resourceTypes.RealtimeServerEventInputAudioBufferSpeechStopped
+
+  }
+}

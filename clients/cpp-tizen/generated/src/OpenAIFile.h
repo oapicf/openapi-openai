@@ -80,11 +80,11 @@ public:
 	/*! \brief Set The object type, which is always `file`.
 	 */
 	void setObject(std::string  object);
-	/*! \brief Get The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+	/*! \brief Get The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
 	 */
 	std::string getPurpose();
 
-	/*! \brief Set The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+	/*! \brief Set The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
 	 */
 	void setPurpose(std::string  purpose);
 	/*! \brief Get Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.

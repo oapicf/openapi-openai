@@ -1,0 +1,104 @@
+package apimodels;
+
+import apimodels.CreateAssistantRequestToolResourcesCodeInterpreter;
+import apimodels.ModifyThreadRequestToolResourcesFileSearch;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.*;
+import java.util.Set;
+import javax.validation.*;
+import java.util.Objects;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
+/**
+ * A set of resources that are made available to the assistant&#39;s tools in this thread. The resources are specific to the type of tool. For example, the &#x60;code_interpreter&#x60; tool requires a list of file IDs, while the &#x60;file_search&#x60; tool requires a list of vector store IDs. 
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
+public class ModifyThreadRequestToolResources   {
+  @JsonProperty("code_interpreter")
+  @Valid
+
+  private CreateAssistantRequestToolResourcesCodeInterpreter codeInterpreter;
+
+  @JsonProperty("file_search")
+  @Valid
+
+  private ModifyThreadRequestToolResourcesFileSearch fileSearch;
+
+  public ModifyThreadRequestToolResources codeInterpreter(CreateAssistantRequestToolResourcesCodeInterpreter codeInterpreter) {
+    this.codeInterpreter = codeInterpreter;
+    return this;
+  }
+
+   /**
+   * Get codeInterpreter
+   * @return codeInterpreter
+  **/
+  public CreateAssistantRequestToolResourcesCodeInterpreter getCodeInterpreter() {
+    return codeInterpreter;
+  }
+
+  public void setCodeInterpreter(CreateAssistantRequestToolResourcesCodeInterpreter codeInterpreter) {
+    this.codeInterpreter = codeInterpreter;
+  }
+
+  public ModifyThreadRequestToolResources fileSearch(ModifyThreadRequestToolResourcesFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
+    return this;
+  }
+
+   /**
+   * Get fileSearch
+   * @return fileSearch
+  **/
+  public ModifyThreadRequestToolResourcesFileSearch getFileSearch() {
+    return fileSearch;
+  }
+
+  public void setFileSearch(ModifyThreadRequestToolResourcesFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ModifyThreadRequestToolResources modifyThreadRequestToolResources = (ModifyThreadRequestToolResources) o;
+    return Objects.equals(codeInterpreter, modifyThreadRequestToolResources.codeInterpreter) &&
+        Objects.equals(fileSearch, modifyThreadRequestToolResources.fileSearch);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(codeInterpreter, fileSearch);
+  }
+
+  @SuppressWarnings("StringBufferReplaceableByString")
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class ModifyThreadRequestToolResources {\n");
+    
+    sb.append("    codeInterpreter: ").append(toIndentedString(codeInterpreter)).append("\n");
+    sb.append("    fileSearch: ").append(toIndentedString(fileSearch)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+}
+

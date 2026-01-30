@@ -17,7 +17,7 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is completed.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is completed.
  * @param event 
  * @param &#x60;data&#x60; 
  */

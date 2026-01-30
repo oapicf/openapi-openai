@@ -23,7 +23,7 @@ module ModerationsApiHandlerTestsHelper =
 
   CreateModerationBody <- WebUtility.HtmlDecode "{
   &quot;input&quot; : &quot;I want to kill them.&quot;,
-  &quot;model&quot; : &quot;text-moderation-stable&quot;
+  &quot;model&quot; : &quot;omni-moderation-2024-09-26&quot;
 }"
   CreateModerationExamples <- CreateModerationExamples.Add("application/json", CreateModerationBody)
 

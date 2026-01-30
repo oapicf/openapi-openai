@@ -1,6 +1,7 @@
 goog.provide('API.Client.ChatCompletionRequestMessageContentPartImage');
 
 /**
+ * Learn about [image inputs](/docs/guides/vision). 
  * @record
  */
 API.Client.ChatCompletionRequestMessageContentPartImage = function() {}

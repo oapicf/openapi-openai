@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.openapitools.model.ModifyThreadRequestToolResources;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -64,10 +65,14 @@ public enum ObjectEnum {
   @ApiModelProperty(required = true, value = "The Unix timestamp (in seconds) for when the thread was created.")
   private Integer createdAt;
 
+  @ApiModelProperty(required = true, value = "")
+  @Valid
+  private ModifyThreadRequestToolResources toolResources;
+
  /**
-  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
   */
-  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
   private Object metadata;
  /**
   * The identifier, which can be referenced in API endpoints.
@@ -145,7 +150,32 @@ public enum ObjectEnum {
   }
 
  /**
-  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  * Get toolResources
+  * @return toolResources
+  */
+  @JsonProperty("tool_resources")
+  @NotNull
+  public ModifyThreadRequestToolResources getToolResources() {
+    return toolResources;
+  }
+
+  /**
+   * Sets the <code>toolResources</code> property.
+   */
+ public void setToolResources(ModifyThreadRequestToolResources toolResources) {
+    this.toolResources = toolResources;
+  }
+
+  /**
+   * Sets the <code>toolResources</code> property.
+   */
+  public ThreadObject toolResources(ModifyThreadRequestToolResources toolResources) {
+    this.toolResources = toolResources;
+    return this;
+  }
+
+ /**
+  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
   * @return metadata
   */
   @JsonProperty("metadata")
@@ -182,12 +212,13 @@ public enum ObjectEnum {
     return Objects.equals(this.id, threadObject.id) &&
         Objects.equals(this._object, threadObject._object) &&
         Objects.equals(this.createdAt, threadObject.createdAt) &&
+        Objects.equals(this.toolResources, threadObject.toolResources) &&
         Objects.equals(this.metadata, threadObject.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, metadata);
+    return Objects.hash(id, _object, createdAt, toolResources, metadata);
   }
 
   @Override
@@ -198,6 +229,7 @@ public enum ObjectEnum {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

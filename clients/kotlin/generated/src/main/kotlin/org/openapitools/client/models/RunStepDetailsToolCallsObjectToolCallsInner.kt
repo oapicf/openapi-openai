@@ -17,9 +17,10 @@ package org.openapitools.client.models
 
 import org.openapitools.client.models.RunStepDetailsToolCallsCodeObject
 import org.openapitools.client.models.RunStepDetailsToolCallsCodeObjectCodeInterpreter
+import org.openapitools.client.models.RunStepDetailsToolCallsFileSearchObject
+import org.openapitools.client.models.RunStepDetailsToolCallsFileSearchObjectFileSearch
 import org.openapitools.client.models.RunStepDetailsToolCallsFunctionObject
 import org.openapitools.client.models.RunStepDetailsToolCallsFunctionObjectFunction
-import org.openapitools.client.models.RunStepDetailsToolCallsRetrievalObject
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -30,7 +31,7 @@ import com.squareup.moshi.JsonClass
  * @param id The ID of the tool call object.
  * @param type The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
  * @param codeInterpreter 
- * @param retrieval For now, this is always going to be an empty object.
+ * @param fileSearch 
  * @param function 
  */
 
@@ -48,9 +49,8 @@ data class RunStepDetailsToolCallsObjectToolCallsInner (
     @Json(name = "code_interpreter")
     val codeInterpreter: RunStepDetailsToolCallsCodeObjectCodeInterpreter,
 
-    /* For now, this is always going to be an empty object. */
-    @Json(name = "retrieval")
-    val retrieval: kotlin.Any,
+    @Json(name = "file_search")
+    val fileSearch: RunStepDetailsToolCallsFileSearchObjectFileSearch,
 
     @Json(name = "function")
     val function: RunStepDetailsToolCallsFunctionObjectFunction
@@ -60,12 +60,12 @@ data class RunStepDetailsToolCallsObjectToolCallsInner (
     /**
      * The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
      *
-     * Values: code_interpreter,retrieval,function
+     * Values: code_interpreter,file_search,function
      */
     @JsonClass(generateAdapter = false)
     enum class Type(val value: kotlin.String) {
         @Json(name = "code_interpreter") code_interpreter("code_interpreter"),
-        @Json(name = "retrieval") retrieval("retrieval"),
+        @Json(name = "file_search") file_search("file_search"),
         @Json(name = "function") function("function");
     }
 

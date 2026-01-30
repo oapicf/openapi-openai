@@ -10,28 +10,13 @@ import org.openapitools.model.OpenAIFile;
 @Canonical
 class ListFilesResponse {
     
+    String _object
+    
     List<OpenAIFile> data = new ArrayList<>()
-
-    enum ObjectEnum {
     
-        LIST("list")
+    String firstId
     
-        private final String value
+    String lastId
     
-        ObjectEnum(String value) {
-            this.value = value
-        }
-    
-        String getValue() {
-            value
-        }
-    
-        @Override
-        String toString() {
-            String.valueOf(value)
-        }
-    }
-
-    
-    ObjectEnum _object
+    Boolean hasMore
 }

@@ -15,13 +15,17 @@ public struct CreateChatCompletionResponseChoicesInnerLogprobs: Codable, JSONEnc
 
     /** A list of message content tokens with log probability information. */
     public var content: [ChatCompletionTokenLogprob]?
+    /** A list of message refusal tokens with log probability information. */
+    public var refusal: [ChatCompletionTokenLogprob]?
 
-    public init(content: [ChatCompletionTokenLogprob]?) {
+    public init(content: [ChatCompletionTokenLogprob]?, refusal: [ChatCompletionTokenLogprob]?) {
         self.content = content
+        self.refusal = refusal
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case content
+        case refusal
     }
 
     // Encodable protocol methods
@@ -29,6 +33,7 @@ public struct CreateChatCompletionResponseChoicesInnerLogprobs: Codable, JSONEnc
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(content, forKey: .content)
+        try container.encode(refusal, forKey: .refusal)
     }
 }
 

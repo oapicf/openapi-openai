@@ -27,7 +27,7 @@ OpenApiOpenAIClient.configure do |config|
 end
 
 api_instance = OpenApiOpenAIClient::ModelsApi.new
-model = 'ft:gpt-3.5-turbo:acemeco:suffix:abc123' # String | The model to delete
+model = 'ft:gpt-4o-mini:acemeco:suffix:abc123' # String | The model to delete
 
 begin
   # Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
@@ -158,7 +158,7 @@ OpenApiOpenAIClient.configure do |config|
 end
 
 api_instance = OpenApiOpenAIClient::ModelsApi.new
-model = 'gpt-3.5-turbo' # String | The ID of the model to use for this request
+model = 'gpt-4o-mini' # String | The ID of the model to use for this request
 
 begin
   # Retrieves a model instance, providing basic information about the model such as the owner and permissioning.

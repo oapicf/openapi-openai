@@ -22,13 +22,13 @@ openai_api_run_object_OBJECT_e run_object_object_FromString(char* object){
     return 0;
 }
 char* run_object_status_ToString(openai_api_run_object_STATUS_e status) {
-    char* statusArray[] =  { "NULL", "queued", "in_progress", "requires_action", "cancelling", "cancelled", "failed", "completed", "expired" };
+    char* statusArray[] =  { "NULL", "queued", "in_progress", "requires_action", "cancelling", "cancelled", "failed", "completed", "incomplete", "expired" };
     return statusArray[status];
 }
 
 openai_api_run_object_STATUS_e run_object_status_FromString(char* status){
     int stringToReturn = 0;
-    char *statusArray[] =  { "NULL", "queued", "in_progress", "requires_action", "cancelling", "cancelled", "failed", "completed", "expired" };
+    char *statusArray[] =  { "NULL", "queued", "in_progress", "requires_action", "cancelling", "cancelled", "failed", "completed", "incomplete", "expired" };
     size_t sizeofArray = sizeof(statusArray) / sizeof(statusArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(status, statusArray[stringToReturn]) == 0) {
@@ -57,14 +57,15 @@ static run_object_t *run_object_create_internal(
     char *model,
     char *instructions,
     list_t *tools,
-    list_t *file_ids,
     object_t *metadata,
     run_completion_usage_t *usage,
     double temperature,
+    double top_p,
     int max_prompt_tokens,
     int max_completion_tokens,
     truncation_object_t *truncation_strategy,
     assistants_api_tool_choice_option_t *tool_choice,
+    int parallel_tool_calls,
     assistants_api_response_format_option_t *response_format
     ) {
     run_object_t *run_object_local_var = malloc(sizeof(run_object_t));
@@ -88,14 +89,15 @@ static run_object_t *run_object_create_internal(
     run_object_local_var->model = model;
     run_object_local_var->instructions = instructions;
     run_object_local_var->tools = tools;
-    run_object_local_var->file_ids = file_ids;
     run_object_local_var->metadata = metadata;
     run_object_local_var->usage = usage;
     run_object_local_var->temperature = temperature;
+    run_object_local_var->top_p = top_p;
     run_object_local_var->max_prompt_tokens = max_prompt_tokens;
     run_object_local_var->max_completion_tokens = max_completion_tokens;
     run_object_local_var->truncation_strategy = truncation_strategy;
     run_object_local_var->tool_choice = tool_choice;
+    run_object_local_var->parallel_tool_calls = parallel_tool_calls;
     run_object_local_var->response_format = response_format;
 
     run_object_local_var->_library_owned = 1;
@@ -120,14 +122,15 @@ __attribute__((deprecated)) run_object_t *run_object_create(
     char *model,
     char *instructions,
     list_t *tools,
-    list_t *file_ids,
     object_t *metadata,
     run_completion_usage_t *usage,
     double temperature,
+    double top_p,
     int max_prompt_tokens,
     int max_completion_tokens,
     truncation_object_t *truncation_strategy,
     assistants_api_tool_choice_option_t *tool_choice,
+    int parallel_tool_calls,
     assistants_api_response_format_option_t *response_format
     ) {
     return run_object_create_internal (
@@ -148,14 +151,15 @@ __attribute__((deprecated)) run_object_t *run_object_create(
         model,
         instructions,
         tools,
-        file_ids,
         metadata,
         usage,
         temperature,
+        top_p,
         max_prompt_tokens,
         max_completion_tokens,
         truncation_strategy,
         tool_choice,
+        parallel_tool_calls,
         response_format
         );
 }
@@ -207,13 +211,6 @@ void run_object_free(run_object_t *run_object) {
         }
         list_freeList(run_object->tools);
         run_object->tools = NULL;
-    }
-    if (run_object->file_ids) {
-        list_ForEach(listEntry, run_object->file_ids) {
-            free(listEntry->data);
-        }
-        list_freeList(run_object->file_ids);
-        run_object->file_ids = NULL;
     }
     if (run_object->metadata) {
         object_free(run_object->metadata);
@@ -423,24 +420,6 @@ cJSON *run_object_convertToJSON(run_object_t *run_object) {
     }
 
 
-    // run_object->file_ids
-    if (!run_object->file_ids) {
-        goto fail;
-    }
-    cJSON *file_ids = cJSON_AddArrayToObject(item, "file_ids");
-    if(file_ids == NULL) {
-        goto fail; //primitive container
-    }
-
-    listEntry_t *file_idsListEntry;
-    list_ForEach(file_idsListEntry, run_object->file_ids) {
-    if(cJSON_AddStringToObject(file_ids, "", file_idsListEntry->data) == NULL)
-    {
-        goto fail;
-    }
-    }
-
-
     // run_object->metadata
     if (!run_object->metadata) {
         goto fail;
@@ -472,6 +451,14 @@ cJSON *run_object_convertToJSON(run_object_t *run_object) {
     // run_object->temperature
     if(run_object->temperature) {
     if(cJSON_AddNumberToObject(item, "temperature", run_object->temperature) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // run_object->top_p
+    if(run_object->top_p) {
+    if(cJSON_AddNumberToObject(item, "top_p", run_object->top_p) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -523,6 +510,15 @@ cJSON *run_object_convertToJSON(run_object_t *run_object) {
     }
 
 
+    // run_object->parallel_tool_calls
+    if (!run_object->parallel_tool_calls) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "parallel_tool_calls", run_object->parallel_tool_calls) == NULL) {
+    goto fail; //Bool
+    }
+
+
     // run_object->response_format
     if (!run_object->response_format) {
         goto fail;
@@ -559,9 +555,6 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
 
     // define the local list for run_object->tools
     list_t *toolsList = NULL;
-
-    // define the local list for run_object->file_ids
-    list_t *file_idsList = NULL;
 
     // define the local variable for run_object->usage
     run_completion_usage_t *usage_local_nonprim = NULL;
@@ -837,31 +830,6 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
         list_addElement(toolsList, toolsItem);
     }
 
-    // run_object->file_ids
-    cJSON *file_ids = cJSON_GetObjectItemCaseSensitive(run_objectJSON, "file_ids");
-    if (cJSON_IsNull(file_ids)) {
-        file_ids = NULL;
-    }
-    if (!file_ids) {
-        goto end;
-    }
-
-    
-    cJSON *file_ids_local = NULL;
-    if(!cJSON_IsArray(file_ids)) {
-        goto end;//primitive container
-    }
-    file_idsList = list_createList();
-
-    cJSON_ArrayForEach(file_ids_local, file_ids)
-    {
-        if(!cJSON_IsString(file_ids_local))
-        {
-            goto end;
-        }
-        list_addElement(file_idsList , strdup(file_ids_local->valuestring));
-    }
-
     // run_object->metadata
     cJSON *metadata = cJSON_GetObjectItemCaseSensitive(run_objectJSON, "metadata");
     if (cJSON_IsNull(metadata)) {
@@ -894,6 +862,18 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
     }
     if (temperature) { 
     if(!cJSON_IsNumber(temperature))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // run_object->top_p
+    cJSON *top_p = cJSON_GetObjectItemCaseSensitive(run_objectJSON, "top_p");
+    if (cJSON_IsNull(top_p)) {
+        top_p = NULL;
+    }
+    if (top_p) { 
+    if(!cJSON_IsNumber(top_p))
     {
     goto end; //Numeric
     }
@@ -953,6 +933,21 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
     
     tool_choice_local_nonprim = assistants_api_tool_choice_option_parseFromJSON(tool_choice); //nonprimitive
 
+    // run_object->parallel_tool_calls
+    cJSON *parallel_tool_calls = cJSON_GetObjectItemCaseSensitive(run_objectJSON, "parallel_tool_calls");
+    if (cJSON_IsNull(parallel_tool_calls)) {
+        parallel_tool_calls = NULL;
+    }
+    if (!parallel_tool_calls) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(parallel_tool_calls))
+    {
+    goto end; //Bool
+    }
+
     // run_object->response_format
     cJSON *response_format = cJSON_GetObjectItemCaseSensitive(run_objectJSON, "response_format");
     if (cJSON_IsNull(response_format)) {
@@ -984,14 +979,15 @@ run_object_t *run_object_parseFromJSON(cJSON *run_objectJSON){
         strdup(model->valuestring),
         strdup(instructions->valuestring),
         toolsList,
-        file_idsList,
         metadata_local_object,
         usage_local_nonprim,
         temperature ? temperature->valuedouble : 0,
+        top_p ? top_p->valuedouble : 0,
         max_prompt_tokens->valuedouble,
         max_completion_tokens->valuedouble,
         truncation_strategy_local_nonprim,
         tool_choice_local_nonprim,
+        parallel_tool_calls->valueint,
         response_format_local_nonprim
         );
 
@@ -1017,15 +1013,6 @@ end:
         }
         list_freeList(toolsList);
         toolsList = NULL;
-    }
-    if (file_idsList) {
-        listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, file_idsList) {
-            free(listEntry->data);
-            listEntry->data = NULL;
-        }
-        list_freeList(file_idsList);
-        file_idsList = NULL;
     }
     if (usage_local_nonprim) {
         run_completion_usage_free(usage_local_nonprim);

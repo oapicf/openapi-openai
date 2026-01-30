@@ -27,7 +27,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("CreateRunRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateRunRequest   {
   private String assistantId;
   private CreateRunRequestModel model;
@@ -37,11 +37,13 @@ public class CreateRunRequest   {
   private @Valid List<AssistantObjectToolsInner> tools;
   private Object metadata;
   private BigDecimal temperature = new BigDecimal("1");
+  private BigDecimal topP = new BigDecimal("1");
   private Boolean stream;
   private Integer maxPromptTokens;
   private Integer maxCompletionTokens;
   private TruncationObject truncationStrategy;
   private AssistantsApiToolChoiceOption toolChoice;
+  private Boolean parallelToolCalls = true;
   private AssistantsApiResponseFormatOption responseFormat;
 
   public CreateRunRequest() {
@@ -206,7 +208,7 @@ public class CreateRunRequest   {
     return this;
   }
   /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    **/
   public CreateRunRequest metadata(Object metadata) {
     this.metadata = metadata;
@@ -214,7 +216,7 @@ public class CreateRunRequest   {
   }
 
   
-  @ApiModelProperty(value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+  @ApiModelProperty(value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
   @JsonProperty("metadata")
   public Object getMetadata() {
     return metadata;
@@ -248,6 +250,28 @@ public class CreateRunRequest   {
   }
 
   /**
+   * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+   * minimum: 0
+   * maximum: 1
+   **/
+  public CreateRunRequest topP(BigDecimal topP) {
+    this.topP = topP;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "1", value = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ")
+  @JsonProperty("top_p")
+  @Valid  @DecimalMin("0") @DecimalMax("1")public BigDecimal getTopP() {
+    return topP;
+  }
+
+  @JsonProperty("top_p")
+  public void setTopP(BigDecimal topP) {
+    this.topP = topP;
+  }
+
+  /**
    * If &#x60;true&#x60;, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a &#x60;data: [DONE]&#x60; message. 
    **/
   public CreateRunRequest stream(Boolean stream) {
@@ -268,7 +292,7 @@ public class CreateRunRequest   {
   }
 
   /**
-   * The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status &#x60;complete&#x60;. See &#x60;incomplete_details&#x60; for more info. 
+   * The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status &#x60;incomplete&#x60;. See &#x60;incomplete_details&#x60; for more info. 
    * minimum: 256
    **/
   public CreateRunRequest maxPromptTokens(Integer maxPromptTokens) {
@@ -277,7 +301,7 @@ public class CreateRunRequest   {
   }
 
   
-  @ApiModelProperty(value = "The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. ")
+  @ApiModelProperty(value = "The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. ")
   @JsonProperty("max_prompt_tokens")
    @Min(256)public Integer getMaxPromptTokens() {
     return maxPromptTokens;
@@ -289,7 +313,7 @@ public class CreateRunRequest   {
   }
 
   /**
-   * The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status &#x60;complete&#x60;. See &#x60;incomplete_details&#x60; for more info. 
+   * The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status &#x60;incomplete&#x60;. See &#x60;incomplete_details&#x60; for more info. 
    * minimum: 256
    **/
   public CreateRunRequest maxCompletionTokens(Integer maxCompletionTokens) {
@@ -298,7 +322,7 @@ public class CreateRunRequest   {
   }
 
   
-  @ApiModelProperty(value = "The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. ")
+  @ApiModelProperty(value = "The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. ")
   @JsonProperty("max_completion_tokens")
    @Min(256)public Integer getMaxCompletionTokens() {
     return maxCompletionTokens;
@@ -348,6 +372,26 @@ public class CreateRunRequest   {
   }
 
   /**
+   * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+   **/
+  public CreateRunRequest parallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.")
+  @JsonProperty("parallel_tool_calls")
+  public Boolean getParallelToolCalls() {
+    return parallelToolCalls;
+  }
+
+  @JsonProperty("parallel_tool_calls")
+  public void setParallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+  }
+
+  /**
    **/
   public CreateRunRequest responseFormat(AssistantsApiResponseFormatOption responseFormat) {
     this.responseFormat = responseFormat;
@@ -384,17 +428,19 @@ public class CreateRunRequest   {
         Objects.equals(this.tools, createRunRequest.tools) &&
         Objects.equals(this.metadata, createRunRequest.metadata) &&
         Objects.equals(this.temperature, createRunRequest.temperature) &&
+        Objects.equals(this.topP, createRunRequest.topP) &&
         Objects.equals(this.stream, createRunRequest.stream) &&
         Objects.equals(this.maxPromptTokens, createRunRequest.maxPromptTokens) &&
         Objects.equals(this.maxCompletionTokens, createRunRequest.maxCompletionTokens) &&
         Objects.equals(this.truncationStrategy, createRunRequest.truncationStrategy) &&
         Objects.equals(this.toolChoice, createRunRequest.toolChoice) &&
+        Objects.equals(this.parallelToolCalls, createRunRequest.parallelToolCalls) &&
         Objects.equals(this.responseFormat, createRunRequest.responseFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(assistantId, model, instructions, additionalInstructions, additionalMessages, tools, metadata, temperature, stream, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, responseFormat);
+    return Objects.hash(assistantId, model, instructions, additionalInstructions, additionalMessages, tools, metadata, temperature, topP, stream, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, parallelToolCalls, responseFormat);
   }
 
   @Override
@@ -410,11 +456,13 @@ public class CreateRunRequest   {
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
     sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
     sb.append("    maxPromptTokens: ").append(toIndentedString(maxPromptTokens)).append("\n");
     sb.append("    maxCompletionTokens: ").append(toIndentedString(maxCompletionTokens)).append("\n");
     sb.append("    truncationStrategy: ").append(toIndentedString(truncationStrategy)).append("\n");
     sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
+    sb.append("    parallelToolCalls: ").append(toIndentedString(parallelToolCalls)).append("\n");
     sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();

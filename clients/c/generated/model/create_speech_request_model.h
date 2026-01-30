@@ -1,7 +1,7 @@
 /*
  * create_speech_request_model.h
  *
- * One of the available [TTS models](/docs/models/tts): &#x60;tts-1&#x60; or &#x60;tts-1-hd&#x60; 
+ * One of the available [TTS models](/docs/models#tts): &#x60;tts-1&#x60; or &#x60;tts-1-hd&#x60; 
  */
 
 #ifndef _create_speech_request_model_H_

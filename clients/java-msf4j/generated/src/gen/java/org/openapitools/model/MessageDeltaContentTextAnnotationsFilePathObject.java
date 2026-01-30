@@ -12,7 +12,7 @@ import org.openapitools.model.MessageDeltaContentTextAnnotationsFilePathObjectFi
  * A URL for the file that&#39;s generated when the assistant used the &#x60;code_interpreter&#x60; tool to generate a file.
  */
 @ApiModel(description = "A URL for the file that's generated when the assistant used the `code_interpreter` tool to generate a file.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageDeltaContentTextAnnotationsFilePathObject   {
   @JsonProperty("index")
   private Integer index;

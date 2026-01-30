@@ -1,0 +1,28 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "MessageContentImageUrlObjectImageUrl",
+  "fields": [
+    {
+      "name": "url",
+      "type": "model.URI",
+      "doc": "The external URL of the image, must be a supported image types: jpeg, jpg, png, gif, webp."
+    },
+    {
+      "name": "detail",
+      "type": [{
+        "type": "enum",
+        "name": "MessageContentImageUrlObjectImageUrl_detail",
+        "symbols": [
+          "auto",
+          "low",
+          "high"
+        ]
+      }, "null"],
+      "doc": "Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`. Default value is `auto`",
+      "default": DetailEnum.AUTO
+    }
+  ]
+
+}

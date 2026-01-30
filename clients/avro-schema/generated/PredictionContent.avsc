@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Static predicted output content, such as the content of a text file that is being regenerated. ",
+  "name": "PredictionContent",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "PredictionContent_type",
+        "symbols": [
+          "content"
+        ]
+      },
+      "doc": "The type of the predicted content you want to provide. This type is currently always `content`. "
+    },
+    {
+      "name": "content",
+      "type": "model.PredictionContentContent",
+      "doc": ""
+    }
+  ]
+
+}

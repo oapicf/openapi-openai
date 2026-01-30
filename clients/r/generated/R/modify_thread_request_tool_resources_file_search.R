@@ -1,0 +1,166 @@
+#' Create a new ModifyThreadRequestToolResourcesFileSearch
+#'
+#' @description
+#' ModifyThreadRequestToolResourcesFileSearch Class
+#'
+#' @docType class
+#' @title ModifyThreadRequestToolResourcesFileSearch
+#' @description ModifyThreadRequestToolResourcesFileSearch Class
+#' @format An \code{R6Class} generator object
+#' @field vector_store_ids The [vector store](/docs/api-reference/vector-stores/object) attached to this thread. There can be a maximum of 1 vector store attached to the thread. list(character) [optional]
+#' @importFrom R6 R6Class
+#' @importFrom jsonlite fromJSON toJSON
+#' @export
+ModifyThreadRequestToolResourcesFileSearch <- R6::R6Class(
+  "ModifyThreadRequestToolResourcesFileSearch",
+  public = list(
+    `vector_store_ids` = NULL,
+
+    #' @description
+    #' Initialize a new ModifyThreadRequestToolResourcesFileSearch class.
+    #'
+    #' @param vector_store_ids The [vector store](/docs/api-reference/vector-stores/object) attached to this thread. There can be a maximum of 1 vector store attached to the thread.
+    #' @param ... Other optional arguments.
+    initialize = function(`vector_store_ids` = NULL, ...) {
+      if (!is.null(`vector_store_ids`)) {
+        stopifnot(is.vector(`vector_store_ids`), length(`vector_store_ids`) != 0)
+        sapply(`vector_store_ids`, function(x) stopifnot(is.character(x)))
+        self$`vector_store_ids` <- `vector_store_ids`
+      }
+    },
+
+    #' @description
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
+    toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return ModifyThreadRequestToolResourcesFileSearch as a base R list.
+    #' @examples
+    #' # convert array of ModifyThreadRequestToolResourcesFileSearch (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert ModifyThreadRequestToolResourcesFileSearch to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
+      ModifyThreadRequestToolResourcesFileSearchObject <- list()
+      if (!is.null(self$`vector_store_ids`)) {
+        ModifyThreadRequestToolResourcesFileSearchObject[["vector_store_ids"]] <-
+          self$`vector_store_ids`
+      }
+      return(ModifyThreadRequestToolResourcesFileSearchObject)
+    },
+
+    #' @description
+    #' Deserialize JSON string into an instance of ModifyThreadRequestToolResourcesFileSearch
+    #'
+    #' @param input_json the JSON input
+    #' @return the instance of ModifyThreadRequestToolResourcesFileSearch
+    fromJSON = function(input_json) {
+      this_object <- jsonlite::fromJSON(input_json)
+      if (!is.null(this_object$`vector_store_ids`)) {
+        self$`vector_store_ids` <- ApiClient$new()$deserializeObj(this_object$`vector_store_ids`, "array[character]", loadNamespace("openapi"))
+      }
+      self
+    },
+
+    #' @description
+    #' To JSON String
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
+    #' @return ModifyThreadRequestToolResourcesFileSearch in JSON format
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
+    },
+
+    #' @description
+    #' Deserialize JSON string into an instance of ModifyThreadRequestToolResourcesFileSearch
+    #'
+    #' @param input_json the JSON input
+    #' @return the instance of ModifyThreadRequestToolResourcesFileSearch
+    fromJSONString = function(input_json) {
+      this_object <- jsonlite::fromJSON(input_json)
+      self$`vector_store_ids` <- ApiClient$new()$deserializeObj(this_object$`vector_store_ids`, "array[character]", loadNamespace("openapi"))
+      self
+    },
+
+    #' @description
+    #' Validate JSON input with respect to ModifyThreadRequestToolResourcesFileSearch and throw an exception if invalid
+    #'
+    #' @param input the JSON input
+    validateJSON = function(input) {
+      input_json <- jsonlite::fromJSON(input)
+    },
+
+    #' @description
+    #' To string (JSON format)
+    #'
+    #' @return String representation of ModifyThreadRequestToolResourcesFileSearch
+    toString = function() {
+      self$toJSONString()
+    },
+
+    #' @description
+    #' Return true if the values in all fields are valid.
+    #'
+    #' @return true if the values in all fields are valid.
+    isValid = function() {
+      if (length(self$`vector_store_ids`) > 1) {
+        return(FALSE)
+      }
+
+      TRUE
+    },
+
+    #' @description
+    #' Return a list of invalid fields (if any).
+    #'
+    #' @return A list of invalid fields (if any).
+    getInvalidFields = function() {
+      invalid_fields <- list()
+      if (length(self$`vector_store_ids`) > 1) {
+        invalid_fields["vector_store_ids"] <- "Invalid length for `vector_store_ids`, number of items must be less than or equal to 1."
+      }
+
+      invalid_fields
+    },
+
+    #' @description
+    #' Print the object
+    print = function() {
+      print(jsonlite::prettify(self$toJSONString()))
+      invisible(self)
+    }
+  ),
+  # Lock the class to prevent modifications to the method or field
+  lock_class = TRUE
+)
+## Uncomment below to unlock the class to allow modifications of the method or field
+# ModifyThreadRequestToolResourcesFileSearch$unlock()
+#
+## Below is an example to define the print function
+# ModifyThreadRequestToolResourcesFileSearch$set("public", "print", function(...) {
+#   print(jsonlite::prettify(self$toJSONString()))
+#   invisible(self)
+# })
+## Uncomment below to lock the class to prevent modifications to the method or field
+# ModifyThreadRequestToolResourcesFileSearch$lock()
+

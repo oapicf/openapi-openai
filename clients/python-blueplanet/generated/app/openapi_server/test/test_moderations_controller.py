@@ -16,9 +16,9 @@ class TestModerationsController(BaseTestCase):
     def test_create_moderation(self):
         """Test case for create_moderation
 
-        Classifies if text is potentially harmful.
+        Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
         """
-        body = {"input":"I want to kill them.","model":"text-moderation-stable"}
+        body = {"input":"I want to kill them.","model":"omni-moderation-2024-09-26"}
         response = self.client.open(
             '/v1/moderations',
             method='POST',

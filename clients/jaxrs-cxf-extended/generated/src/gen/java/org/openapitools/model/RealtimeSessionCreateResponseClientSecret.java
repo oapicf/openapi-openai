@@ -1,0 +1,119 @@
+package org.openapitools.model;
+
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
+
+import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
+/**
+ * Ephemeral key returned by the API.
+ */
+@ApiModel(description="Ephemeral key returned by the API.")
+
+public class RealtimeSessionCreateResponseClientSecret  {
+  
+ /**
+  * Ephemeral key usable in client environments to authenticate connections to the Realtime API. Use this in client-side environments rather than a standard API token, which should only be used server-side. 
+  */
+  @ApiModelProperty(value = "Ephemeral key usable in client environments to authenticate connections to the Realtime API. Use this in client-side environments rather than a standard API token, which should only be used server-side. ")
+  private String value;
+
+ /**
+  * Timestamp for when the token expires. Currently, all tokens expire after one minute. 
+  */
+  @ApiModelProperty(value = "Timestamp for when the token expires. Currently, all tokens expire after one minute. ")
+  private Integer expiresAt;
+ /**
+  * Ephemeral key usable in client environments to authenticate connections to the Realtime API. Use this in client-side environments rather than a standard API token, which should only be used server-side. 
+  * @return value
+  */
+  @JsonProperty("value")
+  public String getValue() {
+    return value;
+  }
+
+  /**
+   * Sets the <code>value</code> property.
+   */
+ public void setValue(String value) {
+    this.value = value;
+  }
+
+  /**
+   * Sets the <code>value</code> property.
+   */
+  public RealtimeSessionCreateResponseClientSecret value(String value) {
+    this.value = value;
+    return this;
+  }
+
+ /**
+  * Timestamp for when the token expires. Currently, all tokens expire after one minute. 
+  * @return expiresAt
+  */
+  @JsonProperty("expires_at")
+  public Integer getExpiresAt() {
+    return expiresAt;
+  }
+
+  /**
+   * Sets the <code>expiresAt</code> property.
+   */
+ public void setExpiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+  }
+
+  /**
+   * Sets the <code>expiresAt</code> property.
+   */
+  public RealtimeSessionCreateResponseClientSecret expiresAt(Integer expiresAt) {
+    this.expiresAt = expiresAt;
+    return this;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    RealtimeSessionCreateResponseClientSecret realtimeSessionCreateResponseClientSecret = (RealtimeSessionCreateResponseClientSecret) o;
+    return Objects.equals(this.value, realtimeSessionCreateResponseClientSecret.value) &&
+        Objects.equals(this.expiresAt, realtimeSessionCreateResponseClientSecret.expiresAt);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(value, expiresAt);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class RealtimeSessionCreateResponseClientSecret {\n");
+    
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private static String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+}
+

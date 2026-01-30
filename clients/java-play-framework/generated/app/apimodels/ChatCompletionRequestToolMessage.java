@@ -1,5 +1,6 @@
 package apimodels;
 
+import apimodels.ChatCompletionRequestToolMessageContent;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
@@ -9,7 +10,7 @@ import javax.validation.Valid;
 /**
  * ChatCompletionRequestToolMessage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class ChatCompletionRequestToolMessage   {
   /**
@@ -48,8 +49,9 @@ public class ChatCompletionRequestToolMessage   {
 
   @JsonProperty("content")
   @NotNull
+@Valid
 
-  private String content;
+  private ChatCompletionRequestToolMessageContent content;
 
   @JsonProperty("tool_call_id")
   @NotNull
@@ -73,20 +75,20 @@ public class ChatCompletionRequestToolMessage   {
     this.role = role;
   }
 
-  public ChatCompletionRequestToolMessage content(String content) {
+  public ChatCompletionRequestToolMessage content(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
     return this;
   }
 
    /**
-   * The contents of the tool message.
+   * Get content
    * @return content
   **/
-  public String getContent() {
+  public ChatCompletionRequestToolMessageContent getContent() {
     return content;
   }
 
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
   }
 

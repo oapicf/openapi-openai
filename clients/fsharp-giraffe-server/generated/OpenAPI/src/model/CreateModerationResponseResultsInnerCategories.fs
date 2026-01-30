@@ -13,6 +13,8 @@ module CreateModerationResponseResultsInnerCategories =
     HateThreatening : bool;
     Harassment : bool;
     HarassmentThreatening : bool;
+    Illicit : bool;
+    IllicitViolent : bool;
     SelfHarm : bool;
     SelfHarmIntent : bool;
     SelfHarmInstructions : bool;

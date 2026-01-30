@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -14,7 +14,7 @@ package openapi
 
 
 
-// RunStreamEventOneOf6 - Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.
+// RunStreamEventOneOf6 - Occurs when a [run](/docs/api-reference/runs/object) fails.
 type RunStreamEventOneOf6 struct {
 
 	Event string `json:"event"`

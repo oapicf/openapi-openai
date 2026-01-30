@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"content": @"content" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"content": @"content", @"refusal": @"refusal" }];
 }
 
 /**

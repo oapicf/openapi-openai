@@ -37,7 +37,7 @@ test_that("echo", {
 
 test_that("frequency_penalty", {
   # tests for the property `frequency_penalty` (numeric)
-  # Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+  # Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`frequency_penalty`, "EXPECTED_RESULT")
@@ -77,7 +77,7 @@ test_that("n", {
 
 test_that("presence_penalty", {
   # tests for the property `presence_penalty` (numeric)
-  # Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+  # Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`presence_penalty`, "EXPECTED_RESULT")
@@ -106,6 +106,13 @@ test_that("stream", {
   #expect_equal(model.instance$`stream`, "EXPECTED_RESULT")
 })
 
+test_that("stream_options", {
+  # tests for the property `stream_options` (ChatCompletionStreamOptions)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`stream_options`, "EXPECTED_RESULT")
+})
+
 test_that("suffix", {
   # tests for the property `suffix` (character)
   # The suffix that comes after a completion of inserted text.  This parameter is only supported for &#x60;gpt-3.5-turbo-instruct&#x60;. 
@@ -132,7 +139,7 @@ test_that("top_p", {
 
 test_that("user", {
   # tests for the property `user` (character)
-  # A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+  # A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`user`, "EXPECTED_RESULT")

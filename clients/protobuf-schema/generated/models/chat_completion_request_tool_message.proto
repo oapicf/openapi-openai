@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -14,6 +14,7 @@ syntax = "proto3";
 
 package openapitools;
 
+import public "models/chat_completion_request_tool_message_content.proto";
 
 message ChatCompletionRequestToolMessage {
 
@@ -24,8 +25,7 @@ message ChatCompletionRequestToolMessage {
 
   Role role = 3506294;
 
-  // The contents of the tool message.
-  string content = 414659706;
+  ChatCompletionRequestToolMessageContent content = 414659706;
 
   // Tool call that this message is responding to.
   string tool_call_id = 295856886;

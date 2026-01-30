@@ -1,0 +1,29 @@
+# RealtimeSessionCreateRequestTurnDetection
+
+Configuration for turn detection. Can be set to `null` to turn off. Server  VAD means that the model will detect the start and end of speech based on  audio volume and respond at the end of user speech. 
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**type** | **string** | Type of turn detection, only &#x60;server_vad&#x60; is currently supported.  | [optional] [default to undefined]
+**threshold** | **number** | Activation threshold for VAD (0.0 to 1.0), this defaults to 0.5. A  higher threshold will require louder audio to activate the model, and  thus might perform better in noisy environments.  | [optional] [default to undefined]
+**prefix_padding_ms** | **number** | Amount of audio to include before the VAD detected speech (in  milliseconds). Defaults to 300ms.  | [optional] [default to undefined]
+**silence_duration_ms** | **number** | Duration of silence to detect speech stop (in milliseconds). Defaults  to 500ms. With shorter values the model will respond more quickly,  but may jump in on short pauses from the user.  | [optional] [default to undefined]
+**create_response** | **boolean** | Whether or not to automatically generate a response when VAD is enabled. &#x60;true&#x60; by default.  | [optional] [default to true]
+
+## Example
+
+```typescript
+import { RealtimeSessionCreateRequestTurnDetection } from './api';
+
+const instance: RealtimeSessionCreateRequestTurnDetection = {
+    type,
+    threshold,
+    prefix_padding_ms,
+    silence_duration_ms,
+    create_response,
+};
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

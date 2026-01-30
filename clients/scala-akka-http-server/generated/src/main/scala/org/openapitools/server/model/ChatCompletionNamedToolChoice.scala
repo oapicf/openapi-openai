@@ -9,6 +9,6 @@ package org.openapitools.server.model
 */
 final case class ChatCompletionNamedToolChoice (
   `type`: String,
-  function: ChatCompletionNamedToolChoiceFunction
+  function: AssistantsNamedToolChoiceFunction
 )
 

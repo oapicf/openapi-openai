@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -29,8 +29,8 @@ func NewFilesAPIService() *FilesAPIService {
 	return &FilesAPIService{}
 }
 
-// ListFiles - Returns a list of files that belong to the user&#39;s organization.
-func (s *FilesAPIService) ListFiles(ctx context.Context, purpose string) (ImplResponse, error) {
+// ListFiles - Returns a list of files.
+func (s *FilesAPIService) ListFiles(ctx context.Context, purpose string, limit int32, order string, after string) (ImplResponse, error) {
 	// TODO - update ListFiles with the required logic for this service method.
 	// Add api_files_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -40,7 +40,7 @@ func (s *FilesAPIService) ListFiles(ctx context.Context, purpose string) (ImplRe
 	return Response(http.StatusNotImplemented, nil), errors.New("ListFiles method not implemented")
 }
 
-// CreateFile - Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports &#x60;.jsonl&#x60; files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+// CreateFile - Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
 func (s *FilesAPIService) CreateFile(ctx context.Context, file *os.File, purpose string) (ImplResponse, error) {
 	// TODO - update CreateFile with the required logic for this service method.
 	// Add api_files_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.

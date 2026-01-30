@@ -1,0 +1,17 @@
+# WWW::OpenAPIClient::Object::RealtimeClientEventSessionUpdate
+
+## Load the model package
+```perl
+use WWW::OpenAPIClient::Object::RealtimeClientEventSessionUpdate;
+```
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**event_id** | **string** | Optional client-generated ID used to identify this event. | [optional] 
+**type** | **string** | The event type, must be &#x60;session.update&#x60;. | 
+**session** | [**RealtimeSessionCreateRequest**](RealtimeSessionCreateRequest.md) |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

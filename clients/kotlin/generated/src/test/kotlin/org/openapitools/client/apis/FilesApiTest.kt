@@ -32,7 +32,7 @@ class FilesApiTest : ShouldSpec() {
         should("test createFile") {
             // uncomment below to test createFile
             //val file : java.io.File = BINARY_DATA_HERE // java.io.File | The File object (not file name) to be uploaded. 
-            //val purpose : kotlin.String = purpose_example // kotlin.String | The intended purpose of the uploaded file.  Use \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. 
+            //val purpose : kotlin.String = purpose_example // kotlin.String | The intended purpose of the uploaded file.  Use \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\"vision\\\" for Assistants image file inputs, \\\"batch\\\" for [Batch API](/docs/guides/batch), and \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning). 
             //val result : OpenAIFile = apiInstance.createFile(file, purpose)
             //result shouldBe ("TODO")
         }
@@ -57,7 +57,10 @@ class FilesApiTest : ShouldSpec() {
         should("test listFiles") {
             // uncomment below to test listFiles
             //val purpose : kotlin.String = purpose_example // kotlin.String | Only return files with the given purpose.
-            //val result : ListFilesResponse = apiInstance.listFiles(purpose)
+            //val limit : kotlin.Int = 56 // kotlin.Int | A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. 
+            //val order : kotlin.String = order_example // kotlin.String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
+            //val after : kotlin.String = after_example // kotlin.String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
+            //val result : ListFilesResponse = apiInstance.listFiles(purpose, limit, order, after)
             //result shouldBe ("TODO")
         }
 

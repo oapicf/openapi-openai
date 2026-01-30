@@ -5,7 +5,7 @@ import io.finch.circe._
 import io.circe.generic.semiauto._
 import io.circe.java8.time._
 import org.openapitools._
-import org.openapitools.models.ChatCompletionRequestMessageContentPart
+import org.openapitools.models.ChatCompletionRequestUserMessageContentPart
 
 /**
  * The contents of the user message. 

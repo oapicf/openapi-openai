@@ -11,6 +11,15 @@ use Articus\DataTransfer\Annotation as DTA;
 class FineTuningJobEvent
 {
     /**
+     * The object type, which is always \&quot;fine_tuning.job.event\&quot;.
+     * @DTA\Data(field="object")
+     * @DTA\Validator(name="Scalar", options={"type":"string"})
+     * @var string|null
+     */
+    public $object;
+
+    /**
+     * The object identifier.
      * @DTA\Data(field="id")
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      * @var string|null
@@ -18,6 +27,7 @@ class FineTuningJobEvent
     public $id;
 
     /**
+     * The Unix timestamp (in seconds) for when the fine-tuning job was created.
      * @DTA\Data(field="created_at")
      * @DTA\Validator(name="Scalar", options={"type":"int"})
      * @var int|null
@@ -25,6 +35,7 @@ class FineTuningJobEvent
     public $created_at;
 
     /**
+     * The log level of the event.
      * @DTA\Data(field="level")
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      * @var string|null
@@ -32,6 +43,7 @@ class FineTuningJobEvent
     public $level;
 
     /**
+     * The message of the event.
      * @DTA\Data(field="message")
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      * @var string|null
@@ -39,10 +51,19 @@ class FineTuningJobEvent
     public $message;
 
     /**
-     * @DTA\Data(field="object")
+     * The type of event.
+     * @DTA\Data(field="type", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      * @var string|null
      */
-    public $object;
+    public $type;
+
+    /**
+     * The data associated with the event.
+     * @DTA\Data(field="data", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"object"})
+     * @var object|null
+     */
+    public $data;
 
 }

@@ -14,24 +14,23 @@ test_that("role", {
 })
 
 test_that("content", {
-  # tests for the property `content` (character)
-  # The content of the message.
+  # tests for the property `content` (CreateMessageRequestContent)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`content`, "EXPECTED_RESULT")
 })
 
-test_that("file_ids", {
-  # tests for the property `file_ids` (array[character])
-  # A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like &#x60;retrieval&#x60; and &#x60;code_interpreter&#x60; that can access and use files.
+test_that("attachments", {
+  # tests for the property `attachments` (array[CreateMessageRequestAttachmentsInner])
+  # A list of files attached to the message, and the tools they should be added to.
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`file_ids`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`attachments`, "EXPECTED_RESULT")
 })
 
 test_that("metadata", {
   # tests for the property `metadata` (object)
-  # Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  # Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`metadata`, "EXPECTED_RESULT")

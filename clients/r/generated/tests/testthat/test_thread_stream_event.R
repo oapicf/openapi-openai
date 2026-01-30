@@ -5,6 +5,14 @@ context("Test ThreadStreamEvent")
 
 model_instance <- ThreadStreamEvent$new()
 
+test_that("enabled", {
+  # tests for the property `enabled` (character)
+  # Whether to enable input audio transcription.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`enabled`, "EXPECTED_RESULT")
+})
+
 test_that("event", {
   # tests for the property `event` (character)
 

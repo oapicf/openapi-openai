@@ -13,6 +13,8 @@ module CreateModerationResponseResultsInnerCategoryScores =
     HateThreatening : decimal;
     Harassment : decimal;
     HarassmentThreatening : decimal;
+    Illicit : decimal;
+    IllicitViolent : decimal;
     SelfHarm : decimal;
     SelfHarmIntent : decimal;
     SelfHarmInstructions : decimal;

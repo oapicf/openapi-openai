@@ -3,7 +3,9 @@
             [spec-tools.data-spec :as ds]
             [open-ai-api.specs.create-assistant-request-model :refer :all]
             [open-ai-api.specs.assistant-object-tools-inner :refer :all]
+            [open-ai-api.specs.create-assistant-request-tool-resources :refer :all]
             [open-ai-api.specs. :refer :all]
+            [open-ai-api.specs.assistants-api-response-format-option :refer :all]
             )
   (:import (java.io File)))
 
@@ -15,8 +17,11 @@
    (ds/opt :description) string?
    (ds/opt :instructions) string?
    (ds/opt :tools) (s/coll-of assistant-object-tools-inner-spec)
-   (ds/opt :file_ids) (s/coll-of string?)
+   (ds/opt :tool_resources) create-assistant-request-tool-resources-spec
    (ds/opt :metadata) any?
+   (ds/opt :temperature) float?
+   (ds/opt :top_p) float?
+   (ds/opt :response_format) assistants-api-response-format-option-spec
    })
 
 (def create-assistant-request-spec

@@ -1,0 +1,30 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeSessionModel"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeSessionModel"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeSessionModel {
+    title = RealtimeSessionModel
+    description = RealtimeSessionModel
+    derivedFrom = Root
+    properties {
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeSessionModel {
+    title = RealtimeSessionModel
+    description = RealtimeSessionModel
+    implements = openapi_server.resourceTypes.RealtimeSessionModel
+
+  }
+}

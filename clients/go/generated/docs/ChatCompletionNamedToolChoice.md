@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** | The type of the tool. Currently, only &#x60;function&#x60; is supported. | 
-**Function** | [**ChatCompletionNamedToolChoiceFunction**](ChatCompletionNamedToolChoiceFunction.md) |  | 
+**Function** | [**AssistantsNamedToolChoiceFunction**](AssistantsNamedToolChoiceFunction.md) |  | 
 
 ## Methods
 
 ### NewChatCompletionNamedToolChoice
 
-`func NewChatCompletionNamedToolChoice(type_ string, function ChatCompletionNamedToolChoiceFunction, ) *ChatCompletionNamedToolChoice`
+`func NewChatCompletionNamedToolChoice(type_ string, function AssistantsNamedToolChoiceFunction, ) *ChatCompletionNamedToolChoice`
 
 NewChatCompletionNamedToolChoice instantiates a new ChatCompletionNamedToolChoice object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetType sets Type field to given value.
 
 ### GetFunction
 
-`func (o *ChatCompletionNamedToolChoice) GetFunction() ChatCompletionNamedToolChoiceFunction`
+`func (o *ChatCompletionNamedToolChoice) GetFunction() AssistantsNamedToolChoiceFunction`
 
 GetFunction returns the Function field if non-nil, zero value otherwise.
 
 ### GetFunctionOk
 
-`func (o *ChatCompletionNamedToolChoice) GetFunctionOk() (*ChatCompletionNamedToolChoiceFunction, bool)`
+`func (o *ChatCompletionNamedToolChoice) GetFunctionOk() (*AssistantsNamedToolChoiceFunction, bool)`
 
 GetFunctionOk returns a tuple with the Function field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFunction
 
-`func (o *ChatCompletionNamedToolChoice) SetFunction(v ChatCompletionNamedToolChoiceFunction)`
+`func (o *ChatCompletionNamedToolChoice) SetFunction(v AssistantsNamedToolChoiceFunction)`
 
 SetFunction sets Function field to given value.
 

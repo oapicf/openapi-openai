@@ -1,5 +1,6 @@
 package org.openapitools.api;
 
+import org.openapitools.model.AudioResponseFormat;
 import java.math.BigDecimal;
 import org.openapitools.model.CreateSpeechRequest;
 import org.openapitools.model.CreateTranscription200Response;
@@ -58,7 +59,7 @@ public interface AudioApi  {
     @ApiOperation(value = "Transcribes audio into the input language.", tags={ "Audio" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = CreateTranscription200Response.class) })
-    public CreateTranscription200Response createTranscription( @Multipart(value = "file" ) Attachment _fileDetail, @Multipart(value = "model")  CreateTranscriptionRequestModel model, @Multipart(value = "language", required = false)  String language, @Multipart(value = "prompt", required = false)  String prompt, @Multipart(value = "response_format", required = false)  String responseFormat, @Multipart(value = "temperature", required = false)  BigDecimal temperature, @Multipart(value = "timestamp_granularities[]", required = false)  List<String> timestampGranularities);
+    public CreateTranscription200Response createTranscription( @Multipart(value = "file" ) Attachment _fileDetail, @Multipart(value = "model")  CreateTranscriptionRequestModel model, @Multipart(value = "language", required = false)  String language, @Multipart(value = "prompt", required = false)  String prompt, @Multipart(value = "response_format", required = false)  AudioResponseFormat responseFormat, @Multipart(value = "temperature", required = false)  BigDecimal temperature, @Multipart(value = "timestamp_granularities[]", required = false)  List<String> timestampGranularities);
 
     /**
      * Translates audio into English.
@@ -71,5 +72,5 @@ public interface AudioApi  {
     @ApiOperation(value = "Translates audio into English.", tags={ "Audio" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = CreateTranslation200Response.class) })
-    public CreateTranslation200Response createTranslation( @Multipart(value = "file" ) Attachment _fileDetail, @Multipart(value = "model")  CreateTranscriptionRequestModel model, @Multipart(value = "prompt", required = false)  String prompt, @Multipart(value = "response_format", required = false)  String responseFormat, @Multipart(value = "temperature", required = false)  BigDecimal temperature);
+    public CreateTranslation200Response createTranslation( @Multipart(value = "file" ) Attachment _fileDetail, @Multipart(value = "model")  CreateTranscriptionRequestModel model, @Multipart(value = "prompt", required = false)  String prompt, @Multipart(value = "response_format", required = false)  AudioResponseFormat responseFormat, @Multipart(value = "temperature", required = false)  BigDecimal temperature);
 }

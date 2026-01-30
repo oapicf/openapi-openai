@@ -27,7 +27,7 @@ import javax.ws.rs.*;
 
 
 @io.swagger.annotations.Api(description = "the moderations API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ModerationsApi  {
    private final ModerationsApiService delegate = ModerationsApiServiceFactory.getModerationsApi();
 
@@ -35,7 +35,7 @@ public class ModerationsApi  {
     
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Classifies if text is potentially harmful.", notes = "", response = CreateModerationResponse.class, authorizations = {
+    @io.swagger.annotations.ApiOperation(value = "Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). ", notes = "", response = CreateModerationResponse.class, authorizations = {
         @io.swagger.annotations.Authorization(value = "ApiKeyAuth")
     }, tags={ "Moderations", })
     @io.swagger.annotations.ApiResponses(value = { 

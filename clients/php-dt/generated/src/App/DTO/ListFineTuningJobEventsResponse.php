@@ -9,10 +9,10 @@ class ListFineTuningJobEventsResponse
 {
     /**
      * @DTA\Data(field="data")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection28::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection28::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection46::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection46::class})
      */
-    public ?\App\DTO\Collection28 $data = null;
+    public ?\App\DTO\Collection46 $data = null;
 
     /**
      * @DTA\Data(field="object")

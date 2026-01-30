@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Describes an OpenAI model offering that can be used with the API.
  */
 @ApiModel(description = "Describes an OpenAI model offering that can be used with the API.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class Model   {
   @JsonProperty("id")
   private String id;

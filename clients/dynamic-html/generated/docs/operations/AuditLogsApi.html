@@ -1,0 +1,117 @@
+<div class="main-content">
+  <h2><a name=""></a></h2>
+  <p>This is the  API</p>
+
+  <h2><a name="listAuditLogs"></a>listAuditLogs</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/audit_logs</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ListAuditLogsResponse"><a href="">ListAuditLogsResponse</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">effective_at</span>
+      <span class="param-type">ListAuditLogsEffectiveAtParameter</span>
+      
+      <p class="param-description">Return only events whose &#x60;effective_at&#x60; (Unix seconds) is in this range.</p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">project_ids[]</span>
+      <span class="param-type">List(String)</span>
+      
+      <p class="param-description">Return only events for these projects.</p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">event_types[]</span>
+      <span class="param-type">List(AuditLogEventType)</span>
+      
+      <p class="param-description">Return only events with a &#x60;type&#x60; in one of these values. For example, &#x60;project.created&#x60;. For all options, see the documentation for the [audit log object](/docs/api-reference/audit-logs/object).</p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">actor_ids[]</span>
+      <span class="param-type">List(String)</span>
+      
+      <p class="param-description">Return only events performed by these actors. Can be a user ID, a service account ID, or an api key tracking ID.</p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">actor_emails[]</span>
+      <span class="param-type">List(String)</span>
+      
+      <p class="param-description">Return only events performed by users with these emails.</p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">resource_ids[]</span>
+      <span class="param-type">List(String)</span>
+      
+      <p class="param-description">Return only events performed on these targets. For example, a project ID updated.</p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">limit</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">after</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. </p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">before</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. </p>
+      </li>
+  </ul>
+</div>

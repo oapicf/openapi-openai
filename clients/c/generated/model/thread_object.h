@@ -15,6 +15,7 @@
 
 typedef struct thread_object_t thread_object_t;
 
+#include "modify_thread_request_tool_resources.h"
 #include "object.h"
 
 // Enum OBJECT for thread_object
@@ -31,6 +32,7 @@ typedef struct thread_object_t {
     char *id; // string
     openai_api_thread_object_OBJECT_e object; //enum
     int created_at; //numeric
+    struct modify_thread_request_tool_resources_t *tool_resources; //model
     object_t *metadata; //object
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -40,6 +42,7 @@ __attribute__((deprecated)) thread_object_t *thread_object_create(
     char *id,
     openai_api_thread_object_OBJECT_e object,
     int created_at,
+    modify_thread_request_tool_resources_t *tool_resources,
     object_t *metadata
 );
 

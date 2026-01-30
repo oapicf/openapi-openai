@@ -101,28 +101,6 @@ async def retrieve_fine_tuning_job(
     return await BaseFineTuningApi.subclasses[0]().retrieve_fine_tuning_job(fine_tuning_job_id)
 
 
-@router.get(
-    "/fine_tuning/jobs/{fine_tuning_job_id}/events",
-    responses={
-        200: {"model": ListFineTuningJobEventsResponse, "description": "OK"},
-    },
-    tags=["Fine-tuning"],
-    summary="Get status updates for a fine-tuning job. ",
-    response_model_by_alias=True,
-)
-async def list_fine_tuning_events(
-    fine_tuning_job_id: Annotated[StrictStr, Field(description="The ID of the fine-tuning job to get events for. ")] = Path(..., description="The ID of the fine-tuning job to get events for. "),
-    after: Annotated[Optional[StrictStr], Field(description="Identifier for the last event from the previous pagination request.")] = Query(None, description="Identifier for the last event from the previous pagination request.", alias="after"),
-    limit: Annotated[Optional[StrictInt], Field(description="Number of events to retrieve.")] = Query(20, description="Number of events to retrieve.", alias="limit"),
-    token_ApiKeyAuth: TokenModel = Security(
-        get_token_ApiKeyAuth
-    ),
-) -> ListFineTuningJobEventsResponse:
-    if not BaseFineTuningApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseFineTuningApi.subclasses[0]().list_fine_tuning_events(fine_tuning_job_id, after, limit)
-
-
 @router.post(
     "/fine_tuning/jobs/{fine_tuning_job_id}/cancel",
     responses={
@@ -163,3 +141,25 @@ async def list_fine_tuning_job_checkpoints(
     if not BaseFineTuningApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseFineTuningApi.subclasses[0]().list_fine_tuning_job_checkpoints(fine_tuning_job_id, after, limit)
+
+
+@router.get(
+    "/fine_tuning/jobs/{fine_tuning_job_id}/events",
+    responses={
+        200: {"model": ListFineTuningJobEventsResponse, "description": "OK"},
+    },
+    tags=["Fine-tuning"],
+    summary="Get status updates for a fine-tuning job. ",
+    response_model_by_alias=True,
+)
+async def list_fine_tuning_events(
+    fine_tuning_job_id: Annotated[StrictStr, Field(description="The ID of the fine-tuning job to get events for. ")] = Path(..., description="The ID of the fine-tuning job to get events for. "),
+    after: Annotated[Optional[StrictStr], Field(description="Identifier for the last event from the previous pagination request.")] = Query(None, description="Identifier for the last event from the previous pagination request.", alias="after"),
+    limit: Annotated[Optional[StrictInt], Field(description="Number of events to retrieve.")] = Query(20, description="Number of events to retrieve.", alias="limit"),
+    token_ApiKeyAuth: TokenModel = Security(
+        get_token_ApiKeyAuth
+    ),
+) -> ListFineTuningJobEventsResponse:
+    if not BaseFineTuningApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseFineTuningApi.subclasses[0]().list_fine_tuning_events(fine_tuning_job_id, after, limit)

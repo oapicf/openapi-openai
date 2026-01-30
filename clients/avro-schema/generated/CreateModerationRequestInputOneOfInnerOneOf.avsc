@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "An object describing an image to classify.",
+  "name": "CreateModerationRequestInputOneOfInnerOneOf",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "CreateModerationRequestInputOneOfInnerOneOf_type",
+        "symbols": [
+          "image_url"
+        ]
+      },
+      "doc": "Always `image_url`."
+    },
+    {
+      "name": "image_url",
+      "type": "model.CreateModerationRequestInputOneOfInnerOneOfImageUrl",
+      "doc": ""
+    }
+  ]
+
+}

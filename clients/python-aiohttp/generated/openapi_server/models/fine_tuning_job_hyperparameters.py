@@ -5,7 +5,9 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
-from openapi_server.models.fine_tuning_job_hyperparameters_n_epochs import FineTuningJobHyperparametersNEpochs
+from openapi_server.models.create_fine_tuning_job_request_hyperparameters_batch_size import CreateFineTuningJobRequestHyperparametersBatchSize
+from openapi_server.models.create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier import CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+from openapi_server.models.create_fine_tuning_job_request_hyperparameters_n_epochs import CreateFineTuningJobRequestHyperparametersNEpochs
 from openapi_server import util
 
 
@@ -15,19 +17,27 @@ class FineTuningJobHyperparameters(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, n_epochs: FineTuningJobHyperparametersNEpochs=None):
+    def __init__(self, batch_size: CreateFineTuningJobRequestHyperparametersBatchSize=None, learning_rate_multiplier: CreateFineTuningJobRequestHyperparametersLearningRateMultiplier=None, n_epochs: CreateFineTuningJobRequestHyperparametersNEpochs=None):
         """FineTuningJobHyperparameters - a model defined in OpenAPI
 
+        :param batch_size: The batch_size of this FineTuningJobHyperparameters.
+        :param learning_rate_multiplier: The learning_rate_multiplier of this FineTuningJobHyperparameters.
         :param n_epochs: The n_epochs of this FineTuningJobHyperparameters.
         """
         self.openapi_types = {
-            'n_epochs': FineTuningJobHyperparametersNEpochs
+            'batch_size': CreateFineTuningJobRequestHyperparametersBatchSize,
+            'learning_rate_multiplier': CreateFineTuningJobRequestHyperparametersLearningRateMultiplier,
+            'n_epochs': CreateFineTuningJobRequestHyperparametersNEpochs
         }
 
         self.attribute_map = {
+            'batch_size': 'batch_size',
+            'learning_rate_multiplier': 'learning_rate_multiplier',
             'n_epochs': 'n_epochs'
         }
 
+        self._batch_size = batch_size
+        self._learning_rate_multiplier = learning_rate_multiplier
         self._n_epochs = n_epochs
 
     @classmethod
@@ -40,12 +50,54 @@ class FineTuningJobHyperparameters(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
+    def batch_size(self):
+        """Gets the batch_size of this FineTuningJobHyperparameters.
+
+
+        :return: The batch_size of this FineTuningJobHyperparameters.
+        :rtype: CreateFineTuningJobRequestHyperparametersBatchSize
+        """
+        return self._batch_size
+
+    @batch_size.setter
+    def batch_size(self, batch_size):
+        """Sets the batch_size of this FineTuningJobHyperparameters.
+
+
+        :param batch_size: The batch_size of this FineTuningJobHyperparameters.
+        :type batch_size: CreateFineTuningJobRequestHyperparametersBatchSize
+        """
+
+        self._batch_size = batch_size
+
+    @property
+    def learning_rate_multiplier(self):
+        """Gets the learning_rate_multiplier of this FineTuningJobHyperparameters.
+
+
+        :return: The learning_rate_multiplier of this FineTuningJobHyperparameters.
+        :rtype: CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+        """
+        return self._learning_rate_multiplier
+
+    @learning_rate_multiplier.setter
+    def learning_rate_multiplier(self, learning_rate_multiplier):
+        """Sets the learning_rate_multiplier of this FineTuningJobHyperparameters.
+
+
+        :param learning_rate_multiplier: The learning_rate_multiplier of this FineTuningJobHyperparameters.
+        :type learning_rate_multiplier: CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+        """
+
+        self._learning_rate_multiplier = learning_rate_multiplier
+
+    @property
     def n_epochs(self):
         """Gets the n_epochs of this FineTuningJobHyperparameters.
 
 
         :return: The n_epochs of this FineTuningJobHyperparameters.
-        :rtype: FineTuningJobHyperparametersNEpochs
+        :rtype: CreateFineTuningJobRequestHyperparametersNEpochs
         """
         return self._n_epochs
 
@@ -55,9 +107,7 @@ class FineTuningJobHyperparameters(Model):
 
 
         :param n_epochs: The n_epochs of this FineTuningJobHyperparameters.
-        :type n_epochs: FineTuningJobHyperparametersNEpochs
+        :type n_epochs: CreateFineTuningJobRequestHyperparametersNEpochs
         """
-        if n_epochs is None:
-            raise ValueError("Invalid value for `n_epochs`, must not be `None`")
 
         self._n_epochs = n_epochs

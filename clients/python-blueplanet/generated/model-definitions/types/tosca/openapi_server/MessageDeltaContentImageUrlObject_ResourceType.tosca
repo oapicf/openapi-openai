@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server MessageDeltaContentImageUrlObject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a MessageDeltaContentImageUrlObject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  MessageDeltaContentImageUrlObjectImageUrl = openapi_server.resourceTypes.MessageDeltaContentImageUrlObjectImageUrl
+}
+resourceTypes {
+
+  MessageDeltaContentImageUrlObject {
+    title = MessageDeltaContentImageUrlObject
+    description = MessageDeltaContentImageUrlObject
+    derivedFrom = Root
+    properties {
+        index {
+          type =  integer
+          description = "The index of the content part in the message."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "Always &#x60;image_url&#x60;."
+          enum = ["image_url"]
+          optional = true
+        }
+        image_url {
+          type = MessageDeltaContentImageUrlObjectImageUrl
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MessageDeltaContentImageUrlObject {
+    title = MessageDeltaContentImageUrlObject
+    description = MessageDeltaContentImageUrlObject
+    implements = openapi_server.resourceTypes.MessageDeltaContentImageUrlObject
+
+  }
+}

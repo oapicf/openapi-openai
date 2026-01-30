@@ -11,4 +11,8 @@ type MessageDeltaObjectDeltaContentInner struct {
 	ImageFile MessageDeltaContentImageFileObjectImageFile `json:"image_file,omitempty"`
 
 	Text MessageDeltaContentTextObjectText `json:"text,omitempty"`
+
+	Refusal string `json:"refusal,omitempty"`
+
+	ImageUrl MessageDeltaContentImageUrlObjectImageUrl `json:"image_url,omitempty"`
 }

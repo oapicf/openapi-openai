@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **Id** | **string** | The ID of the tool call object. | 
 **Type** | **string** | The type of tool call. This is always going to be &#x60;code_interpreter&#x60; for this type of tool call. | 
 **CodeInterpreter** | [**RunStepDetailsToolCallsCodeObjectCodeInterpreter**](RunStepDetailsToolCallsCodeObjectCodeInterpreter.md) |  | 
-**Retrieval** | **map[string]interface{}** | For now, this is always going to be an empty object. | 
+**FileSearch** | [**RunStepDetailsToolCallsFileSearchObjectFileSearch**](RunStepDetailsToolCallsFileSearchObjectFileSearch.md) |  | 
 **Function** | [**RunStepDetailsToolCallsFunctionObjectFunction**](RunStepDetailsToolCallsFunctionObjectFunction.md) |  | 
 
 ## Methods
 
 ### NewRunStepDetailsToolCallsObjectToolCallsInner
 
-`func NewRunStepDetailsToolCallsObjectToolCallsInner(id string, type_ string, codeInterpreter RunStepDetailsToolCallsCodeObjectCodeInterpreter, retrieval map[string]interface{}, function RunStepDetailsToolCallsFunctionObjectFunction, ) *RunStepDetailsToolCallsObjectToolCallsInner`
+`func NewRunStepDetailsToolCallsObjectToolCallsInner(id string, type_ string, codeInterpreter RunStepDetailsToolCallsCodeObjectCodeInterpreter, fileSearch RunStepDetailsToolCallsFileSearchObjectFileSearch, function RunStepDetailsToolCallsFunctionObjectFunction, ) *RunStepDetailsToolCallsObjectToolCallsInner`
 
 NewRunStepDetailsToolCallsObjectToolCallsInner instantiates a new RunStepDetailsToolCallsObjectToolCallsInner object
 This constructor will assign default values to properties that have it defined,
@@ -89,24 +89,24 @@ and a boolean to check if the value has been set.
 SetCodeInterpreter sets CodeInterpreter field to given value.
 
 
-### GetRetrieval
+### GetFileSearch
 
-`func (o *RunStepDetailsToolCallsObjectToolCallsInner) GetRetrieval() map[string]interface{}`
+`func (o *RunStepDetailsToolCallsObjectToolCallsInner) GetFileSearch() RunStepDetailsToolCallsFileSearchObjectFileSearch`
 
-GetRetrieval returns the Retrieval field if non-nil, zero value otherwise.
+GetFileSearch returns the FileSearch field if non-nil, zero value otherwise.
 
-### GetRetrievalOk
+### GetFileSearchOk
 
-`func (o *RunStepDetailsToolCallsObjectToolCallsInner) GetRetrievalOk() (*map[string]interface{}, bool)`
+`func (o *RunStepDetailsToolCallsObjectToolCallsInner) GetFileSearchOk() (*RunStepDetailsToolCallsFileSearchObjectFileSearch, bool)`
 
-GetRetrievalOk returns a tuple with the Retrieval field if it's non-nil, zero value otherwise
+GetFileSearchOk returns a tuple with the FileSearch field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRetrieval
+### SetFileSearch
 
-`func (o *RunStepDetailsToolCallsObjectToolCallsInner) SetRetrieval(v map[string]interface{})`
+`func (o *RunStepDetailsToolCallsObjectToolCallsInner) SetFileSearch(v RunStepDetailsToolCallsFileSearchObjectFileSearch)`
 
-SetRetrieval sets Retrieval field to given value.
+SetFileSearch sets FileSearch field to given value.
 
 
 ### GetFunction

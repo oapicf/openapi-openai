@@ -3,6 +3,7 @@ namespace OpenAPI.Model
 open System
 open System.Collections.Generic
 open Newtonsoft.Json
+open OpenAPI.Model.CreateMessageRequestAttachmentsInner
 open OpenAPI.Model.MessageObjectContentInner
 open OpenAPI.Model.MessageObjectIncompleteDetails
 open OpenAPI.Model.int option
@@ -38,8 +39,8 @@ module MessageObject =
     AssistantId : string option;
     [<JsonProperty(PropertyName = "run_id")>]
     RunId : string option;
-    [<JsonProperty(PropertyName = "file_ids")>]
-    FileIds : string[];
+    [<JsonProperty(PropertyName = "attachments")>]
+    Attachments : CreateMessageRequestAttachmentsInner[];
     [<JsonProperty(PropertyName = "metadata")>]
     Metadata : obj;
   }

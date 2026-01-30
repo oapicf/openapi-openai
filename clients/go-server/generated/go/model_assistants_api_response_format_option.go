@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -14,19 +14,37 @@ package openapi
 
 
 
-// AssistantsApiResponseFormatOption - Specifies the format that the model must output. Compatible with [GPT-4 Turbo](/docs/models/gpt-4-and-gpt-4-turbo) and all GPT-3.5 Turbo models newer than `gpt-3.5-turbo-1106`.  Setting to `{ \"type\": \"json_object\" }` enables JSON mode, which guarantees the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \"stuck\" request. Also note that the message content may be partially cut off if `finish_reason=\"length\"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. 
+// AssistantsApiResponseFormatOption - Specifies the format that the model must output. Compatible with [GPT-4o](/docs/models#gpt-4o), [GPT-4 Turbo](/docs/models#gpt-4-turbo-and-gpt-4), and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`.  Setting to `{ \"type\": \"json_schema\", \"json_schema\": {...} }` enables Structured Outputs which ensures the model will match your supplied JSON schema. Learn more in the [Structured Outputs guide](/docs/guides/structured-outputs).  Setting to `{ \"type\": \"json_object\" }` enables JSON mode, which ensures the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \"stuck\" request. Also note that the message content may be partially cut off if `finish_reason=\"length\"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. 
 type AssistantsApiResponseFormatOption struct {
 
-	// Must be one of `text` or `json_object`.
-	Type string `json:"type,omitempty"`
+	// The type of response format being defined: `text`
+	Type string `json:"type"`
+
+	JsonSchema ResponseFormatJsonSchemaJsonSchema `json:"json_schema"`
 }
 
 // AssertAssistantsApiResponseFormatOptionRequired checks if the required fields are not zero-ed
 func AssertAssistantsApiResponseFormatOptionRequired(obj AssistantsApiResponseFormatOption) error {
+	elements := map[string]interface{}{
+		"type": obj.Type,
+		"json_schema": obj.JsonSchema,
+	}
+	for name, el := range elements {
+		if isZero := IsZeroValue(el); isZero {
+			return &RequiredError{Field: name}
+		}
+	}
+
+	if err := AssertResponseFormatJsonSchemaJsonSchemaRequired(obj.JsonSchema); err != nil {
+		return err
+	}
 	return nil
 }
 
 // AssertAssistantsApiResponseFormatOptionConstraints checks if the values respects the defined constraints
 func AssertAssistantsApiResponseFormatOptionConstraints(obj AssistantsApiResponseFormatOption) error {
+	if err := AssertResponseFormatJsonSchemaJsonSchemaConstraints(obj.JsonSchema); err != nil {
+		return err
+	}
 	return nil
 }

@@ -8,7 +8,7 @@ description:    .
                 .
                 base path: https://api.openai.com/v1
                 .
-                OpenAI API API version: 2.0.0
+                OpenAI API API version: 2.3.0
                 .
                 OpenAPI version: 3.0.0
                 .
@@ -68,14 +68,24 @@ library
       OpenAI.API
       OpenAI.API.Assistants
       OpenAI.API.Audio
+      OpenAI.API.AuditLogs
+      OpenAI.API.Batch
       OpenAI.API.Chat
       OpenAI.API.Completions
+      OpenAI.API.ApiDefault
       OpenAI.API.Embeddings
       OpenAI.API.Files
       OpenAI.API.FineTuning
       OpenAI.API.Images
+      OpenAI.API.Invites
       OpenAI.API.Models
       OpenAI.API.Moderations
+      OpenAI.API.Projects
+      OpenAI.API.Realtime
+      OpenAI.API.Uploads
+      OpenAI.API.Usage
+      OpenAI.API.Users
+      OpenAI.API.VectorStores
       OpenAI.Client
       OpenAI.Core
       OpenAI.Logging

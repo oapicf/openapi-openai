@@ -5,7 +5,7 @@
   <packaging>war</packaging>
   <name>openapi-cxf-server</name>
   <description>The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.</description>
-  <version>2.0.0</version>
+  <version>2.3.0</version>
 
 
   <build>

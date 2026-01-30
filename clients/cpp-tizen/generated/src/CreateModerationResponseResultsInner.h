@@ -10,6 +10,7 @@
 
 #include <string>
 #include "CreateModerationResponse_results_inner_categories.h"
+#include "CreateModerationResponse_results_inner_category_applied_input_types.h"
 #include "CreateModerationResponse_results_inner_category_scores.h"
 #include "Object.h"
 
@@ -68,11 +69,19 @@ public:
 	/*! \brief Set 
 	 */
 	void setCategoryScores(CreateModerationResponse_results_inner_category_scores  category_scores);
+	/*! \brief Get 
+	 */
+	CreateModerationResponse_results_inner_category_applied_input_types getCategoryAppliedInputTypes();
+
+	/*! \brief Set 
+	 */
+	void setCategoryAppliedInputTypes(CreateModerationResponse_results_inner_category_applied_input_types  category_applied_input_types);
 
 private:
 	bool flagged;
 	CreateModerationResponse_results_inner_categories categories;
 	CreateModerationResponse_results_inner_category_scores category_scores;
+	CreateModerationResponse_results_inner_category_applied_input_types category_applied_input_types;
 	void __init();
 	void __cleanup();
 

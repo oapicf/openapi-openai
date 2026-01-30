@@ -9,7 +9,8 @@
 -export_type([openapi_assistant_stream_event/0]).
 
 -type openapi_assistant_stream_event() ::
-  [ {'event', binary() }
+  [ {'enabled', boolean() }
+  | {'event', binary() }
   | {'data', binary() }
   ].
 
@@ -18,7 +19,8 @@ openapi_assistant_stream_event() ->
     openapi_assistant_stream_event([]).
 
 openapi_assistant_stream_event(Fields) ->
-  Default = [ {'event', elements([<<"done">>]) }
+  Default = [ {'enabled', boolean() }
+            , {'event', elements([<<"done">>]) }
             , {'data', elements([<<"[DONE]">>]) }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).

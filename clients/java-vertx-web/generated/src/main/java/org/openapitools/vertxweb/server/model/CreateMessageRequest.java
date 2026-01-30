@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.vertxweb.server.model.CreateMessageRequestAttachmentsInner;
+import org.openapitools.vertxweb.server.model.CreateMessageRequestContent;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateMessageRequest   {
@@ -32,18 +34,18 @@ public class CreateMessageRequest   {
   }
 
   private RoleEnum role;
-  private String content;
-  private List<String> fileIds = new ArrayList<>();
+  private CreateMessageRequestContent content;
+  private List<CreateMessageRequestAttachmentsInner> attachments;
   private Object metadata;
 
   public CreateMessageRequest () {
 
   }
 
-  public CreateMessageRequest (RoleEnum role, String content, List<String> fileIds, Object metadata) {
+  public CreateMessageRequest (RoleEnum role, CreateMessageRequestContent content, List<CreateMessageRequestAttachmentsInner> attachments, Object metadata) {
     this.role = role;
     this.content = content;
-    this.fileIds = fileIds;
+    this.attachments = attachments;
     this.metadata = metadata;
   }
 
@@ -58,20 +60,20 @@ public class CreateMessageRequest   {
 
     
   @JsonProperty("content")
-  public String getContent() {
+  public CreateMessageRequestContent getContent() {
     return content;
   }
-  public void setContent(String content) {
+  public void setContent(CreateMessageRequestContent content) {
     this.content = content;
   }
 
     
-  @JsonProperty("file_ids")
-  public List<String> getFileIds() {
-    return fileIds;
+  @JsonProperty("attachments")
+  public List<CreateMessageRequestAttachmentsInner> getAttachments() {
+    return attachments;
   }
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public void setAttachments(List<CreateMessageRequestAttachmentsInner> attachments) {
+    this.attachments = attachments;
   }
 
     
@@ -95,13 +97,13 @@ public class CreateMessageRequest   {
     CreateMessageRequest createMessageRequest = (CreateMessageRequest) o;
     return Objects.equals(role, createMessageRequest.role) &&
         Objects.equals(content, createMessageRequest.content) &&
-        Objects.equals(fileIds, createMessageRequest.fileIds) &&
+        Objects.equals(attachments, createMessageRequest.attachments) &&
         Objects.equals(metadata, createMessageRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, content, fileIds, metadata);
+    return Objects.hash(role, content, attachments, metadata);
   }
 
   @Override
@@ -111,7 +113,7 @@ public class CreateMessageRequest   {
     
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

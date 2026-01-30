@@ -25,7 +25,9 @@ MessageObject_content_inner::__init()
 {
 	//type = std::string();
 	//image_file = new MessageContentImageFileObject_image_file();
+	//image_url = new MessageContentImageUrlObject_image_url();
 	//text = new MessageContentTextObject_text();
+	//refusal = std::string();
 }
 
 void
@@ -41,10 +43,20 @@ MessageObject_content_inner::__cleanup()
 	//delete image_file;
 	//image_file = NULL;
 	//}
+	//if(image_url != NULL) {
+	//
+	//delete image_url;
+	//image_url = NULL;
+	//}
 	//if(text != NULL) {
 	//
 	//delete text;
 	//text = NULL;
+	//}
+	//if(refusal != NULL) {
+	//
+	//delete refusal;
+	//refusal = NULL;
 	//}
 	//
 }
@@ -79,6 +91,20 @@ MessageObject_content_inner::fromJson(char* jsonStr)
 			
 		}
 	}
+	const gchar *image_urlKey = "image_url";
+	node = json_object_get_member(pJsonObject, image_urlKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("MessageContentImageUrlObject_image_url")) {
+			jsonToValue(&image_url, node, "MessageContentImageUrlObject_image_url", "MessageContentImageUrlObject_image_url");
+		} else {
+			
+			MessageContentImageUrlObject_image_url* obj = static_cast<MessageContentImageUrlObject_image_url*> (&image_url);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
 	const gchar *textKey = "text";
 	node = json_object_get_member(pJsonObject, textKey);
 	if (node !=NULL) {
@@ -90,6 +116,17 @@ MessageObject_content_inner::fromJson(char* jsonStr)
 			
 			MessageContentTextObject_text* obj = static_cast<MessageContentTextObject_text*> (&text);
 			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *refusalKey = "refusal";
+	node = json_object_get_member(pJsonObject, refusalKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&refusal, node, "std::string", "");
+		} else {
 			
 		}
 	}
@@ -128,6 +165,20 @@ MessageObject_content_inner::toJson()
 	}
 	const gchar *image_fileKey = "image_file";
 	json_object_set_member(pJsonObject, image_fileKey, node);
+	if (isprimitive("MessageContentImageUrlObject_image_url")) {
+		MessageContentImageUrlObject_image_url obj = getImageUrl();
+		node = converttoJson(&obj, "MessageContentImageUrlObject_image_url", "");
+	}
+	else {
+		
+		MessageContentImageUrlObject_image_url obj = static_cast<MessageContentImageUrlObject_image_url> (getImageUrl());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *image_urlKey = "image_url";
+	json_object_set_member(pJsonObject, image_urlKey, node);
 	if (isprimitive("MessageContentTextObject_text")) {
 		MessageContentTextObject_text obj = getText();
 		node = converttoJson(&obj, "MessageContentTextObject_text", "");
@@ -142,6 +193,15 @@ MessageObject_content_inner::toJson()
 	}
 	const gchar *textKey = "text";
 	json_object_set_member(pJsonObject, textKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getRefusal();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *refusalKey = "refusal";
+	json_object_set_member(pJsonObject, refusalKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -174,6 +234,18 @@ MessageObject_content_inner::setImageFile(MessageContentImageFileObject_image_fi
 	this->image_file = image_file;
 }
 
+MessageContentImageUrlObject_image_url
+MessageObject_content_inner::getImageUrl()
+{
+	return image_url;
+}
+
+void
+MessageObject_content_inner::setImageUrl(MessageContentImageUrlObject_image_url  image_url)
+{
+	this->image_url = image_url;
+}
+
 MessageContentTextObject_text
 MessageObject_content_inner::getText()
 {
@@ -184,6 +256,18 @@ void
 MessageObject_content_inner::setText(MessageContentTextObject_text  text)
 {
 	this->text = text;
+}
+
+std::string
+MessageObject_content_inner::getRefusal()
+{
+	return refusal;
+}
+
+void
+MessageObject_content_inner::setRefusal(std::string  refusal)
+{
+	this->refusal = refusal;
 }
 
 

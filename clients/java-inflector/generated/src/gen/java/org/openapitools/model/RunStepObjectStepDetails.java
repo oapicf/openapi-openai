@@ -22,7 +22,7 @@ import org.openapitools.model.RunStepDetailsToolCallsObjectToolCallsInner;
  **/
 
 @ApiModel(description = "The details of the run step.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStepObjectStepDetails   {
   /**
    * Always `message_creation`.
@@ -100,7 +100,7 @@ public class RunStepObjectStepDetails   {
   }
 
   /**
-   * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+   * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
    **/
   public RunStepObjectStepDetails toolCalls(List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
     this.toolCalls = toolCalls;
@@ -108,7 +108,7 @@ public class RunStepObjectStepDetails   {
   }
 
   
-  @ApiModelProperty(required = true, value = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. ")
+  @ApiModelProperty(required = true, value = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. ")
   @JsonProperty("tool_calls")
   public List<RunStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
     return toolCalls;

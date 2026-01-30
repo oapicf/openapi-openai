@@ -9,6 +9,9 @@ imports {
   Root = tosca.resourceTypes.Root
   MessageContentImageFileObject = openapi_server.resourceTypes.MessageContentImageFileObject
   MessageContentImageFileObjectImageFile = openapi_server.resourceTypes.MessageContentImageFileObjectImageFile
+  MessageContentImageUrlObject = openapi_server.resourceTypes.MessageContentImageUrlObject
+  MessageContentImageUrlObjectImageUrl = openapi_server.resourceTypes.MessageContentImageUrlObjectImageUrl
+  MessageContentRefusalObject = openapi_server.resourceTypes.MessageContentRefusalObject
   MessageContentTextObject = openapi_server.resourceTypes.MessageContentTextObject
   MessageContentTextObjectText = openapi_server.resourceTypes.MessageContentTextObjectText
 }
@@ -22,7 +25,7 @@ resourceTypes {
         type {
           type =  string
           description = "Always &#x60;image_file&#x60;."
-          enum = ["image_file", "text"]
+          enum = ["image_file", "image_url", "text", "refusal"]
           optional = true
         }
         image_file {
@@ -30,8 +33,18 @@ resourceTypes {
           description = ""
           optional = true
         }
+        image_url {
+          type = MessageContentImageUrlObjectImageUrl
+          description = ""
+          optional = true
+        }
         text {
           type = MessageContentTextObjectText
+          description = ""
+          optional = true
+        }
+        refusal {
+          type =  string
           description = ""
           optional = true
         }

@@ -27,3 +27,15 @@ API.Client.CompletionUsage.prototype.promptTokens;
  */
 API.Client.CompletionUsage.prototype.totalTokens;
 
+/**
+ * @type {!API.Client.CompletionUsage_completion_tokens_details}
+ * @export
+ */
+API.Client.CompletionUsage.prototype.completionTokensDetails;
+
+/**
+ * @type {!API.Client.CompletionUsage_prompt_tokens_details}
+ * @export
+ */
+API.Client.CompletionUsage.prototype.promptTokensDetails;
+

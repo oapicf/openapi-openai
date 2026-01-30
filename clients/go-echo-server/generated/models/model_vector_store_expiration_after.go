@@ -1,0 +1,11 @@
+package models
+
+// VectorStoreExpirationAfter - The expiration policy for a vector store.
+type VectorStoreExpirationAfter struct {
+
+	// Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`.
+	Anchor string `json:"anchor"`
+
+	// The number of days after the anchor time that the vector store will expire.
+	Days int32 `json:"days"`
+}

@@ -51,24 +51,19 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AssistantsApi* | [**cancelRun**](docs/AssistantsApi.md#cancelrun) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is `in_progress`.
 *AssistantsApi* | [**createAssistant**](docs/AssistantsApi.md#createassistant) | **POST** /assistants | Create an assistant with a model and instructions.
-*AssistantsApi* | [**createAssistantFile**](docs/AssistantsApi.md#createassistantfile) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
 *AssistantsApi* | [**createMessage**](docs/AssistantsApi.md#createmessage) | **POST** /threads/{thread_id}/messages | Create a message.
 *AssistantsApi* | [**createRun**](docs/AssistantsApi.md#createrun) | **POST** /threads/{thread_id}/runs | Create a run.
 *AssistantsApi* | [**createThread**](docs/AssistantsApi.md#createthread) | **POST** /threads | Create a thread.
 *AssistantsApi* | [**createThreadAndRun**](docs/AssistantsApi.md#createthreadandrun) | **POST** /threads/runs | Create a thread and run it in one request.
 *AssistantsApi* | [**deleteAssistant**](docs/AssistantsApi.md#deleteassistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant.
-*AssistantsApi* | [**deleteAssistantFile**](docs/AssistantsApi.md#deleteassistantfile) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+*AssistantsApi* | [**deleteMessage**](docs/AssistantsApi.md#deletemessage) | **DELETE** /threads/{thread_id}/messages/{message_id} | Deletes a message.
 *AssistantsApi* | [**deleteThread**](docs/AssistantsApi.md#deletethread) | **DELETE** /threads/{thread_id} | Delete a thread.
 *AssistantsApi* | [**getAssistant**](docs/AssistantsApi.md#getassistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant.
-*AssistantsApi* | [**getAssistantFile**](docs/AssistantsApi.md#getassistantfile) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
 *AssistantsApi* | [**getMessage**](docs/AssistantsApi.md#getmessage) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
-*AssistantsApi* | [**getMessageFile**](docs/AssistantsApi.md#getmessagefile) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
 *AssistantsApi* | [**getRun**](docs/AssistantsApi.md#getrun) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
 *AssistantsApi* | [**getRunStep**](docs/AssistantsApi.md#getrunstep) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
 *AssistantsApi* | [**getThread**](docs/AssistantsApi.md#getthread) | **GET** /threads/{thread_id} | Retrieves a thread.
-*AssistantsApi* | [**listAssistantFiles**](docs/AssistantsApi.md#listassistantfiles) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
 *AssistantsApi* | [**listAssistants**](docs/AssistantsApi.md#listassistants) | **GET** /assistants | Returns a list of assistants.
-*AssistantsApi* | [**listMessageFiles**](docs/AssistantsApi.md#listmessagefiles) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
 *AssistantsApi* | [**listMessages**](docs/AssistantsApi.md#listmessages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
 *AssistantsApi* | [**listRunSteps**](docs/AssistantsApi.md#listrunsteps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
 *AssistantsApi* | [**listRuns**](docs/AssistantsApi.md#listruns) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
@@ -80,13 +75,22 @@ Class | Method | HTTP request | Description
 *AudioApi* | [**createSpeech**](docs/AudioApi.md#createspeech) | **POST** /audio/speech | Generates audio from the input text.
 *AudioApi* | [**createTranscription**](docs/AudioApi.md#createtranscription) | **POST** /audio/transcriptions | Transcribes audio into the input language.
 *AudioApi* | [**createTranslation**](docs/AudioApi.md#createtranslation) | **POST** /audio/translations | Translates audio into English.
-*ChatApi* | [**createChatCompletion**](docs/ChatApi.md#createchatcompletion) | **POST** /chat/completions | Creates a model response for the given chat conversation.
+*AuditLogsApi* | [**listAuditLogs**](docs/AuditLogsApi.md#listauditlogs) | **GET** /organization/audit_logs | List user actions and configuration changes within this organization.
+*BatchApi* | [**cancelBatch**](docs/BatchApi.md#cancelbatch) | **POST** /batches/{batch_id}/cancel | Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+*BatchApi* | [**createBatch**](docs/BatchApi.md#createbatch) | **POST** /batches | Creates and executes a batch from an uploaded file of requests
+*BatchApi* | [**listBatches**](docs/BatchApi.md#listbatches) | **GET** /batches | List your organization's batches.
+*BatchApi* | [**retrieveBatch**](docs/BatchApi.md#retrievebatch) | **GET** /batches/{batch_id} | Retrieves a batch.
+*ChatApi* | [**createChatCompletion**](docs/ChatApi.md#createchatcompletion) | **POST** /chat/completions | Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). 
 *CompletionsApi* | [**createCompletion**](docs/CompletionsApi.md#createcompletion) | **POST** /completions | Creates a completion for the provided prompt and parameters.
+*DefaultApi* | [**adminApiKeysCreate**](docs/DefaultApi.md#adminapikeyscreate) | **POST** /organization/admin_api_keys | Create an organization admin API key
+*DefaultApi* | [**adminApiKeysDelete**](docs/DefaultApi.md#adminapikeysdelete) | **DELETE** /organization/admin_api_keys/{key_id} | Delete an organization admin API key
+*DefaultApi* | [**adminApiKeysGet**](docs/DefaultApi.md#adminapikeysget) | **GET** /organization/admin_api_keys/{key_id} | Retrieve a single organization API key
+*DefaultApi* | [**adminApiKeysList**](docs/DefaultApi.md#adminapikeyslist) | **GET** /organization/admin_api_keys | List organization API keys
 *EmbeddingsApi* | [**createEmbedding**](docs/EmbeddingsApi.md#createembedding) | **POST** /embeddings | Creates an embedding vector representing the input text.
-*FilesApi* | [**createFile**](docs/FilesApi.md#createfile) | **POST** /files | Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+*FilesApi* | [**createFile**](docs/FilesApi.md#createfile) | **POST** /files | Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
 *FilesApi* | [**deleteFile**](docs/FilesApi.md#deletefile) | **DELETE** /files/{file_id} | Delete a file.
 *FilesApi* | [**downloadFile**](docs/FilesApi.md#downloadfile) | **GET** /files/{file_id}/content | Returns the contents of the specified file.
-*FilesApi* | [**listFiles**](docs/FilesApi.md#listfiles) | **GET** /files | Returns a list of files that belong to the user's organization.
+*FilesApi* | [**listFiles**](docs/FilesApi.md#listfiles) | **GET** /files | Returns a list of files.
 *FilesApi* | [**retrieveFile**](docs/FilesApi.md#retrievefile) | **GET** /files/{file_id} | Returns information about a specific file.
 *FineTuningApi* | [**cancelFineTuningJob**](docs/FineTuningApi.md#cancelfinetuningjob) | **POST** /fine_tuning/jobs/{fine_tuning_job_id}/cancel | Immediately cancel a fine-tune job. 
 *FineTuningApi* | [**createFineTuningJob**](docs/FineTuningApi.md#createfinetuningjob) | **POST** /fine_tuning/jobs | Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
@@ -97,26 +101,139 @@ Class | Method | HTTP request | Description
 *ImagesApi* | [**createImage**](docs/ImagesApi.md#createimage) | **POST** /images/generations | Creates an image given a prompt.
 *ImagesApi* | [**createImageEdit**](docs/ImagesApi.md#createimageedit) | **POST** /images/edits | Creates an edited or extended image given an original image and a prompt.
 *ImagesApi* | [**createImageVariation**](docs/ImagesApi.md#createimagevariation) | **POST** /images/variations | Creates a variation of a given image.
+*InvitesApi* | [**deleteInvite**](docs/InvitesApi.md#deleteinvite) | **DELETE** /organization/invites/{invite_id} | Delete an invite. If the invite has already been accepted, it cannot be deleted.
+*InvitesApi* | [**inviteUser**](docs/InvitesApi.md#inviteuser) | **POST** /organization/invites | Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+*InvitesApi* | [**listInvites**](docs/InvitesApi.md#listinvites) | **GET** /organization/invites | Returns a list of invites in the organization.
+*InvitesApi* | [**retrieveInvite**](docs/InvitesApi.md#retrieveinvite) | **GET** /organization/invites/{invite_id} | Retrieves an invite.
 *ModelsApi* | [**deleteModel**](docs/ModelsApi.md#deletemodel) | **DELETE** /models/{model} | Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
 *ModelsApi* | [**listModels**](docs/ModelsApi.md#listmodels) | **GET** /models | Lists the currently available models, and provides basic information about each one such as the owner and availability.
 *ModelsApi* | [**retrieveModel**](docs/ModelsApi.md#retrievemodel) | **GET** /models/{model} | Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
-*ModerationsApi* | [**createModeration**](docs/ModerationsApi.md#createmoderation) | **POST** /moderations | Classifies if text is potentially harmful.
+*ModerationsApi* | [**createModeration**](docs/ModerationsApi.md#createmoderation) | **POST** /moderations | Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
+*ProjectsApi* | [**archiveProject**](docs/ProjectsApi.md#archiveproject) | **POST** /organization/projects/{project_id}/archive | Archives a project in the organization. Archived projects cannot be used or updated.
+*ProjectsApi* | [**createProject**](docs/ProjectsApi.md#createproject) | **POST** /organization/projects | Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
+*ProjectsApi* | [**createProjectServiceAccount**](docs/ProjectsApi.md#createprojectserviceaccount) | **POST** /organization/projects/{project_id}/service_accounts | Creates a new service account in the project. This also returns an unredacted API key for the service account.
+*ProjectsApi* | [**createProjectUser**](docs/ProjectsApi.md#createprojectuser) | **POST** /organization/projects/{project_id}/users | Adds a user to the project. Users must already be members of the organization to be added to a project.
+*ProjectsApi* | [**deleteProjectApiKey**](docs/ProjectsApi.md#deleteprojectapikey) | **DELETE** /organization/projects/{project_id}/api_keys/{key_id} | Deletes an API key from the project.
+*ProjectsApi* | [**deleteProjectServiceAccount**](docs/ProjectsApi.md#deleteprojectserviceaccount) | **DELETE** /organization/projects/{project_id}/service_accounts/{service_account_id} | Deletes a service account from the project.
+*ProjectsApi* | [**deleteProjectUser**](docs/ProjectsApi.md#deleteprojectuser) | **DELETE** /organization/projects/{project_id}/users/{user_id} | Deletes a user from the project.
+*ProjectsApi* | [**listProjectApiKeys**](docs/ProjectsApi.md#listprojectapikeys) | **GET** /organization/projects/{project_id}/api_keys | Returns a list of API keys in the project.
+*ProjectsApi* | [**listProjectRateLimits**](docs/ProjectsApi.md#listprojectratelimits) | **GET** /organization/projects/{project_id}/rate_limits | Returns the rate limits per model for a project.
+*ProjectsApi* | [**listProjectServiceAccounts**](docs/ProjectsApi.md#listprojectserviceaccounts) | **GET** /organization/projects/{project_id}/service_accounts | Returns a list of service accounts in the project.
+*ProjectsApi* | [**listProjectUsers**](docs/ProjectsApi.md#listprojectusers) | **GET** /organization/projects/{project_id}/users | Returns a list of users in the project.
+*ProjectsApi* | [**listProjects**](docs/ProjectsApi.md#listprojects) | **GET** /organization/projects | Returns a list of projects.
+*ProjectsApi* | [**modifyProject**](docs/ProjectsApi.md#modifyproject) | **POST** /organization/projects/{project_id} | Modifies a project in the organization.
+*ProjectsApi* | [**modifyProjectUser**](docs/ProjectsApi.md#modifyprojectuser) | **POST** /organization/projects/{project_id}/users/{user_id} | Modifies a user's role in the project.
+*ProjectsApi* | [**retrieveProject**](docs/ProjectsApi.md#retrieveproject) | **GET** /organization/projects/{project_id} | Retrieves a project.
+*ProjectsApi* | [**retrieveProjectApiKey**](docs/ProjectsApi.md#retrieveprojectapikey) | **GET** /organization/projects/{project_id}/api_keys/{key_id} | Retrieves an API key in the project.
+*ProjectsApi* | [**retrieveProjectServiceAccount**](docs/ProjectsApi.md#retrieveprojectserviceaccount) | **GET** /organization/projects/{project_id}/service_accounts/{service_account_id} | Retrieves a service account in the project.
+*ProjectsApi* | [**retrieveProjectUser**](docs/ProjectsApi.md#retrieveprojectuser) | **GET** /organization/projects/{project_id}/users/{user_id} | Retrieves a user in the project.
+*ProjectsApi* | [**updateProjectRateLimits**](docs/ProjectsApi.md#updateprojectratelimits) | **POST** /organization/projects/{project_id}/rate_limits/{rate_limit_id} | Updates a project rate limit.
+*RealtimeApi* | [**createRealtimeSession**](docs/RealtimeApi.md#createrealtimesession) | **POST** /realtime/sessions | Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API. 
+*UploadsApi* | [**addUploadPart**](docs/UploadsApi.md#adduploadpart) | **POST** /uploads/{upload_id}/parts | Adds a [Part](/docs/api-reference/uploads/part-object) to an [Upload](/docs/api-reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api-reference/uploads/complete). 
+*UploadsApi* | [**cancelUpload**](docs/UploadsApi.md#cancelupload) | **POST** /uploads/{upload_id}/cancel | Cancels the Upload. No Parts may be added after an Upload is cancelled. 
+*UploadsApi* | [**completeUpload**](docs/UploadsApi.md#completeupload) | **POST** /uploads/{upload_id}/complete | Completes the [Upload](/docs/api-reference/uploads/object).   Within the returned Upload object, there is a nested [File](/docs/api-reference/files/object) object that is ready to use in the rest of the platform.  You can specify the order of the Parts by passing in an ordered list of the Part IDs.  The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed. 
+*UploadsApi* | [**createUpload**](docs/UploadsApi.md#createupload) | **POST** /uploads | Creates an intermediate [Upload](/docs/api-reference/uploads/object) object that you can add [Parts](/docs/api-reference/uploads/part-object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it.  Once you complete the Upload, we will create a [File](/docs/api-reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object.  For certain `purpose`s, the correct `mime_type` must be specified. Please refer to documentation for the supported MIME types for your use case: - [Assistants](/docs/assistants/tools/file-search#supported-files)  For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api-reference/files/create). 
+*UsageApi* | [**usageAudioSpeeches**](docs/UsageApi.md#usageaudiospeeches) | **GET** /organization/usage/audio_speeches | Get audio speeches usage details for the organization.
+*UsageApi* | [**usageAudioTranscriptions**](docs/UsageApi.md#usageaudiotranscriptions) | **GET** /organization/usage/audio_transcriptions | Get audio transcriptions usage details for the organization.
+*UsageApi* | [**usageCodeInterpreterSessions**](docs/UsageApi.md#usagecodeinterpretersessions) | **GET** /organization/usage/code_interpreter_sessions | Get code interpreter sessions usage details for the organization.
+*UsageApi* | [**usageCompletions**](docs/UsageApi.md#usagecompletions) | **GET** /organization/usage/completions | Get completions usage details for the organization.
+*UsageApi* | [**usageCosts**](docs/UsageApi.md#usagecosts) | **GET** /organization/costs | Get costs details for the organization.
+*UsageApi* | [**usageEmbeddings**](docs/UsageApi.md#usageembeddings) | **GET** /organization/usage/embeddings | Get embeddings usage details for the organization.
+*UsageApi* | [**usageImages**](docs/UsageApi.md#usageimages) | **GET** /organization/usage/images | Get images usage details for the organization.
+*UsageApi* | [**usageModerations**](docs/UsageApi.md#usagemoderations) | **GET** /organization/usage/moderations | Get moderations usage details for the organization.
+*UsageApi* | [**usageVectorStores**](docs/UsageApi.md#usagevectorstores) | **GET** /organization/usage/vector_stores | Get vector stores usage details for the organization.
+*UsersApi* | [**deleteUser**](docs/UsersApi.md#deleteuser) | **DELETE** /organization/users/{user_id} | Deletes a user from the organization.
+*UsersApi* | [**listUsers**](docs/UsersApi.md#listusers) | **GET** /organization/users | Lists all of the users in the organization.
+*UsersApi* | [**modifyUser**](docs/UsersApi.md#modifyuser) | **POST** /organization/users/{user_id} | Modifies a user's role in the organization.
+*UsersApi* | [**retrieveUser**](docs/UsersApi.md#retrieveuser) | **GET** /organization/users/{user_id} | Retrieves a user by their identifier.
+*VectorStoresApi* | [**cancelVectorStoreFileBatch**](docs/VectorStoresApi.md#cancelvectorstorefilebatch) | **POST** /vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel | Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+*VectorStoresApi* | [**createVectorStore**](docs/VectorStoresApi.md#createvectorstore) | **POST** /vector_stores | Create a vector store.
+*VectorStoresApi* | [**createVectorStoreFile**](docs/VectorStoresApi.md#createvectorstorefile) | **POST** /vector_stores/{vector_store_id}/files | Create a vector store file by attaching a [File](/docs/api-reference/files) to a [vector store](/docs/api-reference/vector-stores/object).
+*VectorStoresApi* | [**createVectorStoreFileBatch**](docs/VectorStoresApi.md#createvectorstorefilebatch) | **POST** /vector_stores/{vector_store_id}/file_batches | Create a vector store file batch.
+*VectorStoresApi* | [**deleteVectorStore**](docs/VectorStoresApi.md#deletevectorstore) | **DELETE** /vector_stores/{vector_store_id} | Delete a vector store.
+*VectorStoresApi* | [**deleteVectorStoreFile**](docs/VectorStoresApi.md#deletevectorstorefile) | **DELETE** /vector_stores/{vector_store_id}/files/{file_id} | Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api-reference/files/delete) endpoint.
+*VectorStoresApi* | [**getVectorStore**](docs/VectorStoresApi.md#getvectorstore) | **GET** /vector_stores/{vector_store_id} | Retrieves a vector store.
+*VectorStoresApi* | [**getVectorStoreFile**](docs/VectorStoresApi.md#getvectorstorefile) | **GET** /vector_stores/{vector_store_id}/files/{file_id} | Retrieves a vector store file.
+*VectorStoresApi* | [**getVectorStoreFileBatch**](docs/VectorStoresApi.md#getvectorstorefilebatch) | **GET** /vector_stores/{vector_store_id}/file_batches/{batch_id} | Retrieves a vector store file batch.
+*VectorStoresApi* | [**listFilesInVectorStoreBatch**](docs/VectorStoresApi.md#listfilesinvectorstorebatch) | **GET** /vector_stores/{vector_store_id}/file_batches/{batch_id}/files | Returns a list of vector store files in a batch.
+*VectorStoresApi* | [**listVectorStoreFiles**](docs/VectorStoresApi.md#listvectorstorefiles) | **GET** /vector_stores/{vector_store_id}/files | Returns a list of vector store files.
+*VectorStoresApi* | [**listVectorStores**](docs/VectorStoresApi.md#listvectorstores) | **GET** /vector_stores | Returns a list of vector stores.
+*VectorStoresApi* | [**modifyVectorStore**](docs/VectorStoresApi.md#modifyvectorstore) | **POST** /vector_stores/{vector_store_id} | Modifies a vector store.
 
 
 <a id="documentation-for-models"></a>
 ## Documentation for Models
 
- - [org.openapitools.server.models.AssistantFileObject](docs/AssistantFileObject.md)
+ - [org.openapitools.server.models.AdminApiKey](docs/AdminApiKey.md)
+ - [org.openapitools.server.models.AdminApiKeyOwner](docs/AdminApiKeyOwner.md)
+ - [org.openapitools.server.models.AdminApiKeysCreateRequest](docs/AdminApiKeysCreateRequest.md)
+ - [org.openapitools.server.models.AdminApiKeysDelete200Response](docs/AdminApiKeysDelete200Response.md)
+ - [org.openapitools.server.models.ApiKeyList](docs/ApiKeyList.md)
+ - [org.openapitools.server.models.ArrayOfContentPartsInner](docs/ArrayOfContentPartsInner.md)
  - [org.openapitools.server.models.AssistantObject](docs/AssistantObject.md)
+ - [org.openapitools.server.models.AssistantObjectToolResources](docs/AssistantObjectToolResources.md)
+ - [org.openapitools.server.models.AssistantObjectToolResourcesCodeInterpreter](docs/AssistantObjectToolResourcesCodeInterpreter.md)
+ - [org.openapitools.server.models.AssistantObjectToolResourcesFileSearch](docs/AssistantObjectToolResourcesFileSearch.md)
  - [org.openapitools.server.models.AssistantObjectToolsInner](docs/AssistantObjectToolsInner.md)
  - [org.openapitools.server.models.AssistantStreamEvent](docs/AssistantStreamEvent.md)
  - [org.openapitools.server.models.AssistantToolsCode](docs/AssistantToolsCode.md)
+ - [org.openapitools.server.models.AssistantToolsFileSearch](docs/AssistantToolsFileSearch.md)
+ - [org.openapitools.server.models.AssistantToolsFileSearchFileSearch](docs/AssistantToolsFileSearchFileSearch.md)
+ - [org.openapitools.server.models.AssistantToolsFileSearchTypeOnly](docs/AssistantToolsFileSearchTypeOnly.md)
  - [org.openapitools.server.models.AssistantToolsFunction](docs/AssistantToolsFunction.md)
- - [org.openapitools.server.models.AssistantToolsRetrieval](docs/AssistantToolsRetrieval.md)
- - [org.openapitools.server.models.AssistantsApiNamedToolChoice](docs/AssistantsApiNamedToolChoice.md)
- - [org.openapitools.server.models.AssistantsApiResponseFormat](docs/AssistantsApiResponseFormat.md)
  - [org.openapitools.server.models.AssistantsApiResponseFormatOption](docs/AssistantsApiResponseFormatOption.md)
  - [org.openapitools.server.models.AssistantsApiToolChoiceOption](docs/AssistantsApiToolChoiceOption.md)
+ - [org.openapitools.server.models.AssistantsNamedToolChoice](docs/AssistantsNamedToolChoice.md)
+ - [org.openapitools.server.models.AssistantsNamedToolChoiceFunction](docs/AssistantsNamedToolChoiceFunction.md)
+ - [org.openapitools.server.models.AudioResponseFormat](docs/AudioResponseFormat.md)
+ - [org.openapitools.server.models.AuditLog](docs/AuditLog.md)
+ - [org.openapitools.server.models.AuditLogActor](docs/AuditLogActor.md)
+ - [org.openapitools.server.models.AuditLogActorApiKey](docs/AuditLogActorApiKey.md)
+ - [org.openapitools.server.models.AuditLogActorServiceAccount](docs/AuditLogActorServiceAccount.md)
+ - [org.openapitools.server.models.AuditLogActorSession](docs/AuditLogActorSession.md)
+ - [org.openapitools.server.models.AuditLogActorUser](docs/AuditLogActorUser.md)
+ - [org.openapitools.server.models.AuditLogApiKeyCreated](docs/AuditLogApiKeyCreated.md)
+ - [org.openapitools.server.models.AuditLogApiKeyCreatedData](docs/AuditLogApiKeyCreatedData.md)
+ - [org.openapitools.server.models.AuditLogApiKeyDeleted](docs/AuditLogApiKeyDeleted.md)
+ - [org.openapitools.server.models.AuditLogApiKeyUpdated](docs/AuditLogApiKeyUpdated.md)
+ - [org.openapitools.server.models.AuditLogApiKeyUpdatedChangesRequested](docs/AuditLogApiKeyUpdatedChangesRequested.md)
+ - [org.openapitools.server.models.AuditLogEventType](docs/AuditLogEventType.md)
+ - [org.openapitools.server.models.AuditLogInviteAccepted](docs/AuditLogInviteAccepted.md)
+ - [org.openapitools.server.models.AuditLogInviteSent](docs/AuditLogInviteSent.md)
+ - [org.openapitools.server.models.AuditLogInviteSentData](docs/AuditLogInviteSentData.md)
+ - [org.openapitools.server.models.AuditLogLoginFailed](docs/AuditLogLoginFailed.md)
+ - [org.openapitools.server.models.AuditLogOrganizationUpdated](docs/AuditLogOrganizationUpdated.md)
+ - [org.openapitools.server.models.AuditLogOrganizationUpdatedChangesRequested](docs/AuditLogOrganizationUpdatedChangesRequested.md)
+ - [org.openapitools.server.models.AuditLogOrganizationUpdatedChangesRequestedSettings](docs/AuditLogOrganizationUpdatedChangesRequestedSettings.md)
+ - [org.openapitools.server.models.AuditLogProject](docs/AuditLogProject.md)
+ - [org.openapitools.server.models.AuditLogProjectArchived](docs/AuditLogProjectArchived.md)
+ - [org.openapitools.server.models.AuditLogProjectCreated](docs/AuditLogProjectCreated.md)
+ - [org.openapitools.server.models.AuditLogProjectCreatedData](docs/AuditLogProjectCreatedData.md)
+ - [org.openapitools.server.models.AuditLogProjectUpdated](docs/AuditLogProjectUpdated.md)
+ - [org.openapitools.server.models.AuditLogProjectUpdatedChangesRequested](docs/AuditLogProjectUpdatedChangesRequested.md)
+ - [org.openapitools.server.models.AuditLogRateLimitDeleted](docs/AuditLogRateLimitDeleted.md)
+ - [org.openapitools.server.models.AuditLogRateLimitUpdated](docs/AuditLogRateLimitUpdated.md)
+ - [org.openapitools.server.models.AuditLogRateLimitUpdatedChangesRequested](docs/AuditLogRateLimitUpdatedChangesRequested.md)
+ - [org.openapitools.server.models.AuditLogServiceAccountCreated](docs/AuditLogServiceAccountCreated.md)
+ - [org.openapitools.server.models.AuditLogServiceAccountCreatedData](docs/AuditLogServiceAccountCreatedData.md)
+ - [org.openapitools.server.models.AuditLogServiceAccountDeleted](docs/AuditLogServiceAccountDeleted.md)
+ - [org.openapitools.server.models.AuditLogServiceAccountUpdated](docs/AuditLogServiceAccountUpdated.md)
+ - [org.openapitools.server.models.AuditLogServiceAccountUpdatedChangesRequested](docs/AuditLogServiceAccountUpdatedChangesRequested.md)
+ - [org.openapitools.server.models.AuditLogUserAdded](docs/AuditLogUserAdded.md)
+ - [org.openapitools.server.models.AuditLogUserAddedData](docs/AuditLogUserAddedData.md)
+ - [org.openapitools.server.models.AuditLogUserDeleted](docs/AuditLogUserDeleted.md)
+ - [org.openapitools.server.models.AuditLogUserUpdated](docs/AuditLogUserUpdated.md)
+ - [org.openapitools.server.models.AuditLogUserUpdatedChangesRequested](docs/AuditLogUserUpdatedChangesRequested.md)
+ - [org.openapitools.server.models.AutoChunkingStrategy](docs/AutoChunkingStrategy.md)
+ - [org.openapitools.server.models.AutoChunkingStrategyRequestParam](docs/AutoChunkingStrategyRequestParam.md)
+ - [org.openapitools.server.models.Batch](docs/Batch.md)
+ - [org.openapitools.server.models.BatchErrors](docs/BatchErrors.md)
+ - [org.openapitools.server.models.BatchErrorsDataInner](docs/BatchErrorsDataInner.md)
+ - [org.openapitools.server.models.BatchRequestCounts](docs/BatchRequestCounts.md)
+ - [org.openapitools.server.models.BatchRequestInput](docs/BatchRequestInput.md)
+ - [org.openapitools.server.models.BatchRequestOutput](docs/BatchRequestOutput.md)
+ - [org.openapitools.server.models.BatchRequestOutputError](docs/BatchRequestOutputError.md)
+ - [org.openapitools.server.models.BatchRequestOutputResponse](docs/BatchRequestOutputResponse.md)
  - [org.openapitools.server.models.ChatCompletionFunctionCallOption](docs/ChatCompletionFunctionCallOption.md)
  - [org.openapitools.server.models.ChatCompletionFunctions](docs/ChatCompletionFunctions.md)
  - [org.openapitools.server.models.ChatCompletionMessageToolCall](docs/ChatCompletionMessageToolCall.md)
@@ -124,34 +241,58 @@ Class | Method | HTTP request | Description
  - [org.openapitools.server.models.ChatCompletionMessageToolCallChunkFunction](docs/ChatCompletionMessageToolCallChunkFunction.md)
  - [org.openapitools.server.models.ChatCompletionMessageToolCallFunction](docs/ChatCompletionMessageToolCallFunction.md)
  - [org.openapitools.server.models.ChatCompletionNamedToolChoice](docs/ChatCompletionNamedToolChoice.md)
- - [org.openapitools.server.models.ChatCompletionNamedToolChoiceFunction](docs/ChatCompletionNamedToolChoiceFunction.md)
  - [org.openapitools.server.models.ChatCompletionRequestAssistantMessage](docs/ChatCompletionRequestAssistantMessage.md)
+ - [org.openapitools.server.models.ChatCompletionRequestAssistantMessageAudio](docs/ChatCompletionRequestAssistantMessageAudio.md)
+ - [org.openapitools.server.models.ChatCompletionRequestAssistantMessageContent](docs/ChatCompletionRequestAssistantMessageContent.md)
+ - [org.openapitools.server.models.ChatCompletionRequestAssistantMessageContentPart](docs/ChatCompletionRequestAssistantMessageContentPart.md)
  - [org.openapitools.server.models.ChatCompletionRequestAssistantMessageFunctionCall](docs/ChatCompletionRequestAssistantMessageFunctionCall.md)
+ - [org.openapitools.server.models.ChatCompletionRequestDeveloperMessage](docs/ChatCompletionRequestDeveloperMessage.md)
+ - [org.openapitools.server.models.ChatCompletionRequestDeveloperMessageContent](docs/ChatCompletionRequestDeveloperMessageContent.md)
  - [org.openapitools.server.models.ChatCompletionRequestFunctionMessage](docs/ChatCompletionRequestFunctionMessage.md)
  - [org.openapitools.server.models.ChatCompletionRequestMessage](docs/ChatCompletionRequestMessage.md)
- - [org.openapitools.server.models.ChatCompletionRequestMessageContentPart](docs/ChatCompletionRequestMessageContentPart.md)
+ - [org.openapitools.server.models.ChatCompletionRequestMessageContentPartAudio](docs/ChatCompletionRequestMessageContentPartAudio.md)
+ - [org.openapitools.server.models.ChatCompletionRequestMessageContentPartAudioInputAudio](docs/ChatCompletionRequestMessageContentPartAudioInputAudio.md)
  - [org.openapitools.server.models.ChatCompletionRequestMessageContentPartImage](docs/ChatCompletionRequestMessageContentPartImage.md)
  - [org.openapitools.server.models.ChatCompletionRequestMessageContentPartImageImageUrl](docs/ChatCompletionRequestMessageContentPartImageImageUrl.md)
+ - [org.openapitools.server.models.ChatCompletionRequestMessageContentPartRefusal](docs/ChatCompletionRequestMessageContentPartRefusal.md)
  - [org.openapitools.server.models.ChatCompletionRequestMessageContentPartText](docs/ChatCompletionRequestMessageContentPartText.md)
  - [org.openapitools.server.models.ChatCompletionRequestSystemMessage](docs/ChatCompletionRequestSystemMessage.md)
+ - [org.openapitools.server.models.ChatCompletionRequestSystemMessageContent](docs/ChatCompletionRequestSystemMessageContent.md)
  - [org.openapitools.server.models.ChatCompletionRequestToolMessage](docs/ChatCompletionRequestToolMessage.md)
+ - [org.openapitools.server.models.ChatCompletionRequestToolMessageContent](docs/ChatCompletionRequestToolMessageContent.md)
  - [org.openapitools.server.models.ChatCompletionRequestUserMessage](docs/ChatCompletionRequestUserMessage.md)
  - [org.openapitools.server.models.ChatCompletionRequestUserMessageContent](docs/ChatCompletionRequestUserMessageContent.md)
+ - [org.openapitools.server.models.ChatCompletionRequestUserMessageContentPart](docs/ChatCompletionRequestUserMessageContentPart.md)
  - [org.openapitools.server.models.ChatCompletionResponseMessage](docs/ChatCompletionResponseMessage.md)
+ - [org.openapitools.server.models.ChatCompletionResponseMessageAudio](docs/ChatCompletionResponseMessageAudio.md)
+ - [org.openapitools.server.models.ChatCompletionResponseMessageFunctionCall](docs/ChatCompletionResponseMessageFunctionCall.md)
  - [org.openapitools.server.models.ChatCompletionRole](docs/ChatCompletionRole.md)
+ - [org.openapitools.server.models.ChatCompletionStreamOptions](docs/ChatCompletionStreamOptions.md)
  - [org.openapitools.server.models.ChatCompletionStreamResponseDelta](docs/ChatCompletionStreamResponseDelta.md)
  - [org.openapitools.server.models.ChatCompletionStreamResponseDeltaFunctionCall](docs/ChatCompletionStreamResponseDeltaFunctionCall.md)
  - [org.openapitools.server.models.ChatCompletionTokenLogprob](docs/ChatCompletionTokenLogprob.md)
  - [org.openapitools.server.models.ChatCompletionTokenLogprobTopLogprobsInner](docs/ChatCompletionTokenLogprobTopLogprobsInner.md)
  - [org.openapitools.server.models.ChatCompletionTool](docs/ChatCompletionTool.md)
  - [org.openapitools.server.models.ChatCompletionToolChoiceOption](docs/ChatCompletionToolChoiceOption.md)
+ - [org.openapitools.server.models.ChunkingStrategyRequestParam](docs/ChunkingStrategyRequestParam.md)
+ - [org.openapitools.server.models.CompleteUploadRequest](docs/CompleteUploadRequest.md)
  - [org.openapitools.server.models.CompletionUsage](docs/CompletionUsage.md)
- - [org.openapitools.server.models.CreateAssistantFileRequest](docs/CreateAssistantFileRequest.md)
+ - [org.openapitools.server.models.CompletionUsageCompletionTokensDetails](docs/CompletionUsageCompletionTokensDetails.md)
+ - [org.openapitools.server.models.CompletionUsagePromptTokensDetails](docs/CompletionUsagePromptTokensDetails.md)
+ - [org.openapitools.server.models.CostsResult](docs/CostsResult.md)
+ - [org.openapitools.server.models.CostsResultAmount](docs/CostsResultAmount.md)
  - [org.openapitools.server.models.CreateAssistantRequest](docs/CreateAssistantRequest.md)
  - [org.openapitools.server.models.CreateAssistantRequestModel](docs/CreateAssistantRequestModel.md)
+ - [org.openapitools.server.models.CreateAssistantRequestToolResources](docs/CreateAssistantRequestToolResources.md)
+ - [org.openapitools.server.models.CreateAssistantRequestToolResourcesCodeInterpreter](docs/CreateAssistantRequestToolResourcesCodeInterpreter.md)
+ - [org.openapitools.server.models.CreateAssistantRequestToolResourcesFileSearch](docs/CreateAssistantRequestToolResourcesFileSearch.md)
+ - [org.openapitools.server.models.CreateAssistantRequestToolResourcesFileSearchVectorStoresInner](docs/CreateAssistantRequestToolResourcesFileSearchVectorStoresInner.md)
+ - [org.openapitools.server.models.CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy](docs/CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.md)
+ - [org.openapitools.server.models.CreateBatchRequest](docs/CreateBatchRequest.md)
  - [org.openapitools.server.models.CreateChatCompletionFunctionResponse](docs/CreateChatCompletionFunctionResponse.md)
  - [org.openapitools.server.models.CreateChatCompletionFunctionResponseChoicesInner](docs/CreateChatCompletionFunctionResponseChoicesInner.md)
  - [org.openapitools.server.models.CreateChatCompletionRequest](docs/CreateChatCompletionRequest.md)
+ - [org.openapitools.server.models.CreateChatCompletionRequestAudio](docs/CreateChatCompletionRequestAudio.md)
  - [org.openapitools.server.models.CreateChatCompletionRequestFunctionCall](docs/CreateChatCompletionRequestFunctionCall.md)
  - [org.openapitools.server.models.CreateChatCompletionRequestModel](docs/CreateChatCompletionRequestModel.md)
  - [org.openapitools.server.models.CreateChatCompletionRequestResponseFormat](docs/CreateChatCompletionRequestResponseFormat.md)
@@ -161,6 +302,7 @@ Class | Method | HTTP request | Description
  - [org.openapitools.server.models.CreateChatCompletionResponseChoicesInnerLogprobs](docs/CreateChatCompletionResponseChoicesInnerLogprobs.md)
  - [org.openapitools.server.models.CreateChatCompletionStreamResponse](docs/CreateChatCompletionStreamResponse.md)
  - [org.openapitools.server.models.CreateChatCompletionStreamResponseChoicesInner](docs/CreateChatCompletionStreamResponseChoicesInner.md)
+ - [org.openapitools.server.models.CreateChatCompletionStreamResponseUsage](docs/CreateChatCompletionStreamResponseUsage.md)
  - [org.openapitools.server.models.CreateCompletionRequest](docs/CreateCompletionRequest.md)
  - [org.openapitools.server.models.CreateCompletionRequestModel](docs/CreateCompletionRequestModel.md)
  - [org.openapitools.server.models.CreateCompletionRequestPrompt](docs/CreateCompletionRequestPrompt.md)
@@ -185,20 +327,32 @@ Class | Method | HTTP request | Description
  - [org.openapitools.server.models.CreateImageRequest](docs/CreateImageRequest.md)
  - [org.openapitools.server.models.CreateImageRequestModel](docs/CreateImageRequestModel.md)
  - [org.openapitools.server.models.CreateMessageRequest](docs/CreateMessageRequest.md)
+ - [org.openapitools.server.models.CreateMessageRequestAttachmentsInner](docs/CreateMessageRequestAttachmentsInner.md)
+ - [org.openapitools.server.models.CreateMessageRequestAttachmentsInnerToolsInner](docs/CreateMessageRequestAttachmentsInnerToolsInner.md)
+ - [org.openapitools.server.models.CreateMessageRequestContent](docs/CreateMessageRequestContent.md)
  - [org.openapitools.server.models.CreateModerationRequest](docs/CreateModerationRequest.md)
  - [org.openapitools.server.models.CreateModerationRequestInput](docs/CreateModerationRequestInput.md)
+ - [org.openapitools.server.models.CreateModerationRequestInputOneOfInner](docs/CreateModerationRequestInputOneOfInner.md)
+ - [org.openapitools.server.models.CreateModerationRequestInputOneOfInnerOneOf](docs/CreateModerationRequestInputOneOfInnerOneOf.md)
+ - [org.openapitools.server.models.CreateModerationRequestInputOneOfInnerOneOf1](docs/CreateModerationRequestInputOneOfInnerOneOf1.md)
+ - [org.openapitools.server.models.CreateModerationRequestInputOneOfInnerOneOfImageUrl](docs/CreateModerationRequestInputOneOfInnerOneOfImageUrl.md)
  - [org.openapitools.server.models.CreateModerationRequestModel](docs/CreateModerationRequestModel.md)
  - [org.openapitools.server.models.CreateModerationResponse](docs/CreateModerationResponse.md)
  - [org.openapitools.server.models.CreateModerationResponseResultsInner](docs/CreateModerationResponseResultsInner.md)
  - [org.openapitools.server.models.CreateModerationResponseResultsInnerCategories](docs/CreateModerationResponseResultsInnerCategories.md)
+ - [org.openapitools.server.models.CreateModerationResponseResultsInnerCategoryAppliedInputTypes](docs/CreateModerationResponseResultsInnerCategoryAppliedInputTypes.md)
  - [org.openapitools.server.models.CreateModerationResponseResultsInnerCategoryScores](docs/CreateModerationResponseResultsInnerCategoryScores.md)
  - [org.openapitools.server.models.CreateRunRequest](docs/CreateRunRequest.md)
  - [org.openapitools.server.models.CreateRunRequestModel](docs/CreateRunRequestModel.md)
  - [org.openapitools.server.models.CreateSpeechRequest](docs/CreateSpeechRequest.md)
  - [org.openapitools.server.models.CreateSpeechRequestModel](docs/CreateSpeechRequestModel.md)
  - [org.openapitools.server.models.CreateThreadAndRunRequest](docs/CreateThreadAndRunRequest.md)
+ - [org.openapitools.server.models.CreateThreadAndRunRequestToolResources](docs/CreateThreadAndRunRequestToolResources.md)
  - [org.openapitools.server.models.CreateThreadAndRunRequestToolsInner](docs/CreateThreadAndRunRequestToolsInner.md)
  - [org.openapitools.server.models.CreateThreadRequest](docs/CreateThreadRequest.md)
+ - [org.openapitools.server.models.CreateThreadRequestToolResources](docs/CreateThreadRequestToolResources.md)
+ - [org.openapitools.server.models.CreateThreadRequestToolResourcesFileSearch](docs/CreateThreadRequestToolResourcesFileSearch.md)
+ - [org.openapitools.server.models.CreateThreadRequestToolResourcesFileSearchVectorStoresInner](docs/CreateThreadRequestToolResourcesFileSearchVectorStoresInner.md)
  - [org.openapitools.server.models.CreateTranscription200Response](docs/CreateTranscription200Response.md)
  - [org.openapitools.server.models.CreateTranscriptionRequestModel](docs/CreateTranscriptionRequestModel.md)
  - [org.openapitools.server.models.CreateTranscriptionResponseJson](docs/CreateTranscriptionResponseJson.md)
@@ -206,17 +360,41 @@ Class | Method | HTTP request | Description
  - [org.openapitools.server.models.CreateTranslation200Response](docs/CreateTranslation200Response.md)
  - [org.openapitools.server.models.CreateTranslationResponseJson](docs/CreateTranslationResponseJson.md)
  - [org.openapitools.server.models.CreateTranslationResponseVerboseJson](docs/CreateTranslationResponseVerboseJson.md)
- - [org.openapitools.server.models.DeleteAssistantFileResponse](docs/DeleteAssistantFileResponse.md)
+ - [org.openapitools.server.models.CreateUploadRequest](docs/CreateUploadRequest.md)
+ - [org.openapitools.server.models.CreateVectorStoreFileBatchRequest](docs/CreateVectorStoreFileBatchRequest.md)
+ - [org.openapitools.server.models.CreateVectorStoreFileRequest](docs/CreateVectorStoreFileRequest.md)
+ - [org.openapitools.server.models.CreateVectorStoreRequest](docs/CreateVectorStoreRequest.md)
+ - [org.openapitools.server.models.CreateVectorStoreRequestChunkingStrategy](docs/CreateVectorStoreRequestChunkingStrategy.md)
+ - [org.openapitools.server.models.DefaultProjectErrorResponse](docs/DefaultProjectErrorResponse.md)
  - [org.openapitools.server.models.DeleteAssistantResponse](docs/DeleteAssistantResponse.md)
  - [org.openapitools.server.models.DeleteFileResponse](docs/DeleteFileResponse.md)
  - [org.openapitools.server.models.DeleteMessageResponse](docs/DeleteMessageResponse.md)
  - [org.openapitools.server.models.DeleteModelResponse](docs/DeleteModelResponse.md)
  - [org.openapitools.server.models.DeleteThreadResponse](docs/DeleteThreadResponse.md)
+ - [org.openapitools.server.models.DeleteVectorStoreFileResponse](docs/DeleteVectorStoreFileResponse.md)
+ - [org.openapitools.server.models.DeleteVectorStoreResponse](docs/DeleteVectorStoreResponse.md)
  - [org.openapitools.server.models.DoneEvent](docs/DoneEvent.md)
  - [org.openapitools.server.models.Embedding](docs/Embedding.md)
  - [org.openapitools.server.models.Error](docs/Error.md)
  - [org.openapitools.server.models.ErrorEvent](docs/ErrorEvent.md)
  - [org.openapitools.server.models.ErrorResponse](docs/ErrorResponse.md)
+ - [org.openapitools.server.models.FileSearchRankingOptions](docs/FileSearchRankingOptions.md)
+ - [org.openapitools.server.models.FineTuneChatCompletionRequestAssistantMessage](docs/FineTuneChatCompletionRequestAssistantMessage.md)
+ - [org.openapitools.server.models.FineTuneChatRequestInput](docs/FineTuneChatRequestInput.md)
+ - [org.openapitools.server.models.FineTuneChatRequestInputMessagesInner](docs/FineTuneChatRequestInputMessagesInner.md)
+ - [org.openapitools.server.models.FineTuneCompletionRequestInput](docs/FineTuneCompletionRequestInput.md)
+ - [org.openapitools.server.models.FineTuneDPOMethod](docs/FineTuneDPOMethod.md)
+ - [org.openapitools.server.models.FineTuneDPOMethodHyperparameters](docs/FineTuneDPOMethodHyperparameters.md)
+ - [org.openapitools.server.models.FineTuneDPOMethodHyperparametersBatchSize](docs/FineTuneDPOMethodHyperparametersBatchSize.md)
+ - [org.openapitools.server.models.FineTuneDPOMethodHyperparametersBeta](docs/FineTuneDPOMethodHyperparametersBeta.md)
+ - [org.openapitools.server.models.FineTuneDPOMethodHyperparametersLearningRateMultiplier](docs/FineTuneDPOMethodHyperparametersLearningRateMultiplier.md)
+ - [org.openapitools.server.models.FineTuneDPOMethodHyperparametersNEpochs](docs/FineTuneDPOMethodHyperparametersNEpochs.md)
+ - [org.openapitools.server.models.FineTuneMethod](docs/FineTuneMethod.md)
+ - [org.openapitools.server.models.FineTunePreferenceRequestInput](docs/FineTunePreferenceRequestInput.md)
+ - [org.openapitools.server.models.FineTunePreferenceRequestInputInput](docs/FineTunePreferenceRequestInputInput.md)
+ - [org.openapitools.server.models.FineTunePreferenceRequestInputPreferredCompletionInner](docs/FineTunePreferenceRequestInputPreferredCompletionInner.md)
+ - [org.openapitools.server.models.FineTuneSupervisedMethod](docs/FineTuneSupervisedMethod.md)
+ - [org.openapitools.server.models.FineTuneSupervisedMethodHyperparameters](docs/FineTuneSupervisedMethodHyperparameters.md)
  - [org.openapitools.server.models.FineTuningIntegration](docs/FineTuningIntegration.md)
  - [org.openapitools.server.models.FineTuningJob](docs/FineTuningJob.md)
  - [org.openapitools.server.models.FineTuningJobCheckpoint](docs/FineTuningJobCheckpoint.md)
@@ -224,25 +402,36 @@ Class | Method | HTTP request | Description
  - [org.openapitools.server.models.FineTuningJobError](docs/FineTuningJobError.md)
  - [org.openapitools.server.models.FineTuningJobEvent](docs/FineTuningJobEvent.md)
  - [org.openapitools.server.models.FineTuningJobHyperparameters](docs/FineTuningJobHyperparameters.md)
- - [org.openapitools.server.models.FineTuningJobHyperparametersNEpochs](docs/FineTuningJobHyperparametersNEpochs.md)
  - [org.openapitools.server.models.FineTuningJobIntegrationsInner](docs/FineTuningJobIntegrationsInner.md)
  - [org.openapitools.server.models.FunctionObject](docs/FunctionObject.md)
  - [org.openapitools.server.models.Image](docs/Image.md)
  - [org.openapitools.server.models.ImagesResponse](docs/ImagesResponse.md)
- - [org.openapitools.server.models.ListAssistantFilesResponse](docs/ListAssistantFilesResponse.md)
+ - [org.openapitools.server.models.Invite](docs/Invite.md)
+ - [org.openapitools.server.models.InviteDeleteResponse](docs/InviteDeleteResponse.md)
+ - [org.openapitools.server.models.InviteListResponse](docs/InviteListResponse.md)
+ - [org.openapitools.server.models.InviteProjectsInner](docs/InviteProjectsInner.md)
+ - [org.openapitools.server.models.InviteRequest](docs/InviteRequest.md)
+ - [org.openapitools.server.models.InviteRequestProjectsInner](docs/InviteRequestProjectsInner.md)
  - [org.openapitools.server.models.ListAssistantsResponse](docs/ListAssistantsResponse.md)
+ - [org.openapitools.server.models.ListAuditLogsEffectiveAtParameter](docs/ListAuditLogsEffectiveAtParameter.md)
+ - [org.openapitools.server.models.ListAuditLogsResponse](docs/ListAuditLogsResponse.md)
+ - [org.openapitools.server.models.ListBatchesResponse](docs/ListBatchesResponse.md)
  - [org.openapitools.server.models.ListFilesResponse](docs/ListFilesResponse.md)
  - [org.openapitools.server.models.ListFineTuningJobCheckpointsResponse](docs/ListFineTuningJobCheckpointsResponse.md)
  - [org.openapitools.server.models.ListFineTuningJobEventsResponse](docs/ListFineTuningJobEventsResponse.md)
- - [org.openapitools.server.models.ListMessageFilesResponse](docs/ListMessageFilesResponse.md)
  - [org.openapitools.server.models.ListMessagesResponse](docs/ListMessagesResponse.md)
  - [org.openapitools.server.models.ListModelsResponse](docs/ListModelsResponse.md)
  - [org.openapitools.server.models.ListPaginatedFineTuningJobsResponse](docs/ListPaginatedFineTuningJobsResponse.md)
  - [org.openapitools.server.models.ListRunStepsResponse](docs/ListRunStepsResponse.md)
  - [org.openapitools.server.models.ListRunsResponse](docs/ListRunsResponse.md)
  - [org.openapitools.server.models.ListThreadsResponse](docs/ListThreadsResponse.md)
+ - [org.openapitools.server.models.ListVectorStoreFilesResponse](docs/ListVectorStoreFilesResponse.md)
+ - [org.openapitools.server.models.ListVectorStoresResponse](docs/ListVectorStoresResponse.md)
  - [org.openapitools.server.models.MessageContentImageFileObject](docs/MessageContentImageFileObject.md)
  - [org.openapitools.server.models.MessageContentImageFileObjectImageFile](docs/MessageContentImageFileObjectImageFile.md)
+ - [org.openapitools.server.models.MessageContentImageUrlObject](docs/MessageContentImageUrlObject.md)
+ - [org.openapitools.server.models.MessageContentImageUrlObjectImageUrl](docs/MessageContentImageUrlObjectImageUrl.md)
+ - [org.openapitools.server.models.MessageContentRefusalObject](docs/MessageContentRefusalObject.md)
  - [org.openapitools.server.models.MessageContentTextAnnotationsFileCitationObject](docs/MessageContentTextAnnotationsFileCitationObject.md)
  - [org.openapitools.server.models.MessageContentTextAnnotationsFileCitationObjectFileCitation](docs/MessageContentTextAnnotationsFileCitationObjectFileCitation.md)
  - [org.openapitools.server.models.MessageContentTextAnnotationsFilePathObject](docs/MessageContentTextAnnotationsFilePathObject.md)
@@ -252,6 +441,9 @@ Class | Method | HTTP request | Description
  - [org.openapitools.server.models.MessageContentTextObjectTextAnnotationsInner](docs/MessageContentTextObjectTextAnnotationsInner.md)
  - [org.openapitools.server.models.MessageDeltaContentImageFileObject](docs/MessageDeltaContentImageFileObject.md)
  - [org.openapitools.server.models.MessageDeltaContentImageFileObjectImageFile](docs/MessageDeltaContentImageFileObjectImageFile.md)
+ - [org.openapitools.server.models.MessageDeltaContentImageUrlObject](docs/MessageDeltaContentImageUrlObject.md)
+ - [org.openapitools.server.models.MessageDeltaContentImageUrlObjectImageUrl](docs/MessageDeltaContentImageUrlObjectImageUrl.md)
+ - [org.openapitools.server.models.MessageDeltaContentRefusalObject](docs/MessageDeltaContentRefusalObject.md)
  - [org.openapitools.server.models.MessageDeltaContentTextAnnotationsFileCitationObject](docs/MessageDeltaContentTextAnnotationsFileCitationObject.md)
  - [org.openapitools.server.models.MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation](docs/MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation.md)
  - [org.openapitools.server.models.MessageDeltaContentTextAnnotationsFilePathObject](docs/MessageDeltaContentTextAnnotationsFilePathObject.md)
@@ -262,10 +454,10 @@ Class | Method | HTTP request | Description
  - [org.openapitools.server.models.MessageDeltaObject](docs/MessageDeltaObject.md)
  - [org.openapitools.server.models.MessageDeltaObjectDelta](docs/MessageDeltaObjectDelta.md)
  - [org.openapitools.server.models.MessageDeltaObjectDeltaContentInner](docs/MessageDeltaObjectDeltaContentInner.md)
- - [org.openapitools.server.models.MessageFileObject](docs/MessageFileObject.md)
  - [org.openapitools.server.models.MessageObject](docs/MessageObject.md)
  - [org.openapitools.server.models.MessageObjectContentInner](docs/MessageObjectContentInner.md)
  - [org.openapitools.server.models.MessageObjectIncompleteDetails](docs/MessageObjectIncompleteDetails.md)
+ - [org.openapitools.server.models.MessageRequestContentTextObject](docs/MessageRequestContentTextObject.md)
  - [org.openapitools.server.models.MessageStreamEvent](docs/MessageStreamEvent.md)
  - [org.openapitools.server.models.MessageStreamEventOneOf](docs/MessageStreamEventOneOf.md)
  - [org.openapitools.server.models.MessageStreamEventOneOf1](docs/MessageStreamEventOneOf1.md)
@@ -274,10 +466,108 @@ Class | Method | HTTP request | Description
  - [org.openapitools.server.models.MessageStreamEventOneOf4](docs/MessageStreamEventOneOf4.md)
  - [org.openapitools.server.models.Model](docs/Model.md)
  - [org.openapitools.server.models.ModifyAssistantRequest](docs/ModifyAssistantRequest.md)
+ - [org.openapitools.server.models.ModifyAssistantRequestToolResources](docs/ModifyAssistantRequestToolResources.md)
+ - [org.openapitools.server.models.ModifyAssistantRequestToolResourcesCodeInterpreter](docs/ModifyAssistantRequestToolResourcesCodeInterpreter.md)
+ - [org.openapitools.server.models.ModifyAssistantRequestToolResourcesFileSearch](docs/ModifyAssistantRequestToolResourcesFileSearch.md)
  - [org.openapitools.server.models.ModifyMessageRequest](docs/ModifyMessageRequest.md)
  - [org.openapitools.server.models.ModifyRunRequest](docs/ModifyRunRequest.md)
  - [org.openapitools.server.models.ModifyThreadRequest](docs/ModifyThreadRequest.md)
+ - [org.openapitools.server.models.ModifyThreadRequestToolResources](docs/ModifyThreadRequestToolResources.md)
+ - [org.openapitools.server.models.ModifyThreadRequestToolResourcesFileSearch](docs/ModifyThreadRequestToolResourcesFileSearch.md)
  - [org.openapitools.server.models.OpenAIFile](docs/OpenAIFile.md)
+ - [org.openapitools.server.models.OtherChunkingStrategyResponseParam](docs/OtherChunkingStrategyResponseParam.md)
+ - [org.openapitools.server.models.PredictionContent](docs/PredictionContent.md)
+ - [org.openapitools.server.models.PredictionContentContent](docs/PredictionContentContent.md)
+ - [org.openapitools.server.models.Project](docs/Project.md)
+ - [org.openapitools.server.models.ProjectApiKey](docs/ProjectApiKey.md)
+ - [org.openapitools.server.models.ProjectApiKeyDeleteResponse](docs/ProjectApiKeyDeleteResponse.md)
+ - [org.openapitools.server.models.ProjectApiKeyListResponse](docs/ProjectApiKeyListResponse.md)
+ - [org.openapitools.server.models.ProjectApiKeyOwner](docs/ProjectApiKeyOwner.md)
+ - [org.openapitools.server.models.ProjectCreateRequest](docs/ProjectCreateRequest.md)
+ - [org.openapitools.server.models.ProjectListResponse](docs/ProjectListResponse.md)
+ - [org.openapitools.server.models.ProjectRateLimit](docs/ProjectRateLimit.md)
+ - [org.openapitools.server.models.ProjectRateLimitListResponse](docs/ProjectRateLimitListResponse.md)
+ - [org.openapitools.server.models.ProjectRateLimitUpdateRequest](docs/ProjectRateLimitUpdateRequest.md)
+ - [org.openapitools.server.models.ProjectServiceAccount](docs/ProjectServiceAccount.md)
+ - [org.openapitools.server.models.ProjectServiceAccountApiKey](docs/ProjectServiceAccountApiKey.md)
+ - [org.openapitools.server.models.ProjectServiceAccountCreateRequest](docs/ProjectServiceAccountCreateRequest.md)
+ - [org.openapitools.server.models.ProjectServiceAccountCreateResponse](docs/ProjectServiceAccountCreateResponse.md)
+ - [org.openapitools.server.models.ProjectServiceAccountDeleteResponse](docs/ProjectServiceAccountDeleteResponse.md)
+ - [org.openapitools.server.models.ProjectServiceAccountListResponse](docs/ProjectServiceAccountListResponse.md)
+ - [org.openapitools.server.models.ProjectUpdateRequest](docs/ProjectUpdateRequest.md)
+ - [org.openapitools.server.models.ProjectUser](docs/ProjectUser.md)
+ - [org.openapitools.server.models.ProjectUserCreateRequest](docs/ProjectUserCreateRequest.md)
+ - [org.openapitools.server.models.ProjectUserDeleteResponse](docs/ProjectUserDeleteResponse.md)
+ - [org.openapitools.server.models.ProjectUserListResponse](docs/ProjectUserListResponse.md)
+ - [org.openapitools.server.models.ProjectUserUpdateRequest](docs/ProjectUserUpdateRequest.md)
+ - [org.openapitools.server.models.RealtimeClientEventConversationItemCreate](docs/RealtimeClientEventConversationItemCreate.md)
+ - [org.openapitools.server.models.RealtimeClientEventConversationItemDelete](docs/RealtimeClientEventConversationItemDelete.md)
+ - [org.openapitools.server.models.RealtimeClientEventConversationItemTruncate](docs/RealtimeClientEventConversationItemTruncate.md)
+ - [org.openapitools.server.models.RealtimeClientEventInputAudioBufferAppend](docs/RealtimeClientEventInputAudioBufferAppend.md)
+ - [org.openapitools.server.models.RealtimeClientEventInputAudioBufferClear](docs/RealtimeClientEventInputAudioBufferClear.md)
+ - [org.openapitools.server.models.RealtimeClientEventInputAudioBufferCommit](docs/RealtimeClientEventInputAudioBufferCommit.md)
+ - [org.openapitools.server.models.RealtimeClientEventResponseCancel](docs/RealtimeClientEventResponseCancel.md)
+ - [org.openapitools.server.models.RealtimeClientEventResponseCreate](docs/RealtimeClientEventResponseCreate.md)
+ - [org.openapitools.server.models.RealtimeClientEventSessionUpdate](docs/RealtimeClientEventSessionUpdate.md)
+ - [org.openapitools.server.models.RealtimeConversationItem](docs/RealtimeConversationItem.md)
+ - [org.openapitools.server.models.RealtimeConversationItemContentInner](docs/RealtimeConversationItemContentInner.md)
+ - [org.openapitools.server.models.RealtimeResponse](docs/RealtimeResponse.md)
+ - [org.openapitools.server.models.RealtimeResponseCreateParams](docs/RealtimeResponseCreateParams.md)
+ - [org.openapitools.server.models.RealtimeResponseCreateParamsConversation](docs/RealtimeResponseCreateParamsConversation.md)
+ - [org.openapitools.server.models.RealtimeResponseCreateParamsMaxResponseOutputTokens](docs/RealtimeResponseCreateParamsMaxResponseOutputTokens.md)
+ - [org.openapitools.server.models.RealtimeResponseCreateParamsToolsInner](docs/RealtimeResponseCreateParamsToolsInner.md)
+ - [org.openapitools.server.models.RealtimeResponseStatusDetails](docs/RealtimeResponseStatusDetails.md)
+ - [org.openapitools.server.models.RealtimeResponseStatusDetailsError](docs/RealtimeResponseStatusDetailsError.md)
+ - [org.openapitools.server.models.RealtimeResponseUsage](docs/RealtimeResponseUsage.md)
+ - [org.openapitools.server.models.RealtimeResponseUsageInputTokenDetails](docs/RealtimeResponseUsageInputTokenDetails.md)
+ - [org.openapitools.server.models.RealtimeResponseUsageOutputTokenDetails](docs/RealtimeResponseUsageOutputTokenDetails.md)
+ - [org.openapitools.server.models.RealtimeServerEventConversationCreated](docs/RealtimeServerEventConversationCreated.md)
+ - [org.openapitools.server.models.RealtimeServerEventConversationCreatedConversation](docs/RealtimeServerEventConversationCreatedConversation.md)
+ - [org.openapitools.server.models.RealtimeServerEventConversationItemCreated](docs/RealtimeServerEventConversationItemCreated.md)
+ - [org.openapitools.server.models.RealtimeServerEventConversationItemDeleted](docs/RealtimeServerEventConversationItemDeleted.md)
+ - [org.openapitools.server.models.RealtimeServerEventConversationItemInputAudioTranscriptionCompleted](docs/RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.md)
+ - [org.openapitools.server.models.RealtimeServerEventConversationItemInputAudioTranscriptionFailed](docs/RealtimeServerEventConversationItemInputAudioTranscriptionFailed.md)
+ - [org.openapitools.server.models.RealtimeServerEventConversationItemInputAudioTranscriptionFailedError](docs/RealtimeServerEventConversationItemInputAudioTranscriptionFailedError.md)
+ - [org.openapitools.server.models.RealtimeServerEventConversationItemTruncated](docs/RealtimeServerEventConversationItemTruncated.md)
+ - [org.openapitools.server.models.RealtimeServerEventError](docs/RealtimeServerEventError.md)
+ - [org.openapitools.server.models.RealtimeServerEventErrorError](docs/RealtimeServerEventErrorError.md)
+ - [org.openapitools.server.models.RealtimeServerEventInputAudioBufferCleared](docs/RealtimeServerEventInputAudioBufferCleared.md)
+ - [org.openapitools.server.models.RealtimeServerEventInputAudioBufferCommitted](docs/RealtimeServerEventInputAudioBufferCommitted.md)
+ - [org.openapitools.server.models.RealtimeServerEventInputAudioBufferSpeechStarted](docs/RealtimeServerEventInputAudioBufferSpeechStarted.md)
+ - [org.openapitools.server.models.RealtimeServerEventInputAudioBufferSpeechStopped](docs/RealtimeServerEventInputAudioBufferSpeechStopped.md)
+ - [org.openapitools.server.models.RealtimeServerEventRateLimitsUpdated](docs/RealtimeServerEventRateLimitsUpdated.md)
+ - [org.openapitools.server.models.RealtimeServerEventRateLimitsUpdatedRateLimitsInner](docs/RealtimeServerEventRateLimitsUpdatedRateLimitsInner.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseAudioDelta](docs/RealtimeServerEventResponseAudioDelta.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseAudioDone](docs/RealtimeServerEventResponseAudioDone.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseAudioTranscriptDelta](docs/RealtimeServerEventResponseAudioTranscriptDelta.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseAudioTranscriptDone](docs/RealtimeServerEventResponseAudioTranscriptDone.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseContentPartAdded](docs/RealtimeServerEventResponseContentPartAdded.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseContentPartAddedPart](docs/RealtimeServerEventResponseContentPartAddedPart.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseContentPartDone](docs/RealtimeServerEventResponseContentPartDone.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseContentPartDonePart](docs/RealtimeServerEventResponseContentPartDonePart.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseCreated](docs/RealtimeServerEventResponseCreated.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseDone](docs/RealtimeServerEventResponseDone.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseFunctionCallArgumentsDelta](docs/RealtimeServerEventResponseFunctionCallArgumentsDelta.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseFunctionCallArgumentsDone](docs/RealtimeServerEventResponseFunctionCallArgumentsDone.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseOutputItemAdded](docs/RealtimeServerEventResponseOutputItemAdded.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseOutputItemDone](docs/RealtimeServerEventResponseOutputItemDone.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseTextDelta](docs/RealtimeServerEventResponseTextDelta.md)
+ - [org.openapitools.server.models.RealtimeServerEventResponseTextDone](docs/RealtimeServerEventResponseTextDone.md)
+ - [org.openapitools.server.models.RealtimeServerEventSessionCreated](docs/RealtimeServerEventSessionCreated.md)
+ - [org.openapitools.server.models.RealtimeServerEventSessionUpdated](docs/RealtimeServerEventSessionUpdated.md)
+ - [org.openapitools.server.models.RealtimeSession](docs/RealtimeSession.md)
+ - [org.openapitools.server.models.RealtimeSessionCreateRequest](docs/RealtimeSessionCreateRequest.md)
+ - [org.openapitools.server.models.RealtimeSessionCreateRequestTurnDetection](docs/RealtimeSessionCreateRequestTurnDetection.md)
+ - [org.openapitools.server.models.RealtimeSessionCreateResponse](docs/RealtimeSessionCreateResponse.md)
+ - [org.openapitools.server.models.RealtimeSessionCreateResponseClientSecret](docs/RealtimeSessionCreateResponseClientSecret.md)
+ - [org.openapitools.server.models.RealtimeSessionCreateResponseTurnDetection](docs/RealtimeSessionCreateResponseTurnDetection.md)
+ - [org.openapitools.server.models.RealtimeSessionInputAudioTranscription](docs/RealtimeSessionInputAudioTranscription.md)
+ - [org.openapitools.server.models.RealtimeSessionModel](docs/RealtimeSessionModel.md)
+ - [org.openapitools.server.models.RealtimeSessionTurnDetection](docs/RealtimeSessionTurnDetection.md)
+ - [org.openapitools.server.models.ResponseFormatJsonObject](docs/ResponseFormatJsonObject.md)
+ - [org.openapitools.server.models.ResponseFormatJsonSchema](docs/ResponseFormatJsonSchema.md)
+ - [org.openapitools.server.models.ResponseFormatJsonSchemaJsonSchema](docs/ResponseFormatJsonSchemaJsonSchema.md)
+ - [org.openapitools.server.models.ResponseFormatText](docs/ResponseFormatText.md)
  - [org.openapitools.server.models.RunCompletionUsage](docs/RunCompletionUsage.md)
  - [org.openapitools.server.models.RunObject](docs/RunObject.md)
  - [org.openapitools.server.models.RunObjectIncompleteDetails](docs/RunObjectIncompleteDetails.md)
@@ -296,11 +586,11 @@ Class | Method | HTTP request | Description
  - [org.openapitools.server.models.RunStepDeltaStepDetailsToolCallsCodeOutputImageObject](docs/RunStepDeltaStepDetailsToolCallsCodeOutputImageObject.md)
  - [org.openapitools.server.models.RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage](docs/RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage.md)
  - [org.openapitools.server.models.RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject](docs/RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.md)
+ - [org.openapitools.server.models.RunStepDeltaStepDetailsToolCallsFileSearchObject](docs/RunStepDeltaStepDetailsToolCallsFileSearchObject.md)
  - [org.openapitools.server.models.RunStepDeltaStepDetailsToolCallsFunctionObject](docs/RunStepDeltaStepDetailsToolCallsFunctionObject.md)
  - [org.openapitools.server.models.RunStepDeltaStepDetailsToolCallsFunctionObjectFunction](docs/RunStepDeltaStepDetailsToolCallsFunctionObjectFunction.md)
  - [org.openapitools.server.models.RunStepDeltaStepDetailsToolCallsObject](docs/RunStepDeltaStepDetailsToolCallsObject.md)
  - [org.openapitools.server.models.RunStepDeltaStepDetailsToolCallsObjectToolCallsInner](docs/RunStepDeltaStepDetailsToolCallsObjectToolCallsInner.md)
- - [org.openapitools.server.models.RunStepDeltaStepDetailsToolCallsRetrievalObject](docs/RunStepDeltaStepDetailsToolCallsRetrievalObject.md)
  - [org.openapitools.server.models.RunStepDetailsMessageCreationObject](docs/RunStepDetailsMessageCreationObject.md)
  - [org.openapitools.server.models.RunStepDetailsMessageCreationObjectMessageCreation](docs/RunStepDetailsMessageCreationObjectMessageCreation.md)
  - [org.openapitools.server.models.RunStepDetailsToolCallsCodeObject](docs/RunStepDetailsToolCallsCodeObject.md)
@@ -309,11 +599,15 @@ Class | Method | HTTP request | Description
  - [org.openapitools.server.models.RunStepDetailsToolCallsCodeOutputImageObject](docs/RunStepDetailsToolCallsCodeOutputImageObject.md)
  - [org.openapitools.server.models.RunStepDetailsToolCallsCodeOutputImageObjectImage](docs/RunStepDetailsToolCallsCodeOutputImageObjectImage.md)
  - [org.openapitools.server.models.RunStepDetailsToolCallsCodeOutputLogsObject](docs/RunStepDetailsToolCallsCodeOutputLogsObject.md)
+ - [org.openapitools.server.models.RunStepDetailsToolCallsFileSearchObject](docs/RunStepDetailsToolCallsFileSearchObject.md)
+ - [org.openapitools.server.models.RunStepDetailsToolCallsFileSearchObjectFileSearch](docs/RunStepDetailsToolCallsFileSearchObjectFileSearch.md)
+ - [org.openapitools.server.models.RunStepDetailsToolCallsFileSearchRankingOptionsObject](docs/RunStepDetailsToolCallsFileSearchRankingOptionsObject.md)
+ - [org.openapitools.server.models.RunStepDetailsToolCallsFileSearchResultObject](docs/RunStepDetailsToolCallsFileSearchResultObject.md)
+ - [org.openapitools.server.models.RunStepDetailsToolCallsFileSearchResultObjectContentInner](docs/RunStepDetailsToolCallsFileSearchResultObjectContentInner.md)
  - [org.openapitools.server.models.RunStepDetailsToolCallsFunctionObject](docs/RunStepDetailsToolCallsFunctionObject.md)
  - [org.openapitools.server.models.RunStepDetailsToolCallsFunctionObjectFunction](docs/RunStepDetailsToolCallsFunctionObjectFunction.md)
  - [org.openapitools.server.models.RunStepDetailsToolCallsObject](docs/RunStepDetailsToolCallsObject.md)
  - [org.openapitools.server.models.RunStepDetailsToolCallsObjectToolCallsInner](docs/RunStepDetailsToolCallsObjectToolCallsInner.md)
- - [org.openapitools.server.models.RunStepDetailsToolCallsRetrievalObject](docs/RunStepDetailsToolCallsRetrievalObject.md)
  - [org.openapitools.server.models.RunStepObject](docs/RunStepObject.md)
  - [org.openapitools.server.models.RunStepObjectLastError](docs/RunStepObjectLastError.md)
  - [org.openapitools.server.models.RunStepObjectStepDetails](docs/RunStepObjectStepDetails.md)
@@ -335,8 +629,13 @@ Class | Method | HTTP request | Description
  - [org.openapitools.server.models.RunStreamEventOneOf6](docs/RunStreamEventOneOf6.md)
  - [org.openapitools.server.models.RunStreamEventOneOf7](docs/RunStreamEventOneOf7.md)
  - [org.openapitools.server.models.RunStreamEventOneOf8](docs/RunStreamEventOneOf8.md)
+ - [org.openapitools.server.models.RunStreamEventOneOf9](docs/RunStreamEventOneOf9.md)
  - [org.openapitools.server.models.RunToolCallObject](docs/RunToolCallObject.md)
  - [org.openapitools.server.models.RunToolCallObjectFunction](docs/RunToolCallObjectFunction.md)
+ - [org.openapitools.server.models.StaticChunkingStrategy](docs/StaticChunkingStrategy.md)
+ - [org.openapitools.server.models.StaticChunkingStrategyRequestParam](docs/StaticChunkingStrategyRequestParam.md)
+ - [org.openapitools.server.models.StaticChunkingStrategyResponseParam](docs/StaticChunkingStrategyResponseParam.md)
+ - [org.openapitools.server.models.StaticChunkingStrategyStatic](docs/StaticChunkingStrategyStatic.md)
  - [org.openapitools.server.models.SubmitToolOutputsRunRequest](docs/SubmitToolOutputsRunRequest.md)
  - [org.openapitools.server.models.SubmitToolOutputsRunRequestToolOutputsInner](docs/SubmitToolOutputsRunRequestToolOutputsInner.md)
  - [org.openapitools.server.models.ThreadObject](docs/ThreadObject.md)
@@ -344,6 +643,32 @@ Class | Method | HTTP request | Description
  - [org.openapitools.server.models.TranscriptionSegment](docs/TranscriptionSegment.md)
  - [org.openapitools.server.models.TranscriptionWord](docs/TranscriptionWord.md)
  - [org.openapitools.server.models.TruncationObject](docs/TruncationObject.md)
+ - [org.openapitools.server.models.UpdateVectorStoreRequest](docs/UpdateVectorStoreRequest.md)
+ - [org.openapitools.server.models.Upload](docs/Upload.md)
+ - [org.openapitools.server.models.UploadPart](docs/UploadPart.md)
+ - [org.openapitools.server.models.UsageAudioSpeechesResult](docs/UsageAudioSpeechesResult.md)
+ - [org.openapitools.server.models.UsageAudioTranscriptionsResult](docs/UsageAudioTranscriptionsResult.md)
+ - [org.openapitools.server.models.UsageCodeInterpreterSessionsResult](docs/UsageCodeInterpreterSessionsResult.md)
+ - [org.openapitools.server.models.UsageCompletionsResult](docs/UsageCompletionsResult.md)
+ - [org.openapitools.server.models.UsageEmbeddingsResult](docs/UsageEmbeddingsResult.md)
+ - [org.openapitools.server.models.UsageImagesResult](docs/UsageImagesResult.md)
+ - [org.openapitools.server.models.UsageModerationsResult](docs/UsageModerationsResult.md)
+ - [org.openapitools.server.models.UsageResponse](docs/UsageResponse.md)
+ - [org.openapitools.server.models.UsageTimeBucket](docs/UsageTimeBucket.md)
+ - [org.openapitools.server.models.UsageTimeBucketResultInner](docs/UsageTimeBucketResultInner.md)
+ - [org.openapitools.server.models.UsageVectorStoresResult](docs/UsageVectorStoresResult.md)
+ - [org.openapitools.server.models.User](docs/User.md)
+ - [org.openapitools.server.models.UserDeleteResponse](docs/UserDeleteResponse.md)
+ - [org.openapitools.server.models.UserListResponse](docs/UserListResponse.md)
+ - [org.openapitools.server.models.UserRoleUpdateRequest](docs/UserRoleUpdateRequest.md)
+ - [org.openapitools.server.models.VectorStoreExpirationAfter](docs/VectorStoreExpirationAfter.md)
+ - [org.openapitools.server.models.VectorStoreFileBatchObject](docs/VectorStoreFileBatchObject.md)
+ - [org.openapitools.server.models.VectorStoreFileBatchObjectFileCounts](docs/VectorStoreFileBatchObjectFileCounts.md)
+ - [org.openapitools.server.models.VectorStoreFileObject](docs/VectorStoreFileObject.md)
+ - [org.openapitools.server.models.VectorStoreFileObjectChunkingStrategy](docs/VectorStoreFileObjectChunkingStrategy.md)
+ - [org.openapitools.server.models.VectorStoreFileObjectLastError](docs/VectorStoreFileObjectLastError.md)
+ - [org.openapitools.server.models.VectorStoreObject](docs/VectorStoreObject.md)
+ - [org.openapitools.server.models.VectorStoreObjectFileCounts](docs/VectorStoreObjectFileCounts.md)
 
 
 <a id="documentation-for-authorization"></a>

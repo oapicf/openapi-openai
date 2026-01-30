@@ -70,17 +70,9 @@ private class OASMessageDeltaObjectDeltaTest {
     }
 
     @isTest
-    private static void maintainRenamedProperties() {
-        OASMessageDeltaObjectDelta messageDeltaObjectDelta = new OASMessageDeltaObjectDelta();
-        Map<String, String> x-property-mappings = messageDeltaObjectDelta.getx-property-mappings();
-        System.assertEquals('fileIds', x-property-mappings.get('file_ids'));
-    }
-
-    @isTest
     private static void defaultValuesPopulated() {
         OASMessageDeltaObjectDelta messageDeltaObjectDelta = new OASMessageDeltaObjectDelta();
         System.assertEquals(new List<OASMessageDeltaObjectDeltaContentInn>(), messageDeltaObjectDelta.content);
-        System.assertEquals(new List<String>(), messageDeltaObjectDelta.fileIds);
         System.assertEquals(null, messageDeltaObjectDelta.role);
     }
 }

@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiModel;
  * The model to use for image generation. Only &#x60;dall-e-2&#x60; is supported at this time.
  */
 @ApiModel(description = "The model to use for image generation. Only `dall-e-2` is supported at this time.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateImageEditRequestModel   {
 
   @Override

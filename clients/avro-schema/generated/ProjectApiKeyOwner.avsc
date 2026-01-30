@@ -1,0 +1,34 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ProjectApiKeyOwner",
+  "fields": [
+    {
+      "name": "type",
+      "type": ["null", {
+        "type": "enum",
+        "name": "ProjectApiKeyOwner_type",
+        "symbols": [
+          "user",
+          "service_account"
+        ]
+      }],
+      "doc": "`user` or `service_account`",
+      "default": null
+    },
+    {
+      "name": "user",
+      "type": ["null", "model.ProjectUser"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "service_account",
+      "type": ["null", "model.ProjectServiceAccount"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

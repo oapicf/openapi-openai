@@ -2,6 +2,7 @@ namespace OpenAPI.Model
 
 open System
 open System.Collections.Generic
+open OpenAPI.Model.ChatCompletionStreamOptions
 open OpenAPI.Model.CreateCompletionRequestModel
 open OpenAPI.Model.CreateCompletionRequestPrompt
 open OpenAPI.Model.CreateCompletionRequestStop
@@ -30,6 +31,7 @@ module CreateCompletionRequest =
     Seed : int option;
     Stop : CreateCompletionRequestStop;
     Stream : bool option;
+    StreamOptions : ChatCompletionStreamOptions;
     Suffix : string option;
     Temperature : decimal option;
     TopP : decimal option;

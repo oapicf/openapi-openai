@@ -1,0 +1,31 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Send this event to update the session’s default configuration. The client may  send this event at any time to update the session configuration, and any  field may be updated at any time, except for \"voice\". The server will respond  with a `session.updated` event that shows the full effective configuration.  Only fields that are present are updated, thus the correct way to clear a  field like \"instructions\" is to pass an empty string. ",
+  "name": "RealtimeClientEventSessionUpdate",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": ["null", "string"],
+      "doc": "Optional client-generated ID used to identify this event.",
+      "default": null
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeClientEventSessionUpdate_type",
+        "symbols": [
+          "session_update"
+        ]
+      },
+      "doc": "The event type, must be `session.update`."
+    },
+    {
+      "name": "session",
+      "type": "model.RealtimeSessionCreateRequest",
+      "doc": ""
+    }
+  ]
+
+}

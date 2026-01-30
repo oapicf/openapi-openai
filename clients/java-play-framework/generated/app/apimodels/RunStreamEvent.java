@@ -10,6 +10,7 @@ import apimodels.RunStreamEventOneOf5;
 import apimodels.RunStreamEventOneOf6;
 import apimodels.RunStreamEventOneOf7;
 import apimodels.RunStreamEventOneOf8;
+import apimodels.RunStreamEventOneOf9;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
@@ -19,7 +20,7 @@ import javax.validation.Valid;
 /**
  * RunStreamEvent
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class RunStreamEvent   {
   /**

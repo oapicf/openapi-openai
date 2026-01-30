@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.vertxweb.server.model.FineTuneMethod;
 import org.openapitools.vertxweb.server.model.FineTuningJobError;
 import org.openapitools.vertxweb.server.model.FineTuningJobHyperparameters;
 import org.openapitools.vertxweb.server.model.FineTuningJobIntegrationsInner;
@@ -75,12 +76,14 @@ public class FineTuningJob   {
   private String validationFile;
   private List<FineTuningJobIntegrationsInner> integrations;
   private Integer seed;
+  private Integer estimatedFinish;
+  private FineTuneMethod method;
 
   public FineTuningJob () {
 
   }
 
-  public FineTuningJob (String id, Integer createdAt, FineTuningJobError error, String fineTunedModel, Integer finishedAt, FineTuningJobHyperparameters hyperparameters, String model, ObjectEnum _object, String organizationId, List<String> resultFiles, StatusEnum status, Integer trainedTokens, String trainingFile, String validationFile, List<FineTuningJobIntegrationsInner> integrations, Integer seed) {
+  public FineTuningJob (String id, Integer createdAt, FineTuningJobError error, String fineTunedModel, Integer finishedAt, FineTuningJobHyperparameters hyperparameters, String model, ObjectEnum _object, String organizationId, List<String> resultFiles, StatusEnum status, Integer trainedTokens, String trainingFile, String validationFile, List<FineTuningJobIntegrationsInner> integrations, Integer seed, Integer estimatedFinish, FineTuneMethod method) {
     this.id = id;
     this.createdAt = createdAt;
     this.error = error;
@@ -97,6 +100,8 @@ public class FineTuningJob   {
     this.validationFile = validationFile;
     this.integrations = integrations;
     this.seed = seed;
+    this.estimatedFinish = estimatedFinish;
+    this.method = method;
   }
 
     
@@ -243,6 +248,24 @@ public class FineTuningJob   {
     this.seed = seed;
   }
 
+    
+  @JsonProperty("estimated_finish")
+  public Integer getEstimatedFinish() {
+    return estimatedFinish;
+  }
+  public void setEstimatedFinish(Integer estimatedFinish) {
+    this.estimatedFinish = estimatedFinish;
+  }
+
+    
+  @JsonProperty("method")
+  public FineTuneMethod getMethod() {
+    return method;
+  }
+  public void setMethod(FineTuneMethod method) {
+    this.method = method;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -268,12 +291,14 @@ public class FineTuningJob   {
         Objects.equals(trainingFile, fineTuningJob.trainingFile) &&
         Objects.equals(validationFile, fineTuningJob.validationFile) &&
         Objects.equals(integrations, fineTuningJob.integrations) &&
-        Objects.equals(seed, fineTuningJob.seed);
+        Objects.equals(seed, fineTuningJob.seed) &&
+        Objects.equals(estimatedFinish, fineTuningJob.estimatedFinish) &&
+        Objects.equals(method, fineTuningJob.method);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, createdAt, error, fineTunedModel, finishedAt, hyperparameters, model, _object, organizationId, resultFiles, status, trainedTokens, trainingFile, validationFile, integrations, seed);
+    return Objects.hash(id, createdAt, error, fineTunedModel, finishedAt, hyperparameters, model, _object, organizationId, resultFiles, status, trainedTokens, trainingFile, validationFile, integrations, seed, estimatedFinish, method);
   }
 
   @Override
@@ -297,6 +322,8 @@ public class FineTuningJob   {
     sb.append("    validationFile: ").append(toIndentedString(validationFile)).append("\n");
     sb.append("    integrations: ").append(toIndentedString(integrations)).append("\n");
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
+    sb.append("    estimatedFinish: ").append(toIndentedString(estimatedFinish)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("}");
     return sb.toString();
   }

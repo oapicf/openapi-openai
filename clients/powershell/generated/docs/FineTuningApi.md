@@ -78,7 +78,8 @@ $CreateFineTuningJobRequestHyperparameters = Initialize-CreateFineTuningJobReque
 $CreateFineTuningJobRequestIntegrationsInnerWandb = Initialize-CreateFineTuningJobRequestIntegrationsInnerWandb -Project "my-wandb-project" -Name "MyName" -Entity "MyEntity" -Tags "custom-tag"
 $CreateFineTuningJobRequestIntegrationsInner = Initialize-CreateFineTuningJobRequestIntegrationsInner -Type "wandb" -Wandb $CreateFineTuningJobRequestIntegrationsInnerWandb
 
-$CreateFineTuningJobRequest = Initialize-CreateFineTuningJobRequest -Model $CreateFineTuningJobRequestModel -TrainingFile "file-abc123" -Hyperparameters $CreateFineTuningJobRequestHyperparameters -Suffix "MySuffix" -ValidationFile "file-abc123" -Integrations $CreateFineTuningJobRequestIntegrationsInner -Seed 42 # CreateFineTuningJobRequest | 
+$FineTuneMethod = Initialize-FineTuneMethod -Type "supervised" -Supervised  -Dpo 
+$CreateFineTuningJobRequest = Initialize-CreateFineTuningJobRequest -Model $CreateFineTuningJobRequestModel -TrainingFile "file-abc123" -Hyperparameters $CreateFineTuningJobRequestHyperparameters -Suffix "MySuffix" -ValidationFile "file-abc123" -Integrations $CreateFineTuningJobRequestIntegrationsInner -Seed 42 -Method $FineTuneMethod # CreateFineTuningJobRequest | 
 
 # Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
 try {

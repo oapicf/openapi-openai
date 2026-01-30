@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiModel;
  * The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. 
  */
 @ApiModel(description = "The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateFineTuningJobRequestHyperparametersNEpochs   {
 
   @Override

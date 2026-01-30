@@ -11,8 +11,8 @@ To see how to make this your own, look here:
 
 [README](https://openapi-generator.tech)
 
-- API version: 2.0.0
-- Build date: 2026-01-29T10:44:18.630307876Z[Etc/UTC]
+- API version: 2.3.0
+- Build date: 2026-01-29T14:06:30.102479251Z[Etc/UTC]
 - Generator version: 7.18.0
 For more information, please visit [https://github.com/oapicf/openapi-openai](https://github.com/oapicf/openapi-openai)
 

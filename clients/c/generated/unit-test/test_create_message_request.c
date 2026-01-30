@@ -16,6 +16,7 @@
 #include "../model/create_message_request.h"
 create_message_request_t* instantiate_create_message_request(int include_optional);
 
+#include "test_create_message_request_content.c"
 
 
 create_message_request_t* instantiate_create_message_request(int include_optional) {
@@ -23,14 +24,14 @@ create_message_request_t* instantiate_create_message_request(int include_optiona
   if (include_optional) {
     create_message_request = create_message_request_create(
       openai_api_create_message_request_ROLE_user,
-      "0",
+      null,
       list_createList(),
       0
     );
   } else {
     create_message_request = create_message_request_create(
       openai_api_create_message_request_ROLE_user,
-      "0",
+      null,
       list_createList(),
       0
     );

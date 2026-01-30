@@ -1,6 +1,6 @@
 const utils = require('../utils/utils');
-const AssistantsApiNamedToolChoice = require('../models/AssistantsApiNamedToolChoice');
-const ChatCompletionNamedToolChoice_function = require('../models/ChatCompletionNamedToolChoice_function');
+const AssistantsNamedToolChoice = require('../models/AssistantsNamedToolChoice');
+const AssistantsNamedToolChoice_function = require('../models/AssistantsNamedToolChoice_function');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
@@ -14,17 +14,17 @@ module.exports = {
                 choices: [
                     'function',
                     'code_interpreter',
-                    'retrieval',
+                    'file_search',
                 ],
             },
-            ...ChatCompletionNamedToolChoice_function.fields(`${keyPrefix}function`, isInput),
+            ...AssistantsNamedToolChoice_function.fields(`${keyPrefix}function`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'type': bundle.inputData?.[`${keyPrefix}type`],
-            'function': utils.removeIfEmpty(ChatCompletionNamedToolChoice_function.mapping(bundle, `${keyPrefix}function`)),
+            'function': utils.removeIfEmpty(AssistantsNamedToolChoice_function.mapping(bundle, `${keyPrefix}function`)),
         }
     },
 }

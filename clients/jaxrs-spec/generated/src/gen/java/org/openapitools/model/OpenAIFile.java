@@ -18,7 +18,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "The `File` object represents a document that has been uploaded to OpenAI.")
 @JsonTypeName("OpenAIFile")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class OpenAIFile   {
   private String id;
   private Integer bytes;
@@ -74,7 +74,7 @@ public class OpenAIFile   {
   private ObjectEnum _object;
   public enum PurposeEnum {
 
-    FINE_TUNE(String.valueOf("fine-tune")), FINE_TUNE_RESULTS(String.valueOf("fine-tune-results")), ASSISTANTS(String.valueOf("assistants")), ASSISTANTS_OUTPUT(String.valueOf("assistants_output"));
+    ASSISTANTS(String.valueOf("assistants")), ASSISTANTS_OUTPUT(String.valueOf("assistants_output")), BATCH(String.valueOf("batch")), BATCH_OUTPUT(String.valueOf("batch_output")), FINE_TUNE(String.valueOf("fine-tune")), FINE_TUNE_RESULTS(String.valueOf("fine-tune-results")), VISION(String.valueOf("vision"));
 
 
     private String value;
@@ -293,7 +293,7 @@ public class OpenAIFile   {
   }
 
   /**
-   * The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;.
+   * The intended purpose of the file. Supported values are &#x60;assistants&#x60;, &#x60;assistants_output&#x60;, &#x60;batch&#x60;, &#x60;batch_output&#x60;, &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60; and &#x60;vision&#x60;.
    **/
   public OpenAIFile purpose(PurposeEnum purpose) {
     this.purpose = purpose;
@@ -301,7 +301,7 @@ public class OpenAIFile   {
   }
 
   
-  @ApiModelProperty(required = true, value = "The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.")
+  @ApiModelProperty(required = true, value = "The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.")
   @JsonProperty(required = true, value = "purpose")
   @NotNull public PurposeEnum getPurpose() {
     return purpose;

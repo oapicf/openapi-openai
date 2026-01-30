@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **type** | [**TypeEnum**](#TypeEnum) | Always &#x60;image_file&#x60;. | 
 **imageFile** | [**MessageDeltaContentImageFileObjectImageFile**](MessageDeltaContentImageFileObjectImageFile.md) |  |  [optional]
 **text** | [**MessageDeltaContentTextObjectText**](MessageDeltaContentTextObjectText.md) |  |  [optional]
+**refusal** | **String** |  |  [optional]
+**imageUrl** | [**MessageDeltaContentImageUrlObjectImageUrl**](MessageDeltaContentImageUrlObjectImageUrl.md) |  |  [optional]
 
 
 ## Enum: TypeEnum

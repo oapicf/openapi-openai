@@ -1,0 +1,31 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The aggregated vector stores usage details of the specific time bucket.",
+  "name": "UsageVectorStoresResult",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "UsageVectorStoresResult_object",
+        "symbols": [
+          "organization_usage_vector_stores_result"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "usage_bytes",
+      "type": "int",
+      "doc": "The vector stores usage in bytes."
+    },
+    {
+      "name": "project_id",
+      "type": ["null", "string"],
+      "doc": "When `group_by=project_id`, this field provides the project ID of the grouped usage result.",
+      "default": null
+    }
+  ]
+
+}

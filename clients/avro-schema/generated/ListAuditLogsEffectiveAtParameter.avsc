@@ -1,0 +1,33 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ListAuditLogsEffectiveAtParameter",
+  "fields": [
+    {
+      "name": "gt",
+      "type": ["null", "int"],
+      "doc": "Return only events whose `effective_at` (Unix seconds) is greater than this value.",
+      "default": null
+    },
+    {
+      "name": "gte",
+      "type": ["null", "int"],
+      "doc": "Return only events whose `effective_at` (Unix seconds) is greater than or equal to this value.",
+      "default": null
+    },
+    {
+      "name": "lt",
+      "type": ["null", "int"],
+      "doc": "Return only events whose `effective_at` (Unix seconds) is less than this value.",
+      "default": null
+    },
+    {
+      "name": "lte",
+      "type": ["null", "int"],
+      "doc": "Return only events whose `effective_at` (Unix seconds) is less than or equal to this value.",
+      "default": null
+    }
+  ]
+
+}

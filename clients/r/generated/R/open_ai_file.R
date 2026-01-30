@@ -12,7 +12,7 @@
 #' @field created_at The Unix timestamp (in seconds) for when the file was created. integer
 #' @field filename The name of the file. character
 #' @field object The object type, which is always `file`. character
-#' @field purpose The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`. character
+#' @field purpose The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`. character
 #' @field status Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`. character
 #' @field status_details Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`. character [optional]
 #' @importFrom R6 R6Class
@@ -38,7 +38,7 @@ OpenAIFile <- R6::R6Class(
     #' @param created_at The Unix timestamp (in seconds) for when the file was created.
     #' @param filename The name of the file.
     #' @param object The object type, which is always `file`.
-    #' @param purpose The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+    #' @param purpose The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
     #' @param status Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
     #' @param status_details Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
     #' @param ... Other optional arguments.
@@ -77,8 +77,8 @@ OpenAIFile <- R6::R6Class(
         self$`object` <- `object`
       }
       if (!missing(`purpose`)) {
-        if (!(`purpose` %in% c("fine-tune", "fine-tune-results", "assistants", "assistants_output"))) {
-          stop(paste("Error! \"", `purpose`, "\" cannot be assigned to `purpose`. Must be \"fine-tune\", \"fine-tune-results\", \"assistants\", \"assistants_output\".", sep = ""))
+        if (!(`purpose` %in% c("assistants", "assistants_output", "batch", "batch_output", "fine-tune", "fine-tune-results", "vision"))) {
+          stop(paste("Error! \"", `purpose`, "\" cannot be assigned to `purpose`. Must be \"assistants\", \"assistants_output\", \"batch\", \"batch_output\", \"fine-tune\", \"fine-tune-results\", \"vision\".", sep = ""))
         }
         if (!(is.character(`purpose`) && length(`purpose`) == 1)) {
           stop(paste("Error! Invalid data for `purpose`. Must be a string:", `purpose`))
@@ -194,8 +194,8 @@ OpenAIFile <- R6::R6Class(
         self$`object` <- this_object$`object`
       }
       if (!is.null(this_object$`purpose`)) {
-        if (!is.null(this_object$`purpose`) && !(this_object$`purpose` %in% c("fine-tune", "fine-tune-results", "assistants", "assistants_output"))) {
-          stop(paste("Error! \"", this_object$`purpose`, "\" cannot be assigned to `purpose`. Must be \"fine-tune\", \"fine-tune-results\", \"assistants\", \"assistants_output\".", sep = ""))
+        if (!is.null(this_object$`purpose`) && !(this_object$`purpose` %in% c("assistants", "assistants_output", "batch", "batch_output", "fine-tune", "fine-tune-results", "vision"))) {
+          stop(paste("Error! \"", this_object$`purpose`, "\" cannot be assigned to `purpose`. Must be \"assistants\", \"assistants_output\", \"batch\", \"batch_output\", \"fine-tune\", \"fine-tune-results\", \"vision\".", sep = ""))
         }
         self$`purpose` <- this_object$`purpose`
       }
@@ -237,8 +237,8 @@ OpenAIFile <- R6::R6Class(
         stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"file\".", sep = ""))
       }
       self$`object` <- this_object$`object`
-      if (!is.null(this_object$`purpose`) && !(this_object$`purpose` %in% c("fine-tune", "fine-tune-results", "assistants", "assistants_output"))) {
-        stop(paste("Error! \"", this_object$`purpose`, "\" cannot be assigned to `purpose`. Must be \"fine-tune\", \"fine-tune-results\", \"assistants\", \"assistants_output\".", sep = ""))
+      if (!is.null(this_object$`purpose`) && !(this_object$`purpose` %in% c("assistants", "assistants_output", "batch", "batch_output", "fine-tune", "fine-tune-results", "vision"))) {
+        stop(paste("Error! \"", this_object$`purpose`, "\" cannot be assigned to `purpose`. Must be \"assistants\", \"assistants_output\", \"batch\", \"batch_output\", \"fine-tune\", \"fine-tune-results\", \"vision\".", sep = ""))
       }
       self$`purpose` <- this_object$`purpose`
       if (!is.null(this_object$`status`) && !(this_object$`status` %in% c("uploaded", "processed", "error"))) {

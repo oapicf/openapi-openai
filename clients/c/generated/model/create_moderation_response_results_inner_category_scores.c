@@ -10,6 +10,8 @@ static create_moderation_response_results_inner_category_scores_t *create_modera
     double hate_threatening,
     double harassment,
     double harassment_threatening,
+    double illicit,
+    double illicit_violent,
     double self_harm,
     double self_harm_intent,
     double self_harm_instructions,
@@ -26,6 +28,8 @@ static create_moderation_response_results_inner_category_scores_t *create_modera
     create_moderation_response_results_inner_category_scores_local_var->hate_threatening = hate_threatening;
     create_moderation_response_results_inner_category_scores_local_var->harassment = harassment;
     create_moderation_response_results_inner_category_scores_local_var->harassment_threatening = harassment_threatening;
+    create_moderation_response_results_inner_category_scores_local_var->illicit = illicit;
+    create_moderation_response_results_inner_category_scores_local_var->illicit_violent = illicit_violent;
     create_moderation_response_results_inner_category_scores_local_var->self_harm = self_harm;
     create_moderation_response_results_inner_category_scores_local_var->self_harm_intent = self_harm_intent;
     create_moderation_response_results_inner_category_scores_local_var->self_harm_instructions = self_harm_instructions;
@@ -43,6 +47,8 @@ __attribute__((deprecated)) create_moderation_response_results_inner_category_sc
     double hate_threatening,
     double harassment,
     double harassment_threatening,
+    double illicit,
+    double illicit_violent,
     double self_harm,
     double self_harm_intent,
     double self_harm_instructions,
@@ -56,6 +62,8 @@ __attribute__((deprecated)) create_moderation_response_results_inner_category_sc
         hate_threatening,
         harassment,
         harassment_threatening,
+        illicit,
+        illicit_violent,
         self_harm,
         self_harm_intent,
         self_harm_instructions,
@@ -113,6 +121,24 @@ cJSON *create_moderation_response_results_inner_category_scores_convertToJSON(cr
         goto fail;
     }
     if(cJSON_AddNumberToObject(item, "harassment/threatening", create_moderation_response_results_inner_category_scores->harassment_threatening) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // create_moderation_response_results_inner_category_scores->illicit
+    if (!create_moderation_response_results_inner_category_scores->illicit) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "illicit", create_moderation_response_results_inner_category_scores->illicit) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // create_moderation_response_results_inner_category_scores->illicit_violent
+    if (!create_moderation_response_results_inner_category_scores->illicit_violent) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "illicit/violent", create_moderation_response_results_inner_category_scores->illicit_violent) == NULL) {
     goto fail; //Numeric
     }
 
@@ -251,6 +277,36 @@ create_moderation_response_results_inner_category_scores_t *create_moderation_re
     goto end; //Numeric
     }
 
+    // create_moderation_response_results_inner_category_scores->illicit
+    cJSON *illicit = cJSON_GetObjectItemCaseSensitive(create_moderation_response_results_inner_category_scoresJSON, "illicit");
+    if (cJSON_IsNull(illicit)) {
+        illicit = NULL;
+    }
+    if (!illicit) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(illicit))
+    {
+    goto end; //Numeric
+    }
+
+    // create_moderation_response_results_inner_category_scores->illicit_violent
+    cJSON *illicit_violent = cJSON_GetObjectItemCaseSensitive(create_moderation_response_results_inner_category_scoresJSON, "illicit/violent");
+    if (cJSON_IsNull(illicit_violent)) {
+        illicit_violent = NULL;
+    }
+    if (!illicit_violent) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(illicit_violent))
+    {
+    goto end; //Numeric
+    }
+
     // create_moderation_response_results_inner_category_scores->self_harm
     cJSON *self_harm = cJSON_GetObjectItemCaseSensitive(create_moderation_response_results_inner_category_scoresJSON, "self-harm");
     if (cJSON_IsNull(self_harm)) {
@@ -362,6 +418,8 @@ create_moderation_response_results_inner_category_scores_t *create_moderation_re
         hate_threatening->valuedouble,
         harassment->valuedouble,
         harassment_threatening->valuedouble,
+        illicit->valuedouble,
+        illicit_violent->valuedouble,
         self_harm->valuedouble,
         self_harm_intent->valuedouble,
         self_harm_instructions->valuedouble,

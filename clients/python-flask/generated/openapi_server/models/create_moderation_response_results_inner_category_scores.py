@@ -12,7 +12,7 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, hate=None, hate_threatening=None, harassment=None, harassment_threatening=None, self_harm=None, self_harm_intent=None, self_harm_instructions=None, sexual=None, sexual_minors=None, violence=None, violence_graphic=None):  # noqa: E501
+    def __init__(self, hate=None, hate_threatening=None, harassment=None, harassment_threatening=None, illicit=None, illicit_violent=None, self_harm=None, self_harm_intent=None, self_harm_instructions=None, sexual=None, sexual_minors=None, violence=None, violence_graphic=None):  # noqa: E501
         """CreateModerationResponseResultsInnerCategoryScores - a model defined in OpenAPI
 
         :param hate: The hate of this CreateModerationResponseResultsInnerCategoryScores.  # noqa: E501
@@ -23,6 +23,10 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
         :type harassment: float
         :param harassment_threatening: The harassment_threatening of this CreateModerationResponseResultsInnerCategoryScores.  # noqa: E501
         :type harassment_threatening: float
+        :param illicit: The illicit of this CreateModerationResponseResultsInnerCategoryScores.  # noqa: E501
+        :type illicit: float
+        :param illicit_violent: The illicit_violent of this CreateModerationResponseResultsInnerCategoryScores.  # noqa: E501
+        :type illicit_violent: float
         :param self_harm: The self_harm of this CreateModerationResponseResultsInnerCategoryScores.  # noqa: E501
         :type self_harm: float
         :param self_harm_intent: The self_harm_intent of this CreateModerationResponseResultsInnerCategoryScores.  # noqa: E501
@@ -43,6 +47,8 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
             'hate_threatening': float,
             'harassment': float,
             'harassment_threatening': float,
+            'illicit': float,
+            'illicit_violent': float,
             'self_harm': float,
             'self_harm_intent': float,
             'self_harm_instructions': float,
@@ -57,6 +63,8 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
             'hate_threatening': 'hate/threatening',
             'harassment': 'harassment',
             'harassment_threatening': 'harassment/threatening',
+            'illicit': 'illicit',
+            'illicit_violent': 'illicit/violent',
             'self_harm': 'self-harm',
             'self_harm_intent': 'self-harm/intent',
             'self_harm_instructions': 'self-harm/instructions',
@@ -70,6 +78,8 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
         self._hate_threatening = hate_threatening
         self._harassment = harassment
         self._harassment_threatening = harassment_threatening
+        self._illicit = illicit
+        self._illicit_violent = illicit_violent
         self._self_harm = self_harm
         self._self_harm_intent = self_harm_intent
         self._self_harm_instructions = self_harm_instructions
@@ -188,6 +198,56 @@ class CreateModerationResponseResultsInnerCategoryScores(Model):
             raise ValueError("Invalid value for `harassment_threatening`, must not be `None`")  # noqa: E501
 
         self._harassment_threatening = harassment_threatening
+
+    @property
+    def illicit(self) -> float:
+        """Gets the illicit of this CreateModerationResponseResultsInnerCategoryScores.
+
+        The score for the category 'illicit'.  # noqa: E501
+
+        :return: The illicit of this CreateModerationResponseResultsInnerCategoryScores.
+        :rtype: float
+        """
+        return self._illicit
+
+    @illicit.setter
+    def illicit(self, illicit: float):
+        """Sets the illicit of this CreateModerationResponseResultsInnerCategoryScores.
+
+        The score for the category 'illicit'.  # noqa: E501
+
+        :param illicit: The illicit of this CreateModerationResponseResultsInnerCategoryScores.
+        :type illicit: float
+        """
+        if illicit is None:
+            raise ValueError("Invalid value for `illicit`, must not be `None`")  # noqa: E501
+
+        self._illicit = illicit
+
+    @property
+    def illicit_violent(self) -> float:
+        """Gets the illicit_violent of this CreateModerationResponseResultsInnerCategoryScores.
+
+        The score for the category 'illicit/violent'.  # noqa: E501
+
+        :return: The illicit_violent of this CreateModerationResponseResultsInnerCategoryScores.
+        :rtype: float
+        """
+        return self._illicit_violent
+
+    @illicit_violent.setter
+    def illicit_violent(self, illicit_violent: float):
+        """Sets the illicit_violent of this CreateModerationResponseResultsInnerCategoryScores.
+
+        The score for the category 'illicit/violent'.  # noqa: E501
+
+        :param illicit_violent: The illicit_violent of this CreateModerationResponseResultsInnerCategoryScores.
+        :type illicit_violent: float
+        """
+        if illicit_violent is None:
+            raise ValueError("Invalid value for `illicit_violent`, must not be `None`")  # noqa: E501
+
+        self._illicit_violent = illicit_violent
 
     @property
     def self_harm(self) -> float:

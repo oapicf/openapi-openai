@@ -19,7 +19,7 @@ Name | Type
 `content` | [Array&lt;MessageObjectContentInner&gt;](MessageObjectContentInner.md)
 `assistantId` | string
 `runId` | string
-`fileIds` | Array&lt;string&gt;
+`attachments` | [Array&lt;CreateMessageRequestAttachmentsInner&gt;](CreateMessageRequestAttachmentsInner.md)
 `metadata` | object
 
 ## Example
@@ -41,7 +41,7 @@ const example = {
   "content": null,
   "assistantId": null,
   "runId": null,
-  "fileIds": null,
+  "attachments": null,
   "metadata": null,
 } satisfies MessageObject
 

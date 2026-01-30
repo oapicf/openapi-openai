@@ -9,9 +9,10 @@ import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.ChatCompletionRequestMessageContentPartImageImageUrl;
 
 /**
- * ChatCompletionRequestMessageContentPartImage
+ * Learn about [image inputs](/docs/guides/vision). 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description = "Learn about [image inputs](/docs/guides/vision). ")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestMessageContentPartImage   {
   /**
    * The type of the content part.

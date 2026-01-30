@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.vertxweb.server.model.ChatCompletionRequestUserMessageContent;
 
+/**
+ * Messages sent by an end user, containing prompts or additional context information. 
+ **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ChatCompletionRequestUserMessage   {
   

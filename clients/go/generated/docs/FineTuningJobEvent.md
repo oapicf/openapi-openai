@@ -4,17 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**CreatedAt** | **int32** |  | 
-**Level** | **string** |  | 
-**Message** | **string** |  | 
-**Object** | **string** |  | 
+**Object** | **string** | The object type, which is always \&quot;fine_tuning.job.event\&quot;. | 
+**Id** | **string** | The object identifier. | 
+**CreatedAt** | **int32** | The Unix timestamp (in seconds) for when the fine-tuning job was created. | 
+**Level** | **string** | The log level of the event. | 
+**Message** | **string** | The message of the event. | 
+**Type** | Pointer to **string** | The type of event. | [optional] 
+**Data** | Pointer to **map[string]interface{}** | The data associated with the event. | [optional] 
 
 ## Methods
 
 ### NewFineTuningJobEvent
 
-`func NewFineTuningJobEvent(id string, createdAt int32, level string, message string, object string, ) *FineTuningJobEvent`
+`func NewFineTuningJobEvent(object string, id string, createdAt int32, level string, message string, ) *FineTuningJobEvent`
 
 NewFineTuningJobEvent instantiates a new FineTuningJobEvent object
 This constructor will assign default values to properties that have it defined,
@@ -28,6 +30,26 @@ will change when the set of required properties is changed
 NewFineTuningJobEventWithDefaults instantiates a new FineTuningJobEvent object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetObject
+
+`func (o *FineTuningJobEvent) GetObject() string`
+
+GetObject returns the Object field if non-nil, zero value otherwise.
+
+### GetObjectOk
+
+`func (o *FineTuningJobEvent) GetObjectOk() (*string, bool)`
+
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetObject
+
+`func (o *FineTuningJobEvent) SetObject(v string)`
+
+SetObject sets Object field to given value.
+
 
 ### GetId
 
@@ -109,25 +131,55 @@ and a boolean to check if the value has been set.
 SetMessage sets Message field to given value.
 
 
-### GetObject
+### GetType
 
-`func (o *FineTuningJobEvent) GetObject() string`
+`func (o *FineTuningJobEvent) GetType() string`
 
-GetObject returns the Object field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetObjectOk
+### GetTypeOk
 
-`func (o *FineTuningJobEvent) GetObjectOk() (*string, bool)`
+`func (o *FineTuningJobEvent) GetTypeOk() (*string, bool)`
 
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetObject
+### SetType
 
-`func (o *FineTuningJobEvent) SetObject(v string)`
+`func (o *FineTuningJobEvent) SetType(v string)`
 
-SetObject sets Object field to given value.
+SetType sets Type field to given value.
 
+### HasType
+
+`func (o *FineTuningJobEvent) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### GetData
+
+`func (o *FineTuningJobEvent) GetData() map[string]interface{}`
+
+GetData returns the Data field if non-nil, zero value otherwise.
+
+### GetDataOk
+
+`func (o *FineTuningJobEvent) GetDataOk() (*map[string]interface{}, bool)`
+
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetData
+
+`func (o *FineTuningJobEvent) SetData(v map[string]interface{})`
+
+SetData sets Data field to given value.
+
+### HasData
+
+`func (o *FineTuningJobEvent) HasData() bool`
+
+HasData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

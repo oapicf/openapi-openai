@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AssistantToolsFileSearch"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AssistantToolsFileSearch"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AssistantToolsFileSearchFileSearch = openapi_server.resourceTypes.AssistantToolsFileSearchFileSearch
+}
+resourceTypes {
+
+  AssistantToolsFileSearch {
+    title = AssistantToolsFileSearch
+    description = AssistantToolsFileSearch
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "The type of tool being defined: &#x60;file_search&#x60;"
+          enum = ["file_search"]
+          optional = true
+        }
+        file_search {
+          type = AssistantToolsFileSearchFileSearch
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AssistantToolsFileSearch {
+    title = AssistantToolsFileSearch
+    description = AssistantToolsFileSearch
+    implements = openapi_server.resourceTypes.AssistantToolsFileSearch
+
+  }
+}

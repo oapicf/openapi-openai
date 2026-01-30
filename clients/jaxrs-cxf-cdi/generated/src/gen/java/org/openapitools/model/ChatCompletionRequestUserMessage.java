@@ -8,12 +8,15 @@ import org.openapitools.model.ChatCompletionRequestUserMessageContent;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
+/**
+ * Messages sent by an end user, containing prompts or additional context information. 
+ **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-
+@ApiModel(description = "Messages sent by an end user, containing prompts or additional context information. ")
 public class ChatCompletionRequestUserMessage   {
   
   private ChatCompletionRequestUserMessageContent content;

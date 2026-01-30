@@ -95,7 +95,7 @@ object FilesApi {
     } yield resp
   }
 
-  def listFiles(host: String, purpose: String)(implicit purposeQuery: QueryParam[String]): Task[ListFilesResponse] = {
+  def listFiles(host: String, purpose: String, limit: Integer = 10000, order: String = desc, after: String)(implicit purposeQuery: QueryParam[String], limitQuery: QueryParam[Integer], orderQuery: QueryParam[String], afterQuery: QueryParam[String]): Task[ListFilesResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[ListFilesResponse] = jsonOf[ListFilesResponse]
 
     val path = "/files"
@@ -105,7 +105,7 @@ object FilesApi {
     val headers = Headers(
       )
     val queryParams = Query(
-      ("purpose", Some(purposeQuery.toParamString(purpose))))
+      ("purpose", Some(purposeQuery.toParamString(purpose))), ("limit", Some(limitQuery.toParamString(limit))), ("order", Some(orderQuery.toParamString(order))), ("after", Some(afterQuery.toParamString(after))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
@@ -207,7 +207,7 @@ class HttpServiceFilesApi(service: HttpService) {
     } yield resp
   }
 
-  def listFiles(purpose: String)(implicit purposeQuery: QueryParam[String]): Task[ListFilesResponse] = {
+  def listFiles(purpose: String, limit: Integer = 10000, order: String = desc, after: String)(implicit purposeQuery: QueryParam[String], limitQuery: QueryParam[Integer], orderQuery: QueryParam[String], afterQuery: QueryParam[String]): Task[ListFilesResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[ListFilesResponse] = jsonOf[ListFilesResponse]
 
     val path = "/files"
@@ -217,7 +217,7 @@ class HttpServiceFilesApi(service: HttpService) {
     val headers = Headers(
       )
     val queryParams = Query(
-      ("purpose", Some(purposeQuery.toParamString(purpose))))
+      ("purpose", Some(purposeQuery.toParamString(purpose))), ("limit", Some(limitQuery.toParamString(limit))), ("order", Some(orderQuery.toParamString(order))), ("after", Some(afterQuery.toParamString(after))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))

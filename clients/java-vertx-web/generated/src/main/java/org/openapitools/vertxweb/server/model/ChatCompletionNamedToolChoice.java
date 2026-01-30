@@ -4,7 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
-import org.openapitools.vertxweb.server.model.ChatCompletionNamedToolChoiceFunction;
+import org.openapitools.vertxweb.server.model.AssistantsNamedToolChoiceFunction;
 
 /**
  * Specifies a tool the model should use. Use to force the model to call a specific function.
@@ -31,13 +31,13 @@ public class ChatCompletionNamedToolChoice   {
   }
 
   private TypeEnum type;
-  private ChatCompletionNamedToolChoiceFunction function;
+  private AssistantsNamedToolChoiceFunction function;
 
   public ChatCompletionNamedToolChoice () {
 
   }
 
-  public ChatCompletionNamedToolChoice (TypeEnum type, ChatCompletionNamedToolChoiceFunction function) {
+  public ChatCompletionNamedToolChoice (TypeEnum type, AssistantsNamedToolChoiceFunction function) {
     this.type = type;
     this.function = function;
   }
@@ -53,10 +53,10 @@ public class ChatCompletionNamedToolChoice   {
 
     
   @JsonProperty("function")
-  public ChatCompletionNamedToolChoiceFunction getFunction() {
+  public AssistantsNamedToolChoiceFunction getFunction() {
     return function;
   }
-  public void setFunction(ChatCompletionNamedToolChoiceFunction function) {
+  public void setFunction(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
   }
 

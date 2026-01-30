@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.model.ChatCompletionNamedToolChoiceFunction;
+import org.openapitools.model.AssistantsNamedToolChoiceFunction;
 
 
 
@@ -15,7 +15,7 @@ import org.openapitools.model.ChatCompletionNamedToolChoiceFunction;
  **/
 
 @ApiModel(description = "Specifies a tool the model should use. Use to force the model to call a specific function.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionNamedToolChoice   {
   /**
    * The type of the tool. Currently, only `function` is supported.
@@ -50,7 +50,7 @@ public class ChatCompletionNamedToolChoice   {
   private TypeEnum type;
 
   @JsonProperty("function")
-  private ChatCompletionNamedToolChoiceFunction function;
+  private AssistantsNamedToolChoiceFunction function;
 
   /**
    * The type of the tool. Currently, only `function` is supported.
@@ -72,7 +72,7 @@ public class ChatCompletionNamedToolChoice   {
 
   /**
    **/
-  public ChatCompletionNamedToolChoice function(ChatCompletionNamedToolChoiceFunction function) {
+  public ChatCompletionNamedToolChoice function(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
     return this;
   }
@@ -80,10 +80,10 @@ public class ChatCompletionNamedToolChoice   {
   
   @ApiModelProperty(required = true, value = "")
   @JsonProperty("function")
-  public ChatCompletionNamedToolChoiceFunction getFunction() {
+  public AssistantsNamedToolChoiceFunction getFunction() {
     return function;
   }
-  public void setFunction(ChatCompletionNamedToolChoiceFunction function) {
+  public void setFunction(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
   }
 

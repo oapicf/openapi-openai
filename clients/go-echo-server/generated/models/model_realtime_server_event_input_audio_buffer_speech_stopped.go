@@ -1,0 +1,17 @@
+package models
+
+// RealtimeServerEventInputAudioBufferSpeechStopped - Returned in `server_vad` mode when the server detects the end of speech in  the audio buffer. The server will also send an `conversation.item.created`  event with the user message item that is created from the audio buffer. 
+type RealtimeServerEventInputAudioBufferSpeechStopped struct {
+
+	// The unique ID of the server event.
+	EventId string `json:"event_id"`
+
+	// The event type, must be `input_audio_buffer.speech_stopped`.
+	Type string `json:"type"`
+
+	// Milliseconds since the session started when speech stopped. This will  correspond to the end of audio sent to the model, and thus includes the  `min_silence_duration_ms` configured in the Session. 
+	AudioEndMs int32 `json:"audio_end_ms"`
+
+	// The ID of the user message item that will be created.
+	ItemId string `json:"item_id"`
+}

@@ -15,6 +15,8 @@
 
 package org.openapitools.client.models
 
+import org.openapitools.client.models.CompletionUsageCompletionTokensDetails
+import org.openapitools.client.models.CompletionUsagePromptTokensDetails
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -25,6 +27,8 @@ import com.squareup.moshi.JsonClass
  * @param completionTokens Number of tokens in the generated completion.
  * @param promptTokens Number of tokens in the prompt.
  * @param totalTokens Total number of tokens used in the request (prompt + completion).
+ * @param completionTokensDetails 
+ * @param promptTokensDetails 
  */
 
 
@@ -40,7 +44,13 @@ data class CompletionUsage (
 
     /* Total number of tokens used in the request (prompt + completion). */
     @Json(name = "total_tokens")
-    val totalTokens: kotlin.Int
+    val totalTokens: kotlin.Int,
+
+    @Json(name = "completion_tokens_details")
+    val completionTokensDetails: CompletionUsageCompletionTokensDetails? = null,
+
+    @Json(name = "prompt_tokens_details")
+    val promptTokensDetails: CompletionUsagePromptTokensDetails? = null
 
 ) {
 

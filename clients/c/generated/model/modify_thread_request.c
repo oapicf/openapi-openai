@@ -6,12 +6,14 @@
 
 
 static modify_thread_request_t *modify_thread_request_create_internal(
+    modify_thread_request_tool_resources_t *tool_resources,
     object_t *metadata
     ) {
     modify_thread_request_t *modify_thread_request_local_var = malloc(sizeof(modify_thread_request_t));
     if (!modify_thread_request_local_var) {
         return NULL;
     }
+    modify_thread_request_local_var->tool_resources = tool_resources;
     modify_thread_request_local_var->metadata = metadata;
 
     modify_thread_request_local_var->_library_owned = 1;
@@ -19,9 +21,11 @@ static modify_thread_request_t *modify_thread_request_create_internal(
 }
 
 __attribute__((deprecated)) modify_thread_request_t *modify_thread_request_create(
+    modify_thread_request_tool_resources_t *tool_resources,
     object_t *metadata
     ) {
     return modify_thread_request_create_internal (
+        tool_resources,
         metadata
         );
 }
@@ -35,6 +39,10 @@ void modify_thread_request_free(modify_thread_request_t *modify_thread_request) 
         return ;
     }
     listEntry_t *listEntry;
+    if (modify_thread_request->tool_resources) {
+        modify_thread_request_tool_resources_free(modify_thread_request->tool_resources);
+        modify_thread_request->tool_resources = NULL;
+    }
     if (modify_thread_request->metadata) {
         object_free(modify_thread_request->metadata);
         modify_thread_request->metadata = NULL;
@@ -44,6 +52,19 @@ void modify_thread_request_free(modify_thread_request_t *modify_thread_request) 
 
 cJSON *modify_thread_request_convertToJSON(modify_thread_request_t *modify_thread_request) {
     cJSON *item = cJSON_CreateObject();
+
+    // modify_thread_request->tool_resources
+    if(modify_thread_request->tool_resources) {
+    cJSON *tool_resources_local_JSON = modify_thread_request_tool_resources_convertToJSON(modify_thread_request->tool_resources);
+    if(tool_resources_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "tool_resources", tool_resources_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
 
     // modify_thread_request->metadata
     if(modify_thread_request->metadata) {
@@ -69,6 +90,18 @@ modify_thread_request_t *modify_thread_request_parseFromJSON(cJSON *modify_threa
 
     modify_thread_request_t *modify_thread_request_local_var = NULL;
 
+    // define the local variable for modify_thread_request->tool_resources
+    modify_thread_request_tool_resources_t *tool_resources_local_nonprim = NULL;
+
+    // modify_thread_request->tool_resources
+    cJSON *tool_resources = cJSON_GetObjectItemCaseSensitive(modify_thread_requestJSON, "tool_resources");
+    if (cJSON_IsNull(tool_resources)) {
+        tool_resources = NULL;
+    }
+    if (tool_resources) { 
+    tool_resources_local_nonprim = modify_thread_request_tool_resources_parseFromJSON(tool_resources); //nonprimitive
+    }
+
     // modify_thread_request->metadata
     cJSON *metadata = cJSON_GetObjectItemCaseSensitive(modify_thread_requestJSON, "metadata");
     if (cJSON_IsNull(metadata)) {
@@ -81,11 +114,16 @@ modify_thread_request_t *modify_thread_request_parseFromJSON(cJSON *modify_threa
 
 
     modify_thread_request_local_var = modify_thread_request_create_internal (
+        tool_resources ? tool_resources_local_nonprim : NULL,
         metadata ? metadata_local_object : NULL
         );
 
     return modify_thread_request_local_var;
 end:
+    if (tool_resources_local_nonprim) {
+        modify_thread_request_tool_resources_free(tool_resources_local_nonprim);
+        tool_resources_local_nonprim = NULL;
+    }
     return NULL;
 
 }

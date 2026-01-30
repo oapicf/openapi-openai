@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Learn about [image inputs](/docs/guides/vision). 
  *
  * @param type The type of the content part.
  * @param imageUrl 

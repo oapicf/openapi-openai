@@ -3,18 +3,19 @@ package org.openapitools.model;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.swagger.annotations.ApiModel;
 import java.util.List;
+import org.openapitools.model.CreateModerationRequestInputOneOfInner;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * The input text to classify
+ * Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models. 
  **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-@ApiModel(description = "The input text to classify")
+@ApiModel(description = "Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models. ")
 public class CreateModerationRequestInput   {
   
 

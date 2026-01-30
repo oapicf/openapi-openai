@@ -64,12 +64,6 @@ public enum RoleEnum {
   @ApiModelProperty(value = "The content of the message in array of text and/or images.")
   @Valid
   private List<MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
-
- /**
-  * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-  */
-  @ApiModelProperty(value = "A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.")
-  private List<String> fileIds = new ArrayList<>();
  /**
   * The entity that produced the message. One of &#x60;user&#x60; or &#x60;assistant&#x60;.
   * @return role
@@ -126,38 +120,6 @@ public enum RoleEnum {
     return this;
   }
 
- /**
-  * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-  * @return fileIds
-  */
-  @JsonProperty("file_ids")
- @Size(max=10)  public List<String> getFileIds() {
-    return fileIds;
-  }
-
-  /**
-   * Sets the <code>fileIds</code> property.
-   */
- public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-  }
-
-  /**
-   * Sets the <code>fileIds</code> property.
-   */
-  public MessageDeltaObjectDelta fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  /**
-   * Adds a new item to the <code>fileIds</code> list.
-   */
-  public MessageDeltaObjectDelta addFileIdsItem(String fileIdsItem) {
-    this.fileIds.add(fileIdsItem);
-    return this;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -169,13 +131,12 @@ public enum RoleEnum {
     }
     MessageDeltaObjectDelta messageDeltaObjectDelta = (MessageDeltaObjectDelta) o;
     return Objects.equals(this.role, messageDeltaObjectDelta.role) &&
-        Objects.equals(this.content, messageDeltaObjectDelta.content) &&
-        Objects.equals(this.fileIds, messageDeltaObjectDelta.fileIds);
+        Objects.equals(this.content, messageDeltaObjectDelta.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, content, fileIds);
+    return Objects.hash(role, content);
   }
 
   @Override
@@ -185,7 +146,6 @@ public enum RoleEnum {
     
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -24,7 +24,7 @@ var _ MappedNullable = &ChatCompletionRequestMessageContentPartImageImageUrl{}
 type ChatCompletionRequestMessageContentPartImageImageUrl struct {
 	// Either a URL of the image or the base64 encoded image data.
 	Url string `json:"url"`
-	// Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+	// Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
 	Detail *string `json:"detail,omitempty"`
 }
 

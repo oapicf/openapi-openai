@@ -1,0 +1,13 @@
+package models
+
+// RealtimeServerEventConversationCreated - Returned when a conversation is created. Emitted right after session creation. 
+type RealtimeServerEventConversationCreated struct {
+
+	// The unique ID of the server event.
+	EventId string `json:"event_id"`
+
+	// The event type, must be `conversation.created`.
+	Type string `json:"type"`
+
+	Conversation RealtimeServerEventConversationCreatedConversation `json:"conversation"`
+}

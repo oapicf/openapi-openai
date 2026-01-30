@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @Validated
 @Tag(name = "Files", description = "Files are used to upload documents that can be used with features like Assistants and Fine-tuning.")
 public interface FilesApi {
@@ -47,15 +47,15 @@ public interface FilesApi {
 
     String PATH_CREATE_FILE = "/files";
     /**
-     * POST /files : Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports &#x60;.jsonl&#x60; files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     * POST /files : Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
      *
      * @param file The File object (not file name) to be uploaded.  (required)
-     * @param purpose The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning.  (required)
+     * @param purpose The intended purpose of the uploaded file.  Use \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\&quot;vision\\\&quot; for Assistants image file inputs, \\\&quot;batch\\\&quot; for [Batch API](/docs/guides/batch), and \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning).  (required)
      * @return OK (status code 200)
      */
     @Operation(
         operationId = "createFile",
-        summary = "Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. ",
+        summary = "Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. ",
         tags = { "Files" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
@@ -74,12 +74,12 @@ public interface FilesApi {
     )
     default ResponseEntity<OpenAIFile> createFile(
         @Parameter(name = "file", description = "The File object (not file name) to be uploaded. ", required = true) @RequestPart(value = "file", required = true) MultipartFile file,
-        @Parameter(name = "purpose", description = "The intended purpose of the uploaded file.  Use \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. ", required = true) @Valid @RequestParam(value = "purpose", required = true) String purpose
+        @Parameter(name = "purpose", description = "The intended purpose of the uploaded file.  Use \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\"vision\\\" for Assistants image file inputs, \\\"batch\\\" for [Batch API](/docs/guides/batch), and \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning). ", required = true) @Valid @RequestParam(value = "purpose", required = true) String purpose
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"filename\" : \"filename\", \"purpose\" : \"fine-tune\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"status_details\", \"object\" : \"file\", \"status\" : \"uploaded\" }";
+                    String exampleString = "{ \"filename\" : \"filename\", \"purpose\" : \"assistants\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"status_details\", \"object\" : \"file\", \"status\" : \"uploaded\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -167,14 +167,17 @@ public interface FilesApi {
 
     String PATH_LIST_FILES = "/files";
     /**
-     * GET /files : Returns a list of files that belong to the user&#39;s organization.
+     * GET /files : Returns a list of files.
      *
      * @param purpose Only return files with the given purpose. (optional)
+     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000.  (optional, default to 10000)
+     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
+     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
      * @return OK (status code 200)
      */
     @Operation(
         operationId = "listFiles",
-        summary = "Returns a list of files that belong to the user's organization.",
+        summary = "Returns a list of files.",
         tags = { "Files" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
@@ -191,12 +194,15 @@ public interface FilesApi {
         produces = { "application/json" }
     )
     default ResponseEntity<ListFilesResponse> listFiles(
-        @Parameter(name = "purpose", description = "Only return files with the given purpose.", in = ParameterIn.QUERY) @Valid @RequestParam(value = "purpose", required = false) @Nullable String purpose
+        @Parameter(name = "purpose", description = "Only return files with the given purpose.", in = ParameterIn.QUERY) @Valid @RequestParam(value = "purpose", required = false) @Nullable String purpose,
+        @Parameter(name = "limit", description = "A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "limit", required = false, defaultValue = "10000") Integer limit,
+        @Parameter(name = "order", description = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "order", required = false, defaultValue = "desc") String order,
+        @Parameter(name = "after", description = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "after", required = false) @Nullable String after
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"data\" : [ { \"filename\" : \"filename\", \"purpose\" : \"fine-tune\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"status_details\", \"object\" : \"file\", \"status\" : \"uploaded\" }, { \"filename\" : \"filename\", \"purpose\" : \"fine-tune\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"status_details\", \"object\" : \"file\", \"status\" : \"uploaded\" } ], \"object\" : \"list\" }";
+                    String exampleString = "{ \"first_id\" : \"file-abc123\", \"data\" : [ { \"filename\" : \"filename\", \"purpose\" : \"assistants\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"status_details\", \"object\" : \"file\", \"status\" : \"uploaded\" }, { \"filename\" : \"filename\", \"purpose\" : \"assistants\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"status_details\", \"object\" : \"file\", \"status\" : \"uploaded\" } ], \"last_id\" : \"file-abc456\", \"has_more\" : false, \"object\" : \"list\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -238,7 +244,7 @@ public interface FilesApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"filename\" : \"filename\", \"purpose\" : \"fine-tune\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"status_details\", \"object\" : \"file\", \"status\" : \"uploaded\" }";
+                    String exampleString = "{ \"filename\" : \"filename\", \"purpose\" : \"assistants\", \"bytes\" : 0, \"created_at\" : 6, \"id\" : \"id\", \"status_details\" : \"status_details\", \"object\" : \"file\", \"status\" : \"uploaded\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

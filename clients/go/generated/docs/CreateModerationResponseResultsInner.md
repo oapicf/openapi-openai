@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **Flagged** | **bool** | Whether any of the below categories are flagged. | 
 **Categories** | [**CreateModerationResponseResultsInnerCategories**](CreateModerationResponseResultsInnerCategories.md) |  | 
 **CategoryScores** | [**CreateModerationResponseResultsInnerCategoryScores**](CreateModerationResponseResultsInnerCategoryScores.md) |  | 
+**CategoryAppliedInputTypes** | [**CreateModerationResponseResultsInnerCategoryAppliedInputTypes**](CreateModerationResponseResultsInnerCategoryAppliedInputTypes.md) |  | 
 
 ## Methods
 
 ### NewCreateModerationResponseResultsInner
 
-`func NewCreateModerationResponseResultsInner(flagged bool, categories CreateModerationResponseResultsInnerCategories, categoryScores CreateModerationResponseResultsInnerCategoryScores, ) *CreateModerationResponseResultsInner`
+`func NewCreateModerationResponseResultsInner(flagged bool, categories CreateModerationResponseResultsInnerCategories, categoryScores CreateModerationResponseResultsInnerCategoryScores, categoryAppliedInputTypes CreateModerationResponseResultsInnerCategoryAppliedInputTypes, ) *CreateModerationResponseResultsInner`
 
 NewCreateModerationResponseResultsInner instantiates a new CreateModerationResponseResultsInner object
 This constructor will assign default values to properties that have it defined,
@@ -85,6 +86,26 @@ and a boolean to check if the value has been set.
 `func (o *CreateModerationResponseResultsInner) SetCategoryScores(v CreateModerationResponseResultsInnerCategoryScores)`
 
 SetCategoryScores sets CategoryScores field to given value.
+
+
+### GetCategoryAppliedInputTypes
+
+`func (o *CreateModerationResponseResultsInner) GetCategoryAppliedInputTypes() CreateModerationResponseResultsInnerCategoryAppliedInputTypes`
+
+GetCategoryAppliedInputTypes returns the CategoryAppliedInputTypes field if non-nil, zero value otherwise.
+
+### GetCategoryAppliedInputTypesOk
+
+`func (o *CreateModerationResponseResultsInner) GetCategoryAppliedInputTypesOk() (*CreateModerationResponseResultsInnerCategoryAppliedInputTypes, bool)`
+
+GetCategoryAppliedInputTypesOk returns a tuple with the CategoryAppliedInputTypes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCategoryAppliedInputTypes
+
+`func (o *CreateModerationResponseResultsInner) SetCategoryAppliedInputTypes(v CreateModerationResponseResultsInnerCategoryAppliedInputTypes)`
+
+SetCategoryAppliedInputTypes sets CategoryAppliedInputTypes field to given value.
 
 
 

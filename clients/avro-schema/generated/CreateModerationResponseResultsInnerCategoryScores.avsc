@@ -25,6 +25,16 @@
       "doc": "The score for the category 'harassment/threatening'."
     },
     {
+      "name": "illicit",
+      "type": "double",
+      "doc": "The score for the category 'illicit'."
+    },
+    {
+      "name": "illicit/violent",
+      "type": "double",
+      "doc": "The score for the category 'illicit/violent'."
+    },
+    {
       "name": "self-harm",
       "type": "double",
       "doc": "The score for the category 'self-harm'."

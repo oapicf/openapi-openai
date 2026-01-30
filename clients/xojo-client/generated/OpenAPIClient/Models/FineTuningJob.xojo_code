@@ -123,6 +123,19 @@ Protected Class FineTuningJob
 	#tag EndProperty
 
 
+	#tag Property, Flags = &h0
+		#tag Note
+			The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+		#tag EndNote
+		estimated_finish As Xoson.O.OptionalInteger
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		method As OpenAPIClient.Models.FineTuneMethod
+	#tag EndProperty
+
+
     #tag Enum, Name = ObjectEnum, Type = Integer, Flags = &h0
         
         FineTuningPeriodJob
@@ -318,6 +331,22 @@ Protected Class FineTuningJob
 			Group="Behavior"
 			InitialValue=""
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="estimated_finish"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="method"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="FineTuneMethod"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

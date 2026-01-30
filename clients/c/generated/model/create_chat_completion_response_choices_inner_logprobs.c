@@ -6,23 +6,27 @@
 
 
 static create_chat_completion_response_choices_inner_logprobs_t *create_chat_completion_response_choices_inner_logprobs_create_internal(
-    list_t *content
+    list_t *content,
+    list_t *refusal
     ) {
     create_chat_completion_response_choices_inner_logprobs_t *create_chat_completion_response_choices_inner_logprobs_local_var = malloc(sizeof(create_chat_completion_response_choices_inner_logprobs_t));
     if (!create_chat_completion_response_choices_inner_logprobs_local_var) {
         return NULL;
     }
     create_chat_completion_response_choices_inner_logprobs_local_var->content = content;
+    create_chat_completion_response_choices_inner_logprobs_local_var->refusal = refusal;
 
     create_chat_completion_response_choices_inner_logprobs_local_var->_library_owned = 1;
     return create_chat_completion_response_choices_inner_logprobs_local_var;
 }
 
 __attribute__((deprecated)) create_chat_completion_response_choices_inner_logprobs_t *create_chat_completion_response_choices_inner_logprobs_create(
-    list_t *content
+    list_t *content,
+    list_t *refusal
     ) {
     return create_chat_completion_response_choices_inner_logprobs_create_internal (
-        content
+        content,
+        refusal
         );
 }
 
@@ -41,6 +45,13 @@ void create_chat_completion_response_choices_inner_logprobs_free(create_chat_com
         }
         list_freeList(create_chat_completion_response_choices_inner_logprobs->content);
         create_chat_completion_response_choices_inner_logprobs->content = NULL;
+    }
+    if (create_chat_completion_response_choices_inner_logprobs->refusal) {
+        list_ForEach(listEntry, create_chat_completion_response_choices_inner_logprobs->refusal) {
+            chat_completion_token_logprob_free(listEntry->data);
+        }
+        list_freeList(create_chat_completion_response_choices_inner_logprobs->refusal);
+        create_chat_completion_response_choices_inner_logprobs->refusal = NULL;
     }
     free(create_chat_completion_response_choices_inner_logprobs);
 }
@@ -68,6 +79,27 @@ cJSON *create_chat_completion_response_choices_inner_logprobs_convertToJSON(crea
     }
     }
 
+
+    // create_chat_completion_response_choices_inner_logprobs->refusal
+    if (!create_chat_completion_response_choices_inner_logprobs->refusal) {
+        goto fail;
+    }
+    cJSON *refusal = cJSON_AddArrayToObject(item, "refusal");
+    if(refusal == NULL) {
+    goto fail; //nonprimitive container
+    }
+
+    listEntry_t *refusalListEntry;
+    if (create_chat_completion_response_choices_inner_logprobs->refusal) {
+    list_ForEach(refusalListEntry, create_chat_completion_response_choices_inner_logprobs->refusal) {
+    cJSON *itemLocal = chat_completion_token_logprob_convertToJSON(refusalListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(refusal, itemLocal);
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -82,6 +114,9 @@ create_chat_completion_response_choices_inner_logprobs_t *create_chat_completion
 
     // define the local list for create_chat_completion_response_choices_inner_logprobs->content
     list_t *contentList = NULL;
+
+    // define the local list for create_chat_completion_response_choices_inner_logprobs->refusal
+    list_t *refusalList = NULL;
 
     // create_chat_completion_response_choices_inner_logprobs->content
     cJSON *content = cJSON_GetObjectItemCaseSensitive(create_chat_completion_response_choices_inner_logprobsJSON, "content");
@@ -110,9 +145,37 @@ create_chat_completion_response_choices_inner_logprobs_t *create_chat_completion
         list_addElement(contentList, contentItem);
     }
 
+    // create_chat_completion_response_choices_inner_logprobs->refusal
+    cJSON *refusal = cJSON_GetObjectItemCaseSensitive(create_chat_completion_response_choices_inner_logprobsJSON, "refusal");
+    if (cJSON_IsNull(refusal)) {
+        refusal = NULL;
+    }
+    if (!refusal) {
+        goto end;
+    }
+
+    
+    cJSON *refusal_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(refusal)){
+        goto end; //nonprimitive container
+    }
+
+    refusalList = list_createList();
+
+    cJSON_ArrayForEach(refusal_local_nonprimitive,refusal )
+    {
+        if(!cJSON_IsObject(refusal_local_nonprimitive)){
+            goto end;
+        }
+        chat_completion_token_logprob_t *refusalItem = chat_completion_token_logprob_parseFromJSON(refusal_local_nonprimitive);
+
+        list_addElement(refusalList, refusalItem);
+    }
+
 
     create_chat_completion_response_choices_inner_logprobs_local_var = create_chat_completion_response_choices_inner_logprobs_create_internal (
-        contentList
+        contentList,
+        refusalList
         );
 
     return create_chat_completion_response_choices_inner_logprobs_local_var;
@@ -125,6 +188,15 @@ end:
         }
         list_freeList(contentList);
         contentList = NULL;
+    }
+    if (refusalList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, refusalList) {
+            chat_completion_token_logprob_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(refusalList);
+        refusalList = NULL;
     }
     return NULL;
 

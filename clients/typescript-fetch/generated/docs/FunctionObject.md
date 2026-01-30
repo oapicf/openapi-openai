@@ -9,6 +9,7 @@ Name | Type
 `description` | string
 `name` | string
 `parameters` | { [key: string]: any; }
+`strict` | boolean
 
 ## Example
 
@@ -20,6 +21,7 @@ const example = {
   "description": null,
   "name": null,
   "parameters": null,
+  "strict": null,
 } satisfies FunctionObject
 
 console.log(example)

@@ -27,9 +27,9 @@ class CreateModerationResponse
     /**
      * A list of moderation objects.
      * @DTA\Data(field="results")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection31::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection31::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection62::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection62::class})
      */
-    public ?\App\DTO\Collection31 $results = null;
+    public ?\App\DTO\Collection62 $results = null;
 
 }

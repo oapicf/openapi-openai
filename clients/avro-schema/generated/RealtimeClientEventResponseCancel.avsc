@@ -1,0 +1,32 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Send this event to cancel an in-progress response. The server will respond  with a `response.cancelled` event or an error if there is no response to  cancel. ",
+  "name": "RealtimeClientEventResponseCancel",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": ["null", "string"],
+      "doc": "Optional client-generated ID used to identify this event.",
+      "default": null
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeClientEventResponseCancel_type",
+        "symbols": [
+          "response_cancel"
+        ]
+      },
+      "doc": "The event type, must be `response.cancel`."
+    },
+    {
+      "name": "response_id",
+      "type": ["null", "string"],
+      "doc": "A specific response ID to cancel - if not provided, will cancel an  in-progress response in the default conversation. ",
+      "default": null
+    }
+  ]
+
+}

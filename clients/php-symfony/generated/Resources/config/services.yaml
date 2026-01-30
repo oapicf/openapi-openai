@@ -39,6 +39,24 @@ services:
          - [setContainer,  ['@service_container']]
         tags: ['controller.service_arguments']
 
+    open_api_server.controller.auditLogs:
+        class: OpenAPI\Server\Controller\AuditLogsController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.batch:
+        class: OpenAPI\Server\Controller\BatchController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
     open_api_server.controller.chat:
         class: OpenAPI\Server\Controller\ChatController
         calls:
@@ -50,6 +68,15 @@ services:
 
     open_api_server.controller.completions:
         class: OpenAPI\Server\Controller\CompletionsController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.default:
+        class: OpenAPI\Server\Controller\DefaultController
         calls:
          - [setSerializer, ['@open_api_server.service.serializer']]
          - [setValidator,  ['@open_api_server.service.validator']]
@@ -93,6 +120,15 @@ services:
          - [setContainer,  ['@service_container']]
         tags: ['controller.service_arguments']
 
+    open_api_server.controller.invites:
+        class: OpenAPI\Server\Controller\InvitesController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
     open_api_server.controller.models:
         class: OpenAPI\Server\Controller\ModelsController
         calls:
@@ -104,6 +140,60 @@ services:
 
     open_api_server.controller.moderations:
         class: OpenAPI\Server\Controller\ModerationsController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.projects:
+        class: OpenAPI\Server\Controller\ProjectsController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.realtime:
+        class: OpenAPI\Server\Controller\RealtimeController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.uploads:
+        class: OpenAPI\Server\Controller\UploadsController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.usage:
+        class: OpenAPI\Server\Controller\UsageController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.users:
+        class: OpenAPI\Server\Controller\UsersController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
+        tags: ['controller.service_arguments']
+
+    open_api_server.controller.vectorStores:
+        class: OpenAPI\Server\Controller\VectorStoresController
         calls:
          - [setSerializer, ['@open_api_server.service.serializer']]
          - [setValidator,  ['@open_api_server.service.validator']]

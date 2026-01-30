@@ -1,0 +1,45 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Additional details about the status.",
+  "name": "RealtimeResponseStatusDetails",
+  "fields": [
+    {
+      "name": "type",
+      "type": ["null", {
+        "type": "enum",
+        "name": "RealtimeResponseStatusDetails_type",
+        "symbols": [
+          "completed",
+          "cancelled",
+          "failed",
+          "incomplete"
+        ]
+      }],
+      "doc": "The type of error that caused the response to fail, corresponding  with the `status` field (`completed`, `cancelled`, `incomplete`,  `failed`). ",
+      "default": null
+    },
+    {
+      "name": "reason",
+      "type": ["null", {
+        "type": "enum",
+        "name": "RealtimeResponseStatusDetails_reason",
+        "symbols": [
+          "turn_detected",
+          "client_cancelled",
+          "max_output_tokens",
+          "content_filter"
+        ]
+      }],
+      "doc": "The reason the Response did not complete. For a `cancelled` Response,  one of `turn_detected` (the server VAD detected a new start of speech)  or `client_cancelled` (the client sent a cancel event). For an  `incomplete` Response, one of `max_output_tokens` or `content_filter`  (the server-side safety filter activated and cut off the response). ",
+      "default": null
+    },
+    {
+      "name": "error",
+      "type": ["null", "model.RealtimeResponseStatusDetailsError"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

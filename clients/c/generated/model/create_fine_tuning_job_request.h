@@ -18,6 +18,7 @@ typedef struct create_fine_tuning_job_request_t create_fine_tuning_job_request_t
 #include "create_fine_tuning_job_request_hyperparameters.h"
 #include "create_fine_tuning_job_request_integrations_inner.h"
 #include "create_fine_tuning_job_request_model.h"
+#include "fine_tune_method.h"
 
 
 
@@ -29,6 +30,7 @@ typedef struct create_fine_tuning_job_request_t {
     char *validation_file; // string
     list_t *integrations; //nonprimitive container
     int seed; //numeric
+    struct fine_tune_method_t *method; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } create_fine_tuning_job_request_t;
@@ -40,7 +42,8 @@ __attribute__((deprecated)) create_fine_tuning_job_request_t *create_fine_tuning
     char *suffix,
     char *validation_file,
     list_t *integrations,
-    int seed
+    int seed,
+    fine_tune_method_t *method
 );
 
 void create_fine_tuning_job_request_free(create_fine_tuning_job_request_t *create_fine_tuning_job_request);

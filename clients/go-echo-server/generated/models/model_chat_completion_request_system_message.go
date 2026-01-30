@@ -1,9 +1,9 @@
 package models
 
+// ChatCompletionRequestSystemMessage - Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. 
 type ChatCompletionRequestSystemMessage struct {
 
-	// The contents of the system message.
-	Content string `json:"content"`
+	Content ChatCompletionRequestSystemMessageContent `json:"content"`
 
 	// The role of the messages author, in this case `system`.
 	Role string `json:"role"`

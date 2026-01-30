@@ -28,3 +28,17 @@ test_that("total_tokens", {
   # uncomment below to test the property
   #expect_equal(model.instance$`total_tokens`, "EXPECTED_RESULT")
 })
+
+test_that("completion_tokens_details", {
+  # tests for the property `completion_tokens_details` (CompletionUsageCompletionTokensDetails)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`completion_tokens_details`, "EXPECTED_RESULT")
+})
+
+test_that("prompt_tokens_details", {
+  # tests for the property `prompt_tokens_details` (CompletionUsagePromptTokensDetails)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`prompt_tokens_details`, "EXPECTED_RESULT")
+})

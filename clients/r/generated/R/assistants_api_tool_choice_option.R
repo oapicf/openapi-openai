@@ -16,23 +16,23 @@ AssistantsApiToolChoiceOption <- R6::R6Class(
     #' @field actual_type the type of the object stored in this instance.
     actual_type = NULL,
     #' @field one_of  a list of types defined in the oneOf schema.
-    one_of = list("AssistantsApiNamedToolChoice", "character"),
+    one_of = list("AssistantsNamedToolChoice", "character"),
 
     #' @description
     #' Initialize a new AssistantsApiToolChoiceOption.
     #'
-    #' @param instance an instance of the object defined in the oneOf schemas: "AssistantsApiNamedToolChoice", "character"
+    #' @param instance an instance of the object defined in the oneOf schemas: "AssistantsNamedToolChoice", "character"
     initialize = function(instance = NULL) {
       if (is.null(instance)) {
         # do nothing
-      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "AssistantsApiNamedToolChoice") {
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "AssistantsNamedToolChoice") {
         self$actual_instance <- instance
-        self$actual_type <- "AssistantsApiNamedToolChoice"
+        self$actual_type <- "AssistantsNamedToolChoice"
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "character") {
         self$actual_instance <- instance
         self$actual_type <- "character"
       } else {
-        stop(paste("Failed to initialize AssistantsApiToolChoiceOption with oneOf schemas AssistantsApiNamedToolChoice, character. Provided class name: ",
+        stop(paste("Failed to initialize AssistantsApiToolChoiceOption with oneOf schemas AssistantsNamedToolChoice, character. Provided class name: ",
                    get(class(instance)[[1]], pos = -1)$classname))
       }
     },
@@ -76,19 +76,19 @@ AssistantsApiToolChoiceOption <- R6::R6Class(
         error_messages <- append(error_messages, `character_result`["message"])
       }
 
-      `AssistantsApiNamedToolChoice_result` <- tryCatch({
-          `AssistantsApiNamedToolChoice`$public_methods$validateJSON(input)
-          `AssistantsApiNamedToolChoice_instance` <- `AssistantsApiNamedToolChoice`$new()
-          instance <- `AssistantsApiNamedToolChoice_instance`$fromJSON(input)
-          instance_type <- "AssistantsApiNamedToolChoice"
-          matched_schemas <- append(matched_schemas, "AssistantsApiNamedToolChoice")
+      `AssistantsNamedToolChoice_result` <- tryCatch({
+          `AssistantsNamedToolChoice`$public_methods$validateJSON(input)
+          `AssistantsNamedToolChoice_instance` <- `AssistantsNamedToolChoice`$new()
+          instance <- `AssistantsNamedToolChoice_instance`$fromJSON(input)
+          instance_type <- "AssistantsNamedToolChoice"
+          matched_schemas <- append(matched_schemas, "AssistantsNamedToolChoice")
           matched <- matched + 1
         },
         error = function(err) err
       )
 
-      if (!is.null(`AssistantsApiNamedToolChoice_result`["error"])) {
-        error_messages <- append(error_messages, `AssistantsApiNamedToolChoice_result`["message"])
+      if (!is.null(`AssistantsNamedToolChoice_result`["error"])) {
+        error_messages <- append(error_messages, `AssistantsNamedToolChoice_result`["message"])
       }
 
       if (matched == 1) {
@@ -97,11 +97,11 @@ AssistantsApiToolChoiceOption <- R6::R6Class(
         self$actual_type <- instance_type
       } else if (matched > 1) {
         # more than 1 match
-        stop(paste("Multiple matches found when deserializing the input into AssistantsApiToolChoiceOption with oneOf schemas AssistantsApiNamedToolChoice, character. Matched schemas: ",
+        stop(paste("Multiple matches found when deserializing the input into AssistantsApiToolChoiceOption with oneOf schemas AssistantsNamedToolChoice, character. Matched schemas: ",
                    paste(matched_schemas, collapse = ", ")))
       } else {
         # no match
-        stop(paste("No match found when deserializing the input into AssistantsApiToolChoiceOption with oneOf schemas AssistantsApiNamedToolChoice, character. Details: >>",
+        stop(paste("No match found when deserializing the input into AssistantsApiToolChoiceOption with oneOf schemas AssistantsNamedToolChoice, character. Details: >>",
                    paste(error_messages, collapse = " >> ")))
       }
 

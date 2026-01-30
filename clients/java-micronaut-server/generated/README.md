@@ -16,17 +16,37 @@ Description on how to create Apis is given inside individual api guides:
 
 * [AssistantsController](docs/controllers/AssistantsController.md)
 * [AudioController](docs/controllers/AudioController.md)
+* [AuditLogsController](docs/controllers/AuditLogsController.md)
+* [BatchController](docs/controllers/BatchController.md)
 * [ChatController](docs/controllers/ChatController.md)
 * [CompletionsController](docs/controllers/CompletionsController.md)
+* [DefaultController](docs/controllers/DefaultController.md)
 * [EmbeddingsController](docs/controllers/EmbeddingsController.md)
 * [FilesController](docs/controllers/FilesController.md)
 * [FineTuningController](docs/controllers/FineTuningController.md)
 * [ImagesController](docs/controllers/ImagesController.md)
+* [InvitesController](docs/controllers/InvitesController.md)
 * [ModelsController](docs/controllers/ModelsController.md)
 * [ModerationsController](docs/controllers/ModerationsController.md)
+* [ProjectsController](docs/controllers/ProjectsController.md)
+* [RealtimeController](docs/controllers/RealtimeController.md)
+* [UploadsController](docs/controllers/UploadsController.md)
+* [UsageController](docs/controllers/UsageController.md)
+* [UsersController](docs/controllers/UsersController.md)
+* [VectorStoresController](docs/controllers/VectorStoresController.md)
 
 ## Author
 
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
 blah+oapicf@cliffano.com
 blah+oapicf@cliffano.com
 blah+oapicf@cliffano.com

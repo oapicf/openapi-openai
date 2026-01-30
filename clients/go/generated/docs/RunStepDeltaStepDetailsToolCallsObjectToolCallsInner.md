@@ -8,14 +8,14 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** | The ID of the tool call object. | [optional] 
 **Type** | **string** | The type of tool call. This is always going to be &#x60;code_interpreter&#x60; for this type of tool call. | 
 **CodeInterpreter** | Pointer to [**RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter**](RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.md) |  | [optional] 
-**Retrieval** | Pointer to **map[string]interface{}** | For now, this is always going to be an empty object. | [optional] 
+**FileSearch** | **map[string]interface{}** | For now, this is always going to be an empty object. | 
 **Function** | Pointer to [**RunStepDeltaStepDetailsToolCallsFunctionObjectFunction**](RunStepDeltaStepDetailsToolCallsFunctionObjectFunction.md) |  | [optional] 
 
 ## Methods
 
 ### NewRunStepDeltaStepDetailsToolCallsObjectToolCallsInner
 
-`func NewRunStepDeltaStepDetailsToolCallsObjectToolCallsInner(index int32, type_ string, ) *RunStepDeltaStepDetailsToolCallsObjectToolCallsInner`
+`func NewRunStepDeltaStepDetailsToolCallsObjectToolCallsInner(index int32, type_ string, fileSearch map[string]interface{}, ) *RunStepDeltaStepDetailsToolCallsObjectToolCallsInner`
 
 NewRunStepDeltaStepDetailsToolCallsObjectToolCallsInner instantiates a new RunStepDeltaStepDetailsToolCallsObjectToolCallsInner object
 This constructor will assign default values to properties that have it defined,
@@ -120,30 +120,25 @@ SetCodeInterpreter sets CodeInterpreter field to given value.
 
 HasCodeInterpreter returns a boolean if a field has been set.
 
-### GetRetrieval
+### GetFileSearch
 
-`func (o *RunStepDeltaStepDetailsToolCallsObjectToolCallsInner) GetRetrieval() map[string]interface{}`
+`func (o *RunStepDeltaStepDetailsToolCallsObjectToolCallsInner) GetFileSearch() map[string]interface{}`
 
-GetRetrieval returns the Retrieval field if non-nil, zero value otherwise.
+GetFileSearch returns the FileSearch field if non-nil, zero value otherwise.
 
-### GetRetrievalOk
+### GetFileSearchOk
 
-`func (o *RunStepDeltaStepDetailsToolCallsObjectToolCallsInner) GetRetrievalOk() (*map[string]interface{}, bool)`
+`func (o *RunStepDeltaStepDetailsToolCallsObjectToolCallsInner) GetFileSearchOk() (*map[string]interface{}, bool)`
 
-GetRetrievalOk returns a tuple with the Retrieval field if it's non-nil, zero value otherwise
+GetFileSearchOk returns a tuple with the FileSearch field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRetrieval
+### SetFileSearch
 
-`func (o *RunStepDeltaStepDetailsToolCallsObjectToolCallsInner) SetRetrieval(v map[string]interface{})`
+`func (o *RunStepDeltaStepDetailsToolCallsObjectToolCallsInner) SetFileSearch(v map[string]interface{})`
 
-SetRetrieval sets Retrieval field to given value.
+SetFileSearch sets FileSearch field to given value.
 
-### HasRetrieval
-
-`func (o *RunStepDeltaStepDetailsToolCallsObjectToolCallsInner) HasRetrieval() bool`
-
-HasRetrieval returns a boolean if a field has been set.
 
 ### GetFunction
 

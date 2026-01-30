@@ -10,8 +10,10 @@ The class is defined in **[AssistantStreamEvent.java](../../src/main/java/org/op
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enabled** | `Boolean` | Whether to enable input audio transcription. |  [optional property]
 **event** | [**EventEnum**](#EventEnum) |  | 
 **data** | [**DataEnum**](#DataEnum) |  | 
+
 
 ## EventEnum
 

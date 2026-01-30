@@ -34,3 +34,17 @@ test_that("text", {
   # uncomment below to test the property
   #expect_equal(model.instance$`text`, "EXPECTED_RESULT")
 })
+
+test_that("refusal", {
+  # tests for the property `refusal` (character)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`refusal`, "EXPECTED_RESULT")
+})
+
+test_that("image_url", {
+  # tests for the property `image_url` (MessageDeltaContentImageUrlObjectImageUrl)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`image_url`, "EXPECTED_RESULT")
+})

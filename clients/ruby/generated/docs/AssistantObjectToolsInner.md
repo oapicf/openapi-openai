@@ -15,8 +15,8 @@ OpenApiOpenAIClient::AssistantObjectToolsInner.openapi_one_of
 # =>
 # [
 #   :'AssistantToolsCode',
-#   :'AssistantToolsFunction',
-#   :'AssistantToolsRetrieval'
+#   :'AssistantToolsFileSearch',
+#   :'AssistantToolsFunction'
 # ]
 ```
 
@@ -45,7 +45,7 @@ OpenApiOpenAIClient::AssistantObjectToolsInner.build(data_that_doesnt_match)
 #### Return type
 
 - `AssistantToolsCode`
+- `AssistantToolsFileSearch`
 - `AssistantToolsFunction`
-- `AssistantToolsRetrieval`
 - `nil` (if no type matches)
 

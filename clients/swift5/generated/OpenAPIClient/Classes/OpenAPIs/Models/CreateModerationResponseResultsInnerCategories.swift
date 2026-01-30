@@ -21,6 +21,10 @@ public struct CreateModerationResponseResultsInnerCategories: Codable, JSONEncod
     public var harassment: Bool
     /** Harassment content that also includes violence or serious harm towards any target. */
     public var harassmentThreatening: Bool
+    /** Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category. */
+    public var illicit: Bool
+    /** Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon. */
+    public var illicitViolent: Bool
     /** Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders. */
     public var selfHarm: Bool
     /** Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders. */
@@ -36,11 +40,13 @@ public struct CreateModerationResponseResultsInnerCategories: Codable, JSONEncod
     /** Content that depicts death, violence, or physical injury in graphic detail. */
     public var violenceGraphic: Bool
 
-    public init(hate: Bool, hateThreatening: Bool, harassment: Bool, harassmentThreatening: Bool, selfHarm: Bool, selfHarmIntent: Bool, selfHarmInstructions: Bool, sexual: Bool, sexualMinors: Bool, violence: Bool, violenceGraphic: Bool) {
+    public init(hate: Bool, hateThreatening: Bool, harassment: Bool, harassmentThreatening: Bool, illicit: Bool, illicitViolent: Bool, selfHarm: Bool, selfHarmIntent: Bool, selfHarmInstructions: Bool, sexual: Bool, sexualMinors: Bool, violence: Bool, violenceGraphic: Bool) {
         self.hate = hate
         self.hateThreatening = hateThreatening
         self.harassment = harassment
         self.harassmentThreatening = harassmentThreatening
+        self.illicit = illicit
+        self.illicitViolent = illicitViolent
         self.selfHarm = selfHarm
         self.selfHarmIntent = selfHarmIntent
         self.selfHarmInstructions = selfHarmInstructions
@@ -55,6 +61,8 @@ public struct CreateModerationResponseResultsInnerCategories: Codable, JSONEncod
         case hateThreatening = "hate/threatening"
         case harassment
         case harassmentThreatening = "harassment/threatening"
+        case illicit
+        case illicitViolent = "illicit/violent"
         case selfHarm = "self-harm"
         case selfHarmIntent = "self-harm/intent"
         case selfHarmInstructions = "self-harm/instructions"
@@ -72,6 +80,8 @@ public struct CreateModerationResponseResultsInnerCategories: Codable, JSONEncod
         try container.encode(hateThreatening, forKey: .hateThreatening)
         try container.encode(harassment, forKey: .harassment)
         try container.encode(harassmentThreatening, forKey: .harassmentThreatening)
+        try container.encode(illicit, forKey: .illicit)
+        try container.encode(illicitViolent, forKey: .illicitViolent)
         try container.encode(selfHarm, forKey: .selfHarm)
         try container.encode(selfHarmIntent, forKey: .selfHarmIntent)
         try container.encode(selfHarmInstructions, forKey: .selfHarmInstructions)

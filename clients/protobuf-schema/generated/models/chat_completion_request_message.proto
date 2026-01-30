@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -16,7 +16,9 @@ package openapitools;
 
 import public "models/chat_completion_message_tool_call.proto";
 import public "models/chat_completion_request_assistant_message.proto";
+import public "models/chat_completion_request_assistant_message_audio.proto";
 import public "models/chat_completion_request_assistant_message_function_call.proto";
+import public "models/chat_completion_request_developer_message.proto";
 import public "models/chat_completion_request_function_message.proto";
 import public "models/chat_completion_request_system_message.proto";
 import public "models/chat_completion_request_tool_message.proto";
@@ -25,6 +27,7 @@ import public "models/chat_completion_request_user_message.proto";
 message ChatCompletionRequestMessage {
 
     oneof chat_completion_request_message {
+        ChatCompletionRequestDeveloperMessage chat_completion_request_developer_message = 500097852;
         ChatCompletionRequestSystemMessage chat_completion_request_system_message = 122850883;
         ChatCompletionRequestUserMessage chat_completion_request_user_message = 287854305;
         ChatCompletionRequestAssistantMessage chat_completion_request_assistant_message = 299324379;

@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **hate_threatening** | **boolean** | Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. | [default to undefined]
 **harassment** | **boolean** | Content that expresses, incites, or promotes harassing language towards any target. | [default to undefined]
 **harassment_threatening** | **boolean** | Harassment content that also includes violence or serious harm towards any target. | [default to undefined]
+**illicit** | **boolean** | Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \&quot;how to shoplift\&quot; would fit this category. | [default to undefined]
+**illicit_violent** | **boolean** | Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon. | [default to undefined]
 **self_harm** | **boolean** | Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders. | [default to undefined]
 **self_harm_intent** | **boolean** | Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders. | [default to undefined]
 **self_harm_instructions** | **boolean** | Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts. | [default to undefined]
@@ -28,6 +30,8 @@ const instance: CreateModerationResponseResultsInnerCategories = {
     hate_threatening,
     harassment,
     harassment_threatening,
+    illicit,
+    illicit_violent,
     self_harm,
     self_harm_intent,
     self_harm_instructions,

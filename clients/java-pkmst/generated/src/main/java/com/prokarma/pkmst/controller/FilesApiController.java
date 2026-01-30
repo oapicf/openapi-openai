@@ -26,7 +26,7 @@ import java.io.IOException;
  * @author pkmst
  *
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T10:45:02.588292416Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @Controller
 public class FilesApiController implements FilesApi {
     private final ObjectMapper objectMapper;
@@ -36,7 +36,7 @@ public class FilesApiController implements FilesApi {
     }
 
     public ResponseEntity<OpenAIFile> createFile(@ApiParam(value = "file detail")  @RequestPart("file") MultipartFile file,
-        @ApiParam(value = "The intended purpose of the uploaded file.  Use \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. ", required=true, allowableValues="fine-tune, assistants") @RequestPart(value="purpose", required=true)  String purpose,
+        @ApiParam(value = "The intended purpose of the uploaded file.  Use \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\"vision\\\" for Assistants image file inputs, \\\"batch\\\" for [Batch API](/docs/guides/batch), and \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning). ", required=true, allowableValues="assistants, batch, fine-tune, vision") @RequestPart(value="purpose", required=true)  String purpose,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 
@@ -65,6 +65,9 @@ public class FilesApiController implements FilesApi {
     }
 
     public ResponseEntity<ListFilesResponse> listFiles(@ApiParam(value = "Only return files with the given purpose.")  @RequestParam(value = "purpose", required = false) String purpose,
+        @ApiParam(value = "A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. ", defaultValue = "10000")  @RequestParam(value = "limit", required = false, defaultValue="10000") Integer limit,
+        @ApiParam(value = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", allowableValues = "asc, desc", defaultValue = "desc")  @RequestParam(value = "order", required = false, defaultValue="desc") String order,
+        @ApiParam(value = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")  @RequestParam(value = "after", required = false) String after,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 

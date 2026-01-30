@@ -27,6 +27,8 @@ MessageDeltaObject_delta_content_inner::__init()
 	//type = std::string();
 	//image_file = new MessageDeltaContentImageFileObject_image_file();
 	//text = new MessageDeltaContentTextObject_text();
+	//refusal = std::string();
+	//image_url = new MessageDeltaContentImageUrlObject_image_url();
 }
 
 void
@@ -51,6 +53,16 @@ MessageDeltaObject_delta_content_inner::__cleanup()
 	//
 	//delete text;
 	//text = NULL;
+	//}
+	//if(refusal != NULL) {
+	//
+	//delete refusal;
+	//refusal = NULL;
+	//}
+	//if(image_url != NULL) {
+	//
+	//delete image_url;
+	//image_url = NULL;
 	//}
 	//
 }
@@ -106,6 +118,31 @@ MessageDeltaObject_delta_content_inner::fromJson(char* jsonStr)
 		} else {
 			
 			MessageDeltaContentTextObject_text* obj = static_cast<MessageDeltaContentTextObject_text*> (&text);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *refusalKey = "refusal";
+	node = json_object_get_member(pJsonObject, refusalKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&refusal, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *image_urlKey = "image_url";
+	node = json_object_get_member(pJsonObject, image_urlKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("MessageDeltaContentImageUrlObject_image_url")) {
+			jsonToValue(&image_url, node, "MessageDeltaContentImageUrlObject_image_url", "MessageDeltaContentImageUrlObject_image_url");
+		} else {
+			
+			MessageDeltaContentImageUrlObject_image_url* obj = static_cast<MessageDeltaContentImageUrlObject_image_url*> (&image_url);
 			obj->fromJson(json_to_string(node, false));
 			
 		}
@@ -168,6 +205,29 @@ MessageDeltaObject_delta_content_inner::toJson()
 	}
 	const gchar *textKey = "text";
 	json_object_set_member(pJsonObject, textKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getRefusal();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *refusalKey = "refusal";
+	json_object_set_member(pJsonObject, refusalKey, node);
+	if (isprimitive("MessageDeltaContentImageUrlObject_image_url")) {
+		MessageDeltaContentImageUrlObject_image_url obj = getImageUrl();
+		node = converttoJson(&obj, "MessageDeltaContentImageUrlObject_image_url", "");
+	}
+	else {
+		
+		MessageDeltaContentImageUrlObject_image_url obj = static_cast<MessageDeltaContentImageUrlObject_image_url> (getImageUrl());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *image_urlKey = "image_url";
+	json_object_set_member(pJsonObject, image_urlKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -222,6 +282,30 @@ void
 MessageDeltaObject_delta_content_inner::setText(MessageDeltaContentTextObject_text  text)
 {
 	this->text = text;
+}
+
+std::string
+MessageDeltaObject_delta_content_inner::getRefusal()
+{
+	return refusal;
+}
+
+void
+MessageDeltaObject_delta_content_inner::setRefusal(std::string  refusal)
+{
+	this->refusal = refusal;
+}
+
+MessageDeltaContentImageUrlObject_image_url
+MessageDeltaObject_delta_content_inner::getImageUrl()
+{
+	return image_url;
+}
+
+void
+MessageDeltaObject_delta_content_inner::setImageUrl(MessageDeltaContentImageUrlObject_image_url  image_url)
+{
+	this->image_url = image_url;
 }
 
 

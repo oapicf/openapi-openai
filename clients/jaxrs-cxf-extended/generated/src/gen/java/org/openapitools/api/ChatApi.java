@@ -31,14 +31,14 @@ import javax.validation.Valid;
 public interface ChatApi  {
 
     /**
-     * Creates a model response for the given chat conversation.
+     * Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). 
      *
      */
     @POST
     
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @ApiOperation(value = "Creates a model response for the given chat conversation.", tags={ "Chat" })
+    @ApiOperation(value = "Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). ", tags={ "Chat" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = CreateChatCompletionResponse.class) })
     public CreateChatCompletionResponse createChatCompletion(@Valid CreateChatCompletionRequest createChatCompletionRequest);

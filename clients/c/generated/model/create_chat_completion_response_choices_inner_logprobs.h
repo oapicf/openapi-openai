@@ -21,12 +21,14 @@ typedef struct create_chat_completion_response_choices_inner_logprobs_t create_c
 
 typedef struct create_chat_completion_response_choices_inner_logprobs_t {
     list_t *content; //nonprimitive container
+    list_t *refusal; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
 } create_chat_completion_response_choices_inner_logprobs_t;
 
 __attribute__((deprecated)) create_chat_completion_response_choices_inner_logprobs_t *create_chat_completion_response_choices_inner_logprobs_create(
-    list_t *content
+    list_t *content,
+    list_t *refusal
 );
 
 void create_chat_completion_response_choices_inner_logprobs_free(create_chat_completion_response_choices_inner_logprobs_t *create_chat_completion_response_choices_inner_logprobs);

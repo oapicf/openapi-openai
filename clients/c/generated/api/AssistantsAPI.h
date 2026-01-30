@@ -5,24 +5,19 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/assistant_file_object.h"
 #include "../model/assistant_object.h"
-#include "../model/create_assistant_file_request.h"
 #include "../model/create_assistant_request.h"
 #include "../model/create_message_request.h"
 #include "../model/create_run_request.h"
 #include "../model/create_thread_and_run_request.h"
 #include "../model/create_thread_request.h"
-#include "../model/delete_assistant_file_response.h"
 #include "../model/delete_assistant_response.h"
+#include "../model/delete_message_response.h"
 #include "../model/delete_thread_response.h"
-#include "../model/list_assistant_files_response.h"
 #include "../model/list_assistants_response.h"
-#include "../model/list_message_files_response.h"
 #include "../model/list_messages_response.h"
 #include "../model/list_run_steps_response.h"
 #include "../model/list_runs_response.h"
-#include "../model/message_file_object.h"
 #include "../model/message_object.h"
 #include "../model/modify_assistant_request.h"
 #include "../model/modify_message_request.h"
@@ -33,20 +28,23 @@
 #include "../model/submit_tool_outputs_run_request.h"
 #include "../model/thread_object.h"
 
-// Enum ORDER for AssistantsAPI_listAssistantFiles
-typedef enum  { openai_api_listAssistantFiles_ORDER_NULL = 0, openai_api_listAssistantFiles_ORDER_asc, openai_api_listAssistantFiles_ORDER_desc } openai_api_listAssistantFiles_order_e;
+// Enum INCLUDE for AssistantsAPI_createRun
+typedef enum  { openai_api_createRun_INCLUDE_NULL = 0, openai_api_createRun_INCLUDE_step_details.tool_calls[*].file_search.results[*].content } openai_api_createRun_include[]_e;
+
+// Enum INCLUDE for AssistantsAPI_getRunStep
+typedef enum  { openai_api_getRunStep_INCLUDE_NULL = 0, openai_api_getRunStep_INCLUDE_step_details.tool_calls[*].file_search.results[*].content } openai_api_getRunStep_include[]_e;
 
 // Enum ORDER for AssistantsAPI_listAssistants
 typedef enum  { openai_api_listAssistants_ORDER_NULL = 0, openai_api_listAssistants_ORDER_asc, openai_api_listAssistants_ORDER_desc } openai_api_listAssistants_order_e;
-
-// Enum ORDER for AssistantsAPI_listMessageFiles
-typedef enum  { openai_api_listMessageFiles_ORDER_NULL = 0, openai_api_listMessageFiles_ORDER_asc, openai_api_listMessageFiles_ORDER_desc } openai_api_listMessageFiles_order_e;
 
 // Enum ORDER for AssistantsAPI_listMessages
 typedef enum  { openai_api_listMessages_ORDER_NULL = 0, openai_api_listMessages_ORDER_asc, openai_api_listMessages_ORDER_desc } openai_api_listMessages_order_e;
 
 // Enum ORDER for AssistantsAPI_listRunSteps
 typedef enum  { openai_api_listRunSteps_ORDER_NULL = 0, openai_api_listRunSteps_ORDER_asc, openai_api_listRunSteps_ORDER_desc } openai_api_listRunSteps_order_e;
+
+// Enum INCLUDE for AssistantsAPI_listRunSteps
+typedef enum  { openai_api_listRunSteps_INCLUDE_NULL = 0, openai_api_listRunSteps_INCLUDE_step_details.tool_calls[*].file_search.results[*].content } openai_api_listRunSteps_include[]_e;
 
 // Enum ORDER for AssistantsAPI_listRuns
 typedef enum  { openai_api_listRuns_ORDER_NULL = 0, openai_api_listRuns_ORDER_asc, openai_api_listRuns_ORDER_desc } openai_api_listRuns_order_e;
@@ -64,12 +62,6 @@ assistant_object_t*
 AssistantsAPI_createAssistant(apiClient_t *apiClient, create_assistant_request_t *create_assistant_request);
 
 
-// Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-//
-assistant_file_object_t*
-AssistantsAPI_createAssistantFile(apiClient_t *apiClient, char *assistant_id, create_assistant_file_request_t *create_assistant_file_request);
-
-
 // Create a message.
 //
 message_object_t*
@@ -79,7 +71,7 @@ AssistantsAPI_createMessage(apiClient_t *apiClient, char *thread_id, create_mess
 // Create a run.
 //
 run_object_t*
-AssistantsAPI_createRun(apiClient_t *apiClient, char *thread_id, create_run_request_t *create_run_request);
+AssistantsAPI_createRun(apiClient_t *apiClient, char *thread_id, create_run_request_t *create_run_request, list_t *include[]);
 
 
 // Create a thread.
@@ -100,10 +92,10 @@ delete_assistant_response_t*
 AssistantsAPI_deleteAssistant(apiClient_t *apiClient, char *assistant_id);
 
 
-// Delete an assistant file.
+// Deletes a message.
 //
-delete_assistant_file_response_t*
-AssistantsAPI_deleteAssistantFile(apiClient_t *apiClient, char *assistant_id, char *file_id);
+delete_message_response_t*
+AssistantsAPI_deleteMessage(apiClient_t *apiClient, char *thread_id, char *message_id);
 
 
 // Delete a thread.
@@ -118,22 +110,10 @@ assistant_object_t*
 AssistantsAPI_getAssistant(apiClient_t *apiClient, char *assistant_id);
 
 
-// Retrieves an AssistantFile.
-//
-assistant_file_object_t*
-AssistantsAPI_getAssistantFile(apiClient_t *apiClient, char *assistant_id, char *file_id);
-
-
 // Retrieve a message.
 //
 message_object_t*
 AssistantsAPI_getMessage(apiClient_t *apiClient, char *thread_id, char *message_id);
-
-
-// Retrieves a message file.
-//
-message_file_object_t*
-AssistantsAPI_getMessageFile(apiClient_t *apiClient, char *thread_id, char *message_id, char *file_id);
 
 
 // Retrieves a run.
@@ -145,7 +125,7 @@ AssistantsAPI_getRun(apiClient_t *apiClient, char *thread_id, char *run_id);
 // Retrieves a run step.
 //
 run_step_object_t*
-AssistantsAPI_getRunStep(apiClient_t *apiClient, char *thread_id, char *run_id, char *step_id);
+AssistantsAPI_getRunStep(apiClient_t *apiClient, char *thread_id, char *run_id, char *step_id, list_t *include[]);
 
 
 // Retrieves a thread.
@@ -154,22 +134,10 @@ thread_object_t*
 AssistantsAPI_getThread(apiClient_t *apiClient, char *thread_id);
 
 
-// Returns a list of assistant files.
-//
-list_assistant_files_response_t*
-AssistantsAPI_listAssistantFiles(apiClient_t *apiClient, char *assistant_id, int *limit, openai_api_listAssistantFiles_order_e order, char *after, char *before);
-
-
 // Returns a list of assistants.
 //
 list_assistants_response_t*
 AssistantsAPI_listAssistants(apiClient_t *apiClient, int *limit, openai_api_listAssistants_order_e order, char *after, char *before);
-
-
-// Returns a list of message files.
-//
-list_message_files_response_t*
-AssistantsAPI_listMessageFiles(apiClient_t *apiClient, char *thread_id, char *message_id, int *limit, openai_api_listMessageFiles_order_e order, char *after, char *before);
 
 
 // Returns a list of messages for a given thread.
@@ -181,7 +149,7 @@ AssistantsAPI_listMessages(apiClient_t *apiClient, char *thread_id, int *limit, 
 // Returns a list of run steps belonging to a run.
 //
 list_run_steps_response_t*
-AssistantsAPI_listRunSteps(apiClient_t *apiClient, char *thread_id, char *run_id, int *limit, openai_api_listRunSteps_order_e order, char *after, char *before);
+AssistantsAPI_listRunSteps(apiClient_t *apiClient, char *thread_id, char *run_id, int *limit, openai_api_listRunSteps_order_e order, char *after, char *before, list_t *include[]);
 
 
 // Returns a list of runs belonging to a thread.

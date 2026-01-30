@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -14,7 +14,7 @@ package openapi
 
 
 
-// CreateFineTuningJobRequestHyperparameters - The hyperparameters used for the fine-tuning job.
+// CreateFineTuningJobRequestHyperparameters - The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of `method`, and should be passed in under the `method` parameter. 
 type CreateFineTuningJobRequestHyperparameters struct {
 
 	BatchSize CreateFineTuningJobRequestHyperparametersBatchSize `json:"batch_size,omitempty"`

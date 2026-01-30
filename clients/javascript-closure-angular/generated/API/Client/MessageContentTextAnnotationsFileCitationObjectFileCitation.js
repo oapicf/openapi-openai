@@ -12,10 +12,3 @@ API.Client.MessageContentTextAnnotationsFileCitationObjectFileCitation = functio
  */
 API.Client.MessageContentTextAnnotationsFileCitationObjectFileCitation.prototype.fileId;
 
-/**
- * The specific quote in the file.
- * @type {!string}
- * @export
- */
-API.Client.MessageContentTextAnnotationsFileCitationObjectFileCitation.prototype.quote;
-

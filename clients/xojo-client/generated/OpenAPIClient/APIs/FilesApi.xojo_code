@@ -3,10 +3,10 @@ Protected Class FilesApi
 	#tag Method, Flags = &h0
 		Sub CreateFile(, Escapedfile As FolderItem, purpose As PurposeEnum_CreateFile)
 		  // Operation createFile
-		  // Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+		  // Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
 		  // - 
 		  // - parameter Escapedfile: (form) The File object (not file name) to be uploaded.  
-		  // - parameter purpose: (form) The intended purpose of the uploaded file.  Use &quot;fine-tune&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and &quot;assistants&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning.  
+		  // - parameter purpose: (form) The intended purpose of the uploaded file.  Use &quot;assistants&quot; for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, &quot;vision&quot; for Assistants image file inputs, &quot;batch&quot; for [Batch API](/docs/guides/batch), and &quot;fine-tune&quot; for [Fine-tuning](/docs/api-reference/fine-tuning).  
 		  //
 		  // Invokes FilesApiCallbackHandler.CreateFileCallback(OpenAIFile) on completion. 
 		  //
@@ -136,10 +136,14 @@ localVarFormParams.Value("purpose") = PurposeEnum_CreateFileToString(purpose)
 		Private Function PurposeEnum_CreateFileToString(value As PurposeEnum_CreateFile) As String
 		  Select Case value
 		    
-		    Case PurposeEnum_CreateFile.FineTune
-		      Return "fine-tune"
 		    Case PurposeEnum_CreateFile.Assistants
 		      Return "assistants"
+		    Case PurposeEnum_CreateFile.Batch
+		      Return "batch"
+		    Case PurposeEnum_CreateFile.FineTune
+		      Return "fine-tune"
+		    Case PurposeEnum_CreateFile.Vision
+		      Return "vision"
 		    
 		  End Select
 		  Return ""
@@ -389,11 +393,14 @@ localVarFormParams.Value("purpose") = PurposeEnum_CreateFileToString(purpose)
 
 
 	#tag Method, Flags = &h0
-		Sub ListFiles(, Optional purpose As Xoson.O.OptionalString)
+		Sub ListFiles(, Optional purpose As Xoson.O.OptionalString, Optional limit As Xoson.O.OptionalInteger, order As OrderEnum_ListFiles, Optional after As Xoson.O.OptionalString)
 		  // Operation listFiles
-		  // Returns a list of files that belong to the user's organization.
+		  // Returns a list of files.
 		  // - 
 		  // - parameter purpose: (query) Only return files with the given purpose. (optional, default to Sample)
+		  // - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000.  (optional, default to 10000)
+		  // - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
+		  // - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional, default to Sample)
 		  //
 		  // Invokes FilesApiCallbackHandler.ListFilesCallback(ListFilesResponse) on completion. 
 		  //
@@ -410,6 +417,12 @@ localVarFormParams.Value("purpose") = PurposeEnum_CreateFileToString(purpose)
 		  
 		  Dim localVarQueryParams As String = "?"
 		  If purpose <> nil Then localVarQueryParams = localVarQueryParams + EncodeURLComponent("purpose") + "=" + EncodeURLComponent(purpose)
+		  
+		  If limit <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("limit") + "=" + EncodeURLComponent(limit.ToString)
+		  
+		  localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("order") + "=" + EncodeURLComponent(OrderEnum_ListFilesToString(order))
+		  
+		  If after <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("after") + "=" + EncodeURLComponent(after)
 		  
 
 		  
@@ -518,6 +531,19 @@ localVarFormParams.Value("purpose") = PurposeEnum_CreateFileToString(purpose)
 
 
 
+	#tag Method, Flags = &h21
+		Private Function OrderEnum_ListFilesToString(value As OrderEnum_ListFiles) As String
+		  Select Case value
+		    
+		    Case OrderEnum_ListFiles.Asc
+		      Return "asc"
+		    Case OrderEnum_ListFiles.Desc
+		      Return "desc"
+		    
+		  End Select
+		  Return ""
+		End Function
+	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub RetrieveFile(, fileId As String)
@@ -728,8 +754,17 @@ localVarFormParams.Value("purpose") = PurposeEnum_CreateFileToString(purpose)
 
 	#tag Enum, Name = PurposeEnum_CreateFile, Type = Integer, Flags = &h0
 		
-        FineTune
         Assistants
+        Batch
+        FineTune
+        Vision
+		
+	#tag EndEnum
+
+	#tag Enum, Name = OrderEnum_ListFiles, Type = Integer, Flags = &h0
+		
+        Asc
+        Desc
 		
 	#tag EndEnum
 

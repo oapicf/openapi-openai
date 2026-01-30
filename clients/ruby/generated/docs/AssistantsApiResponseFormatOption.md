@@ -14,7 +14,9 @@ require 'openapi_openai'
 OpenApiOpenAIClient::AssistantsApiResponseFormatOption.openapi_one_of
 # =>
 # [
-#   :'AssistantsApiResponseFormat',
+#   :'ResponseFormatJsonObject',
+#   :'ResponseFormatJsonSchema',
+#   :'ResponseFormatText',
 #   :'String'
 # ]
 ```
@@ -29,7 +31,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'openapi_openai'
 
 OpenApiOpenAIClient::AssistantsApiResponseFormatOption.build(data)
-# => #<AssistantsApiResponseFormat:0x00007fdd4aab02a0>
+# => #<ResponseFormatJsonObject:0x00007fdd4aab02a0>
 
 OpenApiOpenAIClient::AssistantsApiResponseFormatOption.build(data_that_doesnt_match)
 # => nil
@@ -43,7 +45,9 @@ OpenApiOpenAIClient::AssistantsApiResponseFormatOption.build(data_that_doesnt_ma
 
 #### Return type
 
-- `AssistantsApiResponseFormat`
+- `ResponseFormatJsonObject`
+- `ResponseFormatJsonSchema`
+- `ResponseFormatText`
 - `String`
 - `nil` (if no type matches)
 

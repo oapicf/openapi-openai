@@ -6,24 +6,19 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancelRun**](AssistantsApiInterface.md#cancelRun) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is &#x60;in_progress&#x60;.
 [**createAssistant**](AssistantsApiInterface.md#createAssistant) | **POST** /assistants | Create an assistant with a model and instructions.
-[**createAssistantFile**](AssistantsApiInterface.md#createAssistantFile) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
 [**createMessage**](AssistantsApiInterface.md#createMessage) | **POST** /threads/{thread_id}/messages | Create a message.
 [**createRun**](AssistantsApiInterface.md#createRun) | **POST** /threads/{thread_id}/runs | Create a run.
 [**createThread**](AssistantsApiInterface.md#createThread) | **POST** /threads | Create a thread.
 [**createThreadAndRun**](AssistantsApiInterface.md#createThreadAndRun) | **POST** /threads/runs | Create a thread and run it in one request.
 [**deleteAssistant**](AssistantsApiInterface.md#deleteAssistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant.
-[**deleteAssistantFile**](AssistantsApiInterface.md#deleteAssistantFile) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+[**deleteMessage**](AssistantsApiInterface.md#deleteMessage) | **DELETE** /threads/{thread_id}/messages/{message_id} | Deletes a message.
 [**deleteThread**](AssistantsApiInterface.md#deleteThread) | **DELETE** /threads/{thread_id} | Delete a thread.
 [**getAssistant**](AssistantsApiInterface.md#getAssistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant.
-[**getAssistantFile**](AssistantsApiInterface.md#getAssistantFile) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
 [**getMessage**](AssistantsApiInterface.md#getMessage) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
-[**getMessageFile**](AssistantsApiInterface.md#getMessageFile) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
 [**getRun**](AssistantsApiInterface.md#getRun) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
 [**getRunStep**](AssistantsApiInterface.md#getRunStep) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
 [**getThread**](AssistantsApiInterface.md#getThread) | **GET** /threads/{thread_id} | Retrieves a thread.
-[**listAssistantFiles**](AssistantsApiInterface.md#listAssistantFiles) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
 [**listAssistants**](AssistantsApiInterface.md#listAssistants) | **GET** /assistants | Returns a list of assistants.
-[**listMessageFiles**](AssistantsApiInterface.md#listMessageFiles) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
 [**listMessages**](AssistantsApiInterface.md#listMessages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
 [**listRunSteps**](AssistantsApiInterface.md#listRunSteps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
 [**listRuns**](AssistantsApiInterface.md#listRuns) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
@@ -150,59 +145,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-## **createAssistantFile**
-> OpenAPI\Server\Model\AssistantFileObject createAssistantFile($assistantId, $createAssistantFileRequest)
-
-Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
-### Example Implementation
-```php
-<?php
-// src/Acme/MyBundle/Api/AssistantsApiInterface.php
-
-namespace Acme\MyBundle\Api;
-
-use OpenAPI\Server\Api\AssistantsApiInterface;
-
-class AssistantsApi implements AssistantsApiInterface
-{
-
-    // ...
-
-    /**
-     * Implementation of AssistantsApiInterface#createAssistantFile
-     */
-    public function createAssistantFile(string $assistantId, CreateAssistantFileRequest $createAssistantFileRequest, int &$responseCode, array &$responseHeaders): array|object|null
-    {
-        // Implement the operation ...
-    }
-
-    // ...
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistantId** | **string**| The ID of the assistant for which to create a File. |
- **createAssistantFileRequest** | [**OpenAPI\Server\Model\CreateAssistantFileRequest**](../Model/CreateAssistantFileRequest.md)|  |
-
-### Return type
-
-[**OpenAPI\Server\Model\AssistantFileObject**](../Model/AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
 ## **createMessage**
 > OpenAPI\Server\Model\MessageObject createMessage($threadId, $createMessageRequest)
 
@@ -257,7 +199,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **createRun**
-> OpenAPI\Server\Model\RunObject createRun($threadId, $createRunRequest)
+> OpenAPI\Server\Model\RunObject createRun($threadId, $createRunRequest, $include)
 
 Create a run.
 
@@ -278,7 +220,7 @@ class AssistantsApi implements AssistantsApiInterface
     /**
      * Implementation of AssistantsApiInterface#createRun
      */
-    public function createRun(string $threadId, CreateRunRequest $createRunRequest, int &$responseCode, array &$responseHeaders): array|object|null
+    public function createRun(string $threadId, CreateRunRequest $createRunRequest, ?array $include, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -293,6 +235,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **threadId** | **string**| The ID of the thread to run. |
  **createRunRequest** | [**OpenAPI\Server\Model\CreateRunRequest**](../Model/CreateRunRequest.md)|  |
+ **include** | [**string**](../Model/string.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. | [optional]
 
 ### Return type
 
@@ -465,10 +408,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-## **deleteAssistantFile**
-> OpenAPI\Server\Model\DeleteAssistantFileResponse deleteAssistantFile($assistantId, $fileId)
+## **deleteMessage**
+> OpenAPI\Server\Model\DeleteMessageResponse deleteMessage($threadId, $messageId)
 
-Delete an assistant file.
+Deletes a message.
 
 ### Example Implementation
 ```php
@@ -485,9 +428,9 @@ class AssistantsApi implements AssistantsApiInterface
     // ...
 
     /**
-     * Implementation of AssistantsApiInterface#deleteAssistantFile
+     * Implementation of AssistantsApiInterface#deleteMessage
      */
-    public function deleteAssistantFile(string $assistantId, string $fileId, int &$responseCode, array &$responseHeaders): array|object|null
+    public function deleteMessage(string $threadId, string $messageId, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -500,12 +443,12 @@ class AssistantsApi implements AssistantsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **assistantId** | **string**| The ID of the assistant that the file belongs to. |
- **fileId** | **string**| The ID of the file to delete. |
+ **threadId** | **string**| The ID of the thread to which this message belongs. |
+ **messageId** | **string**| The ID of the message to delete. |
 
 ### Return type
 
-[**OpenAPI\Server\Model\DeleteAssistantFileResponse**](../Model/DeleteAssistantFileResponse.md)
+[**OpenAPI\Server\Model\DeleteMessageResponse**](../Model/DeleteMessageResponse.md)
 
 ### Authorization
 
@@ -622,59 +565,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-## **getAssistantFile**
-> OpenAPI\Server\Model\AssistantFileObject getAssistantFile($assistantId, $fileId)
-
-Retrieves an AssistantFile.
-
-### Example Implementation
-```php
-<?php
-// src/Acme/MyBundle/Api/AssistantsApiInterface.php
-
-namespace Acme\MyBundle\Api;
-
-use OpenAPI\Server\Api\AssistantsApiInterface;
-
-class AssistantsApi implements AssistantsApiInterface
-{
-
-    // ...
-
-    /**
-     * Implementation of AssistantsApiInterface#getAssistantFile
-     */
-    public function getAssistantFile(string $assistantId, string $fileId, int &$responseCode, array &$responseHeaders): array|object|null
-    {
-        // Implement the operation ...
-    }
-
-    // ...
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistantId** | **string**| The ID of the assistant who the file belongs to. |
- **fileId** | **string**| The ID of the file we&#39;re getting. |
-
-### Return type
-
-[**OpenAPI\Server\Model\AssistantFileObject**](../Model/AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
 ## **getMessage**
 > OpenAPI\Server\Model\MessageObject getMessage($threadId, $messageId)
 
@@ -716,60 +606,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**OpenAPI\Server\Model\MessageObject**](../Model/MessageObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-## **getMessageFile**
-> OpenAPI\Server\Model\MessageFileObject getMessageFile($threadId, $messageId, $fileId)
-
-Retrieves a message file.
-
-### Example Implementation
-```php
-<?php
-// src/Acme/MyBundle/Api/AssistantsApiInterface.php
-
-namespace Acme\MyBundle\Api;
-
-use OpenAPI\Server\Api\AssistantsApiInterface;
-
-class AssistantsApi implements AssistantsApiInterface
-{
-
-    // ...
-
-    /**
-     * Implementation of AssistantsApiInterface#getMessageFile
-     */
-    public function getMessageFile(string $threadId, string $messageId, string $fileId, int &$responseCode, array &$responseHeaders): array|object|null
-    {
-        // Implement the operation ...
-    }
-
-    // ...
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **threadId** | **string**| The ID of the thread to which the message and File belong. |
- **messageId** | **string**| The ID of the message the file belongs to. |
- **fileId** | **string**| The ID of the file being retrieved. |
-
-### Return type
-
-[**OpenAPI\Server\Model\MessageFileObject**](../Model/MessageFileObject.md)
 
 ### Authorization
 
@@ -836,7 +672,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **getRunStep**
-> OpenAPI\Server\Model\RunStepObject getRunStep($threadId, $runId, $stepId)
+> OpenAPI\Server\Model\RunStepObject getRunStep($threadId, $runId, $stepId, $include)
 
 Retrieves a run step.
 
@@ -857,7 +693,7 @@ class AssistantsApi implements AssistantsApiInterface
     /**
      * Implementation of AssistantsApiInterface#getRunStep
      */
-    public function getRunStep(string $threadId, string $runId, string $stepId, int &$responseCode, array &$responseHeaders): array|object|null
+    public function getRunStep(string $threadId, string $runId, string $stepId, ?array $include, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -873,6 +709,7 @@ Name | Type | Description  | Notes
  **threadId** | **string**| The ID of the thread to which the run and run step belongs. |
  **runId** | **string**| The ID of the run to which the run step belongs. |
  **stepId** | **string**| The ID of the run step to retrieve. |
+ **include** | [**string**](../Model/string.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. | [optional]
 
 ### Return type
 
@@ -941,62 +778,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-## **listAssistantFiles**
-> OpenAPI\Server\Model\ListAssistantFilesResponse listAssistantFiles($assistantId, $limit, $order, $after, $before)
-
-Returns a list of assistant files.
-
-### Example Implementation
-```php
-<?php
-// src/Acme/MyBundle/Api/AssistantsApiInterface.php
-
-namespace Acme\MyBundle\Api;
-
-use OpenAPI\Server\Api\AssistantsApiInterface;
-
-class AssistantsApi implements AssistantsApiInterface
-{
-
-    // ...
-
-    /**
-     * Implementation of AssistantsApiInterface#listAssistantFiles
-     */
-    public function listAssistantFiles(string $assistantId, int $limit, string $order, ?string $after, ?string $before, int &$responseCode, array &$responseHeaders): array|object|null
-    {
-        // Implement the operation ...
-    }
-
-    // ...
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistantId** | **string**| The ID of the assistant the file belongs to. |
- **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. | [optional] [default to 20]
- **order** | **string**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. | [optional] [default to &#39;desc&#39;]
- **after** | **string**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. | [optional]
- **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. | [optional]
-
-### Return type
-
-[**OpenAPI\Server\Model\ListAssistantFilesResponse**](../Model/ListAssistantFilesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
 ## **listAssistants**
 > OpenAPI\Server\Model\ListAssistantsResponse listAssistants($limit, $order, $after, $before)
 
@@ -1035,68 +816,11 @@ Name | Type | Description  | Notes
  **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. | [optional] [default to 20]
  **order** | **string**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. | [optional] [default to &#39;desc&#39;]
  **after** | **string**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. | [optional]
- **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. | [optional]
+ **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. | [optional]
 
 ### Return type
 
 [**OpenAPI\Server\Model\ListAssistantsResponse**](../Model/ListAssistantsResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-## **listMessageFiles**
-> OpenAPI\Server\Model\ListMessageFilesResponse listMessageFiles($threadId, $messageId, $limit, $order, $after, $before)
-
-Returns a list of message files.
-
-### Example Implementation
-```php
-<?php
-// src/Acme/MyBundle/Api/AssistantsApiInterface.php
-
-namespace Acme\MyBundle\Api;
-
-use OpenAPI\Server\Api\AssistantsApiInterface;
-
-class AssistantsApi implements AssistantsApiInterface
-{
-
-    // ...
-
-    /**
-     * Implementation of AssistantsApiInterface#listMessageFiles
-     */
-    public function listMessageFiles(string $threadId, string $messageId, int $limit, string $order, ?string $after, ?string $before, int &$responseCode, array &$responseHeaders): array|object|null
-    {
-        // Implement the operation ...
-    }
-
-    // ...
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **threadId** | **string**| The ID of the thread that the message and files belong to. |
- **messageId** | **string**| The ID of the message that the files belongs to. |
- **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. | [optional] [default to 20]
- **order** | **string**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. | [optional] [default to &#39;desc&#39;]
- **after** | **string**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. | [optional]
- **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. | [optional]
-
-### Return type
-
-[**OpenAPI\Server\Model\ListMessageFilesResponse**](../Model/ListMessageFilesResponse.md)
 
 ### Authorization
 
@@ -1148,7 +872,7 @@ Name | Type | Description  | Notes
  **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. | [optional] [default to 20]
  **order** | **string**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. | [optional] [default to &#39;desc&#39;]
  **after** | **string**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. | [optional]
- **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. | [optional]
+ **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. | [optional]
  **runId** | **string**| Filter messages by the run ID that generated them. | [optional]
 
 ### Return type
@@ -1167,7 +891,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **listRunSteps**
-> OpenAPI\Server\Model\ListRunStepsResponse listRunSteps($threadId, $runId, $limit, $order, $after, $before)
+> OpenAPI\Server\Model\ListRunStepsResponse listRunSteps($threadId, $runId, $limit, $order, $after, $before, $include)
 
 Returns a list of run steps belonging to a run.
 
@@ -1188,7 +912,7 @@ class AssistantsApi implements AssistantsApiInterface
     /**
      * Implementation of AssistantsApiInterface#listRunSteps
      */
-    public function listRunSteps(string $threadId, string $runId, int $limit, string $order, ?string $after, ?string $before, int &$responseCode, array &$responseHeaders): array|object|null
+    public function listRunSteps(string $threadId, string $runId, int $limit, string $order, ?string $after, ?string $before, ?array $include, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -1206,7 +930,8 @@ Name | Type | Description  | Notes
  **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. | [optional] [default to 20]
  **order** | **string**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. | [optional] [default to &#39;desc&#39;]
  **after** | **string**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. | [optional]
- **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. | [optional]
+ **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. | [optional]
+ **include** | [**string**](../Model/string.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. | [optional]
 
 ### Return type
 
@@ -1262,7 +987,7 @@ Name | Type | Description  | Notes
  **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. | [optional] [default to 20]
  **order** | **string**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. | [optional] [default to &#39;desc&#39;]
  **after** | **string**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. | [optional]
- **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. | [optional]
+ **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. | [optional]
 
 ### Return type
 

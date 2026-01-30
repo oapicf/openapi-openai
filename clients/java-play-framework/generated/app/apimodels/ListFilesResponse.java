@@ -13,48 +13,51 @@ import javax.validation.Valid;
 /**
  * ListFilesResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class ListFilesResponse   {
+  @JsonProperty("object")
+  @NotNull
+
+  private String _object;
+
   @JsonProperty("data")
   @NotNull
 @Valid
 
   private List<@Valid OpenAIFile> data = new ArrayList<>();
 
-  /**
-   * Gets or Sets _object
-   */
-  public enum ObjectEnum {
-    LIST("list");
-
-    private final String value;
-
-    ObjectEnum(String value) {
-      this.value = value;
-    }
-
-    @Override
-    @JsonValue
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ObjectEnum fromValue(String value) {
-      for (ObjectEnum b : ObjectEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  @JsonProperty("object")
+  @JsonProperty("first_id")
   @NotNull
 
-  private ObjectEnum _object;
+  private String firstId;
+
+  @JsonProperty("last_id")
+  @NotNull
+
+  private String lastId;
+
+  @JsonProperty("has_more")
+  @NotNull
+
+  private Boolean hasMore;
+
+  public ListFilesResponse _object(String _object) {
+    this._object = _object;
+    return this;
+  }
+
+   /**
+   * Get _object
+   * @return _object
+  **/
+  public String getObject() {
+    return _object;
+  }
+
+  public void setObject(String _object) {
+    this._object = _object;
+  }
 
   public ListFilesResponse data(List<@Valid OpenAIFile> data) {
     this.data = data;
@@ -81,21 +84,55 @@ public class ListFilesResponse   {
     this.data = data;
   }
 
-  public ListFilesResponse _object(ObjectEnum _object) {
-    this._object = _object;
+  public ListFilesResponse firstId(String firstId) {
+    this.firstId = firstId;
     return this;
   }
 
    /**
-   * Get _object
-   * @return _object
+   * Get firstId
+   * @return firstId
   **/
-  public ObjectEnum getObject() {
-    return _object;
+  public String getFirstId() {
+    return firstId;
   }
 
-  public void setObject(ObjectEnum _object) {
-    this._object = _object;
+  public void setFirstId(String firstId) {
+    this.firstId = firstId;
+  }
+
+  public ListFilesResponse lastId(String lastId) {
+    this.lastId = lastId;
+    return this;
+  }
+
+   /**
+   * Get lastId
+   * @return lastId
+  **/
+  public String getLastId() {
+    return lastId;
+  }
+
+  public void setLastId(String lastId) {
+    this.lastId = lastId;
+  }
+
+  public ListFilesResponse hasMore(Boolean hasMore) {
+    this.hasMore = hasMore;
+    return this;
+  }
+
+   /**
+   * Get hasMore
+   * @return hasMore
+  **/
+  public Boolean getHasMore() {
+    return hasMore;
+  }
+
+  public void setHasMore(Boolean hasMore) {
+    this.hasMore = hasMore;
   }
 
 
@@ -108,13 +145,16 @@ public class ListFilesResponse   {
       return false;
     }
     ListFilesResponse listFilesResponse = (ListFilesResponse) o;
-    return Objects.equals(data, listFilesResponse.data) &&
-        Objects.equals(_object, listFilesResponse._object);
+    return Objects.equals(_object, listFilesResponse._object) &&
+        Objects.equals(data, listFilesResponse.data) &&
+        Objects.equals(firstId, listFilesResponse.firstId) &&
+        Objects.equals(lastId, listFilesResponse.lastId) &&
+        Objects.equals(hasMore, listFilesResponse.hasMore);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, _object);
+    return Objects.hash(_object, data, firstId, lastId, hasMore);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -123,8 +163,11 @@ public class ListFilesResponse   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListFilesResponse {\n");
     
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    firstId: ").append(toIndentedString(firstId)).append("\n");
+    sb.append("    lastId: ").append(toIndentedString(lastId)).append("\n");
+    sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
     sb.append("}");
     return sb.toString();
   }

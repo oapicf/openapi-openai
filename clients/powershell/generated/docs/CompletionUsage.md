@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 **CompletionTokens** | **Int32** | Number of tokens in the generated completion. | 
 **PromptTokens** | **Int32** | Number of tokens in the prompt. | 
 **TotalTokens** | **Int32** | Total number of tokens used in the request (prompt + completion). | 
+**CompletionTokensDetails** | [**CompletionUsageCompletionTokensDetails**](CompletionUsageCompletionTokensDetails.md) |  | [optional] 
+**PromptTokensDetails** | [**CompletionUsagePromptTokensDetails**](CompletionUsagePromptTokensDetails.md) |  | [optional] 
 
 ## Examples
 
@@ -13,7 +15,9 @@ Name | Type | Description | Notes
 ```powershell
 $CompletionUsage = Initialize-PSOpenAPIToolsCompletionUsage  -CompletionTokens null `
  -PromptTokens null `
- -TotalTokens null
+ -TotalTokens null `
+ -CompletionTokensDetails null `
+ -PromptTokensDetails null
 ```
 
 - Convert the resource to JSON

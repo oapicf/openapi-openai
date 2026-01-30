@@ -1,0 +1,36 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AuditLogApiKeyUpdatedChangesRequested"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AuditLogApiKeyUpdatedChangesRequested"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  AuditLogApiKeyUpdatedChangesRequested {
+    title = AuditLogApiKeyUpdatedChangesRequested
+    description = AuditLogApiKeyUpdatedChangesRequested
+    derivedFrom = Root
+    properties {
+        scopes {
+          type = array
+          items.type =  string
+          description = "A list of scopes allowed for the API key, e.g. &#x60;[\&quot;api.model.request\&quot;]&#x60;"
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AuditLogApiKeyUpdatedChangesRequested {
+    title = AuditLogApiKeyUpdatedChangesRequested
+    description = AuditLogApiKeyUpdatedChangesRequested
+    implements = openapi_server.resourceTypes.AuditLogApiKeyUpdatedChangesRequested
+
+  }
+}

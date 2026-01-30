@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Url** | **string** | Either a URL of the image or the base64 encoded image data. | 
-**Detail** | Pointer to **string** | Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding). | [optional] [default to "auto"]
+**Detail** | Pointer to **string** | Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding). | [optional] [default to "auto"]
 
 ## Methods
 

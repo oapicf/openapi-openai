@@ -26,3 +26,10 @@ test_that("category_scores", {
   # uncomment below to test the property
   #expect_equal(model.instance$`category_scores`, "EXPECTED_RESULT")
 })
+
+test_that("category_applied_input_types", {
+  # tests for the property `category_applied_input_types` (CreateModerationResponseResultsInnerCategoryAppliedInputTypes)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`category_applied_input_types`, "EXPECTED_RESULT")
+})

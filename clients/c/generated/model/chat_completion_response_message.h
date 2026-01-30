@@ -16,7 +16,8 @@
 typedef struct chat_completion_response_message_t chat_completion_response_message_t;
 
 #include "chat_completion_message_tool_call.h"
-#include "chat_completion_request_assistant_message_function_call.h"
+#include "chat_completion_response_message_audio.h"
+#include "chat_completion_response_message_function_call.h"
 
 // Enum ROLE for chat_completion_response_message
 
@@ -30,18 +31,22 @@ openai_api_chat_completion_response_message_ROLE_e chat_completion_response_mess
 
 typedef struct chat_completion_response_message_t {
     char *content; // string
+    char *refusal; // string
     list_t *tool_calls; //nonprimitive container
     openai_api_chat_completion_response_message_ROLE_e role; //enum
-    struct chat_completion_request_assistant_message_function_call_t *function_call; //model
+    struct chat_completion_response_message_function_call_t *function_call; //model
+    struct chat_completion_response_message_audio_t *audio; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } chat_completion_response_message_t;
 
 __attribute__((deprecated)) chat_completion_response_message_t *chat_completion_response_message_create(
     char *content,
+    char *refusal,
     list_t *tool_calls,
     openai_api_chat_completion_response_message_ROLE_e role,
-    chat_completion_request_assistant_message_function_call_t *function_call
+    chat_completion_response_message_function_call_t *function_call,
+    chat_completion_response_message_audio_t *audio
 );
 
 void chat_completion_response_message_free(chat_completion_response_message_t *chat_completion_response_message);

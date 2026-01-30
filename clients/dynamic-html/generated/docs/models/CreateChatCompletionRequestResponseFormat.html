@@ -1,13 +1,19 @@
 
 <h2>CreateChatCompletionRequestResponseFormat</h2>
 <ul class="parameter">
-  <li class="param-required-false">type : String
-    <br/>Must be one of &#x60;text&#x60; or &#x60;json_object&#x60;.
+  <li class="param-required-true">type : String
+    <br/>The type of response format being defined: &#x60;text&#x60;
       <dl class="param-enum">
         <dt>Enum:
             <dd>text</dd>
             <dd>json_object</dd>
+            <dd>json_schema</dd>
         </dt>
       </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">jsonUnderscoreschema : ResponseFormatJsonSchema_json_schema
+    <br/>
   </li>
 </ul>

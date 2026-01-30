@@ -1,0 +1,16 @@
+package models
+
+type BatchErrorsDataInner struct {
+
+	// An error code identifying the error type.
+	Code string `json:"code,omitempty"`
+
+	// A human-readable message providing more details about the error.
+	Message string `json:"message,omitempty"`
+
+	// The name of the parameter that caused the error, if applicable.
+	Param *string `json:"param,omitempty"`
+
+	// The line number of the input file where the error occurred, if applicable.
+	Line *int32 `json:"line,omitempty"`
+}

@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **validationUnderscorefile** | **string** |  | [default to null]
 **integrations** | [**array[FineTuningJobIntegrationsInner]**](FineTuningJobIntegrationsInner.md) |  | [optional] [default to null]
 **seed** | **integer** |  | [default to null]
+**estimatedUnderscorefinish** | **integer** |  | [optional] [default to null]
+**method** | [**FineTuneMethod**](FineTuneMethod.md) |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

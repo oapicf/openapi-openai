@@ -85,7 +85,7 @@ public class FineTuningControllerTest {
             put("fine_tuning_job_id", "ft-AF1WoRqd3aJAHsqc9NY7iL8F");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, null)
-            .accept("[Ljava.lang.String;@77b01226");
+            .accept("[Ljava.lang.String;@5c6e4d6b");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, FineTuningJob.class);
@@ -127,7 +127,7 @@ public class FineTuningControllerTest {
         CreateFineTuningJobRequest body = new CreateFineTuningJobRequest(null, "file-abc123");
         String uri = UriTemplate.of("/fine_tuning/jobs").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@386ea60f");
+            .accept("[Ljava.lang.String;@a25c653");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, FineTuningJob.class);
@@ -173,7 +173,7 @@ public class FineTuningControllerTest {
             put("fine_tuning_job_id", "ft-AF1WoRqd3aJAHsqc9NY7iL8F");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@c7b100b");
+            .accept("[Ljava.lang.String;@54c9320c");
         request.getParameters()
             .add("after", "example") // The query parameter format should be 
             .add("limit", String.valueOf(20)); // The query parameter format should be 
@@ -222,7 +222,7 @@ public class FineTuningControllerTest {
             put("fine_tuning_job_id", "ft-AF1WoRqd3aJAHsqc9NY7iL8F");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@99774ec");
+            .accept("[Ljava.lang.String;@4df03572");
         request.getParameters()
             .add("after", "example") // The query parameter format should be 
             .add("limit", String.valueOf(10)); // The query parameter format should be 
@@ -267,7 +267,7 @@ public class FineTuningControllerTest {
         // given
         String uri = UriTemplate.of("/fine_tuning/jobs").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@7ec176da");
+            .accept("[Ljava.lang.String;@63db2cb2");
         request.getParameters()
             .add("after", "example") // The query parameter format should be 
             .add("limit", String.valueOf(20)); // The query parameter format should be 
@@ -314,7 +314,7 @@ public class FineTuningControllerTest {
             put("fine_tuning_job_id", "ft-AF1WoRqd3aJAHsqc9NY7iL8F");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@33d2f9d3");
+            .accept("[Ljava.lang.String;@47e869c4");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, FineTuningJob.class);

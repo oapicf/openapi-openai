@@ -16,7 +16,7 @@ class CreateSpeechRequest(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, model: CreateSpeechRequestModel=None, input: str=None, voice: str=None, response_format: str='mp3', speed: float=1.0):  # noqa: E501
+    def __init__(self, model: CreateSpeechRequestModel=None, input: str=None, voice: str=None, response_format: str='mp3', speed: float=1):  # noqa: E501
         """CreateSpeechRequest - a model defined in Swagger
 
         :param model: The model of this CreateSpeechRequest.  # noqa: E501
@@ -117,7 +117,7 @@ class CreateSpeechRequest(Model):
     def voice(self) -> str:
         """Gets the voice of this CreateSpeechRequest.
 
-        The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).  # noqa: E501
+        The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).  # noqa: E501
 
         :return: The voice of this CreateSpeechRequest.
         :rtype: str
@@ -128,7 +128,7 @@ class CreateSpeechRequest(Model):
     def voice(self, voice: str):
         """Sets the voice of this CreateSpeechRequest.
 
-        The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).  # noqa: E501
+        The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).  # noqa: E501
 
         :param voice: The voice of this CreateSpeechRequest.
         :type voice: str
@@ -191,8 +191,8 @@ class CreateSpeechRequest(Model):
         :param speed: The speed of this CreateSpeechRequest.
         :type speed: float
         """
-        if speed is not None and speed > 4.0:  # noqa: E501
-            raise ValueError("Invalid value for `speed`, must be a value less than or equal to `4.0`")  # noqa: E501
+        if speed is not None and speed > 4:  # noqa: E501
+            raise ValueError("Invalid value for `speed`, must be a value less than or equal to `4`")  # noqa: E501
         if speed is not None and speed < 0.25:  # noqa: E501
             raise ValueError("Invalid value for `speed`, must be a value greater than or equal to `0.25`")  # noqa: E501
 

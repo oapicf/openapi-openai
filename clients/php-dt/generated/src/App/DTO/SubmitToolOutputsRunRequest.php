@@ -10,10 +10,10 @@ class SubmitToolOutputsRunRequest
     /**
      * A list of tools for which the outputs are being submitted.
      * @DTA\Data(field="tool_outputs")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection51::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection51::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection145::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection145::class})
      */
-    public ?\App\DTO\Collection51 $tool_outputs = null;
+    public ?\App\DTO\Collection145 $tool_outputs = null;
 
     /**
      * If &#x60;true&#x60;, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a &#x60;data: [DONE]&#x60; message.

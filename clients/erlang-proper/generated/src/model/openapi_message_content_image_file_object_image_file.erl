@@ -10,6 +10,7 @@
 
 -type openapi_message_content_image_file_object_image_file() ::
   [ {'file_id', binary() }
+  | {'detail', binary() }
   ].
 
 
@@ -18,6 +19,7 @@ openapi_message_content_image_file_object_image_file() ->
 
 openapi_message_content_image_file_object_image_file(Fields) ->
   Default = [ {'file_id', binary() }
+            , {'detail', elements([<<"auto">>, <<"low">>, <<"high">>]) }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

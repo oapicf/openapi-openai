@@ -10,13 +10,15 @@ Name | Type | Description | Notes
 **AdditionalInstructions** | Pointer to **NullableString** | Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions. | [optional] 
 **AdditionalMessages** | Pointer to [**[]CreateMessageRequest**](CreateMessageRequest.md) | Adds additional messages to the thread before creating the run. | [optional] 
 **Tools** | Pointer to [**[]AssistantObjectToolsInner**](AssistantObjectToolsInner.md) | Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis. | [optional] 
-**Metadata** | Pointer to **map[string]interface{}** | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  | [optional] 
 **Temperature** | Pointer to **NullableFloat32** | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  | [optional] [default to 1]
+**TopP** | Pointer to **NullableFloat32** | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.  | [optional] [default to 1]
 **Stream** | Pointer to **NullableBool** | If &#x60;true&#x60;, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a &#x60;data: [DONE]&#x60; message.  | [optional] 
-**MaxPromptTokens** | Pointer to **NullableInt32** | The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status &#x60;complete&#x60;. See &#x60;incomplete_details&#x60; for more info.  | [optional] 
-**MaxCompletionTokens** | Pointer to **NullableInt32** | The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status &#x60;complete&#x60;. See &#x60;incomplete_details&#x60; for more info.  | [optional] 
+**MaxPromptTokens** | Pointer to **NullableInt32** | The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status &#x60;incomplete&#x60;. See &#x60;incomplete_details&#x60; for more info.  | [optional] 
+**MaxCompletionTokens** | Pointer to **NullableInt32** | The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status &#x60;incomplete&#x60;. See &#x60;incomplete_details&#x60; for more info.  | [optional] 
 **TruncationStrategy** | Pointer to [**TruncationObject**](TruncationObject.md) |  | [optional] 
 **ToolChoice** | Pointer to [**AssistantsApiToolChoiceOption**](AssistantsApiToolChoiceOption.md) |  | [optional] 
+**ParallelToolCalls** | Pointer to **bool** | Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. | [optional] [default to true]
 **ResponseFormat** | Pointer to [**AssistantsApiResponseFormatOption**](AssistantsApiResponseFormatOption.md) |  | [optional] 
 
 ## Methods
@@ -303,6 +305,41 @@ HasTemperature returns a boolean if a field has been set.
 `func (o *CreateRunRequest) UnsetTemperature()`
 
 UnsetTemperature ensures that no value is present for Temperature, not even an explicit nil
+### GetTopP
+
+`func (o *CreateRunRequest) GetTopP() float32`
+
+GetTopP returns the TopP field if non-nil, zero value otherwise.
+
+### GetTopPOk
+
+`func (o *CreateRunRequest) GetTopPOk() (*float32, bool)`
+
+GetTopPOk returns a tuple with the TopP field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTopP
+
+`func (o *CreateRunRequest) SetTopP(v float32)`
+
+SetTopP sets TopP field to given value.
+
+### HasTopP
+
+`func (o *CreateRunRequest) HasTopP() bool`
+
+HasTopP returns a boolean if a field has been set.
+
+### SetTopPNil
+
+`func (o *CreateRunRequest) SetTopPNil(b bool)`
+
+ SetTopPNil sets the value for TopP to be an explicit nil
+
+### UnsetTopP
+`func (o *CreateRunRequest) UnsetTopP()`
+
+UnsetTopP ensures that no value is present for TopP, not even an explicit nil
 ### GetStream
 
 `func (o *CreateRunRequest) GetStream() bool`
@@ -457,6 +494,31 @@ SetToolChoice sets ToolChoice field to given value.
 `func (o *CreateRunRequest) HasToolChoice() bool`
 
 HasToolChoice returns a boolean if a field has been set.
+
+### GetParallelToolCalls
+
+`func (o *CreateRunRequest) GetParallelToolCalls() bool`
+
+GetParallelToolCalls returns the ParallelToolCalls field if non-nil, zero value otherwise.
+
+### GetParallelToolCallsOk
+
+`func (o *CreateRunRequest) GetParallelToolCallsOk() (*bool, bool)`
+
+GetParallelToolCallsOk returns a tuple with the ParallelToolCalls field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParallelToolCalls
+
+`func (o *CreateRunRequest) SetParallelToolCalls(v bool)`
+
+SetParallelToolCalls sets ParallelToolCalls field to given value.
+
+### HasParallelToolCalls
+
+`func (o *CreateRunRequest) HasParallelToolCalls() bool`
+
+HasParallelToolCalls returns a boolean if a field has been set.
 
 ### GetResponseFormat
 

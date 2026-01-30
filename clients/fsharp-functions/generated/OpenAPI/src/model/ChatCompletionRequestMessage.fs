@@ -5,7 +5,9 @@ open System.Collections.Generic
 open Newtonsoft.Json
 open OpenAPI.Model.ChatCompletionMessageToolCall
 open OpenAPI.Model.ChatCompletionRequestAssistantMessage
+open OpenAPI.Model.ChatCompletionRequestAssistantMessageAudio
 open OpenAPI.Model.ChatCompletionRequestAssistantMessageFunctionCall
+open OpenAPI.Model.ChatCompletionRequestDeveloperMessage
 open OpenAPI.Model.ChatCompletionRequestFunctionMessage
 open OpenAPI.Model.ChatCompletionRequestSystemMessage
 open OpenAPI.Model.ChatCompletionRequestToolMessage
@@ -24,6 +26,10 @@ module ChatCompletionRequestMessage =
     Role : string;
     [<JsonProperty(PropertyName = "name")>]
     Name : string;
+    [<JsonProperty(PropertyName = "refusal")>]
+    Refusal : string option;
+    [<JsonProperty(PropertyName = "audio")>]
+    Audio : ChatCompletionRequestAssistantMessageAudio;
     [<JsonProperty(PropertyName = "tool_calls")>]
     ToolCalls : ChatCompletionMessageToolCall[];
     [<JsonProperty(PropertyName = "function_call")>]

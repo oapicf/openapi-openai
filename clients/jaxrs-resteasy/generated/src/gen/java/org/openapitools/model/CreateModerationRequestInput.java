@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.swagger.annotations.ApiModel;
 import java.util.List;
+import org.openapitools.model.CreateModerationRequestInputOneOfInner;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="The input text to classify")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T10:45:28.938980301Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description="Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models. ")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T14:09:21.247747647Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateModerationRequestInput   {
   
 

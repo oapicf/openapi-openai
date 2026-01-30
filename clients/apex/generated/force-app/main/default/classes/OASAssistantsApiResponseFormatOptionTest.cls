@@ -70,8 +70,9 @@ private class OASAssistantsApiResponseFormatOptionTest {
     }
 
     @isTest
-    private static void defaultValuesPopulated() {
+    private static void maintainRenamedProperties() {
         OASAssistantsApiResponseFormatOption assistantsApiResponseFormatOption = new OASAssistantsApiResponseFormatOption();
-        System.assertEquals(TypeEnum.TEXT, assistantsApiResponseFormatOption.type);
+        Map<String, String> x-property-mappings = assistantsApiResponseFormatOption.getx-property-mappings();
+        System.assertEquals('jsonSchema', x-property-mappings.get('json_schema'));
     }
 }

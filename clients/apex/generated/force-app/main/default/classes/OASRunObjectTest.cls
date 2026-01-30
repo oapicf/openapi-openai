@@ -85,11 +85,12 @@ private class OASRunObjectTest {
         System.assertEquals('failedAt', x-property-mappings.get('failed_at'));
         System.assertEquals('completedAt', x-property-mappings.get('completed_at'));
         System.assertEquals('incompleteDetails', x-property-mappings.get('incomplete_details'));
-        System.assertEquals('fileIds', x-property-mappings.get('file_ids'));
+        System.assertEquals('topP', x-property-mappings.get('top_p'));
         System.assertEquals('maxPromptTokens', x-property-mappings.get('max_prompt_tokens'));
         System.assertEquals('maxCompletionTokens', x-property-mappings.get('max_completion_tokens'));
         System.assertEquals('truncationStrategy', x-property-mappings.get('truncation_strategy'));
         System.assertEquals('toolChoice', x-property-mappings.get('tool_choice'));
+        System.assertEquals('parallelToolCalls', x-property-mappings.get('parallel_tool_calls'));
         System.assertEquals('responseFormat', x-property-mappings.get('response_format'));
     }
 
@@ -97,7 +98,7 @@ private class OASRunObjectTest {
     private static void defaultValuesPopulated() {
         OASRunObject runObject = new OASRunObject();
         System.assertEquals(new List<OASAssistantObjectToolsInner>(), runObject.tools);
-        System.assertEquals(new List<String>(), runObject.fileIds);
+        System.assertEquals(true, runObject.parallelToolCalls);
         System.assertEquals(null, runObject.id);
         System.assertEquals(null, runObject.r_object);
         System.assertEquals(null, runObject.createdAt);
@@ -117,6 +118,7 @@ private class OASRunObjectTest {
         System.assertEquals(null, runObject.metadata);
         System.assertEquals(null, runObject.usage);
         System.assertEquals(null, runObject.temperature);
+        System.assertEquals(null, runObject.topP);
         System.assertEquals(null, runObject.maxPromptTokens);
         System.assertEquals(null, runObject.maxCompletionTokens);
         System.assertEquals(null, runObject.truncationStrategy);

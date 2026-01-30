@@ -21,6 +21,8 @@ module ChatCompletionStreamResponseDelta =
     ToolCalls : ChatCompletionMessageToolCallChunk[];
     [<JsonProperty(PropertyName = "role")>]
     Role : string;
+    [<JsonProperty(PropertyName = "refusal")>]
+    Refusal : string option;
   }
 
   //#endregion

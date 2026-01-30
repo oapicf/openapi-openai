@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "AuditLogOrganizationUpdatedChangesRequestedSettings",
+  "fields": [
+    {
+      "name": "threads_ui_visibility",
+      "type": ["null", "string"],
+      "doc": "Visibility of the threads page which shows messages created with the Assistants API and Playground. One of `ANY_ROLE`, `OWNERS`, or `NONE`.",
+      "default": null
+    },
+    {
+      "name": "usage_dashboard_visibility",
+      "type": ["null", "string"],
+      "doc": "Visibility of the usage dashboard which shows activity and costs for your organization. One of `ANY_ROLE` or `OWNERS`.",
+      "default": null
+    }
+  ]
+
+}

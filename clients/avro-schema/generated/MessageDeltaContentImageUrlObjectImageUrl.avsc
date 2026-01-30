@@ -1,0 +1,29 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "MessageDeltaContentImageUrlObjectImageUrl",
+  "fields": [
+    {
+      "name": "url",
+      "type": ["null", "string"],
+      "doc": "The URL of the image, must be a supported image types: jpeg, jpg, png, gif, webp.",
+      "default": null
+    },
+    {
+      "name": "detail",
+      "type": [{
+        "type": "enum",
+        "name": "MessageDeltaContentImageUrlObjectImageUrl_detail",
+        "symbols": [
+          "auto",
+          "low",
+          "high"
+        ]
+      }, "null"],
+      "doc": "Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`.",
+      "default": DetailEnum.AUTO
+    }
+  ]
+
+}

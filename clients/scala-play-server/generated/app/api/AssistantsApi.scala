@@ -1,24 +1,19 @@
 package api
 
 import play.api.libs.json._
-import model.AssistantFileObject
 import model.AssistantObject
-import model.CreateAssistantFileRequest
 import model.CreateAssistantRequest
 import model.CreateMessageRequest
 import model.CreateRunRequest
 import model.CreateThreadAndRunRequest
 import model.CreateThreadRequest
-import model.DeleteAssistantFileResponse
 import model.DeleteAssistantResponse
+import model.DeleteMessageResponse
 import model.DeleteThreadResponse
-import model.ListAssistantFilesResponse
 import model.ListAssistantsResponse
-import model.ListMessageFilesResponse
 import model.ListMessagesResponse
 import model.ListRunStepsResponse
 import model.ListRunsResponse
-import model.MessageFileObject
 import model.MessageObject
 import model.ModifyAssistantRequest
 import model.ModifyMessageRequest
@@ -29,7 +24,7 @@ import model.RunStepObject
 import model.SubmitToolOutputsRunRequest
 import model.ThreadObject
 
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T10:48:27.489746113Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 trait AssistantsApi {
   /**
     * Cancels a run that is &#x60;in_progress&#x60;.
@@ -44,12 +39,6 @@ trait AssistantsApi {
   def createAssistant(createAssistantRequest: CreateAssistantRequest): AssistantObject
 
   /**
-    * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-    * @param assistantId The ID of the assistant for which to create a File. 
-    */
-  def createAssistantFile(assistantId: String, createAssistantFileRequest: CreateAssistantFileRequest): AssistantFileObject
-
-  /**
     * Create a message.
     * @param threadId The ID of the [thread](/docs/api-reference/threads) to create a message for.
     */
@@ -58,8 +47,9 @@ trait AssistantsApi {
   /**
     * Create a run.
     * @param threadId The ID of the thread to run.
+    * @param includeLeft_Square_BracketRight_Square_Bracket A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
     */
-  def createRun(threadId: String, createRunRequest: CreateRunRequest): RunObject
+  def createRun(threadId: String, createRunRequest: CreateRunRequest, includeLeft_Square_BracketRight_Square_Bracket: Option[List[String]]): RunObject
 
   /**
     * Create a thread.
@@ -78,11 +68,11 @@ trait AssistantsApi {
   def deleteAssistant(assistantId: String): DeleteAssistantResponse
 
   /**
-    * Delete an assistant file.
-    * @param assistantId The ID of the assistant that the file belongs to.
-    * @param fileId The ID of the file to delete.
+    * Deletes a message.
+    * @param threadId The ID of the thread to which this message belongs.
+    * @param messageId The ID of the message to delete.
     */
-  def deleteAssistantFile(assistantId: String, fileId: String): DeleteAssistantFileResponse
+  def deleteMessage(threadId: String, messageId: String): DeleteMessageResponse
 
   /**
     * Delete a thread.
@@ -97,26 +87,11 @@ trait AssistantsApi {
   def getAssistant(assistantId: String): AssistantObject
 
   /**
-    * Retrieves an AssistantFile.
-    * @param assistantId The ID of the assistant who the file belongs to.
-    * @param fileId The ID of the file we&#39;re getting.
-    */
-  def getAssistantFile(assistantId: String, fileId: String): AssistantFileObject
-
-  /**
     * Retrieve a message.
     * @param threadId The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
     * @param messageId The ID of the message to retrieve.
     */
   def getMessage(threadId: String, messageId: String): MessageObject
-
-  /**
-    * Retrieves a message file.
-    * @param threadId The ID of the thread to which the message and File belong.
-    * @param messageId The ID of the message the file belongs to.
-    * @param fileId The ID of the file being retrieved.
-    */
-  def getMessageFile(threadId: String, messageId: String, fileId: String): MessageFileObject
 
   /**
     * Retrieves a run.
@@ -130,8 +105,9 @@ trait AssistantsApi {
     * @param threadId The ID of the thread to which the run and run step belongs.
     * @param runId The ID of the run to which the run step belongs.
     * @param stepId The ID of the run step to retrieve.
+    * @param includeLeft_Square_BracketRight_Square_Bracket A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
     */
-  def getRunStep(threadId: String, runId: String, stepId: String): RunStepObject
+  def getRunStep(threadId: String, runId: String, stepId: String, includeLeft_Square_BracketRight_Square_Bracket: Option[List[String]]): RunStepObject
 
   /**
     * Retrieves a thread.
@@ -140,34 +116,13 @@ trait AssistantsApi {
   def getThread(threadId: String): ThreadObject
 
   /**
-    * Returns a list of assistant files.
-    * @param assistantId The ID of the assistant the file belongs to.
-    * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-    * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-    * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-    * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-    */
-  def listAssistantFiles(assistantId: String, limit: Option[Int], order: Option[String], after: Option[String], before: Option[String]): ListAssistantFilesResponse
-
-  /**
     * Returns a list of assistants.
     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-    * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+    * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
     */
   def listAssistants(limit: Option[Int], order: Option[String], after: Option[String], before: Option[String]): ListAssistantsResponse
-
-  /**
-    * Returns a list of message files.
-    * @param threadId The ID of the thread that the message and files belong to.
-    * @param messageId The ID of the message that the files belongs to.
-    * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-    * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-    * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-    * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-    */
-  def listMessageFiles(threadId: String, messageId: String, limit: Option[Int], order: Option[String], after: Option[String], before: Option[String]): ListMessageFilesResponse
 
   /**
     * Returns a list of messages for a given thread.
@@ -175,7 +130,7 @@ trait AssistantsApi {
     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-    * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+    * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
     * @param runId Filter messages by the run ID that generated them. 
     */
   def listMessages(threadId: String, limit: Option[Int], order: Option[String], after: Option[String], before: Option[String], runId: Option[String]): ListMessagesResponse
@@ -187,9 +142,10 @@ trait AssistantsApi {
     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-    * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+    * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+    * @param includeLeft_Square_BracketRight_Square_Bracket A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
     */
-  def listRunSteps(threadId: String, runId: String, limit: Option[Int], order: Option[String], after: Option[String], before: Option[String]): ListRunStepsResponse
+  def listRunSteps(threadId: String, runId: String, limit: Option[Int], order: Option[String], after: Option[String], before: Option[String], includeLeft_Square_BracketRight_Square_Bracket: Option[List[String]]): ListRunStepsResponse
 
   /**
     * Returns a list of runs belonging to a thread.
@@ -197,7 +153,7 @@ trait AssistantsApi {
     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-    * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+    * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
     */
   def listRuns(threadId: String, limit: Option[Int], order: Option[String], after: Option[String], before: Option[String]): ListRunsResponse
 

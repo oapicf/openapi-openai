@@ -20,12 +20,14 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "A list of the categories along with their scores as predicted by model.")
 @JsonTypeName("CreateModerationResponse_results_inner_category_scores")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateModerationResponseResultsInnerCategoryScores   {
   private BigDecimal hate;
   private BigDecimal hateThreatening;
   private BigDecimal harassment;
   private BigDecimal harassmentThreatening;
+  private BigDecimal illicit;
+  private BigDecimal illicitViolent;
   private BigDecimal selfHarm;
   private BigDecimal selfHarmIntent;
   private BigDecimal selfHarmInstructions;
@@ -43,6 +45,8 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
     @JsonProperty(required = true, value = "hate/threatening") BigDecimal hateThreatening,
     @JsonProperty(required = true, value = "harassment") BigDecimal harassment,
     @JsonProperty(required = true, value = "harassment/threatening") BigDecimal harassmentThreatening,
+    @JsonProperty(required = true, value = "illicit") BigDecimal illicit,
+    @JsonProperty(required = true, value = "illicit/violent") BigDecimal illicitViolent,
     @JsonProperty(required = true, value = "self-harm") BigDecimal selfHarm,
     @JsonProperty(required = true, value = "self-harm/intent") BigDecimal selfHarmIntent,
     @JsonProperty(required = true, value = "self-harm/instructions") BigDecimal selfHarmInstructions,
@@ -55,6 +59,8 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
     this.hateThreatening = hateThreatening;
     this.harassment = harassment;
     this.harassmentThreatening = harassmentThreatening;
+    this.illicit = illicit;
+    this.illicitViolent = illicitViolent;
     this.selfHarm = selfHarm;
     this.selfHarmIntent = selfHarmIntent;
     this.selfHarmInstructions = selfHarmInstructions;
@@ -142,6 +148,46 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
   @JsonProperty(required = true, value = "harassment/threatening")
   public void setHarassmentThreatening(BigDecimal harassmentThreatening) {
     this.harassmentThreatening = harassmentThreatening;
+  }
+
+  /**
+   * The score for the category &#39;illicit&#39;.
+   **/
+  public CreateModerationResponseResultsInnerCategoryScores illicit(BigDecimal illicit) {
+    this.illicit = illicit;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "The score for the category 'illicit'.")
+  @JsonProperty(required = true, value = "illicit")
+  @NotNull @Valid public BigDecimal getIllicit() {
+    return illicit;
+  }
+
+  @JsonProperty(required = true, value = "illicit")
+  public void setIllicit(BigDecimal illicit) {
+    this.illicit = illicit;
+  }
+
+  /**
+   * The score for the category &#39;illicit/violent&#39;.
+   **/
+  public CreateModerationResponseResultsInnerCategoryScores illicitViolent(BigDecimal illicitViolent) {
+    this.illicitViolent = illicitViolent;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "The score for the category 'illicit/violent'.")
+  @JsonProperty(required = true, value = "illicit/violent")
+  @NotNull @Valid public BigDecimal getIllicitViolent() {
+    return illicitViolent;
+  }
+
+  @JsonProperty(required = true, value = "illicit/violent")
+  public void setIllicitViolent(BigDecimal illicitViolent) {
+    this.illicitViolent = illicitViolent;
   }
 
   /**
@@ -298,6 +344,8 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
         Objects.equals(this.hateThreatening, createModerationResponseResultsInnerCategoryScores.hateThreatening) &&
         Objects.equals(this.harassment, createModerationResponseResultsInnerCategoryScores.harassment) &&
         Objects.equals(this.harassmentThreatening, createModerationResponseResultsInnerCategoryScores.harassmentThreatening) &&
+        Objects.equals(this.illicit, createModerationResponseResultsInnerCategoryScores.illicit) &&
+        Objects.equals(this.illicitViolent, createModerationResponseResultsInnerCategoryScores.illicitViolent) &&
         Objects.equals(this.selfHarm, createModerationResponseResultsInnerCategoryScores.selfHarm) &&
         Objects.equals(this.selfHarmIntent, createModerationResponseResultsInnerCategoryScores.selfHarmIntent) &&
         Objects.equals(this.selfHarmInstructions, createModerationResponseResultsInnerCategoryScores.selfHarmInstructions) &&
@@ -309,7 +357,7 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
+    return Objects.hash(hate, hateThreatening, harassment, harassmentThreatening, illicit, illicitViolent, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
   }
 
   @Override
@@ -321,6 +369,8 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
     sb.append("    hateThreatening: ").append(toIndentedString(hateThreatening)).append("\n");
     sb.append("    harassment: ").append(toIndentedString(harassment)).append("\n");
     sb.append("    harassmentThreatening: ").append(toIndentedString(harassmentThreatening)).append("\n");
+    sb.append("    illicit: ").append(toIndentedString(illicit)).append("\n");
+    sb.append("    illicitViolent: ").append(toIndentedString(illicitViolent)).append("\n");
     sb.append("    selfHarm: ").append(toIndentedString(selfHarm)).append("\n");
     sb.append("    selfHarmIntent: ").append(toIndentedString(selfHarmIntent)).append("\n");
     sb.append("    selfHarmInstructions: ").append(toIndentedString(selfHarmInstructions)).append("\n");

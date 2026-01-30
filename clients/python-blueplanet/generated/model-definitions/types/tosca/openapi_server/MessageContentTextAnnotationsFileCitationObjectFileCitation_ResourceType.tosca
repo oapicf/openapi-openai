@@ -20,11 +20,6 @@ resourceTypes {
           description = "The ID of the specific File the citation is from."
           optional = true
         }
-        quote {
-          type =  string
-          description = "The specific quote in the file."
-          optional = true
-        }
     }
   }
 }

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **flagged** | **boolean** | Whether any of the below categories are flagged. | [default to undefined]
 **categories** | [**CreateModerationResponseResultsInnerCategories**](CreateModerationResponseResultsInnerCategories.md) |  | [default to undefined]
 **category_scores** | [**CreateModerationResponseResultsInnerCategoryScores**](CreateModerationResponseResultsInnerCategoryScores.md) |  | [default to undefined]
+**category_applied_input_types** | [**CreateModerationResponseResultsInnerCategoryAppliedInputTypes**](CreateModerationResponseResultsInnerCategoryAppliedInputTypes.md) |  | [default to undefined]
 
 ## Example
 
@@ -18,6 +19,7 @@ const instance: CreateModerationResponseResultsInner = {
     flagged,
     categories,
     category_scores,
+    category_applied_input_types,
 };
 ```
 

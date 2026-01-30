@@ -4,9 +4,13 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.openapitools.vertxweb.server.model.ResponseFormatJsonObject;
+import org.openapitools.vertxweb.server.model.ResponseFormatJsonSchema;
+import org.openapitools.vertxweb.server.model.ResponseFormatJsonSchemaJsonSchema;
+import org.openapitools.vertxweb.server.model.ResponseFormatText;
 
 /**
- * An object specifying the format that the model must output. Compatible with [GPT-4 Turbo](/docs/models/gpt-4-and-gpt-4-turbo) and all GPT-3.5 Turbo models newer than &#x60;gpt-3.5-turbo-1106&#x60;.  Setting to &#x60;{ \&quot;type\&quot;: \&quot;json_object\&quot; }&#x60; enables JSON mode, which guarantees the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \&quot;stuck\&quot; request. Also note that the message content may be partially cut off if &#x60;finish_reason&#x3D;\&quot;length\&quot;&#x60;, which indicates the generation exceeded &#x60;max_tokens&#x60; or the conversation exceeded the max context length. 
+ * An object specifying the format that the model must output.  Setting to &#x60;{ \&quot;type\&quot;: \&quot;json_schema\&quot;, \&quot;json_schema\&quot;: {...} }&#x60; enables Structured Outputs which ensures the model will match your supplied JSON schema. Learn more in the [Structured Outputs guide](/docs/guides/structured-outputs).  Setting to &#x60;{ \&quot;type\&quot;: \&quot;json_object\&quot; }&#x60; enables JSON mode, which ensures the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \&quot;stuck\&quot; request. Also note that the message content may be partially cut off if &#x60;finish_reason&#x3D;\&quot;length\&quot;&#x60;, which indicates the generation exceeded &#x60;max_tokens&#x60; or the conversation exceeded the max context length. 
  **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateChatCompletionRequestResponseFormat   {
@@ -15,7 +19,8 @@ public class CreateChatCompletionRequestResponseFormat   {
 
   public enum TypeEnum {
     TEXT("text"),
-    JSON_OBJECT("json_object");
+    JSON_OBJECT("json_object"),
+    JSON_SCHEMA("json_schema");
 
     private String value;
 
@@ -30,14 +35,16 @@ public class CreateChatCompletionRequestResponseFormat   {
     }
   }
 
-  private TypeEnum type = TypeEnum.TEXT;
+  private TypeEnum type;
+  private ResponseFormatJsonSchemaJsonSchema jsonSchema;
 
   public CreateChatCompletionRequestResponseFormat () {
 
   }
 
-  public CreateChatCompletionRequestResponseFormat (TypeEnum type) {
+  public CreateChatCompletionRequestResponseFormat (TypeEnum type, ResponseFormatJsonSchemaJsonSchema jsonSchema) {
     this.type = type;
+    this.jsonSchema = jsonSchema;
   }
 
     
@@ -47,6 +54,15 @@ public class CreateChatCompletionRequestResponseFormat   {
   }
   public void setType(TypeEnum type) {
     this.type = type;
+  }
+
+    
+  @JsonProperty("json_schema")
+  public ResponseFormatJsonSchemaJsonSchema getJsonSchema() {
+    return jsonSchema;
+  }
+  public void setJsonSchema(ResponseFormatJsonSchemaJsonSchema jsonSchema) {
+    this.jsonSchema = jsonSchema;
   }
 
 
@@ -59,12 +75,13 @@ public class CreateChatCompletionRequestResponseFormat   {
       return false;
     }
     CreateChatCompletionRequestResponseFormat createChatCompletionRequestResponseFormat = (CreateChatCompletionRequestResponseFormat) o;
-    return Objects.equals(type, createChatCompletionRequestResponseFormat.type);
+    return Objects.equals(type, createChatCompletionRequestResponseFormat.type) &&
+        Objects.equals(jsonSchema, createChatCompletionRequestResponseFormat.jsonSchema);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type);
+    return Objects.hash(type, jsonSchema);
   }
 
   @Override
@@ -73,6 +90,7 @@ public class CreateChatCompletionRequestResponseFormat   {
     sb.append("class CreateChatCompletionRequestResponseFormat {\n");
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    jsonSchema: ").append(toIndentedString(jsonSchema)).append("\n");
     sb.append("}");
     return sb.toString();
   }

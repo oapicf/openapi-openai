@@ -24,17 +24,17 @@ class ChatCompletionTokenLogprob
     /**
      * A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be &#x60;null&#x60; if there is no bytes representation for the token.
      * @DTA\Data(field="bytes")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection6::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection6::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection24::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection24::class})
      */
-    public ?\App\DTO\Collection6 $bytes = null;
+    public ?\App\DTO\Collection24 $bytes = null;
 
     /**
      * List of the most likely tokens and their log probability, at this token position. In rare cases, there may be fewer than the number of requested &#x60;top_logprobs&#x60; returned.
      * @DTA\Data(field="top_logprobs")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection8::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection8::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection26::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection26::class})
      */
-    public ?\App\DTO\Collection8 $top_logprobs = null;
+    public ?\App\DTO\Collection26 $top_logprobs = null;
 
 }

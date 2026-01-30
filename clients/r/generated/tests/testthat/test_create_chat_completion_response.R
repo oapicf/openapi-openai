@@ -37,6 +37,14 @@ test_that("model", {
   #expect_equal(model.instance$`model`, "EXPECTED_RESULT")
 })
 
+test_that("service_tier", {
+  # tests for the property `service_tier` (character)
+  # The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`service_tier`, "EXPECTED_RESULT")
+})
+
 test_that("system_fingerprint", {
   # tests for the property `system_fingerprint` (character)
   # This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. 

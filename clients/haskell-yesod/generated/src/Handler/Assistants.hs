@@ -19,13 +19,6 @@ postThreadsByTextRunsByTextCancelR threadId runId = notImplemented
 postAssistantsR :: Handler Value
 postAssistantsR = notImplemented
 
--- | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
---
--- operationId: createAssistantFile
-postAssistantsByTextFilesR :: Text -- ^ The ID of the assistant for which to create a File. 
-                           -> Handler Value
-postAssistantsByTextFilesR assistantId = notImplemented
-
 -- | Create a message.
 --
 -- operationId: createMessage
@@ -59,13 +52,13 @@ deleteAssistantsByTextR :: Text -- ^ The ID of the assistant to delete.
                         -> Handler Value
 deleteAssistantsByTextR assistantId = notImplemented
 
--- | Delete an assistant file.
+-- | Deletes a message.
 --
--- operationId: deleteAssistantFile
-deleteAssistantsByTextFilesByTextR :: Text -- ^ The ID of the assistant that the file belongs to.
-                                   -> Text -- ^ The ID of the file to delete.
+-- operationId: deleteMessage
+deleteThreadsByTextMessagesByTextR :: Text -- ^ The ID of the thread to which this message belongs.
+                                   -> Text -- ^ The ID of the message to delete.
                                    -> Handler Value
-deleteAssistantsByTextFilesByTextR assistantId fileId = notImplemented
+deleteThreadsByTextMessagesByTextR threadId messageId = notImplemented
 
 -- | Delete a thread.
 --
@@ -81,14 +74,6 @@ getAssistantsByTextR :: Text -- ^ The ID of the assistant to retrieve.
                      -> Handler Value
 getAssistantsByTextR assistantId = notImplemented
 
--- | Retrieves an AssistantFile.
---
--- operationId: getAssistantFile
-getAssistantsByTextFilesByTextR :: Text -- ^ The ID of the assistant who the file belongs to.
-                                -> Text -- ^ The ID of the file we&#39;re getting.
-                                -> Handler Value
-getAssistantsByTextFilesByTextR assistantId fileId = notImplemented
-
 -- | Retrieve a message.
 --
 -- operationId: getMessage
@@ -96,15 +81,6 @@ getThreadsByTextMessagesByTextR :: Text -- ^ The ID of the [thread](/docs/api-re
                                 -> Text -- ^ The ID of the message to retrieve.
                                 -> Handler Value
 getThreadsByTextMessagesByTextR threadId messageId = notImplemented
-
--- | Retrieves a message file.
---
--- operationId: getMessageFile
-getThreadsByTextMessagesByTextFilesByTextR :: Text -- ^ The ID of the thread to which the message and File belong.
-                                           -> Text -- ^ The ID of the message the file belongs to.
-                                           -> Text -- ^ The ID of the file being retrieved.
-                                           -> Handler Value
-getThreadsByTextMessagesByTextFilesByTextR threadId messageId fileId = notImplemented
 
 -- | Retrieves a run.
 --
@@ -130,26 +106,11 @@ getThreadsByTextR :: Text -- ^ The ID of the thread to retrieve.
                   -> Handler Value
 getThreadsByTextR threadId = notImplemented
 
--- | Returns a list of assistant files.
---
--- operationId: listAssistantFiles
-getAssistantsByTextFilesR :: Text -- ^ The ID of the assistant the file belongs to.
-                          -> Handler Value
-getAssistantsByTextFilesR assistantId = notImplemented
-
 -- | Returns a list of assistants.
 --
 -- operationId: listAssistants
 getAssistantsR :: Handler Value
 getAssistantsR = notImplemented
-
--- | Returns a list of message files.
---
--- operationId: listMessageFiles
-getThreadsByTextMessagesByTextFilesR :: Text -- ^ The ID of the thread that the message and files belong to.
-                                     -> Text -- ^ The ID of the message that the files belongs to.
-                                     -> Handler Value
-getThreadsByTextMessagesByTextFilesR threadId messageId = notImplemented
 
 -- | Returns a list of messages for a given thread.
 --

@@ -17,6 +17,7 @@
 message_object_content_inner_t* instantiate_message_object_content_inner(int include_optional);
 
 #include "test_message_content_image_file_object_image_file.c"
+#include "test_message_content_image_url_object_image_url.c"
 #include "test_message_content_text_object_text.c"
 
 
@@ -28,13 +29,18 @@ message_object_content_inner_t* instantiate_message_object_content_inner(int inc
        // false, not to have infinite recursion
       instantiate_message_content_image_file_object_image_file(0),
        // false, not to have infinite recursion
-      instantiate_message_content_text_object_text(0)
+      instantiate_message_content_image_url_object_image_url(0),
+       // false, not to have infinite recursion
+      instantiate_message_content_text_object_text(0),
+      "0"
     );
   } else {
     message_object_content_inner = message_object_content_inner_create(
       openai_api_message_object_content_inner_TYPE_image_file,
       NULL,
-      NULL
+      NULL,
+      NULL,
+      "0"
     );
   }
 

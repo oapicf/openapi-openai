@@ -29,7 +29,7 @@ Protected Class CreateCompletionRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
-			Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+			Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
 		#tag EndNote
 		frequency_penalty As Xoson.O.OptionalDouble
 	#tag EndProperty
@@ -69,7 +69,7 @@ Protected Class CreateCompletionRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
-			Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+			Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
 		#tag EndNote
 		presence_penalty As Xoson.O.OptionalDouble
 	#tag EndProperty
@@ -93,6 +93,11 @@ Protected Class CreateCompletionRequest
 			Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). 
 		#tag EndNote
 		stream As Xoson.O.OptionalBoolean
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		stream_options As OpenAPIClient.Models.ChatCompletionStreamOptions
 	#tag EndProperty
 
 
@@ -122,7 +127,7 @@ Protected Class CreateCompletionRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
-			A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+			A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 		#tag EndNote
 		user As Xoson.O.OptionalString
 	#tag EndProperty
@@ -266,6 +271,14 @@ Protected Class CreateCompletionRequest
 			Group="Behavior"
 			InitialValue=""
 			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="stream_options"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="ChatCompletionStreamOptions"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

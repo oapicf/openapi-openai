@@ -9,10 +9,12 @@ import org.openapitools.models.ThreadObject
 
 /**
  * Occurs when a new [thread](/docs/api-reference/threads/object) is created.
+ * @param enabled Whether to enable input audio transcription.
  * @param event 
  * @param data 
  */
-case class ThreadStreamEvent(event: String,
+case class ThreadStreamEvent(enabled: Option[Boolean],
+                event: String,
                 data: ThreadObject
                 )
 

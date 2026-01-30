@@ -1,0 +1,12 @@
+# Org.OpenAPITools.Model.AuditLogActorSession
+The session in which the audit logged action was performed.
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**User** | [**AuditLogActorUser**](AuditLogActorUser.md) |  | [optional] 
+**IpAddress** | **string** | The IP address from which the action was performed. | [optional] 
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+

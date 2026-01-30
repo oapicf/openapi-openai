@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **String** | Must be one of &#x60;text&#x60; or &#x60;json_object&#x60;. | [optional] [default to &#39;text&#39;]
+**type** | **String** | The type of response format being defined: &#x60;text&#x60; | 
+**jsonSchema** | [**ResponseFormatJsonSchemaJsonSchema**](ResponseFormatJsonSchemaJsonSchema.md) |  | 
 
 
 
@@ -14,6 +15,8 @@ Name | Type | Description | Notes
 * `text` (value: `"text"`)
 
 * `json_object` (value: `"json_object"`)
+
+* `json_schema` (value: `"json_schema"`)
 
 
 

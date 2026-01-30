@@ -1,23 +1,19 @@
 package com.prokarma.pkmst.controller;
 
-import com.prokarma.pkmst.model.AssistantFileObject;
 import com.prokarma.pkmst.model.AssistantObject;
-import com.prokarma.pkmst.model.CreateAssistantFileRequest;
 import com.prokarma.pkmst.model.CreateAssistantRequest;
 import com.prokarma.pkmst.model.CreateMessageRequest;
 import com.prokarma.pkmst.model.CreateRunRequest;
 import com.prokarma.pkmst.model.CreateThreadAndRunRequest;
 import com.prokarma.pkmst.model.CreateThreadRequest;
-import com.prokarma.pkmst.model.DeleteAssistantFileResponse;
 import com.prokarma.pkmst.model.DeleteAssistantResponse;
+import com.prokarma.pkmst.model.DeleteMessageResponse;
 import com.prokarma.pkmst.model.DeleteThreadResponse;
-import com.prokarma.pkmst.model.ListAssistantFilesResponse;
+import java.util.List;
 import com.prokarma.pkmst.model.ListAssistantsResponse;
-import com.prokarma.pkmst.model.ListMessageFilesResponse;
 import com.prokarma.pkmst.model.ListMessagesResponse;
 import com.prokarma.pkmst.model.ListRunStepsResponse;
 import com.prokarma.pkmst.model.ListRunsResponse;
-import com.prokarma.pkmst.model.MessageFileObject;
 import com.prokarma.pkmst.model.MessageObject;
 import com.prokarma.pkmst.model.ModifyAssistantRequest;
 import com.prokarma.pkmst.model.ModifyMessageRequest;
@@ -49,7 +45,7 @@ import java.io.IOException;
  * @author pkmst
  *
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T10:45:02.588292416Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @Controller
 public class AssistantsApiController implements AssistantsApi {
     private final ObjectMapper objectMapper;
@@ -81,18 +77,6 @@ public class AssistantsApiController implements AssistantsApi {
         return new ResponseEntity<AssistantObject>(HttpStatus.OK);
     }
 
-    public ResponseEntity<AssistantFileObject> createAssistantFile(@ApiParam(value = "The ID of the assistant for which to create a File. ",required=true ) @PathVariable("assistant_id") String assistantId,
-        @ApiParam(value = "" ,required=true )   @RequestBody CreateAssistantFileRequest createAssistantFileRequest,
-        @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
-        // do some magic!
-
-        if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<AssistantFileObject>(objectMapper.readValue("", AssistantFileObject.class), HttpStatus.OK);
-        }
-
-        return new ResponseEntity<AssistantFileObject>(HttpStatus.OK);
-    }
-
     public ResponseEntity<MessageObject> createMessage(@ApiParam(value = "The ID of the [thread](/docs/api-reference/threads) to create a message for.",required=true ) @PathVariable("thread_id") String threadId,
         @ApiParam(value = "" ,required=true )   @RequestBody CreateMessageRequest createMessageRequest,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
@@ -107,6 +91,7 @@ public class AssistantsApiController implements AssistantsApi {
 
     public ResponseEntity<RunObject> createRun(@ApiParam(value = "The ID of the thread to run.",required=true ) @PathVariable("thread_id") String threadId,
         @ApiParam(value = "" ,required=true )   @RequestBody CreateRunRequest createRunRequest,
+        @ApiParam(value = "A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", allowableValues = "step_details.tool_calls[*].file_search.results[*].content")  @RequestParam(value = "include[]", required = false) List<String> include,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 
@@ -150,16 +135,16 @@ public class AssistantsApiController implements AssistantsApi {
         return new ResponseEntity<DeleteAssistantResponse>(HttpStatus.OK);
     }
 
-    public ResponseEntity<DeleteAssistantFileResponse> deleteAssistantFile(@ApiParam(value = "The ID of the assistant that the file belongs to.",required=true ) @PathVariable("assistant_id") String assistantId,
-        @ApiParam(value = "The ID of the file to delete.",required=true ) @PathVariable("file_id") String fileId,
+    public ResponseEntity<DeleteMessageResponse> deleteMessage(@ApiParam(value = "The ID of the thread to which this message belongs.",required=true ) @PathVariable("thread_id") String threadId,
+        @ApiParam(value = "The ID of the message to delete.",required=true ) @PathVariable("message_id") String messageId,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 
         if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<DeleteAssistantFileResponse>(objectMapper.readValue("", DeleteAssistantFileResponse.class), HttpStatus.OK);
+            return new ResponseEntity<DeleteMessageResponse>(objectMapper.readValue("", DeleteMessageResponse.class), HttpStatus.OK);
         }
 
-        return new ResponseEntity<DeleteAssistantFileResponse>(HttpStatus.OK);
+        return new ResponseEntity<DeleteMessageResponse>(HttpStatus.OK);
     }
 
     public ResponseEntity<DeleteThreadResponse> deleteThread(@ApiParam(value = "The ID of the thread to delete.",required=true ) @PathVariable("thread_id") String threadId,
@@ -184,18 +169,6 @@ public class AssistantsApiController implements AssistantsApi {
         return new ResponseEntity<AssistantObject>(HttpStatus.OK);
     }
 
-    public ResponseEntity<AssistantFileObject> getAssistantFile(@ApiParam(value = "The ID of the assistant who the file belongs to.",required=true ) @PathVariable("assistant_id") String assistantId,
-        @ApiParam(value = "The ID of the file we're getting.",required=true ) @PathVariable("file_id") String fileId,
-        @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
-        // do some magic!
-
-        if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<AssistantFileObject>(objectMapper.readValue("", AssistantFileObject.class), HttpStatus.OK);
-        }
-
-        return new ResponseEntity<AssistantFileObject>(HttpStatus.OK);
-    }
-
     public ResponseEntity<MessageObject> getMessage(@ApiParam(value = "The ID of the [thread](/docs/api-reference/threads) to which this message belongs.",required=true ) @PathVariable("thread_id") String threadId,
         @ApiParam(value = "The ID of the message to retrieve.",required=true ) @PathVariable("message_id") String messageId,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
@@ -206,19 +179,6 @@ public class AssistantsApiController implements AssistantsApi {
         }
 
         return new ResponseEntity<MessageObject>(HttpStatus.OK);
-    }
-
-    public ResponseEntity<MessageFileObject> getMessageFile(@ApiParam(value = "The ID of the thread to which the message and File belong.",required=true ) @PathVariable("thread_id") String threadId,
-        @ApiParam(value = "The ID of the message the file belongs to.",required=true ) @PathVariable("message_id") String messageId,
-        @ApiParam(value = "The ID of the file being retrieved.",required=true ) @PathVariable("file_id") String fileId,
-        @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
-        // do some magic!
-
-        if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<MessageFileObject>(objectMapper.readValue("", MessageFileObject.class), HttpStatus.OK);
-        }
-
-        return new ResponseEntity<MessageFileObject>(HttpStatus.OK);
     }
 
     public ResponseEntity<RunObject> getRun(@ApiParam(value = "The ID of the [thread](/docs/api-reference/threads) that was run.",required=true ) @PathVariable("thread_id") String threadId,
@@ -236,6 +196,7 @@ public class AssistantsApiController implements AssistantsApi {
     public ResponseEntity<RunStepObject> getRunStep(@ApiParam(value = "The ID of the thread to which the run and run step belongs.",required=true ) @PathVariable("thread_id") String threadId,
         @ApiParam(value = "The ID of the run to which the run step belongs.",required=true ) @PathVariable("run_id") String runId,
         @ApiParam(value = "The ID of the run step to retrieve.",required=true ) @PathVariable("step_id") String stepId,
+        @ApiParam(value = "A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", allowableValues = "step_details.tool_calls[*].file_search.results[*].content")  @RequestParam(value = "include[]", required = false) List<String> include,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 
@@ -257,25 +218,10 @@ public class AssistantsApiController implements AssistantsApi {
         return new ResponseEntity<ThreadObject>(HttpStatus.OK);
     }
 
-    public ResponseEntity<ListAssistantFilesResponse> listAssistantFiles(@ApiParam(value = "The ID of the assistant the file belongs to.",required=true ) @PathVariable("assistant_id") String assistantId,
-        @ApiParam(value = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", defaultValue = "20")  @RequestParam(value = "limit", required = false, defaultValue="20") Integer limit,
-        @ApiParam(value = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", allowableValues = "asc, desc", defaultValue = "desc")  @RequestParam(value = "order", required = false, defaultValue="desc") String order,
-        @ApiParam(value = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")  @RequestParam(value = "after", required = false) String after,
-        @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @RequestParam(value = "before", required = false) String before,
-        @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
-        // do some magic!
-
-        if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<ListAssistantFilesResponse>(objectMapper.readValue("", ListAssistantFilesResponse.class), HttpStatus.OK);
-        }
-
-        return new ResponseEntity<ListAssistantFilesResponse>(HttpStatus.OK);
-    }
-
     public ResponseEntity<ListAssistantsResponse> listAssistants(@ApiParam(value = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", defaultValue = "20")  @RequestParam(value = "limit", required = false, defaultValue="20") Integer limit,
         @ApiParam(value = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", allowableValues = "asc, desc", defaultValue = "desc")  @RequestParam(value = "order", required = false, defaultValue="desc") String order,
         @ApiParam(value = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")  @RequestParam(value = "after", required = false) String after,
-        @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @RequestParam(value = "before", required = false) String before,
+        @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @RequestParam(value = "before", required = false) String before,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 
@@ -286,27 +232,11 @@ public class AssistantsApiController implements AssistantsApi {
         return new ResponseEntity<ListAssistantsResponse>(HttpStatus.OK);
     }
 
-    public ResponseEntity<ListMessageFilesResponse> listMessageFiles(@ApiParam(value = "The ID of the thread that the message and files belong to.",required=true ) @PathVariable("thread_id") String threadId,
-        @ApiParam(value = "The ID of the message that the files belongs to.",required=true ) @PathVariable("message_id") String messageId,
-        @ApiParam(value = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", defaultValue = "20")  @RequestParam(value = "limit", required = false, defaultValue="20") Integer limit,
-        @ApiParam(value = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", allowableValues = "asc, desc", defaultValue = "desc")  @RequestParam(value = "order", required = false, defaultValue="desc") String order,
-        @ApiParam(value = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")  @RequestParam(value = "after", required = false) String after,
-        @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @RequestParam(value = "before", required = false) String before,
-        @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
-        // do some magic!
-
-        if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<ListMessageFilesResponse>(objectMapper.readValue("", ListMessageFilesResponse.class), HttpStatus.OK);
-        }
-
-        return new ResponseEntity<ListMessageFilesResponse>(HttpStatus.OK);
-    }
-
     public ResponseEntity<ListMessagesResponse> listMessages(@ApiParam(value = "The ID of the [thread](/docs/api-reference/threads) the messages belong to.",required=true ) @PathVariable("thread_id") String threadId,
         @ApiParam(value = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", defaultValue = "20")  @RequestParam(value = "limit", required = false, defaultValue="20") Integer limit,
         @ApiParam(value = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", allowableValues = "asc, desc", defaultValue = "desc")  @RequestParam(value = "order", required = false, defaultValue="desc") String order,
         @ApiParam(value = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")  @RequestParam(value = "after", required = false) String after,
-        @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @RequestParam(value = "before", required = false) String before,
+        @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @RequestParam(value = "before", required = false) String before,
         @ApiParam(value = "Filter messages by the run ID that generated them. ")  @RequestParam(value = "run_id", required = false) String runId,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
@@ -323,7 +253,8 @@ public class AssistantsApiController implements AssistantsApi {
         @ApiParam(value = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", defaultValue = "20")  @RequestParam(value = "limit", required = false, defaultValue="20") Integer limit,
         @ApiParam(value = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", allowableValues = "asc, desc", defaultValue = "desc")  @RequestParam(value = "order", required = false, defaultValue="desc") String order,
         @ApiParam(value = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")  @RequestParam(value = "after", required = false) String after,
-        @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @RequestParam(value = "before", required = false) String before,
+        @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @RequestParam(value = "before", required = false) String before,
+        @ApiParam(value = "A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", allowableValues = "step_details.tool_calls[*].file_search.results[*].content")  @RequestParam(value = "include[]", required = false) List<String> include,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 
@@ -338,7 +269,7 @@ public class AssistantsApiController implements AssistantsApi {
         @ApiParam(value = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", defaultValue = "20")  @RequestParam(value = "limit", required = false, defaultValue="20") Integer limit,
         @ApiParam(value = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", allowableValues = "asc, desc", defaultValue = "desc")  @RequestParam(value = "order", required = false, defaultValue="desc") String order,
         @ApiParam(value = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")  @RequestParam(value = "after", required = false) String after,
-        @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @RequestParam(value = "before", required = false) String before,
+        @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @RequestParam(value = "before", required = false) String before,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 

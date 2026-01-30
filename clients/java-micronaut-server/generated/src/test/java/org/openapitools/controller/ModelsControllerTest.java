@@ -59,7 +59,7 @@ public class ModelsControllerTest {
     @Disabled("Not Implemented")
     void deleteModelMethodTest() {
         // given
-        String model = "ft:gpt-3.5-turbo:acemeco:suffix:abc123";
+        String model = "ft:gpt-4o-mini:acemeco:suffix:abc123";
 
         // when
         DeleteModelResponse result = controller.deleteModel(model).block();
@@ -80,10 +80,10 @@ public class ModelsControllerTest {
         // given
         String uri = UriTemplate.of("/models/{model}").expand(new HashMap<String, Object>(){{
             // Fill in the path variables
-            put("model", "ft:gpt-3.5-turbo:acemeco:suffix:abc123");
+            put("model", "ft:gpt-4o-mini:acemeco:suffix:abc123");
         }});
         MutableHttpRequest<?> request = HttpRequest.DELETE(uri)
-            .accept("[Ljava.lang.String;@1fd77205");
+            .accept("[Ljava.lang.String;@665c6b8d");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, DeleteModelResponse.class);
@@ -123,7 +123,7 @@ public class ModelsControllerTest {
         // given
         String uri = UriTemplate.of("/models").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@3b9c05f");
+            .accept("[Ljava.lang.String;@3da1191b");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, ListModelsResponse.class);
@@ -143,7 +143,7 @@ public class ModelsControllerTest {
     @Disabled("Not Implemented")
     void retrieveModelMethodTest() {
         // given
-        String model = "gpt-3.5-turbo";
+        String model = "gpt-4o-mini";
 
         // when
         Model result = controller.retrieveModel(model).block();
@@ -164,10 +164,10 @@ public class ModelsControllerTest {
         // given
         String uri = UriTemplate.of("/models/{model}").expand(new HashMap<String, Object>(){{
             // Fill in the path variables
-            put("model", "gpt-3.5-turbo");
+            put("model", "gpt-4o-mini");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@288915a1");
+            .accept("[Ljava.lang.String;@3645b9d5");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, Model.class);

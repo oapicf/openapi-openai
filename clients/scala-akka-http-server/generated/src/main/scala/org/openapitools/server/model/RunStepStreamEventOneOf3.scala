@@ -2,7 +2,7 @@ package org.openapitools.server.model
 
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is completed.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is completed.
  *
  * @param event  for example: ''null''
  * @param data  for example: ''null''

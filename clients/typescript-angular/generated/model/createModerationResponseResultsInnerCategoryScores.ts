@@ -30,6 +30,14 @@ export interface CreateModerationResponseResultsInnerCategoryScores {
      */
     'harassment/threatening': number;
     /**
+     * The score for the category \'illicit\'.
+     */
+    illicit: number;
+    /**
+     * The score for the category \'illicit/violent\'.
+     */
+    'illicit/violent': number;
+    /**
      * The score for the category \'self-harm\'.
      */
     'self-harm': number;

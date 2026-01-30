@@ -16,6 +16,8 @@ module AssistantStreamEvent =
 
   [<CLIMutable>]
   type AssistantStreamEvent = {
+    [<JsonProperty(PropertyName = "enabled")>]
+    Enabled : bool;
     [<JsonProperty(PropertyName = "event")>]
     Event : string;
     [<JsonProperty(PropertyName = "data")>]

@@ -12,6 +12,7 @@
     "model": "properties",
     "children": [
       {"model": "messages" },
+      {"model": "tool_resources" },
       {"model": "metadata" },
     ]
   }]

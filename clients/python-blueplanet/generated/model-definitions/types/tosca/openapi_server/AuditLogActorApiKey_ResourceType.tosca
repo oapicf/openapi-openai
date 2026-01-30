@@ -1,0 +1,53 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AuditLogActorApiKey"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AuditLogActorApiKey"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AuditLogActorServiceAccount = openapi_server.resourceTypes.AuditLogActorServiceAccount
+  AuditLogActorUser = openapi_server.resourceTypes.AuditLogActorUser
+}
+resourceTypes {
+
+  AuditLogActorApiKey {
+    title = AuditLogActorApiKey
+    description = AuditLogActorApiKey
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The tracking id of the API key."
+          optional = false
+        }
+        type {
+          type =  string
+          description = "The type of API key. Can be either &#x60;user&#x60; or &#x60;service_account&#x60;."
+          enum = ["user", "service_account"]
+          optional = false
+        }
+        user {
+          type = AuditLogActorUser
+          description = ""
+          optional = false
+        }
+        service_account {
+          type = AuditLogActorServiceAccount
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AuditLogActorApiKey {
+    title = AuditLogActorApiKey
+    description = AuditLogActorApiKey
+    implements = openapi_server.resourceTypes.AuditLogActorApiKey
+
+  }
+}

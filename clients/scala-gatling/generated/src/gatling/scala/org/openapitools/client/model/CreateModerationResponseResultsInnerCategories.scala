@@ -11,6 +11,10 @@ case class CreateModerationResponseResultsInnerCategories (
     _harassment: Boolean,
     /* Harassment content that also includes violence or serious harm towards any target. */
     _harassmentThreatening: Boolean,
+    /* Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category. */
+    _illicit: Boolean,
+    /* Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon. */
+    _illicitViolent: Boolean,
     /* Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders. */
     _selfHarm: Boolean,
     /* Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders. */
@@ -27,10 +31,10 @@ case class CreateModerationResponseResultsInnerCategories (
     _violenceGraphic: Boolean
 )
 object CreateModerationResponseResultsInnerCategories {
-    def toStringBody(var_hate: Object, var_hateThreatening: Object, var_harassment: Object, var_harassmentThreatening: Object, var_selfHarm: Object, var_selfHarmIntent: Object, var_selfHarmInstructions: Object, var_sexual: Object, var_sexualMinors: Object, var_violence: Object, var_violenceGraphic: Object) =
+    def toStringBody(var_hate: Object, var_hateThreatening: Object, var_harassment: Object, var_harassmentThreatening: Object, var_illicit: Object, var_illicitViolent: Object, var_selfHarm: Object, var_selfHarmIntent: Object, var_selfHarmInstructions: Object, var_sexual: Object, var_sexualMinors: Object, var_violence: Object, var_violenceGraphic: Object) =
         s"""
         | {
-        | "hate":$var_hate,"hateThreatening":$var_hateThreatening,"harassment":$var_harassment,"harassmentThreatening":$var_harassmentThreatening,"selfHarm":$var_selfHarm,"selfHarmIntent":$var_selfHarmIntent,"selfHarmInstructions":$var_selfHarmInstructions,"sexual":$var_sexual,"sexualMinors":$var_sexualMinors,"violence":$var_violence,"violenceGraphic":$var_violenceGraphic
+        | "hate":$var_hate,"hateThreatening":$var_hateThreatening,"harassment":$var_harassment,"harassmentThreatening":$var_harassmentThreatening,"illicit":$var_illicit,"illicitViolent":$var_illicitViolent,"selfHarm":$var_selfHarm,"selfHarmIntent":$var_selfHarmIntent,"selfHarmInstructions":$var_selfHarmInstructions,"sexual":$var_sexual,"sexualMinors":$var_sexualMinors,"violence":$var_violence,"violenceGraphic":$var_violenceGraphic
         | }
         """.stripMargin
 }

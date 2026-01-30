@@ -24,6 +24,7 @@ public struct RunObject: Codable, JSONEncodable, Hashable {
         case cancelled = "cancelled"
         case failed = "failed"
         case completed = "completed"
+        case incomplete = "incomplete"
         case expired = "expired"
     }
     public static let toolsRule = ArrayRule(minItems: nil, maxItems: 20, uniqueItems: false)
@@ -39,7 +40,7 @@ public struct RunObject: Codable, JSONEncodable, Hashable {
     public var threadId: String
     /** The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run. */
     public var assistantId: String
-    /** The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`. */
+    /** The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`. */
     public var status: Status
     public var requiredAction: RunObjectRequiredAction?
     public var lastError: RunObjectLastError?
@@ -60,22 +61,24 @@ public struct RunObject: Codable, JSONEncodable, Hashable {
     public var instructions: String
     /** The list of tools that the [assistant](/docs/api-reference/assistants) used for this run. */
     public var tools: [AssistantObjectToolsInner]
-    /** The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run. */
-    public var fileIds: [String]
-    /** Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  */
+    /** Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  */
     public var metadata: AnyCodable?
     public var usage: RunCompletionUsage?
     /** The sampling temperature used for this run. If not set, defaults to 1. */
     public var temperature: Double?
+    /** The nucleus sampling value used for this run. If not set, defaults to 1. */
+    public var topP: Double?
     /** The maximum number of prompt tokens specified to have been used over the course of the run.  */
     public var maxPromptTokens: Int?
     /** The maximum number of completion tokens specified to have been used over the course of the run.  */
     public var maxCompletionTokens: Int?
     public var truncationStrategy: TruncationObject
     public var toolChoice: AssistantsApiToolChoiceOption
+    /** Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. */
+    public var parallelToolCalls: Bool = true
     public var responseFormat: AssistantsApiResponseFormatOption
 
-    public init(id: String, object: Object, createdAt: Int, threadId: String, assistantId: String, status: Status, requiredAction: RunObjectRequiredAction?, lastError: RunObjectLastError?, expiresAt: Int?, startedAt: Int?, cancelledAt: Int?, failedAt: Int?, completedAt: Int?, incompleteDetails: RunObjectIncompleteDetails?, model: String, instructions: String, tools: [AssistantObjectToolsInner], fileIds: [String], metadata: AnyCodable?, usage: RunCompletionUsage?, temperature: Double? = nil, maxPromptTokens: Int?, maxCompletionTokens: Int?, truncationStrategy: TruncationObject, toolChoice: AssistantsApiToolChoiceOption, responseFormat: AssistantsApiResponseFormatOption) {
+    public init(id: String, object: Object, createdAt: Int, threadId: String, assistantId: String, status: Status, requiredAction: RunObjectRequiredAction?, lastError: RunObjectLastError?, expiresAt: Int?, startedAt: Int?, cancelledAt: Int?, failedAt: Int?, completedAt: Int?, incompleteDetails: RunObjectIncompleteDetails?, model: String, instructions: String, tools: [AssistantObjectToolsInner], metadata: AnyCodable?, usage: RunCompletionUsage?, temperature: Double? = nil, topP: Double? = nil, maxPromptTokens: Int?, maxCompletionTokens: Int?, truncationStrategy: TruncationObject, toolChoice: AssistantsApiToolChoiceOption, parallelToolCalls: Bool = true, responseFormat: AssistantsApiResponseFormatOption) {
         self.id = id
         self.object = object
         self.createdAt = createdAt
@@ -93,14 +96,15 @@ public struct RunObject: Codable, JSONEncodable, Hashable {
         self.model = model
         self.instructions = instructions
         self.tools = tools
-        self.fileIds = fileIds
         self.metadata = metadata
         self.usage = usage
         self.temperature = temperature
+        self.topP = topP
         self.maxPromptTokens = maxPromptTokens
         self.maxCompletionTokens = maxCompletionTokens
         self.truncationStrategy = truncationStrategy
         self.toolChoice = toolChoice
+        self.parallelToolCalls = parallelToolCalls
         self.responseFormat = responseFormat
     }
 
@@ -122,14 +126,15 @@ public struct RunObject: Codable, JSONEncodable, Hashable {
         case model
         case instructions
         case tools
-        case fileIds = "file_ids"
         case metadata
         case usage
         case temperature
+        case topP = "top_p"
         case maxPromptTokens = "max_prompt_tokens"
         case maxCompletionTokens = "max_completion_tokens"
         case truncationStrategy = "truncation_strategy"
         case toolChoice = "tool_choice"
+        case parallelToolCalls = "parallel_tool_calls"
         case responseFormat = "response_format"
     }
 
@@ -154,14 +159,15 @@ public struct RunObject: Codable, JSONEncodable, Hashable {
         try container.encode(model, forKey: .model)
         try container.encode(instructions, forKey: .instructions)
         try container.encode(tools, forKey: .tools)
-        try container.encode(fileIds, forKey: .fileIds)
         try container.encode(metadata, forKey: .metadata)
         try container.encode(usage, forKey: .usage)
         try container.encodeIfPresent(temperature, forKey: .temperature)
+        try container.encodeIfPresent(topP, forKey: .topP)
         try container.encode(maxPromptTokens, forKey: .maxPromptTokens)
         try container.encode(maxCompletionTokens, forKey: .maxCompletionTokens)
         try container.encode(truncationStrategy, forKey: .truncationStrategy)
         try container.encode(toolChoice, forKey: .toolChoice)
+        try container.encode(parallelToolCalls, forKey: .parallelToolCalls)
         try container.encode(responseFormat, forKey: .responseFormat)
     }
 }

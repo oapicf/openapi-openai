@@ -81,14 +81,13 @@ private class OASMessageObjectTest {
         System.assertEquals('incompleteAt', x-property-mappings.get('incomplete_at'));
         System.assertEquals('assistantId', x-property-mappings.get('assistant_id'));
         System.assertEquals('runId', x-property-mappings.get('run_id'));
-        System.assertEquals('fileIds', x-property-mappings.get('file_ids'));
     }
 
     @isTest
     private static void defaultValuesPopulated() {
         OASMessageObject messageObject = new OASMessageObject();
         System.assertEquals(new List<OASMessageObjectContentInner>(), messageObject.content);
-        System.assertEquals(new List<String>(), messageObject.fileIds);
+        System.assertEquals(new List<OASCreateMessageRequestAttachmentsIn>(), messageObject.attachments);
         System.assertEquals(null, messageObject.id);
         System.assertEquals(null, messageObject.r_object);
         System.assertEquals(null, messageObject.createdAt);

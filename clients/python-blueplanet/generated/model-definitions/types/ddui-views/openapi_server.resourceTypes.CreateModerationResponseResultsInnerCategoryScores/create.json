@@ -15,6 +15,8 @@
       {"model": "hate_threatening" },
       {"model": "harassment" },
       {"model": "harassment_threatening" },
+      {"model": "illicit" },
+      {"model": "illicit_violent" },
       {"model": "self_harm" },
       {"model": "self_harm_intent" },
       {"model": "self_harm_instructions" },

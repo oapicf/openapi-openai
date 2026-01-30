@@ -1,0 +1,43 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ProjectListResponse",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "ProjectListResponse_object",
+        "symbols": [
+          "list"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": {
+        "type": "array",
+        "items": "model.Project"
+      },
+      "doc": ""
+    },
+    {
+      "name": "first_id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "last_id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "has_more",
+      "type": "boolean",
+      "doc": ""
+    }
+  ]
+
+}

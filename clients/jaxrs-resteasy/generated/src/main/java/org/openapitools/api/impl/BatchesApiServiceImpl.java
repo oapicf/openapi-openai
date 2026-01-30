@@ -1,0 +1,45 @@
+package org.openapitools.api.impl;
+
+import org.openapitools.api.*;
+import org.openapitools.model.*;
+
+
+import org.openapitools.model.Batch;
+import org.openapitools.model.CreateBatchRequest;
+import org.openapitools.model.ListBatchesResponse;
+
+import java.util.List;
+import org.openapitools.api.NotFoundException;
+
+import java.io.InputStream;
+
+import javax.validation.constraints.*;
+import javax.validation.Valid;
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
+
+@RequestScoped
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T14:09:21.247747647Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class BatchesApiServiceImpl implements BatchesApiService {
+      public Response cancelBatch(String batchId,SecurityContext securityContext)
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+  }
+      public Response createBatch(CreateBatchRequest createBatchRequest,SecurityContext securityContext)
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+  }
+      public Response listBatches(String after,Integer limit,SecurityContext securityContext)
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+  }
+      public Response retrieveBatch(String batchId,SecurityContext securityContext)
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+  }
+}

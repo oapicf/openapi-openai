@@ -1,0 +1,158 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "A list of the categories along with the input type(s) that the score applies to.",
+  "name": "CreateModerationResponseResultsInnerCategoryAppliedInputTypes",
+  "fields": [
+    {
+      "name": "hate",
+      "type": {
+        "type": "enum",
+        "name": "CreateModerationResponseResultsInnerCategoryAppliedInputTypes_hate",
+        "symbols": [
+          "text"
+        ]
+      },
+      "doc": "The applied input type(s) for the category 'hate'."
+    },
+    {
+      "name": "hate/threatening",
+      "type": {
+        "type": "enum",
+        "name": "CreateModerationResponseResultsInnerCategoryAppliedInputTypes_hateSlashthreatening",
+        "symbols": [
+          "text"
+        ]
+      },
+      "doc": "The applied input type(s) for the category 'hate/threatening'."
+    },
+    {
+      "name": "harassment",
+      "type": {
+        "type": "enum",
+        "name": "CreateModerationResponseResultsInnerCategoryAppliedInputTypes_harassment",
+        "symbols": [
+          "text"
+        ]
+      },
+      "doc": "The applied input type(s) for the category 'harassment'."
+    },
+    {
+      "name": "harassment/threatening",
+      "type": {
+        "type": "enum",
+        "name": "CreateModerationResponseResultsInnerCategoryAppliedInputTypes_harassmentSlashthreatening",
+        "symbols": [
+          "text"
+        ]
+      },
+      "doc": "The applied input type(s) for the category 'harassment/threatening'."
+    },
+    {
+      "name": "illicit",
+      "type": {
+        "type": "enum",
+        "name": "CreateModerationResponseResultsInnerCategoryAppliedInputTypes_illicit",
+        "symbols": [
+          "text"
+        ]
+      },
+      "doc": "The applied input type(s) for the category 'illicit'."
+    },
+    {
+      "name": "illicit/violent",
+      "type": {
+        "type": "enum",
+        "name": "CreateModerationResponseResultsInnerCategoryAppliedInputTypes_illicitSlashviolent",
+        "symbols": [
+          "text"
+        ]
+      },
+      "doc": "The applied input type(s) for the category 'illicit/violent'."
+    },
+    {
+      "name": "self-harm",
+      "type": {
+        "type": "enum",
+        "name": "CreateModerationResponseResultsInnerCategoryAppliedInputTypes_selfMinusharm",
+        "symbols": [
+          "text",
+          "image"
+        ]
+      },
+      "doc": "The applied input type(s) for the category 'self-harm'."
+    },
+    {
+      "name": "self-harm/intent",
+      "type": {
+        "type": "enum",
+        "name": "CreateModerationResponseResultsInnerCategoryAppliedInputTypes_selfMinusharmSlashintent",
+        "symbols": [
+          "text",
+          "image"
+        ]
+      },
+      "doc": "The applied input type(s) for the category 'self-harm/intent'."
+    },
+    {
+      "name": "self-harm/instructions",
+      "type": {
+        "type": "enum",
+        "name": "CreateModerationResponseResultsInnerCategoryAppliedInputTypes_selfMinusharmSlashinstructions",
+        "symbols": [
+          "text",
+          "image"
+        ]
+      },
+      "doc": "The applied input type(s) for the category 'self-harm/instructions'."
+    },
+    {
+      "name": "sexual",
+      "type": {
+        "type": "enum",
+        "name": "CreateModerationResponseResultsInnerCategoryAppliedInputTypes_sexual",
+        "symbols": [
+          "text",
+          "image"
+        ]
+      },
+      "doc": "The applied input type(s) for the category 'sexual'."
+    },
+    {
+      "name": "sexual/minors",
+      "type": {
+        "type": "enum",
+        "name": "CreateModerationResponseResultsInnerCategoryAppliedInputTypes_sexualSlashminors",
+        "symbols": [
+          "text"
+        ]
+      },
+      "doc": "The applied input type(s) for the category 'sexual/minors'."
+    },
+    {
+      "name": "violence",
+      "type": {
+        "type": "enum",
+        "name": "CreateModerationResponseResultsInnerCategoryAppliedInputTypes_violence",
+        "symbols": [
+          "text",
+          "image"
+        ]
+      },
+      "doc": "The applied input type(s) for the category 'violence'."
+    },
+    {
+      "name": "violence/graphic",
+      "type": {
+        "type": "enum",
+        "name": "CreateModerationResponseResultsInnerCategoryAppliedInputTypes_violenceSlashgraphic",
+        "symbols": [
+          "text",
+          "image"
+        ]
+      },
+      "doc": "The applied input type(s) for the category 'violence/graphic'."
+    }
+  ]
+
+}

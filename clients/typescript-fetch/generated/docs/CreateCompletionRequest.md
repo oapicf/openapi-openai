@@ -19,6 +19,7 @@ Name | Type
 `seed` | number
 `stop` | [CreateCompletionRequestStop](CreateCompletionRequestStop.md)
 `stream` | boolean
+`streamOptions` | [ChatCompletionStreamOptions](ChatCompletionStreamOptions.md)
 `suffix` | string
 `temperature` | number
 `topP` | number
@@ -44,6 +45,7 @@ const example = {
   "seed": null,
   "stop": null,
   "stream": null,
+  "streamOptions": null,
   "suffix": test.,
   "temperature": 1,
   "topP": 1,

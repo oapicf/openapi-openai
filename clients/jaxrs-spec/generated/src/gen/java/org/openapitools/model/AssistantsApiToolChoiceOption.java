@@ -2,8 +2,8 @@ package org.openapitools.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.model.AssistantsApiNamedToolChoice;
-import org.openapitools.model.ChatCompletionNamedToolChoiceFunction;
+import org.openapitools.model.AssistantsNamedToolChoice;
+import org.openapitools.model.AssistantsNamedToolChoiceFunction;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -16,15 +16,15 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
- * Controls which (if any) tool is called by the model. &#x60;none&#x60; means the model will not call any tools and instead generates a message. &#x60;auto&#x60; is the default value and means the model can pick between generating a message or calling a tool. Specifying a particular tool like &#x60;{\&quot;type\&quot;: \&quot;TOOL_TYPE\&quot;}&#x60; or &#x60;{\&quot;type\&quot;: \&quot;function\&quot;, \&quot;function\&quot;: {\&quot;name\&quot;: \&quot;my_function\&quot;}}&#x60; forces the model to call that tool. 
+ * Controls which (if any) tool is called by the model. &#x60;none&#x60; means the model will not call any tools and instead generates a message. &#x60;auto&#x60; is the default value and means the model can pick between generating a message or calling one or more tools. &#x60;required&#x60; means the model must call one or more tools before responding to the user. Specifying a particular tool like &#x60;{\&quot;type\&quot;: \&quot;file_search\&quot;}&#x60; or &#x60;{\&quot;type\&quot;: \&quot;function\&quot;, \&quot;function\&quot;: {\&quot;name\&quot;: \&quot;my_function\&quot;}}&#x60; forces the model to call that tool. 
  **/
-@ApiModel(description = "Controls which (if any) tool is called by the model. `none` means the model will not call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling a tool. Specifying a particular tool like `{\"type\": \"TOOL_TYPE\"}` or `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool. ")
+@ApiModel(description = "Controls which (if any) tool is called by the model. `none` means the model will not call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling one or more tools. `required` means the model must call one or more tools before responding to the user. Specifying a particular tool like `{\"type\": \"file_search\"}` or `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool. ")
 @JsonTypeName("AssistantsApiToolChoiceOption")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class AssistantsApiToolChoiceOption   {
   public enum TypeEnum {
 
-    FUNCTION(String.valueOf("function")), CODE_INTERPRETER(String.valueOf("code_interpreter")), RETRIEVAL(String.valueOf("retrieval"));
+    FUNCTION(String.valueOf("function")), CODE_INTERPRETER(String.valueOf("code_interpreter")), FILE_SEARCH(String.valueOf("file_search"));
 
 
     private String value;
@@ -70,7 +70,7 @@ public class AssistantsApiToolChoiceOption   {
 }
 
   private TypeEnum type;
-  private ChatCompletionNamedToolChoiceFunction function;
+  private AssistantsNamedToolChoiceFunction function;
 
   public AssistantsApiToolChoiceOption() {
   }
@@ -104,7 +104,7 @@ public class AssistantsApiToolChoiceOption   {
 
   /**
    **/
-  public AssistantsApiToolChoiceOption function(ChatCompletionNamedToolChoiceFunction function) {
+  public AssistantsApiToolChoiceOption function(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
     return this;
   }
@@ -112,12 +112,12 @@ public class AssistantsApiToolChoiceOption   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("function")
-  @Valid public ChatCompletionNamedToolChoiceFunction getFunction() {
+  @Valid public AssistantsNamedToolChoiceFunction getFunction() {
     return function;
   }
 
   @JsonProperty("function")
-  public void setFunction(ChatCompletionNamedToolChoiceFunction function) {
+  public void setFunction(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
   }
 

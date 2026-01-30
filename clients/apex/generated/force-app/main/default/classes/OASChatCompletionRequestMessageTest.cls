@@ -85,6 +85,8 @@ private class OASChatCompletionRequestMessageTest {
         System.assertEquals(null, chatCompletionRequestMessage.content);
         System.assertEquals(null, chatCompletionRequestMessage.role);
         System.assertEquals(null, chatCompletionRequestMessage.name);
+        System.assertEquals(null, chatCompletionRequestMessage.refusal);
+        System.assertEquals(null, chatCompletionRequestMessage.audio);
         System.assertEquals(null, chatCompletionRequestMessage.functionCall);
         System.assertEquals(null, chatCompletionRequestMessage.toolCallId);
     }

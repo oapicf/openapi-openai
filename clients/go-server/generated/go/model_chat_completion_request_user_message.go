@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -14,6 +14,7 @@ package openapi
 
 
 
+// ChatCompletionRequestUserMessage - Messages sent by an end user, containing prompts or additional context information. 
 type ChatCompletionRequestUserMessage struct {
 
 	Content ChatCompletionRequestUserMessageContent `json:"content"`

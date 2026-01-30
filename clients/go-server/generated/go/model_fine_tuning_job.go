@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -62,6 +62,11 @@ type FineTuningJob struct {
 
 	// The seed used for the fine-tuning job.
 	Seed int32 `json:"seed"`
+
+	// The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+	EstimatedFinish *int32 `json:"estimated_finish,omitempty"`
+
+	Method FineTuneMethod `json:"method,omitempty"`
 }
 
 // AssertFineTuningJobRequired checks if the required fields are not zero-ed
@@ -104,6 +109,9 @@ func AssertFineTuningJobRequired(obj FineTuningJob) error {
 			}
 		}
 	}
+	if err := AssertFineTuneMethodRequired(obj.Method); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -124,5 +132,8 @@ func AssertFineTuningJobConstraints(obj FineTuningJob) error {
      		}
      	}
     }
+	if err := AssertFineTuneMethodConstraints(obj.Method); err != nil {
+		return err
+	}
 	return nil
 }

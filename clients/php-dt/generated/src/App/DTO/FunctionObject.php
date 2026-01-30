@@ -22,11 +22,18 @@ class FunctionObject
     public ?string $name = null;
 
     /**
-     * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.
+     * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.
      * @DTA\Data(field="parameters", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection2::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection2::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection20::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection20::class})
      */
-    public ?\App\DTO\Collection2 $parameters = null;
+    public ?\App\DTO\Collection20 $parameters = null;
+
+    /**
+     * Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the &#x60;parameters&#x60; field. Only a subset of JSON Schema is supported when &#x60;strict&#x60; is &#x60;true&#x60;. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).
+     * @DTA\Data(field="strict", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"bool"})
+     */
+    public ?bool $strict = null;
 
 }

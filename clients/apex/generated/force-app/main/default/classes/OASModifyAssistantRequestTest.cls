@@ -73,18 +73,23 @@ private class OASModifyAssistantRequestTest {
     private static void maintainRenamedProperties() {
         OASModifyAssistantRequest modifyAssistantRequest = new OASModifyAssistantRequest();
         Map<String, String> x-property-mappings = modifyAssistantRequest.getx-property-mappings();
-        System.assertEquals('fileIds', x-property-mappings.get('file_ids'));
+        System.assertEquals('toolResources', x-property-mappings.get('tool_resources'));
+        System.assertEquals('topP', x-property-mappings.get('top_p'));
+        System.assertEquals('responseFormat', x-property-mappings.get('response_format'));
     }
 
     @isTest
     private static void defaultValuesPopulated() {
         OASModifyAssistantRequest modifyAssistantRequest = new OASModifyAssistantRequest();
         System.assertEquals(new List<OASAssistantObjectToolsInner>(), modifyAssistantRequest.tools);
-        System.assertEquals(new List<String>(), modifyAssistantRequest.fileIds);
+        System.assertEquals(1, modifyAssistantRequest.temperature);
+        System.assertEquals(1, modifyAssistantRequest.topP);
         System.assertEquals(null, modifyAssistantRequest.model);
         System.assertEquals(null, modifyAssistantRequest.name);
         System.assertEquals(null, modifyAssistantRequest.description);
         System.assertEquals(null, modifyAssistantRequest.instructions);
+        System.assertEquals(null, modifyAssistantRequest.toolResources);
         System.assertEquals(null, modifyAssistantRequest.metadata);
+        System.assertEquals(null, modifyAssistantRequest.responseFormat);
     }
 }

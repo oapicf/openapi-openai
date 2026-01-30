@@ -18,7 +18,7 @@ public struct RunStepDeltaStepDetailsToolCallsObject: Codable, JSONEncodable, Ha
     }
     /** Always `tool_calls`. */
     public var type: ModelType
-    /** An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`.  */
+    /** An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.  */
     public var toolCalls: [RunStepDeltaStepDetailsToolCallsObjectToolCallsInner]?
 
     public init(type: ModelType, toolCalls: [RunStepDeltaStepDetailsToolCallsObjectToolCallsInner]? = nil) {

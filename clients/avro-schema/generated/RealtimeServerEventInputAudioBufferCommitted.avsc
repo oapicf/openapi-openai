@@ -1,0 +1,35 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when an input audio buffer is committed, either by the client or  automatically in server VAD mode. The `item_id` property is the ID of the user message item that will be created, thus a `conversation.item.created` event  will also be sent to the client. ",
+  "name": "RealtimeServerEventInputAudioBufferCommitted",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventInputAudioBufferCommitted_type",
+        "symbols": [
+          "input_audio_buffer_committed"
+        ]
+      },
+      "doc": "The event type, must be `input_audio_buffer.committed`."
+    },
+    {
+      "name": "previous_item_id",
+      "type": "string",
+      "doc": "The ID of the preceding item after which the new item will be inserted. "
+    },
+    {
+      "name": "item_id",
+      "type": "string",
+      "doc": "The ID of the user message item that will be created."
+    }
+  ]
+
+}

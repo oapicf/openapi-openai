@@ -20,7 +20,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Learn about [text inputs](/docs/guides/text-generation). 
  *
  * @param type The type of the content part.
  * @param text The text content.

@@ -26,7 +26,7 @@ RunStepDetailsToolCallsObject_tool_calls_inner::__init()
 	//id = std::string();
 	//type = std::string();
 	//code_interpreter = new RunStepDetailsToolCallsCodeObject_code_interpreter();
-	//retrieval = null;
+	//file_search = new RunStepDetailsToolCallsFileSearchObject_file_search();
 	//function = new RunStepDetailsToolCallsFunctionObject_function();
 }
 
@@ -48,10 +48,10 @@ RunStepDetailsToolCallsObject_tool_calls_inner::__cleanup()
 	//delete code_interpreter;
 	//code_interpreter = NULL;
 	//}
-	//if(retrieval != NULL) {
+	//if(file_search != NULL) {
 	//
-	//delete retrieval;
-	//retrieval = NULL;
+	//delete file_search;
+	//file_search = NULL;
 	//}
 	//if(function != NULL) {
 	//
@@ -102,16 +102,16 @@ RunStepDetailsToolCallsObject_tool_calls_inner::fromJson(char* jsonStr)
 			
 		}
 	}
-	const gchar *retrievalKey = "retrieval";
-	node = json_object_get_member(pJsonObject, retrievalKey);
+	const gchar *file_searchKey = "file_search";
+	node = json_object_get_member(pJsonObject, file_searchKey);
 	if (node !=NULL) {
 	
 
-		if (isprimitive("std::string")) {
-			jsonToValue(&retrieval, node, "std::string", "");
+		if (isprimitive("RunStepDetailsToolCallsFileSearchObject_file_search")) {
+			jsonToValue(&file_search, node, "RunStepDetailsToolCallsFileSearchObject_file_search", "RunStepDetailsToolCallsFileSearchObject_file_search");
 		} else {
 			
-			std::string* obj = static_cast<std::string*> (&retrieval);
+			RunStepDetailsToolCallsFileSearchObject_file_search* obj = static_cast<RunStepDetailsToolCallsFileSearchObject_file_search*> (&file_search);
 			obj->fromJson(json_to_string(node, false));
 			
 		}
@@ -174,20 +174,20 @@ RunStepDetailsToolCallsObject_tool_calls_inner::toJson()
 	}
 	const gchar *code_interpreterKey = "code_interpreter";
 	json_object_set_member(pJsonObject, code_interpreterKey, node);
-	if (isprimitive("std::string")) {
-		std::string obj = getRetrieval();
-		node = converttoJson(&obj, "std::string", "");
+	if (isprimitive("RunStepDetailsToolCallsFileSearchObject_file_search")) {
+		RunStepDetailsToolCallsFileSearchObject_file_search obj = getFileSearch();
+		node = converttoJson(&obj, "RunStepDetailsToolCallsFileSearchObject_file_search", "");
 	}
 	else {
 		
-		std::string obj = static_cast<std::string> (getRetrieval());
+		RunStepDetailsToolCallsFileSearchObject_file_search obj = static_cast<RunStepDetailsToolCallsFileSearchObject_file_search> (getFileSearch());
 		GError *mygerror;
 		mygerror = NULL;
 		node = json_from_string(obj.toJson(), &mygerror);
 		
 	}
-	const gchar *retrievalKey = "retrieval";
-	json_object_set_member(pJsonObject, retrievalKey, node);
+	const gchar *file_searchKey = "file_search";
+	json_object_set_member(pJsonObject, file_searchKey, node);
 	if (isprimitive("RunStepDetailsToolCallsFunctionObject_function")) {
 		RunStepDetailsToolCallsFunctionObject_function obj = getFunction();
 		node = converttoJson(&obj, "RunStepDetailsToolCallsFunctionObject_function", "");
@@ -246,16 +246,16 @@ RunStepDetailsToolCallsObject_tool_calls_inner::setCodeInterpreter(RunStepDetail
 	this->code_interpreter = code_interpreter;
 }
 
-std::string
-RunStepDetailsToolCallsObject_tool_calls_inner::getRetrieval()
+RunStepDetailsToolCallsFileSearchObject_file_search
+RunStepDetailsToolCallsObject_tool_calls_inner::getFileSearch()
 {
-	return retrieval;
+	return file_search;
 }
 
 void
-RunStepDetailsToolCallsObject_tool_calls_inner::setRetrieval(std::string  retrieval)
+RunStepDetailsToolCallsObject_tool_calls_inner::setFileSearch(RunStepDetailsToolCallsFileSearchObject_file_search  file_search)
 {
-	this->retrieval = retrieval;
+	this->file_search = file_search;
 }
 
 RunStepDetailsToolCallsFunctionObject_function

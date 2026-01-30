@@ -25,10 +25,16 @@ class MessageContentImageFileObjectImageFileTest : ShouldSpec() {
         // uncomment below to create an instance of MessageContentImageFileObjectImageFile
         //val modelInstance = MessageContentImageFileObjectImageFile()
 
-        // to test the property `fileId` - The [File](/docs/api-reference/files) ID of the image in the message content.
+        // to test the property `fileId` - The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content.
         should("test fileId") {
             // uncomment below to test the property
             //modelInstance.fileId shouldBe ("TODO")
+        }
+
+        // to test the property `detail` - Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
+        should("test detail") {
+            // uncomment below to test the property
+            //modelInstance.detail shouldBe ("TODO")
         }
 
     }

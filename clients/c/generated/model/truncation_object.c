@@ -63,11 +63,12 @@ cJSON *truncation_object_convertToJSON(truncation_object_t *truncation_object) {
     cJSON *item = cJSON_CreateObject();
 
     // truncation_object->type
-    if(truncation_object->type != openai_api_truncation_object_TYPE_NULL) {
+    if (openai_api_truncation_object_TYPE_NULL == truncation_object->type) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "type", truncation_object_type_ToString(truncation_object->type)) == NULL)
     {
     goto fail; //Enum
-    }
     }
 
 
@@ -95,14 +96,17 @@ truncation_object_t *truncation_object_parseFromJSON(cJSON *truncation_objectJSO
     if (cJSON_IsNull(type)) {
         type = NULL;
     }
+    if (!type) {
+        goto end;
+    }
+
     openai_api_truncation_object_TYPE_e typeVariable;
-    if (type) { 
+    
     if(!cJSON_IsString(type))
     {
     goto end; //Enum
     }
     typeVariable = truncation_object_type_FromString(type->valuestring);
-    }
 
     // truncation_object->last_messages
     cJSON *last_messages = cJSON_GetObjectItemCaseSensitive(truncation_objectJSON, "last_messages");
@@ -118,7 +122,7 @@ truncation_object_t *truncation_object_parseFromJSON(cJSON *truncation_objectJSO
 
 
     truncation_object_local_var = truncation_object_create_internal (
-        type ? typeVariable : openai_api_truncation_object_TYPE_NULL,
+        typeVariable,
         last_messages ? last_messages->valuedouble : 0
         );
 

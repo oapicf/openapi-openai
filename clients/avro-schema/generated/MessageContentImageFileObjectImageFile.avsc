@@ -7,7 +7,21 @@
     {
       "name": "file_id",
       "type": "string",
-      "doc": "The [File](/docs/api-reference/files) ID of the image in the message content."
+      "doc": "The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content."
+    },
+    {
+      "name": "detail",
+      "type": [{
+        "type": "enum",
+        "name": "MessageContentImageFileObjectImageFile_detail",
+        "symbols": [
+          "auto",
+          "low",
+          "high"
+        ]
+      }, "null"],
+      "doc": "Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.",
+      "default": DetailEnum.AUTO
     }
   ]
 

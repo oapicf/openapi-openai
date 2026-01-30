@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateThreadAndRunRequestToolResources"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateThreadAndRunRequestToolResources"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AssistantObjectToolResourcesFileSearch = openapi_server.resourceTypes.AssistantObjectToolResourcesFileSearch
+  CreateAssistantRequestToolResourcesCodeInterpreter = openapi_server.resourceTypes.CreateAssistantRequestToolResourcesCodeInterpreter
+}
+resourceTypes {
+
+  CreateThreadAndRunRequestToolResources {
+    title = CreateThreadAndRunRequestToolResources
+    description = CreateThreadAndRunRequestToolResources
+    derivedFrom = Root
+    properties {
+        code_interpreter {
+          type = CreateAssistantRequestToolResourcesCodeInterpreter
+          description = ""
+          optional = false
+        }
+        file_search {
+          type = AssistantObjectToolResourcesFileSearch
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateThreadAndRunRequestToolResources {
+    title = CreateThreadAndRunRequestToolResources
+    description = CreateThreadAndRunRequestToolResources
+    implements = openapi_server.resourceTypes.CreateThreadAndRunRequestToolResources
+
+  }
+}

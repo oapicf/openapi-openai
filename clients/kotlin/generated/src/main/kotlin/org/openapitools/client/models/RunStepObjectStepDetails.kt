@@ -28,7 +28,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param type Always `message_creation`.
  * @param messageCreation 
- * @param toolCalls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+ * @param toolCalls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
  */
 
 
@@ -41,7 +41,7 @@ data class RunStepObjectStepDetails (
     @Json(name = "message_creation")
     val messageCreation: RunStepDetailsMessageCreationObjectMessageCreation,
 
-    /* An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`.  */
+    /* An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.  */
     @Json(name = "tool_calls")
     val toolCalls: kotlin.collections.List<RunStepDetailsToolCallsObjectToolCallsInner>
 

@@ -1,0 +1,44 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AutoChunkingStrategy = openapi_server.resourceTypes.AutoChunkingStrategy
+  StaticChunkingStrategy = openapi_server.resourceTypes.StaticChunkingStrategy
+  StaticChunkingStrategyStatic = openapi_server.resourceTypes.StaticChunkingStrategyStatic
+}
+resourceTypes {
+
+  CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
+    title = CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
+    description = CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "Always &#x60;auto&#x60;."
+          enum = ["auto", "static"]
+          optional = true
+        }
+        static {
+          type = StaticChunkingStrategyStatic
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
+    title = CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
+    description = CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
+    implements = openapi_server.resourceTypes.CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
+
+  }
+}

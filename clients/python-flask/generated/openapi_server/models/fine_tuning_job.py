@@ -3,11 +3,13 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from openapi_server.models.base_model import Model
+from openapi_server.models.fine_tune_method import FineTuneMethod
 from openapi_server.models.fine_tuning_job_error import FineTuningJobError
 from openapi_server.models.fine_tuning_job_hyperparameters import FineTuningJobHyperparameters
 from openapi_server.models.fine_tuning_job_integrations_inner import FineTuningJobIntegrationsInner
 from openapi_server import util
 
+from openapi_server.models.fine_tune_method import FineTuneMethod  # noqa: E501
 from openapi_server.models.fine_tuning_job_error import FineTuningJobError  # noqa: E501
 from openapi_server.models.fine_tuning_job_hyperparameters import FineTuningJobHyperparameters  # noqa: E501
 from openapi_server.models.fine_tuning_job_integrations_inner import FineTuningJobIntegrationsInner  # noqa: E501
@@ -18,7 +20,7 @@ class FineTuningJob(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id=None, created_at=None, error=None, fine_tuned_model=None, finished_at=None, hyperparameters=None, model=None, object=None, organization_id=None, result_files=None, status=None, trained_tokens=None, training_file=None, validation_file=None, integrations=None, seed=None):  # noqa: E501
+    def __init__(self, id=None, created_at=None, error=None, fine_tuned_model=None, finished_at=None, hyperparameters=None, model=None, object=None, organization_id=None, result_files=None, status=None, trained_tokens=None, training_file=None, validation_file=None, integrations=None, seed=None, estimated_finish=None, method=None):  # noqa: E501
         """FineTuningJob - a model defined in OpenAPI
 
         :param id: The id of this FineTuningJob.  # noqa: E501
@@ -53,6 +55,10 @@ class FineTuningJob(Model):
         :type integrations: List[FineTuningJobIntegrationsInner]
         :param seed: The seed of this FineTuningJob.  # noqa: E501
         :type seed: int
+        :param estimated_finish: The estimated_finish of this FineTuningJob.  # noqa: E501
+        :type estimated_finish: int
+        :param method: The method of this FineTuningJob.  # noqa: E501
+        :type method: FineTuneMethod
         """
         self.openapi_types = {
             'id': str,
@@ -70,7 +76,9 @@ class FineTuningJob(Model):
             'training_file': str,
             'validation_file': str,
             'integrations': List[FineTuningJobIntegrationsInner],
-            'seed': int
+            'seed': int,
+            'estimated_finish': int,
+            'method': FineTuneMethod
         }
 
         self.attribute_map = {
@@ -89,7 +97,9 @@ class FineTuningJob(Model):
             'training_file': 'training_file',
             'validation_file': 'validation_file',
             'integrations': 'integrations',
-            'seed': 'seed'
+            'seed': 'seed',
+            'estimated_finish': 'estimated_finish',
+            'method': 'method'
         }
 
         self._id = id
@@ -108,6 +118,8 @@ class FineTuningJob(Model):
         self._validation_file = validation_file
         self._integrations = integrations
         self._seed = seed
+        self._estimated_finish = estimated_finish
+        self._method = method
 
     @classmethod
     def from_dict(cls, dikt) -> 'FineTuningJob':
@@ -523,3 +535,47 @@ class FineTuningJob(Model):
             raise ValueError("Invalid value for `seed`, must not be `None`")  # noqa: E501
 
         self._seed = seed
+
+    @property
+    def estimated_finish(self) -> int:
+        """Gets the estimated_finish of this FineTuningJob.
+
+        The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.  # noqa: E501
+
+        :return: The estimated_finish of this FineTuningJob.
+        :rtype: int
+        """
+        return self._estimated_finish
+
+    @estimated_finish.setter
+    def estimated_finish(self, estimated_finish: int):
+        """Sets the estimated_finish of this FineTuningJob.
+
+        The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.  # noqa: E501
+
+        :param estimated_finish: The estimated_finish of this FineTuningJob.
+        :type estimated_finish: int
+        """
+
+        self._estimated_finish = estimated_finish
+
+    @property
+    def method(self) -> FineTuneMethod:
+        """Gets the method of this FineTuningJob.
+
+
+        :return: The method of this FineTuningJob.
+        :rtype: FineTuneMethod
+        """
+        return self._method
+
+    @method.setter
+    def method(self, method: FineTuneMethod):
+        """Sets the method of this FineTuningJob.
+
+
+        :param method: The method of this FineTuningJob.
+        :type method: FineTuneMethod
+        """
+
+        self._method = method

@@ -10,8 +10,9 @@
 
 #include <string>
 #include "AssistantToolsCode.h"
+#include "AssistantToolsFileSearch.h"
+#include "AssistantToolsFileSearch_file_search.h"
 #include "AssistantToolsFunction.h"
-#include "AssistantToolsRetrieval.h"
 #include "FunctionObject.h"
 #include "Object.h"
 
@@ -58,6 +59,13 @@ public:
 	void setType(std::string  type);
 	/*! \brief Get 
 	 */
+	AssistantToolsFileSearch_file_search getFileSearch();
+
+	/*! \brief Set 
+	 */
+	void setFileSearch(AssistantToolsFileSearch_file_search  file_search);
+	/*! \brief Get 
+	 */
 	FunctionObject getFunction();
 
 	/*! \brief Set 
@@ -66,6 +74,7 @@ public:
 
 private:
 	std::string type;
+	AssistantToolsFileSearch_file_search file_search;
 	FunctionObject function;
 	void __init();
 	void __cleanup();

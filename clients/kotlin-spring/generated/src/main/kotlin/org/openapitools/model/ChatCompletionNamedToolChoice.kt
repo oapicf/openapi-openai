@@ -4,7 +4,7 @@ import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
-import org.openapitools.model.ChatCompletionNamedToolChoiceFunction
+import org.openapitools.model.AssistantsNamedToolChoiceFunction
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -28,7 +28,7 @@ data class ChatCompletionNamedToolChoice(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("function", required = true) val function: ChatCompletionNamedToolChoiceFunction
+    @get:JsonProperty("function", required = true) val function: AssistantsNamedToolChoiceFunction
 ) {
 
     /**

@@ -28,6 +28,10 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
 
   private BigDecimal harassmentThreatening;
 
+  private BigDecimal illicit;
+
+  private BigDecimal illicitViolent;
+
   private BigDecimal selfHarm;
 
   private BigDecimal selfHarmIntent;
@@ -119,6 +123,46 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
   }
   public void setHarassmentThreatening(BigDecimal harassmentThreatening) {
     this.harassmentThreatening = harassmentThreatening;
+  }
+
+
+  /**
+   * The score for the category &#39;illicit&#39;.
+   **/
+  public CreateModerationResponseResultsInnerCategoryScores illicit(BigDecimal illicit) {
+    this.illicit = illicit;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "The score for the category 'illicit'.")
+  @JsonProperty("illicit")
+  @NotNull
+  public BigDecimal getIllicit() {
+    return illicit;
+  }
+  public void setIllicit(BigDecimal illicit) {
+    this.illicit = illicit;
+  }
+
+
+  /**
+   * The score for the category &#39;illicit/violent&#39;.
+   **/
+  public CreateModerationResponseResultsInnerCategoryScores illicitViolent(BigDecimal illicitViolent) {
+    this.illicitViolent = illicitViolent;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "The score for the category 'illicit/violent'.")
+  @JsonProperty("illicit/violent")
+  @NotNull
+  public BigDecimal getIllicitViolent() {
+    return illicitViolent;
+  }
+  public void setIllicitViolent(BigDecimal illicitViolent) {
+    this.illicitViolent = illicitViolent;
   }
 
 
@@ -276,6 +320,8 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
         Objects.equals(this.hateThreatening, createModerationResponseResultsInnerCategoryScores.hateThreatening) &&
         Objects.equals(this.harassment, createModerationResponseResultsInnerCategoryScores.harassment) &&
         Objects.equals(this.harassmentThreatening, createModerationResponseResultsInnerCategoryScores.harassmentThreatening) &&
+        Objects.equals(this.illicit, createModerationResponseResultsInnerCategoryScores.illicit) &&
+        Objects.equals(this.illicitViolent, createModerationResponseResultsInnerCategoryScores.illicitViolent) &&
         Objects.equals(this.selfHarm, createModerationResponseResultsInnerCategoryScores.selfHarm) &&
         Objects.equals(this.selfHarmIntent, createModerationResponseResultsInnerCategoryScores.selfHarmIntent) &&
         Objects.equals(this.selfHarmInstructions, createModerationResponseResultsInnerCategoryScores.selfHarmInstructions) &&
@@ -287,7 +333,7 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
+    return Objects.hash(hate, hateThreatening, harassment, harassmentThreatening, illicit, illicitViolent, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
   }
 
   @Override
@@ -299,6 +345,8 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
     sb.append("    hateThreatening: ").append(toIndentedString(hateThreatening)).append("\n");
     sb.append("    harassment: ").append(toIndentedString(harassment)).append("\n");
     sb.append("    harassmentThreatening: ").append(toIndentedString(harassmentThreatening)).append("\n");
+    sb.append("    illicit: ").append(toIndentedString(illicit)).append("\n");
+    sb.append("    illicitViolent: ").append(toIndentedString(illicitViolent)).append("\n");
     sb.append("    selfHarm: ").append(toIndentedString(selfHarm)).append("\n");
     sb.append("    selfHarmIntent: ").append(toIndentedString(selfHarmIntent)).append("\n");
     sb.append("    selfHarmInstructions: ").append(toIndentedString(selfHarmInstructions)).append("\n");

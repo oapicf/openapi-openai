@@ -11,7 +11,7 @@ use Articus\DataTransfer\Annotation as DTA;
 class ListAssistantsQueryData
 {
     /**
-     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.
+     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.
      * @DTA\Data(field="before", nullable=true)
      * @DTA\Strategy(name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(name="QueryStringScalar", options={"type":"string"})

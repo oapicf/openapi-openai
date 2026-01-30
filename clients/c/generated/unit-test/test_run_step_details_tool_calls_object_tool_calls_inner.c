@@ -17,6 +17,7 @@
 run_step_details_tool_calls_object_tool_calls_inner_t* instantiate_run_step_details_tool_calls_object_tool_calls_inner(int include_optional);
 
 #include "test_run_step_details_tool_calls_code_object_code_interpreter.c"
+#include "test_run_step_details_tool_calls_file_search_object_file_search.c"
 #include "test_run_step_details_tool_calls_function_object_function.c"
 
 
@@ -28,7 +29,8 @@ run_step_details_tool_calls_object_tool_calls_inner_t* instantiate_run_step_deta
       openai_api_run_step_details_tool_calls_object_tool_calls_inner_TYPE_code_interpreter,
        // false, not to have infinite recursion
       instantiate_run_step_details_tool_calls_code_object_code_interpreter(0),
-      0,
+       // false, not to have infinite recursion
+      instantiate_run_step_details_tool_calls_file_search_object_file_search(0),
        // false, not to have infinite recursion
       instantiate_run_step_details_tool_calls_function_object_function(0)
     );
@@ -37,7 +39,7 @@ run_step_details_tool_calls_object_tool_calls_inner_t* instantiate_run_step_deta
       "0",
       openai_api_run_step_details_tool_calls_object_tool_calls_inner_TYPE_code_interpreter,
       NULL,
-      0,
+      NULL,
       NULL
     );
   }

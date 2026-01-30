@@ -18,30 +18,34 @@ create_fine_tuning_job_request_t* instantiate_create_fine_tuning_job_request(int
 
 #include "test_create_fine_tuning_job_request_model.c"
 #include "test_create_fine_tuning_job_request_hyperparameters.c"
+#include "test_fine_tune_method.c"
 
 
 create_fine_tuning_job_request_t* instantiate_create_fine_tuning_job_request(int include_optional) {
   create_fine_tuning_job_request_t* create_fine_tuning_job_request = NULL;
   if (include_optional) {
     create_fine_tuning_job_request = create_fine_tuning_job_request_create(
-      gpt-3.5-turbo,
+      gpt-4o-mini,
       "file-abc123",
        // false, not to have infinite recursion
       instantiate_create_fine_tuning_job_request_hyperparameters(0),
       "0",
       "file-abc123",
       list_createList(),
-      42
+      42,
+       // false, not to have infinite recursion
+      instantiate_fine_tune_method(0)
     );
   } else {
     create_fine_tuning_job_request = create_fine_tuning_job_request_create(
-      gpt-3.5-turbo,
+      gpt-4o-mini,
       "file-abc123",
       NULL,
       "0",
       "file-abc123",
       list_createList(),
-      42
+      42,
+      NULL
     );
   }
 

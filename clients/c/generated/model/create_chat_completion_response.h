@@ -18,6 +18,14 @@ typedef struct create_chat_completion_response_t create_chat_completion_response
 #include "completion_usage.h"
 #include "create_chat_completion_response_choices_inner.h"
 
+// Enum SERVICETIER for create_chat_completion_response
+
+typedef enum  { openai_api_create_chat_completion_response_SERVICETIER_NULL = 0, openai_api_create_chat_completion_response_SERVICETIER_scale, openai_api_create_chat_completion_response_SERVICETIER__default } openai_api_create_chat_completion_response_SERVICETIER_e;
+
+char* create_chat_completion_response_service_tier_ToString(openai_api_create_chat_completion_response_SERVICETIER_e service_tier);
+
+openai_api_create_chat_completion_response_SERVICETIER_e create_chat_completion_response_service_tier_FromString(char* service_tier);
+
 // Enum OBJECT for create_chat_completion_response
 
 typedef enum  { openai_api_create_chat_completion_response_OBJECT_NULL = 0, openai_api_create_chat_completion_response_OBJECT_chat.completion } openai_api_create_chat_completion_response_OBJECT_e;
@@ -33,6 +41,7 @@ typedef struct create_chat_completion_response_t {
     list_t *choices; //nonprimitive container
     int created; //numeric
     char *model; // string
+    openai_api_create_chat_completion_response_SERVICETIER_e service_tier; //enum
     char *system_fingerprint; // string
     openai_api_create_chat_completion_response_OBJECT_e object; //enum
     struct completion_usage_t *usage; //model
@@ -45,6 +54,7 @@ __attribute__((deprecated)) create_chat_completion_response_t *create_chat_compl
     list_t *choices,
     int created,
     char *model,
+    openai_api_create_chat_completion_response_SERVICETIER_e service_tier,
     char *system_fingerprint,
     openai_api_create_chat_completion_response_OBJECT_e object,
     completion_usage_t *usage

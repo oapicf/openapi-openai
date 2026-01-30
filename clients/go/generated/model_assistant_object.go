@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -32,16 +32,20 @@ type AssistantObject struct {
 	Name NullableString `json:"name"`
 	// The description of the assistant. The maximum length is 512 characters. 
 	Description NullableString `json:"description"`
-	// ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. 
+	// ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
 	Model string `json:"model"`
 	// The system instructions that the assistant uses. The maximum length is 256,000 characters. 
 	Instructions NullableString `json:"instructions"`
-	// A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. 
+	// A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
 	Tools []AssistantObjectToolsInner `json:"tools"`
-	// A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. 
-	FileIds []string `json:"file_ids"`
-	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	ToolResources NullableAssistantObjectToolResources `json:"tool_resources,omitempty"`
+	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	Metadata map[string]interface{} `json:"metadata"`
+	// What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+	Temperature NullableFloat32 `json:"temperature,omitempty"`
+	// An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+	TopP NullableFloat32 `json:"top_p,omitempty"`
+	ResponseFormat *AssistantsApiResponseFormatOption `json:"response_format,omitempty"`
 }
 
 type _AssistantObject AssistantObject
@@ -50,7 +54,7 @@ type _AssistantObject AssistantObject
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAssistantObject(id string, object string, createdAt int32, name NullableString, description NullableString, model string, instructions NullableString, tools []AssistantObjectToolsInner, fileIds []string, metadata map[string]interface{}) *AssistantObject {
+func NewAssistantObject(id string, object string, createdAt int32, name NullableString, description NullableString, model string, instructions NullableString, tools []AssistantObjectToolsInner, metadata map[string]interface{}) *AssistantObject {
 	this := AssistantObject{}
 	this.Id = id
 	this.Object = object
@@ -60,8 +64,11 @@ func NewAssistantObject(id string, object string, createdAt int32, name Nullable
 	this.Model = model
 	this.Instructions = instructions
 	this.Tools = tools
-	this.FileIds = fileIds
 	this.Metadata = metadata
+	var temperature float32 = 1
+	this.Temperature = *NewNullableFloat32(&temperature)
+	var topP float32 = 1
+	this.TopP = *NewNullableFloat32(&topP)
 	return &this
 }
 
@@ -70,6 +77,10 @@ func NewAssistantObject(id string, object string, createdAt int32, name Nullable
 // but it doesn't guarantee that properties required by API are set
 func NewAssistantObjectWithDefaults() *AssistantObject {
 	this := AssistantObject{}
+	var temperature float32 = 1
+	this.Temperature = *NewNullableFloat32(&temperature)
+	var topP float32 = 1
+	this.TopP = *NewNullableFloat32(&topP)
 	return &this
 }
 
@@ -271,28 +282,46 @@ func (o *AssistantObject) SetTools(v []AssistantObjectToolsInner) {
 	o.Tools = v
 }
 
-// GetFileIds returns the FileIds field value
-func (o *AssistantObject) GetFileIds() []string {
-	if o == nil {
-		var ret []string
+// GetToolResources returns the ToolResources field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AssistantObject) GetToolResources() AssistantObjectToolResources {
+	if o == nil || IsNil(o.ToolResources.Get()) {
+		var ret AssistantObjectToolResources
 		return ret
 	}
-
-	return o.FileIds
+	return *o.ToolResources.Get()
 }
 
-// GetFileIdsOk returns a tuple with the FileIds field value
+// GetToolResourcesOk returns a tuple with the ToolResources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AssistantObject) GetFileIdsOk() ([]string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AssistantObject) GetToolResourcesOk() (*AssistantObjectToolResources, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.FileIds, true
+	return o.ToolResources.Get(), o.ToolResources.IsSet()
 }
 
-// SetFileIds sets field value
-func (o *AssistantObject) SetFileIds(v []string) {
-	o.FileIds = v
+// HasToolResources returns a boolean if a field has been set.
+func (o *AssistantObject) HasToolResources() bool {
+	if o != nil && o.ToolResources.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetToolResources gets a reference to the given NullableAssistantObjectToolResources and assigns it to the ToolResources field.
+func (o *AssistantObject) SetToolResources(v AssistantObjectToolResources) {
+	o.ToolResources.Set(&v)
+}
+// SetToolResourcesNil sets the value for ToolResources to be an explicit nil
+func (o *AssistantObject) SetToolResourcesNil() {
+	o.ToolResources.Set(nil)
+}
+
+// UnsetToolResources ensures that no value is present for ToolResources, not even an explicit nil
+func (o *AssistantObject) UnsetToolResources() {
+	o.ToolResources.Unset()
 }
 
 // GetMetadata returns the Metadata field value
@@ -321,6 +350,122 @@ func (o *AssistantObject) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
 
+// GetTemperature returns the Temperature field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AssistantObject) GetTemperature() float32 {
+	if o == nil || IsNil(o.Temperature.Get()) {
+		var ret float32
+		return ret
+	}
+	return *o.Temperature.Get()
+}
+
+// GetTemperatureOk returns a tuple with the Temperature field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AssistantObject) GetTemperatureOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Temperature.Get(), o.Temperature.IsSet()
+}
+
+// HasTemperature returns a boolean if a field has been set.
+func (o *AssistantObject) HasTemperature() bool {
+	if o != nil && o.Temperature.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTemperature gets a reference to the given NullableFloat32 and assigns it to the Temperature field.
+func (o *AssistantObject) SetTemperature(v float32) {
+	o.Temperature.Set(&v)
+}
+// SetTemperatureNil sets the value for Temperature to be an explicit nil
+func (o *AssistantObject) SetTemperatureNil() {
+	o.Temperature.Set(nil)
+}
+
+// UnsetTemperature ensures that no value is present for Temperature, not even an explicit nil
+func (o *AssistantObject) UnsetTemperature() {
+	o.Temperature.Unset()
+}
+
+// GetTopP returns the TopP field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AssistantObject) GetTopP() float32 {
+	if o == nil || IsNil(o.TopP.Get()) {
+		var ret float32
+		return ret
+	}
+	return *o.TopP.Get()
+}
+
+// GetTopPOk returns a tuple with the TopP field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AssistantObject) GetTopPOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TopP.Get(), o.TopP.IsSet()
+}
+
+// HasTopP returns a boolean if a field has been set.
+func (o *AssistantObject) HasTopP() bool {
+	if o != nil && o.TopP.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTopP gets a reference to the given NullableFloat32 and assigns it to the TopP field.
+func (o *AssistantObject) SetTopP(v float32) {
+	o.TopP.Set(&v)
+}
+// SetTopPNil sets the value for TopP to be an explicit nil
+func (o *AssistantObject) SetTopPNil() {
+	o.TopP.Set(nil)
+}
+
+// UnsetTopP ensures that no value is present for TopP, not even an explicit nil
+func (o *AssistantObject) UnsetTopP() {
+	o.TopP.Unset()
+}
+
+// GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
+func (o *AssistantObject) GetResponseFormat() AssistantsApiResponseFormatOption {
+	if o == nil || IsNil(o.ResponseFormat) {
+		var ret AssistantsApiResponseFormatOption
+		return ret
+	}
+	return *o.ResponseFormat
+}
+
+// GetResponseFormatOk returns a tuple with the ResponseFormat field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AssistantObject) GetResponseFormatOk() (*AssistantsApiResponseFormatOption, bool) {
+	if o == nil || IsNil(o.ResponseFormat) {
+		return nil, false
+	}
+	return o.ResponseFormat, true
+}
+
+// HasResponseFormat returns a boolean if a field has been set.
+func (o *AssistantObject) HasResponseFormat() bool {
+	if o != nil && !IsNil(o.ResponseFormat) {
+		return true
+	}
+
+	return false
+}
+
+// SetResponseFormat gets a reference to the given AssistantsApiResponseFormatOption and assigns it to the ResponseFormat field.
+func (o *AssistantObject) SetResponseFormat(v AssistantsApiResponseFormatOption) {
+	o.ResponseFormat = &v
+}
+
 func (o AssistantObject) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -339,9 +484,20 @@ func (o AssistantObject) ToMap() (map[string]interface{}, error) {
 	toSerialize["model"] = o.Model
 	toSerialize["instructions"] = o.Instructions.Get()
 	toSerialize["tools"] = o.Tools
-	toSerialize["file_ids"] = o.FileIds
+	if o.ToolResources.IsSet() {
+		toSerialize["tool_resources"] = o.ToolResources.Get()
+	}
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
+	}
+	if o.Temperature.IsSet() {
+		toSerialize["temperature"] = o.Temperature.Get()
+	}
+	if o.TopP.IsSet() {
+		toSerialize["top_p"] = o.TopP.Get()
+	}
+	if !IsNil(o.ResponseFormat) {
+		toSerialize["response_format"] = o.ResponseFormat
 	}
 	return toSerialize, nil
 }
@@ -359,7 +515,6 @@ func (o *AssistantObject) UnmarshalJSON(data []byte) (err error) {
 		"model",
 		"instructions",
 		"tools",
-		"file_ids",
 		"metadata",
 	}
 

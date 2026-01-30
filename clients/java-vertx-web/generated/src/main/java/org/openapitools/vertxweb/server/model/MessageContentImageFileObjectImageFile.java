@@ -3,18 +3,41 @@ package org.openapitools.vertxweb.server.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MessageContentImageFileObjectImageFile   {
   
   private String fileId;
 
+
+  public enum DetailEnum {
+    AUTO("auto"),
+    LOW("low"),
+    HIGH("high");
+
+    private String value;
+
+    DetailEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return value;
+    }
+  }
+
+  private DetailEnum detail = DetailEnum.AUTO;
+
   public MessageContentImageFileObjectImageFile () {
 
   }
 
-  public MessageContentImageFileObjectImageFile (String fileId) {
+  public MessageContentImageFileObjectImageFile (String fileId, DetailEnum detail) {
     this.fileId = fileId;
+    this.detail = detail;
   }
 
     
@@ -24,6 +47,15 @@ public class MessageContentImageFileObjectImageFile   {
   }
   public void setFileId(String fileId) {
     this.fileId = fileId;
+  }
+
+    
+  @JsonProperty("detail")
+  public DetailEnum getDetail() {
+    return detail;
+  }
+  public void setDetail(DetailEnum detail) {
+    this.detail = detail;
   }
 
 
@@ -36,12 +68,13 @@ public class MessageContentImageFileObjectImageFile   {
       return false;
     }
     MessageContentImageFileObjectImageFile messageContentImageFileObjectImageFile = (MessageContentImageFileObjectImageFile) o;
-    return Objects.equals(fileId, messageContentImageFileObjectImageFile.fileId);
+    return Objects.equals(fileId, messageContentImageFileObjectImageFile.fileId) &&
+        Objects.equals(detail, messageContentImageFileObjectImageFile.detail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileId);
+    return Objects.hash(fileId, detail);
   }
 
   @Override
@@ -50,6 +83,7 @@ public class MessageContentImageFileObjectImageFile   {
     sb.append("class MessageContentImageFileObjectImageFile {\n");
     
     sb.append("    fileId: ").append(toIndentedString(fileId)).append("\n");
+    sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("}");
     return sb.toString();
   }

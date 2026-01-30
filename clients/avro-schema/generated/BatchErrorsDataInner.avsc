@@ -1,0 +1,33 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "BatchErrorsDataInner",
+  "fields": [
+    {
+      "name": "code",
+      "type": ["null", "string"],
+      "doc": "An error code identifying the error type.",
+      "default": null
+    },
+    {
+      "name": "message",
+      "type": ["null", "string"],
+      "doc": "A human-readable message providing more details about the error.",
+      "default": null
+    },
+    {
+      "name": "param",
+      "type": ["null", "string"],
+      "doc": "The name of the parameter that caused the error, if applicable.",
+      "default": null
+    },
+    {
+      "name": "line",
+      "type": ["null", "int"],
+      "doc": "The line number of the input file where the error occurred, if applicable.",
+      "default": null
+    }
+  ]
+
+}

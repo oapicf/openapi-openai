@@ -1,0 +1,38 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateUploadRequest",
+  "fields": [
+    {
+      "name": "filename",
+      "type": "string",
+      "doc": "The name of the file to upload. "
+    },
+    {
+      "name": "purpose",
+      "type": {
+        "type": "enum",
+        "name": "CreateUploadRequest_purpose",
+        "symbols": [
+          "assistants",
+          "batch",
+          "fine_tune",
+          "vision"
+        ]
+      },
+      "doc": "The intended purpose of the uploaded file.  See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose). "
+    },
+    {
+      "name": "bytes",
+      "type": "int",
+      "doc": "The number of bytes in the file you are uploading. "
+    },
+    {
+      "name": "mime_type",
+      "type": "string",
+      "doc": "The MIME type of the file.  This must fall within the supported MIME types for your file purpose. See the supported MIME types for assistants and vision. "
+    }
+  ]
+
+}

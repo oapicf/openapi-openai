@@ -27,10 +27,22 @@ Protected Class MessageDeltaObjectDeltaContentInner
 	#tag EndProperty
 
 
+	#tag Property, Flags = &h0
+		refusal As Xoson.O.OptionalString
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		image_url As OpenAPIClient.Models.MessageDeltaContentImageUrlObjectImageUrl
+	#tag EndProperty
+
+
     #tag Enum, Name = TypeEnum, Type = Integer, Flags = &h0
         
         ImageFile
         Text
+        Refusal
+        ImageUrl
         
     #tag EndEnum
 
@@ -43,6 +55,10 @@ Protected Class MessageDeltaObjectDeltaContentInner
 		      Return "image_file"
 		    Case TypeEnum.Text
 		      Return "text"
+		    Case TypeEnum.Refusal
+		      Return "refusal"
+		    Case TypeEnum.ImageUrl
+		      Return "image_url"
 		    
 		  End Select
 		  Return ""
@@ -105,6 +121,22 @@ Protected Class MessageDeltaObjectDeltaContentInner
 			Group="Behavior"
 			InitialValue=""
 			Type="MessageDeltaContentTextObjectText"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="refusal"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="image_url"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="MessageDeltaContentImageUrlObjectImageUrl"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

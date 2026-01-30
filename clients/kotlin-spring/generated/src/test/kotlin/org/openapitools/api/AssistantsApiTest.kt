@@ -1,12 +1,8 @@
 package org.openapitools.api
 
-import org.openapitools.model.AssistantFileObject
 import org.openapitools.model.AssistantObject
-import org.openapitools.model.CreateAssistantFileRequest
 import org.openapitools.model.CreateAssistantRequest
-import org.openapitools.model.DeleteAssistantFileResponse
 import org.openapitools.model.DeleteAssistantResponse
-import org.openapitools.model.ListAssistantFilesResponse
 import org.openapitools.model.ListAssistantsResponse
 import org.openapitools.model.ModifyAssistantRequest
 import org.junit.jupiter.api.Test
@@ -32,22 +28,6 @@ class AssistantsApiTest {
     }
 
     /**
-     * To test AssistantsApiController.createAssistantFile
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    fun createAssistantFileTest() {
-        val assistantId: kotlin.String = TODO()
-        val createAssistantFileRequest: CreateAssistantFileRequest = TODO()
-        
-        val response: ResponseEntity<AssistantFileObject> = api.createAssistantFile(assistantId, createAssistantFileRequest)
-
-        // TODO: test validations
-    }
-
-    /**
      * To test AssistantsApiController.deleteAssistant
      *
      * @throws ApiException
@@ -63,22 +43,6 @@ class AssistantsApiTest {
     }
 
     /**
-     * To test AssistantsApiController.deleteAssistantFile
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    fun deleteAssistantFileTest() {
-        val assistantId: kotlin.String = TODO()
-        val fileId: kotlin.String = TODO()
-        
-        val response: ResponseEntity<DeleteAssistantFileResponse> = api.deleteAssistantFile(assistantId, fileId)
-
-        // TODO: test validations
-    }
-
-    /**
      * To test AssistantsApiController.getAssistant
      *
      * @throws ApiException
@@ -89,41 +53,6 @@ class AssistantsApiTest {
         val assistantId: kotlin.String = TODO()
         
         val response: ResponseEntity<AssistantObject> = api.getAssistant(assistantId)
-
-        // TODO: test validations
-    }
-
-    /**
-     * To test AssistantsApiController.getAssistantFile
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    fun getAssistantFileTest() {
-        val assistantId: kotlin.String = TODO()
-        val fileId: kotlin.String = TODO()
-        
-        val response: ResponseEntity<AssistantFileObject> = api.getAssistantFile(assistantId, fileId)
-
-        // TODO: test validations
-    }
-
-    /**
-     * To test AssistantsApiController.listAssistantFiles
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    fun listAssistantFilesTest() {
-        val assistantId: kotlin.String = TODO()
-        val limit: kotlin.Int = TODO()
-        val order: kotlin.String = TODO()
-        val after: kotlin.String? = TODO()
-        val before: kotlin.String? = TODO()
-        
-        val response: ResponseEntity<ListAssistantFilesResponse> = api.listAssistantFiles(assistantId, limit, order, after, before)
 
         // TODO: test validations
     }

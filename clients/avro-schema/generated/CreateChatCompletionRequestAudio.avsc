@@ -1,0 +1,42 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Parameters for audio output. Required when audio output is requested with `modalities: [\"audio\"]`. [Learn more](/docs/guides/audio). ",
+  "name": "CreateChatCompletionRequestAudio",
+  "fields": [
+    {
+      "name": "voice",
+      "type": {
+        "type": "enum",
+        "name": "CreateChatCompletionRequestAudio_voice",
+        "symbols": [
+          "alloy",
+          "ash",
+          "ballad",
+          "coral",
+          "echo",
+          "sage",
+          "shimmer",
+          "verse"
+        ]
+      },
+      "doc": "The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). "
+    },
+    {
+      "name": "format",
+      "type": {
+        "type": "enum",
+        "name": "CreateChatCompletionRequestAudio_format",
+        "symbols": [
+          "wav",
+          "mp3",
+          "flac",
+          "opus",
+          "pcm16"
+        ]
+      },
+      "doc": "Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. "
+    }
+  ]
+
+}

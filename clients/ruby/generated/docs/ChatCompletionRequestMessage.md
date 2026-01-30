@@ -15,6 +15,7 @@ OpenApiOpenAIClient::ChatCompletionRequestMessage.openapi_one_of
 # =>
 # [
 #   :'ChatCompletionRequestAssistantMessage',
+#   :'ChatCompletionRequestDeveloperMessage',
 #   :'ChatCompletionRequestFunctionMessage',
 #   :'ChatCompletionRequestSystemMessage',
 #   :'ChatCompletionRequestToolMessage',
@@ -47,6 +48,7 @@ OpenApiOpenAIClient::ChatCompletionRequestMessage.build(data_that_doesnt_match)
 #### Return type
 
 - `ChatCompletionRequestAssistantMessage`
+- `ChatCompletionRequestDeveloperMessage`
 - `ChatCompletionRequestFunctionMessage`
 - `ChatCompletionRequestSystemMessage`
 - `ChatCompletionRequestToolMessage`

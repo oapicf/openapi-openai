@@ -30,7 +30,7 @@ my $api_instance = WWW::OpenAPIClient::ModelsApi->new(
     
 );
 
-my $model = ft:gpt-3.5-turbo:acemeco:suffix:abc123; # string | The model to delete
+my $model = ft:gpt-4o-mini:acemeco:suffix:abc123; # string | The model to delete
 
 eval {
     my $result = $api_instance->delete_model(model => $model);
@@ -122,7 +122,7 @@ my $api_instance = WWW::OpenAPIClient::ModelsApi->new(
     
 );
 
-my $model = gpt-3.5-turbo; # string | The ID of the model to use for this request
+my $model = gpt-4o-mini; # string | The ID of the model to use for this request
 
 eval {
     my $result = $api_instance->retrieve_model(model => $model);

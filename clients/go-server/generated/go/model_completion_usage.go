@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -25,6 +25,10 @@ type CompletionUsage struct {
 
 	// Total number of tokens used in the request (prompt + completion).
 	TotalTokens int32 `json:"total_tokens"`
+
+	CompletionTokensDetails CompletionUsageCompletionTokensDetails `json:"completion_tokens_details,omitempty"`
+
+	PromptTokensDetails CompletionUsagePromptTokensDetails `json:"prompt_tokens_details,omitempty"`
 }
 
 // AssertCompletionUsageRequired checks if the required fields are not zero-ed
@@ -40,10 +44,22 @@ func AssertCompletionUsageRequired(obj CompletionUsage) error {
 		}
 	}
 
+	if err := AssertCompletionUsageCompletionTokensDetailsRequired(obj.CompletionTokensDetails); err != nil {
+		return err
+	}
+	if err := AssertCompletionUsagePromptTokensDetailsRequired(obj.PromptTokensDetails); err != nil {
+		return err
+	}
 	return nil
 }
 
 // AssertCompletionUsageConstraints checks if the values respects the defined constraints
 func AssertCompletionUsageConstraints(obj CompletionUsage) error {
+	if err := AssertCompletionUsageCompletionTokensDetailsConstraints(obj.CompletionTokensDetails); err != nil {
+		return err
+	}
+	if err := AssertCompletionUsagePromptTokensDetailsConstraints(obj.PromptTokensDetails); err != nil {
+		return err
+	}
 	return nil
 }

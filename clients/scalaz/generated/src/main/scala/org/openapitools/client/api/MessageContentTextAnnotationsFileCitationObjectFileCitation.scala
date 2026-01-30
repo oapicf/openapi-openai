@@ -13,9 +13,7 @@ import MessageContentTextAnnotationsFileCitationObjectFileCitation._
 
 case class MessageContentTextAnnotationsFileCitationObjectFileCitation (
   /* The ID of the specific File the citation is from. */
-  fileId: String,
-/* The specific quote in the file. */
-  quote: String)
+  fileId: String)
 
 object MessageContentTextAnnotationsFileCitationObjectFileCitation {
   import DateTimeCodecs._

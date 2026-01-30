@@ -10,7 +10,7 @@ import javax.validation.Valid;
 /**
  * A list of the categories, and whether they are flagged or not.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateModerationResponseResultsInnerCategories   {
   @JsonProperty("hate")
@@ -32,6 +32,16 @@ public class CreateModerationResponseResultsInnerCategories   {
   @NotNull
 
   private Boolean harassmentThreatening;
+
+  @JsonProperty("illicit")
+  @NotNull
+
+  private Boolean illicit;
+
+  @JsonProperty("illicit/violent")
+  @NotNull
+
+  private Boolean illicitViolent;
 
   @JsonProperty("self-harm")
   @NotNull
@@ -134,6 +144,40 @@ public class CreateModerationResponseResultsInnerCategories   {
 
   public void setHarassmentThreatening(Boolean harassmentThreatening) {
     this.harassmentThreatening = harassmentThreatening;
+  }
+
+  public CreateModerationResponseResultsInnerCategories illicit(Boolean illicit) {
+    this.illicit = illicit;
+    return this;
+  }
+
+   /**
+   * Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
+   * @return illicit
+  **/
+  public Boolean getIllicit() {
+    return illicit;
+  }
+
+  public void setIllicit(Boolean illicit) {
+    this.illicit = illicit;
+  }
+
+  public CreateModerationResponseResultsInnerCategories illicitViolent(Boolean illicitViolent) {
+    this.illicitViolent = illicitViolent;
+    return this;
+  }
+
+   /**
+   * Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+   * @return illicitViolent
+  **/
+  public Boolean getIllicitViolent() {
+    return illicitViolent;
+  }
+
+  public void setIllicitViolent(Boolean illicitViolent) {
+    this.illicitViolent = illicitViolent;
   }
 
   public CreateModerationResponseResultsInnerCategories selfHarm(Boolean selfHarm) {
@@ -269,6 +313,8 @@ public class CreateModerationResponseResultsInnerCategories   {
         Objects.equals(hateThreatening, createModerationResponseResultsInnerCategories.hateThreatening) &&
         Objects.equals(harassment, createModerationResponseResultsInnerCategories.harassment) &&
         Objects.equals(harassmentThreatening, createModerationResponseResultsInnerCategories.harassmentThreatening) &&
+        Objects.equals(illicit, createModerationResponseResultsInnerCategories.illicit) &&
+        Objects.equals(illicitViolent, createModerationResponseResultsInnerCategories.illicitViolent) &&
         Objects.equals(selfHarm, createModerationResponseResultsInnerCategories.selfHarm) &&
         Objects.equals(selfHarmIntent, createModerationResponseResultsInnerCategories.selfHarmIntent) &&
         Objects.equals(selfHarmInstructions, createModerationResponseResultsInnerCategories.selfHarmInstructions) &&
@@ -280,7 +326,7 @@ public class CreateModerationResponseResultsInnerCategories   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
+    return Objects.hash(hate, hateThreatening, harassment, harassmentThreatening, illicit, illicitViolent, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -293,6 +339,8 @@ public class CreateModerationResponseResultsInnerCategories   {
     sb.append("    hateThreatening: ").append(toIndentedString(hateThreatening)).append("\n");
     sb.append("    harassment: ").append(toIndentedString(harassment)).append("\n");
     sb.append("    harassmentThreatening: ").append(toIndentedString(harassmentThreatening)).append("\n");
+    sb.append("    illicit: ").append(toIndentedString(illicit)).append("\n");
+    sb.append("    illicitViolent: ").append(toIndentedString(illicitViolent)).append("\n");
     sb.append("    selfHarm: ").append(toIndentedString(selfHarm)).append("\n");
     sb.append("    selfHarmIntent: ").append(toIndentedString(selfHarmIntent)).append("\n");
     sb.append("    selfHarmInstructions: ").append(toIndentedString(selfHarmInstructions)).append("\n");

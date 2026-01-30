@@ -365,171 +365,6 @@ bool AssistantsManager::createAssistantSync(char * accessToken,
 	handler, userData, false);
 }
 
-static bool createAssistantFileProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
-	void(* voidHandler)())
-{
-	void(* handler)(AssistantFileObject, Error, void* )
-	= reinterpret_cast<void(*)(AssistantFileObject, Error, void* )> (voidHandler);
-	
-	JsonNode* pJson;
-	char * data = p_chunk.memory;
-
-	
-	AssistantFileObject out;
-
-	if (code >= 200 && code < 300) {
-		Error error(code, string("No Error"));
-
-
-
-
-		if (isprimitive("AssistantFileObject")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "AssistantFileObject", "AssistantFileObject");
-			json_node_free(pJson);
-
-			if ("AssistantFileObject" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
-		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
-
-	} else {
-		Error error;
-		if (errormsg != NULL) {
-			error = Error(code, string(errormsg));
-		} else if (p_chunk.memory != NULL) {
-			error = Error(code, string(p_chunk.memory));
-		} else {
-			error = Error(code, string("Unknown Error"));
-		}
-		 handler(out, error, userData);
-		return false;
-			}
-}
-
-static bool createAssistantFileHelper(char * accessToken,
-	std::string assistantId, std::shared_ptr<CreateAssistantFileRequest> createAssistantFileRequest, 
-	void(* handler)(AssistantFileObject, Error, void* )
-	, void* userData, bool isAsync)
-{
-
-	//TODO: maybe delete headerList after its used to free up space?
-	struct curl_slist *headerList = NULL;
-
-	
-	string accessHeader = "Authorization: Bearer ";
-	accessHeader.append(accessToken);
-	headerList = curl_slist_append(headerList, accessHeader.c_str());
-	headerList = curl_slist_append(headerList, "Content-Type: application/json");
-
-	map <string, string> queryParams;
-	string itemAtq;
-	
-	string mBody = "";
-	JsonNode* node;
-	JsonArray* json_array;
-
-	if (isprimitive("CreateAssistantFileRequest")) {
-		node = converttoJson(&createAssistantFileRequest, "CreateAssistantFileRequest", "");
-	}
-	
-	char *jsonStr =  createAssistantFileRequest.toJson();
-	node = json_from_string(jsonStr, NULL);
-	g_free(static_cast<gpointer>(jsonStr));
-	
-
-	char *jsonStr1 =  json_to_string(node, false);
-	mBody.append(jsonStr1);
-	g_free(static_cast<gpointer>(jsonStr1));
-
-	string url("/assistants/{assistant_id}/files");
-	int pos;
-
-	string s_assistantId("{");
-	s_assistantId.append("assistant_id");
-	s_assistantId.append("}");
-	pos = url.find(s_assistantId);
-	url.erase(pos, s_assistantId.length());
-	url.insert(pos, stringify(&assistantId, "std::string"));
-
-	//TODO: free memory of errormsg, memorystruct
-	MemoryStruct_s* p_chunk = new MemoryStruct_s();
-	long code;
-	char* errormsg = NULL;
-	string myhttpmethod("POST");
-
-	if(strcmp("PUT", "POST") == 0){
-		if(strcmp("", mBody.c_str()) == 0){
-			mBody.append("{}");
-		}
-	}
-
-	if(!isAsync){
-		NetClient::easycurl(AssistantsManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg);
-		bool retval = createAssistantFileProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
-
-		curl_slist_free_all(headerList);
-		if (p_chunk) {
-			if(p_chunk->memory) {
-				free(p_chunk->memory);
-			}
-			delete (p_chunk);
-		}
-		if (errormsg) {
-			free(errormsg);
-		}
-		return retval;
-	} else{
-		GThread *thread = NULL;
-		RequestInfo *requestInfo = NULL;
-
-		requestInfo = new(nothrow) RequestInfo (AssistantsManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg, userData, reinterpret_cast<void(*)()>(handler), createAssistantFileProcessor);;
-		if(requestInfo == NULL)
-			return false;
-
-		thread = g_thread_new(NULL, __AssistantsManagerthreadFunc, static_cast<gpointer>(requestInfo));
-		return true;
-	}
-}
-
-
-
-
-bool AssistantsManager::createAssistantFileAsync(char * accessToken,
-	std::string assistantId, std::shared_ptr<CreateAssistantFileRequest> createAssistantFileRequest, 
-	void(* handler)(AssistantFileObject, Error, void* )
-	, void* userData)
-{
-	return createAssistantFileHelper(accessToken,
-	assistantId, createAssistantFileRequest, 
-	handler, userData, true);
-}
-
-bool AssistantsManager::createAssistantFileSync(char * accessToken,
-	std::string assistantId, std::shared_ptr<CreateAssistantFileRequest> createAssistantFileRequest, 
-	void(* handler)(AssistantFileObject, Error, void* )
-	, void* userData)
-{
-	return createAssistantFileHelper(accessToken,
-	assistantId, createAssistantFileRequest, 
-	handler, userData, false);
-}
-
 static bool createMessageProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
@@ -751,7 +586,7 @@ static bool createRunProcessor(MemoryStruct_s p_chunk, long code, char* errormsg
 }
 
 static bool createRunHelper(char * accessToken,
-	std::string threadId, std::shared_ptr<CreateRunRequest> createRunRequest, 
+	std::string threadId, std::shared_ptr<CreateRunRequest> createRunRequest, std::list<std::string> includeLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(RunObject, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -767,6 +602,15 @@ static bool createRunHelper(char * accessToken,
 
 	map <string, string> queryParams;
 	string itemAtq;
+	
+	for (std::list
+	<std::string>::iterator queryIter = includeLeft_Square_BracketRight_Square_Bracket.begin(); queryIter != includeLeft_Square_BracketRight_Square_Bracket.end(); ++queryIter) {
+		string itemAt = stringify(&(*queryIter), "std::string");
+		if( itemAt.empty()){
+			continue;
+		}
+		queryParams.insert(pair<string, string>("includeLeft_Square_BracketRight_Square_Bracket", itemAt));
+	}
 	
 	string mBody = "";
 	JsonNode* node;
@@ -841,22 +685,22 @@ static bool createRunHelper(char * accessToken,
 
 
 bool AssistantsManager::createRunAsync(char * accessToken,
-	std::string threadId, std::shared_ptr<CreateRunRequest> createRunRequest, 
+	std::string threadId, std::shared_ptr<CreateRunRequest> createRunRequest, std::list<std::string> includeLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(RunObject, Error, void* )
 	, void* userData)
 {
 	return createRunHelper(accessToken,
-	threadId, createRunRequest, 
+	threadId, createRunRequest, includeLeft_Square_BracketRight_Square_Bracket, 
 	handler, userData, true);
 }
 
 bool AssistantsManager::createRunSync(char * accessToken,
-	std::string threadId, std::shared_ptr<CreateRunRequest> createRunRequest, 
+	std::string threadId, std::shared_ptr<CreateRunRequest> createRunRequest, std::list<std::string> includeLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(RunObject, Error, void* )
 	, void* userData)
 {
 	return createRunHelper(accessToken,
-	threadId, createRunRequest, 
+	threadId, createRunRequest, includeLeft_Square_BracketRight_Square_Bracket, 
 	handler, userData, false);
 }
 
@@ -1330,17 +1174,17 @@ bool AssistantsManager::deleteAssistantSync(char * accessToken,
 	handler, userData, false);
 }
 
-static bool deleteAssistantFileProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
+static bool deleteMessageProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
-	void(* handler)(DeleteAssistantFileResponse, Error, void* )
-	= reinterpret_cast<void(*)(DeleteAssistantFileResponse, Error, void* )> (voidHandler);
+	void(* handler)(DeleteMessageResponse, Error, void* )
+	= reinterpret_cast<void(*)(DeleteMessageResponse, Error, void* )> (voidHandler);
 	
 	JsonNode* pJson;
 	char * data = p_chunk.memory;
 
 	
-	DeleteAssistantFileResponse out;
+	DeleteMessageResponse out;
 
 	if (code >= 200 && code < 300) {
 		Error error(code, string("No Error"));
@@ -1348,12 +1192,12 @@ static bool deleteAssistantFileProcessor(MemoryStruct_s p_chunk, long code, char
 
 
 
-		if (isprimitive("DeleteAssistantFileResponse")) {
+		if (isprimitive("DeleteMessageResponse")) {
 			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "DeleteAssistantFileResponse", "DeleteAssistantFileResponse");
+			jsonToValue(&out, pJson, "DeleteMessageResponse", "DeleteMessageResponse");
 			json_node_free(pJson);
 
-			if ("DeleteAssistantFileResponse" == "std::string") {
+			if ("DeleteMessageResponse" == "std::string") {
 				string* val = (std::string*)(&out);
 				if (val->empty() && p_chunk.size>4) {
 					*val = string(p_chunk.memory, p_chunk.size);
@@ -1385,9 +1229,9 @@ static bool deleteAssistantFileProcessor(MemoryStruct_s p_chunk, long code, char
 			}
 }
 
-static bool deleteAssistantFileHelper(char * accessToken,
-	std::string assistantId, std::string fileId, 
-	void(* handler)(DeleteAssistantFileResponse, Error, void* )
+static bool deleteMessageHelper(char * accessToken,
+	std::string threadId, std::string messageId, 
+	void(* handler)(DeleteMessageResponse, Error, void* )
 	, void* userData, bool isAsync)
 {
 
@@ -1407,21 +1251,21 @@ static bool deleteAssistantFileHelper(char * accessToken,
 	JsonNode* node;
 	JsonArray* json_array;
 
-	string url("/assistants/{assistant_id}/files/{file_id}");
+	string url("/threads/{thread_id}/messages/{message_id}");
 	int pos;
 
-	string s_assistantId("{");
-	s_assistantId.append("assistant_id");
-	s_assistantId.append("}");
-	pos = url.find(s_assistantId);
-	url.erase(pos, s_assistantId.length());
-	url.insert(pos, stringify(&assistantId, "std::string"));
-	string s_fileId("{");
-	s_fileId.append("file_id");
-	s_fileId.append("}");
-	pos = url.find(s_fileId);
-	url.erase(pos, s_fileId.length());
-	url.insert(pos, stringify(&fileId, "std::string"));
+	string s_threadId("{");
+	s_threadId.append("thread_id");
+	s_threadId.append("}");
+	pos = url.find(s_threadId);
+	url.erase(pos, s_threadId.length());
+	url.insert(pos, stringify(&threadId, "std::string"));
+	string s_messageId("{");
+	s_messageId.append("message_id");
+	s_messageId.append("}");
+	pos = url.find(s_messageId);
+	url.erase(pos, s_messageId.length());
+	url.insert(pos, stringify(&messageId, "std::string"));
 
 	//TODO: free memory of errormsg, memorystruct
 	MemoryStruct_s* p_chunk = new MemoryStruct_s();
@@ -1438,7 +1282,7 @@ static bool deleteAssistantFileHelper(char * accessToken,
 	if(!isAsync){
 		NetClient::easycurl(AssistantsManager::getBasePath(), url, myhttpmethod, queryParams,
 			mBody, headerList, p_chunk, &code, errormsg);
-		bool retval = deleteAssistantFileProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
+		bool retval = deleteMessageProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
 		curl_slist_free_all(headerList);
 		if (p_chunk) {
@@ -1456,7 +1300,7 @@ static bool deleteAssistantFileHelper(char * accessToken,
 		RequestInfo *requestInfo = NULL;
 
 		requestInfo = new(nothrow) RequestInfo (AssistantsManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg, userData, reinterpret_cast<void(*)()>(handler), deleteAssistantFileProcessor);;
+			mBody, headerList, p_chunk, &code, errormsg, userData, reinterpret_cast<void(*)()>(handler), deleteMessageProcessor);;
 		if(requestInfo == NULL)
 			return false;
 
@@ -1468,23 +1312,23 @@ static bool deleteAssistantFileHelper(char * accessToken,
 
 
 
-bool AssistantsManager::deleteAssistantFileAsync(char * accessToken,
-	std::string assistantId, std::string fileId, 
-	void(* handler)(DeleteAssistantFileResponse, Error, void* )
+bool AssistantsManager::deleteMessageAsync(char * accessToken,
+	std::string threadId, std::string messageId, 
+	void(* handler)(DeleteMessageResponse, Error, void* )
 	, void* userData)
 {
-	return deleteAssistantFileHelper(accessToken,
-	assistantId, fileId, 
+	return deleteMessageHelper(accessToken,
+	threadId, messageId, 
 	handler, userData, true);
 }
 
-bool AssistantsManager::deleteAssistantFileSync(char * accessToken,
-	std::string assistantId, std::string fileId, 
-	void(* handler)(DeleteAssistantFileResponse, Error, void* )
+bool AssistantsManager::deleteMessageSync(char * accessToken,
+	std::string threadId, std::string messageId, 
+	void(* handler)(DeleteMessageResponse, Error, void* )
 	, void* userData)
 {
-	return deleteAssistantFileHelper(accessToken,
-	assistantId, fileId, 
+	return deleteMessageHelper(accessToken,
+	threadId, messageId, 
 	handler, userData, false);
 }
 
@@ -1792,164 +1636,6 @@ bool AssistantsManager::getAssistantSync(char * accessToken,
 	handler, userData, false);
 }
 
-static bool getAssistantFileProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
-	void(* voidHandler)())
-{
-	void(* handler)(AssistantFileObject, Error, void* )
-	= reinterpret_cast<void(*)(AssistantFileObject, Error, void* )> (voidHandler);
-	
-	JsonNode* pJson;
-	char * data = p_chunk.memory;
-
-	
-	AssistantFileObject out;
-
-	if (code >= 200 && code < 300) {
-		Error error(code, string("No Error"));
-
-
-
-
-		if (isprimitive("AssistantFileObject")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "AssistantFileObject", "AssistantFileObject");
-			json_node_free(pJson);
-
-			if ("AssistantFileObject" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
-		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
-
-	} else {
-		Error error;
-		if (errormsg != NULL) {
-			error = Error(code, string(errormsg));
-		} else if (p_chunk.memory != NULL) {
-			error = Error(code, string(p_chunk.memory));
-		} else {
-			error = Error(code, string("Unknown Error"));
-		}
-		 handler(out, error, userData);
-		return false;
-			}
-}
-
-static bool getAssistantFileHelper(char * accessToken,
-	std::string assistantId, std::string fileId, 
-	void(* handler)(AssistantFileObject, Error, void* )
-	, void* userData, bool isAsync)
-{
-
-	//TODO: maybe delete headerList after its used to free up space?
-	struct curl_slist *headerList = NULL;
-
-	
-	string accessHeader = "Authorization: Bearer ";
-	accessHeader.append(accessToken);
-	headerList = curl_slist_append(headerList, accessHeader.c_str());
-	headerList = curl_slist_append(headerList, "Content-Type: application/json");
-
-	map <string, string> queryParams;
-	string itemAtq;
-	
-	string mBody = "";
-	JsonNode* node;
-	JsonArray* json_array;
-
-	string url("/assistants/{assistant_id}/files/{file_id}");
-	int pos;
-
-	string s_assistantId("{");
-	s_assistantId.append("assistant_id");
-	s_assistantId.append("}");
-	pos = url.find(s_assistantId);
-	url.erase(pos, s_assistantId.length());
-	url.insert(pos, stringify(&assistantId, "std::string"));
-	string s_fileId("{");
-	s_fileId.append("file_id");
-	s_fileId.append("}");
-	pos = url.find(s_fileId);
-	url.erase(pos, s_fileId.length());
-	url.insert(pos, stringify(&fileId, "std::string"));
-
-	//TODO: free memory of errormsg, memorystruct
-	MemoryStruct_s* p_chunk = new MemoryStruct_s();
-	long code;
-	char* errormsg = NULL;
-	string myhttpmethod("GET");
-
-	if(strcmp("PUT", "GET") == 0){
-		if(strcmp("", mBody.c_str()) == 0){
-			mBody.append("{}");
-		}
-	}
-
-	if(!isAsync){
-		NetClient::easycurl(AssistantsManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg);
-		bool retval = getAssistantFileProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
-
-		curl_slist_free_all(headerList);
-		if (p_chunk) {
-			if(p_chunk->memory) {
-				free(p_chunk->memory);
-			}
-			delete (p_chunk);
-		}
-		if (errormsg) {
-			free(errormsg);
-		}
-		return retval;
-	} else{
-		GThread *thread = NULL;
-		RequestInfo *requestInfo = NULL;
-
-		requestInfo = new(nothrow) RequestInfo (AssistantsManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg, userData, reinterpret_cast<void(*)()>(handler), getAssistantFileProcessor);;
-		if(requestInfo == NULL)
-			return false;
-
-		thread = g_thread_new(NULL, __AssistantsManagerthreadFunc, static_cast<gpointer>(requestInfo));
-		return true;
-	}
-}
-
-
-
-
-bool AssistantsManager::getAssistantFileAsync(char * accessToken,
-	std::string assistantId, std::string fileId, 
-	void(* handler)(AssistantFileObject, Error, void* )
-	, void* userData)
-{
-	return getAssistantFileHelper(accessToken,
-	assistantId, fileId, 
-	handler, userData, true);
-}
-
-bool AssistantsManager::getAssistantFileSync(char * accessToken,
-	std::string assistantId, std::string fileId, 
-	void(* handler)(AssistantFileObject, Error, void* )
-	, void* userData)
-{
-	return getAssistantFileHelper(accessToken,
-	assistantId, fileId, 
-	handler, userData, false);
-}
-
 static bool getMessageProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
@@ -2105,170 +1791,6 @@ bool AssistantsManager::getMessageSync(char * accessToken,
 {
 	return getMessageHelper(accessToken,
 	threadId, messageId, 
-	handler, userData, false);
-}
-
-static bool getMessageFileProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
-	void(* voidHandler)())
-{
-	void(* handler)(MessageFileObject, Error, void* )
-	= reinterpret_cast<void(*)(MessageFileObject, Error, void* )> (voidHandler);
-	
-	JsonNode* pJson;
-	char * data = p_chunk.memory;
-
-	
-	MessageFileObject out;
-
-	if (code >= 200 && code < 300) {
-		Error error(code, string("No Error"));
-
-
-
-
-		if (isprimitive("MessageFileObject")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "MessageFileObject", "MessageFileObject");
-			json_node_free(pJson);
-
-			if ("MessageFileObject" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
-		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
-
-	} else {
-		Error error;
-		if (errormsg != NULL) {
-			error = Error(code, string(errormsg));
-		} else if (p_chunk.memory != NULL) {
-			error = Error(code, string(p_chunk.memory));
-		} else {
-			error = Error(code, string("Unknown Error"));
-		}
-		 handler(out, error, userData);
-		return false;
-			}
-}
-
-static bool getMessageFileHelper(char * accessToken,
-	std::string threadId, std::string messageId, std::string fileId, 
-	void(* handler)(MessageFileObject, Error, void* )
-	, void* userData, bool isAsync)
-{
-
-	//TODO: maybe delete headerList after its used to free up space?
-	struct curl_slist *headerList = NULL;
-
-	
-	string accessHeader = "Authorization: Bearer ";
-	accessHeader.append(accessToken);
-	headerList = curl_slist_append(headerList, accessHeader.c_str());
-	headerList = curl_slist_append(headerList, "Content-Type: application/json");
-
-	map <string, string> queryParams;
-	string itemAtq;
-	
-	string mBody = "";
-	JsonNode* node;
-	JsonArray* json_array;
-
-	string url("/threads/{thread_id}/messages/{message_id}/files/{file_id}");
-	int pos;
-
-	string s_threadId("{");
-	s_threadId.append("thread_id");
-	s_threadId.append("}");
-	pos = url.find(s_threadId);
-	url.erase(pos, s_threadId.length());
-	url.insert(pos, stringify(&threadId, "std::string"));
-	string s_messageId("{");
-	s_messageId.append("message_id");
-	s_messageId.append("}");
-	pos = url.find(s_messageId);
-	url.erase(pos, s_messageId.length());
-	url.insert(pos, stringify(&messageId, "std::string"));
-	string s_fileId("{");
-	s_fileId.append("file_id");
-	s_fileId.append("}");
-	pos = url.find(s_fileId);
-	url.erase(pos, s_fileId.length());
-	url.insert(pos, stringify(&fileId, "std::string"));
-
-	//TODO: free memory of errormsg, memorystruct
-	MemoryStruct_s* p_chunk = new MemoryStruct_s();
-	long code;
-	char* errormsg = NULL;
-	string myhttpmethod("GET");
-
-	if(strcmp("PUT", "GET") == 0){
-		if(strcmp("", mBody.c_str()) == 0){
-			mBody.append("{}");
-		}
-	}
-
-	if(!isAsync){
-		NetClient::easycurl(AssistantsManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg);
-		bool retval = getMessageFileProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
-
-		curl_slist_free_all(headerList);
-		if (p_chunk) {
-			if(p_chunk->memory) {
-				free(p_chunk->memory);
-			}
-			delete (p_chunk);
-		}
-		if (errormsg) {
-			free(errormsg);
-		}
-		return retval;
-	} else{
-		GThread *thread = NULL;
-		RequestInfo *requestInfo = NULL;
-
-		requestInfo = new(nothrow) RequestInfo (AssistantsManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg, userData, reinterpret_cast<void(*)()>(handler), getMessageFileProcessor);;
-		if(requestInfo == NULL)
-			return false;
-
-		thread = g_thread_new(NULL, __AssistantsManagerthreadFunc, static_cast<gpointer>(requestInfo));
-		return true;
-	}
-}
-
-
-
-
-bool AssistantsManager::getMessageFileAsync(char * accessToken,
-	std::string threadId, std::string messageId, std::string fileId, 
-	void(* handler)(MessageFileObject, Error, void* )
-	, void* userData)
-{
-	return getMessageFileHelper(accessToken,
-	threadId, messageId, fileId, 
-	handler, userData, true);
-}
-
-bool AssistantsManager::getMessageFileSync(char * accessToken,
-	std::string threadId, std::string messageId, std::string fileId, 
-	void(* handler)(MessageFileObject, Error, void* )
-	, void* userData)
-{
-	return getMessageFileHelper(accessToken,
-	threadId, messageId, fileId, 
 	handler, userData, false);
 }
 
@@ -2486,7 +2008,7 @@ static bool getRunStepProcessor(MemoryStruct_s p_chunk, long code, char* errorms
 }
 
 static bool getRunStepHelper(char * accessToken,
-	std::string threadId, std::string runId, std::string stepId, 
+	std::string threadId, std::string runId, std::string stepId, std::list<std::string> includeLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(RunStepObject, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -2502,6 +2024,15 @@ static bool getRunStepHelper(char * accessToken,
 
 	map <string, string> queryParams;
 	string itemAtq;
+	
+	for (std::list
+	<std::string>::iterator queryIter = includeLeft_Square_BracketRight_Square_Bracket.begin(); queryIter != includeLeft_Square_BracketRight_Square_Bracket.end(); ++queryIter) {
+		string itemAt = stringify(&(*queryIter), "std::string");
+		if( itemAt.empty()){
+			continue;
+		}
+		queryParams.insert(pair<string, string>("includeLeft_Square_BracketRight_Square_Bracket", itemAt));
+	}
 	
 	string mBody = "";
 	JsonNode* node;
@@ -2575,22 +2106,22 @@ static bool getRunStepHelper(char * accessToken,
 
 
 bool AssistantsManager::getRunStepAsync(char * accessToken,
-	std::string threadId, std::string runId, std::string stepId, 
+	std::string threadId, std::string runId, std::string stepId, std::list<std::string> includeLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(RunStepObject, Error, void* )
 	, void* userData)
 {
 	return getRunStepHelper(accessToken,
-	threadId, runId, stepId, 
+	threadId, runId, stepId, includeLeft_Square_BracketRight_Square_Bracket, 
 	handler, userData, true);
 }
 
 bool AssistantsManager::getRunStepSync(char * accessToken,
-	std::string threadId, std::string runId, std::string stepId, 
+	std::string threadId, std::string runId, std::string stepId, std::list<std::string> includeLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(RunStepObject, Error, void* )
 	, void* userData)
 {
 	return getRunStepHelper(accessToken,
-	threadId, runId, stepId, 
+	threadId, runId, stepId, includeLeft_Square_BracketRight_Square_Bracket, 
 	handler, userData, false);
 }
 
@@ -2743,186 +2274,6 @@ bool AssistantsManager::getThreadSync(char * accessToken,
 {
 	return getThreadHelper(accessToken,
 	threadId, 
-	handler, userData, false);
-}
-
-static bool listAssistantFilesProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
-	void(* voidHandler)())
-{
-	void(* handler)(ListAssistantFilesResponse, Error, void* )
-	= reinterpret_cast<void(*)(ListAssistantFilesResponse, Error, void* )> (voidHandler);
-	
-	JsonNode* pJson;
-	char * data = p_chunk.memory;
-
-	
-	ListAssistantFilesResponse out;
-
-	if (code >= 200 && code < 300) {
-		Error error(code, string("No Error"));
-
-
-
-
-		if (isprimitive("ListAssistantFilesResponse")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "ListAssistantFilesResponse", "ListAssistantFilesResponse");
-			json_node_free(pJson);
-
-			if ("ListAssistantFilesResponse" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
-		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
-
-	} else {
-		Error error;
-		if (errormsg != NULL) {
-			error = Error(code, string(errormsg));
-		} else if (p_chunk.memory != NULL) {
-			error = Error(code, string(p_chunk.memory));
-		} else {
-			error = Error(code, string("Unknown Error"));
-		}
-		 handler(out, error, userData);
-		return false;
-			}
-}
-
-static bool listAssistantFilesHelper(char * accessToken,
-	std::string assistantId, int limit, std::string order, std::string after, std::string before, 
-	void(* handler)(ListAssistantFilesResponse, Error, void* )
-	, void* userData, bool isAsync)
-{
-
-	//TODO: maybe delete headerList after its used to free up space?
-	struct curl_slist *headerList = NULL;
-
-	
-	string accessHeader = "Authorization: Bearer ";
-	accessHeader.append(accessToken);
-	headerList = curl_slist_append(headerList, accessHeader.c_str());
-	headerList = curl_slist_append(headerList, "Content-Type: application/json");
-
-	map <string, string> queryParams;
-	string itemAtq;
-	
-
-	itemAtq = stringify(&limit, "int");
-	queryParams.insert(pair<string, string>("limit", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("limit");
-	}
-
-
-	itemAtq = stringify(&order, "std::string");
-	queryParams.insert(pair<string, string>("order", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("order");
-	}
-
-
-	itemAtq = stringify(&after, "std::string");
-	queryParams.insert(pair<string, string>("after", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("after");
-	}
-
-
-	itemAtq = stringify(&before, "std::string");
-	queryParams.insert(pair<string, string>("before", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("before");
-	}
-
-	string mBody = "";
-	JsonNode* node;
-	JsonArray* json_array;
-
-	string url("/assistants/{assistant_id}/files");
-	int pos;
-
-	string s_assistantId("{");
-	s_assistantId.append("assistant_id");
-	s_assistantId.append("}");
-	pos = url.find(s_assistantId);
-	url.erase(pos, s_assistantId.length());
-	url.insert(pos, stringify(&assistantId, "std::string"));
-
-	//TODO: free memory of errormsg, memorystruct
-	MemoryStruct_s* p_chunk = new MemoryStruct_s();
-	long code;
-	char* errormsg = NULL;
-	string myhttpmethod("GET");
-
-	if(strcmp("PUT", "GET") == 0){
-		if(strcmp("", mBody.c_str()) == 0){
-			mBody.append("{}");
-		}
-	}
-
-	if(!isAsync){
-		NetClient::easycurl(AssistantsManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg);
-		bool retval = listAssistantFilesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
-
-		curl_slist_free_all(headerList);
-		if (p_chunk) {
-			if(p_chunk->memory) {
-				free(p_chunk->memory);
-			}
-			delete (p_chunk);
-		}
-		if (errormsg) {
-			free(errormsg);
-		}
-		return retval;
-	} else{
-		GThread *thread = NULL;
-		RequestInfo *requestInfo = NULL;
-
-		requestInfo = new(nothrow) RequestInfo (AssistantsManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg, userData, reinterpret_cast<void(*)()>(handler), listAssistantFilesProcessor);;
-		if(requestInfo == NULL)
-			return false;
-
-		thread = g_thread_new(NULL, __AssistantsManagerthreadFunc, static_cast<gpointer>(requestInfo));
-		return true;
-	}
-}
-
-
-
-
-bool AssistantsManager::listAssistantFilesAsync(char * accessToken,
-	std::string assistantId, int limit, std::string order, std::string after, std::string before, 
-	void(* handler)(ListAssistantFilesResponse, Error, void* )
-	, void* userData)
-{
-	return listAssistantFilesHelper(accessToken,
-	assistantId, limit, order, after, before, 
-	handler, userData, true);
-}
-
-bool AssistantsManager::listAssistantFilesSync(char * accessToken,
-	std::string assistantId, int limit, std::string order, std::string after, std::string before, 
-	void(* handler)(ListAssistantFilesResponse, Error, void* )
-	, void* userData)
-{
-	return listAssistantFilesHelper(accessToken,
-	assistantId, limit, order, after, before, 
 	handler, userData, false);
 }
 
@@ -3097,192 +2448,6 @@ bool AssistantsManager::listAssistantsSync(char * accessToken,
 {
 	return listAssistantsHelper(accessToken,
 	limit, order, after, before, 
-	handler, userData, false);
-}
-
-static bool listMessageFilesProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
-	void(* voidHandler)())
-{
-	void(* handler)(ListMessageFilesResponse, Error, void* )
-	= reinterpret_cast<void(*)(ListMessageFilesResponse, Error, void* )> (voidHandler);
-	
-	JsonNode* pJson;
-	char * data = p_chunk.memory;
-
-	
-	ListMessageFilesResponse out;
-
-	if (code >= 200 && code < 300) {
-		Error error(code, string("No Error"));
-
-
-
-
-		if (isprimitive("ListMessageFilesResponse")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "ListMessageFilesResponse", "ListMessageFilesResponse");
-			json_node_free(pJson);
-
-			if ("ListMessageFilesResponse" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
-		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
-
-	} else {
-		Error error;
-		if (errormsg != NULL) {
-			error = Error(code, string(errormsg));
-		} else if (p_chunk.memory != NULL) {
-			error = Error(code, string(p_chunk.memory));
-		} else {
-			error = Error(code, string("Unknown Error"));
-		}
-		 handler(out, error, userData);
-		return false;
-			}
-}
-
-static bool listMessageFilesHelper(char * accessToken,
-	std::string threadId, std::string messageId, int limit, std::string order, std::string after, std::string before, 
-	void(* handler)(ListMessageFilesResponse, Error, void* )
-	, void* userData, bool isAsync)
-{
-
-	//TODO: maybe delete headerList after its used to free up space?
-	struct curl_slist *headerList = NULL;
-
-	
-	string accessHeader = "Authorization: Bearer ";
-	accessHeader.append(accessToken);
-	headerList = curl_slist_append(headerList, accessHeader.c_str());
-	headerList = curl_slist_append(headerList, "Content-Type: application/json");
-
-	map <string, string> queryParams;
-	string itemAtq;
-	
-
-	itemAtq = stringify(&limit, "int");
-	queryParams.insert(pair<string, string>("limit", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("limit");
-	}
-
-
-	itemAtq = stringify(&order, "std::string");
-	queryParams.insert(pair<string, string>("order", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("order");
-	}
-
-
-	itemAtq = stringify(&after, "std::string");
-	queryParams.insert(pair<string, string>("after", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("after");
-	}
-
-
-	itemAtq = stringify(&before, "std::string");
-	queryParams.insert(pair<string, string>("before", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("before");
-	}
-
-	string mBody = "";
-	JsonNode* node;
-	JsonArray* json_array;
-
-	string url("/threads/{thread_id}/messages/{message_id}/files");
-	int pos;
-
-	string s_threadId("{");
-	s_threadId.append("thread_id");
-	s_threadId.append("}");
-	pos = url.find(s_threadId);
-	url.erase(pos, s_threadId.length());
-	url.insert(pos, stringify(&threadId, "std::string"));
-	string s_messageId("{");
-	s_messageId.append("message_id");
-	s_messageId.append("}");
-	pos = url.find(s_messageId);
-	url.erase(pos, s_messageId.length());
-	url.insert(pos, stringify(&messageId, "std::string"));
-
-	//TODO: free memory of errormsg, memorystruct
-	MemoryStruct_s* p_chunk = new MemoryStruct_s();
-	long code;
-	char* errormsg = NULL;
-	string myhttpmethod("GET");
-
-	if(strcmp("PUT", "GET") == 0){
-		if(strcmp("", mBody.c_str()) == 0){
-			mBody.append("{}");
-		}
-	}
-
-	if(!isAsync){
-		NetClient::easycurl(AssistantsManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg);
-		bool retval = listMessageFilesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
-
-		curl_slist_free_all(headerList);
-		if (p_chunk) {
-			if(p_chunk->memory) {
-				free(p_chunk->memory);
-			}
-			delete (p_chunk);
-		}
-		if (errormsg) {
-			free(errormsg);
-		}
-		return retval;
-	} else{
-		GThread *thread = NULL;
-		RequestInfo *requestInfo = NULL;
-
-		requestInfo = new(nothrow) RequestInfo (AssistantsManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg, userData, reinterpret_cast<void(*)()>(handler), listMessageFilesProcessor);;
-		if(requestInfo == NULL)
-			return false;
-
-		thread = g_thread_new(NULL, __AssistantsManagerthreadFunc, static_cast<gpointer>(requestInfo));
-		return true;
-	}
-}
-
-
-
-
-bool AssistantsManager::listMessageFilesAsync(char * accessToken,
-	std::string threadId, std::string messageId, int limit, std::string order, std::string after, std::string before, 
-	void(* handler)(ListMessageFilesResponse, Error, void* )
-	, void* userData)
-{
-	return listMessageFilesHelper(accessToken,
-	threadId, messageId, limit, order, after, before, 
-	handler, userData, true);
-}
-
-bool AssistantsManager::listMessageFilesSync(char * accessToken,
-	std::string threadId, std::string messageId, int limit, std::string order, std::string after, std::string before, 
-	void(* handler)(ListMessageFilesResponse, Error, void* )
-	, void* userData)
-{
-	return listMessageFilesHelper(accessToken,
-	threadId, messageId, limit, order, after, before, 
 	handler, userData, false);
 }
 
@@ -3529,7 +2694,7 @@ static bool listRunStepsProcessor(MemoryStruct_s p_chunk, long code, char* error
 }
 
 static bool listRunStepsHelper(char * accessToken,
-	std::string threadId, std::string runId, int limit, std::string order, std::string after, std::string before, 
+	std::string threadId, std::string runId, int limit, std::string order, std::string after, std::string before, std::list<std::string> includeLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(ListRunStepsResponse, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -3574,6 +2739,15 @@ static bool listRunStepsHelper(char * accessToken,
 		queryParams.erase("before");
 	}
 
+	for (std::list
+	<std::string>::iterator queryIter = includeLeft_Square_BracketRight_Square_Bracket.begin(); queryIter != includeLeft_Square_BracketRight_Square_Bracket.end(); ++queryIter) {
+		string itemAt = stringify(&(*queryIter), "std::string");
+		if( itemAt.empty()){
+			continue;
+		}
+		queryParams.insert(pair<string, string>("includeLeft_Square_BracketRight_Square_Bracket", itemAt));
+	}
+	
 	string mBody = "";
 	JsonNode* node;
 	JsonArray* json_array;
@@ -3640,22 +2814,22 @@ static bool listRunStepsHelper(char * accessToken,
 
 
 bool AssistantsManager::listRunStepsAsync(char * accessToken,
-	std::string threadId, std::string runId, int limit, std::string order, std::string after, std::string before, 
+	std::string threadId, std::string runId, int limit, std::string order, std::string after, std::string before, std::list<std::string> includeLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(ListRunStepsResponse, Error, void* )
 	, void* userData)
 {
 	return listRunStepsHelper(accessToken,
-	threadId, runId, limit, order, after, before, 
+	threadId, runId, limit, order, after, before, includeLeft_Square_BracketRight_Square_Bracket, 
 	handler, userData, true);
 }
 
 bool AssistantsManager::listRunStepsSync(char * accessToken,
-	std::string threadId, std::string runId, int limit, std::string order, std::string after, std::string before, 
+	std::string threadId, std::string runId, int limit, std::string order, std::string after, std::string before, std::list<std::string> includeLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(ListRunStepsResponse, Error, void* )
 	, void* userData)
 {
 	return listRunStepsHelper(accessToken,
-	threadId, runId, limit, order, after, before, 
+	threadId, runId, limit, order, after, before, includeLeft_Square_BracketRight_Square_Bracket, 
 	handler, userData, false);
 }
 

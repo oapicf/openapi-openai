@@ -10,6 +10,7 @@
 #' @field flagged Whether any of the below categories are flagged. character
 #' @field categories  \link{CreateModerationResponseResultsInnerCategories}
 #' @field category_scores  \link{CreateModerationResponseResultsInnerCategoryScores}
+#' @field category_applied_input_types  \link{CreateModerationResponseResultsInnerCategoryAppliedInputTypes}
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -19,6 +20,7 @@ CreateModerationResponseResultsInner <- R6::R6Class(
     `flagged` = NULL,
     `categories` = NULL,
     `category_scores` = NULL,
+    `category_applied_input_types` = NULL,
 
     #' @description
     #' Initialize a new CreateModerationResponseResultsInner class.
@@ -26,8 +28,9 @@ CreateModerationResponseResultsInner <- R6::R6Class(
     #' @param flagged Whether any of the below categories are flagged.
     #' @param categories categories
     #' @param category_scores category_scores
+    #' @param category_applied_input_types category_applied_input_types
     #' @param ... Other optional arguments.
-    initialize = function(`flagged`, `categories`, `category_scores`, ...) {
+    initialize = function(`flagged`, `categories`, `category_scores`, `category_applied_input_types`, ...) {
       if (!missing(`flagged`)) {
         if (!(is.logical(`flagged`) && length(`flagged`) == 1)) {
           stop(paste("Error! Invalid data for `flagged`. Must be a boolean:", `flagged`))
@@ -41,6 +44,10 @@ CreateModerationResponseResultsInner <- R6::R6Class(
       if (!missing(`category_scores`)) {
         stopifnot(R6::is.R6(`category_scores`))
         self$`category_scores` <- `category_scores`
+      }
+      if (!missing(`category_applied_input_types`)) {
+        stopifnot(R6::is.R6(`category_applied_input_types`))
+        self$`category_applied_input_types` <- `category_applied_input_types`
       }
     },
 
@@ -87,6 +94,10 @@ CreateModerationResponseResultsInner <- R6::R6Class(
         CreateModerationResponseResultsInnerObject[["category_scores"]] <-
           self$`category_scores`$toSimpleType()
       }
+      if (!is.null(self$`category_applied_input_types`)) {
+        CreateModerationResponseResultsInnerObject[["category_applied_input_types"]] <-
+          self$`category_applied_input_types`$toSimpleType()
+      }
       return(CreateModerationResponseResultsInnerObject)
     },
 
@@ -109,6 +120,11 @@ CreateModerationResponseResultsInner <- R6::R6Class(
         `category_scores_object` <- CreateModerationResponseResultsInnerCategoryScores$new()
         `category_scores_object`$fromJSON(jsonlite::toJSON(this_object$`category_scores`, auto_unbox = TRUE, digits = NA))
         self$`category_scores` <- `category_scores_object`
+      }
+      if (!is.null(this_object$`category_applied_input_types`)) {
+        `category_applied_input_types_object` <- CreateModerationResponseResultsInnerCategoryAppliedInputTypes$new()
+        `category_applied_input_types_object`$fromJSON(jsonlite::toJSON(this_object$`category_applied_input_types`, auto_unbox = TRUE, digits = NA))
+        self$`category_applied_input_types` <- `category_applied_input_types_object`
       }
       self
     },
@@ -134,6 +150,7 @@ CreateModerationResponseResultsInner <- R6::R6Class(
       self$`flagged` <- this_object$`flagged`
       self$`categories` <- CreateModerationResponseResultsInnerCategories$new()$fromJSON(jsonlite::toJSON(this_object$`categories`, auto_unbox = TRUE, digits = NA))
       self$`category_scores` <- CreateModerationResponseResultsInnerCategoryScores$new()$fromJSON(jsonlite::toJSON(this_object$`category_scores`, auto_unbox = TRUE, digits = NA))
+      self$`category_applied_input_types` <- CreateModerationResponseResultsInnerCategoryAppliedInputTypes$new()$fromJSON(jsonlite::toJSON(this_object$`category_applied_input_types`, auto_unbox = TRUE, digits = NA))
       self
     },
 
@@ -162,6 +179,12 @@ CreateModerationResponseResultsInner <- R6::R6Class(
         stopifnot(R6::is.R6(input_json$`category_scores`))
       } else {
         stop(paste("The JSON input `", input, "` is invalid for CreateModerationResponseResultsInner: the required field `category_scores` is missing."))
+      }
+      # check the required field `category_applied_input_types`
+      if (!is.null(input_json$`category_applied_input_types`)) {
+        stopifnot(R6::is.R6(input_json$`category_applied_input_types`))
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for CreateModerationResponseResultsInner: the required field `category_applied_input_types` is missing."))
       }
     },
 
@@ -193,6 +216,11 @@ CreateModerationResponseResultsInner <- R6::R6Class(
         return(FALSE)
       }
 
+      # check if the required `category_applied_input_types` is null
+      if (is.null(self$`category_applied_input_types`)) {
+        return(FALSE)
+      }
+
       TRUE
     },
 
@@ -215,6 +243,11 @@ CreateModerationResponseResultsInner <- R6::R6Class(
       # check if the required `category_scores` is null
       if (is.null(self$`category_scores`)) {
         invalid_fields["category_scores"] <- "Non-nullable required field `category_scores` cannot be null."
+      }
+
+      # check if the required `category_applied_input_types` is null
+      if (is.null(self$`category_applied_input_types`)) {
+        invalid_fields["category_applied_input_types"] <- "Non-nullable required field `category_applied_input_types` cannot be null."
       }
 
       invalid_fields

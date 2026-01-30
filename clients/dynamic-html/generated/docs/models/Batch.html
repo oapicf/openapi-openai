@@ -1,0 +1,119 @@
+
+<h2>Batch</h2>
+<ul class="parameter">
+  <li class="param-required-true">id : String
+    <br/>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">object : String
+    <br/>The object type, which is always &#x60;batch&#x60;.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>batch</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">endpoint : String
+    <br/>The OpenAI API endpoint used by the batch.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">errors : Batch_errors
+    <br/>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">inputUnderscorefileUnderscoreid : String
+    <br/>The ID of the input file for the batch.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">completionUnderscorewindow : String
+    <br/>The time frame within which the batch should be processed.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">status : String
+    <br/>The current status of the batch.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>validating</dd>
+            <dd>failed</dd>
+            <dd>in_progress</dd>
+            <dd>finalizing</dd>
+            <dd>completed</dd>
+            <dd>expired</dd>
+            <dd>cancelling</dd>
+            <dd>cancelled</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">outputUnderscorefileUnderscoreid : String
+    <br/>The ID of the file containing the outputs of successfully executed requests.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">errorUnderscorefileUnderscoreid : String
+    <br/>The ID of the file containing the outputs of requests with errors.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">createdUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the batch was created.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">inUnderscoreprogressUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the batch started processing.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">expiresUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the batch will expire.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">finalizingUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the batch started finalizing.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">completedUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the batch was completed.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">failedUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the batch failed.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">expiredUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the batch expired.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">cancellingUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the batch started cancelling.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">cancelledUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the batch was cancelled.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">requestUnderscorecounts : Batch_request_counts
+    <br/>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">metadata : Object
+    <br/>Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
+  </li>
+</ul>

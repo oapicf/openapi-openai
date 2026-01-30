@@ -14,6 +14,7 @@ import org.openapitools.vertxweb.server.model.RunStreamEventOneOf5;
 import org.openapitools.vertxweb.server.model.RunStreamEventOneOf6;
 import org.openapitools.vertxweb.server.model.RunStreamEventOneOf7;
 import org.openapitools.vertxweb.server.model.RunStreamEventOneOf8;
+import org.openapitools.vertxweb.server.model.RunStreamEventOneOf9;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RunStreamEvent   {

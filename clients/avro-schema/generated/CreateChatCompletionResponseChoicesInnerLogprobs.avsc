@@ -11,6 +11,14 @@
         "items": "model.ChatCompletionTokenLogprob"
       },
       "doc": "A list of message content tokens with log probability information."
+    },
+    {
+      "name": "refusal",
+      "type": {
+        "type": "array",
+        "items": "model.ChatCompletionTokenLogprob"
+      },
+      "doc": "A list of message refusal tokens with log probability information."
     }
   ]
 

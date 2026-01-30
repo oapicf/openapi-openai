@@ -169,14 +169,6 @@ public class RunObjectTest {
     }
 
     /**
-     * Test the property 'fileIds'
-     */
-    @Test
-    public void fileIdsTest() {
-        // TODO: test fileIds
-    }
-
-    /**
      * Test the property 'metadata'
      */
     @Test
@@ -198,6 +190,14 @@ public class RunObjectTest {
     @Test
     public void temperatureTest() {
         // TODO: test temperature
+    }
+
+    /**
+     * Test the property 'topP'
+     */
+    @Test
+    public void topPTest() {
+        // TODO: test topP
     }
 
     /**
@@ -230,6 +230,14 @@ public class RunObjectTest {
     @Test
     public void toolChoiceTest() {
         // TODO: test toolChoice
+    }
+
+    /**
+     * Test the property 'parallelToolCalls'
+     */
+    @Test
+    public void parallelToolCallsTest() {
+        // TODO: test parallelToolCalls
     }
 
     /**

@@ -1,0 +1,15 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Configuration for the DPO fine-tuning method.",
+  "name": "FineTuneDPOMethod",
+  "fields": [
+    {
+      "name": "hyperparameters",
+      "type": ["null", "model.FineTuneDPOMethodHyperparameters"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

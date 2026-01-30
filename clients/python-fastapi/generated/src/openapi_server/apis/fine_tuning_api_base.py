@@ -40,15 +40,6 @@ class BaseFineTuningApi:
         ...
 
 
-    async def list_fine_tuning_events(
-        self,
-        fine_tuning_job_id: Annotated[StrictStr, Field(description="The ID of the fine-tuning job to get events for. ")],
-        after: Annotated[Optional[StrictStr], Field(description="Identifier for the last event from the previous pagination request.")],
-        limit: Annotated[Optional[StrictInt], Field(description="Number of events to retrieve.")],
-    ) -> ListFineTuningJobEventsResponse:
-        ...
-
-
     async def cancel_fine_tuning_job(
         self,
         fine_tuning_job_id: Annotated[StrictStr, Field(description="The ID of the fine-tuning job to cancel. ")],
@@ -62,4 +53,13 @@ class BaseFineTuningApi:
         after: Annotated[Optional[StrictStr], Field(description="Identifier for the last checkpoint ID from the previous pagination request.")],
         limit: Annotated[Optional[StrictInt], Field(description="Number of checkpoints to retrieve.")],
     ) -> ListFineTuningJobCheckpointsResponse:
+        ...
+
+
+    async def list_fine_tuning_events(
+        self,
+        fine_tuning_job_id: Annotated[StrictStr, Field(description="The ID of the fine-tuning job to get events for. ")],
+        after: Annotated[Optional[StrictStr], Field(description="Identifier for the last event from the previous pagination request.")],
+        limit: Annotated[Optional[StrictInt], Field(description="Number of events to retrieve.")],
+    ) -> ListFineTuningJobEventsResponse:
         ...

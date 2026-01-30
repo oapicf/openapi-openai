@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.ChatCompletionRequestUserMessage
+Messages sent by an end user, containing prompts or additional context information. 
 
 ## Properties
 

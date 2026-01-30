@@ -10,8 +10,11 @@ import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.ChatCompletionMessageToolCall;
+import org.openapitools.model.ChatCompletionRequestAssistantMessageAudio;
+import org.openapitools.model.ChatCompletionRequestAssistantMessageContent;
 import org.openapitools.model.ChatCompletionRequestAssistantMessageFunctionCall;
 import java.util.NoSuchElementException;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -23,13 +26,16 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * ChatCompletionRequestAssistantMessage
+ * Messages sent by the model in response to user messages. 
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
-public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequestMessage {
+@Schema(name = "ChatCompletionRequestAssistantMessage", description = "Messages sent by the model in response to user messages. ")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequestMessage, FineTunePreferenceRequestInputPreferredCompletionInner {
 
-  private JsonNullable<String> content = JsonNullable.<String>undefined();
+  private JsonNullable<ChatCompletionRequestAssistantMessageContent> content = JsonNullable.<ChatCompletionRequestAssistantMessageContent>undefined();
+
+  private JsonNullable<String> refusal = JsonNullable.<String>undefined();
 
   /**
    * The role of the messages author, in this case `assistant`.
@@ -68,11 +74,13 @@ public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequ
 
   private String name;
 
+  private JsonNullable<ChatCompletionRequestAssistantMessageAudio> audio = JsonNullable.<ChatCompletionRequestAssistantMessageAudio>undefined();
+
   @Valid
   private List<@Valid ChatCompletionMessageToolCall> toolCalls = new ArrayList<>();
 
   @Deprecated
-  private ChatCompletionRequestAssistantMessageFunctionCall functionCall;
+  private JsonNullable<ChatCompletionRequestAssistantMessageFunctionCall> functionCall = JsonNullable.<ChatCompletionRequestAssistantMessageFunctionCall>undefined();
 
   public ChatCompletionRequestAssistantMessage() {
     super();
@@ -85,24 +93,44 @@ public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequ
     this.role = role;
   }
 
-  public ChatCompletionRequestAssistantMessage content(String content) {
+  public ChatCompletionRequestAssistantMessage content(ChatCompletionRequestAssistantMessageContent content) {
     this.content = JsonNullable.of(content);
     return this;
   }
 
   /**
-   * The contents of the assistant message. Required unless `tool_calls` or `function_call` is specified. 
+   * Get content
    * @return content
    */
-  
-  @Schema(name = "content", description = "The contents of the assistant message. Required unless `tool_calls` or `function_call` is specified. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Valid 
+  @Schema(name = "content", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("content")
-  public JsonNullable<String> getContent() {
+  public JsonNullable<ChatCompletionRequestAssistantMessageContent> getContent() {
     return content;
   }
 
-  public void setContent(JsonNullable<String> content) {
+  public void setContent(JsonNullable<ChatCompletionRequestAssistantMessageContent> content) {
     this.content = content;
+  }
+
+  public ChatCompletionRequestAssistantMessage refusal(String refusal) {
+    this.refusal = JsonNullable.of(refusal);
+    return this;
+  }
+
+  /**
+   * The refusal message by the assistant.
+   * @return refusal
+   */
+  
+  @Schema(name = "refusal", description = "The refusal message by the assistant.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("refusal")
+  public JsonNullable<String> getRefusal() {
+    return refusal;
+  }
+
+  public void setRefusal(JsonNullable<String> refusal) {
+    this.refusal = refusal;
   }
 
   public ChatCompletionRequestAssistantMessage role(RoleEnum role) {
@@ -145,6 +173,26 @@ public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequ
     this.name = name;
   }
 
+  public ChatCompletionRequestAssistantMessage audio(ChatCompletionRequestAssistantMessageAudio audio) {
+    this.audio = JsonNullable.of(audio);
+    return this;
+  }
+
+  /**
+   * Get audio
+   * @return audio
+   */
+  @Valid 
+  @Schema(name = "audio", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("audio")
+  public JsonNullable<ChatCompletionRequestAssistantMessageAudio> getAudio() {
+    return audio;
+  }
+
+  public void setAudio(JsonNullable<ChatCompletionRequestAssistantMessageAudio> audio) {
+    this.audio = audio;
+  }
+
   public ChatCompletionRequestAssistantMessage toolCalls(List<@Valid ChatCompletionMessageToolCall> toolCalls) {
     this.toolCalls = toolCalls;
     return this;
@@ -174,7 +222,7 @@ public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequ
   }
 
   public ChatCompletionRequestAssistantMessage functionCall(ChatCompletionRequestAssistantMessageFunctionCall functionCall) {
-    this.functionCall = functionCall;
+    this.functionCall = JsonNullable.of(functionCall);
     return this;
   }
 
@@ -187,7 +235,7 @@ public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequ
   @Schema(name = "function_call", deprecated = true, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("function_call")
   @Deprecated
-  public ChatCompletionRequestAssistantMessageFunctionCall getFunctionCall() {
+  public JsonNullable<ChatCompletionRequestAssistantMessageFunctionCall> getFunctionCall() {
     return functionCall;
   }
 
@@ -195,7 +243,7 @@ public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequ
    * @deprecated
    */
   @Deprecated
-  public void setFunctionCall(ChatCompletionRequestAssistantMessageFunctionCall functionCall) {
+  public void setFunctionCall(JsonNullable<ChatCompletionRequestAssistantMessageFunctionCall> functionCall) {
     this.functionCall = functionCall;
   }
 
@@ -209,10 +257,12 @@ public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequ
     }
     ChatCompletionRequestAssistantMessage chatCompletionRequestAssistantMessage = (ChatCompletionRequestAssistantMessage) o;
     return equalsNullable(this.content, chatCompletionRequestAssistantMessage.content) &&
+        equalsNullable(this.refusal, chatCompletionRequestAssistantMessage.refusal) &&
         Objects.equals(this.role, chatCompletionRequestAssistantMessage.role) &&
         Objects.equals(this.name, chatCompletionRequestAssistantMessage.name) &&
+        equalsNullable(this.audio, chatCompletionRequestAssistantMessage.audio) &&
         Objects.equals(this.toolCalls, chatCompletionRequestAssistantMessage.toolCalls) &&
-        Objects.equals(this.functionCall, chatCompletionRequestAssistantMessage.functionCall);
+        equalsNullable(this.functionCall, chatCompletionRequestAssistantMessage.functionCall);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -221,7 +271,7 @@ public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequ
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(content), role, name, toolCalls, functionCall);
+    return Objects.hash(hashCodeNullable(content), hashCodeNullable(refusal), role, name, hashCodeNullable(audio), toolCalls, hashCodeNullable(functionCall));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -236,8 +286,10 @@ public class ChatCompletionRequestAssistantMessage implements ChatCompletionRequ
     StringBuilder sb = new StringBuilder();
     sb.append("class ChatCompletionRequestAssistantMessage {\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    audio: ").append(toIndentedString(audio)).append("\n");
     sb.append("    toolCalls: ").append(toIndentedString(toolCalls)).append("\n");
     sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
     sb.append("}");

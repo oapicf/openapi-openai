@@ -4,7 +4,7 @@ All URIs are relative to *https://api.openai.com/v1*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|[**createModeration**](#createmoderation) | **POST** /moderations | Classifies if text is potentially harmful.|
+|[**createModeration**](#createmoderation) | **POST** /moderations | Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). |
 
 # **createModeration**
 > CreateModerationResponse createModeration(createModerationRequest)

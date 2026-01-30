@@ -86,7 +86,7 @@ FILE(String.valueOf("file"));
 
 public enum PurposeEnum {
 
-FINE_TUNE(String.valueOf("fine-tune")), FINE_TUNE_RESULTS(String.valueOf("fine-tune-results")), ASSISTANTS(String.valueOf("assistants")), ASSISTANTS_OUTPUT(String.valueOf("assistants_output"));
+ASSISTANTS(String.valueOf("assistants")), ASSISTANTS_OUTPUT(String.valueOf("assistants_output")), BATCH(String.valueOf("batch")), BATCH_OUTPUT(String.valueOf("batch_output")), FINE_TUNE(String.valueOf("fine-tune")), FINE_TUNE_RESULTS(String.valueOf("fine-tune-results")), VISION(String.valueOf("vision"));
 
 
     private String value;
@@ -117,9 +117,9 @@ FINE_TUNE(String.valueOf("fine-tune")), FINE_TUNE_RESULTS(String.valueOf("fine-t
 }
 
  /**
-  * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+  * The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
   */
-  @ApiModelProperty(required = true, value = "The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.")
+  @ApiModelProperty(required = true, value = "The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.")
 
   private PurposeEnum purpose;
 
@@ -267,7 +267,7 @@ UPLOADED(String.valueOf("uploaded")), PROCESSED(String.valueOf("processed")), ER
   }
 
  /**
-   * The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;.
+   * The intended purpose of the file. Supported values are &#x60;assistants&#x60;, &#x60;assistants_output&#x60;, &#x60;batch&#x60;, &#x60;batch_output&#x60;, &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60; and &#x60;vision&#x60;.
    * @return purpose
   **/
   @JsonProperty("purpose")

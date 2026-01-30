@@ -1,23 +1,18 @@
 package org.openapitools.vertxweb.server.api;
 
-import org.openapitools.vertxweb.server.model.AssistantFileObject;
 import org.openapitools.vertxweb.server.model.AssistantObject;
-import org.openapitools.vertxweb.server.model.CreateAssistantFileRequest;
 import org.openapitools.vertxweb.server.model.CreateAssistantRequest;
 import org.openapitools.vertxweb.server.model.CreateMessageRequest;
 import org.openapitools.vertxweb.server.model.CreateRunRequest;
 import org.openapitools.vertxweb.server.model.CreateThreadAndRunRequest;
 import org.openapitools.vertxweb.server.model.CreateThreadRequest;
-import org.openapitools.vertxweb.server.model.DeleteAssistantFileResponse;
 import org.openapitools.vertxweb.server.model.DeleteAssistantResponse;
+import org.openapitools.vertxweb.server.model.DeleteMessageResponse;
 import org.openapitools.vertxweb.server.model.DeleteThreadResponse;
-import org.openapitools.vertxweb.server.model.ListAssistantFilesResponse;
 import org.openapitools.vertxweb.server.model.ListAssistantsResponse;
-import org.openapitools.vertxweb.server.model.ListMessageFilesResponse;
 import org.openapitools.vertxweb.server.model.ListMessagesResponse;
 import org.openapitools.vertxweb.server.model.ListRunStepsResponse;
 import org.openapitools.vertxweb.server.model.ListRunsResponse;
-import org.openapitools.vertxweb.server.model.MessageFileObject;
 import org.openapitools.vertxweb.server.model.MessageObject;
 import org.openapitools.vertxweb.server.model.ModifyAssistantRequest;
 import org.openapitools.vertxweb.server.model.ModifyMessageRequest;
@@ -60,24 +55,19 @@ public class AssistantsApiHandler {
     public void mount(RouterBuilder builder) {
         builder.operation("cancelRun").handler(this::cancelRun);
         builder.operation("createAssistant").handler(this::createAssistant);
-        builder.operation("createAssistantFile").handler(this::createAssistantFile);
         builder.operation("createMessage").handler(this::createMessage);
         builder.operation("createRun").handler(this::createRun);
         builder.operation("createThread").handler(this::createThread);
         builder.operation("createThreadAndRun").handler(this::createThreadAndRun);
         builder.operation("deleteAssistant").handler(this::deleteAssistant);
-        builder.operation("deleteAssistantFile").handler(this::deleteAssistantFile);
+        builder.operation("deleteMessage").handler(this::deleteMessage);
         builder.operation("deleteThread").handler(this::deleteThread);
         builder.operation("getAssistant").handler(this::getAssistant);
-        builder.operation("getAssistantFile").handler(this::getAssistantFile);
         builder.operation("getMessage").handler(this::getMessage);
-        builder.operation("getMessageFile").handler(this::getMessageFile);
         builder.operation("getRun").handler(this::getRun);
         builder.operation("getRunStep").handler(this::getRunStep);
         builder.operation("getThread").handler(this::getThread);
-        builder.operation("listAssistantFiles").handler(this::listAssistantFiles);
         builder.operation("listAssistants").handler(this::listAssistants);
-        builder.operation("listMessageFiles").handler(this::listMessageFiles);
         builder.operation("listMessages").handler(this::listMessages);
         builder.operation("listRunSteps").handler(this::listRunSteps);
         builder.operation("listRuns").handler(this::listRuns);
@@ -135,31 +125,6 @@ public class AssistantsApiHandler {
             .onFailure(routingContext::fail);
     }
 
-    private void createAssistantFile(RoutingContext routingContext) {
-        logger.info("createAssistantFile()");
-
-        // Param extraction
-        RequestParameters requestParameters = routingContext.get(ValidationHandler.REQUEST_CONTEXT_KEY);
-
-        String assistantId = requestParameters.pathParameter("assistant_id") != null ? requestParameters.pathParameter("assistant_id").getString() : null;
-        RequestParameter body = requestParameters.body();
-        CreateAssistantFileRequest createAssistantFileRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateAssistantFileRequest>(){}) : null;
-
-        logger.debug("Parameter assistantId is {}", assistantId);
-        logger.debug("Parameter createAssistantFileRequest is {}", createAssistantFileRequest);
-
-        api.createAssistantFile(assistantId, createAssistantFileRequest)
-            .onSuccess(apiResponse -> {
-                routingContext.response().setStatusCode(apiResponse.getStatusCode());
-                if (apiResponse.hasData()) {
-                    routingContext.json(apiResponse.getData());
-                } else {
-                    routingContext.response().end();
-                }
-            })
-            .onFailure(routingContext::fail);
-    }
-
     private void createMessage(RoutingContext routingContext) {
         logger.info("createMessage()");
 
@@ -194,11 +159,13 @@ public class AssistantsApiHandler {
         String threadId = requestParameters.pathParameter("thread_id") != null ? requestParameters.pathParameter("thread_id").getString() : null;
         RequestParameter body = requestParameters.body();
         CreateRunRequest createRunRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateRunRequest>(){}) : null;
+        List<String> include = requestParameters.queryParameter("include[]") != null ? DatabindCodec.mapper().convertValue(requestParameters.queryParameter("include[]").get(), new TypeReference<List<String>>(){}) : null;
 
         logger.debug("Parameter threadId is {}", threadId);
         logger.debug("Parameter createRunRequest is {}", createRunRequest);
+        logger.debug("Parameter include is {}", include);
 
-        api.createRun(threadId, createRunRequest)
+        api.createRun(threadId, createRunRequest, include)
             .onSuccess(apiResponse -> {
                 routingContext.response().setStatusCode(apiResponse.getStatusCode());
                 if (apiResponse.hasData()) {
@@ -278,19 +245,19 @@ public class AssistantsApiHandler {
             .onFailure(routingContext::fail);
     }
 
-    private void deleteAssistantFile(RoutingContext routingContext) {
-        logger.info("deleteAssistantFile()");
+    private void deleteMessage(RoutingContext routingContext) {
+        logger.info("deleteMessage()");
 
         // Param extraction
         RequestParameters requestParameters = routingContext.get(ValidationHandler.REQUEST_CONTEXT_KEY);
 
-        String assistantId = requestParameters.pathParameter("assistant_id") != null ? requestParameters.pathParameter("assistant_id").getString() : null;
-        String fileId = requestParameters.pathParameter("file_id") != null ? requestParameters.pathParameter("file_id").getString() : null;
+        String threadId = requestParameters.pathParameter("thread_id") != null ? requestParameters.pathParameter("thread_id").getString() : null;
+        String messageId = requestParameters.pathParameter("message_id") != null ? requestParameters.pathParameter("message_id").getString() : null;
 
-        logger.debug("Parameter assistantId is {}", assistantId);
-        logger.debug("Parameter fileId is {}", fileId);
+        logger.debug("Parameter threadId is {}", threadId);
+        logger.debug("Parameter messageId is {}", messageId);
 
-        api.deleteAssistantFile(assistantId, fileId)
+        api.deleteMessage(threadId, messageId)
             .onSuccess(apiResponse -> {
                 routingContext.response().setStatusCode(apiResponse.getStatusCode());
                 if (apiResponse.hasData()) {
@@ -346,30 +313,6 @@ public class AssistantsApiHandler {
             .onFailure(routingContext::fail);
     }
 
-    private void getAssistantFile(RoutingContext routingContext) {
-        logger.info("getAssistantFile()");
-
-        // Param extraction
-        RequestParameters requestParameters = routingContext.get(ValidationHandler.REQUEST_CONTEXT_KEY);
-
-        String assistantId = requestParameters.pathParameter("assistant_id") != null ? requestParameters.pathParameter("assistant_id").getString() : null;
-        String fileId = requestParameters.pathParameter("file_id") != null ? requestParameters.pathParameter("file_id").getString() : null;
-
-        logger.debug("Parameter assistantId is {}", assistantId);
-        logger.debug("Parameter fileId is {}", fileId);
-
-        api.getAssistantFile(assistantId, fileId)
-            .onSuccess(apiResponse -> {
-                routingContext.response().setStatusCode(apiResponse.getStatusCode());
-                if (apiResponse.hasData()) {
-                    routingContext.json(apiResponse.getData());
-                } else {
-                    routingContext.response().end();
-                }
-            })
-            .onFailure(routingContext::fail);
-    }
-
     private void getMessage(RoutingContext routingContext) {
         logger.info("getMessage()");
 
@@ -383,32 +326,6 @@ public class AssistantsApiHandler {
         logger.debug("Parameter messageId is {}", messageId);
 
         api.getMessage(threadId, messageId)
-            .onSuccess(apiResponse -> {
-                routingContext.response().setStatusCode(apiResponse.getStatusCode());
-                if (apiResponse.hasData()) {
-                    routingContext.json(apiResponse.getData());
-                } else {
-                    routingContext.response().end();
-                }
-            })
-            .onFailure(routingContext::fail);
-    }
-
-    private void getMessageFile(RoutingContext routingContext) {
-        logger.info("getMessageFile()");
-
-        // Param extraction
-        RequestParameters requestParameters = routingContext.get(ValidationHandler.REQUEST_CONTEXT_KEY);
-
-        String threadId = requestParameters.pathParameter("thread_id") != null ? requestParameters.pathParameter("thread_id").getString() : null;
-        String messageId = requestParameters.pathParameter("message_id") != null ? requestParameters.pathParameter("message_id").getString() : null;
-        String fileId = requestParameters.pathParameter("file_id") != null ? requestParameters.pathParameter("file_id").getString() : null;
-
-        logger.debug("Parameter threadId is {}", threadId);
-        logger.debug("Parameter messageId is {}", messageId);
-        logger.debug("Parameter fileId is {}", fileId);
-
-        api.getMessageFile(threadId, messageId, fileId)
             .onSuccess(apiResponse -> {
                 routingContext.response().setStatusCode(apiResponse.getStatusCode());
                 if (apiResponse.hasData()) {
@@ -453,12 +370,14 @@ public class AssistantsApiHandler {
         String threadId = requestParameters.pathParameter("thread_id") != null ? requestParameters.pathParameter("thread_id").getString() : null;
         String runId = requestParameters.pathParameter("run_id") != null ? requestParameters.pathParameter("run_id").getString() : null;
         String stepId = requestParameters.pathParameter("step_id") != null ? requestParameters.pathParameter("step_id").getString() : null;
+        List<String> include = requestParameters.queryParameter("include[]") != null ? DatabindCodec.mapper().convertValue(requestParameters.queryParameter("include[]").get(), new TypeReference<List<String>>(){}) : null;
 
         logger.debug("Parameter threadId is {}", threadId);
         logger.debug("Parameter runId is {}", runId);
         logger.debug("Parameter stepId is {}", stepId);
+        logger.debug("Parameter include is {}", include);
 
-        api.getRunStep(threadId, runId, stepId)
+        api.getRunStep(threadId, runId, stepId, include)
             .onSuccess(apiResponse -> {
                 routingContext.response().setStatusCode(apiResponse.getStatusCode());
                 if (apiResponse.hasData()) {
@@ -492,36 +411,6 @@ public class AssistantsApiHandler {
             .onFailure(routingContext::fail);
     }
 
-    private void listAssistantFiles(RoutingContext routingContext) {
-        logger.info("listAssistantFiles()");
-
-        // Param extraction
-        RequestParameters requestParameters = routingContext.get(ValidationHandler.REQUEST_CONTEXT_KEY);
-
-        String assistantId = requestParameters.pathParameter("assistant_id") != null ? requestParameters.pathParameter("assistant_id").getString() : null;
-        Integer limit = requestParameters.queryParameter("limit") != null ? requestParameters.queryParameter("limit").getInteger() : 20;
-        String order = requestParameters.queryParameter("order") != null ? requestParameters.queryParameter("order").getString() : "desc";
-        String after = requestParameters.queryParameter("after") != null ? requestParameters.queryParameter("after").getString() : null;
-        String before = requestParameters.queryParameter("before") != null ? requestParameters.queryParameter("before").getString() : null;
-
-        logger.debug("Parameter assistantId is {}", assistantId);
-        logger.debug("Parameter limit is {}", limit);
-        logger.debug("Parameter order is {}", order);
-        logger.debug("Parameter after is {}", after);
-        logger.debug("Parameter before is {}", before);
-
-        api.listAssistantFiles(assistantId, limit, order, after, before)
-            .onSuccess(apiResponse -> {
-                routingContext.response().setStatusCode(apiResponse.getStatusCode());
-                if (apiResponse.hasData()) {
-                    routingContext.json(apiResponse.getData());
-                } else {
-                    routingContext.response().end();
-                }
-            })
-            .onFailure(routingContext::fail);
-    }
-
     private void listAssistants(RoutingContext routingContext) {
         logger.info("listAssistants()");
 
@@ -539,38 +428,6 @@ public class AssistantsApiHandler {
         logger.debug("Parameter before is {}", before);
 
         api.listAssistants(limit, order, after, before)
-            .onSuccess(apiResponse -> {
-                routingContext.response().setStatusCode(apiResponse.getStatusCode());
-                if (apiResponse.hasData()) {
-                    routingContext.json(apiResponse.getData());
-                } else {
-                    routingContext.response().end();
-                }
-            })
-            .onFailure(routingContext::fail);
-    }
-
-    private void listMessageFiles(RoutingContext routingContext) {
-        logger.info("listMessageFiles()");
-
-        // Param extraction
-        RequestParameters requestParameters = routingContext.get(ValidationHandler.REQUEST_CONTEXT_KEY);
-
-        String threadId = requestParameters.pathParameter("thread_id") != null ? requestParameters.pathParameter("thread_id").getString() : null;
-        String messageId = requestParameters.pathParameter("message_id") != null ? requestParameters.pathParameter("message_id").getString() : null;
-        Integer limit = requestParameters.queryParameter("limit") != null ? requestParameters.queryParameter("limit").getInteger() : 20;
-        String order = requestParameters.queryParameter("order") != null ? requestParameters.queryParameter("order").getString() : "desc";
-        String after = requestParameters.queryParameter("after") != null ? requestParameters.queryParameter("after").getString() : null;
-        String before = requestParameters.queryParameter("before") != null ? requestParameters.queryParameter("before").getString() : null;
-
-        logger.debug("Parameter threadId is {}", threadId);
-        logger.debug("Parameter messageId is {}", messageId);
-        logger.debug("Parameter limit is {}", limit);
-        logger.debug("Parameter order is {}", order);
-        logger.debug("Parameter after is {}", after);
-        logger.debug("Parameter before is {}", before);
-
-        api.listMessageFiles(threadId, messageId, limit, order, after, before)
             .onSuccess(apiResponse -> {
                 routingContext.response().setStatusCode(apiResponse.getStatusCode());
                 if (apiResponse.hasData()) {
@@ -626,6 +483,7 @@ public class AssistantsApiHandler {
         String order = requestParameters.queryParameter("order") != null ? requestParameters.queryParameter("order").getString() : "desc";
         String after = requestParameters.queryParameter("after") != null ? requestParameters.queryParameter("after").getString() : null;
         String before = requestParameters.queryParameter("before") != null ? requestParameters.queryParameter("before").getString() : null;
+        List<String> include = requestParameters.queryParameter("include[]") != null ? DatabindCodec.mapper().convertValue(requestParameters.queryParameter("include[]").get(), new TypeReference<List<String>>(){}) : null;
 
         logger.debug("Parameter threadId is {}", threadId);
         logger.debug("Parameter runId is {}", runId);
@@ -633,8 +491,9 @@ public class AssistantsApiHandler {
         logger.debug("Parameter order is {}", order);
         logger.debug("Parameter after is {}", after);
         logger.debug("Parameter before is {}", before);
+        logger.debug("Parameter include is {}", include);
 
-        api.listRunSteps(threadId, runId, limit, order, after, before)
+        api.listRunSteps(threadId, runId, limit, order, after, before, include)
             .onSuccess(apiResponse -> {
                 routingContext.response().setStatusCode(apiResponse.getStatusCode());
                 if (apiResponse.hasData()) {

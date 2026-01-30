@@ -11,7 +11,7 @@ import scala.collection.immutable.Seq
 /**
  * Details of the tool call.
  * @param _type Always `tool_calls`.
- * @param toolUnderscorecalls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+ * @param toolUnderscorecalls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
  */
 case class RunStepDeltaStepDetailsToolCallsObject(_type: String,
                 toolUnderscorecalls: Option[Seq[RunStepDeltaStepDetailsToolCallsObjectToolCallsInner]]

@@ -12,6 +12,7 @@
     "model": "properties",
     "children": [
       {"model": "content" },
+      {"model": "refusal" },
     ]
   }]
 }

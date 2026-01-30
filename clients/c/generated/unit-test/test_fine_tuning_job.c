@@ -18,6 +18,7 @@ fine_tuning_job_t* instantiate_fine_tuning_job(int include_optional);
 
 #include "test_fine_tuning_job_error.c"
 #include "test_fine_tuning_job_hyperparameters.c"
+#include "test_fine_tune_method.c"
 
 
 fine_tuning_job_t* instantiate_fine_tuning_job(int include_optional) {
@@ -41,7 +42,10 @@ fine_tuning_job_t* instantiate_fine_tuning_job(int include_optional) {
       "0",
       "0",
       list_createList(),
-      56
+      56,
+      56,
+       // false, not to have infinite recursion
+      instantiate_fine_tune_method(0)
     );
   } else {
     fine_tuning_job = fine_tuning_job_create(
@@ -60,7 +64,9 @@ fine_tuning_job_t* instantiate_fine_tuning_job(int include_optional) {
       "0",
       "0",
       list_createList(),
-      56
+      56,
+      56,
+      NULL
     );
   }
 

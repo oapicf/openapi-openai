@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -22,9 +22,6 @@ type MessageDeltaObjectDelta struct {
 
 	// The content of the message in array of text and/or images.
 	Content []MessageDeltaObjectDeltaContentInner `json:"content,omitempty"`
-
-	// A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-	FileIds []string `json:"file_ids,omitempty"`
 }
 
 // AssertMessageDeltaObjectDeltaRequired checks if the required fields are not zero-ed

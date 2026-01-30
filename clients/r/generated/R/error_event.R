@@ -1,7 +1,7 @@
 #' Create a new ErrorEvent
 #'
 #' @description
-#' Occurs when an [error](/docs/guides/error-codes/api-errors) occurs. This can happen due to an internal server error or a timeout.
+#' Occurs when an [error](/docs/guides/error-codes#api-errors) occurs. This can happen due to an internal server error or a timeout.
 #'
 #' @docType class
 #' @title ErrorEvent

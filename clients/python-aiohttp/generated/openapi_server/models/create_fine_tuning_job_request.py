@@ -8,6 +8,7 @@ from openapi_server.models.base_model import Model
 from openapi_server.models.create_fine_tuning_job_request_hyperparameters import CreateFineTuningJobRequestHyperparameters
 from openapi_server.models.create_fine_tuning_job_request_integrations_inner import CreateFineTuningJobRequestIntegrationsInner
 from openapi_server.models.create_fine_tuning_job_request_model import CreateFineTuningJobRequestModel
+from openapi_server.models.fine_tune_method import FineTuneMethod
 from openapi_server import util
 
 
@@ -17,7 +18,7 @@ class CreateFineTuningJobRequest(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, model: CreateFineTuningJobRequestModel=None, training_file: str=None, hyperparameters: CreateFineTuningJobRequestHyperparameters=None, suffix: str=None, validation_file: str=None, integrations: List[CreateFineTuningJobRequestIntegrationsInner]=None, seed: int=None):
+    def __init__(self, model: CreateFineTuningJobRequestModel=None, training_file: str=None, hyperparameters: CreateFineTuningJobRequestHyperparameters=None, suffix: str=None, validation_file: str=None, integrations: List[CreateFineTuningJobRequestIntegrationsInner]=None, seed: int=None, method: FineTuneMethod=None):
         """CreateFineTuningJobRequest - a model defined in OpenAPI
 
         :param model: The model of this CreateFineTuningJobRequest.
@@ -27,6 +28,7 @@ class CreateFineTuningJobRequest(Model):
         :param validation_file: The validation_file of this CreateFineTuningJobRequest.
         :param integrations: The integrations of this CreateFineTuningJobRequest.
         :param seed: The seed of this CreateFineTuningJobRequest.
+        :param method: The method of this CreateFineTuningJobRequest.
         """
         self.openapi_types = {
             'model': CreateFineTuningJobRequestModel,
@@ -35,7 +37,8 @@ class CreateFineTuningJobRequest(Model):
             'suffix': str,
             'validation_file': str,
             'integrations': List[CreateFineTuningJobRequestIntegrationsInner],
-            'seed': int
+            'seed': int,
+            'method': FineTuneMethod
         }
 
         self.attribute_map = {
@@ -45,7 +48,8 @@ class CreateFineTuningJobRequest(Model):
             'suffix': 'suffix',
             'validation_file': 'validation_file',
             'integrations': 'integrations',
-            'seed': 'seed'
+            'seed': 'seed',
+            'method': 'method'
         }
 
         self._model = model
@@ -55,6 +59,7 @@ class CreateFineTuningJobRequest(Model):
         self._validation_file = validation_file
         self._integrations = integrations
         self._seed = seed
+        self._method = method
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'CreateFineTuningJobRequest':
@@ -92,7 +97,7 @@ class CreateFineTuningJobRequest(Model):
     def training_file(self):
         """Gets the training_file of this CreateFineTuningJobRequest.
 
-        The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
+        The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
 
         :return: The training_file of this CreateFineTuningJobRequest.
         :rtype: str
@@ -103,7 +108,7 @@ class CreateFineTuningJobRequest(Model):
     def training_file(self, training_file):
         """Sets the training_file of this CreateFineTuningJobRequest.
 
-        The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
+        The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
 
         :param training_file: The training_file of this CreateFineTuningJobRequest.
         :type training_file: str
@@ -138,7 +143,7 @@ class CreateFineTuningJobRequest(Model):
     def suffix(self):
         """Gets the suffix of this CreateFineTuningJobRequest.
 
-        A string of up to 18 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-3.5-turbo:openai:custom-model-name:7p4lURel`. 
+        A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`. 
 
         :return: The suffix of this CreateFineTuningJobRequest.
         :rtype: str
@@ -149,13 +154,13 @@ class CreateFineTuningJobRequest(Model):
     def suffix(self, suffix):
         """Sets the suffix of this CreateFineTuningJobRequest.
 
-        A string of up to 18 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-3.5-turbo:openai:custom-model-name:7p4lURel`. 
+        A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`. 
 
         :param suffix: The suffix of this CreateFineTuningJobRequest.
         :type suffix: str
         """
-        if suffix is not None and len(suffix) > 40:
-            raise ValueError("Invalid value for `suffix`, length must be less than or equal to `40`")
+        if suffix is not None and len(suffix) > 64:
+            raise ValueError("Invalid value for `suffix`, length must be less than or equal to `64`")
         if suffix is not None and len(suffix) < 1:
             raise ValueError("Invalid value for `suffix`, length must be greater than or equal to `1`")
 
@@ -233,3 +238,24 @@ class CreateFineTuningJobRequest(Model):
             raise ValueError("Invalid value for `seed`, must be a value greater than or equal to `0`")
 
         self._seed = seed
+
+    @property
+    def method(self):
+        """Gets the method of this CreateFineTuningJobRequest.
+
+
+        :return: The method of this CreateFineTuningJobRequest.
+        :rtype: FineTuneMethod
+        """
+        return self._method
+
+    @method.setter
+    def method(self, method):
+        """Sets the method of this CreateFineTuningJobRequest.
+
+
+        :param method: The method of this CreateFineTuningJobRequest.
+        :type method: FineTuneMethod
+        """
+
+        self._method = method

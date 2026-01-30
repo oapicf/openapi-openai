@@ -1,0 +1,60 @@
+package org.openapitools.model;
+
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.model.MessageContentImageFileObject;
+import org.openapitools.model.MessageContentImageFileObjectImageFile;
+import org.openapitools.model.MessageContentImageUrlObject;
+import org.openapitools.model.MessageContentImageUrlObjectImageUrl;
+import org.openapitools.model.MessageRequestContentTextObject;
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
+
+/**
+ * Model tests for ArrayOfContentPartsInner
+ */
+@MicronautTest
+public class ArrayOfContentPartsInnerTest {
+    private final ArrayOfContentPartsInner model = null;
+
+    /**
+     * Model tests for ArrayOfContentPartsInner
+     */
+    @Test
+    public void testArrayOfContentPartsInner() {
+        // TODO: test ArrayOfContentPartsInner
+    }
+
+    /**
+     * Test the property 'type'
+     */
+    @Test
+    public void typeTest() {
+        // TODO: test type
+    }
+
+    /**
+     * Test the property 'imageFile'
+     */
+    @Test
+    public void imageFileTest() {
+        // TODO: test imageFile
+    }
+
+    /**
+     * Test the property 'imageUrl'
+     */
+    @Test
+    public void imageUrlTest() {
+        // TODO: test imageUrl
+    }
+
+    /**
+     * Test the property 'text'
+     */
+    @Test
+    public void textTest() {
+        // TODO: test text
+    }
+
+}

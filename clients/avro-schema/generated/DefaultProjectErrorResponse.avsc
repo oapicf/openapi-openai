@@ -1,0 +1,19 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "DefaultProjectErrorResponse",
+  "fields": [
+    {
+      "name": "code",
+      "type": "int",
+      "doc": ""
+    },
+    {
+      "name": "message",
+      "type": "string",
+      "doc": ""
+    }
+  ]
+
+}

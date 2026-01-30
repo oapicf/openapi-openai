@@ -15,6 +15,7 @@
       {"model": "function_call" },
       {"model": "tool_calls" },
       {"model": "role" },
+      {"model": "refusal" },
     ]
   }]
 }

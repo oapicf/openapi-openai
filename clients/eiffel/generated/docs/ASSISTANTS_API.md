@@ -5,25 +5,20 @@ All URIs are relative to *https://api.openai.com/v1*
 Feature | HTTP request | Description
 ------------- | ------------- | -------------
 [**assistant**](ASSISTANTS_API.md#assistant) | **Get** /assistants/{assistant_id} | Retrieves an assistant.
-[**assistant_file**](ASSISTANTS_API.md#assistant_file) | **Get** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
 [**cancel_run**](ASSISTANTS_API.md#cancel_run) | **Post** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is &#x60;in_progress&#x60;.
 [**create_assistant**](ASSISTANTS_API.md#create_assistant) | **Post** /assistants | Create an assistant with a model and instructions.
-[**create_assistant_file**](ASSISTANTS_API.md#create_assistant_file) | **Post** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
 [**create_message**](ASSISTANTS_API.md#create_message) | **Post** /threads/{thread_id}/messages | Create a message.
 [**create_run**](ASSISTANTS_API.md#create_run) | **Post** /threads/{thread_id}/runs | Create a run.
 [**create_thread**](ASSISTANTS_API.md#create_thread) | **Post** /threads | Create a thread.
 [**create_thread_and_run**](ASSISTANTS_API.md#create_thread_and_run) | **Post** /threads/runs | Create a thread and run it in one request.
 [**delete_assistant**](ASSISTANTS_API.md#delete_assistant) | **Delete** /assistants/{assistant_id} | Delete an assistant.
-[**delete_assistant_file**](ASSISTANTS_API.md#delete_assistant_file) | **Delete** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+[**delete_message**](ASSISTANTS_API.md#delete_message) | **Delete** /threads/{thread_id}/messages/{message_id} | Deletes a message.
 [**delete_thread**](ASSISTANTS_API.md#delete_thread) | **Delete** /threads/{thread_id} | Delete a thread.
-[**list_assistant_files**](ASSISTANTS_API.md#list_assistant_files) | **Get** /assistants/{assistant_id}/files | Returns a list of assistant files.
 [**list_assistants**](ASSISTANTS_API.md#list_assistants) | **Get** /assistants | Returns a list of assistants.
-[**list_message_files**](ASSISTANTS_API.md#list_message_files) | **Get** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
 [**list_messages**](ASSISTANTS_API.md#list_messages) | **Get** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
 [**list_run_steps**](ASSISTANTS_API.md#list_run_steps) | **Get** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
 [**list_runs**](ASSISTANTS_API.md#list_runs) | **Get** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
 [**message**](ASSISTANTS_API.md#message) | **Get** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
-[**message_file**](ASSISTANTS_API.md#message_file) | **Get** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
 [**modify_assistant**](ASSISTANTS_API.md#modify_assistant) | **Post** /assistants/{assistant_id} | Modifies an assistant.
 [**modify_message**](ASSISTANTS_API.md#modify_message) | **Post** /threads/{thread_id}/messages/{message_id} | Modifies a message.
 [**modify_run**](ASSISTANTS_API.md#modify_run) | **Post** /threads/{thread_id}/runs/{run_id} | Modifies a run.
@@ -50,35 +45,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ASSISTANT_OBJECT**](AssistantObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **assistant_file**
-> assistant_file (assistant_id: STRING_32 ; file_id: STRING_32 ): detachable ASSISTANT_FILE_OBJECT
-
-
-Retrieves an AssistantFile.
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistant_id** | **STRING_32**| The ID of the assistant who the file belongs to. | [default to null]
- **file_id** | **STRING_32**| The ID of the file we&#39;re getting. | [default to null]
-
-### Return type
-
-[**ASSISTANT_FILE_OBJECT**](AssistantFileObject.md)
 
 ### Authorization
 
@@ -148,35 +114,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_assistant_file**
-> create_assistant_file (assistant_id: STRING_32 ; create_assistant_file_request: CREATE_ASSISTANT_FILE_REQUEST ): detachable ASSISTANT_FILE_OBJECT
-
-
-Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistant_id** | **STRING_32**| The ID of the assistant for which to create a File.  | [default to null]
- **create_assistant_file_request** | [**CREATE_ASSISTANT_FILE_REQUEST**](CREATE_ASSISTANT_FILE_REQUEST.md)|  | 
-
-### Return type
-
-[**ASSISTANT_FILE_OBJECT**](AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **create_message**
 > create_message (thread_id: STRING_32 ; create_message_request: CREATE_MESSAGE_REQUEST ): detachable MESSAGE_OBJECT
 
@@ -207,7 +144,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_run**
-> create_run (thread_id: STRING_32 ; create_run_request: CREATE_RUN_REQUEST ): detachable RUN_OBJECT
+> create_run (thread_id: STRING_32 ; create_run_request: CREATE_RUN_REQUEST ; include:  detachable LIST [STRING_32] ): detachable RUN_OBJECT
 
 
 Create a run.
@@ -219,6 +156,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **thread_id** | **STRING_32**| The ID of the thread to run. | [default to null]
  **create_run_request** | [**CREATE_RUN_REQUEST**](CREATE_RUN_REQUEST.md)|  | 
+ **include** | [**LIST [STRING_32]**](STRING_32.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] [default to null]
 
 ### Return type
 
@@ -319,23 +257,23 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_assistant_file**
-> delete_assistant_file (assistant_id: STRING_32 ; file_id: STRING_32 ): detachable DELETE_ASSISTANT_FILE_RESPONSE
+# **delete_message**
+> delete_message (thread_id: STRING_32 ; message_id: STRING_32 ): detachable DELETE_MESSAGE_RESPONSE
 
 
-Delete an assistant file.
+Deletes a message.
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **assistant_id** | **STRING_32**| The ID of the assistant that the file belongs to. | [default to null]
- **file_id** | **STRING_32**| The ID of the file to delete. | [default to null]
+ **thread_id** | **STRING_32**| The ID of the thread to which this message belongs. | [default to null]
+ **message_id** | **STRING_32**| The ID of the message to delete. | [default to null]
 
 ### Return type
 
-[**DELETE_ASSISTANT_FILE_RESPONSE**](DeleteAssistantFileResponse.md)
+[**DELETE_MESSAGE_RESPONSE**](DeleteMessageResponse.md)
 
 ### Authorization
 
@@ -376,38 +314,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_assistant_files**
-> list_assistant_files (assistant_id: STRING_32 ; limit:  detachable INTEGER_32 ; order:  detachable STRING_32 ; after:  detachable STRING_32 ; before:  detachable STRING_32 ): detachable LIST_ASSISTANT_FILES_RESPONSE
-
-
-Returns a list of assistant files.
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistant_id** | **STRING_32**| The ID of the assistant the file belongs to. | [default to null]
- **limit** | **INTEGER_32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
- **order** | **STRING_32**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to desc]
- **after** | **STRING_32**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] [default to null]
- **before** | **STRING_32**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] [default to null]
-
-### Return type
-
-[**LIST_ASSISTANT_FILES_RESPONSE**](ListAssistantFilesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **list_assistants**
 > list_assistants (limit:  detachable INTEGER_32 ; order:  detachable STRING_32 ; after:  detachable STRING_32 ; before:  detachable STRING_32 ): detachable LIST_ASSISTANTS_RESPONSE
 
@@ -422,44 +328,11 @@ Name | Type | Description  | Notes
  **limit** | **INTEGER_32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | **STRING_32**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to desc]
  **after** | **STRING_32**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] [default to null]
- **before** | **STRING_32**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] [default to null]
+ **before** | **STRING_32**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] [default to null]
 
 ### Return type
 
 [**LIST_ASSISTANTS_RESPONSE**](ListAssistantsResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **list_message_files**
-> list_message_files (thread_id: STRING_32 ; message_id: STRING_32 ; limit:  detachable INTEGER_32 ; order:  detachable STRING_32 ; after:  detachable STRING_32 ; before:  detachable STRING_32 ): detachable LIST_MESSAGE_FILES_RESPONSE
-
-
-Returns a list of message files.
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **thread_id** | **STRING_32**| The ID of the thread that the message and files belong to. | [default to null]
- **message_id** | **STRING_32**| The ID of the message that the files belongs to. | [default to null]
- **limit** | **INTEGER_32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
- **order** | **STRING_32**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to desc]
- **after** | **STRING_32**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] [default to null]
- **before** | **STRING_32**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] [default to null]
-
-### Return type
-
-[**LIST_MESSAGE_FILES_RESPONSE**](ListMessageFilesResponse.md)
 
 ### Authorization
 
@@ -487,7 +360,7 @@ Name | Type | Description  | Notes
  **limit** | **INTEGER_32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | **STRING_32**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to desc]
  **after** | **STRING_32**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] [default to null]
- **before** | **STRING_32**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] [default to null]
+ **before** | **STRING_32**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] [default to null]
  **run_id** | **STRING_32**| Filter messages by the run ID that generated them.  | [optional] [default to null]
 
 ### Return type
@@ -506,7 +379,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_run_steps**
-> list_run_steps (thread_id: STRING_32 ; run_id: STRING_32 ; limit:  detachable INTEGER_32 ; order:  detachable STRING_32 ; after:  detachable STRING_32 ; before:  detachable STRING_32 ): detachable LIST_RUN_STEPS_RESPONSE
+> list_run_steps (thread_id: STRING_32 ; run_id: STRING_32 ; limit:  detachable INTEGER_32 ; order:  detachable STRING_32 ; after:  detachable STRING_32 ; before:  detachable STRING_32 ; include:  detachable LIST [STRING_32] ): detachable LIST_RUN_STEPS_RESPONSE
 
 
 Returns a list of run steps belonging to a run.
@@ -521,7 +394,8 @@ Name | Type | Description  | Notes
  **limit** | **INTEGER_32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | **STRING_32**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to desc]
  **after** | **STRING_32**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] [default to null]
- **before** | **STRING_32**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] [default to null]
+ **before** | **STRING_32**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] [default to null]
+ **include** | [**LIST [STRING_32]**](STRING_32.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] [default to null]
 
 ### Return type
 
@@ -553,7 +427,7 @@ Name | Type | Description  | Notes
  **limit** | **INTEGER_32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | **STRING_32**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to desc]
  **after** | **STRING_32**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] [default to null]
- **before** | **STRING_32**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] [default to null]
+ **before** | **STRING_32**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] [default to null]
 
 ### Return type
 
@@ -587,36 +461,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MESSAGE_OBJECT**](MessageObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **message_file**
-> message_file (thread_id: STRING_32 ; message_id: STRING_32 ; file_id: STRING_32 ): detachable MESSAGE_FILE_OBJECT
-
-
-Retrieves a message file.
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **thread_id** | **STRING_32**| The ID of the thread to which the message and File belong. | [default to null]
- **message_id** | **STRING_32**| The ID of the message the file belongs to. | [default to null]
- **file_id** | **STRING_32**| The ID of the file being retrieved. | [default to null]
-
-### Return type
-
-[**MESSAGE_FILE_OBJECT**](MessageFileObject.md)
 
 ### Authorization
 
@@ -777,7 +621,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **run_step**
-> run_step (thread_id: STRING_32 ; run_id: STRING_32 ; step_id: STRING_32 ): detachable RUN_STEP_OBJECT
+> run_step (thread_id: STRING_32 ; run_id: STRING_32 ; step_id: STRING_32 ; include:  detachable LIST [STRING_32] ): detachable RUN_STEP_OBJECT
 
 
 Retrieves a run step.
@@ -790,6 +634,7 @@ Name | Type | Description  | Notes
  **thread_id** | **STRING_32**| The ID of the thread to which the run and run step belongs. | [default to null]
  **run_id** | **STRING_32**| The ID of the run to which the run step belongs. | [default to null]
  **step_id** | **STRING_32**| The ID of the run step to retrieve. | [default to null]
+ **include** | [**LIST [STRING_32]**](STRING_32.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] [default to null]
 
 ### Return type
 

@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @Validated
 @Tag(name = "Images", description = "Given a prompt and/or an input image, the model will generate a new image.")
 public interface ImagesApi {
@@ -99,7 +99,7 @@ public interface ImagesApi {
      * @param n The number of images to generate. Must be between 1 and 10. (optional, default to 1)
      * @param size The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. (optional, default to 1024x1024)
      * @param responseFormat The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. (optional, default to url)
-     * @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (optional)
+     * @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)
      * @return OK (status code 200)
      */
     @Operation(
@@ -129,7 +129,7 @@ public interface ImagesApi {
         @Parameter(name = "n", description = "The number of images to generate. Must be between 1 and 10.") @Min(value = 1) @Max(value = 10) @Valid @RequestParam(value = "n", required = false) Integer n,
         @Parameter(name = "size", description = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.") @Valid @RequestParam(value = "size", required = false) String size,
         @Parameter(name = "response_format", description = "The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.") @Valid @RequestParam(value = "response_format", required = false) String responseFormat,
-        @Parameter(name = "user", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ") @Valid @RequestParam(value = "user", required = false) String user
+        @Parameter(name = "user", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ") @Valid @RequestParam(value = "user", required = false) String user
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
@@ -154,7 +154,7 @@ public interface ImagesApi {
      * @param n The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported. (optional, default to 1)
      * @param responseFormat The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. (optional, default to url)
      * @param size The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. (optional, default to 1024x1024)
-     * @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (optional)
+     * @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)
      * @return OK (status code 200)
      */
     @Operation(
@@ -182,7 +182,7 @@ public interface ImagesApi {
         @Parameter(name = "n", description = "The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.") @Min(value = 1) @Max(value = 10) @Valid @RequestParam(value = "n", required = false) Integer n,
         @Parameter(name = "response_format", description = "The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.") @Valid @RequestParam(value = "response_format", required = false) String responseFormat,
         @Parameter(name = "size", description = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.") @Valid @RequestParam(value = "size", required = false) String size,
-        @Parameter(name = "user", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ") @Valid @RequestParam(value = "user", required = false) String user
+        @Parameter(name = "user", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ") @Valid @RequestParam(value = "user", required = false) String user
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {

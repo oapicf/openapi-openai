@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 **content** | **string** |  | [default to null]
 **role** | **string** |  | [default to null]
 **name** | **string** |  | [default to null]
+**refusal** | **string** |  | [optional] [default to null]
+**audio** | [**ChatCompletionRequestAssistantMessageAudio**](ChatCompletionRequestAssistantMessageAudio.md) |  | [optional] [default to null]
 **toolUnderscorecalls** | [**array[ChatCompletionMessageToolCall]**](ChatCompletionMessageToolCall.md) |  | [optional] [default to null]
 **functionUnderscorecall** | [**ChatCompletionRequestAssistantMessageFunctionCall**](ChatCompletionRequestAssistantMessageFunctionCall.md) |  | [optional] [default to null]
 **toolUnderscorecallUnderscoreid** | **string** |  | [default to null]

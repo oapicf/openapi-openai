@@ -18,6 +18,10 @@ module CreateModerationResponseResultsInnerCategoryScores =
     Harassment : decimal;
     [<JsonProperty(PropertyName = "harassment/threatening")>]
     HarassmentThreatening : decimal;
+    [<JsonProperty(PropertyName = "illicit")>]
+    Illicit : decimal;
+    [<JsonProperty(PropertyName = "illicit/violent")>]
+    IllicitViolent : decimal;
     [<JsonProperty(PropertyName = "self-harm")>]
     SelfHarm : decimal;
     [<JsonProperty(PropertyName = "self-harm/intent")>]

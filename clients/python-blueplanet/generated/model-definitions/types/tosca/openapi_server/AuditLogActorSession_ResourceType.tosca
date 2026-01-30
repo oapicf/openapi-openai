@@ -1,0 +1,41 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AuditLogActorSession"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AuditLogActorSession"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AuditLogActorUser = openapi_server.resourceTypes.AuditLogActorUser
+}
+resourceTypes {
+
+  AuditLogActorSession {
+    title = AuditLogActorSession
+    description = AuditLogActorSession
+    derivedFrom = Root
+    properties {
+        user {
+          type = AuditLogActorUser
+          description = ""
+          optional = false
+        }
+        ip_address {
+          type =  string
+          description = "The IP address from which the action was performed."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AuditLogActorSession {
+    title = AuditLogActorSession
+    description = AuditLogActorSession
+    implements = openapi_server.resourceTypes.AuditLogActorSession
+
+  }
+}

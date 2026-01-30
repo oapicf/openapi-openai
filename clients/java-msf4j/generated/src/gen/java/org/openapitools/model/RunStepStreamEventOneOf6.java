@@ -10,10 +10,10 @@ import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.RunStepObject;
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) expires.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires.
  */
-@ApiModel(description = "Occurs when a [run step](/docs/api-reference/runs/step-object) expires.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description = "Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStepStreamEventOneOf6   {
   /**
    * Gets or Sets event

@@ -76,7 +76,7 @@ class RunStepDetailsToolCallsObject(Model):
     def tool_calls(self):
         """Gets the tool_calls of this RunStepDetailsToolCallsObject.
 
-        An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+        An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
 
         :return: The tool_calls of this RunStepDetailsToolCallsObject.
         :rtype: List[RunStepDetailsToolCallsObjectToolCallsInner]
@@ -87,7 +87,7 @@ class RunStepDetailsToolCallsObject(Model):
     def tool_calls(self, tool_calls):
         """Sets the tool_calls of this RunStepDetailsToolCallsObject.
 
-        An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+        An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
 
         :param tool_calls: The tool_calls of this RunStepDetailsToolCallsObject.
         :type tool_calls: List[RunStepDetailsToolCallsObjectToolCallsInner]

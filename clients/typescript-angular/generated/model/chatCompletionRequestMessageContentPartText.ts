@@ -9,6 +9,9 @@
  */
 
 
+/**
+ * Learn about [text inputs](/docs/guides/text-generation). 
+ */
 export interface ChatCompletionRequestMessageContentPartText { 
     /**
      * The type of the content part.

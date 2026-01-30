@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
 
-// APIClient manages communication with the OpenAI API API v2.0.0
+// APIClient manages communication with the OpenAI API API v2.3.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -54,9 +54,15 @@ type APIClient struct {
 
 	AudioAPI *AudioAPIService
 
+	AuditLogsAPI *AuditLogsAPIService
+
+	BatchAPI *BatchAPIService
+
 	ChatAPI *ChatAPIService
 
 	CompletionsAPI *CompletionsAPIService
+
+	DefaultAPI *DefaultAPIService
 
 	EmbeddingsAPI *EmbeddingsAPIService
 
@@ -66,9 +72,23 @@ type APIClient struct {
 
 	ImagesAPI *ImagesAPIService
 
+	InvitesAPI *InvitesAPIService
+
 	ModelsAPI *ModelsAPIService
 
 	ModerationsAPI *ModerationsAPIService
+
+	ProjectsAPI *ProjectsAPIService
+
+	RealtimeAPI *RealtimeAPIService
+
+	UploadsAPI *UploadsAPIService
+
+	UsageAPI *UsageAPIService
+
+	UsersAPI *UsersAPIService
+
+	VectorStoresAPI *VectorStoresAPIService
 }
 
 type service struct {
@@ -89,14 +109,24 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	// API Services
 	c.AssistantsAPI = (*AssistantsAPIService)(&c.common)
 	c.AudioAPI = (*AudioAPIService)(&c.common)
+	c.AuditLogsAPI = (*AuditLogsAPIService)(&c.common)
+	c.BatchAPI = (*BatchAPIService)(&c.common)
 	c.ChatAPI = (*ChatAPIService)(&c.common)
 	c.CompletionsAPI = (*CompletionsAPIService)(&c.common)
+	c.DefaultAPI = (*DefaultAPIService)(&c.common)
 	c.EmbeddingsAPI = (*EmbeddingsAPIService)(&c.common)
 	c.FilesAPI = (*FilesAPIService)(&c.common)
 	c.FineTuningAPI = (*FineTuningAPIService)(&c.common)
 	c.ImagesAPI = (*ImagesAPIService)(&c.common)
+	c.InvitesAPI = (*InvitesAPIService)(&c.common)
 	c.ModelsAPI = (*ModelsAPIService)(&c.common)
 	c.ModerationsAPI = (*ModerationsAPIService)(&c.common)
+	c.ProjectsAPI = (*ProjectsAPIService)(&c.common)
+	c.RealtimeAPI = (*RealtimeAPIService)(&c.common)
+	c.UploadsAPI = (*UploadsAPIService)(&c.common)
+	c.UsageAPI = (*UsageAPIService)(&c.common)
+	c.UsersAPI = (*UsersAPIService)(&c.common)
+	c.VectorStoresAPI = (*VectorStoresAPIService)(&c.common)
 
 	return c
 }

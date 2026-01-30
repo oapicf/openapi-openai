@@ -57,7 +57,7 @@ void main() {
       // TODO
     });
 
-    // A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+    // A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
     // String user
     test('to test the property `user`', () async {
       // TODO

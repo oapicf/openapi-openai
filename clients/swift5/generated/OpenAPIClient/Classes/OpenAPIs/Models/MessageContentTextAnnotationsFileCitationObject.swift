@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \&quot;retrieval\&quot; tool to search files. */
+/** A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \&quot;file_search\&quot; tool to search files. */
 public struct MessageContentTextAnnotationsFileCitationObject: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {

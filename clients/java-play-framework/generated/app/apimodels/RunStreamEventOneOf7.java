@@ -9,16 +9,16 @@ import java.util.Objects;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
+ * Occurs when a [run](/docs/api-reference/runs/object) moves to a &#x60;cancelling&#x60; status.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class RunStreamEventOneOf7   {
   /**
    * Gets or Sets event
    */
   public enum EventEnum {
-    THREAD_RUN_CANCELLED("thread.run.cancelled");
+    THREAD_RUN_CANCELLING("thread.run.cancelling");
 
     private final String value;
 

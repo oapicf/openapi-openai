@@ -39,7 +39,13 @@ API.Client.CreateThreadAndRunRequest.prototype.instructions;
 API.Client.CreateThreadAndRunRequest.prototype.tools;
 
 /**
- * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+ * @type {!API.Client.CreateThreadAndRunRequest_tool_resources}
+ * @export
+ */
+API.Client.CreateThreadAndRunRequest.prototype.toolResources;
+
+/**
+ * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
  * @type {!API.Client.Object}
  * @export
  */
@@ -53,6 +59,13 @@ API.Client.CreateThreadAndRunRequest.prototype.metadata;
 API.Client.CreateThreadAndRunRequest.prototype.temperature;
 
 /**
+ * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+ * @type {!number}
+ * @export
+ */
+API.Client.CreateThreadAndRunRequest.prototype.topP;
+
+/**
  * If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. 
  * @type {!boolean}
  * @export
@@ -60,7 +73,7 @@ API.Client.CreateThreadAndRunRequest.prototype.temperature;
 API.Client.CreateThreadAndRunRequest.prototype.stream;
 
 /**
- * The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+ * The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
  * @type {!number}
  * @export
  */
@@ -84,6 +97,13 @@ API.Client.CreateThreadAndRunRequest.prototype.truncationStrategy;
  * @export
  */
 API.Client.CreateThreadAndRunRequest.prototype.toolChoice;
+
+/**
+ * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+ * @type {!boolean}
+ * @export
+ */
+API.Client.CreateThreadAndRunRequest.prototype.parallelToolCalls;
 
 /**
  * @type {!API.Client.AssistantsApiResponseFormatOption}

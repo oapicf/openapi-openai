@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **ValidationFile** | **String** | The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents). | 
 **Integrations** | [**FineTuningJobIntegrationsInner[]**](FineTuningJobIntegrationsInner.md) | A list of integrations to enable for this fine-tuning job. | [optional] 
 **Seed** | **Int32** | The seed used for the fine-tuning job. | 
+**EstimatedFinish** | **Int32** | The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running. | [optional] 
+**Method** | [**FineTuneMethod**](FineTuneMethod.md) |  | [optional] 
 
 ## Examples
 
@@ -39,7 +41,9 @@ $FineTuningJob = Initialize-PSOpenAPIToolsFineTuningJob  -Id null `
  -TrainingFile null `
  -ValidationFile null `
  -Integrations null `
- -Seed null
+ -Seed null `
+ -EstimatedFinish null `
+ -Method null
 ```
 
 - Convert the resource to JSON

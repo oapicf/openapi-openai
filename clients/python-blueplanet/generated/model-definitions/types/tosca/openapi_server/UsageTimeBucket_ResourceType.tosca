@@ -1,0 +1,53 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server UsageTimeBucket"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a UsageTimeBucket"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  UsageTimeBucketResultInner = openapi_server.resourceTypes.UsageTimeBucketResultInner
+}
+resourceTypes {
+
+  UsageTimeBucket {
+    title = UsageTimeBucket
+    description = UsageTimeBucket
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          enum = ["bucket"]
+          optional = true
+        }
+        start_time {
+          type =  integer
+          description = ""
+          optional = true
+        }
+        end_time {
+          type =  integer
+          description = ""
+          optional = true
+        }
+        result {
+          type = array
+          items.type = UsageTimeBucketResultInner
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  UsageTimeBucket {
+    title = UsageTimeBucket
+    description = UsageTimeBucket
+    implements = openapi_server.resourceTypes.UsageTimeBucket
+
+  }
+}

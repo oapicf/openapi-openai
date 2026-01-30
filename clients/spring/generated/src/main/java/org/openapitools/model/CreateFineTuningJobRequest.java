@@ -11,6 +11,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.CreateFineTuningJobRequestHyperparameters;
 import org.openapitools.model.CreateFineTuningJobRequestIntegrationsInner;
 import org.openapitools.model.CreateFineTuningJobRequestModel;
+import org.openapitools.model.FineTuneMethod;
 import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -27,16 +28,17 @@ import javax.annotation.Generated;
  * CreateFineTuningJobRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateFineTuningJobRequest {
 
   private CreateFineTuningJobRequestModel model;
 
   private String trainingFile;
 
+  @Deprecated
   private @Nullable CreateFineTuningJobRequestHyperparameters hyperparameters;
 
-  private JsonNullable<@Size(min = 1, max = 40) String> suffix = JsonNullable.<String>undefined();
+  private JsonNullable<@Size(min = 1, max = 64) String> suffix = JsonNullable.<String>undefined();
 
   private JsonNullable<String> validationFile = JsonNullable.<String>undefined();
 
@@ -44,6 +46,8 @@ public class CreateFineTuningJobRequest {
   private JsonNullable<List<@Valid CreateFineTuningJobRequestIntegrationsInner>> integrations = JsonNullable.<List<@Valid CreateFineTuningJobRequestIntegrationsInner>>undefined();
 
   private JsonNullable<@Min(value = 0) @Max(value = 2147483647) Integer> seed = JsonNullable.<Integer>undefined();
+
+  private @Nullable FineTuneMethod method;
 
   public CreateFineTuningJobRequest() {
     super();
@@ -83,11 +87,11 @@ public class CreateFineTuningJobRequest {
   }
 
   /**
-   * The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
+   * The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
    * @return trainingFile
    */
   @NotNull 
-  @Schema(name = "training_file", example = "file-abc123", description = "The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "training_file", example = "file-abc123", description = "The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("training_file")
   public String getTrainingFile() {
     return trainingFile;
@@ -105,14 +109,20 @@ public class CreateFineTuningJobRequest {
   /**
    * Get hyperparameters
    * @return hyperparameters
+   * @deprecated
    */
   @Valid 
-  @Schema(name = "hyperparameters", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "hyperparameters", deprecated = true, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("hyperparameters")
+  @Deprecated
   public @Nullable CreateFineTuningJobRequestHyperparameters getHyperparameters() {
     return hyperparameters;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   public void setHyperparameters(@Nullable CreateFineTuningJobRequestHyperparameters hyperparameters) {
     this.hyperparameters = hyperparameters;
   }
@@ -123,13 +133,13 @@ public class CreateFineTuningJobRequest {
   }
 
   /**
-   * A string of up to 18 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-3.5-turbo:openai:custom-model-name:7p4lURel`. 
+   * A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`. 
    * @return suffix
    */
-  @Size(min = 1, max = 40) 
-  @Schema(name = "suffix", description = "A string of up to 18 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-3.5-turbo:openai:custom-model-name:7p4lURel`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Size(min = 1, max = 64) 
+  @Schema(name = "suffix", description = "A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("suffix")
-  public JsonNullable<@Size(min = 1, max = 40) String> getSuffix() {
+  public JsonNullable<@Size(min = 1, max = 64) String> getSuffix() {
     return suffix;
   }
 
@@ -207,6 +217,26 @@ public class CreateFineTuningJobRequest {
     this.seed = seed;
   }
 
+  public CreateFineTuningJobRequest method(@Nullable FineTuneMethod method) {
+    this.method = method;
+    return this;
+  }
+
+  /**
+   * Get method
+   * @return method
+   */
+  @Valid 
+  @Schema(name = "method", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("method")
+  public @Nullable FineTuneMethod getMethod() {
+    return method;
+  }
+
+  public void setMethod(@Nullable FineTuneMethod method) {
+    this.method = method;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -222,7 +252,8 @@ public class CreateFineTuningJobRequest {
         equalsNullable(this.suffix, createFineTuningJobRequest.suffix) &&
         equalsNullable(this.validationFile, createFineTuningJobRequest.validationFile) &&
         equalsNullable(this.integrations, createFineTuningJobRequest.integrations) &&
-        equalsNullable(this.seed, createFineTuningJobRequest.seed);
+        equalsNullable(this.seed, createFineTuningJobRequest.seed) &&
+        Objects.equals(this.method, createFineTuningJobRequest.method);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -231,7 +262,7 @@ public class CreateFineTuningJobRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, trainingFile, hyperparameters, hashCodeNullable(suffix), hashCodeNullable(validationFile), hashCodeNullable(integrations), hashCodeNullable(seed));
+    return Objects.hash(model, trainingFile, hyperparameters, hashCodeNullable(suffix), hashCodeNullable(validationFile), hashCodeNullable(integrations), hashCodeNullable(seed), method);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -252,6 +283,7 @@ public class CreateFineTuningJobRequest {
     sb.append("    validationFile: ").append(toIndentedString(validationFile)).append("\n");
     sb.append("    integrations: ").append(toIndentedString(integrations)).append("\n");
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("}");
     return sb.toString();
   }

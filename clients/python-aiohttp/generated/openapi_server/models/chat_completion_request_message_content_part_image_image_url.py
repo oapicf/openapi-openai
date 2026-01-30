@@ -71,7 +71,7 @@ class ChatCompletionRequestMessageContentPartImageImageUrl(Model):
     def detail(self):
         """Gets the detail of this ChatCompletionRequestMessageContentPartImageImageUrl.
 
-        Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+        Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
 
         :return: The detail of this ChatCompletionRequestMessageContentPartImageImageUrl.
         :rtype: str
@@ -82,7 +82,7 @@ class ChatCompletionRequestMessageContentPartImageImageUrl(Model):
     def detail(self, detail):
         """Sets the detail of this ChatCompletionRequestMessageContentPartImageImageUrl.
 
-        Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+        Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
 
         :param detail: The detail of this ChatCompletionRequestMessageContentPartImageImageUrl.
         :type detail: str

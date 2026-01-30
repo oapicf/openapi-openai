@@ -40,7 +40,7 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
         200: {"model": CreateModerationResponse, "description": "OK"},
     },
     tags=["Moderations"],
-    summary="Classifies if text is potentially harmful.",
+    summary="Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). ",
     response_model_by_alias=True,
 )
 async def create_moderation(

@@ -12,14 +12,14 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * The hyperparameters used for the fine-tuning job.
+ * The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of &#x60;method&#x60;, and should be passed in under the &#x60;method&#x60; parameter. 
  **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-@ApiModel(description = "The hyperparameters used for the fine-tuning job.")
+@ApiModel(description = "The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of `method`, and should be passed in under the `method` parameter. ")
 public class CreateFineTuningJobRequestHyperparameters   {
   
   private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;

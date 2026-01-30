@@ -13,6 +13,8 @@
   | {'hate_threatening', boolean() }
   | {'harassment', boolean() }
   | {'harassment_threatening', boolean() }
+  | {'illicit', boolean() }
+  | {'illicit_violent', boolean() }
   | {'self_harm', boolean() }
   | {'self_harm_intent', boolean() }
   | {'self_harm_instructions', boolean() }
@@ -31,6 +33,8 @@ openapi_create_moderation_response_results_inner_categories(Fields) ->
             , {'hate/threatening', boolean() }
             , {'harassment', boolean() }
             , {'harassment/threatening', boolean() }
+            , {'illicit', boolean() }
+            , {'illicit/violent', boolean() }
             , {'self-harm', boolean() }
             , {'self-harm/intent', boolean() }
             , {'self-harm/instructions', boolean() }

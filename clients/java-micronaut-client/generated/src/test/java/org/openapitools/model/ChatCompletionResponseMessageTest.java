@@ -3,8 +3,10 @@ package org.openapitools.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.ChatCompletionMessageToolCall;
-import org.openapitools.model.ChatCompletionRequestAssistantMessageFunctionCall;
+import org.openapitools.model.ChatCompletionResponseMessageAudio;
+import org.openapitools.model.ChatCompletionResponseMessageFunctionCall;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -33,6 +35,14 @@ public class ChatCompletionResponseMessageTest {
     }
 
     /**
+     * Test the property 'refusal'
+     */
+    @Test
+    public void refusalTest() {
+        // TODO: test refusal
+    }
+
+    /**
      * Test the property 'toolCalls'
      */
     @Test
@@ -54,6 +64,14 @@ public class ChatCompletionResponseMessageTest {
     @Test
     public void functionCallTest() {
         // TODO: test functionCall
+    }
+
+    /**
+     * Test the property 'audio'
+     */
+    @Test
+    public void audioTest() {
+        // TODO: test audio
     }
 
 }

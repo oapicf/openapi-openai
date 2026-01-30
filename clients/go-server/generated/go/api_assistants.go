@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -17,6 +17,7 @@ import (
 	"io"
 	"net/http"
 	"strings"
+	"reflect"
 
 	"github.com/gorilla/mux"
 )
@@ -90,6 +91,12 @@ func (c *AssistantsAPIController) Routes() Routes {
 			"/v1/threads",
 			c.CreateThread,
 		},
+		"CreateThreadAndRun": Route{
+			"CreateThreadAndRun",
+			strings.ToUpper("Post"),
+			"/v1/threads/runs",
+			c.CreateThreadAndRun,
+		},
 		"GetThread": Route{
 			"GetThread",
 			strings.ToUpper("Get"),
@@ -132,11 +139,11 @@ func (c *AssistantsAPIController) Routes() Routes {
 			"/v1/threads/{thread_id}/messages/{message_id}",
 			c.ModifyMessage,
 		},
-		"CreateThreadAndRun": Route{
-			"CreateThreadAndRun",
-			strings.ToUpper("Post"),
-			"/v1/threads/runs",
-			c.CreateThreadAndRun,
+		"DeleteMessage": Route{
+			"DeleteMessage",
+			strings.ToUpper("Delete"),
+			"/v1/threads/{thread_id}/messages/{message_id}",
+			c.DeleteMessage,
 		},
 		"ListRuns": Route{
 			"ListRuns",
@@ -162,12 +169,6 @@ func (c *AssistantsAPIController) Routes() Routes {
 			"/v1/threads/{thread_id}/runs/{run_id}",
 			c.ModifyRun,
 		},
-		"SubmitToolOuputsToRun": Route{
-			"SubmitToolOuputsToRun",
-			strings.ToUpper("Post"),
-			"/v1/threads/{thread_id}/runs/{run_id}/submit_tool_outputs",
-			c.SubmitToolOuputsToRun,
-		},
 		"CancelRun": Route{
 			"CancelRun",
 			strings.ToUpper("Post"),
@@ -186,41 +187,11 @@ func (c *AssistantsAPIController) Routes() Routes {
 			"/v1/threads/{thread_id}/runs/{run_id}/steps/{step_id}",
 			c.GetRunStep,
 		},
-		"ListAssistantFiles": Route{
-			"ListAssistantFiles",
-			strings.ToUpper("Get"),
-			"/v1/assistants/{assistant_id}/files",
-			c.ListAssistantFiles,
-		},
-		"CreateAssistantFile": Route{
-			"CreateAssistantFile",
+		"SubmitToolOuputsToRun": Route{
+			"SubmitToolOuputsToRun",
 			strings.ToUpper("Post"),
-			"/v1/assistants/{assistant_id}/files",
-			c.CreateAssistantFile,
-		},
-		"GetAssistantFile": Route{
-			"GetAssistantFile",
-			strings.ToUpper("Get"),
-			"/v1/assistants/{assistant_id}/files/{file_id}",
-			c.GetAssistantFile,
-		},
-		"DeleteAssistantFile": Route{
-			"DeleteAssistantFile",
-			strings.ToUpper("Delete"),
-			"/v1/assistants/{assistant_id}/files/{file_id}",
-			c.DeleteAssistantFile,
-		},
-		"ListMessageFiles": Route{
-			"ListMessageFiles",
-			strings.ToUpper("Get"),
-			"/v1/threads/{thread_id}/messages/{message_id}/files",
-			c.ListMessageFiles,
-		},
-		"GetMessageFile": Route{
-			"GetMessageFile",
-			strings.ToUpper("Get"),
-			"/v1/threads/{thread_id}/messages/{message_id}/files/{file_id}",
-			c.GetMessageFile,
+			"/v1/threads/{thread_id}/runs/{run_id}/submit_tool_outputs",
+			c.SubmitToolOuputsToRun,
 		},
 	}
 }
@@ -265,6 +236,12 @@ func (c *AssistantsAPIController) OrderedRoutes() []Route {
 			c.CreateThread,
 		},
 		Route{
+			"CreateThreadAndRun",
+			strings.ToUpper("Post"),
+			"/v1/threads/runs",
+			c.CreateThreadAndRun,
+		},
+		Route{
 			"GetThread",
 			strings.ToUpper("Get"),
 			"/v1/threads/{thread_id}",
@@ -307,10 +284,10 @@ func (c *AssistantsAPIController) OrderedRoutes() []Route {
 			c.ModifyMessage,
 		},
 		Route{
-			"CreateThreadAndRun",
-			strings.ToUpper("Post"),
-			"/v1/threads/runs",
-			c.CreateThreadAndRun,
+			"DeleteMessage",
+			strings.ToUpper("Delete"),
+			"/v1/threads/{thread_id}/messages/{message_id}",
+			c.DeleteMessage,
 		},
 		Route{
 			"ListRuns",
@@ -337,12 +314,6 @@ func (c *AssistantsAPIController) OrderedRoutes() []Route {
 			c.ModifyRun,
 		},
 		Route{
-			"SubmitToolOuputsToRun",
-			strings.ToUpper("Post"),
-			"/v1/threads/{thread_id}/runs/{run_id}/submit_tool_outputs",
-			c.SubmitToolOuputsToRun,
-		},
-		Route{
 			"CancelRun",
 			strings.ToUpper("Post"),
 			"/v1/threads/{thread_id}/runs/{run_id}/cancel",
@@ -361,40 +332,10 @@ func (c *AssistantsAPIController) OrderedRoutes() []Route {
 			c.GetRunStep,
 		},
 		Route{
-			"ListAssistantFiles",
-			strings.ToUpper("Get"),
-			"/v1/assistants/{assistant_id}/files",
-			c.ListAssistantFiles,
-		},
-		Route{
-			"CreateAssistantFile",
+			"SubmitToolOuputsToRun",
 			strings.ToUpper("Post"),
-			"/v1/assistants/{assistant_id}/files",
-			c.CreateAssistantFile,
-		},
-		Route{
-			"GetAssistantFile",
-			strings.ToUpper("Get"),
-			"/v1/assistants/{assistant_id}/files/{file_id}",
-			c.GetAssistantFile,
-		},
-		Route{
-			"DeleteAssistantFile",
-			strings.ToUpper("Delete"),
-			"/v1/assistants/{assistant_id}/files/{file_id}",
-			c.DeleteAssistantFile,
-		},
-		Route{
-			"ListMessageFiles",
-			strings.ToUpper("Get"),
-			"/v1/threads/{thread_id}/messages/{message_id}/files",
-			c.ListMessageFiles,
-		},
-		Route{
-			"GetMessageFile",
-			strings.ToUpper("Get"),
-			"/v1/threads/{thread_id}/messages/{message_id}/files/{file_id}",
-			c.GetMessageFile,
+			"/v1/threads/{thread_id}/runs/{run_id}/submit_tool_outputs",
+			c.SubmitToolOuputsToRun,
 		},
 	}
 }
@@ -571,6 +512,33 @@ func (c *AssistantsAPIController) CreateThread(w http.ResponseWriter, r *http.Re
 		return
 	}
 	result, err := c.service.CreateThread(r.Context(), createThreadRequestParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	_ = EncodeJSONResponse(result.Body, &result.Code, w)
+}
+
+// CreateThreadAndRun - Create a thread and run it in one request.
+func (c *AssistantsAPIController) CreateThreadAndRun(w http.ResponseWriter, r *http.Request) {
+	var createThreadAndRunRequestParam CreateThreadAndRunRequest
+	d := json.NewDecoder(r.Body)
+	d.DisallowUnknownFields()
+	if err := d.Decode(&createThreadAndRunRequestParam); err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	if err := AssertCreateThreadAndRunRequestRequired(createThreadAndRunRequestParam); err != nil {
+		c.errorHandler(w, r, err, nil)
+		return
+	}
+	if err := AssertCreateThreadAndRunRequestConstraints(createThreadAndRunRequestParam); err != nil {
+		c.errorHandler(w, r, err, nil)
+		return
+	}
+	result, err := c.service.CreateThreadAndRun(r.Context(), createThreadAndRunRequestParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)
@@ -812,24 +780,20 @@ func (c *AssistantsAPIController) ModifyMessage(w http.ResponseWriter, r *http.R
 	_ = EncodeJSONResponse(result.Body, &result.Code, w)
 }
 
-// CreateThreadAndRun - Create a thread and run it in one request.
-func (c *AssistantsAPIController) CreateThreadAndRun(w http.ResponseWriter, r *http.Request) {
-	var createThreadAndRunRequestParam CreateThreadAndRunRequest
-	d := json.NewDecoder(r.Body)
-	d.DisallowUnknownFields()
-	if err := d.Decode(&createThreadAndRunRequestParam); err != nil {
-		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+// DeleteMessage - Deletes a message.
+func (c *AssistantsAPIController) DeleteMessage(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	threadIdParam := params["thread_id"]
+	if threadIdParam == "" {
+		c.errorHandler(w, r, &RequiredError{"thread_id"}, nil)
 		return
 	}
-	if err := AssertCreateThreadAndRunRequestRequired(createThreadAndRunRequestParam); err != nil {
-		c.errorHandler(w, r, err, nil)
+	messageIdParam := params["message_id"]
+	if messageIdParam == "" {
+		c.errorHandler(w, r, &RequiredError{"message_id"}, nil)
 		return
 	}
-	if err := AssertCreateThreadAndRunRequestConstraints(createThreadAndRunRequestParam); err != nil {
-		c.errorHandler(w, r, err, nil)
-		return
-	}
-	result, err := c.service.CreateThreadAndRun(r.Context(), createThreadAndRunRequestParam)
+	result, err := c.service.DeleteMessage(r.Context(), threadIdParam, messageIdParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)
@@ -904,6 +868,11 @@ func (c *AssistantsAPIController) ListRuns(w http.ResponseWriter, r *http.Reques
 // CreateRun - Create a run.
 func (c *AssistantsAPIController) CreateRun(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
+	query, err := parseQuery(r.URL.RawQuery)
+	if err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
 	threadIdParam := params["thread_id"]
 	if threadIdParam == "" {
 		c.errorHandler(w, r, &RequiredError{"thread_id"}, nil)
@@ -924,7 +893,11 @@ func (c *AssistantsAPIController) CreateRun(w http.ResponseWriter, r *http.Reque
 		c.errorHandler(w, r, err, nil)
 		return
 	}
-	result, err := c.service.CreateRun(r.Context(), threadIdParam, createRunRequestParam)
+	var includeParam []string
+	if query.Has("include[]") {
+		includeParam = strings.Split(query.Get("include[]"), ",")
+	}
+	result, err := c.service.CreateRun(r.Context(), threadIdParam, createRunRequestParam, includeParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)
@@ -986,44 +959,6 @@ func (c *AssistantsAPIController) ModifyRun(w http.ResponseWriter, r *http.Reque
 		return
 	}
 	result, err := c.service.ModifyRun(r.Context(), threadIdParam, runIdParam, modifyRunRequestParam)
-	// If an error occurred, encode the error with the status code
-	if err != nil {
-		c.errorHandler(w, r, err, &result)
-		return
-	}
-	// If no error, encode the body and the result code
-	_ = EncodeJSONResponse(result.Body, &result.Code, w)
-}
-
-// SubmitToolOuputsToRun - When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request. 
-func (c *AssistantsAPIController) SubmitToolOuputsToRun(w http.ResponseWriter, r *http.Request) {
-	params := mux.Vars(r)
-	threadIdParam := params["thread_id"]
-	if threadIdParam == "" {
-		c.errorHandler(w, r, &RequiredError{"thread_id"}, nil)
-		return
-	}
-	runIdParam := params["run_id"]
-	if runIdParam == "" {
-		c.errorHandler(w, r, &RequiredError{"run_id"}, nil)
-		return
-	}
-	var submitToolOutputsRunRequestParam SubmitToolOutputsRunRequest
-	d := json.NewDecoder(r.Body)
-	d.DisallowUnknownFields()
-	if err := d.Decode(&submitToolOutputsRunRequestParam); err != nil {
-		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
-		return
-	}
-	if err := AssertSubmitToolOutputsRunRequestRequired(submitToolOutputsRunRequestParam); err != nil {
-		c.errorHandler(w, r, err, nil)
-		return
-	}
-	if err := AssertSubmitToolOutputsRunRequestConstraints(submitToolOutputsRunRequestParam); err != nil {
-		c.errorHandler(w, r, err, nil)
-		return
-	}
-	result, err := c.service.SubmitToolOuputsToRun(r.Context(), threadIdParam, runIdParam, submitToolOutputsRunRequestParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)
@@ -1113,7 +1048,11 @@ func (c *AssistantsAPIController) ListRunSteps(w http.ResponseWriter, r *http.Re
 		beforeParam = param
 	} else {
 	}
-	result, err := c.service.ListRunSteps(r.Context(), threadIdParam, runIdParam, limitParam, orderParam, afterParam, beforeParam)
+	var includeParam []string
+	if query.Has("include[]") {
+		includeParam = strings.Split(query.Get("include[]"), ",")
+	}
+	result, err := c.service.ListRunSteps(r.Context(), threadIdParam, runIdParam, limitParam, orderParam, afterParam, beforeParam, includeParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)
@@ -1126,6 +1065,11 @@ func (c *AssistantsAPIController) ListRunSteps(w http.ResponseWriter, r *http.Re
 // GetRunStep - Retrieves a run step.
 func (c *AssistantsAPIController) GetRunStep(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
+	query, err := parseQuery(r.URL.RawQuery)
+	if err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
 	threadIdParam := params["thread_id"]
 	if threadIdParam == "" {
 		c.errorHandler(w, r, &RequiredError{"thread_id"}, nil)
@@ -1141,7 +1085,11 @@ func (c *AssistantsAPIController) GetRunStep(w http.ResponseWriter, r *http.Requ
 		c.errorHandler(w, r, &RequiredError{"step_id"}, nil)
 		return
 	}
-	result, err := c.service.GetRunStep(r.Context(), threadIdParam, runIdParam, stepIdParam)
+	var includeParam []string
+	if query.Has("include[]") {
+		includeParam = strings.Split(query.Get("include[]"), ",")
+	}
+	result, err := c.service.GetRunStep(r.Context(), threadIdParam, runIdParam, stepIdParam, includeParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)
@@ -1151,233 +1099,35 @@ func (c *AssistantsAPIController) GetRunStep(w http.ResponseWriter, r *http.Requ
 	_ = EncodeJSONResponse(result.Body, &result.Code, w)
 }
 
-// ListAssistantFiles - Returns a list of assistant files.
-func (c *AssistantsAPIController) ListAssistantFiles(w http.ResponseWriter, r *http.Request) {
+// SubmitToolOuputsToRun - When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request. 
+func (c *AssistantsAPIController) SubmitToolOuputsToRun(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
-	query, err := parseQuery(r.URL.RawQuery)
-	if err != nil {
-		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+	threadIdParam := params["thread_id"]
+	if threadIdParam == "" {
+		c.errorHandler(w, r, &RequiredError{"thread_id"}, nil)
 		return
 	}
-	assistantIdParam := params["assistant_id"]
-	if assistantIdParam == "" {
-		c.errorHandler(w, r, &RequiredError{"assistant_id"}, nil)
+	runIdParam := params["run_id"]
+	if runIdParam == "" {
+		c.errorHandler(w, r, &RequiredError{"run_id"}, nil)
 		return
 	}
-	var limitParam int32
-	if query.Has("limit") {
-		param, err := parseNumericParameter[int32](
-			query.Get("limit"),
-			WithParse[int32](parseInt32),
-		)
-		if err != nil {
-			c.errorHandler(w, r, &ParsingError{Param: "limit", Err: err}, nil)
-			return
-		}
-
-		limitParam = param
-	} else {
-		var param int32 = 20
-		limitParam = param
-	}
-	var orderParam string
-	if query.Has("order") {
-		param := query.Get("order")
-
-		orderParam = param
-	} else {
-		param := "desc"
-		orderParam = param
-	}
-	var afterParam string
-	if query.Has("after") {
-		param := query.Get("after")
-
-		afterParam = param
-	} else {
-	}
-	var beforeParam string
-	if query.Has("before") {
-		param := query.Get("before")
-
-		beforeParam = param
-	} else {
-	}
-	result, err := c.service.ListAssistantFiles(r.Context(), assistantIdParam, limitParam, orderParam, afterParam, beforeParam)
-	// If an error occurred, encode the error with the status code
-	if err != nil {
-		c.errorHandler(w, r, err, &result)
-		return
-	}
-	// If no error, encode the body and the result code
-	_ = EncodeJSONResponse(result.Body, &result.Code, w)
-}
-
-// CreateAssistantFile - Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-func (c *AssistantsAPIController) CreateAssistantFile(w http.ResponseWriter, r *http.Request) {
-	params := mux.Vars(r)
-	assistantIdParam := params["assistant_id"]
-	if assistantIdParam == "" {
-		c.errorHandler(w, r, &RequiredError{"assistant_id"}, nil)
-		return
-	}
-	var createAssistantFileRequestParam CreateAssistantFileRequest
+	var submitToolOutputsRunRequestParam SubmitToolOutputsRunRequest
 	d := json.NewDecoder(r.Body)
 	d.DisallowUnknownFields()
-	if err := d.Decode(&createAssistantFileRequestParam); err != nil {
+	if err := d.Decode(&submitToolOutputsRunRequestParam); err != nil {
 		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
 		return
 	}
-	if err := AssertCreateAssistantFileRequestRequired(createAssistantFileRequestParam); err != nil {
+	if err := AssertSubmitToolOutputsRunRequestRequired(submitToolOutputsRunRequestParam); err != nil {
 		c.errorHandler(w, r, err, nil)
 		return
 	}
-	if err := AssertCreateAssistantFileRequestConstraints(createAssistantFileRequestParam); err != nil {
+	if err := AssertSubmitToolOutputsRunRequestConstraints(submitToolOutputsRunRequestParam); err != nil {
 		c.errorHandler(w, r, err, nil)
 		return
 	}
-	result, err := c.service.CreateAssistantFile(r.Context(), assistantIdParam, createAssistantFileRequestParam)
-	// If an error occurred, encode the error with the status code
-	if err != nil {
-		c.errorHandler(w, r, err, &result)
-		return
-	}
-	// If no error, encode the body and the result code
-	_ = EncodeJSONResponse(result.Body, &result.Code, w)
-}
-
-// GetAssistantFile - Retrieves an AssistantFile.
-func (c *AssistantsAPIController) GetAssistantFile(w http.ResponseWriter, r *http.Request) {
-	params := mux.Vars(r)
-	assistantIdParam := params["assistant_id"]
-	if assistantIdParam == "" {
-		c.errorHandler(w, r, &RequiredError{"assistant_id"}, nil)
-		return
-	}
-	fileIdParam := params["file_id"]
-	if fileIdParam == "" {
-		c.errorHandler(w, r, &RequiredError{"file_id"}, nil)
-		return
-	}
-	result, err := c.service.GetAssistantFile(r.Context(), assistantIdParam, fileIdParam)
-	// If an error occurred, encode the error with the status code
-	if err != nil {
-		c.errorHandler(w, r, err, &result)
-		return
-	}
-	// If no error, encode the body and the result code
-	_ = EncodeJSONResponse(result.Body, &result.Code, w)
-}
-
-// DeleteAssistantFile - Delete an assistant file.
-func (c *AssistantsAPIController) DeleteAssistantFile(w http.ResponseWriter, r *http.Request) {
-	params := mux.Vars(r)
-	assistantIdParam := params["assistant_id"]
-	if assistantIdParam == "" {
-		c.errorHandler(w, r, &RequiredError{"assistant_id"}, nil)
-		return
-	}
-	fileIdParam := params["file_id"]
-	if fileIdParam == "" {
-		c.errorHandler(w, r, &RequiredError{"file_id"}, nil)
-		return
-	}
-	result, err := c.service.DeleteAssistantFile(r.Context(), assistantIdParam, fileIdParam)
-	// If an error occurred, encode the error with the status code
-	if err != nil {
-		c.errorHandler(w, r, err, &result)
-		return
-	}
-	// If no error, encode the body and the result code
-	_ = EncodeJSONResponse(result.Body, &result.Code, w)
-}
-
-// ListMessageFiles - Returns a list of message files.
-func (c *AssistantsAPIController) ListMessageFiles(w http.ResponseWriter, r *http.Request) {
-	params := mux.Vars(r)
-	query, err := parseQuery(r.URL.RawQuery)
-	if err != nil {
-		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
-		return
-	}
-	threadIdParam := params["thread_id"]
-	if threadIdParam == "" {
-		c.errorHandler(w, r, &RequiredError{"thread_id"}, nil)
-		return
-	}
-	messageIdParam := params["message_id"]
-	if messageIdParam == "" {
-		c.errorHandler(w, r, &RequiredError{"message_id"}, nil)
-		return
-	}
-	var limitParam int32
-	if query.Has("limit") {
-		param, err := parseNumericParameter[int32](
-			query.Get("limit"),
-			WithParse[int32](parseInt32),
-		)
-		if err != nil {
-			c.errorHandler(w, r, &ParsingError{Param: "limit", Err: err}, nil)
-			return
-		}
-
-		limitParam = param
-	} else {
-		var param int32 = 20
-		limitParam = param
-	}
-	var orderParam string
-	if query.Has("order") {
-		param := query.Get("order")
-
-		orderParam = param
-	} else {
-		param := "desc"
-		orderParam = param
-	}
-	var afterParam string
-	if query.Has("after") {
-		param := query.Get("after")
-
-		afterParam = param
-	} else {
-	}
-	var beforeParam string
-	if query.Has("before") {
-		param := query.Get("before")
-
-		beforeParam = param
-	} else {
-	}
-	result, err := c.service.ListMessageFiles(r.Context(), threadIdParam, messageIdParam, limitParam, orderParam, afterParam, beforeParam)
-	// If an error occurred, encode the error with the status code
-	if err != nil {
-		c.errorHandler(w, r, err, &result)
-		return
-	}
-	// If no error, encode the body and the result code
-	_ = EncodeJSONResponse(result.Body, &result.Code, w)
-}
-
-// GetMessageFile - Retrieves a message file.
-func (c *AssistantsAPIController) GetMessageFile(w http.ResponseWriter, r *http.Request) {
-	params := mux.Vars(r)
-	threadIdParam := params["thread_id"]
-	if threadIdParam == "" {
-		c.errorHandler(w, r, &RequiredError{"thread_id"}, nil)
-		return
-	}
-	messageIdParam := params["message_id"]
-	if messageIdParam == "" {
-		c.errorHandler(w, r, &RequiredError{"message_id"}, nil)
-		return
-	}
-	fileIdParam := params["file_id"]
-	if fileIdParam == "" {
-		c.errorHandler(w, r, &RequiredError{"file_id"}, nil)
-		return
-	}
-	result, err := c.service.GetMessageFile(r.Context(), threadIdParam, messageIdParam, fileIdParam)
+	result, err := c.service.SubmitToolOuputsToRun(r.Context(), threadIdParam, runIdParam, submitToolOutputsRunRequestParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)

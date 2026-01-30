@@ -549,7 +549,7 @@ static bool listFilesProcessor(MemoryStruct_s p_chunk, long code, char* errormsg
 }
 
 static bool listFilesHelper(char * accessToken,
-	std::string purpose, 
+	std::string purpose, int limit, std::string order, std::string after, 
 	void(* handler)(ListFilesResponse, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -571,6 +571,27 @@ static bool listFilesHelper(char * accessToken,
 	queryParams.insert(pair<string, string>("purpose", itemAtq));
 	if( itemAtq.empty()==true){
 		queryParams.erase("purpose");
+	}
+
+
+	itemAtq = stringify(&limit, "int");
+	queryParams.insert(pair<string, string>("limit", itemAtq));
+	if( itemAtq.empty()==true){
+		queryParams.erase("limit");
+	}
+
+
+	itemAtq = stringify(&order, "std::string");
+	queryParams.insert(pair<string, string>("order", itemAtq));
+	if( itemAtq.empty()==true){
+		queryParams.erase("order");
+	}
+
+
+	itemAtq = stringify(&after, "std::string");
+	queryParams.insert(pair<string, string>("after", itemAtq));
+	if( itemAtq.empty()==true){
+		queryParams.erase("after");
 	}
 
 	string mBody = "";
@@ -627,22 +648,22 @@ static bool listFilesHelper(char * accessToken,
 
 
 bool FilesManager::listFilesAsync(char * accessToken,
-	std::string purpose, 
+	std::string purpose, int limit, std::string order, std::string after, 
 	void(* handler)(ListFilesResponse, Error, void* )
 	, void* userData)
 {
 	return listFilesHelper(accessToken,
-	purpose, 
+	purpose, limit, order, after, 
 	handler, userData, true);
 }
 
 bool FilesManager::listFilesSync(char * accessToken,
-	std::string purpose, 
+	std::string purpose, int limit, std::string order, std::string after, 
 	void(* handler)(ListFilesResponse, Error, void* )
 	, void* userData)
 {
 	return listFilesHelper(accessToken,
-	purpose, 
+	purpose, limit, order, after, 
 	handler, userData, false);
 }
 

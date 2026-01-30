@@ -3,8 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**array[OpenAIFile]**](OpenAIFile.md) |  | [default to null]
 **object** | **string** |  | [default to null]
+**data** | [**array[OpenAIFile]**](OpenAIFile.md) |  | [default to null]
+**firstUnderscoreid** | **string** |  | [default to null]
+**lastUnderscoreid** | **string** |  | [default to null]
+**hasUnderscoremore** | **boolean** |  | [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

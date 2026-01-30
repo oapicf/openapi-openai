@@ -24,3 +24,9 @@ API.Client.CreateModerationResponseResultsInner.prototype.categories;
  */
 API.Client.CreateModerationResponseResultsInner.prototype.categoryScores;
 
+/**
+ * @type {!API.Client.CreateModerationResponse_results_inner_category_applied_input_types}
+ * @export
+ */
+API.Client.CreateModerationResponseResultsInner.prototype.categoryAppliedInputTypes;
+

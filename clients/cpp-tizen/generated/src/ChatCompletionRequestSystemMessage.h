@@ -1,7 +1,7 @@
 /*
  * ChatCompletionRequestSystemMessage.h
  *
- * 
+ * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use &#x60;developer&#x60; messages for this purpose instead. 
  */
 
 #ifndef _ChatCompletionRequestSystemMessage_H_
@@ -9,6 +9,7 @@
 
 
 #include <string>
+#include "ChatCompletionRequestSystemMessage_content.h"
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API
@@ -20,7 +21,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief 
+/*! \brief Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. 
  *
  *  \ingroup Models
  *
@@ -45,13 +46,13 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get The contents of the system message.
+	/*! \brief Get 
 	 */
-	std::string getContent();
+	ChatCompletionRequestSystemMessage_content getContent();
 
-	/*! \brief Set The contents of the system message.
+	/*! \brief Set 
 	 */
-	void setContent(std::string  content);
+	void setContent(ChatCompletionRequestSystemMessage_content  content);
 	/*! \brief Get The role of the messages author, in this case `system`.
 	 */
 	std::string getRole();
@@ -68,7 +69,7 @@ public:
 	void setName(std::string  name);
 
 private:
-	std::string content;
+	ChatCompletionRequestSystemMessage_content content;
 	std::string role;
 	std::string name;
 	void __init();

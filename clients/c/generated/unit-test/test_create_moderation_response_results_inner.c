@@ -18,6 +18,7 @@ create_moderation_response_results_inner_t* instantiate_create_moderation_respon
 
 #include "test_create_moderation_response_results_inner_categories.c"
 #include "test_create_moderation_response_results_inner_category_scores.c"
+#include "test_create_moderation_response_results_inner_category_applied_input_types.c"
 
 
 create_moderation_response_results_inner_t* instantiate_create_moderation_response_results_inner(int include_optional) {
@@ -28,11 +29,14 @@ create_moderation_response_results_inner_t* instantiate_create_moderation_respon
        // false, not to have infinite recursion
       instantiate_create_moderation_response_results_inner_categories(0),
        // false, not to have infinite recursion
-      instantiate_create_moderation_response_results_inner_category_scores(0)
+      instantiate_create_moderation_response_results_inner_category_scores(0),
+       // false, not to have infinite recursion
+      instantiate_create_moderation_response_results_inner_category_applied_input_types(0)
     );
   } else {
     create_moderation_response_results_inner = create_moderation_response_results_inner_create(
       1,
+      NULL,
       NULL,
       NULL
     );

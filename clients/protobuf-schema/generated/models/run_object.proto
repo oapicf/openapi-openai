@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -45,7 +45,7 @@ message RunObject {
   // The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run.
   string assistant_id = 396383718;
 
-  // The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+  // The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
   enum Status {
     STATUS_QUEUED = 0;
     STATUS_IN_PROGRESS = 1;
@@ -54,7 +54,8 @@ message RunObject {
     STATUS_CANCELLED = 4;
     STATUS_FAILED = 5;
     STATUS_COMPLETED = 6;
-    STATUS_EXPIRED = 7;
+    STATUS_INCOMPLETE = 7;
+    STATUS_EXPIRED = 8;
   }
 
   Status status = 355610639;
@@ -89,16 +90,16 @@ message RunObject {
   // The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
   repeated AssistantObjectToolsInner tools = 110545371;
 
-  // The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
-  repeated string file_ids = 198337164;
-
-  // Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  // Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
   TODO_OBJECT_MAPPING metadata = 450004177;
 
   RunCompletionUsage usage = 111574433;
 
   // The sampling temperature used for this run. If not set, defaults to 1.
   optional float temperature = 321701236;
+
+  // The nucleus sampling value used for this run. If not set, defaults to 1.
+  optional float top_p = 110545926;
 
   // The maximum number of prompt tokens specified to have been used over the course of the run. 
   optional int32 max_prompt_tokens = 390515005;
@@ -109,6 +110,9 @@ message RunObject {
   TruncationObject truncation_strategy = 189201961;
 
   AssistantsApiToolChoiceOption tool_choice = 260999641;
+
+  // Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+  bool parallel_tool_calls = 472712796;
 
   AssistantsApiResponseFormatOption response_format = 367445429;
 

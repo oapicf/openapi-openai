@@ -15,17 +15,20 @@
 
 typedef struct modify_thread_request_t modify_thread_request_t;
 
+#include "modify_thread_request_tool_resources.h"
 #include "object.h"
 
 
 
 typedef struct modify_thread_request_t {
+    struct modify_thread_request_tool_resources_t *tool_resources; //model
     object_t *metadata; //object
 
     int _library_owned; // Is the library responsible for freeing this object?
 } modify_thread_request_t;
 
 __attribute__((deprecated)) modify_thread_request_t *modify_thread_request_create(
+    modify_thread_request_tool_resources_t *tool_resources,
     object_t *metadata
 );
 

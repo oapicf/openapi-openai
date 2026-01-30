@@ -9,7 +9,9 @@
 -export_type([openapi_fine_tuning_job_hyperparameters/0]).
 
 -type openapi_fine_tuning_job_hyperparameters() ::
-  [ {'n_epochs', openapi_fine_tuning_job_hyperparameters_n_epochs:openapi_fine_tuning_job_hyperparameters_n_epochs() }
+  [ {'batch_size', openapi_create_fine_tuning_job_request_hyperparameters_batch_size:openapi_create_fine_tuning_job_request_hyperparameters_batch_size() }
+  | {'learning_rate_multiplier', openapi_create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier:openapi_create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier() }
+  | {'n_epochs', openapi_create_fine_tuning_job_request_hyperparameters_n_epochs:openapi_create_fine_tuning_job_request_hyperparameters_n_epochs() }
   ].
 
 
@@ -17,7 +19,9 @@ openapi_fine_tuning_job_hyperparameters() ->
     openapi_fine_tuning_job_hyperparameters([]).
 
 openapi_fine_tuning_job_hyperparameters(Fields) ->
-  Default = [ {'n_epochs', openapi_fine_tuning_job_hyperparameters_n_epochs:openapi_fine_tuning_job_hyperparameters_n_epochs() }
+  Default = [ {'batch_size', openapi_create_fine_tuning_job_request_hyperparameters_batch_size:openapi_create_fine_tuning_job_request_hyperparameters_batch_size() }
+            , {'learning_rate_multiplier', openapi_create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier:openapi_create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier() }
+            , {'n_epochs', openapi_create_fine_tuning_job_request_hyperparameters_n_epochs:openapi_create_fine_tuning_job_request_hyperparameters_n_epochs() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

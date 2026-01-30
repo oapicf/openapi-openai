@@ -1,7 +1,7 @@
 goog.provide('API.Client.RunStepStreamEvent_oneOf_4');
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) fails.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) fails.
  * @record
  */
 API.Client.RunStepStreamEventOneOf4 = function() {}

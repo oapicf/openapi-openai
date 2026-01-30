@@ -8,7 +8,6 @@
 #' @description MessageContentTextAnnotationsFileCitationObjectFileCitation Class
 #' @format An \code{R6Class} generator object
 #' @field file_id The ID of the specific File the citation is from. character
-#' @field quote The specific quote in the file. character
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -16,26 +15,18 @@ MessageContentTextAnnotationsFileCitationObjectFileCitation <- R6::R6Class(
   "MessageContentTextAnnotationsFileCitationObjectFileCitation",
   public = list(
     `file_id` = NULL,
-    `quote` = NULL,
 
     #' @description
     #' Initialize a new MessageContentTextAnnotationsFileCitationObjectFileCitation class.
     #'
     #' @param file_id The ID of the specific File the citation is from.
-    #' @param quote The specific quote in the file.
     #' @param ... Other optional arguments.
-    initialize = function(`file_id`, `quote`, ...) {
+    initialize = function(`file_id`, ...) {
       if (!missing(`file_id`)) {
         if (!(is.character(`file_id`) && length(`file_id`) == 1)) {
           stop(paste("Error! Invalid data for `file_id`. Must be a string:", `file_id`))
         }
         self$`file_id` <- `file_id`
-      }
-      if (!missing(`quote`)) {
-        if (!(is.character(`quote`) && length(`quote`) == 1)) {
-          stop(paste("Error! Invalid data for `quote`. Must be a string:", `quote`))
-        }
-        self$`quote` <- `quote`
       }
     },
 
@@ -74,10 +65,6 @@ MessageContentTextAnnotationsFileCitationObjectFileCitation <- R6::R6Class(
         MessageContentTextAnnotationsFileCitationObjectFileCitationObject[["file_id"]] <-
           self$`file_id`
       }
-      if (!is.null(self$`quote`)) {
-        MessageContentTextAnnotationsFileCitationObjectFileCitationObject[["quote"]] <-
-          self$`quote`
-      }
       return(MessageContentTextAnnotationsFileCitationObjectFileCitationObject)
     },
 
@@ -90,9 +77,6 @@ MessageContentTextAnnotationsFileCitationObjectFileCitation <- R6::R6Class(
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`file_id`)) {
         self$`file_id` <- this_object$`file_id`
-      }
-      if (!is.null(this_object$`quote`)) {
-        self$`quote` <- this_object$`quote`
       }
       self
     },
@@ -116,7 +100,6 @@ MessageContentTextAnnotationsFileCitationObjectFileCitation <- R6::R6Class(
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`file_id` <- this_object$`file_id`
-      self$`quote` <- this_object$`quote`
       self
     },
 
@@ -133,14 +116,6 @@ MessageContentTextAnnotationsFileCitationObjectFileCitation <- R6::R6Class(
         }
       } else {
         stop(paste("The JSON input `", input, "` is invalid for MessageContentTextAnnotationsFileCitationObjectFileCitation: the required field `file_id` is missing."))
-      }
-      # check the required field `quote`
-      if (!is.null(input_json$`quote`)) {
-        if (!(is.character(input_json$`quote`) && length(input_json$`quote`) == 1)) {
-          stop(paste("Error! Invalid data for `quote`. Must be a string:", input_json$`quote`))
-        }
-      } else {
-        stop(paste("The JSON input `", input, "` is invalid for MessageContentTextAnnotationsFileCitationObjectFileCitation: the required field `quote` is missing."))
       }
     },
 
@@ -162,11 +137,6 @@ MessageContentTextAnnotationsFileCitationObjectFileCitation <- R6::R6Class(
         return(FALSE)
       }
 
-      # check if the required `quote` is null
-      if (is.null(self$`quote`)) {
-        return(FALSE)
-      }
-
       TRUE
     },
 
@@ -179,11 +149,6 @@ MessageContentTextAnnotationsFileCitationObjectFileCitation <- R6::R6Class(
       # check if the required `file_id` is null
       if (is.null(self$`file_id`)) {
         invalid_fields["file_id"] <- "Non-nullable required field `file_id` cannot be null."
-      }
-
-      # check if the required `quote` is null
-      if (is.null(self$`quote`)) {
-        invalid_fields["quote"] <- "Non-nullable required field `quote` cannot be null."
       }
 
       invalid_fields

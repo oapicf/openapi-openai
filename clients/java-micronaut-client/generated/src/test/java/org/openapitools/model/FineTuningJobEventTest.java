@@ -20,6 +20,14 @@ public class FineTuningJobEventTest {
     }
 
     /**
+     * Test the property '_object'
+     */
+    @Test
+    public void _objectTest() {
+        // TODO: test _object
+    }
+
+    /**
      * Test the property 'id'
      */
     @Test
@@ -52,11 +60,19 @@ public class FineTuningJobEventTest {
     }
 
     /**
-     * Test the property '_object'
+     * Test the property 'type'
      */
     @Test
-    public void _objectTest() {
-        // TODO: test _object
+    public void typeTest() {
+        // TODO: test type
+    }
+
+    /**
+     * Test the property 'data'
+     */
+    @Test
+    public void dataTest() {
+        // TODO: test data
     }
 
 }

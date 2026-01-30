@@ -3,7 +3,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * OpenAPI document version: 2.0.0
+ * OpenAPI document version: 2.3.0
  * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -19,6 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.CompletionUsage;
 import org.openapitools.model.CreateChatCompletionResponseChoicesInner;
 
@@ -29,13 +30,33 @@ import org.openapitools.model.CreateChatCompletionResponseChoicesInner;
  */
 
 @ApiModel(description = "Represents a chat completion response returned by model, based on the provided input.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T10:45:08.090000084Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateChatCompletionResponse   {
   
   private String id;
   private List<CreateChatCompletionResponseChoicesInner> choices = new ArrayList<>();
   private Integer created;
   private String model;
+
+
+  public enum ServiceTierEnum {
+    SCALE("scale"),
+    DEFAULT("default");
+
+    private String value;
+
+    ServiceTierEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return value;
+    }
+  }
+
+  private ServiceTierEnum serviceTier;
   private String systemFingerprint;
 
 
@@ -131,6 +152,24 @@ public class CreateChatCompletionResponse   {
   }
 
   /**
+   * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+   */
+  public CreateChatCompletionResponse serviceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "scale", value = "The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.")
+  @JsonProperty("service_tier")
+  public ServiceTierEnum getServiceTier() {
+    return serviceTier;
+  }
+  public void setServiceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
+  }
+
+  /**
    * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
    */
   public CreateChatCompletionResponse systemFingerprint(String systemFingerprint) {
@@ -197,6 +236,7 @@ public class CreateChatCompletionResponse   {
         Objects.equals(choices, createChatCompletionResponse.choices) &&
         Objects.equals(created, createChatCompletionResponse.created) &&
         Objects.equals(model, createChatCompletionResponse.model) &&
+        Objects.equals(serviceTier, createChatCompletionResponse.serviceTier) &&
         Objects.equals(systemFingerprint, createChatCompletionResponse.systemFingerprint) &&
         Objects.equals(_object, createChatCompletionResponse._object) &&
         Objects.equals(usage, createChatCompletionResponse.usage);
@@ -204,7 +244,7 @@ public class CreateChatCompletionResponse   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, choices, created, model, systemFingerprint, _object, usage);
+    return Objects.hash(id, choices, created, model, serviceTier, systemFingerprint, _object, usage);
   }
 
   @Override
@@ -216,6 +256,7 @@ public class CreateChatCompletionResponse   {
     sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    serviceTier: ").append(toIndentedString(serviceTier)).append("\n");
     sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");

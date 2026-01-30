@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**content** | **string** |  | [default to null]
+**content** | [**ChatCompletionRequestSystemMessageContent**](ChatCompletionRequestSystemMessageContent.md) |  | [default to null]
 **role** | **string** |  | [default to null]
 **name** | **string** |  | [optional] [default to null]
 

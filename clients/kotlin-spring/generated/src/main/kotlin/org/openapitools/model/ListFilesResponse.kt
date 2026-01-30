@@ -1,9 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonValue
 import org.openapitools.model.OpenAIFile
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -18,36 +16,30 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param &#x60;data&#x60; 
  * @param &#x60;object&#x60; 
+ * @param &#x60;data&#x60; 
+ * @param firstId 
+ * @param lastId 
+ * @param hasMore 
  */
 data class ListFilesResponse(
+
+    @Schema(example = "list", required = true, description = "")
+    @get:JsonProperty("object", required = true) val `object`: kotlin.String,
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<OpenAIFile>,
 
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("object", required = true) val `object`: ListFilesResponse.`Object`
+    @Schema(example = "file-abc123", required = true, description = "")
+    @get:JsonProperty("first_id", required = true) val firstId: kotlin.String,
+
+    @Schema(example = "file-abc456", required = true, description = "")
+    @get:JsonProperty("last_id", required = true) val lastId: kotlin.String,
+
+    @Schema(example = "false", required = true, description = "")
+    @get:JsonProperty("has_more", required = true) val hasMore: kotlin.Boolean
 ) {
-
-    /**
-    * 
-    * Values: list
-    */
-    enum class `Object`(@get:JsonValue val value: kotlin.String) {
-
-        list("list");
-
-        companion object {
-            @JvmStatic
-            @JsonCreator
-            fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ListFilesResponse'")
-            }
-        }
-    }
 
 }
 

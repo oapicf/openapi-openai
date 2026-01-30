@@ -5,7 +5,7 @@ import io.finch.circe._
 import io.circe.generic.semiauto._
 import io.circe.java8.time._
 import org.openapitools._
-import org.openapitools.models.ChatCompletionNamedToolChoiceFunction
+import org.openapitools.models.AssistantsNamedToolChoiceFunction
 
 /**
  * Specifies a tool the model should use. Use to force the model to call a specific function.
@@ -13,7 +13,7 @@ import org.openapitools.models.ChatCompletionNamedToolChoiceFunction
  * @param function 
  */
 case class ChatCompletionNamedToolChoice(_type: String,
-                function: ChatCompletionNamedToolChoiceFunction
+                function: AssistantsNamedToolChoiceFunction
                 )
 
 object ChatCompletionNamedToolChoice {

@@ -1,7 +1,7 @@
 #' Create a new RunStreamEventOneOf7
 #'
 #' @description
-#' Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
+#' Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.
 #'
 #' @docType class
 #' @title RunStreamEventOneOf7
@@ -26,8 +26,8 @@ RunStreamEventOneOf7 <- R6::R6Class(
     #' @param ... Other optional arguments.
     initialize = function(`event`, `data`, ...) {
       if (!missing(`event`)) {
-        if (!(`event` %in% c("thread.run.cancelled"))) {
-          stop(paste("Error! \"", `event`, "\" cannot be assigned to `event`. Must be \"thread.run.cancelled\".", sep = ""))
+        if (!(`event` %in% c("thread.run.cancelling"))) {
+          stop(paste("Error! \"", `event`, "\" cannot be assigned to `event`. Must be \"thread.run.cancelling\".", sep = ""))
         }
         if (!(is.character(`event`) && length(`event`) == 1)) {
           stop(paste("Error! Invalid data for `event`. Must be a string:", `event`))
@@ -90,8 +90,8 @@ RunStreamEventOneOf7 <- R6::R6Class(
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`event`)) {
-        if (!is.null(this_object$`event`) && !(this_object$`event` %in% c("thread.run.cancelled"))) {
-          stop(paste("Error! \"", this_object$`event`, "\" cannot be assigned to `event`. Must be \"thread.run.cancelled\".", sep = ""))
+        if (!is.null(this_object$`event`) && !(this_object$`event` %in% c("thread.run.cancelling"))) {
+          stop(paste("Error! \"", this_object$`event`, "\" cannot be assigned to `event`. Must be \"thread.run.cancelling\".", sep = ""))
         }
         self$`event` <- this_object$`event`
       }
@@ -121,8 +121,8 @@ RunStreamEventOneOf7 <- R6::R6Class(
     #' @return the instance of RunStreamEventOneOf7
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      if (!is.null(this_object$`event`) && !(this_object$`event` %in% c("thread.run.cancelled"))) {
-        stop(paste("Error! \"", this_object$`event`, "\" cannot be assigned to `event`. Must be \"thread.run.cancelled\".", sep = ""))
+      if (!is.null(this_object$`event`) && !(this_object$`event` %in% c("thread.run.cancelling"))) {
+        stop(paste("Error! \"", this_object$`event`, "\" cannot be assigned to `event`. Must be \"thread.run.cancelling\".", sep = ""))
       }
       self$`event` <- this_object$`event`
       self$`data` <- RunObject$new()$fromJSON(jsonlite::toJSON(this_object$`data`, auto_unbox = TRUE, digits = NA))

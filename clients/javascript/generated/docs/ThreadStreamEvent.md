@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enabled** | **Boolean** | Whether to enable input audio transcription. | [optional] 
 **event** | **String** |  | 
 **data** | [**ThreadObject**](ThreadObject.md) |  | 
 

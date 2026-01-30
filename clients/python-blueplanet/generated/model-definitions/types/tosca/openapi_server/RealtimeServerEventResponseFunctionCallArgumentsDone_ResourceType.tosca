@@ -1,0 +1,66 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventResponseFunctionCallArgumentsDone"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventResponseFunctionCallArgumentsDone"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeServerEventResponseFunctionCallArgumentsDone {
+    title = RealtimeServerEventResponseFunctionCallArgumentsDone
+    description = RealtimeServerEventResponseFunctionCallArgumentsDone
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "The unique ID of the server event."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;response.function_call_arguments.done&#x60;. "
+          enum = ["response.function_call_arguments.done"]
+          optional = true
+        }
+        response_id {
+          type =  string
+          description = "The ID of the response."
+          optional = true
+        }
+        item_id {
+          type =  string
+          description = "The ID of the function call item."
+          optional = true
+        }
+        output_index {
+          type =  integer
+          description = "The index of the output item in the response."
+          optional = true
+        }
+        call_id {
+          type =  string
+          description = "The ID of the function call."
+          optional = true
+        }
+        arguments {
+          type =  string
+          description = "The final arguments as a JSON string."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventResponseFunctionCallArgumentsDone {
+    title = RealtimeServerEventResponseFunctionCallArgumentsDone
+    description = RealtimeServerEventResponseFunctionCallArgumentsDone
+    implements = openapi_server.resourceTypes.RealtimeServerEventResponseFunctionCallArgumentsDone
+
+  }
+}

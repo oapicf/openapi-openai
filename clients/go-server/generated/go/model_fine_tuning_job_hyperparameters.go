@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -14,24 +14,25 @@ package openapi
 
 
 
-// FineTuningJobHyperparameters - The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+// FineTuningJobHyperparameters - The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.
 type FineTuningJobHyperparameters struct {
 
-	NEpochs FineTuningJobHyperparametersNEpochs `json:"n_epochs"`
+	BatchSize CreateFineTuningJobRequestHyperparametersBatchSize `json:"batch_size,omitempty"`
+
+	LearningRateMultiplier CreateFineTuningJobRequestHyperparametersLearningRateMultiplier `json:"learning_rate_multiplier,omitempty"`
+
+	NEpochs CreateFineTuningJobRequestHyperparametersNEpochs `json:"n_epochs,omitempty"`
 }
 
 // AssertFineTuningJobHyperparametersRequired checks if the required fields are not zero-ed
 func AssertFineTuningJobHyperparametersRequired(obj FineTuningJobHyperparameters) error {
-	elements := map[string]interface{}{
-		"n_epochs": obj.NEpochs,
+	if err := AssertCreateFineTuningJobRequestHyperparametersBatchSizeRequired(obj.BatchSize); err != nil {
+		return err
 	}
-	for name, el := range elements {
-		if isZero := IsZeroValue(el); isZero {
-			return &RequiredError{Field: name}
-		}
+	if err := AssertCreateFineTuningJobRequestHyperparametersLearningRateMultiplierRequired(obj.LearningRateMultiplier); err != nil {
+		return err
 	}
-
-	if err := AssertFineTuningJobHyperparametersNEpochsRequired(obj.NEpochs); err != nil {
+	if err := AssertCreateFineTuningJobRequestHyperparametersNEpochsRequired(obj.NEpochs); err != nil {
 		return err
 	}
 	return nil
@@ -39,7 +40,13 @@ func AssertFineTuningJobHyperparametersRequired(obj FineTuningJobHyperparameters
 
 // AssertFineTuningJobHyperparametersConstraints checks if the values respects the defined constraints
 func AssertFineTuningJobHyperparametersConstraints(obj FineTuningJobHyperparameters) error {
-	if err := AssertFineTuningJobHyperparametersNEpochsConstraints(obj.NEpochs); err != nil {
+	if err := AssertCreateFineTuningJobRequestHyperparametersBatchSizeConstraints(obj.BatchSize); err != nil {
+		return err
+	}
+	if err := AssertCreateFineTuningJobRequestHyperparametersLearningRateMultiplierConstraints(obj.LearningRateMultiplier); err != nil {
+		return err
+	}
+	if err := AssertCreateFineTuningJobRequestHyperparametersNEpochsConstraints(obj.NEpochs); err != nil {
 		return err
 	}
 	return nil

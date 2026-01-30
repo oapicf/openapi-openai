@@ -76,10 +76,10 @@ class FineTuningJob
     /**
      * The compiled results file ID(s) for the fine-tuning job. You can retrieve the results with the [Files API](/docs/api-reference/files/retrieve-contents).
      * @DTA\Data(field="result_files")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection23::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection23::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection40::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection40::class})
      */
-    public ?\App\DTO\Collection23 $result_files = null;
+    public ?\App\DTO\Collection40 $result_files = null;
 
     /**
      * The current status of the fine-tuning job, which can be either &#x60;validating_files&#x60;, &#x60;queued&#x60;, &#x60;running&#x60;, &#x60;succeeded&#x60;, &#x60;failed&#x60;, or &#x60;cancelled&#x60;.
@@ -112,10 +112,10 @@ class FineTuningJob
     /**
      * A list of integrations to enable for this fine-tuning job.
      * @DTA\Data(field="integrations", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection24::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection24::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection41::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection41::class})
      */
-    public ?\App\DTO\Collection24 $integrations = null;
+    public ?\App\DTO\Collection41 $integrations = null;
 
     /**
      * The seed used for the fine-tuning job.
@@ -123,5 +123,19 @@ class FineTuningJob
      * @DTA\Validator(name="Scalar", options={"type":"int"})
      */
     public ?int $seed = null;
+
+    /**
+     * The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+     * @DTA\Data(field="estimated_finish", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"int"})
+     */
+    public ?int $estimated_finish = null;
+
+    /**
+     * @DTA\Data(field="method", nullable=true)
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\FineTuneMethod::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\FineTuneMethod::class})
+     */
+    public ?\App\DTO\FineTuneMethod $method = null;
 
 }

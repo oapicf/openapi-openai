@@ -24,6 +24,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param created The Unix timestamp (in seconds) of when the chat completion was created.
  * @param model The model used for the chat completion.
  * @param &#x60;object&#x60; The object type, which is always `chat.completion`.
+ * @param serviceTier The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
  * @param systemFingerprint This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
  * @param usage 
  */
@@ -45,6 +46,9 @@ data class CreateChatCompletionResponse(
     @Schema(example = "null", required = true, description = "The object type, which is always `chat.completion`.")
     @get:JsonProperty("object", required = true) val `object`: CreateChatCompletionResponse.`Object`,
 
+    @Schema(example = "scale", description = "The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.")
+    @get:JsonProperty("service_tier") val serviceTier: CreateChatCompletionResponse.ServiceTier? = null,
+
     @Schema(example = "null", description = "This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. ")
     @get:JsonProperty("system_fingerprint") val systemFingerprint: kotlin.String? = null,
 
@@ -65,6 +69,25 @@ data class CreateChatCompletionResponse(
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
+                return values().firstOrNull{it -> it.value == value}
+                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateChatCompletionResponse'")
+            }
+        }
+    }
+
+    /**
+    * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+    * Values: scale,default
+    */
+    enum class ServiceTier(@get:JsonValue val value: kotlin.String) {
+
+        scale("scale"),
+        default("default");
+
+        companion object {
+            @JvmStatic
+            @JsonCreator
+            fun forValue(value: kotlin.String): ServiceTier {
                 return values().firstOrNull{it -> it.value == value}
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CreateChatCompletionResponse'")
             }

@@ -101,7 +101,7 @@ public class ImagesApi extends RouteBuilder {
                     .name("user")
                     .type(RestParamType.formData)
                     .required(false)
-                    .description("A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ")
+                    .description("A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ")
                 .endParam()
                 .to("direct:createImageEdit");
         
@@ -154,7 +154,7 @@ public class ImagesApi extends RouteBuilder {
                     .name("user")
                     .type(RestParamType.formData)
                     .required(false)
-                    .description("A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ")
+                    .description("A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ")
                 .endParam()
                 .to("direct:createImageVariation");
         

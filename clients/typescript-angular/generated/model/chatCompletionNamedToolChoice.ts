@@ -7,7 +7,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ChatCompletionNamedToolChoiceFunction } from './chatCompletionNamedToolChoiceFunction';
+import { AssistantsNamedToolChoiceFunction } from './assistantsNamedToolChoiceFunction';
 
 
 /**
@@ -18,7 +18,7 @@ export interface ChatCompletionNamedToolChoice {
      * The type of the tool. Currently, only `function` is supported.
      */
     type: ChatCompletionNamedToolChoice.TypeEnum;
-    'function': ChatCompletionNamedToolChoiceFunction;
+    'function': AssistantsNamedToolChoiceFunction;
 }
 export namespace ChatCompletionNamedToolChoice {
     export const TypeEnum = {

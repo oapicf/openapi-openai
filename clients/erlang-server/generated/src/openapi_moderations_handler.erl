@@ -3,7 +3,7 @@
 Exposes the following operation IDs:
 
 - `POST` to `/moderations`, OperationId: `createModeration`:
-Classifies if text is potentially harmful..
+Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). .
 
 
 """.
@@ -29,7 +29,7 @@ Classifies if text is potentially harmful..
 -type class() :: 'moderations'.
 
 -type operation_id() ::
-    'createModeration'. %% Classifies if text is potentially harmful.
+    'createModeration'. %% Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 
 -record(state,

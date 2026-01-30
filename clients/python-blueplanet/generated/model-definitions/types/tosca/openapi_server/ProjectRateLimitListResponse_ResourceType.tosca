@@ -1,0 +1,58 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ProjectRateLimitListResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ProjectRateLimitListResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ProjectRateLimit = openapi_server.resourceTypes.ProjectRateLimit
+}
+resourceTypes {
+
+  ProjectRateLimitListResponse {
+    title = ProjectRateLimitListResponse
+    description = ProjectRateLimitListResponse
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          enum = ["list"]
+          optional = true
+        }
+        data {
+          type = array
+          items.type = ProjectRateLimit
+          description = ""
+          optional = true
+        }
+        first_id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        last_id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        has_more {
+          type =  boolean
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ProjectRateLimitListResponse {
+    title = ProjectRateLimitListResponse
+    description = ProjectRateLimitListResponse
+    implements = openapi_server.resourceTypes.ProjectRateLimitListResponse
+
+  }
+}

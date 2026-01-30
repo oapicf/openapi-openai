@@ -8,6 +8,7 @@ use WWW::OpenAPIClient::Object::ThreadStreamEvent;
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enabled** | **boolean** | Whether to enable input audio transcription. | [optional] 
 **event** | **string** |  | 
 **data** | [**ThreadObject**](ThreadObject.md) |  | 
 

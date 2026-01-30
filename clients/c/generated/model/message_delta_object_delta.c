@@ -24,8 +24,7 @@ openai_api_message_delta_object_delta_ROLE_e message_delta_object_delta_role_Fro
 
 static message_delta_object_delta_t *message_delta_object_delta_create_internal(
     openai_api_message_delta_object_delta_ROLE_e role,
-    list_t *content,
-    list_t *file_ids
+    list_t *content
     ) {
     message_delta_object_delta_t *message_delta_object_delta_local_var = malloc(sizeof(message_delta_object_delta_t));
     if (!message_delta_object_delta_local_var) {
@@ -33,7 +32,6 @@ static message_delta_object_delta_t *message_delta_object_delta_create_internal(
     }
     message_delta_object_delta_local_var->role = role;
     message_delta_object_delta_local_var->content = content;
-    message_delta_object_delta_local_var->file_ids = file_ids;
 
     message_delta_object_delta_local_var->_library_owned = 1;
     return message_delta_object_delta_local_var;
@@ -41,13 +39,11 @@ static message_delta_object_delta_t *message_delta_object_delta_create_internal(
 
 __attribute__((deprecated)) message_delta_object_delta_t *message_delta_object_delta_create(
     openai_api_message_delta_object_delta_ROLE_e role,
-    list_t *content,
-    list_t *file_ids
+    list_t *content
     ) {
     return message_delta_object_delta_create_internal (
         role,
-        content,
-        file_ids
+        content
         );
 }
 
@@ -66,13 +62,6 @@ void message_delta_object_delta_free(message_delta_object_delta_t *message_delta
         }
         list_freeList(message_delta_object_delta->content);
         message_delta_object_delta->content = NULL;
-    }
-    if (message_delta_object_delta->file_ids) {
-        list_ForEach(listEntry, message_delta_object_delta->file_ids) {
-            free(listEntry->data);
-        }
-        list_freeList(message_delta_object_delta->file_ids);
-        message_delta_object_delta->file_ids = NULL;
     }
     free(message_delta_object_delta);
 }
@@ -108,23 +97,6 @@ cJSON *message_delta_object_delta_convertToJSON(message_delta_object_delta_t *me
     }
     }
 
-
-    // message_delta_object_delta->file_ids
-    if(message_delta_object_delta->file_ids) {
-    cJSON *file_ids = cJSON_AddArrayToObject(item, "file_ids");
-    if(file_ids == NULL) {
-        goto fail; //primitive container
-    }
-
-    listEntry_t *file_idsListEntry;
-    list_ForEach(file_idsListEntry, message_delta_object_delta->file_ids) {
-    if(cJSON_AddStringToObject(file_ids, "", file_idsListEntry->data) == NULL)
-    {
-        goto fail;
-    }
-    }
-    }
-
     return item;
 fail:
     if (item) {
@@ -139,9 +111,6 @@ message_delta_object_delta_t *message_delta_object_delta_parseFromJSON(cJSON *me
 
     // define the local list for message_delta_object_delta->content
     list_t *contentList = NULL;
-
-    // define the local list for message_delta_object_delta->file_ids
-    list_t *file_idsList = NULL;
 
     // message_delta_object_delta->role
     cJSON *role = cJSON_GetObjectItemCaseSensitive(message_delta_object_deltaJSON, "role");
@@ -181,33 +150,10 @@ message_delta_object_delta_t *message_delta_object_delta_parseFromJSON(cJSON *me
     }
     }
 
-    // message_delta_object_delta->file_ids
-    cJSON *file_ids = cJSON_GetObjectItemCaseSensitive(message_delta_object_deltaJSON, "file_ids");
-    if (cJSON_IsNull(file_ids)) {
-        file_ids = NULL;
-    }
-    if (file_ids) { 
-    cJSON *file_ids_local = NULL;
-    if(!cJSON_IsArray(file_ids)) {
-        goto end;//primitive container
-    }
-    file_idsList = list_createList();
-
-    cJSON_ArrayForEach(file_ids_local, file_ids)
-    {
-        if(!cJSON_IsString(file_ids_local))
-        {
-            goto end;
-        }
-        list_addElement(file_idsList , strdup(file_ids_local->valuestring));
-    }
-    }
-
 
     message_delta_object_delta_local_var = message_delta_object_delta_create_internal (
         role ? roleVariable : openai_api_message_delta_object_delta_ROLE_NULL,
-        content ? contentList : NULL,
-        file_ids ? file_idsList : NULL
+        content ? contentList : NULL
         );
 
     return message_delta_object_delta_local_var;
@@ -220,15 +166,6 @@ end:
         }
         list_freeList(contentList);
         contentList = NULL;
-    }
-    if (file_idsList) {
-        listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, file_idsList) {
-            free(listEntry->data);
-            listEntry->data = NULL;
-        }
-        list_freeList(file_idsList);
-        file_idsList = NULL;
     }
     return NULL;
 

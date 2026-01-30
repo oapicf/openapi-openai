@@ -26,7 +26,7 @@ let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
 ApiKeyAuth.accessToken = "YOUR ACCESS TOKEN"
 
 let apiInstance = new OpenapiOpenai.ModelsApi();
-let model = "ft:gpt-3.5-turbo:acemeco:suffix:abc123"; // String | The model to delete
+let model = "ft:gpt-4o-mini:acemeco:suffix:abc123"; // String | The model to delete
 apiInstance.deleteModel(model, (error, data, response) => {
   if (error) {
     console.error(error);
@@ -116,7 +116,7 @@ let ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
 ApiKeyAuth.accessToken = "YOUR ACCESS TOKEN"
 
 let apiInstance = new OpenapiOpenai.ModelsApi();
-let model = "gpt-3.5-turbo"; // String | The ID of the model to use for this request
+let model = "gpt-4o-mini"; // String | The ID of the model to use for this request
 apiInstance.retrieveModel(model, (error, data, response) => {
   if (error) {
     console.error(error);

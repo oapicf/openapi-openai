@@ -2,7 +2,7 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
-import org.openapitools.model.ChatCompletionRequestMessageContentPart;
+import org.openapitools.model.ChatCompletionRequestUserMessageContentPart;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;

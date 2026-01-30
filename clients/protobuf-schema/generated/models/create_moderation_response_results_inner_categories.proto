@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -28,6 +28,12 @@ message CreateModerationResponseResultsInnerCategories {
 
   // Harassment content that also includes violence or serious harm towards any target.
   bool harassment_threatening = 314412198;
+
+  // Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
+  bool illicit = 282908401;
+
+  // Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+  bool illicit_violent = 378492217;
 
   // Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
   bool self_harm = 80782844;

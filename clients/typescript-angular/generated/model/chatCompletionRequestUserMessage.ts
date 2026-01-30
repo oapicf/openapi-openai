@@ -10,6 +10,9 @@
 import { ChatCompletionRequestUserMessageContent } from './chatCompletionRequestUserMessageContent';
 
 
+/**
+ * Messages sent by an end user, containing prompts or additional context information. 
+ */
 export interface ChatCompletionRequestUserMessage { 
     content: ChatCompletionRequestUserMessageContent;
     /**

@@ -77,15 +77,15 @@ Protected Class AudioApi
 
 
 	#tag Method, Flags = &h0
-		Sub CreateTranscription(, Escapedfile As FolderItem, model As OpenAPIClient.Models.CreateTranscriptionRequestModel, Optional language As Xoson.O.OptionalString, Optional prompt As Xoson.O.OptionalString, responseFormat As Response_formatEnum_CreateTranscription, Optional temperature As Xoson.O.OptionalDouble, timestampGranularities() As Timestamp_granularitiesEnum_CreateTranscription)
+		Sub CreateTranscription(, Escapedfile As FolderItem, model As OpenAPIClient.Models.CreateTranscriptionRequestModel, Optional language As Xoson.O.OptionalString, Optional prompt As Xoson.O.OptionalString, responseFormat As AudioResponseFormat, Optional temperature As Xoson.O.OptionalDouble, timestampGranularities() As Timestamp_granularitiesEnum_CreateTranscription)
 		  // Operation createTranscription
 		  // Transcribes audio into the input language.
 		  // - 
 		  // - parameter Escapedfile: (form) The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  
 		  // - parameter model: (form)  
 		  // - parameter language: (form) The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.  (optional, default to Sample)
-		  // - parameter prompt: (form) An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.  (optional, default to Sample)
-		  // - parameter responseFormat: (form) The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  (optional, default to json)
+		  // - parameter prompt: (form) An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language.  (optional, default to Sample)
+		  // - parameter responseFormat: (form)  (optional, default to Nil)
 		  // - parameter temperature: (form) The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0)
 		  // - parameter timestampGranularities: (form) The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.  (optional, default to Sample)
 		  //
@@ -106,7 +106,7 @@ Protected Class AudioApi
 localVarFormParams.Value("model") = Xoson.toJSON(model)
 If language <> nil Then localVarFormParams.Value("language") = language
 If prompt <> nil Then localVarFormParams.Value("prompt") = prompt
-localVarFormParams.Value("response_format") = Response_formatEnum_CreateTranscriptionToString(responseFormat)
+If responseFormat <> nil Then localVarFormParams.Value("response_format") = Xoson.toJSON(responseFormat)
 If temperature <> nil Then localVarFormParams.Value("temperature") = temperature.ToString
 localVarFormParams.Value("timestamp_granularities[]") = Timestamp_granularitiesEnum_CreateTranscriptionToString(timestampGranularities)
 		  If localVarFormParams.Count > 0 Then localVarHTTPSocket.SetFormData(localVarFormParams)
@@ -219,25 +219,6 @@ localVarFormParams.Value("timestamp_granularities[]") = Timestamp_granularitiesE
 
 
 	#tag Method, Flags = &h21
-		Private Function Response_formatEnum_CreateTranscriptionToString(value As Response_formatEnum_CreateTranscription) As String
-		  Select Case value
-		    
-		    Case Response_formatEnum_CreateTranscription.Json
-		      Return "json"
-		    Case Response_formatEnum_CreateTranscription.Text
-		      Return "text"
-		    Case Response_formatEnum_CreateTranscription.Srt
-		      Return "srt"
-		    Case Response_formatEnum_CreateTranscription.VerboseJson
-		      Return "verbose_json"
-		    Case Response_formatEnum_CreateTranscription.Vtt
-		      Return "vtt"
-		    
-		  End Select
-		  Return ""
-		End Function
-	#tag EndMethod
-	#tag Method, Flags = &h21
 		Private Function Timestamp_granularitiesEnum_CreateTranscriptionToString(value As Timestamp_granularitiesEnum_CreateTranscription) As String
 		  Select Case value
 		    
@@ -252,14 +233,14 @@ localVarFormParams.Value("timestamp_granularities[]") = Timestamp_granularitiesE
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CreateTranslation(, Escapedfile As FolderItem, model As OpenAPIClient.Models.CreateTranscriptionRequestModel, Optional prompt As Xoson.O.OptionalString, Optional responseFormat As Xoson.O.OptionalString, Optional temperature As Xoson.O.OptionalDouble)
+		Sub CreateTranslation(, Escapedfile As FolderItem, model As OpenAPIClient.Models.CreateTranscriptionRequestModel, Optional prompt As Xoson.O.OptionalString, responseFormat As AudioResponseFormat, Optional temperature As Xoson.O.OptionalDouble)
 		  // Operation createTranslation
 		  // Translates audio into English.
 		  // - 
 		  // - parameter Escapedfile: (form) The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  
 		  // - parameter model: (form)  
-		  // - parameter prompt: (form) An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.  (optional, default to Sample)
-		  // - parameter responseFormat: (form) The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  (optional, default to json)
+		  // - parameter prompt: (form) An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English.  (optional, default to Sample)
+		  // - parameter responseFormat: (form)  (optional, default to Nil)
 		  // - parameter temperature: (form) The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0)
 		  //
 		  // Invokes AudioApiCallbackHandler.CreateTranslationCallback(CreateTranslation200Response) on completion. 
@@ -278,7 +259,7 @@ localVarFormParams.Value("timestamp_granularities[]") = Timestamp_granularitiesE
 		  localVarFormParams.Value("file") = Escapedfile.LocalFuncSerializeFile
 localVarFormParams.Value("model") = Xoson.toJSON(model)
 If prompt <> nil Then localVarFormParams.Value("prompt") = prompt
-If responseFormat <> nil Then localVarFormParams.Value("response_format") = responseFormat
+If responseFormat <> nil Then localVarFormParams.Value("response_format") = Xoson.toJSON(responseFormat)
 If temperature <> nil Then localVarFormParams.Value("temperature") = temperature.ToString
 		  If localVarFormParams.Count > 0 Then localVarHTTPSocket.SetFormData(localVarFormParams)
 		  
@@ -465,16 +446,6 @@ If temperature <> nil Then localVarFormParams.Value("temperature") = temperature
 	#tag Property, Flags = &h0
 		UseHTTPS As Boolean = true
 	#tag EndProperty
-
-	#tag Enum, Name = Response_formatEnum_CreateTranscription, Type = Integer, Flags = &h0
-		
-        Json
-        Text
-        Srt
-        VerboseJson
-        Vtt
-		
-	#tag EndEnum
 
 	#tag Enum, Name = Timestamp_granularitiesEnum_CreateTranscription, Type = Integer, Flags = &h0
 		

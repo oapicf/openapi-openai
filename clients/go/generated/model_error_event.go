@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -20,7 +20,7 @@ import (
 // checks if the ErrorEvent type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ErrorEvent{}
 
-// ErrorEvent Occurs when an [error](/docs/guides/error-codes/api-errors) occurs. This can happen due to an internal server error or a timeout.
+// ErrorEvent Occurs when an [error](/docs/guides/error-codes#api-errors) occurs. This can happen due to an internal server error or a timeout.
 type ErrorEvent struct {
 	Event string `json:"event"`
 	Data Error `json:"data"`

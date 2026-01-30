@@ -6,27 +6,23 @@
 
 
 static message_content_text_annotations_file_citation_object_file_citation_t *message_content_text_annotations_file_citation_object_file_citation_create_internal(
-    char *file_id,
-    char *quote
+    char *file_id
     ) {
     message_content_text_annotations_file_citation_object_file_citation_t *message_content_text_annotations_file_citation_object_file_citation_local_var = malloc(sizeof(message_content_text_annotations_file_citation_object_file_citation_t));
     if (!message_content_text_annotations_file_citation_object_file_citation_local_var) {
         return NULL;
     }
     message_content_text_annotations_file_citation_object_file_citation_local_var->file_id = file_id;
-    message_content_text_annotations_file_citation_object_file_citation_local_var->quote = quote;
 
     message_content_text_annotations_file_citation_object_file_citation_local_var->_library_owned = 1;
     return message_content_text_annotations_file_citation_object_file_citation_local_var;
 }
 
 __attribute__((deprecated)) message_content_text_annotations_file_citation_object_file_citation_t *message_content_text_annotations_file_citation_object_file_citation_create(
-    char *file_id,
-    char *quote
+    char *file_id
     ) {
     return message_content_text_annotations_file_citation_object_file_citation_create_internal (
-        file_id,
-        quote
+        file_id
         );
 }
 
@@ -43,10 +39,6 @@ void message_content_text_annotations_file_citation_object_file_citation_free(me
         free(message_content_text_annotations_file_citation_object_file_citation->file_id);
         message_content_text_annotations_file_citation_object_file_citation->file_id = NULL;
     }
-    if (message_content_text_annotations_file_citation_object_file_citation->quote) {
-        free(message_content_text_annotations_file_citation_object_file_citation->quote);
-        message_content_text_annotations_file_citation_object_file_citation->quote = NULL;
-    }
     free(message_content_text_annotations_file_citation_object_file_citation);
 }
 
@@ -58,15 +50,6 @@ cJSON *message_content_text_annotations_file_citation_object_file_citation_conve
         goto fail;
     }
     if(cJSON_AddStringToObject(item, "file_id", message_content_text_annotations_file_citation_object_file_citation->file_id) == NULL) {
-    goto fail; //String
-    }
-
-
-    // message_content_text_annotations_file_citation_object_file_citation->quote
-    if (!message_content_text_annotations_file_citation_object_file_citation->quote) {
-        goto fail;
-    }
-    if(cJSON_AddStringToObject(item, "quote", message_content_text_annotations_file_citation_object_file_citation->quote) == NULL) {
     goto fail; //String
     }
 
@@ -97,25 +80,9 @@ message_content_text_annotations_file_citation_object_file_citation_t *message_c
     goto end; //String
     }
 
-    // message_content_text_annotations_file_citation_object_file_citation->quote
-    cJSON *quote = cJSON_GetObjectItemCaseSensitive(message_content_text_annotations_file_citation_object_file_citationJSON, "quote");
-    if (cJSON_IsNull(quote)) {
-        quote = NULL;
-    }
-    if (!quote) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(quote))
-    {
-    goto end; //String
-    }
-
 
     message_content_text_annotations_file_citation_object_file_citation_local_var = message_content_text_annotations_file_citation_object_file_citation_create_internal (
-        strdup(file_id->valuestring),
-        strdup(quote->valuestring)
+        strdup(file_id->valuestring)
         );
 
     return message_content_text_annotations_file_citation_object_file_citation_local_var;

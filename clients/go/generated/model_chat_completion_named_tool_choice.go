@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -24,7 +24,7 @@ var _ MappedNullable = &ChatCompletionNamedToolChoice{}
 type ChatCompletionNamedToolChoice struct {
 	// The type of the tool. Currently, only `function` is supported.
 	Type string `json:"type"`
-	Function ChatCompletionNamedToolChoiceFunction `json:"function"`
+	Function AssistantsNamedToolChoiceFunction `json:"function"`
 }
 
 type _ChatCompletionNamedToolChoice ChatCompletionNamedToolChoice
@@ -33,7 +33,7 @@ type _ChatCompletionNamedToolChoice ChatCompletionNamedToolChoice
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChatCompletionNamedToolChoice(type_ string, function ChatCompletionNamedToolChoiceFunction) *ChatCompletionNamedToolChoice {
+func NewChatCompletionNamedToolChoice(type_ string, function AssistantsNamedToolChoiceFunction) *ChatCompletionNamedToolChoice {
 	this := ChatCompletionNamedToolChoice{}
 	this.Type = type_
 	this.Function = function
@@ -73,9 +73,9 @@ func (o *ChatCompletionNamedToolChoice) SetType(v string) {
 }
 
 // GetFunction returns the Function field value
-func (o *ChatCompletionNamedToolChoice) GetFunction() ChatCompletionNamedToolChoiceFunction {
+func (o *ChatCompletionNamedToolChoice) GetFunction() AssistantsNamedToolChoiceFunction {
 	if o == nil {
-		var ret ChatCompletionNamedToolChoiceFunction
+		var ret AssistantsNamedToolChoiceFunction
 		return ret
 	}
 
@@ -84,7 +84,7 @@ func (o *ChatCompletionNamedToolChoice) GetFunction() ChatCompletionNamedToolCho
 
 // GetFunctionOk returns a tuple with the Function field value
 // and a boolean to check if the value has been set.
-func (o *ChatCompletionNamedToolChoice) GetFunctionOk() (*ChatCompletionNamedToolChoiceFunction, bool) {
+func (o *ChatCompletionNamedToolChoice) GetFunctionOk() (*AssistantsNamedToolChoiceFunction, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,7 +92,7 @@ func (o *ChatCompletionNamedToolChoice) GetFunctionOk() (*ChatCompletionNamedToo
 }
 
 // SetFunction sets field value
-func (o *ChatCompletionNamedToolChoice) SetFunction(v ChatCompletionNamedToolChoiceFunction) {
+func (o *ChatCompletionNamedToolChoice) SetFunction(v AssistantsNamedToolChoiceFunction) {
 	o.Function = v
 }
 

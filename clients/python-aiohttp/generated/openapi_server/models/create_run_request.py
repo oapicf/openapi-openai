@@ -20,7 +20,7 @@ class CreateRunRequest(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, assistant_id: str=None, model: CreateRunRequestModel=None, instructions: str=None, additional_instructions: str=None, additional_messages: List[CreateMessageRequest]=None, tools: List[AssistantObjectToolsInner]=None, metadata: object=None, temperature: float=1, stream: bool=None, max_prompt_tokens: int=None, max_completion_tokens: int=None, truncation_strategy: TruncationObject=None, tool_choice: AssistantsApiToolChoiceOption=None, response_format: AssistantsApiResponseFormatOption=None):
+    def __init__(self, assistant_id: str=None, model: CreateRunRequestModel=None, instructions: str=None, additional_instructions: str=None, additional_messages: List[CreateMessageRequest]=None, tools: List[AssistantObjectToolsInner]=None, metadata: object=None, temperature: float=1, top_p: float=1, stream: bool=None, max_prompt_tokens: int=None, max_completion_tokens: int=None, truncation_strategy: TruncationObject=None, tool_choice: AssistantsApiToolChoiceOption=None, parallel_tool_calls: bool=True, response_format: AssistantsApiResponseFormatOption=None):
         """CreateRunRequest - a model defined in OpenAPI
 
         :param assistant_id: The assistant_id of this CreateRunRequest.
@@ -31,11 +31,13 @@ class CreateRunRequest(Model):
         :param tools: The tools of this CreateRunRequest.
         :param metadata: The metadata of this CreateRunRequest.
         :param temperature: The temperature of this CreateRunRequest.
+        :param top_p: The top_p of this CreateRunRequest.
         :param stream: The stream of this CreateRunRequest.
         :param max_prompt_tokens: The max_prompt_tokens of this CreateRunRequest.
         :param max_completion_tokens: The max_completion_tokens of this CreateRunRequest.
         :param truncation_strategy: The truncation_strategy of this CreateRunRequest.
         :param tool_choice: The tool_choice of this CreateRunRequest.
+        :param parallel_tool_calls: The parallel_tool_calls of this CreateRunRequest.
         :param response_format: The response_format of this CreateRunRequest.
         """
         self.openapi_types = {
@@ -47,11 +49,13 @@ class CreateRunRequest(Model):
             'tools': List[AssistantObjectToolsInner],
             'metadata': object,
             'temperature': float,
+            'top_p': float,
             'stream': bool,
             'max_prompt_tokens': int,
             'max_completion_tokens': int,
             'truncation_strategy': TruncationObject,
             'tool_choice': AssistantsApiToolChoiceOption,
+            'parallel_tool_calls': bool,
             'response_format': AssistantsApiResponseFormatOption
         }
 
@@ -64,11 +68,13 @@ class CreateRunRequest(Model):
             'tools': 'tools',
             'metadata': 'metadata',
             'temperature': 'temperature',
+            'top_p': 'top_p',
             'stream': 'stream',
             'max_prompt_tokens': 'max_prompt_tokens',
             'max_completion_tokens': 'max_completion_tokens',
             'truncation_strategy': 'truncation_strategy',
             'tool_choice': 'tool_choice',
+            'parallel_tool_calls': 'parallel_tool_calls',
             'response_format': 'response_format'
         }
 
@@ -80,11 +86,13 @@ class CreateRunRequest(Model):
         self._tools = tools
         self._metadata = metadata
         self._temperature = temperature
+        self._top_p = top_p
         self._stream = stream
         self._max_prompt_tokens = max_prompt_tokens
         self._max_completion_tokens = max_completion_tokens
         self._truncation_strategy = truncation_strategy
         self._tool_choice = tool_choice
+        self._parallel_tool_calls = parallel_tool_calls
         self._response_format = response_format
 
     @classmethod
@@ -240,7 +248,7 @@ class CreateRunRequest(Model):
     def metadata(self):
         """Gets the metadata of this CreateRunRequest.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
         :return: The metadata of this CreateRunRequest.
         :rtype: object
@@ -251,7 +259,7 @@ class CreateRunRequest(Model):
     def metadata(self, metadata):
         """Sets the metadata of this CreateRunRequest.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
         :param metadata: The metadata of this CreateRunRequest.
         :type metadata: object
@@ -287,6 +295,33 @@ class CreateRunRequest(Model):
         self._temperature = temperature
 
     @property
+    def top_p(self):
+        """Gets the top_p of this CreateRunRequest.
+
+        An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+
+        :return: The top_p of this CreateRunRequest.
+        :rtype: float
+        """
+        return self._top_p
+
+    @top_p.setter
+    def top_p(self, top_p):
+        """Sets the top_p of this CreateRunRequest.
+
+        An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+
+        :param top_p: The top_p of this CreateRunRequest.
+        :type top_p: float
+        """
+        if top_p is not None and top_p > 1:
+            raise ValueError("Invalid value for `top_p`, must be a value less than or equal to `1`")
+        if top_p is not None and top_p < 0:
+            raise ValueError("Invalid value for `top_p`, must be a value greater than or equal to `0`")
+
+        self._top_p = top_p
+
+    @property
     def stream(self):
         """Gets the stream of this CreateRunRequest.
 
@@ -313,7 +348,7 @@ class CreateRunRequest(Model):
     def max_prompt_tokens(self):
         """Gets the max_prompt_tokens of this CreateRunRequest.
 
-        The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+        The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
 
         :return: The max_prompt_tokens of this CreateRunRequest.
         :rtype: int
@@ -324,7 +359,7 @@ class CreateRunRequest(Model):
     def max_prompt_tokens(self, max_prompt_tokens):
         """Sets the max_prompt_tokens of this CreateRunRequest.
 
-        The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+        The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
 
         :param max_prompt_tokens: The max_prompt_tokens of this CreateRunRequest.
         :type max_prompt_tokens: int
@@ -338,7 +373,7 @@ class CreateRunRequest(Model):
     def max_completion_tokens(self):
         """Gets the max_completion_tokens of this CreateRunRequest.
 
-        The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+        The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
 
         :return: The max_completion_tokens of this CreateRunRequest.
         :rtype: int
@@ -349,7 +384,7 @@ class CreateRunRequest(Model):
     def max_completion_tokens(self, max_completion_tokens):
         """Sets the max_completion_tokens of this CreateRunRequest.
 
-        The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+        The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
 
         :param max_completion_tokens: The max_completion_tokens of this CreateRunRequest.
         :type max_completion_tokens: int
@@ -400,6 +435,29 @@ class CreateRunRequest(Model):
         """
 
         self._tool_choice = tool_choice
+
+    @property
+    def parallel_tool_calls(self):
+        """Gets the parallel_tool_calls of this CreateRunRequest.
+
+        Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+
+        :return: The parallel_tool_calls of this CreateRunRequest.
+        :rtype: bool
+        """
+        return self._parallel_tool_calls
+
+    @parallel_tool_calls.setter
+    def parallel_tool_calls(self, parallel_tool_calls):
+        """Sets the parallel_tool_calls of this CreateRunRequest.
+
+        Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+
+        :param parallel_tool_calls: The parallel_tool_calls of this CreateRunRequest.
+        :type parallel_tool_calls: bool
+        """
+
+        self._parallel_tool_calls = parallel_tool_calls
 
     @property
     def response_format(self):

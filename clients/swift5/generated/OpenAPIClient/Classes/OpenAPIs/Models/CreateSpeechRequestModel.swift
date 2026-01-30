@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** One of the available [TTS models](/docs/models/tts): &#x60;tts-1&#x60; or &#x60;tts-1-hd&#x60;  */
+/** One of the available [TTS models](/docs/models#tts): &#x60;tts-1&#x60; or &#x60;tts-1-hd&#x60;  */
 public struct CreateSpeechRequestModel: Codable, JSONEncodable, Hashable {
 
 

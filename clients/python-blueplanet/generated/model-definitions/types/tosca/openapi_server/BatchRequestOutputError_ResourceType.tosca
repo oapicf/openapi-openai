@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server BatchRequestOutputError"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a BatchRequestOutputError"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  BatchRequestOutputError {
+    title = BatchRequestOutputError
+    description = BatchRequestOutputError
+    derivedFrom = Root
+    properties {
+        code {
+          type =  string
+          description = "A machine-readable error code."
+          optional = false
+        }
+        message {
+          type =  string
+          description = "A human-readable error message."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  BatchRequestOutputError {
+    title = BatchRequestOutputError
+    description = BatchRequestOutputError
+    implements = openapi_server.resourceTypes.BatchRequestOutputError
+
+  }
+}

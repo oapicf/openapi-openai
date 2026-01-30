@@ -1,0 +1,9 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The Realtime model used for this session. ",
+  "name": "RealtimeSessionModel",
+  "fields": [
+  ]
+
+}

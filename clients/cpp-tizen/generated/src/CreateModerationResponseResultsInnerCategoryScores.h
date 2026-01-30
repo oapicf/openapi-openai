@@ -73,6 +73,20 @@ public:
 	/*! \brief Set The score for the category 'harassment/threatening'.
 	 */
 	void setHarassmentthreatening(long long  harassmentthreatening);
+	/*! \brief Get The score for the category 'illicit'.
+	 */
+	long long getIllicit();
+
+	/*! \brief Set The score for the category 'illicit'.
+	 */
+	void setIllicit(long long  illicit);
+	/*! \brief Get The score for the category 'illicit/violent'.
+	 */
+	long long getIllicitviolent();
+
+	/*! \brief Set The score for the category 'illicit/violent'.
+	 */
+	void setIllicitviolent(long long  illicitviolent);
 	/*! \brief Get The score for the category 'self-harm'.
 	 */
 	long long getSelfharm();
@@ -128,6 +142,8 @@ private:
 	long long hatethreatening;
 	long long harassment;
 	long long harassmentthreatening;
+	long long illicit;
+	long long illicitviolent;
 	long long selfharm;
 	long long selfharmintent;
 	long long selfharminstructions;

@@ -39,14 +39,17 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}purpose`,
-                label: `The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`. - [${labelPrefix}purpose]`,
+                label: `The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`. - [${labelPrefix}purpose]`,
                 required: true,
                 type: 'string',
                 choices: [
-                    'fine-tune',
-                    'fine-tune-results',
                     'assistants',
                     'assistants_output',
+                    'batch',
+                    'batch_output',
+                    'fine-tune',
+                    'fine-tune-results',
+                    'vision',
                 ],
             },
             {

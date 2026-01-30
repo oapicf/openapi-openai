@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "StaticChunkingStrategy",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "StaticChunkingStrategy_type",
+        "symbols": [
+          "static"
+        ]
+      },
+      "doc": "Always `static`."
+    },
+    {
+      "name": "static",
+      "type": "model.StaticChunkingStrategyStatic",
+      "doc": ""
+    }
+  ]
+
+}

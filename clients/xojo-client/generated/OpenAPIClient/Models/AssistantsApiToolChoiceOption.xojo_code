@@ -10,7 +10,7 @@ Protected Class AssistantsApiToolChoiceOption
 
 
 	#tag Property, Flags = &h0
-		Escapedfunction As OpenAPIClient.Models.ChatCompletionNamedToolChoiceFunction
+		Escapedfunction As OpenAPIClient.Models.AssistantsNamedToolChoiceFunction
 	#tag EndProperty
 
 
@@ -18,7 +18,7 @@ Protected Class AssistantsApiToolChoiceOption
         
         Escapedfunction
         CodeInterpreter
-        Retrieval
+        FileSearch
         
     #tag EndEnum
 
@@ -31,8 +31,8 @@ Protected Class AssistantsApiToolChoiceOption
 		      Return "function"
 		    Case TypeEnum.CodeInterpreter
 		      Return "code_interpreter"
-		    Case TypeEnum.Retrieval
-		      Return "retrieval"
+		    Case TypeEnum.FileSearch
+		      Return "file_search"
 		    
 		  End Select
 		  Return ""
@@ -78,7 +78,7 @@ Protected Class AssistantsApiToolChoiceOption
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="ChatCompletionNamedToolChoiceFunction"
+			Type="AssistantsNamedToolChoiceFunction"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

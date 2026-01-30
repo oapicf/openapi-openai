@@ -1,5 +1,6 @@
 package apimodels;
 
+import apimodels.ChatCompletionStreamOptions;
 import apimodels.CreateCompletionRequestModel;
 import apimodels.CreateCompletionRequestPrompt;
 import apimodels.CreateCompletionRequestStop;
@@ -16,7 +17,7 @@ import javax.validation.Valid;
 /**
  * CreateCompletionRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateCompletionRequest   {
   @JsonProperty("model")
@@ -77,8 +78,8 @@ public class CreateCompletionRequest   {
   private BigDecimal presencePenalty = new BigDecimal("0");
 
   @JsonProperty("seed")
-  @Min(-9223372036854775808)
-@Max(9223372036854775807)
+  @Min(-9223372036854776000)
+@Max(9223372036854776000)
 
   private Integer seed;
 
@@ -90,6 +91,11 @@ public class CreateCompletionRequest   {
   @JsonProperty("stream")
   
   private Boolean stream = false;
+
+  @JsonProperty("stream_options")
+  @Valid
+
+  private ChatCompletionStreamOptions streamOptions;
 
   @JsonProperty("suffix")
   
@@ -189,7 +195,7 @@ public class CreateCompletionRequest   {
   }
 
    /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
    * minimum: -2
    * maximum: 2
    * @return frequencyPenalty
@@ -289,7 +295,7 @@ public class CreateCompletionRequest   {
   }
 
    /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
    * minimum: -2
    * maximum: 2
    * @return presencePenalty
@@ -309,8 +315,8 @@ public class CreateCompletionRequest   {
 
    /**
    * If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.  Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. 
-   * minimum: -9223372036854775808
-   * maximum: 9223372036854775807
+   * minimum: -9223372036854776000
+   * maximum: 9223372036854776000
    * @return seed
   **/
   public Integer getSeed() {
@@ -353,6 +359,23 @@ public class CreateCompletionRequest   {
 
   public void setStream(Boolean stream) {
     this.stream = stream;
+  }
+
+  public CreateCompletionRequest streamOptions(ChatCompletionStreamOptions streamOptions) {
+    this.streamOptions = streamOptions;
+    return this;
+  }
+
+   /**
+   * Get streamOptions
+   * @return streamOptions
+  **/
+  public ChatCompletionStreamOptions getStreamOptions() {
+    return streamOptions;
+  }
+
+  public void setStreamOptions(ChatCompletionStreamOptions streamOptions) {
+    this.streamOptions = streamOptions;
   }
 
   public CreateCompletionRequest suffix(String suffix) {
@@ -416,7 +439,7 @@ public class CreateCompletionRequest   {
   }
 
    /**
-   * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+   * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
    * @return user
   **/
   public String getUser() {
@@ -450,6 +473,7 @@ public class CreateCompletionRequest   {
         Objects.equals(seed, createCompletionRequest.seed) &&
         Objects.equals(stop, createCompletionRequest.stop) &&
         Objects.equals(stream, createCompletionRequest.stream) &&
+        Objects.equals(streamOptions, createCompletionRequest.streamOptions) &&
         Objects.equals(suffix, createCompletionRequest.suffix) &&
         Objects.equals(temperature, createCompletionRequest.temperature) &&
         Objects.equals(topP, createCompletionRequest.topP) &&
@@ -458,7 +482,7 @@ public class CreateCompletionRequest   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, prompt, bestOf, echo, frequencyPenalty, logitBias, logprobs, maxTokens, n, presencePenalty, seed, stop, stream, suffix, temperature, topP, user);
+    return Objects.hash(model, prompt, bestOf, echo, frequencyPenalty, logitBias, logprobs, maxTokens, n, presencePenalty, seed, stop, stream, streamOptions, suffix, temperature, topP, user);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -480,6 +504,7 @@ public class CreateCompletionRequest   {
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
     sb.append("    stop: ").append(toIndentedString(stop)).append("\n");
     sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
+    sb.append("    streamOptions: ").append(toIndentedString(streamOptions)).append("\n");
     sb.append("    suffix: ").append(toIndentedString(suffix)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
     sb.append("    topP: ").append(toIndentedString(topP)).append("\n");

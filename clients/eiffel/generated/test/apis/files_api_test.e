@@ -14,7 +14,7 @@ feature -- Test routines
 
 
     test_create_file
-            -- Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports &#x60;.jsonl&#x60; files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+            -- Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
             --
             -- 
         local
@@ -61,16 +61,19 @@ feature -- Test routines
         end
 
     test_list_files
-            -- Returns a list of files that belong to the user&#39;s organization.
+            -- Returns a list of files.
             --
             -- 
         local
             l_response: LIST_FILES_RESPONSE
             l_purpose: STRING_32
+            l_limit: INTEGER_32
+            l_order: STRING_32
+            l_after: STRING_32
         do
             -- TODO: Initialize required params.
 
-            -- l_response := api.list_files(l_purpose)
+            -- l_response := api.list_files(l_purpose, l_limit, l_order, l_after)
             assert ("not_implemented", False)
         end
 

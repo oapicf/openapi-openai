@@ -6,7 +6,7 @@ case class CreateSpeechRequest (
     _model: CreateSpeechRequestModel,
     /* The text to generate audio for. The maximum length is 4096 characters. */
     _input: String,
-    /* The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options). */
+    /* The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options). */
     _voice: String,
     /* The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`. */
     _responseFormat: Option[String],

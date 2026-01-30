@@ -38,11 +38,5 @@ class MessageDeltaObjectDeltaTest : ShouldSpec() {
             //modelInstance.content shouldBe ("TODO")
         }
 
-        // to test the property `fileIds` - A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-        should("test fileIds") {
-            // uncomment below to test the property
-            //modelInstance.fileIds shouldBe ("TODO")
-        }
-
     }
 }

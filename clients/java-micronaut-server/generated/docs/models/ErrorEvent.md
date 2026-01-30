@@ -2,7 +2,7 @@
 
 # ErrorEvent
 
-Occurs when an [error](/docs/guides/error-codes/api-errors) occurs. This can happen due to an internal server error or a timeout.
+Occurs when an [error](/docs/guides/error-codes#api-errors) occurs. This can happen due to an internal server error or a timeout.
 
 The class is defined in **[ErrorEvent.java](../../src/main/java/org/openapitools/model/ErrorEvent.java)**
 

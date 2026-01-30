@@ -7,6 +7,7 @@ Log probability information for the choice.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **content** | [**Array&lt;ChatCompletionTokenLogprob&gt;**](ChatCompletionTokenLogprob.md) | A list of message content tokens with log probability information. | [default to undefined]
+**refusal** | [**Array&lt;ChatCompletionTokenLogprob&gt;**](ChatCompletionTokenLogprob.md) | A list of message refusal tokens with log probability information. | [default to undefined]
 
 ## Example
 
@@ -15,6 +16,7 @@ import { CreateChatCompletionResponseChoicesInnerLogprobs } from './api';
 
 const instance: CreateChatCompletionResponseChoicesInnerLogprobs = {
     content,
+    refusal,
 };
 ```
 

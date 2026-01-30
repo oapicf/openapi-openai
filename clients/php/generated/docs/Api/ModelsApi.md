@@ -36,7 +36,7 @@ $apiInstance = new OpenAPI\Client\Api\ModelsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$model = ft:gpt-3.5-turbo:acemeco:suffix:abc123; // string | The model to delete
+$model = ft:gpt-4o-mini:acemeco:suffix:abc123; // string | The model to delete
 
 try {
     $result = $apiInstance->deleteModel($model);
@@ -149,7 +149,7 @@ $apiInstance = new OpenAPI\Client\Api\ModelsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$model = gpt-3.5-turbo; // string | The ID of the model to use for this request
+$model = gpt-4o-mini; // string | The ID of the model to use for this request
 
 try {
     $result = $apiInstance->retrieveModel($model);

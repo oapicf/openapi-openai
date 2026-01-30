@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -28,6 +28,12 @@ message CreateModerationResponseResultsInnerCategoryScores {
 
   // The score for the category 'harassment/threatening'.
   float harassment_threatening = 314412198;
+
+  // The score for the category 'illicit'.
+  float illicit = 282908401;
+
+  // The score for the category 'illicit/violent'.
+  float illicit_violent = 378492217;
 
   // The score for the category 'self-harm'.
   float self_harm = 80782844;

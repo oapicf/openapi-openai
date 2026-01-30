@@ -1,7 +1,7 @@
 /*
  * RunStreamEvent_oneOf_8.h
  *
- * Occurs when a [run](/docs/api-reference/runs/object) expires.
+ * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
  */
 
 #ifndef _RunStreamEvent_oneOf_8_H_
@@ -21,7 +21,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief Occurs when a [run](/docs/api-reference/runs/object) expires.
+/*! \brief Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
  *
  *  \ingroup Models
  *

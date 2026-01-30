@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ChatCompletionRequestMessageContentPartAudio"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ChatCompletionRequestMessageContentPartAudio"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ChatCompletionRequestMessageContentPartAudioInputAudio = openapi_server.resourceTypes.ChatCompletionRequestMessageContentPartAudioInputAudio
+}
+resourceTypes {
+
+  ChatCompletionRequestMessageContentPartAudio {
+    title = ChatCompletionRequestMessageContentPartAudio
+    description = ChatCompletionRequestMessageContentPartAudio
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "The type of the content part. Always &#x60;input_audio&#x60;."
+          enum = ["input_audio"]
+          optional = true
+        }
+        input_audio {
+          type = ChatCompletionRequestMessageContentPartAudioInputAudio
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ChatCompletionRequestMessageContentPartAudio {
+    title = ChatCompletionRequestMessageContentPartAudio
+    description = ChatCompletionRequestMessageContentPartAudio
+    implements = openapi_server.resourceTypes.ChatCompletionRequestMessageContentPartAudio
+
+  }
+}

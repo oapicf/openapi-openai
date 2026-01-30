@@ -1,7 +1,7 @@
 /*
  * run_step_stream_event_one_of_4.h
  *
- * Occurs when a [run step](/docs/api-reference/runs/step-object) fails.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) fails.
  */
 
 #ifndef _run_step_stream_event_one_of_4_H_

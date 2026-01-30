@@ -17,12 +17,4 @@ class MessageContentTextAnnotationsFileCitationObjectFileCitation
      */
     public $file_id;
 
-    /**
-     * The specific quote in the file.
-     * @DTA\Data(field="quote")
-     * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
-     */
-    public $quote;
-
 }

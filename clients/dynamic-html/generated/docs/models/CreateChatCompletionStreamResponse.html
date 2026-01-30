@@ -7,7 +7,7 @@
 </ul>
 <ul class="parameter">
   <li class="param-required-true">choices : List
-    <br/>A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1.
+    <br/>A list of chat completion choices. Can contain more than one elements if &#x60;n&#x60; is greater than 1. Can also be empty for the last chunk if you set &#x60;stream_options: {\&quot;include_usage\&quot;: true}&#x60;. 
   </li>
 </ul>
 <ul class="parameter">
@@ -18,6 +18,17 @@
 <ul class="parameter">
   <li class="param-required-true">model : String
     <br/>The model to generate the completion.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">serviceUnderscoretier : String
+    <br/>The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>scale</dd>
+            <dd>default</dd>
+        </dt>
+      </dl>
   </li>
 </ul>
 <ul class="parameter">
@@ -33,5 +44,10 @@
             <dd>chat.completion.chunk</dd>
         </dt>
       </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">usage : CreateChatCompletionStreamResponse_usage
+    <br/>
   </li>
 </ul>

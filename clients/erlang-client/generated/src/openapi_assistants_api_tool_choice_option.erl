@@ -6,7 +6,7 @@
 
 -type openapi_assistants_api_tool_choice_option() ::
     #{ 'type' := binary(),
-       'function' => openapi_chat_completion_named_tool_choice_function:openapi_chat_completion_named_tool_choice_function()
+       'function' => openapi_assistants_named_tool_choice_function:openapi_assistants_named_tool_choice_function()
      }.
 
 encode(#{ 'type' := Type,

@@ -13,7 +13,7 @@
     "children": [
       {"model": "role" },
       {"model": "content" },
-      {"model": "file_ids" },
+      {"model": "attachments" },
       {"model": "metadata" },
     ]
   }]

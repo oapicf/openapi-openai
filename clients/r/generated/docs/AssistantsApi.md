@@ -6,24 +6,19 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CancelRun**](AssistantsApi.md#CancelRun) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is &#x60;in_progress&#x60;.
 [**CreateAssistant**](AssistantsApi.md#CreateAssistant) | **POST** /assistants | Create an assistant with a model and instructions.
-[**CreateAssistantFile**](AssistantsApi.md#CreateAssistantFile) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
 [**CreateMessage**](AssistantsApi.md#CreateMessage) | **POST** /threads/{thread_id}/messages | Create a message.
 [**CreateRun**](AssistantsApi.md#CreateRun) | **POST** /threads/{thread_id}/runs | Create a run.
 [**CreateThread**](AssistantsApi.md#CreateThread) | **POST** /threads | Create a thread.
 [**CreateThreadAndRun**](AssistantsApi.md#CreateThreadAndRun) | **POST** /threads/runs | Create a thread and run it in one request.
 [**DeleteAssistant**](AssistantsApi.md#DeleteAssistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant.
-[**DeleteAssistantFile**](AssistantsApi.md#DeleteAssistantFile) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+[**DeleteMessage**](AssistantsApi.md#DeleteMessage) | **DELETE** /threads/{thread_id}/messages/{message_id} | Deletes a message.
 [**DeleteThread**](AssistantsApi.md#DeleteThread) | **DELETE** /threads/{thread_id} | Delete a thread.
 [**GetAssistant**](AssistantsApi.md#GetAssistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant.
-[**GetAssistantFile**](AssistantsApi.md#GetAssistantFile) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
 [**GetMessage**](AssistantsApi.md#GetMessage) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
-[**GetMessageFile**](AssistantsApi.md#GetMessageFile) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
 [**GetRun**](AssistantsApi.md#GetRun) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
 [**GetRunStep**](AssistantsApi.md#GetRunStep) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
 [**GetThread**](AssistantsApi.md#GetThread) | **GET** /threads/{thread_id} | Retrieves a thread.
-[**ListAssistantFiles**](AssistantsApi.md#ListAssistantFiles) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
 [**ListAssistants**](AssistantsApi.md#ListAssistants) | **GET** /assistants | Returns a list of assistants.
-[**ListMessageFiles**](AssistantsApi.md#ListMessageFiles) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
 [**ListMessages**](AssistantsApi.md#ListMessages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
 [**ListRunSteps**](AssistantsApi.md#ListRunSteps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
 [**ListRuns**](AssistantsApi.md#ListRuns) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
@@ -95,7 +90,7 @@ library(openapi)
 # Create an assistant with a model and instructions.
 #
 # prepare function argument(s)
-var_create_assistant_request <- CreateAssistantRequest$new(CreateAssistantRequest_model$new(), "name_example", "description_example", "instructions_example", c(AssistantObject_tools_inner$new("code_interpreter", FunctionObject$new("name_example", "description_example", c(key = TODO)))), c("file_ids_example"), 123) # CreateAssistantRequest | 
+var_create_assistant_request <- CreateAssistantRequest$new(CreateAssistantRequest_model$new(), "name_example", "description_example", "instructions_example", c(AssistantObject_tools_inner$new("code_interpreter", FunctionObject$new("name_example", "description_example", c(key = TODO), "strict_example"), AssistantToolsFileSearch_file_search$new(123, FileSearchRankingOptions$new(123, "auto")))), CreateAssistantRequest_tool_resources$new(CreateAssistantRequest_tool_resources_code_interpreter$new(c("file_ids_example")), CreateAssistantRequest_tool_resources_file_search$new(c("vector_store_ids_example"), c(CreateAssistantRequest_tool_resources_file_search_vector_stores_inner$new(c("file_ids_example"), CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy$new("auto", ...), 123)))), 123, 123, 123, AssistantsApiResponseFormatOption$new("text", ResponseFormatJsonSchema_json_schema$new("name_example", "description_example", c(key = TODO), "strict_example"))) # CreateAssistantRequest | 
 
 api_instance <- AssistantsApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth
@@ -130,55 +125,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 
-# **CreateAssistantFile**
-> AssistantFileObject CreateAssistantFile(assistant_id, create_assistant_file_request)
-
-Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
-### Example
-```R
-library(openapi)
-
-# Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-#
-# prepare function argument(s)
-var_assistant_id <- "file-abc123" # character | The ID of the assistant for which to create a File. 
-var_create_assistant_file_request <- CreateAssistantFileRequest$new("file_id_example") # CreateAssistantFileRequest | 
-
-api_instance <- AssistantsApi$new()
-# Configure HTTP bearer authorization: ApiKeyAuth
-api_instance$api_client$bearer_token <- Sys.getenv("BEARER_TOKEN")
-# to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$CreateAssistantFile(var_assistant_id, var_create_assistant_file_requestdata_file = "result.txt")
-result <- api_instance$CreateAssistantFile(var_assistant_id, var_create_assistant_file_request)
-dput(result)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistant_id** | **character**| The ID of the assistant for which to create a File.  | 
- **create_assistant_file_request** | [**CreateAssistantFileRequest**](CreateAssistantFileRequest.md)|  | 
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-
 # **CreateMessage**
 > MessageObject CreateMessage(thread_id, create_message_request)
 
@@ -192,7 +138,7 @@ library(openapi)
 #
 # prepare function argument(s)
 var_thread_id <- "thread_id_example" # character | The ID of the [thread](/docs/api-reference/threads) to create a message for.
-var_create_message_request <- CreateMessageRequest$new("user", "content_example", c("file_ids_example"), 123) # CreateMessageRequest | 
+var_create_message_request <- CreateMessageRequest$new("user", CreateMessageRequest_content$new(), c(CreateMessageRequest_attachments_inner$new("file_id_example", c(CreateMessageRequest_attachments_inner_tools_inner$new("code_interpreter")))), 123) # CreateMessageRequest | 
 
 api_instance <- AssistantsApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth
@@ -229,7 +175,7 @@ Name | Type | Description  | Notes
 | **200** | OK |  -  |
 
 # **CreateRun**
-> RunObject CreateRun(thread_id, create_run_request)
+> RunObject CreateRun(thread_id, create_run_request, include = var.include)
 
 Create a run.
 
@@ -241,14 +187,15 @@ library(openapi)
 #
 # prepare function argument(s)
 var_thread_id <- "thread_id_example" # character | The ID of the thread to run.
-var_create_run_request <- CreateRunRequest$new("assistant_id_example", CreateRunRequest_model$new(), "instructions_example", "additional_instructions_example", c(CreateMessageRequest$new("user", "content_example", c("file_ids_example"), 123)), c(AssistantObject_tools_inner$new("code_interpreter", FunctionObject$new("name_example", "description_example", c(key = TODO)))), 123, 123, "stream_example", 123, 123, TruncationObject$new("auto", 123), AssistantsApiToolChoiceOption$new("function", ChatCompletionNamedToolChoice_function$new("name_example")), AssistantsApiResponseFormatOption$new("text")) # CreateRunRequest | 
+var_create_run_request <- CreateRunRequest$new("assistant_id_example", CreateRunRequest_model$new(), "instructions_example", "additional_instructions_example", c(CreateMessageRequest$new("user", CreateMessageRequest_content$new(), c(CreateMessageRequest_attachments_inner$new("file_id_example", c(CreateMessageRequest_attachments_inner_tools_inner$new("code_interpreter")))), 123)), c(AssistantObject_tools_inner$new("code_interpreter", FunctionObject$new("name_example", "description_example", c(key = TODO), "strict_example"), AssistantToolsFileSearch_file_search$new(123, FileSearchRankingOptions$new(123, "auto")))), 123, 123, 123, "stream_example", 123, 123, TruncationObject$new("auto", 123), AssistantsApiToolChoiceOption$new("function", AssistantsNamedToolChoice_function$new("name_example")), "parallel_tool_calls_example", AssistantsApiResponseFormatOption$new("text", ResponseFormatJsonSchema_json_schema$new("name_example", "description_example", c(key = TODO), "strict_example"))) # CreateRunRequest | 
+var_include <- c("step_details.tool_calls[*].file_search.results[*].content") # array[character] | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (Optional)
 
 api_instance <- AssistantsApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth
 api_instance$api_client$bearer_token <- Sys.getenv("BEARER_TOKEN")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$CreateRun(var_thread_id, var_create_run_requestdata_file = "result.txt")
-result <- api_instance$CreateRun(var_thread_id, var_create_run_request)
+# result <- api_instance$CreateRun(var_thread_id, var_create_run_request, include = var_includedata_file = "result.txt")
+result <- api_instance$CreateRun(var_thread_id, var_create_run_request, include = var_include)
 dput(result)
 ```
 
@@ -258,6 +205,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **thread_id** | **character**| The ID of the thread to run. | 
  **create_run_request** | [**CreateRunRequest**](CreateRunRequest.md)|  | 
+ **include** | Enum [step_details.tool_calls[*].file_search.results[*].content] | A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -289,7 +237,7 @@ library(openapi)
 # Create a thread.
 #
 # prepare function argument(s)
-var_create_thread_request <- CreateThreadRequest$new(c(CreateMessageRequest$new("user", "content_example", c("file_ids_example"), 123)), 123) # CreateThreadRequest |  (Optional)
+var_create_thread_request <- CreateThreadRequest$new(c(CreateMessageRequest$new("user", CreateMessageRequest_content$new(), c(CreateMessageRequest_attachments_inner$new("file_id_example", c(CreateMessageRequest_attachments_inner_tools_inner$new("code_interpreter")))), 123)), CreateThreadRequest_tool_resources$new(CreateAssistantRequest_tool_resources_code_interpreter$new(c("file_ids_example")), CreateThreadRequest_tool_resources_file_search$new(c("vector_store_ids_example"), c(CreateThreadRequest_tool_resources_file_search_vector_stores_inner$new(c("file_ids_example"), CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy$new("auto", ...), 123)))), 123) # CreateThreadRequest |  (Optional)
 
 api_instance <- AssistantsApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth
@@ -336,7 +284,7 @@ library(openapi)
 # Create a thread and run it in one request.
 #
 # prepare function argument(s)
-var_create_thread_and_run_request <- CreateThreadAndRunRequest$new("assistant_id_example", CreateThreadRequest$new(c(CreateMessageRequest$new("user", "content_example", c("file_ids_example"), 123)), 123), CreateRunRequest_model$new(), "instructions_example", c(CreateThreadAndRunRequest_tools_inner$new("code_interpreter", FunctionObject$new("name_example", "description_example", c(key = TODO)))), 123, 123, "stream_example", 123, 123, TruncationObject$new("auto", 123), AssistantsApiToolChoiceOption$new("function", ChatCompletionNamedToolChoice_function$new("name_example")), AssistantsApiResponseFormatOption$new("text")) # CreateThreadAndRunRequest | 
+var_create_thread_and_run_request <- CreateThreadAndRunRequest$new("assistant_id_example", CreateThreadRequest$new(c(CreateMessageRequest$new("user", CreateMessageRequest_content$new(), c(CreateMessageRequest_attachments_inner$new("file_id_example", c(...))), 123)), CreateThreadRequest_tool_resources$new(CreateAssistantRequest_tool_resources_code_interpreter$new(c("file_ids_example")), CreateThreadRequest_tool_resources_file_search$new(c("vector_store_ids_example"), c(CreateThreadRequest_tool_resources_file_search_vector_stores_inner$new(c(...), ..., 123)))), 123), CreateRunRequest_model$new(), "instructions_example", c(CreateThreadAndRunRequest_tools_inner$new("code_interpreter", FunctionObject$new("name_example", "description_example", c(key = TODO), "strict_example"), AssistantToolsFileSearch_file_search$new(123, FileSearchRankingOptions$new(123, "auto")))), CreateThreadAndRunRequest_tool_resources$new(CreateAssistantRequest_tool_resources_code_interpreter$new(c("file_ids_example")), AssistantObject_tool_resources_file_search$new(c("vector_store_ids_example"))), 123, 123, 123, "stream_example", 123, 123, TruncationObject$new("auto", 123), AssistantsApiToolChoiceOption$new("function", AssistantsNamedToolChoice_function$new("name_example")), "parallel_tool_calls_example", AssistantsApiResponseFormatOption$new("text", ResponseFormatJsonSchema_json_schema$new("name_example", "description_example", c(key = TODO), "strict_example"))) # CreateThreadAndRunRequest | 
 
 api_instance <- AssistantsApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth
@@ -418,27 +366,27 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 
-# **DeleteAssistantFile**
-> DeleteAssistantFileResponse DeleteAssistantFile(assistant_id, file_id)
+# **DeleteMessage**
+> DeleteMessageResponse DeleteMessage(thread_id, message_id)
 
-Delete an assistant file.
+Deletes a message.
 
 ### Example
 ```R
 library(openapi)
 
-# Delete an assistant file.
+# Deletes a message.
 #
 # prepare function argument(s)
-var_assistant_id <- "assistant_id_example" # character | The ID of the assistant that the file belongs to.
-var_file_id <- "file_id_example" # character | The ID of the file to delete.
+var_thread_id <- "thread_id_example" # character | The ID of the thread to which this message belongs.
+var_message_id <- "message_id_example" # character | The ID of the message to delete.
 
 api_instance <- AssistantsApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth
 api_instance$api_client$bearer_token <- Sys.getenv("BEARER_TOKEN")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$DeleteAssistantFile(var_assistant_id, var_file_iddata_file = "result.txt")
-result <- api_instance$DeleteAssistantFile(var_assistant_id, var_file_id)
+# result <- api_instance$DeleteMessage(var_thread_id, var_message_iddata_file = "result.txt")
+result <- api_instance$DeleteMessage(var_thread_id, var_message_id)
 dput(result)
 ```
 
@@ -446,12 +394,12 @@ dput(result)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **assistant_id** | **character**| The ID of the assistant that the file belongs to. | 
- **file_id** | **character**| The ID of the file to delete. | 
+ **thread_id** | **character**| The ID of the thread to which this message belongs. | 
+ **message_id** | **character**| The ID of the message to delete. | 
 
 ### Return type
 
-[**DeleteAssistantFileResponse**](DeleteAssistantFileResponse.md)
+[**DeleteMessageResponse**](DeleteMessageResponse.md)
 
 ### Authorization
 
@@ -561,55 +509,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 
-# **GetAssistantFile**
-> AssistantFileObject GetAssistantFile(assistant_id, file_id)
-
-Retrieves an AssistantFile.
-
-### Example
-```R
-library(openapi)
-
-# Retrieves an AssistantFile.
-#
-# prepare function argument(s)
-var_assistant_id <- "assistant_id_example" # character | The ID of the assistant who the file belongs to.
-var_file_id <- "file_id_example" # character | The ID of the file we're getting.
-
-api_instance <- AssistantsApi$new()
-# Configure HTTP bearer authorization: ApiKeyAuth
-api_instance$api_client$bearer_token <- Sys.getenv("BEARER_TOKEN")
-# to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$GetAssistantFile(var_assistant_id, var_file_iddata_file = "result.txt")
-result <- api_instance$GetAssistantFile(var_assistant_id, var_file_id)
-dput(result)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistant_id** | **character**| The ID of the assistant who the file belongs to. | 
- **file_id** | **character**| The ID of the file we&#39;re getting. | 
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-
 # **GetMessage**
 > MessageObject GetMessage(thread_id, message_id)
 
@@ -644,57 +543,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MessageObject**](MessageObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-
-# **GetMessageFile**
-> MessageFileObject GetMessageFile(thread_id, message_id, file_id)
-
-Retrieves a message file.
-
-### Example
-```R
-library(openapi)
-
-# Retrieves a message file.
-#
-# prepare function argument(s)
-var_thread_id <- "thread_abc123" # character | The ID of the thread to which the message and File belong.
-var_message_id <- "msg_abc123" # character | The ID of the message the file belongs to.
-var_file_id <- "file-abc123" # character | The ID of the file being retrieved.
-
-api_instance <- AssistantsApi$new()
-# Configure HTTP bearer authorization: ApiKeyAuth
-api_instance$api_client$bearer_token <- Sys.getenv("BEARER_TOKEN")
-# to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$GetMessageFile(var_thread_id, var_message_id, var_file_iddata_file = "result.txt")
-result <- api_instance$GetMessageFile(var_thread_id, var_message_id, var_file_id)
-dput(result)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **thread_id** | **character**| The ID of the thread to which the message and File belong. | 
- **message_id** | **character**| The ID of the message the file belongs to. | 
- **file_id** | **character**| The ID of the file being retrieved. | 
-
-### Return type
-
-[**MessageFileObject**](MessageFileObject.md)
 
 ### Authorization
 
@@ -760,7 +608,7 @@ Name | Type | Description  | Notes
 | **200** | OK |  -  |
 
 # **GetRunStep**
-> RunStepObject GetRunStep(thread_id, run_id, step_id)
+> RunStepObject GetRunStep(thread_id, run_id, step_id, include = var.include)
 
 Retrieves a run step.
 
@@ -774,13 +622,14 @@ library(openapi)
 var_thread_id <- "thread_id_example" # character | The ID of the thread to which the run and run step belongs.
 var_run_id <- "run_id_example" # character | The ID of the run to which the run step belongs.
 var_step_id <- "step_id_example" # character | The ID of the run step to retrieve.
+var_include <- c("step_details.tool_calls[*].file_search.results[*].content") # array[character] | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (Optional)
 
 api_instance <- AssistantsApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth
 api_instance$api_client$bearer_token <- Sys.getenv("BEARER_TOKEN")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$GetRunStep(var_thread_id, var_run_id, var_step_iddata_file = "result.txt")
-result <- api_instance$GetRunStep(var_thread_id, var_run_id, var_step_id)
+# result <- api_instance$GetRunStep(var_thread_id, var_run_id, var_step_id, include = var_includedata_file = "result.txt")
+result <- api_instance$GetRunStep(var_thread_id, var_run_id, var_step_id, include = var_include)
 dput(result)
 ```
 
@@ -791,6 +640,7 @@ Name | Type | Description  | Notes
  **thread_id** | **character**| The ID of the thread to which the run and run step belongs. | 
  **run_id** | **character**| The ID of the run to which the run step belongs. | 
  **step_id** | **character**| The ID of the run step to retrieve. | 
+ **include** | Enum [step_details.tool_calls[*].file_search.results[*].content] | A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -857,61 +707,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 
-# **ListAssistantFiles**
-> ListAssistantFilesResponse ListAssistantFiles(assistant_id, limit = 20, order = "desc", after = var.after, before = var.before)
-
-Returns a list of assistant files.
-
-### Example
-```R
-library(openapi)
-
-# Returns a list of assistant files.
-#
-# prepare function argument(s)
-var_assistant_id <- "assistant_id_example" # character | The ID of the assistant the file belongs to.
-var_limit <- 20 # integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (Optional)
-var_order <- "desc" # character | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (Optional)
-var_after <- "after_example" # character | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (Optional)
-var_before <- "before_example" # character | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (Optional)
-
-api_instance <- AssistantsApi$new()
-# Configure HTTP bearer authorization: ApiKeyAuth
-api_instance$api_client$bearer_token <- Sys.getenv("BEARER_TOKEN")
-# to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$ListAssistantFiles(var_assistant_id, limit = var_limit, order = var_order, after = var_after, before = var_beforedata_file = "result.txt")
-result <- api_instance$ListAssistantFiles(var_assistant_id, limit = var_limit, order = var_order, after = var_after, before = var_before)
-dput(result)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistant_id** | **character**| The ID of the assistant the file belongs to. | 
- **limit** | **integer**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
- **order** | Enum [asc, desc] | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &quot;desc&quot;]
- **after** | **character**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **character**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
-
-### Return type
-
-[**ListAssistantFilesResponse**](ListAssistantFilesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-
 # **ListAssistants**
 > ListAssistantsResponse ListAssistants(limit = 20, order = "desc", after = var.after, before = var.before)
 
@@ -927,7 +722,7 @@ library(openapi)
 var_limit <- 20 # integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (Optional)
 var_order <- "desc" # character | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (Optional)
 var_after <- "after_example" # character | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (Optional)
-var_before <- "before_example" # character | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (Optional)
+var_before <- "before_example" # character | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (Optional)
 
 api_instance <- AssistantsApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth
@@ -945,68 +740,11 @@ Name | Type | Description  | Notes
  **limit** | **integer**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | Enum [asc, desc] | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &quot;desc&quot;]
  **after** | **character**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **character**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **character**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
 
 ### Return type
 
 [**ListAssistantsResponse**](ListAssistantsResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-
-# **ListMessageFiles**
-> ListMessageFilesResponse ListMessageFiles(thread_id, message_id, limit = 20, order = "desc", after = var.after, before = var.before)
-
-Returns a list of message files.
-
-### Example
-```R
-library(openapi)
-
-# Returns a list of message files.
-#
-# prepare function argument(s)
-var_thread_id <- "thread_id_example" # character | The ID of the thread that the message and files belong to.
-var_message_id <- "message_id_example" # character | The ID of the message that the files belongs to.
-var_limit <- 20 # integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (Optional)
-var_order <- "desc" # character | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (Optional)
-var_after <- "after_example" # character | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (Optional)
-var_before <- "before_example" # character | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (Optional)
-
-api_instance <- AssistantsApi$new()
-# Configure HTTP bearer authorization: ApiKeyAuth
-api_instance$api_client$bearer_token <- Sys.getenv("BEARER_TOKEN")
-# to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$ListMessageFiles(var_thread_id, var_message_id, limit = var_limit, order = var_order, after = var_after, before = var_beforedata_file = "result.txt")
-result <- api_instance$ListMessageFiles(var_thread_id, var_message_id, limit = var_limit, order = var_order, after = var_after, before = var_before)
-dput(result)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **thread_id** | **character**| The ID of the thread that the message and files belong to. | 
- **message_id** | **character**| The ID of the message that the files belongs to. | 
- **limit** | **integer**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
- **order** | Enum [asc, desc] | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &quot;desc&quot;]
- **after** | **character**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **character**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
-
-### Return type
-
-[**ListMessageFilesResponse**](ListMessageFilesResponse.md)
 
 ### Authorization
 
@@ -1038,7 +776,7 @@ var_thread_id <- "thread_id_example" # character | The ID of the [thread](/docs/
 var_limit <- 20 # integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (Optional)
 var_order <- "desc" # character | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (Optional)
 var_after <- "after_example" # character | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (Optional)
-var_before <- "before_example" # character | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (Optional)
+var_before <- "before_example" # character | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (Optional)
 var_run_id <- "run_id_example" # character | Filter messages by the run ID that generated them.  (Optional)
 
 api_instance <- AssistantsApi$new()
@@ -1058,7 +796,7 @@ Name | Type | Description  | Notes
  **limit** | **integer**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | Enum [asc, desc] | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &quot;desc&quot;]
  **after** | **character**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **character**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **character**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
  **run_id** | **character**| Filter messages by the run ID that generated them.  | [optional] 
 
 ### Return type
@@ -1080,7 +818,7 @@ Name | Type | Description  | Notes
 | **200** | OK |  -  |
 
 # **ListRunSteps**
-> ListRunStepsResponse ListRunSteps(thread_id, run_id, limit = 20, order = "desc", after = var.after, before = var.before)
+> ListRunStepsResponse ListRunSteps(thread_id, run_id, limit = 20, order = "desc", after = var.after, before = var.before, include = var.include)
 
 Returns a list of run steps belonging to a run.
 
@@ -1096,14 +834,15 @@ var_run_id <- "run_id_example" # character | The ID of the run the run steps bel
 var_limit <- 20 # integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (Optional)
 var_order <- "desc" # character | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (Optional)
 var_after <- "after_example" # character | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (Optional)
-var_before <- "before_example" # character | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (Optional)
+var_before <- "before_example" # character | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (Optional)
+var_include <- c("step_details.tool_calls[*].file_search.results[*].content") # array[character] | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (Optional)
 
 api_instance <- AssistantsApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth
 api_instance$api_client$bearer_token <- Sys.getenv("BEARER_TOKEN")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$ListRunSteps(var_thread_id, var_run_id, limit = var_limit, order = var_order, after = var_after, before = var_beforedata_file = "result.txt")
-result <- api_instance$ListRunSteps(var_thread_id, var_run_id, limit = var_limit, order = var_order, after = var_after, before = var_before)
+# result <- api_instance$ListRunSteps(var_thread_id, var_run_id, limit = var_limit, order = var_order, after = var_after, before = var_before, include = var_includedata_file = "result.txt")
+result <- api_instance$ListRunSteps(var_thread_id, var_run_id, limit = var_limit, order = var_order, after = var_after, before = var_before, include = var_include)
 dput(result)
 ```
 
@@ -1116,7 +855,8 @@ Name | Type | Description  | Notes
  **limit** | **integer**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | Enum [asc, desc] | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &quot;desc&quot;]
  **after** | **character**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **character**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **character**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **include** | Enum [step_details.tool_calls[*].file_search.results[*].content] | A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -1152,7 +892,7 @@ var_thread_id <- "thread_id_example" # character | The ID of the thread the run 
 var_limit <- 20 # integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (Optional)
 var_order <- "desc" # character | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (Optional)
 var_after <- "after_example" # character | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (Optional)
-var_before <- "before_example" # character | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (Optional)
+var_before <- "before_example" # character | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (Optional)
 
 api_instance <- AssistantsApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth
@@ -1171,7 +911,7 @@ Name | Type | Description  | Notes
  **limit** | **integer**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | Enum [asc, desc] | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &quot;desc&quot;]
  **after** | **character**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **character**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **character**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
 
 ### Return type
 
@@ -1204,7 +944,7 @@ library(openapi)
 #
 # prepare function argument(s)
 var_assistant_id <- "assistant_id_example" # character | The ID of the assistant to modify.
-var_modify_assistant_request <- ModifyAssistantRequest$new("model_example", "name_example", "description_example", "instructions_example", c(AssistantObject_tools_inner$new("code_interpreter", FunctionObject$new("name_example", "description_example", c(key = TODO)))), c("file_ids_example"), 123) # ModifyAssistantRequest | 
+var_modify_assistant_request <- ModifyAssistantRequest$new("model_example", "name_example", "description_example", "instructions_example", c(AssistantObject_tools_inner$new("code_interpreter", FunctionObject$new("name_example", "description_example", c(key = TODO), "strict_example"), AssistantToolsFileSearch_file_search$new(123, FileSearchRankingOptions$new(123, "auto")))), ModifyAssistantRequest_tool_resources$new(ModifyAssistantRequest_tool_resources_code_interpreter$new(c("file_ids_example")), ModifyAssistantRequest_tool_resources_file_search$new(c("vector_store_ids_example"))), 123, 123, 123, AssistantsApiResponseFormatOption$new("text", ResponseFormatJsonSchema_json_schema$new("name_example", "description_example", c(key = TODO), "strict_example"))) # ModifyAssistantRequest | 
 
 api_instance <- AssistantsApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth
@@ -1355,7 +1095,7 @@ library(openapi)
 #
 # prepare function argument(s)
 var_thread_id <- "thread_id_example" # character | The ID of the thread to modify. Only the `metadata` can be modified.
-var_modify_thread_request <- ModifyThreadRequest$new(123) # ModifyThreadRequest | 
+var_modify_thread_request <- ModifyThreadRequest$new(ModifyThreadRequest_tool_resources$new(CreateAssistantRequest_tool_resources_code_interpreter$new(c("file_ids_example")), ModifyThreadRequest_tool_resources_file_search$new(c("vector_store_ids_example"))), 123) # ModifyThreadRequest | 
 
 api_instance <- AssistantsApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth

@@ -6,7 +6,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **file_id** | **string** | The ID of the specific File the citation is from. | [default to undefined]
-**quote** | **string** | The specific quote in the file. | [default to undefined]
 
 ## Example
 
@@ -15,7 +14,6 @@ import { MessageContentTextAnnotationsFileCitationObjectFileCitation } from './a
 
 const instance: MessageContentTextAnnotationsFileCitationObjectFileCitation = {
     file_id,
-    quote,
 };
 ```
 

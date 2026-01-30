@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FunctionObject   {
@@ -12,15 +13,17 @@ public class FunctionObject   {
   private String description;
   private String name;
   private Map<String, Object> parameters = new HashMap<>();
+  private Boolean strict = false;
 
   public FunctionObject () {
 
   }
 
-  public FunctionObject (String description, String name, Map<String, Object> parameters) {
+  public FunctionObject (String description, String name, Map<String, Object> parameters, Boolean strict) {
     this.description = description;
     this.name = name;
     this.parameters = parameters;
+    this.strict = strict;
   }
 
     
@@ -50,6 +53,15 @@ public class FunctionObject   {
     this.parameters = parameters;
   }
 
+    
+  @JsonProperty("strict")
+  public Boolean getStrict() {
+    return strict;
+  }
+  public void setStrict(Boolean strict) {
+    this.strict = strict;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -62,12 +74,13 @@ public class FunctionObject   {
     FunctionObject functionObject = (FunctionObject) o;
     return Objects.equals(description, functionObject.description) &&
         Objects.equals(name, functionObject.name) &&
-        Objects.equals(parameters, functionObject.parameters);
+        Objects.equals(parameters, functionObject.parameters) &&
+        Objects.equals(strict, functionObject.strict);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, name, parameters);
+    return Objects.hash(description, name, parameters, strict);
   }
 
   @Override
@@ -78,6 +91,7 @@ public class FunctionObject   {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
+    sb.append("    strict: ").append(toIndentedString(strict)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -42,16 +42,18 @@ public class ChatCompletionStreamResponseDelta   {
   }
 
   private RoleEnum role;
+  private String refusal;
 
   public ChatCompletionStreamResponseDelta () {
 
   }
 
-  public ChatCompletionStreamResponseDelta (String content, ChatCompletionStreamResponseDeltaFunctionCall functionCall, List<ChatCompletionMessageToolCallChunk> toolCalls, RoleEnum role) {
+  public ChatCompletionStreamResponseDelta (String content, ChatCompletionStreamResponseDeltaFunctionCall functionCall, List<ChatCompletionMessageToolCallChunk> toolCalls, RoleEnum role, String refusal) {
     this.content = content;
     this.functionCall = functionCall;
     this.toolCalls = toolCalls;
     this.role = role;
+    this.refusal = refusal;
   }
 
     
@@ -90,6 +92,15 @@ public class ChatCompletionStreamResponseDelta   {
     this.role = role;
   }
 
+    
+  @JsonProperty("refusal")
+  public String getRefusal() {
+    return refusal;
+  }
+  public void setRefusal(String refusal) {
+    this.refusal = refusal;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -103,12 +114,13 @@ public class ChatCompletionStreamResponseDelta   {
     return Objects.equals(content, chatCompletionStreamResponseDelta.content) &&
         Objects.equals(functionCall, chatCompletionStreamResponseDelta.functionCall) &&
         Objects.equals(toolCalls, chatCompletionStreamResponseDelta.toolCalls) &&
-        Objects.equals(role, chatCompletionStreamResponseDelta.role);
+        Objects.equals(role, chatCompletionStreamResponseDelta.role) &&
+        Objects.equals(refusal, chatCompletionStreamResponseDelta.refusal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(content, functionCall, toolCalls, role);
+    return Objects.hash(content, functionCall, toolCalls, role, refusal);
   }
 
   @Override
@@ -120,6 +132,7 @@ public class ChatCompletionStreamResponseDelta   {
     sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
     sb.append("    toolCalls: ").append(toIndentedString(toolCalls)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
     sb.append("}");
     return sb.toString();
   }

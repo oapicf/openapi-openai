@@ -89,11 +89,11 @@ public:
 	/*! \brief Set The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run.
 	 */
 	void setAssistantId(std::string  assistant_id);
-	/*! \brief Get The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+	/*! \brief Get The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
 	 */
 	std::string getStatus();
 
-	/*! \brief Set The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+	/*! \brief Set The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
 	 */
 	void setStatus(std::string  status);
 	/*! \brief Get 
@@ -173,18 +173,11 @@ public:
 	/*! \brief Set The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
 	 */
 	void setTools(std::list <AssistantObject_tools_inner> tools);
-	/*! \brief Get The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
-	 */
-	std::list<std::string> getFileIds();
-
-	/*! \brief Set The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
-	 */
-	void setFileIds(std::list <std::string> file_ids);
-	/*! \brief Get Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	/*! \brief Get Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	 */
 	std::string getMetadata();
 
-	/*! \brief Set Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	/*! \brief Set Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	 */
 	void setMetadata(std::string  metadata);
 	/*! \brief Get 
@@ -201,6 +194,13 @@ public:
 	/*! \brief Set The sampling temperature used for this run. If not set, defaults to 1.
 	 */
 	void setTemperature(long long  temperature);
+	/*! \brief Get The nucleus sampling value used for this run. If not set, defaults to 1.
+	 */
+	long long getTopP();
+
+	/*! \brief Set The nucleus sampling value used for this run. If not set, defaults to 1.
+	 */
+	void setTopP(long long  top_p);
 	/*! \brief Get The maximum number of prompt tokens specified to have been used over the course of the run. 
 	 */
 	int getMaxPromptTokens();
@@ -229,6 +229,13 @@ public:
 	/*! \brief Set 
 	 */
 	void setToolChoice(AssistantsApiToolChoiceOption  tool_choice);
+	/*! \brief Get Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+	 */
+	bool getParallelToolCalls();
+
+	/*! \brief Set Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+	 */
+	void setParallelToolCalls(bool  parallel_tool_calls);
 	/*! \brief Get 
 	 */
 	AssistantsApiResponseFormatOption getResponseFormat();
@@ -255,14 +262,15 @@ private:
 	std::string model;
 	std::string instructions;
 	std::list <AssistantObject_tools_inner>tools;
-	std::list <std::string>file_ids;
 	std::string metadata;
 	RunCompletionUsage usage;
 	long long temperature;
+	long long top_p;
 	int max_prompt_tokens;
 	int max_completion_tokens;
 	TruncationObject truncation_strategy;
 	AssistantsApiToolChoiceOption tool_choice;
+	bool parallel_tool_calls;
 	AssistantsApiResponseFormatOption response_format;
 	void __init();
 	void __cleanup();

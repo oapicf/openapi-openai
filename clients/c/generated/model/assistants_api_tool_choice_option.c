@@ -5,13 +5,13 @@
 
 
 char* assistants_api_tool_choice_option_type_ToString(openai_api_assistants_api_tool_choice_option_TYPE_e type) {
-    char* typeArray[] =  { "NULL", "function", "code_interpreter", "retrieval" };
+    char* typeArray[] =  { "NULL", "function", "code_interpreter", "file_search" };
     return typeArray[type];
 }
 
 openai_api_assistants_api_tool_choice_option_TYPE_e assistants_api_tool_choice_option_type_FromString(char* type){
     int stringToReturn = 0;
-    char *typeArray[] =  { "NULL", "function", "code_interpreter", "retrieval" };
+    char *typeArray[] =  { "NULL", "function", "code_interpreter", "file_search" };
     size_t sizeofArray = sizeof(typeArray) / sizeof(typeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(type, typeArray[stringToReturn]) == 0) {
@@ -24,7 +24,7 @@ openai_api_assistants_api_tool_choice_option_TYPE_e assistants_api_tool_choice_o
 
 static assistants_api_tool_choice_option_t *assistants_api_tool_choice_option_create_internal(
     openai_api_assistants_api_tool_choice_option_TYPE_e type,
-    chat_completion_named_tool_choice_function_t *function
+    assistants_named_tool_choice_function_t *function
     ) {
     assistants_api_tool_choice_option_t *assistants_api_tool_choice_option_local_var = malloc(sizeof(assistants_api_tool_choice_option_t));
     if (!assistants_api_tool_choice_option_local_var) {
@@ -39,7 +39,7 @@ static assistants_api_tool_choice_option_t *assistants_api_tool_choice_option_cr
 
 __attribute__((deprecated)) assistants_api_tool_choice_option_t *assistants_api_tool_choice_option_create(
     openai_api_assistants_api_tool_choice_option_TYPE_e type,
-    chat_completion_named_tool_choice_function_t *function
+    assistants_named_tool_choice_function_t *function
     ) {
     return assistants_api_tool_choice_option_create_internal (
         type,
@@ -57,7 +57,7 @@ void assistants_api_tool_choice_option_free(assistants_api_tool_choice_option_t 
     }
     listEntry_t *listEntry;
     if (assistants_api_tool_choice_option->function) {
-        chat_completion_named_tool_choice_function_free(assistants_api_tool_choice_option->function);
+        assistants_named_tool_choice_function_free(assistants_api_tool_choice_option->function);
         assistants_api_tool_choice_option->function = NULL;
     }
     free(assistants_api_tool_choice_option);
@@ -78,7 +78,7 @@ cJSON *assistants_api_tool_choice_option_convertToJSON(assistants_api_tool_choic
 
     // assistants_api_tool_choice_option->function
     if(assistants_api_tool_choice_option->function) {
-    cJSON *function_local_JSON = chat_completion_named_tool_choice_function_convertToJSON(assistants_api_tool_choice_option->function);
+    cJSON *function_local_JSON = assistants_named_tool_choice_function_convertToJSON(assistants_api_tool_choice_option->function);
     if(function_local_JSON == NULL) {
     goto fail; //model
     }
@@ -101,7 +101,7 @@ assistants_api_tool_choice_option_t *assistants_api_tool_choice_option_parseFrom
     assistants_api_tool_choice_option_t *assistants_api_tool_choice_option_local_var = NULL;
 
     // define the local variable for assistants_api_tool_choice_option->function
-    chat_completion_named_tool_choice_function_t *function_local_nonprim = NULL;
+    assistants_named_tool_choice_function_t *function_local_nonprim = NULL;
 
     // assistants_api_tool_choice_option->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(assistants_api_tool_choice_optionJSON, "type");
@@ -126,7 +126,7 @@ assistants_api_tool_choice_option_t *assistants_api_tool_choice_option_parseFrom
         function = NULL;
     }
     if (function) { 
-    function_local_nonprim = chat_completion_named_tool_choice_function_parseFromJSON(function); //nonprimitive
+    function_local_nonprim = assistants_named_tool_choice_function_parseFromJSON(function); //nonprimitive
     }
 
 
@@ -138,7 +138,7 @@ assistants_api_tool_choice_option_t *assistants_api_tool_choice_option_parseFrom
     return assistants_api_tool_choice_option_local_var;
 end:
     if (function_local_nonprim) {
-        chat_completion_named_tool_choice_function_free(function_local_nonprim);
+        assistants_named_tool_choice_function_free(function_local_nonprim);
         function_local_nonprim = NULL;
     }
     return NULL;

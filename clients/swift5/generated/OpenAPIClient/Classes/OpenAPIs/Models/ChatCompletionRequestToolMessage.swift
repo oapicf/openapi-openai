@@ -17,12 +17,11 @@ public struct ChatCompletionRequestToolMessage: Codable, JSONEncodable, Hashable
     }
     /** The role of the messages author, in this case `tool`. */
     public var role: Role
-    /** The contents of the tool message. */
-    public var content: String
+    public var content: ChatCompletionRequestToolMessageContent
     /** Tool call that this message is responding to. */
     public var toolCallId: String
 
-    public init(role: Role, content: String, toolCallId: String) {
+    public init(role: Role, content: ChatCompletionRequestToolMessageContent, toolCallId: String) {
         self.role = role
         self.content = content
         self.toolCallId = toolCallId

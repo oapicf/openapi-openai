@@ -1,0 +1,58 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ProjectApiKeyListResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ProjectApiKeyListResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ProjectApiKey = openapi_server.resourceTypes.ProjectApiKey
+}
+resourceTypes {
+
+  ProjectApiKeyListResponse {
+    title = ProjectApiKeyListResponse
+    description = ProjectApiKeyListResponse
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          enum = ["list"]
+          optional = true
+        }
+        data {
+          type = array
+          items.type = ProjectApiKey
+          description = ""
+          optional = true
+        }
+        first_id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        last_id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        has_more {
+          type =  boolean
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ProjectApiKeyListResponse {
+    title = ProjectApiKeyListResponse
+    description = ProjectApiKeyListResponse
+    implements = openapi_server.resourceTypes.ProjectApiKeyListResponse
+
+  }
+}

@@ -2,7 +2,7 @@
 
 # CreateFineTuningJobRequestHyperparameters
 
-The hyperparameters used for the fine-tuning job.
+The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of `method`, and should be passed in under the `method` parameter. 
 
 The class is defined in **[CreateFineTuningJobRequestHyperparameters.java](../../src/main/java/org/openapitools/model/CreateFineTuningJobRequestHyperparameters.java)**
 

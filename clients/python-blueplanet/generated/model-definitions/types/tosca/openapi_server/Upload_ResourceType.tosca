@@ -1,0 +1,78 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server Upload"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a Upload"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  OpenAIFile = openapi_server.resourceTypes.OpenAIFile
+}
+resourceTypes {
+
+  Upload {
+    title = Upload
+    description = Upload
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The Upload unique identifier, which can be referenced in API endpoints."
+          optional = true
+        }
+        created_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the Upload was created."
+          optional = true
+        }
+        filename {
+          type =  string
+          description = "The name of the file to be uploaded."
+          optional = true
+        }
+        bytes {
+          type =  integer
+          description = "The intended number of bytes to be uploaded."
+          optional = true
+        }
+        purpose {
+          type =  string
+          description = "The intended purpose of the file. [Please refer here](/docs/api-reference/files/object#files/object-purpose) for acceptable values."
+          optional = true
+        }
+        status {
+          type =  string
+          description = "The status of the Upload."
+          enum = ["pending", "completed", "cancelled", "expired"]
+          optional = true
+        }
+        expires_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the Upload was created."
+          optional = true
+        }
+        object {
+          type =  string
+          description = "The object type, which is always \&quot;upload\&quot;."
+          enum = ["upload"]
+          optional = false
+        }
+        file {
+          type = OpenAIFile
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  Upload {
+    title = Upload
+    description = Upload
+    implements = openapi_server.resourceTypes.Upload
+
+  }
+}

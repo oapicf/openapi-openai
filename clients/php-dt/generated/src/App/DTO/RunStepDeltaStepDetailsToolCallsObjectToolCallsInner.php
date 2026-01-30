@@ -37,10 +37,10 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
 
     /**
      * For now, this is always going to be an empty object.
-     * @DTA\Data(field="retrieval", nullable=true)
+     * @DTA\Data(field="file_search")
      * @DTA\Validator(name="Scalar", options={"type":"object"})
      */
-    public ?object $retrieval = null;
+    public ?object $file_search = null;
 
     /**
      * @DTA\Data(field="function", nullable=true)

@@ -3,6 +3,8 @@ namespace OpenAPI.Model
 open System
 open System.Collections.Generic
 open Newtonsoft.Json
+open OpenAPI.Model.CreateMessageRequestAttachmentsInner
+open OpenAPI.Model.CreateMessageRequestContent
 
 module CreateMessageRequest =
 
@@ -13,9 +15,9 @@ module CreateMessageRequest =
     [<JsonProperty(PropertyName = "role")>]
     Role : string;
     [<JsonProperty(PropertyName = "content")>]
-    Content : string;
-    [<JsonProperty(PropertyName = "file_ids")>]
-    FileIds : string[];
+    Content : CreateMessageRequestContent;
+    [<JsonProperty(PropertyName = "attachments")>]
+    Attachments : CreateMessageRequestAttachmentsInner[];
     [<JsonProperty(PropertyName = "metadata")>]
     Metadata : obj;
   }

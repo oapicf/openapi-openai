@@ -8,7 +8,7 @@ import play.api.libs.Files.TemporaryFile
 /**
   * Provides a default implementation for [[FilesApi]].
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T10:48:27.489746113Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 class FilesApiImpl extends FilesApi {
   /**
     * @inheritdoc
@@ -40,10 +40,10 @@ class FilesApiImpl extends FilesApi {
   /**
     * @inheritdoc
     */
-  override def listFiles(purpose: Option[String]): ListFilesResponse = {
+  override def listFiles(purpose: Option[String], limit: Option[Int], order: Option[String], after: Option[String]): ListFilesResponse = {
     // TODO: Implement better logic
 
-    ListFilesResponse(List.empty[OpenAIFile], "")
+    ListFilesResponse("", List.empty[OpenAIFile], "", "", false)
   }
 
   /**

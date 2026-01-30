@@ -1,11 +1,12 @@
 # ChatCompletionRequestSystemMessage
 
+Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**content** | **string** | The contents of the system message. | [default to undefined]
+**content** | [**ChatCompletionRequestSystemMessageContent**](ChatCompletionRequestSystemMessageContent.md) |  | [default to undefined]
 **role** | **string** | The role of the messages author, in this case &#x60;system&#x60;. | [default to undefined]
 **name** | **string** | An optional name for the participant. Provides the model information to differentiate between participants of the same role. | [optional] [default to undefined]
 

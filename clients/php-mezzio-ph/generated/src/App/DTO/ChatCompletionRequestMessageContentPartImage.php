@@ -6,6 +6,7 @@ namespace App\DTO;
 use Articus\DataTransfer\Annotation as DTA;
 
 /**
+ * Learn about [image inputs](/docs/guides/vision).
  */
 class ChatCompletionRequestMessageContentPartImage
 {

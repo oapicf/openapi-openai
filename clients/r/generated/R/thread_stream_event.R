@@ -7,6 +7,7 @@
 #' @title ThreadStreamEvent
 #' @description ThreadStreamEvent Class
 #' @format An \code{R6Class} generator object
+#' @field enabled Whether to enable input audio transcription. character [optional]
 #' @field event  character
 #' @field data  \link{ThreadObject}
 #' @importFrom R6 R6Class
@@ -15,6 +16,7 @@
 ThreadStreamEvent <- R6::R6Class(
   "ThreadStreamEvent",
   public = list(
+    `enabled` = NULL,
     `event` = NULL,
     `data` = NULL,
 
@@ -23,8 +25,9 @@ ThreadStreamEvent <- R6::R6Class(
     #'
     #' @param event event
     #' @param data data
+    #' @param enabled Whether to enable input audio transcription.
     #' @param ... Other optional arguments.
-    initialize = function(`event`, `data`, ...) {
+    initialize = function(`event`, `data`, `enabled` = NULL, ...) {
       if (!missing(`event`)) {
         if (!(`event` %in% c("thread.created"))) {
           stop(paste("Error! \"", `event`, "\" cannot be assigned to `event`. Must be \"thread.created\".", sep = ""))
@@ -37,6 +40,12 @@ ThreadStreamEvent <- R6::R6Class(
       if (!missing(`data`)) {
         stopifnot(R6::is.R6(`data`))
         self$`data` <- `data`
+      }
+      if (!is.null(`enabled`)) {
+        if (!(is.logical(`enabled`) && length(`enabled`) == 1)) {
+          stop(paste("Error! Invalid data for `enabled`. Must be a boolean:", `enabled`))
+        }
+        self$`enabled` <- `enabled`
       }
     },
 
@@ -71,6 +80,10 @@ ThreadStreamEvent <- R6::R6Class(
     #' @return A base R type, e.g. a list or numeric/character array.
     toSimpleType = function() {
       ThreadStreamEventObject <- list()
+      if (!is.null(self$`enabled`)) {
+        ThreadStreamEventObject[["enabled"]] <-
+          self$`enabled`
+      }
       if (!is.null(self$`event`)) {
         ThreadStreamEventObject[["event"]] <-
           self$`event`
@@ -89,6 +102,9 @@ ThreadStreamEvent <- R6::R6Class(
     #' @return the instance of ThreadStreamEvent
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
+      if (!is.null(this_object$`enabled`)) {
+        self$`enabled` <- this_object$`enabled`
+      }
       if (!is.null(this_object$`event`)) {
         if (!is.null(this_object$`event`) && !(this_object$`event` %in% c("thread.created"))) {
           stop(paste("Error! \"", this_object$`event`, "\" cannot be assigned to `event`. Must be \"thread.created\".", sep = ""))
@@ -121,6 +137,7 @@ ThreadStreamEvent <- R6::R6Class(
     #' @return the instance of ThreadStreamEvent
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
+      self$`enabled` <- this_object$`enabled`
       if (!is.null(this_object$`event`) && !(this_object$`event` %in% c("thread.created"))) {
         stop(paste("Error! \"", this_object$`event`, "\" cannot be assigned to `event`. Must be \"thread.created\".", sep = ""))
       }

@@ -12,3 +12,11 @@ test_that("content", {
   # uncomment below to test the property
   #expect_equal(model.instance$`content`, "EXPECTED_RESULT")
 })
+
+test_that("refusal", {
+  # tests for the property `refusal` (array[ChatCompletionTokenLogprob])
+  # A list of message refusal tokens with log probability information.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`refusal`, "EXPECTED_RESULT")
+})

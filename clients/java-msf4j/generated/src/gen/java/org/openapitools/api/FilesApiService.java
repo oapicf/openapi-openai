@@ -19,7 +19,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public abstract class FilesApiService {
     public abstract Response createFile(InputStream _fileInputStream, FileInfo _fileDetail
  ,String purpose
@@ -29,6 +29,9 @@ public abstract class FilesApiService {
     public abstract Response downloadFile(String fileId
  ) throws NotFoundException;
     public abstract Response listFiles(String purpose
+ ,Integer limit
+ ,String order
+ ,String after
  ) throws NotFoundException;
     public abstract Response retrieveFile(String fileId
  ) throws NotFoundException;

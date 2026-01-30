@@ -13,6 +13,7 @@ module ThreadStreamEvent =
   //#endregion
 
   type ThreadStreamEvent = {
+    Enabled : bool;
     Event : EventEnum;
     Data : ThreadObject;
   }

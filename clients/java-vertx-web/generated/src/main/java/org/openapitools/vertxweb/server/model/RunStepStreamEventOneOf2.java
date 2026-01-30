@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.vertxweb.server.model.RunStepDeltaObject;
 
 /**
- * Occurs when parts of a [run step](/docs/api-reference/runs/step-object) are being streamed.
+ * Occurs when parts of a [run step](/docs/api-reference/run-steps/step-object) are being streamed.
  **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RunStepStreamEventOneOf2   {

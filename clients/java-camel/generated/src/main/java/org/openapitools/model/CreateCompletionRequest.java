@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.ChatCompletionStreamOptions;
 import org.openapitools.model.CreateCompletionRequestModel;
 import org.openapitools.model.CreateCompletionRequestPrompt;
 import org.openapitools.model.CreateCompletionRequestStop;
@@ -27,7 +28,7 @@ import javax.annotation.Generated;
  * CreateCompletionRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateCompletionRequest {
 
   private CreateCompletionRequestModel model;
@@ -51,11 +52,13 @@ public class CreateCompletionRequest {
 
   private JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> presencePenalty = JsonNullable.<BigDecimal>undefined();
 
-  private JsonNullable<@Min(value = -9223372036854775808) @Max(value = 9223372036854775807) Integer> seed = JsonNullable.<Integer>undefined();
+  private JsonNullable<@Min(value = -9223372036854776000) @Max(value = 9223372036854776000) Integer> seed = JsonNullable.<Integer>undefined();
 
   private JsonNullable<CreateCompletionRequestStop> stop = JsonNullable.<CreateCompletionRequestStop>undefined();
 
   private JsonNullable<Boolean> stream = JsonNullable.<Boolean>undefined();
+
+  private JsonNullable<ChatCompletionStreamOptions> streamOptions = JsonNullable.<ChatCompletionStreamOptions>undefined();
 
   private JsonNullable<String> suffix = JsonNullable.<String>undefined();
 
@@ -165,13 +168,13 @@ public class CreateCompletionRequest {
   }
 
   /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
    * minimum: -2
    * maximum: 2
    * @return frequencyPenalty
    */
   @Valid @DecimalMin(value = "-2") @DecimalMax(value = "2") 
-  @Schema(name = "frequency_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "frequency_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("frequency_penalty")
   public JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> getFrequencyPenalty() {
     return frequencyPenalty;
@@ -280,13 +283,13 @@ public class CreateCompletionRequest {
   }
 
   /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
    * minimum: -2
    * maximum: 2
    * @return presencePenalty
    */
   @Valid @DecimalMin(value = "-2") @DecimalMax(value = "2") 
-  @Schema(name = "presence_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "presence_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("presence_penalty")
   public JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> getPresencePenalty() {
     return presencePenalty;
@@ -303,14 +306,14 @@ public class CreateCompletionRequest {
 
   /**
    * If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.  Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. 
-   * minimum: -9223372036854775808
-   * maximum: 9223372036854775807
+   * minimum: -9223372036854776000
+   * maximum: 9223372036854776000
    * @return seed
    */
-  @Min(value = -9223372036854775808) @Max(value = 9223372036854775807) 
+  @Min(value = -9223372036854776000) @Max(value = 9223372036854776000) 
   @Schema(name = "seed", description = "If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.  Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("seed")
-  public JsonNullable<@Min(value = -9223372036854775808) @Max(value = 9223372036854775807) Integer> getSeed() {
+  public JsonNullable<@Min(value = -9223372036854776000) @Max(value = 9223372036854776000) Integer> getSeed() {
     return seed;
   }
 
@@ -356,6 +359,26 @@ public class CreateCompletionRequest {
 
   public void setStream(JsonNullable<Boolean> stream) {
     this.stream = stream;
+  }
+
+  public CreateCompletionRequest streamOptions(ChatCompletionStreamOptions streamOptions) {
+    this.streamOptions = JsonNullable.of(streamOptions);
+    return this;
+  }
+
+  /**
+   * Get streamOptions
+   * @return streamOptions
+   */
+  @Valid 
+  @Schema(name = "stream_options", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("stream_options")
+  public JsonNullable<ChatCompletionStreamOptions> getStreamOptions() {
+    return streamOptions;
+  }
+
+  public void setStreamOptions(JsonNullable<ChatCompletionStreamOptions> streamOptions) {
+    this.streamOptions = streamOptions;
   }
 
   public CreateCompletionRequest suffix(String suffix) {
@@ -428,11 +451,11 @@ public class CreateCompletionRequest {
   }
 
   /**
-   * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+   * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
    * @return user
    */
   
-  @Schema(name = "user", example = "user-1234", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "user", example = "user-1234", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("user")
   public String getUser() {
     return user;
@@ -464,6 +487,7 @@ public class CreateCompletionRequest {
         equalsNullable(this.seed, createCompletionRequest.seed) &&
         equalsNullable(this.stop, createCompletionRequest.stop) &&
         equalsNullable(this.stream, createCompletionRequest.stream) &&
+        equalsNullable(this.streamOptions, createCompletionRequest.streamOptions) &&
         equalsNullable(this.suffix, createCompletionRequest.suffix) &&
         equalsNullable(this.temperature, createCompletionRequest.temperature) &&
         equalsNullable(this.topP, createCompletionRequest.topP) &&
@@ -476,7 +500,7 @@ public class CreateCompletionRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, prompt, hashCodeNullable(bestOf), hashCodeNullable(echo), hashCodeNullable(frequencyPenalty), hashCodeNullable(logitBias), hashCodeNullable(logprobs), hashCodeNullable(maxTokens), hashCodeNullable(n), hashCodeNullable(presencePenalty), hashCodeNullable(seed), hashCodeNullable(stop), hashCodeNullable(stream), hashCodeNullable(suffix), hashCodeNullable(temperature), hashCodeNullable(topP), user);
+    return Objects.hash(model, prompt, hashCodeNullable(bestOf), hashCodeNullable(echo), hashCodeNullable(frequencyPenalty), hashCodeNullable(logitBias), hashCodeNullable(logprobs), hashCodeNullable(maxTokens), hashCodeNullable(n), hashCodeNullable(presencePenalty), hashCodeNullable(seed), hashCodeNullable(stop), hashCodeNullable(stream), hashCodeNullable(streamOptions), hashCodeNullable(suffix), hashCodeNullable(temperature), hashCodeNullable(topP), user);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -503,6 +527,7 @@ public class CreateCompletionRequest {
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
     sb.append("    stop: ").append(toIndentedString(stop)).append("\n");
     sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
+    sb.append("    streamOptions: ").append(toIndentedString(streamOptions)).append("\n");
     sb.append("    suffix: ").append(toIndentedString(suffix)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
     sb.append("    topP: ").append(toIndentedString(topP)).append("\n");

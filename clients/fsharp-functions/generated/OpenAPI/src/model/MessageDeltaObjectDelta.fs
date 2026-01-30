@@ -15,8 +15,6 @@ module MessageDeltaObjectDelta =
     Role : string;
     [<JsonProperty(PropertyName = "content")>]
     Content : MessageDeltaObjectDeltaContentInner[];
-    [<JsonProperty(PropertyName = "file_ids")>]
-    FileIds : string[];
   }
 
   //#endregion

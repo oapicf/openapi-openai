@@ -16,7 +16,7 @@
 #include "../model/assistants_api_tool_choice_option.h"
 assistants_api_tool_choice_option_t* instantiate_assistants_api_tool_choice_option(int include_optional);
 
-#include "test_chat_completion_named_tool_choice_function.c"
+#include "test_assistants_named_tool_choice_function.c"
 
 
 assistants_api_tool_choice_option_t* instantiate_assistants_api_tool_choice_option(int include_optional) {
@@ -25,7 +25,7 @@ assistants_api_tool_choice_option_t* instantiate_assistants_api_tool_choice_opti
     assistants_api_tool_choice_option = assistants_api_tool_choice_option_create(
       openai_api_assistants_api_tool_choice_option_TYPE_function,
        // false, not to have infinite recursion
-      instantiate_chat_completion_named_tool_choice_function(0)
+      instantiate_assistants_named_tool_choice_function(0)
     );
   } else {
     assistants_api_tool_choice_option = assistants_api_tool_choice_option_create(

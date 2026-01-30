@@ -19,24 +19,19 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.apis.AssistantsApi
-import org.openapitools.client.models.AssistantFileObject
 import org.openapitools.client.models.AssistantObject
-import org.openapitools.client.models.CreateAssistantFileRequest
 import org.openapitools.client.models.CreateAssistantRequest
 import org.openapitools.client.models.CreateMessageRequest
 import org.openapitools.client.models.CreateRunRequest
 import org.openapitools.client.models.CreateThreadAndRunRequest
 import org.openapitools.client.models.CreateThreadRequest
-import org.openapitools.client.models.DeleteAssistantFileResponse
 import org.openapitools.client.models.DeleteAssistantResponse
+import org.openapitools.client.models.DeleteMessageResponse
 import org.openapitools.client.models.DeleteThreadResponse
-import org.openapitools.client.models.ListAssistantFilesResponse
 import org.openapitools.client.models.ListAssistantsResponse
-import org.openapitools.client.models.ListMessageFilesResponse
 import org.openapitools.client.models.ListMessagesResponse
 import org.openapitools.client.models.ListRunStepsResponse
 import org.openapitools.client.models.ListRunsResponse
-import org.openapitools.client.models.MessageFileObject
 import org.openapitools.client.models.MessageObject
 import org.openapitools.client.models.ModifyAssistantRequest
 import org.openapitools.client.models.ModifyMessageRequest
@@ -69,15 +64,6 @@ class AssistantsApiTest : ShouldSpec() {
             //result shouldBe ("TODO")
         }
 
-        // to test createAssistantFile
-        should("test createAssistantFile") {
-            // uncomment below to test createAssistantFile
-            //val assistantId : kotlin.String = file-abc123 // kotlin.String | The ID of the assistant for which to create a File. 
-            //val createAssistantFileRequest : CreateAssistantFileRequest =  // CreateAssistantFileRequest | 
-            //val result : AssistantFileObject = apiInstance.createAssistantFile(assistantId, createAssistantFileRequest)
-            //result shouldBe ("TODO")
-        }
-
         // to test createMessage
         should("test createMessage") {
             // uncomment below to test createMessage
@@ -92,7 +78,8 @@ class AssistantsApiTest : ShouldSpec() {
             // uncomment below to test createRun
             //val threadId : kotlin.String = threadId_example // kotlin.String | The ID of the thread to run.
             //val createRunRequest : CreateRunRequest =  // CreateRunRequest | 
-            //val result : RunObject = apiInstance.createRun(threadId, createRunRequest)
+            //val include : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+            //val result : RunObject = apiInstance.createRun(threadId, createRunRequest, include)
             //result shouldBe ("TODO")
         }
 
@@ -120,12 +107,12 @@ class AssistantsApiTest : ShouldSpec() {
             //result shouldBe ("TODO")
         }
 
-        // to test deleteAssistantFile
-        should("test deleteAssistantFile") {
-            // uncomment below to test deleteAssistantFile
-            //val assistantId : kotlin.String = assistantId_example // kotlin.String | The ID of the assistant that the file belongs to.
-            //val fileId : kotlin.String = fileId_example // kotlin.String | The ID of the file to delete.
-            //val result : DeleteAssistantFileResponse = apiInstance.deleteAssistantFile(assistantId, fileId)
+        // to test deleteMessage
+        should("test deleteMessage") {
+            // uncomment below to test deleteMessage
+            //val threadId : kotlin.String = threadId_example // kotlin.String | The ID of the thread to which this message belongs.
+            //val messageId : kotlin.String = messageId_example // kotlin.String | The ID of the message to delete.
+            //val result : DeleteMessageResponse = apiInstance.deleteMessage(threadId, messageId)
             //result shouldBe ("TODO")
         }
 
@@ -145,31 +132,12 @@ class AssistantsApiTest : ShouldSpec() {
             //result shouldBe ("TODO")
         }
 
-        // to test getAssistantFile
-        should("test getAssistantFile") {
-            // uncomment below to test getAssistantFile
-            //val assistantId : kotlin.String = assistantId_example // kotlin.String | The ID of the assistant who the file belongs to.
-            //val fileId : kotlin.String = fileId_example // kotlin.String | The ID of the file we're getting.
-            //val result : AssistantFileObject = apiInstance.getAssistantFile(assistantId, fileId)
-            //result shouldBe ("TODO")
-        }
-
         // to test getMessage
         should("test getMessage") {
             // uncomment below to test getMessage
             //val threadId : kotlin.String = threadId_example // kotlin.String | The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
             //val messageId : kotlin.String = messageId_example // kotlin.String | The ID of the message to retrieve.
             //val result : MessageObject = apiInstance.getMessage(threadId, messageId)
-            //result shouldBe ("TODO")
-        }
-
-        // to test getMessageFile
-        should("test getMessageFile") {
-            // uncomment below to test getMessageFile
-            //val threadId : kotlin.String = thread_abc123 // kotlin.String | The ID of the thread to which the message and File belong.
-            //val messageId : kotlin.String = msg_abc123 // kotlin.String | The ID of the message the file belongs to.
-            //val fileId : kotlin.String = file-abc123 // kotlin.String | The ID of the file being retrieved.
-            //val result : MessageFileObject = apiInstance.getMessageFile(threadId, messageId, fileId)
             //result shouldBe ("TODO")
         }
 
@@ -188,7 +156,8 @@ class AssistantsApiTest : ShouldSpec() {
             //val threadId : kotlin.String = threadId_example // kotlin.String | The ID of the thread to which the run and run step belongs.
             //val runId : kotlin.String = runId_example // kotlin.String | The ID of the run to which the run step belongs.
             //val stepId : kotlin.String = stepId_example // kotlin.String | The ID of the run step to retrieve.
-            //val result : RunStepObject = apiInstance.getRunStep(threadId, runId, stepId)
+            //val include : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+            //val result : RunStepObject = apiInstance.getRunStep(threadId, runId, stepId, include)
             //result shouldBe ("TODO")
         }
 
@@ -200,39 +169,14 @@ class AssistantsApiTest : ShouldSpec() {
             //result shouldBe ("TODO")
         }
 
-        // to test listAssistantFiles
-        should("test listAssistantFiles") {
-            // uncomment below to test listAssistantFiles
-            //val assistantId : kotlin.String = assistantId_example // kotlin.String | The ID of the assistant the file belongs to.
-            //val limit : kotlin.Int = 56 // kotlin.Int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-            //val order : kotlin.String = order_example // kotlin.String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
-            //val after : kotlin.String = after_example // kotlin.String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-            //val before : kotlin.String = before_example // kotlin.String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-            //val result : ListAssistantFilesResponse = apiInstance.listAssistantFiles(assistantId, limit, order, after, before)
-            //result shouldBe ("TODO")
-        }
-
         // to test listAssistants
         should("test listAssistants") {
             // uncomment below to test listAssistants
             //val limit : kotlin.Int = 56 // kotlin.Int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
             //val order : kotlin.String = order_example // kotlin.String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
             //val after : kotlin.String = after_example // kotlin.String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-            //val before : kotlin.String = before_example // kotlin.String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+            //val before : kotlin.String = before_example // kotlin.String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
             //val result : ListAssistantsResponse = apiInstance.listAssistants(limit, order, after, before)
-            //result shouldBe ("TODO")
-        }
-
-        // to test listMessageFiles
-        should("test listMessageFiles") {
-            // uncomment below to test listMessageFiles
-            //val threadId : kotlin.String = threadId_example // kotlin.String | The ID of the thread that the message and files belong to.
-            //val messageId : kotlin.String = messageId_example // kotlin.String | The ID of the message that the files belongs to.
-            //val limit : kotlin.Int = 56 // kotlin.Int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-            //val order : kotlin.String = order_example // kotlin.String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
-            //val after : kotlin.String = after_example // kotlin.String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-            //val before : kotlin.String = before_example // kotlin.String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-            //val result : ListMessageFilesResponse = apiInstance.listMessageFiles(threadId, messageId, limit, order, after, before)
             //result shouldBe ("TODO")
         }
 
@@ -243,7 +187,7 @@ class AssistantsApiTest : ShouldSpec() {
             //val limit : kotlin.Int = 56 // kotlin.Int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
             //val order : kotlin.String = order_example // kotlin.String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
             //val after : kotlin.String = after_example // kotlin.String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-            //val before : kotlin.String = before_example // kotlin.String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+            //val before : kotlin.String = before_example // kotlin.String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
             //val runId : kotlin.String = runId_example // kotlin.String | Filter messages by the run ID that generated them. 
             //val result : ListMessagesResponse = apiInstance.listMessages(threadId, limit, order, after, before, runId)
             //result shouldBe ("TODO")
@@ -257,8 +201,9 @@ class AssistantsApiTest : ShouldSpec() {
             //val limit : kotlin.Int = 56 // kotlin.Int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
             //val order : kotlin.String = order_example // kotlin.String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
             //val after : kotlin.String = after_example // kotlin.String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-            //val before : kotlin.String = before_example // kotlin.String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-            //val result : ListRunStepsResponse = apiInstance.listRunSteps(threadId, runId, limit, order, after, before)
+            //val before : kotlin.String = before_example // kotlin.String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+            //val include : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+            //val result : ListRunStepsResponse = apiInstance.listRunSteps(threadId, runId, limit, order, after, before, include)
             //result shouldBe ("TODO")
         }
 
@@ -269,7 +214,7 @@ class AssistantsApiTest : ShouldSpec() {
             //val limit : kotlin.Int = 56 // kotlin.Int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
             //val order : kotlin.String = order_example // kotlin.String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
             //val after : kotlin.String = after_example // kotlin.String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-            //val before : kotlin.String = before_example // kotlin.String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+            //val before : kotlin.String = before_example // kotlin.String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
             //val result : ListRunsResponse = apiInstance.listRuns(threadId, limit, order, after, before)
             //result shouldBe ("TODO")
         }

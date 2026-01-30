@@ -18,7 +18,7 @@ type OpenAiFile struct {
 	// The object type, which is always `file`.
 	Object string `json:"object"`
 
-	// The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+	// The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
 	Purpose string `json:"purpose"`
 
 	// Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.

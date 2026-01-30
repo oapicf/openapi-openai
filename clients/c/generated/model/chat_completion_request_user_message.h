@@ -1,7 +1,7 @@
 /*
  * chat_completion_request_user_message.h
  *
- * 
+ * Messages sent by an end user, containing prompts or additional context information. 
  */
 
 #ifndef _chat_completion_request_user_message_H_

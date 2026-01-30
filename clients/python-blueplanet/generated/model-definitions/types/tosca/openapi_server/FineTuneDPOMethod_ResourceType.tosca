@@ -1,0 +1,36 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FineTuneDPOMethod"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FineTuneDPOMethod"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  FineTuneDPOMethodHyperparameters = openapi_server.resourceTypes.FineTuneDPOMethodHyperparameters
+}
+resourceTypes {
+
+  FineTuneDPOMethod {
+    title = FineTuneDPOMethod
+    description = FineTuneDPOMethod
+    derivedFrom = Root
+    properties {
+        hyperparameters {
+          type = FineTuneDPOMethodHyperparameters
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  FineTuneDPOMethod {
+    title = FineTuneDPOMethod
+    description = FineTuneDPOMethod
+    implements = openapi_server.resourceTypes.FineTuneDPOMethod
+
+  }
+}

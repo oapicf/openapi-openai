@@ -6,10 +6,9 @@ namespace App\DTO;
 use Articus\DataTransfer\Annotation as DTA;
 
 /**
- * @DTA\Strategy(name="ObjectList", options={"type":\App\DTO\AssistantObjectToolsInner::class})
- * @DTA\Validator(name="Count", options={"max":20}, blocker=true)
+ * @DTA\Strategy(name="ScalarList", options={"type":"string"})
  * @DTA\Validator(name="Collection", options={"validators":{
- *     {"name":"TypeCompliant", "options":{"type":\App\DTO\AssistantObjectToolsInner::class}}
+ *     {"name":"Scalar", "options":{"type":"string"}}
  * }})
  */
 class Collection50 extends \ArrayObject

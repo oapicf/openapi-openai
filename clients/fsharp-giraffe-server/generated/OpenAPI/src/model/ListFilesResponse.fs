@@ -8,12 +8,12 @@ module ListFilesResponse =
 
   //#region ListFilesResponse
 
-  //#region enums
-  type ObjectEnum = ListEnum of string  
-  //#endregion
 
   type ListFilesResponse = {
+    Object : string;
     Data : OpenAIFile[];
-    Object : ObjectEnum;
+    FirstId : string;
+    LastId : string;
+    HasMore : bool;
   }
   //#endregion

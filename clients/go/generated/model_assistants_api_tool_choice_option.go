@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -17,16 +17,16 @@ import (
 	"gopkg.in/validator.v2"
 )
 
-// AssistantsApiToolChoiceOption - Controls which (if any) tool is called by the model. `none` means the model will not call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling a tool. Specifying a particular tool like `{\"type\": \"TOOL_TYPE\"}` or `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool. 
+// AssistantsApiToolChoiceOption - Controls which (if any) tool is called by the model. `none` means the model will not call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling one or more tools. `required` means the model must call one or more tools before responding to the user. Specifying a particular tool like `{\"type\": \"file_search\"}` or `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool. 
 type AssistantsApiToolChoiceOption struct {
-	AssistantsApiNamedToolChoice *AssistantsApiNamedToolChoice
+	AssistantsNamedToolChoice *AssistantsNamedToolChoice
 	String *string
 }
 
-// AssistantsApiNamedToolChoiceAsAssistantsApiToolChoiceOption is a convenience function that returns AssistantsApiNamedToolChoice wrapped in AssistantsApiToolChoiceOption
-func AssistantsApiNamedToolChoiceAsAssistantsApiToolChoiceOption(v *AssistantsApiNamedToolChoice) AssistantsApiToolChoiceOption {
+// AssistantsNamedToolChoiceAsAssistantsApiToolChoiceOption is a convenience function that returns AssistantsNamedToolChoice wrapped in AssistantsApiToolChoiceOption
+func AssistantsNamedToolChoiceAsAssistantsApiToolChoiceOption(v *AssistantsNamedToolChoice) AssistantsApiToolChoiceOption {
 	return AssistantsApiToolChoiceOption{
-		AssistantsApiNamedToolChoice: v,
+		AssistantsNamedToolChoice: v,
 	}
 }
 
@@ -42,21 +42,21 @@ func StringAsAssistantsApiToolChoiceOption(v *string) AssistantsApiToolChoiceOpt
 func (dst *AssistantsApiToolChoiceOption) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into AssistantsApiNamedToolChoice
-	err = newStrictDecoder(data).Decode(&dst.AssistantsApiNamedToolChoice)
+	// try to unmarshal data into AssistantsNamedToolChoice
+	err = newStrictDecoder(data).Decode(&dst.AssistantsNamedToolChoice)
 	if err == nil {
-		jsonAssistantsApiNamedToolChoice, _ := json.Marshal(dst.AssistantsApiNamedToolChoice)
-		if string(jsonAssistantsApiNamedToolChoice) == "{}" { // empty struct
-			dst.AssistantsApiNamedToolChoice = nil
+		jsonAssistantsNamedToolChoice, _ := json.Marshal(dst.AssistantsNamedToolChoice)
+		if string(jsonAssistantsNamedToolChoice) == "{}" { // empty struct
+			dst.AssistantsNamedToolChoice = nil
 		} else {
-			if err = validator.Validate(dst.AssistantsApiNamedToolChoice); err != nil {
-				dst.AssistantsApiNamedToolChoice = nil
+			if err = validator.Validate(dst.AssistantsNamedToolChoice); err != nil {
+				dst.AssistantsNamedToolChoice = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.AssistantsApiNamedToolChoice = nil
+		dst.AssistantsNamedToolChoice = nil
 	}
 
 	// try to unmarshal data into String
@@ -78,7 +78,7 @@ func (dst *AssistantsApiToolChoiceOption) UnmarshalJSON(data []byte) error {
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.AssistantsApiNamedToolChoice = nil
+		dst.AssistantsNamedToolChoice = nil
 		dst.String = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(AssistantsApiToolChoiceOption)")
@@ -91,8 +91,8 @@ func (dst *AssistantsApiToolChoiceOption) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src AssistantsApiToolChoiceOption) MarshalJSON() ([]byte, error) {
-	if src.AssistantsApiNamedToolChoice != nil {
-		return json.Marshal(&src.AssistantsApiNamedToolChoice)
+	if src.AssistantsNamedToolChoice != nil {
+		return json.Marshal(&src.AssistantsNamedToolChoice)
 	}
 
 	if src.String != nil {
@@ -107,8 +107,8 @@ func (obj *AssistantsApiToolChoiceOption) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
-	if obj.AssistantsApiNamedToolChoice != nil {
-		return obj.AssistantsApiNamedToolChoice
+	if obj.AssistantsNamedToolChoice != nil {
+		return obj.AssistantsNamedToolChoice
 	}
 
 	if obj.String != nil {
@@ -121,8 +121,8 @@ func (obj *AssistantsApiToolChoiceOption) GetActualInstance() (interface{}) {
 
 // Get the actual instance value
 func (obj AssistantsApiToolChoiceOption) GetActualInstanceValue() (interface{}) {
-	if obj.AssistantsApiNamedToolChoice != nil {
-		return *obj.AssistantsApiNamedToolChoice
+	if obj.AssistantsNamedToolChoice != nil {
+		return *obj.AssistantsNamedToolChoice
 	}
 
 	if obj.String != nil {

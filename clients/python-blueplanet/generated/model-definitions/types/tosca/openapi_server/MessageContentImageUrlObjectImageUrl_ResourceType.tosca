@@ -1,0 +1,41 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server MessageContentImageUrlObjectImageUrl"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a MessageContentImageUrlObjectImageUrl"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  MessageContentImageUrlObjectImageUrl {
+    title = MessageContentImageUrlObjectImageUrl
+    description = MessageContentImageUrlObjectImageUrl
+    derivedFrom = Root
+    properties {
+        url {
+          type =  string
+          description = "The external URL of the image, must be a supported image types: jpeg, jpg, png, gif, webp."
+          optional = true
+        }
+        detail {
+          type =  string
+          description = "Specifies the detail level of the image. &#x60;low&#x60; uses fewer tokens, you can opt in to high resolution using &#x60;high&#x60;. Default value is &#x60;auto&#x60;"
+          enum = ["auto", "low", "high"]
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MessageContentImageUrlObjectImageUrl {
+    title = MessageContentImageUrlObjectImageUrl
+    description = MessageContentImageUrlObjectImageUrl
+    implements = openapi_server.resourceTypes.MessageContentImageUrlObjectImageUrl
+
+  }
+}

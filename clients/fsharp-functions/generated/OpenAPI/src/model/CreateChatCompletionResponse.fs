@@ -5,6 +5,7 @@ open System.Collections.Generic
 open Newtonsoft.Json
 open OpenAPI.Model.CompletionUsage
 open OpenAPI.Model.CreateChatCompletionResponseChoicesInner
+open OpenAPI.Model.string option
 
 module CreateChatCompletionResponse =
 
@@ -20,6 +21,8 @@ module CreateChatCompletionResponse =
     Created : int;
     [<JsonProperty(PropertyName = "model")>]
     Model : string;
+    [<JsonProperty(PropertyName = "service_tier")>]
+    ServiceTier : string option;
     [<JsonProperty(PropertyName = "system_fingerprint")>]
     SystemFingerprint : string;
     [<JsonProperty(PropertyName = "object")>]

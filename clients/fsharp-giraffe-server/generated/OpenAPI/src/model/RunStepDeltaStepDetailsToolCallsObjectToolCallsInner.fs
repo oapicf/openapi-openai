@@ -4,16 +4,16 @@ open System
 open System.Collections.Generic
 open OpenAPI.Model.RunStepDeltaStepDetailsToolCallsCodeObject
 open OpenAPI.Model.RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+open OpenAPI.Model.RunStepDeltaStepDetailsToolCallsFileSearchObject
 open OpenAPI.Model.RunStepDeltaStepDetailsToolCallsFunctionObject
 open OpenAPI.Model.RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
-open OpenAPI.Model.RunStepDeltaStepDetailsToolCallsRetrievalObject
 
 module RunStepDeltaStepDetailsToolCallsObjectToolCallsInner =
 
   //#region RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
 
   //#region enums
-  type TypeEnum = CodeInterpreterEnum of string  |  RetrievalEnum of string  |  FunctionEnum of string  
+  type TypeEnum = CodeInterpreterEnum of string  |  FileSearchEnum of string  |  FunctionEnum of string  
   //#endregion
 
   type RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner = {
@@ -21,7 +21,7 @@ module RunStepDeltaStepDetailsToolCallsObjectToolCallsInner =
     Id : string;
     Type : TypeEnum;
     CodeInterpreter : RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter;
-    Retrieval : obj;
+    FileSearch : obj;
     Function : RunStepDeltaStepDetailsToolCallsFunctionObjectFunction;
   }
   //#endregion

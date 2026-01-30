@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"nEpochs": @"n_epochs" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"batchSize": @"batch_size", @"learningRateMultiplier": @"learning_rate_multiplier", @"nEpochs": @"n_epochs" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[];
+  NSArray *optionalProperties = @[@"batchSize", @"learningRateMultiplier", @"nEpochs"];
   return [optionalProperties containsObject:propertyName];
 }
 

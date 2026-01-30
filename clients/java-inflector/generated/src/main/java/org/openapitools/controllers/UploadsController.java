@@ -1,0 +1,51 @@
+package org.openapitools.controllers;
+
+import io.swagger.inflector.models.RequestContext;
+import io.swagger.inflector.models.ResponseContext;
+import javax.ws.rs.core.Response.Status;
+
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import java.io.File;
+import java.util.List;
+
+import org.openapitools.model.*;
+
+import org.openapitools.model.CompleteUploadRequest;
+import org.openapitools.model.CreateUploadRequest;
+import java.io.File;
+import org.openapitools.model.Upload;
+import org.openapitools.model.UploadPart;
+
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class UploadsController  {
+  /**
+   * Uncomment and implement as you see fit.  These operations will map
+   * Directly to operation calls from the routing logic.  Because the inflector
+   * Code allows you to implement logic incrementally, they are disabled.
+   **/
+
+  /*
+    public ResponseContext addUploadPart(RequestContext request , String uploadId, FormDataContentDisposition fileDetail) {
+        return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
+    }
+  */
+
+  /*
+    public ResponseContext cancelUpload(RequestContext request , String uploadId) {
+        return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
+    }
+  */
+
+  /*
+    public ResponseContext completeUpload(RequestContext request , String uploadId, CompleteUploadRequest completeUploadRequest) {
+        return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
+    }
+  */
+
+  /*
+    public ResponseContext createUpload(RequestContext request , CreateUploadRequest createUploadRequest) {
+        return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
+    }
+  */
+
+}

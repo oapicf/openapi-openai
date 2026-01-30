@@ -95,6 +95,14 @@ public class CreateRunRequestTest {
     }
 
     /**
+     * Test the property 'topP'
+     */
+    @Test
+    public void topPTest() {
+        // TODO: test topP
+    }
+
+    /**
      * Test the property 'stream'
      */
     @Test
@@ -132,6 +140,14 @@ public class CreateRunRequestTest {
     @Test
     public void toolChoiceTest() {
         // TODO: test toolChoice
+    }
+
+    /**
+     * Test the property 'parallelToolCalls'
+     */
+    @Test
+    public void parallelToolCallsTest() {
+        // TODO: test parallelToolCalls
     }
 
     /**

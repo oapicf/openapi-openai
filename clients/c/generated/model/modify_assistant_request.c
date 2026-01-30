@@ -11,8 +11,11 @@ static modify_assistant_request_t *modify_assistant_request_create_internal(
     char *description,
     char *instructions,
     list_t *tools,
-    list_t *file_ids,
-    object_t *metadata
+    modify_assistant_request_tool_resources_t *tool_resources,
+    object_t *metadata,
+    double temperature,
+    double top_p,
+    assistants_api_response_format_option_t *response_format
     ) {
     modify_assistant_request_t *modify_assistant_request_local_var = malloc(sizeof(modify_assistant_request_t));
     if (!modify_assistant_request_local_var) {
@@ -23,8 +26,11 @@ static modify_assistant_request_t *modify_assistant_request_create_internal(
     modify_assistant_request_local_var->description = description;
     modify_assistant_request_local_var->instructions = instructions;
     modify_assistant_request_local_var->tools = tools;
-    modify_assistant_request_local_var->file_ids = file_ids;
+    modify_assistant_request_local_var->tool_resources = tool_resources;
     modify_assistant_request_local_var->metadata = metadata;
+    modify_assistant_request_local_var->temperature = temperature;
+    modify_assistant_request_local_var->top_p = top_p;
+    modify_assistant_request_local_var->response_format = response_format;
 
     modify_assistant_request_local_var->_library_owned = 1;
     return modify_assistant_request_local_var;
@@ -36,8 +42,11 @@ __attribute__((deprecated)) modify_assistant_request_t *modify_assistant_request
     char *description,
     char *instructions,
     list_t *tools,
-    list_t *file_ids,
-    object_t *metadata
+    modify_assistant_request_tool_resources_t *tool_resources,
+    object_t *metadata,
+    double temperature,
+    double top_p,
+    assistants_api_response_format_option_t *response_format
     ) {
     return modify_assistant_request_create_internal (
         model,
@@ -45,8 +54,11 @@ __attribute__((deprecated)) modify_assistant_request_t *modify_assistant_request
         description,
         instructions,
         tools,
-        file_ids,
-        metadata
+        tool_resources,
+        metadata,
+        temperature,
+        top_p,
+        response_format
         );
 }
 
@@ -82,16 +94,17 @@ void modify_assistant_request_free(modify_assistant_request_t *modify_assistant_
         list_freeList(modify_assistant_request->tools);
         modify_assistant_request->tools = NULL;
     }
-    if (modify_assistant_request->file_ids) {
-        list_ForEach(listEntry, modify_assistant_request->file_ids) {
-            free(listEntry->data);
-        }
-        list_freeList(modify_assistant_request->file_ids);
-        modify_assistant_request->file_ids = NULL;
+    if (modify_assistant_request->tool_resources) {
+        modify_assistant_request_tool_resources_free(modify_assistant_request->tool_resources);
+        modify_assistant_request->tool_resources = NULL;
     }
     if (modify_assistant_request->metadata) {
         object_free(modify_assistant_request->metadata);
         modify_assistant_request->metadata = NULL;
+    }
+    if (modify_assistant_request->response_format) {
+        assistants_api_response_format_option_free(modify_assistant_request->response_format);
+        modify_assistant_request->response_format = NULL;
     }
     free(modify_assistant_request);
 }
@@ -151,19 +164,15 @@ cJSON *modify_assistant_request_convertToJSON(modify_assistant_request_t *modify
     }
 
 
-    // modify_assistant_request->file_ids
-    if(modify_assistant_request->file_ids) {
-    cJSON *file_ids = cJSON_AddArrayToObject(item, "file_ids");
-    if(file_ids == NULL) {
-        goto fail; //primitive container
+    // modify_assistant_request->tool_resources
+    if(modify_assistant_request->tool_resources) {
+    cJSON *tool_resources_local_JSON = modify_assistant_request_tool_resources_convertToJSON(modify_assistant_request->tool_resources);
+    if(tool_resources_local_JSON == NULL) {
+    goto fail; //model
     }
-
-    listEntry_t *file_idsListEntry;
-    list_ForEach(file_idsListEntry, modify_assistant_request->file_ids) {
-    if(cJSON_AddStringToObject(file_ids, "", file_idsListEntry->data) == NULL)
-    {
-        goto fail;
-    }
+    cJSON_AddItemToObject(item, "tool_resources", tool_resources_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
     }
     }
 
@@ -175,6 +184,35 @@ cJSON *modify_assistant_request_convertToJSON(modify_assistant_request_t *modify
     goto fail; //model
     }
     cJSON_AddItemToObject(item, "metadata", metadata_object);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
+    // modify_assistant_request->temperature
+    if(modify_assistant_request->temperature) {
+    if(cJSON_AddNumberToObject(item, "temperature", modify_assistant_request->temperature) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // modify_assistant_request->top_p
+    if(modify_assistant_request->top_p) {
+    if(cJSON_AddNumberToObject(item, "top_p", modify_assistant_request->top_p) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // modify_assistant_request->response_format
+    if(modify_assistant_request->response_format) {
+    cJSON *response_format_local_JSON = assistants_api_response_format_option_convertToJSON(modify_assistant_request->response_format);
+    if(response_format_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "response_format", response_format_local_JSON);
     if(item->child == NULL) {
     goto fail;
     }
@@ -195,8 +233,11 @@ modify_assistant_request_t *modify_assistant_request_parseFromJSON(cJSON *modify
     // define the local list for modify_assistant_request->tools
     list_t *toolsList = NULL;
 
-    // define the local list for modify_assistant_request->file_ids
-    list_t *file_idsList = NULL;
+    // define the local variable for modify_assistant_request->tool_resources
+    modify_assistant_request_tool_resources_t *tool_resources_local_nonprim = NULL;
+
+    // define the local variable for modify_assistant_request->response_format
+    assistants_api_response_format_option_t *response_format_local_nonprim = NULL;
 
     // modify_assistant_request->model
     cJSON *model = cJSON_GetObjectItemCaseSensitive(modify_assistant_requestJSON, "model");
@@ -270,26 +311,13 @@ modify_assistant_request_t *modify_assistant_request_parseFromJSON(cJSON *modify
     }
     }
 
-    // modify_assistant_request->file_ids
-    cJSON *file_ids = cJSON_GetObjectItemCaseSensitive(modify_assistant_requestJSON, "file_ids");
-    if (cJSON_IsNull(file_ids)) {
-        file_ids = NULL;
+    // modify_assistant_request->tool_resources
+    cJSON *tool_resources = cJSON_GetObjectItemCaseSensitive(modify_assistant_requestJSON, "tool_resources");
+    if (cJSON_IsNull(tool_resources)) {
+        tool_resources = NULL;
     }
-    if (file_ids) { 
-    cJSON *file_ids_local = NULL;
-    if(!cJSON_IsArray(file_ids)) {
-        goto end;//primitive container
-    }
-    file_idsList = list_createList();
-
-    cJSON_ArrayForEach(file_ids_local, file_ids)
-    {
-        if(!cJSON_IsString(file_ids_local))
-        {
-            goto end;
-        }
-        list_addElement(file_idsList , strdup(file_ids_local->valuestring));
-    }
+    if (tool_resources) { 
+    tool_resources_local_nonprim = modify_assistant_request_tool_resources_parseFromJSON(tool_resources); //nonprimitive
     }
 
     // modify_assistant_request->metadata
@@ -302,6 +330,39 @@ modify_assistant_request_t *modify_assistant_request_parseFromJSON(cJSON *modify
     metadata_local_object = object_parseFromJSON(metadata); //object
     }
 
+    // modify_assistant_request->temperature
+    cJSON *temperature = cJSON_GetObjectItemCaseSensitive(modify_assistant_requestJSON, "temperature");
+    if (cJSON_IsNull(temperature)) {
+        temperature = NULL;
+    }
+    if (temperature) { 
+    if(!cJSON_IsNumber(temperature))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // modify_assistant_request->top_p
+    cJSON *top_p = cJSON_GetObjectItemCaseSensitive(modify_assistant_requestJSON, "top_p");
+    if (cJSON_IsNull(top_p)) {
+        top_p = NULL;
+    }
+    if (top_p) { 
+    if(!cJSON_IsNumber(top_p))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // modify_assistant_request->response_format
+    cJSON *response_format = cJSON_GetObjectItemCaseSensitive(modify_assistant_requestJSON, "response_format");
+    if (cJSON_IsNull(response_format)) {
+        response_format = NULL;
+    }
+    if (response_format) { 
+    response_format_local_nonprim = assistants_api_response_format_option_parseFromJSON(response_format); //nonprimitive
+    }
+
 
     modify_assistant_request_local_var = modify_assistant_request_create_internal (
         model && !cJSON_IsNull(model) ? strdup(model->valuestring) : NULL,
@@ -309,8 +370,11 @@ modify_assistant_request_t *modify_assistant_request_parseFromJSON(cJSON *modify
         description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
         instructions && !cJSON_IsNull(instructions) ? strdup(instructions->valuestring) : NULL,
         tools ? toolsList : NULL,
-        file_ids ? file_idsList : NULL,
-        metadata ? metadata_local_object : NULL
+        tool_resources ? tool_resources_local_nonprim : NULL,
+        metadata ? metadata_local_object : NULL,
+        temperature ? temperature->valuedouble : 0,
+        top_p ? top_p->valuedouble : 0,
+        response_format ? response_format_local_nonprim : NULL
         );
 
     return modify_assistant_request_local_var;
@@ -324,14 +388,13 @@ end:
         list_freeList(toolsList);
         toolsList = NULL;
     }
-    if (file_idsList) {
-        listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, file_idsList) {
-            free(listEntry->data);
-            listEntry->data = NULL;
-        }
-        list_freeList(file_idsList);
-        file_idsList = NULL;
+    if (tool_resources_local_nonprim) {
+        modify_assistant_request_tool_resources_free(tool_resources_local_nonprim);
+        tool_resources_local_nonprim = NULL;
+    }
+    if (response_format_local_nonprim) {
+        assistants_api_response_format_option_free(response_format_local_nonprim);
+        response_format_local_nonprim = NULL;
     }
     return NULL;
 

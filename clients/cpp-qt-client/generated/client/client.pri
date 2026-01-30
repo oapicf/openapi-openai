@@ -2,17 +2,76 @@ QT += network
 
 HEADERS += \
 # Models
-    $${PWD}/OAIAssistantFileObject.h \
+    $${PWD}/OAIAdminApiKey.h \
+    $${PWD}/OAIAdminApiKey_owner.h \
+    $${PWD}/OAIAdmin_api_keys_create_request.h \
+    $${PWD}/OAIAdmin_api_keys_delete_200_response.h \
+    $${PWD}/OAIApiKeyList.h \
+    $${PWD}/OAIArray_of_content_parts_inner.h \
     $${PWD}/OAIAssistantObject.h \
+    $${PWD}/OAIAssistantObject_tool_resources.h \
+    $${PWD}/OAIAssistantObject_tool_resources_code_interpreter.h \
+    $${PWD}/OAIAssistantObject_tool_resources_file_search.h \
     $${PWD}/OAIAssistantObject_tools_inner.h \
     $${PWD}/OAIAssistantStreamEvent.h \
     $${PWD}/OAIAssistantToolsCode.h \
+    $${PWD}/OAIAssistantToolsFileSearch.h \
+    $${PWD}/OAIAssistantToolsFileSearchTypeOnly.h \
+    $${PWD}/OAIAssistantToolsFileSearch_file_search.h \
     $${PWD}/OAIAssistantToolsFunction.h \
-    $${PWD}/OAIAssistantToolsRetrieval.h \
-    $${PWD}/OAIAssistantsApiNamedToolChoice.h \
-    $${PWD}/OAIAssistantsApiResponseFormat.h \
     $${PWD}/OAIAssistantsApiResponseFormatOption.h \
     $${PWD}/OAIAssistantsApiToolChoiceOption.h \
+    $${PWD}/OAIAssistantsNamedToolChoice.h \
+    $${PWD}/OAIAssistantsNamedToolChoice_function.h \
+    $${PWD}/OAIAudioResponseFormat.h \
+    $${PWD}/OAIAuditLog.h \
+    $${PWD}/OAIAuditLogActor.h \
+    $${PWD}/OAIAuditLogActorApiKey.h \
+    $${PWD}/OAIAuditLogActorServiceAccount.h \
+    $${PWD}/OAIAuditLogActorSession.h \
+    $${PWD}/OAIAuditLogActorUser.h \
+    $${PWD}/OAIAuditLogEventType.h \
+    $${PWD}/OAIAuditLog_api_key_created.h \
+    $${PWD}/OAIAuditLog_api_key_created_data.h \
+    $${PWD}/OAIAuditLog_api_key_deleted.h \
+    $${PWD}/OAIAuditLog_api_key_updated.h \
+    $${PWD}/OAIAuditLog_api_key_updated_changes_requested.h \
+    $${PWD}/OAIAuditLog_invite_accepted.h \
+    $${PWD}/OAIAuditLog_invite_sent.h \
+    $${PWD}/OAIAuditLog_invite_sent_data.h \
+    $${PWD}/OAIAuditLog_login_failed.h \
+    $${PWD}/OAIAuditLog_organization_updated.h \
+    $${PWD}/OAIAuditLog_organization_updated_changes_requested.h \
+    $${PWD}/OAIAuditLog_organization_updated_changes_requested_settings.h \
+    $${PWD}/OAIAuditLog_project.h \
+    $${PWD}/OAIAuditLog_project_archived.h \
+    $${PWD}/OAIAuditLog_project_created.h \
+    $${PWD}/OAIAuditLog_project_created_data.h \
+    $${PWD}/OAIAuditLog_project_updated.h \
+    $${PWD}/OAIAuditLog_project_updated_changes_requested.h \
+    $${PWD}/OAIAuditLog_rate_limit_deleted.h \
+    $${PWD}/OAIAuditLog_rate_limit_updated.h \
+    $${PWD}/OAIAuditLog_rate_limit_updated_changes_requested.h \
+    $${PWD}/OAIAuditLog_service_account_created.h \
+    $${PWD}/OAIAuditLog_service_account_created_data.h \
+    $${PWD}/OAIAuditLog_service_account_deleted.h \
+    $${PWD}/OAIAuditLog_service_account_updated.h \
+    $${PWD}/OAIAuditLog_service_account_updated_changes_requested.h \
+    $${PWD}/OAIAuditLog_user_added.h \
+    $${PWD}/OAIAuditLog_user_added_data.h \
+    $${PWD}/OAIAuditLog_user_deleted.h \
+    $${PWD}/OAIAuditLog_user_updated.h \
+    $${PWD}/OAIAuditLog_user_updated_changes_requested.h \
+    $${PWD}/OAIAutoChunkingStrategyRequestParam.h \
+    $${PWD}/OAIAuto_Chunking_Strategy.h \
+    $${PWD}/OAIBatch.h \
+    $${PWD}/OAIBatchRequestInput.h \
+    $${PWD}/OAIBatchRequestOutput.h \
+    $${PWD}/OAIBatchRequestOutput_error.h \
+    $${PWD}/OAIBatchRequestOutput_response.h \
+    $${PWD}/OAIBatch_errors.h \
+    $${PWD}/OAIBatch_errors_data_inner.h \
+    $${PWD}/OAIBatch_request_counts.h \
     $${PWD}/OAIChatCompletionFunctionCallOption.h \
     $${PWD}/OAIChatCompletionFunctions.h \
     $${PWD}/OAIChatCompletionMessageToolCall.h \
@@ -20,34 +79,58 @@ HEADERS += \
     $${PWD}/OAIChatCompletionMessageToolCallChunk_function.h \
     $${PWD}/OAIChatCompletionMessageToolCall_function.h \
     $${PWD}/OAIChatCompletionNamedToolChoice.h \
-    $${PWD}/OAIChatCompletionNamedToolChoice_function.h \
     $${PWD}/OAIChatCompletionRequestAssistantMessage.h \
+    $${PWD}/OAIChatCompletionRequestAssistantMessageContentPart.h \
+    $${PWD}/OAIChatCompletionRequestAssistantMessage_audio.h \
+    $${PWD}/OAIChatCompletionRequestAssistantMessage_content.h \
     $${PWD}/OAIChatCompletionRequestAssistantMessage_function_call.h \
+    $${PWD}/OAIChatCompletionRequestDeveloperMessage.h \
+    $${PWD}/OAIChatCompletionRequestDeveloperMessage_content.h \
     $${PWD}/OAIChatCompletionRequestFunctionMessage.h \
     $${PWD}/OAIChatCompletionRequestMessage.h \
-    $${PWD}/OAIChatCompletionRequestMessageContentPart.h \
+    $${PWD}/OAIChatCompletionRequestMessageContentPartAudio.h \
+    $${PWD}/OAIChatCompletionRequestMessageContentPartAudio_input_audio.h \
     $${PWD}/OAIChatCompletionRequestMessageContentPartImage.h \
     $${PWD}/OAIChatCompletionRequestMessageContentPartImage_image_url.h \
+    $${PWD}/OAIChatCompletionRequestMessageContentPartRefusal.h \
     $${PWD}/OAIChatCompletionRequestMessageContentPartText.h \
     $${PWD}/OAIChatCompletionRequestSystemMessage.h \
+    $${PWD}/OAIChatCompletionRequestSystemMessage_content.h \
     $${PWD}/OAIChatCompletionRequestToolMessage.h \
+    $${PWD}/OAIChatCompletionRequestToolMessage_content.h \
     $${PWD}/OAIChatCompletionRequestUserMessage.h \
+    $${PWD}/OAIChatCompletionRequestUserMessageContentPart.h \
     $${PWD}/OAIChatCompletionRequestUserMessage_content.h \
     $${PWD}/OAIChatCompletionResponseMessage.h \
+    $${PWD}/OAIChatCompletionResponseMessage_audio.h \
+    $${PWD}/OAIChatCompletionResponseMessage_function_call.h \
     $${PWD}/OAIChatCompletionRole.h \
+    $${PWD}/OAIChatCompletionStreamOptions.h \
     $${PWD}/OAIChatCompletionStreamResponseDelta.h \
     $${PWD}/OAIChatCompletionStreamResponseDelta_function_call.h \
     $${PWD}/OAIChatCompletionTokenLogprob.h \
     $${PWD}/OAIChatCompletionTokenLogprob_top_logprobs_inner.h \
     $${PWD}/OAIChatCompletionTool.h \
     $${PWD}/OAIChatCompletionToolChoiceOption.h \
+    $${PWD}/OAIChunkingStrategyRequestParam.h \
+    $${PWD}/OAICompleteUploadRequest.h \
     $${PWD}/OAICompletionUsage.h \
-    $${PWD}/OAICreateAssistantFileRequest.h \
+    $${PWD}/OAICompletionUsage_completion_tokens_details.h \
+    $${PWD}/OAICompletionUsage_prompt_tokens_details.h \
+    $${PWD}/OAICostsResult.h \
+    $${PWD}/OAICostsResult_amount.h \
     $${PWD}/OAICreateAssistantRequest.h \
     $${PWD}/OAICreateAssistantRequest_model.h \
+    $${PWD}/OAICreateAssistantRequest_tool_resources.h \
+    $${PWD}/OAICreateAssistantRequest_tool_resources_code_interpreter.h \
+    $${PWD}/OAICreateAssistantRequest_tool_resources_file_search.h \
+    $${PWD}/OAICreateAssistantRequest_tool_resources_file_search_vector_stores_inner.h \
+    $${PWD}/OAICreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy.h \
+    $${PWD}/OAICreateBatch_request.h \
     $${PWD}/OAICreateChatCompletionFunctionResponse.h \
     $${PWD}/OAICreateChatCompletionFunctionResponse_choices_inner.h \
     $${PWD}/OAICreateChatCompletionRequest.h \
+    $${PWD}/OAICreateChatCompletionRequest_audio.h \
     $${PWD}/OAICreateChatCompletionRequest_function_call.h \
     $${PWD}/OAICreateChatCompletionRequest_model.h \
     $${PWD}/OAICreateChatCompletionRequest_response_format.h \
@@ -57,6 +140,7 @@ HEADERS += \
     $${PWD}/OAICreateChatCompletionResponse_choices_inner_logprobs.h \
     $${PWD}/OAICreateChatCompletionStreamResponse.h \
     $${PWD}/OAICreateChatCompletionStreamResponse_choices_inner.h \
+    $${PWD}/OAICreateChatCompletionStreamResponse_usage.h \
     $${PWD}/OAICreateCompletionRequest.h \
     $${PWD}/OAICreateCompletionRequest_model.h \
     $${PWD}/OAICreateCompletionRequest_prompt.h \
@@ -81,20 +165,32 @@ HEADERS += \
     $${PWD}/OAICreateImageRequest.h \
     $${PWD}/OAICreateImageRequest_model.h \
     $${PWD}/OAICreateMessageRequest.h \
+    $${PWD}/OAICreateMessageRequest_attachments_inner.h \
+    $${PWD}/OAICreateMessageRequest_attachments_inner_tools_inner.h \
+    $${PWD}/OAICreateMessageRequest_content.h \
     $${PWD}/OAICreateModerationRequest.h \
     $${PWD}/OAICreateModerationRequest_input.h \
+    $${PWD}/OAICreateModerationRequest_input_oneOf_inner.h \
+    $${PWD}/OAICreateModerationRequest_input_oneOf_inner_oneOf.h \
+    $${PWD}/OAICreateModerationRequest_input_oneOf_inner_oneOf_1.h \
+    $${PWD}/OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url.h \
     $${PWD}/OAICreateModerationRequest_model.h \
     $${PWD}/OAICreateModerationResponse.h \
     $${PWD}/OAICreateModerationResponse_results_inner.h \
     $${PWD}/OAICreateModerationResponse_results_inner_categories.h \
+    $${PWD}/OAICreateModerationResponse_results_inner_category_applied_input_types.h \
     $${PWD}/OAICreateModerationResponse_results_inner_category_scores.h \
     $${PWD}/OAICreateRunRequest.h \
     $${PWD}/OAICreateRunRequest_model.h \
     $${PWD}/OAICreateSpeechRequest.h \
     $${PWD}/OAICreateSpeechRequest_model.h \
     $${PWD}/OAICreateThreadAndRunRequest.h \
+    $${PWD}/OAICreateThreadAndRunRequest_tool_resources.h \
     $${PWD}/OAICreateThreadAndRunRequest_tools_inner.h \
     $${PWD}/OAICreateThreadRequest.h \
+    $${PWD}/OAICreateThreadRequest_tool_resources.h \
+    $${PWD}/OAICreateThreadRequest_tool_resources_file_search.h \
+    $${PWD}/OAICreateThreadRequest_tool_resources_file_search_vector_stores_inner.h \
     $${PWD}/OAICreateTranscriptionRequest_model.h \
     $${PWD}/OAICreateTranscriptionResponseJson.h \
     $${PWD}/OAICreateTranscriptionResponseVerboseJson.h \
@@ -102,17 +198,41 @@ HEADERS += \
     $${PWD}/OAICreateTranslationResponseJson.h \
     $${PWD}/OAICreateTranslationResponseVerboseJson.h \
     $${PWD}/OAICreateTranslation_200_response.h \
-    $${PWD}/OAIDeleteAssistantFileResponse.h \
+    $${PWD}/OAICreateUploadRequest.h \
+    $${PWD}/OAICreateVectorStoreFileBatchRequest.h \
+    $${PWD}/OAICreateVectorStoreFileRequest.h \
+    $${PWD}/OAICreateVectorStoreRequest.h \
+    $${PWD}/OAICreateVectorStoreRequest_chunking_strategy.h \
+    $${PWD}/OAIDefaultProjectErrorResponse.h \
     $${PWD}/OAIDeleteAssistantResponse.h \
     $${PWD}/OAIDeleteFileResponse.h \
     $${PWD}/OAIDeleteMessageResponse.h \
     $${PWD}/OAIDeleteModelResponse.h \
     $${PWD}/OAIDeleteThreadResponse.h \
+    $${PWD}/OAIDeleteVectorStoreFileResponse.h \
+    $${PWD}/OAIDeleteVectorStoreResponse.h \
     $${PWD}/OAIDoneEvent.h \
     $${PWD}/OAIEmbedding.h \
     $${PWD}/OAIError.h \
     $${PWD}/OAIErrorEvent.h \
     $${PWD}/OAIErrorResponse.h \
+    $${PWD}/OAIFileSearchRankingOptions.h \
+    $${PWD}/OAIFineTuneChatCompletionRequestAssistantMessage.h \
+    $${PWD}/OAIFineTuneChatRequestInput.h \
+    $${PWD}/OAIFineTuneChatRequestInput_messages_inner.h \
+    $${PWD}/OAIFineTuneCompletionRequestInput.h \
+    $${PWD}/OAIFineTuneDPOMethod.h \
+    $${PWD}/OAIFineTuneDPOMethod_hyperparameters.h \
+    $${PWD}/OAIFineTuneDPOMethod_hyperparameters_batch_size.h \
+    $${PWD}/OAIFineTuneDPOMethod_hyperparameters_beta.h \
+    $${PWD}/OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier.h \
+    $${PWD}/OAIFineTuneDPOMethod_hyperparameters_n_epochs.h \
+    $${PWD}/OAIFineTuneMethod.h \
+    $${PWD}/OAIFineTunePreferenceRequestInput.h \
+    $${PWD}/OAIFineTunePreferenceRequestInput_input.h \
+    $${PWD}/OAIFineTunePreferenceRequestInput_preferred_completion_inner.h \
+    $${PWD}/OAIFineTuneSupervisedMethod.h \
+    $${PWD}/OAIFineTuneSupervisedMethod_hyperparameters.h \
     $${PWD}/OAIFineTuningIntegration.h \
     $${PWD}/OAIFineTuningJob.h \
     $${PWD}/OAIFineTuningJobCheckpoint.h \
@@ -120,25 +240,36 @@ HEADERS += \
     $${PWD}/OAIFineTuningJobEvent.h \
     $${PWD}/OAIFineTuningJob_error.h \
     $${PWD}/OAIFineTuningJob_hyperparameters.h \
-    $${PWD}/OAIFineTuningJob_hyperparameters_n_epochs.h \
     $${PWD}/OAIFineTuningJob_integrations_inner.h \
     $${PWD}/OAIFunctionObject.h \
     $${PWD}/OAIImage.h \
     $${PWD}/OAIImagesResponse.h \
-    $${PWD}/OAIListAssistantFilesResponse.h \
+    $${PWD}/OAIInvite.h \
+    $${PWD}/OAIInviteDeleteResponse.h \
+    $${PWD}/OAIInviteListResponse.h \
+    $${PWD}/OAIInviteRequest.h \
+    $${PWD}/OAIInviteRequest_projects_inner.h \
+    $${PWD}/OAIInvite_projects_inner.h \
     $${PWD}/OAIListAssistantsResponse.h \
+    $${PWD}/OAIListAuditLogsResponse.h \
+    $${PWD}/OAIListBatchesResponse.h \
     $${PWD}/OAIListFilesResponse.h \
     $${PWD}/OAIListFineTuningJobCheckpointsResponse.h \
     $${PWD}/OAIListFineTuningJobEventsResponse.h \
-    $${PWD}/OAIListMessageFilesResponse.h \
     $${PWD}/OAIListMessagesResponse.h \
     $${PWD}/OAIListModelsResponse.h \
     $${PWD}/OAIListPaginatedFineTuningJobsResponse.h \
     $${PWD}/OAIListRunStepsResponse.h \
     $${PWD}/OAIListRunsResponse.h \
     $${PWD}/OAIListThreadsResponse.h \
+    $${PWD}/OAIListVectorStoreFilesResponse.h \
+    $${PWD}/OAIListVectorStoresResponse.h \
+    $${PWD}/OAIList_audit_logs_effective_at_parameter.h \
     $${PWD}/OAIMessageContentImageFileObject.h \
     $${PWD}/OAIMessageContentImageFileObject_image_file.h \
+    $${PWD}/OAIMessageContentImageUrlObject.h \
+    $${PWD}/OAIMessageContentImageUrlObject_image_url.h \
+    $${PWD}/OAIMessageContentRefusalObject.h \
     $${PWD}/OAIMessageContentTextAnnotationsFileCitationObject.h \
     $${PWD}/OAIMessageContentTextAnnotationsFileCitationObject_file_citation.h \
     $${PWD}/OAIMessageContentTextAnnotationsFilePathObject.h \
@@ -148,6 +279,9 @@ HEADERS += \
     $${PWD}/OAIMessageContentTextObject_text_annotations_inner.h \
     $${PWD}/OAIMessageDeltaContentImageFileObject.h \
     $${PWD}/OAIMessageDeltaContentImageFileObject_image_file.h \
+    $${PWD}/OAIMessageDeltaContentImageUrlObject.h \
+    $${PWD}/OAIMessageDeltaContentImageUrlObject_image_url.h \
+    $${PWD}/OAIMessageDeltaContentRefusalObject.h \
     $${PWD}/OAIMessageDeltaContentTextAnnotationsFileCitationObject.h \
     $${PWD}/OAIMessageDeltaContentTextAnnotationsFileCitationObject_file_citation.h \
     $${PWD}/OAIMessageDeltaContentTextAnnotationsFilePathObject.h \
@@ -158,10 +292,10 @@ HEADERS += \
     $${PWD}/OAIMessageDeltaObject.h \
     $${PWD}/OAIMessageDeltaObject_delta.h \
     $${PWD}/OAIMessageDeltaObject_delta_content_inner.h \
-    $${PWD}/OAIMessageFileObject.h \
     $${PWD}/OAIMessageObject.h \
     $${PWD}/OAIMessageObject_content_inner.h \
     $${PWD}/OAIMessageObject_incomplete_details.h \
+    $${PWD}/OAIMessageRequestContentTextObject.h \
     $${PWD}/OAIMessageStreamEvent.h \
     $${PWD}/OAIMessageStreamEvent_oneOf.h \
     $${PWD}/OAIMessageStreamEvent_oneOf_1.h \
@@ -170,10 +304,108 @@ HEADERS += \
     $${PWD}/OAIMessageStreamEvent_oneOf_4.h \
     $${PWD}/OAIModel.h \
     $${PWD}/OAIModifyAssistantRequest.h \
+    $${PWD}/OAIModifyAssistantRequest_tool_resources.h \
+    $${PWD}/OAIModifyAssistantRequest_tool_resources_code_interpreter.h \
+    $${PWD}/OAIModifyAssistantRequest_tool_resources_file_search.h \
     $${PWD}/OAIModifyMessageRequest.h \
     $${PWD}/OAIModifyRunRequest.h \
     $${PWD}/OAIModifyThreadRequest.h \
+    $${PWD}/OAIModifyThreadRequest_tool_resources.h \
+    $${PWD}/OAIModifyThreadRequest_tool_resources_file_search.h \
     $${PWD}/OAIOpenAIFile.h \
+    $${PWD}/OAIOtherChunkingStrategyResponseParam.h \
+    $${PWD}/OAIPredictionContent.h \
+    $${PWD}/OAIPredictionContent_content.h \
+    $${PWD}/OAIProject.h \
+    $${PWD}/OAIProjectApiKey.h \
+    $${PWD}/OAIProjectApiKeyDeleteResponse.h \
+    $${PWD}/OAIProjectApiKeyListResponse.h \
+    $${PWD}/OAIProjectApiKey_owner.h \
+    $${PWD}/OAIProjectCreateRequest.h \
+    $${PWD}/OAIProjectListResponse.h \
+    $${PWD}/OAIProjectRateLimit.h \
+    $${PWD}/OAIProjectRateLimitListResponse.h \
+    $${PWD}/OAIProjectRateLimitUpdateRequest.h \
+    $${PWD}/OAIProjectServiceAccount.h \
+    $${PWD}/OAIProjectServiceAccountApiKey.h \
+    $${PWD}/OAIProjectServiceAccountCreateRequest.h \
+    $${PWD}/OAIProjectServiceAccountCreateResponse.h \
+    $${PWD}/OAIProjectServiceAccountDeleteResponse.h \
+    $${PWD}/OAIProjectServiceAccountListResponse.h \
+    $${PWD}/OAIProjectUpdateRequest.h \
+    $${PWD}/OAIProjectUser.h \
+    $${PWD}/OAIProjectUserCreateRequest.h \
+    $${PWD}/OAIProjectUserDeleteResponse.h \
+    $${PWD}/OAIProjectUserListResponse.h \
+    $${PWD}/OAIProjectUserUpdateRequest.h \
+    $${PWD}/OAIRealtimeClientEventConversationItemCreate.h \
+    $${PWD}/OAIRealtimeClientEventConversationItemDelete.h \
+    $${PWD}/OAIRealtimeClientEventConversationItemTruncate.h \
+    $${PWD}/OAIRealtimeClientEventInputAudioBufferAppend.h \
+    $${PWD}/OAIRealtimeClientEventInputAudioBufferClear.h \
+    $${PWD}/OAIRealtimeClientEventInputAudioBufferCommit.h \
+    $${PWD}/OAIRealtimeClientEventResponseCancel.h \
+    $${PWD}/OAIRealtimeClientEventResponseCreate.h \
+    $${PWD}/OAIRealtimeClientEventSessionUpdate.h \
+    $${PWD}/OAIRealtimeConversationItem.h \
+    $${PWD}/OAIRealtimeConversationItem_content_inner.h \
+    $${PWD}/OAIRealtimeResponse.h \
+    $${PWD}/OAIRealtimeResponseCreateParams.h \
+    $${PWD}/OAIRealtimeResponseCreateParams_conversation.h \
+    $${PWD}/OAIRealtimeResponseCreateParams_max_response_output_tokens.h \
+    $${PWD}/OAIRealtimeResponseCreateParams_tools_inner.h \
+    $${PWD}/OAIRealtimeResponse_status_details.h \
+    $${PWD}/OAIRealtimeResponse_status_details_error.h \
+    $${PWD}/OAIRealtimeResponse_usage.h \
+    $${PWD}/OAIRealtimeResponse_usage_input_token_details.h \
+    $${PWD}/OAIRealtimeResponse_usage_output_token_details.h \
+    $${PWD}/OAIRealtimeServerEventConversationCreated.h \
+    $${PWD}/OAIRealtimeServerEventConversationCreated_conversation.h \
+    $${PWD}/OAIRealtimeServerEventConversationItemCreated.h \
+    $${PWD}/OAIRealtimeServerEventConversationItemDeleted.h \
+    $${PWD}/OAIRealtimeServerEventConversationItemInputAudioTranscriptionCompleted.h \
+    $${PWD}/OAIRealtimeServerEventConversationItemInputAudioTranscriptionFailed.h \
+    $${PWD}/OAIRealtimeServerEventConversationItemInputAudioTranscriptionFailed_error.h \
+    $${PWD}/OAIRealtimeServerEventConversationItemTruncated.h \
+    $${PWD}/OAIRealtimeServerEventError.h \
+    $${PWD}/OAIRealtimeServerEventError_error.h \
+    $${PWD}/OAIRealtimeServerEventInputAudioBufferCleared.h \
+    $${PWD}/OAIRealtimeServerEventInputAudioBufferCommitted.h \
+    $${PWD}/OAIRealtimeServerEventInputAudioBufferSpeechStarted.h \
+    $${PWD}/OAIRealtimeServerEventInputAudioBufferSpeechStopped.h \
+    $${PWD}/OAIRealtimeServerEventRateLimitsUpdated.h \
+    $${PWD}/OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner.h \
+    $${PWD}/OAIRealtimeServerEventResponseAudioDelta.h \
+    $${PWD}/OAIRealtimeServerEventResponseAudioDone.h \
+    $${PWD}/OAIRealtimeServerEventResponseAudioTranscriptDelta.h \
+    $${PWD}/OAIRealtimeServerEventResponseAudioTranscriptDone.h \
+    $${PWD}/OAIRealtimeServerEventResponseContentPartAdded.h \
+    $${PWD}/OAIRealtimeServerEventResponseContentPartAdded_part.h \
+    $${PWD}/OAIRealtimeServerEventResponseContentPartDone.h \
+    $${PWD}/OAIRealtimeServerEventResponseContentPartDone_part.h \
+    $${PWD}/OAIRealtimeServerEventResponseCreated.h \
+    $${PWD}/OAIRealtimeServerEventResponseDone.h \
+    $${PWD}/OAIRealtimeServerEventResponseFunctionCallArgumentsDelta.h \
+    $${PWD}/OAIRealtimeServerEventResponseFunctionCallArgumentsDone.h \
+    $${PWD}/OAIRealtimeServerEventResponseOutputItemAdded.h \
+    $${PWD}/OAIRealtimeServerEventResponseOutputItemDone.h \
+    $${PWD}/OAIRealtimeServerEventResponseTextDelta.h \
+    $${PWD}/OAIRealtimeServerEventResponseTextDone.h \
+    $${PWD}/OAIRealtimeServerEventSessionCreated.h \
+    $${PWD}/OAIRealtimeServerEventSessionUpdated.h \
+    $${PWD}/OAIRealtimeSession.h \
+    $${PWD}/OAIRealtimeSessionCreateRequest.h \
+    $${PWD}/OAIRealtimeSessionCreateRequest_turn_detection.h \
+    $${PWD}/OAIRealtimeSessionCreateResponse.h \
+    $${PWD}/OAIRealtimeSessionCreateResponse_client_secret.h \
+    $${PWD}/OAIRealtimeSessionCreateResponse_turn_detection.h \
+    $${PWD}/OAIRealtimeSession_input_audio_transcription.h \
+    $${PWD}/OAIRealtimeSession_model.h \
+    $${PWD}/OAIRealtimeSession_turn_detection.h \
+    $${PWD}/OAIResponseFormatJsonObject.h \
+    $${PWD}/OAIResponseFormatJsonSchema.h \
+    $${PWD}/OAIResponseFormatJsonSchema_json_schema.h \
+    $${PWD}/OAIResponseFormatText.h \
     $${PWD}/OAIRunCompletionUsage.h \
     $${PWD}/OAIRunObject.h \
     $${PWD}/OAIRunObject_incomplete_details.h \
@@ -192,11 +424,11 @@ HEADERS += \
     $${PWD}/OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject.h \
     $${PWD}/OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image.h \
     $${PWD}/OAIRunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.h \
+    $${PWD}/OAIRunStepDeltaStepDetailsToolCallsFileSearchObject.h \
     $${PWD}/OAIRunStepDeltaStepDetailsToolCallsFunctionObject.h \
     $${PWD}/OAIRunStepDeltaStepDetailsToolCallsFunctionObject_function.h \
     $${PWD}/OAIRunStepDeltaStepDetailsToolCallsObject.h \
     $${PWD}/OAIRunStepDeltaStepDetailsToolCallsObject_tool_calls_inner.h \
-    $${PWD}/OAIRunStepDeltaStepDetailsToolCallsRetrievalObject.h \
     $${PWD}/OAIRunStepDetailsMessageCreationObject.h \
     $${PWD}/OAIRunStepDetailsMessageCreationObject_message_creation.h \
     $${PWD}/OAIRunStepDetailsToolCallsCodeObject.h \
@@ -205,11 +437,15 @@ HEADERS += \
     $${PWD}/OAIRunStepDetailsToolCallsCodeOutputImageObject.h \
     $${PWD}/OAIRunStepDetailsToolCallsCodeOutputImageObject_image.h \
     $${PWD}/OAIRunStepDetailsToolCallsCodeOutputLogsObject.h \
+    $${PWD}/OAIRunStepDetailsToolCallsFileSearchObject.h \
+    $${PWD}/OAIRunStepDetailsToolCallsFileSearchObject_file_search.h \
+    $${PWD}/OAIRunStepDetailsToolCallsFileSearchRankingOptionsObject.h \
+    $${PWD}/OAIRunStepDetailsToolCallsFileSearchResultObject.h \
+    $${PWD}/OAIRunStepDetailsToolCallsFileSearchResultObject_content_inner.h \
     $${PWD}/OAIRunStepDetailsToolCallsFunctionObject.h \
     $${PWD}/OAIRunStepDetailsToolCallsFunctionObject_function.h \
     $${PWD}/OAIRunStepDetailsToolCallsObject.h \
     $${PWD}/OAIRunStepDetailsToolCallsObject_tool_calls_inner.h \
-    $${PWD}/OAIRunStepDetailsToolCallsRetrievalObject.h \
     $${PWD}/OAIRunStepObject.h \
     $${PWD}/OAIRunStepObject_last_error.h \
     $${PWD}/OAIRunStepObject_step_details.h \
@@ -231,8 +467,14 @@ HEADERS += \
     $${PWD}/OAIRunStreamEvent_oneOf_6.h \
     $${PWD}/OAIRunStreamEvent_oneOf_7.h \
     $${PWD}/OAIRunStreamEvent_oneOf_8.h \
+    $${PWD}/OAIRunStreamEvent_oneOf_9.h \
     $${PWD}/OAIRunToolCallObject.h \
     $${PWD}/OAIRunToolCallObject_function.h \
+    $${PWD}/OAIStaticChunkingStrategy.h \
+    $${PWD}/OAIStaticChunkingStrategyRequestParam.h \
+    $${PWD}/OAIStaticChunkingStrategyResponseParam.h \
+    $${PWD}/OAIStatic_Chunking_Strategy.h \
+    $${PWD}/OAIStatic_Chunking_Strategy_static.h \
     $${PWD}/OAISubmitToolOutputsRunRequest.h \
     $${PWD}/OAISubmitToolOutputsRunRequest_tool_outputs_inner.h \
     $${PWD}/OAIThreadObject.h \
@@ -240,17 +482,53 @@ HEADERS += \
     $${PWD}/OAITranscriptionSegment.h \
     $${PWD}/OAITranscriptionWord.h \
     $${PWD}/OAITruncationObject.h \
+    $${PWD}/OAIUpdateVectorStoreRequest.h \
+    $${PWD}/OAIUpload.h \
+    $${PWD}/OAIUploadPart.h \
+    $${PWD}/OAIUsageAudioSpeechesResult.h \
+    $${PWD}/OAIUsageAudioTranscriptionsResult.h \
+    $${PWD}/OAIUsageCodeInterpreterSessionsResult.h \
+    $${PWD}/OAIUsageCompletionsResult.h \
+    $${PWD}/OAIUsageEmbeddingsResult.h \
+    $${PWD}/OAIUsageImagesResult.h \
+    $${PWD}/OAIUsageModerationsResult.h \
+    $${PWD}/OAIUsageResponse.h \
+    $${PWD}/OAIUsageTimeBucket.h \
+    $${PWD}/OAIUsageTimeBucket_result_inner.h \
+    $${PWD}/OAIUsageVectorStoresResult.h \
+    $${PWD}/OAIUser.h \
+    $${PWD}/OAIUserDeleteResponse.h \
+    $${PWD}/OAIUserListResponse.h \
+    $${PWD}/OAIUserRoleUpdateRequest.h \
+    $${PWD}/OAIVectorStoreExpirationAfter.h \
+    $${PWD}/OAIVectorStoreFileBatchObject.h \
+    $${PWD}/OAIVectorStoreFileBatchObject_file_counts.h \
+    $${PWD}/OAIVectorStoreFileObject.h \
+    $${PWD}/OAIVectorStoreFileObject_chunking_strategy.h \
+    $${PWD}/OAIVectorStoreFileObject_last_error.h \
+    $${PWD}/OAIVectorStoreObject.h \
+    $${PWD}/OAIVectorStoreObject_file_counts.h \
 # APIs
     $${PWD}/OAIAssistantsApi.h \
     $${PWD}/OAIAudioApi.h \
+    $${PWD}/OAIAuditLogsApi.h \
+    $${PWD}/OAIBatchApi.h \
     $${PWD}/OAIChatApi.h \
     $${PWD}/OAICompletionsApi.h \
+    $${PWD}/OAIDefaultApi.h \
     $${PWD}/OAIEmbeddingsApi.h \
     $${PWD}/OAIFilesApi.h \
     $${PWD}/OAIFineTuningApi.h \
     $${PWD}/OAIImagesApi.h \
+    $${PWD}/OAIInvitesApi.h \
     $${PWD}/OAIModelsApi.h \
     $${PWD}/OAIModerationsApi.h \
+    $${PWD}/OAIProjectsApi.h \
+    $${PWD}/OAIRealtimeApi.h \
+    $${PWD}/OAIUploadsApi.h \
+    $${PWD}/OAIUsageApi.h \
+    $${PWD}/OAIUsersApi.h \
+    $${PWD}/OAIVectorStoresApi.h \
 # Others
     $${PWD}/OAIHelpers.h \
     $${PWD}/OAIHttpRequest.h \
@@ -263,17 +541,76 @@ HEADERS += \
 
 SOURCES += \
 # Models
-    $${PWD}/OAIAssistantFileObject.cpp \
+    $${PWD}/OAIAdminApiKey.cpp \
+    $${PWD}/OAIAdminApiKey_owner.cpp \
+    $${PWD}/OAIAdmin_api_keys_create_request.cpp \
+    $${PWD}/OAIAdmin_api_keys_delete_200_response.cpp \
+    $${PWD}/OAIApiKeyList.cpp \
+    $${PWD}/OAIArray_of_content_parts_inner.cpp \
     $${PWD}/OAIAssistantObject.cpp \
+    $${PWD}/OAIAssistantObject_tool_resources.cpp \
+    $${PWD}/OAIAssistantObject_tool_resources_code_interpreter.cpp \
+    $${PWD}/OAIAssistantObject_tool_resources_file_search.cpp \
     $${PWD}/OAIAssistantObject_tools_inner.cpp \
     $${PWD}/OAIAssistantStreamEvent.cpp \
     $${PWD}/OAIAssistantToolsCode.cpp \
+    $${PWD}/OAIAssistantToolsFileSearch.cpp \
+    $${PWD}/OAIAssistantToolsFileSearchTypeOnly.cpp \
+    $${PWD}/OAIAssistantToolsFileSearch_file_search.cpp \
     $${PWD}/OAIAssistantToolsFunction.cpp \
-    $${PWD}/OAIAssistantToolsRetrieval.cpp \
-    $${PWD}/OAIAssistantsApiNamedToolChoice.cpp \
-    $${PWD}/OAIAssistantsApiResponseFormat.cpp \
     $${PWD}/OAIAssistantsApiResponseFormatOption.cpp \
     $${PWD}/OAIAssistantsApiToolChoiceOption.cpp \
+    $${PWD}/OAIAssistantsNamedToolChoice.cpp \
+    $${PWD}/OAIAssistantsNamedToolChoice_function.cpp \
+    $${PWD}/OAIAudioResponseFormat.cpp \
+    $${PWD}/OAIAuditLog.cpp \
+    $${PWD}/OAIAuditLogActor.cpp \
+    $${PWD}/OAIAuditLogActorApiKey.cpp \
+    $${PWD}/OAIAuditLogActorServiceAccount.cpp \
+    $${PWD}/OAIAuditLogActorSession.cpp \
+    $${PWD}/OAIAuditLogActorUser.cpp \
+    $${PWD}/OAIAuditLogEventType.cpp \
+    $${PWD}/OAIAuditLog_api_key_created.cpp \
+    $${PWD}/OAIAuditLog_api_key_created_data.cpp \
+    $${PWD}/OAIAuditLog_api_key_deleted.cpp \
+    $${PWD}/OAIAuditLog_api_key_updated.cpp \
+    $${PWD}/OAIAuditLog_api_key_updated_changes_requested.cpp \
+    $${PWD}/OAIAuditLog_invite_accepted.cpp \
+    $${PWD}/OAIAuditLog_invite_sent.cpp \
+    $${PWD}/OAIAuditLog_invite_sent_data.cpp \
+    $${PWD}/OAIAuditLog_login_failed.cpp \
+    $${PWD}/OAIAuditLog_organization_updated.cpp \
+    $${PWD}/OAIAuditLog_organization_updated_changes_requested.cpp \
+    $${PWD}/OAIAuditLog_organization_updated_changes_requested_settings.cpp \
+    $${PWD}/OAIAuditLog_project.cpp \
+    $${PWD}/OAIAuditLog_project_archived.cpp \
+    $${PWD}/OAIAuditLog_project_created.cpp \
+    $${PWD}/OAIAuditLog_project_created_data.cpp \
+    $${PWD}/OAIAuditLog_project_updated.cpp \
+    $${PWD}/OAIAuditLog_project_updated_changes_requested.cpp \
+    $${PWD}/OAIAuditLog_rate_limit_deleted.cpp \
+    $${PWD}/OAIAuditLog_rate_limit_updated.cpp \
+    $${PWD}/OAIAuditLog_rate_limit_updated_changes_requested.cpp \
+    $${PWD}/OAIAuditLog_service_account_created.cpp \
+    $${PWD}/OAIAuditLog_service_account_created_data.cpp \
+    $${PWD}/OAIAuditLog_service_account_deleted.cpp \
+    $${PWD}/OAIAuditLog_service_account_updated.cpp \
+    $${PWD}/OAIAuditLog_service_account_updated_changes_requested.cpp \
+    $${PWD}/OAIAuditLog_user_added.cpp \
+    $${PWD}/OAIAuditLog_user_added_data.cpp \
+    $${PWD}/OAIAuditLog_user_deleted.cpp \
+    $${PWD}/OAIAuditLog_user_updated.cpp \
+    $${PWD}/OAIAuditLog_user_updated_changes_requested.cpp \
+    $${PWD}/OAIAutoChunkingStrategyRequestParam.cpp \
+    $${PWD}/OAIAuto_Chunking_Strategy.cpp \
+    $${PWD}/OAIBatch.cpp \
+    $${PWD}/OAIBatchRequestInput.cpp \
+    $${PWD}/OAIBatchRequestOutput.cpp \
+    $${PWD}/OAIBatchRequestOutput_error.cpp \
+    $${PWD}/OAIBatchRequestOutput_response.cpp \
+    $${PWD}/OAIBatch_errors.cpp \
+    $${PWD}/OAIBatch_errors_data_inner.cpp \
+    $${PWD}/OAIBatch_request_counts.cpp \
     $${PWD}/OAIChatCompletionFunctionCallOption.cpp \
     $${PWD}/OAIChatCompletionFunctions.cpp \
     $${PWD}/OAIChatCompletionMessageToolCall.cpp \
@@ -281,34 +618,58 @@ SOURCES += \
     $${PWD}/OAIChatCompletionMessageToolCallChunk_function.cpp \
     $${PWD}/OAIChatCompletionMessageToolCall_function.cpp \
     $${PWD}/OAIChatCompletionNamedToolChoice.cpp \
-    $${PWD}/OAIChatCompletionNamedToolChoice_function.cpp \
     $${PWD}/OAIChatCompletionRequestAssistantMessage.cpp \
+    $${PWD}/OAIChatCompletionRequestAssistantMessageContentPart.cpp \
+    $${PWD}/OAIChatCompletionRequestAssistantMessage_audio.cpp \
+    $${PWD}/OAIChatCompletionRequestAssistantMessage_content.cpp \
     $${PWD}/OAIChatCompletionRequestAssistantMessage_function_call.cpp \
+    $${PWD}/OAIChatCompletionRequestDeveloperMessage.cpp \
+    $${PWD}/OAIChatCompletionRequestDeveloperMessage_content.cpp \
     $${PWD}/OAIChatCompletionRequestFunctionMessage.cpp \
     $${PWD}/OAIChatCompletionRequestMessage.cpp \
-    $${PWD}/OAIChatCompletionRequestMessageContentPart.cpp \
+    $${PWD}/OAIChatCompletionRequestMessageContentPartAudio.cpp \
+    $${PWD}/OAIChatCompletionRequestMessageContentPartAudio_input_audio.cpp \
     $${PWD}/OAIChatCompletionRequestMessageContentPartImage.cpp \
     $${PWD}/OAIChatCompletionRequestMessageContentPartImage_image_url.cpp \
+    $${PWD}/OAIChatCompletionRequestMessageContentPartRefusal.cpp \
     $${PWD}/OAIChatCompletionRequestMessageContentPartText.cpp \
     $${PWD}/OAIChatCompletionRequestSystemMessage.cpp \
+    $${PWD}/OAIChatCompletionRequestSystemMessage_content.cpp \
     $${PWD}/OAIChatCompletionRequestToolMessage.cpp \
+    $${PWD}/OAIChatCompletionRequestToolMessage_content.cpp \
     $${PWD}/OAIChatCompletionRequestUserMessage.cpp \
+    $${PWD}/OAIChatCompletionRequestUserMessageContentPart.cpp \
     $${PWD}/OAIChatCompletionRequestUserMessage_content.cpp \
     $${PWD}/OAIChatCompletionResponseMessage.cpp \
+    $${PWD}/OAIChatCompletionResponseMessage_audio.cpp \
+    $${PWD}/OAIChatCompletionResponseMessage_function_call.cpp \
     $${PWD}/OAIChatCompletionRole.cpp \
+    $${PWD}/OAIChatCompletionStreamOptions.cpp \
     $${PWD}/OAIChatCompletionStreamResponseDelta.cpp \
     $${PWD}/OAIChatCompletionStreamResponseDelta_function_call.cpp \
     $${PWD}/OAIChatCompletionTokenLogprob.cpp \
     $${PWD}/OAIChatCompletionTokenLogprob_top_logprobs_inner.cpp \
     $${PWD}/OAIChatCompletionTool.cpp \
     $${PWD}/OAIChatCompletionToolChoiceOption.cpp \
+    $${PWD}/OAIChunkingStrategyRequestParam.cpp \
+    $${PWD}/OAICompleteUploadRequest.cpp \
     $${PWD}/OAICompletionUsage.cpp \
-    $${PWD}/OAICreateAssistantFileRequest.cpp \
+    $${PWD}/OAICompletionUsage_completion_tokens_details.cpp \
+    $${PWD}/OAICompletionUsage_prompt_tokens_details.cpp \
+    $${PWD}/OAICostsResult.cpp \
+    $${PWD}/OAICostsResult_amount.cpp \
     $${PWD}/OAICreateAssistantRequest.cpp \
     $${PWD}/OAICreateAssistantRequest_model.cpp \
+    $${PWD}/OAICreateAssistantRequest_tool_resources.cpp \
+    $${PWD}/OAICreateAssistantRequest_tool_resources_code_interpreter.cpp \
+    $${PWD}/OAICreateAssistantRequest_tool_resources_file_search.cpp \
+    $${PWD}/OAICreateAssistantRequest_tool_resources_file_search_vector_stores_inner.cpp \
+    $${PWD}/OAICreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy.cpp \
+    $${PWD}/OAICreateBatch_request.cpp \
     $${PWD}/OAICreateChatCompletionFunctionResponse.cpp \
     $${PWD}/OAICreateChatCompletionFunctionResponse_choices_inner.cpp \
     $${PWD}/OAICreateChatCompletionRequest.cpp \
+    $${PWD}/OAICreateChatCompletionRequest_audio.cpp \
     $${PWD}/OAICreateChatCompletionRequest_function_call.cpp \
     $${PWD}/OAICreateChatCompletionRequest_model.cpp \
     $${PWD}/OAICreateChatCompletionRequest_response_format.cpp \
@@ -318,6 +679,7 @@ SOURCES += \
     $${PWD}/OAICreateChatCompletionResponse_choices_inner_logprobs.cpp \
     $${PWD}/OAICreateChatCompletionStreamResponse.cpp \
     $${PWD}/OAICreateChatCompletionStreamResponse_choices_inner.cpp \
+    $${PWD}/OAICreateChatCompletionStreamResponse_usage.cpp \
     $${PWD}/OAICreateCompletionRequest.cpp \
     $${PWD}/OAICreateCompletionRequest_model.cpp \
     $${PWD}/OAICreateCompletionRequest_prompt.cpp \
@@ -342,20 +704,32 @@ SOURCES += \
     $${PWD}/OAICreateImageRequest.cpp \
     $${PWD}/OAICreateImageRequest_model.cpp \
     $${PWD}/OAICreateMessageRequest.cpp \
+    $${PWD}/OAICreateMessageRequest_attachments_inner.cpp \
+    $${PWD}/OAICreateMessageRequest_attachments_inner_tools_inner.cpp \
+    $${PWD}/OAICreateMessageRequest_content.cpp \
     $${PWD}/OAICreateModerationRequest.cpp \
     $${PWD}/OAICreateModerationRequest_input.cpp \
+    $${PWD}/OAICreateModerationRequest_input_oneOf_inner.cpp \
+    $${PWD}/OAICreateModerationRequest_input_oneOf_inner_oneOf.cpp \
+    $${PWD}/OAICreateModerationRequest_input_oneOf_inner_oneOf_1.cpp \
+    $${PWD}/OAICreateModerationRequest_input_oneOf_inner_oneOf_image_url.cpp \
     $${PWD}/OAICreateModerationRequest_model.cpp \
     $${PWD}/OAICreateModerationResponse.cpp \
     $${PWD}/OAICreateModerationResponse_results_inner.cpp \
     $${PWD}/OAICreateModerationResponse_results_inner_categories.cpp \
+    $${PWD}/OAICreateModerationResponse_results_inner_category_applied_input_types.cpp \
     $${PWD}/OAICreateModerationResponse_results_inner_category_scores.cpp \
     $${PWD}/OAICreateRunRequest.cpp \
     $${PWD}/OAICreateRunRequest_model.cpp \
     $${PWD}/OAICreateSpeechRequest.cpp \
     $${PWD}/OAICreateSpeechRequest_model.cpp \
     $${PWD}/OAICreateThreadAndRunRequest.cpp \
+    $${PWD}/OAICreateThreadAndRunRequest_tool_resources.cpp \
     $${PWD}/OAICreateThreadAndRunRequest_tools_inner.cpp \
     $${PWD}/OAICreateThreadRequest.cpp \
+    $${PWD}/OAICreateThreadRequest_tool_resources.cpp \
+    $${PWD}/OAICreateThreadRequest_tool_resources_file_search.cpp \
+    $${PWD}/OAICreateThreadRequest_tool_resources_file_search_vector_stores_inner.cpp \
     $${PWD}/OAICreateTranscriptionRequest_model.cpp \
     $${PWD}/OAICreateTranscriptionResponseJson.cpp \
     $${PWD}/OAICreateTranscriptionResponseVerboseJson.cpp \
@@ -363,17 +737,41 @@ SOURCES += \
     $${PWD}/OAICreateTranslationResponseJson.cpp \
     $${PWD}/OAICreateTranslationResponseVerboseJson.cpp \
     $${PWD}/OAICreateTranslation_200_response.cpp \
-    $${PWD}/OAIDeleteAssistantFileResponse.cpp \
+    $${PWD}/OAICreateUploadRequest.cpp \
+    $${PWD}/OAICreateVectorStoreFileBatchRequest.cpp \
+    $${PWD}/OAICreateVectorStoreFileRequest.cpp \
+    $${PWD}/OAICreateVectorStoreRequest.cpp \
+    $${PWD}/OAICreateVectorStoreRequest_chunking_strategy.cpp \
+    $${PWD}/OAIDefaultProjectErrorResponse.cpp \
     $${PWD}/OAIDeleteAssistantResponse.cpp \
     $${PWD}/OAIDeleteFileResponse.cpp \
     $${PWD}/OAIDeleteMessageResponse.cpp \
     $${PWD}/OAIDeleteModelResponse.cpp \
     $${PWD}/OAIDeleteThreadResponse.cpp \
+    $${PWD}/OAIDeleteVectorStoreFileResponse.cpp \
+    $${PWD}/OAIDeleteVectorStoreResponse.cpp \
     $${PWD}/OAIDoneEvent.cpp \
     $${PWD}/OAIEmbedding.cpp \
     $${PWD}/OAIError.cpp \
     $${PWD}/OAIErrorEvent.cpp \
     $${PWD}/OAIErrorResponse.cpp \
+    $${PWD}/OAIFileSearchRankingOptions.cpp \
+    $${PWD}/OAIFineTuneChatCompletionRequestAssistantMessage.cpp \
+    $${PWD}/OAIFineTuneChatRequestInput.cpp \
+    $${PWD}/OAIFineTuneChatRequestInput_messages_inner.cpp \
+    $${PWD}/OAIFineTuneCompletionRequestInput.cpp \
+    $${PWD}/OAIFineTuneDPOMethod.cpp \
+    $${PWD}/OAIFineTuneDPOMethod_hyperparameters.cpp \
+    $${PWD}/OAIFineTuneDPOMethod_hyperparameters_batch_size.cpp \
+    $${PWD}/OAIFineTuneDPOMethod_hyperparameters_beta.cpp \
+    $${PWD}/OAIFineTuneDPOMethod_hyperparameters_learning_rate_multiplier.cpp \
+    $${PWD}/OAIFineTuneDPOMethod_hyperparameters_n_epochs.cpp \
+    $${PWD}/OAIFineTuneMethod.cpp \
+    $${PWD}/OAIFineTunePreferenceRequestInput.cpp \
+    $${PWD}/OAIFineTunePreferenceRequestInput_input.cpp \
+    $${PWD}/OAIFineTunePreferenceRequestInput_preferred_completion_inner.cpp \
+    $${PWD}/OAIFineTuneSupervisedMethod.cpp \
+    $${PWD}/OAIFineTuneSupervisedMethod_hyperparameters.cpp \
     $${PWD}/OAIFineTuningIntegration.cpp \
     $${PWD}/OAIFineTuningJob.cpp \
     $${PWD}/OAIFineTuningJobCheckpoint.cpp \
@@ -381,25 +779,36 @@ SOURCES += \
     $${PWD}/OAIFineTuningJobEvent.cpp \
     $${PWD}/OAIFineTuningJob_error.cpp \
     $${PWD}/OAIFineTuningJob_hyperparameters.cpp \
-    $${PWD}/OAIFineTuningJob_hyperparameters_n_epochs.cpp \
     $${PWD}/OAIFineTuningJob_integrations_inner.cpp \
     $${PWD}/OAIFunctionObject.cpp \
     $${PWD}/OAIImage.cpp \
     $${PWD}/OAIImagesResponse.cpp \
-    $${PWD}/OAIListAssistantFilesResponse.cpp \
+    $${PWD}/OAIInvite.cpp \
+    $${PWD}/OAIInviteDeleteResponse.cpp \
+    $${PWD}/OAIInviteListResponse.cpp \
+    $${PWD}/OAIInviteRequest.cpp \
+    $${PWD}/OAIInviteRequest_projects_inner.cpp \
+    $${PWD}/OAIInvite_projects_inner.cpp \
     $${PWD}/OAIListAssistantsResponse.cpp \
+    $${PWD}/OAIListAuditLogsResponse.cpp \
+    $${PWD}/OAIListBatchesResponse.cpp \
     $${PWD}/OAIListFilesResponse.cpp \
     $${PWD}/OAIListFineTuningJobCheckpointsResponse.cpp \
     $${PWD}/OAIListFineTuningJobEventsResponse.cpp \
-    $${PWD}/OAIListMessageFilesResponse.cpp \
     $${PWD}/OAIListMessagesResponse.cpp \
     $${PWD}/OAIListModelsResponse.cpp \
     $${PWD}/OAIListPaginatedFineTuningJobsResponse.cpp \
     $${PWD}/OAIListRunStepsResponse.cpp \
     $${PWD}/OAIListRunsResponse.cpp \
     $${PWD}/OAIListThreadsResponse.cpp \
+    $${PWD}/OAIListVectorStoreFilesResponse.cpp \
+    $${PWD}/OAIListVectorStoresResponse.cpp \
+    $${PWD}/OAIList_audit_logs_effective_at_parameter.cpp \
     $${PWD}/OAIMessageContentImageFileObject.cpp \
     $${PWD}/OAIMessageContentImageFileObject_image_file.cpp \
+    $${PWD}/OAIMessageContentImageUrlObject.cpp \
+    $${PWD}/OAIMessageContentImageUrlObject_image_url.cpp \
+    $${PWD}/OAIMessageContentRefusalObject.cpp \
     $${PWD}/OAIMessageContentTextAnnotationsFileCitationObject.cpp \
     $${PWD}/OAIMessageContentTextAnnotationsFileCitationObject_file_citation.cpp \
     $${PWD}/OAIMessageContentTextAnnotationsFilePathObject.cpp \
@@ -409,6 +818,9 @@ SOURCES += \
     $${PWD}/OAIMessageContentTextObject_text_annotations_inner.cpp \
     $${PWD}/OAIMessageDeltaContentImageFileObject.cpp \
     $${PWD}/OAIMessageDeltaContentImageFileObject_image_file.cpp \
+    $${PWD}/OAIMessageDeltaContentImageUrlObject.cpp \
+    $${PWD}/OAIMessageDeltaContentImageUrlObject_image_url.cpp \
+    $${PWD}/OAIMessageDeltaContentRefusalObject.cpp \
     $${PWD}/OAIMessageDeltaContentTextAnnotationsFileCitationObject.cpp \
     $${PWD}/OAIMessageDeltaContentTextAnnotationsFileCitationObject_file_citation.cpp \
     $${PWD}/OAIMessageDeltaContentTextAnnotationsFilePathObject.cpp \
@@ -419,10 +831,10 @@ SOURCES += \
     $${PWD}/OAIMessageDeltaObject.cpp \
     $${PWD}/OAIMessageDeltaObject_delta.cpp \
     $${PWD}/OAIMessageDeltaObject_delta_content_inner.cpp \
-    $${PWD}/OAIMessageFileObject.cpp \
     $${PWD}/OAIMessageObject.cpp \
     $${PWD}/OAIMessageObject_content_inner.cpp \
     $${PWD}/OAIMessageObject_incomplete_details.cpp \
+    $${PWD}/OAIMessageRequestContentTextObject.cpp \
     $${PWD}/OAIMessageStreamEvent.cpp \
     $${PWD}/OAIMessageStreamEvent_oneOf.cpp \
     $${PWD}/OAIMessageStreamEvent_oneOf_1.cpp \
@@ -431,10 +843,108 @@ SOURCES += \
     $${PWD}/OAIMessageStreamEvent_oneOf_4.cpp \
     $${PWD}/OAIModel.cpp \
     $${PWD}/OAIModifyAssistantRequest.cpp \
+    $${PWD}/OAIModifyAssistantRequest_tool_resources.cpp \
+    $${PWD}/OAIModifyAssistantRequest_tool_resources_code_interpreter.cpp \
+    $${PWD}/OAIModifyAssistantRequest_tool_resources_file_search.cpp \
     $${PWD}/OAIModifyMessageRequest.cpp \
     $${PWD}/OAIModifyRunRequest.cpp \
     $${PWD}/OAIModifyThreadRequest.cpp \
+    $${PWD}/OAIModifyThreadRequest_tool_resources.cpp \
+    $${PWD}/OAIModifyThreadRequest_tool_resources_file_search.cpp \
     $${PWD}/OAIOpenAIFile.cpp \
+    $${PWD}/OAIOtherChunkingStrategyResponseParam.cpp \
+    $${PWD}/OAIPredictionContent.cpp \
+    $${PWD}/OAIPredictionContent_content.cpp \
+    $${PWD}/OAIProject.cpp \
+    $${PWD}/OAIProjectApiKey.cpp \
+    $${PWD}/OAIProjectApiKeyDeleteResponse.cpp \
+    $${PWD}/OAIProjectApiKeyListResponse.cpp \
+    $${PWD}/OAIProjectApiKey_owner.cpp \
+    $${PWD}/OAIProjectCreateRequest.cpp \
+    $${PWD}/OAIProjectListResponse.cpp \
+    $${PWD}/OAIProjectRateLimit.cpp \
+    $${PWD}/OAIProjectRateLimitListResponse.cpp \
+    $${PWD}/OAIProjectRateLimitUpdateRequest.cpp \
+    $${PWD}/OAIProjectServiceAccount.cpp \
+    $${PWD}/OAIProjectServiceAccountApiKey.cpp \
+    $${PWD}/OAIProjectServiceAccountCreateRequest.cpp \
+    $${PWD}/OAIProjectServiceAccountCreateResponse.cpp \
+    $${PWD}/OAIProjectServiceAccountDeleteResponse.cpp \
+    $${PWD}/OAIProjectServiceAccountListResponse.cpp \
+    $${PWD}/OAIProjectUpdateRequest.cpp \
+    $${PWD}/OAIProjectUser.cpp \
+    $${PWD}/OAIProjectUserCreateRequest.cpp \
+    $${PWD}/OAIProjectUserDeleteResponse.cpp \
+    $${PWD}/OAIProjectUserListResponse.cpp \
+    $${PWD}/OAIProjectUserUpdateRequest.cpp \
+    $${PWD}/OAIRealtimeClientEventConversationItemCreate.cpp \
+    $${PWD}/OAIRealtimeClientEventConversationItemDelete.cpp \
+    $${PWD}/OAIRealtimeClientEventConversationItemTruncate.cpp \
+    $${PWD}/OAIRealtimeClientEventInputAudioBufferAppend.cpp \
+    $${PWD}/OAIRealtimeClientEventInputAudioBufferClear.cpp \
+    $${PWD}/OAIRealtimeClientEventInputAudioBufferCommit.cpp \
+    $${PWD}/OAIRealtimeClientEventResponseCancel.cpp \
+    $${PWD}/OAIRealtimeClientEventResponseCreate.cpp \
+    $${PWD}/OAIRealtimeClientEventSessionUpdate.cpp \
+    $${PWD}/OAIRealtimeConversationItem.cpp \
+    $${PWD}/OAIRealtimeConversationItem_content_inner.cpp \
+    $${PWD}/OAIRealtimeResponse.cpp \
+    $${PWD}/OAIRealtimeResponseCreateParams.cpp \
+    $${PWD}/OAIRealtimeResponseCreateParams_conversation.cpp \
+    $${PWD}/OAIRealtimeResponseCreateParams_max_response_output_tokens.cpp \
+    $${PWD}/OAIRealtimeResponseCreateParams_tools_inner.cpp \
+    $${PWD}/OAIRealtimeResponse_status_details.cpp \
+    $${PWD}/OAIRealtimeResponse_status_details_error.cpp \
+    $${PWD}/OAIRealtimeResponse_usage.cpp \
+    $${PWD}/OAIRealtimeResponse_usage_input_token_details.cpp \
+    $${PWD}/OAIRealtimeResponse_usage_output_token_details.cpp \
+    $${PWD}/OAIRealtimeServerEventConversationCreated.cpp \
+    $${PWD}/OAIRealtimeServerEventConversationCreated_conversation.cpp \
+    $${PWD}/OAIRealtimeServerEventConversationItemCreated.cpp \
+    $${PWD}/OAIRealtimeServerEventConversationItemDeleted.cpp \
+    $${PWD}/OAIRealtimeServerEventConversationItemInputAudioTranscriptionCompleted.cpp \
+    $${PWD}/OAIRealtimeServerEventConversationItemInputAudioTranscriptionFailed.cpp \
+    $${PWD}/OAIRealtimeServerEventConversationItemInputAudioTranscriptionFailed_error.cpp \
+    $${PWD}/OAIRealtimeServerEventConversationItemTruncated.cpp \
+    $${PWD}/OAIRealtimeServerEventError.cpp \
+    $${PWD}/OAIRealtimeServerEventError_error.cpp \
+    $${PWD}/OAIRealtimeServerEventInputAudioBufferCleared.cpp \
+    $${PWD}/OAIRealtimeServerEventInputAudioBufferCommitted.cpp \
+    $${PWD}/OAIRealtimeServerEventInputAudioBufferSpeechStarted.cpp \
+    $${PWD}/OAIRealtimeServerEventInputAudioBufferSpeechStopped.cpp \
+    $${PWD}/OAIRealtimeServerEventRateLimitsUpdated.cpp \
+    $${PWD}/OAIRealtimeServerEventRateLimitsUpdated_rate_limits_inner.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseAudioDelta.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseAudioDone.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseAudioTranscriptDelta.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseAudioTranscriptDone.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseContentPartAdded.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseContentPartAdded_part.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseContentPartDone.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseContentPartDone_part.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseCreated.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseDone.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseFunctionCallArgumentsDelta.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseFunctionCallArgumentsDone.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseOutputItemAdded.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseOutputItemDone.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseTextDelta.cpp \
+    $${PWD}/OAIRealtimeServerEventResponseTextDone.cpp \
+    $${PWD}/OAIRealtimeServerEventSessionCreated.cpp \
+    $${PWD}/OAIRealtimeServerEventSessionUpdated.cpp \
+    $${PWD}/OAIRealtimeSession.cpp \
+    $${PWD}/OAIRealtimeSessionCreateRequest.cpp \
+    $${PWD}/OAIRealtimeSessionCreateRequest_turn_detection.cpp \
+    $${PWD}/OAIRealtimeSessionCreateResponse.cpp \
+    $${PWD}/OAIRealtimeSessionCreateResponse_client_secret.cpp \
+    $${PWD}/OAIRealtimeSessionCreateResponse_turn_detection.cpp \
+    $${PWD}/OAIRealtimeSession_input_audio_transcription.cpp \
+    $${PWD}/OAIRealtimeSession_model.cpp \
+    $${PWD}/OAIRealtimeSession_turn_detection.cpp \
+    $${PWD}/OAIResponseFormatJsonObject.cpp \
+    $${PWD}/OAIResponseFormatJsonSchema.cpp \
+    $${PWD}/OAIResponseFormatJsonSchema_json_schema.cpp \
+    $${PWD}/OAIResponseFormatText.cpp \
     $${PWD}/OAIRunCompletionUsage.cpp \
     $${PWD}/OAIRunObject.cpp \
     $${PWD}/OAIRunObject_incomplete_details.cpp \
@@ -453,11 +963,11 @@ SOURCES += \
     $${PWD}/OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject.cpp \
     $${PWD}/OAIRunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image.cpp \
     $${PWD}/OAIRunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.cpp \
+    $${PWD}/OAIRunStepDeltaStepDetailsToolCallsFileSearchObject.cpp \
     $${PWD}/OAIRunStepDeltaStepDetailsToolCallsFunctionObject.cpp \
     $${PWD}/OAIRunStepDeltaStepDetailsToolCallsFunctionObject_function.cpp \
     $${PWD}/OAIRunStepDeltaStepDetailsToolCallsObject.cpp \
     $${PWD}/OAIRunStepDeltaStepDetailsToolCallsObject_tool_calls_inner.cpp \
-    $${PWD}/OAIRunStepDeltaStepDetailsToolCallsRetrievalObject.cpp \
     $${PWD}/OAIRunStepDetailsMessageCreationObject.cpp \
     $${PWD}/OAIRunStepDetailsMessageCreationObject_message_creation.cpp \
     $${PWD}/OAIRunStepDetailsToolCallsCodeObject.cpp \
@@ -466,11 +976,15 @@ SOURCES += \
     $${PWD}/OAIRunStepDetailsToolCallsCodeOutputImageObject.cpp \
     $${PWD}/OAIRunStepDetailsToolCallsCodeOutputImageObject_image.cpp \
     $${PWD}/OAIRunStepDetailsToolCallsCodeOutputLogsObject.cpp \
+    $${PWD}/OAIRunStepDetailsToolCallsFileSearchObject.cpp \
+    $${PWD}/OAIRunStepDetailsToolCallsFileSearchObject_file_search.cpp \
+    $${PWD}/OAIRunStepDetailsToolCallsFileSearchRankingOptionsObject.cpp \
+    $${PWD}/OAIRunStepDetailsToolCallsFileSearchResultObject.cpp \
+    $${PWD}/OAIRunStepDetailsToolCallsFileSearchResultObject_content_inner.cpp \
     $${PWD}/OAIRunStepDetailsToolCallsFunctionObject.cpp \
     $${PWD}/OAIRunStepDetailsToolCallsFunctionObject_function.cpp \
     $${PWD}/OAIRunStepDetailsToolCallsObject.cpp \
     $${PWD}/OAIRunStepDetailsToolCallsObject_tool_calls_inner.cpp \
-    $${PWD}/OAIRunStepDetailsToolCallsRetrievalObject.cpp \
     $${PWD}/OAIRunStepObject.cpp \
     $${PWD}/OAIRunStepObject_last_error.cpp \
     $${PWD}/OAIRunStepObject_step_details.cpp \
@@ -492,8 +1006,14 @@ SOURCES += \
     $${PWD}/OAIRunStreamEvent_oneOf_6.cpp \
     $${PWD}/OAIRunStreamEvent_oneOf_7.cpp \
     $${PWD}/OAIRunStreamEvent_oneOf_8.cpp \
+    $${PWD}/OAIRunStreamEvent_oneOf_9.cpp \
     $${PWD}/OAIRunToolCallObject.cpp \
     $${PWD}/OAIRunToolCallObject_function.cpp \
+    $${PWD}/OAIStaticChunkingStrategy.cpp \
+    $${PWD}/OAIStaticChunkingStrategyRequestParam.cpp \
+    $${PWD}/OAIStaticChunkingStrategyResponseParam.cpp \
+    $${PWD}/OAIStatic_Chunking_Strategy.cpp \
+    $${PWD}/OAIStatic_Chunking_Strategy_static.cpp \
     $${PWD}/OAISubmitToolOutputsRunRequest.cpp \
     $${PWD}/OAISubmitToolOutputsRunRequest_tool_outputs_inner.cpp \
     $${PWD}/OAIThreadObject.cpp \
@@ -501,17 +1021,53 @@ SOURCES += \
     $${PWD}/OAITranscriptionSegment.cpp \
     $${PWD}/OAITranscriptionWord.cpp \
     $${PWD}/OAITruncationObject.cpp \
+    $${PWD}/OAIUpdateVectorStoreRequest.cpp \
+    $${PWD}/OAIUpload.cpp \
+    $${PWD}/OAIUploadPart.cpp \
+    $${PWD}/OAIUsageAudioSpeechesResult.cpp \
+    $${PWD}/OAIUsageAudioTranscriptionsResult.cpp \
+    $${PWD}/OAIUsageCodeInterpreterSessionsResult.cpp \
+    $${PWD}/OAIUsageCompletionsResult.cpp \
+    $${PWD}/OAIUsageEmbeddingsResult.cpp \
+    $${PWD}/OAIUsageImagesResult.cpp \
+    $${PWD}/OAIUsageModerationsResult.cpp \
+    $${PWD}/OAIUsageResponse.cpp \
+    $${PWD}/OAIUsageTimeBucket.cpp \
+    $${PWD}/OAIUsageTimeBucket_result_inner.cpp \
+    $${PWD}/OAIUsageVectorStoresResult.cpp \
+    $${PWD}/OAIUser.cpp \
+    $${PWD}/OAIUserDeleteResponse.cpp \
+    $${PWD}/OAIUserListResponse.cpp \
+    $${PWD}/OAIUserRoleUpdateRequest.cpp \
+    $${PWD}/OAIVectorStoreExpirationAfter.cpp \
+    $${PWD}/OAIVectorStoreFileBatchObject.cpp \
+    $${PWD}/OAIVectorStoreFileBatchObject_file_counts.cpp \
+    $${PWD}/OAIVectorStoreFileObject.cpp \
+    $${PWD}/OAIVectorStoreFileObject_chunking_strategy.cpp \
+    $${PWD}/OAIVectorStoreFileObject_last_error.cpp \
+    $${PWD}/OAIVectorStoreObject.cpp \
+    $${PWD}/OAIVectorStoreObject_file_counts.cpp \
 # APIs
     $${PWD}/OAIAssistantsApi.cpp \
     $${PWD}/OAIAudioApi.cpp \
+    $${PWD}/OAIAuditLogsApi.cpp \
+    $${PWD}/OAIBatchApi.cpp \
     $${PWD}/OAIChatApi.cpp \
     $${PWD}/OAICompletionsApi.cpp \
+    $${PWD}/OAIDefaultApi.cpp \
     $${PWD}/OAIEmbeddingsApi.cpp \
     $${PWD}/OAIFilesApi.cpp \
     $${PWD}/OAIFineTuningApi.cpp \
     $${PWD}/OAIImagesApi.cpp \
+    $${PWD}/OAIInvitesApi.cpp \
     $${PWD}/OAIModelsApi.cpp \
     $${PWD}/OAIModerationsApi.cpp \
+    $${PWD}/OAIProjectsApi.cpp \
+    $${PWD}/OAIRealtimeApi.cpp \
+    $${PWD}/OAIUploadsApi.cpp \
+    $${PWD}/OAIUsageApi.cpp \
+    $${PWD}/OAIUsersApi.cpp \
+    $${PWD}/OAIVectorStoresApi.cpp \
 # Others
     $${PWD}/OAIHelpers.cpp \
     $${PWD}/OAIHttpRequest.cpp \

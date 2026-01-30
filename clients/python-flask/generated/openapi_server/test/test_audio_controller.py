@@ -2,6 +2,7 @@ import unittest
 
 from flask import json
 
+from openapi_server.models.audio_response_format import AudioResponseFormat  # noqa: E501
 from openapi_server.models.create_speech_request import CreateSpeechRequest  # noqa: E501
 from openapi_server.models.create_transcription200_response import CreateTranscription200Response  # noqa: E501
 from openapi_server.models.create_transcription_request_model import CreateTranscriptionRequestModel  # noqa: E501
@@ -73,7 +74,7 @@ class TestAudioController(BaseTestCase):
         data = dict(file='/path/to/file',
                     model=openapi_server.CreateTranscriptionRequestModel(),
                     prompt='prompt_example',
-                    response_format='json',
+                    response_format=json,
                     temperature=0)
         response = self.client.open(
             '/v1/audio/translations',

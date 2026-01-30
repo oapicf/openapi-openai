@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from app.openapi_server.models.base_model import Model
-from app.openapi_server.models.chat_completion_named_tool_choice_function import ChatCompletionNamedToolChoiceFunction  # noqa: F401,E501
+from app.openapi_server.models.assistants_named_tool_choice_function import AssistantsNamedToolChoiceFunction  # noqa: F401,E501
 from openapi_server import util
 
 
@@ -16,17 +16,17 @@ class ChatCompletionNamedToolChoice(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, type: str=None, function: ChatCompletionNamedToolChoiceFunction=None):  # noqa: E501
+    def __init__(self, type: str=None, function: AssistantsNamedToolChoiceFunction=None):  # noqa: E501
         """ChatCompletionNamedToolChoice - a model defined in Swagger
 
         :param type: The type of this ChatCompletionNamedToolChoice.  # noqa: E501
         :type type: str
         :param function: The function of this ChatCompletionNamedToolChoice.  # noqa: E501
-        :type function: ChatCompletionNamedToolChoiceFunction
+        :type function: AssistantsNamedToolChoiceFunction
         """
         self.swagger_types = {
             'type': str,
-            'function': ChatCompletionNamedToolChoiceFunction
+            'function': AssistantsNamedToolChoiceFunction
         }
 
         self.attribute_map = {
@@ -78,22 +78,22 @@ class ChatCompletionNamedToolChoice(Model):
         self._type = type
 
     @property
-    def function(self) -> ChatCompletionNamedToolChoiceFunction:
+    def function(self) -> AssistantsNamedToolChoiceFunction:
         """Gets the function of this ChatCompletionNamedToolChoice.
 
 
         :return: The function of this ChatCompletionNamedToolChoice.
-        :rtype: ChatCompletionNamedToolChoiceFunction
+        :rtype: AssistantsNamedToolChoiceFunction
         """
         return self._function
 
     @function.setter
-    def function(self, function: ChatCompletionNamedToolChoiceFunction):
+    def function(self, function: AssistantsNamedToolChoiceFunction):
         """Sets the function of this ChatCompletionNamedToolChoice.
 
 
         :param function: The function of this ChatCompletionNamedToolChoice.
-        :type function: ChatCompletionNamedToolChoiceFunction
+        :type function: AssistantsNamedToolChoiceFunction
         """
         if function is None:
             raise ValueError("Invalid value for `function`, must not be `None`")  # noqa: E501

@@ -2,6 +2,7 @@
   (:require [clojure.spec.alpha :as s]
             [spec-tools.data-spec :as ds]
             [open-ai-api.specs.create-chat-completion-stream-response-choices-inner :refer :all]
+            [open-ai-api.specs.create-chat-completion-stream-response-usage :refer :all]
             )
   (:import (java.io File)))
 
@@ -12,8 +13,10 @@
    (ds/req :choices) (s/coll-of create-chat-completion-stream-response-choices-inner-spec)
    (ds/req :created) int?
    (ds/req :model) string?
+   (ds/opt :service_tier) string?
    (ds/opt :system_fingerprint) string?
    (ds/req :object) string?
+   (ds/opt :usage) create-chat-completion-stream-response-usage-spec
    })
 
 (def create-chat-completion-stream-response-spec

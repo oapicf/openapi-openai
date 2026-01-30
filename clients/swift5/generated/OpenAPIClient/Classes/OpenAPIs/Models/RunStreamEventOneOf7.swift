@@ -10,11 +10,11 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Occurs when a [run](/docs/api-reference/runs/object) is cancelled. */
+/** Occurs when a [run](/docs/api-reference/runs/object) moves to a &#x60;cancelling&#x60; status. */
 public struct RunStreamEventOneOf7: Codable, JSONEncodable, Hashable {
 
     public enum Event: String, Codable, CaseIterable {
-        case threadPeriodRunPeriodCancelled = "thread.run.cancelled"
+        case threadPeriodRunPeriodCancelling = "thread.run.cancelling"
     }
     public var event: Event
     public var data: RunObject

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.CreateMessageRequest;
+import org.openapitools.model.CreateThreadRequestToolResources;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -30,6 +31,14 @@ public class CreateThreadRequestTest {
     @Test
     public void messagesTest() {
         // TODO: test messages
+    }
+
+    /**
+     * Test the property 'toolResources'
+     */
+    @Test
+    public void toolResourcesTest() {
+        // TODO: test toolResources
     }
 
     /**

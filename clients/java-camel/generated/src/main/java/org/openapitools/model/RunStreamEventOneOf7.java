@@ -18,19 +18,19 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
+ * Occurs when a [run](/docs/api-reference/runs/object) moves to a &#x60;cancelling&#x60; status.
  */
 
-@Schema(name = "RunStreamEvent_oneOf_7", description = "Occurs when a [run](/docs/api-reference/runs/object) is cancelled.")
+@Schema(name = "RunStreamEvent_oneOf_7", description = "Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.")
 @JsonTypeName("RunStreamEvent_oneOf_7")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStreamEventOneOf7 implements RunStreamEvent {
 
   /**
    * Gets or Sets event
    */
   public enum EventEnum {
-    THREAD_RUN_CANCELLED("thread.run.cancelled");
+    THREAD_RUN_CANCELLING("thread.run.cancelling");
 
     private final String value;
 

@@ -13,6 +13,7 @@
   | {'function_call', openapi_chat_completion_stream_response_delta_function_call:openapi_chat_completion_stream_response_delta_function_call() }
   | {'tool_calls', list(openapi_chat_completion_message_tool_call_chunk:openapi_chat_completion_message_tool_call_chunk()) }
   | {'role', binary() }
+  | {'refusal', binary() }
   ].
 
 
@@ -24,6 +25,7 @@ openapi_chat_completion_stream_response_delta(Fields) ->
             , {'function_call', openapi_chat_completion_stream_response_delta_function_call:openapi_chat_completion_stream_response_delta_function_call() }
             , {'tool_calls', list(openapi_chat_completion_message_tool_call_chunk:openapi_chat_completion_message_tool_call_chunk()) }
             , {'role', elements([<<"system">>, <<"user">>, <<"assistant">>, <<"tool">>]) }
+            , {'refusal', binary() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

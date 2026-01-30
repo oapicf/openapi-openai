@@ -1,7 +1,7 @@
 /*
  * CreateFineTuningJobRequest_hyperparameters.h
  *
- * The hyperparameters used for the fine-tuning job.
+ * The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of &#x60;method&#x60;, and should be passed in under the &#x60;method&#x60; parameter. 
  */
 
 #ifndef _CreateFineTuningJobRequest_hyperparameters_H_
@@ -23,7 +23,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief The hyperparameters used for the fine-tuning job.
+/*! \brief The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of `method`, and should be passed in under the `method` parameter. 
  *
  *  \ingroup Models
  *

@@ -74,5 +74,6 @@ private class OASCreateModerationResponseResultsInTest {
         OASCreateModerationResponseResultsIn createModerationResponseResultsInner = new OASCreateModerationResponseResultsIn();
         Map<String, String> x-property-mappings = createModerationResponseResultsInner.getx-property-mappings();
         System.assertEquals('categoryScores', x-property-mappings.get('category_scores'));
+        System.assertEquals('categoryAppliedInputTypes', x-property-mappings.get('category_applied_input_types'));
     }
 }

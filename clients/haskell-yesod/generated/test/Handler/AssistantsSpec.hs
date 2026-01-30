@@ -18,11 +18,6 @@ spec = withApp $ do
             post AssistantsR
             statusIs 501
 
-    describe "postAssistantsByTextFilesR" $
-        it "returns 501 Not Implemented" $ do
-            post $ AssistantsByTextFilesR "file-abc123"
-            statusIs 501
-
     describe "postThreadsByTextMessagesR" $
         it "returns 501 Not Implemented" $ do
             post $ ThreadsByTextMessagesR "threadId_example"
@@ -48,9 +43,9 @@ spec = withApp $ do
             performMethod "DELETE" $ AssistantsByTextR "assistantId_example"
             statusIs 501
 
-    describe "deleteAssistantsByTextFilesByTextR" $
+    describe "deleteThreadsByTextMessagesByTextR" $
         it "returns 501 Not Implemented" $ do
-            performMethod "DELETE" $ AssistantsByTextFilesByTextR "assistantId_example" "fileId_example"
+            performMethod "DELETE" $ ThreadsByTextMessagesByTextR "threadId_example" "messageId_example"
             statusIs 501
 
     describe "deleteThreadsByTextR" $
@@ -63,19 +58,9 @@ spec = withApp $ do
             get $ AssistantsByTextR "assistantId_example"
             statusIs 501
 
-    describe "getAssistantsByTextFilesByTextR" $
-        it "returns 501 Not Implemented" $ do
-            get $ AssistantsByTextFilesByTextR "assistantId_example" "fileId_example"
-            statusIs 501
-
     describe "getThreadsByTextMessagesByTextR" $
         it "returns 501 Not Implemented" $ do
             get $ ThreadsByTextMessagesByTextR "threadId_example" "messageId_example"
-            statusIs 501
-
-    describe "getThreadsByTextMessagesByTextFilesByTextR" $
-        it "returns 501 Not Implemented" $ do
-            get $ ThreadsByTextMessagesByTextFilesByTextR "thread_abc123" "msg_abc123" "file-abc123"
             statusIs 501
 
     describe "getThreadsByTextRunsByTextR" $
@@ -93,19 +78,9 @@ spec = withApp $ do
             get $ ThreadsByTextR "threadId_example"
             statusIs 501
 
-    describe "getAssistantsByTextFilesR" $
-        it "returns 501 Not Implemented" $ do
-            get $ AssistantsByTextFilesR "assistantId_example"
-            statusIs 501
-
     describe "getAssistantsR" $
         it "returns 501 Not Implemented" $ do
             get AssistantsR
-            statusIs 501
-
-    describe "getThreadsByTextMessagesByTextFilesR" $
-        it "returns 501 Not Implemented" $ do
-            get $ ThreadsByTextMessagesByTextFilesR "threadId_example" "messageId_example"
             statusIs 501
 
     describe "getThreadsByTextMessagesR" $

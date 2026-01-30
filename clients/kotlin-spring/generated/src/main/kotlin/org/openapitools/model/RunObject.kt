@@ -30,7 +30,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param createdAt The Unix timestamp (in seconds) for when the run was created.
  * @param threadId The ID of the [thread](/docs/api-reference/threads) that was executed on as a part of this run.
  * @param assistantId The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run.
- * @param status The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+ * @param status The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
  * @param requiredAction 
  * @param lastError 
  * @param expiresAt The Unix timestamp (in seconds) for when the run will expire.
@@ -42,15 +42,16 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param model The model that the [assistant](/docs/api-reference/assistants) used for this run.
  * @param instructions The instructions that the [assistant](/docs/api-reference/assistants) used for this run.
  * @param tools The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
- * @param fileIds The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
- * @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+ * @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
  * @param usage 
  * @param maxPromptTokens The maximum number of prompt tokens specified to have been used over the course of the run. 
  * @param maxCompletionTokens The maximum number of completion tokens specified to have been used over the course of the run. 
  * @param truncationStrategy 
  * @param toolChoice 
+ * @param parallelToolCalls Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
  * @param responseFormat 
  * @param temperature The sampling temperature used for this run. If not set, defaults to 1.
+ * @param topP The nucleus sampling value used for this run. If not set, defaults to 1.
  */
 data class RunObject(
 
@@ -69,7 +70,7 @@ data class RunObject(
     @Schema(example = "null", required = true, description = "The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run.")
     @get:JsonProperty("assistant_id", required = true) val assistantId: kotlin.String,
 
-    @Schema(example = "null", required = true, description = "The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.")
+    @Schema(example = "null", required = true, description = "The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.")
     @get:JsonProperty("status", required = true) val status: RunObject.Status,
 
     @field:Valid
@@ -110,11 +111,8 @@ data class RunObject(
     @Schema(example = "null", required = true, description = "The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.")
     @get:JsonProperty("tools", required = true) val tools: kotlin.collections.List<AssistantObjectToolsInner> = arrayListOf(),
 
-    @Schema(example = "null", required = true, description = "The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.")
-    @get:JsonProperty("file_ids", required = true) val fileIds: kotlin.collections.List<kotlin.String> = arrayListOf(),
-
     @field:Valid
-    @Schema(example = "null", required = true, description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+    @Schema(example = "null", required = true, description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
     @get:JsonProperty("metadata", required = true) val metadata: kotlin.Any?,
 
     @field:Valid
@@ -137,12 +135,18 @@ data class RunObject(
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("tool_choice", required = true) val toolChoice: AssistantsApiToolChoiceOption,
 
+    @Schema(example = "null", required = true, description = "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.")
+    @get:JsonProperty("parallel_tool_calls", required = true) val parallelToolCalls: kotlin.Boolean = true,
+
     @field:Valid
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("response_format", required = true) val responseFormat: AssistantsApiResponseFormatOption,
 
     @Schema(example = "null", description = "The sampling temperature used for this run. If not set, defaults to 1.")
-    @get:JsonProperty("temperature") val temperature: java.math.BigDecimal? = null
+    @get:JsonProperty("temperature") val temperature: java.math.BigDecimal? = null,
+
+    @Schema(example = "null", description = "The nucleus sampling value used for this run. If not set, defaults to 1.")
+    @get:JsonProperty("top_p") val topP: java.math.BigDecimal? = null
 ) {
 
     /**
@@ -164,8 +168,8 @@ data class RunObject(
     }
 
     /**
-    * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
-    * Values: queued,in_progress,requires_action,cancelling,cancelled,failed,completed,expired
+    * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
+    * Values: queued,in_progress,requires_action,cancelling,cancelled,failed,completed,incomplete,expired
     */
     enum class Status(@get:JsonValue val value: kotlin.String) {
 
@@ -176,6 +180,7 @@ data class RunObject(
         cancelled("cancelled"),
         failed("failed"),
         completed("completed"),
+        incomplete("incomplete"),
         expired("expired");
 
         companion object {

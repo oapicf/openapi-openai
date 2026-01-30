@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  * CreateSpeechRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateSpeechRequest {
 
   private CreateSpeechRequestModel model;
@@ -29,7 +29,7 @@ public class CreateSpeechRequest {
   private String input;
 
   /**
-   * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+   * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
    */
   public enum VoiceEnum {
     ALLOY("alloy"),
@@ -118,7 +118,7 @@ public class CreateSpeechRequest {
 
   private ResponseFormatEnum responseFormat = ResponseFormatEnum.MP3;
 
-  private BigDecimal speed = new BigDecimal("1.0");
+  private BigDecimal speed = new BigDecimal("1");
 
   public CreateSpeechRequest() {
     super();
@@ -179,11 +179,11 @@ public class CreateSpeechRequest {
   }
 
   /**
-   * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+   * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
    * @return voice
    */
   @NotNull 
-  @Schema(name = "voice", description = "The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "voice", description = "The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("voice")
   public VoiceEnum getVoice() {
     return voice;
@@ -221,10 +221,10 @@ public class CreateSpeechRequest {
   /**
    * The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.
    * minimum: 0.25
-   * maximum: 4.0
+   * maximum: 4
    * @return speed
    */
-  @Valid @DecimalMin(value = "0.25") @DecimalMax(value = "4.0") 
+  @Valid @DecimalMin(value = "0.25") @DecimalMax(value = "4") 
   @Schema(name = "speed", description = "The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("speed")
   public BigDecimal getSpeed() {

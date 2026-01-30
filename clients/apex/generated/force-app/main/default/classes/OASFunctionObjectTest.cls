@@ -73,6 +73,7 @@ private class OASFunctionObjectTest {
     private static void defaultValuesPopulated() {
         OASFunctionObject functionObject = new OASFunctionObject();
         System.assertEquals(new Map<String, oas_any_type_not_mapped>(), functionObject.parameters);
+        System.assertEquals(false, functionObject.strict);
         System.assertEquals(null, functionObject.description);
         System.assertEquals(null, functionObject.name);
     }

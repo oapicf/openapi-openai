@@ -6,8 +6,8 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from app.openapi_server.models.base_model import Model
-from app.openapi_server.models.assistants_api_named_tool_choice import AssistantsApiNamedToolChoice  # noqa: F401,E501
-from app.openapi_server.models.chat_completion_named_tool_choice_function import ChatCompletionNamedToolChoiceFunction  # noqa: F401,E501
+from app.openapi_server.models.assistants_named_tool_choice import AssistantsNamedToolChoice  # noqa: F401,E501
+from app.openapi_server.models.assistants_named_tool_choice_function import AssistantsNamedToolChoiceFunction  # noqa: F401,E501
 from openapi_server import util
 
 
@@ -17,17 +17,17 @@ class AssistantsApiToolChoiceOption(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, type: str=None, function: ChatCompletionNamedToolChoiceFunction=None):  # noqa: E501
+    def __init__(self, type: str=None, function: AssistantsNamedToolChoiceFunction=None):  # noqa: E501
         """AssistantsApiToolChoiceOption - a model defined in Swagger
 
         :param type: The type of this AssistantsApiToolChoiceOption.  # noqa: E501
         :type type: str
         :param function: The function of this AssistantsApiToolChoiceOption.  # noqa: E501
-        :type function: ChatCompletionNamedToolChoiceFunction
+        :type function: AssistantsNamedToolChoiceFunction
         """
         self.swagger_types = {
             'type': str,
-            'function': ChatCompletionNamedToolChoiceFunction
+            'function': AssistantsNamedToolChoiceFunction
         }
 
         self.attribute_map = {
@@ -69,7 +69,7 @@ class AssistantsApiToolChoiceOption(Model):
         :param type: The type of this AssistantsApiToolChoiceOption.
         :type type: str
         """
-        allowed_values = ["function", "code_interpreter", "retrieval"]  # noqa: E501
+        allowed_values = ["function", "code_interpreter", "file_search"]  # noqa: E501
         if type not in allowed_values:
             raise ValueError(
                 "Invalid value for `type` ({0}), must be one of {1}"
@@ -79,22 +79,22 @@ class AssistantsApiToolChoiceOption(Model):
         self._type = type
 
     @property
-    def function(self) -> ChatCompletionNamedToolChoiceFunction:
+    def function(self) -> AssistantsNamedToolChoiceFunction:
         """Gets the function of this AssistantsApiToolChoiceOption.
 
 
         :return: The function of this AssistantsApiToolChoiceOption.
-        :rtype: ChatCompletionNamedToolChoiceFunction
+        :rtype: AssistantsNamedToolChoiceFunction
         """
         return self._function
 
     @function.setter
-    def function(self, function: ChatCompletionNamedToolChoiceFunction):
+    def function(self, function: AssistantsNamedToolChoiceFunction):
         """Sets the function of this AssistantsApiToolChoiceOption.
 
 
         :param function: The function of this AssistantsApiToolChoiceOption.
-        :type function: ChatCompletionNamedToolChoiceFunction
+        :type function: AssistantsNamedToolChoiceFunction
         """
 
         self._function = function

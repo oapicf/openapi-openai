@@ -3,24 +3,19 @@ from typing import Dict
 from typing import Tuple
 from typing import Union
 
-from openapi_server.models.assistant_file_object import AssistantFileObject  # noqa: E501
 from openapi_server.models.assistant_object import AssistantObject  # noqa: E501
-from openapi_server.models.create_assistant_file_request import CreateAssistantFileRequest  # noqa: E501
 from openapi_server.models.create_assistant_request import CreateAssistantRequest  # noqa: E501
 from openapi_server.models.create_message_request import CreateMessageRequest  # noqa: E501
 from openapi_server.models.create_run_request import CreateRunRequest  # noqa: E501
 from openapi_server.models.create_thread_and_run_request import CreateThreadAndRunRequest  # noqa: E501
 from openapi_server.models.create_thread_request import CreateThreadRequest  # noqa: E501
-from openapi_server.models.delete_assistant_file_response import DeleteAssistantFileResponse  # noqa: E501
 from openapi_server.models.delete_assistant_response import DeleteAssistantResponse  # noqa: E501
+from openapi_server.models.delete_message_response import DeleteMessageResponse  # noqa: E501
 from openapi_server.models.delete_thread_response import DeleteThreadResponse  # noqa: E501
-from openapi_server.models.list_assistant_files_response import ListAssistantFilesResponse  # noqa: E501
 from openapi_server.models.list_assistants_response import ListAssistantsResponse  # noqa: E501
-from openapi_server.models.list_message_files_response import ListMessageFilesResponse  # noqa: E501
 from openapi_server.models.list_messages_response import ListMessagesResponse  # noqa: E501
 from openapi_server.models.list_run_steps_response import ListRunStepsResponse  # noqa: E501
 from openapi_server.models.list_runs_response import ListRunsResponse  # noqa: E501
-from openapi_server.models.message_file_object import MessageFileObject  # noqa: E501
 from openapi_server.models.message_object import MessageObject  # noqa: E501
 from openapi_server.models.modify_assistant_request import ModifyAssistantRequest  # noqa: E501
 from openapi_server.models.modify_message_request import ModifyMessageRequest  # noqa: E501
@@ -64,24 +59,6 @@ def create_assistant(body):  # noqa: E501
     return 'do some magic!'
 
 
-def create_assistant_file(assistant_id, body):  # noqa: E501
-    """Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
-     # noqa: E501
-
-    :param assistant_id: The ID of the assistant for which to create a File. 
-    :type assistant_id: str
-    :param create_assistant_file_request: 
-    :type create_assistant_file_request: dict | bytes
-
-    :rtype: Union[AssistantFileObject, Tuple[AssistantFileObject, int], Tuple[AssistantFileObject, int, Dict[str, str]]
-    """
-    create_assistant_file_request = body
-    if connexion.request.is_json:
-        create_assistant_file_request = CreateAssistantFileRequest.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
-
-
 def create_message(thread_id, body):  # noqa: E501
     """Create a message.
 
@@ -100,7 +77,7 @@ def create_message(thread_id, body):  # noqa: E501
     return 'do some magic!'
 
 
-def create_run(thread_id, body):  # noqa: E501
+def create_run(thread_id, body, include=None):  # noqa: E501
     """Create a run.
 
      # noqa: E501
@@ -109,6 +86,8 @@ def create_run(thread_id, body):  # noqa: E501
     :type thread_id: str
     :param create_run_request: 
     :type create_run_request: dict | bytes
+    :param include: A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+    :type include: List[str]
 
     :rtype: Union[RunObject, Tuple[RunObject, int], Tuple[RunObject, int, Dict[str, str]]
     """
@@ -163,17 +142,17 @@ def delete_assistant(assistant_id):  # noqa: E501
     return 'do some magic!'
 
 
-def delete_assistant_file(assistant_id, file_id):  # noqa: E501
-    """Delete an assistant file.
+def delete_message(thread_id, message_id):  # noqa: E501
+    """Deletes a message.
 
      # noqa: E501
 
-    :param assistant_id: The ID of the assistant that the file belongs to.
-    :type assistant_id: str
-    :param file_id: The ID of the file to delete.
-    :type file_id: str
+    :param thread_id: The ID of the thread to which this message belongs.
+    :type thread_id: str
+    :param message_id: The ID of the message to delete.
+    :type message_id: str
 
-    :rtype: Union[DeleteAssistantFileResponse, Tuple[DeleteAssistantFileResponse, int], Tuple[DeleteAssistantFileResponse, int, Dict[str, str]]
+    :rtype: Union[DeleteMessageResponse, Tuple[DeleteMessageResponse, int], Tuple[DeleteMessageResponse, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -204,21 +183,6 @@ def get_assistant(assistant_id):  # noqa: E501
     return 'do some magic!'
 
 
-def get_assistant_file(assistant_id, file_id):  # noqa: E501
-    """Retrieves an AssistantFile.
-
-     # noqa: E501
-
-    :param assistant_id: The ID of the assistant who the file belongs to.
-    :type assistant_id: str
-    :param file_id: The ID of the file we&#39;re getting.
-    :type file_id: str
-
-    :rtype: Union[AssistantFileObject, Tuple[AssistantFileObject, int], Tuple[AssistantFileObject, int, Dict[str, str]]
-    """
-    return 'do some magic!'
-
-
 def get_message(thread_id, message_id):  # noqa: E501
     """Retrieve a message.
 
@@ -230,23 +194,6 @@ def get_message(thread_id, message_id):  # noqa: E501
     :type message_id: str
 
     :rtype: Union[MessageObject, Tuple[MessageObject, int], Tuple[MessageObject, int, Dict[str, str]]
-    """
-    return 'do some magic!'
-
-
-def get_message_file(thread_id, message_id, file_id):  # noqa: E501
-    """Retrieves a message file.
-
-     # noqa: E501
-
-    :param thread_id: The ID of the thread to which the message and File belong.
-    :type thread_id: str
-    :param message_id: The ID of the message the file belongs to.
-    :type message_id: str
-    :param file_id: The ID of the file being retrieved.
-    :type file_id: str
-
-    :rtype: Union[MessageFileObject, Tuple[MessageFileObject, int], Tuple[MessageFileObject, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -266,7 +213,7 @@ def get_run(thread_id, run_id):  # noqa: E501
     return 'do some magic!'
 
 
-def get_run_step(thread_id, run_id, step_id):  # noqa: E501
+def get_run_step(thread_id, run_id, step_id, include=None):  # noqa: E501
     """Retrieves a run step.
 
      # noqa: E501
@@ -277,6 +224,8 @@ def get_run_step(thread_id, run_id, step_id):  # noqa: E501
     :type run_id: str
     :param step_id: The ID of the run step to retrieve.
     :type step_id: str
+    :param include: A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+    :type include: List[str]
 
     :rtype: Union[RunStepObject, Tuple[RunStepObject, int], Tuple[RunStepObject, int, Dict[str, str]]
     """
@@ -296,27 +245,6 @@ def get_thread(thread_id):  # noqa: E501
     return 'do some magic!'
 
 
-def list_assistant_files(assistant_id, limit=None, order=None, after=None, before=None):  # noqa: E501
-    """Returns a list of assistant files.
-
-     # noqa: E501
-
-    :param assistant_id: The ID of the assistant the file belongs to.
-    :type assistant_id: str
-    :param limit: A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-    :type limit: int
-    :param order: Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-    :type order: str
-    :param after: A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-    :type after: str
-    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-    :type before: str
-
-    :rtype: Union[ListAssistantFilesResponse, Tuple[ListAssistantFilesResponse, int], Tuple[ListAssistantFilesResponse, int, Dict[str, str]]
-    """
-    return 'do some magic!'
-
-
 def list_assistants(limit=None, order=None, after=None, before=None):  # noqa: E501
     """Returns a list of assistants.
 
@@ -328,33 +256,10 @@ def list_assistants(limit=None, order=None, after=None, before=None):  # noqa: E
     :type order: str
     :param after: A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
     :type after: str
-    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
     :type before: str
 
     :rtype: Union[ListAssistantsResponse, Tuple[ListAssistantsResponse, int], Tuple[ListAssistantsResponse, int, Dict[str, str]]
-    """
-    return 'do some magic!'
-
-
-def list_message_files(thread_id, message_id, limit=None, order=None, after=None, before=None):  # noqa: E501
-    """Returns a list of message files.
-
-     # noqa: E501
-
-    :param thread_id: The ID of the thread that the message and files belong to.
-    :type thread_id: str
-    :param message_id: The ID of the message that the files belongs to.
-    :type message_id: str
-    :param limit: A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-    :type limit: int
-    :param order: Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-    :type order: str
-    :param after: A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-    :type after: str
-    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-    :type before: str
-
-    :rtype: Union[ListMessageFilesResponse, Tuple[ListMessageFilesResponse, int], Tuple[ListMessageFilesResponse, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -372,7 +277,7 @@ def list_messages(thread_id, limit=None, order=None, after=None, before=None, ru
     :type order: str
     :param after: A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
     :type after: str
-    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
     :type before: str
     :param run_id: Filter messages by the run ID that generated them. 
     :type run_id: str
@@ -382,7 +287,7 @@ def list_messages(thread_id, limit=None, order=None, after=None, before=None, ru
     return 'do some magic!'
 
 
-def list_run_steps(thread_id, run_id, limit=None, order=None, after=None, before=None):  # noqa: E501
+def list_run_steps(thread_id, run_id, limit=None, order=None, after=None, before=None, include=None):  # noqa: E501
     """Returns a list of run steps belonging to a run.
 
      # noqa: E501
@@ -397,8 +302,10 @@ def list_run_steps(thread_id, run_id, limit=None, order=None, after=None, before
     :type order: str
     :param after: A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
     :type after: str
-    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
     :type before: str
+    :param include: A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+    :type include: List[str]
 
     :rtype: Union[ListRunStepsResponse, Tuple[ListRunStepsResponse, int], Tuple[ListRunStepsResponse, int, Dict[str, str]]
     """
@@ -418,7 +325,7 @@ def list_runs(thread_id, limit=None, order=None, after=None, before=None):  # no
     :type order: str
     :param after: A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
     :type after: str
-    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
     :type before: str
 
     :rtype: Union[ListRunsResponse, Tuple[ListRunsResponse, int], Tuple[ListRunsResponse, int, Dict[str, str]]

@@ -7,5 +7,9 @@ type MessageObjectContentInner struct {
 
 	ImageFile MessageContentImageFileObjectImageFile `json:"image_file"`
 
+	ImageUrl MessageContentImageUrlObjectImageUrl `json:"image_url"`
+
 	Text MessageContentTextObjectText `json:"text"`
+
+	Refusal string `json:"refusal"`
 }

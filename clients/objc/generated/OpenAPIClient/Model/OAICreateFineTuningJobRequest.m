@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"model": @"model", @"trainingFile": @"training_file", @"hyperparameters": @"hyperparameters", @"suffix": @"suffix", @"validationFile": @"validation_file", @"integrations": @"integrations", @"seed": @"seed" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"model": @"model", @"trainingFile": @"training_file", @"hyperparameters": @"hyperparameters", @"suffix": @"suffix", @"validationFile": @"validation_file", @"integrations": @"integrations", @"seed": @"seed", @"method": @"method" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"hyperparameters", @"suffix", @"validationFile", @"integrations", @"seed"];
+  NSArray *optionalProperties = @[@"hyperparameters", @"suffix", @"validationFile", @"integrations", @"seed", @"method"];
   return [optionalProperties containsObject:propertyName];
 }
 

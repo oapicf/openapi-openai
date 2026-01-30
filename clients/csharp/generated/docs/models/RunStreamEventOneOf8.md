@@ -1,5 +1,5 @@
 # Org.OpenAPITools.Model.RunStreamEventOneOf8
-Occurs when a [run](/docs/api-reference/runs/object) expires.
+Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
 
 ## Properties
 

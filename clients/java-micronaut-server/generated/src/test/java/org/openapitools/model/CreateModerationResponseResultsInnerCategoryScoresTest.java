@@ -54,6 +54,22 @@ public class CreateModerationResponseResultsInnerCategoryScoresTest {
     }
 
     /**
+     * Test the property 'illicit'
+     */
+    @Test
+    public void illicitTest() {
+        // TODO: test illicit
+    }
+
+    /**
+     * Test the property 'illicitViolent'
+     */
+    @Test
+    public void illicitViolentTest() {
+        // TODO: test illicitViolent
+    }
+
+    /**
      * Test the property 'selfHarm'
      */
     @Test

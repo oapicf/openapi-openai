@@ -1,0 +1,163 @@
+package org.openapitools.model;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
+
+import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
+public class InviteDeleteResponse  {
+  
+public enum ObjectEnum {
+
+ORGANIZATION_INVITE_DELETED(String.valueOf("organization.invite.deleted"));
+
+
+    private String value;
+
+    ObjectEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String value) {
+        for (ObjectEnum b : ObjectEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
+ /**
+  * The object type, which is always `organization.invite.deleted`
+  */
+  @ApiModelProperty(required = true, value = "The object type, which is always `organization.invite.deleted`")
+
+  private ObjectEnum _object;
+
+  @ApiModelProperty(required = true, value = "")
+
+  private String id;
+
+  @ApiModelProperty(required = true, value = "")
+
+  private Boolean deleted;
+ /**
+   * The object type, which is always &#x60;organization.invite.deleted&#x60;
+   * @return _object
+  **/
+  @JsonProperty("object")
+  @NotNull
+  public String getObject() {
+    if (_object == null) {
+      return null;
+    }
+    return _object.value();
+  }
+
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
+  public InviteDeleteResponse _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+ /**
+   * Get id
+   * @return id
+  **/
+  @JsonProperty("id")
+  @NotNull
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public InviteDeleteResponse id(String id) {
+    this.id = id;
+    return this;
+  }
+
+ /**
+   * Get deleted
+   * @return deleted
+  **/
+  @JsonProperty("deleted")
+  @NotNull
+  public Boolean getDeleted() {
+    return deleted;
+  }
+
+  public void setDeleted(Boolean deleted) {
+    this.deleted = deleted;
+  }
+
+  public InviteDeleteResponse deleted(Boolean deleted) {
+    this.deleted = deleted;
+    return this;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    InviteDeleteResponse inviteDeleteResponse = (InviteDeleteResponse) o;
+    return Objects.equals(this._object, inviteDeleteResponse._object) &&
+        Objects.equals(this.id, inviteDeleteResponse.id) &&
+        Objects.equals(this.deleted, inviteDeleteResponse.deleted);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(_object, id, deleted);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class InviteDeleteResponse {\n");
+    
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private static String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+}
+

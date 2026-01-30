@@ -117,7 +117,7 @@ test_that("completed_at", {
 
 test_that("metadata", {
   # tests for the property `metadata` (object)
-  # Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  # Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`metadata`, "EXPECTED_RESULT")

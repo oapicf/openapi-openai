@@ -23,12 +23,14 @@ thread_stream_event_t* instantiate_thread_stream_event(int include_optional) {
   thread_stream_event_t* thread_stream_event = NULL;
   if (include_optional) {
     thread_stream_event = thread_stream_event_create(
+      1,
       openai_api_thread_stream_event_EVENT_thread.created,
        // false, not to have infinite recursion
       instantiate_thread_object(0)
     );
   } else {
     thread_stream_event = thread_stream_event_create(
+      1,
       openai_api_thread_stream_event_EVENT_thread.created,
       NULL
     );

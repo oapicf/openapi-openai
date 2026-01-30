@@ -25,34 +25,46 @@ class FineTuningJobEventTest : ShouldSpec() {
         // uncomment below to create an instance of FineTuningJobEvent
         //val modelInstance = FineTuningJobEvent()
 
-        // to test the property `id`
+        // to test the property ``object`` - The object type, which is always \"fine_tuning.job.event\".
+        should("test `object`") {
+            // uncomment below to test the property
+            //modelInstance.`object` shouldBe ("TODO")
+        }
+
+        // to test the property `id` - The object identifier.
         should("test id") {
             // uncomment below to test the property
             //modelInstance.id shouldBe ("TODO")
         }
 
-        // to test the property `createdAt`
+        // to test the property `createdAt` - The Unix timestamp (in seconds) for when the fine-tuning job was created.
         should("test createdAt") {
             // uncomment below to test the property
             //modelInstance.createdAt shouldBe ("TODO")
         }
 
-        // to test the property `level`
+        // to test the property `level` - The log level of the event.
         should("test level") {
             // uncomment below to test the property
             //modelInstance.level shouldBe ("TODO")
         }
 
-        // to test the property `message`
+        // to test the property `message` - The message of the event.
         should("test message") {
             // uncomment below to test the property
             //modelInstance.message shouldBe ("TODO")
         }
 
-        // to test the property ``object``
-        should("test `object`") {
+        // to test the property `type` - The type of event.
+        should("test type") {
             // uncomment below to test the property
-            //modelInstance.`object` shouldBe ("TODO")
+            //modelInstance.type shouldBe ("TODO")
+        }
+
+        // to test the property ``data`` - The data associated with the event.
+        should("test `data`") {
+            // uncomment below to test the property
+            //modelInstance.`data` shouldBe ("TODO")
         }
 
     }

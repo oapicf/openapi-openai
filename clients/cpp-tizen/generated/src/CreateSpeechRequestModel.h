@@ -1,7 +1,7 @@
 /*
  * CreateSpeechRequest_model.h
  *
- * One of the available [TTS models](/docs/models/tts): &#x60;tts-1&#x60; or &#x60;tts-1-hd&#x60; 
+ * One of the available [TTS models](/docs/models#tts): &#x60;tts-1&#x60; or &#x60;tts-1-hd&#x60; 
  */
 
 #ifndef _CreateSpeechRequest_model_H_
@@ -20,7 +20,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief One of the available [TTS models](/docs/models/tts): `tts-1` or `tts-1-hd` 
+/*! \brief One of the available [TTS models](/docs/models#tts): `tts-1` or `tts-1-hd` 
  *
  *  \ingroup Models
  *

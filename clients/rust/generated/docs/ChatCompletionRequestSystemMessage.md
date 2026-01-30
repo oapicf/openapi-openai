@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**content** | **String** | The contents of the system message. | 
+**content** | [**models::ChatCompletionRequestSystemMessageContent**](ChatCompletionRequestSystemMessage_content.md) |  | 
 **role** | **String** | The role of the messages author, in this case `system`. | 
 **name** | Option<**String**> | An optional name for the participant. Provides the model information to differentiate between participants of the same role. | [optional]
 

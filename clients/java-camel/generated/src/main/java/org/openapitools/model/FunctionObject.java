@@ -4,8 +4,11 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -20,7 +23,7 @@ import javax.annotation.Generated;
  * FunctionObject
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FunctionObject {
 
   private String description;
@@ -29,6 +32,8 @@ public class FunctionObject {
 
   @Valid
   private Map<String, Object> parameters = new HashMap<>();
+
+  private JsonNullable<Boolean> strict = JsonNullable.<Boolean>undefined();
 
   public FunctionObject() {
     super();
@@ -95,11 +100,11 @@ public class FunctionObject {
   }
 
   /**
-   * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
+   * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
    * @return parameters
    */
   
-  @Schema(name = "parameters", description = "The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "parameters", description = "The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("parameters")
   public Map<String, Object> getParameters() {
     return parameters;
@@ -107,6 +112,26 @@ public class FunctionObject {
 
   public void setParameters(Map<String, Object> parameters) {
     this.parameters = parameters;
+  }
+
+  public FunctionObject strict(Boolean strict) {
+    this.strict = JsonNullable.of(strict);
+    return this;
+  }
+
+  /**
+   * Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).
+   * @return strict
+   */
+  
+  @Schema(name = "strict", description = "Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("strict")
+  public JsonNullable<Boolean> getStrict() {
+    return strict;
+  }
+
+  public void setStrict(JsonNullable<Boolean> strict) {
+    this.strict = strict;
   }
 
   @Override
@@ -120,12 +145,24 @@ public class FunctionObject {
     FunctionObject functionObject = (FunctionObject) o;
     return Objects.equals(this.description, functionObject.description) &&
         Objects.equals(this.name, functionObject.name) &&
-        Objects.equals(this.parameters, functionObject.parameters);
+        Objects.equals(this.parameters, functionObject.parameters) &&
+        equalsNullable(this.strict, functionObject.strict);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, name, parameters);
+    return Objects.hash(description, name, parameters, hashCodeNullable(strict));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -135,6 +172,7 @@ public class FunctionObject {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
+    sb.append("    strict: ").append(toIndentedString(strict)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,0 +1,24 @@
+# OpenapiOpenai.RealtimeServerEventResponseTextDelta
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**eventId** | **String** | The unique ID of the server event. | 
+**type** | **String** | The event type, must be &#x60;response.text.delta&#x60;. | 
+**responseId** | **String** | The ID of the response. | 
+**itemId** | **String** | The ID of the item. | 
+**outputIndex** | **Number** | The index of the output item in the response. | 
+**contentIndex** | **Number** | The index of the content part in the item&#39;s content array. | 
+**delta** | **String** | The text delta. | 
+
+
+
+## Enum: TypeEnum
+
+
+* `response.text.delta` (value: `"response.text.delta"`)
+
+
+
+

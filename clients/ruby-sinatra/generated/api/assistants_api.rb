@@ -51,34 +51,6 @@ MyApp.add_route('POST', '/v1/assistants', {
 end
 
 
-MyApp.add_route('POST', '/v1/assistants/{assistant_id}/files', {
-  "resourcePath" => "/Assistants",
-  "summary" => "Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).",
-  "nickname" => "create_assistant_file",
-  "responseClass" => "AssistantFileObject",
-  "endpoint" => "/assistants/{assistant_id}/files",
-  "notes" => "",
-  "parameters" => [
-    {
-      "name" => "assistant_id",
-      "description" => "The ID of the assistant for which to create a File. ",
-      "dataType" => "String",
-      "paramType" => "path",
-    },
-    {
-      "name" => "body",
-      "description" => "",
-      "dataType" => "CreateAssistantFileRequest",
-      "paramType" => "body",
-    }
-    ]}) do
-  cross_origin
-  # the guts live here
-
-  {"message" => "yes, it worked"}.to_json
-end
-
-
 MyApp.add_route('POST', '/v1/threads/{thread_id}/messages', {
   "resourcePath" => "/Assistants",
   "summary" => "Create a message.",
@@ -115,6 +87,13 @@ MyApp.add_route('POST', '/v1/threads/{thread_id}/runs', {
   "endpoint" => "/threads/{thread_id}/runs",
   "notes" => "",
   "parameters" => [
+    {
+      "name" => "include",
+      "description" => "A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ",
+      "dataType" => "Array<String>",
+      "collectionFormat" => "multi",
+      "paramType" => "query",
+    },
     {
       "name" => "thread_id",
       "description" => "The ID of the thread to run.",
@@ -201,23 +180,23 @@ MyApp.add_route('DELETE', '/v1/assistants/{assistant_id}', {
 end
 
 
-MyApp.add_route('DELETE', '/v1/assistants/{assistant_id}/files/{file_id}', {
+MyApp.add_route('DELETE', '/v1/threads/{thread_id}/messages/{message_id}', {
   "resourcePath" => "/Assistants",
-  "summary" => "Delete an assistant file.",
-  "nickname" => "delete_assistant_file",
-  "responseClass" => "DeleteAssistantFileResponse",
-  "endpoint" => "/assistants/{assistant_id}/files/{file_id}",
+  "summary" => "Deletes a message.",
+  "nickname" => "delete_message",
+  "responseClass" => "DeleteMessageResponse",
+  "endpoint" => "/threads/{thread_id}/messages/{message_id}",
   "notes" => "",
   "parameters" => [
     {
-      "name" => "assistant_id",
-      "description" => "The ID of the assistant that the file belongs to.",
+      "name" => "thread_id",
+      "description" => "The ID of the thread to which this message belongs.",
       "dataType" => "String",
       "paramType" => "path",
     },
     {
-      "name" => "file_id",
-      "description" => "The ID of the file to delete.",
+      "name" => "message_id",
+      "description" => "The ID of the message to delete.",
       "dataType" => "String",
       "paramType" => "path",
     },
@@ -273,34 +252,6 @@ MyApp.add_route('GET', '/v1/assistants/{assistant_id}', {
 end
 
 
-MyApp.add_route('GET', '/v1/assistants/{assistant_id}/files/{file_id}', {
-  "resourcePath" => "/Assistants",
-  "summary" => "Retrieves an AssistantFile.",
-  "nickname" => "get_assistant_file",
-  "responseClass" => "AssistantFileObject",
-  "endpoint" => "/assistants/{assistant_id}/files/{file_id}",
-  "notes" => "",
-  "parameters" => [
-    {
-      "name" => "assistant_id",
-      "description" => "The ID of the assistant who the file belongs to.",
-      "dataType" => "String",
-      "paramType" => "path",
-    },
-    {
-      "name" => "file_id",
-      "description" => "The ID of the file we&#39;re getting.",
-      "dataType" => "String",
-      "paramType" => "path",
-    },
-    ]}) do
-  cross_origin
-  # the guts live here
-
-  {"message" => "yes, it worked"}.to_json
-end
-
-
 MyApp.add_route('GET', '/v1/threads/{thread_id}/messages/{message_id}', {
   "resourcePath" => "/Assistants",
   "summary" => "Retrieve a message.",
@@ -318,40 +269,6 @@ MyApp.add_route('GET', '/v1/threads/{thread_id}/messages/{message_id}', {
     {
       "name" => "message_id",
       "description" => "The ID of the message to retrieve.",
-      "dataType" => "String",
-      "paramType" => "path",
-    },
-    ]}) do
-  cross_origin
-  # the guts live here
-
-  {"message" => "yes, it worked"}.to_json
-end
-
-
-MyApp.add_route('GET', '/v1/threads/{thread_id}/messages/{message_id}/files/{file_id}', {
-  "resourcePath" => "/Assistants",
-  "summary" => "Retrieves a message file.",
-  "nickname" => "get_message_file",
-  "responseClass" => "MessageFileObject",
-  "endpoint" => "/threads/{thread_id}/messages/{message_id}/files/{file_id}",
-  "notes" => "",
-  "parameters" => [
-    {
-      "name" => "thread_id",
-      "description" => "The ID of the thread to which the message and File belong.",
-      "dataType" => "String",
-      "paramType" => "path",
-    },
-    {
-      "name" => "message_id",
-      "description" => "The ID of the message the file belongs to.",
-      "dataType" => "String",
-      "paramType" => "path",
-    },
-    {
-      "name" => "file_id",
-      "description" => "The ID of the file being retrieved.",
       "dataType" => "String",
       "paramType" => "path",
     },
@@ -400,6 +317,13 @@ MyApp.add_route('GET', '/v1/threads/{thread_id}/runs/{run_id}/steps/{step_id}', 
   "notes" => "",
   "parameters" => [
     {
+      "name" => "include",
+      "description" => "A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ",
+      "dataType" => "Array<String>",
+      "collectionFormat" => "multi",
+      "paramType" => "query",
+    },
+    {
       "name" => "thread_id",
       "description" => "The ID of the thread to which the run and run step belongs.",
       "dataType" => "String",
@@ -447,58 +371,6 @@ MyApp.add_route('GET', '/v1/threads/{thread_id}', {
 end
 
 
-MyApp.add_route('GET', '/v1/assistants/{assistant_id}/files', {
-  "resourcePath" => "/Assistants",
-  "summary" => "Returns a list of assistant files.",
-  "nickname" => "list_assistant_files",
-  "responseClass" => "ListAssistantFilesResponse",
-  "endpoint" => "/assistants/{assistant_id}/files",
-  "notes" => "",
-  "parameters" => [
-    {
-      "name" => "limit",
-      "description" => "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ",
-      "dataType" => "Integer",
-      "allowableValues" => "",
-      "defaultValue" => "20",
-      "paramType" => "query",
-    },
-    {
-      "name" => "order",
-      "description" => "Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ",
-      "dataType" => "String",
-      "allowableValues" => "[asc, desc]",
-      "defaultValue" => "'desc'",
-      "paramType" => "query",
-    },
-    {
-      "name" => "after",
-      "description" => "A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ",
-      "dataType" => "String",
-      "allowableValues" => "",
-      "paramType" => "query",
-    },
-    {
-      "name" => "before",
-      "description" => "A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ",
-      "dataType" => "String",
-      "allowableValues" => "",
-      "paramType" => "query",
-    },
-    {
-      "name" => "assistant_id",
-      "description" => "The ID of the assistant the file belongs to.",
-      "dataType" => "String",
-      "paramType" => "path",
-    },
-    ]}) do
-  cross_origin
-  # the guts live here
-
-  {"message" => "yes, it worked"}.to_json
-end
-
-
 MyApp.add_route('GET', '/v1/assistants', {
   "resourcePath" => "/Assistants",
   "summary" => "Returns a list of assistants.",
@@ -532,68 +404,10 @@ MyApp.add_route('GET', '/v1/assistants', {
     },
     {
       "name" => "before",
-      "description" => "A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ",
+      "description" => "A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ",
       "dataType" => "String",
       "allowableValues" => "",
       "paramType" => "query",
-    },
-    ]}) do
-  cross_origin
-  # the guts live here
-
-  {"message" => "yes, it worked"}.to_json
-end
-
-
-MyApp.add_route('GET', '/v1/threads/{thread_id}/messages/{message_id}/files', {
-  "resourcePath" => "/Assistants",
-  "summary" => "Returns a list of message files.",
-  "nickname" => "list_message_files",
-  "responseClass" => "ListMessageFilesResponse",
-  "endpoint" => "/threads/{thread_id}/messages/{message_id}/files",
-  "notes" => "",
-  "parameters" => [
-    {
-      "name" => "limit",
-      "description" => "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ",
-      "dataType" => "Integer",
-      "allowableValues" => "",
-      "defaultValue" => "20",
-      "paramType" => "query",
-    },
-    {
-      "name" => "order",
-      "description" => "Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ",
-      "dataType" => "String",
-      "allowableValues" => "[asc, desc]",
-      "defaultValue" => "'desc'",
-      "paramType" => "query",
-    },
-    {
-      "name" => "after",
-      "description" => "A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ",
-      "dataType" => "String",
-      "allowableValues" => "",
-      "paramType" => "query",
-    },
-    {
-      "name" => "before",
-      "description" => "A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ",
-      "dataType" => "String",
-      "allowableValues" => "",
-      "paramType" => "query",
-    },
-    {
-      "name" => "thread_id",
-      "description" => "The ID of the thread that the message and files belong to.",
-      "dataType" => "String",
-      "paramType" => "path",
-    },
-    {
-      "name" => "message_id",
-      "description" => "The ID of the message that the files belongs to.",
-      "dataType" => "String",
-      "paramType" => "path",
     },
     ]}) do
   cross_origin
@@ -636,7 +450,7 @@ MyApp.add_route('GET', '/v1/threads/{thread_id}/messages', {
     },
     {
       "name" => "before",
-      "description" => "A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ",
+      "description" => "A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ",
       "dataType" => "String",
       "allowableValues" => "",
       "paramType" => "query",
@@ -695,9 +509,16 @@ MyApp.add_route('GET', '/v1/threads/{thread_id}/runs/{run_id}/steps', {
     },
     {
       "name" => "before",
-      "description" => "A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ",
+      "description" => "A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ",
       "dataType" => "String",
       "allowableValues" => "",
+      "paramType" => "query",
+    },
+    {
+      "name" => "include",
+      "description" => "A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ",
+      "dataType" => "Array<String>",
+      "collectionFormat" => "multi",
       "paramType" => "query",
     },
     {
@@ -753,7 +574,7 @@ MyApp.add_route('GET', '/v1/threads/{thread_id}/runs', {
     },
     {
       "name" => "before",
-      "description" => "A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ",
+      "description" => "A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ",
       "dataType" => "String",
       "allowableValues" => "",
       "paramType" => "query",

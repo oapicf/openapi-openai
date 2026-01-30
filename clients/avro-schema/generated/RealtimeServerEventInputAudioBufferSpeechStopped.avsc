@@ -1,0 +1,35 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned in `server_vad` mode when the server detects the end of speech in  the audio buffer. The server will also send an `conversation.item.created`  event with the user message item that is created from the audio buffer. ",
+  "name": "RealtimeServerEventInputAudioBufferSpeechStopped",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventInputAudioBufferSpeechStopped_type",
+        "symbols": [
+          "input_audio_buffer_speech_stopped"
+        ]
+      },
+      "doc": "The event type, must be `input_audio_buffer.speech_stopped`."
+    },
+    {
+      "name": "audio_end_ms",
+      "type": "int",
+      "doc": "Milliseconds since the session started when speech stopped. This will  correspond to the end of audio sent to the model, and thus includes the  `min_silence_duration_ms` configured in the Session. "
+    },
+    {
+      "name": "item_id",
+      "type": "string",
+      "doc": "The ID of the user message item that will be created."
+    }
+  ]
+
+}

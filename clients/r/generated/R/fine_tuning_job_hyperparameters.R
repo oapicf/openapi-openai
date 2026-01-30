@@ -1,28 +1,42 @@
 #' Create a new FineTuningJobHyperparameters
 #'
 #' @description
-#' The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+#' The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.
 #'
 #' @docType class
 #' @title FineTuningJobHyperparameters
 #' @description FineTuningJobHyperparameters Class
 #' @format An \code{R6Class} generator object
-#' @field n_epochs  \link{FineTuningJobHyperparametersNEpochs}
+#' @field batch_size  \link{CreateFineTuningJobRequestHyperparametersBatchSize} [optional]
+#' @field learning_rate_multiplier  \link{CreateFineTuningJobRequestHyperparametersLearningRateMultiplier} [optional]
+#' @field n_epochs  \link{CreateFineTuningJobRequestHyperparametersNEpochs} [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
 FineTuningJobHyperparameters <- R6::R6Class(
   "FineTuningJobHyperparameters",
   public = list(
+    `batch_size` = NULL,
+    `learning_rate_multiplier` = NULL,
     `n_epochs` = NULL,
 
     #' @description
     #' Initialize a new FineTuningJobHyperparameters class.
     #'
+    #' @param batch_size batch_size
+    #' @param learning_rate_multiplier learning_rate_multiplier
     #' @param n_epochs n_epochs
     #' @param ... Other optional arguments.
-    initialize = function(`n_epochs`, ...) {
-      if (!missing(`n_epochs`)) {
+    initialize = function(`batch_size` = NULL, `learning_rate_multiplier` = NULL, `n_epochs` = NULL, ...) {
+      if (!is.null(`batch_size`)) {
+        stopifnot(R6::is.R6(`batch_size`))
+        self$`batch_size` <- `batch_size`
+      }
+      if (!is.null(`learning_rate_multiplier`)) {
+        stopifnot(R6::is.R6(`learning_rate_multiplier`))
+        self$`learning_rate_multiplier` <- `learning_rate_multiplier`
+      }
+      if (!is.null(`n_epochs`)) {
         stopifnot(R6::is.R6(`n_epochs`))
         self$`n_epochs` <- `n_epochs`
       }
@@ -59,6 +73,14 @@ FineTuningJobHyperparameters <- R6::R6Class(
     #' @return A base R type, e.g. a list or numeric/character array.
     toSimpleType = function() {
       FineTuningJobHyperparametersObject <- list()
+      if (!is.null(self$`batch_size`)) {
+        FineTuningJobHyperparametersObject[["batch_size"]] <-
+          self$`batch_size`$toSimpleType()
+      }
+      if (!is.null(self$`learning_rate_multiplier`)) {
+        FineTuningJobHyperparametersObject[["learning_rate_multiplier"]] <-
+          self$`learning_rate_multiplier`$toSimpleType()
+      }
       if (!is.null(self$`n_epochs`)) {
         FineTuningJobHyperparametersObject[["n_epochs"]] <-
           self$`n_epochs`$toSimpleType()
@@ -73,8 +95,18 @@ FineTuningJobHyperparameters <- R6::R6Class(
     #' @return the instance of FineTuningJobHyperparameters
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
+      if (!is.null(this_object$`batch_size`)) {
+        `batch_size_object` <- CreateFineTuningJobRequestHyperparametersBatchSize$new()
+        `batch_size_object`$fromJSON(jsonlite::toJSON(this_object$`batch_size`, auto_unbox = TRUE, digits = NA))
+        self$`batch_size` <- `batch_size_object`
+      }
+      if (!is.null(this_object$`learning_rate_multiplier`)) {
+        `learning_rate_multiplier_object` <- CreateFineTuningJobRequestHyperparametersLearningRateMultiplier$new()
+        `learning_rate_multiplier_object`$fromJSON(jsonlite::toJSON(this_object$`learning_rate_multiplier`, auto_unbox = TRUE, digits = NA))
+        self$`learning_rate_multiplier` <- `learning_rate_multiplier_object`
+      }
       if (!is.null(this_object$`n_epochs`)) {
-        `n_epochs_object` <- FineTuningJobHyperparametersNEpochs$new()
+        `n_epochs_object` <- CreateFineTuningJobRequestHyperparametersNEpochs$new()
         `n_epochs_object`$fromJSON(jsonlite::toJSON(this_object$`n_epochs`, auto_unbox = TRUE, digits = NA))
         self$`n_epochs` <- `n_epochs_object`
       }
@@ -99,7 +131,9 @@ FineTuningJobHyperparameters <- R6::R6Class(
     #' @return the instance of FineTuningJobHyperparameters
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`n_epochs` <- FineTuningJobHyperparametersNEpochs$new()$fromJSON(jsonlite::toJSON(this_object$`n_epochs`, auto_unbox = TRUE, digits = NA))
+      self$`batch_size` <- CreateFineTuningJobRequestHyperparametersBatchSize$new()$fromJSON(jsonlite::toJSON(this_object$`batch_size`, auto_unbox = TRUE, digits = NA))
+      self$`learning_rate_multiplier` <- CreateFineTuningJobRequestHyperparametersLearningRateMultiplier$new()$fromJSON(jsonlite::toJSON(this_object$`learning_rate_multiplier`, auto_unbox = TRUE, digits = NA))
+      self$`n_epochs` <- CreateFineTuningJobRequestHyperparametersNEpochs$new()$fromJSON(jsonlite::toJSON(this_object$`n_epochs`, auto_unbox = TRUE, digits = NA))
       self
     },
 
@@ -109,12 +143,6 @@ FineTuningJobHyperparameters <- R6::R6Class(
     #' @param input the JSON input
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
-      # check the required field `n_epochs`
-      if (!is.null(input_json$`n_epochs`)) {
-        stopifnot(R6::is.R6(input_json$`n_epochs`))
-      } else {
-        stop(paste("The JSON input `", input, "` is invalid for FineTuningJobHyperparameters: the required field `n_epochs` is missing."))
-      }
     },
 
     #' @description
@@ -130,11 +158,6 @@ FineTuningJobHyperparameters <- R6::R6Class(
     #'
     #' @return true if the values in all fields are valid.
     isValid = function() {
-      # check if the required `n_epochs` is null
-      if (is.null(self$`n_epochs`)) {
-        return(FALSE)
-      }
-
       TRUE
     },
 
@@ -144,11 +167,6 @@ FineTuningJobHyperparameters <- R6::R6Class(
     #' @return A list of invalid fields (if any).
     getInvalidFields = function() {
       invalid_fields <- list()
-      # check if the required `n_epochs` is null
-      if (is.null(self$`n_epochs`)) {
-        invalid_fields["n_epochs"] <- "Non-nullable required field `n_epochs` cannot be null."
-      }
-
       invalid_fields
     },
 

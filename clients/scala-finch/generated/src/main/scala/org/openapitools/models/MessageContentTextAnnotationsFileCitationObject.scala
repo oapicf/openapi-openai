@@ -8,7 +8,7 @@ import org.openapitools._
 import org.openapitools.models.MessageContentTextAnnotationsFileCitationObjectFileCitation
 
 /**
- * A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \"retrieval\" tool to search files.
+ * A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \"file_search\" tool to search files.
  * @param _type Always `file_citation`.
  * @param text The text in the message content that needs to be replaced.
  * @param fileUnderscorecitation 

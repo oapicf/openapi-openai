@@ -4,19 +4,19 @@ All URIs are relative to *https://api.openai.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateModeration**](ModerationsApi.md#CreateModeration) | **POST** /moderations | Classifies if text is potentially harmful.
+[**CreateModeration**](ModerationsApi.md#CreateModeration) | **POST** /moderations | Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 
 # **CreateModeration**
 > CreateModerationResponse CreateModeration(create_moderation_request)
 
-Classifies if text is potentially harmful.
+Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 ### Example
 ```R
 library(openapi)
 
-# Classifies if text is potentially harmful.
+# Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 #
 # prepare function argument(s)
 var_create_moderation_request <- CreateModerationRequest$new(CreateModerationRequest_input$new(), CreateModerationRequest_model$new()) # CreateModerationRequest | 

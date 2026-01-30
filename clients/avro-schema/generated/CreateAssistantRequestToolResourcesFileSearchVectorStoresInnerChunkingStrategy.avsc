@@ -1,0 +1,26 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy.",
+  "name": "CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy_type",
+        "symbols": [
+          "auto",
+          "static"
+        ]
+      },
+      "doc": "Always `auto`."
+    },
+    {
+      "name": "static",
+      "type": "model.StaticChunkingStrategyStatic",
+      "doc": ""
+    }
+  ]
+
+}

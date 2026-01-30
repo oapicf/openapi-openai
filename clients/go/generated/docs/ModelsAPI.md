@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-	model := "ft:gpt-3.5-turbo:acemeco:suffix:abc123" // string | The model to delete
+	model := "ft:gpt-4o-mini:acemeco:suffix:abc123" // string | The model to delete
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -156,7 +156,7 @@ import (
 )
 
 func main() {
-	model := "gpt-3.5-turbo" // string | The ID of the model to use for this request
+	model := "gpt-4o-mini" // string | The ID of the model to use for this request
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

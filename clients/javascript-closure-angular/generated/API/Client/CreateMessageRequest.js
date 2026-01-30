@@ -13,21 +13,20 @@ API.Client.CreateMessageRequest = function() {}
 API.Client.CreateMessageRequest.prototype.role;
 
 /**
- * The content of the message.
- * @type {!string}
+ * @type {!API.Client.CreateMessageRequest_content}
  * @export
  */
 API.Client.CreateMessageRequest.prototype.content;
 
 /**
- * A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like `retrieval` and `code_interpreter` that can access and use files.
- * @type {!Array<!string>}
+ * A list of files attached to the message, and the tools they should be added to.
+ * @type {!Array<!API.Client.CreateMessageRequest_attachments_inner>}
  * @export
  */
-API.Client.CreateMessageRequest.prototype.fileIds;
+API.Client.CreateMessageRequest.prototype.attachments;
 
 /**
- * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+ * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
  * @type {!API.Client.Object}
  * @export
  */

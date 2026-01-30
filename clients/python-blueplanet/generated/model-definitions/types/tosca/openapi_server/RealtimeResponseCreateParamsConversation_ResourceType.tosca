@@ -1,0 +1,30 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeResponseCreateParamsConversation"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeResponseCreateParamsConversation"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeResponseCreateParamsConversation {
+    title = RealtimeResponseCreateParamsConversation
+    description = RealtimeResponseCreateParamsConversation
+    derivedFrom = Root
+    properties {
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeResponseCreateParamsConversation {
+    title = RealtimeResponseCreateParamsConversation
+    description = RealtimeResponseCreateParamsConversation
+    implements = openapi_server.resourceTypes.RealtimeResponseCreateParamsConversation
+
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateMessageRequestContent",
+  "fields": [
+  ]
+
+}

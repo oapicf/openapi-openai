@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "RunStepCompletionUsage", description = "Usage statistics related to the run step. This value will be `null` while the run step's status is `in_progress`.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStepCompletionUsage {
 
   private Integer completionTokens;

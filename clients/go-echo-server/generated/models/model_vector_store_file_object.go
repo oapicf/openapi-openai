@@ -1,0 +1,27 @@
+package models
+
+// VectorStoreFileObject - A list of files attached to a vector store.
+type VectorStoreFileObject struct {
+
+	// The identifier, which can be referenced in API endpoints.
+	Id string `json:"id"`
+
+	// The object type, which is always `vector_store.file`.
+	Object string `json:"object"`
+
+	// The total vector store usage in bytes. Note that this may be different from the original file size.
+	UsageBytes int32 `json:"usage_bytes"`
+
+	// The Unix timestamp (in seconds) for when the vector store file was created.
+	CreatedAt int32 `json:"created_at"`
+
+	// The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.
+	VectorStoreId string `json:"vector_store_id"`
+
+	// The status of the vector store file, which can be either `in_progress`, `completed`, `cancelled`, or `failed`. The status `completed` indicates that the vector store file is ready for use.
+	Status string `json:"status"`
+
+	LastError *VectorStoreFileObjectLastError `json:"last_error"`
+
+	ChunkingStrategy VectorStoreFileObjectChunkingStrategy `json:"chunking_strategy,omitempty"`
+}

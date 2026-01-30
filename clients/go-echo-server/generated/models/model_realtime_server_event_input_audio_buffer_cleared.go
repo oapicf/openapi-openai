@@ -1,0 +1,11 @@
+package models
+
+// RealtimeServerEventInputAudioBufferCleared - Returned when the input audio buffer is cleared by the client with a  `input_audio_buffer.clear` event. 
+type RealtimeServerEventInputAudioBufferCleared struct {
+
+	// The unique ID of the server event.
+	EventId string `json:"event_id"`
+
+	// The event type, must be `input_audio_buffer.cleared`.
+	Type string `json:"type"`
+}

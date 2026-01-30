@@ -1,0 +1,31 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The refusal content that is part of a message.",
+  "name": "MessageDeltaContentRefusalObject",
+  "fields": [
+    {
+      "name": "index",
+      "type": "int",
+      "doc": "The index of the refusal part in the message."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "MessageDeltaContentRefusalObject_type",
+        "symbols": [
+          "refusal"
+        ]
+      },
+      "doc": "Always `refusal`."
+    },
+    {
+      "name": "refusal",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

@@ -11,5 +11,5 @@ class CreateModerationRequest {
     
     CreateModerationRequestInput input
     
-    CreateModerationRequestModel model = text-moderation-latest
+    CreateModerationRequestModel model = omni-moderation-latest
 }

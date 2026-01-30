@@ -8,9 +8,9 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is created.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is created.
  */
-@ApiModel(description="Occurs when a [run step](/docs/api-reference/runs/step-object) is created.")
+@ApiModel(description="Occurs when a [run step](/docs/api-reference/run-steps/step-object) is created.")
 
 public class RunStepStreamEventOneOf  {
   

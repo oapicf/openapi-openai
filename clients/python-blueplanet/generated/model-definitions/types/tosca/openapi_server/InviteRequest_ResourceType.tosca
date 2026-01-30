@@ -1,0 +1,48 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server InviteRequest"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a InviteRequest"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  InviteRequestProjectsInner = openapi_server.resourceTypes.InviteRequestProjectsInner
+}
+resourceTypes {
+
+  InviteRequest {
+    title = InviteRequest
+    description = InviteRequest
+    derivedFrom = Root
+    properties {
+        email {
+          type =  string
+          description = "Send an email to this address"
+          optional = true
+        }
+        role {
+          type =  string
+          description = "&#x60;owner&#x60; or &#x60;reader&#x60;"
+          enum = ["reader", "owner"]
+          optional = true
+        }
+        projects {
+          type = array
+          items.type = InviteRequestProjectsInner
+          description = "An array of projects to which membership is granted at the same time the org invite is accepted. If omitted, the user will be invited to the default project for compatibility with legacy behavior."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  InviteRequest {
+    title = InviteRequest
+    description = InviteRequest
+    implements = openapi_server.resourceTypes.InviteRequest
+
+  }
+}

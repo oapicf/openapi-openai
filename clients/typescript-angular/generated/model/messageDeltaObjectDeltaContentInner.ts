@@ -8,7 +8,10 @@
  * Do not edit the class manually.
  */
 import { MessageDeltaContentImageFileObjectImageFile } from './messageDeltaContentImageFileObjectImageFile';
+import { MessageDeltaContentImageUrlObject } from './messageDeltaContentImageUrlObject';
+import { MessageDeltaContentRefusalObject } from './messageDeltaContentRefusalObject';
 import { MessageDeltaContentImageFileObject } from './messageDeltaContentImageFileObject';
+import { MessageDeltaContentImageUrlObjectImageUrl } from './messageDeltaContentImageUrlObjectImageUrl';
 import { MessageDeltaContentTextObjectText } from './messageDeltaContentTextObjectText';
 import { MessageDeltaContentTextObject } from './messageDeltaContentTextObject';
 
@@ -17,5 +20,5 @@ import { MessageDeltaContentTextObject } from './messageDeltaContentTextObject';
  * @type MessageDeltaObjectDeltaContentInner
  * @export
  */
-export type MessageDeltaObjectDeltaContentInner = MessageDeltaContentImageFileObject | MessageDeltaContentTextObject;
+export type MessageDeltaObjectDeltaContentInner = MessageDeltaContentImageFileObject | MessageDeltaContentImageUrlObject | MessageDeltaContentRefusalObject | MessageDeltaContentTextObject;
 

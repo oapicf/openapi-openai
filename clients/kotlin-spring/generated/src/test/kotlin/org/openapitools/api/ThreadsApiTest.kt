@@ -4,12 +4,11 @@ import org.openapitools.model.CreateMessageRequest
 import org.openapitools.model.CreateRunRequest
 import org.openapitools.model.CreateThreadAndRunRequest
 import org.openapitools.model.CreateThreadRequest
+import org.openapitools.model.DeleteMessageResponse
 import org.openapitools.model.DeleteThreadResponse
-import org.openapitools.model.ListMessageFilesResponse
 import org.openapitools.model.ListMessagesResponse
 import org.openapitools.model.ListRunStepsResponse
 import org.openapitools.model.ListRunsResponse
-import org.openapitools.model.MessageFileObject
 import org.openapitools.model.MessageObject
 import org.openapitools.model.ModifyMessageRequest
 import org.openapitools.model.ModifyRunRequest
@@ -67,8 +66,9 @@ class ThreadsApiTest {
     fun createRunTest() {
         val threadId: kotlin.String = TODO()
         val createRunRequest: CreateRunRequest = TODO()
+        val include: kotlin.collections.List<kotlin.String>? = TODO()
         
-        val response: ResponseEntity<RunObject> = api.createRun(threadId, createRunRequest)
+        val response: ResponseEntity<RunObject> = api.createRun(threadId, createRunRequest, include)
 
         // TODO: test validations
     }
@@ -99,6 +99,22 @@ class ThreadsApiTest {
         val createThreadAndRunRequest: CreateThreadAndRunRequest = TODO()
         
         val response: ResponseEntity<RunObject> = api.createThreadAndRun(createThreadAndRunRequest)
+
+        // TODO: test validations
+    }
+
+    /**
+     * To test ThreadsApiController.deleteMessage
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    fun deleteMessageTest() {
+        val threadId: kotlin.String = TODO()
+        val messageId: kotlin.String = TODO()
+        
+        val response: ResponseEntity<DeleteMessageResponse> = api.deleteMessage(threadId, messageId)
 
         // TODO: test validations
     }
@@ -135,23 +151,6 @@ class ThreadsApiTest {
     }
 
     /**
-     * To test ThreadsApiController.getMessageFile
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    fun getMessageFileTest() {
-        val threadId: kotlin.String = TODO()
-        val messageId: kotlin.String = TODO()
-        val fileId: kotlin.String = TODO()
-        
-        val response: ResponseEntity<MessageFileObject> = api.getMessageFile(threadId, messageId, fileId)
-
-        // TODO: test validations
-    }
-
-    /**
      * To test ThreadsApiController.getRun
      *
      * @throws ApiException
@@ -178,8 +177,9 @@ class ThreadsApiTest {
         val threadId: kotlin.String = TODO()
         val runId: kotlin.String = TODO()
         val stepId: kotlin.String = TODO()
+        val include: kotlin.collections.List<kotlin.String>? = TODO()
         
-        val response: ResponseEntity<RunStepObject> = api.getRunStep(threadId, runId, stepId)
+        val response: ResponseEntity<RunStepObject> = api.getRunStep(threadId, runId, stepId, include)
 
         // TODO: test validations
     }
@@ -195,26 +195,6 @@ class ThreadsApiTest {
         val threadId: kotlin.String = TODO()
         
         val response: ResponseEntity<ThreadObject> = api.getThread(threadId)
-
-        // TODO: test validations
-    }
-
-    /**
-     * To test ThreadsApiController.listMessageFiles
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    fun listMessageFilesTest() {
-        val threadId: kotlin.String = TODO()
-        val messageId: kotlin.String = TODO()
-        val limit: kotlin.Int = TODO()
-        val order: kotlin.String = TODO()
-        val after: kotlin.String? = TODO()
-        val before: kotlin.String? = TODO()
-        
-        val response: ResponseEntity<ListMessageFilesResponse> = api.listMessageFiles(threadId, messageId, limit, order, after, before)
 
         // TODO: test validations
     }
@@ -253,8 +233,9 @@ class ThreadsApiTest {
         val order: kotlin.String = TODO()
         val after: kotlin.String? = TODO()
         val before: kotlin.String? = TODO()
+        val include: kotlin.collections.List<kotlin.String>? = TODO()
         
-        val response: ResponseEntity<ListRunStepsResponse> = api.listRunSteps(threadId, runId, limit, order, after, before)
+        val response: ResponseEntity<ListRunStepsResponse> = api.listRunSteps(threadId, runId, limit, order, after, before, include)
 
         // TODO: test validations
     }

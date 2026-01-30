@@ -12,25 +12,29 @@ import org.joda.time.DateTime
 import CreateChatCompletionRequestResponseFormat._
 
 case class CreateChatCompletionRequestResponseFormat (
-  /* Must be one of `text` or `json_object`. */
-  `type`: Option[`Type`])
+  /* The type of response format being defined: `text` */
+  `type`: `Type`,
+jsonSchema: ResponseFormatJsonSchemaJsonSchema)
 
 object CreateChatCompletionRequestResponseFormat {
   import DateTimeCodecs._
   sealed trait `Type`
   case object Text extends `Type`
   case object JsonObject extends `Type`
+  case object JsonSchema extends `Type`
 
   object `Type` {
     def to`Type`(s: String): Option[`Type`] = s match {
       case "Text" => Some(Text)
       case "JsonObject" => Some(JsonObject)
+      case "JsonSchema" => Some(JsonSchema)
       case _ => None
     }
 
     def from`Type`(x: `Type`): String = x match {
       case Text => "Text"
       case JsonObject => "JsonObject"
+      case JsonSchema => "JsonSchema"
     }
   }
 

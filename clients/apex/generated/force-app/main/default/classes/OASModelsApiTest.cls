@@ -13,7 +13,7 @@ private class OASModelsApiTest {
         Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
 
         Map<String, Object> params = new Map<String, Object>{
-            'model' => ft:gpt-3.5-turbo:acemeco:suffix:abc123
+            'model' => ft:gpt-4o-mini:acemeco:suffix:abc123
         };
 
         OASClient client;
@@ -75,7 +75,7 @@ private class OASModelsApiTest {
         Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
 
         Map<String, Object> params = new Map<String, Object>{
-            'model' => gpt-3.5-turbo
+            'model' => gpt-4o-mini
         };
 
         OASClient client;

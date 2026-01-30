@@ -8,9 +8,11 @@ import org.openapitools._
 
 /**
  * 
- * @param fileUnderscoreid The [File](/docs/api-reference/files) ID of the image in the message content.
+ * @param fileUnderscoreid The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content.
+ * @param detail Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
  */
-case class MessageDeltaContentImageFileObjectImageFile(fileUnderscoreid: Option[String]
+case class MessageDeltaContentImageFileObjectImageFile(fileUnderscoreid: Option[String],
+                detail: Option[String]
                 )
 
 object MessageDeltaContentImageFileObjectImageFile {

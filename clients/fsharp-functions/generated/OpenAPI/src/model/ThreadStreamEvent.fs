@@ -11,6 +11,8 @@ module ThreadStreamEvent =
 
   [<CLIMutable>]
   type ThreadStreamEvent = {
+    [<JsonProperty(PropertyName = "enabled")>]
+    Enabled : bool;
     [<JsonProperty(PropertyName = "event")>]
     Event : string;
     [<JsonProperty(PropertyName = "data")>]

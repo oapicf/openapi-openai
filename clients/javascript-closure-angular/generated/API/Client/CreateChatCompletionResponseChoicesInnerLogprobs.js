@@ -13,3 +13,10 @@ API.Client.CreateChatCompletionResponseChoicesInnerLogprobs = function() {}
  */
 API.Client.CreateChatCompletionResponseChoicesInnerLogprobs.prototype.content;
 
+/**
+ * A list of message refusal tokens with log probability information.
+ * @type {!Array<!API.Client.ChatCompletionTokenLogprob>}
+ * @export
+ */
+API.Client.CreateChatCompletionResponseChoicesInnerLogprobs.prototype.refusal;
+

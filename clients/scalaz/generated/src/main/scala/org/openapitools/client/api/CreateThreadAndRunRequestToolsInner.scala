@@ -14,26 +14,27 @@ import CreateThreadAndRunRequestToolsInner._
 case class CreateThreadAndRunRequestToolsInner (
   /* The type of tool being defined: `code_interpreter` */
   `type`: `Type`,
+fileSearch: Option[AssistantToolsFileSearchFileSearch],
 function: FunctionObject)
 
 object CreateThreadAndRunRequestToolsInner {
   import DateTimeCodecs._
   sealed trait `Type`
   case object CodeInterpreter extends `Type`
-  case object Retrieval extends `Type`
+  case object FileSearch extends `Type`
   case object Function extends `Type`
 
   object `Type` {
     def to`Type`(s: String): Option[`Type`] = s match {
       case "CodeInterpreter" => Some(CodeInterpreter)
-      case "Retrieval" => Some(Retrieval)
+      case "FileSearch" => Some(FileSearch)
       case "Function" => Some(Function)
       case _ => None
     }
 
     def from`Type`(x: `Type`): String = x match {
       case CodeInterpreter => "CodeInterpreter"
-      case Retrieval => "Retrieval"
+      case FileSearch => "FileSearch"
       case Function => "Function"
     }
   }

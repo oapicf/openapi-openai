@@ -1,7 +1,7 @@
 goog.provide('API.Client.RunStepStreamEvent_oneOf_5');
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is cancelled.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is cancelled.
  * @record
  */
 API.Client.RunStepStreamEventOneOf5 = function() {}

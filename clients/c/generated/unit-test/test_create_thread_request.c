@@ -16,6 +16,7 @@
 #include "../model/create_thread_request.h"
 create_thread_request_t* instantiate_create_thread_request(int include_optional);
 
+#include "test_create_thread_request_tool_resources.c"
 
 
 create_thread_request_t* instantiate_create_thread_request(int include_optional) {
@@ -23,11 +24,14 @@ create_thread_request_t* instantiate_create_thread_request(int include_optional)
   if (include_optional) {
     create_thread_request = create_thread_request_create(
       list_createList(),
+       // false, not to have infinite recursion
+      instantiate_create_thread_request_tool_resources(0),
       0
     );
   } else {
     create_thread_request = create_thread_request_create(
       list_createList(),
+      NULL,
       0
     );
   }

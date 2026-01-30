@@ -10,7 +10,7 @@
 
 -type openapi_assistants_api_tool_choice_option() ::
   [ {'type', binary() }
-  | {'function', openapi_chat_completion_named_tool_choice_function:openapi_chat_completion_named_tool_choice_function() }
+  | {'function', openapi_assistants_named_tool_choice_function:openapi_assistants_named_tool_choice_function() }
   ].
 
 
@@ -18,8 +18,8 @@ openapi_assistants_api_tool_choice_option() ->
     openapi_assistants_api_tool_choice_option([]).
 
 openapi_assistants_api_tool_choice_option(Fields) ->
-  Default = [ {'type', elements([<<"function">>, <<"code_interpreter">>, <<"retrieval">>]) }
-            , {'function', openapi_chat_completion_named_tool_choice_function:openapi_chat_completion_named_tool_choice_function() }
+  Default = [ {'type', elements([<<"function">>, <<"code_interpreter">>, <<"file_search">>]) }
+            , {'function', openapi_assistants_named_tool_choice_function:openapi_assistants_named_tool_choice_function() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **Type** | **string** | Always &#x60;image_file&#x60;. | 
 **ImageFile** | Pointer to [**MessageDeltaContentImageFileObjectImageFile**](MessageDeltaContentImageFileObjectImageFile.md) |  | [optional] 
 **Text** | Pointer to [**MessageDeltaContentTextObjectText**](MessageDeltaContentTextObjectText.md) |  | [optional] 
+**Refusal** | Pointer to **string** |  | [optional] 
+**ImageUrl** | Pointer to [**MessageDeltaContentImageUrlObjectImageUrl**](MessageDeltaContentImageUrlObjectImageUrl.md) |  | [optional] 
 
 ## Methods
 
@@ -117,6 +119,56 @@ SetText sets Text field to given value.
 `func (o *MessageDeltaObjectDeltaContentInner) HasText() bool`
 
 HasText returns a boolean if a field has been set.
+
+### GetRefusal
+
+`func (o *MessageDeltaObjectDeltaContentInner) GetRefusal() string`
+
+GetRefusal returns the Refusal field if non-nil, zero value otherwise.
+
+### GetRefusalOk
+
+`func (o *MessageDeltaObjectDeltaContentInner) GetRefusalOk() (*string, bool)`
+
+GetRefusalOk returns a tuple with the Refusal field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRefusal
+
+`func (o *MessageDeltaObjectDeltaContentInner) SetRefusal(v string)`
+
+SetRefusal sets Refusal field to given value.
+
+### HasRefusal
+
+`func (o *MessageDeltaObjectDeltaContentInner) HasRefusal() bool`
+
+HasRefusal returns a boolean if a field has been set.
+
+### GetImageUrl
+
+`func (o *MessageDeltaObjectDeltaContentInner) GetImageUrl() MessageDeltaContentImageUrlObjectImageUrl`
+
+GetImageUrl returns the ImageUrl field if non-nil, zero value otherwise.
+
+### GetImageUrlOk
+
+`func (o *MessageDeltaObjectDeltaContentInner) GetImageUrlOk() (*MessageDeltaContentImageUrlObjectImageUrl, bool)`
+
+GetImageUrlOk returns a tuple with the ImageUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetImageUrl
+
+`func (o *MessageDeltaObjectDeltaContentInner) SetImageUrl(v MessageDeltaContentImageUrlObjectImageUrl)`
+
+SetImageUrl sets ImageUrl field to given value.
+
+### HasImageUrl
+
+`func (o *MessageDeltaObjectDeltaContentInner) HasImageUrl() bool`
+
+HasImageUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

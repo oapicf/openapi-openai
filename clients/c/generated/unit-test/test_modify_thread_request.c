@@ -16,16 +16,20 @@
 #include "../model/modify_thread_request.h"
 modify_thread_request_t* instantiate_modify_thread_request(int include_optional);
 
+#include "test_modify_thread_request_tool_resources.c"
 
 
 modify_thread_request_t* instantiate_modify_thread_request(int include_optional) {
   modify_thread_request_t* modify_thread_request = NULL;
   if (include_optional) {
     modify_thread_request = modify_thread_request_create(
+       // false, not to have infinite recursion
+      instantiate_modify_thread_request_tool_resources(0),
       0
     );
   } else {
     modify_thread_request = modify_thread_request_create(
+      NULL,
       0
     );
   }

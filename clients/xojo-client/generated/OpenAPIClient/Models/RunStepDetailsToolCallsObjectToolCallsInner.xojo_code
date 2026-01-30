@@ -23,10 +23,7 @@ Protected Class RunStepDetailsToolCallsObjectToolCallsInner
 
 
 	#tag Property, Flags = &h0
-		#tag Note
-			For now, this is always going to be an empty object.
-		#tag EndNote
-		retrieval As Object
+		file_search As OpenAPIClient.Models.RunStepDetailsToolCallsFileSearchObjectFileSearch
 	#tag EndProperty
 
 
@@ -38,7 +35,7 @@ Protected Class RunStepDetailsToolCallsObjectToolCallsInner
     #tag Enum, Name = TypeEnum, Type = Integer, Flags = &h0
         
         CodeInterpreter
-        Retrieval
+        FileSearch
         Escapedfunction
         
     #tag EndEnum
@@ -50,8 +47,8 @@ Protected Class RunStepDetailsToolCallsObjectToolCallsInner
 		    
 		    Case TypeEnum.CodeInterpreter
 		      Return "code_interpreter"
-		    Case TypeEnum.Retrieval
-		      Return "retrieval"
+		    Case TypeEnum.FileSearch
+		      Return "file_search"
 		    Case TypeEnum.Escapedfunction
 		      Return "function"
 		    
@@ -111,11 +108,11 @@ Protected Class RunStepDetailsToolCallsObjectToolCallsInner
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="retrieval"
+			Name="file_search"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Object"
+			Type="RunStepDetailsToolCallsFileSearchObjectFileSearch"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

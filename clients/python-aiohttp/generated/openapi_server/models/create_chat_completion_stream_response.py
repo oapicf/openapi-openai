@@ -6,6 +6,7 @@ from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
 from openapi_server.models.create_chat_completion_stream_response_choices_inner import CreateChatCompletionStreamResponseChoicesInner
+from openapi_server.models.create_chat_completion_stream_response_usage import CreateChatCompletionStreamResponseUsage
 from openapi_server import util
 
 
@@ -15,23 +16,27 @@ class CreateChatCompletionStreamResponse(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, choices: List[CreateChatCompletionStreamResponseChoicesInner]=None, created: int=None, model: str=None, system_fingerprint: str=None, object: str=None):
+    def __init__(self, id: str=None, choices: List[CreateChatCompletionStreamResponseChoicesInner]=None, created: int=None, model: str=None, service_tier: str=None, system_fingerprint: str=None, object: str=None, usage: CreateChatCompletionStreamResponseUsage=None):
         """CreateChatCompletionStreamResponse - a model defined in OpenAPI
 
         :param id: The id of this CreateChatCompletionStreamResponse.
         :param choices: The choices of this CreateChatCompletionStreamResponse.
         :param created: The created of this CreateChatCompletionStreamResponse.
         :param model: The model of this CreateChatCompletionStreamResponse.
+        :param service_tier: The service_tier of this CreateChatCompletionStreamResponse.
         :param system_fingerprint: The system_fingerprint of this CreateChatCompletionStreamResponse.
         :param object: The object of this CreateChatCompletionStreamResponse.
+        :param usage: The usage of this CreateChatCompletionStreamResponse.
         """
         self.openapi_types = {
             'id': str,
             'choices': List[CreateChatCompletionStreamResponseChoicesInner],
             'created': int,
             'model': str,
+            'service_tier': str,
             'system_fingerprint': str,
-            'object': str
+            'object': str,
+            'usage': CreateChatCompletionStreamResponseUsage
         }
 
         self.attribute_map = {
@@ -39,16 +44,20 @@ class CreateChatCompletionStreamResponse(Model):
             'choices': 'choices',
             'created': 'created',
             'model': 'model',
+            'service_tier': 'service_tier',
             'system_fingerprint': 'system_fingerprint',
-            'object': 'object'
+            'object': 'object',
+            'usage': 'usage'
         }
 
         self._id = id
         self._choices = choices
         self._created = created
         self._model = model
+        self._service_tier = service_tier
         self._system_fingerprint = system_fingerprint
         self._object = object
+        self._usage = usage
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'CreateChatCompletionStreamResponse':
@@ -88,7 +97,7 @@ class CreateChatCompletionStreamResponse(Model):
     def choices(self):
         """Gets the choices of this CreateChatCompletionStreamResponse.
 
-        A list of chat completion choices. Can be more than one if `n` is greater than 1.
+        A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. 
 
         :return: The choices of this CreateChatCompletionStreamResponse.
         :rtype: List[CreateChatCompletionStreamResponseChoicesInner]
@@ -99,7 +108,7 @@ class CreateChatCompletionStreamResponse(Model):
     def choices(self, choices):
         """Sets the choices of this CreateChatCompletionStreamResponse.
 
-        A list of chat completion choices. Can be more than one if `n` is greater than 1.
+        A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. 
 
         :param choices: The choices of this CreateChatCompletionStreamResponse.
         :type choices: List[CreateChatCompletionStreamResponseChoicesInner]
@@ -160,6 +169,35 @@ class CreateChatCompletionStreamResponse(Model):
         self._model = model
 
     @property
+    def service_tier(self):
+        """Gets the service_tier of this CreateChatCompletionStreamResponse.
+
+        The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+
+        :return: The service_tier of this CreateChatCompletionStreamResponse.
+        :rtype: str
+        """
+        return self._service_tier
+
+    @service_tier.setter
+    def service_tier(self, service_tier):
+        """Sets the service_tier of this CreateChatCompletionStreamResponse.
+
+        The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+
+        :param service_tier: The service_tier of this CreateChatCompletionStreamResponse.
+        :type service_tier: str
+        """
+        allowed_values = [None,"scale", "default"]  # noqa: E501
+        if service_tier not in allowed_values:
+            raise ValueError(
+                "Invalid value for `service_tier` ({0}), must be one of {1}"
+                .format(service_tier, allowed_values)
+            )
+
+        self._service_tier = service_tier
+
+    @property
     def system_fingerprint(self):
         """Gets the system_fingerprint of this CreateChatCompletionStreamResponse.
 
@@ -210,3 +248,24 @@ class CreateChatCompletionStreamResponse(Model):
             )
 
         self._object = object
+
+    @property
+    def usage(self):
+        """Gets the usage of this CreateChatCompletionStreamResponse.
+
+
+        :return: The usage of this CreateChatCompletionStreamResponse.
+        :rtype: CreateChatCompletionStreamResponseUsage
+        """
+        return self._usage
+
+    @usage.setter
+    def usage(self, usage):
+        """Sets the usage of this CreateChatCompletionStreamResponse.
+
+
+        :param usage: The usage of this CreateChatCompletionStreamResponse.
+        :type usage: CreateChatCompletionStreamResponseUsage
+        """
+
+        self._usage = usage

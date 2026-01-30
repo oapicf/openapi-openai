@@ -16,6 +16,7 @@
 typedef struct create_moderation_response_results_inner_t create_moderation_response_results_inner_t;
 
 #include "create_moderation_response_results_inner_categories.h"
+#include "create_moderation_response_results_inner_category_applied_input_types.h"
 #include "create_moderation_response_results_inner_category_scores.h"
 
 
@@ -24,6 +25,7 @@ typedef struct create_moderation_response_results_inner_t {
     int flagged; //boolean
     struct create_moderation_response_results_inner_categories_t *categories; //model
     struct create_moderation_response_results_inner_category_scores_t *category_scores; //model
+    struct create_moderation_response_results_inner_category_applied_input_types_t *category_applied_input_types; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } create_moderation_response_results_inner_t;
@@ -31,7 +33,8 @@ typedef struct create_moderation_response_results_inner_t {
 __attribute__((deprecated)) create_moderation_response_results_inner_t *create_moderation_response_results_inner_create(
     int flagged,
     create_moderation_response_results_inner_categories_t *categories,
-    create_moderation_response_results_inner_category_scores_t *category_scores
+    create_moderation_response_results_inner_category_scores_t *category_scores,
+    create_moderation_response_results_inner_category_applied_input_types_t *category_applied_input_types
 );
 
 void create_moderation_response_results_inner_free(create_moderation_response_results_inner_t *create_moderation_response_results_inner);

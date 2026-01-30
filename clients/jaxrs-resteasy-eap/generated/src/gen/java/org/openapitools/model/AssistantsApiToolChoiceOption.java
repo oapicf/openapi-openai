@@ -7,13 +7,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.model.AssistantsApiNamedToolChoice;
-import org.openapitools.model.ChatCompletionNamedToolChoiceFunction;
+import org.openapitools.model.AssistantsNamedToolChoice;
+import org.openapitools.model.AssistantsNamedToolChoiceFunction;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="Controls which (if any) tool is called by the model. `none` means the model will not call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling a tool. Specifying a particular tool like `{\"type\": \"TOOL_TYPE\"}` or `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool. ")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T10:45:31.742862961Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description="Controls which (if any) tool is called by the model. `none` means the model will not call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling one or more tools. `required` means the model must call one or more tools before responding to the user. Specifying a particular tool like `{\"type\": \"file_search\"}` or `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool. ")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T14:09:29.020322047Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class AssistantsApiToolChoiceOption   {
   
 
@@ -25,7 +25,7 @@ public class AssistantsApiToolChoiceOption   {
 
         CODE_INTERPRETER("code_interpreter"),
 
-        RETRIEVAL("retrieval");
+        FILE_SEARCH("file_search");
     private String value;
 
     TypeEnum(String value) {
@@ -40,7 +40,7 @@ public class AssistantsApiToolChoiceOption   {
   }
 
   private TypeEnum type;
-  private ChatCompletionNamedToolChoiceFunction function;
+  private AssistantsNamedToolChoiceFunction function;
 
   /**
    * The type of the tool. If type is &#x60;function&#x60;, the function name must be set
@@ -61,10 +61,10 @@ public class AssistantsApiToolChoiceOption   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("function")
-  public ChatCompletionNamedToolChoiceFunction getFunction() {
+  public AssistantsNamedToolChoiceFunction getFunction() {
     return function;
   }
-  public void setFunction(ChatCompletionNamedToolChoiceFunction function) {
+  public void setFunction(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
   }
 

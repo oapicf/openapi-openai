@@ -4,12 +4,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Content** | [**ChatCompletionTokenLogprob[]**](ChatCompletionTokenLogprob.md) | A list of message content tokens with log probability information. | 
+**Refusal** | [**ChatCompletionTokenLogprob[]**](ChatCompletionTokenLogprob.md) | A list of message refusal tokens with log probability information. | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$CreateChatCompletionResponseChoicesInnerLogprobs = Initialize-PSOpenAPIToolsCreateChatCompletionResponseChoicesInnerLogprobs  -Content null
+$CreateChatCompletionResponseChoicesInnerLogprobs = Initialize-PSOpenAPIToolsCreateChatCompletionResponseChoicesInnerLogprobs  -Content null `
+ -Refusal null
 ```
 
 - Convert the resource to JSON

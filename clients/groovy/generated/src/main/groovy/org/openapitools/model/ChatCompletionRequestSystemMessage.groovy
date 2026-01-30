@@ -3,11 +3,12 @@ package org.openapitools.model;
 import groovy.transform.Canonical
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.model.ChatCompletionRequestSystemMessageContent;
 
 @Canonical
 class ChatCompletionRequestSystemMessage {
-    /* The contents of the system message. */
-    String content
+    
+    ChatCompletionRequestSystemMessageContent content
 
     enum RoleEnum {
     

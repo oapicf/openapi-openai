@@ -13,6 +13,7 @@
    (ds/opt :function_call) chat-completion-stream-response-delta-function-call-spec
    (ds/opt :tool_calls) (s/coll-of chat-completion-message-tool-call-chunk-spec)
    (ds/opt :role) string?
+   (ds/opt :refusal) string?
    })
 
 (def chat-completion-stream-response-delta-spec

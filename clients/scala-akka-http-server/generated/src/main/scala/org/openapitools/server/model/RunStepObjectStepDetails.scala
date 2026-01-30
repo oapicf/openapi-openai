@@ -6,7 +6,7 @@ package org.openapitools.server.model
  *
  * @param `type` Always `message_creation`. for example: ''null''
  * @param messageCreation  for example: ''null''
- * @param toolCalls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`.  for example: ''null''
+ * @param toolCalls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.  for example: ''null''
 */
 final case class RunStepObjectStepDetails (
   `type`: String,

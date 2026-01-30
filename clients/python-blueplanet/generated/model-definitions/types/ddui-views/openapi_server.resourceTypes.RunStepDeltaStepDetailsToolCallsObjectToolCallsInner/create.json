@@ -15,7 +15,7 @@
       {"model": "id" },
       {"model": "type" },
       {"model": "code_interpreter" },
-      {"model": "retrieval" },
+      {"model": "file_search" },
       {"model": "function" },
     ]
   }]

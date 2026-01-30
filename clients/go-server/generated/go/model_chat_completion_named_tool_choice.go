@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -20,7 +20,7 @@ type ChatCompletionNamedToolChoice struct {
 	// The type of the tool. Currently, only `function` is supported.
 	Type string `json:"type"`
 
-	Function ChatCompletionNamedToolChoiceFunction `json:"function"`
+	Function AssistantsNamedToolChoiceFunction `json:"function"`
 }
 
 // AssertChatCompletionNamedToolChoiceRequired checks if the required fields are not zero-ed
@@ -35,7 +35,7 @@ func AssertChatCompletionNamedToolChoiceRequired(obj ChatCompletionNamedToolChoi
 		}
 	}
 
-	if err := AssertChatCompletionNamedToolChoiceFunctionRequired(obj.Function); err != nil {
+	if err := AssertAssistantsNamedToolChoiceFunctionRequired(obj.Function); err != nil {
 		return err
 	}
 	return nil
@@ -43,7 +43,7 @@ func AssertChatCompletionNamedToolChoiceRequired(obj ChatCompletionNamedToolChoi
 
 // AssertChatCompletionNamedToolChoiceConstraints checks if the values respects the defined constraints
 func AssertChatCompletionNamedToolChoiceConstraints(obj ChatCompletionNamedToolChoice) error {
-	if err := AssertChatCompletionNamedToolChoiceFunctionConstraints(obj.Function); err != nil {
+	if err := AssertAssistantsNamedToolChoiceFunctionConstraints(obj.Function); err != nil {
 		return err
 	}
 	return nil

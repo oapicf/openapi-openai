@@ -54,14 +54,14 @@ module RunObject =
     Instructions : string;
     [<JsonProperty(PropertyName = "tools")>]
     Tools : AssistantObjectToolsInner[];
-    [<JsonProperty(PropertyName = "file_ids")>]
-    FileIds : string[];
     [<JsonProperty(PropertyName = "metadata")>]
     Metadata : obj;
     [<JsonProperty(PropertyName = "usage")>]
     Usage : RunCompletionUsage;
     [<JsonProperty(PropertyName = "temperature")>]
     Temperature : decimal option;
+    [<JsonProperty(PropertyName = "top_p")>]
+    TopP : decimal option;
     [<JsonProperty(PropertyName = "max_prompt_tokens")>]
     MaxPromptTokens : int option;
     [<JsonProperty(PropertyName = "max_completion_tokens")>]
@@ -70,6 +70,8 @@ module RunObject =
     TruncationStrategy : TruncationObject;
     [<JsonProperty(PropertyName = "tool_choice")>]
     ToolChoice : AssistantsApiToolChoiceOption;
+    [<JsonProperty(PropertyName = "parallel_tool_calls")>]
+    ParallelToolCalls : bool;
     [<JsonProperty(PropertyName = "response_format")>]
     ResponseFormat : AssistantsApiResponseFormatOption;
   }

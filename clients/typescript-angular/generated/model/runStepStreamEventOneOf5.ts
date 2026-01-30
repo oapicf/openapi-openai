@@ -11,7 +11,7 @@ import { RunStepObject } from './runStepObject';
 
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is cancelled.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is cancelled.
  */
 export interface RunStepStreamEventOneOf5 { 
     event: RunStepStreamEventOneOf5.EventEnum;

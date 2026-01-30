@@ -11,7 +11,7 @@ import { RunStepDeltaObject } from './runStepDeltaObject';
 
 
 /**
- * Occurs when parts of a [run step](/docs/api-reference/runs/step-object) are being streamed.
+ * Occurs when parts of a [run step](/docs/api-reference/run-steps/step-object) are being streamed.
  */
 export interface RunStepStreamEventOneOf2 { 
     event: RunStepStreamEventOneOf2.EventEnum;

@@ -15,23 +15,22 @@ class CreateMessageRequest
     public ?string $role = null;
 
     /**
-     * The content of the message.
      * @DTA\Data(field="content")
-     * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @DTA\Validator(name="Length", options={"min":1, "max":256000})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\CreateMessageRequestContent::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\CreateMessageRequestContent::class})
      */
-    public ?string $content = null;
+    public ?\App\DTO\CreateMessageRequestContent $content = null;
 
     /**
-     * A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like &#x60;retrieval&#x60; and &#x60;code_interpreter&#x60; that can access and use files.
-     * @DTA\Data(field="file_ids", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection39::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection39::class})
+     * A list of files attached to the message, and the tools they should be added to.
+     * @DTA\Data(field="attachments", nullable=true)
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection126::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection126::class})
      */
-    public ?\App\DTO\Collection39 $file_ids = null;
+    public ?\App\DTO\Collection126 $attachments = null;
 
     /**
-     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
      * @DTA\Data(field="metadata", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"object"})
      */

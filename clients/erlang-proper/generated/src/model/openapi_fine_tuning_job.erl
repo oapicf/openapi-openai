@@ -25,6 +25,8 @@
   | {'validation_file', binary() }
   | {'integrations', list(openapi_fine_tuning_job_integrations_inner:openapi_fine_tuning_job_integrations_inner()) }
   | {'seed', integer() }
+  | {'estimated_finish', integer() }
+  | {'method', openapi_fine_tune_method:openapi_fine_tune_method() }
   ].
 
 
@@ -48,6 +50,8 @@ openapi_fine_tuning_job(Fields) ->
             , {'validation_file', binary() }
             , {'integrations', list(openapi_fine_tuning_job_integrations_inner:openapi_fine_tuning_job_integrations_inner()) }
             , {'seed', integer() }
+            , {'estimated_finish', integer() }
+            , {'method', openapi_fine_tune_method:openapi_fine_tune_method() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

@@ -14,26 +14,41 @@ class ListFilesResponse(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, data=None, object=None):  # noqa: E501
+    def __init__(self, object=None, data=None, first_id=None, last_id=None, has_more=None):  # noqa: E501
         """ListFilesResponse - a model defined in OpenAPI
 
-        :param data: The data of this ListFilesResponse.  # noqa: E501
-        :type data: List[OpenAIFile]
         :param object: The object of this ListFilesResponse.  # noqa: E501
         :type object: str
+        :param data: The data of this ListFilesResponse.  # noqa: E501
+        :type data: List[OpenAIFile]
+        :param first_id: The first_id of this ListFilesResponse.  # noqa: E501
+        :type first_id: str
+        :param last_id: The last_id of this ListFilesResponse.  # noqa: E501
+        :type last_id: str
+        :param has_more: The has_more of this ListFilesResponse.  # noqa: E501
+        :type has_more: bool
         """
         self.openapi_types = {
+            'object': str,
             'data': List[OpenAIFile],
-            'object': str
+            'first_id': str,
+            'last_id': str,
+            'has_more': bool
         }
 
         self.attribute_map = {
+            'object': 'object',
             'data': 'data',
-            'object': 'object'
+            'first_id': 'first_id',
+            'last_id': 'last_id',
+            'has_more': 'has_more'
         }
 
-        self._data = data
         self._object = object
+        self._data = data
+        self._first_id = first_id
+        self._last_id = last_id
+        self._has_more = has_more
 
     @classmethod
     def from_dict(cls, dikt) -> 'ListFilesResponse':
@@ -45,6 +60,29 @@ class ListFilesResponse(Model):
         :rtype: ListFilesResponse
         """
         return util.deserialize_model(dikt, cls)
+
+    @property
+    def object(self) -> str:
+        """Gets the object of this ListFilesResponse.
+
+
+        :return: The object of this ListFilesResponse.
+        :rtype: str
+        """
+        return self._object
+
+    @object.setter
+    def object(self, object: str):
+        """Sets the object of this ListFilesResponse.
+
+
+        :param object: The object of this ListFilesResponse.
+        :type object: str
+        """
+        if object is None:
+            raise ValueError("Invalid value for `object`, must not be `None`")  # noqa: E501
+
+        self._object = object
 
     @property
     def data(self) -> List[OpenAIFile]:
@@ -70,28 +108,70 @@ class ListFilesResponse(Model):
         self._data = data
 
     @property
-    def object(self) -> str:
-        """Gets the object of this ListFilesResponse.
+    def first_id(self) -> str:
+        """Gets the first_id of this ListFilesResponse.
 
 
-        :return: The object of this ListFilesResponse.
+        :return: The first_id of this ListFilesResponse.
         :rtype: str
         """
-        return self._object
+        return self._first_id
 
-    @object.setter
-    def object(self, object: str):
-        """Sets the object of this ListFilesResponse.
+    @first_id.setter
+    def first_id(self, first_id: str):
+        """Sets the first_id of this ListFilesResponse.
 
 
-        :param object: The object of this ListFilesResponse.
-        :type object: str
+        :param first_id: The first_id of this ListFilesResponse.
+        :type first_id: str
         """
-        allowed_values = ["list"]  # noqa: E501
-        if object not in allowed_values:
-            raise ValueError(
-                "Invalid value for `object` ({0}), must be one of {1}"
-                .format(object, allowed_values)
-            )
+        if first_id is None:
+            raise ValueError("Invalid value for `first_id`, must not be `None`")  # noqa: E501
 
-        self._object = object
+        self._first_id = first_id
+
+    @property
+    def last_id(self) -> str:
+        """Gets the last_id of this ListFilesResponse.
+
+
+        :return: The last_id of this ListFilesResponse.
+        :rtype: str
+        """
+        return self._last_id
+
+    @last_id.setter
+    def last_id(self, last_id: str):
+        """Sets the last_id of this ListFilesResponse.
+
+
+        :param last_id: The last_id of this ListFilesResponse.
+        :type last_id: str
+        """
+        if last_id is None:
+            raise ValueError("Invalid value for `last_id`, must not be `None`")  # noqa: E501
+
+        self._last_id = last_id
+
+    @property
+    def has_more(self) -> bool:
+        """Gets the has_more of this ListFilesResponse.
+
+
+        :return: The has_more of this ListFilesResponse.
+        :rtype: bool
+        """
+        return self._has_more
+
+    @has_more.setter
+    def has_more(self, has_more: bool):
+        """Sets the has_more of this ListFilesResponse.
+
+
+        :param has_more: The has_more of this ListFilesResponse.
+        :type has_more: bool
+        """
+        if has_more is None:
+            raise ValueError("Invalid value for `has_more`, must not be `None`")  # noqa: E501
+
+        self._has_more = has_more

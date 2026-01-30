@@ -17,28 +17,27 @@ case class RunStepDetailsToolCallsObjectToolCallsInner (
 /* The type of tool call. This is always going to be `code_interpreter` for this type of tool call. */
   `type`: `Type`,
 codeInterpreter: RunStepDetailsToolCallsCodeObjectCodeInterpreter,
-/* For now, this is always going to be an empty object. */
-  retrieval: Any,
+fileSearch: RunStepDetailsToolCallsFileSearchObjectFileSearch,
 function: RunStepDetailsToolCallsFunctionObjectFunction)
 
 object RunStepDetailsToolCallsObjectToolCallsInner {
   import DateTimeCodecs._
   sealed trait `Type`
   case object CodeInterpreter extends `Type`
-  case object Retrieval extends `Type`
+  case object FileSearch extends `Type`
   case object Function extends `Type`
 
   object `Type` {
     def to`Type`(s: String): Option[`Type`] = s match {
       case "CodeInterpreter" => Some(CodeInterpreter)
-      case "Retrieval" => Some(Retrieval)
+      case "FileSearch" => Some(FileSearch)
       case "Function" => Some(Function)
       case _ => None
     }
 
     def from`Type`(x: `Type`): String = x match {
       case CodeInterpreter => "CodeInterpreter"
-      case Retrieval => "Retrieval"
+      case FileSearch => "FileSearch"
       case Function => "Function"
     }
   }

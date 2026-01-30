@@ -1,24 +1,19 @@
 #import "OAIAssistantsApi.h"
 #import "OAIQueryParamCollection.h"
 #import "OAIApiClient.h"
-#import "OAIAssistantFileObject.h"
 #import "OAIAssistantObject.h"
-#import "OAICreateAssistantFileRequest.h"
 #import "OAICreateAssistantRequest.h"
 #import "OAICreateMessageRequest.h"
 #import "OAICreateRunRequest.h"
 #import "OAICreateThreadAndRunRequest.h"
 #import "OAICreateThreadRequest.h"
-#import "OAIDeleteAssistantFileResponse.h"
 #import "OAIDeleteAssistantResponse.h"
+#import "OAIDeleteMessageResponse.h"
 #import "OAIDeleteThreadResponse.h"
-#import "OAIListAssistantFilesResponse.h"
 #import "OAIListAssistantsResponse.h"
-#import "OAIListMessageFilesResponse.h"
 #import "OAIListMessagesResponse.h"
 #import "OAIListRunStepsResponse.h"
 #import "OAIListRunsResponse.h"
-#import "OAIMessageFileObject.h"
 #import "OAIMessageObject.h"
 #import "OAIModifyAssistantRequest.h"
 #import "OAIModifyMessageRequest.h"
@@ -227,89 +222,6 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-/// 
-///  @param assistantId The ID of the assistant for which to create a File.  
-///
-///  @param createAssistantFileRequest  
-///
-///  @returns OAIAssistantFileObject*
-///
--(NSURLSessionTask*) createAssistantFileWithAssistantId: (NSString*) assistantId
-    createAssistantFileRequest: (OAICreateAssistantFileRequest*) createAssistantFileRequest
-    completionHandler: (void (^)(OAIAssistantFileObject* output, NSError* error)) handler {
-    // verify the required parameter 'assistantId' is set
-    if (assistantId == nil) {
-        NSParameterAssert(assistantId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"assistantId"] };
-            NSError* error = [NSError errorWithDomain:kOAIAssistantsApiErrorDomain code:kOAIAssistantsApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'createAssistantFileRequest' is set
-    if (createAssistantFileRequest == nil) {
-        NSParameterAssert(createAssistantFileRequest);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"createAssistantFileRequest"] };
-            NSError* error = [NSError errorWithDomain:kOAIAssistantsApiErrorDomain code:kOAIAssistantsApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/assistants/{assistant_id}/files"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-    if (assistantId != nil) {
-        pathParams[@"assistant_id"] = assistantId;
-    }
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json"]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"ApiKeyAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-    bodyParam = createAssistantFileRequest;
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"POST"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"OAIAssistantFileObject*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((OAIAssistantFileObject*)data, error);
-                                }
-                            }];
-}
-
-///
 /// Create a message.
 /// 
 ///  @param threadId The ID of the [thread](/docs/api-reference/threads) to create a message for. 
@@ -399,10 +311,13 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
 ///
 ///  @param createRunRequest  
 ///
+///  @param include A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
+///
 ///  @returns OAIRunObject*
 ///
 -(NSURLSessionTask*) createRunWithThreadId: (NSString*) threadId
     createRunRequest: (OAICreateRunRequest*) createRunRequest
+    include: (NSArray<NSString*>*) include
     completionHandler: (void (^)(OAIRunObject* output, NSError* error)) handler {
     // verify the required parameter 'threadId' is set
     if (threadId == nil) {
@@ -434,6 +349,9 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
     }
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (include != nil) {
+        queryParams[@"include[]"] = [[OAIQueryParamCollection alloc] initWithValuesAndFormat: include format: @"multi"];
+    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -665,47 +583,47 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// Delete an assistant file.
+/// Deletes a message.
 /// 
-///  @param assistantId The ID of the assistant that the file belongs to. 
+///  @param threadId The ID of the thread to which this message belongs. 
 ///
-///  @param fileId The ID of the file to delete. 
+///  @param messageId The ID of the message to delete. 
 ///
-///  @returns OAIDeleteAssistantFileResponse*
+///  @returns OAIDeleteMessageResponse*
 ///
--(NSURLSessionTask*) deleteAssistantFileWithAssistantId: (NSString*) assistantId
-    fileId: (NSString*) fileId
-    completionHandler: (void (^)(OAIDeleteAssistantFileResponse* output, NSError* error)) handler {
-    // verify the required parameter 'assistantId' is set
-    if (assistantId == nil) {
-        NSParameterAssert(assistantId);
+-(NSURLSessionTask*) deleteMessageWithThreadId: (NSString*) threadId
+    messageId: (NSString*) messageId
+    completionHandler: (void (^)(OAIDeleteMessageResponse* output, NSError* error)) handler {
+    // verify the required parameter 'threadId' is set
+    if (threadId == nil) {
+        NSParameterAssert(threadId);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"assistantId"] };
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"threadId"] };
             NSError* error = [NSError errorWithDomain:kOAIAssistantsApiErrorDomain code:kOAIAssistantsApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
         return nil;
     }
 
-    // verify the required parameter 'fileId' is set
-    if (fileId == nil) {
-        NSParameterAssert(fileId);
+    // verify the required parameter 'messageId' is set
+    if (messageId == nil) {
+        NSParameterAssert(messageId);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"fileId"] };
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"messageId"] };
             NSError* error = [NSError errorWithDomain:kOAIAssistantsApiErrorDomain code:kOAIAssistantsApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
         return nil;
     }
 
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/assistants/{assistant_id}/files/{file_id}"];
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/threads/{thread_id}/messages/{message_id}"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-    if (assistantId != nil) {
-        pathParams[@"assistant_id"] = assistantId;
+    if (threadId != nil) {
+        pathParams[@"thread_id"] = threadId;
     }
-    if (fileId != nil) {
-        pathParams[@"file_id"] = fileId;
+    if (messageId != nil) {
+        pathParams[@"message_id"] = messageId;
     }
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
@@ -741,10 +659,10 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"OAIDeleteAssistantFileResponse*"
+                              responseType: @"OAIDeleteMessageResponse*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((OAIDeleteAssistantFileResponse*)data, error);
+                                    handler((OAIDeleteMessageResponse*)data, error);
                                 }
                             }];
 }
@@ -886,91 +804,6 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// Retrieves an AssistantFile.
-/// 
-///  @param assistantId The ID of the assistant who the file belongs to. 
-///
-///  @param fileId The ID of the file we're getting. 
-///
-///  @returns OAIAssistantFileObject*
-///
--(NSURLSessionTask*) getAssistantFileWithAssistantId: (NSString*) assistantId
-    fileId: (NSString*) fileId
-    completionHandler: (void (^)(OAIAssistantFileObject* output, NSError* error)) handler {
-    // verify the required parameter 'assistantId' is set
-    if (assistantId == nil) {
-        NSParameterAssert(assistantId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"assistantId"] };
-            NSError* error = [NSError errorWithDomain:kOAIAssistantsApiErrorDomain code:kOAIAssistantsApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'fileId' is set
-    if (fileId == nil) {
-        NSParameterAssert(fileId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"fileId"] };
-            NSError* error = [NSError errorWithDomain:kOAIAssistantsApiErrorDomain code:kOAIAssistantsApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/assistants/{assistant_id}/files/{file_id}"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-    if (assistantId != nil) {
-        pathParams[@"assistant_id"] = assistantId;
-    }
-    if (fileId != nil) {
-        pathParams[@"file_id"] = fileId;
-    }
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"ApiKeyAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"GET"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"OAIAssistantFileObject*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((OAIAssistantFileObject*)data, error);
-                                }
-                            }];
-}
-
-///
 /// Retrieve a message.
 /// 
 ///  @param threadId The ID of the [thread](/docs/api-reference/threads) to which this message belongs. 
@@ -1051,108 +884,6 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
                                     handler((OAIMessageObject*)data, error);
-                                }
-                            }];
-}
-
-///
-/// Retrieves a message file.
-/// 
-///  @param threadId The ID of the thread to which the message and File belong. 
-///
-///  @param messageId The ID of the message the file belongs to. 
-///
-///  @param fileId The ID of the file being retrieved. 
-///
-///  @returns OAIMessageFileObject*
-///
--(NSURLSessionTask*) getMessageFileWithThreadId: (NSString*) threadId
-    messageId: (NSString*) messageId
-    fileId: (NSString*) fileId
-    completionHandler: (void (^)(OAIMessageFileObject* output, NSError* error)) handler {
-    // verify the required parameter 'threadId' is set
-    if (threadId == nil) {
-        NSParameterAssert(threadId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"threadId"] };
-            NSError* error = [NSError errorWithDomain:kOAIAssistantsApiErrorDomain code:kOAIAssistantsApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'messageId' is set
-    if (messageId == nil) {
-        NSParameterAssert(messageId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"messageId"] };
-            NSError* error = [NSError errorWithDomain:kOAIAssistantsApiErrorDomain code:kOAIAssistantsApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'fileId' is set
-    if (fileId == nil) {
-        NSParameterAssert(fileId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"fileId"] };
-            NSError* error = [NSError errorWithDomain:kOAIAssistantsApiErrorDomain code:kOAIAssistantsApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/threads/{thread_id}/messages/{message_id}/files/{file_id}"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-    if (threadId != nil) {
-        pathParams[@"thread_id"] = threadId;
-    }
-    if (messageId != nil) {
-        pathParams[@"message_id"] = messageId;
-    }
-    if (fileId != nil) {
-        pathParams[@"file_id"] = fileId;
-    }
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"ApiKeyAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"GET"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"OAIMessageFileObject*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((OAIMessageFileObject*)data, error);
                                 }
                             }];
 }
@@ -1251,11 +982,14 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
 ///
 ///  @param stepId The ID of the run step to retrieve. 
 ///
+///  @param include A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
+///
 ///  @returns OAIRunStepObject*
 ///
 -(NSURLSessionTask*) getRunStepWithThreadId: (NSString*) threadId
     runId: (NSString*) runId
     stepId: (NSString*) stepId
+    include: (NSArray<NSString*>*) include
     completionHandler: (void (^)(OAIRunStepObject* output, NSError* error)) handler {
     // verify the required parameter 'threadId' is set
     if (threadId == nil) {
@@ -1304,6 +1038,9 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
     }
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (include != nil) {
+        queryParams[@"include[]"] = [[OAIQueryParamCollection alloc] initWithValuesAndFormat: include format: @"multi"];
+    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -1413,98 +1150,6 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// Returns a list of assistant files.
-/// 
-///  @param assistantId The ID of the assistant the file belongs to. 
-///
-///  @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to @20)
-///
-///  @param order Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional, default to @"desc")
-///
-///  @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-///
-///  @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-///
-///  @returns OAIListAssistantFilesResponse*
-///
--(NSURLSessionTask*) listAssistantFilesWithAssistantId: (NSString*) assistantId
-    limit: (NSNumber*) limit
-    order: (NSString*) order
-    after: (NSString*) after
-    before: (NSString*) before
-    completionHandler: (void (^)(OAIListAssistantFilesResponse* output, NSError* error)) handler {
-    // verify the required parameter 'assistantId' is set
-    if (assistantId == nil) {
-        NSParameterAssert(assistantId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"assistantId"] };
-            NSError* error = [NSError errorWithDomain:kOAIAssistantsApiErrorDomain code:kOAIAssistantsApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/assistants/{assistant_id}/files"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-    if (assistantId != nil) {
-        pathParams[@"assistant_id"] = assistantId;
-    }
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (limit != nil) {
-        queryParams[@"limit"] = limit;
-    }
-    if (order != nil) {
-        queryParams[@"order"] = order;
-    }
-    if (after != nil) {
-        queryParams[@"after"] = after;
-    }
-    if (before != nil) {
-        queryParams[@"before"] = before;
-    }
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"ApiKeyAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"GET"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"OAIListAssistantFilesResponse*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((OAIListAssistantFilesResponse*)data, error);
-                                }
-                            }];
-}
-
-///
 /// Returns a list of assistants.
 /// 
 ///  @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to @20)
@@ -1513,7 +1158,7 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
 ///
 ///  @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
 ///
-///  @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+///  @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 ///
 ///  @returns OAIListAssistantsResponse*
 ///
@@ -1580,115 +1225,6 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// Returns a list of message files.
-/// 
-///  @param threadId The ID of the thread that the message and files belong to. 
-///
-///  @param messageId The ID of the message that the files belongs to. 
-///
-///  @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to @20)
-///
-///  @param order Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional, default to @"desc")
-///
-///  @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-///
-///  @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-///
-///  @returns OAIListMessageFilesResponse*
-///
--(NSURLSessionTask*) listMessageFilesWithThreadId: (NSString*) threadId
-    messageId: (NSString*) messageId
-    limit: (NSNumber*) limit
-    order: (NSString*) order
-    after: (NSString*) after
-    before: (NSString*) before
-    completionHandler: (void (^)(OAIListMessageFilesResponse* output, NSError* error)) handler {
-    // verify the required parameter 'threadId' is set
-    if (threadId == nil) {
-        NSParameterAssert(threadId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"threadId"] };
-            NSError* error = [NSError errorWithDomain:kOAIAssistantsApiErrorDomain code:kOAIAssistantsApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'messageId' is set
-    if (messageId == nil) {
-        NSParameterAssert(messageId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"messageId"] };
-            NSError* error = [NSError errorWithDomain:kOAIAssistantsApiErrorDomain code:kOAIAssistantsApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/threads/{thread_id}/messages/{message_id}/files"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-    if (threadId != nil) {
-        pathParams[@"thread_id"] = threadId;
-    }
-    if (messageId != nil) {
-        pathParams[@"message_id"] = messageId;
-    }
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (limit != nil) {
-        queryParams[@"limit"] = limit;
-    }
-    if (order != nil) {
-        queryParams[@"order"] = order;
-    }
-    if (after != nil) {
-        queryParams[@"after"] = after;
-    }
-    if (before != nil) {
-        queryParams[@"before"] = before;
-    }
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"ApiKeyAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"GET"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"OAIListMessageFilesResponse*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((OAIListMessageFilesResponse*)data, error);
-                                }
-                            }];
-}
-
-///
 /// Returns a list of messages for a given thread.
 /// 
 ///  @param threadId The ID of the [thread](/docs/api-reference/threads) the messages belong to. 
@@ -1699,7 +1235,7 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
 ///
 ///  @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
 ///
-///  @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+///  @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 ///
 ///  @param runId Filter messages by the run ID that generated them.  (optional)
 ///
@@ -1799,7 +1335,9 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
 ///
 ///  @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
 ///
-///  @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+///  @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+///
+///  @param include A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 ///
 ///  @returns OAIListRunStepsResponse*
 ///
@@ -1809,6 +1347,7 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
     order: (NSString*) order
     after: (NSString*) after
     before: (NSString*) before
+    include: (NSArray<NSString*>*) include
     completionHandler: (void (^)(OAIListRunStepsResponse* output, NSError* error)) handler {
     // verify the required parameter 'threadId' is set
     if (threadId == nil) {
@@ -1854,6 +1393,9 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
     }
     if (before != nil) {
         queryParams[@"before"] = before;
+    }
+    if (include != nil) {
+        queryParams[@"include[]"] = [[OAIQueryParamCollection alloc] initWithValuesAndFormat: include format: @"multi"];
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
@@ -1906,7 +1448,7 @@ NSInteger kOAIAssistantsApiMissingParamErrorCode = 234513;
 ///
 ///  @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
 ///
-///  @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+///  @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 ///
 ///  @returns OAIListRunsResponse*
 ///

@@ -37,7 +37,7 @@ import kotlin.collections.Map
 class FilesApiController() {
 
     @Operation(
-        summary = "Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. ",
+        summary = "Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. ",
         operationId = "createFile",
         description = """""",
         responses = [
@@ -52,7 +52,7 @@ class FilesApiController() {
     )
     fun createFile(
         @Parameter(description = "The File object (not file name) to be uploaded. ") @Valid @RequestPart("file", required = true) file: org.springframework.web.multipart.MultipartFile,
-        @Parameter(description = "The intended purpose of the uploaded file.  Use \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. ", required = true, schema = Schema(allowableValues = ["fine-tune", "assistants"])) @Valid @RequestParam(value = "purpose", required = true) purpose: kotlin.String
+        @Parameter(description = "The intended purpose of the uploaded file.  Use \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\"vision\\\" for Assistants image file inputs, \\\"batch\\\" for [Batch API](/docs/guides/batch), and \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning). ", required = true, schema = Schema(allowableValues = ["assistants", "batch", "fine-tune", "vision"])) @Valid @RequestParam(value = "purpose", required = true) purpose: kotlin.String
     ): ResponseEntity<OpenAIFile> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
@@ -96,7 +96,7 @@ class FilesApiController() {
     }
 
     @Operation(
-        summary = "Returns a list of files that belong to the user's organization.",
+        summary = "Returns a list of files.",
         operationId = "listFiles",
         description = """""",
         responses = [
@@ -109,7 +109,10 @@ class FilesApiController() {
         produces = ["application/json"]
     )
     fun listFiles(
-        @Parameter(description = "Only return files with the given purpose.") @Valid @RequestParam(value = "purpose", required = false) purpose: kotlin.String?
+        @Parameter(description = "Only return files with the given purpose.") @Valid @RequestParam(value = "purpose", required = false) purpose: kotlin.String?,
+        @Parameter(description = "A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. ", schema = Schema(defaultValue = "10000")) @Valid @RequestParam(value = "limit", required = false, defaultValue = "10000") limit: kotlin.Int,
+        @Parameter(description = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", schema = Schema(allowableValues = ["asc", "desc"], defaultValue = "desc")) @Valid @RequestParam(value = "order", required = false, defaultValue = "desc") order: kotlin.String,
+        @Parameter(description = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ") @Valid @RequestParam(value = "after", required = false) after: kotlin.String?
     ): ResponseEntity<ListFilesResponse> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }

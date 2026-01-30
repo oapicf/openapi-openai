@@ -1,5 +1,5 @@
 # Org.OpenAPITools.Model.RunStreamEventOneOf7
-Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
+Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.
 
 ## Properties
 

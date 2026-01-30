@@ -22,7 +22,8 @@ OpenApiOpenAIClient::RunStreamEvent.openapi_one_of
 #   :'RunStreamEventOneOf5',
 #   :'RunStreamEventOneOf6',
 #   :'RunStreamEventOneOf7',
-#   :'RunStreamEventOneOf8'
+#   :'RunStreamEventOneOf8',
+#   :'RunStreamEventOneOf9'
 # ]
 ```
 
@@ -59,5 +60,6 @@ OpenApiOpenAIClient::RunStreamEvent.build(data_that_doesnt_match)
 - `RunStreamEventOneOf6`
 - `RunStreamEventOneOf7`
 - `RunStreamEventOneOf8`
+- `RunStreamEventOneOf9`
 - `nil` (if no type matches)
 

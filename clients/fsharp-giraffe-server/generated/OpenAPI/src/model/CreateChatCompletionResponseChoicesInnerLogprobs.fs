@@ -11,5 +11,6 @@ module CreateChatCompletionResponseChoicesInnerLogprobs =
 
   type CreateChatCompletionResponse_choices_inner_logprobs = {
     Content : ChatCompletionTokenLogprob[];
+    Refusal : ChatCompletionTokenLogprob[];
   }
   //#endregion

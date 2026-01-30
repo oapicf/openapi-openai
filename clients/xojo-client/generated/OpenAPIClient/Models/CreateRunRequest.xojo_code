@@ -48,7 +48,7 @@ Protected Class CreateRunRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
-			Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+			Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 		#tag EndNote
 		metadata As Object
 	#tag EndProperty
@@ -64,6 +64,14 @@ Protected Class CreateRunRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
+			An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+		#tag EndNote
+		top_p As Xoson.O.OptionalDouble
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
 			If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. 
 		#tag EndNote
 		stream As Xoson.O.OptionalBoolean
@@ -72,7 +80,7 @@ Protected Class CreateRunRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+			The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
 		#tag EndNote
 		max_prompt_tokens As Xoson.O.OptionalInteger
 	#tag EndProperty
@@ -80,7 +88,7 @@ Protected Class CreateRunRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+			The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
 		#tag EndNote
 		max_completion_tokens As Xoson.O.OptionalInteger
 	#tag EndProperty
@@ -93,6 +101,14 @@ Protected Class CreateRunRequest
 
 	#tag Property, Flags = &h0
 		tool_choice As OpenAPIClient.Models.AssistantsApiToolChoiceOption
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+		#tag EndNote
+		parallel_tool_calls As Xoson.O.OptionalBoolean
 	#tag EndProperty
 
 
@@ -202,6 +218,14 @@ Protected Class CreateRunRequest
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="top_p"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="stream"
 			Visible=false
 			Group="Behavior"
@@ -239,6 +263,14 @@ Protected Class CreateRunRequest
 			Group="Behavior"
 			InitialValue=""
 			Type="AssistantsApiToolChoiceOption"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="parallel_tool_calls"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

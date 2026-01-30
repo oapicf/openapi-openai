@@ -3,7 +3,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * OpenAPI document version: 2.0.0
+ * OpenAPI document version: 2.3.0
  * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -16,12 +16,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.model.ChatCompletionRequestToolMessageContent;
 
 
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T10:45:08.090000084Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestToolMessage   {
   
 
@@ -43,7 +44,7 @@ public class ChatCompletionRequestToolMessage   {
   }
 
   private RoleEnum role;
-  private String content;
+  private ChatCompletionRequestToolMessageContent content;
   private String toolCallId;
 
   /**
@@ -65,20 +66,19 @@ public class ChatCompletionRequestToolMessage   {
   }
 
   /**
-   * The contents of the tool message.
    */
-  public ChatCompletionRequestToolMessage content(String content) {
+  public ChatCompletionRequestToolMessage content(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
     return this;
   }
 
   
-  @ApiModelProperty(required = true, value = "The contents of the tool message.")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty("content")
-  public String getContent() {
+  public ChatCompletionRequestToolMessageContent getContent() {
     return content;
   }
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
   }
 

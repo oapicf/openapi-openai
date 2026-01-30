@@ -1,0 +1,53 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Represents an individual project.",
+  "name": "Project",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The identifier, which can be referenced in API endpoints"
+    },
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "Project_object",
+        "symbols": [
+          "organization_project"
+        ]
+      },
+      "doc": "The object type, which is always `organization.project`"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "doc": "The name of the project. This appears in reporting."
+    },
+    {
+      "name": "created_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) of when the project was created."
+    },
+    {
+      "name": "archived_at",
+      "type": ["null", "int"],
+      "doc": "The Unix timestamp (in seconds) of when the project was archived or `null`.",
+      "default": null
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "Project_status",
+        "symbols": [
+          "active",
+          "archived"
+        ]
+      },
+      "doc": "`active` or `archived`"
+    }
+  ]
+
+}

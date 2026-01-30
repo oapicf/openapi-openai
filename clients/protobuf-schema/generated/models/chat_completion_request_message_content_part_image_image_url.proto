@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -20,7 +20,7 @@ message ChatCompletionRequestMessageContentPartImageImageUrl {
   // Either a URL of the image or the base64 encoded image data.
   string url = 116079;
 
-  // Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+  // Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
   enum Detail {
     DETAIL_AUTO = 0;
     DETAIL_LOW = 1;

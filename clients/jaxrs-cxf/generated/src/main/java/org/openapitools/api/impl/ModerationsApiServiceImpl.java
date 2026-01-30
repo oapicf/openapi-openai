@@ -24,7 +24,7 @@ import org.apache.cxf.jaxrs.ext.multipart.*;
  */
 public class ModerationsApiServiceImpl implements ModerationsApi {
     /**
-     * Classifies if text is potentially harmful.
+     * Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
      *
      */
     public CreateModerationResponse createModeration(CreateModerationRequest createModerationRequest) {

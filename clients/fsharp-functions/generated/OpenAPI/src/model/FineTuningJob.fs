@@ -3,6 +3,7 @@ namespace OpenAPI.Model
 open System
 open System.Collections.Generic
 open Newtonsoft.Json
+open OpenAPI.Model.FineTuneMethod
 open OpenAPI.Model.FineTuningJobError
 open OpenAPI.Model.FineTuningJobHyperparameters
 open OpenAPI.Model.FineTuningJobIntegrationsInner
@@ -47,6 +48,10 @@ module FineTuningJob =
     Integrations : FineTuningJobIntegrationsInner[];
     [<JsonProperty(PropertyName = "seed")>]
     Seed : int;
+    [<JsonProperty(PropertyName = "estimated_finish")>]
+    EstimatedFinish : int option;
+    [<JsonProperty(PropertyName = "method")>]
+    Method : FineTuneMethod;
   }
 
   //#endregion

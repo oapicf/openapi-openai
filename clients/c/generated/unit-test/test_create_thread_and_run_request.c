@@ -18,6 +18,7 @@ create_thread_and_run_request_t* instantiate_create_thread_and_run_request(int i
 
 #include "test_create_thread_request.c"
 #include "test_create_run_request_model.c"
+#include "test_create_thread_and_run_request_tool_resources.c"
 #include "test_truncation_object.c"
 #include "test_assistants_api_tool_choice_option.c"
 #include "test_assistants_api_response_format_option.c"
@@ -30,10 +31,13 @@ create_thread_and_run_request_t* instantiate_create_thread_and_run_request(int i
       "0",
        // false, not to have infinite recursion
       instantiate_create_thread_request(0),
-      gpt-4-turbo,
+      gpt-4o,
       "0",
       list_createList(),
+       // false, not to have infinite recursion
+      instantiate_create_thread_and_run_request_tool_resources(0),
       0,
+      1,
       1,
       1,
       256,
@@ -41,22 +45,26 @@ create_thread_and_run_request_t* instantiate_create_thread_and_run_request(int i
        // false, not to have infinite recursion
       instantiate_truncation_object(0),
       null,
+      1,
       null
     );
   } else {
     create_thread_and_run_request = create_thread_and_run_request_create(
       "0",
       NULL,
-      gpt-4-turbo,
+      gpt-4o,
       "0",
       list_createList(),
+      NULL,
       0,
+      1,
       1,
       1,
       256,
       256,
       NULL,
       null,
+      1,
       null
     );
   }

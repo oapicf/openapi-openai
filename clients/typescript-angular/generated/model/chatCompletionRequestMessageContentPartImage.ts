@@ -10,6 +10,9 @@
 import { ChatCompletionRequestMessageContentPartImageImageUrl } from './chatCompletionRequestMessageContentPartImageImageUrl';
 
 
+/**
+ * Learn about [image inputs](/docs/guides/vision). 
+ */
 export interface ChatCompletionRequestMessageContentPartImage { 
     /**
      * The type of the content part.

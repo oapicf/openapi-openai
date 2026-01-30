@@ -4,46 +4,41 @@
 #include "list_files_response.h"
 
 
-char* list_files_response_object_ToString(openai_api_list_files_response_OBJECT_e object) {
-    char* objectArray[] =  { "NULL", "list" };
-    return objectArray[object];
-}
-
-openai_api_list_files_response_OBJECT_e list_files_response_object_FromString(char* object){
-    int stringToReturn = 0;
-    char *objectArray[] =  { "NULL", "list" };
-    size_t sizeofArray = sizeof(objectArray) / sizeof(objectArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(object, objectArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
 
 static list_files_response_t *list_files_response_create_internal(
+    char *object,
     list_t *data,
-    openai_api_list_files_response_OBJECT_e object
+    char *first_id,
+    char *last_id,
+    int has_more
     ) {
     list_files_response_t *list_files_response_local_var = malloc(sizeof(list_files_response_t));
     if (!list_files_response_local_var) {
         return NULL;
     }
-    list_files_response_local_var->data = data;
     list_files_response_local_var->object = object;
+    list_files_response_local_var->data = data;
+    list_files_response_local_var->first_id = first_id;
+    list_files_response_local_var->last_id = last_id;
+    list_files_response_local_var->has_more = has_more;
 
     list_files_response_local_var->_library_owned = 1;
     return list_files_response_local_var;
 }
 
 __attribute__((deprecated)) list_files_response_t *list_files_response_create(
+    char *object,
     list_t *data,
-    openai_api_list_files_response_OBJECT_e object
+    char *first_id,
+    char *last_id,
+    int has_more
     ) {
     return list_files_response_create_internal (
+        object,
         data,
-        object
+        first_id,
+        last_id,
+        has_more
         );
 }
 
@@ -56,6 +51,10 @@ void list_files_response_free(list_files_response_t *list_files_response) {
         return ;
     }
     listEntry_t *listEntry;
+    if (list_files_response->object) {
+        free(list_files_response->object);
+        list_files_response->object = NULL;
+    }
     if (list_files_response->data) {
         list_ForEach(listEntry, list_files_response->data) {
             open_ai_file_free(listEntry->data);
@@ -63,11 +62,28 @@ void list_files_response_free(list_files_response_t *list_files_response) {
         list_freeList(list_files_response->data);
         list_files_response->data = NULL;
     }
+    if (list_files_response->first_id) {
+        free(list_files_response->first_id);
+        list_files_response->first_id = NULL;
+    }
+    if (list_files_response->last_id) {
+        free(list_files_response->last_id);
+        list_files_response->last_id = NULL;
+    }
     free(list_files_response);
 }
 
 cJSON *list_files_response_convertToJSON(list_files_response_t *list_files_response) {
     cJSON *item = cJSON_CreateObject();
+
+    // list_files_response->object
+    if (!list_files_response->object) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "object", list_files_response->object) == NULL) {
+    goto fail; //String
+    }
+
 
     // list_files_response->data
     if (!list_files_response->data) {
@@ -90,13 +106,30 @@ cJSON *list_files_response_convertToJSON(list_files_response_t *list_files_respo
     }
 
 
-    // list_files_response->object
-    if (openai_api_list_files_response_OBJECT_NULL == list_files_response->object) {
+    // list_files_response->first_id
+    if (!list_files_response->first_id) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "object", list_files_response_object_ToString(list_files_response->object)) == NULL)
-    {
-    goto fail; //Enum
+    if(cJSON_AddStringToObject(item, "first_id", list_files_response->first_id) == NULL) {
+    goto fail; //String
+    }
+
+
+    // list_files_response->last_id
+    if (!list_files_response->last_id) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "last_id", list_files_response->last_id) == NULL) {
+    goto fail; //String
+    }
+
+
+    // list_files_response->has_more
+    if (!list_files_response->has_more) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "has_more", list_files_response->has_more) == NULL) {
+    goto fail; //Bool
     }
 
     return item;
@@ -113,6 +146,21 @@ list_files_response_t *list_files_response_parseFromJSON(cJSON *list_files_respo
 
     // define the local list for list_files_response->data
     list_t *dataList = NULL;
+
+    // list_files_response->object
+    cJSON *object = cJSON_GetObjectItemCaseSensitive(list_files_responseJSON, "object");
+    if (cJSON_IsNull(object)) {
+        object = NULL;
+    }
+    if (!object) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(object))
+    {
+    goto end; //String
+    }
 
     // list_files_response->data
     cJSON *data = cJSON_GetObjectItemCaseSensitive(list_files_responseJSON, "data");
@@ -141,27 +189,58 @@ list_files_response_t *list_files_response_parseFromJSON(cJSON *list_files_respo
         list_addElement(dataList, dataItem);
     }
 
-    // list_files_response->object
-    cJSON *object = cJSON_GetObjectItemCaseSensitive(list_files_responseJSON, "object");
-    if (cJSON_IsNull(object)) {
-        object = NULL;
+    // list_files_response->first_id
+    cJSON *first_id = cJSON_GetObjectItemCaseSensitive(list_files_responseJSON, "first_id");
+    if (cJSON_IsNull(first_id)) {
+        first_id = NULL;
     }
-    if (!object) {
+    if (!first_id) {
         goto end;
     }
 
-    openai_api_list_files_response_OBJECT_e objectVariable;
     
-    if(!cJSON_IsString(object))
+    if(!cJSON_IsString(first_id))
     {
-    goto end; //Enum
+    goto end; //String
     }
-    objectVariable = list_files_response_object_FromString(object->valuestring);
+
+    // list_files_response->last_id
+    cJSON *last_id = cJSON_GetObjectItemCaseSensitive(list_files_responseJSON, "last_id");
+    if (cJSON_IsNull(last_id)) {
+        last_id = NULL;
+    }
+    if (!last_id) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(last_id))
+    {
+    goto end; //String
+    }
+
+    // list_files_response->has_more
+    cJSON *has_more = cJSON_GetObjectItemCaseSensitive(list_files_responseJSON, "has_more");
+    if (cJSON_IsNull(has_more)) {
+        has_more = NULL;
+    }
+    if (!has_more) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(has_more))
+    {
+    goto end; //Bool
+    }
 
 
     list_files_response_local_var = list_files_response_create_internal (
+        strdup(object->valuestring),
         dataList,
-        objectVariable
+        strdup(first_id->valuestring),
+        strdup(last_id->valuestring),
+        has_more->valueint
         );
 
     return list_files_response_local_var;

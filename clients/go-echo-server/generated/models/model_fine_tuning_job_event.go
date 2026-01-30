@@ -3,13 +3,24 @@ package models
 // FineTuningJobEvent - Fine-tuning job event object
 type FineTuningJobEvent struct {
 
+	// The object type, which is always \"fine_tuning.job.event\".
+	Object string `json:"object"`
+
+	// The object identifier.
 	Id string `json:"id"`
 
+	// The Unix timestamp (in seconds) for when the fine-tuning job was created.
 	CreatedAt int32 `json:"created_at"`
 
+	// The log level of the event.
 	Level string `json:"level"`
 
+	// The message of the event.
 	Message string `json:"message"`
 
-	Object string `json:"object"`
+	// The type of event.
+	Type string `json:"type,omitempty"`
+
+	// The data associated with the event.
+	Data map[string]interface{} `json:"data,omitempty"`
 }

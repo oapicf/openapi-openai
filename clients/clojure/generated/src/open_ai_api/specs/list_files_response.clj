@@ -8,8 +8,11 @@
 
 (def list-files-response-data
   {
-   (ds/req :data) (s/coll-of open-ai-file-spec)
    (ds/req :object) string?
+   (ds/req :data) (s/coll-of open-ai-file-spec)
+   (ds/req :first_id) string?
+   (ds/req :last_id) string?
+   (ds/req :has_more) boolean?
    })
 
 (def list-files-response-spec

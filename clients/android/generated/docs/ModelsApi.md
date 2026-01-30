@@ -23,7 +23,7 @@ Delete a fine-tuned model. You must have the Owner role in your organization to 
 //import org.openapitools.client.api.ModelsApi;
 
 ModelsApi apiInstance = new ModelsApi();
-String model = ft:gpt-3.5-turbo:acemeco:suffix:abc123; // String | The model to delete
+String model = ft:gpt-4o-mini:acemeco:suffix:abc123; // String | The model to delete
 try {
     DeleteModelResponse result = apiInstance.deleteModel(model);
     System.out.println(result);
@@ -107,7 +107,7 @@ Retrieves a model instance, providing basic information about the model such as 
 //import org.openapitools.client.api.ModelsApi;
 
 ModelsApi apiInstance = new ModelsApi();
-String model = gpt-3.5-turbo; // String | The ID of the model to use for this request
+String model = gpt-4o-mini; // String | The ID of the model to use for this request
 try {
     Model result = apiInstance.retrieveModel(model);
     System.out.println(result);

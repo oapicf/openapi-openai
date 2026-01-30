@@ -4,24 +4,19 @@ import pytest
 import json
 from aiohttp import web
 
-from openapi_server.models.assistant_file_object import AssistantFileObject
 from openapi_server.models.assistant_object import AssistantObject
-from openapi_server.models.create_assistant_file_request import CreateAssistantFileRequest
 from openapi_server.models.create_assistant_request import CreateAssistantRequest
 from openapi_server.models.create_message_request import CreateMessageRequest
 from openapi_server.models.create_run_request import CreateRunRequest
 from openapi_server.models.create_thread_and_run_request import CreateThreadAndRunRequest
 from openapi_server.models.create_thread_request import CreateThreadRequest
-from openapi_server.models.delete_assistant_file_response import DeleteAssistantFileResponse
 from openapi_server.models.delete_assistant_response import DeleteAssistantResponse
+from openapi_server.models.delete_message_response import DeleteMessageResponse
 from openapi_server.models.delete_thread_response import DeleteThreadResponse
-from openapi_server.models.list_assistant_files_response import ListAssistantFilesResponse
 from openapi_server.models.list_assistants_response import ListAssistantsResponse
-from openapi_server.models.list_message_files_response import ListMessageFilesResponse
 from openapi_server.models.list_messages_response import ListMessagesResponse
 from openapi_server.models.list_run_steps_response import ListRunStepsResponse
 from openapi_server.models.list_runs_response import ListRunsResponse
-from openapi_server.models.message_file_object import MessageFileObject
 from openapi_server.models.message_object import MessageObject
 from openapi_server.models.modify_assistant_request import ModifyAssistantRequest
 from openapi_server.models.modify_message_request import ModifyMessageRequest
@@ -59,7 +54,7 @@ async def test_create_assistant(client):
 
     Create an assistant with a model and instructions.
     """
-    body = {"instructions":"instructions","metadata":"{}","name":"name","file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"],"description":"description","model":"gpt-4-turbo","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"}]}
+    body = {"top_p":1,"instructions":"instructions","tool_resources":{"code_interpreter":{"file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"]},"file_search":{"vector_store_ids":["vector_store_ids"],"vector_stores":[{"chunking_strategy":{"type":"auto"},"metadata":"{}","file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"]}]}},"metadata":"{}","response_format":"auto","name":"name","temperature":1,"description":"description","model":"gpt-4o","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"}]}
     headers = { 
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -76,34 +71,12 @@ async def test_create_assistant(client):
 
 pytestmark = pytest.mark.asyncio
 
-async def test_create_assistant_file(client):
-    """Test case for create_assistant_file
-
-    Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-    """
-    body = {"file_id":"file_id"}
-    headers = { 
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer special-key',
-    }
-    response = await client.request(
-        method='POST',
-        path='/v1/assistants/{assistant_id}/files'.format(assistant_id='file-abc123'),
-        headers=headers,
-        json=body,
-        )
-    assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
-
-
-pytestmark = pytest.mark.asyncio
-
 async def test_create_message(client):
     """Test case for create_message
 
     Create a message.
     """
-    body = {"metadata":"{}","role":"user","file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"],"content":"content"}
+    body = {"metadata":"{}","role":"user","attachments":[{"file_id":"file_id","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"}]},{"file_id":"file_id","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"}]}],"content":"CreateMessageRequest_content"}
     headers = { 
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -125,7 +98,8 @@ async def test_create_run(client):
 
     Create a run.
     """
-    body = {"instructions":"instructions","additional_instructions":"additional_instructions","metadata":"{}","assistant_id":"assistant_id","additional_messages":[{"metadata":"{}","role":"user","file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"],"content":"content"},{"metadata":"{}","role":"user","file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"],"content":"content"}],"tools":[{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"}],"truncation_strategy":{"last_messages":1,"type":"auto"},"max_completion_tokens":256,"response_format":"none","stream":True,"temperature":1,"tool_choice":"none","model":"gpt-4-turbo","max_prompt_tokens":256}
+    body = {"instructions":"instructions","additional_instructions":"additional_instructions","metadata":"{}","assistant_id":"assistant_id","additional_messages":[{"metadata":"{}","role":"user","attachments":[{"file_id":"file_id","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"}]},{"file_id":"file_id","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"}]}],"content":"CreateMessageRequest_content"},{"metadata":"{}","role":"user","attachments":[{"file_id":"file_id","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"}]},{"file_id":"file_id","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"}]}],"content":"CreateMessageRequest_content"}],"tools":[{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"}],"truncation_strategy":{"last_messages":1,"type":"auto"},"top_p":1,"max_completion_tokens":256,"response_format":"auto","parallel_tool_calls":True,"stream":True,"temperature":1,"tool_choice":"none","model":"gpt-4o","max_prompt_tokens":256}
+    params = [('include[]', ['include_example'])]
     headers = { 
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -136,6 +110,7 @@ async def test_create_run(client):
         path='/v1/threads/{thread_id}/runs'.format(thread_id='thread_id_example'),
         headers=headers,
         json=body,
+        params=params,
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
@@ -147,7 +122,7 @@ async def test_create_thread(client):
 
     Create a thread.
     """
-    body = {"metadata":"{}","messages":[{"metadata":"{}","role":"user","file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"],"content":"content"},{"metadata":"{}","role":"user","file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"],"content":"content"}]}
+    body = {"tool_resources":{"code_interpreter":{"file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"]},"file_search":{"vector_store_ids":["vector_store_ids"],"vector_stores":[{"chunking_strategy":{"type":"auto"},"metadata":"{}","file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"]}]}},"metadata":"{}","messages":[{"metadata":"{}","role":"user","attachments":[{"file_id":"file_id","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"}]},{"file_id":"file_id","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"}]}],"content":"CreateMessageRequest_content"},{"metadata":"{}","role":"user","attachments":[{"file_id":"file_id","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"}]},{"file_id":"file_id","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"}]}],"content":"CreateMessageRequest_content"}]}
     headers = { 
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -169,7 +144,7 @@ async def test_create_thread_and_run(client):
 
     Create a thread and run it in one request.
     """
-    body = {"instructions":"instructions","metadata":"{}","assistant_id":"assistant_id","thread":{"metadata":"{}","messages":[{"metadata":"{}","role":"user","file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"],"content":"content"},{"metadata":"{}","role":"user","file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"],"content":"content"}]},"tools":[{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"}],"truncation_strategy":{"last_messages":1,"type":"auto"},"max_completion_tokens":256,"response_format":"none","stream":True,"temperature":1,"tool_choice":"none","model":"gpt-4-turbo","max_prompt_tokens":256}
+    body = {"instructions":"instructions","tool_resources":{"code_interpreter":{"file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"]},"file_search":{"vector_store_ids":["vector_store_ids"]}},"metadata":"{}","assistant_id":"assistant_id","thread":{"tool_resources":{"code_interpreter":{"file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"]},"file_search":{"vector_store_ids":["vector_store_ids"],"vector_stores":[{"chunking_strategy":{"type":"auto"},"metadata":"{}","file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"]}]}},"metadata":"{}","messages":[{"metadata":"{}","role":"user","attachments":[{"file_id":"file_id","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"}]},{"file_id":"file_id","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"}]}],"content":"CreateMessageRequest_content"},{"metadata":"{}","role":"user","attachments":[{"file_id":"file_id","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"}]},{"file_id":"file_id","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"}]}],"content":"CreateMessageRequest_content"}]},"tools":[{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"}],"truncation_strategy":{"last_messages":1,"type":"auto"},"top_p":1,"max_completion_tokens":256,"response_format":"auto","parallel_tool_calls":True,"stream":True,"temperature":1,"tool_choice":"none","model":"gpt-4o","max_prompt_tokens":256}
     headers = { 
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -205,10 +180,10 @@ async def test_delete_assistant(client):
 
 pytestmark = pytest.mark.asyncio
 
-async def test_delete_assistant_file(client):
-    """Test case for delete_assistant_file
+async def test_delete_message(client):
+    """Test case for delete_message
 
-    Delete an assistant file.
+    Deletes a message.
     """
     headers = { 
         'Accept': 'application/json',
@@ -216,7 +191,7 @@ async def test_delete_assistant_file(client):
     }
     response = await client.request(
         method='DELETE',
-        path='/v1/assistants/{assistant_id}/files/{file_id}'.format(assistant_id='assistant_id_example', file_id='file_id_example'),
+        path='/v1/threads/{thread_id}/messages/{message_id}'.format(thread_id='thread_id_example', message_id='message_id_example'),
         headers=headers,
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
@@ -262,25 +237,6 @@ async def test_get_assistant(client):
 
 pytestmark = pytest.mark.asyncio
 
-async def test_get_assistant_file(client):
-    """Test case for get_assistant_file
-
-    Retrieves an AssistantFile.
-    """
-    headers = { 
-        'Accept': 'application/json',
-        'Authorization': 'Bearer special-key',
-    }
-    response = await client.request(
-        method='GET',
-        path='/v1/assistants/{assistant_id}/files/{file_id}'.format(assistant_id='assistant_id_example', file_id='file_id_example'),
-        headers=headers,
-        )
-    assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
-
-
-pytestmark = pytest.mark.asyncio
-
 async def test_get_message(client):
     """Test case for get_message
 
@@ -293,25 +249,6 @@ async def test_get_message(client):
     response = await client.request(
         method='GET',
         path='/v1/threads/{thread_id}/messages/{message_id}'.format(thread_id='thread_id_example', message_id='message_id_example'),
-        headers=headers,
-        )
-    assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
-
-
-pytestmark = pytest.mark.asyncio
-
-async def test_get_message_file(client):
-    """Test case for get_message_file
-
-    Retrieves a message file.
-    """
-    headers = { 
-        'Accept': 'application/json',
-        'Authorization': 'Bearer special-key',
-    }
-    response = await client.request(
-        method='GET',
-        path='/v1/threads/{thread_id}/messages/{message_id}/files/{file_id}'.format(thread_id='thread_abc123', message_id='msg_abc123', file_id='file-abc123'),
         headers=headers,
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
@@ -343,6 +280,7 @@ async def test_get_run_step(client):
 
     Retrieves a run step.
     """
+    params = [('include[]', ['include_example'])]
     headers = { 
         'Accept': 'application/json',
         'Authorization': 'Bearer special-key',
@@ -351,6 +289,7 @@ async def test_get_run_step(client):
         method='GET',
         path='/v1/threads/{thread_id}/runs/{run_id}/steps/{step_id}'.format(thread_id='thread_id_example', run_id='run_id_example', step_id='step_id_example'),
         headers=headers,
+        params=params,
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
@@ -376,30 +315,6 @@ async def test_get_thread(client):
 
 pytestmark = pytest.mark.asyncio
 
-async def test_list_assistant_files(client):
-    """Test case for list_assistant_files
-
-    Returns a list of assistant files.
-    """
-    params = [('limit', 20),
-                    ('order', desc),
-                    ('after', 'after_example'),
-                    ('before', 'before_example')]
-    headers = { 
-        'Accept': 'application/json',
-        'Authorization': 'Bearer special-key',
-    }
-    response = await client.request(
-        method='GET',
-        path='/v1/assistants/{assistant_id}/files'.format(assistant_id='assistant_id_example'),
-        headers=headers,
-        params=params,
-        )
-    assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
-
-
-pytestmark = pytest.mark.asyncio
-
 async def test_list_assistants(client):
     """Test case for list_assistants
 
@@ -416,30 +331,6 @@ async def test_list_assistants(client):
     response = await client.request(
         method='GET',
         path='/v1/assistants',
-        headers=headers,
-        params=params,
-        )
-    assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
-
-
-pytestmark = pytest.mark.asyncio
-
-async def test_list_message_files(client):
-    """Test case for list_message_files
-
-    Returns a list of message files.
-    """
-    params = [('limit', 20),
-                    ('order', desc),
-                    ('after', 'after_example'),
-                    ('before', 'before_example')]
-    headers = { 
-        'Accept': 'application/json',
-        'Authorization': 'Bearer special-key',
-    }
-    response = await client.request(
-        method='GET',
-        path='/v1/threads/{thread_id}/messages/{message_id}/files'.format(thread_id='thread_id_example', message_id='message_id_example'),
         headers=headers,
         params=params,
         )
@@ -481,7 +372,8 @@ async def test_list_run_steps(client):
     params = [('limit', 20),
                     ('order', desc),
                     ('after', 'after_example'),
-                    ('before', 'before_example')]
+                    ('before', 'before_example'),
+                    ('include[]', ['include_example'])]
     headers = { 
         'Accept': 'application/json',
         'Authorization': 'Bearer special-key',
@@ -526,7 +418,7 @@ async def test_modify_assistant(client):
 
     Modifies an assistant.
     """
-    body = {"instructions":"instructions","metadata":"{}","name":"name","file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"],"description":"description","model":"model","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"}]}
+    body = {"top_p":1,"instructions":"instructions","tool_resources":{"code_interpreter":{"file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"]},"file_search":{"vector_store_ids":["vector_store_ids"]}},"metadata":"{}","response_format":"auto","name":"name","temperature":1,"description":"description","model":"model","tools":[{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"},{"type":"code_interpreter"}]}
     headers = { 
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -592,7 +484,7 @@ async def test_modify_thread(client):
 
     Modifies a thread.
     """
-    body = {"metadata":"{}"}
+    body = {"tool_resources":{"code_interpreter":{"file_ids":["file_ids","file_ids","file_ids","file_ids","file_ids"]},"file_search":{"vector_store_ids":["vector_store_ids"]}},"metadata":"{}"}
     headers = { 
         'Accept': 'application/json',
         'Content-Type': 'application/json',

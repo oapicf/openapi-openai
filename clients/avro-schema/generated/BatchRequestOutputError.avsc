@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "For requests that failed with a non-HTTP error, this will contain more information on the cause of the failure.",
+  "name": "BatchRequestOutputError",
+  "fields": [
+    {
+      "name": "code",
+      "type": ["null", "string"],
+      "doc": "A machine-readable error code.",
+      "default": null
+    },
+    {
+      "name": "message",
+      "type": ["null", "string"],
+      "doc": "A human-readable error message.",
+      "default": null
+    }
+  ]
+
+}

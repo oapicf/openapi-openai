@@ -15,6 +15,7 @@
 
 package org.openapitools.client.models
 
+import org.openapitools.client.models.FineTuneMethod
 import org.openapitools.client.models.FineTuningJobError
 import org.openapitools.client.models.FineTuningJobHyperparameters
 import org.openapitools.client.models.FineTuningJobIntegrationsInner
@@ -41,6 +42,8 @@ import com.squareup.moshi.JsonClass
  * @param validationFile The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents).
  * @param seed The seed used for the fine-tuning job.
  * @param integrations A list of integrations to enable for this fine-tuning job.
+ * @param estimatedFinish The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+ * @param method 
  */
 
 
@@ -106,7 +109,14 @@ data class FineTuningJob (
 
     /* A list of integrations to enable for this fine-tuning job. */
     @Json(name = "integrations")
-    val integrations: kotlin.collections.List<FineTuningJobIntegrationsInner>? = null
+    val integrations: kotlin.collections.List<FineTuningJobIntegrationsInner>? = null,
+
+    /* The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running. */
+    @Json(name = "estimated_finish")
+    val estimatedFinish: kotlin.Int? = null,
+
+    @Json(name = "method")
+    val method: FineTuneMethod? = null
 
 ) {
 

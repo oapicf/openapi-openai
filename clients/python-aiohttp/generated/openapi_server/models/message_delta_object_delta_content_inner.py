@@ -7,6 +7,9 @@ from typing import List, Dict, Type
 from openapi_server.models.base_model import Model
 from openapi_server.models.message_delta_content_image_file_object import MessageDeltaContentImageFileObject
 from openapi_server.models.message_delta_content_image_file_object_image_file import MessageDeltaContentImageFileObjectImageFile
+from openapi_server.models.message_delta_content_image_url_object import MessageDeltaContentImageUrlObject
+from openapi_server.models.message_delta_content_image_url_object_image_url import MessageDeltaContentImageUrlObjectImageUrl
+from openapi_server.models.message_delta_content_refusal_object import MessageDeltaContentRefusalObject
 from openapi_server.models.message_delta_content_text_object import MessageDeltaContentTextObject
 from openapi_server.models.message_delta_content_text_object_text import MessageDeltaContentTextObjectText
 from openapi_server import util
@@ -18,32 +21,40 @@ class MessageDeltaObjectDeltaContentInner(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, index: int=None, type: str=None, image_file: MessageDeltaContentImageFileObjectImageFile=None, text: MessageDeltaContentTextObjectText=None):
+    def __init__(self, index: int=None, type: str=None, image_file: MessageDeltaContentImageFileObjectImageFile=None, text: MessageDeltaContentTextObjectText=None, refusal: str=None, image_url: MessageDeltaContentImageUrlObjectImageUrl=None):
         """MessageDeltaObjectDeltaContentInner - a model defined in OpenAPI
 
         :param index: The index of this MessageDeltaObjectDeltaContentInner.
         :param type: The type of this MessageDeltaObjectDeltaContentInner.
         :param image_file: The image_file of this MessageDeltaObjectDeltaContentInner.
         :param text: The text of this MessageDeltaObjectDeltaContentInner.
+        :param refusal: The refusal of this MessageDeltaObjectDeltaContentInner.
+        :param image_url: The image_url of this MessageDeltaObjectDeltaContentInner.
         """
         self.openapi_types = {
             'index': int,
             'type': str,
             'image_file': MessageDeltaContentImageFileObjectImageFile,
-            'text': MessageDeltaContentTextObjectText
+            'text': MessageDeltaContentTextObjectText,
+            'refusal': str,
+            'image_url': MessageDeltaContentImageUrlObjectImageUrl
         }
 
         self.attribute_map = {
             'index': 'index',
             'type': 'type',
             'image_file': 'image_file',
-            'text': 'text'
+            'text': 'text',
+            'refusal': 'refusal',
+            'image_url': 'image_url'
         }
 
         self._index = index
         self._type = type
         self._image_file = image_file
         self._text = text
+        self._refusal = refusal
+        self._image_url = image_url
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'MessageDeltaObjectDeltaContentInner':
@@ -99,7 +110,7 @@ class MessageDeltaObjectDeltaContentInner(Model):
         :param type: The type of this MessageDeltaObjectDeltaContentInner.
         :type type: str
         """
-        allowed_values = ["image_file", "text"]  # noqa: E501
+        allowed_values = ["image_file", "text", "refusal", "image_url"]  # noqa: E501
         if type not in allowed_values:
             raise ValueError(
                 "Invalid value for `type` ({0}), must be one of {1}"
@@ -149,3 +160,45 @@ class MessageDeltaObjectDeltaContentInner(Model):
         """
 
         self._text = text
+
+    @property
+    def refusal(self):
+        """Gets the refusal of this MessageDeltaObjectDeltaContentInner.
+
+
+        :return: The refusal of this MessageDeltaObjectDeltaContentInner.
+        :rtype: str
+        """
+        return self._refusal
+
+    @refusal.setter
+    def refusal(self, refusal):
+        """Sets the refusal of this MessageDeltaObjectDeltaContentInner.
+
+
+        :param refusal: The refusal of this MessageDeltaObjectDeltaContentInner.
+        :type refusal: str
+        """
+
+        self._refusal = refusal
+
+    @property
+    def image_url(self):
+        """Gets the image_url of this MessageDeltaObjectDeltaContentInner.
+
+
+        :return: The image_url of this MessageDeltaObjectDeltaContentInner.
+        :rtype: MessageDeltaContentImageUrlObjectImageUrl
+        """
+        return self._image_url
+
+    @image_url.setter
+    def image_url(self, image_url):
+        """Sets the image_url of this MessageDeltaObjectDeltaContentInner.
+
+
+        :param image_url: The image_url of this MessageDeltaObjectDeltaContentInner.
+        :type image_url: MessageDeltaContentImageUrlObjectImageUrl
+        """
+
+        self._image_url = image_url

@@ -1,0 +1,58 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ListBatchesResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ListBatchesResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  Batch = openapi_server.resourceTypes.Batch
+}
+resourceTypes {
+
+  ListBatchesResponse {
+    title = ListBatchesResponse
+    description = ListBatchesResponse
+    derivedFrom = Root
+    properties {
+        data {
+          type = array
+          items.type = Batch
+          description = ""
+          optional = true
+        }
+        first_id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        last_id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        has_more {
+          type =  boolean
+          description = ""
+          optional = true
+        }
+        object {
+          type =  string
+          description = ""
+          enum = ["list"]
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ListBatchesResponse {
+    title = ListBatchesResponse
+    description = ListBatchesResponse
+    implements = openapi_server.resourceTypes.ListBatchesResponse
+
+  }
+}

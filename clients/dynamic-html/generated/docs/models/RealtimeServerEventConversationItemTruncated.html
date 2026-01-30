@@ -1,0 +1,32 @@
+
+<h2>RealtimeServerEventConversationItemTruncated</h2>
+<ul class="parameter">
+  <li class="param-required-true">eventUnderscoreid : String
+    <br/>The unique ID of the server event.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">type : String
+    <br/>The event type, must be &#x60;conversation.item.truncated&#x60;.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>conversation.item.truncated</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">itemUnderscoreid : String
+    <br/>The ID of the assistant message item that was truncated.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">contentUnderscoreindex : Integer
+    <br/>The index of the content part that was truncated.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">audioUnderscoreendUnderscorems : Integer
+    <br/>The duration up to which the audio was truncated, in milliseconds. 
+  </li>
+</ul>

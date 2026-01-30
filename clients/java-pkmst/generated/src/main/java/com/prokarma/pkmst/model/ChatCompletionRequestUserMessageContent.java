@@ -2,7 +2,7 @@ package com.prokarma.pkmst.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.prokarma.pkmst.model.ChatCompletionRequestMessageContentPart;
+import com.prokarma.pkmst.model.ChatCompletionRequestUserMessageContentPart;
 import io.swagger.annotations.ApiModel;
 import java.util.List;
 /**
@@ -15,7 +15,7 @@ import java.util.List;
  */
 @ApiModel(description = "The contents of the user message. ")
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T10:45:02.588292416Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestUserMessageContent   {
 
   @Override

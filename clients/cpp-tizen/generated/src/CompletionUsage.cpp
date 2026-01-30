@@ -26,6 +26,8 @@ CompletionUsage::__init()
 	//completion_tokens = int(0);
 	//prompt_tokens = int(0);
 	//total_tokens = int(0);
+	//completion_tokens_details = new CompletionUsage_completion_tokens_details();
+	//prompt_tokens_details = new CompletionUsage_prompt_tokens_details();
 }
 
 void
@@ -45,6 +47,16 @@ CompletionUsage::__cleanup()
 	//
 	//delete total_tokens;
 	//total_tokens = NULL;
+	//}
+	//if(completion_tokens_details != NULL) {
+	//
+	//delete completion_tokens_details;
+	//completion_tokens_details = NULL;
+	//}
+	//if(prompt_tokens_details != NULL) {
+	//
+	//delete prompt_tokens_details;
+	//prompt_tokens_details = NULL;
 	//}
 	//
 }
@@ -87,6 +99,34 @@ CompletionUsage::fromJson(char* jsonStr)
 			
 		}
 	}
+	const gchar *completion_tokens_detailsKey = "completion_tokens_details";
+	node = json_object_get_member(pJsonObject, completion_tokens_detailsKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("CompletionUsage_completion_tokens_details")) {
+			jsonToValue(&completion_tokens_details, node, "CompletionUsage_completion_tokens_details", "CompletionUsage_completion_tokens_details");
+		} else {
+			
+			CompletionUsage_completion_tokens_details* obj = static_cast<CompletionUsage_completion_tokens_details*> (&completion_tokens_details);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *prompt_tokens_detailsKey = "prompt_tokens_details";
+	node = json_object_get_member(pJsonObject, prompt_tokens_detailsKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("CompletionUsage_prompt_tokens_details")) {
+			jsonToValue(&prompt_tokens_details, node, "CompletionUsage_prompt_tokens_details", "CompletionUsage_prompt_tokens_details");
+		} else {
+			
+			CompletionUsage_prompt_tokens_details* obj = static_cast<CompletionUsage_prompt_tokens_details*> (&prompt_tokens_details);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
 }
 
 CompletionUsage::CompletionUsage(char* json)
@@ -126,6 +166,34 @@ CompletionUsage::toJson()
 	}
 	const gchar *total_tokensKey = "total_tokens";
 	json_object_set_member(pJsonObject, total_tokensKey, node);
+	if (isprimitive("CompletionUsage_completion_tokens_details")) {
+		CompletionUsage_completion_tokens_details obj = getCompletionTokensDetails();
+		node = converttoJson(&obj, "CompletionUsage_completion_tokens_details", "");
+	}
+	else {
+		
+		CompletionUsage_completion_tokens_details obj = static_cast<CompletionUsage_completion_tokens_details> (getCompletionTokensDetails());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *completion_tokens_detailsKey = "completion_tokens_details";
+	json_object_set_member(pJsonObject, completion_tokens_detailsKey, node);
+	if (isprimitive("CompletionUsage_prompt_tokens_details")) {
+		CompletionUsage_prompt_tokens_details obj = getPromptTokensDetails();
+		node = converttoJson(&obj, "CompletionUsage_prompt_tokens_details", "");
+	}
+	else {
+		
+		CompletionUsage_prompt_tokens_details obj = static_cast<CompletionUsage_prompt_tokens_details> (getPromptTokensDetails());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *prompt_tokens_detailsKey = "prompt_tokens_details";
+	json_object_set_member(pJsonObject, prompt_tokens_detailsKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -168,6 +236,30 @@ void
 CompletionUsage::setTotalTokens(int  total_tokens)
 {
 	this->total_tokens = total_tokens;
+}
+
+CompletionUsage_completion_tokens_details
+CompletionUsage::getCompletionTokensDetails()
+{
+	return completion_tokens_details;
+}
+
+void
+CompletionUsage::setCompletionTokensDetails(CompletionUsage_completion_tokens_details  completion_tokens_details)
+{
+	this->completion_tokens_details = completion_tokens_details;
+}
+
+CompletionUsage_prompt_tokens_details
+CompletionUsage::getPromptTokensDetails()
+{
+	return prompt_tokens_details;
+}
+
+void
+CompletionUsage::setPromptTokensDetails(CompletionUsage_prompt_tokens_details  prompt_tokens_details)
+{
+	this->prompt_tokens_details = prompt_tokens_details;
 }
 
 

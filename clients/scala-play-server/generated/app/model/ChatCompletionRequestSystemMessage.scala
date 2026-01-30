@@ -3,14 +3,13 @@ package model
 import play.api.libs.json._
 
 /**
-  * Represents the Swagger definition for ChatCompletionRequestSystemMessage.
-  * @param content The contents of the system message.
+  * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. 
   * @param role The role of the messages author, in this case `system`.
   * @param name An optional name for the participant. Provides the model information to differentiate between participants of the same role.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T10:48:27.489746113Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 case class ChatCompletionRequestSystemMessage(
-  content: String,
+  content: ChatCompletionRequestSystemMessageContent,
   role: ChatCompletionRequestSystemMessage.Role.Value,
   name: Option[String]
 )

@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Occurs when a [run step](/docs/api-reference/runs/step-object) expires. */
+/** Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires. */
 public struct RunStepStreamEventOneOf6: Codable, JSONEncodable, Hashable {
 
     public enum Event: String, Codable, CaseIterable {

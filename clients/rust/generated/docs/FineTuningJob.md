@@ -20,6 +20,8 @@ Name | Type | Description | Notes
 **validation_file** | Option<**String**> | The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents). | 
 **integrations** | Option<[**Vec<models::FineTuningJobIntegrationsInner>**](FineTuningJob_integrations_inner.md)> | A list of integrations to enable for this fine-tuning job. | [optional]
 **seed** | **i32** | The seed used for the fine-tuning job. | 
+**estimated_finish** | Option<**i32**> | The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running. | [optional]
+**method** | Option<[**models::FineTuneMethod**](FineTuneMethod.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

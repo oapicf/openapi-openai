@@ -14,27 +14,27 @@ import AssistantsApiToolChoiceOption._
 case class AssistantsApiToolChoiceOption (
   /* The type of the tool. If type is `function`, the function name must be set */
   `type`: `Type`,
-function: Option[ChatCompletionNamedToolChoiceFunction])
+function: Option[AssistantsNamedToolChoiceFunction])
 
 object AssistantsApiToolChoiceOption {
   import DateTimeCodecs._
   sealed trait `Type`
   case object Function extends `Type`
   case object CodeInterpreter extends `Type`
-  case object Retrieval extends `Type`
+  case object FileSearch extends `Type`
 
   object `Type` {
     def to`Type`(s: String): Option[`Type`] = s match {
       case "Function" => Some(Function)
       case "CodeInterpreter" => Some(CodeInterpreter)
-      case "Retrieval" => Some(Retrieval)
+      case "FileSearch" => Some(FileSearch)
       case _ => None
     }
 
     def from`Type`(x: `Type`): String = x match {
       case Function => "Function"
       case CodeInterpreter => "CodeInterpreter"
-      case Retrieval => "Retrieval"
+      case FileSearch => "FileSearch"
     }
   }
 

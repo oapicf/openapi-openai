@@ -1,0 +1,41 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server VectorStoreFileObjectLastError"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a VectorStoreFileObjectLastError"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  VectorStoreFileObjectLastError {
+    title = VectorStoreFileObjectLastError
+    description = VectorStoreFileObjectLastError
+    derivedFrom = Root
+    properties {
+        code {
+          type =  string
+          description = "One of &#x60;server_error&#x60; or &#x60;rate_limit_exceeded&#x60;."
+          enum = ["server_error", "unsupported_file", "invalid_file"]
+          optional = true
+        }
+        message {
+          type =  string
+          description = "A human-readable description of the error."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  VectorStoreFileObjectLastError {
+    title = VectorStoreFileObjectLastError
+    description = VectorStoreFileObjectLastError
+    implements = openapi_server.resourceTypes.VectorStoreFileObjectLastError
+
+  }
+}

@@ -15,10 +15,10 @@ class ListRunStepsResponse
 
     /**
      * @DTA\Data(field="data")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection52::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection52::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection143::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection143::class})
      */
-    public ?\App\DTO\Collection52 $data = null;
+    public ?\App\DTO\Collection143 $data = null;
 
     /**
      * @DTA\Data(field="first_id")

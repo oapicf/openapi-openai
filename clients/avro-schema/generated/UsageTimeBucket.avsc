@@ -1,0 +1,38 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "UsageTimeBucket",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "UsageTimeBucket_object",
+        "symbols": [
+          "bucket"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "start_time",
+      "type": "int",
+      "doc": ""
+    },
+    {
+      "name": "end_time",
+      "type": "int",
+      "doc": ""
+    },
+    {
+      "name": "result",
+      "type": {
+        "type": "array",
+        "items": "model.UsageTimeBucketResultInner"
+      },
+      "doc": ""
+    }
+  ]
+
+}

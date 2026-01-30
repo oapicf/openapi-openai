@@ -51,7 +51,7 @@ class RunObject
     public $assistant_id;
 
     /**
-     * The status of the run, which can be either &#x60;queued&#x60;, &#x60;in_progress&#x60;, &#x60;requires_action&#x60;, &#x60;cancelling&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, or &#x60;expired&#x60;.
+     * The status of the run, which can be either &#x60;queued&#x60;, &#x60;in_progress&#x60;, &#x60;requires_action&#x60;, &#x60;cancelling&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, &#x60;incomplete&#x60;, or &#x60;expired&#x60;.
      * @DTA\Data(field="status")
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      * @var string|null
@@ -141,23 +141,14 @@ class RunObject
     /**
      * The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
      * @DTA\Data(field="tools")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection46::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection46::class})
-     * @var \App\DTO\Collection46|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection134::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection134::class})
+     * @var \App\DTO\Collection134|null
      */
     public $tools;
 
     /**
-     * The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
-     * @DTA\Data(field="file_ids")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection47::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection47::class})
-     * @var \App\DTO\Collection47|null
-     */
-    public $file_ids;
-
-    /**
-     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
      * @DTA\Data(field="metadata")
      * @DTA\Validator(name="Scalar", options={"type":"object"})
      * @var object|null
@@ -179,6 +170,14 @@ class RunObject
      * @var float|null
      */
     public $temperature;
+
+    /**
+     * The nucleus sampling value used for this run. If not set, defaults to 1.
+     * @DTA\Data(field="top_p", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"float"})
+     * @var float|null
+     */
+    public $top_p;
 
     /**
      * The maximum number of prompt tokens specified to have been used over the course of the run.
@@ -213,6 +212,14 @@ class RunObject
      * @var \App\DTO\AssistantsApiToolChoiceOption|null
      */
     public $tool_choice;
+
+    /**
+     * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+     * @DTA\Data(field="parallel_tool_calls")
+     * @DTA\Validator(name="Scalar", options={"type":"bool"})
+     * @var bool|null
+     */
+    public $parallel_tool_calls;
 
     /**
      * @DTA\Data(field="response_format")

@@ -1,0 +1,41 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "id" },
+      {"model": "type" },
+      {"model": "effective_at" },
+      {"model": "project" },
+      {"model": "actor" },
+      {"model": "api_key_created" },
+      {"model": "api_key_updated" },
+      {"model": "api_key_deleted" },
+      {"model": "invite_sent" },
+      {"model": "invite_accepted" },
+      {"model": "invite_deleted" },
+      {"model": "login_failed" },
+      {"model": "logout_failed" },
+      {"model": "organization_updated" },
+      {"model": "project_created" },
+      {"model": "project_updated" },
+      {"model": "project_archived" },
+      {"model": "rate_limit_updated" },
+      {"model": "rate_limit_deleted" },
+      {"model": "service_account_created" },
+      {"model": "service_account_updated" },
+      {"model": "service_account_deleted" },
+      {"model": "user_added" },
+      {"model": "user_updated" },
+      {"model": "user_deleted" },
+    ]
+  }]
+}

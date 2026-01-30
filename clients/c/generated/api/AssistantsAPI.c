@@ -8,19 +8,19 @@
 #define MAX_BUFFER_LENGTH 4096
 #define MAX_NUMBER_LENGTH_LONG 21
 
-// Functions for enum ORDER for AssistantsAPI_listAssistantFiles
+// Functions for enum INCLUDE for AssistantsAPI_createRun
 
-static char* listAssistantFiles_ORDER_ToString(openai_api_listAssistantFiles_order_e ORDER){
-    char *ORDERArray[] =  { "NULL", "asc", "desc" };
-    return ORDERArray[ORDER];
+static char* createRun_INCLUDE_ToString(openai_api_createRun_include[]_e INCLUDE){
+    char *INCLUDEArray[] =  { "NULL", "step_details.tool_calls[*].file_search.results[*].content" };
+    return INCLUDEArray[INCLUDE];
 }
 
-static openai_api_listAssistantFiles_order_e listAssistantFiles_ORDER_FromString(char* ORDER){
+static openai_api_createRun_include[]_e createRun_INCLUDE_FromString(char* INCLUDE){
     int stringToReturn = 0;
-    char *ORDERArray[] =  { "NULL", "asc", "desc" };
-    size_t sizeofArray = sizeof(ORDERArray) / sizeof(ORDERArray[0]);
+    char *INCLUDEArray[] =  { "NULL", "step_details.tool_calls[*].file_search.results[*].content" };
+    size_t sizeofArray = sizeof(INCLUDEArray) / sizeof(INCLUDEArray[0]);
     while(stringToReturn < sizeofArray) {
-        if(strcmp(ORDER, ORDERArray[stringToReturn]) == 0) {
+        if(strcmp(INCLUDE, INCLUDEArray[stringToReturn]) == 0) {
             return stringToReturn;
         }
         stringToReturn++;
@@ -29,32 +29,66 @@ static openai_api_listAssistantFiles_order_e listAssistantFiles_ORDER_FromString
 }
 
 /*
-// Function listAssistantFiles_ORDER_convertToJSON is not currently used,
+// Function createRun_INCLUDE_convertToJSON is not currently used,
 // since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
 //
-static cJSON *listAssistantFiles_ORDER_convertToJSON(openai_api_listAssistantFiles_order_e ORDER) {
+static cJSON *createRun_INCLUDE_convertToJSON(openai_api_createRun_include[]_e INCLUDE) {
     cJSON *item = cJSON_CreateObject();
-    if(cJSON_AddStringToObject(item, "order", listAssistantFiles_ORDER_ToString(ORDER)) == NULL) {
-        goto fail;
-    }
     return item;
     fail:
     cJSON_Delete(item);
     return NULL;
 }
 
-// Function listAssistantFiles_ORDER_parseFromJSON is not currently used,
+// Function createRun_INCLUDE_parseFromJSON is not currently used,
 // since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
 //
-static openai_api_listAssistantFiles_order_e listAssistantFiles_ORDER_parseFromJSON(cJSON* ORDERJSON) {
-    openai_api_listAssistantFiles_order_e ORDERVariable = 0;
-    cJSON *ORDERVar = cJSON_GetObjectItemCaseSensitive(ORDERJSON, "order");
-    if(!cJSON_IsString(ORDERVar) || (ORDERVar->valuestring == NULL))
-    {
-        goto end;
+static openai_api_createRun_include[]_e createRun_INCLUDE_parseFromJSON(cJSON* INCLUDEJSON) {
+    openai_api_createRun_include[]_e INCLUDEVariable = 0;
+    return INCLUDEVariable;
+end:
+    return 0;
+}
+*/
+
+// Functions for enum INCLUDE for AssistantsAPI_getRunStep
+
+static char* getRunStep_INCLUDE_ToString(openai_api_getRunStep_include[]_e INCLUDE){
+    char *INCLUDEArray[] =  { "NULL", "step_details.tool_calls[*].file_search.results[*].content" };
+    return INCLUDEArray[INCLUDE];
+}
+
+static openai_api_getRunStep_include[]_e getRunStep_INCLUDE_FromString(char* INCLUDE){
+    int stringToReturn = 0;
+    char *INCLUDEArray[] =  { "NULL", "step_details.tool_calls[*].file_search.results[*].content" };
+    size_t sizeofArray = sizeof(INCLUDEArray) / sizeof(INCLUDEArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(INCLUDE, INCLUDEArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
     }
-    ORDERVariable = listAssistantFiles_ORDER_FromString(ORDERVar->valuestring);
-    return ORDERVariable;
+    return 0;
+}
+
+/*
+// Function getRunStep_INCLUDE_convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *getRunStep_INCLUDE_convertToJSON(openai_api_getRunStep_include[]_e INCLUDE) {
+    cJSON *item = cJSON_CreateObject();
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function getRunStep_INCLUDE_parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static openai_api_getRunStep_include[]_e getRunStep_INCLUDE_parseFromJSON(cJSON* INCLUDEJSON) {
+    openai_api_getRunStep_include[]_e INCLUDEVariable = 0;
+    return INCLUDEVariable;
 end:
     return 0;
 }
@@ -106,58 +140,6 @@ static openai_api_listAssistants_order_e listAssistants_ORDER_parseFromJSON(cJSO
         goto end;
     }
     ORDERVariable = listAssistants_ORDER_FromString(ORDERVar->valuestring);
-    return ORDERVariable;
-end:
-    return 0;
-}
-*/
-
-// Functions for enum ORDER for AssistantsAPI_listMessageFiles
-
-static char* listMessageFiles_ORDER_ToString(openai_api_listMessageFiles_order_e ORDER){
-    char *ORDERArray[] =  { "NULL", "asc", "desc" };
-    return ORDERArray[ORDER];
-}
-
-static openai_api_listMessageFiles_order_e listMessageFiles_ORDER_FromString(char* ORDER){
-    int stringToReturn = 0;
-    char *ORDERArray[] =  { "NULL", "asc", "desc" };
-    size_t sizeofArray = sizeof(ORDERArray) / sizeof(ORDERArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(ORDER, ORDERArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-/*
-// Function listMessageFiles_ORDER_convertToJSON is not currently used,
-// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
-//
-static cJSON *listMessageFiles_ORDER_convertToJSON(openai_api_listMessageFiles_order_e ORDER) {
-    cJSON *item = cJSON_CreateObject();
-    if(cJSON_AddStringToObject(item, "order", listMessageFiles_ORDER_ToString(ORDER)) == NULL) {
-        goto fail;
-    }
-    return item;
-    fail:
-    cJSON_Delete(item);
-    return NULL;
-}
-
-// Function listMessageFiles_ORDER_parseFromJSON is not currently used,
-// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
-//
-static openai_api_listMessageFiles_order_e listMessageFiles_ORDER_parseFromJSON(cJSON* ORDERJSON) {
-    openai_api_listMessageFiles_order_e ORDERVariable = 0;
-    cJSON *ORDERVar = cJSON_GetObjectItemCaseSensitive(ORDERJSON, "order");
-    if(!cJSON_IsString(ORDERVar) || (ORDERVar->valuestring == NULL))
-    {
-        goto end;
-    }
-    ORDERVariable = listMessageFiles_ORDER_FromString(ORDERVar->valuestring);
     return ORDERVariable;
 end:
     return 0;
@@ -263,6 +245,49 @@ static openai_api_listRunSteps_order_e listRunSteps_ORDER_parseFromJSON(cJSON* O
     }
     ORDERVariable = listRunSteps_ORDER_FromString(ORDERVar->valuestring);
     return ORDERVariable;
+end:
+    return 0;
+}
+*/
+
+// Functions for enum INCLUDE for AssistantsAPI_listRunSteps
+
+static char* listRunSteps_INCLUDE_ToString(openai_api_listRunSteps_include[]_e INCLUDE){
+    char *INCLUDEArray[] =  { "NULL", "step_details.tool_calls[*].file_search.results[*].content" };
+    return INCLUDEArray[INCLUDE];
+}
+
+static openai_api_listRunSteps_include[]_e listRunSteps_INCLUDE_FromString(char* INCLUDE){
+    int stringToReturn = 0;
+    char *INCLUDEArray[] =  { "NULL", "step_details.tool_calls[*].file_search.results[*].content" };
+    size_t sizeofArray = sizeof(INCLUDEArray) / sizeof(INCLUDEArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(INCLUDE, INCLUDEArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+/*
+// Function listRunSteps_INCLUDE_convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *listRunSteps_INCLUDE_convertToJSON(openai_api_listRunSteps_include[]_e INCLUDE) {
+    cJSON *item = cJSON_CreateObject();
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function listRunSteps_INCLUDE_parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static openai_api_listRunSteps_include[]_e listRunSteps_INCLUDE_parseFromJSON(cJSON* INCLUDEJSON) {
+    openai_api_listRunSteps_include[]_e INCLUDEVariable = 0;
+    return INCLUDEVariable;
 end:
     return 0;
 }
@@ -499,103 +524,6 @@ end:
 
 }
 
-// Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-//
-assistant_file_object_t*
-AssistantsAPI_createAssistantFile(apiClient_t *apiClient, char *assistant_id, create_assistant_file_request_t *create_assistant_file_request)
-{
-    list_t    *localVarQueryParameters = NULL;
-    list_t    *localVarHeaderParameters = NULL;
-    list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_createList();
-    list_t *localVarContentType = list_createList();
-    char      *localVarBodyParameters = NULL;
-    size_t     localVarBodyLength = 0;
-
-    // clear the error code from the previous api call
-    apiClient->response_code = 0;
-
-    // create the path
-    char *localVarPath = strdup("/assistants/{assistant_id}/files");
-
-    if(!assistant_id)
-        goto end;
-
-
-    // Path Params
-    long sizeOfPathParams_assistant_id = strlen(assistant_id)+3 + sizeof("{ assistant_id }") - 1;
-    if(assistant_id == NULL) {
-        goto end;
-    }
-    char* localVarToReplace_assistant_id = malloc(sizeOfPathParams_assistant_id);
-    sprintf(localVarToReplace_assistant_id, "{%s}", "assistant_id");
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_assistant_id, assistant_id);
-
-
-
-    // Body Param
-    cJSON *localVarSingleItemJSON_create_assistant_file_request = NULL;
-    if (create_assistant_file_request != NULL)
-    {
-        //not string, not binary
-        localVarSingleItemJSON_create_assistant_file_request = create_assistant_file_request_convertToJSON(create_assistant_file_request);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_create_assistant_file_request);
-        localVarBodyLength = strlen(localVarBodyParameters);
-    }
-    list_addElement(localVarHeaderType,"application/json"); //produces
-    list_addElement(localVarContentType,"application/json"); //consumes
-    apiClient_invoke(apiClient,
-                    localVarPath,
-                    localVarQueryParameters,
-                    localVarHeaderParameters,
-                    localVarFormParameters,
-                    localVarHeaderType,
-                    localVarContentType,
-                    localVarBodyParameters,
-                    localVarBodyLength,
-                    "POST");
-
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 200) {
-    //    printf("%s\n","OK");
-    //}
-    //nonprimitive not container
-    assistant_file_object_t *elementToReturn = NULL;
-    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
-        cJSON *AssistantsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-        elementToReturn = assistant_file_object_parseFromJSON(AssistantsAPIlocalVarJSON);
-        cJSON_Delete(AssistantsAPIlocalVarJSON);
-        if(elementToReturn == NULL) {
-            // return 0;
-        }
-    }
-
-    //return type
-    if (apiClient->dataReceived) {
-        free(apiClient->dataReceived);
-        apiClient->dataReceived = NULL;
-        apiClient->dataReceivedLen = 0;
-    }
-    
-    
-    
-    list_freeList(localVarHeaderType);
-    list_freeList(localVarContentType);
-    free(localVarPath);
-    free(localVarToReplace_assistant_id);
-    if (localVarSingleItemJSON_create_assistant_file_request) {
-        cJSON_Delete(localVarSingleItemJSON_create_assistant_file_request);
-        localVarSingleItemJSON_create_assistant_file_request = NULL;
-    }
-    free(localVarBodyParameters);
-    return elementToReturn;
-end:
-    free(localVarPath);
-    return NULL;
-
-}
-
 // Create a message.
 //
 message_object_t*
@@ -696,9 +624,9 @@ end:
 // Create a run.
 //
 run_object_t*
-AssistantsAPI_createRun(apiClient_t *apiClient, char *thread_id, create_run_request_t *create_run_request)
+AssistantsAPI_createRun(apiClient_t *apiClient, char *thread_id, create_run_request_t *create_run_request, list_t *include[])
 {
-    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
     list_t *localVarHeaderType = list_createList();
@@ -727,6 +655,12 @@ AssistantsAPI_createRun(apiClient_t *apiClient, char *thread_id, create_run_requ
     localVarPath = strReplace(localVarPath, localVarToReplace_thread_id, thread_id);
 
 
+
+    // query parameters
+    if (include[])
+    {
+        list_addElement(localVarQueryParameters,include[]);
+    }
 
     // Body Param
     cJSON *localVarSingleItemJSON_create_run_request = NULL;
@@ -771,7 +705,7 @@ AssistantsAPI_createRun(apiClient_t *apiClient, char *thread_id, create_run_requ
         apiClient->dataReceived = NULL;
         apiClient->dataReceivedLen = 0;
     }
-    
+    list_freeList(localVarQueryParameters);
     
     
     list_freeList(localVarHeaderType);
@@ -1039,10 +973,10 @@ end:
 
 }
 
-// Delete an assistant file.
+// Deletes a message.
 //
-delete_assistant_file_response_t*
-AssistantsAPI_deleteAssistantFile(apiClient_t *apiClient, char *assistant_id, char *file_id)
+delete_message_response_t*
+AssistantsAPI_deleteMessage(apiClient_t *apiClient, char *thread_id, char *message_id)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1056,33 +990,33 @@ AssistantsAPI_deleteAssistantFile(apiClient_t *apiClient, char *assistant_id, ch
     apiClient->response_code = 0;
 
     // create the path
-    char *localVarPath = strdup("/assistants/{assistant_id}/files/{file_id}");
+    char *localVarPath = strdup("/threads/{thread_id}/messages/{message_id}");
 
-    if(!assistant_id)
+    if(!thread_id)
         goto end;
-    if(!file_id)
+    if(!message_id)
         goto end;
 
 
     // Path Params
-    long sizeOfPathParams_assistant_id = strlen(assistant_id)+3 + strlen(file_id)+3 + sizeof("{ assistant_id }") - 1;
-    if(assistant_id == NULL) {
+    long sizeOfPathParams_thread_id = strlen(thread_id)+3 + strlen(message_id)+3 + sizeof("{ thread_id }") - 1;
+    if(thread_id == NULL) {
         goto end;
     }
-    char* localVarToReplace_assistant_id = malloc(sizeOfPathParams_assistant_id);
-    sprintf(localVarToReplace_assistant_id, "{%s}", "assistant_id");
+    char* localVarToReplace_thread_id = malloc(sizeOfPathParams_thread_id);
+    sprintf(localVarToReplace_thread_id, "{%s}", "thread_id");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_assistant_id, assistant_id);
+    localVarPath = strReplace(localVarPath, localVarToReplace_thread_id, thread_id);
 
     // Path Params
-    long sizeOfPathParams_file_id = strlen(assistant_id)+3 + strlen(file_id)+3 + sizeof("{ file_id }") - 1;
-    if(file_id == NULL) {
+    long sizeOfPathParams_message_id = strlen(thread_id)+3 + strlen(message_id)+3 + sizeof("{ message_id }") - 1;
+    if(message_id == NULL) {
         goto end;
     }
-    char* localVarToReplace_file_id = malloc(sizeOfPathParams_file_id);
-    sprintf(localVarToReplace_file_id, "{%s}", "file_id");
+    char* localVarToReplace_message_id = malloc(sizeOfPathParams_message_id);
+    sprintf(localVarToReplace_message_id, "{%s}", "message_id");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_file_id, file_id);
+    localVarPath = strReplace(localVarPath, localVarToReplace_message_id, message_id);
 
 
     list_addElement(localVarHeaderType,"application/json"); //produces
@@ -1102,10 +1036,10 @@ AssistantsAPI_deleteAssistantFile(apiClient_t *apiClient, char *assistant_id, ch
     //    printf("%s\n","OK");
     //}
     //nonprimitive not container
-    delete_assistant_file_response_t *elementToReturn = NULL;
+    delete_message_response_t *elementToReturn = NULL;
     if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
         cJSON *AssistantsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-        elementToReturn = delete_assistant_file_response_parseFromJSON(AssistantsAPIlocalVarJSON);
+        elementToReturn = delete_message_response_parseFromJSON(AssistantsAPIlocalVarJSON);
         cJSON_Delete(AssistantsAPIlocalVarJSON);
         if(elementToReturn == NULL) {
             // return 0;
@@ -1124,8 +1058,8 @@ AssistantsAPI_deleteAssistantFile(apiClient_t *apiClient, char *assistant_id, ch
     list_freeList(localVarHeaderType);
     
     free(localVarPath);
-    free(localVarToReplace_assistant_id);
-    free(localVarToReplace_file_id);
+    free(localVarToReplace_thread_id);
+    free(localVarToReplace_message_id);
     return elementToReturn;
 end:
     free(localVarPath);
@@ -1295,100 +1229,6 @@ end:
 
 }
 
-// Retrieves an AssistantFile.
-//
-assistant_file_object_t*
-AssistantsAPI_getAssistantFile(apiClient_t *apiClient, char *assistant_id, char *file_id)
-{
-    list_t    *localVarQueryParameters = NULL;
-    list_t    *localVarHeaderParameters = NULL;
-    list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_createList();
-    list_t *localVarContentType = NULL;
-    char      *localVarBodyParameters = NULL;
-    size_t     localVarBodyLength = 0;
-
-    // clear the error code from the previous api call
-    apiClient->response_code = 0;
-
-    // create the path
-    char *localVarPath = strdup("/assistants/{assistant_id}/files/{file_id}");
-
-    if(!assistant_id)
-        goto end;
-    if(!file_id)
-        goto end;
-
-
-    // Path Params
-    long sizeOfPathParams_assistant_id = strlen(assistant_id)+3 + strlen(file_id)+3 + sizeof("{ assistant_id }") - 1;
-    if(assistant_id == NULL) {
-        goto end;
-    }
-    char* localVarToReplace_assistant_id = malloc(sizeOfPathParams_assistant_id);
-    sprintf(localVarToReplace_assistant_id, "{%s}", "assistant_id");
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_assistant_id, assistant_id);
-
-    // Path Params
-    long sizeOfPathParams_file_id = strlen(assistant_id)+3 + strlen(file_id)+3 + sizeof("{ file_id }") - 1;
-    if(file_id == NULL) {
-        goto end;
-    }
-    char* localVarToReplace_file_id = malloc(sizeOfPathParams_file_id);
-    sprintf(localVarToReplace_file_id, "{%s}", "file_id");
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_file_id, file_id);
-
-
-    list_addElement(localVarHeaderType,"application/json"); //produces
-    apiClient_invoke(apiClient,
-                    localVarPath,
-                    localVarQueryParameters,
-                    localVarHeaderParameters,
-                    localVarFormParameters,
-                    localVarHeaderType,
-                    localVarContentType,
-                    localVarBodyParameters,
-                    localVarBodyLength,
-                    "GET");
-
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 200) {
-    //    printf("%s\n","OK");
-    //}
-    //nonprimitive not container
-    assistant_file_object_t *elementToReturn = NULL;
-    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
-        cJSON *AssistantsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-        elementToReturn = assistant_file_object_parseFromJSON(AssistantsAPIlocalVarJSON);
-        cJSON_Delete(AssistantsAPIlocalVarJSON);
-        if(elementToReturn == NULL) {
-            // return 0;
-        }
-    }
-
-    //return type
-    if (apiClient->dataReceived) {
-        free(apiClient->dataReceived);
-        apiClient->dataReceived = NULL;
-        apiClient->dataReceivedLen = 0;
-    }
-    
-    
-    
-    list_freeList(localVarHeaderType);
-    
-    free(localVarPath);
-    free(localVarToReplace_assistant_id);
-    free(localVarToReplace_file_id);
-    return elementToReturn;
-end:
-    free(localVarPath);
-    return NULL;
-
-}
-
 // Retrieve a message.
 //
 message_object_t*
@@ -1476,113 +1316,6 @@ AssistantsAPI_getMessage(apiClient_t *apiClient, char *thread_id, char *message_
     free(localVarPath);
     free(localVarToReplace_thread_id);
     free(localVarToReplace_message_id);
-    return elementToReturn;
-end:
-    free(localVarPath);
-    return NULL;
-
-}
-
-// Retrieves a message file.
-//
-message_file_object_t*
-AssistantsAPI_getMessageFile(apiClient_t *apiClient, char *thread_id, char *message_id, char *file_id)
-{
-    list_t    *localVarQueryParameters = NULL;
-    list_t    *localVarHeaderParameters = NULL;
-    list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_createList();
-    list_t *localVarContentType = NULL;
-    char      *localVarBodyParameters = NULL;
-    size_t     localVarBodyLength = 0;
-
-    // clear the error code from the previous api call
-    apiClient->response_code = 0;
-
-    // create the path
-    char *localVarPath = strdup("/threads/{thread_id}/messages/{message_id}/files/{file_id}");
-
-    if(!thread_id)
-        goto end;
-    if(!message_id)
-        goto end;
-    if(!file_id)
-        goto end;
-
-
-    // Path Params
-    long sizeOfPathParams_thread_id = strlen(thread_id)+3 + strlen(message_id)+3 + strlen(file_id)+3 + sizeof("{ thread_id }") - 1;
-    if(thread_id == NULL) {
-        goto end;
-    }
-    char* localVarToReplace_thread_id = malloc(sizeOfPathParams_thread_id);
-    sprintf(localVarToReplace_thread_id, "{%s}", "thread_id");
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_thread_id, thread_id);
-
-    // Path Params
-    long sizeOfPathParams_message_id = strlen(thread_id)+3 + strlen(message_id)+3 + strlen(file_id)+3 + sizeof("{ message_id }") - 1;
-    if(message_id == NULL) {
-        goto end;
-    }
-    char* localVarToReplace_message_id = malloc(sizeOfPathParams_message_id);
-    sprintf(localVarToReplace_message_id, "{%s}", "message_id");
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_message_id, message_id);
-
-    // Path Params
-    long sizeOfPathParams_file_id = strlen(thread_id)+3 + strlen(message_id)+3 + strlen(file_id)+3 + sizeof("{ file_id }") - 1;
-    if(file_id == NULL) {
-        goto end;
-    }
-    char* localVarToReplace_file_id = malloc(sizeOfPathParams_file_id);
-    sprintf(localVarToReplace_file_id, "{%s}", "file_id");
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_file_id, file_id);
-
-
-    list_addElement(localVarHeaderType,"application/json"); //produces
-    apiClient_invoke(apiClient,
-                    localVarPath,
-                    localVarQueryParameters,
-                    localVarHeaderParameters,
-                    localVarFormParameters,
-                    localVarHeaderType,
-                    localVarContentType,
-                    localVarBodyParameters,
-                    localVarBodyLength,
-                    "GET");
-
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 200) {
-    //    printf("%s\n","OK");
-    //}
-    //nonprimitive not container
-    message_file_object_t *elementToReturn = NULL;
-    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
-        cJSON *AssistantsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-        elementToReturn = message_file_object_parseFromJSON(AssistantsAPIlocalVarJSON);
-        cJSON_Delete(AssistantsAPIlocalVarJSON);
-        if(elementToReturn == NULL) {
-            // return 0;
-        }
-    }
-
-    //return type
-    if (apiClient->dataReceived) {
-        free(apiClient->dataReceived);
-        apiClient->dataReceived = NULL;
-        apiClient->dataReceivedLen = 0;
-    }
-    
-    
-    
-    list_freeList(localVarHeaderType);
-    
-    free(localVarPath);
-    free(localVarToReplace_thread_id);
-    free(localVarToReplace_message_id);
-    free(localVarToReplace_file_id);
     return elementToReturn;
 end:
     free(localVarPath);
@@ -1687,9 +1420,9 @@ end:
 // Retrieves a run step.
 //
 run_step_object_t*
-AssistantsAPI_getRunStep(apiClient_t *apiClient, char *thread_id, char *run_id, char *step_id)
+AssistantsAPI_getRunStep(apiClient_t *apiClient, char *thread_id, char *run_id, char *step_id, list_t *include[])
 {
-    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
     list_t *localVarHeaderType = list_createList();
@@ -1742,6 +1475,12 @@ AssistantsAPI_getRunStep(apiClient_t *apiClient, char *thread_id, char *run_id, 
     localVarPath = strReplace(localVarPath, localVarToReplace_step_id, step_id);
 
 
+
+    // query parameters
+    if (include[])
+    {
+        list_addElement(localVarQueryParameters,include[]);
+    }
     list_addElement(localVarHeaderType,"application/json"); //produces
     apiClient_invoke(apiClient,
                     localVarPath,
@@ -1775,7 +1514,7 @@ AssistantsAPI_getRunStep(apiClient_t *apiClient, char *thread_id, char *run_id, 
         apiClient->dataReceived = NULL;
         apiClient->dataReceivedLen = 0;
     }
-    
+    list_freeList(localVarQueryParameters);
     
     
     list_freeList(localVarHeaderType);
@@ -1865,181 +1604,6 @@ AssistantsAPI_getThread(apiClient_t *apiClient, char *thread_id)
     
     free(localVarPath);
     free(localVarToReplace_thread_id);
-    return elementToReturn;
-end:
-    free(localVarPath);
-    return NULL;
-
-}
-
-// Returns a list of assistant files.
-//
-list_assistant_files_response_t*
-AssistantsAPI_listAssistantFiles(apiClient_t *apiClient, char *assistant_id, int *limit, openai_api_listAssistantFiles_order_e order, char *after, char *before)
-{
-    list_t    *localVarQueryParameters = list_createList();
-    list_t    *localVarHeaderParameters = NULL;
-    list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_createList();
-    list_t *localVarContentType = NULL;
-    char      *localVarBodyParameters = NULL;
-    size_t     localVarBodyLength = 0;
-
-    // clear the error code from the previous api call
-    apiClient->response_code = 0;
-
-    // create the path
-    char *localVarPath = strdup("/assistants/{assistant_id}/files");
-
-    if(!assistant_id)
-        goto end;
-
-
-    // Path Params
-    long sizeOfPathParams_assistant_id = strlen(assistant_id)+3 + sizeof("{ assistant_id }") - 1;
-    if(assistant_id == NULL) {
-        goto end;
-    }
-    char* localVarToReplace_assistant_id = malloc(sizeOfPathParams_assistant_id);
-    sprintf(localVarToReplace_assistant_id, "{%s}", "assistant_id");
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_assistant_id, assistant_id);
-
-
-
-    // query parameters
-    char *keyQuery_limit = NULL;
-    char * valueQuery_limit = NULL;
-    keyValuePair_t *keyPairQuery_limit = 0;
-    if (limit)
-    {
-        keyQuery_limit = strdup("limit");
-        valueQuery_limit = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_limit, MAX_NUMBER_LENGTH, "%d", *limit);
-        keyPairQuery_limit = keyValuePair_create(keyQuery_limit, valueQuery_limit);
-        list_addElement(localVarQueryParameters,keyPairQuery_limit);
-    }
-
-    // query parameters
-    char *keyQuery_order = NULL;
-    openai_api_listAssistantFiles_order_e valueQuery_order ;
-    keyValuePair_t *keyPairQuery_order = 0;
-    if (order)
-    {
-        keyQuery_order = strdup("order");
-        valueQuery_order = (order);
-        keyPairQuery_order = keyValuePair_create(keyQuery_order, strdup(listAssistantFiles_ORDER_ToString(
-        valueQuery_order)));
-        list_addElement(localVarQueryParameters,keyPairQuery_order);
-    }
-
-    // query parameters
-    char *keyQuery_after = NULL;
-    char * valueQuery_after = NULL;
-    keyValuePair_t *keyPairQuery_after = 0;
-    if (after)
-    {
-        keyQuery_after = strdup("after");
-        valueQuery_after = strdup((after));
-        keyPairQuery_after = keyValuePair_create(keyQuery_after, valueQuery_after);
-        list_addElement(localVarQueryParameters,keyPairQuery_after);
-    }
-
-    // query parameters
-    char *keyQuery_before = NULL;
-    char * valueQuery_before = NULL;
-    keyValuePair_t *keyPairQuery_before = 0;
-    if (before)
-    {
-        keyQuery_before = strdup("before");
-        valueQuery_before = strdup((before));
-        keyPairQuery_before = keyValuePair_create(keyQuery_before, valueQuery_before);
-        list_addElement(localVarQueryParameters,keyPairQuery_before);
-    }
-    list_addElement(localVarHeaderType,"application/json"); //produces
-    apiClient_invoke(apiClient,
-                    localVarPath,
-                    localVarQueryParameters,
-                    localVarHeaderParameters,
-                    localVarFormParameters,
-                    localVarHeaderType,
-                    localVarContentType,
-                    localVarBodyParameters,
-                    localVarBodyLength,
-                    "GET");
-
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 200) {
-    //    printf("%s\n","OK");
-    //}
-    //nonprimitive not container
-    list_assistant_files_response_t *elementToReturn = NULL;
-    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
-        cJSON *AssistantsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-        elementToReturn = list_assistant_files_response_parseFromJSON(AssistantsAPIlocalVarJSON);
-        cJSON_Delete(AssistantsAPIlocalVarJSON);
-        if(elementToReturn == NULL) {
-            // return 0;
-        }
-    }
-
-    //return type
-    if (apiClient->dataReceived) {
-        free(apiClient->dataReceived);
-        apiClient->dataReceived = NULL;
-        apiClient->dataReceivedLen = 0;
-    }
-    list_freeList(localVarQueryParameters);
-    
-    
-    list_freeList(localVarHeaderType);
-    
-    free(localVarPath);
-    free(localVarToReplace_assistant_id);
-    if(keyQuery_limit){
-        free(keyQuery_limit);
-        keyQuery_limit = NULL;
-    }
-    if(valueQuery_limit){
-        free(valueQuery_limit);
-        valueQuery_limit = NULL;
-    }
-    if(keyPairQuery_limit){
-        keyValuePair_free(keyPairQuery_limit);
-        keyPairQuery_limit = NULL;
-    }
-    if(keyQuery_order){
-        free(keyQuery_order);
-        keyQuery_order = NULL;
-    }
-    if(keyPairQuery_order){
-        keyValuePair_free(keyPairQuery_order);
-        keyPairQuery_order = NULL;
-    }
-    if(keyQuery_after){
-        free(keyQuery_after);
-        keyQuery_after = NULL;
-    }
-    if(valueQuery_after){
-        free(valueQuery_after);
-        valueQuery_after = NULL;
-    }
-    if(keyPairQuery_after){
-        keyValuePair_free(keyPairQuery_after);
-        keyPairQuery_after = NULL;
-    }
-    if(keyQuery_before){
-        free(keyQuery_before);
-        keyQuery_before = NULL;
-    }
-    if(valueQuery_before){
-        free(valueQuery_before);
-        valueQuery_before = NULL;
-    }
-    if(keyPairQuery_before){
-        keyValuePair_free(keyPairQuery_before);
-        keyPairQuery_before = NULL;
-    }
     return elementToReturn;
 end:
     free(localVarPath);
@@ -2158,194 +1722,6 @@ AssistantsAPI_listAssistants(apiClient_t *apiClient, int *limit, openai_api_list
     list_freeList(localVarHeaderType);
     
     free(localVarPath);
-    if(keyQuery_limit){
-        free(keyQuery_limit);
-        keyQuery_limit = NULL;
-    }
-    if(valueQuery_limit){
-        free(valueQuery_limit);
-        valueQuery_limit = NULL;
-    }
-    if(keyPairQuery_limit){
-        keyValuePair_free(keyPairQuery_limit);
-        keyPairQuery_limit = NULL;
-    }
-    if(keyQuery_order){
-        free(keyQuery_order);
-        keyQuery_order = NULL;
-    }
-    if(keyPairQuery_order){
-        keyValuePair_free(keyPairQuery_order);
-        keyPairQuery_order = NULL;
-    }
-    if(keyQuery_after){
-        free(keyQuery_after);
-        keyQuery_after = NULL;
-    }
-    if(valueQuery_after){
-        free(valueQuery_after);
-        valueQuery_after = NULL;
-    }
-    if(keyPairQuery_after){
-        keyValuePair_free(keyPairQuery_after);
-        keyPairQuery_after = NULL;
-    }
-    if(keyQuery_before){
-        free(keyQuery_before);
-        keyQuery_before = NULL;
-    }
-    if(valueQuery_before){
-        free(valueQuery_before);
-        valueQuery_before = NULL;
-    }
-    if(keyPairQuery_before){
-        keyValuePair_free(keyPairQuery_before);
-        keyPairQuery_before = NULL;
-    }
-    return elementToReturn;
-end:
-    free(localVarPath);
-    return NULL;
-
-}
-
-// Returns a list of message files.
-//
-list_message_files_response_t*
-AssistantsAPI_listMessageFiles(apiClient_t *apiClient, char *thread_id, char *message_id, int *limit, openai_api_listMessageFiles_order_e order, char *after, char *before)
-{
-    list_t    *localVarQueryParameters = list_createList();
-    list_t    *localVarHeaderParameters = NULL;
-    list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_createList();
-    list_t *localVarContentType = NULL;
-    char      *localVarBodyParameters = NULL;
-    size_t     localVarBodyLength = 0;
-
-    // clear the error code from the previous api call
-    apiClient->response_code = 0;
-
-    // create the path
-    char *localVarPath = strdup("/threads/{thread_id}/messages/{message_id}/files");
-
-    if(!thread_id)
-        goto end;
-    if(!message_id)
-        goto end;
-
-
-    // Path Params
-    long sizeOfPathParams_thread_id = strlen(thread_id)+3 + strlen(message_id)+3 + sizeof("{ thread_id }") - 1;
-    if(thread_id == NULL) {
-        goto end;
-    }
-    char* localVarToReplace_thread_id = malloc(sizeOfPathParams_thread_id);
-    sprintf(localVarToReplace_thread_id, "{%s}", "thread_id");
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_thread_id, thread_id);
-
-    // Path Params
-    long sizeOfPathParams_message_id = strlen(thread_id)+3 + strlen(message_id)+3 + sizeof("{ message_id }") - 1;
-    if(message_id == NULL) {
-        goto end;
-    }
-    char* localVarToReplace_message_id = malloc(sizeOfPathParams_message_id);
-    sprintf(localVarToReplace_message_id, "{%s}", "message_id");
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_message_id, message_id);
-
-
-
-    // query parameters
-    char *keyQuery_limit = NULL;
-    char * valueQuery_limit = NULL;
-    keyValuePair_t *keyPairQuery_limit = 0;
-    if (limit)
-    {
-        keyQuery_limit = strdup("limit");
-        valueQuery_limit = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_limit, MAX_NUMBER_LENGTH, "%d", *limit);
-        keyPairQuery_limit = keyValuePair_create(keyQuery_limit, valueQuery_limit);
-        list_addElement(localVarQueryParameters,keyPairQuery_limit);
-    }
-
-    // query parameters
-    char *keyQuery_order = NULL;
-    openai_api_listMessageFiles_order_e valueQuery_order ;
-    keyValuePair_t *keyPairQuery_order = 0;
-    if (order)
-    {
-        keyQuery_order = strdup("order");
-        valueQuery_order = (order);
-        keyPairQuery_order = keyValuePair_create(keyQuery_order, strdup(listMessageFiles_ORDER_ToString(
-        valueQuery_order)));
-        list_addElement(localVarQueryParameters,keyPairQuery_order);
-    }
-
-    // query parameters
-    char *keyQuery_after = NULL;
-    char * valueQuery_after = NULL;
-    keyValuePair_t *keyPairQuery_after = 0;
-    if (after)
-    {
-        keyQuery_after = strdup("after");
-        valueQuery_after = strdup((after));
-        keyPairQuery_after = keyValuePair_create(keyQuery_after, valueQuery_after);
-        list_addElement(localVarQueryParameters,keyPairQuery_after);
-    }
-
-    // query parameters
-    char *keyQuery_before = NULL;
-    char * valueQuery_before = NULL;
-    keyValuePair_t *keyPairQuery_before = 0;
-    if (before)
-    {
-        keyQuery_before = strdup("before");
-        valueQuery_before = strdup((before));
-        keyPairQuery_before = keyValuePair_create(keyQuery_before, valueQuery_before);
-        list_addElement(localVarQueryParameters,keyPairQuery_before);
-    }
-    list_addElement(localVarHeaderType,"application/json"); //produces
-    apiClient_invoke(apiClient,
-                    localVarPath,
-                    localVarQueryParameters,
-                    localVarHeaderParameters,
-                    localVarFormParameters,
-                    localVarHeaderType,
-                    localVarContentType,
-                    localVarBodyParameters,
-                    localVarBodyLength,
-                    "GET");
-
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 200) {
-    //    printf("%s\n","OK");
-    //}
-    //nonprimitive not container
-    list_message_files_response_t *elementToReturn = NULL;
-    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
-        cJSON *AssistantsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-        elementToReturn = list_message_files_response_parseFromJSON(AssistantsAPIlocalVarJSON);
-        cJSON_Delete(AssistantsAPIlocalVarJSON);
-        if(elementToReturn == NULL) {
-            // return 0;
-        }
-    }
-
-    //return type
-    if (apiClient->dataReceived) {
-        free(apiClient->dataReceived);
-        apiClient->dataReceived = NULL;
-        apiClient->dataReceivedLen = 0;
-    }
-    list_freeList(localVarQueryParameters);
-    
-    
-    list_freeList(localVarHeaderType);
-    
-    free(localVarPath);
-    free(localVarToReplace_thread_id);
-    free(localVarToReplace_message_id);
     if(keyQuery_limit){
         free(keyQuery_limit);
         keyQuery_limit = NULL;
@@ -2599,7 +1975,7 @@ end:
 // Returns a list of run steps belonging to a run.
 //
 list_run_steps_response_t*
-AssistantsAPI_listRunSteps(apiClient_t *apiClient, char *thread_id, char *run_id, int *limit, openai_api_listRunSteps_order_e order, char *after, char *before)
+AssistantsAPI_listRunSteps(apiClient_t *apiClient, char *thread_id, char *run_id, int *limit, openai_api_listRunSteps_order_e order, char *after, char *before, list_t *include[])
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -2691,6 +2067,12 @@ AssistantsAPI_listRunSteps(apiClient_t *apiClient, char *thread_id, char *run_id
         valueQuery_before = strdup((before));
         keyPairQuery_before = keyValuePair_create(keyQuery_before, valueQuery_before);
         list_addElement(localVarQueryParameters,keyPairQuery_before);
+    }
+
+    // query parameters
+    if (include[])
+    {
+        list_addElement(localVarQueryParameters,include[]);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     apiClient_invoke(apiClient,

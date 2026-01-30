@@ -6,12 +6,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.model.ModifyThreadRequestToolResources;
 
 /**
  * Represents a thread that contains [messages](/docs/api-reference/messages).
  */
 @ApiModel(description = "Represents a thread that contains [messages](/docs/api-reference/messages).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ThreadObject   {
   @JsonProperty("id")
   private String id;
@@ -50,6 +51,9 @@ public class ThreadObject   {
 
   @JsonProperty("created_at")
   private Integer createdAt;
+
+  @JsonProperty("tool_resources")
+  private ModifyThreadRequestToolResources toolResources;
 
   @JsonProperty("metadata")
   private Object metadata;
@@ -108,16 +112,34 @@ public class ThreadObject   {
     this.createdAt = createdAt;
   }
 
+  public ThreadObject toolResources(ModifyThreadRequestToolResources toolResources) {
+    this.toolResources = toolResources;
+    return this;
+  }
+
+   /**
+   * Get toolResources
+   * @return toolResources
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public ModifyThreadRequestToolResources getToolResources() {
+    return toolResources;
+  }
+
+  public void setToolResources(ModifyThreadRequestToolResources toolResources) {
+    this.toolResources = toolResources;
+  }
+
   public ThreadObject metadata(Object metadata) {
     this.metadata = metadata;
     return this;
   }
 
    /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
   **/
-  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
   public Object getMetadata() {
     return metadata;
   }
@@ -139,12 +161,13 @@ public class ThreadObject   {
     return Objects.equals(this.id, threadObject.id) &&
         Objects.equals(this._object, threadObject._object) &&
         Objects.equals(this.createdAt, threadObject.createdAt) &&
+        Objects.equals(this.toolResources, threadObject.toolResources) &&
         Objects.equals(this.metadata, threadObject.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, metadata);
+    return Objects.hash(id, _object, createdAt, toolResources, metadata);
   }
 
   @Override
@@ -155,6 +178,7 @@ public class ThreadObject   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -3,7 +3,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * OpenAPI document version: 2.0.0
+ * OpenAPI document version: 2.3.0
  * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -13,6 +13,7 @@ package org.openapitools.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -20,13 +21,34 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T10:45:08.090000084Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageDeltaContentImageFileObjectImageFile   {
   
   private String fileId;
 
+
+  public enum DetailEnum {
+    AUTO("auto"),
+    LOW("low"),
+    HIGH("high");
+
+    private String value;
+
+    DetailEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return value;
+    }
+  }
+
+  private DetailEnum detail = DetailEnum.AUTO;
+
   /**
-   * The [File](/docs/api-reference/files) ID of the image in the message content.
+   * The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content.
    */
   public MessageDeltaContentImageFileObjectImageFile fileId(String fileId) {
     this.fileId = fileId;
@@ -34,13 +56,31 @@ public class MessageDeltaContentImageFileObjectImageFile   {
   }
 
   
-  @ApiModelProperty(value = "The [File](/docs/api-reference/files) ID of the image in the message content.")
+  @ApiModelProperty(value = "The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content.")
   @JsonProperty("file_id")
   public String getFileId() {
     return fileId;
   }
   public void setFileId(String fileId) {
     this.fileId = fileId;
+  }
+
+  /**
+   * Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
+   */
+  public MessageDeltaContentImageFileObjectImageFile detail(DetailEnum detail) {
+    this.detail = detail;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.")
+  @JsonProperty("detail")
+  public DetailEnum getDetail() {
+    return detail;
+  }
+  public void setDetail(DetailEnum detail) {
+    this.detail = detail;
   }
 
 
@@ -53,12 +93,13 @@ public class MessageDeltaContentImageFileObjectImageFile   {
       return false;
     }
     MessageDeltaContentImageFileObjectImageFile messageDeltaContentImageFileObjectImageFile = (MessageDeltaContentImageFileObjectImageFile) o;
-    return Objects.equals(fileId, messageDeltaContentImageFileObjectImageFile.fileId);
+    return Objects.equals(fileId, messageDeltaContentImageFileObjectImageFile.fileId) &&
+        Objects.equals(detail, messageDeltaContentImageFileObjectImageFile.detail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileId);
+    return Objects.hash(fileId, detail);
   }
 
   @Override
@@ -67,6 +108,7 @@ public class MessageDeltaContentImageFileObjectImageFile   {
     sb.append("class MessageDeltaContentImageFileObjectImageFile {\n");
     
     sb.append("    fileId: ").append(toIndentedString(fileId)).append("\n");
+    sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -12,12 +12,18 @@ import AnyCodable
 
 public enum MessageObjectContentInner: Codable, JSONEncodable, Hashable {
     case typeMessageContentImageFileObject(MessageContentImageFileObject)
+    case typeMessageContentImageUrlObject(MessageContentImageUrlObject)
+    case typeMessageContentRefusalObject(MessageContentRefusalObject)
     case typeMessageContentTextObject(MessageContentTextObject)
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .typeMessageContentImageFileObject(let value):
+            try container.encode(value)
+        case .typeMessageContentImageUrlObject(let value):
+            try container.encode(value)
+        case .typeMessageContentRefusalObject(let value):
             try container.encode(value)
         case .typeMessageContentTextObject(let value):
             try container.encode(value)
@@ -28,6 +34,10 @@ public enum MessageObjectContentInner: Codable, JSONEncodable, Hashable {
         let container = try decoder.singleValueContainer()
         if let value = try? container.decode(MessageContentImageFileObject.self) {
             self = .typeMessageContentImageFileObject(value)
+        } else if let value = try? container.decode(MessageContentImageUrlObject.self) {
+            self = .typeMessageContentImageUrlObject(value)
+        } else if let value = try? container.decode(MessageContentRefusalObject.self) {
+            self = .typeMessageContentRefusalObject(value)
         } else if let value = try? container.decode(MessageContentTextObject.self) {
             self = .typeMessageContentTextObject(value)
         } else {

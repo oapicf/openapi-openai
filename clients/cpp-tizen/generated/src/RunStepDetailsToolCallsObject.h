@@ -54,11 +54,11 @@ public:
 	/*! \brief Set Always `tool_calls`.
 	 */
 	void setType(std::string  type);
-	/*! \brief Get An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+	/*! \brief Get An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
 	 */
 	std::list<RunStepDetailsToolCallsObject_tool_calls_inner> getToolCalls();
 
-	/*! \brief Set An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+	/*! \brief Set An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
 	 */
 	void setToolCalls(std::list <RunStepDetailsToolCallsObject_tool_calls_inner> tool_calls);
 

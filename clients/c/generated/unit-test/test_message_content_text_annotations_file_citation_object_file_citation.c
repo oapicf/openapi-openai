@@ -22,12 +22,10 @@ message_content_text_annotations_file_citation_object_file_citation_t* instantia
   message_content_text_annotations_file_citation_object_file_citation_t* message_content_text_annotations_file_citation_object_file_citation = NULL;
   if (include_optional) {
     message_content_text_annotations_file_citation_object_file_citation = message_content_text_annotations_file_citation_object_file_citation_create(
-      "0",
       "0"
     );
   } else {
     message_content_text_annotations_file_citation_object_file_citation = message_content_text_annotations_file_citation_object_file_citation_create(
-      "0",
       "0"
     );
   }

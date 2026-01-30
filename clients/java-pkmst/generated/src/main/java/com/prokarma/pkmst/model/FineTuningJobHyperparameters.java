@@ -4,7 +4,9 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.prokarma.pkmst.model.FineTuningJobHyperparametersNEpochs;
+import com.prokarma.pkmst.model.CreateFineTuningJobRequestHyperparametersBatchSize;
+import com.prokarma.pkmst.model.CreateFineTuningJobRequestHyperparametersLearningRateMultiplier;
+import com.prokarma.pkmst.model.CreateFineTuningJobRequestHyperparametersNEpochs;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 /**
@@ -13,16 +15,58 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 /**
- * The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+ * The hyperparameters used for the fine-tuning job. This value will only be returned when running &#x60;supervised&#x60; jobs.
  */
-@ApiModel(description = "The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.")
+@ApiModel(description = "The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.")
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T10:45:02.588292416Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FineTuningJobHyperparameters   {
-  @JsonProperty("n_epochs")
-  private FineTuningJobHyperparametersNEpochs nEpochs = auto;
+  @JsonProperty("batch_size")
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
 
-  public FineTuningJobHyperparameters nEpochs(FineTuningJobHyperparametersNEpochs nEpochs) {
+  @JsonProperty("learning_rate_multiplier")
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+
+  @JsonProperty("n_epochs")
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
+
+  public FineTuningJobHyperparameters batchSize(CreateFineTuningJobRequestHyperparametersBatchSize batchSize) {
+    this.batchSize = batchSize;
+    return this;
+  }
+
+  /**
+   * Get batchSize
+   * @return batchSize
+   */
+  @ApiModelProperty(value = "")
+  public CreateFineTuningJobRequestHyperparametersBatchSize getBatchSize() {
+    return batchSize;
+  }
+
+  public void setBatchSize(CreateFineTuningJobRequestHyperparametersBatchSize batchSize) {
+    this.batchSize = batchSize;
+  }
+
+  public FineTuningJobHyperparameters learningRateMultiplier(CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier) {
+    this.learningRateMultiplier = learningRateMultiplier;
+    return this;
+  }
+
+  /**
+   * Get learningRateMultiplier
+   * @return learningRateMultiplier
+   */
+  @ApiModelProperty(value = "")
+  public CreateFineTuningJobRequestHyperparametersLearningRateMultiplier getLearningRateMultiplier() {
+    return learningRateMultiplier;
+  }
+
+  public void setLearningRateMultiplier(CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier) {
+    this.learningRateMultiplier = learningRateMultiplier;
+  }
+
+  public FineTuningJobHyperparameters nEpochs(CreateFineTuningJobRequestHyperparametersNEpochs nEpochs) {
     this.nEpochs = nEpochs;
     return this;
   }
@@ -31,12 +75,12 @@ public class FineTuningJobHyperparameters   {
    * Get nEpochs
    * @return nEpochs
    */
-  @ApiModelProperty(required = true, value = "")
-  public FineTuningJobHyperparametersNEpochs getnEpochs() {
+  @ApiModelProperty(value = "")
+  public CreateFineTuningJobRequestHyperparametersNEpochs getnEpochs() {
     return nEpochs;
   }
 
-  public void setnEpochs(FineTuningJobHyperparametersNEpochs nEpochs) {
+  public void setnEpochs(CreateFineTuningJobRequestHyperparametersNEpochs nEpochs) {
     this.nEpochs = nEpochs;
   }
 
@@ -50,12 +94,14 @@ public class FineTuningJobHyperparameters   {
       return false;
     }
     FineTuningJobHyperparameters fineTuningJobHyperparameters = (FineTuningJobHyperparameters) o;
-    return Objects.equals(this.nEpochs, fineTuningJobHyperparameters.nEpochs);
+    return Objects.equals(this.batchSize, fineTuningJobHyperparameters.batchSize) &&
+        Objects.equals(this.learningRateMultiplier, fineTuningJobHyperparameters.learningRateMultiplier) &&
+        Objects.equals(this.nEpochs, fineTuningJobHyperparameters.nEpochs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(nEpochs);
+    return Objects.hash(batchSize, learningRateMultiplier, nEpochs);
   }
 
   @Override
@@ -63,6 +109,8 @@ public class FineTuningJobHyperparameters   {
     StringBuilder sb = new StringBuilder();
     sb.append("class FineTuningJobHyperparameters {\n");
     
+    sb.append("    batchSize: ").append(toIndentedString(batchSize)).append("\n");
+    sb.append("    learningRateMultiplier: ").append(toIndentedString(learningRateMultiplier)).append("\n");
     sb.append("    nEpochs: ").append(toIndentedString(nEpochs)).append("\n");
     sb.append("}");
     return sb.toString();

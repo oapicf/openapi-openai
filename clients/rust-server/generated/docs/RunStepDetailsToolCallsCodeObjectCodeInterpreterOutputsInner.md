@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**r#type** | [***models::RunStepDetailsToolCallsCodeOutputImageObjectType**](RunStepDetailsToolCallsCodeOutputImageObject_type.md) |  | 
+**r#type** | [***models::RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectType**](RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_type.md) |  | 
 **logs** | **String** | The text output from the Code Interpreter tool call. | 
 **image** | [***models::RunStepDetailsToolCallsCodeOutputImageObjectImage**](RunStepDetailsToolCallsCodeOutputImageObject_image.md) |  | 
 

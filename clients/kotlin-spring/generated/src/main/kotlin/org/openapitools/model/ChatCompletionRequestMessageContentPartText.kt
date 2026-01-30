@@ -16,7 +16,7 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * 
+ * Learn about [text inputs](/docs/guides/text-generation). 
  * @param type The type of the content part.
  * @param text The text content.
  */

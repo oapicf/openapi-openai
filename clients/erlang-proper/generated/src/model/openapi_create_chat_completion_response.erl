@@ -13,6 +13,7 @@
   | {'choices', list(openapi_create_chat_completion_response_choices_inner:openapi_create_chat_completion_response_choices_inner()) }
   | {'created', integer() }
   | {'model', binary() }
+  | {'service_tier', binary() }
   | {'system_fingerprint', binary() }
   | {'object', binary() }
   | {'usage', openapi_completion_usage:openapi_completion_usage() }
@@ -27,6 +28,7 @@ openapi_create_chat_completion_response(Fields) ->
             , {'choices', list(openapi_create_chat_completion_response_choices_inner:openapi_create_chat_completion_response_choices_inner()) }
             , {'created', integer() }
             , {'model', binary() }
+            , {'service_tier', elements([<<"scale">>, <<"default">>]) }
             , {'system_fingerprint', binary() }
             , {'object', elements([<<"chat.completion">>]) }
             , {'usage', openapi_completion_usage:openapi_completion_usage() }

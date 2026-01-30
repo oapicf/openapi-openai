@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -28,6 +28,8 @@ type CompletionUsage struct {
 	PromptTokens int32 `json:"prompt_tokens"`
 	// Total number of tokens used in the request (prompt + completion).
 	TotalTokens int32 `json:"total_tokens"`
+	CompletionTokensDetails *CompletionUsageCompletionTokensDetails `json:"completion_tokens_details,omitempty"`
+	PromptTokensDetails *CompletionUsagePromptTokensDetails `json:"prompt_tokens_details,omitempty"`
 }
 
 type _CompletionUsage CompletionUsage
@@ -124,6 +126,70 @@ func (o *CompletionUsage) SetTotalTokens(v int32) {
 	o.TotalTokens = v
 }
 
+// GetCompletionTokensDetails returns the CompletionTokensDetails field value if set, zero value otherwise.
+func (o *CompletionUsage) GetCompletionTokensDetails() CompletionUsageCompletionTokensDetails {
+	if o == nil || IsNil(o.CompletionTokensDetails) {
+		var ret CompletionUsageCompletionTokensDetails
+		return ret
+	}
+	return *o.CompletionTokensDetails
+}
+
+// GetCompletionTokensDetailsOk returns a tuple with the CompletionTokensDetails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompletionUsage) GetCompletionTokensDetailsOk() (*CompletionUsageCompletionTokensDetails, bool) {
+	if o == nil || IsNil(o.CompletionTokensDetails) {
+		return nil, false
+	}
+	return o.CompletionTokensDetails, true
+}
+
+// HasCompletionTokensDetails returns a boolean if a field has been set.
+func (o *CompletionUsage) HasCompletionTokensDetails() bool {
+	if o != nil && !IsNil(o.CompletionTokensDetails) {
+		return true
+	}
+
+	return false
+}
+
+// SetCompletionTokensDetails gets a reference to the given CompletionUsageCompletionTokensDetails and assigns it to the CompletionTokensDetails field.
+func (o *CompletionUsage) SetCompletionTokensDetails(v CompletionUsageCompletionTokensDetails) {
+	o.CompletionTokensDetails = &v
+}
+
+// GetPromptTokensDetails returns the PromptTokensDetails field value if set, zero value otherwise.
+func (o *CompletionUsage) GetPromptTokensDetails() CompletionUsagePromptTokensDetails {
+	if o == nil || IsNil(o.PromptTokensDetails) {
+		var ret CompletionUsagePromptTokensDetails
+		return ret
+	}
+	return *o.PromptTokensDetails
+}
+
+// GetPromptTokensDetailsOk returns a tuple with the PromptTokensDetails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompletionUsage) GetPromptTokensDetailsOk() (*CompletionUsagePromptTokensDetails, bool) {
+	if o == nil || IsNil(o.PromptTokensDetails) {
+		return nil, false
+	}
+	return o.PromptTokensDetails, true
+}
+
+// HasPromptTokensDetails returns a boolean if a field has been set.
+func (o *CompletionUsage) HasPromptTokensDetails() bool {
+	if o != nil && !IsNil(o.PromptTokensDetails) {
+		return true
+	}
+
+	return false
+}
+
+// SetPromptTokensDetails gets a reference to the given CompletionUsagePromptTokensDetails and assigns it to the PromptTokensDetails field.
+func (o *CompletionUsage) SetPromptTokensDetails(v CompletionUsagePromptTokensDetails) {
+	o.PromptTokensDetails = &v
+}
+
 func (o CompletionUsage) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -137,6 +203,12 @@ func (o CompletionUsage) ToMap() (map[string]interface{}, error) {
 	toSerialize["completion_tokens"] = o.CompletionTokens
 	toSerialize["prompt_tokens"] = o.PromptTokens
 	toSerialize["total_tokens"] = o.TotalTokens
+	if !IsNil(o.CompletionTokensDetails) {
+		toSerialize["completion_tokens_details"] = o.CompletionTokensDetails
+	}
+	if !IsNil(o.PromptTokensDetails) {
+		toSerialize["prompt_tokens_details"] = o.PromptTokensDetails
+	}
 	return toSerialize, nil
 }
 

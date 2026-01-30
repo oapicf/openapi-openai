@@ -6,6 +6,7 @@
 | ------------ | ------------- | ------------- | ------------- |
 | **event** | [**inline**](#Event) |  |  |
 | **&#x60;data&#x60;** | [**ThreadObject**](ThreadObject.md) |  |  |
+| **enabled** | **kotlin.Boolean** | Whether to enable input audio transcription. |  [optional] |
 
 
 <a id="Event"></a>

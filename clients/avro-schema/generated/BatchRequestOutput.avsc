@@ -1,0 +1,33 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The per-line object of the batch output and error files",
+  "name": "BatchRequestOutput",
+  "fields": [
+    {
+      "name": "id",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "custom_id",
+      "type": ["null", "string"],
+      "doc": "A developer-provided per-request id that will be used to match outputs to inputs.",
+      "default": null
+    },
+    {
+      "name": "response",
+      "type": ["null", "model.BatchRequestOutputResponse"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "error",
+      "type": ["null", "model.BatchRequestOutputError"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

@@ -12,6 +12,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.AssistantsApiResponseFormatOption;
 import org.openapitools.model.AssistantsApiToolChoiceOption;
 import org.openapitools.model.CreateRunRequestModel;
+import org.openapitools.model.CreateThreadAndRunRequestToolResources;
 import org.openapitools.model.CreateThreadAndRunRequestToolsInner;
 import org.openapitools.model.CreateThreadRequest;
 import org.openapitools.model.TruncationObject;
@@ -31,7 +32,7 @@ import javax.annotation.Generated;
  * CreateThreadAndRunRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateThreadAndRunRequest {
 
   private String assistantId;
@@ -45,9 +46,13 @@ public class CreateThreadAndRunRequest {
   @Valid
   private JsonNullable<List<CreateThreadAndRunRequestToolsInner>> tools = JsonNullable.<List<CreateThreadAndRunRequestToolsInner>>undefined();
 
+  private JsonNullable<CreateThreadAndRunRequestToolResources> toolResources = JsonNullable.<CreateThreadAndRunRequestToolResources>undefined();
+
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
+
+  private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
 
   private JsonNullable<Boolean> stream = JsonNullable.<Boolean>undefined();
 
@@ -58,6 +63,8 @@ public class CreateThreadAndRunRequest {
   private @Nullable TruncationObject truncationStrategy;
 
   private @Nullable AssistantsApiToolChoiceOption toolChoice;
+
+  private Boolean parallelToolCalls = true;
 
   private @Nullable AssistantsApiResponseFormatOption responseFormat;
 
@@ -180,17 +187,37 @@ public class CreateThreadAndRunRequest {
     this.tools = tools;
   }
 
+  public CreateThreadAndRunRequest toolResources(CreateThreadAndRunRequestToolResources toolResources) {
+    this.toolResources = JsonNullable.of(toolResources);
+    return this;
+  }
+
+  /**
+   * Get toolResources
+   * @return toolResources
+   */
+  @Valid 
+  @Schema(name = "tool_resources", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("tool_resources")
+  public JsonNullable<CreateThreadAndRunRequestToolResources> getToolResources() {
+    return toolResources;
+  }
+
+  public void setToolResources(JsonNullable<CreateThreadAndRunRequestToolResources> toolResources) {
+    this.toolResources = toolResources;
+  }
+
   public CreateThreadAndRunRequest metadata(Object metadata) {
     this.metadata = JsonNullable.of(metadata);
     return this;
   }
 
   /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
   
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;
@@ -222,6 +249,28 @@ public class CreateThreadAndRunRequest {
     this.temperature = temperature;
   }
 
+  public CreateThreadAndRunRequest topP(BigDecimal topP) {
+    this.topP = JsonNullable.of(topP);
+    return this;
+  }
+
+  /**
+   * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+   * minimum: 0
+   * maximum: 1
+   * @return topP
+   */
+  @Valid @DecimalMin(value = "0") @DecimalMax(value = "1") 
+  @Schema(name = "top_p", example = "1", description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("top_p")
+  public JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> getTopP() {
+    return topP;
+  }
+
+  public void setTopP(JsonNullable<BigDecimal> topP) {
+    this.topP = topP;
+  }
+
   public CreateThreadAndRunRequest stream(Boolean stream) {
     this.stream = JsonNullable.of(stream);
     return this;
@@ -248,12 +297,12 @@ public class CreateThreadAndRunRequest {
   }
 
   /**
-   * The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+   * The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
    * minimum: 256
    * @return maxPromptTokens
    */
   @Min(value = 256) 
-  @Schema(name = "max_prompt_tokens", description = "The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "max_prompt_tokens", description = "The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("max_prompt_tokens")
   public JsonNullable<@Min(value = 256) Integer> getMaxPromptTokens() {
     return maxPromptTokens;
@@ -324,6 +373,26 @@ public class CreateThreadAndRunRequest {
     this.toolChoice = toolChoice;
   }
 
+  public CreateThreadAndRunRequest parallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+    return this;
+  }
+
+  /**
+   * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+   * @return parallelToolCalls
+   */
+  
+  @Schema(name = "parallel_tool_calls", description = "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("parallel_tool_calls")
+  public Boolean getParallelToolCalls() {
+    return parallelToolCalls;
+  }
+
+  public void setParallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+  }
+
   public CreateThreadAndRunRequest responseFormat(@Nullable AssistantsApiResponseFormatOption responseFormat) {
     this.responseFormat = responseFormat;
     return this;
@@ -358,13 +427,16 @@ public class CreateThreadAndRunRequest {
         equalsNullable(this.model, createThreadAndRunRequest.model) &&
         equalsNullable(this.instructions, createThreadAndRunRequest.instructions) &&
         equalsNullable(this.tools, createThreadAndRunRequest.tools) &&
+        equalsNullable(this.toolResources, createThreadAndRunRequest.toolResources) &&
         equalsNullable(this.metadata, createThreadAndRunRequest.metadata) &&
         equalsNullable(this.temperature, createThreadAndRunRequest.temperature) &&
+        equalsNullable(this.topP, createThreadAndRunRequest.topP) &&
         equalsNullable(this.stream, createThreadAndRunRequest.stream) &&
         equalsNullable(this.maxPromptTokens, createThreadAndRunRequest.maxPromptTokens) &&
         equalsNullable(this.maxCompletionTokens, createThreadAndRunRequest.maxCompletionTokens) &&
         Objects.equals(this.truncationStrategy, createThreadAndRunRequest.truncationStrategy) &&
         Objects.equals(this.toolChoice, createThreadAndRunRequest.toolChoice) &&
+        Objects.equals(this.parallelToolCalls, createThreadAndRunRequest.parallelToolCalls) &&
         Objects.equals(this.responseFormat, createThreadAndRunRequest.responseFormat);
   }
 
@@ -374,7 +446,7 @@ public class CreateThreadAndRunRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(assistantId, thread, hashCodeNullable(model), hashCodeNullable(instructions), hashCodeNullable(tools), hashCodeNullable(metadata), hashCodeNullable(temperature), hashCodeNullable(stream), hashCodeNullable(maxPromptTokens), hashCodeNullable(maxCompletionTokens), truncationStrategy, toolChoice, responseFormat);
+    return Objects.hash(assistantId, thread, hashCodeNullable(model), hashCodeNullable(instructions), hashCodeNullable(tools), hashCodeNullable(toolResources), hashCodeNullable(metadata), hashCodeNullable(temperature), hashCodeNullable(topP), hashCodeNullable(stream), hashCodeNullable(maxPromptTokens), hashCodeNullable(maxCompletionTokens), truncationStrategy, toolChoice, parallelToolCalls, responseFormat);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -393,13 +465,16 @@ public class CreateThreadAndRunRequest {
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
     sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
     sb.append("    maxPromptTokens: ").append(toIndentedString(maxPromptTokens)).append("\n");
     sb.append("    maxCompletionTokens: ").append(toIndentedString(maxCompletionTokens)).append("\n");
     sb.append("    truncationStrategy: ").append(toIndentedString(truncationStrategy)).append("\n");
     sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
+    sb.append("    parallelToolCalls: ").append(toIndentedString(parallelToolCalls)).append("\n");
     sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -1,5 +1,6 @@
 package apimodels;
 
+import apimodels.ChatCompletionRequestSystemMessageContent;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
@@ -7,15 +8,16 @@ import java.util.Objects;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 /**
- * ChatCompletionRequestSystemMessage
+ * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use &#x60;developer&#x60; messages for this purpose instead. 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class ChatCompletionRequestSystemMessage   {
   @JsonProperty("content")
   @NotNull
+@Valid
 
-  private String content;
+  private ChatCompletionRequestSystemMessageContent content;
 
   /**
    * The role of the messages author, in this case `system`.
@@ -55,20 +57,20 @@ public class ChatCompletionRequestSystemMessage   {
   
   private String name;
 
-  public ChatCompletionRequestSystemMessage content(String content) {
+  public ChatCompletionRequestSystemMessage content(ChatCompletionRequestSystemMessageContent content) {
     this.content = content;
     return this;
   }
 
    /**
-   * The contents of the system message.
+   * Get content
    * @return content
   **/
-  public String getContent() {
+  public ChatCompletionRequestSystemMessageContent getContent() {
     return content;
   }
 
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestSystemMessageContent content) {
     this.content = content;
   }
 

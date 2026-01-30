@@ -4,14 +4,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FileId** | **String** | The ID of the specific File the citation is from. | 
-**Quote** | **String** | The specific quote in the file. | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$MessageContentTextAnnotationsFileCitationObjectFileCitation = Initialize-PSOpenAPIToolsMessageContentTextAnnotationsFileCitationObjectFileCitation  -FileId null `
- -Quote null
+$MessageContentTextAnnotationsFileCitationObjectFileCitation = Initialize-PSOpenAPIToolsMessageContentTextAnnotationsFileCitationObjectFileCitation  -FileId null
 ```
 
 - Convert the resource to JSON

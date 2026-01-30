@@ -1,6 +1,6 @@
 package apimodels;
 
-import apimodels.ChatCompletionNamedToolChoiceFunction;
+import apimodels.AssistantsNamedToolChoiceFunction;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
@@ -10,7 +10,7 @@ import javax.validation.Valid;
 /**
  * Specifies a tool the model should use. Use to force the model to call a specific function.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class ChatCompletionNamedToolChoice   {
   /**
@@ -51,7 +51,7 @@ public class ChatCompletionNamedToolChoice   {
   @NotNull
 @Valid
 
-  private ChatCompletionNamedToolChoiceFunction function;
+  private AssistantsNamedToolChoiceFunction function;
 
   public ChatCompletionNamedToolChoice type(TypeEnum type) {
     this.type = type;
@@ -70,7 +70,7 @@ public class ChatCompletionNamedToolChoice   {
     this.type = type;
   }
 
-  public ChatCompletionNamedToolChoice function(ChatCompletionNamedToolChoiceFunction function) {
+  public ChatCompletionNamedToolChoice function(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
     return this;
   }
@@ -79,11 +79,11 @@ public class ChatCompletionNamedToolChoice   {
    * Get function
    * @return function
   **/
-  public ChatCompletionNamedToolChoiceFunction getFunction() {
+  public AssistantsNamedToolChoiceFunction getFunction() {
     return function;
   }
 
-  public void setFunction(ChatCompletionNamedToolChoiceFunction function) {
+  public void setFunction(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
   }
 

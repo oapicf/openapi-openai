@@ -23,7 +23,7 @@ public struct CreateEmbeddingRequest: Codable, JSONEncodable, Hashable {
     public var encodingFormat: EncodingFormat? = .float
     /** The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models.  */
     public var dimensions: Int?
-    /** A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  */
+    /** A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  */
     public var user: String?
 
     public init(input: CreateEmbeddingRequestInput, model: CreateEmbeddingRequestModel, encodingFormat: EncodingFormat? = .float, dimensions: Int? = nil, user: String? = nil) {

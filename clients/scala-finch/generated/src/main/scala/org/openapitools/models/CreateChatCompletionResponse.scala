@@ -15,6 +15,7 @@ import scala.collection.immutable.Seq
  * @param choices A list of chat completion choices. Can be more than one if `n` is greater than 1.
  * @param created The Unix timestamp (in seconds) of when the chat completion was created.
  * @param model The model used for the chat completion.
+ * @param serviceUnderscoretier The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
  * @param systemUnderscorefingerprint This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
  * @param _object The object type, which is always `chat.completion`.
  * @param usage 
@@ -23,6 +24,7 @@ case class CreateChatCompletionResponse(id: String,
                 choices: Seq[CreateChatCompletionResponseChoicesInner],
                 created: Int,
                 model: String,
+                serviceUnderscoretier: Option[String],
                 systemUnderscorefingerprint: Option[String],
                 _object: String,
                 usage: Option[CompletionUsage]

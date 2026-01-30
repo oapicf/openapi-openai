@@ -42,7 +42,7 @@ API.Client.RunObject.prototype.threadId;
 API.Client.RunObject.prototype.assistantId;
 
 /**
- * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+ * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
  * @type {!string}
  * @export
  */
@@ -123,14 +123,7 @@ API.Client.RunObject.prototype.instructions;
 API.Client.RunObject.prototype.tools;
 
 /**
- * The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
- * @type {!Array<!string>}
- * @export
- */
-API.Client.RunObject.prototype.fileIds;
-
-/**
- * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+ * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
  * @type {!API.Client.Object}
  * @export
  */
@@ -148,6 +141,13 @@ API.Client.RunObject.prototype.usage;
  * @export
  */
 API.Client.RunObject.prototype.temperature;
+
+/**
+ * The nucleus sampling value used for this run. If not set, defaults to 1.
+ * @type {!number}
+ * @export
+ */
+API.Client.RunObject.prototype.topP;
 
 /**
  * The maximum number of prompt tokens specified to have been used over the course of the run. 
@@ -176,6 +176,13 @@ API.Client.RunObject.prototype.truncationStrategy;
 API.Client.RunObject.prototype.toolChoice;
 
 /**
+ * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+ * @type {!boolean}
+ * @export
+ */
+API.Client.RunObject.prototype.parallelToolCalls;
+
+/**
  * @type {!API.Client.AssistantsApiResponseFormatOption}
  * @export
  */
@@ -194,5 +201,6 @@ API.Client.RunObject.StatusEnum = {
   cancelled: 'cancelled',
   failed: 'failed',
   completed: 'completed',
+  incomplete: 'incomplete',
   expired: 'expired',
 }

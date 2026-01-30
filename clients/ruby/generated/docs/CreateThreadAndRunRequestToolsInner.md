@@ -15,8 +15,8 @@ OpenApiOpenAIClient::CreateThreadAndRunRequestToolsInner.openapi_one_of
 # =>
 # [
 #   :'AssistantToolsCode',
-#   :'AssistantToolsFunction',
-#   :'AssistantToolsRetrieval'
+#   :'AssistantToolsFileSearch',
+#   :'AssistantToolsFunction'
 # ]
 ```
 
@@ -45,7 +45,7 @@ OpenApiOpenAIClient::CreateThreadAndRunRequestToolsInner.build(data_that_doesnt_
 #### Return type
 
 - `AssistantToolsCode`
+- `AssistantToolsFileSearch`
 - `AssistantToolsFunction`
-- `AssistantToolsRetrieval`
 - `nil` (if no type matches)
 

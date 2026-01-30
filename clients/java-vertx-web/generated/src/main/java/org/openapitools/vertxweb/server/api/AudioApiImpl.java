@@ -1,5 +1,6 @@
 package org.openapitools.vertxweb.server.api;
 
+import org.openapitools.vertxweb.server.model.AudioResponseFormat;
 import java.math.BigDecimal;
 import org.openapitools.vertxweb.server.model.CreateSpeechRequest;
 import org.openapitools.vertxweb.server.model.CreateTranscription200Response;

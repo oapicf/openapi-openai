@@ -11,7 +11,7 @@
 #' @field model  \link{CreateEmbeddingRequestModel}
 #' @field encoding_format The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/). character [optional]
 #' @field dimensions The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. integer [optional]
-#' @field user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). character [optional]
+#' @field user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -31,7 +31,7 @@ CreateEmbeddingRequest <- R6::R6Class(
     #' @param model model
     #' @param encoding_format The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).. Default to "float".
     #' @param dimensions The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models.
-    #' @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).
+    #' @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).
     #' @param ... Other optional arguments.
     initialize = function(`input`, `model`, `encoding_format` = "float", `dimensions` = NULL, `user` = NULL, ...) {
       if (!missing(`input`)) {

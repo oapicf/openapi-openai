@@ -74,10 +74,13 @@ private class OASCreateThreadAndRunRequestTest {
         OASCreateThreadAndRunRequest createThreadAndRunRequest = new OASCreateThreadAndRunRequest();
         Map<String, String> x-property-mappings = createThreadAndRunRequest.getx-property-mappings();
         System.assertEquals('assistantId', x-property-mappings.get('assistant_id'));
+        System.assertEquals('toolResources', x-property-mappings.get('tool_resources'));
+        System.assertEquals('topP', x-property-mappings.get('top_p'));
         System.assertEquals('maxPromptTokens', x-property-mappings.get('max_prompt_tokens'));
         System.assertEquals('maxCompletionTokens', x-property-mappings.get('max_completion_tokens'));
         System.assertEquals('truncationStrategy', x-property-mappings.get('truncation_strategy'));
         System.assertEquals('toolChoice', x-property-mappings.get('tool_choice'));
+        System.assertEquals('parallelToolCalls', x-property-mappings.get('parallel_tool_calls'));
         System.assertEquals('responseFormat', x-property-mappings.get('response_format'));
     }
 
@@ -86,10 +89,13 @@ private class OASCreateThreadAndRunRequestTest {
         OASCreateThreadAndRunRequest createThreadAndRunRequest = new OASCreateThreadAndRunRequest();
         System.assertEquals(new List<OASCreateThreadAndRunRequestToolsInn>(), createThreadAndRunRequest.tools);
         System.assertEquals(1, createThreadAndRunRequest.temperature);
+        System.assertEquals(1, createThreadAndRunRequest.topP);
+        System.assertEquals(true, createThreadAndRunRequest.parallelToolCalls);
         System.assertEquals(null, createThreadAndRunRequest.assistantId);
         System.assertEquals(null, createThreadAndRunRequest.thread);
         System.assertEquals(null, createThreadAndRunRequest.model);
         System.assertEquals(null, createThreadAndRunRequest.instructions);
+        System.assertEquals(null, createThreadAndRunRequest.toolResources);
         System.assertEquals(null, createThreadAndRunRequest.metadata);
         System.assertEquals(null, createThreadAndRunRequest.stream);
         System.assertEquals(null, createThreadAndRunRequest.maxPromptTokens);

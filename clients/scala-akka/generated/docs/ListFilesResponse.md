@@ -7,13 +7,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**`object`** | **String** |  | 
 **data** | [**Seq&lt;OpenAIFile&gt;**](OpenAIFile.md) |  | 
-**`object`** | [**`Object`**](#`Object`) |  | 
-
-
-## Enum: `Object`
-Allowed values: [list]
-
+**firstId** | **String** |  | 
+**lastId** | **String** |  | 
+**hasMore** | **Boolean** |  | 
 
 
 

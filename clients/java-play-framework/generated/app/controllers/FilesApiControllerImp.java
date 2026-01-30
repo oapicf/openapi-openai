@@ -14,7 +14,7 @@ import java.io.FileInputStream;
 import play.libs.Files.TemporaryFile;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FilesApiControllerImp extends FilesApiControllerImpInterface {
     @Override
     public OpenAIFile createFile(Http.Request request, Http.MultipartFormData.FilePart<TemporaryFile> _file, String purpose) throws Exception {
@@ -35,7 +35,7 @@ public class FilesApiControllerImp extends FilesApiControllerImpInterface {
     }
 
     @Override
-    public ListFilesResponse listFiles(Http.Request request, String purpose) throws Exception {
+    public ListFilesResponse listFiles(Http.Request request, String purpose, Integer limit, String order, String after) throws Exception {
         //Do your magic!!!
         return new ListFilesResponse();
     }

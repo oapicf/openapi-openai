@@ -1,7 +1,7 @@
 /*
  * RunStepStreamEvent_oneOf_5.h
  *
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is cancelled.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is cancelled.
  */
 
 #ifndef _RunStepStreamEvent_oneOf_5_H_
@@ -21,7 +21,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief Occurs when a [run step](/docs/api-reference/runs/step-object) is cancelled.
+/*! \brief Occurs when a [run step](/docs/api-reference/run-steps/step-object) is cancelled.
  *
  *  \ingroup Models
  *

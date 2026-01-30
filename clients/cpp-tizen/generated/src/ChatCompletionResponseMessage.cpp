@@ -24,9 +24,11 @@ void
 ChatCompletionResponseMessage::__init()
 {
 	//content = std::string();
+	//refusal = std::string();
 	//new std::list()std::list> tool_calls;
 	//role = std::string();
-	//function_call = new ChatCompletionRequestAssistantMessage_function_call();
+	//function_call = new ChatCompletionResponseMessage_function_call();
+	//audio = new ChatCompletionResponseMessage_audio();
 }
 
 void
@@ -36,6 +38,11 @@ ChatCompletionResponseMessage::__cleanup()
 	//
 	//delete content;
 	//content = NULL;
+	//}
+	//if(refusal != NULL) {
+	//
+	//delete refusal;
+	//refusal = NULL;
 	//}
 	//if(tool_calls != NULL) {
 	//tool_calls.RemoveAll(true);
@@ -52,6 +59,11 @@ ChatCompletionResponseMessage::__cleanup()
 	//delete function_call;
 	//function_call = NULL;
 	//}
+	//if(audio != NULL) {
+	//
+	//delete audio;
+	//audio = NULL;
+	//}
 	//
 }
 
@@ -67,6 +79,17 @@ ChatCompletionResponseMessage::fromJson(char* jsonStr)
 
 		if (isprimitive("std::string")) {
 			jsonToValue(&content, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *refusalKey = "refusal";
+	node = json_object_get_member(pJsonObject, refusalKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&refusal, node, "std::string", "");
 		} else {
 			
 		}
@@ -111,11 +134,25 @@ ChatCompletionResponseMessage::fromJson(char* jsonStr)
 	if (node !=NULL) {
 	
 
-		if (isprimitive("ChatCompletionRequestAssistantMessage_function_call")) {
-			jsonToValue(&function_call, node, "ChatCompletionRequestAssistantMessage_function_call", "ChatCompletionRequestAssistantMessage_function_call");
+		if (isprimitive("ChatCompletionResponseMessage_function_call")) {
+			jsonToValue(&function_call, node, "ChatCompletionResponseMessage_function_call", "ChatCompletionResponseMessage_function_call");
 		} else {
 			
-			ChatCompletionRequestAssistantMessage_function_call* obj = static_cast<ChatCompletionRequestAssistantMessage_function_call*> (&function_call);
+			ChatCompletionResponseMessage_function_call* obj = static_cast<ChatCompletionResponseMessage_function_call*> (&function_call);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *audioKey = "audio";
+	node = json_object_get_member(pJsonObject, audioKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("ChatCompletionResponseMessage_audio")) {
+			jsonToValue(&audio, node, "ChatCompletionResponseMessage_audio", "ChatCompletionResponseMessage_audio");
+		} else {
+			
+			ChatCompletionResponseMessage_audio* obj = static_cast<ChatCompletionResponseMessage_audio*> (&audio);
 			obj->fromJson(json_to_string(node, false));
 			
 		}
@@ -141,6 +178,15 @@ ChatCompletionResponseMessage::toJson()
 	}
 	const gchar *contentKey = "content";
 	json_object_set_member(pJsonObject, contentKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getRefusal();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *refusalKey = "refusal";
+	json_object_set_member(pJsonObject, refusalKey, node);
 	if (isprimitive("ChatCompletionMessageToolCall")) {
 		list<ChatCompletionMessageToolCall> new_list = static_cast<list <ChatCompletionMessageToolCall> > (getToolCalls());
 		node = converttoJson(&new_list, "ChatCompletionMessageToolCall", "array");
@@ -175,13 +221,13 @@ ChatCompletionResponseMessage::toJson()
 	}
 	const gchar *roleKey = "role";
 	json_object_set_member(pJsonObject, roleKey, node);
-	if (isprimitive("ChatCompletionRequestAssistantMessage_function_call")) {
-		ChatCompletionRequestAssistantMessage_function_call obj = getFunctionCall();
-		node = converttoJson(&obj, "ChatCompletionRequestAssistantMessage_function_call", "");
+	if (isprimitive("ChatCompletionResponseMessage_function_call")) {
+		ChatCompletionResponseMessage_function_call obj = getFunctionCall();
+		node = converttoJson(&obj, "ChatCompletionResponseMessage_function_call", "");
 	}
 	else {
 		
-		ChatCompletionRequestAssistantMessage_function_call obj = static_cast<ChatCompletionRequestAssistantMessage_function_call> (getFunctionCall());
+		ChatCompletionResponseMessage_function_call obj = static_cast<ChatCompletionResponseMessage_function_call> (getFunctionCall());
 		GError *mygerror;
 		mygerror = NULL;
 		node = json_from_string(obj.toJson(), &mygerror);
@@ -189,6 +235,20 @@ ChatCompletionResponseMessage::toJson()
 	}
 	const gchar *function_callKey = "function_call";
 	json_object_set_member(pJsonObject, function_callKey, node);
+	if (isprimitive("ChatCompletionResponseMessage_audio")) {
+		ChatCompletionResponseMessage_audio obj = getAudio();
+		node = converttoJson(&obj, "ChatCompletionResponseMessage_audio", "");
+	}
+	else {
+		
+		ChatCompletionResponseMessage_audio obj = static_cast<ChatCompletionResponseMessage_audio> (getAudio());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *audioKey = "audio";
+	json_object_set_member(pJsonObject, audioKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -207,6 +267,18 @@ void
 ChatCompletionResponseMessage::setContent(std::string  content)
 {
 	this->content = content;
+}
+
+std::string
+ChatCompletionResponseMessage::getRefusal()
+{
+	return refusal;
+}
+
+void
+ChatCompletionResponseMessage::setRefusal(std::string  refusal)
+{
+	this->refusal = refusal;
 }
 
 std::list<ChatCompletionMessageToolCall>
@@ -233,16 +305,28 @@ ChatCompletionResponseMessage::setRole(std::string  role)
 	this->role = role;
 }
 
-ChatCompletionRequestAssistantMessage_function_call
+ChatCompletionResponseMessage_function_call
 ChatCompletionResponseMessage::getFunctionCall()
 {
 	return function_call;
 }
 
 void
-ChatCompletionResponseMessage::setFunctionCall(ChatCompletionRequestAssistantMessage_function_call  function_call)
+ChatCompletionResponseMessage::setFunctionCall(ChatCompletionResponseMessage_function_call  function_call)
 {
 	this->function_call = function_call;
+}
+
+ChatCompletionResponseMessage_audio
+ChatCompletionResponseMessage::getAudio()
+{
+	return audio;
+}
+
+void
+ChatCompletionResponseMessage::setAudio(ChatCompletionResponseMessage_audio  audio)
+{
+	this->audio = audio;
 }
 
 

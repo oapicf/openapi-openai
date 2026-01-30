@@ -125,8 +125,11 @@ class FilesApiVertxProxyHandler(private val vertx: Vertx, private val service: F
                 "listFiles" -> {
                     val params = context.params
                     val purpose = ApiHandlerUtils.searchStringInJson(params,"purpose")
+                    val limit = ApiHandlerUtils.searchIntegerInJson(params,"limit")
+                    val order = ApiHandlerUtils.searchStringInJson(params,"order")
+                    val after = ApiHandlerUtils.searchStringInJson(params,"after")
                     GlobalScope.launch(vertx.dispatcher()){
-                        val result = service.listFiles(purpose,context)
+                        val result = service.listFiles(purpose,limit,order,after,context)
                         val payload = JsonObject(Json.encode(result.payload)).toBuffer()
                         val res = OperationResponse(result.statusCode,result.statusMessage,payload,result.headers)
                         msg.reply(res.toJson())

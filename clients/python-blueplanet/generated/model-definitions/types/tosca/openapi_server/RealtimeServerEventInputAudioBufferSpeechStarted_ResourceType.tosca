@@ -1,0 +1,51 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventInputAudioBufferSpeechStarted"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventInputAudioBufferSpeechStarted"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeServerEventInputAudioBufferSpeechStarted {
+    title = RealtimeServerEventInputAudioBufferSpeechStarted
+    description = RealtimeServerEventInputAudioBufferSpeechStarted
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "The unique ID of the server event."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;input_audio_buffer.speech_started&#x60;."
+          enum = ["input_audio_buffer.speech_started"]
+          optional = true
+        }
+        audio_start_ms {
+          type =  integer
+          description = "Milliseconds from the start of all audio written to the buffer during the  session when speech was first detected. This will correspond to the  beginning of audio sent to the model, and thus includes the  &#x60;prefix_padding_ms&#x60; configured in the Session. "
+          optional = true
+        }
+        item_id {
+          type =  string
+          description = "The ID of the user message item that will be created when speech stops. "
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventInputAudioBufferSpeechStarted {
+    title = RealtimeServerEventInputAudioBufferSpeechStarted
+    description = RealtimeServerEventInputAudioBufferSpeechStarted
+    implements = openapi_server.resourceTypes.RealtimeServerEventInputAudioBufferSpeechStarted
+
+  }
+}

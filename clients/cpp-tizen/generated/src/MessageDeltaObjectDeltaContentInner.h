@@ -11,6 +11,9 @@
 #include <string>
 #include "MessageDeltaContentImageFileObject.h"
 #include "MessageDeltaContentImageFileObject_image_file.h"
+#include "MessageDeltaContentImageUrlObject.h"
+#include "MessageDeltaContentImageUrlObject_image_url.h"
+#include "MessageDeltaContentRefusalObject.h"
 #include "MessageDeltaContentTextObject.h"
 #include "MessageDeltaContentTextObject_text.h"
 #include "Object.h"
@@ -77,12 +80,28 @@ public:
 	/*! \brief Set 
 	 */
 	void setText(MessageDeltaContentTextObject_text  text);
+	/*! \brief Get 
+	 */
+	std::string getRefusal();
+
+	/*! \brief Set 
+	 */
+	void setRefusal(std::string  refusal);
+	/*! \brief Get 
+	 */
+	MessageDeltaContentImageUrlObject_image_url getImageUrl();
+
+	/*! \brief Set 
+	 */
+	void setImageUrl(MessageDeltaContentImageUrlObject_image_url  image_url);
 
 private:
 	int index;
 	std::string type;
 	MessageDeltaContentImageFileObject_image_file image_file;
 	MessageDeltaContentTextObject_text text;
+	std::string refusal;
+	MessageDeltaContentImageUrlObject_image_url image_url;
 	void __init();
 	void __cleanup();
 

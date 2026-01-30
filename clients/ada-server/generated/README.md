@@ -94,24 +94,19 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Cancel_Run**](AssistantsApi.md#Cancel_Run) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is `in_progress`.
 [**Create_Assistant**](AssistantsApi.md#Create_Assistant) | **POST** /assistants | Create an assistant with a model and instructions.
-[**Create_Assistant_File**](AssistantsApi.md#Create_Assistant_File) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api_reference/files) to an [assistant](/docs/api_reference/assistants).
 [**Create_Message**](AssistantsApi.md#Create_Message) | **POST** /threads/{thread_id}/messages | Create a message.
 [**Create_Run**](AssistantsApi.md#Create_Run) | **POST** /threads/{thread_id}/runs | Create a run.
 [**Create_Thread**](AssistantsApi.md#Create_Thread) | **POST** /threads | Create a thread.
 [**Create_Thread_And_Run**](AssistantsApi.md#Create_Thread_And_Run) | **POST** /threads/runs | Create a thread and run it in one request.
 [**Delete_Assistant**](AssistantsApi.md#Delete_Assistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant.
-[**Delete_Assistant_File**](AssistantsApi.md#Delete_Assistant_File) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+[**Delete_Message**](AssistantsApi.md#Delete_Message) | **DELETE** /threads/{thread_id}/messages/{message_id} | Deletes a message.
 [**Delete_Thread**](AssistantsApi.md#Delete_Thread) | **DELETE** /threads/{thread_id} | Delete a thread.
 [**Get_Assistant**](AssistantsApi.md#Get_Assistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant.
-[**Get_Assistant_File**](AssistantsApi.md#Get_Assistant_File) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
 [**Get_Message**](AssistantsApi.md#Get_Message) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
-[**Get_Message_File**](AssistantsApi.md#Get_Message_File) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
 [**Get_Run**](AssistantsApi.md#Get_Run) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
 [**Get_Run_Step**](AssistantsApi.md#Get_Run_Step) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
 [**Get_Thread**](AssistantsApi.md#Get_Thread) | **GET** /threads/{thread_id} | Retrieves a thread.
-[**List_Assistant_Files**](AssistantsApi.md#List_Assistant_Files) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
 [**List_Assistants**](AssistantsApi.md#List_Assistants) | **GET** /assistants | Returns a list of assistants.
-[**List_Message_Files**](AssistantsApi.md#List_Message_Files) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
 [**List_Messages**](AssistantsApi.md#List_Messages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
 [**List_Run_Steps**](AssistantsApi.md#List_Run_Steps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
 [**List_Runs**](AssistantsApi.md#List_Runs) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
@@ -123,13 +118,22 @@ Method | HTTP request | Description
 [**Create_Speech**](AudioApi.md#Create_Speech) | **POST** /audio/speech | Generates audio from the input text.
 [**Create_Transcription**](AudioApi.md#Create_Transcription) | **POST** /audio/transcriptions | Transcribes audio into the input language.
 [**Create_Translation**](AudioApi.md#Create_Translation) | **POST** /audio/translations | Translates audio into English.
-[**Create_Chat_Completion**](ChatApi.md#Create_Chat_Completion) | **POST** /chat/completions | Creates a model response for the given chat conversation.
+[**List_Audit_Logs**](AuditLogsApi.md#List_Audit_Logs) | **GET** /organization/audit_logs | List user actions and configuration changes within this organization.
+[**Cancel_Batch**](BatchApi.md#Cancel_Batch) | **POST** /batches/{batch_id}/cancel | Cancels an in_progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+[**Create_Batch**](BatchApi.md#Create_Batch) | **POST** /batches | Creates and executes a batch from an uploaded file of requests
+[**List_Batches**](BatchApi.md#List_Batches) | **GET** /batches | List your organization's batches.
+[**Retrieve_Batch**](BatchApi.md#Retrieve_Batch) | **GET** /batches/{batch_id} | Retrieves a batch.
+[**Create_Chat_Completion**](ChatApi.md#Create_Chat_Completion) | **POST** /chat/completions | Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text_generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning).
 [**Create_Completion**](CompletionsApi.md#Create_Completion) | **POST** /completions | Creates a completion for the provided prompt and parameters.
+[**Admin_Api_Keys_Create**](DefaultApi.md#Admin_Api_Keys_Create) | **POST** /organization/admin_api_keys | Create an organization admin API key
+[**Admin_Api_Keys_Delete**](DefaultApi.md#Admin_Api_Keys_Delete) | **DELETE** /organization/admin_api_keys/{key_id} | Delete an organization admin API key
+[**Admin_Api_Keys_Get**](DefaultApi.md#Admin_Api_Keys_Get) | **GET** /organization/admin_api_keys/{key_id} | Retrieve a single organization API key
+[**Admin_Api_Keys_List**](DefaultApi.md#Admin_Api_Keys_List) | **GET** /organization/admin_api_keys | List organization API keys
 [**Create_Embedding**](EmbeddingsApi.md#Create_Embedding) | **POST** /embeddings | Creates an embedding vector representing the input text.
-[**Create_File**](FilesApi.md#Create_File) | **POST** /files | Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine_tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits.
+[**Create_File**](FilesApi.md#Create_File) | **POST** /files | Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine_tuning API only supports `.jsonl` files. The input also has certain required formats for fine_tuning [chat](/docs/api_reference/fine_tuning/chat_input) or [completions](/docs/api_reference/fine_tuning/completions_input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api_reference/batch/request_input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits.
 [**Delete_File**](FilesApi.md#Delete_File) | **DELETE** /files/{file_id} | Delete a file.
 [**Download_File**](FilesApi.md#Download_File) | **GET** /files/{file_id}/content | Returns the contents of the specified file.
-[**List_Files**](FilesApi.md#List_Files) | **GET** /files | Returns a list of files that belong to the user's organization.
+[**List_Files**](FilesApi.md#List_Files) | **GET** /files | Returns a list of files.
 [**Retrieve_File**](FilesApi.md#Retrieve_File) | **GET** /files/{file_id} | Returns information about a specific file.
 [**Cancel_Fine_Tuning_Job**](FineTuningApi.md#Cancel_Fine_Tuning_Job) | **POST** /fine_tuning/jobs/{fine_tuning_job_id}/cancel | Immediately cancel a fine_tune job.
 [**Create_Fine_Tuning_Job**](FineTuningApi.md#Create_Fine_Tuning_Job) | **POST** /fine_tuning/jobs | Creates a fine_tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine_tuned models once complete.  [Learn more about fine_tuning](/docs/guides/fine_tuning)
@@ -140,59 +144,196 @@ Method | HTTP request | Description
 [**Create_Image**](ImagesApi.md#Create_Image) | **POST** /images/generations | Creates an image given a prompt.
 [**Create_Image_Edit**](ImagesApi.md#Create_Image_Edit) | **POST** /images/edits | Creates an edited or extended image given an original image and a prompt.
 [**Create_Image_Variation**](ImagesApi.md#Create_Image_Variation) | **POST** /images/variations | Creates a variation of a given image.
+[**Delete_Invite**](InvitesApi.md#Delete_Invite) | **DELETE** /organization/invites/{invite_id} | Delete an invite. If the invite has already been accepted, it cannot be deleted.
+[**Invite_User**](InvitesApi.md#Invite_User) | **POST** /organization/invites | Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+[**List_Invites**](InvitesApi.md#List_Invites) | **GET** /organization/invites | Returns a list of invites in the organization.
+[**Retrieve_Invite**](InvitesApi.md#Retrieve_Invite) | **GET** /organization/invites/{invite_id} | Retrieves an invite.
 [**Delete_Model**](ModelsApi.md#Delete_Model) | **DELETE** /models/{model} | Delete a fine_tuned model. You must have the Owner role in your organization to delete a model.
 [**List_Models**](ModelsApi.md#List_Models) | **GET** /models | Lists the currently available models, and provides basic information about each one such as the owner and availability.
 [**Retrieve_Model**](ModelsApi.md#Retrieve_Model) | **GET** /models/{model} | Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
-[**Create_Moderation**](ModerationsApi.md#Create_Moderation) | **POST** /moderations | Classifies if text is potentially harmful.
+[**Create_Moderation**](ModerationsApi.md#Create_Moderation) | **POST** /moderations | Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation).
+[**Archive_Project**](ProjectsApi.md#Archive_Project) | **POST** /organization/projects/{project_id}/archive | Archives a project in the organization. Archived projects cannot be used or updated.
+[**Create_Project**](ProjectsApi.md#Create_Project) | **POST** /organization/projects | Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
+[**Create_Project_Service_Account**](ProjectsApi.md#Create_Project_Service_Account) | **POST** /organization/projects/{project_id}/service_accounts | Creates a new service account in the project. This also returns an unredacted API key for the service account.
+[**Create_Project_User**](ProjectsApi.md#Create_Project_User) | **POST** /organization/projects/{project_id}/users | Adds a user to the project. Users must already be members of the organization to be added to a project.
+[**Delete_Project_Api_Key**](ProjectsApi.md#Delete_Project_Api_Key) | **DELETE** /organization/projects/{project_id}/api_keys/{key_id} | Deletes an API key from the project.
+[**Delete_Project_Service_Account**](ProjectsApi.md#Delete_Project_Service_Account) | **DELETE** /organization/projects/{project_id}/service_accounts/{service_account_id} | Deletes a service account from the project.
+[**Delete_Project_User**](ProjectsApi.md#Delete_Project_User) | **DELETE** /organization/projects/{project_id}/users/{user_id} | Deletes a user from the project.
+[**List_Project_Api_Keys**](ProjectsApi.md#List_Project_Api_Keys) | **GET** /organization/projects/{project_id}/api_keys | Returns a list of API keys in the project.
+[**List_Project_Rate_Limits**](ProjectsApi.md#List_Project_Rate_Limits) | **GET** /organization/projects/{project_id}/rate_limits | Returns the rate limits per model for a project.
+[**List_Project_Service_Accounts**](ProjectsApi.md#List_Project_Service_Accounts) | **GET** /organization/projects/{project_id}/service_accounts | Returns a list of service accounts in the project.
+[**List_Project_Users**](ProjectsApi.md#List_Project_Users) | **GET** /organization/projects/{project_id}/users | Returns a list of users in the project.
+[**List_Projects**](ProjectsApi.md#List_Projects) | **GET** /organization/projects | Returns a list of projects.
+[**Modify_Project**](ProjectsApi.md#Modify_Project) | **POST** /organization/projects/{project_id} | Modifies a project in the organization.
+[**Modify_Project_User**](ProjectsApi.md#Modify_Project_User) | **POST** /organization/projects/{project_id}/users/{user_id} | Modifies a user's role in the project.
+[**Retrieve_Project**](ProjectsApi.md#Retrieve_Project) | **GET** /organization/projects/{project_id} | Retrieves a project.
+[**Retrieve_Project_Api_Key**](ProjectsApi.md#Retrieve_Project_Api_Key) | **GET** /organization/projects/{project_id}/api_keys/{key_id} | Retrieves an API key in the project.
+[**Retrieve_Project_Service_Account**](ProjectsApi.md#Retrieve_Project_Service_Account) | **GET** /organization/projects/{project_id}/service_accounts/{service_account_id} | Retrieves a service account in the project.
+[**Retrieve_Project_User**](ProjectsApi.md#Retrieve_Project_User) | **GET** /organization/projects/{project_id}/users/{user_id} | Retrieves a user in the project.
+[**Update_Project_Rate_Limits**](ProjectsApi.md#Update_Project_Rate_Limits) | **POST** /organization/projects/{project_id}/rate_limits/{rate_limit_id} | Updates a project rate limit.
+[**Create_Realtime_Session**](RealtimeApi.md#Create_Realtime_Session) | **POST** /realtime/sessions | Create an ephemeral API token for use in client_side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API.
+[**Add_Upload_Part**](UploadsApi.md#Add_Upload_Part) | **POST** /uploads/{upload_id}/parts | Adds a [Part](/docs/api_reference/uploads/part_object) to an [Upload](/docs/api_reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api_reference/uploads/complete).
+[**Cancel_Upload**](UploadsApi.md#Cancel_Upload) | **POST** /uploads/{upload_id}/cancel | Cancels the Upload. No Parts may be added after an Upload is cancelled.
+[**Complete_Upload**](UploadsApi.md#Complete_Upload) | **POST** /uploads/{upload_id}/complete | Completes the [Upload](/docs/api_reference/uploads/object).   Within the returned Upload object, there is a nested [File](/docs/api_reference/files/object) object that is ready to use in the rest of the platform.  You can specify the order of the Parts by passing in an ordered list of the Part IDs.  The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed.
+[**Create_Upload**](UploadsApi.md#Create_Upload) | **POST** /uploads | Creates an intermediate [Upload](/docs/api_reference/uploads/object) object that you can add [Parts](/docs/api_reference/uploads/part_object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it.  Once you complete the Upload, we will create a [File](/docs/api_reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object.  For certain `purpose`s, the correct `mime_type` must be specified. Please refer to documentation for the supported MIME types for your use case: _ [Assistants](/docs/assistants/tools/file_search#supported_files)  For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api_reference/files/create).
+[**Usage_Audio_Speeches**](UsageApi.md#Usage_Audio_Speeches) | **GET** /organization/usage/audio_speeches | Get audio speeches usage details for the organization.
+[**Usage_Audio_Transcriptions**](UsageApi.md#Usage_Audio_Transcriptions) | **GET** /organization/usage/audio_transcriptions | Get audio transcriptions usage details for the organization.
+[**Usage_Code_Interpreter_Sessions**](UsageApi.md#Usage_Code_Interpreter_Sessions) | **GET** /organization/usage/code_interpreter_sessions | Get code interpreter sessions usage details for the organization.
+[**Usage_Completions**](UsageApi.md#Usage_Completions) | **GET** /organization/usage/completions | Get completions usage details for the organization.
+[**Usage_Costs**](UsageApi.md#Usage_Costs) | **GET** /organization/costs | Get costs details for the organization.
+[**Usage_Embeddings**](UsageApi.md#Usage_Embeddings) | **GET** /organization/usage/embeddings | Get embeddings usage details for the organization.
+[**Usage_Images**](UsageApi.md#Usage_Images) | **GET** /organization/usage/images | Get images usage details for the organization.
+[**Usage_Moderations**](UsageApi.md#Usage_Moderations) | **GET** /organization/usage/moderations | Get moderations usage details for the organization.
+[**Usage_Vector_Stores**](UsageApi.md#Usage_Vector_Stores) | **GET** /organization/usage/vector_stores | Get vector stores usage details for the organization.
+[**Delete_User**](UsersApi.md#Delete_User) | **DELETE** /organization/users/{user_id} | Deletes a user from the organization.
+[**List_Users**](UsersApi.md#List_Users) | **GET** /organization/users | Lists all of the users in the organization.
+[**Modify_User**](UsersApi.md#Modify_User) | **POST** /organization/users/{user_id} | Modifies a user's role in the organization.
+[**Retrieve_User**](UsersApi.md#Retrieve_User) | **GET** /organization/users/{user_id} | Retrieves a user by their identifier.
+[**Cancel_Vector_Store_File_Batch**](VectorStoresApi.md#Cancel_Vector_Store_File_Batch) | **POST** /vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel | Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+[**Create_Vector_Store**](VectorStoresApi.md#Create_Vector_Store) | **POST** /vector_stores | Create a vector store.
+[**Create_Vector_Store_File**](VectorStoresApi.md#Create_Vector_Store_File) | **POST** /vector_stores/{vector_store_id}/files | Create a vector store file by attaching a [File](/docs/api_reference/files) to a [vector store](/docs/api_reference/vector_stores/object).
+[**Create_Vector_Store_File_Batch**](VectorStoresApi.md#Create_Vector_Store_File_Batch) | **POST** /vector_stores/{vector_store_id}/file_batches | Create a vector store file batch.
+[**Delete_Vector_Store**](VectorStoresApi.md#Delete_Vector_Store) | **DELETE** /vector_stores/{vector_store_id} | Delete a vector store.
+[**Delete_Vector_Store_File**](VectorStoresApi.md#Delete_Vector_Store_File) | **DELETE** /vector_stores/{vector_store_id}/files/{file_id} | Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api_reference/files/delete) endpoint.
+[**Get_Vector_Store**](VectorStoresApi.md#Get_Vector_Store) | **GET** /vector_stores/{vector_store_id} | Retrieves a vector store.
+[**Get_Vector_Store_File**](VectorStoresApi.md#Get_Vector_Store_File) | **GET** /vector_stores/{vector_store_id}/files/{file_id} | Retrieves a vector store file.
+[**Get_Vector_Store_File_Batch**](VectorStoresApi.md#Get_Vector_Store_File_Batch) | **GET** /vector_stores/{vector_store_id}/file_batches/{batch_id} | Retrieves a vector store file batch.
+[**List_Files_In_Vector_Store_Batch**](VectorStoresApi.md#List_Files_In_Vector_Store_Batch) | **GET** /vector_stores/{vector_store_id}/file_batches/{batch_id}/files | Returns a list of vector store files in a batch.
+[**List_Vector_Store_Files**](VectorStoresApi.md#List_Vector_Store_Files) | **GET** /vector_stores/{vector_store_id}/files | Returns a list of vector store files.
+[**List_Vector_Stores**](VectorStoresApi.md#List_Vector_Stores) | **GET** /vector_stores | Returns a list of vector stores.
+[**Modify_Vector_Store**](VectorStoresApi.md#Modify_Vector_Store) | **POST** /vector_stores/{vector_store_id} | Modifies a vector store.
 
 
 ### Models
 
- - [.Models.AssistantFileObject_Type](AssistantFileObject_Type.md)
+ - [.Models.AdminApiKeyOwner_Type](AdminApiKeyOwner_Type.md)
+ - [.Models.AdminApiKey_Type](AdminApiKey_Type.md)
+ - [.Models.AdminApiKeysCreateRequest_Type](AdminApiKeysCreateRequest_Type.md)
+ - [.Models.AdminApiKeysDelete200Response_Type](AdminApiKeysDelete200Response_Type.md)
+ - [.Models.ApiKeyList_Type](ApiKeyList_Type.md)
+ - [.Models.ArrayOfContentPartsInner_Type](ArrayOfContentPartsInner_Type.md)
+ - [.Models.AssistantObjectToolResourcesCodeInterpreter_Type](AssistantObjectToolResourcesCodeInterpreter_Type.md)
+ - [.Models.AssistantObjectToolResourcesFileSearch_Type](AssistantObjectToolResourcesFileSearch_Type.md)
+ - [.Models.AssistantObjectToolResources_Type](AssistantObjectToolResources_Type.md)
  - [.Models.AssistantObjectToolsInner_Type](AssistantObjectToolsInner_Type.md)
  - [.Models.AssistantObject_Type](AssistantObject_Type.md)
  - [.Models.AssistantStreamEvent_Type](AssistantStreamEvent_Type.md)
  - [.Models.AssistantToolsCode_Type](AssistantToolsCode_Type.md)
+ - [.Models.AssistantToolsFileSearchFileSearch_Type](AssistantToolsFileSearchFileSearch_Type.md)
+ - [.Models.AssistantToolsFileSearchTypeOnly_Type](AssistantToolsFileSearchTypeOnly_Type.md)
+ - [.Models.AssistantToolsFileSearch_Type](AssistantToolsFileSearch_Type.md)
  - [.Models.AssistantToolsFunction_Type](AssistantToolsFunction_Type.md)
- - [.Models.AssistantToolsRetrieval_Type](AssistantToolsRetrieval_Type.md)
- - [.Models.AssistantsApiNamedToolChoice_Type](AssistantsApiNamedToolChoice_Type.md)
  - [.Models.AssistantsApiResponseFormatOption_Type](AssistantsApiResponseFormatOption_Type.md)
- - [.Models.AssistantsApiResponseFormat_Type](AssistantsApiResponseFormat_Type.md)
  - [.Models.AssistantsApiToolChoiceOption_Type](AssistantsApiToolChoiceOption_Type.md)
+ - [.Models.AssistantsNamedToolChoiceFunction_Type](AssistantsNamedToolChoiceFunction_Type.md)
+ - [.Models.AssistantsNamedToolChoice_Type](AssistantsNamedToolChoice_Type.md)
+ - [.Models.AudioResponseFormat_Type](AudioResponseFormat_Type.md)
+ - [.Models.AuditLogActorApiKey_Type](AuditLogActorApiKey_Type.md)
+ - [.Models.AuditLogActorServiceAccount_Type](AuditLogActorServiceAccount_Type.md)
+ - [.Models.AuditLogActorSession_Type](AuditLogActorSession_Type.md)
+ - [.Models.AuditLogActorUser_Type](AuditLogActorUser_Type.md)
+ - [.Models.AuditLogActor_Type](AuditLogActor_Type.md)
+ - [.Models.AuditLogApiKeyCreatedData_Type](AuditLogApiKeyCreatedData_Type.md)
+ - [.Models.AuditLogApiKeyCreated_Type](AuditLogApiKeyCreated_Type.md)
+ - [.Models.AuditLogApiKeyDeleted_Type](AuditLogApiKeyDeleted_Type.md)
+ - [.Models.AuditLogApiKeyUpdatedChangesRequested_Type](AuditLogApiKeyUpdatedChangesRequested_Type.md)
+ - [.Models.AuditLogApiKeyUpdated_Type](AuditLogApiKeyUpdated_Type.md)
+ - [.Models.AuditLogEventType_Type](AuditLogEventType_Type.md)
+ - [.Models.AuditLogInviteAccepted_Type](AuditLogInviteAccepted_Type.md)
+ - [.Models.AuditLogInviteSentData_Type](AuditLogInviteSentData_Type.md)
+ - [.Models.AuditLogInviteSent_Type](AuditLogInviteSent_Type.md)
+ - [.Models.AuditLogLoginFailed_Type](AuditLogLoginFailed_Type.md)
+ - [.Models.AuditLogOrganizationUpdatedChangesRequestedSettings_Type](AuditLogOrganizationUpdatedChangesRequestedSettings_Type.md)
+ - [.Models.AuditLogOrganizationUpdatedChangesRequested_Type](AuditLogOrganizationUpdatedChangesRequested_Type.md)
+ - [.Models.AuditLogOrganizationUpdated_Type](AuditLogOrganizationUpdated_Type.md)
+ - [.Models.AuditLogProjectArchived_Type](AuditLogProjectArchived_Type.md)
+ - [.Models.AuditLogProjectCreatedData_Type](AuditLogProjectCreatedData_Type.md)
+ - [.Models.AuditLogProjectCreated_Type](AuditLogProjectCreated_Type.md)
+ - [.Models.AuditLogProjectUpdatedChangesRequested_Type](AuditLogProjectUpdatedChangesRequested_Type.md)
+ - [.Models.AuditLogProjectUpdated_Type](AuditLogProjectUpdated_Type.md)
+ - [.Models.AuditLogProject_Type](AuditLogProject_Type.md)
+ - [.Models.AuditLogRateLimitDeleted_Type](AuditLogRateLimitDeleted_Type.md)
+ - [.Models.AuditLogRateLimitUpdatedChangesRequested_Type](AuditLogRateLimitUpdatedChangesRequested_Type.md)
+ - [.Models.AuditLogRateLimitUpdated_Type](AuditLogRateLimitUpdated_Type.md)
+ - [.Models.AuditLogServiceAccountCreatedData_Type](AuditLogServiceAccountCreatedData_Type.md)
+ - [.Models.AuditLogServiceAccountCreated_Type](AuditLogServiceAccountCreated_Type.md)
+ - [.Models.AuditLogServiceAccountDeleted_Type](AuditLogServiceAccountDeleted_Type.md)
+ - [.Models.AuditLogServiceAccountUpdatedChangesRequested_Type](AuditLogServiceAccountUpdatedChangesRequested_Type.md)
+ - [.Models.AuditLogServiceAccountUpdated_Type](AuditLogServiceAccountUpdated_Type.md)
+ - [.Models.AuditLogUserAddedData_Type](AuditLogUserAddedData_Type.md)
+ - [.Models.AuditLogUserAdded_Type](AuditLogUserAdded_Type.md)
+ - [.Models.AuditLogUserDeleted_Type](AuditLogUserDeleted_Type.md)
+ - [.Models.AuditLogUserUpdatedChangesRequested_Type](AuditLogUserUpdatedChangesRequested_Type.md)
+ - [.Models.AuditLogUserUpdated_Type](AuditLogUserUpdated_Type.md)
+ - [.Models.AuditLog_Type](AuditLog_Type.md)
+ - [.Models.AutoChunkingStrategyRequestParam_Type](AutoChunkingStrategyRequestParam_Type.md)
+ - [.Models.AutoChunkingStrategy_Type](AutoChunkingStrategy_Type.md)
+ - [.Models.BatchErrorsDataInner_Type](BatchErrorsDataInner_Type.md)
+ - [.Models.BatchErrors_Type](BatchErrors_Type.md)
+ - [.Models.BatchRequestCounts_Type](BatchRequestCounts_Type.md)
+ - [.Models.BatchRequestInput_Type](BatchRequestInput_Type.md)
+ - [.Models.BatchRequestOutputError_Type](BatchRequestOutputError_Type.md)
+ - [.Models.BatchRequestOutputResponse_Type](BatchRequestOutputResponse_Type.md)
+ - [.Models.BatchRequestOutput_Type](BatchRequestOutput_Type.md)
+ - [.Models.Batch_Type](Batch_Type.md)
  - [.Models.ChatCompletionFunctionCallOption_Type](ChatCompletionFunctionCallOption_Type.md)
  - [.Models.ChatCompletionFunctions_Type](ChatCompletionFunctions_Type.md)
  - [.Models.ChatCompletionMessageToolCallChunkFunction_Type](ChatCompletionMessageToolCallChunkFunction_Type.md)
  - [.Models.ChatCompletionMessageToolCallChunk_Type](ChatCompletionMessageToolCallChunk_Type.md)
  - [.Models.ChatCompletionMessageToolCallFunction_Type](ChatCompletionMessageToolCallFunction_Type.md)
  - [.Models.ChatCompletionMessageToolCall_Type](ChatCompletionMessageToolCall_Type.md)
- - [.Models.ChatCompletionNamedToolChoiceFunction_Type](ChatCompletionNamedToolChoiceFunction_Type.md)
  - [.Models.ChatCompletionNamedToolChoice_Type](ChatCompletionNamedToolChoice_Type.md)
+ - [.Models.ChatCompletionRequestAssistantMessageAudio_Type](ChatCompletionRequestAssistantMessageAudio_Type.md)
+ - [.Models.ChatCompletionRequestAssistantMessageContentPart_Type](ChatCompletionRequestAssistantMessageContentPart_Type.md)
+ - [.Models.ChatCompletionRequestAssistantMessageContent_Type](ChatCompletionRequestAssistantMessageContent_Type.md)
  - [.Models.ChatCompletionRequestAssistantMessageFunctionCall_Type](ChatCompletionRequestAssistantMessageFunctionCall_Type.md)
  - [.Models.ChatCompletionRequestAssistantMessage_Type](ChatCompletionRequestAssistantMessage_Type.md)
+ - [.Models.ChatCompletionRequestDeveloperMessageContent_Type](ChatCompletionRequestDeveloperMessageContent_Type.md)
+ - [.Models.ChatCompletionRequestDeveloperMessage_Type](ChatCompletionRequestDeveloperMessage_Type.md)
  - [.Models.ChatCompletionRequestFunctionMessage_Type](ChatCompletionRequestFunctionMessage_Type.md)
+ - [.Models.ChatCompletionRequestMessageContentPartAudioInputAudio_Type](ChatCompletionRequestMessageContentPartAudioInputAudio_Type.md)
+ - [.Models.ChatCompletionRequestMessageContentPartAudio_Type](ChatCompletionRequestMessageContentPartAudio_Type.md)
  - [.Models.ChatCompletionRequestMessageContentPartImageImageUrl_Type](ChatCompletionRequestMessageContentPartImageImageUrl_Type.md)
  - [.Models.ChatCompletionRequestMessageContentPartImage_Type](ChatCompletionRequestMessageContentPartImage_Type.md)
+ - [.Models.ChatCompletionRequestMessageContentPartRefusal_Type](ChatCompletionRequestMessageContentPartRefusal_Type.md)
  - [.Models.ChatCompletionRequestMessageContentPartText_Type](ChatCompletionRequestMessageContentPartText_Type.md)
- - [.Models.ChatCompletionRequestMessageContentPart_Type](ChatCompletionRequestMessageContentPart_Type.md)
  - [.Models.ChatCompletionRequestMessage_Type](ChatCompletionRequestMessage_Type.md)
+ - [.Models.ChatCompletionRequestSystemMessageContent_Type](ChatCompletionRequestSystemMessageContent_Type.md)
  - [.Models.ChatCompletionRequestSystemMessage_Type](ChatCompletionRequestSystemMessage_Type.md)
+ - [.Models.ChatCompletionRequestToolMessageContent_Type](ChatCompletionRequestToolMessageContent_Type.md)
  - [.Models.ChatCompletionRequestToolMessage_Type](ChatCompletionRequestToolMessage_Type.md)
+ - [.Models.ChatCompletionRequestUserMessageContentPart_Type](ChatCompletionRequestUserMessageContentPart_Type.md)
  - [.Models.ChatCompletionRequestUserMessageContent_Type](ChatCompletionRequestUserMessageContent_Type.md)
  - [.Models.ChatCompletionRequestUserMessage_Type](ChatCompletionRequestUserMessage_Type.md)
+ - [.Models.ChatCompletionResponseMessageAudio_Type](ChatCompletionResponseMessageAudio_Type.md)
+ - [.Models.ChatCompletionResponseMessageFunctionCall_Type](ChatCompletionResponseMessageFunctionCall_Type.md)
  - [.Models.ChatCompletionResponseMessage_Type](ChatCompletionResponseMessage_Type.md)
  - [.Models.ChatCompletionRole_Type](ChatCompletionRole_Type.md)
+ - [.Models.ChatCompletionStreamOptions_Type](ChatCompletionStreamOptions_Type.md)
  - [.Models.ChatCompletionStreamResponseDeltaFunctionCall_Type](ChatCompletionStreamResponseDeltaFunctionCall_Type.md)
  - [.Models.ChatCompletionStreamResponseDelta_Type](ChatCompletionStreamResponseDelta_Type.md)
  - [.Models.ChatCompletionTokenLogprobTopLogprobsInner_Type](ChatCompletionTokenLogprobTopLogprobsInner_Type.md)
  - [.Models.ChatCompletionTokenLogprob_Type](ChatCompletionTokenLogprob_Type.md)
  - [.Models.ChatCompletionToolChoiceOption_Type](ChatCompletionToolChoiceOption_Type.md)
  - [.Models.ChatCompletionTool_Type](ChatCompletionTool_Type.md)
+ - [.Models.ChunkingStrategyRequestParam_Type](ChunkingStrategyRequestParam_Type.md)
+ - [.Models.CompleteUploadRequest_Type](CompleteUploadRequest_Type.md)
+ - [.Models.CompletionUsageCompletionTokensDetails_Type](CompletionUsageCompletionTokensDetails_Type.md)
+ - [.Models.CompletionUsagePromptTokensDetails_Type](CompletionUsagePromptTokensDetails_Type.md)
  - [.Models.CompletionUsage_Type](CompletionUsage_Type.md)
- - [.Models.CreateAssistantFileRequest_Type](CreateAssistantFileRequest_Type.md)
+ - [.Models.CostsResultAmount_Type](CostsResultAmount_Type.md)
+ - [.Models.CostsResult_Type](CostsResult_Type.md)
  - [.Models.CreateAssistantRequestModel_Type](CreateAssistantRequestModel_Type.md)
+ - [.Models.CreateAssistantRequestToolResourcesCodeInterpreter_Type](CreateAssistantRequestToolResourcesCodeInterpreter_Type.md)
+ - [.Models.CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy_Type](CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy_Type.md)
+ - [.Models.CreateAssistantRequestToolResourcesFileSearchVectorStoresInner_Type](CreateAssistantRequestToolResourcesFileSearchVectorStoresInner_Type.md)
+ - [.Models.CreateAssistantRequestToolResourcesFileSearch_Type](CreateAssistantRequestToolResourcesFileSearch_Type.md)
+ - [.Models.CreateAssistantRequestToolResources_Type](CreateAssistantRequestToolResources_Type.md)
  - [.Models.CreateAssistantRequest_Type](CreateAssistantRequest_Type.md)
+ - [.Models.CreateBatchRequest_Type](CreateBatchRequest_Type.md)
  - [.Models.CreateChatCompletionFunctionResponseChoicesInner_Type](CreateChatCompletionFunctionResponseChoicesInner_Type.md)
  - [.Models.CreateChatCompletionFunctionResponse_Type](CreateChatCompletionFunctionResponse_Type.md)
+ - [.Models.CreateChatCompletionRequestAudio_Type](CreateChatCompletionRequestAudio_Type.md)
  - [.Models.CreateChatCompletionRequestFunctionCall_Type](CreateChatCompletionRequestFunctionCall_Type.md)
  - [.Models.CreateChatCompletionRequestModel_Type](CreateChatCompletionRequestModel_Type.md)
  - [.Models.CreateChatCompletionRequestResponseFormat_Type](CreateChatCompletionRequestResponseFormat_Type.md)
@@ -202,6 +343,7 @@ Method | HTTP request | Description
  - [.Models.CreateChatCompletionResponseChoicesInner_Type](CreateChatCompletionResponseChoicesInner_Type.md)
  - [.Models.CreateChatCompletionResponse_Type](CreateChatCompletionResponse_Type.md)
  - [.Models.CreateChatCompletionStreamResponseChoicesInner_Type](CreateChatCompletionStreamResponseChoicesInner_Type.md)
+ - [.Models.CreateChatCompletionStreamResponseUsage_Type](CreateChatCompletionStreamResponseUsage_Type.md)
  - [.Models.CreateChatCompletionStreamResponse_Type](CreateChatCompletionStreamResponse_Type.md)
  - [.Models.CreateCompletionRequestModel_Type](CreateCompletionRequestModel_Type.md)
  - [.Models.CreateCompletionRequestPrompt_Type](CreateCompletionRequestPrompt_Type.md)
@@ -226,11 +368,19 @@ Method | HTTP request | Description
  - [.Models.CreateImageEditRequestModel_Type](CreateImageEditRequestModel_Type.md)
  - [.Models.CreateImageRequestModel_Type](CreateImageRequestModel_Type.md)
  - [.Models.CreateImageRequest_Type](CreateImageRequest_Type.md)
+ - [.Models.CreateMessageRequestAttachmentsInnerToolsInner_Type](CreateMessageRequestAttachmentsInnerToolsInner_Type.md)
+ - [.Models.CreateMessageRequestAttachmentsInner_Type](CreateMessageRequestAttachmentsInner_Type.md)
+ - [.Models.CreateMessageRequestContent_Type](CreateMessageRequestContent_Type.md)
  - [.Models.CreateMessageRequest_Type](CreateMessageRequest_Type.md)
+ - [.Models.CreateModerationRequestInputOneOfInnerOneOf1_Type](CreateModerationRequestInputOneOfInnerOneOf1_Type.md)
+ - [.Models.CreateModerationRequestInputOneOfInnerOneOfImageUrl_Type](CreateModerationRequestInputOneOfInnerOneOfImageUrl_Type.md)
+ - [.Models.CreateModerationRequestInputOneOfInnerOneOf_Type](CreateModerationRequestInputOneOfInnerOneOf_Type.md)
+ - [.Models.CreateModerationRequestInputOneOfInner_Type](CreateModerationRequestInputOneOfInner_Type.md)
  - [.Models.CreateModerationRequestInput_Type](CreateModerationRequestInput_Type.md)
  - [.Models.CreateModerationRequestModel_Type](CreateModerationRequestModel_Type.md)
  - [.Models.CreateModerationRequest_Type](CreateModerationRequest_Type.md)
  - [.Models.CreateModerationResponseResultsInnerCategories_Type](CreateModerationResponseResultsInnerCategories_Type.md)
+ - [.Models.CreateModerationResponseResultsInnerCategoryAppliedInputTypes_Type](CreateModerationResponseResultsInnerCategoryAppliedInputTypes_Type.md)
  - [.Models.CreateModerationResponseResultsInnerCategoryScores_Type](CreateModerationResponseResultsInnerCategoryScores_Type.md)
  - [.Models.CreateModerationResponseResultsInner_Type](CreateModerationResponseResultsInner_Type.md)
  - [.Models.CreateModerationResponse_Type](CreateModerationResponse_Type.md)
@@ -238,8 +388,12 @@ Method | HTTP request | Description
  - [.Models.CreateRunRequest_Type](CreateRunRequest_Type.md)
  - [.Models.CreateSpeechRequestModel_Type](CreateSpeechRequestModel_Type.md)
  - [.Models.CreateSpeechRequest_Type](CreateSpeechRequest_Type.md)
+ - [.Models.CreateThreadAndRunRequestToolResources_Type](CreateThreadAndRunRequestToolResources_Type.md)
  - [.Models.CreateThreadAndRunRequestToolsInner_Type](CreateThreadAndRunRequestToolsInner_Type.md)
  - [.Models.CreateThreadAndRunRequest_Type](CreateThreadAndRunRequest_Type.md)
+ - [.Models.CreateThreadRequestToolResourcesFileSearchVectorStoresInner_Type](CreateThreadRequestToolResourcesFileSearchVectorStoresInner_Type.md)
+ - [.Models.CreateThreadRequestToolResourcesFileSearch_Type](CreateThreadRequestToolResourcesFileSearch_Type.md)
+ - [.Models.CreateThreadRequestToolResources_Type](CreateThreadRequestToolResources_Type.md)
  - [.Models.CreateThreadRequest_Type](CreateThreadRequest_Type.md)
  - [.Models.CreateTranscription200Response_Type](CreateTranscription200Response_Type.md)
  - [.Models.CreateTranscriptionRequestModel_Type](CreateTranscriptionRequestModel_Type.md)
@@ -248,43 +402,78 @@ Method | HTTP request | Description
  - [.Models.CreateTranslation200Response_Type](CreateTranslation200Response_Type.md)
  - [.Models.CreateTranslationResponseJson_Type](CreateTranslationResponseJson_Type.md)
  - [.Models.CreateTranslationResponseVerboseJson_Type](CreateTranslationResponseVerboseJson_Type.md)
- - [.Models.DeleteAssistantFileResponse_Type](DeleteAssistantFileResponse_Type.md)
+ - [.Models.CreateUploadRequest_Type](CreateUploadRequest_Type.md)
+ - [.Models.CreateVectorStoreFileBatchRequest_Type](CreateVectorStoreFileBatchRequest_Type.md)
+ - [.Models.CreateVectorStoreFileRequest_Type](CreateVectorStoreFileRequest_Type.md)
+ - [.Models.CreateVectorStoreRequestChunkingStrategy_Type](CreateVectorStoreRequestChunkingStrategy_Type.md)
+ - [.Models.CreateVectorStoreRequest_Type](CreateVectorStoreRequest_Type.md)
+ - [.Models.DefaultProjectErrorResponse_Type](DefaultProjectErrorResponse_Type.md)
  - [.Models.DeleteAssistantResponse_Type](DeleteAssistantResponse_Type.md)
  - [.Models.DeleteFileResponse_Type](DeleteFileResponse_Type.md)
  - [.Models.DeleteMessageResponse_Type](DeleteMessageResponse_Type.md)
  - [.Models.DeleteModelResponse_Type](DeleteModelResponse_Type.md)
  - [.Models.DeleteThreadResponse_Type](DeleteThreadResponse_Type.md)
+ - [.Models.DeleteVectorStoreFileResponse_Type](DeleteVectorStoreFileResponse_Type.md)
+ - [.Models.DeleteVectorStoreResponse_Type](DeleteVectorStoreResponse_Type.md)
  - [.Models.DoneEvent_Type](DoneEvent_Type.md)
  - [.Models.Embedding_Type](Embedding_Type.md)
  - [.Models.ErrorEvent_Type](ErrorEvent_Type.md)
  - [.Models.ErrorResponse_Type](ErrorResponse_Type.md)
  - [.Models.Error_Type](Error_Type.md)
+ - [.Models.FileSearchRankingOptions_Type](FileSearchRankingOptions_Type.md)
+ - [.Models.FineTuneChatCompletionRequestAssistantMessage_Type](FineTuneChatCompletionRequestAssistantMessage_Type.md)
+ - [.Models.FineTuneChatRequestInputMessagesInner_Type](FineTuneChatRequestInputMessagesInner_Type.md)
+ - [.Models.FineTuneChatRequestInput_Type](FineTuneChatRequestInput_Type.md)
+ - [.Models.FineTuneCompletionRequestInput_Type](FineTuneCompletionRequestInput_Type.md)
+ - [.Models.FineTuneDPOMethodHyperparametersBatchSize_Type](FineTuneDPOMethodHyperparametersBatchSize_Type.md)
+ - [.Models.FineTuneDPOMethodHyperparametersBeta_Type](FineTuneDPOMethodHyperparametersBeta_Type.md)
+ - [.Models.FineTuneDPOMethodHyperparametersLearningRateMultiplier_Type](FineTuneDPOMethodHyperparametersLearningRateMultiplier_Type.md)
+ - [.Models.FineTuneDPOMethodHyperparametersNEpochs_Type](FineTuneDPOMethodHyperparametersNEpochs_Type.md)
+ - [.Models.FineTuneDPOMethodHyperparameters_Type](FineTuneDPOMethodHyperparameters_Type.md)
+ - [.Models.FineTuneDPOMethod_Type](FineTuneDPOMethod_Type.md)
+ - [.Models.FineTuneMethod_Type](FineTuneMethod_Type.md)
+ - [.Models.FineTunePreferenceRequestInputInput_Type](FineTunePreferenceRequestInputInput_Type.md)
+ - [.Models.FineTunePreferenceRequestInputPreferredCompletionInner_Type](FineTunePreferenceRequestInputPreferredCompletionInner_Type.md)
+ - [.Models.FineTunePreferenceRequestInput_Type](FineTunePreferenceRequestInput_Type.md)
+ - [.Models.FineTuneSupervisedMethodHyperparameters_Type](FineTuneSupervisedMethodHyperparameters_Type.md)
+ - [.Models.FineTuneSupervisedMethod_Type](FineTuneSupervisedMethod_Type.md)
  - [.Models.FineTuningIntegration_Type](FineTuningIntegration_Type.md)
  - [.Models.FineTuningJobCheckpointMetrics_Type](FineTuningJobCheckpointMetrics_Type.md)
  - [.Models.FineTuningJobCheckpoint_Type](FineTuningJobCheckpoint_Type.md)
  - [.Models.FineTuningJobError_Type](FineTuningJobError_Type.md)
  - [.Models.FineTuningJobEvent_Type](FineTuningJobEvent_Type.md)
- - [.Models.FineTuningJobHyperparametersNEpochs_Type](FineTuningJobHyperparametersNEpochs_Type.md)
  - [.Models.FineTuningJobHyperparameters_Type](FineTuningJobHyperparameters_Type.md)
  - [.Models.FineTuningJobIntegrationsInner_Type](FineTuningJobIntegrationsInner_Type.md)
  - [.Models.FineTuningJob_Type](FineTuningJob_Type.md)
  - [.Models.FunctionObject_Type](FunctionObject_Type.md)
  - [.Models.Image_Type](Image_Type.md)
  - [.Models.ImagesResponse_Type](ImagesResponse_Type.md)
- - [.Models.ListAssistantFilesResponse_Type](ListAssistantFilesResponse_Type.md)
+ - [.Models.InviteDeleteResponse_Type](InviteDeleteResponse_Type.md)
+ - [.Models.InviteListResponse_Type](InviteListResponse_Type.md)
+ - [.Models.InviteProjectsInner_Type](InviteProjectsInner_Type.md)
+ - [.Models.InviteRequestProjectsInner_Type](InviteRequestProjectsInner_Type.md)
+ - [.Models.InviteRequest_Type](InviteRequest_Type.md)
+ - [.Models.Invite_Type](Invite_Type.md)
  - [.Models.ListAssistantsResponse_Type](ListAssistantsResponse_Type.md)
+ - [.Models.ListAuditLogsEffectiveAtParameter_Type](ListAuditLogsEffectiveAtParameter_Type.md)
+ - [.Models.ListAuditLogsResponse_Type](ListAuditLogsResponse_Type.md)
+ - [.Models.ListBatchesResponse_Type](ListBatchesResponse_Type.md)
  - [.Models.ListFilesResponse_Type](ListFilesResponse_Type.md)
  - [.Models.ListFineTuningJobCheckpointsResponse_Type](ListFineTuningJobCheckpointsResponse_Type.md)
  - [.Models.ListFineTuningJobEventsResponse_Type](ListFineTuningJobEventsResponse_Type.md)
- - [.Models.ListMessageFilesResponse_Type](ListMessageFilesResponse_Type.md)
  - [.Models.ListMessagesResponse_Type](ListMessagesResponse_Type.md)
  - [.Models.ListModelsResponse_Type](ListModelsResponse_Type.md)
  - [.Models.ListPaginatedFineTuningJobsResponse_Type](ListPaginatedFineTuningJobsResponse_Type.md)
  - [.Models.ListRunStepsResponse_Type](ListRunStepsResponse_Type.md)
  - [.Models.ListRunsResponse_Type](ListRunsResponse_Type.md)
  - [.Models.ListThreadsResponse_Type](ListThreadsResponse_Type.md)
+ - [.Models.ListVectorStoreFilesResponse_Type](ListVectorStoreFilesResponse_Type.md)
+ - [.Models.ListVectorStoresResponse_Type](ListVectorStoresResponse_Type.md)
  - [.Models.MessageContentImageFileObjectImageFile_Type](MessageContentImageFileObjectImageFile_Type.md)
  - [.Models.MessageContentImageFileObject_Type](MessageContentImageFileObject_Type.md)
+ - [.Models.MessageContentImageUrlObjectImageUrl_Type](MessageContentImageUrlObjectImageUrl_Type.md)
+ - [.Models.MessageContentImageUrlObject_Type](MessageContentImageUrlObject_Type.md)
+ - [.Models.MessageContentRefusalObject_Type](MessageContentRefusalObject_Type.md)
  - [.Models.MessageContentTextAnnotationsFileCitationObjectFileCitation_Type](MessageContentTextAnnotationsFileCitationObjectFileCitation_Type.md)
  - [.Models.MessageContentTextAnnotationsFileCitationObject_Type](MessageContentTextAnnotationsFileCitationObject_Type.md)
  - [.Models.MessageContentTextAnnotationsFilePathObjectFilePath_Type](MessageContentTextAnnotationsFilePathObjectFilePath_Type.md)
@@ -294,6 +483,9 @@ Method | HTTP request | Description
  - [.Models.MessageContentTextObject_Type](MessageContentTextObject_Type.md)
  - [.Models.MessageDeltaContentImageFileObjectImageFile_Type](MessageDeltaContentImageFileObjectImageFile_Type.md)
  - [.Models.MessageDeltaContentImageFileObject_Type](MessageDeltaContentImageFileObject_Type.md)
+ - [.Models.MessageDeltaContentImageUrlObjectImageUrl_Type](MessageDeltaContentImageUrlObjectImageUrl_Type.md)
+ - [.Models.MessageDeltaContentImageUrlObject_Type](MessageDeltaContentImageUrlObject_Type.md)
+ - [.Models.MessageDeltaContentRefusalObject_Type](MessageDeltaContentRefusalObject_Type.md)
  - [.Models.MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation_Type](MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation_Type.md)
  - [.Models.MessageDeltaContentTextAnnotationsFileCitationObject_Type](MessageDeltaContentTextAnnotationsFileCitationObject_Type.md)
  - [.Models.MessageDeltaContentTextAnnotationsFilePathObjectFilePath_Type](MessageDeltaContentTextAnnotationsFilePathObjectFilePath_Type.md)
@@ -304,10 +496,10 @@ Method | HTTP request | Description
  - [.Models.MessageDeltaObjectDeltaContentInner_Type](MessageDeltaObjectDeltaContentInner_Type.md)
  - [.Models.MessageDeltaObjectDelta_Type](MessageDeltaObjectDelta_Type.md)
  - [.Models.MessageDeltaObject_Type](MessageDeltaObject_Type.md)
- - [.Models.MessageFileObject_Type](MessageFileObject_Type.md)
  - [.Models.MessageObjectContentInner_Type](MessageObjectContentInner_Type.md)
  - [.Models.MessageObjectIncompleteDetails_Type](MessageObjectIncompleteDetails_Type.md)
  - [.Models.MessageObject_Type](MessageObject_Type.md)
+ - [.Models.MessageRequestContentTextObject_Type](MessageRequestContentTextObject_Type.md)
  - [.Models.MessageStreamEventOneOf1_Type](MessageStreamEventOneOf1_Type.md)
  - [.Models.MessageStreamEventOneOf2_Type](MessageStreamEventOneOf2_Type.md)
  - [.Models.MessageStreamEventOneOf3_Type](MessageStreamEventOneOf3_Type.md)
@@ -315,11 +507,109 @@ Method | HTTP request | Description
  - [.Models.MessageStreamEventOneOf_Type](MessageStreamEventOneOf_Type.md)
  - [.Models.MessageStreamEvent_Type](MessageStreamEvent_Type.md)
  - [.Models.Model_Type](Model_Type.md)
+ - [.Models.ModifyAssistantRequestToolResourcesCodeInterpreter_Type](ModifyAssistantRequestToolResourcesCodeInterpreter_Type.md)
+ - [.Models.ModifyAssistantRequestToolResourcesFileSearch_Type](ModifyAssistantRequestToolResourcesFileSearch_Type.md)
+ - [.Models.ModifyAssistantRequestToolResources_Type](ModifyAssistantRequestToolResources_Type.md)
  - [.Models.ModifyAssistantRequest_Type](ModifyAssistantRequest_Type.md)
  - [.Models.ModifyMessageRequest_Type](ModifyMessageRequest_Type.md)
  - [.Models.ModifyRunRequest_Type](ModifyRunRequest_Type.md)
+ - [.Models.ModifyThreadRequestToolResourcesFileSearch_Type](ModifyThreadRequestToolResourcesFileSearch_Type.md)
+ - [.Models.ModifyThreadRequestToolResources_Type](ModifyThreadRequestToolResources_Type.md)
  - [.Models.ModifyThreadRequest_Type](ModifyThreadRequest_Type.md)
  - [.Models.OpenAIFile_Type](OpenAIFile_Type.md)
+ - [.Models.OtherChunkingStrategyResponseParam_Type](OtherChunkingStrategyResponseParam_Type.md)
+ - [.Models.PredictionContentContent_Type](PredictionContentContent_Type.md)
+ - [.Models.PredictionContent_Type](PredictionContent_Type.md)
+ - [.Models.ProjectApiKeyDeleteResponse_Type](ProjectApiKeyDeleteResponse_Type.md)
+ - [.Models.ProjectApiKeyListResponse_Type](ProjectApiKeyListResponse_Type.md)
+ - [.Models.ProjectApiKeyOwner_Type](ProjectApiKeyOwner_Type.md)
+ - [.Models.ProjectApiKey_Type](ProjectApiKey_Type.md)
+ - [.Models.ProjectCreateRequest_Type](ProjectCreateRequest_Type.md)
+ - [.Models.ProjectListResponse_Type](ProjectListResponse_Type.md)
+ - [.Models.ProjectRateLimitListResponse_Type](ProjectRateLimitListResponse_Type.md)
+ - [.Models.ProjectRateLimitUpdateRequest_Type](ProjectRateLimitUpdateRequest_Type.md)
+ - [.Models.ProjectRateLimit_Type](ProjectRateLimit_Type.md)
+ - [.Models.ProjectServiceAccountApiKey_Type](ProjectServiceAccountApiKey_Type.md)
+ - [.Models.ProjectServiceAccountCreateRequest_Type](ProjectServiceAccountCreateRequest_Type.md)
+ - [.Models.ProjectServiceAccountCreateResponse_Type](ProjectServiceAccountCreateResponse_Type.md)
+ - [.Models.ProjectServiceAccountDeleteResponse_Type](ProjectServiceAccountDeleteResponse_Type.md)
+ - [.Models.ProjectServiceAccountListResponse_Type](ProjectServiceAccountListResponse_Type.md)
+ - [.Models.ProjectServiceAccount_Type](ProjectServiceAccount_Type.md)
+ - [.Models.ProjectUpdateRequest_Type](ProjectUpdateRequest_Type.md)
+ - [.Models.ProjectUserCreateRequest_Type](ProjectUserCreateRequest_Type.md)
+ - [.Models.ProjectUserDeleteResponse_Type](ProjectUserDeleteResponse_Type.md)
+ - [.Models.ProjectUserListResponse_Type](ProjectUserListResponse_Type.md)
+ - [.Models.ProjectUserUpdateRequest_Type](ProjectUserUpdateRequest_Type.md)
+ - [.Models.ProjectUser_Type](ProjectUser_Type.md)
+ - [.Models.Project_Type](Project_Type.md)
+ - [.Models.RealtimeClientEventConversationItemCreate_Type](RealtimeClientEventConversationItemCreate_Type.md)
+ - [.Models.RealtimeClientEventConversationItemDelete_Type](RealtimeClientEventConversationItemDelete_Type.md)
+ - [.Models.RealtimeClientEventConversationItemTruncate_Type](RealtimeClientEventConversationItemTruncate_Type.md)
+ - [.Models.RealtimeClientEventInputAudioBufferAppend_Type](RealtimeClientEventInputAudioBufferAppend_Type.md)
+ - [.Models.RealtimeClientEventInputAudioBufferClear_Type](RealtimeClientEventInputAudioBufferClear_Type.md)
+ - [.Models.RealtimeClientEventInputAudioBufferCommit_Type](RealtimeClientEventInputAudioBufferCommit_Type.md)
+ - [.Models.RealtimeClientEventResponseCancel_Type](RealtimeClientEventResponseCancel_Type.md)
+ - [.Models.RealtimeClientEventResponseCreate_Type](RealtimeClientEventResponseCreate_Type.md)
+ - [.Models.RealtimeClientEventSessionUpdate_Type](RealtimeClientEventSessionUpdate_Type.md)
+ - [.Models.RealtimeConversationItemContentInner_Type](RealtimeConversationItemContentInner_Type.md)
+ - [.Models.RealtimeConversationItem_Type](RealtimeConversationItem_Type.md)
+ - [.Models.RealtimeResponseCreateParamsConversation_Type](RealtimeResponseCreateParamsConversation_Type.md)
+ - [.Models.RealtimeResponseCreateParamsMaxResponseOutputTokens_Type](RealtimeResponseCreateParamsMaxResponseOutputTokens_Type.md)
+ - [.Models.RealtimeResponseCreateParamsToolsInner_Type](RealtimeResponseCreateParamsToolsInner_Type.md)
+ - [.Models.RealtimeResponseCreateParams_Type](RealtimeResponseCreateParams_Type.md)
+ - [.Models.RealtimeResponseStatusDetailsError_Type](RealtimeResponseStatusDetailsError_Type.md)
+ - [.Models.RealtimeResponseStatusDetails_Type](RealtimeResponseStatusDetails_Type.md)
+ - [.Models.RealtimeResponseUsageInputTokenDetails_Type](RealtimeResponseUsageInputTokenDetails_Type.md)
+ - [.Models.RealtimeResponseUsageOutputTokenDetails_Type](RealtimeResponseUsageOutputTokenDetails_Type.md)
+ - [.Models.RealtimeResponseUsage_Type](RealtimeResponseUsage_Type.md)
+ - [.Models.RealtimeResponse_Type](RealtimeResponse_Type.md)
+ - [.Models.RealtimeServerEventConversationCreatedConversation_Type](RealtimeServerEventConversationCreatedConversation_Type.md)
+ - [.Models.RealtimeServerEventConversationCreated_Type](RealtimeServerEventConversationCreated_Type.md)
+ - [.Models.RealtimeServerEventConversationItemCreated_Type](RealtimeServerEventConversationItemCreated_Type.md)
+ - [.Models.RealtimeServerEventConversationItemDeleted_Type](RealtimeServerEventConversationItemDeleted_Type.md)
+ - [.Models.RealtimeServerEventConversationItemInputAudioTranscriptionCompleted_Type](RealtimeServerEventConversationItemInputAudioTranscriptionCompleted_Type.md)
+ - [.Models.RealtimeServerEventConversationItemInputAudioTranscriptionFailedError_Type](RealtimeServerEventConversationItemInputAudioTranscriptionFailedError_Type.md)
+ - [.Models.RealtimeServerEventConversationItemInputAudioTranscriptionFailed_Type](RealtimeServerEventConversationItemInputAudioTranscriptionFailed_Type.md)
+ - [.Models.RealtimeServerEventConversationItemTruncated_Type](RealtimeServerEventConversationItemTruncated_Type.md)
+ - [.Models.RealtimeServerEventErrorError_Type](RealtimeServerEventErrorError_Type.md)
+ - [.Models.RealtimeServerEventError_Type](RealtimeServerEventError_Type.md)
+ - [.Models.RealtimeServerEventInputAudioBufferCleared_Type](RealtimeServerEventInputAudioBufferCleared_Type.md)
+ - [.Models.RealtimeServerEventInputAudioBufferCommitted_Type](RealtimeServerEventInputAudioBufferCommitted_Type.md)
+ - [.Models.RealtimeServerEventInputAudioBufferSpeechStarted_Type](RealtimeServerEventInputAudioBufferSpeechStarted_Type.md)
+ - [.Models.RealtimeServerEventInputAudioBufferSpeechStopped_Type](RealtimeServerEventInputAudioBufferSpeechStopped_Type.md)
+ - [.Models.RealtimeServerEventRateLimitsUpdatedRateLimitsInner_Type](RealtimeServerEventRateLimitsUpdatedRateLimitsInner_Type.md)
+ - [.Models.RealtimeServerEventRateLimitsUpdated_Type](RealtimeServerEventRateLimitsUpdated_Type.md)
+ - [.Models.RealtimeServerEventResponseAudioDelta_Type](RealtimeServerEventResponseAudioDelta_Type.md)
+ - [.Models.RealtimeServerEventResponseAudioDone_Type](RealtimeServerEventResponseAudioDone_Type.md)
+ - [.Models.RealtimeServerEventResponseAudioTranscriptDelta_Type](RealtimeServerEventResponseAudioTranscriptDelta_Type.md)
+ - [.Models.RealtimeServerEventResponseAudioTranscriptDone_Type](RealtimeServerEventResponseAudioTranscriptDone_Type.md)
+ - [.Models.RealtimeServerEventResponseContentPartAddedPart_Type](RealtimeServerEventResponseContentPartAddedPart_Type.md)
+ - [.Models.RealtimeServerEventResponseContentPartAdded_Type](RealtimeServerEventResponseContentPartAdded_Type.md)
+ - [.Models.RealtimeServerEventResponseContentPartDonePart_Type](RealtimeServerEventResponseContentPartDonePart_Type.md)
+ - [.Models.RealtimeServerEventResponseContentPartDone_Type](RealtimeServerEventResponseContentPartDone_Type.md)
+ - [.Models.RealtimeServerEventResponseCreated_Type](RealtimeServerEventResponseCreated_Type.md)
+ - [.Models.RealtimeServerEventResponseDone_Type](RealtimeServerEventResponseDone_Type.md)
+ - [.Models.RealtimeServerEventResponseFunctionCallArgumentsDelta_Type](RealtimeServerEventResponseFunctionCallArgumentsDelta_Type.md)
+ - [.Models.RealtimeServerEventResponseFunctionCallArgumentsDone_Type](RealtimeServerEventResponseFunctionCallArgumentsDone_Type.md)
+ - [.Models.RealtimeServerEventResponseOutputItemAdded_Type](RealtimeServerEventResponseOutputItemAdded_Type.md)
+ - [.Models.RealtimeServerEventResponseOutputItemDone_Type](RealtimeServerEventResponseOutputItemDone_Type.md)
+ - [.Models.RealtimeServerEventResponseTextDelta_Type](RealtimeServerEventResponseTextDelta_Type.md)
+ - [.Models.RealtimeServerEventResponseTextDone_Type](RealtimeServerEventResponseTextDone_Type.md)
+ - [.Models.RealtimeServerEventSessionCreated_Type](RealtimeServerEventSessionCreated_Type.md)
+ - [.Models.RealtimeServerEventSessionUpdated_Type](RealtimeServerEventSessionUpdated_Type.md)
+ - [.Models.RealtimeSessionCreateRequestTurnDetection_Type](RealtimeSessionCreateRequestTurnDetection_Type.md)
+ - [.Models.RealtimeSessionCreateRequest_Type](RealtimeSessionCreateRequest_Type.md)
+ - [.Models.RealtimeSessionCreateResponseClientSecret_Type](RealtimeSessionCreateResponseClientSecret_Type.md)
+ - [.Models.RealtimeSessionCreateResponseTurnDetection_Type](RealtimeSessionCreateResponseTurnDetection_Type.md)
+ - [.Models.RealtimeSessionCreateResponse_Type](RealtimeSessionCreateResponse_Type.md)
+ - [.Models.RealtimeSessionInputAudioTranscription_Type](RealtimeSessionInputAudioTranscription_Type.md)
+ - [.Models.RealtimeSessionModel_Type](RealtimeSessionModel_Type.md)
+ - [.Models.RealtimeSessionTurnDetection_Type](RealtimeSessionTurnDetection_Type.md)
+ - [.Models.RealtimeSession_Type](RealtimeSession_Type.md)
+ - [.Models.ResponseFormatJsonObject_Type](ResponseFormatJsonObject_Type.md)
+ - [.Models.ResponseFormatJsonSchemaJsonSchema_Type](ResponseFormatJsonSchemaJsonSchema_Type.md)
+ - [.Models.ResponseFormatJsonSchema_Type](ResponseFormatJsonSchema_Type.md)
+ - [.Models.ResponseFormatText_Type](ResponseFormatText_Type.md)
  - [.Models.RunCompletionUsage_Type](RunCompletionUsage_Type.md)
  - [.Models.RunObjectIncompleteDetails_Type](RunObjectIncompleteDetails_Type.md)
  - [.Models.RunObjectLastError_Type](RunObjectLastError_Type.md)
@@ -338,11 +628,11 @@ Method | HTTP request | Description
  - [.Models.RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage_Type](RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage_Type.md)
  - [.Models.RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_Type](RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_Type.md)
  - [.Models.RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject_Type](RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject_Type.md)
+ - [.Models.RunStepDeltaStepDetailsToolCallsFileSearchObject_Type](RunStepDeltaStepDetailsToolCallsFileSearchObject_Type.md)
  - [.Models.RunStepDeltaStepDetailsToolCallsFunctionObjectFunction_Type](RunStepDeltaStepDetailsToolCallsFunctionObjectFunction_Type.md)
  - [.Models.RunStepDeltaStepDetailsToolCallsFunctionObject_Type](RunStepDeltaStepDetailsToolCallsFunctionObject_Type.md)
  - [.Models.RunStepDeltaStepDetailsToolCallsObjectToolCallsInner_Type](RunStepDeltaStepDetailsToolCallsObjectToolCallsInner_Type.md)
  - [.Models.RunStepDeltaStepDetailsToolCallsObject_Type](RunStepDeltaStepDetailsToolCallsObject_Type.md)
- - [.Models.RunStepDeltaStepDetailsToolCallsRetrievalObject_Type](RunStepDeltaStepDetailsToolCallsRetrievalObject_Type.md)
  - [.Models.RunStepDetailsMessageCreationObjectMessageCreation_Type](RunStepDetailsMessageCreationObjectMessageCreation_Type.md)
  - [.Models.RunStepDetailsMessageCreationObject_Type](RunStepDetailsMessageCreationObject_Type.md)
  - [.Models.RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner_Type](RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner_Type.md)
@@ -351,11 +641,15 @@ Method | HTTP request | Description
  - [.Models.RunStepDetailsToolCallsCodeOutputImageObjectImage_Type](RunStepDetailsToolCallsCodeOutputImageObjectImage_Type.md)
  - [.Models.RunStepDetailsToolCallsCodeOutputImageObject_Type](RunStepDetailsToolCallsCodeOutputImageObject_Type.md)
  - [.Models.RunStepDetailsToolCallsCodeOutputLogsObject_Type](RunStepDetailsToolCallsCodeOutputLogsObject_Type.md)
+ - [.Models.RunStepDetailsToolCallsFileSearchObjectFileSearch_Type](RunStepDetailsToolCallsFileSearchObjectFileSearch_Type.md)
+ - [.Models.RunStepDetailsToolCallsFileSearchObject_Type](RunStepDetailsToolCallsFileSearchObject_Type.md)
+ - [.Models.RunStepDetailsToolCallsFileSearchRankingOptionsObject_Type](RunStepDetailsToolCallsFileSearchRankingOptionsObject_Type.md)
+ - [.Models.RunStepDetailsToolCallsFileSearchResultObjectContentInner_Type](RunStepDetailsToolCallsFileSearchResultObjectContentInner_Type.md)
+ - [.Models.RunStepDetailsToolCallsFileSearchResultObject_Type](RunStepDetailsToolCallsFileSearchResultObject_Type.md)
  - [.Models.RunStepDetailsToolCallsFunctionObjectFunction_Type](RunStepDetailsToolCallsFunctionObjectFunction_Type.md)
  - [.Models.RunStepDetailsToolCallsFunctionObject_Type](RunStepDetailsToolCallsFunctionObject_Type.md)
  - [.Models.RunStepDetailsToolCallsObjectToolCallsInner_Type](RunStepDetailsToolCallsObjectToolCallsInner_Type.md)
  - [.Models.RunStepDetailsToolCallsObject_Type](RunStepDetailsToolCallsObject_Type.md)
- - [.Models.RunStepDetailsToolCallsRetrievalObject_Type](RunStepDetailsToolCallsRetrievalObject_Type.md)
  - [.Models.RunStepObjectLastError_Type](RunStepObjectLastError_Type.md)
  - [.Models.RunStepObjectStepDetails_Type](RunStepObjectStepDetails_Type.md)
  - [.Models.RunStepObject_Type](RunStepObject_Type.md)
@@ -375,10 +669,15 @@ Method | HTTP request | Description
  - [.Models.RunStreamEventOneOf6_Type](RunStreamEventOneOf6_Type.md)
  - [.Models.RunStreamEventOneOf7_Type](RunStreamEventOneOf7_Type.md)
  - [.Models.RunStreamEventOneOf8_Type](RunStreamEventOneOf8_Type.md)
+ - [.Models.RunStreamEventOneOf9_Type](RunStreamEventOneOf9_Type.md)
  - [.Models.RunStreamEventOneOf_Type](RunStreamEventOneOf_Type.md)
  - [.Models.RunStreamEvent_Type](RunStreamEvent_Type.md)
  - [.Models.RunToolCallObjectFunction_Type](RunToolCallObjectFunction_Type.md)
  - [.Models.RunToolCallObject_Type](RunToolCallObject_Type.md)
+ - [.Models.StaticChunkingStrategyRequestParam_Type](StaticChunkingStrategyRequestParam_Type.md)
+ - [.Models.StaticChunkingStrategyResponseParam_Type](StaticChunkingStrategyResponseParam_Type.md)
+ - [.Models.StaticChunkingStrategyStatic_Type](StaticChunkingStrategyStatic_Type.md)
+ - [.Models.StaticChunkingStrategy_Type](StaticChunkingStrategy_Type.md)
  - [.Models.SubmitToolOutputsRunRequestToolOutputsInner_Type](SubmitToolOutputsRunRequestToolOutputsInner_Type.md)
  - [.Models.SubmitToolOutputsRunRequest_Type](SubmitToolOutputsRunRequest_Type.md)
  - [.Models.ThreadObject_Type](ThreadObject_Type.md)
@@ -386,6 +685,32 @@ Method | HTTP request | Description
  - [.Models.TranscriptionSegment_Type](TranscriptionSegment_Type.md)
  - [.Models.TranscriptionWord_Type](TranscriptionWord_Type.md)
  - [.Models.TruncationObject_Type](TruncationObject_Type.md)
+ - [.Models.UpdateVectorStoreRequest_Type](UpdateVectorStoreRequest_Type.md)
+ - [.Models.UploadPart_Type](UploadPart_Type.md)
+ - [.Models.Upload_Type](Upload_Type.md)
+ - [.Models.UsageAudioSpeechesResult_Type](UsageAudioSpeechesResult_Type.md)
+ - [.Models.UsageAudioTranscriptionsResult_Type](UsageAudioTranscriptionsResult_Type.md)
+ - [.Models.UsageCodeInterpreterSessionsResult_Type](UsageCodeInterpreterSessionsResult_Type.md)
+ - [.Models.UsageCompletionsResult_Type](UsageCompletionsResult_Type.md)
+ - [.Models.UsageEmbeddingsResult_Type](UsageEmbeddingsResult_Type.md)
+ - [.Models.UsageImagesResult_Type](UsageImagesResult_Type.md)
+ - [.Models.UsageModerationsResult_Type](UsageModerationsResult_Type.md)
+ - [.Models.UsageResponse_Type](UsageResponse_Type.md)
+ - [.Models.UsageTimeBucketResultInner_Type](UsageTimeBucketResultInner_Type.md)
+ - [.Models.UsageTimeBucket_Type](UsageTimeBucket_Type.md)
+ - [.Models.UsageVectorStoresResult_Type](UsageVectorStoresResult_Type.md)
+ - [.Models.UserDeleteResponse_Type](UserDeleteResponse_Type.md)
+ - [.Models.UserListResponse_Type](UserListResponse_Type.md)
+ - [.Models.UserRoleUpdateRequest_Type](UserRoleUpdateRequest_Type.md)
+ - [.Models.User_Type](User_Type.md)
+ - [.Models.VectorStoreExpirationAfter_Type](VectorStoreExpirationAfter_Type.md)
+ - [.Models.VectorStoreFileBatchObjectFileCounts_Type](VectorStoreFileBatchObjectFileCounts_Type.md)
+ - [.Models.VectorStoreFileBatchObject_Type](VectorStoreFileBatchObject_Type.md)
+ - [.Models.VectorStoreFileObjectChunkingStrategy_Type](VectorStoreFileObjectChunkingStrategy_Type.md)
+ - [.Models.VectorStoreFileObjectLastError_Type](VectorStoreFileObjectLastError_Type.md)
+ - [.Models.VectorStoreFileObject_Type](VectorStoreFileObject_Type.md)
+ - [.Models.VectorStoreObjectFileCounts_Type](VectorStoreObjectFileCounts_Type.md)
+ - [.Models.VectorStoreObject_Type](VectorStoreObject_Type.md)
 
 
 ### Authorization

@@ -1,7 +1,7 @@
 goog.provide('API.Client.RunStreamEvent_oneOf_8');
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) expires.
+ * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
  * @record
  */
 API.Client.RunStreamEventOneOf8 = function() {}
@@ -20,5 +20,5 @@ API.Client.RunStreamEventOneOf8.prototype.data;
 
 /** @enum {string} */
 API.Client.RunStreamEventOneOf8.EventEnum = { 
-  thread.run.expired: 'thread.run.expired',
+  thread.run.cancelled: 'thread.run.cancelled',
 }

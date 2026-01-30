@@ -25,15 +25,6 @@
       }],
       "doc": "The content of the message in array of text and/or images.",
       "default": null
-    },
-    {
-      "name": "file_ids",
-      "type": [{
-        "type": "array",
-        "items": "string"
-      }, "null"],
-      "doc": "A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.",
-      "default": []
     }
   ]
 

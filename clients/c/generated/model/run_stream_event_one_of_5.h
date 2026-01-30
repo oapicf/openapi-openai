@@ -1,7 +1,7 @@
 /*
  * run_stream_event_one_of_5.h
  *
- * Occurs when a [run](/docs/api-reference/runs/object) fails.
+ * Occurs when a [run](/docs/api-reference/runs/object) ends with status &#x60;incomplete&#x60;.
  */
 
 #ifndef _run_stream_event_one_of_5_H_
@@ -19,7 +19,7 @@ typedef struct run_stream_event_one_of_5_t run_stream_event_one_of_5_t;
 
 // Enum EVENT for run_stream_event_one_of_5
 
-typedef enum  { openai_api_run_stream_event_one_of_5_EVENT_NULL = 0, openai_api_run_stream_event_one_of_5_EVENT_thread.run.failed } openai_api_run_stream_event_one_of_5_EVENT_e;
+typedef enum  { openai_api_run_stream_event_one_of_5_EVENT_NULL = 0, openai_api_run_stream_event_one_of_5_EVENT_thread.run.incomplete } openai_api_run_stream_event_one_of_5_EVENT_e;
 
 char* run_stream_event_one_of_5_event_ToString(openai_api_run_stream_event_one_of_5_EVENT_e event);
 

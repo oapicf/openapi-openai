@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run. */
 public struct TruncationObject: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {
@@ -18,11 +19,11 @@ public struct TruncationObject: Codable, JSONEncodable, Hashable {
     }
     public static let lastMessagesRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: nil, exclusiveMaximum: false, multipleOf: nil)
     /** The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`. */
-    public var type: ModelType?
+    public var type: ModelType
     /** The number of most recent messages from the thread when constructing the context for the run. */
     public var lastMessages: Int?
 
-    public init(type: ModelType? = nil, lastMessages: Int? = nil) {
+    public init(type: ModelType, lastMessages: Int? = nil) {
         self.type = type
         self.lastMessages = lastMessages
     }
@@ -36,7 +37,7 @@ public struct TruncationObject: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(lastMessages, forKey: .lastMessages)
     }
 }

@@ -8,6 +8,7 @@ Represents an event emitted when streaming a Run.  Each event in a server-sent e
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**enabled** | **Boolean** | Whether to enable input audio transcription. |  [optional] |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**data** | [**DataEnum**](#DataEnum) |  |  |
 

@@ -15,6 +15,8 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
   private BigDecimal hateThreatening;
   private BigDecimal harassment;
   private BigDecimal harassmentThreatening;
+  private BigDecimal illicit;
+  private BigDecimal illicitViolent;
   private BigDecimal selfHarm;
   private BigDecimal selfHarmIntent;
   private BigDecimal selfHarmInstructions;
@@ -27,11 +29,13 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
 
   }
 
-  public CreateModerationResponseResultsInnerCategoryScores (BigDecimal hate, BigDecimal hateThreatening, BigDecimal harassment, BigDecimal harassmentThreatening, BigDecimal selfHarm, BigDecimal selfHarmIntent, BigDecimal selfHarmInstructions, BigDecimal sexual, BigDecimal sexualMinors, BigDecimal violence, BigDecimal violenceGraphic) {
+  public CreateModerationResponseResultsInnerCategoryScores (BigDecimal hate, BigDecimal hateThreatening, BigDecimal harassment, BigDecimal harassmentThreatening, BigDecimal illicit, BigDecimal illicitViolent, BigDecimal selfHarm, BigDecimal selfHarmIntent, BigDecimal selfHarmInstructions, BigDecimal sexual, BigDecimal sexualMinors, BigDecimal violence, BigDecimal violenceGraphic) {
     this.hate = hate;
     this.hateThreatening = hateThreatening;
     this.harassment = harassment;
     this.harassmentThreatening = harassmentThreatening;
+    this.illicit = illicit;
+    this.illicitViolent = illicitViolent;
     this.selfHarm = selfHarm;
     this.selfHarmIntent = selfHarmIntent;
     this.selfHarmInstructions = selfHarmInstructions;
@@ -75,6 +79,24 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
   }
   public void setHarassmentThreatening(BigDecimal harassmentThreatening) {
     this.harassmentThreatening = harassmentThreatening;
+  }
+
+    
+  @JsonProperty("illicit")
+  public BigDecimal getIllicit() {
+    return illicit;
+  }
+  public void setIllicit(BigDecimal illicit) {
+    this.illicit = illicit;
+  }
+
+    
+  @JsonProperty("illicit/violent")
+  public BigDecimal getIllicitViolent() {
+    return illicitViolent;
+  }
+  public void setIllicitViolent(BigDecimal illicitViolent) {
+    this.illicitViolent = illicitViolent;
   }
 
     
@@ -154,6 +176,8 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
         Objects.equals(hateThreatening, createModerationResponseResultsInnerCategoryScores.hateThreatening) &&
         Objects.equals(harassment, createModerationResponseResultsInnerCategoryScores.harassment) &&
         Objects.equals(harassmentThreatening, createModerationResponseResultsInnerCategoryScores.harassmentThreatening) &&
+        Objects.equals(illicit, createModerationResponseResultsInnerCategoryScores.illicit) &&
+        Objects.equals(illicitViolent, createModerationResponseResultsInnerCategoryScores.illicitViolent) &&
         Objects.equals(selfHarm, createModerationResponseResultsInnerCategoryScores.selfHarm) &&
         Objects.equals(selfHarmIntent, createModerationResponseResultsInnerCategoryScores.selfHarmIntent) &&
         Objects.equals(selfHarmInstructions, createModerationResponseResultsInnerCategoryScores.selfHarmInstructions) &&
@@ -165,7 +189,7 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
+    return Objects.hash(hate, hateThreatening, harassment, harassmentThreatening, illicit, illicitViolent, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
   }
 
   @Override
@@ -177,6 +201,8 @@ public class CreateModerationResponseResultsInnerCategoryScores   {
     sb.append("    hateThreatening: ").append(toIndentedString(hateThreatening)).append("\n");
     sb.append("    harassment: ").append(toIndentedString(harassment)).append("\n");
     sb.append("    harassmentThreatening: ").append(toIndentedString(harassmentThreatening)).append("\n");
+    sb.append("    illicit: ").append(toIndentedString(illicit)).append("\n");
+    sb.append("    illicitViolent: ").append(toIndentedString(illicitViolent)).append("\n");
     sb.append("    selfHarm: ").append(toIndentedString(selfHarm)).append("\n");
     sb.append("    selfHarmIntent: ").append(toIndentedString(selfHarmIntent)).append("\n");
     sb.append("    selfHarmInstructions: ").append(toIndentedString(selfHarmInstructions)).append("\n");

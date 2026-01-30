@@ -25,7 +25,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "RunStepDetailsToolCallsObject", description = "Details of the tool call.")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStepDetailsToolCallsObject implements RunStepObjectStepDetails {
 
   /**
@@ -112,11 +112,11 @@ public class RunStepDetailsToolCallsObject implements RunStepObjectStepDetails {
   }
 
   /**
-   * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+   * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
    * @return toolCalls
    */
   @NotNull @Valid 
-  @Schema(name = "tool_calls", description = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "tool_calls", description = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("tool_calls")
   public List<RunStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
     return toolCalls;

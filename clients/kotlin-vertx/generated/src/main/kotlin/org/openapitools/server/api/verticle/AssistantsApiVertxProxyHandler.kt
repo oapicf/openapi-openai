@@ -16,24 +16,19 @@ import io.vertx.core.json.Json
 import io.vertx.core.json.JsonArray
 import com.google.gson.reflect.TypeToken
 import com.google.gson.Gson
-import org.openapitools.server.api.model.AssistantFileObject
 import org.openapitools.server.api.model.AssistantObject
-import org.openapitools.server.api.model.CreateAssistantFileRequest
 import org.openapitools.server.api.model.CreateAssistantRequest
 import org.openapitools.server.api.model.CreateMessageRequest
 import org.openapitools.server.api.model.CreateRunRequest
 import org.openapitools.server.api.model.CreateThreadAndRunRequest
 import org.openapitools.server.api.model.CreateThreadRequest
-import org.openapitools.server.api.model.DeleteAssistantFileResponse
 import org.openapitools.server.api.model.DeleteAssistantResponse
+import org.openapitools.server.api.model.DeleteMessageResponse
 import org.openapitools.server.api.model.DeleteThreadResponse
-import org.openapitools.server.api.model.ListAssistantFilesResponse
 import org.openapitools.server.api.model.ListAssistantsResponse
-import org.openapitools.server.api.model.ListMessageFilesResponse
 import org.openapitools.server.api.model.ListMessagesResponse
 import org.openapitools.server.api.model.ListRunStepsResponse
 import org.openapitools.server.api.model.ListRunsResponse
-import org.openapitools.server.api.model.MessageFileObject
 import org.openapitools.server.api.model.MessageObject
 import org.openapitools.server.api.model.ModifyAssistantRequest
 import org.openapitools.server.api.model.ModifyMessageRequest
@@ -127,27 +122,6 @@ class AssistantsApiVertxProxyHandler(private val vertx: Vertx, private val servi
                     }
                 }
         
-                "createAssistantFile" -> {
-                    val params = context.params
-                    val assistantId = ApiHandlerUtils.searchStringInJson(params,"assistant_id")
-                    if(assistantId == null){
-                        throw IllegalArgumentException("assistantId is required")
-                    }
-                    val createAssistantFileRequestParam = ApiHandlerUtils.searchJsonObjectInJson(params,"body")
-                    if (createAssistantFileRequestParam == null) {
-                        throw IllegalArgumentException("createAssistantFileRequest is required")
-                    }
-                    val createAssistantFileRequest = Gson().fromJson(createAssistantFileRequestParam.encode(), CreateAssistantFileRequest::class.java)
-                    GlobalScope.launch(vertx.dispatcher()){
-                        val result = service.createAssistantFile(assistantId,createAssistantFileRequest,context)
-                        val payload = JsonObject(Json.encode(result.payload)).toBuffer()
-                        val res = OperationResponse(result.statusCode,result.statusMessage,payload,result.headers)
-                        msg.reply(res.toJson())
-                    }.invokeOnCompletion{
-                        it?.let{ throw it }
-                    }
-                }
-        
                 "createMessage" -> {
                     val params = context.params
                     val threadId = ApiHandlerUtils.searchStringInJson(params,"thread_id")
@@ -180,8 +154,12 @@ class AssistantsApiVertxProxyHandler(private val vertx: Vertx, private val servi
                         throw IllegalArgumentException("createRunRequest is required")
                     }
                     val createRunRequest = Gson().fromJson(createRunRequestParam.encode(), CreateRunRequest::class.java)
+                    val includeParam = ApiHandlerUtils.searchJsonArrayInJson(params,"include[]")
+                    val include:kotlin.Array<kotlin.String>? = if(includeParam == null) null
+                            else Gson().fromJson(includeParam.encode(),
+                            , object : TypeToken<kotlin.collections.List<kotlin.String>>(){}.type)
                     GlobalScope.launch(vertx.dispatcher()){
-                        val result = service.createRun(threadId,createRunRequest,context)
+                        val result = service.createRun(threadId,createRunRequest,include,context)
                         val payload = JsonObject(Json.encode(result.payload)).toBuffer()
                         val res = OperationResponse(result.statusCode,result.statusMessage,payload,result.headers)
                         msg.reply(res.toJson())
@@ -237,18 +215,18 @@ class AssistantsApiVertxProxyHandler(private val vertx: Vertx, private val servi
                     }
                 }
         
-                "deleteAssistantFile" -> {
+                "deleteMessage" -> {
                     val params = context.params
-                    val assistantId = ApiHandlerUtils.searchStringInJson(params,"assistant_id")
-                    if(assistantId == null){
-                        throw IllegalArgumentException("assistantId is required")
+                    val threadId = ApiHandlerUtils.searchStringInJson(params,"thread_id")
+                    if(threadId == null){
+                        throw IllegalArgumentException("threadId is required")
                     }
-                    val fileId = ApiHandlerUtils.searchStringInJson(params,"file_id")
-                    if(fileId == null){
-                        throw IllegalArgumentException("fileId is required")
+                    val messageId = ApiHandlerUtils.searchStringInJson(params,"message_id")
+                    if(messageId == null){
+                        throw IllegalArgumentException("messageId is required")
                     }
                     GlobalScope.launch(vertx.dispatcher()){
-                        val result = service.deleteAssistantFile(assistantId,fileId,context)
+                        val result = service.deleteMessage(threadId,messageId,context)
                         val payload = JsonObject(Json.encode(result.payload)).toBuffer()
                         val res = OperationResponse(result.statusCode,result.statusMessage,payload,result.headers)
                         msg.reply(res.toJson())
@@ -289,26 +267,6 @@ class AssistantsApiVertxProxyHandler(private val vertx: Vertx, private val servi
                     }
                 }
         
-                "getAssistantFile" -> {
-                    val params = context.params
-                    val assistantId = ApiHandlerUtils.searchStringInJson(params,"assistant_id")
-                    if(assistantId == null){
-                        throw IllegalArgumentException("assistantId is required")
-                    }
-                    val fileId = ApiHandlerUtils.searchStringInJson(params,"file_id")
-                    if(fileId == null){
-                        throw IllegalArgumentException("fileId is required")
-                    }
-                    GlobalScope.launch(vertx.dispatcher()){
-                        val result = service.getAssistantFile(assistantId,fileId,context)
-                        val payload = JsonObject(Json.encode(result.payload)).toBuffer()
-                        val res = OperationResponse(result.statusCode,result.statusMessage,payload,result.headers)
-                        msg.reply(res.toJson())
-                    }.invokeOnCompletion{
-                        it?.let{ throw it }
-                    }
-                }
-        
                 "getMessage" -> {
                     val params = context.params
                     val threadId = ApiHandlerUtils.searchStringInJson(params,"thread_id")
@@ -321,30 +279,6 @@ class AssistantsApiVertxProxyHandler(private val vertx: Vertx, private val servi
                     }
                     GlobalScope.launch(vertx.dispatcher()){
                         val result = service.getMessage(threadId,messageId,context)
-                        val payload = JsonObject(Json.encode(result.payload)).toBuffer()
-                        val res = OperationResponse(result.statusCode,result.statusMessage,payload,result.headers)
-                        msg.reply(res.toJson())
-                    }.invokeOnCompletion{
-                        it?.let{ throw it }
-                    }
-                }
-        
-                "getMessageFile" -> {
-                    val params = context.params
-                    val threadId = ApiHandlerUtils.searchStringInJson(params,"thread_id")
-                    if(threadId == null){
-                        throw IllegalArgumentException("threadId is required")
-                    }
-                    val messageId = ApiHandlerUtils.searchStringInJson(params,"message_id")
-                    if(messageId == null){
-                        throw IllegalArgumentException("messageId is required")
-                    }
-                    val fileId = ApiHandlerUtils.searchStringInJson(params,"file_id")
-                    if(fileId == null){
-                        throw IllegalArgumentException("fileId is required")
-                    }
-                    GlobalScope.launch(vertx.dispatcher()){
-                        val result = service.getMessageFile(threadId,messageId,fileId,context)
                         val payload = JsonObject(Json.encode(result.payload)).toBuffer()
                         val res = OperationResponse(result.statusCode,result.statusMessage,payload,result.headers)
                         msg.reply(res.toJson())
@@ -387,8 +321,12 @@ class AssistantsApiVertxProxyHandler(private val vertx: Vertx, private val servi
                     if(stepId == null){
                         throw IllegalArgumentException("stepId is required")
                     }
+                    val includeParam = ApiHandlerUtils.searchJsonArrayInJson(params,"include[]")
+                    val include:kotlin.Array<kotlin.String>? = if(includeParam == null) null
+                            else Gson().fromJson(includeParam.encode(),
+                            , object : TypeToken<kotlin.collections.List<kotlin.String>>(){}.type)
                     GlobalScope.launch(vertx.dispatcher()){
-                        val result = service.getRunStep(threadId,runId,stepId,context)
+                        val result = service.getRunStep(threadId,runId,stepId,include,context)
                         val payload = JsonObject(Json.encode(result.payload)).toBuffer()
                         val res = OperationResponse(result.statusCode,result.statusMessage,payload,result.headers)
                         msg.reply(res.toJson())
@@ -413,26 +351,6 @@ class AssistantsApiVertxProxyHandler(private val vertx: Vertx, private val servi
                     }
                 }
         
-                "listAssistantFiles" -> {
-                    val params = context.params
-                    val assistantId = ApiHandlerUtils.searchStringInJson(params,"assistant_id")
-                    if(assistantId == null){
-                        throw IllegalArgumentException("assistantId is required")
-                    }
-                    val limit = ApiHandlerUtils.searchIntegerInJson(params,"limit")
-                    val order = ApiHandlerUtils.searchStringInJson(params,"order")
-                    val after = ApiHandlerUtils.searchStringInJson(params,"after")
-                    val before = ApiHandlerUtils.searchStringInJson(params,"before")
-                    GlobalScope.launch(vertx.dispatcher()){
-                        val result = service.listAssistantFiles(assistantId,limit,order,after,before,context)
-                        val payload = JsonObject(Json.encode(result.payload)).toBuffer()
-                        val res = OperationResponse(result.statusCode,result.statusMessage,payload,result.headers)
-                        msg.reply(res.toJson())
-                    }.invokeOnCompletion{
-                        it?.let{ throw it }
-                    }
-                }
-        
                 "listAssistants" -> {
                     val params = context.params
                     val limit = ApiHandlerUtils.searchIntegerInJson(params,"limit")
@@ -441,30 +359,6 @@ class AssistantsApiVertxProxyHandler(private val vertx: Vertx, private val servi
                     val before = ApiHandlerUtils.searchStringInJson(params,"before")
                     GlobalScope.launch(vertx.dispatcher()){
                         val result = service.listAssistants(limit,order,after,before,context)
-                        val payload = JsonObject(Json.encode(result.payload)).toBuffer()
-                        val res = OperationResponse(result.statusCode,result.statusMessage,payload,result.headers)
-                        msg.reply(res.toJson())
-                    }.invokeOnCompletion{
-                        it?.let{ throw it }
-                    }
-                }
-        
-                "listMessageFiles" -> {
-                    val params = context.params
-                    val threadId = ApiHandlerUtils.searchStringInJson(params,"thread_id")
-                    if(threadId == null){
-                        throw IllegalArgumentException("threadId is required")
-                    }
-                    val messageId = ApiHandlerUtils.searchStringInJson(params,"message_id")
-                    if(messageId == null){
-                        throw IllegalArgumentException("messageId is required")
-                    }
-                    val limit = ApiHandlerUtils.searchIntegerInJson(params,"limit")
-                    val order = ApiHandlerUtils.searchStringInJson(params,"order")
-                    val after = ApiHandlerUtils.searchStringInJson(params,"after")
-                    val before = ApiHandlerUtils.searchStringInJson(params,"before")
-                    GlobalScope.launch(vertx.dispatcher()){
-                        val result = service.listMessageFiles(threadId,messageId,limit,order,after,before,context)
                         val payload = JsonObject(Json.encode(result.payload)).toBuffer()
                         val res = OperationResponse(result.statusCode,result.statusMessage,payload,result.headers)
                         msg.reply(res.toJson())
@@ -508,8 +402,12 @@ class AssistantsApiVertxProxyHandler(private val vertx: Vertx, private val servi
                     val order = ApiHandlerUtils.searchStringInJson(params,"order")
                     val after = ApiHandlerUtils.searchStringInJson(params,"after")
                     val before = ApiHandlerUtils.searchStringInJson(params,"before")
+                    val includeParam = ApiHandlerUtils.searchJsonArrayInJson(params,"include[]")
+                    val include:kotlin.Array<kotlin.String>? = if(includeParam == null) null
+                            else Gson().fromJson(includeParam.encode(),
+                            , object : TypeToken<kotlin.collections.List<kotlin.String>>(){}.type)
                     GlobalScope.launch(vertx.dispatcher()){
-                        val result = service.listRunSteps(threadId,runId,limit,order,after,before,context)
+                        val result = service.listRunSteps(threadId,runId,limit,order,after,before,include,context)
                         val payload = JsonObject(Json.encode(result.payload)).toBuffer()
                         val res = OperationResponse(result.statusCode,result.statusMessage,payload,result.headers)
                         msg.reply(res.toJson())

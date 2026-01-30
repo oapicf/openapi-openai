@@ -10,14 +10,20 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | [**TypeEnum**](#TypeEnum) | Always &#x60;image_file&#x60;. | 
 **imageFile** | [`MessageContentImageFileObjectImageFile`](MessageContentImageFileObjectImageFile.md) |  | 
+**imageUrl** | [`MessageContentImageUrlObjectImageUrl`](MessageContentImageUrlObjectImageUrl.md) |  | 
 **text** | [`MessageContentTextObjectText`](MessageContentTextObjectText.md) |  | 
+**refusal** | `String` |  | 
 
 ## TypeEnum
 
 Name | Value
 ---- | -----
 IMAGE_FILE | `"image_file"`
+IMAGE_URL | `"image_url"`
 TEXT | `"text"`
+REFUSAL | `"refusal"`
+
+
 
 
 

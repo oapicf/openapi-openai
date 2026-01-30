@@ -271,7 +271,7 @@ class CreateImageRequest(Model):
     def user(self) -> str:
         """Gets the user of this CreateImageRequest.
 
-        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).   # noqa: E501
+        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).   # noqa: E501
 
         :return: The user of this CreateImageRequest.
         :rtype: str
@@ -282,7 +282,7 @@ class CreateImageRequest(Model):
     def user(self, user: str):
         """Sets the user of this CreateImageRequest.
 
-        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).   # noqa: E501
+        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).   # noqa: E501
 
         :param user: The user of this CreateImageRequest.
         :type user: str

@@ -1,7 +1,9 @@
 const utils = require('../utils/utils');
 const ChatCompletionMessageToolCall = require('../models/ChatCompletionMessageToolCall');
 const ChatCompletionRequestAssistantMessage = require('../models/ChatCompletionRequestAssistantMessage');
+const ChatCompletionRequestAssistantMessage_audio = require('../models/ChatCompletionRequestAssistantMessage_audio');
 const ChatCompletionRequestAssistantMessage_function_call = require('../models/ChatCompletionRequestAssistantMessage_function_call');
+const ChatCompletionRequestDeveloperMessage = require('../models/ChatCompletionRequestDeveloperMessage');
 const ChatCompletionRequestFunctionMessage = require('../models/ChatCompletionRequestFunctionMessage');
 const ChatCompletionRequestSystemMessage = require('../models/ChatCompletionRequestSystemMessage');
 const ChatCompletionRequestToolMessage = require('../models/ChatCompletionRequestToolMessage');
@@ -33,6 +35,12 @@ module.exports = {
                 type: 'string',
             },
             {
+                key: `${keyPrefix}refusal`,
+                label: `The refusal message by the assistant. - [${labelPrefix}refusal]`,
+                type: 'string',
+            },
+            ...ChatCompletionRequestAssistantMessage_audio.fields(`${keyPrefix}audio`, isInput),
+            {
                 key: `${keyPrefix}tool_calls`,
                 label: `[${labelPrefix}tool_calls]`,
                 children: ChatCompletionMessageToolCall.fields(`${keyPrefix}tool_calls${!isInput ? '[]' : ''}`, isInput, true), 
@@ -52,6 +60,8 @@ module.exports = {
             'content': bundle.inputData?.[`${keyPrefix}content`],
             'role': bundle.inputData?.[`${keyPrefix}role`],
             'name': bundle.inputData?.[`${keyPrefix}name`],
+            'refusal': bundle.inputData?.[`${keyPrefix}refusal`],
+            'audio': utils.removeIfEmpty(ChatCompletionRequestAssistantMessage_audio.mapping(bundle, `${keyPrefix}audio`)),
             'tool_calls': utils.childMapping(bundle.inputData?.[`${keyPrefix}tool_calls`], `${keyPrefix}tool_calls`, ChatCompletionMessageToolCall),
             'function_call': utils.removeIfEmpty(ChatCompletionRequestAssistantMessage_function_call.mapping(bundle, `${keyPrefix}function_call`)),
             'tool_call_id': bundle.inputData?.[`${keyPrefix}tool_call_id`],

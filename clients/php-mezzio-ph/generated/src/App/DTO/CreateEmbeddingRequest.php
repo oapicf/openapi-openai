@@ -43,7 +43,7 @@ class CreateEmbeddingRequest
     public $dimensions;
 
     /**
-     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).
+     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).
      * @DTA\Data(field="user", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      * @var string|null

@@ -10,19 +10,12 @@ module.exports = {
                 required: true,
                 type: 'string',
             },
-            {
-                key: `${keyPrefix}quote`,
-                label: `The specific quote in the file. - [${labelPrefix}quote]`,
-                required: true,
-                type: 'string',
-            },
         ]
     },
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'file_id': bundle.inputData?.[`${keyPrefix}file_id`],
-            'quote': bundle.inputData?.[`${keyPrefix}quote`],
         }
     },
 }

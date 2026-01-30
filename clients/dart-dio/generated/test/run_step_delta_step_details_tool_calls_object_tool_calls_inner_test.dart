@@ -31,8 +31,8 @@ void main() {
     });
 
     // For now, this is always going to be an empty object.
-    // JsonObject retrieval
-    test('to test the property `retrieval`', () async {
+    // JsonObject fileSearch
+    test('to test the property `fileSearch`', () async {
       // TODO
     });
 

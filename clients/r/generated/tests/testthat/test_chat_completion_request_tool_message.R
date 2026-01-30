@@ -14,8 +14,7 @@ test_that("role", {
 })
 
 test_that("content", {
-  # tests for the property `content` (character)
-  # The contents of the tool message.
+  # tests for the property `content` (ChatCompletionRequestToolMessageContent)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`content`, "EXPECTED_RESULT")

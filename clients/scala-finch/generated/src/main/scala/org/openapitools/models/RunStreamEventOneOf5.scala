@@ -8,7 +8,7 @@ import org.openapitools._
 import org.openapitools.models.RunObject
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) fails.
+ * Occurs when a [run](/docs/api-reference/runs/object) ends with status `incomplete`.
  * @param event 
  * @param data 
  */

@@ -5,6 +5,12 @@
   "name": "ThreadStreamEvent",
   "fields": [
     {
+      "name": "enabled",
+      "type": ["null", "boolean"],
+      "doc": "Whether to enable input audio transcription.",
+      "default": null
+    },
+    {
       "name": "event",
       "type": {
         "type": "enum",

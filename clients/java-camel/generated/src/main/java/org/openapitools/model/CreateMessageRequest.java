@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.CreateMessageRequestAttachmentsInner;
+import org.openapitools.model.CreateMessageRequestContent;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -24,7 +26,7 @@ import javax.annotation.Generated;
  * CreateMessageRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateMessageRequest {
 
   /**
@@ -64,10 +66,10 @@ public class CreateMessageRequest {
 
   private RoleEnum role;
 
-  private String content;
+  private CreateMessageRequestContent content;
 
   @Valid
-  private List<String> fileIds = new ArrayList<>();
+  private JsonNullable<List<@Valid CreateMessageRequestAttachmentsInner>> attachments = JsonNullable.<List<@Valid CreateMessageRequestAttachmentsInner>>undefined();
 
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
@@ -78,7 +80,7 @@ public class CreateMessageRequest {
   /**
    * Constructor with only required parameters
    */
-  public CreateMessageRequest(RoleEnum role, String content) {
+  public CreateMessageRequest(RoleEnum role, CreateMessageRequestContent content) {
     this.role = role;
     this.content = content;
   }
@@ -103,52 +105,52 @@ public class CreateMessageRequest {
     this.role = role;
   }
 
-  public CreateMessageRequest content(String content) {
+  public CreateMessageRequest content(CreateMessageRequestContent content) {
     this.content = content;
     return this;
   }
 
   /**
-   * The content of the message.
+   * Get content
    * @return content
    */
-  @NotNull @Size(min = 1, max = 256000) 
-  @Schema(name = "content", description = "The content of the message.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull @Valid 
+  @Schema(name = "content", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("content")
-  public String getContent() {
+  public CreateMessageRequestContent getContent() {
     return content;
   }
 
-  public void setContent(String content) {
+  public void setContent(CreateMessageRequestContent content) {
     this.content = content;
   }
 
-  public CreateMessageRequest fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public CreateMessageRequest attachments(List<@Valid CreateMessageRequestAttachmentsInner> attachments) {
+    this.attachments = JsonNullable.of(attachments);
     return this;
   }
 
-  public CreateMessageRequest addFileIdsItem(String fileIdsItem) {
-    if (this.fileIds == null) {
-      this.fileIds = new ArrayList<>();
+  public CreateMessageRequest addAttachmentsItem(CreateMessageRequestAttachmentsInner attachmentsItem) {
+    if (this.attachments == null || !this.attachments.isPresent()) {
+      this.attachments = JsonNullable.of(new ArrayList<>());
     }
-    this.fileIds.add(fileIdsItem);
+    this.attachments.get().add(attachmentsItem);
     return this;
   }
 
   /**
-   * A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like `retrieval` and `code_interpreter` that can access and use files.
-   * @return fileIds
+   * A list of files attached to the message, and the tools they should be added to.
+   * @return attachments
    */
-  @Size(min = 1, max = 10) 
-  @Schema(name = "file_ids", description = "A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like `retrieval` and `code_interpreter` that can access and use files.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("file_ids")
-  public List<String> getFileIds() {
-    return fileIds;
+  @Valid 
+  @Schema(name = "attachments", description = "A list of files attached to the message, and the tools they should be added to.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("attachments")
+  public JsonNullable<List<@Valid CreateMessageRequestAttachmentsInner>> getAttachments() {
+    return attachments;
   }
 
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public void setAttachments(JsonNullable<List<@Valid CreateMessageRequestAttachmentsInner>> attachments) {
+    this.attachments = attachments;
   }
 
   public CreateMessageRequest metadata(Object metadata) {
@@ -157,11 +159,11 @@ public class CreateMessageRequest {
   }
 
   /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
   
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;
@@ -182,7 +184,7 @@ public class CreateMessageRequest {
     CreateMessageRequest createMessageRequest = (CreateMessageRequest) o;
     return Objects.equals(this.role, createMessageRequest.role) &&
         Objects.equals(this.content, createMessageRequest.content) &&
-        Objects.equals(this.fileIds, createMessageRequest.fileIds) &&
+        equalsNullable(this.attachments, createMessageRequest.attachments) &&
         equalsNullable(this.metadata, createMessageRequest.metadata);
   }
 
@@ -192,7 +194,7 @@ public class CreateMessageRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, content, fileIds, hashCodeNullable(metadata));
+    return Objects.hash(role, content, hashCodeNullable(attachments), hashCodeNullable(metadata));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -208,7 +210,7 @@ public class CreateMessageRequest {
     sb.append("class CreateMessageRequest {\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

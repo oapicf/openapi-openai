@@ -54,7 +54,7 @@ test_that("tools", {
 
 test_that("metadata", {
   # tests for the property `metadata` (object)
-  # Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  # Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`metadata`, "EXPECTED_RESULT")
@@ -68,6 +68,14 @@ test_that("temperature", {
   #expect_equal(model.instance$`temperature`, "EXPECTED_RESULT")
 })
 
+test_that("top_p", {
+  # tests for the property `top_p` (numeric)
+  # An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`top_p`, "EXPECTED_RESULT")
+})
+
 test_that("stream", {
   # tests for the property `stream` (character)
   # If &#x60;true&#x60;, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a &#x60;data: [DONE]&#x60; message. 
@@ -78,7 +86,7 @@ test_that("stream", {
 
 test_that("max_prompt_tokens", {
   # tests for the property `max_prompt_tokens` (integer)
-  # The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status &#x60;complete&#x60;. See &#x60;incomplete_details&#x60; for more info. 
+  # The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status &#x60;incomplete&#x60;. See &#x60;incomplete_details&#x60; for more info. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`max_prompt_tokens`, "EXPECTED_RESULT")
@@ -86,7 +94,7 @@ test_that("max_prompt_tokens", {
 
 test_that("max_completion_tokens", {
   # tests for the property `max_completion_tokens` (integer)
-  # The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status &#x60;complete&#x60;. See &#x60;incomplete_details&#x60; for more info. 
+  # The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status &#x60;incomplete&#x60;. See &#x60;incomplete_details&#x60; for more info. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`max_completion_tokens`, "EXPECTED_RESULT")
@@ -104,6 +112,14 @@ test_that("tool_choice", {
 
   # uncomment below to test the property
   #expect_equal(model.instance$`tool_choice`, "EXPECTED_RESULT")
+})
+
+test_that("parallel_tool_calls", {
+  # tests for the property `parallel_tool_calls` (character)
+  # Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`parallel_tool_calls`, "EXPECTED_RESULT")
 })
 
 test_that("response_format", {

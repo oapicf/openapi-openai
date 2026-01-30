@@ -1,0 +1,48 @@
+/*
+ * run_step_details_tool_calls_file_search_result_object_content_inner.h
+ *
+ * 
+ */
+
+#ifndef _run_step_details_tool_calls_file_search_result_object_content_inner_H_
+#define _run_step_details_tool_calls_file_search_result_object_content_inner_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct run_step_details_tool_calls_file_search_result_object_content_inner_t run_step_details_tool_calls_file_search_result_object_content_inner_t;
+
+
+// Enum TYPE for run_step_details_tool_calls_file_search_result_object_content_inner
+
+typedef enum  { openai_api_run_step_details_tool_calls_file_search_result_object_content_inner_TYPE_NULL = 0, openai_api_run_step_details_tool_calls_file_search_result_object_content_inner_TYPE_text } openai_api_run_step_details_tool_calls_file_search_result_object_content_inner_TYPE_e;
+
+char* run_step_details_tool_calls_file_search_result_object_content_inner_type_ToString(openai_api_run_step_details_tool_calls_file_search_result_object_content_inner_TYPE_e type);
+
+openai_api_run_step_details_tool_calls_file_search_result_object_content_inner_TYPE_e run_step_details_tool_calls_file_search_result_object_content_inner_type_FromString(char* type);
+
+
+
+typedef struct run_step_details_tool_calls_file_search_result_object_content_inner_t {
+    openai_api_run_step_details_tool_calls_file_search_result_object_content_inner_TYPE_e type; //enum
+    char *text; // string
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} run_step_details_tool_calls_file_search_result_object_content_inner_t;
+
+__attribute__((deprecated)) run_step_details_tool_calls_file_search_result_object_content_inner_t *run_step_details_tool_calls_file_search_result_object_content_inner_create(
+    openai_api_run_step_details_tool_calls_file_search_result_object_content_inner_TYPE_e type,
+    char *text
+);
+
+void run_step_details_tool_calls_file_search_result_object_content_inner_free(run_step_details_tool_calls_file_search_result_object_content_inner_t *run_step_details_tool_calls_file_search_result_object_content_inner);
+
+run_step_details_tool_calls_file_search_result_object_content_inner_t *run_step_details_tool_calls_file_search_result_object_content_inner_parseFromJSON(cJSON *run_step_details_tool_calls_file_search_result_object_content_innerJSON);
+
+cJSON *run_step_details_tool_calls_file_search_result_object_content_inner_convertToJSON(run_step_details_tool_calls_file_search_result_object_content_inner_t *run_step_details_tool_calls_file_search_result_object_content_inner);
+
+#endif /* _run_step_details_tool_calls_file_search_result_object_content_inner_H_ */
+

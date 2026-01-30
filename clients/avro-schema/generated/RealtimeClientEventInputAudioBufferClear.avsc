@@ -1,0 +1,26 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Send this event to clear the audio bytes in the buffer. The server will  respond with an `input_audio_buffer.cleared` event. ",
+  "name": "RealtimeClientEventInputAudioBufferClear",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": ["null", "string"],
+      "doc": "Optional client-generated ID used to identify this event.",
+      "default": null
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeClientEventInputAudioBufferClear_type",
+        "symbols": [
+          "input_audio_buffer_clear"
+        ]
+      },
+      "doc": "The event type, must be `input_audio_buffer.clear`."
+    }
+  ]
+
+}

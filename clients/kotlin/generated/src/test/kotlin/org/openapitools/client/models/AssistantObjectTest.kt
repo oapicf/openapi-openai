@@ -19,7 +19,9 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.AssistantObject
+import org.openapitools.client.models.AssistantObjectToolResources
 import org.openapitools.client.models.AssistantObjectToolsInner
+import org.openapitools.client.models.AssistantsApiResponseFormatOption
 
 class AssistantObjectTest : ShouldSpec() {
     init {
@@ -56,7 +58,7 @@ class AssistantObjectTest : ShouldSpec() {
             //modelInstance.description shouldBe ("TODO")
         }
 
-        // to test the property `model` - ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. 
+        // to test the property `model` - ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
         should("test model") {
             // uncomment below to test the property
             //modelInstance.model shouldBe ("TODO")
@@ -68,22 +70,40 @@ class AssistantObjectTest : ShouldSpec() {
             //modelInstance.instructions shouldBe ("TODO")
         }
 
-        // to test the property `tools` - A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. 
+        // to test the property `tools` - A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
         should("test tools") {
             // uncomment below to test the property
             //modelInstance.tools shouldBe ("TODO")
         }
 
-        // to test the property `fileIds` - A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. 
-        should("test fileIds") {
-            // uncomment below to test the property
-            //modelInstance.fileIds shouldBe ("TODO")
-        }
-
-        // to test the property `metadata` - Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+        // to test the property `metadata` - Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
         should("test metadata") {
             // uncomment below to test the property
             //modelInstance.metadata shouldBe ("TODO")
+        }
+
+        // to test the property `toolResources`
+        should("test toolResources") {
+            // uncomment below to test the property
+            //modelInstance.toolResources shouldBe ("TODO")
+        }
+
+        // to test the property `temperature` - What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+        should("test temperature") {
+            // uncomment below to test the property
+            //modelInstance.temperature shouldBe ("TODO")
+        }
+
+        // to test the property `topP` - An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+        should("test topP") {
+            // uncomment below to test the property
+            //modelInstance.topP shouldBe ("TODO")
+        }
+
+        // to test the property `responseFormat`
+        should("test responseFormat") {
+            // uncomment below to test the property
+            //modelInstance.responseFormat shouldBe ("TODO")
         }
 
     }

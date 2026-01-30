@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -28,9 +28,6 @@ message MessageDeltaObjectDelta {
 
   // The content of the message in array of text and/or images.
   repeated MessageDeltaObjectDeltaContentInner content = 414659706;
-
-  // A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-  repeated string file_ids = 198337164;
 
 }
 

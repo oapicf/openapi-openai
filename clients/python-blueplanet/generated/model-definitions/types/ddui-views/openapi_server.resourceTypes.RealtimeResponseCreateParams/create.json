@@ -1,0 +1,27 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "modalities" },
+      {"model": "instructions" },
+      {"model": "voice" },
+      {"model": "output_audio_format" },
+      {"model": "tools" },
+      {"model": "tool_choice" },
+      {"model": "temperature" },
+      {"model": "max_response_output_tokens" },
+      {"model": "conversation" },
+      {"model": "metadata" },
+      {"model": "input" },
+    ]
+  }]
+}

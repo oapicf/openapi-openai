@@ -1,0 +1,176 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AuditLog"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AuditLog"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AuditLogActor = openapi_server.resourceTypes.AuditLogActor
+  AuditLogApiKeyCreated = openapi_server.resourceTypes.AuditLogApiKeyCreated
+  AuditLogApiKeyDeleted = openapi_server.resourceTypes.AuditLogApiKeyDeleted
+  AuditLogApiKeyUpdated = openapi_server.resourceTypes.AuditLogApiKeyUpdated
+  AuditLogEventType = openapi_server.resourceTypes.AuditLogEventType
+  AuditLogInviteAccepted = openapi_server.resourceTypes.AuditLogInviteAccepted
+  AuditLogInviteSent = openapi_server.resourceTypes.AuditLogInviteSent
+  AuditLogLoginFailed = openapi_server.resourceTypes.AuditLogLoginFailed
+  AuditLogOrganizationUpdated = openapi_server.resourceTypes.AuditLogOrganizationUpdated
+  AuditLogProject = openapi_server.resourceTypes.AuditLogProject
+  AuditLogProjectArchived = openapi_server.resourceTypes.AuditLogProjectArchived
+  AuditLogProjectCreated = openapi_server.resourceTypes.AuditLogProjectCreated
+  AuditLogProjectUpdated = openapi_server.resourceTypes.AuditLogProjectUpdated
+  AuditLogRateLimitDeleted = openapi_server.resourceTypes.AuditLogRateLimitDeleted
+  AuditLogRateLimitUpdated = openapi_server.resourceTypes.AuditLogRateLimitUpdated
+  AuditLogServiceAccountCreated = openapi_server.resourceTypes.AuditLogServiceAccountCreated
+  AuditLogServiceAccountDeleted = openapi_server.resourceTypes.AuditLogServiceAccountDeleted
+  AuditLogServiceAccountUpdated = openapi_server.resourceTypes.AuditLogServiceAccountUpdated
+  AuditLogUserAdded = openapi_server.resourceTypes.AuditLogUserAdded
+  AuditLogUserDeleted = openapi_server.resourceTypes.AuditLogUserDeleted
+  AuditLogUserUpdated = openapi_server.resourceTypes.AuditLogUserUpdated
+}
+resourceTypes {
+
+  AuditLog {
+    title = AuditLog
+    description = AuditLog
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The ID of this log."
+          optional = true
+        }
+        type {
+          type = AuditLogEventType
+          description = ""
+          optional = true
+        }
+        effective_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) of the event."
+          optional = true
+        }
+        project {
+          type = AuditLogProject
+          description = ""
+          optional = false
+        }
+        actor {
+          type = AuditLogActor
+          description = ""
+          optional = true
+        }
+        api_key_created {
+          type = AuditLogApiKeyCreated
+          description = ""
+          optional = false
+        }
+        api_key_updated {
+          type = AuditLogApiKeyUpdated
+          description = ""
+          optional = false
+        }
+        api_key_deleted {
+          type = AuditLogApiKeyDeleted
+          description = ""
+          optional = false
+        }
+        invite_sent {
+          type = AuditLogInviteSent
+          description = ""
+          optional = false
+        }
+        invite_accepted {
+          type = AuditLogInviteAccepted
+          description = ""
+          optional = false
+        }
+        invite_deleted {
+          type = AuditLogInviteAccepted
+          description = ""
+          optional = false
+        }
+        login_failed {
+          type = AuditLogLoginFailed
+          description = ""
+          optional = false
+        }
+        logout_failed {
+          type = AuditLogLoginFailed
+          description = ""
+          optional = false
+        }
+        organization_updated {
+          type = AuditLogOrganizationUpdated
+          description = ""
+          optional = false
+        }
+        project_created {
+          type = AuditLogProjectCreated
+          description = ""
+          optional = false
+        }
+        project_updated {
+          type = AuditLogProjectUpdated
+          description = ""
+          optional = false
+        }
+        project_archived {
+          type = AuditLogProjectArchived
+          description = ""
+          optional = false
+        }
+        rate_limit_updated {
+          type = AuditLogRateLimitUpdated
+          description = ""
+          optional = false
+        }
+        rate_limit_deleted {
+          type = AuditLogRateLimitDeleted
+          description = ""
+          optional = false
+        }
+        service_account_created {
+          type = AuditLogServiceAccountCreated
+          description = ""
+          optional = false
+        }
+        service_account_updated {
+          type = AuditLogServiceAccountUpdated
+          description = ""
+          optional = false
+        }
+        service_account_deleted {
+          type = AuditLogServiceAccountDeleted
+          description = ""
+          optional = false
+        }
+        user_added {
+          type = AuditLogUserAdded
+          description = ""
+          optional = false
+        }
+        user_updated {
+          type = AuditLogUserUpdated
+          description = ""
+          optional = false
+        }
+        user_deleted {
+          type = AuditLogUserDeleted
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AuditLog {
+    title = AuditLog
+    description = AuditLog
+    implements = openapi_server.resourceTypes.AuditLog
+
+  }
+}

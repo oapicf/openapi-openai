@@ -7,11 +7,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.model.ModifyThreadRequestToolResources;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="Represents a thread that contains [messages](/docs/api-reference/messages).")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T10:45:28.938980301Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description="Represents a thread that contains [messages](/docs/api-reference/messages).")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T14:09:21.247747647Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ThreadObject   {
   
   private String id;
@@ -36,6 +37,7 @@ public class ThreadObject   {
 
   private ObjectEnum _object;
   private Integer createdAt;
+  private ModifyThreadRequestToolResources toolResources;
   private Object metadata;
 
   /**
@@ -81,10 +83,24 @@ public class ThreadObject   {
   }
 
   /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
    **/
   
-  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty("tool_resources")
+  @NotNull
+  @Valid
+  public ModifyThreadRequestToolResources getToolResources() {
+    return toolResources;
+  }
+  public void setToolResources(ModifyThreadRequestToolResources toolResources) {
+    this.toolResources = toolResources;
+  }
+
+  /**
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
+   **/
+  
+  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
   @JsonProperty("metadata")
   @NotNull
   public Object getMetadata() {
@@ -107,12 +123,13 @@ public class ThreadObject   {
     return Objects.equals(this.id, threadObject.id) &&
         Objects.equals(this._object, threadObject._object) &&
         Objects.equals(this.createdAt, threadObject.createdAt) &&
+        Objects.equals(this.toolResources, threadObject.toolResources) &&
         Objects.equals(this.metadata, threadObject.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, metadata);
+    return Objects.hash(id, _object, createdAt, toolResources, metadata);
   }
 
   @Override
@@ -123,6 +140,7 @@ public class ThreadObject   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

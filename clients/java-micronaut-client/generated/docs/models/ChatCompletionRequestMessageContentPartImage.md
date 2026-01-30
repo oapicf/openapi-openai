@@ -2,6 +2,8 @@
 
 # ChatCompletionRequestMessageContentPartImage
 
+Learn about [image inputs](/docs/guides/vision). 
+
 The class is defined in **[ChatCompletionRequestMessageContentPartImage.java](../../src/main/java/org/openapitools/model/ChatCompletionRequestMessageContentPartImage.java)**
 
 ## Properties

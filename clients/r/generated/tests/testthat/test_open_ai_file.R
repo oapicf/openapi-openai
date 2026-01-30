@@ -47,7 +47,7 @@ test_that("object", {
 
 test_that("purpose", {
   # tests for the property `purpose` (character)
-  # The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;.
+  # The intended purpose of the file. Supported values are &#x60;assistants&#x60;, &#x60;assistants_output&#x60;, &#x60;batch&#x60;, &#x60;batch_output&#x60;, &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60; and &#x60;vision&#x60;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`purpose`, "EXPECTED_RESULT")

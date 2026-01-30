@@ -1,4 +1,5 @@
 const utils = require('../utils/utils');
+const ChatCompletionRequestToolMessage_content = require('../models/ChatCompletionRequestToolMessage_content');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
@@ -13,12 +14,7 @@ module.exports = {
                     'tool',
                 ],
             },
-            {
-                key: `${keyPrefix}content`,
-                label: `The contents of the tool message. - [${labelPrefix}content]`,
-                required: true,
-                type: 'string',
-            },
+            ...ChatCompletionRequestToolMessage_content.fields(`${keyPrefix}content`, isInput),
             {
                 key: `${keyPrefix}tool_call_id`,
                 label: `Tool call that this message is responding to. - [${labelPrefix}tool_call_id]`,
@@ -31,7 +27,7 @@ module.exports = {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'role': bundle.inputData?.[`${keyPrefix}role`],
-            'content': bundle.inputData?.[`${keyPrefix}content`],
+            'content': utils.removeIfEmpty(ChatCompletionRequestToolMessage_content.mapping(bundle, `${keyPrefix}content`)),
             'tool_call_id': bundle.inputData?.[`${keyPrefix}tool_call_id`],
         }
     },

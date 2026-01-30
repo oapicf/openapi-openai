@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * 
  * @param url Either a URL of the image or the base64 encoded image data.
- * @param detail Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+ * @param detail Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
  */
 data class ChatCompletionRequestMessageContentPartImageImageUrl(
 
@@ -26,12 +26,12 @@ data class ChatCompletionRequestMessageContentPartImageImageUrl(
     @Schema(example = "null", required = true, description = "Either a URL of the image or the base64 encoded image data.")
     @get:JsonProperty("url", required = true) val url: java.net.URI,
 
-    @Schema(example = "null", description = "Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).")
+    @Schema(example = "null", description = "Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).")
     @get:JsonProperty("detail") val detail: ChatCompletionRequestMessageContentPartImageImageUrl.Detail? = Detail.auto
 ) {
 
     /**
-    * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+    * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
     * Values: auto,low,high
     */
     enum class Detail(@get:JsonValue val value: kotlin.String) {

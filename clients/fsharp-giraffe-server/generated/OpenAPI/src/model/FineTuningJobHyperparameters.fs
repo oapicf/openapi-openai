@@ -2,7 +2,9 @@ namespace OpenAPI.Model
 
 open System
 open System.Collections.Generic
-open OpenAPI.Model.FineTuningJobHyperparametersNEpochs
+open OpenAPI.Model.CreateFineTuningJobRequestHyperparametersBatchSize
+open OpenAPI.Model.CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+open OpenAPI.Model.CreateFineTuningJobRequestHyperparametersNEpochs
 
 module FineTuningJobHyperparameters =
 
@@ -10,6 +12,8 @@ module FineTuningJobHyperparameters =
 
 
   type FineTuningJob_hyperparameters = {
-    NEpochs : FineTuningJobHyperparametersNEpochs;
+    BatchSize : CreateFineTuningJobRequestHyperparametersBatchSize;
+    LearningRateMultiplier : CreateFineTuningJobRequestHyperparametersLearningRateMultiplier;
+    NEpochs : CreateFineTuningJobRequestHyperparametersNEpochs;
   }
   //#endregion

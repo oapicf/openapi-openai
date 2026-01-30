@@ -11,6 +11,7 @@
    (ds/opt :description) string?
    (ds/req :name) string?
    (ds/opt :parameters) (s/map-of string? s/any?)
+   (ds/opt :strict) boolean?
    })
 
 (def function-object-spec

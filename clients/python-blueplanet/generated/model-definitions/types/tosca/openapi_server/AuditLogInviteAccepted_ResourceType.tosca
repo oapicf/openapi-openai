@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AuditLogInviteAccepted"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AuditLogInviteAccepted"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  AuditLogInviteAccepted {
+    title = AuditLogInviteAccepted
+    description = AuditLogInviteAccepted
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The ID of the invite."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AuditLogInviteAccepted {
+    title = AuditLogInviteAccepted
+    description = AuditLogInviteAccepted
+    implements = openapi_server.resourceTypes.AuditLogInviteAccepted
+
+  }
+}

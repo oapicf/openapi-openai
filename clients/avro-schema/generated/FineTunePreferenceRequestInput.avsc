@@ -1,0 +1,33 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The per-line training example of a fine-tuning input file for chat models using the dpo method.",
+  "name": "FineTunePreferenceRequestInput",
+  "fields": [
+    {
+      "name": "input",
+      "type": ["null", "model.FineTunePreferenceRequestInputInput"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "preferred_completion",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.FineTunePreferenceRequestInputPreferredCompletionInner"
+      }],
+      "doc": "The preferred completion message for the output.",
+      "default": null
+    },
+    {
+      "name": "non_preferred_completion",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.FineTunePreferenceRequestInputPreferredCompletionInner"
+      }],
+      "doc": "The non-preferred completion message for the output.",
+      "default": null
+    }
+  ]
+
+}

@@ -15,28 +15,24 @@ class MessageDeltaObjectDelta(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, role: str=None, content: List[MessageDeltaObjectDeltaContentInner]=None, file_ids: List[str]=[]):
+    def __init__(self, role: str=None, content: List[MessageDeltaObjectDeltaContentInner]=None):
         """MessageDeltaObjectDelta - a model defined in OpenAPI
 
         :param role: The role of this MessageDeltaObjectDelta.
         :param content: The content of this MessageDeltaObjectDelta.
-        :param file_ids: The file_ids of this MessageDeltaObjectDelta.
         """
         self.openapi_types = {
             'role': str,
-            'content': List[MessageDeltaObjectDeltaContentInner],
-            'file_ids': List[str]
+            'content': List[MessageDeltaObjectDeltaContentInner]
         }
 
         self.attribute_map = {
             'role': 'role',
-            'content': 'content',
-            'file_ids': 'file_ids'
+            'content': 'content'
         }
 
         self._role = role
         self._content = content
-        self._file_ids = file_ids
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'MessageDeltaObjectDelta':
@@ -98,28 +94,3 @@ class MessageDeltaObjectDelta(Model):
         """
 
         self._content = content
-
-    @property
-    def file_ids(self):
-        """Gets the file_ids of this MessageDeltaObjectDelta.
-
-        A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-
-        :return: The file_ids of this MessageDeltaObjectDelta.
-        :rtype: List[str]
-        """
-        return self._file_ids
-
-    @file_ids.setter
-    def file_ids(self, file_ids):
-        """Sets the file_ids of this MessageDeltaObjectDelta.
-
-        A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-
-        :param file_ids: The file_ids of this MessageDeltaObjectDelta.
-        :type file_ids: List[str]
-        """
-        if file_ids is not None and len(file_ids) > 10:
-            raise ValueError("Invalid value for `file_ids`, number of items must be less than or equal to `10`")
-
-        self._file_ids = file_ids

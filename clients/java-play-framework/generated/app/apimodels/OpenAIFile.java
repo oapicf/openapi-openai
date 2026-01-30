@@ -9,7 +9,7 @@ import javax.validation.Valid;
 /**
  * The &#x60;File&#x60; object represents a document that has been uploaded to OpenAI.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class OpenAIFile   {
   @JsonProperty("id")
@@ -67,16 +67,22 @@ public class OpenAIFile   {
   private ObjectEnum _object;
 
   /**
-   * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+   * The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
    */
   public enum PurposeEnum {
+    ASSISTANTS("assistants"),
+    
+    ASSISTANTS_OUTPUT("assistants_output"),
+    
+    BATCH("batch"),
+    
+    BATCH_OUTPUT("batch_output"),
+    
     FINE_TUNE("fine-tune"),
     
     FINE_TUNE_RESULTS("fine-tune-results"),
     
-    ASSISTANTS("assistants"),
-    
-    ASSISTANTS_OUTPUT("assistants_output");
+    VISION("vision");
 
     private final String value;
 
@@ -239,7 +245,7 @@ public class OpenAIFile   {
   }
 
    /**
-   * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+   * The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
    * @return purpose
   **/
   public PurposeEnum getPurpose() {

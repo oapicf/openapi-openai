@@ -1,7 +1,7 @@
 goog.provide('API.Client.RunStreamEvent_oneOf_5');
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) fails.
+ * Occurs when a [run](/docs/api-reference/runs/object) ends with status `incomplete`.
  * @record
  */
 API.Client.RunStreamEventOneOf5 = function() {}
@@ -20,5 +20,5 @@ API.Client.RunStreamEventOneOf5.prototype.data;
 
 /** @enum {string} */
 API.Client.RunStreamEventOneOf5.EventEnum = { 
-  thread.run.failed: 'thread.run.failed',
+  thread.run.incomplete: 'thread.run.incomplete',
 }

@@ -11,11 +11,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.CreateMessageRequestAttachmentsInner;
+import org.openapitools.model.CreateMessageRequestContent;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T10:45:31.742862961Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T14:09:29.020322047Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateMessageRequest   {
   
 
@@ -40,8 +42,8 @@ public class CreateMessageRequest   {
   }
 
   private RoleEnum role;
-  private String content;
-  private List<String> fileIds = new ArrayList<>();
+  private CreateMessageRequestContent content;
+  private List<@Valid CreateMessageRequestAttachmentsInner> attachments;
   private Object metadata;
 
   /**
@@ -59,37 +61,36 @@ public class CreateMessageRequest   {
   }
 
   /**
-   * The content of the message.
    **/
   
-  @ApiModelProperty(required = true, value = "The content of the message.")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty("content")
   @NotNull
- @Size(min=1,max=256000)  public String getContent() {
+  public CreateMessageRequestContent getContent() {
     return content;
   }
-  public void setContent(String content) {
+  public void setContent(CreateMessageRequestContent content) {
     this.content = content;
   }
 
   /**
-   * A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like &#x60;retrieval&#x60; and &#x60;code_interpreter&#x60; that can access and use files.
+   * A list of files attached to the message, and the tools they should be added to.
    **/
   
-  @ApiModelProperty(value = "A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like `retrieval` and `code_interpreter` that can access and use files.")
-  @JsonProperty("file_ids")
- @Size(min=1,max=10)  public List<String> getFileIds() {
-    return fileIds;
+  @ApiModelProperty(value = "A list of files attached to the message, and the tools they should be added to.")
+  @JsonProperty("attachments")
+  public List<@Valid CreateMessageRequestAttachmentsInner> getAttachments() {
+    return attachments;
   }
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public void setAttachments(List<@Valid CreateMessageRequestAttachmentsInner> attachments) {
+    this.attachments = attachments;
   }
 
   /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    **/
   
-  @ApiModelProperty(value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+  @ApiModelProperty(value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
   @JsonProperty("metadata")
   public Object getMetadata() {
     return metadata;
@@ -110,13 +111,13 @@ public class CreateMessageRequest   {
     CreateMessageRequest createMessageRequest = (CreateMessageRequest) o;
     return Objects.equals(this.role, createMessageRequest.role) &&
         Objects.equals(this.content, createMessageRequest.content) &&
-        Objects.equals(this.fileIds, createMessageRequest.fileIds) &&
+        Objects.equals(this.attachments, createMessageRequest.attachments) &&
         Objects.equals(this.metadata, createMessageRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, content, fileIds, metadata);
+    return Objects.hash(role, content, attachments, metadata);
   }
 
   @Override
@@ -126,7 +127,7 @@ public class CreateMessageRequest   {
     
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -9,6 +9,8 @@ Name | Type
 `content` | string
 `role` | string
 `name` | string
+`refusal` | string
+`audio` | [ChatCompletionRequestAssistantMessageAudio](ChatCompletionRequestAssistantMessageAudio.md)
 `toolCalls` | [Array&lt;ChatCompletionMessageToolCall&gt;](ChatCompletionMessageToolCall.md)
 `functionCall` | [ChatCompletionRequestAssistantMessageFunctionCall](ChatCompletionRequestAssistantMessageFunctionCall.md)
 `toolCallId` | string
@@ -23,6 +25,8 @@ const example = {
   "content": null,
   "role": null,
   "name": null,
+  "refusal": null,
+  "audio": null,
   "toolCalls": null,
   "functionCall": null,
   "toolCallId": null,

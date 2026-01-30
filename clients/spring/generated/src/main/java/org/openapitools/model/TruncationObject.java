@@ -20,10 +20,11 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * TruncationObject
+ * Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Schema(name = "TruncationObject", description = "Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class TruncationObject {
 
   /**
@@ -61,11 +62,22 @@ public class TruncationObject {
     }
   }
 
-  private @Nullable TypeEnum type;
+  private TypeEnum type;
 
   private JsonNullable<@Min(value = 1) Integer> lastMessages = JsonNullable.<Integer>undefined();
 
-  public TruncationObject type(@Nullable TypeEnum type) {
+  public TruncationObject() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public TruncationObject(TypeEnum type) {
+    this.type = type;
+  }
+
+  public TruncationObject type(TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -74,14 +86,14 @@ public class TruncationObject {
    * The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.
    * @return type
    */
-  
-  @Schema(name = "type", description = "The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "type", description = "The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("type")
-  public @Nullable TypeEnum getType() {
+  public TypeEnum getType() {
     return type;
   }
 
-  public void setType(@Nullable TypeEnum type) {
+  public void setType(TypeEnum type) {
     this.type = type;
   }
 

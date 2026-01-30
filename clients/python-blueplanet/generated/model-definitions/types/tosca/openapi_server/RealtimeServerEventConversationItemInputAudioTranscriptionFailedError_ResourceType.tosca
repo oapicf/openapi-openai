@@ -1,0 +1,50 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventConversationItemInputAudioTranscriptionFailedError"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventConversationItemInputAudioTranscriptionFailedError"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeServerEventConversationItemInputAudioTranscriptionFailedError {
+    title = RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
+    description = RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "The type of error."
+          optional = false
+        }
+        code {
+          type =  string
+          description = "Error code, if any."
+          optional = false
+        }
+        message {
+          type =  string
+          description = "A human-readable error message."
+          optional = false
+        }
+        param {
+          type =  string
+          description = "Parameter related to the error, if any."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventConversationItemInputAudioTranscriptionFailedError {
+    title = RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
+    description = RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
+    implements = openapi_server.resourceTypes.RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
+
+  }
+}

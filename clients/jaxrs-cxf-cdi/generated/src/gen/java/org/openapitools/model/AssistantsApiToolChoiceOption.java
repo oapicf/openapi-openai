@@ -4,26 +4,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.model.AssistantsApiNamedToolChoice;
-import org.openapitools.model.ChatCompletionNamedToolChoiceFunction;
+import org.openapitools.model.AssistantsNamedToolChoice;
+import org.openapitools.model.AssistantsNamedToolChoiceFunction;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * Controls which (if any) tool is called by the model. &#x60;none&#x60; means the model will not call any tools and instead generates a message. &#x60;auto&#x60; is the default value and means the model can pick between generating a message or calling a tool. Specifying a particular tool like &#x60;{\&quot;type\&quot;: \&quot;TOOL_TYPE\&quot;}&#x60; or &#x60;{\&quot;type\&quot;: \&quot;function\&quot;, \&quot;function\&quot;: {\&quot;name\&quot;: \&quot;my_function\&quot;}}&#x60; forces the model to call that tool. 
+ * Controls which (if any) tool is called by the model. &#x60;none&#x60; means the model will not call any tools and instead generates a message. &#x60;auto&#x60; is the default value and means the model can pick between generating a message or calling one or more tools. &#x60;required&#x60; means the model must call one or more tools before responding to the user. Specifying a particular tool like &#x60;{\&quot;type\&quot;: \&quot;file_search\&quot;}&#x60; or &#x60;{\&quot;type\&quot;: \&quot;function\&quot;, \&quot;function\&quot;: {\&quot;name\&quot;: \&quot;my_function\&quot;}}&#x60; forces the model to call that tool. 
  **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-@ApiModel(description = "Controls which (if any) tool is called by the model. `none` means the model will not call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling a tool. Specifying a particular tool like `{\"type\": \"TOOL_TYPE\"}` or `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool. ")
+@ApiModel(description = "Controls which (if any) tool is called by the model. `none` means the model will not call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling one or more tools. `required` means the model must call one or more tools before responding to the user. Specifying a particular tool like `{\"type\": \"file_search\"}` or `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool. ")
 public class AssistantsApiToolChoiceOption   {
   
 
 public enum TypeEnum {
 
-    @JsonProperty("function") FUNCTION(String.valueOf("function")), @JsonProperty("code_interpreter") CODE_INTERPRETER(String.valueOf("code_interpreter")), @JsonProperty("retrieval") RETRIEVAL(String.valueOf("retrieval"));
+    @JsonProperty("function") FUNCTION(String.valueOf("function")), @JsonProperty("code_interpreter") CODE_INTERPRETER(String.valueOf("code_interpreter")), @JsonProperty("file_search") FILE_SEARCH(String.valueOf("file_search"));
 
 
     private String value;
@@ -53,7 +53,7 @@ public enum TypeEnum {
 
   private TypeEnum type;
 
-  private ChatCompletionNamedToolChoiceFunction function;
+  private AssistantsNamedToolChoiceFunction function;
 
   /**
    * The type of the tool. If type is &#x60;function&#x60;, the function name must be set
@@ -77,7 +77,7 @@ public enum TypeEnum {
 
   /**
    **/
-  public AssistantsApiToolChoiceOption function(ChatCompletionNamedToolChoiceFunction function) {
+  public AssistantsApiToolChoiceOption function(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
     return this;
   }
@@ -85,10 +85,10 @@ public enum TypeEnum {
   
   @ApiModelProperty(value = "")
   @JsonProperty("function")
-  public ChatCompletionNamedToolChoiceFunction getFunction() {
+  public AssistantsNamedToolChoiceFunction getFunction() {
     return function;
   }
-  public void setFunction(ChatCompletionNamedToolChoiceFunction function) {
+  public void setFunction(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
   }
 

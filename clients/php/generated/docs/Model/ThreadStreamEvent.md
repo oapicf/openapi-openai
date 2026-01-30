@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enabled** | **bool** | Whether to enable input audio transcription. | [optional]
 **event** | **string** |  |
 **data** | [**\OpenAPI\Client\Model\ThreadObject**](ThreadObject.md) |  |
 

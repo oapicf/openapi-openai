@@ -16,24 +16,19 @@ open TestHelper
 open AssistantsApiHandlerTestsHelper
 open OpenAPI.AssistantsApiHandler
 open OpenAPI.AssistantsApiHandlerParams
-open OpenAPI.Model.AssistantFileObject
 open OpenAPI.Model.AssistantObject
-open OpenAPI.Model.CreateAssistantFileRequest
 open OpenAPI.Model.CreateAssistantRequest
 open OpenAPI.Model.CreateMessageRequest
 open OpenAPI.Model.CreateRunRequest
 open OpenAPI.Model.CreateThreadAndRunRequest
 open OpenAPI.Model.CreateThreadRequest
-open OpenAPI.Model.DeleteAssistantFileResponse
 open OpenAPI.Model.DeleteAssistantResponse
+open OpenAPI.Model.DeleteMessageResponse
 open OpenAPI.Model.DeleteThreadResponse
-open OpenAPI.Model.ListAssistantFilesResponse
 open OpenAPI.Model.ListAssistantsResponse
-open OpenAPI.Model.ListMessageFilesResponse
 open OpenAPI.Model.ListMessagesResponse
 open OpenAPI.Model.ListRunStepsResponse
 open OpenAPI.Model.ListRunsResponse
-open OpenAPI.Model.MessageFileObject
 open OpenAPI.Model.MessageObject
 open OpenAPI.Model.ModifyAssistantRequest
 open OpenAPI.Model.ModifyMessageRequest
@@ -90,28 +85,6 @@ module AssistantsApiHandlerTests =
       }
 
   [<Fact>]
-  let ``CreateAssistantFile - Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants). returns 200 where OK`` () =
-    task {
-      use server = new TestServer(createHost())
-      use client = server.CreateClient()
-
-      // add your setup code here
-
-      let path = "/v1/assistants/{assistant_id}/files".Replace("assistantId", "ADDME")
-
-      // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getCreateAssistantFileExample "application/json")
-      // or pass a body of type CreateAssistantFileRequest
-      let body = obj() :?> CreateAssistantFileRequest |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
-
-      body
-        |> HttpPost client path
-        |> isStatus (enum<HttpStatusCode>(200))
-        |> readText
-        |> shouldEqual "TESTME"
-      }
-
-  [<Fact>]
   let ``CreateMessage - Create a message. returns 200 where OK`` () =
     task {
       use server = new TestServer(createHost())
@@ -141,7 +114,7 @@ module AssistantsApiHandlerTests =
 
       // add your setup code here
 
-      let path = "/v1/threads/{thread_id}/runs".Replace("threadId", "ADDME")
+      let path = "/v1/threads/{thread_id}/runs".Replace("threadId", "ADDME") + "?include=ADDME"
 
       // use an example requestBody provided by the spec
       let examples = Map.empty.Add("application/json", getCreateRunExample "application/json")
@@ -217,14 +190,14 @@ module AssistantsApiHandlerTests =
       }
 
   [<Fact>]
-  let ``DeleteAssistantFile - Delete an assistant file. returns 200 where OK`` () =
+  let ``DeleteMessage - Deletes a message. returns 200 where OK`` () =
     task {
       use server = new TestServer(createHost())
       use client = server.CreateClient()
 
       // add your setup code here
 
-      let path = "/v1/assistants/{assistant_id}/files/{file_id}".Replace("assistantId", "ADDME").Replace("fileId", "ADDME")
+      let path = "/v1/threads/{thread_id}/messages/{message_id}".Replace("threadId", "ADDME").Replace("messageId", "ADDME")
 
       HttpDelete client path
         |> isStatus (enum<HttpStatusCode>(200))
@@ -268,23 +241,6 @@ module AssistantsApiHandlerTests =
       }
 
   [<Fact>]
-  let ``GetAssistantFile - Retrieves an AssistantFile. returns 200 where OK`` () =
-    task {
-      use server = new TestServer(createHost())
-      use client = server.CreateClient()
-
-      // add your setup code here
-
-      let path = "/v1/assistants/{assistant_id}/files/{file_id}".Replace("assistantId", "ADDME").Replace("fileId", "ADDME")
-
-      HttpGet client path
-        |> isStatus (enum<HttpStatusCode>(200))
-        |> readText
-        |> shouldEqual "TESTME"
-        |> ignore
-      }
-
-  [<Fact>]
   let ``GetMessage - Retrieve a message. returns 200 where OK`` () =
     task {
       use server = new TestServer(createHost())
@@ -293,23 +249,6 @@ module AssistantsApiHandlerTests =
       // add your setup code here
 
       let path = "/v1/threads/{thread_id}/messages/{message_id}".Replace("threadId", "ADDME").Replace("messageId", "ADDME")
-
-      HttpGet client path
-        |> isStatus (enum<HttpStatusCode>(200))
-        |> readText
-        |> shouldEqual "TESTME"
-        |> ignore
-      }
-
-  [<Fact>]
-  let ``GetMessageFile - Retrieves a message file. returns 200 where OK`` () =
-    task {
-      use server = new TestServer(createHost())
-      use client = server.CreateClient()
-
-      // add your setup code here
-
-      let path = "/v1/threads/{thread_id}/messages/{message_id}/files/{file_id}".Replace("threadId", "ADDME").Replace("messageId", "ADDME").Replace("fileId", "ADDME")
 
       HttpGet client path
         |> isStatus (enum<HttpStatusCode>(200))
@@ -343,7 +282,7 @@ module AssistantsApiHandlerTests =
 
       // add your setup code here
 
-      let path = "/v1/threads/{thread_id}/runs/{run_id}/steps/{step_id}".Replace("threadId", "ADDME").Replace("runId", "ADDME").Replace("stepId", "ADDME")
+      let path = "/v1/threads/{thread_id}/runs/{run_id}/steps/{step_id}".Replace("threadId", "ADDME").Replace("runId", "ADDME").Replace("stepId", "ADDME") + "?include=ADDME"
 
       HttpGet client path
         |> isStatus (enum<HttpStatusCode>(200))
@@ -370,23 +309,6 @@ module AssistantsApiHandlerTests =
       }
 
   [<Fact>]
-  let ``ListAssistantFiles - Returns a list of assistant files. returns 200 where OK`` () =
-    task {
-      use server = new TestServer(createHost())
-      use client = server.CreateClient()
-
-      // add your setup code here
-
-      let path = "/v1/assistants/{assistant_id}/files".Replace("assistantId", "ADDME") + "?limit=ADDME&order=ADDME&after=ADDME&before=ADDME"
-
-      HttpGet client path
-        |> isStatus (enum<HttpStatusCode>(200))
-        |> readText
-        |> shouldEqual "TESTME"
-        |> ignore
-      }
-
-  [<Fact>]
   let ``ListAssistants - Returns a list of assistants. returns 200 where OK`` () =
     task {
       use server = new TestServer(createHost())
@@ -395,23 +317,6 @@ module AssistantsApiHandlerTests =
       // add your setup code here
 
       let path = "/v1/assistants" + "?limit=ADDME&order=ADDME&after=ADDME&before=ADDME"
-
-      HttpGet client path
-        |> isStatus (enum<HttpStatusCode>(200))
-        |> readText
-        |> shouldEqual "TESTME"
-        |> ignore
-      }
-
-  [<Fact>]
-  let ``ListMessageFiles - Returns a list of message files. returns 200 where OK`` () =
-    task {
-      use server = new TestServer(createHost())
-      use client = server.CreateClient()
-
-      // add your setup code here
-
-      let path = "/v1/threads/{thread_id}/messages/{message_id}/files".Replace("threadId", "ADDME").Replace("messageId", "ADDME") + "?limit=ADDME&order=ADDME&after=ADDME&before=ADDME"
 
       HttpGet client path
         |> isStatus (enum<HttpStatusCode>(200))
@@ -445,7 +350,7 @@ module AssistantsApiHandlerTests =
 
       // add your setup code here
 
-      let path = "/v1/threads/{thread_id}/runs/{run_id}/steps".Replace("threadId", "ADDME").Replace("runId", "ADDME") + "?limit=ADDME&order=ADDME&after=ADDME&before=ADDME"
+      let path = "/v1/threads/{thread_id}/runs/{run_id}/steps".Replace("threadId", "ADDME").Replace("runId", "ADDME") + "?limit=ADDME&order=ADDME&after=ADDME&before=ADDME&include=ADDME"
 
       HttpGet client path
         |> isStatus (enum<HttpStatusCode>(200))

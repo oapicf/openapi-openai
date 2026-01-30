@@ -19,9 +19,9 @@ class ChatCompletionNamedToolChoice
 
     /**
      * @DTA\Data(field="function")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\ChatCompletionNamedToolChoiceFunction::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\ChatCompletionNamedToolChoiceFunction::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\AssistantsNamedToolChoiceFunction::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\AssistantsNamedToolChoiceFunction::class})
      */
-    public ?\App\DTO\ChatCompletionNamedToolChoiceFunction $function = null;
+    public ?\App\DTO\AssistantsNamedToolChoiceFunction $function = null;
 
 }

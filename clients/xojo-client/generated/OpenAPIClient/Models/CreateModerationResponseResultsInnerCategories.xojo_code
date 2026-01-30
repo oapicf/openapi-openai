@@ -35,6 +35,22 @@ Protected Class CreateModerationResponseResultsInnerCategories
 
 	#tag Property, Flags = &h0
 		#tag Note
+			Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, "how to shoplift" would fit this category.
+		#tag EndNote
+		illicit As Boolean
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+		#tag EndNote
+		illicit_violent As Boolean
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
 			Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
 		#tag EndNote
 		self_harm As Boolean
@@ -151,6 +167,22 @@ Protected Class CreateModerationResponseResultsInnerCategories
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="harassment_threatening"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="illicit"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="illicit_violent"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

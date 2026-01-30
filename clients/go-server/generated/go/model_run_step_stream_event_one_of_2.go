@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -14,7 +14,7 @@ package openapi
 
 
 
-// RunStepStreamEventOneOf2 - Occurs when parts of a [run step](/docs/api-reference/runs/step-object) are being streamed.
+// RunStepStreamEventOneOf2 - Occurs when parts of a [run step](/docs/api-reference/run-steps/step-object) are being streamed.
 type RunStepStreamEventOneOf2 struct {
 
 	Event string `json:"event"`

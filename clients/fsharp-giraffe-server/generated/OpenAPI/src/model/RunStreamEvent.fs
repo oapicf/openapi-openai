@@ -12,6 +12,7 @@ open OpenAPI.Model.RunStreamEventOneOf5
 open OpenAPI.Model.RunStreamEventOneOf6
 open OpenAPI.Model.RunStreamEventOneOf7
 open OpenAPI.Model.RunStreamEventOneOf8
+open OpenAPI.Model.RunStreamEventOneOf9
 
 module RunStreamEvent =
 

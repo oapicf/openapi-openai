@@ -19,6 +19,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.CreateModerationRequestInput
+import org.openapitools.client.models.CreateModerationRequestInputOneOfInner
 
 class CreateModerationRequestInputTest : ShouldSpec() {
     init {

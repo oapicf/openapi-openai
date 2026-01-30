@@ -36,16 +36,14 @@ public class MessageDeltaObjectDelta   {
 
   private RoleEnum role;
   private List<MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
-  private List<String> fileIds = new ArrayList<>();
 
   public MessageDeltaObjectDelta () {
 
   }
 
-  public MessageDeltaObjectDelta (RoleEnum role, List<MessageDeltaObjectDeltaContentInner> content, List<String> fileIds) {
+  public MessageDeltaObjectDelta (RoleEnum role, List<MessageDeltaObjectDeltaContentInner> content) {
     this.role = role;
     this.content = content;
-    this.fileIds = fileIds;
   }
 
     
@@ -66,15 +64,6 @@ public class MessageDeltaObjectDelta   {
     this.content = content;
   }
 
-    
-  @JsonProperty("file_ids")
-  public List<String> getFileIds() {
-    return fileIds;
-  }
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -86,13 +75,12 @@ public class MessageDeltaObjectDelta   {
     }
     MessageDeltaObjectDelta messageDeltaObjectDelta = (MessageDeltaObjectDelta) o;
     return Objects.equals(role, messageDeltaObjectDelta.role) &&
-        Objects.equals(content, messageDeltaObjectDelta.content) &&
-        Objects.equals(fileIds, messageDeltaObjectDelta.fileIds);
+        Objects.equals(content, messageDeltaObjectDelta.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, content, fileIds);
+    return Objects.hash(role, content);
   }
 
   @Override
@@ -102,7 +90,6 @@ public class MessageDeltaObjectDelta   {
     
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

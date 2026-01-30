@@ -5,6 +5,9 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
+/**
+ * Messages sent by an end user, containing prompts or additional context information.
+ */
 class ChatCompletionRequestUserMessage
 {
     /**

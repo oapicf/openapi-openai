@@ -19,7 +19,7 @@ library(openapi)
 # Creates a completion for the provided prompt and parameters.
 #
 # prepare function argument(s)
-var_create_completion_request <- CreateCompletionRequest$new(CreateCompletionRequest_model$new(), CreateCompletionRequest_prompt$new(), 123, "echo_example", 123, c(key = 123), 123, 123, 123, 123, 123, CreateCompletionRequest_stop$new(), "stream_example", "suffix_example", 123, 123, "user_example") # CreateCompletionRequest | 
+var_create_completion_request <- CreateCompletionRequest$new(CreateCompletionRequest_model$new(), CreateCompletionRequest_prompt$new(), 123, "echo_example", 123, c(key = 123), 123, 123, 123, 123, 123, CreateCompletionRequest_stop$new(), "stream_example", ChatCompletionStreamOptions$new("include_usage_example"), "suffix_example", 123, 123, "user_example") # CreateCompletionRequest | 
 
 api_instance <- CompletionsApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth

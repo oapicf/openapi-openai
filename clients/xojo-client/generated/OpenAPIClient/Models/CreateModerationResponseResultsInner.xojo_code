@@ -19,6 +19,11 @@ Protected Class CreateModerationResponseResultsInner
 	#tag EndProperty
 
 
+	#tag Property, Flags = &h0
+		category_applied_input_types As OpenAPIClient.Models.CreateModerationResponseResultsInnerCategoryAppliedInputTypes
+	#tag EndProperty
+
+
 
 
 
@@ -77,6 +82,14 @@ Protected Class CreateModerationResponseResultsInner
 			Group="Behavior"
 			InitialValue=""
 			Type="CreateModerationResponseResultsInnerCategoryScores"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="category_applied_input_types"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="CreateModerationResponseResultsInnerCategoryAppliedInputTypes"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

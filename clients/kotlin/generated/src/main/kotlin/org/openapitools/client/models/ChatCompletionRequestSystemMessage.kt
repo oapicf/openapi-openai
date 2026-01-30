@@ -15,14 +15,15 @@
 
 package org.openapitools.client.models
 
+import org.openapitools.client.models.ChatCompletionRequestSystemMessageContent
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. 
  *
- * @param content The contents of the system message.
+ * @param content 
  * @param role The role of the messages author, in this case `system`.
  * @param name An optional name for the participant. Provides the model information to differentiate between participants of the same role.
  */
@@ -30,9 +31,8 @@ import com.squareup.moshi.JsonClass
 
 data class ChatCompletionRequestSystemMessage (
 
-    /* The contents of the system message. */
     @Json(name = "content")
-    val content: kotlin.String,
+    val content: ChatCompletionRequestSystemMessageContent,
 
     /* The role of the messages author, in this case `system`. */
     @Json(name = "role")

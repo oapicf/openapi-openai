@@ -22,13 +22,13 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("ChatCompletionRequestMessageContentPartImage_image_url")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestMessageContentPartImageImageUrl {
 
   private URI url;
 
   /**
-   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
    */
   public enum DetailEnum {
     AUTO("auto"),
@@ -103,11 +103,11 @@ public class ChatCompletionRequestMessageContentPartImageImageUrl {
   }
 
   /**
-   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
    * @return detail
    */
   
-  @Schema(name = "detail", description = "Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "detail", description = "Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("detail")
   public DetailEnum getDetail() {
     return detail;

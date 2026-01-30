@@ -19,8 +19,8 @@
 #' @field content The content of the message in array of text and/or images. list(\link{MessageObjectContentInner})
 #' @field assistant_id If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message. character
 #' @field run_id The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints. character
-#' @field file_ids A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message. list(character)
-#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. object
+#' @field attachments A list of files attached to the message, and the tools they were added to. list(\link{CreateMessageRequestAttachmentsInner})
+#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. object
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -39,7 +39,7 @@ MessageObject <- R6::R6Class(
     `content` = NULL,
     `assistant_id` = NULL,
     `run_id` = NULL,
-    `file_ids` = NULL,
+    `attachments` = NULL,
     `metadata` = NULL,
 
     #' @description
@@ -57,10 +57,10 @@ MessageObject <- R6::R6Class(
     #' @param content The content of the message in array of text and/or images.
     #' @param assistant_id If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message.
     #' @param run_id The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.
-    #' @param file_ids A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
+    #' @param attachments A list of files attached to the message, and the tools they were added to.
+    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
     #' @param ... Other optional arguments.
-    initialize = function(`id`, `object`, `created_at`, `thread_id`, `status`, `incomplete_details`, `completed_at`, `incomplete_at`, `role`, `content`, `assistant_id`, `run_id`, `file_ids`, `metadata`, ...) {
+    initialize = function(`id`, `object`, `created_at`, `thread_id`, `status`, `incomplete_details`, `completed_at`, `incomplete_at`, `role`, `content`, `assistant_id`, `run_id`, `attachments`, `metadata`, ...) {
       if (!missing(`id`)) {
         if (!(is.character(`id`) && length(`id`) == 1)) {
           stop(paste("Error! Invalid data for `id`. Must be a string:", `id`))
@@ -139,10 +139,10 @@ MessageObject <- R6::R6Class(
         }
         self$`run_id` <- `run_id`
       }
-      if (!missing(`file_ids`)) {
-        stopifnot(is.vector(`file_ids`), length(`file_ids`) != 0)
-        sapply(`file_ids`, function(x) stopifnot(is.character(x)))
-        self$`file_ids` <- `file_ids`
+      if (!missing(`attachments`)) {
+        stopifnot(is.vector(`attachments`), length(`attachments`) != 0)
+        sapply(`attachments`, function(x) stopifnot(R6::is.R6(x)))
+        self$`attachments` <- `attachments`
       }
       if (!missing(`metadata`)) {
         self$`metadata` <- `metadata`
@@ -228,9 +228,9 @@ MessageObject <- R6::R6Class(
         MessageObjectObject[["run_id"]] <-
           self$`run_id`
       }
-      if (!is.null(self$`file_ids`)) {
-        MessageObjectObject[["file_ids"]] <-
-          self$`file_ids`
+      if (!is.null(self$`attachments`)) {
+        MessageObjectObject[["attachments"]] <-
+          lapply(self$`attachments`, function(x) x$toSimpleType())
       }
       if (!is.null(self$`metadata`)) {
         MessageObjectObject[["metadata"]] <-
@@ -293,8 +293,8 @@ MessageObject <- R6::R6Class(
       if (!is.null(this_object$`run_id`)) {
         self$`run_id` <- this_object$`run_id`
       }
-      if (!is.null(this_object$`file_ids`)) {
-        self$`file_ids` <- ApiClient$new()$deserializeObj(this_object$`file_ids`, "array[character]", loadNamespace("openapi"))
+      if (!is.null(this_object$`attachments`)) {
+        self$`attachments` <- ApiClient$new()$deserializeObj(this_object$`attachments`, "array[CreateMessageRequestAttachmentsInner]", loadNamespace("openapi"))
       }
       if (!is.null(this_object$`metadata`)) {
         self$`metadata` <- this_object$`metadata`
@@ -341,7 +341,7 @@ MessageObject <- R6::R6Class(
       self$`content` <- ApiClient$new()$deserializeObj(this_object$`content`, "array[MessageObjectContentInner]", loadNamespace("openapi"))
       self$`assistant_id` <- this_object$`assistant_id`
       self$`run_id` <- this_object$`run_id`
-      self$`file_ids` <- ApiClient$new()$deserializeObj(this_object$`file_ids`, "array[character]", loadNamespace("openapi"))
+      self$`attachments` <- ApiClient$new()$deserializeObj(this_object$`attachments`, "array[CreateMessageRequestAttachmentsInner]", loadNamespace("openapi"))
       self$`metadata` <- this_object$`metadata`
       self
     },
@@ -445,12 +445,12 @@ MessageObject <- R6::R6Class(
       } else {
         stop(paste("The JSON input `", input, "` is invalid for MessageObject: the required field `run_id` is missing."))
       }
-      # check the required field `file_ids`
-      if (!is.null(input_json$`file_ids`)) {
-        stopifnot(is.vector(input_json$`file_ids`), length(input_json$`file_ids`) != 0)
-        tmp <- sapply(input_json$`file_ids`, function(x) stopifnot(is.character(x)))
+      # check the required field `attachments`
+      if (!is.null(input_json$`attachments`)) {
+        stopifnot(is.vector(input_json$`attachments`), length(input_json$`attachments`) != 0)
+        tmp <- sapply(input_json$`attachments`, function(x) stopifnot(R6::is.R6(x)))
       } else {
-        stop(paste("The JSON input `", input, "` is invalid for MessageObject: the required field `file_ids` is missing."))
+        stop(paste("The JSON input `", input, "` is invalid for MessageObject: the required field `attachments` is missing."))
       }
       # check the required field `metadata`
       if (!is.null(input_json$`metadata`)) {
@@ -507,15 +507,6 @@ MessageObject <- R6::R6Class(
         return(FALSE)
       }
 
-      # check if the required `file_ids` is null
-      if (is.null(self$`file_ids`)) {
-        return(FALSE)
-      }
-
-      if (length(self$`file_ids`) > 10) {
-        return(FALSE)
-      }
-
       TRUE
     },
 
@@ -558,15 +549,6 @@ MessageObject <- R6::R6Class(
       # check if the required `content` is null
       if (is.null(self$`content`)) {
         invalid_fields["content"] <- "Non-nullable required field `content` cannot be null."
-      }
-
-      # check if the required `file_ids` is null
-      if (is.null(self$`file_ids`)) {
-        invalid_fields["file_ids"] <- "Non-nullable required field `file_ids` cannot be null."
-      }
-
-      if (length(self$`file_ids`) > 10) {
-        invalid_fields["file_ids"] <- "Invalid length for `file_ids`, number of items must be less than or equal to 10."
       }
 
       invalid_fields

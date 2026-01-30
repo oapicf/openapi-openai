@@ -27,7 +27,7 @@ test_that("CreateImageEdit", {
   # @param n integer The number of images to generate. Must be between 1 and 10. (optional)
   # @param size character The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. (optional)
   # @param response_format character The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. (optional)
-  # @param user character A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (optional)
+  # @param user character A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)
   # @return [ImagesResponse]
 
   # uncomment below to test the operation
@@ -43,7 +43,7 @@ test_that("CreateImageVariation", {
   # @param n integer The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. (optional)
   # @param response_format character The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. (optional)
   # @param size character The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. (optional)
-  # @param user character A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (optional)
+  # @param user character A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)
   # @return [ImagesResponse]
 
   # uncomment below to test the operation

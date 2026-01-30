@@ -3,26 +3,21 @@
 from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 
 from pydantic import Field, StrictInt, StrictStr, field_validator
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Annotated
-from openapi_server.models.assistant_file_object import AssistantFileObject
 from openapi_server.models.assistant_object import AssistantObject
-from openapi_server.models.create_assistant_file_request import CreateAssistantFileRequest
 from openapi_server.models.create_assistant_request import CreateAssistantRequest
 from openapi_server.models.create_message_request import CreateMessageRequest
 from openapi_server.models.create_run_request import CreateRunRequest
 from openapi_server.models.create_thread_and_run_request import CreateThreadAndRunRequest
 from openapi_server.models.create_thread_request import CreateThreadRequest
-from openapi_server.models.delete_assistant_file_response import DeleteAssistantFileResponse
 from openapi_server.models.delete_assistant_response import DeleteAssistantResponse
+from openapi_server.models.delete_message_response import DeleteMessageResponse
 from openapi_server.models.delete_thread_response import DeleteThreadResponse
-from openapi_server.models.list_assistant_files_response import ListAssistantFilesResponse
 from openapi_server.models.list_assistants_response import ListAssistantsResponse
-from openapi_server.models.list_message_files_response import ListMessageFilesResponse
 from openapi_server.models.list_messages_response import ListMessagesResponse
 from openapi_server.models.list_run_steps_response import ListRunStepsResponse
 from openapi_server.models.list_runs_response import ListRunsResponse
-from openapi_server.models.message_file_object import MessageFileObject
 from openapi_server.models.message_object import MessageObject
 from openapi_server.models.modify_assistant_request import ModifyAssistantRequest
 from openapi_server.models.modify_message_request import ModifyMessageRequest
@@ -45,7 +40,7 @@ class BaseAssistantsApi:
         limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")],
         order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")],
         after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")],
-        before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")],
+        before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")],
     ) -> ListAssistantsResponse:
         ...
 
@@ -86,6 +81,13 @@ class BaseAssistantsApi:
         ...
 
 
+    async def create_thread_and_run(
+        self,
+        create_thread_and_run_request: CreateThreadAndRunRequest,
+    ) -> RunObject:
+        ...
+
+
     async def get_thread(
         self,
         thread_id: Annotated[StrictStr, Field(description="The ID of the thread to retrieve.")],
@@ -114,7 +116,7 @@ class BaseAssistantsApi:
         limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")],
         order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")],
         after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")],
-        before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")],
+        before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")],
         run_id: Annotated[Optional[StrictStr], Field(description="Filter messages by the run ID that generated them. ")],
     ) -> ListMessagesResponse:
         ...
@@ -145,10 +147,11 @@ class BaseAssistantsApi:
         ...
 
 
-    async def create_thread_and_run(
+    async def delete_message(
         self,
-        create_thread_and_run_request: CreateThreadAndRunRequest,
-    ) -> RunObject:
+        thread_id: Annotated[StrictStr, Field(description="The ID of the thread to which this message belongs.")],
+        message_id: Annotated[StrictStr, Field(description="The ID of the message to delete.")],
+    ) -> DeleteMessageResponse:
         ...
 
 
@@ -158,7 +161,7 @@ class BaseAssistantsApi:
         limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")],
         order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")],
         after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")],
-        before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")],
+        before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")],
     ) -> ListRunsResponse:
         ...
 
@@ -167,6 +170,7 @@ class BaseAssistantsApi:
         self,
         thread_id: Annotated[StrictStr, Field(description="The ID of the thread to run.")],
         create_run_request: CreateRunRequest,
+        include: Annotated[Optional[List[StrictStr]], Field(description="A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")],
     ) -> RunObject:
         ...
 
@@ -188,15 +192,6 @@ class BaseAssistantsApi:
         ...
 
 
-    async def submit_tool_ouputs_to_run(
-        self,
-        thread_id: Annotated[StrictStr, Field(description="The ID of the [thread](/docs/api-reference/threads) to which this run belongs.")],
-        run_id: Annotated[StrictStr, Field(description="The ID of the run that requires the tool output submission.")],
-        submit_tool_outputs_run_request: SubmitToolOutputsRunRequest,
-    ) -> RunObject:
-        ...
-
-
     async def cancel_run(
         self,
         thread_id: Annotated[StrictStr, Field(description="The ID of the thread to which this run belongs.")],
@@ -212,7 +207,8 @@ class BaseAssistantsApi:
         limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")],
         order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")],
         after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")],
-        before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")],
+        before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")],
+        include: Annotated[Optional[List[StrictStr]], Field(description="A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")],
     ) -> ListRunStepsResponse:
         ...
 
@@ -222,61 +218,15 @@ class BaseAssistantsApi:
         thread_id: Annotated[StrictStr, Field(description="The ID of the thread to which the run and run step belongs.")],
         run_id: Annotated[StrictStr, Field(description="The ID of the run to which the run step belongs.")],
         step_id: Annotated[StrictStr, Field(description="The ID of the run step to retrieve.")],
+        include: Annotated[Optional[List[StrictStr]], Field(description="A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")],
     ) -> RunStepObject:
         ...
 
 
-    async def list_assistant_files(
+    async def submit_tool_ouputs_to_run(
         self,
-        assistant_id: Annotated[StrictStr, Field(description="The ID of the assistant the file belongs to.")],
-        limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")],
-        order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")],
-        after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")],
-        before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")],
-    ) -> ListAssistantFilesResponse:
-        ...
-
-
-    async def create_assistant_file(
-        self,
-        assistant_id: Annotated[StrictStr, Field(description="The ID of the assistant for which to create a File. ")],
-        create_assistant_file_request: CreateAssistantFileRequest,
-    ) -> AssistantFileObject:
-        ...
-
-
-    async def get_assistant_file(
-        self,
-        assistant_id: Annotated[StrictStr, Field(description="The ID of the assistant who the file belongs to.")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the file we're getting.")],
-    ) -> AssistantFileObject:
-        ...
-
-
-    async def delete_assistant_file(
-        self,
-        assistant_id: Annotated[StrictStr, Field(description="The ID of the assistant that the file belongs to.")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the file to delete.")],
-    ) -> DeleteAssistantFileResponse:
-        ...
-
-
-    async def list_message_files(
-        self,
-        thread_id: Annotated[StrictStr, Field(description="The ID of the thread that the message and files belong to.")],
-        message_id: Annotated[StrictStr, Field(description="The ID of the message that the files belongs to.")],
-        limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")],
-        order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")],
-        after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")],
-        before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")],
-    ) -> ListMessageFilesResponse:
-        ...
-
-
-    async def get_message_file(
-        self,
-        thread_id: Annotated[StrictStr, Field(description="The ID of the thread to which the message and File belong.")],
-        message_id: Annotated[StrictStr, Field(description="The ID of the message the file belongs to.")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the file being retrieved.")],
-    ) -> MessageFileObject:
+        thread_id: Annotated[StrictStr, Field(description="The ID of the [thread](/docs/api-reference/threads) to which this run belongs.")],
+        run_id: Annotated[StrictStr, Field(description="The ID of the run that requires the tool output submission.")],
+        submit_tool_outputs_run_request: SubmitToolOutputsRunRequest,
+    ) -> RunObject:
         ...

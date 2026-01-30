@@ -5,8 +5,22 @@ context("Test FineTuningJobHyperparameters")
 
 model_instance <- FineTuningJobHyperparameters$new()
 
+test_that("batch_size", {
+  # tests for the property `batch_size` (CreateFineTuningJobRequestHyperparametersBatchSize)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`batch_size`, "EXPECTED_RESULT")
+})
+
+test_that("learning_rate_multiplier", {
+  # tests for the property `learning_rate_multiplier` (CreateFineTuningJobRequestHyperparametersLearningRateMultiplier)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`learning_rate_multiplier`, "EXPECTED_RESULT")
+})
+
 test_that("n_epochs", {
-  # tests for the property `n_epochs` (FineTuningJobHyperparametersNEpochs)
+  # tests for the property `n_epochs` (CreateFineTuningJobRequestHyperparametersNEpochs)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`n_epochs`, "EXPECTED_RESULT")

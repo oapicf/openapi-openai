@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -29,12 +29,16 @@ type CreateAssistantRequest struct {
 	Description NullableString `json:"description,omitempty"`
 	// The system instructions that the assistant uses. The maximum length is 256,000 characters. 
 	Instructions NullableString `json:"instructions,omitempty"`
-	// A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. 
+	// A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
 	Tools []AssistantObjectToolsInner `json:"tools,omitempty"`
-	// A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. 
-	FileIds []string `json:"file_ids,omitempty"`
-	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	ToolResources NullableCreateAssistantRequestToolResources `json:"tool_resources,omitempty"`
+	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	// What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+	Temperature NullableFloat32 `json:"temperature,omitempty"`
+	// An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+	TopP NullableFloat32 `json:"top_p,omitempty"`
+	ResponseFormat *AssistantsApiResponseFormatOption `json:"response_format,omitempty"`
 }
 
 type _CreateAssistantRequest CreateAssistantRequest
@@ -46,6 +50,10 @@ type _CreateAssistantRequest CreateAssistantRequest
 func NewCreateAssistantRequest(model CreateAssistantRequestModel) *CreateAssistantRequest {
 	this := CreateAssistantRequest{}
 	this.Model = model
+	var temperature float32 = 1
+	this.Temperature = *NewNullableFloat32(&temperature)
+	var topP float32 = 1
+	this.TopP = *NewNullableFloat32(&topP)
 	return &this
 }
 
@@ -54,6 +62,10 @@ func NewCreateAssistantRequest(model CreateAssistantRequestModel) *CreateAssista
 // but it doesn't guarantee that properties required by API are set
 func NewCreateAssistantRequestWithDefaults() *CreateAssistantRequest {
 	this := CreateAssistantRequest{}
+	var temperature float32 = 1
+	this.Temperature = *NewNullableFloat32(&temperature)
+	var topP float32 = 1
+	this.TopP = *NewNullableFloat32(&topP)
 	return &this
 }
 
@@ -239,36 +251,46 @@ func (o *CreateAssistantRequest) SetTools(v []AssistantObjectToolsInner) {
 	o.Tools = v
 }
 
-// GetFileIds returns the FileIds field value if set, zero value otherwise.
-func (o *CreateAssistantRequest) GetFileIds() []string {
-	if o == nil || IsNil(o.FileIds) {
-		var ret []string
+// GetToolResources returns the ToolResources field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateAssistantRequest) GetToolResources() CreateAssistantRequestToolResources {
+	if o == nil || IsNil(o.ToolResources.Get()) {
+		var ret CreateAssistantRequestToolResources
 		return ret
 	}
-	return o.FileIds
+	return *o.ToolResources.Get()
 }
 
-// GetFileIdsOk returns a tuple with the FileIds field value if set, nil otherwise
+// GetToolResourcesOk returns a tuple with the ToolResources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateAssistantRequest) GetFileIdsOk() ([]string, bool) {
-	if o == nil || IsNil(o.FileIds) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateAssistantRequest) GetToolResourcesOk() (*CreateAssistantRequestToolResources, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.FileIds, true
+	return o.ToolResources.Get(), o.ToolResources.IsSet()
 }
 
-// HasFileIds returns a boolean if a field has been set.
-func (o *CreateAssistantRequest) HasFileIds() bool {
-	if o != nil && !IsNil(o.FileIds) {
+// HasToolResources returns a boolean if a field has been set.
+func (o *CreateAssistantRequest) HasToolResources() bool {
+	if o != nil && o.ToolResources.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetFileIds gets a reference to the given []string and assigns it to the FileIds field.
-func (o *CreateAssistantRequest) SetFileIds(v []string) {
-	o.FileIds = v
+// SetToolResources gets a reference to the given NullableCreateAssistantRequestToolResources and assigns it to the ToolResources field.
+func (o *CreateAssistantRequest) SetToolResources(v CreateAssistantRequestToolResources) {
+	o.ToolResources.Set(&v)
+}
+// SetToolResourcesNil sets the value for ToolResources to be an explicit nil
+func (o *CreateAssistantRequest) SetToolResourcesNil() {
+	o.ToolResources.Set(nil)
+}
+
+// UnsetToolResources ensures that no value is present for ToolResources, not even an explicit nil
+func (o *CreateAssistantRequest) UnsetToolResources() {
+	o.ToolResources.Unset()
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -304,6 +326,122 @@ func (o *CreateAssistantRequest) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
 
+// GetTemperature returns the Temperature field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateAssistantRequest) GetTemperature() float32 {
+	if o == nil || IsNil(o.Temperature.Get()) {
+		var ret float32
+		return ret
+	}
+	return *o.Temperature.Get()
+}
+
+// GetTemperatureOk returns a tuple with the Temperature field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateAssistantRequest) GetTemperatureOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Temperature.Get(), o.Temperature.IsSet()
+}
+
+// HasTemperature returns a boolean if a field has been set.
+func (o *CreateAssistantRequest) HasTemperature() bool {
+	if o != nil && o.Temperature.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTemperature gets a reference to the given NullableFloat32 and assigns it to the Temperature field.
+func (o *CreateAssistantRequest) SetTemperature(v float32) {
+	o.Temperature.Set(&v)
+}
+// SetTemperatureNil sets the value for Temperature to be an explicit nil
+func (o *CreateAssistantRequest) SetTemperatureNil() {
+	o.Temperature.Set(nil)
+}
+
+// UnsetTemperature ensures that no value is present for Temperature, not even an explicit nil
+func (o *CreateAssistantRequest) UnsetTemperature() {
+	o.Temperature.Unset()
+}
+
+// GetTopP returns the TopP field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateAssistantRequest) GetTopP() float32 {
+	if o == nil || IsNil(o.TopP.Get()) {
+		var ret float32
+		return ret
+	}
+	return *o.TopP.Get()
+}
+
+// GetTopPOk returns a tuple with the TopP field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateAssistantRequest) GetTopPOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TopP.Get(), o.TopP.IsSet()
+}
+
+// HasTopP returns a boolean if a field has been set.
+func (o *CreateAssistantRequest) HasTopP() bool {
+	if o != nil && o.TopP.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTopP gets a reference to the given NullableFloat32 and assigns it to the TopP field.
+func (o *CreateAssistantRequest) SetTopP(v float32) {
+	o.TopP.Set(&v)
+}
+// SetTopPNil sets the value for TopP to be an explicit nil
+func (o *CreateAssistantRequest) SetTopPNil() {
+	o.TopP.Set(nil)
+}
+
+// UnsetTopP ensures that no value is present for TopP, not even an explicit nil
+func (o *CreateAssistantRequest) UnsetTopP() {
+	o.TopP.Unset()
+}
+
+// GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
+func (o *CreateAssistantRequest) GetResponseFormat() AssistantsApiResponseFormatOption {
+	if o == nil || IsNil(o.ResponseFormat) {
+		var ret AssistantsApiResponseFormatOption
+		return ret
+	}
+	return *o.ResponseFormat
+}
+
+// GetResponseFormatOk returns a tuple with the ResponseFormat field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAssistantRequest) GetResponseFormatOk() (*AssistantsApiResponseFormatOption, bool) {
+	if o == nil || IsNil(o.ResponseFormat) {
+		return nil, false
+	}
+	return o.ResponseFormat, true
+}
+
+// HasResponseFormat returns a boolean if a field has been set.
+func (o *CreateAssistantRequest) HasResponseFormat() bool {
+	if o != nil && !IsNil(o.ResponseFormat) {
+		return true
+	}
+
+	return false
+}
+
+// SetResponseFormat gets a reference to the given AssistantsApiResponseFormatOption and assigns it to the ResponseFormat field.
+func (o *CreateAssistantRequest) SetResponseFormat(v AssistantsApiResponseFormatOption) {
+	o.ResponseFormat = &v
+}
+
 func (o CreateAssistantRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -327,11 +465,20 @@ func (o CreateAssistantRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tools) {
 		toSerialize["tools"] = o.Tools
 	}
-	if !IsNil(o.FileIds) {
-		toSerialize["file_ids"] = o.FileIds
+	if o.ToolResources.IsSet() {
+		toSerialize["tool_resources"] = o.ToolResources.Get()
 	}
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
+	}
+	if o.Temperature.IsSet() {
+		toSerialize["temperature"] = o.Temperature.Get()
+	}
+	if o.TopP.IsSet() {
+		toSerialize["top_p"] = o.TopP.Get()
+	}
+	if !IsNil(o.ResponseFormat) {
+		toSerialize["response_format"] = o.ResponseFormat
 	}
 	return toSerialize, nil
 }

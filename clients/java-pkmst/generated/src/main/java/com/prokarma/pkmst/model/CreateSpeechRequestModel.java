@@ -9,11 +9,11 @@ import io.swagger.annotations.ApiModel;
  *
  */
 /**
- * One of the available [TTS models](/docs/models/tts): &#x60;tts-1&#x60; or &#x60;tts-1-hd&#x60; 
+ * One of the available [TTS models](/docs/models#tts): &#x60;tts-1&#x60; or &#x60;tts-1-hd&#x60; 
  */
-@ApiModel(description = "One of the available [TTS models](/docs/models/tts): `tts-1` or `tts-1-hd` ")
+@ApiModel(description = "One of the available [TTS models](/docs/models#tts): `tts-1` or `tts-1-hd` ")
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T10:45:02.588292416Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateSpeechRequestModel   {
 
   @Override

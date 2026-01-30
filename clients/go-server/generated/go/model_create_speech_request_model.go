@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -14,7 +14,7 @@ package openapi
 
 
 
-// CreateSpeechRequestModel - One of the available [TTS models](/docs/models/tts): `tts-1` or `tts-1-hd` 
+// CreateSpeechRequestModel - One of the available [TTS models](/docs/models#tts): `tts-1` or `tts-1-hd` 
 type CreateSpeechRequestModel struct {
 }
 

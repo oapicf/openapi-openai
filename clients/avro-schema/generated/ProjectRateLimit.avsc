@@ -1,0 +1,64 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Represents a project rate limit config.",
+  "name": "ProjectRateLimit",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "ProjectRateLimit_object",
+        "symbols": [
+          "project_rate_limit"
+        ]
+      },
+      "doc": "The object type, which is always `project.rate_limit`"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The identifier, which can be referenced in API endpoints."
+    },
+    {
+      "name": "model",
+      "type": "string",
+      "doc": "The model this rate limit applies to."
+    },
+    {
+      "name": "max_requests_per_1_minute",
+      "type": "int",
+      "doc": "The maximum requests per minute."
+    },
+    {
+      "name": "max_tokens_per_1_minute",
+      "type": "int",
+      "doc": "The maximum tokens per minute."
+    },
+    {
+      "name": "max_images_per_1_minute",
+      "type": ["null", "int"],
+      "doc": "The maximum images per minute. Only present for relevant models.",
+      "default": null
+    },
+    {
+      "name": "max_audio_megabytes_per_1_minute",
+      "type": ["null", "int"],
+      "doc": "The maximum audio megabytes per minute. Only present for relevant models.",
+      "default": null
+    },
+    {
+      "name": "max_requests_per_1_day",
+      "type": ["null", "int"],
+      "doc": "The maximum requests per day. Only present for relevant models.",
+      "default": null
+    },
+    {
+      "name": "batch_1_day_max_input_tokens",
+      "type": ["null", "int"],
+      "doc": "The maximum batch input tokens per day. Only present for relevant models.",
+      "default": null
+    }
+  ]
+
+}

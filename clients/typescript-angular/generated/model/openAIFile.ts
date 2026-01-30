@@ -34,7 +34,7 @@ export interface OpenAIFile {
      */
     object: OpenAIFile.ObjectEnum;
     /**
-     * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+     * The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
      */
     purpose: OpenAIFile.PurposeEnum;
     /**
@@ -54,10 +54,13 @@ export namespace OpenAIFile {
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
     export const PurposeEnum = {
+        Assistants: 'assistants',
+        AssistantsOutput: 'assistants_output',
+        Batch: 'batch',
+        BatchOutput: 'batch_output',
         FineTune: 'fine-tune',
         FineTuneResults: 'fine-tune-results',
-        Assistants: 'assistants',
-        AssistantsOutput: 'assistants_output'
+        Vision: 'vision'
     } as const;
     export type PurposeEnum = typeof PurposeEnum[keyof typeof PurposeEnum];
     export const StatusEnum = {

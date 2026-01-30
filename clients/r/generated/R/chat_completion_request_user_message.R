@@ -1,7 +1,7 @@
 #' Create a new ChatCompletionRequestUserMessage
 #'
 #' @description
-#' ChatCompletionRequestUserMessage Class
+#' Messages sent by an end user, containing prompts or additional context information. 
 #'
 #' @docType class
 #' @title ChatCompletionRequestUserMessage

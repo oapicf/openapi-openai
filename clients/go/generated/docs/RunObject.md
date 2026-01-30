@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **CreatedAt** | **int32** | The Unix timestamp (in seconds) for when the run was created. | 
 **ThreadId** | **string** | The ID of the [thread](/docs/api-reference/threads) that was executed on as a part of this run. | 
 **AssistantId** | **string** | The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run. | 
-**Status** | **string** | The status of the run, which can be either &#x60;queued&#x60;, &#x60;in_progress&#x60;, &#x60;requires_action&#x60;, &#x60;cancelling&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, or &#x60;expired&#x60;. | 
+**Status** | **string** | The status of the run, which can be either &#x60;queued&#x60;, &#x60;in_progress&#x60;, &#x60;requires_action&#x60;, &#x60;cancelling&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, &#x60;incomplete&#x60;, or &#x60;expired&#x60;. | 
 **RequiredAction** | [**NullableRunObjectRequiredAction**](RunObjectRequiredAction.md) |  | 
 **LastError** | [**NullableRunObjectLastError**](RunObjectLastError.md) |  | 
 **ExpiresAt** | **NullableInt32** | The Unix timestamp (in seconds) for when the run will expire. | 
@@ -21,21 +21,22 @@ Name | Type | Description | Notes
 **Model** | **string** | The model that the [assistant](/docs/api-reference/assistants) used for this run. | 
 **Instructions** | **string** | The instructions that the [assistant](/docs/api-reference/assistants) used for this run. | 
 **Tools** | [**[]AssistantObjectToolsInner**](AssistantObjectToolsInner.md) | The list of tools that the [assistant](/docs/api-reference/assistants) used for this run. | [default to {}]
-**FileIds** | **[]string** | The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run. | [default to {}]
-**Metadata** | **map[string]interface{}** | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  | 
+**Metadata** | **map[string]interface{}** | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  | 
 **Usage** | [**NullableRunCompletionUsage**](RunCompletionUsage.md) |  | 
 **Temperature** | Pointer to **NullableFloat32** | The sampling temperature used for this run. If not set, defaults to 1. | [optional] 
+**TopP** | Pointer to **NullableFloat32** | The nucleus sampling value used for this run. If not set, defaults to 1. | [optional] 
 **MaxPromptTokens** | **NullableInt32** | The maximum number of prompt tokens specified to have been used over the course of the run.  | 
 **MaxCompletionTokens** | **NullableInt32** | The maximum number of completion tokens specified to have been used over the course of the run.  | 
 **TruncationStrategy** | [**TruncationObject**](TruncationObject.md) |  | 
 **ToolChoice** | [**AssistantsApiToolChoiceOption**](AssistantsApiToolChoiceOption.md) |  | 
+**ParallelToolCalls** | **bool** | Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. | [default to true]
 **ResponseFormat** | [**AssistantsApiResponseFormatOption**](AssistantsApiResponseFormatOption.md) |  | 
 
 ## Methods
 
 ### NewRunObject
 
-`func NewRunObject(id string, object string, createdAt int32, threadId string, assistantId string, status string, requiredAction NullableRunObjectRequiredAction, lastError NullableRunObjectLastError, expiresAt NullableInt32, startedAt NullableInt32, cancelledAt NullableInt32, failedAt NullableInt32, completedAt NullableInt32, incompleteDetails NullableRunObjectIncompleteDetails, model string, instructions string, tools []AssistantObjectToolsInner, fileIds []string, metadata map[string]interface{}, usage NullableRunCompletionUsage, maxPromptTokens NullableInt32, maxCompletionTokens NullableInt32, truncationStrategy TruncationObject, toolChoice AssistantsApiToolChoiceOption, responseFormat AssistantsApiResponseFormatOption, ) *RunObject`
+`func NewRunObject(id string, object string, createdAt int32, threadId string, assistantId string, status string, requiredAction NullableRunObjectRequiredAction, lastError NullableRunObjectLastError, expiresAt NullableInt32, startedAt NullableInt32, cancelledAt NullableInt32, failedAt NullableInt32, completedAt NullableInt32, incompleteDetails NullableRunObjectIncompleteDetails, model string, instructions string, tools []AssistantObjectToolsInner, metadata map[string]interface{}, usage NullableRunCompletionUsage, maxPromptTokens NullableInt32, maxCompletionTokens NullableInt32, truncationStrategy TruncationObject, toolChoice AssistantsApiToolChoiceOption, parallelToolCalls bool, responseFormat AssistantsApiResponseFormatOption, ) *RunObject`
 
 NewRunObject instantiates a new RunObject object
 This constructor will assign default values to properties that have it defined,
@@ -470,26 +471,6 @@ and a boolean to check if the value has been set.
 SetTools sets Tools field to given value.
 
 
-### GetFileIds
-
-`func (o *RunObject) GetFileIds() []string`
-
-GetFileIds returns the FileIds field if non-nil, zero value otherwise.
-
-### GetFileIdsOk
-
-`func (o *RunObject) GetFileIdsOk() (*[]string, bool)`
-
-GetFileIdsOk returns a tuple with the FileIds field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFileIds
-
-`func (o *RunObject) SetFileIds(v []string)`
-
-SetFileIds sets FileIds field to given value.
-
-
 ### GetMetadata
 
 `func (o *RunObject) GetMetadata() map[string]interface{}`
@@ -585,6 +566,41 @@ HasTemperature returns a boolean if a field has been set.
 `func (o *RunObject) UnsetTemperature()`
 
 UnsetTemperature ensures that no value is present for Temperature, not even an explicit nil
+### GetTopP
+
+`func (o *RunObject) GetTopP() float32`
+
+GetTopP returns the TopP field if non-nil, zero value otherwise.
+
+### GetTopPOk
+
+`func (o *RunObject) GetTopPOk() (*float32, bool)`
+
+GetTopPOk returns a tuple with the TopP field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTopP
+
+`func (o *RunObject) SetTopP(v float32)`
+
+SetTopP sets TopP field to given value.
+
+### HasTopP
+
+`func (o *RunObject) HasTopP() bool`
+
+HasTopP returns a boolean if a field has been set.
+
+### SetTopPNil
+
+`func (o *RunObject) SetTopPNil(b bool)`
+
+ SetTopPNil sets the value for TopP to be an explicit nil
+
+### UnsetTopP
+`func (o *RunObject) UnsetTopP()`
+
+UnsetTopP ensures that no value is present for TopP, not even an explicit nil
 ### GetMaxPromptTokens
 
 `func (o *RunObject) GetMaxPromptTokens() int32`
@@ -683,6 +699,26 @@ and a boolean to check if the value has been set.
 `func (o *RunObject) SetToolChoice(v AssistantsApiToolChoiceOption)`
 
 SetToolChoice sets ToolChoice field to given value.
+
+
+### GetParallelToolCalls
+
+`func (o *RunObject) GetParallelToolCalls() bool`
+
+GetParallelToolCalls returns the ParallelToolCalls field if non-nil, zero value otherwise.
+
+### GetParallelToolCallsOk
+
+`func (o *RunObject) GetParallelToolCallsOk() (*bool, bool)`
+
+GetParallelToolCallsOk returns a tuple with the ParallelToolCalls field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParallelToolCalls
+
+`func (o *RunObject) SetParallelToolCalls(v bool)`
+
+SetParallelToolCalls sets ParallelToolCalls field to given value.
 
 
 ### GetResponseFormat

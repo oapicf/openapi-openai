@@ -24,7 +24,7 @@ void
 ChatCompletionToolChoiceOption::__init()
 {
 	//type = std::string();
-	//function = new ChatCompletionNamedToolChoice_function();
+	//function = new AssistantsNamedToolChoice_function();
 }
 
 void
@@ -64,11 +64,11 @@ ChatCompletionToolChoiceOption::fromJson(char* jsonStr)
 	if (node !=NULL) {
 	
 
-		if (isprimitive("ChatCompletionNamedToolChoice_function")) {
-			jsonToValue(&function, node, "ChatCompletionNamedToolChoice_function", "ChatCompletionNamedToolChoice_function");
+		if (isprimitive("AssistantsNamedToolChoice_function")) {
+			jsonToValue(&function, node, "AssistantsNamedToolChoice_function", "AssistantsNamedToolChoice_function");
 		} else {
 			
-			ChatCompletionNamedToolChoice_function* obj = static_cast<ChatCompletionNamedToolChoice_function*> (&function);
+			AssistantsNamedToolChoice_function* obj = static_cast<AssistantsNamedToolChoice_function*> (&function);
 			obj->fromJson(json_to_string(node, false));
 			
 		}
@@ -94,13 +94,13 @@ ChatCompletionToolChoiceOption::toJson()
 	}
 	const gchar *typeKey = "type";
 	json_object_set_member(pJsonObject, typeKey, node);
-	if (isprimitive("ChatCompletionNamedToolChoice_function")) {
-		ChatCompletionNamedToolChoice_function obj = getFunction();
-		node = converttoJson(&obj, "ChatCompletionNamedToolChoice_function", "");
+	if (isprimitive("AssistantsNamedToolChoice_function")) {
+		AssistantsNamedToolChoice_function obj = getFunction();
+		node = converttoJson(&obj, "AssistantsNamedToolChoice_function", "");
 	}
 	else {
 		
-		ChatCompletionNamedToolChoice_function obj = static_cast<ChatCompletionNamedToolChoice_function> (getFunction());
+		AssistantsNamedToolChoice_function obj = static_cast<AssistantsNamedToolChoice_function> (getFunction());
 		GError *mygerror;
 		mygerror = NULL;
 		node = json_from_string(obj.toJson(), &mygerror);
@@ -128,14 +128,14 @@ ChatCompletionToolChoiceOption::setType(std::string  type)
 	this->type = type;
 }
 
-ChatCompletionNamedToolChoice_function
+AssistantsNamedToolChoice_function
 ChatCompletionToolChoiceOption::getFunction()
 {
 	return function;
 }
 
 void
-ChatCompletionToolChoiceOption::setFunction(ChatCompletionNamedToolChoice_function  function)
+ChatCompletionToolChoiceOption::setFunction(AssistantsNamedToolChoice_function  function)
 {
 	this->function = function;
 }

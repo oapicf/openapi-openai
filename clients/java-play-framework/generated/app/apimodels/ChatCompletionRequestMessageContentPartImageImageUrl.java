@@ -11,7 +11,7 @@ import javax.validation.Valid;
 /**
  * ChatCompletionRequestMessageContentPartImageImageUrl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class ChatCompletionRequestMessageContentPartImageImageUrl   {
   @JsonProperty("url")
@@ -21,7 +21,7 @@ public class ChatCompletionRequestMessageContentPartImageImageUrl   {
   private URI url;
 
   /**
-   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
    */
   public enum DetailEnum {
     AUTO("auto"),
@@ -80,7 +80,7 @@ public class ChatCompletionRequestMessageContentPartImageImageUrl   {
   }
 
    /**
-   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
    * @return detail
   **/
   public DetailEnum getDetail() {

@@ -7,6 +7,7 @@
 
 static create_thread_request_t *create_thread_request_create_internal(
     list_t *messages,
+    create_thread_request_tool_resources_t *tool_resources,
     object_t *metadata
     ) {
     create_thread_request_t *create_thread_request_local_var = malloc(sizeof(create_thread_request_t));
@@ -14,6 +15,7 @@ static create_thread_request_t *create_thread_request_create_internal(
         return NULL;
     }
     create_thread_request_local_var->messages = messages;
+    create_thread_request_local_var->tool_resources = tool_resources;
     create_thread_request_local_var->metadata = metadata;
 
     create_thread_request_local_var->_library_owned = 1;
@@ -22,10 +24,12 @@ static create_thread_request_t *create_thread_request_create_internal(
 
 __attribute__((deprecated)) create_thread_request_t *create_thread_request_create(
     list_t *messages,
+    create_thread_request_tool_resources_t *tool_resources,
     object_t *metadata
     ) {
     return create_thread_request_create_internal (
         messages,
+        tool_resources,
         metadata
         );
 }
@@ -45,6 +49,10 @@ void create_thread_request_free(create_thread_request_t *create_thread_request) 
         }
         list_freeList(create_thread_request->messages);
         create_thread_request->messages = NULL;
+    }
+    if (create_thread_request->tool_resources) {
+        create_thread_request_tool_resources_free(create_thread_request->tool_resources);
+        create_thread_request->tool_resources = NULL;
     }
     if (create_thread_request->metadata) {
         object_free(create_thread_request->metadata);
@@ -76,6 +84,19 @@ cJSON *create_thread_request_convertToJSON(create_thread_request_t *create_threa
     }
 
 
+    // create_thread_request->tool_resources
+    if(create_thread_request->tool_resources) {
+    cJSON *tool_resources_local_JSON = create_thread_request_tool_resources_convertToJSON(create_thread_request->tool_resources);
+    if(tool_resources_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "tool_resources", tool_resources_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
     // create_thread_request->metadata
     if(create_thread_request->metadata) {
     cJSON *metadata_object = object_convertToJSON(create_thread_request->metadata);
@@ -103,6 +124,9 @@ create_thread_request_t *create_thread_request_parseFromJSON(cJSON *create_threa
     // define the local list for create_thread_request->messages
     list_t *messagesList = NULL;
 
+    // define the local variable for create_thread_request->tool_resources
+    create_thread_request_tool_resources_t *tool_resources_local_nonprim = NULL;
+
     // create_thread_request->messages
     cJSON *messages = cJSON_GetObjectItemCaseSensitive(create_thread_requestJSON, "messages");
     if (cJSON_IsNull(messages)) {
@@ -127,6 +151,15 @@ create_thread_request_t *create_thread_request_parseFromJSON(cJSON *create_threa
     }
     }
 
+    // create_thread_request->tool_resources
+    cJSON *tool_resources = cJSON_GetObjectItemCaseSensitive(create_thread_requestJSON, "tool_resources");
+    if (cJSON_IsNull(tool_resources)) {
+        tool_resources = NULL;
+    }
+    if (tool_resources) { 
+    tool_resources_local_nonprim = create_thread_request_tool_resources_parseFromJSON(tool_resources); //nonprimitive
+    }
+
     // create_thread_request->metadata
     cJSON *metadata = cJSON_GetObjectItemCaseSensitive(create_thread_requestJSON, "metadata");
     if (cJSON_IsNull(metadata)) {
@@ -140,6 +173,7 @@ create_thread_request_t *create_thread_request_parseFromJSON(cJSON *create_threa
 
     create_thread_request_local_var = create_thread_request_create_internal (
         messages ? messagesList : NULL,
+        tool_resources ? tool_resources_local_nonprim : NULL,
         metadata ? metadata_local_object : NULL
         );
 
@@ -153,6 +187,10 @@ end:
         }
         list_freeList(messagesList);
         messagesList = NULL;
+    }
+    if (tool_resources_local_nonprim) {
+        create_thread_request_tool_resources_free(tool_resources_local_nonprim);
+        tool_resources_local_nonprim = NULL;
     }
     return NULL;
 

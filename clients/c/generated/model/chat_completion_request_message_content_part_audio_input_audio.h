@@ -1,0 +1,48 @@
+/*
+ * chat_completion_request_message_content_part_audio_input_audio.h
+ *
+ * 
+ */
+
+#ifndef _chat_completion_request_message_content_part_audio_input_audio_H_
+#define _chat_completion_request_message_content_part_audio_input_audio_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct chat_completion_request_message_content_part_audio_input_audio_t chat_completion_request_message_content_part_audio_input_audio_t;
+
+
+// Enum FORMAT for chat_completion_request_message_content_part_audio_input_audio
+
+typedef enum  { openai_api_chat_completion_request_message_content_part_audio_input_audio_FORMAT_NULL = 0, openai_api_chat_completion_request_message_content_part_audio_input_audio_FORMAT_wav, openai_api_chat_completion_request_message_content_part_audio_input_audio_FORMAT_mp3 } openai_api_chat_completion_request_message_content_part_audio_input_audio_FORMAT_e;
+
+char* chat_completion_request_message_content_part_audio_input_audio_format_ToString(openai_api_chat_completion_request_message_content_part_audio_input_audio_FORMAT_e format);
+
+openai_api_chat_completion_request_message_content_part_audio_input_audio_FORMAT_e chat_completion_request_message_content_part_audio_input_audio_format_FromString(char* format);
+
+
+
+typedef struct chat_completion_request_message_content_part_audio_input_audio_t {
+    char *data; // string
+    openai_api_chat_completion_request_message_content_part_audio_input_audio_FORMAT_e format; //enum
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} chat_completion_request_message_content_part_audio_input_audio_t;
+
+__attribute__((deprecated)) chat_completion_request_message_content_part_audio_input_audio_t *chat_completion_request_message_content_part_audio_input_audio_create(
+    char *data,
+    openai_api_chat_completion_request_message_content_part_audio_input_audio_FORMAT_e format
+);
+
+void chat_completion_request_message_content_part_audio_input_audio_free(chat_completion_request_message_content_part_audio_input_audio_t *chat_completion_request_message_content_part_audio_input_audio);
+
+chat_completion_request_message_content_part_audio_input_audio_t *chat_completion_request_message_content_part_audio_input_audio_parseFromJSON(cJSON *chat_completion_request_message_content_part_audio_input_audioJSON);
+
+cJSON *chat_completion_request_message_content_part_audio_input_audio_convertToJSON(chat_completion_request_message_content_part_audio_input_audio_t *chat_completion_request_message_content_part_audio_input_audio);
+
+#endif /* _chat_completion_request_message_content_part_audio_input_audio_H_ */
+

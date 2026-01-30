@@ -1,0 +1,50 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server BatchErrorsDataInner"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a BatchErrorsDataInner"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  BatchErrorsDataInner {
+    title = BatchErrorsDataInner
+    description = BatchErrorsDataInner
+    derivedFrom = Root
+    properties {
+        code {
+          type =  string
+          description = "An error code identifying the error type."
+          optional = false
+        }
+        message {
+          type =  string
+          description = "A human-readable message providing more details about the error."
+          optional = false
+        }
+        param {
+          type =  string
+          description = "The name of the parameter that caused the error, if applicable."
+          optional = false
+        }
+        line {
+          type =  integer
+          description = "The line number of the input file where the error occurred, if applicable."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  BatchErrorsDataInner {
+    title = BatchErrorsDataInner
+    description = BatchErrorsDataInner
+    implements = openapi_server.resourceTypes.BatchErrorsDataInner
+
+  }
+}

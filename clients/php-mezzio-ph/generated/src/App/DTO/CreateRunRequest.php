@@ -44,23 +44,23 @@ class CreateRunRequest
     /**
      * Adds additional messages to the thread before creating the run.
      * @DTA\Data(field="additional_messages", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection49::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection49::class})
-     * @var \App\DTO\Collection49|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection140::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection140::class})
+     * @var \App\DTO\Collection140|null
      */
     public $additional_messages;
 
     /**
      * Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
      * @DTA\Data(field="tools", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection50::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection50::class})
-     * @var \App\DTO\Collection50|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection141::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection141::class})
+     * @var \App\DTO\Collection141|null
      */
     public $tools;
 
     /**
-     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
      * @DTA\Data(field="metadata", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"object"})
      * @var object|null
@@ -78,6 +78,16 @@ class CreateRunRequest
     public $temperature;
 
     /**
+     * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.
+     * @DTA\Data(field="top_p", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"float"})
+     * @DTA\Validator(name="GreaterThan", options={"min":0, "inclusive":true})
+     * @DTA\Validator(name="LessThan", options={"max":1, "inclusive":true})
+     * @var float|null
+     */
+    public $top_p;
+
+    /**
      * If &#x60;true&#x60;, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a &#x60;data: [DONE]&#x60; message.
      * @DTA\Data(field="stream", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
@@ -86,7 +96,7 @@ class CreateRunRequest
     public $stream;
 
     /**
-     * The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status &#x60;complete&#x60;. See &#x60;incomplete_details&#x60; for more info.
+     * The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status &#x60;incomplete&#x60;. See &#x60;incomplete_details&#x60; for more info.
      * @DTA\Data(field="max_prompt_tokens", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
      * @DTA\Validator(name="GreaterThan", options={"min":256, "inclusive":true})
@@ -95,7 +105,7 @@ class CreateRunRequest
     public $max_prompt_tokens;
 
     /**
-     * The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status &#x60;complete&#x60;. See &#x60;incomplete_details&#x60; for more info.
+     * The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status &#x60;incomplete&#x60;. See &#x60;incomplete_details&#x60; for more info.
      * @DTA\Data(field="max_completion_tokens", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
      * @DTA\Validator(name="GreaterThan", options={"min":256, "inclusive":true})
@@ -118,6 +128,14 @@ class CreateRunRequest
      * @var \App\DTO\AssistantsApiToolChoiceOption|null
      */
     public $tool_choice;
+
+    /**
+     * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+     * @DTA\Data(field="parallel_tool_calls", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"bool"})
+     * @var bool|null
+     */
+    public $parallel_tool_calls;
 
     /**
      * @DTA\Data(field="response_format", nullable=true)

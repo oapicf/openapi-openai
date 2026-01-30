@@ -8,12 +8,13 @@
 #' @description CreateFineTuningJobRequest Class
 #' @format An \code{R6Class} generator object
 #' @field model  \link{CreateFineTuningJobRequestModel}
-#' @field training_file The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. character
+#' @field training_file The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. character
 #' @field hyperparameters  \link{CreateFineTuningJobRequestHyperparameters} [optional]
-#' @field suffix A string of up to 18 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-3.5-turbo:openai:custom-model-name:7p4lURel`. character [optional]
+#' @field suffix A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`. character [optional]
 #' @field validation_file The ID of an uploaded file that contains validation data.  If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the fine-tuning results file. The same data should not be present in both train and validation files.  Your dataset must be formatted as a JSONL file. You must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. character [optional]
 #' @field integrations A list of integrations to enable for your fine-tuning job. list(\link{CreateFineTuningJobRequestIntegrationsInner}) [optional]
 #' @field seed The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed is not specified, one will be generated for you. integer [optional]
+#' @field method  \link{FineTuneMethod} [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -27,19 +28,21 @@ CreateFineTuningJobRequest <- R6::R6Class(
     `validation_file` = NULL,
     `integrations` = NULL,
     `seed` = NULL,
+    `method` = NULL,
 
     #' @description
     #' Initialize a new CreateFineTuningJobRequest class.
     #'
     #' @param model model
-    #' @param training_file The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+    #' @param training_file The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
     #' @param hyperparameters hyperparameters
-    #' @param suffix A string of up to 18 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-3.5-turbo:openai:custom-model-name:7p4lURel`.
+    #' @param suffix A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`.
     #' @param validation_file The ID of an uploaded file that contains validation data.  If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the fine-tuning results file. The same data should not be present in both train and validation files.  Your dataset must be formatted as a JSONL file. You must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
     #' @param integrations A list of integrations to enable for your fine-tuning job.
     #' @param seed The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed is not specified, one will be generated for you.
+    #' @param method method
     #' @param ... Other optional arguments.
-    initialize = function(`model`, `training_file`, `hyperparameters` = NULL, `suffix` = NULL, `validation_file` = NULL, `integrations` = NULL, `seed` = NULL, ...) {
+    initialize = function(`model`, `training_file`, `hyperparameters` = NULL, `suffix` = NULL, `validation_file` = NULL, `integrations` = NULL, `seed` = NULL, `method` = NULL, ...) {
       if (!missing(`model`)) {
         stopifnot(R6::is.R6(`model`))
         self$`model` <- `model`
@@ -76,6 +79,10 @@ CreateFineTuningJobRequest <- R6::R6Class(
           stop(paste("Error! Invalid data for `seed`. Must be an integer:", `seed`))
         }
         self$`seed` <- `seed`
+      }
+      if (!is.null(`method`)) {
+        stopifnot(R6::is.R6(`method`))
+        self$`method` <- `method`
       }
     },
 
@@ -138,6 +145,10 @@ CreateFineTuningJobRequest <- R6::R6Class(
         CreateFineTuningJobRequestObject[["seed"]] <-
           self$`seed`
       }
+      if (!is.null(self$`method`)) {
+        CreateFineTuningJobRequestObject[["method"]] <-
+          self$`method`$toSimpleType()
+      }
       return(CreateFineTuningJobRequestObject)
     },
 
@@ -173,6 +184,11 @@ CreateFineTuningJobRequest <- R6::R6Class(
       if (!is.null(this_object$`seed`)) {
         self$`seed` <- this_object$`seed`
       }
+      if (!is.null(this_object$`method`)) {
+        `method_object` <- FineTuneMethod$new()
+        `method_object`$fromJSON(jsonlite::toJSON(this_object$`method`, auto_unbox = TRUE, digits = NA))
+        self$`method` <- `method_object`
+      }
       self
     },
 
@@ -201,6 +217,7 @@ CreateFineTuningJobRequest <- R6::R6Class(
       self$`validation_file` <- this_object$`validation_file`
       self$`integrations` <- ApiClient$new()$deserializeObj(this_object$`integrations`, "array[CreateFineTuningJobRequestIntegrationsInner]", loadNamespace("openapi"))
       self$`seed` <- this_object$`seed`
+      self$`method` <- FineTuneMethod$new()$fromJSON(jsonlite::toJSON(this_object$`method`, auto_unbox = TRUE, digits = NA))
       self
     },
 
@@ -249,7 +266,7 @@ CreateFineTuningJobRequest <- R6::R6Class(
         return(FALSE)
       }
 
-      if (nchar(self$`suffix`) > 40) {
+      if (nchar(self$`suffix`) > 64) {
         return(FALSE)
       }
       if (nchar(self$`suffix`) < 1) {
@@ -282,8 +299,8 @@ CreateFineTuningJobRequest <- R6::R6Class(
         invalid_fields["training_file"] <- "Non-nullable required field `training_file` cannot be null."
       }
 
-      if (nchar(self$`suffix`) > 40) {
-        invalid_fields["suffix"] <- "Invalid length for `suffix`, must be smaller than or equal to 40."
+      if (nchar(self$`suffix`) > 64) {
+        invalid_fields["suffix"] <- "Invalid length for `suffix`, must be smaller than or equal to 64."
       }
       if (nchar(self$`suffix`) < 1) {
         invalid_fields["suffix"] <- "Invalid length for `suffix`, must be bigger than or equal to 1."

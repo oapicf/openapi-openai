@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ResponseFormatJsonSchema",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "ResponseFormatJsonSchema_type",
+        "symbols": [
+          "json_schema"
+        ]
+      },
+      "doc": "The type of response format being defined: `json_schema`"
+    },
+    {
+      "name": "json_schema",
+      "type": "model.ResponseFormatJsonSchemaJsonSchema",
+      "doc": ""
+    }
+  ]
+
+}

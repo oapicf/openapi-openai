@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Choices** | [**[]CreateChatCompletionResponseChoicesInner**](CreateChatCompletionResponseChoicesInner.md) | A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1. | 
 **Created** | **int32** | The Unix timestamp (in seconds) of when the chat completion was created. | 
 **Model** | **string** | The model used for the chat completion. | 
+**ServiceTier** | Pointer to **NullableString** | The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request. | [optional] 
 **SystemFingerprint** | Pointer to **string** | This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism.  | [optional] 
 **Object** | **string** | The object type, which is always &#x60;chat.completion&#x60;. | 
 **Usage** | Pointer to [**CompletionUsage**](CompletionUsage.md) |  | [optional] 
@@ -111,6 +112,41 @@ and a boolean to check if the value has been set.
 SetModel sets Model field to given value.
 
 
+### GetServiceTier
+
+`func (o *CreateChatCompletionResponse) GetServiceTier() string`
+
+GetServiceTier returns the ServiceTier field if non-nil, zero value otherwise.
+
+### GetServiceTierOk
+
+`func (o *CreateChatCompletionResponse) GetServiceTierOk() (*string, bool)`
+
+GetServiceTierOk returns a tuple with the ServiceTier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServiceTier
+
+`func (o *CreateChatCompletionResponse) SetServiceTier(v string)`
+
+SetServiceTier sets ServiceTier field to given value.
+
+### HasServiceTier
+
+`func (o *CreateChatCompletionResponse) HasServiceTier() bool`
+
+HasServiceTier returns a boolean if a field has been set.
+
+### SetServiceTierNil
+
+`func (o *CreateChatCompletionResponse) SetServiceTierNil(b bool)`
+
+ SetServiceTierNil sets the value for ServiceTier to be an explicit nil
+
+### UnsetServiceTier
+`func (o *CreateChatCompletionResponse) UnsetServiceTier()`
+
+UnsetServiceTier ensures that no value is present for ServiceTier, not even an explicit nil
 ### GetSystemFingerprint
 
 `func (o *CreateChatCompletionResponse) GetSystemFingerprint() string`

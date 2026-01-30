@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.FineTuneMethod;
 import org.openapitools.model.FineTuningJobError;
 import org.openapitools.model.FineTuningJobHyperparameters;
 import org.openapitools.model.FineTuningJobIntegrationsInner;
@@ -152,6 +153,22 @@ public class FineTuningJobTest {
     @Test
     public void seedTest() {
         // TODO: test seed
+    }
+
+    /**
+     * Test the property 'estimatedFinish'
+     */
+    @Test
+    public void estimatedFinishTest() {
+        // TODO: test estimatedFinish
+    }
+
+    /**
+     * Test the property 'method'
+     */
+    @Test
+    public void methodTest() {
+        // TODO: test method
     }
 
 }

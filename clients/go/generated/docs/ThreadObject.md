@@ -7,13 +7,14 @@ Name | Type | Description | Notes
 **Id** | **string** | The identifier, which can be referenced in API endpoints. | 
 **Object** | **string** | The object type, which is always &#x60;thread&#x60;. | 
 **CreatedAt** | **int32** | The Unix timestamp (in seconds) for when the thread was created. | 
-**Metadata** | **map[string]interface{}** | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  | 
+**ToolResources** | [**NullableModifyThreadRequestToolResources**](ModifyThreadRequestToolResources.md) |  | 
+**Metadata** | **map[string]interface{}** | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  | 
 
 ## Methods
 
 ### NewThreadObject
 
-`func NewThreadObject(id string, object string, createdAt int32, metadata map[string]interface{}, ) *ThreadObject`
+`func NewThreadObject(id string, object string, createdAt int32, toolResources NullableModifyThreadRequestToolResources, metadata map[string]interface{}, ) *ThreadObject`
 
 NewThreadObject instantiates a new ThreadObject object
 This constructor will assign default values to properties that have it defined,
@@ -88,6 +89,36 @@ and a boolean to check if the value has been set.
 SetCreatedAt sets CreatedAt field to given value.
 
 
+### GetToolResources
+
+`func (o *ThreadObject) GetToolResources() ModifyThreadRequestToolResources`
+
+GetToolResources returns the ToolResources field if non-nil, zero value otherwise.
+
+### GetToolResourcesOk
+
+`func (o *ThreadObject) GetToolResourcesOk() (*ModifyThreadRequestToolResources, bool)`
+
+GetToolResourcesOk returns a tuple with the ToolResources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetToolResources
+
+`func (o *ThreadObject) SetToolResources(v ModifyThreadRequestToolResources)`
+
+SetToolResources sets ToolResources field to given value.
+
+
+### SetToolResourcesNil
+
+`func (o *ThreadObject) SetToolResourcesNil(b bool)`
+
+ SetToolResourcesNil sets the value for ToolResources to be an explicit nil
+
+### UnsetToolResources
+`func (o *ThreadObject) UnsetToolResources()`
+
+UnsetToolResources ensures that no value is present for ToolResources, not even an explicit nil
 ### GetMetadata
 
 `func (o *ThreadObject) GetMetadata() map[string]interface{}`

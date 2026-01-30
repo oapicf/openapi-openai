@@ -4,12 +4,11 @@ import org.openapitools.model.CreateMessageRequest
 import org.openapitools.model.CreateRunRequest
 import org.openapitools.model.CreateThreadAndRunRequest
 import org.openapitools.model.CreateThreadRequest
+import org.openapitools.model.DeleteMessageResponse
 import org.openapitools.model.DeleteThreadResponse
-import org.openapitools.model.ListMessageFilesResponse
 import org.openapitools.model.ListMessagesResponse
 import org.openapitools.model.ListRunStepsResponse
 import org.openapitools.model.ListRunsResponse
-import org.openapitools.model.MessageFileObject
 import org.openapitools.model.MessageObject
 import org.openapitools.model.ModifyMessageRequest
 import org.openapitools.model.ModifyRunRequest
@@ -108,7 +107,8 @@ class ThreadsApiController() {
     )
     fun createRun(
         @Parameter(description = "The ID of the thread to run.", required = true) @PathVariable("thread_id") threadId: kotlin.String,
-        @Parameter(description = "", required = true) @Valid @RequestBody createRunRequest: CreateRunRequest
+        @Parameter(description = "", required = true) @Valid @RequestBody createRunRequest: CreateRunRequest,
+        @Parameter(description = "A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", schema = Schema(allowableValues = ["step_details.tool_calls[*].file_search.results[*].content"])) @Valid @RequestParam(value = "include[]", required = false) include: kotlin.collections.List<kotlin.String>?
     ): ResponseEntity<RunObject> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
@@ -154,6 +154,26 @@ class ThreadsApiController() {
     }
 
     @Operation(
+        summary = "Deletes a message.",
+        operationId = "deleteMessage",
+        description = """""",
+        responses = [
+            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = DeleteMessageResponse::class))]) ],
+        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
+    )
+    @RequestMapping(
+        method = [RequestMethod.DELETE],
+        value = [PATH_DELETE_MESSAGE /* "/threads/{thread_id}/messages/{message_id}" */],
+        produces = ["application/json"]
+    )
+    fun deleteMessage(
+        @Parameter(description = "The ID of the thread to which this message belongs.", required = true) @PathVariable("thread_id") threadId: kotlin.String,
+        @Parameter(description = "The ID of the message to delete.", required = true) @PathVariable("message_id") messageId: kotlin.String
+    ): ResponseEntity<DeleteMessageResponse> {
+        return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
+    }
+
+    @Operation(
         summary = "Delete a thread.",
         operationId = "deleteThread",
         description = """""",
@@ -193,27 +213,6 @@ class ThreadsApiController() {
     }
 
     @Operation(
-        summary = "Retrieves a message file.",
-        operationId = "getMessageFile",
-        description = """""",
-        responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = MessageFileObject::class))]) ],
-        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
-    )
-    @RequestMapping(
-        method = [RequestMethod.GET],
-        value = [PATH_GET_MESSAGE_FILE /* "/threads/{thread_id}/messages/{message_id}/files/{file_id}" */],
-        produces = ["application/json"]
-    )
-    fun getMessageFile(
-        @Parameter(description = "The ID of the thread to which the message and File belong.", required = true) @PathVariable("thread_id") threadId: kotlin.String,
-        @Parameter(description = "The ID of the message the file belongs to.", required = true) @PathVariable("message_id") messageId: kotlin.String,
-        @Parameter(description = "The ID of the file being retrieved.", required = true) @PathVariable("file_id") fileId: kotlin.String
-    ): ResponseEntity<MessageFileObject> {
-        return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
-    }
-
-    @Operation(
         summary = "Retrieves a run.",
         operationId = "getRun",
         description = """""",
@@ -249,7 +248,8 @@ class ThreadsApiController() {
     fun getRunStep(
         @Parameter(description = "The ID of the thread to which the run and run step belongs.", required = true) @PathVariable("thread_id") threadId: kotlin.String,
         @Parameter(description = "The ID of the run to which the run step belongs.", required = true) @PathVariable("run_id") runId: kotlin.String,
-        @Parameter(description = "The ID of the run step to retrieve.", required = true) @PathVariable("step_id") stepId: kotlin.String
+        @Parameter(description = "The ID of the run step to retrieve.", required = true) @PathVariable("step_id") stepId: kotlin.String,
+        @Parameter(description = "A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", schema = Schema(allowableValues = ["step_details.tool_calls[*].file_search.results[*].content"])) @Valid @RequestParam(value = "include[]", required = false) include: kotlin.collections.List<kotlin.String>?
     ): ResponseEntity<RunStepObject> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
@@ -274,30 +274,6 @@ class ThreadsApiController() {
     }
 
     @Operation(
-        summary = "Returns a list of message files.",
-        operationId = "listMessageFiles",
-        description = """""",
-        responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = ListMessageFilesResponse::class))]) ],
-        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
-    )
-    @RequestMapping(
-        method = [RequestMethod.GET],
-        value = [PATH_LIST_MESSAGE_FILES /* "/threads/{thread_id}/messages/{message_id}/files" */],
-        produces = ["application/json"]
-    )
-    fun listMessageFiles(
-        @Parameter(description = "The ID of the thread that the message and files belong to.", required = true) @PathVariable("thread_id") threadId: kotlin.String,
-        @Parameter(description = "The ID of the message that the files belongs to.", required = true) @PathVariable("message_id") messageId: kotlin.String,
-        @Parameter(description = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", schema = Schema(defaultValue = "20")) @Valid @RequestParam(value = "limit", required = false, defaultValue = "20") limit: kotlin.Int,
-        @Parameter(description = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", schema = Schema(allowableValues = ["asc", "desc"], defaultValue = "desc")) @Valid @RequestParam(value = "order", required = false, defaultValue = "desc") order: kotlin.String,
-        @Parameter(description = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ") @Valid @RequestParam(value = "after", required = false) after: kotlin.String?,
-        @Parameter(description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ") @Valid @RequestParam(value = "before", required = false) before: kotlin.String?
-    ): ResponseEntity<ListMessageFilesResponse> {
-        return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
-    }
-
-    @Operation(
         summary = "Returns a list of messages for a given thread.",
         operationId = "listMessages",
         description = """""",
@@ -315,7 +291,7 @@ class ThreadsApiController() {
         @Parameter(description = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", schema = Schema(defaultValue = "20")) @Valid @RequestParam(value = "limit", required = false, defaultValue = "20") limit: kotlin.Int,
         @Parameter(description = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", schema = Schema(allowableValues = ["asc", "desc"], defaultValue = "desc")) @Valid @RequestParam(value = "order", required = false, defaultValue = "desc") order: kotlin.String,
         @Parameter(description = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ") @Valid @RequestParam(value = "after", required = false) after: kotlin.String?,
-        @Parameter(description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ") @Valid @RequestParam(value = "before", required = false) before: kotlin.String?,
+        @Parameter(description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ") @Valid @RequestParam(value = "before", required = false) before: kotlin.String?,
         @Parameter(description = "Filter messages by the run ID that generated them. ") @Valid @RequestParam(value = "run_id", required = false) runId: kotlin.String?
     ): ResponseEntity<ListMessagesResponse> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
@@ -340,7 +316,8 @@ class ThreadsApiController() {
         @Parameter(description = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", schema = Schema(defaultValue = "20")) @Valid @RequestParam(value = "limit", required = false, defaultValue = "20") limit: kotlin.Int,
         @Parameter(description = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", schema = Schema(allowableValues = ["asc", "desc"], defaultValue = "desc")) @Valid @RequestParam(value = "order", required = false, defaultValue = "desc") order: kotlin.String,
         @Parameter(description = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ") @Valid @RequestParam(value = "after", required = false) after: kotlin.String?,
-        @Parameter(description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ") @Valid @RequestParam(value = "before", required = false) before: kotlin.String?
+        @Parameter(description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ") @Valid @RequestParam(value = "before", required = false) before: kotlin.String?,
+        @Parameter(description = "A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", schema = Schema(allowableValues = ["step_details.tool_calls[*].file_search.results[*].content"])) @Valid @RequestParam(value = "include[]", required = false) include: kotlin.collections.List<kotlin.String>?
     ): ResponseEntity<ListRunStepsResponse> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
@@ -363,7 +340,7 @@ class ThreadsApiController() {
         @Parameter(description = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", schema = Schema(defaultValue = "20")) @Valid @RequestParam(value = "limit", required = false, defaultValue = "20") limit: kotlin.Int,
         @Parameter(description = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", schema = Schema(allowableValues = ["asc", "desc"], defaultValue = "desc")) @Valid @RequestParam(value = "order", required = false, defaultValue = "desc") order: kotlin.String,
         @Parameter(description = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ") @Valid @RequestParam(value = "after", required = false) after: kotlin.String?,
-        @Parameter(description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ") @Valid @RequestParam(value = "before", required = false) before: kotlin.String?
+        @Parameter(description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ") @Valid @RequestParam(value = "before", required = false) before: kotlin.String?
     ): ResponseEntity<ListRunsResponse> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
@@ -463,13 +440,12 @@ class ThreadsApiController() {
         const val PATH_CREATE_RUN: String = "/threads/{thread_id}/runs"
         const val PATH_CREATE_THREAD: String = "/threads"
         const val PATH_CREATE_THREAD_AND_RUN: String = "/threads/runs"
+        const val PATH_DELETE_MESSAGE: String = "/threads/{thread_id}/messages/{message_id}"
         const val PATH_DELETE_THREAD: String = "/threads/{thread_id}"
         const val PATH_GET_MESSAGE: String = "/threads/{thread_id}/messages/{message_id}"
-        const val PATH_GET_MESSAGE_FILE: String = "/threads/{thread_id}/messages/{message_id}/files/{file_id}"
         const val PATH_GET_RUN: String = "/threads/{thread_id}/runs/{run_id}"
         const val PATH_GET_RUN_STEP: String = "/threads/{thread_id}/runs/{run_id}/steps/{step_id}"
         const val PATH_GET_THREAD: String = "/threads/{thread_id}"
-        const val PATH_LIST_MESSAGE_FILES: String = "/threads/{thread_id}/messages/{message_id}/files"
         const val PATH_LIST_MESSAGES: String = "/threads/{thread_id}/messages"
         const val PATH_LIST_RUN_STEPS: String = "/threads/{thread_id}/runs/{run_id}/steps"
         const val PATH_LIST_RUNS: String = "/threads/{thread_id}/runs"

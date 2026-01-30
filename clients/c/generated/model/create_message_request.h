@@ -15,6 +15,8 @@
 
 typedef struct create_message_request_t create_message_request_t;
 
+#include "create_message_request_attachments_inner.h"
+#include "create_message_request_content.h"
 #include "object.h"
 
 // Enum ROLE for create_message_request
@@ -29,8 +31,8 @@ openai_api_create_message_request_ROLE_e create_message_request_role_FromString(
 
 typedef struct create_message_request_t {
     openai_api_create_message_request_ROLE_e role; //enum
-    char *content; // string
-    list_t *file_ids; //primitive container
+    struct create_message_request_content_t *content; //model
+    list_t *attachments; //nonprimitive container
     object_t *metadata; //object
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -38,8 +40,8 @@ typedef struct create_message_request_t {
 
 __attribute__((deprecated)) create_message_request_t *create_message_request_create(
     openai_api_create_message_request_ROLE_e role,
-    char *content,
-    list_t *file_ids,
+    create_message_request_content_t *content,
+    list_t *attachments,
     object_t *metadata
 );
 

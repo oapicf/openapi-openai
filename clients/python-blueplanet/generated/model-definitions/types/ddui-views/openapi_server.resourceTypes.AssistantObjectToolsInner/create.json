@@ -12,6 +12,7 @@
     "model": "properties",
     "children": [
       {"model": "type" },
+      {"model": "file_search" },
       {"model": "function" },
     ]
   }]

@@ -31,4 +31,18 @@ class CompletionUsage
      */
     public ?int $total_tokens = null;
 
+    /**
+     * @DTA\Data(field="completion_tokens_details", nullable=true)
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\CompletionUsageCompletionTokensDetails::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\CompletionUsageCompletionTokensDetails::class})
+     */
+    public ?\App\DTO\CompletionUsageCompletionTokensDetails $completion_tokens_details = null;
+
+    /**
+     * @DTA\Data(field="prompt_tokens_details", nullable=true)
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\CompletionUsagePromptTokensDetails::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\CompletionUsagePromptTokensDetails::class})
+     */
+    public ?\App\DTO\CompletionUsagePromptTokensDetails $prompt_tokens_details = null;
+
 }

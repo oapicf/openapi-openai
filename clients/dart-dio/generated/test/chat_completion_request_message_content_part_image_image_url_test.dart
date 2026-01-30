@@ -13,7 +13,7 @@ void main() {
       // TODO
     });
 
-    // Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+    // Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
     // String detail (default value: 'auto')
     test('to test the property `detail`', () async {
       // TODO

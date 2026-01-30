@@ -4,14 +4,24 @@ import { AsyncConfiguration, Configuration, ConfigurationFactory } from './confi
 
 import { AssistantsService } from './api/assistants.service';
 import { AudioService } from './api/audio.service';
+import { AuditLogsService } from './api/auditLogs.service';
+import { BatchService } from './api/batch.service';
 import { ChatService } from './api/chat.service';
 import { CompletionsService } from './api/completions.service';
+import { DefaultService } from './api/default.service';
 import { EmbeddingsService } from './api/embeddings.service';
 import { FilesService } from './api/files.service';
 import { FineTuningService } from './api/fineTuning.service';
 import { ImagesService } from './api/images.service';
+import { InvitesService } from './api/invites.service';
 import { ModelsService } from './api/models.service';
 import { ModerationsService } from './api/moderations.service';
+import { ProjectsService } from './api/projects.service';
+import { RealtimeService } from './api/realtime.service';
+import { UploadsService } from './api/uploads.service';
+import { UsageService } from './api/usage.service';
+import { UsersService } from './api/users.service';
+import { VectorStoresService } from './api/vectorStores.service';
 
 @Global()
 @Module({
@@ -19,26 +29,46 @@ import { ModerationsService } from './api/moderations.service';
   exports:      [
     AssistantsService,
     AudioService,
+    AuditLogsService,
+    BatchService,
     ChatService,
     CompletionsService,
+    DefaultService,
     EmbeddingsService,
     FilesService,
     FineTuningService,
     ImagesService,
+    InvitesService,
     ModelsService,
-    ModerationsService
+    ModerationsService,
+    ProjectsService,
+    RealtimeService,
+    UploadsService,
+    UsageService,
+    UsersService,
+    VectorStoresService
   ],
   providers: [
     AssistantsService,
     AudioService,
+    AuditLogsService,
+    BatchService,
     ChatService,
     CompletionsService,
+    DefaultService,
     EmbeddingsService,
     FilesService,
     FineTuningService,
     ImagesService,
+    InvitesService,
     ModelsService,
-    ModerationsService
+    ModerationsService,
+    ProjectsService,
+    RealtimeService,
+    UploadsService,
+    UsageService,
+    UsersService,
+    VectorStoresService
   ]
 })
 export class ApiModule {

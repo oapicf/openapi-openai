@@ -19,7 +19,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * Details of the tool call.
  * @param type Always `tool_calls`.
- * @param toolCalls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+ * @param toolCalls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
  */
 data class RunStepDetailsToolCallsObject(
 
@@ -27,7 +27,7 @@ data class RunStepDetailsToolCallsObject(
     @get:JsonProperty("type", required = true) val type: RunStepDetailsToolCallsObject.Type,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. ")
+    @Schema(example = "null", required = true, description = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. ")
     @get:JsonProperty("tool_calls", required = true) val toolCalls: kotlin.collections.List<RunStepDetailsToolCallsObjectToolCallsInner>
 ) {
 

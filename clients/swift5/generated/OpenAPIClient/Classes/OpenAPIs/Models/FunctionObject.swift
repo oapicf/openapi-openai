@@ -16,19 +16,23 @@ public struct FunctionObject: Codable, JSONEncodable, Hashable {
     public var description: String?
     /** The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. */
     public var name: String
-    /** The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list. */
+    /** The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list. */
     public var parameters: [String: AnyCodable]?
+    /** Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling). */
+    public var strict: Bool? = false
 
-    public init(description: String? = nil, name: String, parameters: [String: AnyCodable]? = nil) {
+    public init(description: String? = nil, name: String, parameters: [String: AnyCodable]? = nil, strict: Bool? = false) {
         self.description = description
         self.name = name
         self.parameters = parameters
+        self.strict = strict
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case description
         case name
         case parameters
+        case strict
     }
 
     // Encodable protocol methods
@@ -38,6 +42,7 @@ public struct FunctionObject: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(description, forKey: .description)
         try container.encode(name, forKey: .name)
         try container.encodeIfPresent(parameters, forKey: .parameters)
+        try container.encodeIfPresent(strict, forKey: .strict)
     }
 }
 

@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.CreateMessageRequest;
+import org.openapitools.model.CreateThreadRequestToolResources;
 import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -25,11 +26,13 @@ import javax.annotation.Generated;
  * CreateThreadRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateThreadRequest {
 
   @Valid
   private List<@Valid CreateMessageRequest> messages = new ArrayList<>();
+
+  private JsonNullable<CreateThreadRequestToolResources> toolResources = JsonNullable.<CreateThreadRequestToolResources>undefined();
 
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
@@ -61,17 +64,37 @@ public class CreateThreadRequest {
     this.messages = messages;
   }
 
+  public CreateThreadRequest toolResources(CreateThreadRequestToolResources toolResources) {
+    this.toolResources = JsonNullable.of(toolResources);
+    return this;
+  }
+
+  /**
+   * Get toolResources
+   * @return toolResources
+   */
+  @Valid 
+  @Schema(name = "tool_resources", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("tool_resources")
+  public JsonNullable<CreateThreadRequestToolResources> getToolResources() {
+    return toolResources;
+  }
+
+  public void setToolResources(JsonNullable<CreateThreadRequestToolResources> toolResources) {
+    this.toolResources = toolResources;
+  }
+
   public CreateThreadRequest metadata(Object metadata) {
     this.metadata = JsonNullable.of(metadata);
     return this;
   }
 
   /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
   
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;
@@ -91,6 +114,7 @@ public class CreateThreadRequest {
     }
     CreateThreadRequest createThreadRequest = (CreateThreadRequest) o;
     return Objects.equals(this.messages, createThreadRequest.messages) &&
+        equalsNullable(this.toolResources, createThreadRequest.toolResources) &&
         equalsNullable(this.metadata, createThreadRequest.metadata);
   }
 
@@ -100,7 +124,7 @@ public class CreateThreadRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(messages, hashCodeNullable(metadata));
+    return Objects.hash(messages, hashCodeNullable(toolResources), hashCodeNullable(metadata));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -115,6 +139,7 @@ public class CreateThreadRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateThreadRequest {\n");
     sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

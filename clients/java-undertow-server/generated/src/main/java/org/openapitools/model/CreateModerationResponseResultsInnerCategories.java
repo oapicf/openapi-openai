@@ -3,7 +3,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * OpenAPI document version: 2.0.0
+ * OpenAPI document version: 2.3.0
  * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -23,13 +23,15 @@ import io.swagger.annotations.ApiModelProperty;
  */
 
 @ApiModel(description = "A list of the categories, and whether they are flagged or not.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T10:45:08.090000084Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateModerationResponseResultsInnerCategories   {
   
   private Boolean hate;
   private Boolean hateThreatening;
   private Boolean harassment;
   private Boolean harassmentThreatening;
+  private Boolean illicit;
+  private Boolean illicitViolent;
   private Boolean selfHarm;
   private Boolean selfHarmIntent;
   private Boolean selfHarmInstructions;
@@ -108,6 +110,42 @@ public class CreateModerationResponseResultsInnerCategories   {
   }
   public void setHarassmentThreatening(Boolean harassmentThreatening) {
     this.harassmentThreatening = harassmentThreatening;
+  }
+
+  /**
+   * Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
+   */
+  public CreateModerationResponseResultsInnerCategories illicit(Boolean illicit) {
+    this.illicit = illicit;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.")
+  @JsonProperty("illicit")
+  public Boolean getIllicit() {
+    return illicit;
+  }
+  public void setIllicit(Boolean illicit) {
+    this.illicit = illicit;
+  }
+
+  /**
+   * Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+   */
+  public CreateModerationResponseResultsInnerCategories illicitViolent(Boolean illicitViolent) {
+    this.illicitViolent = illicitViolent;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.")
+  @JsonProperty("illicit/violent")
+  public Boolean getIllicitViolent() {
+    return illicitViolent;
+  }
+  public void setIllicitViolent(Boolean illicitViolent) {
+    this.illicitViolent = illicitViolent;
   }
 
   /**
@@ -250,6 +288,8 @@ public class CreateModerationResponseResultsInnerCategories   {
         Objects.equals(hateThreatening, createModerationResponseResultsInnerCategories.hateThreatening) &&
         Objects.equals(harassment, createModerationResponseResultsInnerCategories.harassment) &&
         Objects.equals(harassmentThreatening, createModerationResponseResultsInnerCategories.harassmentThreatening) &&
+        Objects.equals(illicit, createModerationResponseResultsInnerCategories.illicit) &&
+        Objects.equals(illicitViolent, createModerationResponseResultsInnerCategories.illicitViolent) &&
         Objects.equals(selfHarm, createModerationResponseResultsInnerCategories.selfHarm) &&
         Objects.equals(selfHarmIntent, createModerationResponseResultsInnerCategories.selfHarmIntent) &&
         Objects.equals(selfHarmInstructions, createModerationResponseResultsInnerCategories.selfHarmInstructions) &&
@@ -261,7 +301,7 @@ public class CreateModerationResponseResultsInnerCategories   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hate, hateThreatening, harassment, harassmentThreatening, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
+    return Objects.hash(hate, hateThreatening, harassment, harassmentThreatening, illicit, illicitViolent, selfHarm, selfHarmIntent, selfHarmInstructions, sexual, sexualMinors, violence, violenceGraphic);
   }
 
   @Override
@@ -273,6 +313,8 @@ public class CreateModerationResponseResultsInnerCategories   {
     sb.append("    hateThreatening: ").append(toIndentedString(hateThreatening)).append("\n");
     sb.append("    harassment: ").append(toIndentedString(harassment)).append("\n");
     sb.append("    harassmentThreatening: ").append(toIndentedString(harassmentThreatening)).append("\n");
+    sb.append("    illicit: ").append(toIndentedString(illicit)).append("\n");
+    sb.append("    illicitViolent: ").append(toIndentedString(illicitViolent)).append("\n");
     sb.append("    selfHarm: ").append(toIndentedString(selfHarm)).append("\n");
     sb.append("    selfHarmIntent: ").append(toIndentedString(selfHarmIntent)).append("\n");
     sb.append("    selfHarmInstructions: ").append(toIndentedString(selfHarmInstructions)).append("\n");

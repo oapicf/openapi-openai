@@ -36,9 +36,12 @@ const request: CompletionsApiCreateCompletionRequest = {
     maxTokens: 16,
     n: 1,
     presencePenalty: 0,
-    seed: -9223372036854775808,
+    seed: -9223372036854776000,
     stop: null,
     stream: false,
+    streamOptions: {
+      includeUsage: true,
+    },
     suffix: "test.",
     temperature: 1,
     topP: 1,

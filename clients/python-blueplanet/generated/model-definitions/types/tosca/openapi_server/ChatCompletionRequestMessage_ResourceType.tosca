@@ -9,7 +9,9 @@ imports {
   Root = tosca.resourceTypes.Root
   ChatCompletionMessageToolCall = openapi_server.resourceTypes.ChatCompletionMessageToolCall
   ChatCompletionRequestAssistantMessage = openapi_server.resourceTypes.ChatCompletionRequestAssistantMessage
+  ChatCompletionRequestAssistantMessageAudio = openapi_server.resourceTypes.ChatCompletionRequestAssistantMessageAudio
   ChatCompletionRequestAssistantMessageFunctionCall = openapi_server.resourceTypes.ChatCompletionRequestAssistantMessageFunctionCall
+  ChatCompletionRequestDeveloperMessage = openapi_server.resourceTypes.ChatCompletionRequestDeveloperMessage
   ChatCompletionRequestFunctionMessage = openapi_server.resourceTypes.ChatCompletionRequestFunctionMessage
   ChatCompletionRequestSystemMessage = openapi_server.resourceTypes.ChatCompletionRequestSystemMessage
   ChatCompletionRequestToolMessage = openapi_server.resourceTypes.ChatCompletionRequestToolMessage
@@ -37,6 +39,16 @@ resourceTypes {
           type =  string
           description = "The name of the function to call."
           optional = true
+        }
+        refusal {
+          type =  string
+          description = "The refusal message by the assistant."
+          optional = false
+        }
+        audio {
+          type = ChatCompletionRequestAssistantMessageAudio
+          description = ""
+          optional = false
         }
         tool_calls {
           type = array

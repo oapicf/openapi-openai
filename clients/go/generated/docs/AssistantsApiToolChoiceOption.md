@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** | The type of the tool. If type is &#x60;function&#x60;, the function name must be set | 
-**Function** | Pointer to [**ChatCompletionNamedToolChoiceFunction**](ChatCompletionNamedToolChoiceFunction.md) |  | [optional] 
+**Function** | Pointer to [**AssistantsNamedToolChoiceFunction**](AssistantsNamedToolChoiceFunction.md) |  | [optional] 
 
 ## Methods
 
@@ -48,20 +48,20 @@ SetType sets Type field to given value.
 
 ### GetFunction
 
-`func (o *AssistantsApiToolChoiceOption) GetFunction() ChatCompletionNamedToolChoiceFunction`
+`func (o *AssistantsApiToolChoiceOption) GetFunction() AssistantsNamedToolChoiceFunction`
 
 GetFunction returns the Function field if non-nil, zero value otherwise.
 
 ### GetFunctionOk
 
-`func (o *AssistantsApiToolChoiceOption) GetFunctionOk() (*ChatCompletionNamedToolChoiceFunction, bool)`
+`func (o *AssistantsApiToolChoiceOption) GetFunctionOk() (*AssistantsNamedToolChoiceFunction, bool)`
 
 GetFunctionOk returns a tuple with the Function field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFunction
 
-`func (o *AssistantsApiToolChoiceOption) SetFunction(v ChatCompletionNamedToolChoiceFunction)`
+`func (o *AssistantsApiToolChoiceOption) SetFunction(v AssistantsNamedToolChoiceFunction)`
 
 SetFunction sets Function field to given value.
 

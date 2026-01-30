@@ -1,0 +1,79 @@
+const utils = require('../utils/utils');
+const ChatCompletionMessageToolCall = require('../models/ChatCompletionMessageToolCall');
+const ChatCompletionRequestAssistantMessage_audio = require('../models/ChatCompletionRequestAssistantMessage_audio');
+const ChatCompletionRequestAssistantMessage_function_call = require('../models/ChatCompletionRequestAssistantMessage_function_call');
+const ChatCompletionRequestFunctionMessage = require('../models/ChatCompletionRequestFunctionMessage');
+const ChatCompletionRequestSystemMessage = require('../models/ChatCompletionRequestSystemMessage');
+const ChatCompletionRequestToolMessage = require('../models/ChatCompletionRequestToolMessage');
+const ChatCompletionRequestUserMessage = require('../models/ChatCompletionRequestUserMessage');
+const FineTuneChatCompletionRequestAssistantMessage = require('../models/FineTuneChatCompletionRequestAssistantMessage');
+
+module.exports = {
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
+        return [
+            {
+                key: `${keyPrefix}content`,
+                label: `The contents of the function message. - [${labelPrefix}content]`,
+                required: true,
+                type: 'string',
+            },
+            {
+                key: `${keyPrefix}role`,
+                label: `The role of the messages author, in this case `function`. - [${labelPrefix}role]`,
+                required: true,
+                type: 'string',
+                choices: [
+                    'function',
+                ],
+            },
+            {
+                key: `${keyPrefix}name`,
+                label: `The name of the function to call. - [${labelPrefix}name]`,
+                required: true,
+                type: 'string',
+            },
+            {
+                key: `${keyPrefix}weight`,
+                label: `Controls whether the assistant message is trained against (0 or 1) - [${labelPrefix}weight]`,
+                type: 'integer',
+                choices: [
+                    '0',
+                    '1',
+                ],
+            },
+            {
+                key: `${keyPrefix}refusal`,
+                label: `The refusal message by the assistant. - [${labelPrefix}refusal]`,
+                type: 'string',
+            },
+            ...ChatCompletionRequestAssistantMessage_audio.fields(`${keyPrefix}audio`, isInput),
+            {
+                key: `${keyPrefix}tool_calls`,
+                label: `[${labelPrefix}tool_calls]`,
+                children: ChatCompletionMessageToolCall.fields(`${keyPrefix}tool_calls${!isInput ? '[]' : ''}`, isInput, true), 
+            },
+            ...ChatCompletionRequestAssistantMessage_function_call.fields(`${keyPrefix}function_call`, isInput),
+            {
+                key: `${keyPrefix}tool_call_id`,
+                label: `Tool call that this message is responding to. - [${labelPrefix}tool_call_id]`,
+                required: true,
+                type: 'string',
+            },
+        ]
+    },
+    mapping: (bundle, prefix = '') => {
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
+        return {
+            'content': bundle.inputData?.[`${keyPrefix}content`],
+            'role': bundle.inputData?.[`${keyPrefix}role`],
+            'name': bundle.inputData?.[`${keyPrefix}name`],
+            'weight': bundle.inputData?.[`${keyPrefix}weight`],
+            'refusal': bundle.inputData?.[`${keyPrefix}refusal`],
+            'audio': utils.removeIfEmpty(ChatCompletionRequestAssistantMessage_audio.mapping(bundle, `${keyPrefix}audio`)),
+            'tool_calls': utils.childMapping(bundle.inputData?.[`${keyPrefix}tool_calls`], `${keyPrefix}tool_calls`, ChatCompletionMessageToolCall),
+            'function_call': utils.removeIfEmpty(ChatCompletionRequestAssistantMessage_function_call.mapping(bundle, `${keyPrefix}function_call`)),
+            'tool_call_id': bundle.inputData?.[`${keyPrefix}tool_call_id`],
+        }
+    },
+}

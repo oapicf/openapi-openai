@@ -96,15 +96,15 @@ Protected Class MessageObject
 
 	#tag Property, Flags = &h0
 		#tag Note
-			A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
+			A list of files attached to the message, and the tools they were added to.
 		#tag EndNote
-		file_ids() As String
+		attachments() As OpenAPIClient.Models.CreateMessageRequestAttachmentsInner
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
 		#tag Note
-			Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+			Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 		#tag EndNote
 		metadata As Object
 	#tag EndProperty
@@ -279,11 +279,11 @@ Protected Class MessageObject
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="file_ids"
+			Name="attachments"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="String"
+			Type="CreateMessageRequestAttachmentsInner"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

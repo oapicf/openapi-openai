@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **index** | **i32** | The index of the output in the outputs array. | 
-**r#type** | [***models::RunStepDetailsToolCallsCodeOutputImageObjectType**](RunStepDetailsToolCallsCodeOutputImageObject_type.md) |  | 
+**r#type** | [***models::RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectType**](RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_type.md) |  | 
 **logs** | **String** | The text output from the Code Interpreter tool call. | [optional] [default to None]
 **image** | [***models::RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage**](RunStepDeltaStepDetailsToolCallsCodeOutputImageObject_image.md) |  | [optional] [default to None]
 

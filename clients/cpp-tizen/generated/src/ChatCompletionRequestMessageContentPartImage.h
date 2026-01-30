@@ -1,7 +1,7 @@
 /*
  * ChatCompletionRequestMessageContentPartImage.h
  *
- * 
+ * Learn about [image inputs](/docs/guides/vision). 
  */
 
 #ifndef _ChatCompletionRequestMessageContentPartImage_H_
@@ -21,7 +21,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief 
+/*! \brief Learn about [image inputs](/docs/guides/vision). 
  *
  *  \ingroup Models
  *

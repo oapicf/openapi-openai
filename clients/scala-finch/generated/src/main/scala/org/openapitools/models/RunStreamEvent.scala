@@ -15,6 +15,7 @@ import org.openapitools.models.RunStreamEventOneOf5
 import org.openapitools.models.RunStreamEventOneOf6
 import org.openapitools.models.RunStreamEventOneOf7
 import org.openapitools.models.RunStreamEventOneOf8
+import org.openapitools.models.RunStreamEventOneOf9
 
 /**
  * 

@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enabled** | **int** | Whether to enable input audio transcription. | [optional] 
 **event** | **openai_api_assistant_stream_event_EVENT_e** |  | 
 **data** | **openai_api_assistant_stream_event_DATA_e** |  | 
 

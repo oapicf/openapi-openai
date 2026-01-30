@@ -26,7 +26,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"model": @"model", @"prompt": @"prompt", @"bestOf": @"best_of", @"echo": @"echo", @"frequencyPenalty": @"frequency_penalty", @"logitBias": @"logit_bias", @"logprobs": @"logprobs", @"maxTokens": @"max_tokens", @"n": @"n", @"presencePenalty": @"presence_penalty", @"seed": @"seed", @"stop": @"stop", @"stream": @"stream", @"suffix": @"suffix", @"temperature": @"temperature", @"topP": @"top_p", @"user": @"user" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"model": @"model", @"prompt": @"prompt", @"bestOf": @"best_of", @"echo": @"echo", @"frequencyPenalty": @"frequency_penalty", @"logitBias": @"logit_bias", @"logprobs": @"logprobs", @"maxTokens": @"max_tokens", @"n": @"n", @"presencePenalty": @"presence_penalty", @"seed": @"seed", @"stop": @"stop", @"stream": @"stream", @"streamOptions": @"stream_options", @"suffix": @"suffix", @"temperature": @"temperature", @"topP": @"top_p", @"user": @"user" }];
 }
 
 /**
@@ -36,7 +36,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"bestOf", @"echo", @"frequencyPenalty", @"logitBias", @"logprobs", @"maxTokens", @"n", @"presencePenalty", @"seed", @"stop", @"stream", @"suffix", @"temperature", @"topP", @"user"];
+  NSArray *optionalProperties = @[@"bestOf", @"echo", @"frequencyPenalty", @"logitBias", @"logprobs", @"maxTokens", @"n", @"presencePenalty", @"seed", @"stop", @"stream", @"streamOptions", @"suffix", @"temperature", @"topP", @"user"];
   return [optionalProperties containsObject:propertyName];
 }
 

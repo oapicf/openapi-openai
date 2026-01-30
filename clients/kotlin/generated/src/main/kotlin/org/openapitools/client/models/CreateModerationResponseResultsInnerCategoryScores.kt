@@ -26,6 +26,8 @@ import com.squareup.moshi.JsonClass
  * @param hateThreatening The score for the category 'hate/threatening'.
  * @param harassment The score for the category 'harassment'.
  * @param harassmentThreatening The score for the category 'harassment/threatening'.
+ * @param illicit The score for the category 'illicit'.
+ * @param illicitViolent The score for the category 'illicit/violent'.
  * @param selfHarm The score for the category 'self-harm'.
  * @param selfHarmIntent The score for the category 'self-harm/intent'.
  * @param selfHarmInstructions The score for the category 'self-harm/instructions'.
@@ -53,6 +55,14 @@ data class CreateModerationResponseResultsInnerCategoryScores (
     /* The score for the category 'harassment/threatening'. */
     @Json(name = "harassment/threatening")
     val harassmentThreatening: java.math.BigDecimal,
+
+    /* The score for the category 'illicit'. */
+    @Json(name = "illicit")
+    val illicit: java.math.BigDecimal,
+
+    /* The score for the category 'illicit/violent'. */
+    @Json(name = "illicit/violent")
+    val illicitViolent: java.math.BigDecimal,
 
     /* The score for the category 'self-harm'. */
     @Json(name = "self-harm")

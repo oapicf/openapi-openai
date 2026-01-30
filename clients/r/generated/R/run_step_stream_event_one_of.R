@@ -1,7 +1,7 @@
 #' Create a new RunStepStreamEventOneOf
 #'
 #' @description
-#' Occurs when a [run step](/docs/api-reference/runs/step-object) is created.
+#' Occurs when a [run step](/docs/api-reference/run-steps/step-object) is created.
 #'
 #' @docType class
 #' @title RunStepStreamEventOneOf

@@ -9,7 +9,7 @@ import model.ListPaginatedFineTuningJobsResponse
 /**
   * Provides a default implementation for [[FineTuningApi]].
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T10:48:27.489746113Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 class FineTuningApiImpl extends FineTuningApi {
   /**
     * @inheritdoc
@@ -17,7 +17,7 @@ class FineTuningApiImpl extends FineTuningApi {
   override def cancelFineTuningJob(fineTuningJobId: String): FineTuningJob = {
     // TODO: Implement better logic
 
-    FineTuningJob("", 0, FineTuningJobError("", "", ""), "", 0, FineTuningJobHyperparameters(FineTuningJobHyperparametersNEpochs()), "", "", "", List.empty[String], "", 0, "", "", None, 0)
+    FineTuningJob("", 0, FineTuningJobError("", "", ""), "", 0, FineTuningJobHyperparameters(None, None, None), "", "", "", List.empty[String], "", 0, "", "", None, 0, None, None)
   }
 
   /**
@@ -26,7 +26,7 @@ class FineTuningApiImpl extends FineTuningApi {
   override def createFineTuningJob(createFineTuningJobRequest: CreateFineTuningJobRequest): FineTuningJob = {
     // TODO: Implement better logic
 
-    FineTuningJob("", 0, FineTuningJobError("", "", ""), "", 0, FineTuningJobHyperparameters(FineTuningJobHyperparametersNEpochs()), "", "", "", List.empty[String], "", 0, "", "", None, 0)
+    FineTuningJob("", 0, FineTuningJobError("", "", ""), "", 0, FineTuningJobHyperparameters(None, None, None), "", "", "", List.empty[String], "", 0, "", "", None, 0, None, None)
   }
 
   /**
@@ -62,6 +62,6 @@ class FineTuningApiImpl extends FineTuningApi {
   override def retrieveFineTuningJob(fineTuningJobId: String): FineTuningJob = {
     // TODO: Implement better logic
 
-    FineTuningJob("", 0, FineTuningJobError("", "", ""), "", 0, FineTuningJobHyperparameters(FineTuningJobHyperparametersNEpochs()), "", "", "", List.empty[String], "", 0, "", "", None, 0)
+    FineTuningJob("", 0, FineTuningJobError("", "", ""), "", 0, FineTuningJobHyperparameters(None, None, None), "", "", "", List.empty[String], "", 0, "", "", None, 0, None, None)
   }
 }

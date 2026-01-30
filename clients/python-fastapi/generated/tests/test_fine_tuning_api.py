@@ -39,7 +39,7 @@ def test_create_fine_tuning_job(client: TestClient):
 
     Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
     """
-    create_fine_tuning_job_request = {"training_file":"file-abc123","seed":42,"validation_file":"file-abc123","hyperparameters":{"batch_size":"auto","n_epochs":"auto","learning_rate_multiplier":"auto"},"model":"gpt-3.5-turbo","suffix":"suffix","integrations":[{"wandb":{"name":"name","project":"my-wandb-project","entity":"entity","tags":["custom-tag","custom-tag"]},"type":"wandb"},{"wandb":{"name":"name","project":"my-wandb-project","entity":"entity","tags":["custom-tag","custom-tag"]},"type":"wandb"}]}
+    create_fine_tuning_job_request = {"training_file":"file-abc123","seed":42,"method":{"supervised":{"hyperparameters":{"batch_size":"auto","n_epochs":"auto","learning_rate_multiplier":"auto"}},"dpo":{"hyperparameters":{"beta":"auto"}},"type":"supervised"},"validation_file":"file-abc123","hyperparameters":{"batch_size":"auto","n_epochs":"auto","learning_rate_multiplier":"auto"},"model":"gpt-4o-mini","suffix":"suffix","integrations":[{"wandb":{"name":"name","project":"my-wandb-project","entity":"entity","tags":["custom-tag","custom-tag"]},"type":"wandb"},{"wandb":{"name":"name","project":"my-wandb-project","entity":"entity","tags":["custom-tag","custom-tag"]},"type":"wandb"}]}
 
     headers = {
         "Authorization": "Bearer special-key",
@@ -70,27 +70,6 @@ def test_retrieve_fine_tuning_job(client: TestClient):
     #    "GET",
     #    "/fine_tuning/jobs/{fine_tuning_job_id}".format(fine_tuning_job_id='ft-AF1WoRqd3aJAHsqc9NY7iL8F'),
     #    headers=headers,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_list_fine_tuning_events(client: TestClient):
-    """Test case for list_fine_tuning_events
-
-    Get status updates for a fine-tuning job. 
-    """
-    params = [("after", 'after_example'),     ("limit", 20)]
-    headers = {
-        "Authorization": "Bearer special-key",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "GET",
-    #    "/fine_tuning/jobs/{fine_tuning_job_id}/events".format(fine_tuning_job_id='ft-AF1WoRqd3aJAHsqc9NY7iL8F'),
-    #    headers=headers,
-    #    params=params,
     #)
 
     # uncomment below to assert the status code of the HTTP response
@@ -130,6 +109,27 @@ def test_list_fine_tuning_job_checkpoints(client: TestClient):
     #response = client.request(
     #    "GET",
     #    "/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints".format(fine_tuning_job_id='ft-AF1WoRqd3aJAHsqc9NY7iL8F'),
+    #    headers=headers,
+    #    params=params,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_list_fine_tuning_events(client: TestClient):
+    """Test case for list_fine_tuning_events
+
+    Get status updates for a fine-tuning job. 
+    """
+    params = [("after", 'after_example'),     ("limit", 20)]
+    headers = {
+        "Authorization": "Bearer special-key",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/fine_tuning/jobs/{fine_tuning_job_id}/events".format(fine_tuning_job_id='ft-AF1WoRqd3aJAHsqc9NY7iL8F'),
     #    headers=headers,
     #    params=params,
     #)

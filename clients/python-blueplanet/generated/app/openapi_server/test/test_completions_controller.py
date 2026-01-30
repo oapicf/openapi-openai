@@ -18,7 +18,7 @@ class TestCompletionsController(BaseTestCase):
 
         Creates a completion for the provided prompt and parameters.
         """
-        body = {"logit_bias":{"key":1},"seed":-2147483648,"max_tokens":16,"presence_penalty":0.25495066265333133,"echo":False,"suffix":"test.","n":1,"logprobs":2,"top_p":1,"frequency_penalty":0.4109824732281613,"best_of":1,"stop":"\n","stream":False,"temperature":1,"model":"CreateCompletionRequest_model","prompt":"This is a test.","user":"user-1234"}
+        body = {"logit_bias":{"key":1},"seed":-2147483648,"max_tokens":16,"presence_penalty":0.25495066265333133,"echo":False,"suffix":"test.","n":1,"logprobs":2,"top_p":1,"frequency_penalty":0.4109824732281613,"best_of":1,"stop":"\n","stream":False,"temperature":1,"model":"CreateCompletionRequest_model","stream_options":{"include_usage":True},"prompt":"This is a test.","user":"user-1234"}
         response = self.client.open(
             '/v1/completions',
             method='POST',

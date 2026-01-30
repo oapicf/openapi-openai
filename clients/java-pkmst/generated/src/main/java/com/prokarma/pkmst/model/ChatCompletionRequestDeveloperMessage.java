@@ -1,0 +1,157 @@
+package com.prokarma.pkmst.model;
+
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.prokarma.pkmst.model.ChatCompletionRequestDeveloperMessageContent;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+/**
+ * Response class to be returned by Api
+ * @author pkmst
+ *
+ */
+/**
+ * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, &#x60;developer&#x60; messages replace the previous &#x60;system&#x60; messages. 
+ */
+@ApiModel(description = "Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, `developer` messages replace the previous `system` messages. ")
+
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class ChatCompletionRequestDeveloperMessage   {
+  @JsonProperty("content")
+  private ChatCompletionRequestDeveloperMessageContent content;
+
+  /**
+   * The role of the messages author, in this case `developer`.
+   */
+  public enum RoleEnum {
+    DEVELOPER("developer");
+
+    private String value;
+
+    RoleEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static RoleEnum fromValue(String text) {
+      for (RoleEnum b : RoleEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + text + "'");
+    }
+  }
+
+  @JsonProperty("role")
+  private RoleEnum role;
+
+  @JsonProperty("name")
+  private String name;
+
+  public ChatCompletionRequestDeveloperMessage content(ChatCompletionRequestDeveloperMessageContent content) {
+    this.content = content;
+    return this;
+  }
+
+  /**
+   * Get content
+   * @return content
+   */
+  @ApiModelProperty(required = true, value = "")
+  public ChatCompletionRequestDeveloperMessageContent getContent() {
+    return content;
+  }
+
+  public void setContent(ChatCompletionRequestDeveloperMessageContent content) {
+    this.content = content;
+  }
+
+  public ChatCompletionRequestDeveloperMessage role(RoleEnum role) {
+    this.role = role;
+    return this;
+  }
+
+  /**
+   * The role of the messages author, in this case `developer`.
+   * @return role
+   */
+  @ApiModelProperty(required = true, value = "The role of the messages author, in this case `developer`.")
+  public RoleEnum getRole() {
+    return role;
+  }
+
+  public void setRole(RoleEnum role) {
+    this.role = role;
+  }
+
+  public ChatCompletionRequestDeveloperMessage name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * An optional name for the participant. Provides the model information to differentiate between participants of the same role.
+   * @return name
+   */
+  @ApiModelProperty(value = "An optional name for the participant. Provides the model information to differentiate between participants of the same role.")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ChatCompletionRequestDeveloperMessage chatCompletionRequestDeveloperMessage = (ChatCompletionRequestDeveloperMessage) o;
+    return Objects.equals(this.content, chatCompletionRequestDeveloperMessage.content) &&
+        Objects.equals(this.role, chatCompletionRequestDeveloperMessage.role) &&
+        Objects.equals(this.name, chatCompletionRequestDeveloperMessage.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(content, role, name);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class ChatCompletionRequestDeveloperMessage {\n");
+    
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+}
+

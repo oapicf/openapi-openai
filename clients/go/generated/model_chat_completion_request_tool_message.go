@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -24,8 +24,7 @@ var _ MappedNullable = &ChatCompletionRequestToolMessage{}
 type ChatCompletionRequestToolMessage struct {
 	// The role of the messages author, in this case `tool`.
 	Role string `json:"role"`
-	// The contents of the tool message.
-	Content string `json:"content"`
+	Content ChatCompletionRequestToolMessageContent `json:"content"`
 	// Tool call that this message is responding to.
 	ToolCallId string `json:"tool_call_id"`
 }
@@ -36,7 +35,7 @@ type _ChatCompletionRequestToolMessage ChatCompletionRequestToolMessage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChatCompletionRequestToolMessage(role string, content string, toolCallId string) *ChatCompletionRequestToolMessage {
+func NewChatCompletionRequestToolMessage(role string, content ChatCompletionRequestToolMessageContent, toolCallId string) *ChatCompletionRequestToolMessage {
 	this := ChatCompletionRequestToolMessage{}
 	this.Role = role
 	this.Content = content
@@ -77,9 +76,9 @@ func (o *ChatCompletionRequestToolMessage) SetRole(v string) {
 }
 
 // GetContent returns the Content field value
-func (o *ChatCompletionRequestToolMessage) GetContent() string {
+func (o *ChatCompletionRequestToolMessage) GetContent() ChatCompletionRequestToolMessageContent {
 	if o == nil {
-		var ret string
+		var ret ChatCompletionRequestToolMessageContent
 		return ret
 	}
 
@@ -88,7 +87,7 @@ func (o *ChatCompletionRequestToolMessage) GetContent() string {
 
 // GetContentOk returns a tuple with the Content field value
 // and a boolean to check if the value has been set.
-func (o *ChatCompletionRequestToolMessage) GetContentOk() (*string, bool) {
+func (o *ChatCompletionRequestToolMessage) GetContentOk() (*ChatCompletionRequestToolMessageContent, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -96,7 +95,7 @@ func (o *ChatCompletionRequestToolMessage) GetContentOk() (*string, bool) {
 }
 
 // SetContent sets field value
-func (o *ChatCompletionRequestToolMessage) SetContent(v string) {
+func (o *ChatCompletionRequestToolMessage) SetContent(v ChatCompletionRequestToolMessageContent) {
 	o.Content = v
 }
 

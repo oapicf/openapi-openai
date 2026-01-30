@@ -31,13 +31,6 @@ void main() {
       // TODO
     });
 
-    // Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-    //
-    //Future<AssistantFileObject> createAssistantFile(String assistantId, CreateAssistantFileRequest createAssistantFileRequest) async
-    test('test createAssistantFile', () async {
-      // TODO
-    });
-
     // Create a message.
     //
     //Future<MessageObject> createMessage(String threadId, CreateMessageRequest createMessageRequest) async
@@ -47,7 +40,7 @@ void main() {
 
     // Create a run.
     //
-    //Future<RunObject> createRun(String threadId, CreateRunRequest createRunRequest) async
+    //Future<RunObject> createRun(String threadId, CreateRunRequest createRunRequest, { List<String> includeLeftSquareBracketRightSquareBracket }) async
     test('test createRun', () async {
       // TODO
     });
@@ -73,10 +66,10 @@ void main() {
       // TODO
     });
 
-    // Delete an assistant file.
+    // Deletes a message.
     //
-    //Future<DeleteAssistantFileResponse> deleteAssistantFile(String assistantId, String fileId) async
-    test('test deleteAssistantFile', () async {
+    //Future<DeleteMessageResponse> deleteMessage(String threadId, String messageId) async
+    test('test deleteMessage', () async {
       // TODO
     });
 
@@ -94,24 +87,10 @@ void main() {
       // TODO
     });
 
-    // Retrieves an AssistantFile.
-    //
-    //Future<AssistantFileObject> getAssistantFile(String assistantId, String fileId) async
-    test('test getAssistantFile', () async {
-      // TODO
-    });
-
     // Retrieve a message.
     //
     //Future<MessageObject> getMessage(String threadId, String messageId) async
     test('test getMessage', () async {
-      // TODO
-    });
-
-    // Retrieves a message file.
-    //
-    //Future<MessageFileObject> getMessageFile(String threadId, String messageId, String fileId) async
-    test('test getMessageFile', () async {
       // TODO
     });
 
@@ -124,7 +103,7 @@ void main() {
 
     // Retrieves a run step.
     //
-    //Future<RunStepObject> getRunStep(String threadId, String runId, String stepId) async
+    //Future<RunStepObject> getRunStep(String threadId, String runId, String stepId, { List<String> includeLeftSquareBracketRightSquareBracket }) async
     test('test getRunStep', () async {
       // TODO
     });
@@ -136,24 +115,10 @@ void main() {
       // TODO
     });
 
-    // Returns a list of assistant files.
-    //
-    //Future<ListAssistantFilesResponse> listAssistantFiles(String assistantId, { int limit, String order, String after, String before }) async
-    test('test listAssistantFiles', () async {
-      // TODO
-    });
-
     // Returns a list of assistants.
     //
     //Future<ListAssistantsResponse> listAssistants({ int limit, String order, String after, String before }) async
     test('test listAssistants', () async {
-      // TODO
-    });
-
-    // Returns a list of message files.
-    //
-    //Future<ListMessageFilesResponse> listMessageFiles(String threadId, String messageId, { int limit, String order, String after, String before }) async
-    test('test listMessageFiles', () async {
       // TODO
     });
 
@@ -166,7 +131,7 @@ void main() {
 
     // Returns a list of run steps belonging to a run.
     //
-    //Future<ListRunStepsResponse> listRunSteps(String threadId, String runId, { int limit, String order, String after, String before }) async
+    //Future<ListRunStepsResponse> listRunSteps(String threadId, String runId, { int limit, String order, String after, String before, List<String> includeLeftSquareBracketRightSquareBracket }) async
     test('test listRunSteps', () async {
       // TODO
     });

@@ -16,15 +16,19 @@ public struct ThreadStreamEvent: Codable, JSONEncodable, Hashable {
     public enum Event: String, Codable, CaseIterable {
         case threadPeriodCreated = "thread.created"
     }
+    /** Whether to enable input audio transcription. */
+    public var enabled: Bool?
     public var event: Event
     public var data: ThreadObject
 
-    public init(event: Event, data: ThreadObject) {
+    public init(enabled: Bool? = nil, event: Event, data: ThreadObject) {
+        self.enabled = enabled
         self.event = event
         self.data = data
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case enabled
         case event
         case data
     }
@@ -33,6 +37,7 @@ public struct ThreadStreamEvent: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(enabled, forKey: .enabled)
         try container.encode(event, forKey: .event)
         try container.encode(data, forKey: .data)
     }

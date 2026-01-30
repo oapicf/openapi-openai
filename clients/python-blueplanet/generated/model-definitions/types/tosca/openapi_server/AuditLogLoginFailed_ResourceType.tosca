@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AuditLogLoginFailed"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AuditLogLoginFailed"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  AuditLogLoginFailed {
+    title = AuditLogLoginFailed
+    description = AuditLogLoginFailed
+    derivedFrom = Root
+    properties {
+        error_code {
+          type =  string
+          description = "The error code of the failure."
+          optional = false
+        }
+        error_message {
+          type =  string
+          description = "The error message of the failure."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AuditLogLoginFailed {
+    title = AuditLogLoginFailed
+    description = AuditLogLoginFailed
+    implements = openapi_server.resourceTypes.AuditLogLoginFailed
+
+  }
+}

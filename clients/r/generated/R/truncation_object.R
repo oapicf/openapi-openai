@@ -1,13 +1,13 @@
 #' Create a new TruncationObject
 #'
 #' @description
-#' TruncationObject Class
+#' Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
 #'
 #' @docType class
 #' @title TruncationObject
 #' @description TruncationObject Class
 #' @format An \code{R6Class} generator object
-#' @field type The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`. character [optional]
+#' @field type The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`. character
 #' @field last_messages The number of most recent messages from the thread when constructing the context for the run. integer [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -24,8 +24,8 @@ TruncationObject <- R6::R6Class(
     #' @param type The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.
     #' @param last_messages The number of most recent messages from the thread when constructing the context for the run.
     #' @param ... Other optional arguments.
-    initialize = function(`type` = NULL, `last_messages` = NULL, ...) {
-      if (!is.null(`type`)) {
+    initialize = function(`type`, `last_messages` = NULL, ...) {
+      if (!missing(`type`)) {
         if (!(`type` %in% c("auto", "last_messages"))) {
           stop(paste("Error! \"", `type`, "\" cannot be assigned to `type`. Must be \"auto\", \"last_messages\".", sep = ""))
         }
@@ -135,6 +135,14 @@ TruncationObject <- R6::R6Class(
     #' @param input the JSON input
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
+      # check the required field `type`
+      if (!is.null(input_json$`type`)) {
+        if (!(is.character(input_json$`type`) && length(input_json$`type`) == 1)) {
+          stop(paste("Error! Invalid data for `type`. Must be a string:", input_json$`type`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for TruncationObject: the required field `type` is missing."))
+      }
     },
 
     #' @description
@@ -150,6 +158,11 @@ TruncationObject <- R6::R6Class(
     #'
     #' @return true if the values in all fields are valid.
     isValid = function() {
+      # check if the required `type` is null
+      if (is.null(self$`type`)) {
+        return(FALSE)
+      }
+
       if (self$`last_messages` < 1) {
         return(FALSE)
       }
@@ -163,6 +176,11 @@ TruncationObject <- R6::R6Class(
     #' @return A list of invalid fields (if any).
     getInvalidFields = function() {
       invalid_fields <- list()
+      # check if the required `type` is null
+      if (is.null(self$`type`)) {
+        invalid_fields["type"] <- "Non-nullable required field `type` cannot be null."
+      }
+
       if (self$`last_messages` < 1) {
         invalid_fields["last_messages"] <- "Invalid value for `last_messages`, must be bigger than or equal to 1."
       }

@@ -1,12 +1,8 @@
 package org.openapitools.api
 
-import org.openapitools.model.AssistantFileObject
 import org.openapitools.model.AssistantObject
-import org.openapitools.model.CreateAssistantFileRequest
 import org.openapitools.model.CreateAssistantRequest
-import org.openapitools.model.DeleteAssistantFileResponse
 import org.openapitools.model.DeleteAssistantResponse
-import org.openapitools.model.ListAssistantFilesResponse
 import org.openapitools.model.ListAssistantsResponse
 import org.openapitools.model.ModifyAssistantRequest
 import io.swagger.v3.oas.annotations.*
@@ -63,27 +59,6 @@ class AssistantsApiController() {
     }
 
     @Operation(
-        summary = "Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).",
-        operationId = "createAssistantFile",
-        description = """""",
-        responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = AssistantFileObject::class))]) ],
-        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
-    )
-    @RequestMapping(
-        method = [RequestMethod.POST],
-        value = [PATH_CREATE_ASSISTANT_FILE /* "/assistants/{assistant_id}/files" */],
-        produces = ["application/json"],
-        consumes = ["application/json"]
-    )
-    fun createAssistantFile(
-        @Parameter(description = "The ID of the assistant for which to create a File. ", required = true) @PathVariable("assistant_id") assistantId: kotlin.String,
-        @Parameter(description = "", required = true) @Valid @RequestBody createAssistantFileRequest: CreateAssistantFileRequest
-    ): ResponseEntity<AssistantFileObject> {
-        return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
-    }
-
-    @Operation(
         summary = "Delete an assistant.",
         operationId = "deleteAssistant",
         description = """""",
@@ -99,26 +74,6 @@ class AssistantsApiController() {
     fun deleteAssistant(
         @Parameter(description = "The ID of the assistant to delete.", required = true) @PathVariable("assistant_id") assistantId: kotlin.String
     ): ResponseEntity<DeleteAssistantResponse> {
-        return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
-    }
-
-    @Operation(
-        summary = "Delete an assistant file.",
-        operationId = "deleteAssistantFile",
-        description = """""",
-        responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = DeleteAssistantFileResponse::class))]) ],
-        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
-    )
-    @RequestMapping(
-        method = [RequestMethod.DELETE],
-        value = [PATH_DELETE_ASSISTANT_FILE /* "/assistants/{assistant_id}/files/{file_id}" */],
-        produces = ["application/json"]
-    )
-    fun deleteAssistantFile(
-        @Parameter(description = "The ID of the assistant that the file belongs to.", required = true) @PathVariable("assistant_id") assistantId: kotlin.String,
-        @Parameter(description = "The ID of the file to delete.", required = true) @PathVariable("file_id") fileId: kotlin.String
-    ): ResponseEntity<DeleteAssistantFileResponse> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -142,49 +97,6 @@ class AssistantsApiController() {
     }
 
     @Operation(
-        summary = "Retrieves an AssistantFile.",
-        operationId = "getAssistantFile",
-        description = """""",
-        responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = AssistantFileObject::class))]) ],
-        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
-    )
-    @RequestMapping(
-        method = [RequestMethod.GET],
-        value = [PATH_GET_ASSISTANT_FILE /* "/assistants/{assistant_id}/files/{file_id}" */],
-        produces = ["application/json"]
-    )
-    fun getAssistantFile(
-        @Parameter(description = "The ID of the assistant who the file belongs to.", required = true) @PathVariable("assistant_id") assistantId: kotlin.String,
-        @Parameter(description = "The ID of the file we're getting.", required = true) @PathVariable("file_id") fileId: kotlin.String
-    ): ResponseEntity<AssistantFileObject> {
-        return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
-    }
-
-    @Operation(
-        summary = "Returns a list of assistant files.",
-        operationId = "listAssistantFiles",
-        description = """""",
-        responses = [
-            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = ListAssistantFilesResponse::class))]) ],
-        security = [ SecurityRequirement(name = "ApiKeyAuth") ]
-    )
-    @RequestMapping(
-        method = [RequestMethod.GET],
-        value = [PATH_LIST_ASSISTANT_FILES /* "/assistants/{assistant_id}/files" */],
-        produces = ["application/json"]
-    )
-    fun listAssistantFiles(
-        @Parameter(description = "The ID of the assistant the file belongs to.", required = true) @PathVariable("assistant_id") assistantId: kotlin.String,
-        @Parameter(description = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", schema = Schema(defaultValue = "20")) @Valid @RequestParam(value = "limit", required = false, defaultValue = "20") limit: kotlin.Int,
-        @Parameter(description = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", schema = Schema(allowableValues = ["asc", "desc"], defaultValue = "desc")) @Valid @RequestParam(value = "order", required = false, defaultValue = "desc") order: kotlin.String,
-        @Parameter(description = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ") @Valid @RequestParam(value = "after", required = false) after: kotlin.String?,
-        @Parameter(description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ") @Valid @RequestParam(value = "before", required = false) before: kotlin.String?
-    ): ResponseEntity<ListAssistantFilesResponse> {
-        return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
-    }
-
-    @Operation(
         summary = "Returns a list of assistants.",
         operationId = "listAssistants",
         description = """""",
@@ -201,7 +113,7 @@ class AssistantsApiController() {
         @Parameter(description = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", schema = Schema(defaultValue = "20")) @Valid @RequestParam(value = "limit", required = false, defaultValue = "20") limit: kotlin.Int,
         @Parameter(description = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", schema = Schema(allowableValues = ["asc", "desc"], defaultValue = "desc")) @Valid @RequestParam(value = "order", required = false, defaultValue = "desc") order: kotlin.String,
         @Parameter(description = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ") @Valid @RequestParam(value = "after", required = false) after: kotlin.String?,
-        @Parameter(description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ") @Valid @RequestParam(value = "before", required = false) before: kotlin.String?
+        @Parameter(description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ") @Valid @RequestParam(value = "before", required = false) before: kotlin.String?
     ): ResponseEntity<ListAssistantsResponse> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
@@ -231,12 +143,8 @@ class AssistantsApiController() {
         //for your own safety never directly reuse these path definitions in tests
         const val BASE_PATH: String = "/v1"
         const val PATH_CREATE_ASSISTANT: String = "/assistants"
-        const val PATH_CREATE_ASSISTANT_FILE: String = "/assistants/{assistant_id}/files"
         const val PATH_DELETE_ASSISTANT: String = "/assistants/{assistant_id}"
-        const val PATH_DELETE_ASSISTANT_FILE: String = "/assistants/{assistant_id}/files/{file_id}"
         const val PATH_GET_ASSISTANT: String = "/assistants/{assistant_id}"
-        const val PATH_GET_ASSISTANT_FILE: String = "/assistants/{assistant_id}/files/{file_id}"
-        const val PATH_LIST_ASSISTANT_FILES: String = "/assistants/{assistant_id}/files"
         const val PATH_LIST_ASSISTANTS: String = "/assistants"
         const val PATH_MODIFY_ASSISTANT: String = "/assistants/{assistant_id}"
     }

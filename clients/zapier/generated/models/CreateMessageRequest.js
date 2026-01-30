@@ -1,4 +1,6 @@
 const utils = require('../utils/utils');
+const CreateMessageRequest_attachments_inner = require('../models/CreateMessageRequest_attachments_inner');
+const CreateMessageRequest_content = require('../models/CreateMessageRequest_content');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
@@ -14,21 +16,15 @@ module.exports = {
                     'assistant',
                 ],
             },
+            ...CreateMessageRequest_content.fields(`${keyPrefix}content`, isInput),
             {
-                key: `${keyPrefix}content`,
-                label: `The content of the message. - [${labelPrefix}content]`,
-                required: true,
-                type: 'string',
-            },
-            {
-                key: `${keyPrefix}file_ids`,
-                label: `A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like `retrieval` and `code_interpreter` that can access and use files. - [${labelPrefix}file_ids]`,
-                list: true,
-                type: 'string',
+                key: `${keyPrefix}attachments`,
+                label: `[${labelPrefix}attachments]`,
+                children: CreateMessageRequest_attachments_inner.fields(`${keyPrefix}attachments${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}metadata`,
-                label: `Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  - [${labelPrefix}metadata]`,
+                label: `Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  - [${labelPrefix}metadata]`,
                 dict: true,
             },
         ]
@@ -37,8 +33,8 @@ module.exports = {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'role': bundle.inputData?.[`${keyPrefix}role`],
-            'content': bundle.inputData?.[`${keyPrefix}content`],
-            'file_ids': bundle.inputData?.[`${keyPrefix}file_ids`],
+            'content': utils.removeIfEmpty(CreateMessageRequest_content.mapping(bundle, `${keyPrefix}content`)),
+            'attachments': utils.childMapping(bundle.inputData?.[`${keyPrefix}attachments`], `${keyPrefix}attachments`, CreateMessageRequest_attachments_inner),
             'metadata': bundle.inputData?.[`${keyPrefix}metadata`],
         }
     },

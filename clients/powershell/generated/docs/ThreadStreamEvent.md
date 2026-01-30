@@ -3,6 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Enabled** | **Boolean** | Whether to enable input audio transcription. | [optional] 
 **VarEvent** | **String** |  | 
 **VarData** | [**ThreadObject**](ThreadObject.md) |  | 
 
@@ -10,7 +11,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ThreadStreamEvent = Initialize-PSOpenAPIToolsThreadStreamEvent  -VarEvent null `
+$ThreadStreamEvent = Initialize-PSOpenAPIToolsThreadStreamEvent  -Enabled null `
+ -VarEvent null `
  -VarData null
 ```
 

@@ -21,9 +21,10 @@ import io.kotlintest.specs.ShouldSpec
 import org.openapitools.client.models.RunStepDetailsToolCallsObjectToolCallsInner
 import org.openapitools.client.models.RunStepDetailsToolCallsCodeObject
 import org.openapitools.client.models.RunStepDetailsToolCallsCodeObjectCodeInterpreter
+import org.openapitools.client.models.RunStepDetailsToolCallsFileSearchObject
+import org.openapitools.client.models.RunStepDetailsToolCallsFileSearchObjectFileSearch
 import org.openapitools.client.models.RunStepDetailsToolCallsFunctionObject
 import org.openapitools.client.models.RunStepDetailsToolCallsFunctionObjectFunction
-import org.openapitools.client.models.RunStepDetailsToolCallsRetrievalObject
 
 class RunStepDetailsToolCallsObjectToolCallsInnerTest : ShouldSpec() {
     init {
@@ -48,10 +49,10 @@ class RunStepDetailsToolCallsObjectToolCallsInnerTest : ShouldSpec() {
             //modelInstance.codeInterpreter shouldBe ("TODO")
         }
 
-        // to test the property `retrieval` - For now, this is always going to be an empty object.
-        should("test retrieval") {
+        // to test the property `fileSearch`
+        should("test fileSearch") {
             // uncomment below to test the property
-            //modelInstance.retrieval shouldBe ("TODO")
+            //modelInstance.fileSearch shouldBe ("TODO")
         }
 
         // to test the property `function`

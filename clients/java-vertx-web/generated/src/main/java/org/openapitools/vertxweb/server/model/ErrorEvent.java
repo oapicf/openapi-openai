@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.vertxweb.server.model.Error;
 
 /**
- * Occurs when an [error](/docs/guides/error-codes/api-errors) occurs. This can happen due to an internal server error or a timeout.
+ * Occurs when an [error](/docs/guides/error-codes#api-errors) occurs. This can happen due to an internal server error or a timeout.
  **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorEvent   {

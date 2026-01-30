@@ -16,18 +16,21 @@ ChatCompletionRequestMessage <- R6::R6Class(
     #' @field actual_type the type of the object stored in this instance.
     actual_type = NULL,
     #' @field one_of  a list of types defined in the oneOf schema.
-    one_of = list("ChatCompletionRequestAssistantMessage", "ChatCompletionRequestFunctionMessage", "ChatCompletionRequestSystemMessage", "ChatCompletionRequestToolMessage", "ChatCompletionRequestUserMessage"),
+    one_of = list("ChatCompletionRequestAssistantMessage", "ChatCompletionRequestDeveloperMessage", "ChatCompletionRequestFunctionMessage", "ChatCompletionRequestSystemMessage", "ChatCompletionRequestToolMessage", "ChatCompletionRequestUserMessage"),
 
     #' @description
     #' Initialize a new ChatCompletionRequestMessage.
     #'
-    #' @param instance an instance of the object defined in the oneOf schemas: "ChatCompletionRequestAssistantMessage", "ChatCompletionRequestFunctionMessage", "ChatCompletionRequestSystemMessage", "ChatCompletionRequestToolMessage", "ChatCompletionRequestUserMessage"
+    #' @param instance an instance of the object defined in the oneOf schemas: "ChatCompletionRequestAssistantMessage", "ChatCompletionRequestDeveloperMessage", "ChatCompletionRequestFunctionMessage", "ChatCompletionRequestSystemMessage", "ChatCompletionRequestToolMessage", "ChatCompletionRequestUserMessage"
     initialize = function(instance = NULL) {
       if (is.null(instance)) {
         # do nothing
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "ChatCompletionRequestAssistantMessage") {
         self$actual_instance <- instance
         self$actual_type <- "ChatCompletionRequestAssistantMessage"
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "ChatCompletionRequestDeveloperMessage") {
+        self$actual_instance <- instance
+        self$actual_type <- "ChatCompletionRequestDeveloperMessage"
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "ChatCompletionRequestFunctionMessage") {
         self$actual_instance <- instance
         self$actual_type <- "ChatCompletionRequestFunctionMessage"
@@ -41,7 +44,7 @@ ChatCompletionRequestMessage <- R6::R6Class(
         self$actual_instance <- instance
         self$actual_type <- "ChatCompletionRequestUserMessage"
       } else {
-        stop(paste("Failed to initialize ChatCompletionRequestMessage with oneOf schemas ChatCompletionRequestAssistantMessage, ChatCompletionRequestFunctionMessage, ChatCompletionRequestSystemMessage, ChatCompletionRequestToolMessage, ChatCompletionRequestUserMessage. Provided class name: ",
+        stop(paste("Failed to initialize ChatCompletionRequestMessage with oneOf schemas ChatCompletionRequestAssistantMessage, ChatCompletionRequestDeveloperMessage, ChatCompletionRequestFunctionMessage, ChatCompletionRequestSystemMessage, ChatCompletionRequestToolMessage, ChatCompletionRequestUserMessage. Provided class name: ",
                    get(class(instance)[[1]], pos = -1)$classname))
       }
     },
@@ -68,6 +71,21 @@ ChatCompletionRequestMessage <- R6::R6Class(
       matched_schemas <- list() #names of matched schemas
       error_messages <- list()
       instance <- NULL
+
+      `ChatCompletionRequestDeveloperMessage_result` <- tryCatch({
+          `ChatCompletionRequestDeveloperMessage`$public_methods$validateJSON(input)
+          `ChatCompletionRequestDeveloperMessage_instance` <- `ChatCompletionRequestDeveloperMessage`$new()
+          instance <- `ChatCompletionRequestDeveloperMessage_instance`$fromJSON(input)
+          instance_type <- "ChatCompletionRequestDeveloperMessage"
+          matched_schemas <- append(matched_schemas, "ChatCompletionRequestDeveloperMessage")
+          matched <- matched + 1
+        },
+        error = function(err) err
+      )
+
+      if (!is.null(`ChatCompletionRequestDeveloperMessage_result`["error"])) {
+        error_messages <- append(error_messages, `ChatCompletionRequestDeveloperMessage_result`["message"])
+      }
 
       `ChatCompletionRequestSystemMessage_result` <- tryCatch({
           `ChatCompletionRequestSystemMessage`$public_methods$validateJSON(input)
@@ -150,11 +168,11 @@ ChatCompletionRequestMessage <- R6::R6Class(
         self$actual_type <- instance_type
       } else if (matched > 1) {
         # more than 1 match
-        stop(paste("Multiple matches found when deserializing the input into ChatCompletionRequestMessage with oneOf schemas ChatCompletionRequestAssistantMessage, ChatCompletionRequestFunctionMessage, ChatCompletionRequestSystemMessage, ChatCompletionRequestToolMessage, ChatCompletionRequestUserMessage. Matched schemas: ",
+        stop(paste("Multiple matches found when deserializing the input into ChatCompletionRequestMessage with oneOf schemas ChatCompletionRequestAssistantMessage, ChatCompletionRequestDeveloperMessage, ChatCompletionRequestFunctionMessage, ChatCompletionRequestSystemMessage, ChatCompletionRequestToolMessage, ChatCompletionRequestUserMessage. Matched schemas: ",
                    paste(matched_schemas, collapse = ", ")))
       } else {
         # no match
-        stop(paste("No match found when deserializing the input into ChatCompletionRequestMessage with oneOf schemas ChatCompletionRequestAssistantMessage, ChatCompletionRequestFunctionMessage, ChatCompletionRequestSystemMessage, ChatCompletionRequestToolMessage, ChatCompletionRequestUserMessage. Details: >>",
+        stop(paste("No match found when deserializing the input into ChatCompletionRequestMessage with oneOf schemas ChatCompletionRequestAssistantMessage, ChatCompletionRequestDeveloperMessage, ChatCompletionRequestFunctionMessage, ChatCompletionRequestSystemMessage, ChatCompletionRequestToolMessage, ChatCompletionRequestUserMessage. Details: >>",
                    paste(error_messages, collapse = " >> ")))
       }
 

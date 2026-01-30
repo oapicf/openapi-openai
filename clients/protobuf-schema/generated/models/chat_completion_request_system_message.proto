@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -14,11 +14,11 @@ syntax = "proto3";
 
 package openapitools;
 
+import public "models/chat_completion_request_system_message_content.proto";
 
 message ChatCompletionRequestSystemMessage {
 
-  // The contents of the system message.
-  string content = 414659706;
+  ChatCompletionRequestSystemMessageContent content = 414659706;
 
   // The role of the messages author, in this case `system`.
   enum Role {

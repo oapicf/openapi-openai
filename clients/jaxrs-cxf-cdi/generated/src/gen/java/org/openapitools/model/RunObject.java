@@ -75,7 +75,7 @@ public enum ObjectEnum {
 
 public enum StatusEnum {
 
-    @JsonProperty("queued") QUEUED(String.valueOf("queued")), @JsonProperty("in_progress") IN_PROGRESS(String.valueOf("in_progress")), @JsonProperty("requires_action") REQUIRES_ACTION(String.valueOf("requires_action")), @JsonProperty("cancelling") CANCELLING(String.valueOf("cancelling")), @JsonProperty("cancelled") CANCELLED(String.valueOf("cancelled")), @JsonProperty("failed") FAILED(String.valueOf("failed")), @JsonProperty("completed") COMPLETED(String.valueOf("completed")), @JsonProperty("expired") EXPIRED(String.valueOf("expired"));
+    @JsonProperty("queued") QUEUED(String.valueOf("queued")), @JsonProperty("in_progress") IN_PROGRESS(String.valueOf("in_progress")), @JsonProperty("requires_action") REQUIRES_ACTION(String.valueOf("requires_action")), @JsonProperty("cancelling") CANCELLING(String.valueOf("cancelling")), @JsonProperty("cancelled") CANCELLED(String.valueOf("cancelled")), @JsonProperty("failed") FAILED(String.valueOf("failed")), @JsonProperty("completed") COMPLETED(String.valueOf("completed")), @JsonProperty("incomplete") INCOMPLETE(String.valueOf("incomplete")), @JsonProperty("expired") EXPIRED(String.valueOf("expired"));
 
 
     private String value;
@@ -127,13 +127,13 @@ public enum StatusEnum {
 
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
 
-  private List<String> fileIds = new ArrayList<>();
-
   private Object metadata;
 
   private RunCompletionUsage usage;
 
   private BigDecimal temperature;
+
+  private BigDecimal topP;
 
   private Integer maxPromptTokens;
 
@@ -142,6 +142,8 @@ public enum StatusEnum {
   private TruncationObject truncationStrategy;
 
   private AssistantsApiToolChoiceOption toolChoice;
+
+  private Boolean parallelToolCalls = true;
 
   private AssistantsApiResponseFormatOption responseFormat;
 
@@ -246,7 +248,7 @@ public enum StatusEnum {
 
 
   /**
-   * The status of the run, which can be either &#x60;queued&#x60;, &#x60;in_progress&#x60;, &#x60;requires_action&#x60;, &#x60;cancelling&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, or &#x60;expired&#x60;.
+   * The status of the run, which can be either &#x60;queued&#x60;, &#x60;in_progress&#x60;, &#x60;requires_action&#x60;, &#x60;cancelling&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, &#x60;incomplete&#x60;, or &#x60;expired&#x60;.
    **/
   public RunObject status(StatusEnum status) {
     this.status = status;
@@ -254,7 +256,7 @@ public enum StatusEnum {
   }
 
   
-  @ApiModelProperty(required = true, value = "The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.")
+  @ApiModelProperty(required = true, value = "The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.")
   @JsonProperty("status")
   @NotNull
   public StatusEnum getStatus() {
@@ -491,35 +493,7 @@ public enum StatusEnum {
 
 
   /**
-   * The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
-   **/
-  public RunObject fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  
-  @ApiModelProperty(required = true, value = "The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.")
-  @JsonProperty("file_ids")
-  @NotNull
-  public List<String> getFileIds() {
-    return fileIds;
-  }
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-  }
-
-  public RunObject addFileIdsItem(String fileIdsItem) {
-    if (this.fileIds == null) {
-      this.fileIds = new ArrayList<>();
-    }
-    this.fileIds.add(fileIdsItem);
-    return this;
-  }
-
-
-  /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    **/
   public RunObject metadata(Object metadata) {
     this.metadata = metadata;
@@ -527,7 +501,7 @@ public enum StatusEnum {
   }
 
   
-  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
   @JsonProperty("metadata")
   @NotNull
   public Object getMetadata() {
@@ -573,6 +547,25 @@ public enum StatusEnum {
   }
   public void setTemperature(BigDecimal temperature) {
     this.temperature = temperature;
+  }
+
+
+  /**
+   * The nucleus sampling value used for this run. If not set, defaults to 1.
+   **/
+  public RunObject topP(BigDecimal topP) {
+    this.topP = topP;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "The nucleus sampling value used for this run. If not set, defaults to 1.")
+  @JsonProperty("top_p")
+  public BigDecimal getTopP() {
+    return topP;
+  }
+  public void setTopP(BigDecimal topP) {
+    this.topP = topP;
   }
 
 
@@ -657,6 +650,26 @@ public enum StatusEnum {
 
 
   /**
+   * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+   **/
+  public RunObject parallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.")
+  @JsonProperty("parallel_tool_calls")
+  @NotNull
+  public Boolean getParallelToolCalls() {
+    return parallelToolCalls;
+  }
+  public void setParallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+  }
+
+
+  /**
    **/
   public RunObject responseFormat(AssistantsApiResponseFormatOption responseFormat) {
     this.responseFormat = responseFormat;
@@ -702,20 +715,21 @@ public enum StatusEnum {
         Objects.equals(this.model, runObject.model) &&
         Objects.equals(this.instructions, runObject.instructions) &&
         Objects.equals(this.tools, runObject.tools) &&
-        Objects.equals(this.fileIds, runObject.fileIds) &&
         Objects.equals(this.metadata, runObject.metadata) &&
         Objects.equals(this.usage, runObject.usage) &&
         Objects.equals(this.temperature, runObject.temperature) &&
+        Objects.equals(this.topP, runObject.topP) &&
         Objects.equals(this.maxPromptTokens, runObject.maxPromptTokens) &&
         Objects.equals(this.maxCompletionTokens, runObject.maxCompletionTokens) &&
         Objects.equals(this.truncationStrategy, runObject.truncationStrategy) &&
         Objects.equals(this.toolChoice, runObject.toolChoice) &&
+        Objects.equals(this.parallelToolCalls, runObject.parallelToolCalls) &&
         Objects.equals(this.responseFormat, runObject.responseFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, threadId, assistantId, status, requiredAction, lastError, expiresAt, startedAt, cancelledAt, failedAt, completedAt, incompleteDetails, model, instructions, tools, fileIds, metadata, usage, temperature, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, responseFormat);
+    return Objects.hash(id, _object, createdAt, threadId, assistantId, status, requiredAction, lastError, expiresAt, startedAt, cancelledAt, failedAt, completedAt, incompleteDetails, model, instructions, tools, metadata, usage, temperature, topP, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, parallelToolCalls, responseFormat);
   }
 
   @Override
@@ -740,14 +754,15 @@ public enum StatusEnum {
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
     sb.append("    maxPromptTokens: ").append(toIndentedString(maxPromptTokens)).append("\n");
     sb.append("    maxCompletionTokens: ").append(toIndentedString(maxCompletionTokens)).append("\n");
     sb.append("    truncationStrategy: ").append(toIndentedString(truncationStrategy)).append("\n");
     sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
+    sb.append("    parallelToolCalls: ").append(toIndentedString(parallelToolCalls)).append("\n");
     sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();

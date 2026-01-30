@@ -14,12 +14,12 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * One of the available [TTS models](/docs/models/tts): &#x60;tts-1&#x60; or &#x60;tts-1-hd&#x60; 
+ * One of the available [TTS models](/docs/models#tts): &#x60;tts-1&#x60; or &#x60;tts-1-hd&#x60; 
  */
 
-@Schema(name = "CreateSpeechRequest_model", description = "One of the available [TTS models](/docs/models/tts): `tts-1` or `tts-1-hd` ")
+@Schema(name = "CreateSpeechRequest_model", description = "One of the available [TTS models](/docs/models#tts): `tts-1` or `tts-1-hd` ")
 @JsonTypeName("CreateSpeechRequest_model")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateSpeechRequestModel {
 
   @Override

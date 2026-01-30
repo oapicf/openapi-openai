@@ -1,4 +1,5 @@
 namespace OpenAPI
+open OpenAPI.Model.AudioResponseFormat
 open OpenAPI.Model.CreateSpeechRequest
 open OpenAPI.Model.CreateTranscription200Response
 open OpenAPI.Model.CreateTranscriptionRequestModel

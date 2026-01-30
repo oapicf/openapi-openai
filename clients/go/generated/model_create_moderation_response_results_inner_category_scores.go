@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -30,6 +30,10 @@ type CreateModerationResponseResultsInnerCategoryScores struct {
 	Harassment float32 `json:"harassment"`
 	// The score for the category 'harassment/threatening'.
 	HarassmentThreatening float32 `json:"harassment/threatening"`
+	// The score for the category 'illicit'.
+	Illicit float32 `json:"illicit"`
+	// The score for the category 'illicit/violent'.
+	IllicitViolent float32 `json:"illicit/violent"`
 	// The score for the category 'self-harm'.
 	SelfHarm float32 `json:"self-harm"`
 	// The score for the category 'self-harm/intent'.
@@ -52,12 +56,14 @@ type _CreateModerationResponseResultsInnerCategoryScores CreateModerationRespons
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateModerationResponseResultsInnerCategoryScores(hate float32, hateThreatening float32, harassment float32, harassmentThreatening float32, selfHarm float32, selfHarmIntent float32, selfHarmInstructions float32, sexual float32, sexualMinors float32, violence float32, violenceGraphic float32) *CreateModerationResponseResultsInnerCategoryScores {
+func NewCreateModerationResponseResultsInnerCategoryScores(hate float32, hateThreatening float32, harassment float32, harassmentThreatening float32, illicit float32, illicitViolent float32, selfHarm float32, selfHarmIntent float32, selfHarmInstructions float32, sexual float32, sexualMinors float32, violence float32, violenceGraphic float32) *CreateModerationResponseResultsInnerCategoryScores {
 	this := CreateModerationResponseResultsInnerCategoryScores{}
 	this.Hate = hate
 	this.HateThreatening = hateThreatening
 	this.Harassment = harassment
 	this.HarassmentThreatening = harassmentThreatening
+	this.Illicit = illicit
+	this.IllicitViolent = illicitViolent
 	this.SelfHarm = selfHarm
 	this.SelfHarmIntent = selfHarmIntent
 	this.SelfHarmInstructions = selfHarmInstructions
@@ -170,6 +176,54 @@ func (o *CreateModerationResponseResultsInnerCategoryScores) GetHarassmentThreat
 // SetHarassmentThreatening sets field value
 func (o *CreateModerationResponseResultsInnerCategoryScores) SetHarassmentThreatening(v float32) {
 	o.HarassmentThreatening = v
+}
+
+// GetIllicit returns the Illicit field value
+func (o *CreateModerationResponseResultsInnerCategoryScores) GetIllicit() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.Illicit
+}
+
+// GetIllicitOk returns a tuple with the Illicit field value
+// and a boolean to check if the value has been set.
+func (o *CreateModerationResponseResultsInnerCategoryScores) GetIllicitOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Illicit, true
+}
+
+// SetIllicit sets field value
+func (o *CreateModerationResponseResultsInnerCategoryScores) SetIllicit(v float32) {
+	o.Illicit = v
+}
+
+// GetIllicitViolent returns the IllicitViolent field value
+func (o *CreateModerationResponseResultsInnerCategoryScores) GetIllicitViolent() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.IllicitViolent
+}
+
+// GetIllicitViolentOk returns a tuple with the IllicitViolent field value
+// and a boolean to check if the value has been set.
+func (o *CreateModerationResponseResultsInnerCategoryScores) GetIllicitViolentOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IllicitViolent, true
+}
+
+// SetIllicitViolent sets field value
+func (o *CreateModerationResponseResultsInnerCategoryScores) SetIllicitViolent(v float32) {
+	o.IllicitViolent = v
 }
 
 // GetSelfHarm returns the SelfHarm field value
@@ -354,6 +408,8 @@ func (o CreateModerationResponseResultsInnerCategoryScores) ToMap() (map[string]
 	toSerialize["hate/threatening"] = o.HateThreatening
 	toSerialize["harassment"] = o.Harassment
 	toSerialize["harassment/threatening"] = o.HarassmentThreatening
+	toSerialize["illicit"] = o.Illicit
+	toSerialize["illicit/violent"] = o.IllicitViolent
 	toSerialize["self-harm"] = o.SelfHarm
 	toSerialize["self-harm/intent"] = o.SelfHarmIntent
 	toSerialize["self-harm/instructions"] = o.SelfHarmInstructions
@@ -373,6 +429,8 @@ func (o *CreateModerationResponseResultsInnerCategoryScores) UnmarshalJSON(data 
 		"hate/threatening",
 		"harassment",
 		"harassment/threatening",
+		"illicit",
+		"illicit/violent",
 		"self-harm",
 		"self-harm/intent",
 		"self-harm/instructions",

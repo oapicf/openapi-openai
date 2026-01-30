@@ -32,6 +32,10 @@ export interface CreateChatCompletionResponse {
      */
     model: string;
     /**
+     * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+     */
+    service_tier?: CreateChatCompletionResponse.ServiceTierEnum | null;
+    /**
      * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
      */
     system_fingerprint?: string;
@@ -42,6 +46,11 @@ export interface CreateChatCompletionResponse {
     usage?: CompletionUsage;
 }
 export namespace CreateChatCompletionResponse {
+    export const ServiceTierEnum = {
+        Scale: 'scale',
+        Default: 'default'
+    } as const;
+    export type ServiceTierEnum = typeof ServiceTierEnum[keyof typeof ServiceTierEnum];
     export const ObjectEnum = {
         ChatCompletion: 'chat.completion'
     } as const;

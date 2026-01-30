@@ -13,7 +13,7 @@ import org.openapitools.model.CreateEmbeddingRequestModel;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateEmbeddingRequest   {
   @JsonProperty("input")
   private CreateEmbeddingRequestInput input;
@@ -133,7 +133,7 @@ public class CreateEmbeddingRequest   {
   }
 
   /**
-   * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+   * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
    **/
   public CreateEmbeddingRequest user(String user) {
     this.user = user;
@@ -141,7 +141,7 @@ public class CreateEmbeddingRequest   {
   }
 
   
-  @ApiModelProperty(example = "user-1234", value = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ")
+  @ApiModelProperty(example = "user-1234", value = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ")
   @JsonProperty("user")
   public String getUser() {
     return user;

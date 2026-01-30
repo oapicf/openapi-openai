@@ -39,6 +39,20 @@ class CreateModerationResponseResultsInnerCategoryScores
     public ?float $harassment_threatening = null;
 
     /**
+     * The score for the category &#39;illicit&#39;.
+     * @DTA\Data(field="illicit")
+     * @DTA\Validator(name="Scalar", options={"type":"float"})
+     */
+    public ?float $illicit = null;
+
+    /**
+     * The score for the category &#39;illicit/violent&#39;.
+     * @DTA\Data(field="illicit/violent")
+     * @DTA\Validator(name="Scalar", options={"type":"float"})
+     */
+    public ?float $illicit_violent = null;
+
+    /**
      * The score for the category &#39;self-harm&#39;.
      * @DTA\Data(field="self-harm")
      * @DTA\Validator(name="Scalar", options={"type":"float"})

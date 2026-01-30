@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.FineTuneMethod;
 import org.openapitools.model.FineTuningJobError;
 import org.openapitools.model.FineTuningJobHyperparameters;
 import org.openapitools.model.FineTuningJobIntegrationsInner;
@@ -28,7 +29,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "FineTuningJob", description = "The `fine_tuning.job` object represents a fine-tuning job that has been created through the API. ")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FineTuningJob {
 
   private String id;
@@ -140,6 +141,10 @@ public class FineTuningJob {
   private JsonNullable<List<FineTuningJobIntegrationsInner>> integrations = JsonNullable.<List<FineTuningJobIntegrationsInner>>undefined();
 
   private Integer seed;
+
+  private JsonNullable<Integer> estimatedFinish = JsonNullable.<Integer>undefined();
+
+  private FineTuneMethod method;
 
   public FineTuningJob() {
     super();
@@ -502,6 +507,46 @@ public class FineTuningJob {
     this.seed = seed;
   }
 
+  public FineTuningJob estimatedFinish(Integer estimatedFinish) {
+    this.estimatedFinish = JsonNullable.of(estimatedFinish);
+    return this;
+  }
+
+  /**
+   * The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+   * @return estimatedFinish
+   */
+  
+  @Schema(name = "estimated_finish", description = "The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("estimated_finish")
+  public JsonNullable<Integer> getEstimatedFinish() {
+    return estimatedFinish;
+  }
+
+  public void setEstimatedFinish(JsonNullable<Integer> estimatedFinish) {
+    this.estimatedFinish = estimatedFinish;
+  }
+
+  public FineTuningJob method(FineTuneMethod method) {
+    this.method = method;
+    return this;
+  }
+
+  /**
+   * Get method
+   * @return method
+   */
+  @Valid 
+  @Schema(name = "method", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("method")
+  public FineTuneMethod getMethod() {
+    return method;
+  }
+
+  public void setMethod(FineTuneMethod method) {
+    this.method = method;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -526,7 +571,9 @@ public class FineTuningJob {
         Objects.equals(this.trainingFile, fineTuningJob.trainingFile) &&
         Objects.equals(this.validationFile, fineTuningJob.validationFile) &&
         equalsNullable(this.integrations, fineTuningJob.integrations) &&
-        Objects.equals(this.seed, fineTuningJob.seed);
+        Objects.equals(this.seed, fineTuningJob.seed) &&
+        equalsNullable(this.estimatedFinish, fineTuningJob.estimatedFinish) &&
+        Objects.equals(this.method, fineTuningJob.method);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -535,7 +582,7 @@ public class FineTuningJob {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, createdAt, error, fineTunedModel, finishedAt, hyperparameters, model, _object, organizationId, resultFiles, status, trainedTokens, trainingFile, validationFile, hashCodeNullable(integrations), seed);
+    return Objects.hash(id, createdAt, error, fineTunedModel, finishedAt, hyperparameters, model, _object, organizationId, resultFiles, status, trainedTokens, trainingFile, validationFile, hashCodeNullable(integrations), seed, hashCodeNullable(estimatedFinish), method);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -565,6 +612,8 @@ public class FineTuningJob {
     sb.append("    validationFile: ").append(toIndentedString(validationFile)).append("\n");
     sb.append("    integrations: ").append(toIndentedString(integrations)).append("\n");
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
+    sb.append("    estimatedFinish: ").append(toIndentedString(estimatedFinish)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("}");
     return sb.toString();
   }

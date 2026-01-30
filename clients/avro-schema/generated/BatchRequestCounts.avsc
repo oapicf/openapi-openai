@@ -1,0 +1,24 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The request counts for different statuses within the batch.",
+  "name": "BatchRequestCounts",
+  "fields": [
+    {
+      "name": "total",
+      "type": "int",
+      "doc": "Total number of requests in the batch."
+    },
+    {
+      "name": "completed",
+      "type": "int",
+      "doc": "Number of requests that have been completed successfully."
+    },
+    {
+      "name": "failed",
+      "type": "int",
+      "doc": "Number of requests that have failed."
+    }
+  ]
+
+}

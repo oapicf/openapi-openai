@@ -10,7 +10,7 @@ spec = withApp $ do
 
     describe "deleteModelsByTextR" $
         it "returns 501 Not Implemented" $ do
-            performMethod "DELETE" $ ModelsByTextR "ft:gpt-3.5-turbo:acemeco:suffix:abc123"
+            performMethod "DELETE" $ ModelsByTextR "ft:gpt-4o-mini:acemeco:suffix:abc123"
             statusIs 501
 
     describe "getModelsR" $
@@ -20,5 +20,5 @@ spec = withApp $ do
 
     describe "getModelsByTextR" $
         it "returns 501 Not Implemented" $ do
-            get $ ModelsByTextR "gpt-3.5-turbo"
+            get $ ModelsByTextR "gpt-4o-mini"
             statusIs 501

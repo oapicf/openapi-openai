@@ -23,6 +23,7 @@ openai_api_thread_stream_event_EVENT_e thread_stream_event_event_FromString(char
 }
 
 static thread_stream_event_t *thread_stream_event_create_internal(
+    int enabled,
     openai_api_thread_stream_event_EVENT_e event,
     thread_object_t *data
     ) {
@@ -30,6 +31,7 @@ static thread_stream_event_t *thread_stream_event_create_internal(
     if (!thread_stream_event_local_var) {
         return NULL;
     }
+    thread_stream_event_local_var->enabled = enabled;
     thread_stream_event_local_var->event = event;
     thread_stream_event_local_var->data = data;
 
@@ -38,10 +40,12 @@ static thread_stream_event_t *thread_stream_event_create_internal(
 }
 
 __attribute__((deprecated)) thread_stream_event_t *thread_stream_event_create(
+    int enabled,
     openai_api_thread_stream_event_EVENT_e event,
     thread_object_t *data
     ) {
     return thread_stream_event_create_internal (
+        enabled,
         event,
         data
         );
@@ -65,6 +69,14 @@ void thread_stream_event_free(thread_stream_event_t *thread_stream_event) {
 
 cJSON *thread_stream_event_convertToJSON(thread_stream_event_t *thread_stream_event) {
     cJSON *item = cJSON_CreateObject();
+
+    // thread_stream_event->enabled
+    if(thread_stream_event->enabled) {
+    if(cJSON_AddBoolToObject(item, "enabled", thread_stream_event->enabled) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
 
     // thread_stream_event->event
     if (openai_api_thread_stream_event_EVENT_NULL == thread_stream_event->event) {
@@ -104,6 +116,18 @@ thread_stream_event_t *thread_stream_event_parseFromJSON(cJSON *thread_stream_ev
     // define the local variable for thread_stream_event->data
     thread_object_t *data_local_nonprim = NULL;
 
+    // thread_stream_event->enabled
+    cJSON *enabled = cJSON_GetObjectItemCaseSensitive(thread_stream_eventJSON, "enabled");
+    if (cJSON_IsNull(enabled)) {
+        enabled = NULL;
+    }
+    if (enabled) { 
+    if(!cJSON_IsBool(enabled))
+    {
+    goto end; //Bool
+    }
+    }
+
     // thread_stream_event->event
     cJSON *event = cJSON_GetObjectItemCaseSensitive(thread_stream_eventJSON, "event");
     if (cJSON_IsNull(event)) {
@@ -135,6 +159,7 @@ thread_stream_event_t *thread_stream_event_parseFromJSON(cJSON *thread_stream_ev
 
 
     thread_stream_event_local_var = thread_stream_event_create_internal (
+        enabled ? enabled->valueint : 0,
         eventVariable,
         data_local_nonprim
         );

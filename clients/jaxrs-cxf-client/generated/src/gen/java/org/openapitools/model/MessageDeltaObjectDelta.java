@@ -60,13 +60,6 @@ USER(String.valueOf("user")), ASSISTANT(String.valueOf("assistant"));
   @ApiModelProperty(value = "The content of the message in array of text and/or images.")
 
   private List<MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
-
- /**
-  * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-  */
-  @ApiModelProperty(value = "A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.")
-
-  private List<String> fileIds = new ArrayList<>();
  /**
    * The entity that produced the message. One of &#x60;user&#x60; or &#x60;assistant&#x60;.
    * @return role
@@ -111,29 +104,6 @@ USER(String.valueOf("user")), ASSISTANT(String.valueOf("assistant"));
     return this;
   }
 
- /**
-   * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-   * @return fileIds
-  **/
-  @JsonProperty("file_ids")
-  public List<String> getFileIds() {
-    return fileIds;
-  }
-
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-  }
-
-  public MessageDeltaObjectDelta fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  public MessageDeltaObjectDelta addFileIdsItem(String fileIdsItem) {
-    this.fileIds.add(fileIdsItem);
-    return this;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -144,13 +114,12 @@ USER(String.valueOf("user")), ASSISTANT(String.valueOf("assistant"));
     }
     MessageDeltaObjectDelta messageDeltaObjectDelta = (MessageDeltaObjectDelta) o;
     return Objects.equals(this.role, messageDeltaObjectDelta.role) &&
-        Objects.equals(this.content, messageDeltaObjectDelta.content) &&
-        Objects.equals(this.fileIds, messageDeltaObjectDelta.fileIds);
+        Objects.equals(this.content, messageDeltaObjectDelta.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, content, fileIds);
+    return Objects.hash(role, content);
   }
 
   @Override
@@ -160,7 +129,6 @@ USER(String.valueOf("user")), ASSISTANT(String.valueOf("assistant"));
     
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

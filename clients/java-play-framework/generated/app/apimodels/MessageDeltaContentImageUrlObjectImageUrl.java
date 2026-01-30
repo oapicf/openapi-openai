@@ -1,0 +1,133 @@
+package apimodels;
+
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.*;
+import java.util.Set;
+import javax.validation.*;
+import java.util.Objects;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
+/**
+ * MessageDeltaContentImageUrlObjectImageUrl
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
+public class MessageDeltaContentImageUrlObjectImageUrl   {
+  @JsonProperty("url")
+  
+  private String url;
+
+  /**
+   * Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`.
+   */
+  public enum DetailEnum {
+    AUTO("auto"),
+    
+    LOW("low"),
+    
+    HIGH("high");
+
+    private final String value;
+
+    DetailEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static DetailEnum fromValue(String value) {
+      for (DetailEnum b : DetailEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @JsonProperty("detail")
+  
+  private DetailEnum detail = DetailEnum.AUTO;
+
+  public MessageDeltaContentImageUrlObjectImageUrl url(String url) {
+    this.url = url;
+    return this;
+  }
+
+   /**
+   * The URL of the image, must be a supported image types: jpeg, jpg, png, gif, webp.
+   * @return url
+  **/
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+  public MessageDeltaContentImageUrlObjectImageUrl detail(DetailEnum detail) {
+    this.detail = detail;
+    return this;
+  }
+
+   /**
+   * Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`.
+   * @return detail
+  **/
+  public DetailEnum getDetail() {
+    return detail;
+  }
+
+  public void setDetail(DetailEnum detail) {
+    this.detail = detail;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    MessageDeltaContentImageUrlObjectImageUrl messageDeltaContentImageUrlObjectImageUrl = (MessageDeltaContentImageUrlObjectImageUrl) o;
+    return Objects.equals(url, messageDeltaContentImageUrlObjectImageUrl.url) &&
+        Objects.equals(detail, messageDeltaContentImageUrlObjectImageUrl.detail);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(url, detail);
+  }
+
+  @SuppressWarnings("StringBufferReplaceableByString")
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class MessageDeltaContentImageUrlObjectImageUrl {\n");
+    
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+}
+

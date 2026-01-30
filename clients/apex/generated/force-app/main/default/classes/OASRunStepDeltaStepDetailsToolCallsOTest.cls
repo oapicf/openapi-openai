@@ -74,5 +74,6 @@ private class OASRunStepDeltaStepDetailsToolCallsOTest {
         OASRunStepDeltaStepDetailsToolCallsO runStepDeltaStepDetailsToolCallsObjectToolCallsInner = new OASRunStepDeltaStepDetailsToolCallsO();
         Map<String, String> x-property-mappings = runStepDeltaStepDetailsToolCallsObjectToolCallsInner.getx-property-mappings();
         System.assertEquals('codeInterpreter', x-property-mappings.get('code_interpreter'));
+        System.assertEquals('fileSearch', x-property-mappings.get('file_search'));
     }
 }

@@ -12,6 +12,7 @@ import AnyCodable
 
 public enum ChatCompletionRequestMessage: Codable, JSONEncodable, Hashable {
     case typeChatCompletionRequestAssistantMessage(ChatCompletionRequestAssistantMessage)
+    case typeChatCompletionRequestDeveloperMessage(ChatCompletionRequestDeveloperMessage)
     case typeChatCompletionRequestFunctionMessage(ChatCompletionRequestFunctionMessage)
     case typeChatCompletionRequestSystemMessage(ChatCompletionRequestSystemMessage)
     case typeChatCompletionRequestToolMessage(ChatCompletionRequestToolMessage)
@@ -21,6 +22,8 @@ public enum ChatCompletionRequestMessage: Codable, JSONEncodable, Hashable {
         var container = encoder.singleValueContainer()
         switch self {
         case .typeChatCompletionRequestAssistantMessage(let value):
+            try container.encode(value)
+        case .typeChatCompletionRequestDeveloperMessage(let value):
             try container.encode(value)
         case .typeChatCompletionRequestFunctionMessage(let value):
             try container.encode(value)
@@ -37,6 +40,8 @@ public enum ChatCompletionRequestMessage: Codable, JSONEncodable, Hashable {
         let container = try decoder.singleValueContainer()
         if let value = try? container.decode(ChatCompletionRequestAssistantMessage.self) {
             self = .typeChatCompletionRequestAssistantMessage(value)
+        } else if let value = try? container.decode(ChatCompletionRequestDeveloperMessage.self) {
+            self = .typeChatCompletionRequestDeveloperMessage(value)
         } else if let value = try? container.decode(ChatCompletionRequestFunctionMessage.self) {
             self = .typeChatCompletionRequestFunctionMessage(value)
         } else if let value = try? container.decode(ChatCompletionRequestSystemMessage.self) {

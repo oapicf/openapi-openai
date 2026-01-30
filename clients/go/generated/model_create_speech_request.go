@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -25,7 +25,7 @@ type CreateSpeechRequest struct {
 	Model CreateSpeechRequestModel `json:"model"`
 	// The text to generate audio for. The maximum length is 4096 characters.
 	Input string `json:"input"`
-	// The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+	// The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
 	Voice string `json:"voice"`
 	// The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
 	ResponseFormat *string `json:"response_format,omitempty"`
@@ -46,7 +46,7 @@ func NewCreateSpeechRequest(model CreateSpeechRequestModel, input string, voice 
 	this.Voice = voice
 	var responseFormat string = "mp3"
 	this.ResponseFormat = &responseFormat
-	var speed float32 = 1.0
+	var speed float32 = 1
 	this.Speed = &speed
 	return &this
 }
@@ -58,7 +58,7 @@ func NewCreateSpeechRequestWithDefaults() *CreateSpeechRequest {
 	this := CreateSpeechRequest{}
 	var responseFormat string = "mp3"
 	this.ResponseFormat = &responseFormat
-	var speed float32 = 1.0
+	var speed float32 = 1
 	this.Speed = &speed
 	return &this
 }

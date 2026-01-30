@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,12 +14,15 @@ import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.ChatCompletionFunctions;
 import org.openapitools.model.ChatCompletionRequestMessage;
+import org.openapitools.model.ChatCompletionStreamOptions;
 import org.openapitools.model.ChatCompletionTool;
 import org.openapitools.model.ChatCompletionToolChoiceOption;
+import org.openapitools.model.CreateChatCompletionRequestAudio;
 import org.openapitools.model.CreateChatCompletionRequestFunctionCall;
 import org.openapitools.model.CreateChatCompletionRequestModel;
 import org.openapitools.model.CreateChatCompletionRequestResponseFormat;
 import org.openapitools.model.CreateChatCompletionRequestStop;
+import org.openapitools.model.PredictionContent;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -34,13 +38,57 @@ import javax.annotation.Generated;
  * CreateChatCompletionRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateChatCompletionRequest {
 
   @Valid
   private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
 
   private CreateChatCompletionRequestModel model;
+
+  private JsonNullable<Boolean> store = JsonNullable.<Boolean>undefined();
+
+  /**
+   * **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
+   */
+  public enum ReasoningEffortEnum {
+    LOW("low"),
+    
+    MEDIUM("medium"),
+    
+    HIGH("high");
+
+    private final String value;
+
+    ReasoningEffortEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ReasoningEffortEnum fromValue(String value) {
+      for (ReasoningEffortEnum b : ReasoningEffortEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  private ReasoningEffortEnum reasoningEffort = ReasoningEffortEnum.MEDIUM;
+
+  @Valid
+  private JsonNullable<Map<String, String>> metadata = JsonNullable.<Map<String, String>>undefined();
 
   private JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> frequencyPenalty = JsonNullable.<BigDecimal>undefined();
 
@@ -51,19 +99,103 @@ public class CreateChatCompletionRequest {
 
   private JsonNullable<@Min(value = 0) @Max(value = 20) Integer> topLogprobs = JsonNullable.<Integer>undefined();
 
+  @Deprecated
   private JsonNullable<Integer> maxTokens = JsonNullable.<Integer>undefined();
 
+  private JsonNullable<Integer> maxCompletionTokens = JsonNullable.<Integer>undefined();
+
   private JsonNullable<@Min(value = 1) @Max(value = 128) Integer> n = JsonNullable.<Integer>undefined();
+
+  /**
+   * Gets or Sets modalities
+   */
+  public enum ModalitiesEnum {
+    TEXT("text"),
+    
+    AUDIO("audio");
+
+    private final String value;
+
+    ModalitiesEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ModalitiesEnum fromValue(String value) {
+      for (ModalitiesEnum b : ModalitiesEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @Valid
+  private JsonNullable<List<ModalitiesEnum>> modalities = JsonNullable.<List<ModalitiesEnum>>undefined();
+
+  private JsonNullable<PredictionContent> prediction = JsonNullable.<PredictionContent>undefined();
+
+  private JsonNullable<CreateChatCompletionRequestAudio> audio = JsonNullable.<CreateChatCompletionRequestAudio>undefined();
 
   private JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> presencePenalty = JsonNullable.<BigDecimal>undefined();
 
   private CreateChatCompletionRequestResponseFormat responseFormat;
 
-  private JsonNullable<@Min(value = -9223372036854775808) @Max(value = 9223372036854775807) Integer> seed = JsonNullable.<Integer>undefined();
+  private JsonNullable<@Min(value = -9223372036854776000) @Max(value = 9223372036854776000) Integer> seed = JsonNullable.<Integer>undefined();
+
+  /**
+   * Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. 
+   */
+  public enum ServiceTierEnum {
+    AUTO("auto"),
+    
+    DEFAULT("default");
+
+    private final String value;
+
+    ServiceTierEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ServiceTierEnum fromValue(String value) {
+      for (ServiceTierEnum b : ServiceTierEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  private JsonNullable<ServiceTierEnum> serviceTier = JsonNullable.<ServiceTierEnum>undefined();
 
   private CreateChatCompletionRequestStop stop = null;
 
   private JsonNullable<Boolean> stream = JsonNullable.<Boolean>undefined();
+
+  private JsonNullable<ChatCompletionStreamOptions> streamOptions = JsonNullable.<ChatCompletionStreamOptions>undefined();
 
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
 
@@ -73,6 +205,8 @@ public class CreateChatCompletionRequest {
   private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
 
   private ChatCompletionToolChoiceOption toolChoice;
+
+  private Boolean parallelToolCalls = true;
 
   private String user;
 
@@ -109,11 +243,11 @@ public class CreateChatCompletionRequest {
   }
 
   /**
-   * A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).
+   * A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
    * @return messages
    */
   @NotNull @Valid @Size(min = 1) 
-  @Schema(name = "messages", description = "A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "messages", description = "A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("messages")
   public List<ChatCompletionRequestMessage> getMessages() {
     return messages;
@@ -143,19 +277,87 @@ public class CreateChatCompletionRequest {
     this.model = model;
   }
 
+  public CreateChatCompletionRequest store(Boolean store) {
+    this.store = JsonNullable.of(store);
+    return this;
+  }
+
+  /**
+   * Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. 
+   * @return store
+   */
+  
+  @Schema(name = "store", description = "Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("store")
+  public JsonNullable<Boolean> getStore() {
+    return store;
+  }
+
+  public void setStore(JsonNullable<Boolean> store) {
+    this.store = store;
+  }
+
+  public CreateChatCompletionRequest reasoningEffort(ReasoningEffortEnum reasoningEffort) {
+    this.reasoningEffort = reasoningEffort;
+    return this;
+  }
+
+  /**
+   * **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
+   * @return reasoningEffort
+   */
+  
+  @Schema(name = "reasoning_effort", description = "**o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("reasoning_effort")
+  public ReasoningEffortEnum getReasoningEffort() {
+    return reasoningEffort;
+  }
+
+  public void setReasoningEffort(ReasoningEffortEnum reasoningEffort) {
+    this.reasoningEffort = reasoningEffort;
+  }
+
+  public CreateChatCompletionRequest metadata(Map<String, String> metadata) {
+    this.metadata = JsonNullable.of(metadata);
+    return this;
+  }
+
+  public CreateChatCompletionRequest putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null || !this.metadata.isPresent()) {
+      this.metadata = JsonNullable.of(new HashMap<>());
+    }
+    this.metadata.get().put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). 
+   * @return metadata
+   */
+  
+  @Schema(name = "metadata", description = "Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("metadata")
+  public JsonNullable<Map<String, String>> getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(JsonNullable<Map<String, String>> metadata) {
+    this.metadata = metadata;
+  }
+
   public CreateChatCompletionRequest frequencyPenalty(BigDecimal frequencyPenalty) {
     this.frequencyPenalty = JsonNullable.of(frequencyPenalty);
     return this;
   }
 
   /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. 
    * minimum: -2
    * maximum: 2
    * @return frequencyPenalty
    */
   @Valid @DecimalMin(value = "-2") @DecimalMax(value = "2") 
-  @Schema(name = "frequency_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "frequency_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("frequency_penalty")
   public JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> getFrequencyPenalty() {
     return frequencyPenalty;
@@ -199,11 +401,11 @@ public class CreateChatCompletionRequest {
   }
 
   /**
-   * Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.
+   * Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. 
    * @return logprobs
    */
   
-  @Schema(name = "logprobs", description = "Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "logprobs", description = "Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("logprobs")
   public JsonNullable<Boolean> getLogprobs() {
     return logprobs;
@@ -219,13 +421,13 @@ public class CreateChatCompletionRequest {
   }
 
   /**
-   * An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.
+   * An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. 
    * minimum: 0
    * maximum: 20
    * @return topLogprobs
    */
   @Min(value = 0) @Max(value = 20) 
-  @Schema(name = "top_logprobs", description = "An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "top_logprobs", description = "An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("top_logprobs")
   public JsonNullable<@Min(value = 0) @Max(value = 20) Integer> getTopLogprobs() {
     return topLogprobs;
@@ -241,18 +443,44 @@ public class CreateChatCompletionRequest {
   }
 
   /**
-   * The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
+   * The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). 
    * @return maxTokens
+   * @deprecated
    */
   
-  @Schema(name = "max_tokens", description = "The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "max_tokens", description = "The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). ", deprecated = true, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("max_tokens")
+  @Deprecated
   public JsonNullable<Integer> getMaxTokens() {
     return maxTokens;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   public void setMaxTokens(JsonNullable<Integer> maxTokens) {
     this.maxTokens = maxTokens;
+  }
+
+  public CreateChatCompletionRequest maxCompletionTokens(Integer maxCompletionTokens) {
+    this.maxCompletionTokens = JsonNullable.of(maxCompletionTokens);
+    return this;
+  }
+
+  /**
+   * An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). 
+   * @return maxCompletionTokens
+   */
+  
+  @Schema(name = "max_completion_tokens", description = "An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("max_completion_tokens")
+  public JsonNullable<Integer> getMaxCompletionTokens() {
+    return maxCompletionTokens;
+  }
+
+  public void setMaxCompletionTokens(JsonNullable<Integer> maxCompletionTokens) {
+    this.maxCompletionTokens = maxCompletionTokens;
   }
 
   public CreateChatCompletionRequest n(Integer n) {
@@ -277,19 +505,87 @@ public class CreateChatCompletionRequest {
     this.n = n;
   }
 
+  public CreateChatCompletionRequest modalities(List<ModalitiesEnum> modalities) {
+    this.modalities = JsonNullable.of(modalities);
+    return this;
+  }
+
+  public CreateChatCompletionRequest addModalitiesItem(ModalitiesEnum modalitiesItem) {
+    if (this.modalities == null || !this.modalities.isPresent()) {
+      this.modalities = JsonNullable.of(new ArrayList<>());
+    }
+    this.modalities.get().add(modalitiesItem);
+    return this;
+  }
+
+  /**
+   * Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
+   * @return modalities
+   */
+  
+  @Schema(name = "modalities", description = "Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("modalities")
+  public JsonNullable<List<ModalitiesEnum>> getModalities() {
+    return modalities;
+  }
+
+  public void setModalities(JsonNullable<List<ModalitiesEnum>> modalities) {
+    this.modalities = modalities;
+  }
+
+  public CreateChatCompletionRequest prediction(PredictionContent prediction) {
+    this.prediction = JsonNullable.of(prediction);
+    return this;
+  }
+
+  /**
+   * Get prediction
+   * @return prediction
+   */
+  @Valid 
+  @Schema(name = "prediction", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("prediction")
+  public JsonNullable<PredictionContent> getPrediction() {
+    return prediction;
+  }
+
+  public void setPrediction(JsonNullable<PredictionContent> prediction) {
+    this.prediction = prediction;
+  }
+
+  public CreateChatCompletionRequest audio(CreateChatCompletionRequestAudio audio) {
+    this.audio = JsonNullable.of(audio);
+    return this;
+  }
+
+  /**
+   * Get audio
+   * @return audio
+   */
+  @Valid 
+  @Schema(name = "audio", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("audio")
+  public JsonNullable<CreateChatCompletionRequestAudio> getAudio() {
+    return audio;
+  }
+
+  public void setAudio(JsonNullable<CreateChatCompletionRequestAudio> audio) {
+    this.audio = audio;
+  }
+
   public CreateChatCompletionRequest presencePenalty(BigDecimal presencePenalty) {
     this.presencePenalty = JsonNullable.of(presencePenalty);
     return this;
   }
 
   /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. 
    * minimum: -2
    * maximum: 2
    * @return presencePenalty
    */
   @Valid @DecimalMin(value = "-2") @DecimalMax(value = "2") 
-  @Schema(name = "presence_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "presence_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("presence_penalty")
   public JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> getPresencePenalty() {
     return presencePenalty;
@@ -326,19 +622,39 @@ public class CreateChatCompletionRequest {
 
   /**
    * This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. 
-   * minimum: -9223372036854775808
-   * maximum: 9223372036854775807
+   * minimum: -9223372036854776000
+   * maximum: 9223372036854776000
    * @return seed
    */
-  @Min(value = -9223372036854775808) @Max(value = 9223372036854775807) 
+  @Min(value = -9223372036854776000) @Max(value = 9223372036854776000) 
   @Schema(name = "seed", description = "This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("seed")
-  public JsonNullable<@Min(value = -9223372036854775808) @Max(value = 9223372036854775807) Integer> getSeed() {
+  public JsonNullable<@Min(value = -9223372036854776000) @Max(value = 9223372036854776000) Integer> getSeed() {
     return seed;
   }
 
   public void setSeed(JsonNullable<Integer> seed) {
     this.seed = seed;
+  }
+
+  public CreateChatCompletionRequest serviceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = JsonNullable.of(serviceTier);
+    return this;
+  }
+
+  /**
+   * Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. 
+   * @return serviceTier
+   */
+  
+  @Schema(name = "service_tier", description = "Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("service_tier")
+  public JsonNullable<ServiceTierEnum> getServiceTier() {
+    return serviceTier;
+  }
+
+  public void setServiceTier(JsonNullable<ServiceTierEnum> serviceTier) {
+    this.serviceTier = serviceTier;
   }
 
   public CreateChatCompletionRequest stop(CreateChatCompletionRequestStop stop) {
@@ -381,19 +697,39 @@ public class CreateChatCompletionRequest {
     this.stream = stream;
   }
 
+  public CreateChatCompletionRequest streamOptions(ChatCompletionStreamOptions streamOptions) {
+    this.streamOptions = JsonNullable.of(streamOptions);
+    return this;
+  }
+
+  /**
+   * Get streamOptions
+   * @return streamOptions
+   */
+  @Valid 
+  @Schema(name = "stream_options", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("stream_options")
+  public JsonNullable<ChatCompletionStreamOptions> getStreamOptions() {
+    return streamOptions;
+  }
+
+  public void setStreamOptions(JsonNullable<ChatCompletionStreamOptions> streamOptions) {
+    this.streamOptions = streamOptions;
+  }
+
   public CreateChatCompletionRequest temperature(BigDecimal temperature) {
     this.temperature = JsonNullable.of(temperature);
     return this;
   }
 
   /**
-   * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both. 
+   * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. 
    * minimum: 0
    * maximum: 2
    * @return temperature
    */
   @Valid @DecimalMin(value = "0") @DecimalMax(value = "2") 
-  @Schema(name = "temperature", example = "1", description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "temperature", example = "1", description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("temperature")
   public JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> getTemperature() {
     return temperature;
@@ -473,17 +809,37 @@ public class CreateChatCompletionRequest {
     this.toolChoice = toolChoice;
   }
 
+  public CreateChatCompletionRequest parallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+    return this;
+  }
+
+  /**
+   * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+   * @return parallelToolCalls
+   */
+  
+  @Schema(name = "parallel_tool_calls", description = "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("parallel_tool_calls")
+  public Boolean getParallelToolCalls() {
+    return parallelToolCalls;
+  }
+
+  public void setParallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+  }
+
   public CreateChatCompletionRequest user(String user) {
     this.user = user;
     return this;
   }
 
   /**
-   * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+   * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
    * @return user
    */
   
-  @Schema(name = "user", example = "user-1234", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "user", example = "user-1234", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("user")
   public String getUser() {
     return user;
@@ -564,21 +920,31 @@ public class CreateChatCompletionRequest {
     CreateChatCompletionRequest createChatCompletionRequest = (CreateChatCompletionRequest) o;
     return Objects.equals(this.messages, createChatCompletionRequest.messages) &&
         Objects.equals(this.model, createChatCompletionRequest.model) &&
+        equalsNullable(this.store, createChatCompletionRequest.store) &&
+        Objects.equals(this.reasoningEffort, createChatCompletionRequest.reasoningEffort) &&
+        equalsNullable(this.metadata, createChatCompletionRequest.metadata) &&
         equalsNullable(this.frequencyPenalty, createChatCompletionRequest.frequencyPenalty) &&
         equalsNullable(this.logitBias, createChatCompletionRequest.logitBias) &&
         equalsNullable(this.logprobs, createChatCompletionRequest.logprobs) &&
         equalsNullable(this.topLogprobs, createChatCompletionRequest.topLogprobs) &&
         equalsNullable(this.maxTokens, createChatCompletionRequest.maxTokens) &&
+        equalsNullable(this.maxCompletionTokens, createChatCompletionRequest.maxCompletionTokens) &&
         equalsNullable(this.n, createChatCompletionRequest.n) &&
+        equalsNullable(this.modalities, createChatCompletionRequest.modalities) &&
+        equalsNullable(this.prediction, createChatCompletionRequest.prediction) &&
+        equalsNullable(this.audio, createChatCompletionRequest.audio) &&
         equalsNullable(this.presencePenalty, createChatCompletionRequest.presencePenalty) &&
         Objects.equals(this.responseFormat, createChatCompletionRequest.responseFormat) &&
         equalsNullable(this.seed, createChatCompletionRequest.seed) &&
+        equalsNullable(this.serviceTier, createChatCompletionRequest.serviceTier) &&
         Objects.equals(this.stop, createChatCompletionRequest.stop) &&
         equalsNullable(this.stream, createChatCompletionRequest.stream) &&
+        equalsNullable(this.streamOptions, createChatCompletionRequest.streamOptions) &&
         equalsNullable(this.temperature, createChatCompletionRequest.temperature) &&
         equalsNullable(this.topP, createChatCompletionRequest.topP) &&
         Objects.equals(this.tools, createChatCompletionRequest.tools) &&
         Objects.equals(this.toolChoice, createChatCompletionRequest.toolChoice) &&
+        Objects.equals(this.parallelToolCalls, createChatCompletionRequest.parallelToolCalls) &&
         Objects.equals(this.user, createChatCompletionRequest.user) &&
         Objects.equals(this.functionCall, createChatCompletionRequest.functionCall) &&
         Objects.equals(this.functions, createChatCompletionRequest.functions);
@@ -590,7 +956,7 @@ public class CreateChatCompletionRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(messages, model, hashCodeNullable(frequencyPenalty), hashCodeNullable(logitBias), hashCodeNullable(logprobs), hashCodeNullable(topLogprobs), hashCodeNullable(maxTokens), hashCodeNullable(n), hashCodeNullable(presencePenalty), responseFormat, hashCodeNullable(seed), stop, hashCodeNullable(stream), hashCodeNullable(temperature), hashCodeNullable(topP), tools, toolChoice, user, functionCall, functions);
+    return Objects.hash(messages, model, hashCodeNullable(store), reasoningEffort, hashCodeNullable(metadata), hashCodeNullable(frequencyPenalty), hashCodeNullable(logitBias), hashCodeNullable(logprobs), hashCodeNullable(topLogprobs), hashCodeNullable(maxTokens), hashCodeNullable(maxCompletionTokens), hashCodeNullable(n), hashCodeNullable(modalities), hashCodeNullable(prediction), hashCodeNullable(audio), hashCodeNullable(presencePenalty), responseFormat, hashCodeNullable(seed), hashCodeNullable(serviceTier), stop, hashCodeNullable(stream), hashCodeNullable(streamOptions), hashCodeNullable(temperature), hashCodeNullable(topP), tools, toolChoice, parallelToolCalls, user, functionCall, functions);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -606,21 +972,31 @@ public class CreateChatCompletionRequest {
     sb.append("class CreateChatCompletionRequest {\n");
     sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    store: ").append(toIndentedString(store)).append("\n");
+    sb.append("    reasoningEffort: ").append(toIndentedString(reasoningEffort)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    frequencyPenalty: ").append(toIndentedString(frequencyPenalty)).append("\n");
     sb.append("    logitBias: ").append(toIndentedString(logitBias)).append("\n");
     sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
     sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
     sb.append("    maxTokens: ").append(toIndentedString(maxTokens)).append("\n");
+    sb.append("    maxCompletionTokens: ").append(toIndentedString(maxCompletionTokens)).append("\n");
     sb.append("    n: ").append(toIndentedString(n)).append("\n");
+    sb.append("    modalities: ").append(toIndentedString(modalities)).append("\n");
+    sb.append("    prediction: ").append(toIndentedString(prediction)).append("\n");
+    sb.append("    audio: ").append(toIndentedString(audio)).append("\n");
     sb.append("    presencePenalty: ").append(toIndentedString(presencePenalty)).append("\n");
     sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
+    sb.append("    serviceTier: ").append(toIndentedString(serviceTier)).append("\n");
     sb.append("    stop: ").append(toIndentedString(stop)).append("\n");
     sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
+    sb.append("    streamOptions: ").append(toIndentedString(streamOptions)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
     sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
     sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
+    sb.append("    parallelToolCalls: ").append(toIndentedString(parallelToolCalls)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
     sb.append("    functions: ").append(toIndentedString(functions)).append("\n");

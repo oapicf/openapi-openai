@@ -16,15 +16,11 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * 
  * @param fileId The ID of the specific File the citation is from.
- * @param quote The specific quote in the file.
  */
 data class MessageContentTextAnnotationsFileCitationObjectFileCitation(
 
     @Schema(example = "null", required = true, description = "The ID of the specific File the citation is from.")
-    @get:JsonProperty("file_id", required = true) val fileId: kotlin.String,
-
-    @Schema(example = "null", required = true, description = "The specific quote in the file.")
-    @get:JsonProperty("quote", required = true) val quote: kotlin.String
+    @get:JsonProperty("file_id", required = true) val fileId: kotlin.String
 ) {
 
 }

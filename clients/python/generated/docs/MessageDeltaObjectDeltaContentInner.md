@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **type** | **str** | Always &#x60;image_file&#x60;. | 
 **image_file** | [**MessageDeltaContentImageFileObjectImageFile**](MessageDeltaContentImageFileObjectImageFile.md) |  | [optional] 
 **text** | [**MessageDeltaContentTextObjectText**](MessageDeltaContentTextObjectText.md) |  | [optional] 
+**refusal** | **str** |  | [optional] 
+**image_url** | [**MessageDeltaContentImageUrlObjectImageUrl**](MessageDeltaContentImageUrlObjectImageUrl.md) |  | [optional] 
 
 ## Example
 

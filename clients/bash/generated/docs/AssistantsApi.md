@@ -6,24 +6,19 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancelRun**](AssistantsApi.md#cancelRun) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is &#39;in_progress&#39;.
 [**createAssistant**](AssistantsApi.md#createAssistant) | **POST** /assistants | Create an assistant with a model and instructions.
-[**createAssistantFile**](AssistantsApi.md#createAssistantFile) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
 [**createMessage**](AssistantsApi.md#createMessage) | **POST** /threads/{thread_id}/messages | Create a message.
 [**createRun**](AssistantsApi.md#createRun) | **POST** /threads/{thread_id}/runs | Create a run.
 [**createThread**](AssistantsApi.md#createThread) | **POST** /threads | Create a thread.
 [**createThreadAndRun**](AssistantsApi.md#createThreadAndRun) | **POST** /threads/runs | Create a thread and run it in one request.
 [**deleteAssistant**](AssistantsApi.md#deleteAssistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant.
-[**deleteAssistantFile**](AssistantsApi.md#deleteAssistantFile) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+[**deleteMessage**](AssistantsApi.md#deleteMessage) | **DELETE** /threads/{thread_id}/messages/{message_id} | Deletes a message.
 [**deleteThread**](AssistantsApi.md#deleteThread) | **DELETE** /threads/{thread_id} | Delete a thread.
 [**getAssistant**](AssistantsApi.md#getAssistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant.
-[**getAssistantFile**](AssistantsApi.md#getAssistantFile) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
 [**getMessage**](AssistantsApi.md#getMessage) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
-[**getMessageFile**](AssistantsApi.md#getMessageFile) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
 [**getRun**](AssistantsApi.md#getRun) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
 [**getRunStep**](AssistantsApi.md#getRunStep) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
 [**getThread**](AssistantsApi.md#getThread) | **GET** /threads/{thread_id} | Retrieves a thread.
-[**listAssistantFiles**](AssistantsApi.md#listAssistantFiles) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
 [**listAssistants**](AssistantsApi.md#listAssistants) | **GET** /assistants | Returns a list of assistants.
-[**listMessageFiles**](AssistantsApi.md#listMessageFiles) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
 [**listMessages**](AssistantsApi.md#listMessages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
 [**listRunSteps**](AssistantsApi.md#listRunSteps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
 [**listRuns**](AssistantsApi.md#listRuns) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
@@ -102,40 +97,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## createAssistantFile
-
-Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
-### Example
-
-```bash
- createAssistantFile assistant_id=value
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistantId** | **string** | The ID of the assistant for which to create a File. | [default to null]
- **createAssistantFileRequest** | [**CreateAssistantFileRequest**](CreateAssistantFileRequest.md) |  |
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## createMessage
 
 Create a message.
@@ -177,7 +138,7 @@ Create a run.
 ### Example
 
 ```bash
- createRun thread_id=value
+ createRun thread_id=value  Specify as:  include[]=value1 include[]=value2 include[]=...
 ```
 
 ### Parameters
@@ -187,6 +148,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **threadId** | **string** | The ID of the thread to run. | [default to null]
  **createRunRequest** | [**CreateRunRequest**](CreateRunRequest.md) |  |
+ **includeLeft_Square_BracketRight_Square_Bracket** | [**array[string]**](string.md) | A list of additional fields to include in the response. Currently the only supported value is 'step_details.tool_calls[*].file_search.results[*].content' to fetch the file search result content.
+
+See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. | [optional] [default to null]
 
 ### Return type
 
@@ -303,14 +267,14 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## deleteAssistantFile
+## deleteMessage
 
-Delete an assistant file.
+Deletes a message.
 
 ### Example
 
 ```bash
- deleteAssistantFile assistant_id=value file_id=value
+ deleteMessage thread_id=value message_id=value
 ```
 
 ### Parameters
@@ -318,12 +282,12 @@ Delete an assistant file.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **assistantId** | **string** | The ID of the assistant that the file belongs to. | [default to null]
- **fileId** | **string** | The ID of the file to delete. | [default to null]
+ **threadId** | **string** | The ID of the thread to which this message belongs. | [default to null]
+ **messageId** | **string** | The ID of the message to delete. | [default to null]
 
 ### Return type
 
-[**DeleteAssistantFileResponse**](DeleteAssistantFileResponse.md)
+[**DeleteMessageResponse**](DeleteMessageResponse.md)
 
 ### Authorization
 
@@ -403,40 +367,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## getAssistantFile
-
-Retrieves an AssistantFile.
-
-### Example
-
-```bash
- getAssistantFile assistant_id=value file_id=value
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistantId** | **string** | The ID of the assistant who the file belongs to. | [default to null]
- **fileId** | **string** | The ID of the file we're getting. | [default to null]
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not Applicable
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## getMessage
 
 Retrieve a message.
@@ -458,41 +388,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MessageObject**](MessageObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not Applicable
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## getMessageFile
-
-Retrieves a message file.
-
-### Example
-
-```bash
- getMessageFile thread_id=value message_id=value file_id=value
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **threadId** | **string** | The ID of the thread to which the message and File belong. | [default to null]
- **messageId** | **string** | The ID of the message the file belongs to. | [default to null]
- **fileId** | **string** | The ID of the file being retrieved. | [default to null]
-
-### Return type
-
-[**MessageFileObject**](MessageFileObject.md)
 
 ### Authorization
 
@@ -547,7 +442,7 @@ Retrieves a run step.
 ### Example
 
 ```bash
- getRunStep thread_id=value run_id=value step_id=value
+ getRunStep thread_id=value run_id=value step_id=value  Specify as:  include[]=value1 include[]=value2 include[]=...
 ```
 
 ### Parameters
@@ -558,6 +453,9 @@ Name | Type | Description  | Notes
  **threadId** | **string** | The ID of the thread to which the run and run step belongs. | [default to null]
  **runId** | **string** | The ID of the run to which the run step belongs. | [default to null]
  **stepId** | **string** | The ID of the run step to retrieve. | [default to null]
+ **includeLeft_Square_BracketRight_Square_Bracket** | [**array[string]**](string.md) | A list of additional fields to include in the response. Currently the only supported value is 'step_details.tool_calls[*].file_search.results[*].content' to fetch the file search result content.
+
+See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. | [optional] [default to null]
 
 ### Return type
 
@@ -608,43 +506,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## listAssistantFiles
-
-Returns a list of assistant files.
-
-### Example
-
-```bash
- listAssistantFiles assistant_id=value  limit=value  order=value  after=value  before=value
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistantId** | **string** | The ID of the assistant the file belongs to. | [default to null]
- **limit** | **integer** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. | [optional] [default to 20]
- **order** | **string** | Sort order by the 'created_at' timestamp of the objects. 'asc' for ascending order and 'desc' for descending order. | [optional] [default to desc]
- **after** | **string** | A cursor for use in pagination. 'after' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. | [optional] [default to null]
- **before** | **string** | A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. | [optional] [default to null]
-
-### Return type
-
-[**ListAssistantFilesResponse**](ListAssistantFilesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not Applicable
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## listAssistants
 
 Returns a list of assistants.
@@ -663,49 +524,11 @@ Name | Type | Description  | Notes
  **limit** | **integer** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. | [optional] [default to 20]
  **order** | **string** | Sort order by the 'created_at' timestamp of the objects. 'asc' for ascending order and 'desc' for descending order. | [optional] [default to desc]
  **after** | **string** | A cursor for use in pagination. 'after' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. | [optional] [default to null]
- **before** | **string** | A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. | [optional] [default to null]
+ **before** | **string** | A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. | [optional] [default to null]
 
 ### Return type
 
 [**ListAssistantsResponse**](ListAssistantsResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not Applicable
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## listMessageFiles
-
-Returns a list of message files.
-
-### Example
-
-```bash
- listMessageFiles thread_id=value message_id=value  limit=value  order=value  after=value  before=value
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **threadId** | **string** | The ID of the thread that the message and files belong to. | [default to null]
- **messageId** | **string** | The ID of the message that the files belongs to. | [default to null]
- **limit** | **integer** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. | [optional] [default to 20]
- **order** | **string** | Sort order by the 'created_at' timestamp of the objects. 'asc' for ascending order and 'desc' for descending order. | [optional] [default to desc]
- **after** | **string** | A cursor for use in pagination. 'after' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. | [optional] [default to null]
- **before** | **string** | A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. | [optional] [default to null]
-
-### Return type
-
-[**ListMessageFilesResponse**](ListMessageFilesResponse.md)
 
 ### Authorization
 
@@ -738,7 +561,7 @@ Name | Type | Description  | Notes
  **limit** | **integer** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. | [optional] [default to 20]
  **order** | **string** | Sort order by the 'created_at' timestamp of the objects. 'asc' for ascending order and 'desc' for descending order. | [optional] [default to desc]
  **after** | **string** | A cursor for use in pagination. 'after' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. | [optional] [default to null]
- **before** | **string** | A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. | [optional] [default to null]
+ **before** | **string** | A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. | [optional] [default to null]
  **runId** | **string** | Filter messages by the run ID that generated them. | [optional] [default to null]
 
 ### Return type
@@ -764,7 +587,7 @@ Returns a list of run steps belonging to a run.
 ### Example
 
 ```bash
- listRunSteps thread_id=value run_id=value  limit=value  order=value  after=value  before=value
+ listRunSteps thread_id=value run_id=value  limit=value  order=value  after=value  before=value  Specify as:  include[]=value1 include[]=value2 include[]=...
 ```
 
 ### Parameters
@@ -777,7 +600,10 @@ Name | Type | Description  | Notes
  **limit** | **integer** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. | [optional] [default to 20]
  **order** | **string** | Sort order by the 'created_at' timestamp of the objects. 'asc' for ascending order and 'desc' for descending order. | [optional] [default to desc]
  **after** | **string** | A cursor for use in pagination. 'after' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. | [optional] [default to null]
- **before** | **string** | A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. | [optional] [default to null]
+ **before** | **string** | A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. | [optional] [default to null]
+ **includeLeft_Square_BracketRight_Square_Bracket** | [**array[string]**](string.md) | A list of additional fields to include in the response. Currently the only supported value is 'step_details.tool_calls[*].file_search.results[*].content' to fetch the file search result content.
+
+See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. | [optional] [default to null]
 
 ### Return type
 
@@ -814,7 +640,7 @@ Name | Type | Description  | Notes
  **limit** | **integer** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. | [optional] [default to 20]
  **order** | **string** | Sort order by the 'created_at' timestamp of the objects. 'asc' for ascending order and 'desc' for descending order. | [optional] [default to desc]
  **after** | **string** | A cursor for use in pagination. 'after' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. | [optional] [default to null]
- **before** | **string** | A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. | [optional] [default to null]
+ **before** | **string** | A cursor for use in pagination. 'before' is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. | [optional] [default to null]
 
 ### Return type
 

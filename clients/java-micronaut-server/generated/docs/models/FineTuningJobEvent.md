@@ -10,11 +10,19 @@ The class is defined in **[FineTuningJobEvent.java](../../src/main/java/org/open
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | `String` |  | 
-**createdAt** | `Integer` |  | 
-**level** | [**LevelEnum**](#LevelEnum) |  | 
-**message** | `String` |  | 
-**_object** | [**ObjectEnum**](#ObjectEnum) |  | 
+**_object** | [**ObjectEnum**](#ObjectEnum) | The object type, which is always \&quot;fine_tuning.job.event\&quot;. | 
+**id** | `String` | The object identifier. | 
+**createdAt** | `Integer` | The Unix timestamp (in seconds) for when the fine-tuning job was created. | 
+**level** | [**LevelEnum**](#LevelEnum) | The log level of the event. | 
+**message** | `String` | The message of the event. | 
+**type** | [**TypeEnum**](#TypeEnum) | The type of event. |  [optional property]
+**data** | `Object` | The data associated with the event. |  [optional property]
+
+## ObjectEnum
+
+Name | Value
+---- | -----
+FINE_TUNING_JOB_EVENT | `"fine_tuning.job.event"`
 
 
 
@@ -27,10 +35,12 @@ WARN | `"warn"`
 ERROR | `"error"`
 
 
-## ObjectEnum
+## TypeEnum
 
 Name | Value
 ---- | -----
-FINE_TUNING_JOB_EVENT | `"fine_tuning.job.event"`
+MESSAGE | `"message"`
+METRICS | `"metrics"`
+
 
 

@@ -7,9 +7,10 @@ from typing import List, Dict, Type
 from openapi_server.models.base_model import Model
 from openapi_server.models.run_step_details_tool_calls_code_object import RunStepDetailsToolCallsCodeObject
 from openapi_server.models.run_step_details_tool_calls_code_object_code_interpreter import RunStepDetailsToolCallsCodeObjectCodeInterpreter
+from openapi_server.models.run_step_details_tool_calls_file_search_object import RunStepDetailsToolCallsFileSearchObject
+from openapi_server.models.run_step_details_tool_calls_file_search_object_file_search import RunStepDetailsToolCallsFileSearchObjectFileSearch
 from openapi_server.models.run_step_details_tool_calls_function_object import RunStepDetailsToolCallsFunctionObject
 from openapi_server.models.run_step_details_tool_calls_function_object_function import RunStepDetailsToolCallsFunctionObjectFunction
-from openapi_server.models.run_step_details_tool_calls_retrieval_object import RunStepDetailsToolCallsRetrievalObject
 from openapi_server import util
 
 
@@ -19,20 +20,20 @@ class RunStepDetailsToolCallsObjectToolCallsInner(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, type: str=None, code_interpreter: RunStepDetailsToolCallsCodeObjectCodeInterpreter=None, retrieval: object=None, function: RunStepDetailsToolCallsFunctionObjectFunction=None):
+    def __init__(self, id: str=None, type: str=None, code_interpreter: RunStepDetailsToolCallsCodeObjectCodeInterpreter=None, file_search: RunStepDetailsToolCallsFileSearchObjectFileSearch=None, function: RunStepDetailsToolCallsFunctionObjectFunction=None):
         """RunStepDetailsToolCallsObjectToolCallsInner - a model defined in OpenAPI
 
         :param id: The id of this RunStepDetailsToolCallsObjectToolCallsInner.
         :param type: The type of this RunStepDetailsToolCallsObjectToolCallsInner.
         :param code_interpreter: The code_interpreter of this RunStepDetailsToolCallsObjectToolCallsInner.
-        :param retrieval: The retrieval of this RunStepDetailsToolCallsObjectToolCallsInner.
+        :param file_search: The file_search of this RunStepDetailsToolCallsObjectToolCallsInner.
         :param function: The function of this RunStepDetailsToolCallsObjectToolCallsInner.
         """
         self.openapi_types = {
             'id': str,
             'type': str,
             'code_interpreter': RunStepDetailsToolCallsCodeObjectCodeInterpreter,
-            'retrieval': object,
+            'file_search': RunStepDetailsToolCallsFileSearchObjectFileSearch,
             'function': RunStepDetailsToolCallsFunctionObjectFunction
         }
 
@@ -40,14 +41,14 @@ class RunStepDetailsToolCallsObjectToolCallsInner(Model):
             'id': 'id',
             'type': 'type',
             'code_interpreter': 'code_interpreter',
-            'retrieval': 'retrieval',
+            'file_search': 'file_search',
             'function': 'function'
         }
 
         self._id = id
         self._type = type
         self._code_interpreter = code_interpreter
-        self._retrieval = retrieval
+        self._file_search = file_search
         self._function = function
 
     @classmethod
@@ -104,7 +105,7 @@ class RunStepDetailsToolCallsObjectToolCallsInner(Model):
         :param type: The type of this RunStepDetailsToolCallsObjectToolCallsInner.
         :type type: str
         """
-        allowed_values = ["code_interpreter", "retrieval", "function"]  # noqa: E501
+        allowed_values = ["code_interpreter", "file_search", "function"]  # noqa: E501
         if type not in allowed_values:
             raise ValueError(
                 "Invalid value for `type` ({0}), must be one of {1}"
@@ -137,29 +138,27 @@ class RunStepDetailsToolCallsObjectToolCallsInner(Model):
         self._code_interpreter = code_interpreter
 
     @property
-    def retrieval(self):
-        """Gets the retrieval of this RunStepDetailsToolCallsObjectToolCallsInner.
+    def file_search(self):
+        """Gets the file_search of this RunStepDetailsToolCallsObjectToolCallsInner.
 
-        For now, this is always going to be an empty object.
 
-        :return: The retrieval of this RunStepDetailsToolCallsObjectToolCallsInner.
-        :rtype: object
+        :return: The file_search of this RunStepDetailsToolCallsObjectToolCallsInner.
+        :rtype: RunStepDetailsToolCallsFileSearchObjectFileSearch
         """
-        return self._retrieval
+        return self._file_search
 
-    @retrieval.setter
-    def retrieval(self, retrieval):
-        """Sets the retrieval of this RunStepDetailsToolCallsObjectToolCallsInner.
+    @file_search.setter
+    def file_search(self, file_search):
+        """Sets the file_search of this RunStepDetailsToolCallsObjectToolCallsInner.
 
-        For now, this is always going to be an empty object.
 
-        :param retrieval: The retrieval of this RunStepDetailsToolCallsObjectToolCallsInner.
-        :type retrieval: object
+        :param file_search: The file_search of this RunStepDetailsToolCallsObjectToolCallsInner.
+        :type file_search: RunStepDetailsToolCallsFileSearchObjectFileSearch
         """
-        if retrieval is None:
-            raise ValueError("Invalid value for `retrieval`, must not be `None`")
+        if file_search is None:
+            raise ValueError("Invalid value for `file_search`, must not be `None`")
 
-        self._retrieval = retrieval
+        self._file_search = file_search
 
     @property
     def function(self):

@@ -10,8 +10,8 @@
 
 -type openapi_create_message_request() ::
   [ {'role', binary() }
-  | {'content', binary() }
-  | {'file_ids', list(binary()) }
+  | {'content', openapi_create_message_request_content:openapi_create_message_request_content() }
+  | {'attachments', list(openapi_create_message_request_attachments_inner:openapi_create_message_request_attachments_inner()) }
   | {'metadata', map() }
   ].
 
@@ -21,8 +21,8 @@ openapi_create_message_request() ->
 
 openapi_create_message_request(Fields) ->
   Default = [ {'role', elements([<<"user">>, <<"assistant">>]) }
-            , {'content', binary(1, 256000) }
-            , {'file_ids', list(binary(), 1, 10) }
+            , {'content', openapi_create_message_request_content:openapi_create_message_request_content() }
+            , {'attachments', list(openapi_create_message_request_attachments_inner:openapi_create_message_request_attachments_inner()) }
             , {'metadata', map() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).

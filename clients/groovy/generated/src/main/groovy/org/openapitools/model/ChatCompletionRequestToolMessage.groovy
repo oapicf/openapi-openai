@@ -3,6 +3,7 @@ package org.openapitools.model;
 import groovy.transform.Canonical
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.model.ChatCompletionRequestToolMessageContent;
 
 @Canonical
 class ChatCompletionRequestToolMessage {
@@ -29,8 +30,8 @@ class ChatCompletionRequestToolMessage {
 
     /* The role of the messages author, in this case `tool`. */
     RoleEnum role
-    /* The contents of the tool message. */
-    String content
+    
+    ChatCompletionRequestToolMessageContent content
     /* Tool call that this message is responding to. */
     String toolCallId
 }

@@ -26,13 +26,28 @@ module FineTuningApiHandlerTestsHelper =
   CreateFineTuningJobBody <- WebUtility.HtmlDecode "{
   &quot;training_file&quot; : &quot;file-abc123&quot;,
   &quot;seed&quot; : 42,
+  &quot;method&quot; : {
+    &quot;supervised&quot; : {
+      &quot;hyperparameters&quot; : {
+        &quot;batch_size&quot; : &quot;auto&quot;,
+        &quot;n_epochs&quot; : &quot;auto&quot;,
+        &quot;learning_rate_multiplier&quot; : &quot;auto&quot;
+      }
+    },
+    &quot;dpo&quot; : {
+      &quot;hyperparameters&quot; : {
+        &quot;beta&quot; : &quot;auto&quot;
+      }
+    },
+    &quot;type&quot; : &quot;supervised&quot;
+  },
   &quot;validation_file&quot; : &quot;file-abc123&quot;,
   &quot;hyperparameters&quot; : {
     &quot;batch_size&quot; : &quot;auto&quot;,
     &quot;n_epochs&quot; : &quot;auto&quot;,
     &quot;learning_rate_multiplier&quot; : &quot;auto&quot;
   },
-  &quot;model&quot; : &quot;gpt-3.5-turbo&quot;,
+  &quot;model&quot; : &quot;gpt-4o-mini&quot;,
   &quot;suffix&quot; : &quot;suffix&quot;,
   &quot;integrations&quot; : [ {
     &quot;wandb&quot; : {

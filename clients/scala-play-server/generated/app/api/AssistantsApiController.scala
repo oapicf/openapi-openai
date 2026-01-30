@@ -4,24 +4,19 @@ import org.openapitools.OpenApiExceptions
 import javax.inject.{Inject, Singleton}
 import play.api.libs.json._
 import play.api.mvc._
-import model.AssistantFileObject
 import model.AssistantObject
-import model.CreateAssistantFileRequest
 import model.CreateAssistantRequest
 import model.CreateMessageRequest
 import model.CreateRunRequest
 import model.CreateThreadAndRunRequest
 import model.CreateThreadRequest
-import model.DeleteAssistantFileResponse
 import model.DeleteAssistantResponse
+import model.DeleteMessageResponse
 import model.DeleteThreadResponse
-import model.ListAssistantFilesResponse
 import model.ListAssistantsResponse
-import model.ListMessageFilesResponse
 import model.ListMessagesResponse
 import model.ListRunStepsResponse
 import model.ListRunsResponse
-import model.MessageFileObject
 import model.MessageObject
 import model.ModifyAssistantRequest
 import model.ModifyMessageRequest
@@ -32,7 +27,7 @@ import model.RunStepObject
 import model.SubmitToolOutputsRunRequest
 import model.ThreadObject
 
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T10:48:27.489746113Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @Singleton
 class AssistantsApiController @Inject()(cc: ControllerComponents, api: AssistantsApi) extends AbstractController(cc) {
   /**
@@ -67,23 +62,6 @@ class AssistantsApiController @Inject()(cc: ControllerComponents, api: Assistant
   }
 
   /**
-    * POST /v1/assistants/:assistantId/files
-    * @param assistantId The ID of the assistant for which to create a File. 
-    */
-  def createAssistantFile(assistantId: String): Action[AnyContent] = Action { request =>
-    def executeApi(): AssistantFileObject = {
-      val createAssistantFileRequest = request.body.asJson.map(_.as[CreateAssistantFileRequest]).getOrElse {
-        throw new OpenApiExceptions.MissingRequiredParameterException("body", "createAssistantFileRequest")
-      }
-      api.createAssistantFile(assistantId, createAssistantFileRequest)
-    }
-
-    val result = executeApi()
-    val json = Json.toJson(result)
-    Ok(json)
-  }
-
-  /**
     * POST /v1/threads/:threadId/messages
     * @param threadId The ID of the [thread](/docs/api-reference/threads) to create a message for.
     */
@@ -101,7 +79,7 @@ class AssistantsApiController @Inject()(cc: ControllerComponents, api: Assistant
   }
 
   /**
-    * POST /v1/threads/:threadId/runs
+    * POST /v1/threads/:threadId/runs?includeLeft_Square_BracketRight_Square_Bracket=[value]
     * @param threadId The ID of the thread to run.
     */
   def createRun(threadId: String): Action[AnyContent] = Action { request =>
@@ -109,7 +87,10 @@ class AssistantsApiController @Inject()(cc: ControllerComponents, api: Assistant
       val createRunRequest = request.body.asJson.map(_.as[CreateRunRequest]).getOrElse {
         throw new OpenApiExceptions.MissingRequiredParameterException("body", "createRunRequest")
       }
-      api.createRun(threadId, createRunRequest)
+      val includeLeft_Square_BracketRight_Square_Bracket = request.queryString.get("include[]")
+        .map(_.toList)
+        
+      api.createRun(threadId, createRunRequest, includeLeft_Square_BracketRight_Square_Bracket)
     }
 
     val result = executeApi()
@@ -162,13 +143,13 @@ class AssistantsApiController @Inject()(cc: ControllerComponents, api: Assistant
   }
 
   /**
-    * DELETE /v1/assistants/:assistantId/files/:fileId
-    * @param assistantId The ID of the assistant that the file belongs to.
-    * @param fileId The ID of the file to delete.
+    * DELETE /v1/threads/:threadId/messages/:messageId
+    * @param threadId The ID of the thread to which this message belongs.
+    * @param messageId The ID of the message to delete.
     */
-  def deleteAssistantFile(assistantId: String, fileId: String): Action[AnyContent] = Action { request =>
-    def executeApi(): DeleteAssistantFileResponse = {
-      api.deleteAssistantFile(assistantId, fileId)
+  def deleteMessage(threadId: String, messageId: String): Action[AnyContent] = Action { request =>
+    def executeApi(): DeleteMessageResponse = {
+      api.deleteMessage(threadId, messageId)
     }
 
     val result = executeApi()
@@ -205,21 +186,6 @@ class AssistantsApiController @Inject()(cc: ControllerComponents, api: Assistant
   }
 
   /**
-    * GET /v1/assistants/:assistantId/files/:fileId
-    * @param assistantId The ID of the assistant who the file belongs to.
-    * @param fileId The ID of the file we&#39;re getting.
-    */
-  def getAssistantFile(assistantId: String, fileId: String): Action[AnyContent] = Action { request =>
-    def executeApi(): AssistantFileObject = {
-      api.getAssistantFile(assistantId, fileId)
-    }
-
-    val result = executeApi()
-    val json = Json.toJson(result)
-    Ok(json)
-  }
-
-  /**
     * GET /v1/threads/:threadId/messages/:messageId
     * @param threadId The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
     * @param messageId The ID of the message to retrieve.
@@ -227,22 +193,6 @@ class AssistantsApiController @Inject()(cc: ControllerComponents, api: Assistant
   def getMessage(threadId: String, messageId: String): Action[AnyContent] = Action { request =>
     def executeApi(): MessageObject = {
       api.getMessage(threadId, messageId)
-    }
-
-    val result = executeApi()
-    val json = Json.toJson(result)
-    Ok(json)
-  }
-
-  /**
-    * GET /v1/threads/:threadId/messages/:messageId/files/:fileId
-    * @param threadId The ID of the thread to which the message and File belong.
-    * @param messageId The ID of the message the file belongs to.
-    * @param fileId The ID of the file being retrieved.
-    */
-  def getMessageFile(threadId: String, messageId: String, fileId: String): Action[AnyContent] = Action { request =>
-    def executeApi(): MessageFileObject = {
-      api.getMessageFile(threadId, messageId, fileId)
     }
 
     val result = executeApi()
@@ -266,14 +216,17 @@ class AssistantsApiController @Inject()(cc: ControllerComponents, api: Assistant
   }
 
   /**
-    * GET /v1/threads/:threadId/runs/:runId/steps/:stepId
+    * GET /v1/threads/:threadId/runs/:runId/steps/:stepId?includeLeft_Square_BracketRight_Square_Bracket=[value]
     * @param threadId The ID of the thread to which the run and run step belongs.
     * @param runId The ID of the run to which the run step belongs.
     * @param stepId The ID of the run step to retrieve.
     */
   def getRunStep(threadId: String, runId: String, stepId: String): Action[AnyContent] = Action { request =>
     def executeApi(): RunStepObject = {
-      api.getRunStep(threadId, runId, stepId)
+      val includeLeft_Square_BracketRight_Square_Bracket = request.queryString.get("include[]")
+        .map(_.toList)
+        
+      api.getRunStep(threadId, runId, stepId, includeLeft_Square_BracketRight_Square_Bracket)
     }
 
     val result = executeApi()
@@ -296,29 +249,6 @@ class AssistantsApiController @Inject()(cc: ControllerComponents, api: Assistant
   }
 
   /**
-    * GET /v1/assistants/:assistantId/files?limit=[value]&order=[value]&after=[value]&before=[value]
-    * @param assistantId The ID of the assistant the file belongs to.
-    */
-  def listAssistantFiles(assistantId: String): Action[AnyContent] = Action { request =>
-    def executeApi(): ListAssistantFilesResponse = {
-      val limit = request.getQueryString("limit")
-        .map(value => value.toInt)
-        
-      val order = request.getQueryString("order")
-        
-      val after = request.getQueryString("after")
-        
-      val before = request.getQueryString("before")
-        
-      api.listAssistantFiles(assistantId, limit, order, after, before)
-    }
-
-    val result = executeApi()
-    val json = Json.toJson(result)
-    Ok(json)
-  }
-
-  /**
     * GET /v1/assistants?limit=[value]&order=[value]&after=[value]&before=[value]
     */
   def listAssistants(): Action[AnyContent] = Action { request =>
@@ -333,30 +263,6 @@ class AssistantsApiController @Inject()(cc: ControllerComponents, api: Assistant
       val before = request.getQueryString("before")
         
       api.listAssistants(limit, order, after, before)
-    }
-
-    val result = executeApi()
-    val json = Json.toJson(result)
-    Ok(json)
-  }
-
-  /**
-    * GET /v1/threads/:threadId/messages/:messageId/files?limit=[value]&order=[value]&after=[value]&before=[value]
-    * @param threadId The ID of the thread that the message and files belong to.
-    * @param messageId The ID of the message that the files belongs to.
-    */
-  def listMessageFiles(threadId: String, messageId: String): Action[AnyContent] = Action { request =>
-    def executeApi(): ListMessageFilesResponse = {
-      val limit = request.getQueryString("limit")
-        .map(value => value.toInt)
-        
-      val order = request.getQueryString("order")
-        
-      val after = request.getQueryString("after")
-        
-      val before = request.getQueryString("before")
-        
-      api.listMessageFiles(threadId, messageId, limit, order, after, before)
     }
 
     val result = executeApi()
@@ -390,7 +296,7 @@ class AssistantsApiController @Inject()(cc: ControllerComponents, api: Assistant
   }
 
   /**
-    * GET /v1/threads/:threadId/runs/:runId/steps?limit=[value]&order=[value]&after=[value]&before=[value]
+    * GET /v1/threads/:threadId/runs/:runId/steps?limit=[value]&order=[value]&after=[value]&before=[value]&includeLeft_Square_BracketRight_Square_Bracket=[value]
     * @param threadId The ID of the thread the run and run steps belong to.
     * @param runId The ID of the run the run steps belong to.
     */
@@ -405,7 +311,10 @@ class AssistantsApiController @Inject()(cc: ControllerComponents, api: Assistant
         
       val before = request.getQueryString("before")
         
-      api.listRunSteps(threadId, runId, limit, order, after, before)
+      val includeLeft_Square_BracketRight_Square_Bracket = request.queryString.get("include[]")
+        .map(_.toList)
+        
+      api.listRunSteps(threadId, runId, limit, order, after, before, includeLeft_Square_BracketRight_Square_Bracket)
     }
 
     val result = executeApi()

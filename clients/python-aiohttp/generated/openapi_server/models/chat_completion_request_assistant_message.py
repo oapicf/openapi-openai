@@ -6,6 +6,8 @@ from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
 from openapi_server.models.chat_completion_message_tool_call import ChatCompletionMessageToolCall
+from openapi_server.models.chat_completion_request_assistant_message_audio import ChatCompletionRequestAssistantMessageAudio
+from openapi_server.models.chat_completion_request_assistant_message_content import ChatCompletionRequestAssistantMessageContent
 from openapi_server.models.chat_completion_request_assistant_message_function_call import ChatCompletionRequestAssistantMessageFunctionCall
 from openapi_server import util
 
@@ -16,34 +18,42 @@ class ChatCompletionRequestAssistantMessage(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, content: str=None, role: str=None, name: str=None, tool_calls: List[ChatCompletionMessageToolCall]=None, function_call: ChatCompletionRequestAssistantMessageFunctionCall=None):
+    def __init__(self, content: ChatCompletionRequestAssistantMessageContent=None, refusal: str=None, role: str=None, name: str=None, audio: ChatCompletionRequestAssistantMessageAudio=None, tool_calls: List[ChatCompletionMessageToolCall]=None, function_call: ChatCompletionRequestAssistantMessageFunctionCall=None):
         """ChatCompletionRequestAssistantMessage - a model defined in OpenAPI
 
         :param content: The content of this ChatCompletionRequestAssistantMessage.
+        :param refusal: The refusal of this ChatCompletionRequestAssistantMessage.
         :param role: The role of this ChatCompletionRequestAssistantMessage.
         :param name: The name of this ChatCompletionRequestAssistantMessage.
+        :param audio: The audio of this ChatCompletionRequestAssistantMessage.
         :param tool_calls: The tool_calls of this ChatCompletionRequestAssistantMessage.
         :param function_call: The function_call of this ChatCompletionRequestAssistantMessage.
         """
         self.openapi_types = {
-            'content': str,
+            'content': ChatCompletionRequestAssistantMessageContent,
+            'refusal': str,
             'role': str,
             'name': str,
+            'audio': ChatCompletionRequestAssistantMessageAudio,
             'tool_calls': List[ChatCompletionMessageToolCall],
             'function_call': ChatCompletionRequestAssistantMessageFunctionCall
         }
 
         self.attribute_map = {
             'content': 'content',
+            'refusal': 'refusal',
             'role': 'role',
             'name': 'name',
+            'audio': 'audio',
             'tool_calls': 'tool_calls',
             'function_call': 'function_call'
         }
 
         self._content = content
+        self._refusal = refusal
         self._role = role
         self._name = name
+        self._audio = audio
         self._tool_calls = tool_calls
         self._function_call = function_call
 
@@ -60,10 +70,9 @@ class ChatCompletionRequestAssistantMessage(Model):
     def content(self):
         """Gets the content of this ChatCompletionRequestAssistantMessage.
 
-        The contents of the assistant message. Required unless `tool_calls` or `function_call` is specified. 
 
         :return: The content of this ChatCompletionRequestAssistantMessage.
-        :rtype: str
+        :rtype: ChatCompletionRequestAssistantMessageContent
         """
         return self._content
 
@@ -71,13 +80,35 @@ class ChatCompletionRequestAssistantMessage(Model):
     def content(self, content):
         """Sets the content of this ChatCompletionRequestAssistantMessage.
 
-        The contents of the assistant message. Required unless `tool_calls` or `function_call` is specified. 
 
         :param content: The content of this ChatCompletionRequestAssistantMessage.
-        :type content: str
+        :type content: ChatCompletionRequestAssistantMessageContent
         """
 
         self._content = content
+
+    @property
+    def refusal(self):
+        """Gets the refusal of this ChatCompletionRequestAssistantMessage.
+
+        The refusal message by the assistant.
+
+        :return: The refusal of this ChatCompletionRequestAssistantMessage.
+        :rtype: str
+        """
+        return self._refusal
+
+    @refusal.setter
+    def refusal(self, refusal):
+        """Sets the refusal of this ChatCompletionRequestAssistantMessage.
+
+        The refusal message by the assistant.
+
+        :param refusal: The refusal of this ChatCompletionRequestAssistantMessage.
+        :type refusal: str
+        """
+
+        self._refusal = refusal
 
     @property
     def role(self):
@@ -130,6 +161,27 @@ class ChatCompletionRequestAssistantMessage(Model):
         """
 
         self._name = name
+
+    @property
+    def audio(self):
+        """Gets the audio of this ChatCompletionRequestAssistantMessage.
+
+
+        :return: The audio of this ChatCompletionRequestAssistantMessage.
+        :rtype: ChatCompletionRequestAssistantMessageAudio
+        """
+        return self._audio
+
+    @audio.setter
+    def audio(self, audio):
+        """Sets the audio of this ChatCompletionRequestAssistantMessage.
+
+
+        :param audio: The audio of this ChatCompletionRequestAssistantMessage.
+        :type audio: ChatCompletionRequestAssistantMessageAudio
+        """
+
+        self._audio = audio
 
     @property
     def tool_calls(self):

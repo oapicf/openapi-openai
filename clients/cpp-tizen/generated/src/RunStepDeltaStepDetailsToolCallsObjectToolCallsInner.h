@@ -11,9 +11,9 @@
 #include <string>
 #include "RunStepDeltaStepDetailsToolCallsCodeObject.h"
 #include "RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter.h"
+#include "RunStepDeltaStepDetailsToolCallsFileSearchObject.h"
 #include "RunStepDeltaStepDetailsToolCallsFunctionObject.h"
 #include "RunStepDeltaStepDetailsToolCallsFunctionObject_function.h"
-#include "RunStepDeltaStepDetailsToolCallsRetrievalObject.h"
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API
@@ -80,11 +80,11 @@ public:
 	void setCodeInterpreter(RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter  code_interpreter);
 	/*! \brief Get For now, this is always going to be an empty object.
 	 */
-	std::string getRetrieval();
+	std::string getFileSearch();
 
 	/*! \brief Set For now, this is always going to be an empty object.
 	 */
-	void setRetrieval(std::string  retrieval);
+	void setFileSearch(std::string  file_search);
 	/*! \brief Get 
 	 */
 	RunStepDeltaStepDetailsToolCallsFunctionObject_function getFunction();
@@ -98,7 +98,7 @@ private:
 	std::string id;
 	std::string type;
 	RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter code_interpreter;
-	std::string retrieval;
+	std::string file_search;
 	RunStepDeltaStepDetailsToolCallsFunctionObject_function function;
 	void __init();
 	void __cleanup();

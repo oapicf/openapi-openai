@@ -7,6 +7,8 @@ authors     = ["F. Bar (foo@bar.baz)"]
 
 imports {
   Root = tosca.resourceTypes.Root
+  CompletionUsageCompletionTokensDetails = openapi_server.resourceTypes.CompletionUsageCompletionTokensDetails
+  CompletionUsagePromptTokensDetails = openapi_server.resourceTypes.CompletionUsagePromptTokensDetails
 }
 resourceTypes {
 
@@ -29,6 +31,16 @@ resourceTypes {
           type =  integer
           description = "Total number of tokens used in the request (prompt + completion)."
           optional = true
+        }
+        completion_tokens_details {
+          type = CompletionUsageCompletionTokensDetails
+          description = ""
+          optional = false
+        }
+        prompt_tokens_details {
+          type = CompletionUsagePromptTokensDetails
+          description = ""
+          optional = false
         }
     }
   }

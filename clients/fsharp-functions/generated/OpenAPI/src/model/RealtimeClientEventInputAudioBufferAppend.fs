@@ -1,0 +1,21 @@
+namespace OpenAPI.Model
+
+open System
+open System.Collections.Generic
+open Newtonsoft.Json
+
+module RealtimeClientEventInputAudioBufferAppend =
+
+  //#region RealtimeClientEventInputAudioBufferAppend
+
+  [<CLIMutable>]
+  type RealtimeClientEventInputAudioBufferAppend = {
+    [<JsonProperty(PropertyName = "event_id")>]
+    EventId : string;
+    [<JsonProperty(PropertyName = "type")>]
+    Type : string;
+    [<JsonProperty(PropertyName = "audio")>]
+    Audio : string;
+  }
+
+  //#endregion

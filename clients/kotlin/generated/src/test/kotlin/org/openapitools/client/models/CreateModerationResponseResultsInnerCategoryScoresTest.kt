@@ -49,6 +49,18 @@ class CreateModerationResponseResultsInnerCategoryScoresTest : ShouldSpec() {
             //modelInstance.harassmentThreatening shouldBe ("TODO")
         }
 
+        // to test the property `illicit` - The score for the category 'illicit'.
+        should("test illicit") {
+            // uncomment below to test the property
+            //modelInstance.illicit shouldBe ("TODO")
+        }
+
+        // to test the property `illicitViolent` - The score for the category 'illicit/violent'.
+        should("test illicitViolent") {
+            // uncomment below to test the property
+            //modelInstance.illicitViolent shouldBe ("TODO")
+        }
+
         // to test the property `selfHarm` - The score for the category 'self-harm'.
         should("test selfHarm") {
             // uncomment below to test the property

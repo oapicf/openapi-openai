@@ -7,9 +7,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsCodeObject;
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter;
+import org.openapitools.model.RunStepDeltaStepDetailsToolCallsFileSearchObject;
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsFunctionObject;
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsFunctionObjectFunction;
-import org.openapitools.model.RunStepDeltaStepDetailsToolCallsRetrievalObject;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -28,7 +28,7 @@ public class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner   {
 
 public enum TypeEnum {
 
-    @JsonProperty("code_interpreter") CODE_INTERPRETER(String.valueOf("code_interpreter")), @JsonProperty("retrieval") RETRIEVAL(String.valueOf("retrieval")), @JsonProperty("function") FUNCTION(String.valueOf("function"));
+    @JsonProperty("code_interpreter") CODE_INTERPRETER(String.valueOf("code_interpreter")), @JsonProperty("file_search") FILE_SEARCH(String.valueOf("file_search")), @JsonProperty("function") FUNCTION(String.valueOf("function"));
 
 
     private String value;
@@ -60,7 +60,7 @@ public enum TypeEnum {
 
   private RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter codeInterpreter;
 
-  private Object retrieval;
+  private Object fileSearch;
 
   private RunStepDeltaStepDetailsToolCallsFunctionObjectFunction function;
 
@@ -144,19 +144,20 @@ public enum TypeEnum {
   /**
    * For now, this is always going to be an empty object.
    **/
-  public RunStepDeltaStepDetailsToolCallsObjectToolCallsInner retrieval(Object retrieval) {
-    this.retrieval = retrieval;
+  public RunStepDeltaStepDetailsToolCallsObjectToolCallsInner fileSearch(Object fileSearch) {
+    this.fileSearch = fileSearch;
     return this;
   }
 
   
-  @ApiModelProperty(value = "For now, this is always going to be an empty object.")
-  @JsonProperty("retrieval")
-  public Object getRetrieval() {
-    return retrieval;
+  @ApiModelProperty(required = true, value = "For now, this is always going to be an empty object.")
+  @JsonProperty("file_search")
+  @NotNull
+  public Object getFileSearch() {
+    return fileSearch;
   }
-  public void setRetrieval(Object retrieval) {
-    this.retrieval = retrieval;
+  public void setFileSearch(Object fileSearch) {
+    this.fileSearch = fileSearch;
   }
 
 
@@ -192,13 +193,13 @@ public enum TypeEnum {
         Objects.equals(this.id, runStepDeltaStepDetailsToolCallsObjectToolCallsInner.id) &&
         Objects.equals(this.type, runStepDeltaStepDetailsToolCallsObjectToolCallsInner.type) &&
         Objects.equals(this.codeInterpreter, runStepDeltaStepDetailsToolCallsObjectToolCallsInner.codeInterpreter) &&
-        Objects.equals(this.retrieval, runStepDeltaStepDetailsToolCallsObjectToolCallsInner.retrieval) &&
+        Objects.equals(this.fileSearch, runStepDeltaStepDetailsToolCallsObjectToolCallsInner.fileSearch) &&
         Objects.equals(this.function, runStepDeltaStepDetailsToolCallsObjectToolCallsInner.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(index, id, type, codeInterpreter, retrieval, function);
+    return Objects.hash(index, id, type, codeInterpreter, fileSearch, function);
   }
 
   @Override
@@ -210,7 +211,7 @@ public enum TypeEnum {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    codeInterpreter: ").append(toIndentedString(codeInterpreter)).append("\n");
-    sb.append("    retrieval: ").append(toIndentedString(retrieval)).append("\n");
+    sb.append("    fileSearch: ").append(toIndentedString(fileSearch)).append("\n");
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();

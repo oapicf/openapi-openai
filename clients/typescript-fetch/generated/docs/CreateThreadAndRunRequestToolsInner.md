@@ -7,6 +7,7 @@
 Name | Type
 ------------ | -------------
 `type` | string
+`fileSearch` | [AssistantToolsFileSearchFileSearch](AssistantToolsFileSearchFileSearch.md)
 `_function` | [FunctionObject](FunctionObject.md)
 
 ## Example
@@ -17,6 +18,7 @@ import type { CreateThreadAndRunRequestToolsInner } from ''
 // TODO: Update the object below with actual values
 const example = {
   "type": null,
+  "fileSearch": null,
   "_function": null,
 } satisfies CreateThreadAndRunRequestToolsInner
 

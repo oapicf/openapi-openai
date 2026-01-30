@@ -19,12 +19,26 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.FineTuningJobHyperparameters
-import org.openapitools.client.models.FineTuningJobHyperparametersNEpochs
+import org.openapitools.client.models.CreateFineTuningJobRequestHyperparametersBatchSize
+import org.openapitools.client.models.CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+import org.openapitools.client.models.CreateFineTuningJobRequestHyperparametersNEpochs
 
 class FineTuningJobHyperparametersTest : ShouldSpec() {
     init {
         // uncomment below to create an instance of FineTuningJobHyperparameters
         //val modelInstance = FineTuningJobHyperparameters()
+
+        // to test the property `batchSize`
+        should("test batchSize") {
+            // uncomment below to test the property
+            //modelInstance.batchSize shouldBe ("TODO")
+        }
+
+        // to test the property `learningRateMultiplier`
+        should("test learningRateMultiplier") {
+            // uncomment below to test the property
+            //modelInstance.learningRateMultiplier shouldBe ("TODO")
+        }
 
         // to test the property `nEpochs`
         should("test nEpochs") {

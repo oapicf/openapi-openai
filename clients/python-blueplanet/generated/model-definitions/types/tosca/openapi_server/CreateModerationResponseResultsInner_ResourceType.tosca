@@ -8,6 +8,7 @@ authors     = ["F. Bar (foo@bar.baz)"]
 imports {
   Root = tosca.resourceTypes.Root
   CreateModerationResponseResultsInnerCategories = openapi_server.resourceTypes.CreateModerationResponseResultsInnerCategories
+  CreateModerationResponseResultsInnerCategoryAppliedInputTypes = openapi_server.resourceTypes.CreateModerationResponseResultsInnerCategoryAppliedInputTypes
   CreateModerationResponseResultsInnerCategoryScores = openapi_server.resourceTypes.CreateModerationResponseResultsInnerCategoryScores
 }
 resourceTypes {
@@ -29,6 +30,11 @@ resourceTypes {
         }
         category_scores {
           type = CreateModerationResponseResultsInnerCategoryScores
+          description = ""
+          optional = true
+        }
+        category_applied_input_types {
+          type = CreateModerationResponseResultsInnerCategoryAppliedInputTypes
           description = ""
           optional = true
         }

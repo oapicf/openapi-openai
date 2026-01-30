@@ -1,6 +1,6 @@
 package models
 
-// RunStepStreamEventOneOf - Occurs when a [run step](/docs/api-reference/runs/step-object) is created.
+// RunStepStreamEventOneOf - Occurs when a [run step](/docs/api-reference/run-steps/step-object) is created.
 type RunStepStreamEventOneOf struct {
 
 	Event string `json:"event"`

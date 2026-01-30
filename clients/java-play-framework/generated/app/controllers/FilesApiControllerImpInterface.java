@@ -70,8 +70,8 @@ public abstract class FilesApiControllerImpInterface {
 
     public abstract String downloadFile(Http.Request request, String fileId) throws Exception;
 
-    public Result listFilesHttp(Http.Request request, String purpose) throws Exception {
-        ListFilesResponse obj = listFiles(request, purpose);
+    public Result listFilesHttp(Http.Request request, String purpose, Integer limit, String order, String after) throws Exception {
+        ListFilesResponse obj = listFiles(request, purpose, limit, order, after);
 
         if (configuration.getBoolean("useOutputBeanValidation")) {
             OpenAPIUtils.validate(obj);
@@ -83,7 +83,7 @@ public abstract class FilesApiControllerImpInterface {
 
     }
 
-    public abstract ListFilesResponse listFiles(Http.Request request, String purpose) throws Exception;
+    public abstract ListFilesResponse listFiles(Http.Request request, String purpose, Integer limit, String order, String after) throws Exception;
 
     public Result retrieveFileHttp(Http.Request request, String fileId) throws Exception {
         OpenAIFile obj = retrieveFile(request, fileId);

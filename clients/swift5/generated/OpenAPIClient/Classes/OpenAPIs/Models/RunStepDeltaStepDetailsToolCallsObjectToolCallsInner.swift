@@ -12,17 +12,17 @@ import AnyCodable
 
 public enum RunStepDeltaStepDetailsToolCallsObjectToolCallsInner: Codable, JSONEncodable, Hashable {
     case typeRunStepDeltaStepDetailsToolCallsCodeObject(RunStepDeltaStepDetailsToolCallsCodeObject)
+    case typeRunStepDeltaStepDetailsToolCallsFileSearchObject(RunStepDeltaStepDetailsToolCallsFileSearchObject)
     case typeRunStepDeltaStepDetailsToolCallsFunctionObject(RunStepDeltaStepDetailsToolCallsFunctionObject)
-    case typeRunStepDeltaStepDetailsToolCallsRetrievalObject(RunStepDeltaStepDetailsToolCallsRetrievalObject)
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .typeRunStepDeltaStepDetailsToolCallsCodeObject(let value):
             try container.encode(value)
-        case .typeRunStepDeltaStepDetailsToolCallsFunctionObject(let value):
+        case .typeRunStepDeltaStepDetailsToolCallsFileSearchObject(let value):
             try container.encode(value)
-        case .typeRunStepDeltaStepDetailsToolCallsRetrievalObject(let value):
+        case .typeRunStepDeltaStepDetailsToolCallsFunctionObject(let value):
             try container.encode(value)
         }
     }
@@ -31,10 +31,10 @@ public enum RunStepDeltaStepDetailsToolCallsObjectToolCallsInner: Codable, JSONE
         let container = try decoder.singleValueContainer()
         if let value = try? container.decode(RunStepDeltaStepDetailsToolCallsCodeObject.self) {
             self = .typeRunStepDeltaStepDetailsToolCallsCodeObject(value)
+        } else if let value = try? container.decode(RunStepDeltaStepDetailsToolCallsFileSearchObject.self) {
+            self = .typeRunStepDeltaStepDetailsToolCallsFileSearchObject(value)
         } else if let value = try? container.decode(RunStepDeltaStepDetailsToolCallsFunctionObject.self) {
             self = .typeRunStepDeltaStepDetailsToolCallsFunctionObject(value)
-        } else if let value = try? container.decode(RunStepDeltaStepDetailsToolCallsRetrievalObject.self) {
-            self = .typeRunStepDeltaStepDetailsToolCallsRetrievalObject(value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of RunStepDeltaStepDetailsToolCallsObjectToolCallsInner"))
         }

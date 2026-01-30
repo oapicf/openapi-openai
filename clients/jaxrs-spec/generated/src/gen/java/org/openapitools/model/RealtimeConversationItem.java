@@ -1,0 +1,504 @@
+package org.openapitools.model;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.openapitools.model.RealtimeConversationItemContentInner;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
+
+import io.swagger.annotations.*;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.jackson.nullable.JsonNullable;
+
+/**
+ * The item to add to the conversation.
+ **/
+@ApiModel(description = "The item to add to the conversation.")
+@JsonTypeName("RealtimeConversationItem")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class RealtimeConversationItem   {
+  private String id;
+  public enum TypeEnum {
+
+    MESSAGE(String.valueOf("message")), FUNCTION_CALL(String.valueOf("function_call")), FUNCTION_CALL_OUTPUT(String.valueOf("function_call_output"));
+
+
+    private String value;
+
+    TypeEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    /**
+     * Convert a String into String, as specified in the
+     * <a href="https://download.oracle.com/otndocs/jcp/jaxrs-2_0-fr-eval-spec/index.html">See JAX RS 2.0 Specification, section 3.2, p. 12</a>
+     */
+    public static TypeEnum fromString(String s) {
+        for (TypeEnum b : TypeEnum.values()) {
+            // using Objects.toString() to be safe if value type non-object type
+            // because types like 'int' etc. will be auto-boxed
+            if (java.util.Objects.toString(b.value).equals(s)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected string value '" + s + "'");
+    }
+
+    @JsonCreator
+    public static TypeEnum fromValue(String value) {
+        for (TypeEnum b : TypeEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
+  private TypeEnum type;
+  public enum ObjectEnum {
+
+    REALTIME_ITEM(String.valueOf("realtime.item"));
+
+
+    private String value;
+
+    ObjectEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    /**
+     * Convert a String into String, as specified in the
+     * <a href="https://download.oracle.com/otndocs/jcp/jaxrs-2_0-fr-eval-spec/index.html">See JAX RS 2.0 Specification, section 3.2, p. 12</a>
+     */
+    public static ObjectEnum fromString(String s) {
+        for (ObjectEnum b : ObjectEnum.values()) {
+            // using Objects.toString() to be safe if value type non-object type
+            // because types like 'int' etc. will be auto-boxed
+            if (java.util.Objects.toString(b.value).equals(s)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected string value '" + s + "'");
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String value) {
+        for (ObjectEnum b : ObjectEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
+  private ObjectEnum _object;
+  public enum StatusEnum {
+
+    COMPLETED(String.valueOf("completed")), INCOMPLETE(String.valueOf("incomplete"));
+
+
+    private String value;
+
+    StatusEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    /**
+     * Convert a String into String, as specified in the
+     * <a href="https://download.oracle.com/otndocs/jcp/jaxrs-2_0-fr-eval-spec/index.html">See JAX RS 2.0 Specification, section 3.2, p. 12</a>
+     */
+    public static StatusEnum fromString(String s) {
+        for (StatusEnum b : StatusEnum.values()) {
+            // using Objects.toString() to be safe if value type non-object type
+            // because types like 'int' etc. will be auto-boxed
+            if (java.util.Objects.toString(b.value).equals(s)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected string value '" + s + "'");
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+        for (StatusEnum b : StatusEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
+  private StatusEnum status;
+  public enum RoleEnum {
+
+    USER(String.valueOf("user")), ASSISTANT(String.valueOf("assistant")), SYSTEM(String.valueOf("system"));
+
+
+    private String value;
+
+    RoleEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    /**
+     * Convert a String into String, as specified in the
+     * <a href="https://download.oracle.com/otndocs/jcp/jaxrs-2_0-fr-eval-spec/index.html">See JAX RS 2.0 Specification, section 3.2, p. 12</a>
+     */
+    public static RoleEnum fromString(String s) {
+        for (RoleEnum b : RoleEnum.values()) {
+            // using Objects.toString() to be safe if value type non-object type
+            // because types like 'int' etc. will be auto-boxed
+            if (java.util.Objects.toString(b.value).equals(s)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected string value '" + s + "'");
+    }
+
+    @JsonCreator
+    public static RoleEnum fromValue(String value) {
+        for (RoleEnum b : RoleEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
+  private RoleEnum role;
+  private @Valid List<@Valid RealtimeConversationItemContentInner> content = new ArrayList<>();
+  private String callId;
+  private String name;
+  private String arguments;
+  private String output;
+
+  public RealtimeConversationItem() {
+  }
+
+  /**
+   * The unique ID of the item, this can be generated by the client to help  manage server-side context, but is not required because the server will  generate one if not provided. 
+   **/
+  public RealtimeConversationItem id(String id) {
+    this.id = id;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "The unique ID of the item, this can be generated by the client to help  manage server-side context, but is not required because the server will  generate one if not provided. ")
+  @JsonProperty("id")
+  public String getId() {
+    return id;
+  }
+
+  @JsonProperty("id")
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  /**
+   * The type of the item (&#x60;message&#x60;, &#x60;function_call&#x60;, &#x60;function_call_output&#x60;). 
+   **/
+  public RealtimeConversationItem type(TypeEnum type) {
+    this.type = type;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "The type of the item (`message`, `function_call`, `function_call_output`). ")
+  @JsonProperty("type")
+  public TypeEnum getType() {
+    return type;
+  }
+
+  @JsonProperty("type")
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
+  /**
+   * Identifier for the API object being returned - always &#x60;realtime.item&#x60;. 
+   **/
+  public RealtimeConversationItem _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "Identifier for the API object being returned - always `realtime.item`. ")
+  @JsonProperty("object")
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+  @JsonProperty("object")
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
+  /**
+   * The status of the item (&#x60;completed&#x60;, &#x60;incomplete&#x60;). These have no effect  on the conversation, but are accepted for consistency with the  &#x60;conversation.item.created&#x60; event. 
+   **/
+  public RealtimeConversationItem status(StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "The status of the item (`completed`, `incomplete`). These have no effect  on the conversation, but are accepted for consistency with the  `conversation.item.created` event. ")
+  @JsonProperty("status")
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+  @JsonProperty("status")
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
+  /**
+   * The role of the message sender (&#x60;user&#x60;, &#x60;assistant&#x60;, &#x60;system&#x60;), only  applicable for &#x60;message&#x60; items. 
+   **/
+  public RealtimeConversationItem role(RoleEnum role) {
+    this.role = role;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "The role of the message sender (`user`, `assistant`, `system`), only  applicable for `message` items. ")
+  @JsonProperty("role")
+  public RoleEnum getRole() {
+    return role;
+  }
+
+  @JsonProperty("role")
+  public void setRole(RoleEnum role) {
+    this.role = role;
+  }
+
+  /**
+   * The content of the message, applicable for &#x60;message&#x60; items.  - Message items of role &#x60;system&#x60; support only &#x60;input_text&#x60; content - Message items of role &#x60;user&#x60; support &#x60;input_text&#x60; and &#x60;input_audio&#x60;    content - Message items of role &#x60;assistant&#x60; support &#x60;text&#x60; content. 
+   **/
+  public RealtimeConversationItem content(List<@Valid RealtimeConversationItemContentInner> content) {
+    this.content = content;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "The content of the message, applicable for `message` items.  - Message items of role `system` support only `input_text` content - Message items of role `user` support `input_text` and `input_audio`    content - Message items of role `assistant` support `text` content. ")
+  @JsonProperty("content")
+  @Valid public List<@Valid RealtimeConversationItemContentInner> getContent() {
+    return content;
+  }
+
+  @JsonProperty("content")
+  public void setContent(List<@Valid RealtimeConversationItemContentInner> content) {
+    this.content = content;
+  }
+
+  public RealtimeConversationItem addContentItem(RealtimeConversationItemContentInner contentItem) {
+    if (this.content == null) {
+      this.content = new ArrayList<>();
+    }
+
+    this.content.add(contentItem);
+    return this;
+  }
+
+  public RealtimeConversationItem removeContentItem(RealtimeConversationItemContentInner contentItem) {
+    if (contentItem != null && this.content != null) {
+      this.content.remove(contentItem);
+    }
+
+    return this;
+  }
+  /**
+   * The ID of the function call (for &#x60;function_call&#x60; and  &#x60;function_call_output&#x60; items). If passed on a &#x60;function_call_output&#x60;  item, the server will check that a &#x60;function_call&#x60; item with the same  ID exists in the conversation history. 
+   **/
+  public RealtimeConversationItem callId(String callId) {
+    this.callId = callId;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "The ID of the function call (for `function_call` and  `function_call_output` items). If passed on a `function_call_output`  item, the server will check that a `function_call` item with the same  ID exists in the conversation history. ")
+  @JsonProperty("call_id")
+  public String getCallId() {
+    return callId;
+  }
+
+  @JsonProperty("call_id")
+  public void setCallId(String callId) {
+    this.callId = callId;
+  }
+
+  /**
+   * The name of the function being called (for &#x60;function_call&#x60; items). 
+   **/
+  public RealtimeConversationItem name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "The name of the function being called (for `function_call` items). ")
+  @JsonProperty("name")
+  public String getName() {
+    return name;
+  }
+
+  @JsonProperty("name")
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  /**
+   * The arguments of the function call (for &#x60;function_call&#x60; items). 
+   **/
+  public RealtimeConversationItem arguments(String arguments) {
+    this.arguments = arguments;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "The arguments of the function call (for `function_call` items). ")
+  @JsonProperty("arguments")
+  public String getArguments() {
+    return arguments;
+  }
+
+  @JsonProperty("arguments")
+  public void setArguments(String arguments) {
+    this.arguments = arguments;
+  }
+
+  /**
+   * The output of the function call (for &#x60;function_call_output&#x60; items). 
+   **/
+  public RealtimeConversationItem output(String output) {
+    this.output = output;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "The output of the function call (for `function_call_output` items). ")
+  @JsonProperty("output")
+  public String getOutput() {
+    return output;
+  }
+
+  @JsonProperty("output")
+  public void setOutput(String output) {
+    this.output = output;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    RealtimeConversationItem realtimeConversationItem = (RealtimeConversationItem) o;
+    return Objects.equals(this.id, realtimeConversationItem.id) &&
+        Objects.equals(this.type, realtimeConversationItem.type) &&
+        Objects.equals(this._object, realtimeConversationItem._object) &&
+        Objects.equals(this.status, realtimeConversationItem.status) &&
+        Objects.equals(this.role, realtimeConversationItem.role) &&
+        Objects.equals(this.content, realtimeConversationItem.content) &&
+        Objects.equals(this.callId, realtimeConversationItem.callId) &&
+        Objects.equals(this.name, realtimeConversationItem.name) &&
+        Objects.equals(this.arguments, realtimeConversationItem.arguments) &&
+        Objects.equals(this.output, realtimeConversationItem.output);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, type, _object, status, role, content, callId, name, arguments, output);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class RealtimeConversationItem {\n");
+    
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    callId: ").append(toIndentedString(callId)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    arguments: ").append(toIndentedString(arguments)).append("\n");
+    sb.append("    output: ").append(toIndentedString(output)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+}
+

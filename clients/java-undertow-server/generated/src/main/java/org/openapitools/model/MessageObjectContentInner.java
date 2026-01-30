@@ -3,7 +3,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * OpenAPI document version: 2.0.0
+ * OpenAPI document version: 2.3.0
  * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -18,6 +18,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.MessageContentImageFileObject;
 import org.openapitools.model.MessageContentImageFileObjectImageFile;
+import org.openapitools.model.MessageContentImageUrlObject;
+import org.openapitools.model.MessageContentImageUrlObjectImageUrl;
+import org.openapitools.model.MessageContentRefusalObject;
 import org.openapitools.model.MessageContentTextObject;
 import org.openapitools.model.MessageContentTextObjectText;
 
@@ -25,14 +28,16 @@ import org.openapitools.model.MessageContentTextObjectText;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T10:45:08.090000084Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageObjectContentInner   {
   
 
 
   public enum TypeEnum {
     IMAGE_FILE("image_file"),
-    TEXT("text");
+    IMAGE_URL("image_url"),
+    TEXT("text"),
+    REFUSAL("refusal");
 
     private String value;
 
@@ -49,7 +54,9 @@ public class MessageObjectContentInner   {
 
   private TypeEnum type;
   private MessageContentImageFileObjectImageFile imageFile;
+  private MessageContentImageUrlObjectImageUrl imageUrl;
   private MessageContentTextObjectText text;
+  private String refusal;
 
   /**
    * Always `image_file`.
@@ -88,6 +95,23 @@ public class MessageObjectContentInner   {
 
   /**
    */
+  public MessageObjectContentInner imageUrl(MessageContentImageUrlObjectImageUrl imageUrl) {
+    this.imageUrl = imageUrl;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty("image_url")
+  public MessageContentImageUrlObjectImageUrl getImageUrl() {
+    return imageUrl;
+  }
+  public void setImageUrl(MessageContentImageUrlObjectImageUrl imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
+  /**
+   */
   public MessageObjectContentInner text(MessageContentTextObjectText text) {
     this.text = text;
     return this;
@@ -103,6 +127,23 @@ public class MessageObjectContentInner   {
     this.text = text;
   }
 
+  /**
+   */
+  public MessageObjectContentInner refusal(String refusal) {
+    this.refusal = refusal;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty("refusal")
+  public String getRefusal() {
+    return refusal;
+  }
+  public void setRefusal(String refusal) {
+    this.refusal = refusal;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -115,12 +156,14 @@ public class MessageObjectContentInner   {
     MessageObjectContentInner messageObjectContentInner = (MessageObjectContentInner) o;
     return Objects.equals(type, messageObjectContentInner.type) &&
         Objects.equals(imageFile, messageObjectContentInner.imageFile) &&
-        Objects.equals(text, messageObjectContentInner.text);
+        Objects.equals(imageUrl, messageObjectContentInner.imageUrl) &&
+        Objects.equals(text, messageObjectContentInner.text) &&
+        Objects.equals(refusal, messageObjectContentInner.refusal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, imageFile, text);
+    return Objects.hash(type, imageFile, imageUrl, text, refusal);
   }
 
   @Override
@@ -130,7 +173,9 @@ public class MessageObjectContentInner   {
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    imageFile: ").append(toIndentedString(imageFile)).append("\n");
+    sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -22,11 +22,13 @@
    (ds/opt :tools) (s/coll-of assistant-object-tools-inner-spec)
    (ds/opt :metadata) any?
    (ds/opt :temperature) float?
+   (ds/opt :top_p) float?
    (ds/opt :stream) boolean?
    (ds/opt :max_prompt_tokens) int?
    (ds/opt :max_completion_tokens) int?
    (ds/opt :truncation_strategy) truncation-object-spec
    (ds/opt :tool_choice) assistants-api-tool-choice-option-spec
+   (ds/opt :parallel_tool_calls) boolean?
    (ds/opt :response_format) assistants-api-response-format-option-spec
    })
 

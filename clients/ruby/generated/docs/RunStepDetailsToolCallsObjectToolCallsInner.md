@@ -15,8 +15,8 @@ OpenApiOpenAIClient::RunStepDetailsToolCallsObjectToolCallsInner.openapi_one_of
 # =>
 # [
 #   :'RunStepDetailsToolCallsCodeObject',
-#   :'RunStepDetailsToolCallsFunctionObject',
-#   :'RunStepDetailsToolCallsRetrievalObject'
+#   :'RunStepDetailsToolCallsFileSearchObject',
+#   :'RunStepDetailsToolCallsFunctionObject'
 # ]
 ```
 
@@ -45,7 +45,7 @@ OpenApiOpenAIClient::RunStepDetailsToolCallsObjectToolCallsInner.build(data_that
 #### Return type
 
 - `RunStepDetailsToolCallsCodeObject`
+- `RunStepDetailsToolCallsFileSearchObject`
 - `RunStepDetailsToolCallsFunctionObject`
-- `RunStepDetailsToolCallsRetrievalObject`
 - `nil` (if no type matches)
 

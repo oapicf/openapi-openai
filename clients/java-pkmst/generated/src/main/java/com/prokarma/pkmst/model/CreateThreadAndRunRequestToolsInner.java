@@ -6,8 +6,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.prokarma.pkmst.model.AssistantToolsCode;
+import com.prokarma.pkmst.model.AssistantToolsFileSearch;
+import com.prokarma.pkmst.model.AssistantToolsFileSearchFileSearch;
 import com.prokarma.pkmst.model.AssistantToolsFunction;
-import com.prokarma.pkmst.model.AssistantToolsRetrieval;
 import com.prokarma.pkmst.model.FunctionObject;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -20,7 +21,7 @@ import io.swagger.annotations.ApiModelProperty;
  * CreateThreadAndRunRequestToolsInner
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T10:45:02.588292416Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateThreadAndRunRequestToolsInner   {
   /**
    * The type of tool being defined: `code_interpreter`
@@ -28,7 +29,7 @@ public class CreateThreadAndRunRequestToolsInner   {
   public enum TypeEnum {
     CODE_INTERPRETER("code_interpreter"),
     
-    RETRIEVAL("retrieval"),
+    FILE_SEARCH("file_search"),
     
     FUNCTION("function");
 
@@ -58,6 +59,9 @@ public class CreateThreadAndRunRequestToolsInner   {
   @JsonProperty("type")
   private TypeEnum type;
 
+  @JsonProperty("file_search")
+  private AssistantToolsFileSearchFileSearch fileSearch;
+
   @JsonProperty("function")
   private FunctionObject function;
 
@@ -77,6 +81,24 @@ public class CreateThreadAndRunRequestToolsInner   {
 
   public void setType(TypeEnum type) {
     this.type = type;
+  }
+
+  public CreateThreadAndRunRequestToolsInner fileSearch(AssistantToolsFileSearchFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
+    return this;
+  }
+
+  /**
+   * Get fileSearch
+   * @return fileSearch
+   */
+  @ApiModelProperty(value = "")
+  public AssistantToolsFileSearchFileSearch getFileSearch() {
+    return fileSearch;
+  }
+
+  public void setFileSearch(AssistantToolsFileSearchFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
   }
 
   public CreateThreadAndRunRequestToolsInner function(FunctionObject function) {
@@ -108,12 +130,13 @@ public class CreateThreadAndRunRequestToolsInner   {
     }
     CreateThreadAndRunRequestToolsInner createThreadAndRunRequestToolsInner = (CreateThreadAndRunRequestToolsInner) o;
     return Objects.equals(this.type, createThreadAndRunRequestToolsInner.type) &&
+        Objects.equals(this.fileSearch, createThreadAndRunRequestToolsInner.fileSearch) &&
         Objects.equals(this.function, createThreadAndRunRequestToolsInner.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, function);
+    return Objects.hash(type, fileSearch, function);
   }
 
   @Override
@@ -122,6 +145,7 @@ public class CreateThreadAndRunRequestToolsInner   {
     sb.append("class CreateThreadAndRunRequestToolsInner {\n");
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    fileSearch: ").append(toIndentedString(fileSearch)).append("\n");
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();

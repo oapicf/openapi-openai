@@ -1,0 +1,35 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The upload Part represents a chunk of bytes we can add to an Upload object. ",
+  "name": "UploadPart",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The upload Part unique identifier, which can be referenced in API endpoints."
+    },
+    {
+      "name": "created_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the Part was created."
+    },
+    {
+      "name": "upload_id",
+      "type": "string",
+      "doc": "The ID of the Upload object that this Part was added to."
+    },
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "UploadPart_object",
+        "symbols": [
+          "upload_part"
+        ]
+      },
+      "doc": "The object type, which is always `upload.part`."
+    }
+  ]
+
+}

@@ -1,5 +1,6 @@
 package org.openapitools.api;
 
+import org.openapitools.model.AudioResponseFormat;
 import java.math.BigDecimal;
 import org.openapitools.model.CreateSpeechRequest;
 import org.openapitools.model.CreateTranscription200Response;
@@ -31,7 +32,7 @@ import javax.validation.Valid;
 @Api
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-01-29T10:45:22.438122430Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-01-29T14:09:03.843054404Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 
 public class AudioApi  {
 
@@ -64,7 +65,7 @@ public class AudioApi  {
          }, tags={ "Audio" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = CreateTranscription200Response.class) })
-    public Response createTranscription( @Multipart(value = "file" ) Attachment _fileDetail, @Multipart(value = "model")  CreateTranscriptionRequestModel model, @Multipart(value = "language", required = false)  String language, @Multipart(value = "prompt", required = false)  String prompt, @Multipart(value = "response_format", required = false)  String responseFormat, @Multipart(value = "temperature", required = false)  BigDecimal temperature, @Multipart(value = "timestamp_granularities[]", required = false)  List<String> timestampGranularities) {
+    public Response createTranscription( @Multipart(value = "file" ) Attachment _fileDetail, @Multipart(value = "model")  CreateTranscriptionRequestModel model, @Multipart(value = "language", required = false)  String language, @Multipart(value = "prompt", required = false)  String prompt, @Multipart(value = "response_format", required = false)  AudioResponseFormat responseFormat, @Multipart(value = "temperature", required = false)  BigDecimal temperature, @Multipart(value = "timestamp_granularities[]", required = false)  List<String> timestampGranularities) {
         return delegate.createTranscription(_fileDetail, model, language, prompt, responseFormat, temperature, timestampGranularities, securityContext);
     }
 
@@ -78,7 +79,7 @@ public class AudioApi  {
          }, tags={ "Audio" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = CreateTranslation200Response.class) })
-    public Response createTranslation( @Multipart(value = "file" ) Attachment _fileDetail, @Multipart(value = "model")  CreateTranscriptionRequestModel model, @Multipart(value = "prompt", required = false)  String prompt, @Multipart(value = "response_format", required = false)  String responseFormat, @Multipart(value = "temperature", required = false)  BigDecimal temperature) {
+    public Response createTranslation( @Multipart(value = "file" ) Attachment _fileDetail, @Multipart(value = "model")  CreateTranscriptionRequestModel model, @Multipart(value = "prompt", required = false)  String prompt, @Multipart(value = "response_format", required = false)  AudioResponseFormat responseFormat, @Multipart(value = "temperature", required = false)  BigDecimal temperature) {
         return delegate.createTranslation(_fileDetail, model, prompt, responseFormat, temperature, securityContext);
     }
 }

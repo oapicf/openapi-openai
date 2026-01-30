@@ -1,7 +1,7 @@
 /*
  * run_step_stream_event_one_of_3.h
  *
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is completed.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is completed.
  */
 
 #ifndef _run_step_stream_event_one_of_3_H_

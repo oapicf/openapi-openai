@@ -15,7 +15,7 @@ import org.openapitools.model.SubmitToolOutputsRunRequestToolOutputsInner;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class SubmitToolOutputsRunRequest   {
   @JsonProperty("tool_outputs")
   private List<SubmitToolOutputsRunRequestToolOutputsInner> toolOutputs = new ArrayList<>();

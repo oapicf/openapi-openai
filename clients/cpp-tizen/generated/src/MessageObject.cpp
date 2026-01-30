@@ -35,7 +35,7 @@ MessageObject::__init()
 	//new std::list()std::list> content;
 	//assistant_id = std::string();
 	//run_id = std::string();
-	//new std::list()std::list> file_ids;
+	//new std::list()std::list> attachments;
 	//metadata = null;
 }
 
@@ -102,10 +102,10 @@ MessageObject::__cleanup()
 	//delete run_id;
 	//run_id = NULL;
 	//}
-	//if(file_ids != NULL) {
-	//file_ids.RemoveAll(true);
-	//delete file_ids;
-	//file_ids = NULL;
+	//if(attachments != NULL) {
+	//attachments.RemoveAll(true);
+	//delete attachments;
+	//attachments = NULL;
 	//}
 	//if(metadata != NULL) {
 	//
@@ -268,25 +268,27 @@ MessageObject::fromJson(char* jsonStr)
 			
 		}
 	}
-	const gchar *file_idsKey = "file_ids";
-	node = json_object_get_member(pJsonObject, file_idsKey);
+	const gchar *attachmentsKey = "attachments";
+	node = json_object_get_member(pJsonObject, attachmentsKey);
 	if (node !=NULL) {
 	
 		{
 			JsonArray* arr = json_node_get_array(node);
 			JsonNode*  temp_json;
-			list<std::string> new_list;
-			std::string inst;
+			list<CreateMessageRequest_attachments_inner> new_list;
+			CreateMessageRequest_attachments_inner inst;
 			for (guint i=0;i<json_array_get_length(arr);i++) {
 				temp_json = json_array_get_element(arr,i);
-				if (isprimitive("std::string")) {
-					jsonToValue(&inst, temp_json, "std::string", "");
+				if (isprimitive("CreateMessageRequest_attachments_inner")) {
+					jsonToValue(&inst, temp_json, "CreateMessageRequest_attachments_inner", "");
 				} else {
+					
+					inst.fromJson(json_to_string(temp_json, false));
 					
 				}
 				new_list.push_back(inst);
 			}
-			file_ids = new_list;
+			attachments = new_list;
 		}
 		
 	}
@@ -445,21 +447,31 @@ MessageObject::toJson()
 	}
 	const gchar *run_idKey = "run_id";
 	json_object_set_member(pJsonObject, run_idKey, node);
-	if (isprimitive("std::string")) {
-		list<std::string> new_list = static_cast<list <std::string> > (getFileIds());
-		node = converttoJson(&new_list, "std::string", "array");
+	if (isprimitive("CreateMessageRequest_attachments_inner")) {
+		list<CreateMessageRequest_attachments_inner> new_list = static_cast<list <CreateMessageRequest_attachments_inner> > (getAttachments());
+		node = converttoJson(&new_list, "CreateMessageRequest_attachments_inner", "array");
 	} else {
 		node = json_node_alloc();
-		list<std::string> new_list = static_cast<list <std::string> > (getFileIds());
+		list<CreateMessageRequest_attachments_inner> new_list = static_cast<list <CreateMessageRequest_attachments_inner> > (getAttachments());
 		JsonArray* json_array = json_array_new();
 		GError *mygerror;
+		
+		for (list<CreateMessageRequest_attachments_inner>::iterator it = new_list.begin(); it != new_list.end(); it++) {
+			mygerror = NULL;
+			CreateMessageRequest_attachments_inner obj = *it;
+			JsonNode *node_temp = json_from_string(obj.toJson(), &mygerror);
+			json_array_add_element(json_array, node_temp);
+			g_clear_error(&mygerror);
+		}
+		json_node_init_array(node, json_array);
+		json_array_unref(json_array);
 		
 	}
 
 
 	
-	const gchar *file_idsKey = "file_ids";
-	json_object_set_member(pJsonObject, file_idsKey, node);
+	const gchar *attachmentsKey = "attachments";
+	json_object_set_member(pJsonObject, attachmentsKey, node);
 	if (isprimitive("std::string")) {
 		std::string obj = getMetadata();
 		node = converttoJson(&obj, "std::string", "");
@@ -626,16 +638,16 @@ MessageObject::setRunId(std::string  run_id)
 	this->run_id = run_id;
 }
 
-std::list<std::string>
-MessageObject::getFileIds()
+std::list<CreateMessageRequest_attachments_inner>
+MessageObject::getAttachments()
 {
-	return file_ids;
+	return attachments;
 }
 
 void
-MessageObject::setFileIds(std::list <std::string> file_ids)
+MessageObject::setAttachments(std::list <CreateMessageRequest_attachments_inner> attachments)
 {
-	this->file_ids = file_ids;
+	this->attachments = attachments;
 }
 
 std::string

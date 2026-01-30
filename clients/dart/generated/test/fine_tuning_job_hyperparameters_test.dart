@@ -16,7 +16,17 @@ void main() {
   // final instance = FineTuningJobHyperparameters();
 
   group('test FineTuningJobHyperparameters', () {
-    // FineTuningJobHyperparametersNEpochs nEpochs
+    // CreateFineTuningJobRequestHyperparametersBatchSize batchSize
+    test('to test the property `batchSize`', () async {
+      // TODO
+    });
+
+    // CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier
+    test('to test the property `learningRateMultiplier`', () async {
+      // TODO
+    });
+
+    // CreateFineTuningJobRequestHyperparametersNEpochs nEpochs
     test('to test the property `nEpochs`', () async {
       // TODO
     });

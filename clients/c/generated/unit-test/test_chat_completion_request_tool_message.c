@@ -16,6 +16,7 @@
 #include "../model/chat_completion_request_tool_message.h"
 chat_completion_request_tool_message_t* instantiate_chat_completion_request_tool_message(int include_optional);
 
+#include "test_chat_completion_request_tool_message_content.c"
 
 
 chat_completion_request_tool_message_t* instantiate_chat_completion_request_tool_message(int include_optional) {
@@ -23,13 +24,13 @@ chat_completion_request_tool_message_t* instantiate_chat_completion_request_tool
   if (include_optional) {
     chat_completion_request_tool_message = chat_completion_request_tool_message_create(
       openai_api_chat_completion_request_tool_message_ROLE_tool,
-      "0",
+      null,
       "0"
     );
   } else {
     chat_completion_request_tool_message = chat_completion_request_tool_message_create(
       openai_api_chat_completion_request_tool_message_ROLE_tool,
-      "0",
+      null,
       "0"
     );
   }

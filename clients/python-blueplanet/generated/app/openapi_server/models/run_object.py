@@ -23,7 +23,7 @@ class RunObject(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, object: str=None, created_at: int=None, thread_id: str=None, assistant_id: str=None, status: str=None, required_action: RunObjectRequiredAction=None, last_error: RunObjectLastError=None, expires_at: int=None, started_at: int=None, cancelled_at: int=None, failed_at: int=None, completed_at: int=None, incomplete_details: RunObjectIncompleteDetails=None, model: str=None, instructions: str=None, tools: List[AssistantObjectToolsInner]=[], file_ids: List[str]=[], metadata: object=None, usage: RunCompletionUsage=None, temperature: float=None, max_prompt_tokens: int=None, max_completion_tokens: int=None, truncation_strategy: TruncationObject=None, tool_choice: AssistantsApiToolChoiceOption=None, response_format: AssistantsApiResponseFormatOption=None):  # noqa: E501
+    def __init__(self, id: str=None, object: str=None, created_at: int=None, thread_id: str=None, assistant_id: str=None, status: str=None, required_action: RunObjectRequiredAction=None, last_error: RunObjectLastError=None, expires_at: int=None, started_at: int=None, cancelled_at: int=None, failed_at: int=None, completed_at: int=None, incomplete_details: RunObjectIncompleteDetails=None, model: str=None, instructions: str=None, tools: List[AssistantObjectToolsInner]=[], metadata: object=None, usage: RunCompletionUsage=None, temperature: float=None, top_p: float=None, max_prompt_tokens: int=None, max_completion_tokens: int=None, truncation_strategy: TruncationObject=None, tool_choice: AssistantsApiToolChoiceOption=None, parallel_tool_calls: bool=True, response_format: AssistantsApiResponseFormatOption=None):  # noqa: E501
         """RunObject - a model defined in Swagger
 
         :param id: The id of this RunObject.  # noqa: E501
@@ -60,14 +60,14 @@ class RunObject(Model):
         :type instructions: str
         :param tools: The tools of this RunObject.  # noqa: E501
         :type tools: List[AssistantObjectToolsInner]
-        :param file_ids: The file_ids of this RunObject.  # noqa: E501
-        :type file_ids: List[str]
         :param metadata: The metadata of this RunObject.  # noqa: E501
         :type metadata: object
         :param usage: The usage of this RunObject.  # noqa: E501
         :type usage: RunCompletionUsage
         :param temperature: The temperature of this RunObject.  # noqa: E501
         :type temperature: float
+        :param top_p: The top_p of this RunObject.  # noqa: E501
+        :type top_p: float
         :param max_prompt_tokens: The max_prompt_tokens of this RunObject.  # noqa: E501
         :type max_prompt_tokens: int
         :param max_completion_tokens: The max_completion_tokens of this RunObject.  # noqa: E501
@@ -76,6 +76,8 @@ class RunObject(Model):
         :type truncation_strategy: TruncationObject
         :param tool_choice: The tool_choice of this RunObject.  # noqa: E501
         :type tool_choice: AssistantsApiToolChoiceOption
+        :param parallel_tool_calls: The parallel_tool_calls of this RunObject.  # noqa: E501
+        :type parallel_tool_calls: bool
         :param response_format: The response_format of this RunObject.  # noqa: E501
         :type response_format: AssistantsApiResponseFormatOption
         """
@@ -97,14 +99,15 @@ class RunObject(Model):
             'model': str,
             'instructions': str,
             'tools': List[AssistantObjectToolsInner],
-            'file_ids': List[str],
             'metadata': object,
             'usage': RunCompletionUsage,
             'temperature': float,
+            'top_p': float,
             'max_prompt_tokens': int,
             'max_completion_tokens': int,
             'truncation_strategy': TruncationObject,
             'tool_choice': AssistantsApiToolChoiceOption,
+            'parallel_tool_calls': bool,
             'response_format': AssistantsApiResponseFormatOption
         }
 
@@ -126,14 +129,15 @@ class RunObject(Model):
             'model': 'model',
             'instructions': 'instructions',
             'tools': 'tools',
-            'file_ids': 'file_ids',
             'metadata': 'metadata',
             'usage': 'usage',
             'temperature': 'temperature',
+            'top_p': 'top_p',
             'max_prompt_tokens': 'max_prompt_tokens',
             'max_completion_tokens': 'max_completion_tokens',
             'truncation_strategy': 'truncation_strategy',
             'tool_choice': 'tool_choice',
+            'parallel_tool_calls': 'parallel_tool_calls',
             'response_format': 'response_format'
         }
 
@@ -154,14 +158,15 @@ class RunObject(Model):
         self._model = model
         self._instructions = instructions
         self._tools = tools
-        self._file_ids = file_ids
         self._metadata = metadata
         self._usage = usage
         self._temperature = temperature
+        self._top_p = top_p
         self._max_prompt_tokens = max_prompt_tokens
         self._max_completion_tokens = max_completion_tokens
         self._truncation_strategy = truncation_strategy
         self._tool_choice = tool_choice
+        self._parallel_tool_calls = parallel_tool_calls
         self._response_format = response_format
 
     @classmethod
@@ -308,7 +313,7 @@ class RunObject(Model):
     def status(self) -> str:
         """Gets the status of this RunObject.
 
-        The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.  # noqa: E501
+        The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.  # noqa: E501
 
         :return: The status of this RunObject.
         :rtype: str
@@ -319,12 +324,12 @@ class RunObject(Model):
     def status(self, status: str):
         """Sets the status of this RunObject.
 
-        The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.  # noqa: E501
+        The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.  # noqa: E501
 
         :param status: The status of this RunObject.
         :type status: str
         """
-        allowed_values = ["queued", "in_progress", "requires_action", "cancelling", "cancelled", "failed", "completed", "expired"]  # noqa: E501
+        allowed_values = ["queued", "in_progress", "requires_action", "cancelling", "cancelled", "failed", "completed", "incomplete", "expired"]  # noqa: E501
         if status not in allowed_values:
             raise ValueError(
                 "Invalid value for `status` ({0}), must be one of {1}"
@@ -605,35 +610,10 @@ class RunObject(Model):
         self._tools = tools
 
     @property
-    def file_ids(self) -> List[str]:
-        """Gets the file_ids of this RunObject.
-
-        The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.  # noqa: E501
-
-        :return: The file_ids of this RunObject.
-        :rtype: List[str]
-        """
-        return self._file_ids
-
-    @file_ids.setter
-    def file_ids(self, file_ids: List[str]):
-        """Sets the file_ids of this RunObject.
-
-        The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.  # noqa: E501
-
-        :param file_ids: The file_ids of this RunObject.
-        :type file_ids: List[str]
-        """
-        if file_ids is None:
-            raise ValueError("Invalid value for `file_ids`, must not be `None`")  # noqa: E501
-
-        self._file_ids = file_ids
-
-    @property
     def metadata(self) -> object:
         """Gets the metadata of this RunObject.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.   # noqa: E501
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.   # noqa: E501
 
         :return: The metadata of this RunObject.
         :rtype: object
@@ -644,7 +624,7 @@ class RunObject(Model):
     def metadata(self, metadata: object):
         """Sets the metadata of this RunObject.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.   # noqa: E501
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.   # noqa: E501
 
         :param metadata: The metadata of this RunObject.
         :type metadata: object
@@ -699,6 +679,29 @@ class RunObject(Model):
         """
 
         self._temperature = temperature
+
+    @property
+    def top_p(self) -> float:
+        """Gets the top_p of this RunObject.
+
+        The nucleus sampling value used for this run. If not set, defaults to 1.  # noqa: E501
+
+        :return: The top_p of this RunObject.
+        :rtype: float
+        """
+        return self._top_p
+
+    @top_p.setter
+    def top_p(self, top_p: float):
+        """Sets the top_p of this RunObject.
+
+        The nucleus sampling value used for this run. If not set, defaults to 1.  # noqa: E501
+
+        :param top_p: The top_p of this RunObject.
+        :type top_p: float
+        """
+
+        self._top_p = top_p
 
     @property
     def max_prompt_tokens(self) -> int:
@@ -799,6 +802,31 @@ class RunObject(Model):
             raise ValueError("Invalid value for `tool_choice`, must not be `None`")  # noqa: E501
 
         self._tool_choice = tool_choice
+
+    @property
+    def parallel_tool_calls(self) -> bool:
+        """Gets the parallel_tool_calls of this RunObject.
+
+        Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.  # noqa: E501
+
+        :return: The parallel_tool_calls of this RunObject.
+        :rtype: bool
+        """
+        return self._parallel_tool_calls
+
+    @parallel_tool_calls.setter
+    def parallel_tool_calls(self, parallel_tool_calls: bool):
+        """Sets the parallel_tool_calls of this RunObject.
+
+        Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.  # noqa: E501
+
+        :param parallel_tool_calls: The parallel_tool_calls of this RunObject.
+        :type parallel_tool_calls: bool
+        """
+        if parallel_tool_calls is None:
+            raise ValueError("Invalid value for `parallel_tool_calls`, must not be `None`")  # noqa: E501
+
+        self._parallel_tool_calls = parallel_tool_calls
 
     @property
     def response_format(self) -> AssistantsApiResponseFormatOption:

@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -20,8 +20,8 @@ import (
 // RunStepDetailsToolCallsObjectToolCallsInner - struct for RunStepDetailsToolCallsObjectToolCallsInner
 type RunStepDetailsToolCallsObjectToolCallsInner struct {
 	RunStepDetailsToolCallsCodeObject *RunStepDetailsToolCallsCodeObject
+	RunStepDetailsToolCallsFileSearchObject *RunStepDetailsToolCallsFileSearchObject
 	RunStepDetailsToolCallsFunctionObject *RunStepDetailsToolCallsFunctionObject
-	RunStepDetailsToolCallsRetrievalObject *RunStepDetailsToolCallsRetrievalObject
 }
 
 // RunStepDetailsToolCallsCodeObjectAsRunStepDetailsToolCallsObjectToolCallsInner is a convenience function that returns RunStepDetailsToolCallsCodeObject wrapped in RunStepDetailsToolCallsObjectToolCallsInner
@@ -31,17 +31,17 @@ func RunStepDetailsToolCallsCodeObjectAsRunStepDetailsToolCallsObjectToolCallsIn
 	}
 }
 
+// RunStepDetailsToolCallsFileSearchObjectAsRunStepDetailsToolCallsObjectToolCallsInner is a convenience function that returns RunStepDetailsToolCallsFileSearchObject wrapped in RunStepDetailsToolCallsObjectToolCallsInner
+func RunStepDetailsToolCallsFileSearchObjectAsRunStepDetailsToolCallsObjectToolCallsInner(v *RunStepDetailsToolCallsFileSearchObject) RunStepDetailsToolCallsObjectToolCallsInner {
+	return RunStepDetailsToolCallsObjectToolCallsInner{
+		RunStepDetailsToolCallsFileSearchObject: v,
+	}
+}
+
 // RunStepDetailsToolCallsFunctionObjectAsRunStepDetailsToolCallsObjectToolCallsInner is a convenience function that returns RunStepDetailsToolCallsFunctionObject wrapped in RunStepDetailsToolCallsObjectToolCallsInner
 func RunStepDetailsToolCallsFunctionObjectAsRunStepDetailsToolCallsObjectToolCallsInner(v *RunStepDetailsToolCallsFunctionObject) RunStepDetailsToolCallsObjectToolCallsInner {
 	return RunStepDetailsToolCallsObjectToolCallsInner{
 		RunStepDetailsToolCallsFunctionObject: v,
-	}
-}
-
-// RunStepDetailsToolCallsRetrievalObjectAsRunStepDetailsToolCallsObjectToolCallsInner is a convenience function that returns RunStepDetailsToolCallsRetrievalObject wrapped in RunStepDetailsToolCallsObjectToolCallsInner
-func RunStepDetailsToolCallsRetrievalObjectAsRunStepDetailsToolCallsObjectToolCallsInner(v *RunStepDetailsToolCallsRetrievalObject) RunStepDetailsToolCallsObjectToolCallsInner {
-	return RunStepDetailsToolCallsObjectToolCallsInner{
-		RunStepDetailsToolCallsRetrievalObject: v,
 	}
 }
 
@@ -67,6 +67,23 @@ func (dst *RunStepDetailsToolCallsObjectToolCallsInner) UnmarshalJSON(data []byt
 		dst.RunStepDetailsToolCallsCodeObject = nil
 	}
 
+	// try to unmarshal data into RunStepDetailsToolCallsFileSearchObject
+	err = newStrictDecoder(data).Decode(&dst.RunStepDetailsToolCallsFileSearchObject)
+	if err == nil {
+		jsonRunStepDetailsToolCallsFileSearchObject, _ := json.Marshal(dst.RunStepDetailsToolCallsFileSearchObject)
+		if string(jsonRunStepDetailsToolCallsFileSearchObject) == "{}" { // empty struct
+			dst.RunStepDetailsToolCallsFileSearchObject = nil
+		} else {
+			if err = validator.Validate(dst.RunStepDetailsToolCallsFileSearchObject); err != nil {
+				dst.RunStepDetailsToolCallsFileSearchObject = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.RunStepDetailsToolCallsFileSearchObject = nil
+	}
+
 	// try to unmarshal data into RunStepDetailsToolCallsFunctionObject
 	err = newStrictDecoder(data).Decode(&dst.RunStepDetailsToolCallsFunctionObject)
 	if err == nil {
@@ -84,28 +101,11 @@ func (dst *RunStepDetailsToolCallsObjectToolCallsInner) UnmarshalJSON(data []byt
 		dst.RunStepDetailsToolCallsFunctionObject = nil
 	}
 
-	// try to unmarshal data into RunStepDetailsToolCallsRetrievalObject
-	err = newStrictDecoder(data).Decode(&dst.RunStepDetailsToolCallsRetrievalObject)
-	if err == nil {
-		jsonRunStepDetailsToolCallsRetrievalObject, _ := json.Marshal(dst.RunStepDetailsToolCallsRetrievalObject)
-		if string(jsonRunStepDetailsToolCallsRetrievalObject) == "{}" { // empty struct
-			dst.RunStepDetailsToolCallsRetrievalObject = nil
-		} else {
-			if err = validator.Validate(dst.RunStepDetailsToolCallsRetrievalObject); err != nil {
-				dst.RunStepDetailsToolCallsRetrievalObject = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.RunStepDetailsToolCallsRetrievalObject = nil
-	}
-
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.RunStepDetailsToolCallsCodeObject = nil
+		dst.RunStepDetailsToolCallsFileSearchObject = nil
 		dst.RunStepDetailsToolCallsFunctionObject = nil
-		dst.RunStepDetailsToolCallsRetrievalObject = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(RunStepDetailsToolCallsObjectToolCallsInner)")
 	} else if match == 1 {
@@ -121,12 +121,12 @@ func (src RunStepDetailsToolCallsObjectToolCallsInner) MarshalJSON() ([]byte, er
 		return json.Marshal(&src.RunStepDetailsToolCallsCodeObject)
 	}
 
-	if src.RunStepDetailsToolCallsFunctionObject != nil {
-		return json.Marshal(&src.RunStepDetailsToolCallsFunctionObject)
+	if src.RunStepDetailsToolCallsFileSearchObject != nil {
+		return json.Marshal(&src.RunStepDetailsToolCallsFileSearchObject)
 	}
 
-	if src.RunStepDetailsToolCallsRetrievalObject != nil {
-		return json.Marshal(&src.RunStepDetailsToolCallsRetrievalObject)
+	if src.RunStepDetailsToolCallsFunctionObject != nil {
+		return json.Marshal(&src.RunStepDetailsToolCallsFunctionObject)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -141,12 +141,12 @@ func (obj *RunStepDetailsToolCallsObjectToolCallsInner) GetActualInstance() (int
 		return obj.RunStepDetailsToolCallsCodeObject
 	}
 
-	if obj.RunStepDetailsToolCallsFunctionObject != nil {
-		return obj.RunStepDetailsToolCallsFunctionObject
+	if obj.RunStepDetailsToolCallsFileSearchObject != nil {
+		return obj.RunStepDetailsToolCallsFileSearchObject
 	}
 
-	if obj.RunStepDetailsToolCallsRetrievalObject != nil {
-		return obj.RunStepDetailsToolCallsRetrievalObject
+	if obj.RunStepDetailsToolCallsFunctionObject != nil {
+		return obj.RunStepDetailsToolCallsFunctionObject
 	}
 
 	// all schemas are nil
@@ -159,12 +159,12 @@ func (obj RunStepDetailsToolCallsObjectToolCallsInner) GetActualInstanceValue() 
 		return *obj.RunStepDetailsToolCallsCodeObject
 	}
 
-	if obj.RunStepDetailsToolCallsFunctionObject != nil {
-		return *obj.RunStepDetailsToolCallsFunctionObject
+	if obj.RunStepDetailsToolCallsFileSearchObject != nil {
+		return *obj.RunStepDetailsToolCallsFileSearchObject
 	}
 
-	if obj.RunStepDetailsToolCallsRetrievalObject != nil {
-		return *obj.RunStepDetailsToolCallsRetrievalObject
+	if obj.RunStepDetailsToolCallsFunctionObject != nil {
+		return *obj.RunStepDetailsToolCallsFunctionObject
 	}
 
 	// all schemas are nil

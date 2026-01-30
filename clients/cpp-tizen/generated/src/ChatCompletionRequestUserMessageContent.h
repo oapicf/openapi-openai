@@ -9,7 +9,7 @@
 
 
 #include <string>
-#include "ChatCompletionRequestMessageContentPart.h"
+#include "ChatCompletionRequestUserMessageContentPart.h"
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API

@@ -11,7 +11,7 @@ import { RunObject } from './runObject';
 
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) fails.
+ * Occurs when a [run](/docs/api-reference/runs/object) ends with status `incomplete`.
  */
 export interface RunStreamEventOneOf5 { 
     event: RunStreamEventOneOf5.EventEnum;
@@ -19,7 +19,7 @@ export interface RunStreamEventOneOf5 {
 }
 export namespace RunStreamEventOneOf5 {
     export const EventEnum = {
-        ThreadRunFailed: 'thread.run.failed'
+        ThreadRunIncomplete: 'thread.run.incomplete'
     } as const;
     export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

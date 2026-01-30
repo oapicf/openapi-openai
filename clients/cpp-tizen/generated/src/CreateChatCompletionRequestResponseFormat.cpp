@@ -24,6 +24,7 @@ void
 CreateChatCompletionRequest_response_format::__init()
 {
 	//type = std::string();
+	//json_schema = new ResponseFormatJsonSchema_json_schema();
 }
 
 void
@@ -33,6 +34,11 @@ CreateChatCompletionRequest_response_format::__cleanup()
 	//
 	//delete type;
 	//type = NULL;
+	//}
+	//if(json_schema != NULL) {
+	//
+	//delete json_schema;
+	//json_schema = NULL;
 	//}
 	//
 }
@@ -50,6 +56,20 @@ CreateChatCompletionRequest_response_format::fromJson(char* jsonStr)
 		if (isprimitive("std::string")) {
 			jsonToValue(&type, node, "std::string", "");
 		} else {
+			
+		}
+	}
+	const gchar *json_schemaKey = "json_schema";
+	node = json_object_get_member(pJsonObject, json_schemaKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("ResponseFormatJsonSchema_json_schema")) {
+			jsonToValue(&json_schema, node, "ResponseFormatJsonSchema_json_schema", "ResponseFormatJsonSchema_json_schema");
+		} else {
+			
+			ResponseFormatJsonSchema_json_schema* obj = static_cast<ResponseFormatJsonSchema_json_schema*> (&json_schema);
+			obj->fromJson(json_to_string(node, false));
 			
 		}
 	}
@@ -74,6 +94,20 @@ CreateChatCompletionRequest_response_format::toJson()
 	}
 	const gchar *typeKey = "type";
 	json_object_set_member(pJsonObject, typeKey, node);
+	if (isprimitive("ResponseFormatJsonSchema_json_schema")) {
+		ResponseFormatJsonSchema_json_schema obj = getJsonSchema();
+		node = converttoJson(&obj, "ResponseFormatJsonSchema_json_schema", "");
+	}
+	else {
+		
+		ResponseFormatJsonSchema_json_schema obj = static_cast<ResponseFormatJsonSchema_json_schema> (getJsonSchema());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *json_schemaKey = "json_schema";
+	json_object_set_member(pJsonObject, json_schemaKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -92,6 +126,18 @@ void
 CreateChatCompletionRequest_response_format::setType(std::string  type)
 {
 	this->type = type;
+}
+
+ResponseFormatJsonSchema_json_schema
+CreateChatCompletionRequest_response_format::getJsonSchema()
+{
+	return json_schema;
+}
+
+void
+CreateChatCompletionRequest_response_format::setJsonSchema(ResponseFormatJsonSchema_json_schema  json_schema)
+{
+	this->json_schema = json_schema;
 }
 
 

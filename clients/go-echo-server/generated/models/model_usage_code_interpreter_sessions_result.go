@@ -1,0 +1,13 @@
+package models
+
+// UsageCodeInterpreterSessionsResult - The aggregated code interpreter sessions usage details of the specific time bucket.
+type UsageCodeInterpreterSessionsResult struct {
+
+	Object string `json:"object"`
+
+	// The number of code interpreter sessions.
+	Sessions int32 `json:"sessions"`
+
+	// When `group_by=project_id`, this field provides the project ID of the grouped usage result.
+	ProjectId *string `json:"project_id,omitempty"`
+}

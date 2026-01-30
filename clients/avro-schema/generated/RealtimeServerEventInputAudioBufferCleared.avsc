@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when the input audio buffer is cleared by the client with a  `input_audio_buffer.clear` event. ",
+  "name": "RealtimeServerEventInputAudioBufferCleared",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventInputAudioBufferCleared_type",
+        "symbols": [
+          "input_audio_buffer_cleared"
+        ]
+      },
+      "doc": "The event type, must be `input_audio_buffer.cleared`."
+    }
+  ]
+
+}

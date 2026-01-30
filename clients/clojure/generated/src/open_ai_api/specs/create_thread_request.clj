@@ -2,6 +2,7 @@
   (:require [clojure.spec.alpha :as s]
             [spec-tools.data-spec :as ds]
             [open-ai-api.specs.create-message-request :refer :all]
+            [open-ai-api.specs.create-thread-request-tool-resources :refer :all]
             [open-ai-api.specs. :refer :all]
             )
   (:import (java.io File)))
@@ -10,6 +11,7 @@
 (def create-thread-request-data
   {
    (ds/opt :messages) (s/coll-of create-message-request-spec)
+   (ds/opt :tool_resources) create-thread-request-tool-resources-spec
    (ds/opt :metadata) any?
    })
 

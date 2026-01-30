@@ -17,24 +17,32 @@ case class MessageDeltaObjectDeltaContentInner (
 /* Always `image_file`. */
   `type`: `Type`,
 imageFile: Option[MessageDeltaContentImageFileObjectImageFile],
-text: Option[MessageDeltaContentTextObjectText])
+text: Option[MessageDeltaContentTextObjectText],
+refusal: Option[String],
+imageUrl: Option[MessageDeltaContentImageUrlObjectImageUrl])
 
 object MessageDeltaObjectDeltaContentInner {
   import DateTimeCodecs._
   sealed trait `Type`
   case object ImageFile extends `Type`
   case object Text extends `Type`
+  case object Refusal extends `Type`
+  case object ImageUrl extends `Type`
 
   object `Type` {
     def to`Type`(s: String): Option[`Type`] = s match {
       case "ImageFile" => Some(ImageFile)
       case "Text" => Some(Text)
+      case "Refusal" => Some(Refusal)
+      case "ImageUrl" => Some(ImageUrl)
       case _ => None
     }
 
     def from`Type`(x: `Type`): String = x match {
       case ImageFile => "ImageFile"
       case Text => "Text"
+      case Refusal => "Refusal"
+      case ImageUrl => "ImageUrl"
     }
   }
 

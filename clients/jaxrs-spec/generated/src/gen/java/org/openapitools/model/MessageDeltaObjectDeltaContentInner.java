@@ -5,6 +5,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.MessageDeltaContentImageFileObject;
 import org.openapitools.model.MessageDeltaContentImageFileObjectImageFile;
+import org.openapitools.model.MessageDeltaContentImageUrlObject;
+import org.openapitools.model.MessageDeltaContentImageUrlObjectImageUrl;
+import org.openapitools.model.MessageDeltaContentRefusalObject;
 import org.openapitools.model.MessageDeltaContentTextObject;
 import org.openapitools.model.MessageDeltaContentTextObjectText;
 import javax.validation.constraints.*;
@@ -21,12 +24,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("MessageDeltaObject_delta_content_inner")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageDeltaObjectDeltaContentInner   {
   private Integer index;
   public enum TypeEnum {
 
-    IMAGE_FILE(String.valueOf("image_file")), TEXT(String.valueOf("text"));
+    IMAGE_FILE(String.valueOf("image_file")), TEXT(String.valueOf("text")), REFUSAL(String.valueOf("refusal")), IMAGE_URL(String.valueOf("image_url"));
 
 
     private String value;
@@ -74,6 +77,8 @@ public class MessageDeltaObjectDeltaContentInner   {
   private TypeEnum type;
   private MessageDeltaContentImageFileObjectImageFile imageFile;
   private MessageDeltaContentTextObjectText text;
+  private String refusal;
+  private MessageDeltaContentImageUrlObjectImageUrl imageUrl;
 
   public MessageDeltaObjectDeltaContentInner() {
   }
@@ -165,6 +170,44 @@ public class MessageDeltaObjectDeltaContentInner   {
     this.text = text;
   }
 
+  /**
+   **/
+  public MessageDeltaObjectDeltaContentInner refusal(String refusal) {
+    this.refusal = refusal;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("refusal")
+  public String getRefusal() {
+    return refusal;
+  }
+
+  @JsonProperty("refusal")
+  public void setRefusal(String refusal) {
+    this.refusal = refusal;
+  }
+
+  /**
+   **/
+  public MessageDeltaObjectDeltaContentInner imageUrl(MessageDeltaContentImageUrlObjectImageUrl imageUrl) {
+    this.imageUrl = imageUrl;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("image_url")
+  @Valid public MessageDeltaContentImageUrlObjectImageUrl getImageUrl() {
+    return imageUrl;
+  }
+
+  @JsonProperty("image_url")
+  public void setImageUrl(MessageDeltaContentImageUrlObjectImageUrl imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -178,12 +221,14 @@ public class MessageDeltaObjectDeltaContentInner   {
     return Objects.equals(this.index, messageDeltaObjectDeltaContentInner.index) &&
         Objects.equals(this.type, messageDeltaObjectDeltaContentInner.type) &&
         Objects.equals(this.imageFile, messageDeltaObjectDeltaContentInner.imageFile) &&
-        Objects.equals(this.text, messageDeltaObjectDeltaContentInner.text);
+        Objects.equals(this.text, messageDeltaObjectDeltaContentInner.text) &&
+        Objects.equals(this.refusal, messageDeltaObjectDeltaContentInner.refusal) &&
+        Objects.equals(this.imageUrl, messageDeltaObjectDeltaContentInner.imageUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(index, type, imageFile, text);
+    return Objects.hash(index, type, imageFile, text, refusal, imageUrl);
   }
 
   @Override
@@ -195,6 +240,8 @@ public class MessageDeltaObjectDeltaContentInner   {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    imageFile: ").append(toIndentedString(imageFile)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
+    sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

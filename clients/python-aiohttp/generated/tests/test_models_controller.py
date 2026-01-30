@@ -22,7 +22,7 @@ async def test_delete_model(client):
     }
     response = await client.request(
         method='DELETE',
-        path='/v1/models/{model}'.format(model='ft:gpt-3.5-turbo:acemeco:suffix:abc123'),
+        path='/v1/models/{model}'.format(model='ft:gpt-4o-mini:acemeco:suffix:abc123'),
         headers=headers,
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
@@ -60,7 +60,7 @@ async def test_retrieve_model(client):
     }
     response = await client.request(
         method='GET',
-        path='/v1/models/{model}'.format(model='gpt-3.5-turbo'),
+        path='/v1/models/{model}'.format(model='gpt-4o-mini'),
         headers=headers,
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')

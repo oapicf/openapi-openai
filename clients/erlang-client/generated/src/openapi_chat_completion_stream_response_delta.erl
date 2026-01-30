@@ -8,16 +8,19 @@
     #{ 'content' => binary(),
        'function_call' => openapi_chat_completion_stream_response_delta_function_call:openapi_chat_completion_stream_response_delta_function_call(),
        'tool_calls' => list(),
-       'role' => binary()
+       'role' => binary(),
+       'refusal' => binary()
      }.
 
 encode(#{ 'content' := Content,
           'function_call' := FunctionCall,
           'tool_calls' := ToolCalls,
-          'role' := Role
+          'role' := Role,
+          'refusal' := Refusal
         }) ->
     #{ 'content' => Content,
        'function_call' => FunctionCall,
        'tool_calls' => ToolCalls,
-       'role' => Role
+       'role' => Role,
+       'refusal' => Refusal
      }.

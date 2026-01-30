@@ -15,10 +15,10 @@ import play.api.libs.json._
   * @param content The content of the message in array of text and/or images.
   * @param assistantId If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message.
   * @param runId The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.
-  * @param fileIds A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-  * @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  * @param attachments A list of files attached to the message, and the tools they were added to.
+  * @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T10:48:27.489746113Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 case class MessageObject(
   id: String,
   `object`: MessageObject.Object.Value,
@@ -32,7 +32,7 @@ case class MessageObject(
   content: List[MessageObjectContentInner],
   assistantId: String,
   runId: String,
-  fileIds: List[String],
+  attachments: List[CreateMessageRequestAttachmentsInner],
   metadata: JsObject
 )
 

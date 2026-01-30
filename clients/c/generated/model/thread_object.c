@@ -26,6 +26,7 @@ static thread_object_t *thread_object_create_internal(
     char *id,
     openai_api_thread_object_OBJECT_e object,
     int created_at,
+    modify_thread_request_tool_resources_t *tool_resources,
     object_t *metadata
     ) {
     thread_object_t *thread_object_local_var = malloc(sizeof(thread_object_t));
@@ -35,6 +36,7 @@ static thread_object_t *thread_object_create_internal(
     thread_object_local_var->id = id;
     thread_object_local_var->object = object;
     thread_object_local_var->created_at = created_at;
+    thread_object_local_var->tool_resources = tool_resources;
     thread_object_local_var->metadata = metadata;
 
     thread_object_local_var->_library_owned = 1;
@@ -45,12 +47,14 @@ __attribute__((deprecated)) thread_object_t *thread_object_create(
     char *id,
     openai_api_thread_object_OBJECT_e object,
     int created_at,
+    modify_thread_request_tool_resources_t *tool_resources,
     object_t *metadata
     ) {
     return thread_object_create_internal (
         id,
         object,
         created_at,
+        tool_resources,
         metadata
         );
 }
@@ -67,6 +71,10 @@ void thread_object_free(thread_object_t *thread_object) {
     if (thread_object->id) {
         free(thread_object->id);
         thread_object->id = NULL;
+    }
+    if (thread_object->tool_resources) {
+        modify_thread_request_tool_resources_free(thread_object->tool_resources);
+        thread_object->tool_resources = NULL;
     }
     if (thread_object->metadata) {
         object_free(thread_object->metadata);
@@ -106,6 +114,20 @@ cJSON *thread_object_convertToJSON(thread_object_t *thread_object) {
     }
 
 
+    // thread_object->tool_resources
+    if (!thread_object->tool_resources) {
+        goto fail;
+    }
+    cJSON *tool_resources_local_JSON = modify_thread_request_tool_resources_convertToJSON(thread_object->tool_resources);
+    if(tool_resources_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "tool_resources", tool_resources_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+
     // thread_object->metadata
     if (!thread_object->metadata) {
         goto fail;
@@ -130,6 +152,9 @@ fail:
 thread_object_t *thread_object_parseFromJSON(cJSON *thread_objectJSON){
 
     thread_object_t *thread_object_local_var = NULL;
+
+    // define the local variable for thread_object->tool_resources
+    modify_thread_request_tool_resources_t *tool_resources_local_nonprim = NULL;
 
     // thread_object->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(thread_objectJSON, "id");
@@ -178,6 +203,18 @@ thread_object_t *thread_object_parseFromJSON(cJSON *thread_objectJSON){
     goto end; //Numeric
     }
 
+    // thread_object->tool_resources
+    cJSON *tool_resources = cJSON_GetObjectItemCaseSensitive(thread_objectJSON, "tool_resources");
+    if (cJSON_IsNull(tool_resources)) {
+        tool_resources = NULL;
+    }
+    if (!tool_resources) {
+        goto end;
+    }
+
+    
+    tool_resources_local_nonprim = modify_thread_request_tool_resources_parseFromJSON(tool_resources); //nonprimitive
+
     // thread_object->metadata
     cJSON *metadata = cJSON_GetObjectItemCaseSensitive(thread_objectJSON, "metadata");
     if (cJSON_IsNull(metadata)) {
@@ -196,11 +233,16 @@ thread_object_t *thread_object_parseFromJSON(cJSON *thread_objectJSON){
         strdup(id->valuestring),
         objectVariable,
         created_at->valuedouble,
+        tool_resources_local_nonprim,
         metadata_local_object
         );
 
     return thread_object_local_var;
 end:
+    if (tool_resources_local_nonprim) {
+        modify_thread_request_tool_resources_free(tool_resources_local_nonprim);
+        tool_resources_local_nonprim = NULL;
+    }
     return NULL;
 
 }

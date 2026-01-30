@@ -81,7 +81,7 @@ let opts = {
   'n': 1, // Number | The number of images to generate. Must be between 1 and 10.
   'size': "'1024x1024'", // String | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
   'responseFormat': "'url'", // String | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
-  'user': "user_example" // String | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+  'user': "user_example" // String | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 };
 apiInstance.createImageEdit(image, prompt, opts, (error, data, response) => {
   if (error) {
@@ -104,7 +104,7 @@ Name | Type | Description  | Notes
  **n** | **Number**| The number of images to generate. Must be between 1 and 10. | [optional] [default to 1]
  **size** | **String**| The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | [optional] [default to &#39;1024x1024&#39;]
  **responseFormat** | **String**| The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | [optional] [default to &#39;url&#39;]
- **user** | **String**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  | [optional] 
+ **user** | **String**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  | [optional] 
 
 ### Return type
 
@@ -142,7 +142,7 @@ let opts = {
   'n': 1, // Number | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
   'responseFormat': "'url'", // String | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
   'size': "'1024x1024'", // String | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
-  'user': "user_example" // String | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+  'user': "user_example" // String | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 };
 apiInstance.createImageVariation(image, opts, (error, data, response) => {
   if (error) {
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
  **n** | **Number**| The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported. | [optional] [default to 1]
  **responseFormat** | **String**| The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | [optional] [default to &#39;url&#39;]
  **size** | **String**| The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | [optional] [default to &#39;1024x1024&#39;]
- **user** | **String**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  | [optional] 
+ **user** | **String**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  | [optional] 
 
 ### Return type
 

@@ -74,5 +74,6 @@ private class OASMessageObjectContentInnerTest {
         OASMessageObjectContentInner messageObjectContentInner = new OASMessageObjectContentInner();
         Map<String, String> x-property-mappings = messageObjectContentInner.getx-property-mappings();
         System.assertEquals('imageFile', x-property-mappings.get('image_file'));
+        System.assertEquals('imageUrl', x-property-mappings.get('image_url'));
     }
 }

@@ -8,11 +8,6 @@
       "name": "file_id",
       "type": "string",
       "doc": "The ID of the specific File the citation is from."
-    },
-    {
-      "name": "quote",
-      "type": "string",
-      "doc": "The specific quote in the file."
     }
   ]
 

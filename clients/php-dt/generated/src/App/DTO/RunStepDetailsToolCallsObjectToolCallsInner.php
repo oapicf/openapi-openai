@@ -29,11 +29,11 @@ class RunStepDetailsToolCallsObjectToolCallsInner
     public ?\App\DTO\RunStepDetailsToolCallsCodeObjectCodeInterpreter $code_interpreter = null;
 
     /**
-     * For now, this is always going to be an empty object.
-     * @DTA\Data(field="retrieval")
-     * @DTA\Validator(name="Scalar", options={"type":"object"})
+     * @DTA\Data(field="file_search")
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\RunStepDetailsToolCallsFileSearchObjectFileSearch::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\RunStepDetailsToolCallsFileSearchObjectFileSearch::class})
      */
-    public ?object $retrieval = null;
+    public ?\App\DTO\RunStepDetailsToolCallsFileSearchObjectFileSearch $file_search = null;
 
     /**
      * @DTA\Data(field="function")

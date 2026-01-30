@@ -16,7 +16,7 @@ Protected Class CreateSpeechRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+			The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
 		#tag EndNote
 		voice As String
 	#tag EndProperty

@@ -24,6 +24,7 @@ void
 CreateThreadAndRunRequest_tools_inner::__init()
 {
 	//type = std::string();
+	//file_search = new AssistantToolsFileSearch_file_search();
 	//function = new FunctionObject();
 }
 
@@ -34,6 +35,11 @@ CreateThreadAndRunRequest_tools_inner::__cleanup()
 	//
 	//delete type;
 	//type = NULL;
+	//}
+	//if(file_search != NULL) {
+	//
+	//delete file_search;
+	//file_search = NULL;
 	//}
 	//if(function != NULL) {
 	//
@@ -56,6 +62,20 @@ CreateThreadAndRunRequest_tools_inner::fromJson(char* jsonStr)
 		if (isprimitive("std::string")) {
 			jsonToValue(&type, node, "std::string", "");
 		} else {
+			
+		}
+	}
+	const gchar *file_searchKey = "file_search";
+	node = json_object_get_member(pJsonObject, file_searchKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("AssistantToolsFileSearch_file_search")) {
+			jsonToValue(&file_search, node, "AssistantToolsFileSearch_file_search", "AssistantToolsFileSearch_file_search");
+		} else {
+			
+			AssistantToolsFileSearch_file_search* obj = static_cast<AssistantToolsFileSearch_file_search*> (&file_search);
+			obj->fromJson(json_to_string(node, false));
 			
 		}
 	}
@@ -94,6 +114,20 @@ CreateThreadAndRunRequest_tools_inner::toJson()
 	}
 	const gchar *typeKey = "type";
 	json_object_set_member(pJsonObject, typeKey, node);
+	if (isprimitive("AssistantToolsFileSearch_file_search")) {
+		AssistantToolsFileSearch_file_search obj = getFileSearch();
+		node = converttoJson(&obj, "AssistantToolsFileSearch_file_search", "");
+	}
+	else {
+		
+		AssistantToolsFileSearch_file_search obj = static_cast<AssistantToolsFileSearch_file_search> (getFileSearch());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *file_searchKey = "file_search";
+	json_object_set_member(pJsonObject, file_searchKey, node);
 	if (isprimitive("FunctionObject")) {
 		FunctionObject obj = getFunction();
 		node = converttoJson(&obj, "FunctionObject", "");
@@ -126,6 +160,18 @@ void
 CreateThreadAndRunRequest_tools_inner::setType(std::string  type)
 {
 	this->type = type;
+}
+
+AssistantToolsFileSearch_file_search
+CreateThreadAndRunRequest_tools_inner::getFileSearch()
+{
+	return file_search;
+}
+
+void
+CreateThreadAndRunRequest_tools_inner::setFileSearch(AssistantToolsFileSearch_file_search  file_search)
+{
+	this->file_search = file_search;
 }
 
 FunctionObject

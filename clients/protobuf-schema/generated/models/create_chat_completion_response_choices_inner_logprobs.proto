@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -20,6 +20,9 @@ message CreateChatCompletionResponseChoicesInnerLogprobs {
 
   // A list of message content tokens with log probability information.
   repeated ChatCompletionTokenLogprob content = 414659706;
+
+  // A list of message refusal tokens with log probability information.
+  repeated ChatCompletionTokenLogprob refusal = 11805278;
 
 }
 

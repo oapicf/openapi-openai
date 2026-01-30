@@ -10,7 +10,8 @@
 #' @field id The identifier, which can be referenced in API endpoints. character
 #' @field object The object type, which is always `thread`. character
 #' @field created_at The Unix timestamp (in seconds) for when the thread was created. integer
-#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. object
+#' @field tool_resources  \link{ModifyThreadRequestToolResources}
+#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. object
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -20,6 +21,7 @@ ThreadObject <- R6::R6Class(
     `id` = NULL,
     `object` = NULL,
     `created_at` = NULL,
+    `tool_resources` = NULL,
     `metadata` = NULL,
 
     #' @description
@@ -28,9 +30,10 @@ ThreadObject <- R6::R6Class(
     #' @param id The identifier, which can be referenced in API endpoints.
     #' @param object The object type, which is always `thread`.
     #' @param created_at The Unix timestamp (in seconds) for when the thread was created.
-    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
+    #' @param tool_resources tool_resources
+    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
     #' @param ... Other optional arguments.
-    initialize = function(`id`, `object`, `created_at`, `metadata`, ...) {
+    initialize = function(`id`, `object`, `created_at`, `tool_resources`, `metadata`, ...) {
       if (!missing(`id`)) {
         if (!(is.character(`id`) && length(`id`) == 1)) {
           stop(paste("Error! Invalid data for `id`. Must be a string:", `id`))
@@ -51,6 +54,10 @@ ThreadObject <- R6::R6Class(
           stop(paste("Error! Invalid data for `created_at`. Must be an integer:", `created_at`))
         }
         self$`created_at` <- `created_at`
+      }
+      if (!missing(`tool_resources`)) {
+        stopifnot(R6::is.R6(`tool_resources`))
+        self$`tool_resources` <- `tool_resources`
       }
       if (!missing(`metadata`)) {
         self$`metadata` <- `metadata`
@@ -100,6 +107,10 @@ ThreadObject <- R6::R6Class(
         ThreadObjectObject[["created_at"]] <-
           self$`created_at`
       }
+      if (!is.null(self$`tool_resources`)) {
+        ThreadObjectObject[["tool_resources"]] <-
+          self$`tool_resources`$toSimpleType()
+      }
       if (!is.null(self$`metadata`)) {
         ThreadObjectObject[["metadata"]] <-
           self$`metadata`
@@ -125,6 +136,11 @@ ThreadObject <- R6::R6Class(
       }
       if (!is.null(this_object$`created_at`)) {
         self$`created_at` <- this_object$`created_at`
+      }
+      if (!is.null(this_object$`tool_resources`)) {
+        `tool_resources_object` <- ModifyThreadRequestToolResources$new()
+        `tool_resources_object`$fromJSON(jsonlite::toJSON(this_object$`tool_resources`, auto_unbox = TRUE, digits = NA))
+        self$`tool_resources` <- `tool_resources_object`
       }
       if (!is.null(this_object$`metadata`)) {
         self$`metadata` <- this_object$`metadata`
@@ -156,6 +172,7 @@ ThreadObject <- R6::R6Class(
       }
       self$`object` <- this_object$`object`
       self$`created_at` <- this_object$`created_at`
+      self$`tool_resources` <- ModifyThreadRequestToolResources$new()$fromJSON(jsonlite::toJSON(this_object$`tool_resources`, auto_unbox = TRUE, digits = NA))
       self$`metadata` <- this_object$`metadata`
       self
     },
@@ -189,6 +206,12 @@ ThreadObject <- R6::R6Class(
         }
       } else {
         stop(paste("The JSON input `", input, "` is invalid for ThreadObject: the required field `created_at` is missing."))
+      }
+      # check the required field `tool_resources`
+      if (!is.null(input_json$`tool_resources`)) {
+        stopifnot(R6::is.R6(input_json$`tool_resources`))
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for ThreadObject: the required field `tool_resources` is missing."))
       }
       # check the required field `metadata`
       if (!is.null(input_json$`metadata`)) {

@@ -10,6 +10,7 @@
 
 -type openapi_create_chat_completion_request_response_format() ::
   [ {'type', binary() }
+  | {'json_schema', openapi_response_format_json_schema_json_schema:openapi_response_format_json_schema_json_schema() }
   ].
 
 
@@ -17,7 +18,8 @@ openapi_create_chat_completion_request_response_format() ->
     openapi_create_chat_completion_request_response_format([]).
 
 openapi_create_chat_completion_request_response_format(Fields) ->
-  Default = [ {'type', elements([<<"text">>, <<"json_object">>]) }
+  Default = [ {'type', elements([<<"text">>, <<"json_object">>, <<"json_schema">>]) }
+            , {'json_schema', openapi_response_format_json_schema_json_schema:openapi_response_format_json_schema_json_schema() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

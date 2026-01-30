@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="Occurs when a [run](/docs/api-reference/runs/object) expires.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T10:45:31.742862961Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description="Occurs when a [run](/docs/api-reference/runs/object) is cancelled.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T14:09:29.020322047Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStreamEventOneOf8   {
   
 
@@ -21,7 +21,7 @@ public class RunStreamEventOneOf8   {
    * Gets or Sets event
    */
   public enum EventEnum {
-    THREAD_RUN_EXPIRED("thread.run.expired");
+    THREAD_RUN_CANCELLED("thread.run.cancelled");
     private String value;
 
     EventEnum(String value) {

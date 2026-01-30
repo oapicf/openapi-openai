@@ -1,0 +1,26 @@
+namespace OpenAPI.Model
+
+open System
+open System.Collections.Generic
+open Newtonsoft.Json
+open OpenAPI.Model.User
+
+module UserListResponse =
+
+  //#region UserListResponse
+
+  [<CLIMutable>]
+  type UserListResponse = {
+    [<JsonProperty(PropertyName = "object")>]
+    Object : string;
+    [<JsonProperty(PropertyName = "data")>]
+    Data : User[];
+    [<JsonProperty(PropertyName = "first_id")>]
+    FirstId : string;
+    [<JsonProperty(PropertyName = "last_id")>]
+    LastId : string;
+    [<JsonProperty(PropertyName = "has_more")>]
+    HasMore : bool;
+  }
+
+  //#endregion

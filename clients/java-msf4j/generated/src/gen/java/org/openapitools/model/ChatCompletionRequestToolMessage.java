@@ -6,11 +6,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.model.ChatCompletionRequestToolMessageContent;
 
 /**
  * ChatCompletionRequestToolMessage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestToolMessage   {
   /**
    * The role of the messages author, in this case `tool`.
@@ -45,7 +46,7 @@ public class ChatCompletionRequestToolMessage   {
   private RoleEnum role;
 
   @JsonProperty("content")
-  private String content;
+  private ChatCompletionRequestToolMessageContent content;
 
   @JsonProperty("tool_call_id")
   private String toolCallId;
@@ -68,21 +69,21 @@ public class ChatCompletionRequestToolMessage   {
     this.role = role;
   }
 
-  public ChatCompletionRequestToolMessage content(String content) {
+  public ChatCompletionRequestToolMessage content(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
     return this;
   }
 
    /**
-   * The contents of the tool message.
+   * Get content
    * @return content
   **/
-  @ApiModelProperty(required = true, value = "The contents of the tool message.")
-  public String getContent() {
+  @ApiModelProperty(required = true, value = "")
+  public ChatCompletionRequestToolMessageContent getContent() {
     return content;
   }
 
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
   }
 

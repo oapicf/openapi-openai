@@ -1,0 +1,37 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ArrayOfContentPartsInner",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "ArrayOfContentPartsInner_type",
+        "symbols": [
+          "image_file",
+          "image_url",
+          "text"
+        ]
+      },
+      "doc": "Always `image_file`."
+    },
+    {
+      "name": "image_file",
+      "type": "model.MessageContentImageFileObjectImageFile",
+      "doc": ""
+    },
+    {
+      "name": "image_url",
+      "type": "model.MessageContentImageUrlObjectImageUrl",
+      "doc": ""
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "doc": "Text content to be sent to the model"
+    }
+  ]
+
+}

@@ -11,7 +11,7 @@ module OpenAIFile =
   type ObjectEnum = FileEnum of string  
   //#endregion
   //#region enums
-  type PurposeEnum = FineTuneEnum of string  |  FineTuneResultsEnum of string  |  AssistantsEnum of string  |  AssistantsOutputEnum of string  
+  type PurposeEnum = AssistantsEnum of string  |  AssistantsOutputEnum of string  |  BatchEnum of string  |  BatchOutputEnum of string  |  FineTuneEnum of string  |  FineTuneResultsEnum of string  |  VisionEnum of string  
   //#endregion
   //#region enums
   type StatusEnum = UploadedEnum of string  |  ProcessedEnum of string  |  ErrorEnum of string  

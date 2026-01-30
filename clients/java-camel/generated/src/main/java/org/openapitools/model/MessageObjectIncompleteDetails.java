@@ -22,7 +22,7 @@ import javax.annotation.Generated;
 
 @Schema(name = "MessageObject_incomplete_details", description = "On an incomplete message, details about why the message is incomplete.")
 @JsonTypeName("MessageObject_incomplete_details")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageObjectIncompleteDetails {
 
   /**

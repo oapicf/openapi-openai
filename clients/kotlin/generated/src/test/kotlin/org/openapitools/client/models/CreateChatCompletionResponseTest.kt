@@ -57,6 +57,12 @@ class CreateChatCompletionResponseTest : ShouldSpec() {
             //modelInstance.`object` shouldBe ("TODO")
         }
 
+        // to test the property `serviceTier` - The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+        should("test serviceTier") {
+            // uncomment below to test the property
+            //modelInstance.serviceTier shouldBe ("TODO")
+        }
+
         // to test the property `systemFingerprint` - This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
         should("test systemFingerprint") {
             // uncomment below to test the property

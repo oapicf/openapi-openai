@@ -1,7 +1,7 @@
 /*
  * RunStepStreamEvent_oneOf_2.h
  *
- * Occurs when parts of a [run step](/docs/api-reference/runs/step-object) are being streamed.
+ * Occurs when parts of a [run step](/docs/api-reference/run-steps/step-object) are being streamed.
  */
 
 #ifndef _RunStepStreamEvent_oneOf_2_H_
@@ -21,7 +21,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief Occurs when parts of a [run step](/docs/api-reference/runs/step-object) are being streamed.
+/*! \brief Occurs when parts of a [run step](/docs/api-reference/run-steps/step-object) are being streamed.
  *
  *  \ingroup Models
  *

@@ -1,0 +1,60 @@
+
+<h2>Upload</h2>
+<ul class="parameter">
+  <li class="param-required-true">id : String
+    <br/>The Upload unique identifier, which can be referenced in API endpoints.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">createdUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the Upload was created.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">filename : String
+    <br/>The name of the file to be uploaded.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">bytes : Integer
+    <br/>The intended number of bytes to be uploaded.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">purpose : String
+    <br/>The intended purpose of the file. [Please refer here](/docs/api-reference/files/object#files/object-purpose) for acceptable values.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">status : String
+    <br/>The status of the Upload.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>pending</dd>
+            <dd>completed</dd>
+            <dd>cancelled</dd>
+            <dd>expired</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">expiresUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the Upload was created.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">object : String
+    <br/>The object type, which is always \&quot;upload\&quot;.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>upload</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">file : OpenAIFile
+    <br/>
+  </li>
+</ul>

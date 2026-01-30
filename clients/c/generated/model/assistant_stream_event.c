@@ -40,6 +40,7 @@ openai_api_assistant_stream_event_DATA_e assistant_stream_event_data_FromString(
 }
 
 static assistant_stream_event_t *assistant_stream_event_create_internal(
+    int enabled,
     openai_api_assistant_stream_event_EVENT_e event,
     openai_api_assistant_stream_event_DATA_e data
     ) {
@@ -47,6 +48,7 @@ static assistant_stream_event_t *assistant_stream_event_create_internal(
     if (!assistant_stream_event_local_var) {
         return NULL;
     }
+    assistant_stream_event_local_var->enabled = enabled;
     assistant_stream_event_local_var->event = event;
     assistant_stream_event_local_var->data = data;
 
@@ -55,10 +57,12 @@ static assistant_stream_event_t *assistant_stream_event_create_internal(
 }
 
 __attribute__((deprecated)) assistant_stream_event_t *assistant_stream_event_create(
+    int enabled,
     openai_api_assistant_stream_event_EVENT_e event,
     openai_api_assistant_stream_event_DATA_e data
     ) {
     return assistant_stream_event_create_internal (
+        enabled,
         event,
         data
         );
@@ -78,6 +82,14 @@ void assistant_stream_event_free(assistant_stream_event_t *assistant_stream_even
 
 cJSON *assistant_stream_event_convertToJSON(assistant_stream_event_t *assistant_stream_event) {
     cJSON *item = cJSON_CreateObject();
+
+    // assistant_stream_event->enabled
+    if(assistant_stream_event->enabled) {
+    if(cJSON_AddBoolToObject(item, "enabled", assistant_stream_event->enabled) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
 
     // assistant_stream_event->event
     if (openai_api_assistant_stream_event_EVENT_NULL == assistant_stream_event->event) {
@@ -109,6 +121,18 @@ fail:
 assistant_stream_event_t *assistant_stream_event_parseFromJSON(cJSON *assistant_stream_eventJSON){
 
     assistant_stream_event_t *assistant_stream_event_local_var = NULL;
+
+    // assistant_stream_event->enabled
+    cJSON *enabled = cJSON_GetObjectItemCaseSensitive(assistant_stream_eventJSON, "enabled");
+    if (cJSON_IsNull(enabled)) {
+        enabled = NULL;
+    }
+    if (enabled) { 
+    if(!cJSON_IsBool(enabled))
+    {
+    goto end; //Bool
+    }
+    }
 
     // assistant_stream_event->event
     cJSON *event = cJSON_GetObjectItemCaseSensitive(assistant_stream_eventJSON, "event");
@@ -146,6 +170,7 @@ assistant_stream_event_t *assistant_stream_event_parseFromJSON(cJSON *assistant_
 
 
     assistant_stream_event_local_var = assistant_stream_event_create_internal (
+        enabled ? enabled->valueint : 0,
         eventVariable,
         dataVariable
         );

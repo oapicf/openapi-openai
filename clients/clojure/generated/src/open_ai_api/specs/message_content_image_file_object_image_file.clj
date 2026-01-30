@@ -8,6 +8,7 @@
 (def message-content-image-file-object-image-file-data
   {
    (ds/req :file_id) string?
+   (ds/opt :detail) string?
    })
 
 (def message-content-image-file-object-image-file-spec

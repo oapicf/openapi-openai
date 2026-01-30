@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -28,7 +28,7 @@ func NewModerationsAPIService() *ModerationsAPIService {
 	return &ModerationsAPIService{}
 }
 
-// CreateModeration - Classifies if text is potentially harmful.
+// CreateModeration - Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 func (s *ModerationsAPIService) CreateModeration(ctx context.Context, createModerationRequest CreateModerationRequest) (ImplResponse, error) {
 	// TODO - update CreateModeration with the required logic for this service method.
 	// Add api_moderations_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.

@@ -20,7 +20,7 @@ class TestModelsController(BaseTestCase):
         Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
         """
         response = self.client.open(
-            '/v1/models/{model}'.format(model='ft:gpt-3.5-turbo:acemeco:suffix:abc123'),
+            '/v1/models/{model}'.format(model='ft:gpt-4o-mini:acemeco:suffix:abc123'),
             method='DELETE')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -42,7 +42,7 @@ class TestModelsController(BaseTestCase):
         Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
         """
         response = self.client.open(
-            '/v1/models/{model}'.format(model='gpt-3.5-turbo'),
+            '/v1/models/{model}'.format(model='gpt-4o-mini'),
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))

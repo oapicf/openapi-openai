@@ -21,19 +21,22 @@ import io.kotlintest.specs.ShouldSpec
 import org.openapitools.client.models.CreateChatCompletionRequest
 import org.openapitools.client.models.ChatCompletionFunctions
 import org.openapitools.client.models.ChatCompletionRequestMessage
+import org.openapitools.client.models.ChatCompletionStreamOptions
 import org.openapitools.client.models.ChatCompletionTool
 import org.openapitools.client.models.ChatCompletionToolChoiceOption
+import org.openapitools.client.models.CreateChatCompletionRequestAudio
 import org.openapitools.client.models.CreateChatCompletionRequestFunctionCall
 import org.openapitools.client.models.CreateChatCompletionRequestModel
 import org.openapitools.client.models.CreateChatCompletionRequestResponseFormat
 import org.openapitools.client.models.CreateChatCompletionRequestStop
+import org.openapitools.client.models.PredictionContent
 
 class CreateChatCompletionRequestTest : ShouldSpec() {
     init {
         // uncomment below to create an instance of CreateChatCompletionRequest
         //val modelInstance = CreateChatCompletionRequest()
 
-        // to test the property `messages` - A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).
+        // to test the property `messages` - A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
         should("test messages") {
             // uncomment below to test the property
             //modelInstance.messages shouldBe ("TODO")
@@ -45,7 +48,25 @@ class CreateChatCompletionRequestTest : ShouldSpec() {
             //modelInstance.model shouldBe ("TODO")
         }
 
-        // to test the property `frequencyPenalty` - Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+        // to test the property `store` - Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. 
+        should("test store") {
+            // uncomment below to test the property
+            //modelInstance.store shouldBe ("TODO")
+        }
+
+        // to test the property `reasoningEffort` - **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
+        should("test reasoningEffort") {
+            // uncomment below to test the property
+            //modelInstance.reasoningEffort shouldBe ("TODO")
+        }
+
+        // to test the property `metadata` - Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). 
+        should("test metadata") {
+            // uncomment below to test the property
+            //modelInstance.metadata shouldBe ("TODO")
+        }
+
+        // to test the property `frequencyPenalty` - Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. 
         should("test frequencyPenalty") {
             // uncomment below to test the property
             //modelInstance.frequencyPenalty shouldBe ("TODO")
@@ -57,22 +78,28 @@ class CreateChatCompletionRequestTest : ShouldSpec() {
             //modelInstance.logitBias shouldBe ("TODO")
         }
 
-        // to test the property `logprobs` - Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.
+        // to test the property `logprobs` - Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. 
         should("test logprobs") {
             // uncomment below to test the property
             //modelInstance.logprobs shouldBe ("TODO")
         }
 
-        // to test the property `topLogprobs` - An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.
+        // to test the property `topLogprobs` - An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. 
         should("test topLogprobs") {
             // uncomment below to test the property
             //modelInstance.topLogprobs shouldBe ("TODO")
         }
 
-        // to test the property `maxTokens` - The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
+        // to test the property `maxTokens` - The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). 
         should("test maxTokens") {
             // uncomment below to test the property
             //modelInstance.maxTokens shouldBe ("TODO")
+        }
+
+        // to test the property `maxCompletionTokens` - An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). 
+        should("test maxCompletionTokens") {
+            // uncomment below to test the property
+            //modelInstance.maxCompletionTokens shouldBe ("TODO")
         }
 
         // to test the property `n` - How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.
@@ -81,7 +108,25 @@ class CreateChatCompletionRequestTest : ShouldSpec() {
             //modelInstance.n shouldBe ("TODO")
         }
 
-        // to test the property `presencePenalty` - Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+        // to test the property `modalities` - Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
+        should("test modalities") {
+            // uncomment below to test the property
+            //modelInstance.modalities shouldBe ("TODO")
+        }
+
+        // to test the property `prediction`
+        should("test prediction") {
+            // uncomment below to test the property
+            //modelInstance.prediction shouldBe ("TODO")
+        }
+
+        // to test the property `audio`
+        should("test audio") {
+            // uncomment below to test the property
+            //modelInstance.audio shouldBe ("TODO")
+        }
+
+        // to test the property `presencePenalty` - Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. 
         should("test presencePenalty") {
             // uncomment below to test the property
             //modelInstance.presencePenalty shouldBe ("TODO")
@@ -99,6 +144,12 @@ class CreateChatCompletionRequestTest : ShouldSpec() {
             //modelInstance.seed shouldBe ("TODO")
         }
 
+        // to test the property `serviceTier` - Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. 
+        should("test serviceTier") {
+            // uncomment below to test the property
+            //modelInstance.serviceTier shouldBe ("TODO")
+        }
+
         // to test the property `stop`
         should("test stop") {
             // uncomment below to test the property
@@ -111,7 +162,13 @@ class CreateChatCompletionRequestTest : ShouldSpec() {
             //modelInstance.stream shouldBe ("TODO")
         }
 
-        // to test the property `temperature` - What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both. 
+        // to test the property `streamOptions`
+        should("test streamOptions") {
+            // uncomment below to test the property
+            //modelInstance.streamOptions shouldBe ("TODO")
+        }
+
+        // to test the property `temperature` - What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. 
         should("test temperature") {
             // uncomment below to test the property
             //modelInstance.temperature shouldBe ("TODO")
@@ -135,7 +192,13 @@ class CreateChatCompletionRequestTest : ShouldSpec() {
             //modelInstance.toolChoice shouldBe ("TODO")
         }
 
-        // to test the property `user` - A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+        // to test the property `parallelToolCalls` - Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+        should("test parallelToolCalls") {
+            // uncomment below to test the property
+            //modelInstance.parallelToolCalls shouldBe ("TODO")
+        }
+
+        // to test the property `user` - A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
         should("test user") {
             // uncomment below to test the property
             //modelInstance.user shouldBe ("TODO")

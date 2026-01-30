@@ -22,7 +22,7 @@ case class OpenAIFile (
   filename: String,
 /* The object type, which is always `file`. */
   `object`: `Object`,
-/* The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`. */
+/* The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`. */
   purpose: Purpose,
 /* Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`. */
   status: Status,
@@ -51,25 +51,34 @@ object OpenAIFile {
   implicit val `Object`EnumDecoder: DecodeJson[`Object`] =
     DecodeJson.optionDecoder[`Object`](n => n.string.flatMap(jStr => `Object`.to`Object`(jStr)), "`Object` failed to de-serialize")
   sealed trait Purpose
-  case object FineTune extends Purpose
-  case object FineTuneResults extends Purpose
   case object Assistants extends Purpose
   case object AssistantsOutput extends Purpose
+  case object Batch extends Purpose
+  case object BatchOutput extends Purpose
+  case object FineTune extends Purpose
+  case object FineTuneResults extends Purpose
+  case object Vision extends Purpose
 
   object Purpose {
     def toPurpose(s: String): Option[Purpose] = s match {
-      case "FineTune" => Some(FineTune)
-      case "FineTuneResults" => Some(FineTuneResults)
       case "Assistants" => Some(Assistants)
       case "AssistantsOutput" => Some(AssistantsOutput)
+      case "Batch" => Some(Batch)
+      case "BatchOutput" => Some(BatchOutput)
+      case "FineTune" => Some(FineTune)
+      case "FineTuneResults" => Some(FineTuneResults)
+      case "Vision" => Some(Vision)
       case _ => None
     }
 
     def fromPurpose(x: Purpose): String = x match {
-      case FineTune => "FineTune"
-      case FineTuneResults => "FineTuneResults"
       case Assistants => "Assistants"
       case AssistantsOutput => "AssistantsOutput"
+      case Batch => "Batch"
+      case BatchOutput => "BatchOutput"
+      case FineTune => "FineTune"
+      case FineTuneResults => "FineTuneResults"
+      case Vision => "Vision"
     }
   }
 

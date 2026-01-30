@@ -20,11 +20,3 @@ test_that("content", {
   # uncomment below to test the property
   #expect_equal(model.instance$`content`, "EXPECTED_RESULT")
 })
-
-test_that("file_ids", {
-  # tests for the property `file_ids` (array[character])
-  # A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`file_ids`, "EXPECTED_RESULT")
-})

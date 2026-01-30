@@ -10,9 +10,9 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The hyperparameters used for the fine-tuning job.
+ * The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of `method`, and should be passed in under the `method` parameter. 
  */
-@ApiModel(description="The hyperparameters used for the fine-tuning job.")
+@ApiModel(description="The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of `method`, and should be passed in under the `method` parameter. ")
 
 public class CreateFineTuningJobRequestHyperparameters  {
   

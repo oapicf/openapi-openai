@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**content** | **string** | The contents of the system message. |
+**content** | [**\OpenAPI\Client\Model\ChatCompletionRequestSystemMessageContent**](ChatCompletionRequestSystemMessageContent.md) |  |
 **role** | **string** | The role of the messages author, in this case &#x60;system&#x60;. |
 **name** | **string** | An optional name for the participant. Provides the model information to differentiate between participants of the same role. | [optional]
 

@@ -18,9 +18,9 @@ class ListAssistantsResponse
 
     /**
      * @DTA\Data(field="data")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection34::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection34::class})
-     * @var \App\DTO\Collection34|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection3::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection3::class})
+     * @var \App\DTO\Collection3|null
      */
     public $data;
 

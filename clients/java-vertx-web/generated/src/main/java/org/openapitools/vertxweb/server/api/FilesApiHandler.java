@@ -115,10 +115,16 @@ public class FilesApiHandler {
         RequestParameters requestParameters = routingContext.get(ValidationHandler.REQUEST_CONTEXT_KEY);
 
         String purpose = requestParameters.queryParameter("purpose") != null ? requestParameters.queryParameter("purpose").getString() : null;
+        Integer limit = requestParameters.queryParameter("limit") != null ? requestParameters.queryParameter("limit").getInteger() : 10000;
+        String order = requestParameters.queryParameter("order") != null ? requestParameters.queryParameter("order").getString() : "desc";
+        String after = requestParameters.queryParameter("after") != null ? requestParameters.queryParameter("after").getString() : null;
 
         logger.debug("Parameter purpose is {}", purpose);
+        logger.debug("Parameter limit is {}", limit);
+        logger.debug("Parameter order is {}", order);
+        logger.debug("Parameter after is {}", after);
 
-        api.listFiles(purpose)
+        api.listFiles(purpose, limit, order, after)
             .onSuccess(apiResponse -> {
                 routingContext.response().setStatusCode(apiResponse.getStatusCode());
                 if (apiResponse.hasData()) {

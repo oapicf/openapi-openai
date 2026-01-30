@@ -5,13 +5,9 @@
  */
 package org.openapitools.api;
 
-import org.openapitools.model.AssistantFileObject;
 import org.openapitools.model.AssistantObject;
-import org.openapitools.model.CreateAssistantFileRequest;
 import org.openapitools.model.CreateAssistantRequest;
-import org.openapitools.model.DeleteAssistantFileResponse;
 import org.openapitools.model.DeleteAssistantResponse;
-import org.openapitools.model.ListAssistantFilesResponse;
 import org.openapitools.model.ListAssistantsResponse;
 import org.openapitools.model.ModifyAssistantRequest;
 import org.springframework.lang.Nullable;
@@ -42,7 +38,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @Validated
 @Tag(name = "Assistants", description = "Build Assistants that can call models and use tools.")
 public interface AssistantsApi {
@@ -83,52 +79,7 @@ public interface AssistantsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"name\" : \"name\", \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ], \"created_at\" : 0, \"description\" : \"description\", \"model\" : \"model\", \"id\" : \"id\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"object\" : \"assistant\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    String PATH_CREATE_ASSISTANT_FILE = "/assistants/{assistant_id}/files";
-    /**
-     * POST /assistants/{assistant_id}/files : Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     *
-     * @param assistantId The ID of the assistant for which to create a File.  (required)
-     * @param createAssistantFileRequest  (required)
-     * @return OK (status code 200)
-     */
-    @Operation(
-        operationId = "createAssistantFile",
-        summary = "Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).",
-        tags = { "Assistants" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "OK", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = AssistantFileObject.class))
-            })
-        },
-        security = {
-            @SecurityRequirement(name = "ApiKeyAuth")
-        }
-    )
-    @RequestMapping(
-        method = RequestMethod.POST,
-        value = AssistantsApi.PATH_CREATE_ASSISTANT_FILE,
-        produces = { "application/json" },
-        consumes = { "application/json" }
-    )
-    default ResponseEntity<AssistantFileObject> createAssistantFile(
-        @NotNull @Parameter(name = "assistant_id", description = "The ID of the assistant for which to create a File. ", required = true, in = ParameterIn.PATH) @PathVariable("assistant_id") String assistantId,
-        @Parameter(name = "CreateAssistantFileRequest", description = "", required = true) @Valid @RequestBody CreateAssistantFileRequest createAssistantFileRequest
-    ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"assistant_id\" : \"assistant_id\", \"created_at\" : 0, \"id\" : \"id\", \"object\" : \"assistant.file\" }";
+                    String exampleString = "{ \"instructions\" : \"instructions\", \"tool_resources\" : { \"code_interpreter\" : { \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ] }, \"file_search\" : { \"vector_store_ids\" : [ \"vector_store_ids\" ] } }, \"metadata\" : \"{}\", \"created_at\" : 0, \"description\" : \"description\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"top_p\" : 1, \"response_format\" : \"auto\", \"name\" : \"name\", \"temperature\" : 1, \"model\" : \"model\", \"id\" : \"id\", \"object\" : \"assistant\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -181,50 +132,6 @@ public interface AssistantsApi {
     }
 
 
-    String PATH_DELETE_ASSISTANT_FILE = "/assistants/{assistant_id}/files/{file_id}";
-    /**
-     * DELETE /assistants/{assistant_id}/files/{file_id} : Delete an assistant file.
-     *
-     * @param assistantId The ID of the assistant that the file belongs to. (required)
-     * @param fileId The ID of the file to delete. (required)
-     * @return OK (status code 200)
-     */
-    @Operation(
-        operationId = "deleteAssistantFile",
-        summary = "Delete an assistant file.",
-        tags = { "Assistants" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "OK", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = DeleteAssistantFileResponse.class))
-            })
-        },
-        security = {
-            @SecurityRequirement(name = "ApiKeyAuth")
-        }
-    )
-    @RequestMapping(
-        method = RequestMethod.DELETE,
-        value = AssistantsApi.PATH_DELETE_ASSISTANT_FILE,
-        produces = { "application/json" }
-    )
-    default ResponseEntity<DeleteAssistantFileResponse> deleteAssistantFile(
-        @NotNull @Parameter(name = "assistant_id", description = "The ID of the assistant that the file belongs to.", required = true, in = ParameterIn.PATH) @PathVariable("assistant_id") String assistantId,
-        @NotNull @Parameter(name = "file_id", description = "The ID of the file to delete.", required = true, in = ParameterIn.PATH) @PathVariable("file_id") String fileId
-    ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"deleted\" : true, \"id\" : \"id\", \"object\" : \"assistant.file.deleted\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
     String PATH_GET_ASSISTANT = "/assistants/{assistant_id}";
     /**
      * GET /assistants/{assistant_id} : Retrieves an assistant.
@@ -256,101 +163,7 @@ public interface AssistantsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"name\" : \"name\", \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ], \"created_at\" : 0, \"description\" : \"description\", \"model\" : \"model\", \"id\" : \"id\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"object\" : \"assistant\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    String PATH_GET_ASSISTANT_FILE = "/assistants/{assistant_id}/files/{file_id}";
-    /**
-     * GET /assistants/{assistant_id}/files/{file_id} : Retrieves an AssistantFile.
-     *
-     * @param assistantId The ID of the assistant who the file belongs to. (required)
-     * @param fileId The ID of the file we&#39;re getting. (required)
-     * @return OK (status code 200)
-     */
-    @Operation(
-        operationId = "getAssistantFile",
-        summary = "Retrieves an AssistantFile.",
-        tags = { "Assistants" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "OK", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = AssistantFileObject.class))
-            })
-        },
-        security = {
-            @SecurityRequirement(name = "ApiKeyAuth")
-        }
-    )
-    @RequestMapping(
-        method = RequestMethod.GET,
-        value = AssistantsApi.PATH_GET_ASSISTANT_FILE,
-        produces = { "application/json" }
-    )
-    default ResponseEntity<AssistantFileObject> getAssistantFile(
-        @NotNull @Parameter(name = "assistant_id", description = "The ID of the assistant who the file belongs to.", required = true, in = ParameterIn.PATH) @PathVariable("assistant_id") String assistantId,
-        @NotNull @Parameter(name = "file_id", description = "The ID of the file we're getting.", required = true, in = ParameterIn.PATH) @PathVariable("file_id") String fileId
-    ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"assistant_id\" : \"assistant_id\", \"created_at\" : 0, \"id\" : \"id\", \"object\" : \"assistant.file\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    String PATH_LIST_ASSISTANT_FILES = "/assistants/{assistant_id}/files";
-    /**
-     * GET /assistants/{assistant_id}/files : Returns a list of assistant files.
-     *
-     * @param assistantId The ID of the assistant the file belongs to. (required)
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     * @return OK (status code 200)
-     */
-    @Operation(
-        operationId = "listAssistantFiles",
-        summary = "Returns a list of assistant files.",
-        tags = { "Assistants" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "OK", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ListAssistantFilesResponse.class))
-            })
-        },
-        security = {
-            @SecurityRequirement(name = "ApiKeyAuth")
-        }
-    )
-    @RequestMapping(
-        method = RequestMethod.GET,
-        value = AssistantsApi.PATH_LIST_ASSISTANT_FILES,
-        produces = { "application/json" }
-    )
-    default ResponseEntity<ListAssistantFilesResponse> listAssistantFiles(
-        @NotNull @Parameter(name = "assistant_id", description = "The ID of the assistant the file belongs to.", required = true, in = ParameterIn.PATH) @PathVariable("assistant_id") String assistantId,
-        @Parameter(name = "limit", description = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "limit", required = false, defaultValue = "20") Integer limit,
-        @Parameter(name = "order", description = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "order", required = false, defaultValue = "desc") String order,
-        @Parameter(name = "after", description = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "after", required = false) @Nullable String after,
-        @Parameter(name = "before", description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "before", required = false) @Nullable String before
-    ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"first_id\" : \"file-abc123\", \"data\" : [ { \"assistant_id\" : \"assistant_id\", \"created_at\" : 0, \"id\" : \"id\", \"object\" : \"assistant.file\" }, { \"assistant_id\" : \"assistant_id\", \"created_at\" : 0, \"id\" : \"id\", \"object\" : \"assistant.file\" } ], \"last_id\" : \"file-abc456\", \"has_more\" : false, \"object\" : \"list\" }";
+                    String exampleString = "{ \"instructions\" : \"instructions\", \"tool_resources\" : { \"code_interpreter\" : { \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ] }, \"file_search\" : { \"vector_store_ids\" : [ \"vector_store_ids\" ] } }, \"metadata\" : \"{}\", \"created_at\" : 0, \"description\" : \"description\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"top_p\" : 1, \"response_format\" : \"auto\", \"name\" : \"name\", \"temperature\" : 1, \"model\" : \"model\", \"id\" : \"id\", \"object\" : \"assistant\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -368,7 +181,7 @@ public interface AssistantsApi {
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @return OK (status code 200)
      */
     @Operation(
@@ -393,12 +206,12 @@ public interface AssistantsApi {
         @Parameter(name = "limit", description = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "limit", required = false, defaultValue = "20") Integer limit,
         @Parameter(name = "order", description = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "order", required = false, defaultValue = "desc") String order,
         @Parameter(name = "after", description = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "after", required = false) @Nullable String after,
-        @Parameter(name = "before", description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "before", required = false) @Nullable String before
+        @Parameter(name = "before", description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "before", required = false) @Nullable String before
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"first_id\" : \"asst_abc123\", \"data\" : [ { \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"name\" : \"name\", \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ], \"created_at\" : 0, \"description\" : \"description\", \"model\" : \"model\", \"id\" : \"id\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"object\" : \"assistant\" }, { \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"name\" : \"name\", \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ], \"created_at\" : 0, \"description\" : \"description\", \"model\" : \"model\", \"id\" : \"id\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"object\" : \"assistant\" } ], \"last_id\" : \"asst_abc456\", \"has_more\" : false, \"object\" : \"list\" }";
+                    String exampleString = "{ \"first_id\" : \"asst_abc123\", \"data\" : [ { \"instructions\" : \"instructions\", \"tool_resources\" : { \"code_interpreter\" : { \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ] }, \"file_search\" : { \"vector_store_ids\" : [ \"vector_store_ids\" ] } }, \"metadata\" : \"{}\", \"created_at\" : 0, \"description\" : \"description\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"top_p\" : 1, \"response_format\" : \"auto\", \"name\" : \"name\", \"temperature\" : 1, \"model\" : \"model\", \"id\" : \"id\", \"object\" : \"assistant\" }, { \"instructions\" : \"instructions\", \"tool_resources\" : { \"code_interpreter\" : { \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ] }, \"file_search\" : { \"vector_store_ids\" : [ \"vector_store_ids\" ] } }, \"metadata\" : \"{}\", \"created_at\" : 0, \"description\" : \"description\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"top_p\" : 1, \"response_format\" : \"auto\", \"name\" : \"name\", \"temperature\" : 1, \"model\" : \"model\", \"id\" : \"id\", \"object\" : \"assistant\" } ], \"last_id\" : \"asst_abc456\", \"has_more\" : false, \"object\" : \"list\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -443,7 +256,7 @@ public interface AssistantsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"name\" : \"name\", \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ], \"created_at\" : 0, \"description\" : \"description\", \"model\" : \"model\", \"id\" : \"id\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"object\" : \"assistant\" }";
+                    String exampleString = "{ \"instructions\" : \"instructions\", \"tool_resources\" : { \"code_interpreter\" : { \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ] }, \"file_search\" : { \"vector_store_ids\" : [ \"vector_store_ids\" ] } }, \"metadata\" : \"{}\", \"created_at\" : 0, \"description\" : \"description\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"top_p\" : 1, \"response_format\" : \"auto\", \"name\" : \"name\", \"temperature\" : 1, \"model\" : \"model\", \"id\" : \"id\", \"object\" : \"assistant\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

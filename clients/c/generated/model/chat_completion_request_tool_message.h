@@ -15,6 +15,7 @@
 
 typedef struct chat_completion_request_tool_message_t chat_completion_request_tool_message_t;
 
+#include "chat_completion_request_tool_message_content.h"
 
 // Enum ROLE for chat_completion_request_tool_message
 
@@ -28,7 +29,7 @@ openai_api_chat_completion_request_tool_message_ROLE_e chat_completion_request_t
 
 typedef struct chat_completion_request_tool_message_t {
     openai_api_chat_completion_request_tool_message_ROLE_e role; //enum
-    char *content; // string
+    struct chat_completion_request_tool_message_content_t *content; //model
     char *tool_call_id; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -36,7 +37,7 @@ typedef struct chat_completion_request_tool_message_t {
 
 __attribute__((deprecated)) chat_completion_request_tool_message_t *chat_completion_request_tool_message_create(
     openai_api_chat_completion_request_tool_message_ROLE_e role,
-    char *content,
+    chat_completion_request_tool_message_content_t *content,
     char *tool_call_id
 );
 

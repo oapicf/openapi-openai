@@ -1,8 +1,9 @@
 package org.openapitools.model;
 
 import org.openapitools.model.AssistantToolsCode;
+import org.openapitools.model.AssistantToolsFileSearch;
+import org.openapitools.model.AssistantToolsFileSearchFileSearch;
 import org.openapitools.model.AssistantToolsFunction;
-import org.openapitools.model.AssistantToolsRetrieval;
 import org.openapitools.model.FunctionObject;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -14,7 +15,7 @@ public class CreateThreadAndRunRequestToolsInner  {
   
 public enum TypeEnum {
 
-CODE_INTERPRETER(String.valueOf("code_interpreter")), RETRIEVAL(String.valueOf("retrieval")), FUNCTION(String.valueOf("function"));
+CODE_INTERPRETER(String.valueOf("code_interpreter")), FILE_SEARCH(String.valueOf("file_search")), FUNCTION(String.valueOf("function"));
 
 
     private String value;
@@ -49,6 +50,10 @@ CODE_INTERPRETER(String.valueOf("code_interpreter")), RETRIEVAL(String.valueOf("
 
   private TypeEnum type;
 
+  @ApiModelProperty(value = "")
+
+  private AssistantToolsFileSearchFileSearch fileSearch;
+
   @ApiModelProperty(required = true, value = "")
 
   private FunctionObject function;
@@ -70,6 +75,24 @@ CODE_INTERPRETER(String.valueOf("code_interpreter")), RETRIEVAL(String.valueOf("
 
   public CreateThreadAndRunRequestToolsInner type(TypeEnum type) {
     this.type = type;
+    return this;
+  }
+
+ /**
+   * Get fileSearch
+   * @return fileSearch
+  **/
+  @JsonProperty("file_search")
+  public AssistantToolsFileSearchFileSearch getFileSearch() {
+    return fileSearch;
+  }
+
+  public void setFileSearch(AssistantToolsFileSearchFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
+  }
+
+  public CreateThreadAndRunRequestToolsInner fileSearch(AssistantToolsFileSearchFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
     return this;
   }
 
@@ -101,12 +124,13 @@ CODE_INTERPRETER(String.valueOf("code_interpreter")), RETRIEVAL(String.valueOf("
     }
     CreateThreadAndRunRequestToolsInner createThreadAndRunRequestToolsInner = (CreateThreadAndRunRequestToolsInner) o;
     return Objects.equals(this.type, createThreadAndRunRequestToolsInner.type) &&
+        Objects.equals(this.fileSearch, createThreadAndRunRequestToolsInner.fileSearch) &&
         Objects.equals(this.function, createThreadAndRunRequestToolsInner.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, function);
+    return Objects.hash(type, fileSearch, function);
   }
 
   @Override
@@ -115,6 +139,7 @@ CODE_INTERPRETER(String.valueOf("code_interpreter")), RETRIEVAL(String.valueOf("
     sb.append("class CreateThreadAndRunRequestToolsInner {\n");
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    fileSearch: ").append(toIndentedString(fileSearch)).append("\n");
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();

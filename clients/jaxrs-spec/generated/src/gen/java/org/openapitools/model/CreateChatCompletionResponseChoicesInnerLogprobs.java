@@ -23,18 +23,21 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Log probability information for the choice.")
 @JsonTypeName("CreateChatCompletionResponse_choices_inner_logprobs")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateChatCompletionResponseChoicesInnerLogprobs   {
   private @Valid List<@Valid ChatCompletionTokenLogprob> content;
+  private @Valid List<@Valid ChatCompletionTokenLogprob> refusal;
 
   public CreateChatCompletionResponseChoicesInnerLogprobs() {
   }
 
   @JsonCreator
   public CreateChatCompletionResponseChoicesInnerLogprobs(
-    @JsonProperty(required = true, value = "content") List<@Valid ChatCompletionTokenLogprob> content
+    @JsonProperty(required = true, value = "content") List<@Valid ChatCompletionTokenLogprob> content,
+    @JsonProperty(required = true, value = "refusal") List<@Valid ChatCompletionTokenLogprob> refusal
   ) {
     this.content = content;
+    this.refusal = refusal;
   }
 
   /**
@@ -73,6 +76,42 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
 
     return this;
   }
+  /**
+   * A list of message refusal tokens with log probability information.
+   **/
+  public CreateChatCompletionResponseChoicesInnerLogprobs refusal(List<@Valid ChatCompletionTokenLogprob> refusal) {
+    this.refusal = refusal;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "A list of message refusal tokens with log probability information.")
+  @JsonProperty(required = true, value = "refusal")
+  @NotNull @Valid public List<@Valid ChatCompletionTokenLogprob> getRefusal() {
+    return refusal;
+  }
+
+  @JsonProperty(required = true, value = "refusal")
+  public void setRefusal(List<@Valid ChatCompletionTokenLogprob> refusal) {
+    this.refusal = refusal;
+  }
+
+  public CreateChatCompletionResponseChoicesInnerLogprobs addRefusalItem(ChatCompletionTokenLogprob refusalItem) {
+    if (this.refusal == null) {
+      this.refusal = new ArrayList<>();
+    }
+
+    this.refusal.add(refusalItem);
+    return this;
+  }
+
+  public CreateChatCompletionResponseChoicesInnerLogprobs removeRefusalItem(ChatCompletionTokenLogprob refusalItem) {
+    if (refusalItem != null && this.refusal != null) {
+      this.refusal.remove(refusalItem);
+    }
+
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {
@@ -83,12 +122,13 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
       return false;
     }
     CreateChatCompletionResponseChoicesInnerLogprobs createChatCompletionResponseChoicesInnerLogprobs = (CreateChatCompletionResponseChoicesInnerLogprobs) o;
-    return Objects.equals(this.content, createChatCompletionResponseChoicesInnerLogprobs.content);
+    return Objects.equals(this.content, createChatCompletionResponseChoicesInnerLogprobs.content) &&
+        Objects.equals(this.refusal, createChatCompletionResponseChoicesInnerLogprobs.refusal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(content);
+    return Objects.hash(content, refusal);
   }
 
   @Override
@@ -97,6 +137,7 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
     sb.append("class CreateChatCompletionResponseChoicesInnerLogprobs {\n");
     
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
     sb.append("}");
     return sb.toString();
   }

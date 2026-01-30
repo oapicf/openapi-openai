@@ -1,12 +1,15 @@
 const utils = require('../utils/utils');
 const ChatCompletionFunctions = require('../models/ChatCompletionFunctions');
 const ChatCompletionRequestMessage = require('../models/ChatCompletionRequestMessage');
+const ChatCompletionStreamOptions = require('../models/ChatCompletionStreamOptions');
 const ChatCompletionTool = require('../models/ChatCompletionTool');
 const ChatCompletionToolChoiceOption = require('../models/ChatCompletionToolChoiceOption');
+const CreateChatCompletionRequest_audio = require('../models/CreateChatCompletionRequest_audio');
 const CreateChatCompletionRequest_function_call = require('../models/CreateChatCompletionRequest_function_call');
 const CreateChatCompletionRequest_model = require('../models/CreateChatCompletionRequest_model');
 const CreateChatCompletionRequest_response_format = require('../models/CreateChatCompletionRequest_response_format');
 const CreateChatCompletionRequest_stop = require('../models/CreateChatCompletionRequest_stop');
+const PredictionContent = require('../models/PredictionContent');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
@@ -19,8 +22,28 @@ module.exports = {
             },
             ...CreateChatCompletionRequest_model.fields(`${keyPrefix}model`, isInput),
             {
+                key: `${keyPrefix}store`,
+                label: `Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products.  - [${labelPrefix}store]`,
+                type: 'boolean',
+            },
+            {
+                key: `${keyPrefix}reasoning_effort`,
+                label: `**o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.  - [${labelPrefix}reasoning_effort]`,
+                type: 'string',
+                choices: [
+                    'low',
+                    'medium',
+                    'high',
+                ],
+            },
+            {
+                key: `${keyPrefix}metadata`,
+                label: `Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions).  - [${labelPrefix}metadata]`,
+                type: 'object',
+            },
+            {
                 key: `${keyPrefix}frequency_penalty`,
-                label: `Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details)  - [${labelPrefix}frequency_penalty]`,
+                label: `Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  - [${labelPrefix}frequency_penalty]`,
                 type: 'number',
             },
             {
@@ -30,17 +53,22 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}logprobs`,
-                label: `Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. - [${labelPrefix}logprobs]`,
+                label: `Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.  - [${labelPrefix}logprobs]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}top_logprobs`,
-                label: `An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. - [${labelPrefix}top_logprobs]`,
+                label: `An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.  - [${labelPrefix}top_logprobs]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}max_tokens`,
-                label: `The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens.  - [${labelPrefix}max_tokens]`,
+                label: `The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning).  - [${labelPrefix}max_tokens]`,
+                type: 'integer',
+            },
+            {
+                key: `${keyPrefix}max_completion_tokens`,
+                label: `An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning).  - [${labelPrefix}max_completion_tokens]`,
                 type: 'integer',
             },
             {
@@ -49,8 +77,18 @@ module.exports = {
                 type: 'integer',
             },
             {
+                key: `${keyPrefix}modalities`,
+                label: `Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]`  - [${labelPrefix}modalities]`,
+                list: true,
+                type: 'string',
+                choices: [
+                ],
+            },
+            ...PredictionContent.fields(`${keyPrefix}prediction`, isInput),
+            ...CreateChatCompletionRequest_audio.fields(`${keyPrefix}audio`, isInput),
+            {
                 key: `${keyPrefix}presence_penalty`,
-                label: `Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details)  - [${labelPrefix}presence_penalty]`,
+                label: `Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  - [${labelPrefix}presence_penalty]`,
                 type: 'number',
             },
             ...CreateChatCompletionRequest_response_format.fields(`${keyPrefix}response_format`, isInput),
@@ -59,15 +97,25 @@ module.exports = {
                 label: `This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.  - [${labelPrefix}seed]`,
                 type: 'integer',
             },
+            {
+                key: `${keyPrefix}service_tier`,
+                label: `Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized.  - [${labelPrefix}service_tier]`,
+                type: 'string',
+                choices: [
+                    'auto',
+                    'default',
+                ],
+            },
             ...CreateChatCompletionRequest_stop.fields(`${keyPrefix}stop`, isInput),
             {
                 key: `${keyPrefix}stream`,
                 label: `If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions).  - [${labelPrefix}stream]`,
                 type: 'boolean',
             },
+            ...ChatCompletionStreamOptions.fields(`${keyPrefix}stream_options`, isInput),
             {
                 key: `${keyPrefix}temperature`,
-                label: `What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both.  - [${labelPrefix}temperature]`,
+                label: `What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both.  - [${labelPrefix}temperature]`,
                 type: 'number',
             },
             {
@@ -82,8 +130,13 @@ module.exports = {
             },
             ...ChatCompletionToolChoiceOption.fields(`${keyPrefix}tool_choice`, isInput),
             {
+                key: `${keyPrefix}parallel_tool_calls`,
+                label: `Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. - [${labelPrefix}parallel_tool_calls]`,
+                type: 'boolean',
+            },
+            {
                 key: `${keyPrefix}user`,
-                label: `A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  - [${labelPrefix}user]`,
+                label: `A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  - [${labelPrefix}user]`,
                 type: 'string',
             },
             ...CreateChatCompletionRequest_function_call.fields(`${keyPrefix}function_call`, isInput),
@@ -99,21 +152,31 @@ module.exports = {
         return {
             'messages': utils.childMapping(bundle.inputData?.[`${keyPrefix}messages`], `${keyPrefix}messages`, ChatCompletionRequestMessage),
             'model': utils.removeIfEmpty(CreateChatCompletionRequest_model.mapping(bundle, `${keyPrefix}model`)),
+            'store': bundle.inputData?.[`${keyPrefix}store`],
+            'reasoning_effort': bundle.inputData?.[`${keyPrefix}reasoning_effort`],
+            'metadata': bundle.inputData?.[`${keyPrefix}metadata`],
             'frequency_penalty': bundle.inputData?.[`${keyPrefix}frequency_penalty`],
             'logit_bias': bundle.inputData?.[`${keyPrefix}logit_bias`],
             'logprobs': bundle.inputData?.[`${keyPrefix}logprobs`],
             'top_logprobs': bundle.inputData?.[`${keyPrefix}top_logprobs`],
             'max_tokens': bundle.inputData?.[`${keyPrefix}max_tokens`],
+            'max_completion_tokens': bundle.inputData?.[`${keyPrefix}max_completion_tokens`],
             'n': bundle.inputData?.[`${keyPrefix}n`],
+            'modalities': bundle.inputData?.[`${keyPrefix}modalities`],
+            'prediction': utils.removeIfEmpty(PredictionContent.mapping(bundle, `${keyPrefix}prediction`)),
+            'audio': utils.removeIfEmpty(CreateChatCompletionRequest_audio.mapping(bundle, `${keyPrefix}audio`)),
             'presence_penalty': bundle.inputData?.[`${keyPrefix}presence_penalty`],
             'response_format': utils.removeIfEmpty(CreateChatCompletionRequest_response_format.mapping(bundle, `${keyPrefix}response_format`)),
             'seed': bundle.inputData?.[`${keyPrefix}seed`],
+            'service_tier': bundle.inputData?.[`${keyPrefix}service_tier`],
             'stop': utils.removeIfEmpty(CreateChatCompletionRequest_stop.mapping(bundle, `${keyPrefix}stop`)),
             'stream': bundle.inputData?.[`${keyPrefix}stream`],
+            'stream_options': utils.removeIfEmpty(ChatCompletionStreamOptions.mapping(bundle, `${keyPrefix}stream_options`)),
             'temperature': bundle.inputData?.[`${keyPrefix}temperature`],
             'top_p': bundle.inputData?.[`${keyPrefix}top_p`],
             'tools': utils.childMapping(bundle.inputData?.[`${keyPrefix}tools`], `${keyPrefix}tools`, ChatCompletionTool),
             'tool_choice': utils.removeIfEmpty(ChatCompletionToolChoiceOption.mapping(bundle, `${keyPrefix}tool_choice`)),
+            'parallel_tool_calls': bundle.inputData?.[`${keyPrefix}parallel_tool_calls`],
             'user': bundle.inputData?.[`${keyPrefix}user`],
             'function_call': utils.removeIfEmpty(CreateChatCompletionRequest_function_call.mapping(bundle, `${keyPrefix}function_call`)),
             'functions': utils.childMapping(bundle.inputData?.[`${keyPrefix}functions`], `${keyPrefix}functions`, ChatCompletionFunctions),

@@ -15,6 +15,7 @@
 
 typedef struct message_object_t message_object_t;
 
+#include "create_message_request_attachments_inner.h"
 #include "message_object_content_inner.h"
 #include "message_object_incomplete_details.h"
 #include "object.h"
@@ -58,7 +59,7 @@ typedef struct message_object_t {
     list_t *content; //nonprimitive container
     char *assistant_id; // string
     char *run_id; // string
-    list_t *file_ids; //primitive container
+    list_t *attachments; //nonprimitive container
     object_t *metadata; //object
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -77,7 +78,7 @@ __attribute__((deprecated)) message_object_t *message_object_create(
     list_t *content,
     char *assistant_id,
     char *run_id,
-    list_t *file_ids,
+    list_t *attachments,
     object_t *metadata
 );
 

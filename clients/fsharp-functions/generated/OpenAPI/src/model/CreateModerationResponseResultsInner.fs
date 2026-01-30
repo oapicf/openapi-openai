@@ -4,6 +4,7 @@ open System
 open System.Collections.Generic
 open Newtonsoft.Json
 open OpenAPI.Model.CreateModerationResponseResultsInnerCategories
+open OpenAPI.Model.CreateModerationResponseResultsInnerCategoryAppliedInputTypes
 open OpenAPI.Model.CreateModerationResponseResultsInnerCategoryScores
 
 module CreateModerationResponseResultsInner =
@@ -18,6 +19,8 @@ module CreateModerationResponseResultsInner =
     Categories : CreateModerationResponseResultsInnerCategories;
     [<JsonProperty(PropertyName = "category_scores")>]
     CategoryScores : CreateModerationResponseResultsInnerCategoryScores;
+    [<JsonProperty(PropertyName = "category_applied_input_types")>]
+    CategoryAppliedInputTypes : CreateModerationResponseResultsInnerCategoryAppliedInputTypes;
   }
 
   //#endregion

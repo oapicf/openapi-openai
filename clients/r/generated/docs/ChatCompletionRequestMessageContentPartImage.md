@@ -1,5 +1,6 @@
 # openapi::ChatCompletionRequestMessageContentPartImage
 
+Learn about [image inputs](/docs/guides/vision). 
 
 ## Properties
 Name | Type | Description | Notes

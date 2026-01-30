@@ -60,7 +60,7 @@ public class CreateSpeechRequest   {
   }
 
   private ResponseFormatEnum responseFormat = ResponseFormatEnum.MP3;
-  private BigDecimal speed = new BigDecimal("1.0");
+  private BigDecimal speed = new BigDecimal("1");
 
   public CreateSpeechRequest () {
 

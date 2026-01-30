@@ -1,0 +1,51 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateUploadRequest"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateUploadRequest"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  CreateUploadRequest {
+    title = CreateUploadRequest
+    description = CreateUploadRequest
+    derivedFrom = Root
+    properties {
+        filename {
+          type =  string
+          description = "The name of the file to upload. "
+          optional = true
+        }
+        purpose {
+          type =  string
+          description = "The intended purpose of the uploaded file.  See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose). "
+          enum = ["assistants", "batch", "fine-tune", "vision"]
+          optional = true
+        }
+        bytes {
+          type =  integer
+          description = "The number of bytes in the file you are uploading. "
+          optional = true
+        }
+        mime_type {
+          type =  string
+          description = "The MIME type of the file.  This must fall within the supported MIME types for your file purpose. See the supported MIME types for assistants and vision. "
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateUploadRequest {
+    title = CreateUploadRequest
+    description = CreateUploadRequest
+    implements = openapi_server.resourceTypes.CreateUploadRequest
+
+  }
+}

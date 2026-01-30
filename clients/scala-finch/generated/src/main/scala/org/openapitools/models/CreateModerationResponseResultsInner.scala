@@ -6,6 +6,7 @@ import io.circe.generic.semiauto._
 import io.circe.java8.time._
 import org.openapitools._
 import org.openapitools.models.CreateModerationResponseResultsInnerCategories
+import org.openapitools.models.CreateModerationResponseResultsInnerCategoryAppliedInputTypes
 import org.openapitools.models.CreateModerationResponseResultsInnerCategoryScores
 
 /**
@@ -13,10 +14,12 @@ import org.openapitools.models.CreateModerationResponseResultsInnerCategoryScore
  * @param flagged Whether any of the below categories are flagged.
  * @param categories 
  * @param categoryUnderscorescores 
+ * @param categoryUnderscoreappliedUnderscoreinputUnderscoretypes 
  */
 case class CreateModerationResponseResultsInner(flagged: Boolean,
                 categories: CreateModerationResponseResultsInnerCategories,
-                categoryUnderscorescores: CreateModerationResponseResultsInnerCategoryScores
+                categoryUnderscorescores: CreateModerationResponseResultsInnerCategoryScores,
+                categoryUnderscoreappliedUnderscoreinputUnderscoretypes: CreateModerationResponseResultsInnerCategoryAppliedInputTypes
                 )
 
 object CreateModerationResponseResultsInner {

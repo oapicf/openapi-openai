@@ -1,0 +1,66 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventResponseAudioTranscriptDelta"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventResponseAudioTranscriptDelta"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeServerEventResponseAudioTranscriptDelta {
+    title = RealtimeServerEventResponseAudioTranscriptDelta
+    description = RealtimeServerEventResponseAudioTranscriptDelta
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "The unique ID of the server event."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;response.audio_transcript.delta&#x60;."
+          enum = ["response.audio_transcript.delta"]
+          optional = true
+        }
+        response_id {
+          type =  string
+          description = "The ID of the response."
+          optional = true
+        }
+        item_id {
+          type =  string
+          description = "The ID of the item."
+          optional = true
+        }
+        output_index {
+          type =  integer
+          description = "The index of the output item in the response."
+          optional = true
+        }
+        content_index {
+          type =  integer
+          description = "The index of the content part in the item&#39;s content array."
+          optional = true
+        }
+        delta {
+          type =  string
+          description = "The transcript delta."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventResponseAudioTranscriptDelta {
+    title = RealtimeServerEventResponseAudioTranscriptDelta
+    description = RealtimeServerEventResponseAudioTranscriptDelta
+    implements = openapi_server.resourceTypes.RealtimeServerEventResponseAudioTranscriptDelta
+
+  }
+}

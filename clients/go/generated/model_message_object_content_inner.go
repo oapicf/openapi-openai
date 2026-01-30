@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -20,6 +20,8 @@ import (
 // MessageObjectContentInner - struct for MessageObjectContentInner
 type MessageObjectContentInner struct {
 	MessageContentImageFileObject *MessageContentImageFileObject
+	MessageContentImageUrlObject *MessageContentImageUrlObject
+	MessageContentRefusalObject *MessageContentRefusalObject
 	MessageContentTextObject *MessageContentTextObject
 }
 
@@ -27,6 +29,20 @@ type MessageObjectContentInner struct {
 func MessageContentImageFileObjectAsMessageObjectContentInner(v *MessageContentImageFileObject) MessageObjectContentInner {
 	return MessageObjectContentInner{
 		MessageContentImageFileObject: v,
+	}
+}
+
+// MessageContentImageUrlObjectAsMessageObjectContentInner is a convenience function that returns MessageContentImageUrlObject wrapped in MessageObjectContentInner
+func MessageContentImageUrlObjectAsMessageObjectContentInner(v *MessageContentImageUrlObject) MessageObjectContentInner {
+	return MessageObjectContentInner{
+		MessageContentImageUrlObject: v,
+	}
+}
+
+// MessageContentRefusalObjectAsMessageObjectContentInner is a convenience function that returns MessageContentRefusalObject wrapped in MessageObjectContentInner
+func MessageContentRefusalObjectAsMessageObjectContentInner(v *MessageContentRefusalObject) MessageObjectContentInner {
+	return MessageObjectContentInner{
+		MessageContentRefusalObject: v,
 	}
 }
 
@@ -59,6 +75,40 @@ func (dst *MessageObjectContentInner) UnmarshalJSON(data []byte) error {
 		dst.MessageContentImageFileObject = nil
 	}
 
+	// try to unmarshal data into MessageContentImageUrlObject
+	err = newStrictDecoder(data).Decode(&dst.MessageContentImageUrlObject)
+	if err == nil {
+		jsonMessageContentImageUrlObject, _ := json.Marshal(dst.MessageContentImageUrlObject)
+		if string(jsonMessageContentImageUrlObject) == "{}" { // empty struct
+			dst.MessageContentImageUrlObject = nil
+		} else {
+			if err = validator.Validate(dst.MessageContentImageUrlObject); err != nil {
+				dst.MessageContentImageUrlObject = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.MessageContentImageUrlObject = nil
+	}
+
+	// try to unmarshal data into MessageContentRefusalObject
+	err = newStrictDecoder(data).Decode(&dst.MessageContentRefusalObject)
+	if err == nil {
+		jsonMessageContentRefusalObject, _ := json.Marshal(dst.MessageContentRefusalObject)
+		if string(jsonMessageContentRefusalObject) == "{}" { // empty struct
+			dst.MessageContentRefusalObject = nil
+		} else {
+			if err = validator.Validate(dst.MessageContentRefusalObject); err != nil {
+				dst.MessageContentRefusalObject = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.MessageContentRefusalObject = nil
+	}
+
 	// try to unmarshal data into MessageContentTextObject
 	err = newStrictDecoder(data).Decode(&dst.MessageContentTextObject)
 	if err == nil {
@@ -79,6 +129,8 @@ func (dst *MessageObjectContentInner) UnmarshalJSON(data []byte) error {
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.MessageContentImageFileObject = nil
+		dst.MessageContentImageUrlObject = nil
+		dst.MessageContentRefusalObject = nil
 		dst.MessageContentTextObject = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(MessageObjectContentInner)")
@@ -93,6 +145,14 @@ func (dst *MessageObjectContentInner) UnmarshalJSON(data []byte) error {
 func (src MessageObjectContentInner) MarshalJSON() ([]byte, error) {
 	if src.MessageContentImageFileObject != nil {
 		return json.Marshal(&src.MessageContentImageFileObject)
+	}
+
+	if src.MessageContentImageUrlObject != nil {
+		return json.Marshal(&src.MessageContentImageUrlObject)
+	}
+
+	if src.MessageContentRefusalObject != nil {
+		return json.Marshal(&src.MessageContentRefusalObject)
 	}
 
 	if src.MessageContentTextObject != nil {
@@ -111,6 +171,14 @@ func (obj *MessageObjectContentInner) GetActualInstance() (interface{}) {
 		return obj.MessageContentImageFileObject
 	}
 
+	if obj.MessageContentImageUrlObject != nil {
+		return obj.MessageContentImageUrlObject
+	}
+
+	if obj.MessageContentRefusalObject != nil {
+		return obj.MessageContentRefusalObject
+	}
+
 	if obj.MessageContentTextObject != nil {
 		return obj.MessageContentTextObject
 	}
@@ -123,6 +191,14 @@ func (obj *MessageObjectContentInner) GetActualInstance() (interface{}) {
 func (obj MessageObjectContentInner) GetActualInstanceValue() (interface{}) {
 	if obj.MessageContentImageFileObject != nil {
 		return *obj.MessageContentImageFileObject
+	}
+
+	if obj.MessageContentImageUrlObject != nil {
+		return *obj.MessageContentImageUrlObject
+	}
+
+	if obj.MessageContentRefusalObject != nil {
+		return *obj.MessageContentRefusalObject
 	}
 
 	if obj.MessageContentTextObject != nil {

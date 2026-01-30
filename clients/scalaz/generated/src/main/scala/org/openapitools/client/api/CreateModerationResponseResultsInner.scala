@@ -15,7 +15,8 @@ case class CreateModerationResponseResultsInner (
   /* Whether any of the below categories are flagged. */
   flagged: Boolean,
 categories: CreateModerationResponseResultsInnerCategories,
-categoryScores: CreateModerationResponseResultsInnerCategoryScores)
+categoryScores: CreateModerationResponseResultsInnerCategoryScores,
+categoryAppliedInputTypes: CreateModerationResponseResultsInnerCategoryAppliedInputTypes)
 
 object CreateModerationResponseResultsInner {
   import DateTimeCodecs._

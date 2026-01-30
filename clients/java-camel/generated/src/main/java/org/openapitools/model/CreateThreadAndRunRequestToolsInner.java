@@ -7,8 +7,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.model.AssistantToolsCode;
+import org.openapitools.model.AssistantToolsFileSearch;
+import org.openapitools.model.AssistantToolsFileSearchFileSearch;
 import org.openapitools.model.AssistantToolsFunction;
-import org.openapitools.model.AssistantToolsRetrieval;
 import org.openapitools.model.FunctionObject;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -23,6 +24,6 @@ import java.util.*;
 import javax.annotation.Generated;
 
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public interface CreateThreadAndRunRequestToolsInner {
 }

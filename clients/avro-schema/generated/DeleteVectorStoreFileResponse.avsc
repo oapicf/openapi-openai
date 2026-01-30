@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "DeleteVectorStoreFileResponse",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "deleted",
+      "type": "boolean",
+      "doc": ""
+    },
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "DeleteVectorStoreFileResponse_object",
+        "symbols": [
+          "vector_store_file_deleted"
+        ]
+      },
+      "doc": ""
+    }
+  ]
+
+}

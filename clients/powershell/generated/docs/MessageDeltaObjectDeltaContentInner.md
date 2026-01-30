@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **Type** | **String** | Always &#x60;image_file&#x60;. | 
 **ImageFile** | [**MessageDeltaContentImageFileObjectImageFile**](MessageDeltaContentImageFileObjectImageFile.md) |  | [optional] 
 **Text** | [**MessageDeltaContentTextObjectText**](MessageDeltaContentTextObjectText.md) |  | [optional] 
+**Refusal** | **String** |  | [optional] 
+**ImageUrl** | [**MessageDeltaContentImageUrlObjectImageUrl**](MessageDeltaContentImageUrlObjectImageUrl.md) |  | [optional] 
 
 ## Examples
 
@@ -15,7 +17,9 @@ Name | Type | Description | Notes
 $MessageDeltaObjectDeltaContentInner = Initialize-PSOpenAPIToolsMessageDeltaObjectDeltaContentInner  -Index null `
  -Type null `
  -ImageFile null `
- -Text null
+ -Text null `
+ -Refusal null `
+ -ImageUrl null
 ```
 
 - Convert the resource to JSON

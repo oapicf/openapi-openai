@@ -7,6 +7,9 @@ from typing import List, Dict, Type
 from openapi_server.models.base_model import Model
 from openapi_server.models.message_content_image_file_object import MessageContentImageFileObject
 from openapi_server.models.message_content_image_file_object_image_file import MessageContentImageFileObjectImageFile
+from openapi_server.models.message_content_image_url_object import MessageContentImageUrlObject
+from openapi_server.models.message_content_image_url_object_image_url import MessageContentImageUrlObjectImageUrl
+from openapi_server.models.message_content_refusal_object import MessageContentRefusalObject
 from openapi_server.models.message_content_text_object import MessageContentTextObject
 from openapi_server.models.message_content_text_object_text import MessageContentTextObjectText
 from openapi_server import util
@@ -18,28 +21,36 @@ class MessageObjectContentInner(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, type: str=None, image_file: MessageContentImageFileObjectImageFile=None, text: MessageContentTextObjectText=None):
+    def __init__(self, type: str=None, image_file: MessageContentImageFileObjectImageFile=None, image_url: MessageContentImageUrlObjectImageUrl=None, text: MessageContentTextObjectText=None, refusal: str=None):
         """MessageObjectContentInner - a model defined in OpenAPI
 
         :param type: The type of this MessageObjectContentInner.
         :param image_file: The image_file of this MessageObjectContentInner.
+        :param image_url: The image_url of this MessageObjectContentInner.
         :param text: The text of this MessageObjectContentInner.
+        :param refusal: The refusal of this MessageObjectContentInner.
         """
         self.openapi_types = {
             'type': str,
             'image_file': MessageContentImageFileObjectImageFile,
-            'text': MessageContentTextObjectText
+            'image_url': MessageContentImageUrlObjectImageUrl,
+            'text': MessageContentTextObjectText,
+            'refusal': str
         }
 
         self.attribute_map = {
             'type': 'type',
             'image_file': 'image_file',
-            'text': 'text'
+            'image_url': 'image_url',
+            'text': 'text',
+            'refusal': 'refusal'
         }
 
         self._type = type
         self._image_file = image_file
+        self._image_url = image_url
         self._text = text
+        self._refusal = refusal
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'MessageObjectContentInner':
@@ -70,7 +81,7 @@ class MessageObjectContentInner(Model):
         :param type: The type of this MessageObjectContentInner.
         :type type: str
         """
-        allowed_values = ["image_file", "text"]  # noqa: E501
+        allowed_values = ["image_file", "image_url", "text", "refusal"]  # noqa: E501
         if type not in allowed_values:
             raise ValueError(
                 "Invalid value for `type` ({0}), must be one of {1}"
@@ -103,6 +114,29 @@ class MessageObjectContentInner(Model):
         self._image_file = image_file
 
     @property
+    def image_url(self):
+        """Gets the image_url of this MessageObjectContentInner.
+
+
+        :return: The image_url of this MessageObjectContentInner.
+        :rtype: MessageContentImageUrlObjectImageUrl
+        """
+        return self._image_url
+
+    @image_url.setter
+    def image_url(self, image_url):
+        """Sets the image_url of this MessageObjectContentInner.
+
+
+        :param image_url: The image_url of this MessageObjectContentInner.
+        :type image_url: MessageContentImageUrlObjectImageUrl
+        """
+        if image_url is None:
+            raise ValueError("Invalid value for `image_url`, must not be `None`")
+
+        self._image_url = image_url
+
+    @property
     def text(self):
         """Gets the text of this MessageObjectContentInner.
 
@@ -124,3 +158,26 @@ class MessageObjectContentInner(Model):
             raise ValueError("Invalid value for `text`, must not be `None`")
 
         self._text = text
+
+    @property
+    def refusal(self):
+        """Gets the refusal of this MessageObjectContentInner.
+
+
+        :return: The refusal of this MessageObjectContentInner.
+        :rtype: str
+        """
+        return self._refusal
+
+    @refusal.setter
+    def refusal(self, refusal):
+        """Sets the refusal of this MessageObjectContentInner.
+
+
+        :param refusal: The refusal of this MessageObjectContentInner.
+        :type refusal: str
+        """
+        if refusal is None:
+            raise ValueError("Invalid value for `refusal`, must not be `None`")
+
+        self._refusal = refusal

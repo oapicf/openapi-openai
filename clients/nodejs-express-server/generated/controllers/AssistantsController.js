@@ -16,10 +16,6 @@ const createAssistant = async (request, response) => {
   await Controller.handleRequest(request, response, service.createAssistant);
 };
 
-const createAssistantFile = async (request, response) => {
-  await Controller.handleRequest(request, response, service.createAssistantFile);
-};
-
 const createMessage = async (request, response) => {
   await Controller.handleRequest(request, response, service.createMessage);
 };
@@ -40,8 +36,8 @@ const deleteAssistant = async (request, response) => {
   await Controller.handleRequest(request, response, service.deleteAssistant);
 };
 
-const deleteAssistantFile = async (request, response) => {
-  await Controller.handleRequest(request, response, service.deleteAssistantFile);
+const deleteMessage = async (request, response) => {
+  await Controller.handleRequest(request, response, service.deleteMessage);
 };
 
 const deleteThread = async (request, response) => {
@@ -52,16 +48,8 @@ const getAssistant = async (request, response) => {
   await Controller.handleRequest(request, response, service.getAssistant);
 };
 
-const getAssistantFile = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getAssistantFile);
-};
-
 const getMessage = async (request, response) => {
   await Controller.handleRequest(request, response, service.getMessage);
-};
-
-const getMessageFile = async (request, response) => {
-  await Controller.handleRequest(request, response, service.getMessageFile);
 };
 
 const getRun = async (request, response) => {
@@ -76,16 +64,8 @@ const getThread = async (request, response) => {
   await Controller.handleRequest(request, response, service.getThread);
 };
 
-const listAssistantFiles = async (request, response) => {
-  await Controller.handleRequest(request, response, service.listAssistantFiles);
-};
-
 const listAssistants = async (request, response) => {
   await Controller.handleRequest(request, response, service.listAssistants);
-};
-
-const listMessageFiles = async (request, response) => {
-  await Controller.handleRequest(request, response, service.listMessageFiles);
 };
 
 const listMessages = async (request, response) => {
@@ -124,24 +104,19 @@ const submitToolOuputsToRun = async (request, response) => {
 module.exports = {
   cancelRun,
   createAssistant,
-  createAssistantFile,
   createMessage,
   createRun,
   createThread,
   createThreadAndRun,
   deleteAssistant,
-  deleteAssistantFile,
+  deleteMessage,
   deleteThread,
   getAssistant,
-  getAssistantFile,
   getMessage,
-  getMessageFile,
   getRun,
   getRunStep,
   getThread,
-  listAssistantFiles,
   listAssistants,
-  listMessageFiles,
   listMessages,
   listRunSteps,
   listRuns,

@@ -1,0 +1,46 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server UpdateVectorStoreRequest"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a UpdateVectorStoreRequest"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  VectorStoreExpirationAfter = openapi_server.resourceTypes.VectorStoreExpirationAfter
+}
+resourceTypes {
+
+  UpdateVectorStoreRequest {
+    title = UpdateVectorStoreRequest
+    description = UpdateVectorStoreRequest
+    derivedFrom = Root
+    properties {
+        name {
+          type =  string
+          description = "The name of the vector store."
+          optional = false
+        }
+        expires_after {
+          type = VectorStoreExpirationAfter
+          description = ""
+          optional = false
+        }
+        metadata {
+          type =  
+          description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. "
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  UpdateVectorStoreRequest {
+    title = UpdateVectorStoreRequest
+    description = UpdateVectorStoreRequest
+    implements = openapi_server.resourceTypes.UpdateVectorStoreRequest
+
+  }
+}

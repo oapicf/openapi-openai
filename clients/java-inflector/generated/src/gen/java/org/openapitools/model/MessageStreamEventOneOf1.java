@@ -16,7 +16,7 @@ import org.openapitools.model.MessageObject;
  **/
 
 @ApiModel(description = "Occurs when a [message](/docs/api-reference/messages/object) moves to an `in_progress` state.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageStreamEventOneOf1   {
   /**
    * Gets or Sets event

@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -14,13 +14,13 @@ package openapi
 
 
 
-// ChatCompletionToolChoiceOption - Controls which (if any) function is called by the model. `none` means the model will not call a function and instead generates a message. `auto` means the model can pick between generating a message or calling a function. Specifying a particular function via `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that function.  `none` is the default when no functions are present. `auto` is the default if functions are present. 
+// ChatCompletionToolChoiceOption - Controls which (if any) tool is called by the model. `none` means the model will not call any tool and instead generates a message. `auto` means the model can pick between generating a message or calling one or more tools. `required` means the model must call one or more tools. Specifying a particular tool via `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool.  `none` is the default when no tools are present. `auto` is the default if tools are present. 
 type ChatCompletionToolChoiceOption struct {
 
 	// The type of the tool. Currently, only `function` is supported.
 	Type string `json:"type"`
 
-	Function ChatCompletionNamedToolChoiceFunction `json:"function"`
+	Function AssistantsNamedToolChoiceFunction `json:"function"`
 }
 
 // AssertChatCompletionToolChoiceOptionRequired checks if the required fields are not zero-ed
@@ -35,7 +35,7 @@ func AssertChatCompletionToolChoiceOptionRequired(obj ChatCompletionToolChoiceOp
 		}
 	}
 
-	if err := AssertChatCompletionNamedToolChoiceFunctionRequired(obj.Function); err != nil {
+	if err := AssertAssistantsNamedToolChoiceFunctionRequired(obj.Function); err != nil {
 		return err
 	}
 	return nil
@@ -43,7 +43,7 @@ func AssertChatCompletionToolChoiceOptionRequired(obj ChatCompletionToolChoiceOp
 
 // AssertChatCompletionToolChoiceOptionConstraints checks if the values respects the defined constraints
 func AssertChatCompletionToolChoiceOptionConstraints(obj ChatCompletionToolChoiceOption) error {
-	if err := AssertChatCompletionNamedToolChoiceFunctionConstraints(obj.Function); err != nil {
+	if err := AssertAssistantsNamedToolChoiceFunctionConstraints(obj.Function); err != nil {
 		return err
 	}
 	return nil

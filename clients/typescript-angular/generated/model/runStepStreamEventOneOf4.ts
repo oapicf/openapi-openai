@@ -11,7 +11,7 @@ import { RunStepObject } from './runStepObject';
 
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) fails.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) fails.
  */
 export interface RunStepStreamEventOneOf4 { 
     event: RunStepStreamEventOneOf4.EventEnum;

@@ -15,14 +15,7 @@
 
 typedef struct fine_tuning_job_event_t fine_tuning_job_event_t;
 
-
-// Enum LEVEL for fine_tuning_job_event
-
-typedef enum  { openai_api_fine_tuning_job_event_LEVEL_NULL = 0, openai_api_fine_tuning_job_event_LEVEL_info, openai_api_fine_tuning_job_event_LEVEL_warn, openai_api_fine_tuning_job_event_LEVEL_error } openai_api_fine_tuning_job_event_LEVEL_e;
-
-char* fine_tuning_job_event_level_ToString(openai_api_fine_tuning_job_event_LEVEL_e level);
-
-openai_api_fine_tuning_job_event_LEVEL_e fine_tuning_job_event_level_FromString(char* level);
+#include "object.h"
 
 // Enum OBJECT for fine_tuning_job_event
 
@@ -32,24 +25,44 @@ char* fine_tuning_job_event_object_ToString(openai_api_fine_tuning_job_event_OBJ
 
 openai_api_fine_tuning_job_event_OBJECT_e fine_tuning_job_event_object_FromString(char* object);
 
+// Enum LEVEL for fine_tuning_job_event
+
+typedef enum  { openai_api_fine_tuning_job_event_LEVEL_NULL = 0, openai_api_fine_tuning_job_event_LEVEL_info, openai_api_fine_tuning_job_event_LEVEL_warn, openai_api_fine_tuning_job_event_LEVEL_error } openai_api_fine_tuning_job_event_LEVEL_e;
+
+char* fine_tuning_job_event_level_ToString(openai_api_fine_tuning_job_event_LEVEL_e level);
+
+openai_api_fine_tuning_job_event_LEVEL_e fine_tuning_job_event_level_FromString(char* level);
+
+// Enum TYPE for fine_tuning_job_event
+
+typedef enum  { openai_api_fine_tuning_job_event_TYPE_NULL = 0, openai_api_fine_tuning_job_event_TYPE_message, openai_api_fine_tuning_job_event_TYPE_metrics } openai_api_fine_tuning_job_event_TYPE_e;
+
+char* fine_tuning_job_event_type_ToString(openai_api_fine_tuning_job_event_TYPE_e type);
+
+openai_api_fine_tuning_job_event_TYPE_e fine_tuning_job_event_type_FromString(char* type);
+
 
 
 typedef struct fine_tuning_job_event_t {
+    openai_api_fine_tuning_job_event_OBJECT_e object; //enum
     char *id; // string
     int created_at; //numeric
     openai_api_fine_tuning_job_event_LEVEL_e level; //enum
     char *message; // string
-    openai_api_fine_tuning_job_event_OBJECT_e object; //enum
+    openai_api_fine_tuning_job_event_TYPE_e type; //enum
+    object_t *data; //object
 
     int _library_owned; // Is the library responsible for freeing this object?
 } fine_tuning_job_event_t;
 
 __attribute__((deprecated)) fine_tuning_job_event_t *fine_tuning_job_event_create(
+    openai_api_fine_tuning_job_event_OBJECT_e object,
     char *id,
     int created_at,
     openai_api_fine_tuning_job_event_LEVEL_e level,
     char *message,
-    openai_api_fine_tuning_job_event_OBJECT_e object
+    openai_api_fine_tuning_job_event_TYPE_e type,
+    object_t *data
 );
 
 void fine_tuning_job_event_free(fine_tuning_job_event_t *fine_tuning_job_event);

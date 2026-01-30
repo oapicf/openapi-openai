@@ -80,7 +80,7 @@ public class EmbeddingsControllerTest {
         CreateEmbeddingRequest body = new CreateEmbeddingRequest(null, null);
         String uri = UriTemplate.of("/embeddings").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@28796d0e");
+            .accept("[Ljava.lang.String;@a7e362");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, CreateEmbeddingResponse.class);

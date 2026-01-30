@@ -7,13 +7,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { FineTuningJobHyperparametersNEpochs } from './fineTuningJobHyperparametersNEpochs';
+import { CreateFineTuningJobRequestHyperparametersNEpochs } from './createFineTuningJobRequestHyperparametersNEpochs';
+import { CreateFineTuningJobRequestHyperparametersLearningRateMultiplier } from './createFineTuningJobRequestHyperparametersLearningRateMultiplier';
+import { CreateFineTuningJobRequestHyperparametersBatchSize } from './createFineTuningJobRequestHyperparametersBatchSize';
 
 
 /**
- * The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+ * The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.
  */
 export interface FineTuningJobHyperparameters { 
-    n_epochs: FineTuningJobHyperparametersNEpochs;
+    batch_size?: CreateFineTuningJobRequestHyperparametersBatchSize;
+    learning_rate_multiplier?: CreateFineTuningJobRequestHyperparametersLearningRateMultiplier;
+    n_epochs?: CreateFineTuningJobRequestHyperparametersNEpochs;
 }
 

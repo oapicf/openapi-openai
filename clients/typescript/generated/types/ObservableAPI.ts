@@ -3,17 +3,76 @@ import { Configuration, ConfigurationOptions, mergeConfiguration } from '../conf
 import type { Middleware } from '../middleware';
 import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
-import { AssistantFileObject } from '../models/AssistantFileObject';
+import { AdminApiKey } from '../models/AdminApiKey';
+import { AdminApiKeyOwner } from '../models/AdminApiKeyOwner';
+import { AdminApiKeysCreateRequest } from '../models/AdminApiKeysCreateRequest';
+import { AdminApiKeysDelete200Response } from '../models/AdminApiKeysDelete200Response';
+import { ApiKeyList } from '../models/ApiKeyList';
+import { ArrayOfContentPartsInner } from '../models/ArrayOfContentPartsInner';
 import { AssistantObject } from '../models/AssistantObject';
+import { AssistantObjectToolResources } from '../models/AssistantObjectToolResources';
+import { AssistantObjectToolResourcesCodeInterpreter } from '../models/AssistantObjectToolResourcesCodeInterpreter';
+import { AssistantObjectToolResourcesFileSearch } from '../models/AssistantObjectToolResourcesFileSearch';
 import { AssistantObjectToolsInner } from '../models/AssistantObjectToolsInner';
 import { AssistantStreamEvent } from '../models/AssistantStreamEvent';
 import { AssistantToolsCode } from '../models/AssistantToolsCode';
+import { AssistantToolsFileSearch } from '../models/AssistantToolsFileSearch';
+import { AssistantToolsFileSearchFileSearch } from '../models/AssistantToolsFileSearchFileSearch';
+import { AssistantToolsFileSearchTypeOnly } from '../models/AssistantToolsFileSearchTypeOnly';
 import { AssistantToolsFunction } from '../models/AssistantToolsFunction';
-import { AssistantToolsRetrieval } from '../models/AssistantToolsRetrieval';
-import { AssistantsApiNamedToolChoice } from '../models/AssistantsApiNamedToolChoice';
-import { AssistantsApiResponseFormat } from '../models/AssistantsApiResponseFormat';
 import { AssistantsApiResponseFormatOption } from '../models/AssistantsApiResponseFormatOption';
 import { AssistantsApiToolChoiceOption } from '../models/AssistantsApiToolChoiceOption';
+import { AssistantsNamedToolChoice } from '../models/AssistantsNamedToolChoice';
+import { AssistantsNamedToolChoiceFunction } from '../models/AssistantsNamedToolChoiceFunction';
+import { AudioResponseFormat } from '../models/AudioResponseFormat';
+import { AuditLog } from '../models/AuditLog';
+import { AuditLogActor } from '../models/AuditLogActor';
+import { AuditLogActorApiKey } from '../models/AuditLogActorApiKey';
+import { AuditLogActorServiceAccount } from '../models/AuditLogActorServiceAccount';
+import { AuditLogActorSession } from '../models/AuditLogActorSession';
+import { AuditLogActorUser } from '../models/AuditLogActorUser';
+import { AuditLogApiKeyCreated } from '../models/AuditLogApiKeyCreated';
+import { AuditLogApiKeyCreatedData } from '../models/AuditLogApiKeyCreatedData';
+import { AuditLogApiKeyDeleted } from '../models/AuditLogApiKeyDeleted';
+import { AuditLogApiKeyUpdated } from '../models/AuditLogApiKeyUpdated';
+import { AuditLogApiKeyUpdatedChangesRequested } from '../models/AuditLogApiKeyUpdatedChangesRequested';
+import { AuditLogEventType } from '../models/AuditLogEventType';
+import { AuditLogInviteAccepted } from '../models/AuditLogInviteAccepted';
+import { AuditLogInviteSent } from '../models/AuditLogInviteSent';
+import { AuditLogInviteSentData } from '../models/AuditLogInviteSentData';
+import { AuditLogLoginFailed } from '../models/AuditLogLoginFailed';
+import { AuditLogOrganizationUpdated } from '../models/AuditLogOrganizationUpdated';
+import { AuditLogOrganizationUpdatedChangesRequested } from '../models/AuditLogOrganizationUpdatedChangesRequested';
+import { AuditLogOrganizationUpdatedChangesRequestedSettings } from '../models/AuditLogOrganizationUpdatedChangesRequestedSettings';
+import { AuditLogProject } from '../models/AuditLogProject';
+import { AuditLogProjectArchived } from '../models/AuditLogProjectArchived';
+import { AuditLogProjectCreated } from '../models/AuditLogProjectCreated';
+import { AuditLogProjectCreatedData } from '../models/AuditLogProjectCreatedData';
+import { AuditLogProjectUpdated } from '../models/AuditLogProjectUpdated';
+import { AuditLogProjectUpdatedChangesRequested } from '../models/AuditLogProjectUpdatedChangesRequested';
+import { AuditLogRateLimitDeleted } from '../models/AuditLogRateLimitDeleted';
+import { AuditLogRateLimitUpdated } from '../models/AuditLogRateLimitUpdated';
+import { AuditLogRateLimitUpdatedChangesRequested } from '../models/AuditLogRateLimitUpdatedChangesRequested';
+import { AuditLogServiceAccountCreated } from '../models/AuditLogServiceAccountCreated';
+import { AuditLogServiceAccountCreatedData } from '../models/AuditLogServiceAccountCreatedData';
+import { AuditLogServiceAccountDeleted } from '../models/AuditLogServiceAccountDeleted';
+import { AuditLogServiceAccountUpdated } from '../models/AuditLogServiceAccountUpdated';
+import { AuditLogServiceAccountUpdatedChangesRequested } from '../models/AuditLogServiceAccountUpdatedChangesRequested';
+import { AuditLogUserAdded } from '../models/AuditLogUserAdded';
+import { AuditLogUserAddedData } from '../models/AuditLogUserAddedData';
+import { AuditLogUserDeleted } from '../models/AuditLogUserDeleted';
+import { AuditLogUserUpdated } from '../models/AuditLogUserUpdated';
+import { AuditLogUserUpdatedChangesRequested } from '../models/AuditLogUserUpdatedChangesRequested';
+import { AutoChunkingStrategy } from '../models/AutoChunkingStrategy';
+import { AutoChunkingStrategyRequestParam } from '../models/AutoChunkingStrategyRequestParam';
+import { Batch } from '../models/Batch';
+import { BatchErrors } from '../models/BatchErrors';
+import { BatchErrorsDataInner } from '../models/BatchErrorsDataInner';
+import { BatchRequestCounts } from '../models/BatchRequestCounts';
+import { BatchRequestInput } from '../models/BatchRequestInput';
+import { BatchRequestOutput } from '../models/BatchRequestOutput';
+import { BatchRequestOutputError } from '../models/BatchRequestOutputError';
+import { BatchRequestOutputResponse } from '../models/BatchRequestOutputResponse';
 import { ChatCompletionFunctionCallOption } from '../models/ChatCompletionFunctionCallOption';
 import { ChatCompletionFunctions } from '../models/ChatCompletionFunctions';
 import { ChatCompletionMessageToolCall } from '../models/ChatCompletionMessageToolCall';
@@ -21,34 +80,58 @@ import { ChatCompletionMessageToolCallChunk } from '../models/ChatCompletionMess
 import { ChatCompletionMessageToolCallChunkFunction } from '../models/ChatCompletionMessageToolCallChunkFunction';
 import { ChatCompletionMessageToolCallFunction } from '../models/ChatCompletionMessageToolCallFunction';
 import { ChatCompletionNamedToolChoice } from '../models/ChatCompletionNamedToolChoice';
-import { ChatCompletionNamedToolChoiceFunction } from '../models/ChatCompletionNamedToolChoiceFunction';
 import { ChatCompletionRequestAssistantMessage } from '../models/ChatCompletionRequestAssistantMessage';
+import { ChatCompletionRequestAssistantMessageAudio } from '../models/ChatCompletionRequestAssistantMessageAudio';
+import { ChatCompletionRequestAssistantMessageContent } from '../models/ChatCompletionRequestAssistantMessageContent';
+import { ChatCompletionRequestAssistantMessageContentPart } from '../models/ChatCompletionRequestAssistantMessageContentPart';
 import { ChatCompletionRequestAssistantMessageFunctionCall } from '../models/ChatCompletionRequestAssistantMessageFunctionCall';
+import { ChatCompletionRequestDeveloperMessage } from '../models/ChatCompletionRequestDeveloperMessage';
+import { ChatCompletionRequestDeveloperMessageContent } from '../models/ChatCompletionRequestDeveloperMessageContent';
 import { ChatCompletionRequestFunctionMessage } from '../models/ChatCompletionRequestFunctionMessage';
 import { ChatCompletionRequestMessage } from '../models/ChatCompletionRequestMessage';
-import { ChatCompletionRequestMessageContentPart } from '../models/ChatCompletionRequestMessageContentPart';
+import { ChatCompletionRequestMessageContentPartAudio } from '../models/ChatCompletionRequestMessageContentPartAudio';
+import { ChatCompletionRequestMessageContentPartAudioInputAudio } from '../models/ChatCompletionRequestMessageContentPartAudioInputAudio';
 import { ChatCompletionRequestMessageContentPartImage } from '../models/ChatCompletionRequestMessageContentPartImage';
 import { ChatCompletionRequestMessageContentPartImageImageUrl } from '../models/ChatCompletionRequestMessageContentPartImageImageUrl';
+import { ChatCompletionRequestMessageContentPartRefusal } from '../models/ChatCompletionRequestMessageContentPartRefusal';
 import { ChatCompletionRequestMessageContentPartText } from '../models/ChatCompletionRequestMessageContentPartText';
 import { ChatCompletionRequestSystemMessage } from '../models/ChatCompletionRequestSystemMessage';
+import { ChatCompletionRequestSystemMessageContent } from '../models/ChatCompletionRequestSystemMessageContent';
 import { ChatCompletionRequestToolMessage } from '../models/ChatCompletionRequestToolMessage';
+import { ChatCompletionRequestToolMessageContent } from '../models/ChatCompletionRequestToolMessageContent';
 import { ChatCompletionRequestUserMessage } from '../models/ChatCompletionRequestUserMessage';
 import { ChatCompletionRequestUserMessageContent } from '../models/ChatCompletionRequestUserMessageContent';
+import { ChatCompletionRequestUserMessageContentPart } from '../models/ChatCompletionRequestUserMessageContentPart';
 import { ChatCompletionResponseMessage } from '../models/ChatCompletionResponseMessage';
+import { ChatCompletionResponseMessageAudio } from '../models/ChatCompletionResponseMessageAudio';
+import { ChatCompletionResponseMessageFunctionCall } from '../models/ChatCompletionResponseMessageFunctionCall';
 import { ChatCompletionRole } from '../models/ChatCompletionRole';
+import { ChatCompletionStreamOptions } from '../models/ChatCompletionStreamOptions';
 import { ChatCompletionStreamResponseDelta } from '../models/ChatCompletionStreamResponseDelta';
 import { ChatCompletionStreamResponseDeltaFunctionCall } from '../models/ChatCompletionStreamResponseDeltaFunctionCall';
 import { ChatCompletionTokenLogprob } from '../models/ChatCompletionTokenLogprob';
 import { ChatCompletionTokenLogprobTopLogprobsInner } from '../models/ChatCompletionTokenLogprobTopLogprobsInner';
 import { ChatCompletionTool } from '../models/ChatCompletionTool';
 import { ChatCompletionToolChoiceOption } from '../models/ChatCompletionToolChoiceOption';
+import { ChunkingStrategyRequestParam } from '../models/ChunkingStrategyRequestParam';
+import { CompleteUploadRequest } from '../models/CompleteUploadRequest';
 import { CompletionUsage } from '../models/CompletionUsage';
-import { CreateAssistantFileRequest } from '../models/CreateAssistantFileRequest';
+import { CompletionUsageCompletionTokensDetails } from '../models/CompletionUsageCompletionTokensDetails';
+import { CompletionUsagePromptTokensDetails } from '../models/CompletionUsagePromptTokensDetails';
+import { CostsResult } from '../models/CostsResult';
+import { CostsResultAmount } from '../models/CostsResultAmount';
 import { CreateAssistantRequest } from '../models/CreateAssistantRequest';
 import { CreateAssistantRequestModel } from '../models/CreateAssistantRequestModel';
+import { CreateAssistantRequestToolResources } from '../models/CreateAssistantRequestToolResources';
+import { CreateAssistantRequestToolResourcesCodeInterpreter } from '../models/CreateAssistantRequestToolResourcesCodeInterpreter';
+import { CreateAssistantRequestToolResourcesFileSearch } from '../models/CreateAssistantRequestToolResourcesFileSearch';
+import { CreateAssistantRequestToolResourcesFileSearchVectorStoresInner } from '../models/CreateAssistantRequestToolResourcesFileSearchVectorStoresInner';
+import { CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy } from '../models/CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy';
+import { CreateBatchRequest } from '../models/CreateBatchRequest';
 import { CreateChatCompletionFunctionResponse } from '../models/CreateChatCompletionFunctionResponse';
 import { CreateChatCompletionFunctionResponseChoicesInner } from '../models/CreateChatCompletionFunctionResponseChoicesInner';
 import { CreateChatCompletionRequest } from '../models/CreateChatCompletionRequest';
+import { CreateChatCompletionRequestAudio } from '../models/CreateChatCompletionRequestAudio';
 import { CreateChatCompletionRequestFunctionCall } from '../models/CreateChatCompletionRequestFunctionCall';
 import { CreateChatCompletionRequestModel } from '../models/CreateChatCompletionRequestModel';
 import { CreateChatCompletionRequestResponseFormat } from '../models/CreateChatCompletionRequestResponseFormat';
@@ -58,6 +141,7 @@ import { CreateChatCompletionResponseChoicesInner } from '../models/CreateChatCo
 import { CreateChatCompletionResponseChoicesInnerLogprobs } from '../models/CreateChatCompletionResponseChoicesInnerLogprobs';
 import { CreateChatCompletionStreamResponse } from '../models/CreateChatCompletionStreamResponse';
 import { CreateChatCompletionStreamResponseChoicesInner } from '../models/CreateChatCompletionStreamResponseChoicesInner';
+import { CreateChatCompletionStreamResponseUsage } from '../models/CreateChatCompletionStreamResponseUsage';
 import { CreateCompletionRequest } from '../models/CreateCompletionRequest';
 import { CreateCompletionRequestModel } from '../models/CreateCompletionRequestModel';
 import { CreateCompletionRequestPrompt } from '../models/CreateCompletionRequestPrompt';
@@ -82,20 +166,32 @@ import { CreateImageEditRequestModel } from '../models/CreateImageEditRequestMod
 import { CreateImageRequest } from '../models/CreateImageRequest';
 import { CreateImageRequestModel } from '../models/CreateImageRequestModel';
 import { CreateMessageRequest } from '../models/CreateMessageRequest';
+import { CreateMessageRequestAttachmentsInner } from '../models/CreateMessageRequestAttachmentsInner';
+import { CreateMessageRequestAttachmentsInnerToolsInner } from '../models/CreateMessageRequestAttachmentsInnerToolsInner';
+import { CreateMessageRequestContent } from '../models/CreateMessageRequestContent';
 import { CreateModerationRequest } from '../models/CreateModerationRequest';
 import { CreateModerationRequestInput } from '../models/CreateModerationRequestInput';
+import { CreateModerationRequestInputOneOfInner } from '../models/CreateModerationRequestInputOneOfInner';
+import { CreateModerationRequestInputOneOfInnerOneOf } from '../models/CreateModerationRequestInputOneOfInnerOneOf';
+import { CreateModerationRequestInputOneOfInnerOneOf1 } from '../models/CreateModerationRequestInputOneOfInnerOneOf1';
+import { CreateModerationRequestInputOneOfInnerOneOfImageUrl } from '../models/CreateModerationRequestInputOneOfInnerOneOfImageUrl';
 import { CreateModerationRequestModel } from '../models/CreateModerationRequestModel';
 import { CreateModerationResponse } from '../models/CreateModerationResponse';
 import { CreateModerationResponseResultsInner } from '../models/CreateModerationResponseResultsInner';
 import { CreateModerationResponseResultsInnerCategories } from '../models/CreateModerationResponseResultsInnerCategories';
+import { CreateModerationResponseResultsInnerCategoryAppliedInputTypes } from '../models/CreateModerationResponseResultsInnerCategoryAppliedInputTypes';
 import { CreateModerationResponseResultsInnerCategoryScores } from '../models/CreateModerationResponseResultsInnerCategoryScores';
 import { CreateRunRequest } from '../models/CreateRunRequest';
 import { CreateRunRequestModel } from '../models/CreateRunRequestModel';
 import { CreateSpeechRequest } from '../models/CreateSpeechRequest';
 import { CreateSpeechRequestModel } from '../models/CreateSpeechRequestModel';
 import { CreateThreadAndRunRequest } from '../models/CreateThreadAndRunRequest';
+import { CreateThreadAndRunRequestToolResources } from '../models/CreateThreadAndRunRequestToolResources';
 import { CreateThreadAndRunRequestToolsInner } from '../models/CreateThreadAndRunRequestToolsInner';
 import { CreateThreadRequest } from '../models/CreateThreadRequest';
+import { CreateThreadRequestToolResources } from '../models/CreateThreadRequestToolResources';
+import { CreateThreadRequestToolResourcesFileSearch } from '../models/CreateThreadRequestToolResourcesFileSearch';
+import { CreateThreadRequestToolResourcesFileSearchVectorStoresInner } from '../models/CreateThreadRequestToolResourcesFileSearchVectorStoresInner';
 import { CreateTranscription200Response } from '../models/CreateTranscription200Response';
 import { CreateTranscriptionRequestModel } from '../models/CreateTranscriptionRequestModel';
 import { CreateTranscriptionResponseJson } from '../models/CreateTranscriptionResponseJson';
@@ -103,16 +199,40 @@ import { CreateTranscriptionResponseVerboseJson } from '../models/CreateTranscri
 import { CreateTranslation200Response } from '../models/CreateTranslation200Response';
 import { CreateTranslationResponseJson } from '../models/CreateTranslationResponseJson';
 import { CreateTranslationResponseVerboseJson } from '../models/CreateTranslationResponseVerboseJson';
-import { DeleteAssistantFileResponse } from '../models/DeleteAssistantFileResponse';
+import { CreateUploadRequest } from '../models/CreateUploadRequest';
+import { CreateVectorStoreFileBatchRequest } from '../models/CreateVectorStoreFileBatchRequest';
+import { CreateVectorStoreFileRequest } from '../models/CreateVectorStoreFileRequest';
+import { CreateVectorStoreRequest } from '../models/CreateVectorStoreRequest';
+import { CreateVectorStoreRequestChunkingStrategy } from '../models/CreateVectorStoreRequestChunkingStrategy';
+import { DefaultProjectErrorResponse } from '../models/DefaultProjectErrorResponse';
 import { DeleteAssistantResponse } from '../models/DeleteAssistantResponse';
 import { DeleteFileResponse } from '../models/DeleteFileResponse';
 import { DeleteMessageResponse } from '../models/DeleteMessageResponse';
 import { DeleteModelResponse } from '../models/DeleteModelResponse';
 import { DeleteThreadResponse } from '../models/DeleteThreadResponse';
+import { DeleteVectorStoreFileResponse } from '../models/DeleteVectorStoreFileResponse';
+import { DeleteVectorStoreResponse } from '../models/DeleteVectorStoreResponse';
 import { DoneEvent } from '../models/DoneEvent';
 import { Embedding } from '../models/Embedding';
 import { ErrorEvent } from '../models/ErrorEvent';
 import { ErrorResponse } from '../models/ErrorResponse';
+import { FileSearchRankingOptions } from '../models/FileSearchRankingOptions';
+import { FineTuneChatCompletionRequestAssistantMessage } from '../models/FineTuneChatCompletionRequestAssistantMessage';
+import { FineTuneChatRequestInput } from '../models/FineTuneChatRequestInput';
+import { FineTuneChatRequestInputMessagesInner } from '../models/FineTuneChatRequestInputMessagesInner';
+import { FineTuneCompletionRequestInput } from '../models/FineTuneCompletionRequestInput';
+import { FineTuneDPOMethod } from '../models/FineTuneDPOMethod';
+import { FineTuneDPOMethodHyperparameters } from '../models/FineTuneDPOMethodHyperparameters';
+import { FineTuneDPOMethodHyperparametersBatchSize } from '../models/FineTuneDPOMethodHyperparametersBatchSize';
+import { FineTuneDPOMethodHyperparametersBeta } from '../models/FineTuneDPOMethodHyperparametersBeta';
+import { FineTuneDPOMethodHyperparametersLearningRateMultiplier } from '../models/FineTuneDPOMethodHyperparametersLearningRateMultiplier';
+import { FineTuneDPOMethodHyperparametersNEpochs } from '../models/FineTuneDPOMethodHyperparametersNEpochs';
+import { FineTuneMethod } from '../models/FineTuneMethod';
+import { FineTunePreferenceRequestInput } from '../models/FineTunePreferenceRequestInput';
+import { FineTunePreferenceRequestInputInput } from '../models/FineTunePreferenceRequestInputInput';
+import { FineTunePreferenceRequestInputPreferredCompletionInner } from '../models/FineTunePreferenceRequestInputPreferredCompletionInner';
+import { FineTuneSupervisedMethod } from '../models/FineTuneSupervisedMethod';
+import { FineTuneSupervisedMethodHyperparameters } from '../models/FineTuneSupervisedMethodHyperparameters';
 import { FineTuningIntegration } from '../models/FineTuningIntegration';
 import { FineTuningJob } from '../models/FineTuningJob';
 import { FineTuningJobCheckpoint } from '../models/FineTuningJobCheckpoint';
@@ -120,25 +240,36 @@ import { FineTuningJobCheckpointMetrics } from '../models/FineTuningJobCheckpoin
 import { FineTuningJobError } from '../models/FineTuningJobError';
 import { FineTuningJobEvent } from '../models/FineTuningJobEvent';
 import { FineTuningJobHyperparameters } from '../models/FineTuningJobHyperparameters';
-import { FineTuningJobHyperparametersNEpochs } from '../models/FineTuningJobHyperparametersNEpochs';
 import { FineTuningJobIntegrationsInner } from '../models/FineTuningJobIntegrationsInner';
 import { FunctionObject } from '../models/FunctionObject';
 import { Image } from '../models/Image';
 import { ImagesResponse } from '../models/ImagesResponse';
-import { ListAssistantFilesResponse } from '../models/ListAssistantFilesResponse';
+import { Invite } from '../models/Invite';
+import { InviteDeleteResponse } from '../models/InviteDeleteResponse';
+import { InviteListResponse } from '../models/InviteListResponse';
+import { InviteProjectsInner } from '../models/InviteProjectsInner';
+import { InviteRequest } from '../models/InviteRequest';
+import { InviteRequestProjectsInner } from '../models/InviteRequestProjectsInner';
 import { ListAssistantsResponse } from '../models/ListAssistantsResponse';
+import { ListAuditLogsEffectiveAtParameter } from '../models/ListAuditLogsEffectiveAtParameter';
+import { ListAuditLogsResponse } from '../models/ListAuditLogsResponse';
+import { ListBatchesResponse } from '../models/ListBatchesResponse';
 import { ListFilesResponse } from '../models/ListFilesResponse';
 import { ListFineTuningJobCheckpointsResponse } from '../models/ListFineTuningJobCheckpointsResponse';
 import { ListFineTuningJobEventsResponse } from '../models/ListFineTuningJobEventsResponse';
-import { ListMessageFilesResponse } from '../models/ListMessageFilesResponse';
 import { ListMessagesResponse } from '../models/ListMessagesResponse';
 import { ListModelsResponse } from '../models/ListModelsResponse';
 import { ListPaginatedFineTuningJobsResponse } from '../models/ListPaginatedFineTuningJobsResponse';
 import { ListRunStepsResponse } from '../models/ListRunStepsResponse';
 import { ListRunsResponse } from '../models/ListRunsResponse';
 import { ListThreadsResponse } from '../models/ListThreadsResponse';
+import { ListVectorStoreFilesResponse } from '../models/ListVectorStoreFilesResponse';
+import { ListVectorStoresResponse } from '../models/ListVectorStoresResponse';
 import { MessageContentImageFileObject } from '../models/MessageContentImageFileObject';
 import { MessageContentImageFileObjectImageFile } from '../models/MessageContentImageFileObjectImageFile';
+import { MessageContentImageUrlObject } from '../models/MessageContentImageUrlObject';
+import { MessageContentImageUrlObjectImageUrl } from '../models/MessageContentImageUrlObjectImageUrl';
+import { MessageContentRefusalObject } from '../models/MessageContentRefusalObject';
 import { MessageContentTextAnnotationsFileCitationObject } from '../models/MessageContentTextAnnotationsFileCitationObject';
 import { MessageContentTextAnnotationsFileCitationObjectFileCitation } from '../models/MessageContentTextAnnotationsFileCitationObjectFileCitation';
 import { MessageContentTextAnnotationsFilePathObject } from '../models/MessageContentTextAnnotationsFilePathObject';
@@ -148,6 +279,9 @@ import { MessageContentTextObjectText } from '../models/MessageContentTextObject
 import { MessageContentTextObjectTextAnnotationsInner } from '../models/MessageContentTextObjectTextAnnotationsInner';
 import { MessageDeltaContentImageFileObject } from '../models/MessageDeltaContentImageFileObject';
 import { MessageDeltaContentImageFileObjectImageFile } from '../models/MessageDeltaContentImageFileObjectImageFile';
+import { MessageDeltaContentImageUrlObject } from '../models/MessageDeltaContentImageUrlObject';
+import { MessageDeltaContentImageUrlObjectImageUrl } from '../models/MessageDeltaContentImageUrlObjectImageUrl';
+import { MessageDeltaContentRefusalObject } from '../models/MessageDeltaContentRefusalObject';
 import { MessageDeltaContentTextAnnotationsFileCitationObject } from '../models/MessageDeltaContentTextAnnotationsFileCitationObject';
 import { MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation } from '../models/MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation';
 import { MessageDeltaContentTextAnnotationsFilePathObject } from '../models/MessageDeltaContentTextAnnotationsFilePathObject';
@@ -158,10 +292,10 @@ import { MessageDeltaContentTextObjectTextAnnotationsInner } from '../models/Mes
 import { MessageDeltaObject } from '../models/MessageDeltaObject';
 import { MessageDeltaObjectDelta } from '../models/MessageDeltaObjectDelta';
 import { MessageDeltaObjectDeltaContentInner } from '../models/MessageDeltaObjectDeltaContentInner';
-import { MessageFileObject } from '../models/MessageFileObject';
 import { MessageObject } from '../models/MessageObject';
 import { MessageObjectContentInner } from '../models/MessageObjectContentInner';
 import { MessageObjectIncompleteDetails } from '../models/MessageObjectIncompleteDetails';
+import { MessageRequestContentTextObject } from '../models/MessageRequestContentTextObject';
 import { MessageStreamEvent } from '../models/MessageStreamEvent';
 import { MessageStreamEventOneOf } from '../models/MessageStreamEventOneOf';
 import { MessageStreamEventOneOf1 } from '../models/MessageStreamEventOneOf1';
@@ -171,10 +305,108 @@ import { MessageStreamEventOneOf4 } from '../models/MessageStreamEventOneOf4';
 import { Model } from '../models/Model';
 import { ModelError } from '../models/ModelError';
 import { ModifyAssistantRequest } from '../models/ModifyAssistantRequest';
+import { ModifyAssistantRequestToolResources } from '../models/ModifyAssistantRequestToolResources';
+import { ModifyAssistantRequestToolResourcesCodeInterpreter } from '../models/ModifyAssistantRequestToolResourcesCodeInterpreter';
+import { ModifyAssistantRequestToolResourcesFileSearch } from '../models/ModifyAssistantRequestToolResourcesFileSearch';
 import { ModifyMessageRequest } from '../models/ModifyMessageRequest';
 import { ModifyRunRequest } from '../models/ModifyRunRequest';
 import { ModifyThreadRequest } from '../models/ModifyThreadRequest';
+import { ModifyThreadRequestToolResources } from '../models/ModifyThreadRequestToolResources';
+import { ModifyThreadRequestToolResourcesFileSearch } from '../models/ModifyThreadRequestToolResourcesFileSearch';
 import { OpenAIFile } from '../models/OpenAIFile';
+import { OtherChunkingStrategyResponseParam } from '../models/OtherChunkingStrategyResponseParam';
+import { PredictionContent } from '../models/PredictionContent';
+import { PredictionContentContent } from '../models/PredictionContentContent';
+import { Project } from '../models/Project';
+import { ProjectApiKey } from '../models/ProjectApiKey';
+import { ProjectApiKeyDeleteResponse } from '../models/ProjectApiKeyDeleteResponse';
+import { ProjectApiKeyListResponse } from '../models/ProjectApiKeyListResponse';
+import { ProjectApiKeyOwner } from '../models/ProjectApiKeyOwner';
+import { ProjectCreateRequest } from '../models/ProjectCreateRequest';
+import { ProjectListResponse } from '../models/ProjectListResponse';
+import { ProjectRateLimit } from '../models/ProjectRateLimit';
+import { ProjectRateLimitListResponse } from '../models/ProjectRateLimitListResponse';
+import { ProjectRateLimitUpdateRequest } from '../models/ProjectRateLimitUpdateRequest';
+import { ProjectServiceAccount } from '../models/ProjectServiceAccount';
+import { ProjectServiceAccountApiKey } from '../models/ProjectServiceAccountApiKey';
+import { ProjectServiceAccountCreateRequest } from '../models/ProjectServiceAccountCreateRequest';
+import { ProjectServiceAccountCreateResponse } from '../models/ProjectServiceAccountCreateResponse';
+import { ProjectServiceAccountDeleteResponse } from '../models/ProjectServiceAccountDeleteResponse';
+import { ProjectServiceAccountListResponse } from '../models/ProjectServiceAccountListResponse';
+import { ProjectUpdateRequest } from '../models/ProjectUpdateRequest';
+import { ProjectUser } from '../models/ProjectUser';
+import { ProjectUserCreateRequest } from '../models/ProjectUserCreateRequest';
+import { ProjectUserDeleteResponse } from '../models/ProjectUserDeleteResponse';
+import { ProjectUserListResponse } from '../models/ProjectUserListResponse';
+import { ProjectUserUpdateRequest } from '../models/ProjectUserUpdateRequest';
+import { RealtimeClientEventConversationItemCreate } from '../models/RealtimeClientEventConversationItemCreate';
+import { RealtimeClientEventConversationItemDelete } from '../models/RealtimeClientEventConversationItemDelete';
+import { RealtimeClientEventConversationItemTruncate } from '../models/RealtimeClientEventConversationItemTruncate';
+import { RealtimeClientEventInputAudioBufferAppend } from '../models/RealtimeClientEventInputAudioBufferAppend';
+import { RealtimeClientEventInputAudioBufferClear } from '../models/RealtimeClientEventInputAudioBufferClear';
+import { RealtimeClientEventInputAudioBufferCommit } from '../models/RealtimeClientEventInputAudioBufferCommit';
+import { RealtimeClientEventResponseCancel } from '../models/RealtimeClientEventResponseCancel';
+import { RealtimeClientEventResponseCreate } from '../models/RealtimeClientEventResponseCreate';
+import { RealtimeClientEventSessionUpdate } from '../models/RealtimeClientEventSessionUpdate';
+import { RealtimeConversationItem } from '../models/RealtimeConversationItem';
+import { RealtimeConversationItemContentInner } from '../models/RealtimeConversationItemContentInner';
+import { RealtimeResponse } from '../models/RealtimeResponse';
+import { RealtimeResponseCreateParams } from '../models/RealtimeResponseCreateParams';
+import { RealtimeResponseCreateParamsConversation } from '../models/RealtimeResponseCreateParamsConversation';
+import { RealtimeResponseCreateParamsMaxResponseOutputTokens } from '../models/RealtimeResponseCreateParamsMaxResponseOutputTokens';
+import { RealtimeResponseCreateParamsToolsInner } from '../models/RealtimeResponseCreateParamsToolsInner';
+import { RealtimeResponseStatusDetails } from '../models/RealtimeResponseStatusDetails';
+import { RealtimeResponseStatusDetailsError } from '../models/RealtimeResponseStatusDetailsError';
+import { RealtimeResponseUsage } from '../models/RealtimeResponseUsage';
+import { RealtimeResponseUsageInputTokenDetails } from '../models/RealtimeResponseUsageInputTokenDetails';
+import { RealtimeResponseUsageOutputTokenDetails } from '../models/RealtimeResponseUsageOutputTokenDetails';
+import { RealtimeServerEventConversationCreated } from '../models/RealtimeServerEventConversationCreated';
+import { RealtimeServerEventConversationCreatedConversation } from '../models/RealtimeServerEventConversationCreatedConversation';
+import { RealtimeServerEventConversationItemCreated } from '../models/RealtimeServerEventConversationItemCreated';
+import { RealtimeServerEventConversationItemDeleted } from '../models/RealtimeServerEventConversationItemDeleted';
+import { RealtimeServerEventConversationItemInputAudioTranscriptionCompleted } from '../models/RealtimeServerEventConversationItemInputAudioTranscriptionCompleted';
+import { RealtimeServerEventConversationItemInputAudioTranscriptionFailed } from '../models/RealtimeServerEventConversationItemInputAudioTranscriptionFailed';
+import { RealtimeServerEventConversationItemInputAudioTranscriptionFailedError } from '../models/RealtimeServerEventConversationItemInputAudioTranscriptionFailedError';
+import { RealtimeServerEventConversationItemTruncated } from '../models/RealtimeServerEventConversationItemTruncated';
+import { RealtimeServerEventError } from '../models/RealtimeServerEventError';
+import { RealtimeServerEventErrorError } from '../models/RealtimeServerEventErrorError';
+import { RealtimeServerEventInputAudioBufferCleared } from '../models/RealtimeServerEventInputAudioBufferCleared';
+import { RealtimeServerEventInputAudioBufferCommitted } from '../models/RealtimeServerEventInputAudioBufferCommitted';
+import { RealtimeServerEventInputAudioBufferSpeechStarted } from '../models/RealtimeServerEventInputAudioBufferSpeechStarted';
+import { RealtimeServerEventInputAudioBufferSpeechStopped } from '../models/RealtimeServerEventInputAudioBufferSpeechStopped';
+import { RealtimeServerEventRateLimitsUpdated } from '../models/RealtimeServerEventRateLimitsUpdated';
+import { RealtimeServerEventRateLimitsUpdatedRateLimitsInner } from '../models/RealtimeServerEventRateLimitsUpdatedRateLimitsInner';
+import { RealtimeServerEventResponseAudioDelta } from '../models/RealtimeServerEventResponseAudioDelta';
+import { RealtimeServerEventResponseAudioDone } from '../models/RealtimeServerEventResponseAudioDone';
+import { RealtimeServerEventResponseAudioTranscriptDelta } from '../models/RealtimeServerEventResponseAudioTranscriptDelta';
+import { RealtimeServerEventResponseAudioTranscriptDone } from '../models/RealtimeServerEventResponseAudioTranscriptDone';
+import { RealtimeServerEventResponseContentPartAdded } from '../models/RealtimeServerEventResponseContentPartAdded';
+import { RealtimeServerEventResponseContentPartAddedPart } from '../models/RealtimeServerEventResponseContentPartAddedPart';
+import { RealtimeServerEventResponseContentPartDone } from '../models/RealtimeServerEventResponseContentPartDone';
+import { RealtimeServerEventResponseContentPartDonePart } from '../models/RealtimeServerEventResponseContentPartDonePart';
+import { RealtimeServerEventResponseCreated } from '../models/RealtimeServerEventResponseCreated';
+import { RealtimeServerEventResponseDone } from '../models/RealtimeServerEventResponseDone';
+import { RealtimeServerEventResponseFunctionCallArgumentsDelta } from '../models/RealtimeServerEventResponseFunctionCallArgumentsDelta';
+import { RealtimeServerEventResponseFunctionCallArgumentsDone } from '../models/RealtimeServerEventResponseFunctionCallArgumentsDone';
+import { RealtimeServerEventResponseOutputItemAdded } from '../models/RealtimeServerEventResponseOutputItemAdded';
+import { RealtimeServerEventResponseOutputItemDone } from '../models/RealtimeServerEventResponseOutputItemDone';
+import { RealtimeServerEventResponseTextDelta } from '../models/RealtimeServerEventResponseTextDelta';
+import { RealtimeServerEventResponseTextDone } from '../models/RealtimeServerEventResponseTextDone';
+import { RealtimeServerEventSessionCreated } from '../models/RealtimeServerEventSessionCreated';
+import { RealtimeServerEventSessionUpdated } from '../models/RealtimeServerEventSessionUpdated';
+import { RealtimeSession } from '../models/RealtimeSession';
+import { RealtimeSessionCreateRequest } from '../models/RealtimeSessionCreateRequest';
+import { RealtimeSessionCreateRequestTurnDetection } from '../models/RealtimeSessionCreateRequestTurnDetection';
+import { RealtimeSessionCreateResponse } from '../models/RealtimeSessionCreateResponse';
+import { RealtimeSessionCreateResponseClientSecret } from '../models/RealtimeSessionCreateResponseClientSecret';
+import { RealtimeSessionCreateResponseTurnDetection } from '../models/RealtimeSessionCreateResponseTurnDetection';
+import { RealtimeSessionInputAudioTranscription } from '../models/RealtimeSessionInputAudioTranscription';
+import { RealtimeSessionModel } from '../models/RealtimeSessionModel';
+import { RealtimeSessionTurnDetection } from '../models/RealtimeSessionTurnDetection';
+import { ResponseFormatJsonObject } from '../models/ResponseFormatJsonObject';
+import { ResponseFormatJsonSchema } from '../models/ResponseFormatJsonSchema';
+import { ResponseFormatJsonSchemaJsonSchema } from '../models/ResponseFormatJsonSchemaJsonSchema';
+import { ResponseFormatText } from '../models/ResponseFormatText';
 import { RunCompletionUsage } from '../models/RunCompletionUsage';
 import { RunObject } from '../models/RunObject';
 import { RunObjectIncompleteDetails } from '../models/RunObjectIncompleteDetails';
@@ -193,11 +425,11 @@ import { RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner }
 import { RunStepDeltaStepDetailsToolCallsCodeOutputImageObject } from '../models/RunStepDeltaStepDetailsToolCallsCodeOutputImageObject';
 import { RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage } from '../models/RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage';
 import { RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject } from '../models/RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject';
+import { RunStepDeltaStepDetailsToolCallsFileSearchObject } from '../models/RunStepDeltaStepDetailsToolCallsFileSearchObject';
 import { RunStepDeltaStepDetailsToolCallsFunctionObject } from '../models/RunStepDeltaStepDetailsToolCallsFunctionObject';
 import { RunStepDeltaStepDetailsToolCallsFunctionObjectFunction } from '../models/RunStepDeltaStepDetailsToolCallsFunctionObjectFunction';
 import { RunStepDeltaStepDetailsToolCallsObject } from '../models/RunStepDeltaStepDetailsToolCallsObject';
 import { RunStepDeltaStepDetailsToolCallsObjectToolCallsInner } from '../models/RunStepDeltaStepDetailsToolCallsObjectToolCallsInner';
-import { RunStepDeltaStepDetailsToolCallsRetrievalObject } from '../models/RunStepDeltaStepDetailsToolCallsRetrievalObject';
 import { RunStepDetailsMessageCreationObject } from '../models/RunStepDetailsMessageCreationObject';
 import { RunStepDetailsMessageCreationObjectMessageCreation } from '../models/RunStepDetailsMessageCreationObjectMessageCreation';
 import { RunStepDetailsToolCallsCodeObject } from '../models/RunStepDetailsToolCallsCodeObject';
@@ -206,11 +438,15 @@ import { RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner } from '..
 import { RunStepDetailsToolCallsCodeOutputImageObject } from '../models/RunStepDetailsToolCallsCodeOutputImageObject';
 import { RunStepDetailsToolCallsCodeOutputImageObjectImage } from '../models/RunStepDetailsToolCallsCodeOutputImageObjectImage';
 import { RunStepDetailsToolCallsCodeOutputLogsObject } from '../models/RunStepDetailsToolCallsCodeOutputLogsObject';
+import { RunStepDetailsToolCallsFileSearchObject } from '../models/RunStepDetailsToolCallsFileSearchObject';
+import { RunStepDetailsToolCallsFileSearchObjectFileSearch } from '../models/RunStepDetailsToolCallsFileSearchObjectFileSearch';
+import { RunStepDetailsToolCallsFileSearchRankingOptionsObject } from '../models/RunStepDetailsToolCallsFileSearchRankingOptionsObject';
+import { RunStepDetailsToolCallsFileSearchResultObject } from '../models/RunStepDetailsToolCallsFileSearchResultObject';
+import { RunStepDetailsToolCallsFileSearchResultObjectContentInner } from '../models/RunStepDetailsToolCallsFileSearchResultObjectContentInner';
 import { RunStepDetailsToolCallsFunctionObject } from '../models/RunStepDetailsToolCallsFunctionObject';
 import { RunStepDetailsToolCallsFunctionObjectFunction } from '../models/RunStepDetailsToolCallsFunctionObjectFunction';
 import { RunStepDetailsToolCallsObject } from '../models/RunStepDetailsToolCallsObject';
 import { RunStepDetailsToolCallsObjectToolCallsInner } from '../models/RunStepDetailsToolCallsObjectToolCallsInner';
-import { RunStepDetailsToolCallsRetrievalObject } from '../models/RunStepDetailsToolCallsRetrievalObject';
 import { RunStepObject } from '../models/RunStepObject';
 import { RunStepObjectLastError } from '../models/RunStepObjectLastError';
 import { RunStepObjectStepDetails } from '../models/RunStepObjectStepDetails';
@@ -232,8 +468,13 @@ import { RunStreamEventOneOf5 } from '../models/RunStreamEventOneOf5';
 import { RunStreamEventOneOf6 } from '../models/RunStreamEventOneOf6';
 import { RunStreamEventOneOf7 } from '../models/RunStreamEventOneOf7';
 import { RunStreamEventOneOf8 } from '../models/RunStreamEventOneOf8';
+import { RunStreamEventOneOf9 } from '../models/RunStreamEventOneOf9';
 import { RunToolCallObject } from '../models/RunToolCallObject';
 import { RunToolCallObjectFunction } from '../models/RunToolCallObjectFunction';
+import { StaticChunkingStrategy } from '../models/StaticChunkingStrategy';
+import { StaticChunkingStrategyRequestParam } from '../models/StaticChunkingStrategyRequestParam';
+import { StaticChunkingStrategyResponseParam } from '../models/StaticChunkingStrategyResponseParam';
+import { StaticChunkingStrategyStatic } from '../models/StaticChunkingStrategyStatic';
 import { SubmitToolOutputsRunRequest } from '../models/SubmitToolOutputsRunRequest';
 import { SubmitToolOutputsRunRequestToolOutputsInner } from '../models/SubmitToolOutputsRunRequestToolOutputsInner';
 import { ThreadObject } from '../models/ThreadObject';
@@ -241,6 +482,32 @@ import { ThreadStreamEvent } from '../models/ThreadStreamEvent';
 import { TranscriptionSegment } from '../models/TranscriptionSegment';
 import { TranscriptionWord } from '../models/TranscriptionWord';
 import { TruncationObject } from '../models/TruncationObject';
+import { UpdateVectorStoreRequest } from '../models/UpdateVectorStoreRequest';
+import { Upload } from '../models/Upload';
+import { UploadPart } from '../models/UploadPart';
+import { UsageAudioSpeechesResult } from '../models/UsageAudioSpeechesResult';
+import { UsageAudioTranscriptionsResult } from '../models/UsageAudioTranscriptionsResult';
+import { UsageCodeInterpreterSessionsResult } from '../models/UsageCodeInterpreterSessionsResult';
+import { UsageCompletionsResult } from '../models/UsageCompletionsResult';
+import { UsageEmbeddingsResult } from '../models/UsageEmbeddingsResult';
+import { UsageImagesResult } from '../models/UsageImagesResult';
+import { UsageModerationsResult } from '../models/UsageModerationsResult';
+import { UsageResponse } from '../models/UsageResponse';
+import { UsageTimeBucket } from '../models/UsageTimeBucket';
+import { UsageTimeBucketResultInner } from '../models/UsageTimeBucketResultInner';
+import { UsageVectorStoresResult } from '../models/UsageVectorStoresResult';
+import { User } from '../models/User';
+import { UserDeleteResponse } from '../models/UserDeleteResponse';
+import { UserListResponse } from '../models/UserListResponse';
+import { UserRoleUpdateRequest } from '../models/UserRoleUpdateRequest';
+import { VectorStoreExpirationAfter } from '../models/VectorStoreExpirationAfter';
+import { VectorStoreFileBatchObject } from '../models/VectorStoreFileBatchObject';
+import { VectorStoreFileBatchObjectFileCounts } from '../models/VectorStoreFileBatchObjectFileCounts';
+import { VectorStoreFileObject } from '../models/VectorStoreFileObject';
+import { VectorStoreFileObjectChunkingStrategy } from '../models/VectorStoreFileObjectChunkingStrategy';
+import { VectorStoreFileObjectLastError } from '../models/VectorStoreFileObjectLastError';
+import { VectorStoreObject } from '../models/VectorStoreObject';
+import { VectorStoreObjectFileCounts } from '../models/VectorStoreObjectFileCounts';
 
 import { AssistantsApiRequestFactory, AssistantsApiResponseProcessor} from "../apis/AssistantsApi";
 export class ObservableAssistantsApi {
@@ -325,40 +592,6 @@ export class ObservableAssistantsApi {
     }
 
     /**
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     * @param assistantId The ID of the assistant for which to create a File. 
-     * @param createAssistantFileRequest
-     */
-    public createAssistantFileWithHttpInfo(assistantId: string, createAssistantFileRequest: CreateAssistantFileRequest, _options?: ConfigurationOptions): Observable<HttpInfo<AssistantFileObject>> {
-        const _config = mergeConfiguration(this.configuration, _options);
-
-        const requestContextPromise = this.requestFactory.createAssistantFile(assistantId, createAssistantFileRequest, _config);
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of _config.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of _config.middleware.reverse()) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createAssistantFileWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     * @param assistantId The ID of the assistant for which to create a File. 
-     * @param createAssistantFileRequest
-     */
-    public createAssistantFile(assistantId: string, createAssistantFileRequest: CreateAssistantFileRequest, _options?: ConfigurationOptions): Observable<AssistantFileObject> {
-        return this.createAssistantFileWithHttpInfo(assistantId, createAssistantFileRequest, _options).pipe(map((apiResponse: HttpInfo<AssistantFileObject>) => apiResponse.data));
-    }
-
-    /**
      * Create a message.
      * @param threadId The ID of the [thread](/docs/api-reference/threads) to create a message for.
      * @param createMessageRequest
@@ -396,11 +629,12 @@ export class ObservableAssistantsApi {
      * Create a run.
      * @param threadId The ID of the thread to run.
      * @param createRunRequest
+     * @param [include] A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
      */
-    public createRunWithHttpInfo(threadId: string, createRunRequest: CreateRunRequest, _options?: ConfigurationOptions): Observable<HttpInfo<RunObject>> {
+    public createRunWithHttpInfo(threadId: string, createRunRequest: CreateRunRequest, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, _options?: ConfigurationOptions): Observable<HttpInfo<RunObject>> {
         const _config = mergeConfiguration(this.configuration, _options);
 
-        const requestContextPromise = this.requestFactory.createRun(threadId, createRunRequest, _config);
+        const requestContextPromise = this.requestFactory.createRun(threadId, createRunRequest, include, _config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
         for (const middleware of _config.middleware) {
@@ -421,9 +655,10 @@ export class ObservableAssistantsApi {
      * Create a run.
      * @param threadId The ID of the thread to run.
      * @param createRunRequest
+     * @param [include] A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
      */
-    public createRun(threadId: string, createRunRequest: CreateRunRequest, _options?: ConfigurationOptions): Observable<RunObject> {
-        return this.createRunWithHttpInfo(threadId, createRunRequest, _options).pipe(map((apiResponse: HttpInfo<RunObject>) => apiResponse.data));
+    public createRun(threadId: string, createRunRequest: CreateRunRequest, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, _options?: ConfigurationOptions): Observable<RunObject> {
+        return this.createRunWithHttpInfo(threadId, createRunRequest, include, _options).pipe(map((apiResponse: HttpInfo<RunObject>) => apiResponse.data));
     }
 
     /**
@@ -523,14 +758,14 @@ export class ObservableAssistantsApi {
     }
 
     /**
-     * Delete an assistant file.
-     * @param assistantId The ID of the assistant that the file belongs to.
-     * @param fileId The ID of the file to delete.
+     * Deletes a message.
+     * @param threadId The ID of the thread to which this message belongs.
+     * @param messageId The ID of the message to delete.
      */
-    public deleteAssistantFileWithHttpInfo(assistantId: string, fileId: string, _options?: ConfigurationOptions): Observable<HttpInfo<DeleteAssistantFileResponse>> {
+    public deleteMessageWithHttpInfo(threadId: string, messageId: string, _options?: ConfigurationOptions): Observable<HttpInfo<DeleteMessageResponse>> {
         const _config = mergeConfiguration(this.configuration, _options);
 
-        const requestContextPromise = this.requestFactory.deleteAssistantFile(assistantId, fileId, _config);
+        const requestContextPromise = this.requestFactory.deleteMessage(threadId, messageId, _config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
         for (const middleware of _config.middleware) {
@@ -543,17 +778,17 @@ export class ObservableAssistantsApi {
                 for (const middleware of _config.middleware.reverse()) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteAssistantFileWithHttpInfo(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteMessageWithHttpInfo(rsp)));
             }));
     }
 
     /**
-     * Delete an assistant file.
-     * @param assistantId The ID of the assistant that the file belongs to.
-     * @param fileId The ID of the file to delete.
+     * Deletes a message.
+     * @param threadId The ID of the thread to which this message belongs.
+     * @param messageId The ID of the message to delete.
      */
-    public deleteAssistantFile(assistantId: string, fileId: string, _options?: ConfigurationOptions): Observable<DeleteAssistantFileResponse> {
-        return this.deleteAssistantFileWithHttpInfo(assistantId, fileId, _options).pipe(map((apiResponse: HttpInfo<DeleteAssistantFileResponse>) => apiResponse.data));
+    public deleteMessage(threadId: string, messageId: string, _options?: ConfigurationOptions): Observable<DeleteMessageResponse> {
+        return this.deleteMessageWithHttpInfo(threadId, messageId, _options).pipe(map((apiResponse: HttpInfo<DeleteMessageResponse>) => apiResponse.data));
     }
 
     /**
@@ -621,40 +856,6 @@ export class ObservableAssistantsApi {
     }
 
     /**
-     * Retrieves an AssistantFile.
-     * @param assistantId The ID of the assistant who the file belongs to.
-     * @param fileId The ID of the file we\&#39;re getting.
-     */
-    public getAssistantFileWithHttpInfo(assistantId: string, fileId: string, _options?: ConfigurationOptions): Observable<HttpInfo<AssistantFileObject>> {
-        const _config = mergeConfiguration(this.configuration, _options);
-
-        const requestContextPromise = this.requestFactory.getAssistantFile(assistantId, fileId, _config);
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of _config.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of _config.middleware.reverse()) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getAssistantFileWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * Retrieves an AssistantFile.
-     * @param assistantId The ID of the assistant who the file belongs to.
-     * @param fileId The ID of the file we\&#39;re getting.
-     */
-    public getAssistantFile(assistantId: string, fileId: string, _options?: ConfigurationOptions): Observable<AssistantFileObject> {
-        return this.getAssistantFileWithHttpInfo(assistantId, fileId, _options).pipe(map((apiResponse: HttpInfo<AssistantFileObject>) => apiResponse.data));
-    }
-
-    /**
      * Retrieve a message.
      * @param threadId The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
      * @param messageId The ID of the message to retrieve.
@@ -686,42 +887,6 @@ export class ObservableAssistantsApi {
      */
     public getMessage(threadId: string, messageId: string, _options?: ConfigurationOptions): Observable<MessageObject> {
         return this.getMessageWithHttpInfo(threadId, messageId, _options).pipe(map((apiResponse: HttpInfo<MessageObject>) => apiResponse.data));
-    }
-
-    /**
-     * Retrieves a message file.
-     * @param threadId The ID of the thread to which the message and File belong.
-     * @param messageId The ID of the message the file belongs to.
-     * @param fileId The ID of the file being retrieved.
-     */
-    public getMessageFileWithHttpInfo(threadId: string, messageId: string, fileId: string, _options?: ConfigurationOptions): Observable<HttpInfo<MessageFileObject>> {
-        const _config = mergeConfiguration(this.configuration, _options);
-
-        const requestContextPromise = this.requestFactory.getMessageFile(threadId, messageId, fileId, _config);
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of _config.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of _config.middleware.reverse()) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getMessageFileWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * Retrieves a message file.
-     * @param threadId The ID of the thread to which the message and File belong.
-     * @param messageId The ID of the message the file belongs to.
-     * @param fileId The ID of the file being retrieved.
-     */
-    public getMessageFile(threadId: string, messageId: string, fileId: string, _options?: ConfigurationOptions): Observable<MessageFileObject> {
-        return this.getMessageFileWithHttpInfo(threadId, messageId, fileId, _options).pipe(map((apiResponse: HttpInfo<MessageFileObject>) => apiResponse.data));
     }
 
     /**
@@ -763,11 +928,12 @@ export class ObservableAssistantsApi {
      * @param threadId The ID of the thread to which the run and run step belongs.
      * @param runId The ID of the run to which the run step belongs.
      * @param stepId The ID of the run step to retrieve.
+     * @param [include] A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
      */
-    public getRunStepWithHttpInfo(threadId: string, runId: string, stepId: string, _options?: ConfigurationOptions): Observable<HttpInfo<RunStepObject>> {
+    public getRunStepWithHttpInfo(threadId: string, runId: string, stepId: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, _options?: ConfigurationOptions): Observable<HttpInfo<RunStepObject>> {
         const _config = mergeConfiguration(this.configuration, _options);
 
-        const requestContextPromise = this.requestFactory.getRunStep(threadId, runId, stepId, _config);
+        const requestContextPromise = this.requestFactory.getRunStep(threadId, runId, stepId, include, _config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
         for (const middleware of _config.middleware) {
@@ -789,9 +955,10 @@ export class ObservableAssistantsApi {
      * @param threadId The ID of the thread to which the run and run step belongs.
      * @param runId The ID of the run to which the run step belongs.
      * @param stepId The ID of the run step to retrieve.
+     * @param [include] A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
      */
-    public getRunStep(threadId: string, runId: string, stepId: string, _options?: ConfigurationOptions): Observable<RunStepObject> {
-        return this.getRunStepWithHttpInfo(threadId, runId, stepId, _options).pipe(map((apiResponse: HttpInfo<RunStepObject>) => apiResponse.data));
+    public getRunStep(threadId: string, runId: string, stepId: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, _options?: ConfigurationOptions): Observable<RunStepObject> {
+        return this.getRunStepWithHttpInfo(threadId, runId, stepId, include, _options).pipe(map((apiResponse: HttpInfo<RunStepObject>) => apiResponse.data));
     }
 
     /**
@@ -827,51 +994,11 @@ export class ObservableAssistantsApi {
     }
 
     /**
-     * Returns a list of assistant files.
-     * @param assistantId The ID of the assistant the file belongs to.
-     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-     * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-     */
-    public listAssistantFilesWithHttpInfo(assistantId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ListAssistantFilesResponse>> {
-        const _config = mergeConfiguration(this.configuration, _options);
-
-        const requestContextPromise = this.requestFactory.listAssistantFiles(assistantId, limit, order, after, before, _config);
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of _config.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of _config.middleware.reverse()) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listAssistantFilesWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * Returns a list of assistant files.
-     * @param assistantId The ID of the assistant the file belongs to.
-     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-     * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-     */
-    public listAssistantFiles(assistantId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: ConfigurationOptions): Observable<ListAssistantFilesResponse> {
-        return this.listAssistantFilesWithHttpInfo(assistantId, limit, order, after, before, _options).pipe(map((apiResponse: HttpInfo<ListAssistantFilesResponse>) => apiResponse.data));
-    }
-
-    /**
      * Returns a list of assistants.
      * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      */
     public listAssistantsWithHttpInfo(limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ListAssistantsResponse>> {
         const _config = mergeConfiguration(this.configuration, _options);
@@ -898,52 +1025,10 @@ export class ObservableAssistantsApi {
      * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      */
     public listAssistants(limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: ConfigurationOptions): Observable<ListAssistantsResponse> {
         return this.listAssistantsWithHttpInfo(limit, order, after, before, _options).pipe(map((apiResponse: HttpInfo<ListAssistantsResponse>) => apiResponse.data));
-    }
-
-    /**
-     * Returns a list of message files.
-     * @param threadId The ID of the thread that the message and files belong to.
-     * @param messageId The ID of the message that the files belongs to.
-     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-     * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-     */
-    public listMessageFilesWithHttpInfo(threadId: string, messageId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ListMessageFilesResponse>> {
-        const _config = mergeConfiguration(this.configuration, _options);
-
-        const requestContextPromise = this.requestFactory.listMessageFiles(threadId, messageId, limit, order, after, before, _config);
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of _config.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of _config.middleware.reverse()) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listMessageFilesWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * Returns a list of message files.
-     * @param threadId The ID of the thread that the message and files belong to.
-     * @param messageId The ID of the message that the files belongs to.
-     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-     * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-     */
-    public listMessageFiles(threadId: string, messageId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: ConfigurationOptions): Observable<ListMessageFilesResponse> {
-        return this.listMessageFilesWithHttpInfo(threadId, messageId, limit, order, after, before, _options).pipe(map((apiResponse: HttpInfo<ListMessageFilesResponse>) => apiResponse.data));
     }
 
     /**
@@ -952,7 +1037,7 @@ export class ObservableAssistantsApi {
      * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      * @param [runId] Filter messages by the run ID that generated them. 
      */
     public listMessagesWithHttpInfo(threadId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, runId?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ListMessagesResponse>> {
@@ -981,7 +1066,7 @@ export class ObservableAssistantsApi {
      * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      * @param [runId] Filter messages by the run ID that generated them. 
      */
     public listMessages(threadId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, runId?: string, _options?: ConfigurationOptions): Observable<ListMessagesResponse> {
@@ -995,12 +1080,13 @@ export class ObservableAssistantsApi {
      * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param [include] A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
      */
-    public listRunStepsWithHttpInfo(threadId: string, runId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ListRunStepsResponse>> {
+    public listRunStepsWithHttpInfo(threadId: string, runId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, _options?: ConfigurationOptions): Observable<HttpInfo<ListRunStepsResponse>> {
         const _config = mergeConfiguration(this.configuration, _options);
 
-        const requestContextPromise = this.requestFactory.listRunSteps(threadId, runId, limit, order, after, before, _config);
+        const requestContextPromise = this.requestFactory.listRunSteps(threadId, runId, limit, order, after, before, include, _config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
         for (const middleware of _config.middleware) {
@@ -1024,10 +1110,11 @@ export class ObservableAssistantsApi {
      * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param [include] A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
      */
-    public listRunSteps(threadId: string, runId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: ConfigurationOptions): Observable<ListRunStepsResponse> {
-        return this.listRunStepsWithHttpInfo(threadId, runId, limit, order, after, before, _options).pipe(map((apiResponse: HttpInfo<ListRunStepsResponse>) => apiResponse.data));
+    public listRunSteps(threadId: string, runId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, _options?: ConfigurationOptions): Observable<ListRunStepsResponse> {
+        return this.listRunStepsWithHttpInfo(threadId, runId, limit, order, after, before, include, _options).pipe(map((apiResponse: HttpInfo<ListRunStepsResponse>) => apiResponse.data));
     }
 
     /**
@@ -1036,7 +1123,7 @@ export class ObservableAssistantsApi {
      * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      */
     public listRunsWithHttpInfo(threadId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ListRunsResponse>> {
         const _config = mergeConfiguration(this.configuration, _options);
@@ -1064,7 +1151,7 @@ export class ObservableAssistantsApi {
      * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      */
     public listRuns(threadId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: ConfigurationOptions): Observable<ListRunsResponse> {
         return this.listRunsWithHttpInfo(threadId, limit, order, after, before, _options).pipe(map((apiResponse: HttpInfo<ListRunsResponse>) => apiResponse.data));
@@ -1301,12 +1388,12 @@ export class ObservableAudioApi {
      * @param file The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
      * @param model
      * @param [language] The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
-     * @param [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. 
-     * @param [responseFormat] The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+     * @param [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language. 
+     * @param [responseFormat]
      * @param [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
      * @param [timestampGranularities] The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. 
      */
-    public createTranscriptionWithHttpInfo(file: HttpFile, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: string, temperature?: number, timestampGranularities?: Array<string>, _options?: ConfigurationOptions): Observable<HttpInfo<CreateTranscription200Response>> {
+    public createTranscriptionWithHttpInfo(file: HttpFile, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: AudioResponseFormat, temperature?: number, timestampGranularities?: Array<string>, _options?: ConfigurationOptions): Observable<HttpInfo<CreateTranscription200Response>> {
         const _config = mergeConfiguration(this.configuration, _options);
 
         const requestContextPromise = this.requestFactory.createTranscription(file, model, language, prompt, responseFormat, temperature, timestampGranularities, _config);
@@ -1331,12 +1418,12 @@ export class ObservableAudioApi {
      * @param file The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
      * @param model
      * @param [language] The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
-     * @param [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. 
-     * @param [responseFormat] The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+     * @param [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language. 
+     * @param [responseFormat]
      * @param [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
      * @param [timestampGranularities] The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. 
      */
-    public createTranscription(file: HttpFile, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: string, temperature?: number, timestampGranularities?: Array<string>, _options?: ConfigurationOptions): Observable<CreateTranscription200Response> {
+    public createTranscription(file: HttpFile, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: AudioResponseFormat, temperature?: number, timestampGranularities?: Array<string>, _options?: ConfigurationOptions): Observable<CreateTranscription200Response> {
         return this.createTranscriptionWithHttpInfo(file, model, language, prompt, responseFormat, temperature, timestampGranularities, _options).pipe(map((apiResponse: HttpInfo<CreateTranscription200Response>) => apiResponse.data));
     }
 
@@ -1344,11 +1431,11 @@ export class ObservableAudioApi {
      * Translates audio into English.
      * @param file The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
      * @param model
-     * @param [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. 
-     * @param [responseFormat] The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+     * @param [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. 
+     * @param [responseFormat]
      * @param [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
      */
-    public createTranslationWithHttpInfo(file: HttpFile, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, _options?: ConfigurationOptions): Observable<HttpInfo<CreateTranslation200Response>> {
+    public createTranslationWithHttpInfo(file: HttpFile, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: AudioResponseFormat, temperature?: number, _options?: ConfigurationOptions): Observable<HttpInfo<CreateTranslation200Response>> {
         const _config = mergeConfiguration(this.configuration, _options);
 
         const requestContextPromise = this.requestFactory.createTranslation(file, model, prompt, responseFormat, temperature, _config);
@@ -1372,12 +1459,226 @@ export class ObservableAudioApi {
      * Translates audio into English.
      * @param file The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
      * @param model
-     * @param [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. 
-     * @param [responseFormat] The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+     * @param [prompt] An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. 
+     * @param [responseFormat]
      * @param [temperature] The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
      */
-    public createTranslation(file: HttpFile, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, _options?: ConfigurationOptions): Observable<CreateTranslation200Response> {
+    public createTranslation(file: HttpFile, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: AudioResponseFormat, temperature?: number, _options?: ConfigurationOptions): Observable<CreateTranslation200Response> {
         return this.createTranslationWithHttpInfo(file, model, prompt, responseFormat, temperature, _options).pipe(map((apiResponse: HttpInfo<CreateTranslation200Response>) => apiResponse.data));
+    }
+
+}
+
+import { AuditLogsApiRequestFactory, AuditLogsApiResponseProcessor} from "../apis/AuditLogsApi";
+export class ObservableAuditLogsApi {
+    private requestFactory: AuditLogsApiRequestFactory;
+    private responseProcessor: AuditLogsApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: AuditLogsApiRequestFactory,
+        responseProcessor?: AuditLogsApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new AuditLogsApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new AuditLogsApiResponseProcessor();
+    }
+
+    /**
+     * List user actions and configuration changes within this organization.
+     * @param [effectiveAt] Return only events whose &#x60;effective_at&#x60; (Unix seconds) is in this range.
+     * @param [projectIds] Return only events for these projects.
+     * @param [eventTypes] Return only events with a &#x60;type&#x60; in one of these values. For example, &#x60;project.created&#x60;. For all options, see the documentation for the [audit log object](/docs/api-reference/audit-logs/object).
+     * @param [actorIds] Return only events performed by these actors. Can be a user ID, a service account ID, or an api key tracking ID.
+     * @param [actorEmails] Return only events performed by users with these emails.
+     * @param [resourceIds] Return only events performed on these targets. For example, a project ID updated.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     */
+    public listAuditLogsWithHttpInfo(effectiveAt?: ListAuditLogsEffectiveAtParameter, projectIds?: Array<string>, eventTypes?: Array<AuditLogEventType>, actorIds?: Array<string>, actorEmails?: Array<string>, resourceIds?: Array<string>, limit?: number, after?: string, before?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ListAuditLogsResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.listAuditLogs(effectiveAt, projectIds, eventTypes, actorIds, actorEmails, resourceIds, limit, after, before, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listAuditLogsWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * List user actions and configuration changes within this organization.
+     * @param [effectiveAt] Return only events whose &#x60;effective_at&#x60; (Unix seconds) is in this range.
+     * @param [projectIds] Return only events for these projects.
+     * @param [eventTypes] Return only events with a &#x60;type&#x60; in one of these values. For example, &#x60;project.created&#x60;. For all options, see the documentation for the [audit log object](/docs/api-reference/audit-logs/object).
+     * @param [actorIds] Return only events performed by these actors. Can be a user ID, a service account ID, or an api key tracking ID.
+     * @param [actorEmails] Return only events performed by users with these emails.
+     * @param [resourceIds] Return only events performed on these targets. For example, a project ID updated.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     */
+    public listAuditLogs(effectiveAt?: ListAuditLogsEffectiveAtParameter, projectIds?: Array<string>, eventTypes?: Array<AuditLogEventType>, actorIds?: Array<string>, actorEmails?: Array<string>, resourceIds?: Array<string>, limit?: number, after?: string, before?: string, _options?: ConfigurationOptions): Observable<ListAuditLogsResponse> {
+        return this.listAuditLogsWithHttpInfo(effectiveAt, projectIds, eventTypes, actorIds, actorEmails, resourceIds, limit, after, before, _options).pipe(map((apiResponse: HttpInfo<ListAuditLogsResponse>) => apiResponse.data));
+    }
+
+}
+
+import { BatchApiRequestFactory, BatchApiResponseProcessor} from "../apis/BatchApi";
+export class ObservableBatchApi {
+    private requestFactory: BatchApiRequestFactory;
+    private responseProcessor: BatchApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: BatchApiRequestFactory,
+        responseProcessor?: BatchApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new BatchApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new BatchApiResponseProcessor();
+    }
+
+    /**
+     * Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+     * @param batchId The ID of the batch to cancel.
+     */
+    public cancelBatchWithHttpInfo(batchId: string, _options?: ConfigurationOptions): Observable<HttpInfo<Batch>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.cancelBatch(batchId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.cancelBatchWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+     * @param batchId The ID of the batch to cancel.
+     */
+    public cancelBatch(batchId: string, _options?: ConfigurationOptions): Observable<Batch> {
+        return this.cancelBatchWithHttpInfo(batchId, _options).pipe(map((apiResponse: HttpInfo<Batch>) => apiResponse.data));
+    }
+
+    /**
+     * Creates and executes a batch from an uploaded file of requests
+     * @param createBatchRequest
+     */
+    public createBatchWithHttpInfo(createBatchRequest: CreateBatchRequest, _options?: ConfigurationOptions): Observable<HttpInfo<Batch>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.createBatch(createBatchRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createBatchWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Creates and executes a batch from an uploaded file of requests
+     * @param createBatchRequest
+     */
+    public createBatch(createBatchRequest: CreateBatchRequest, _options?: ConfigurationOptions): Observable<Batch> {
+        return this.createBatchWithHttpInfo(createBatchRequest, _options).pipe(map((apiResponse: HttpInfo<Batch>) => apiResponse.data));
+    }
+
+    /**
+     * List your organization\'s batches.
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     */
+    public listBatchesWithHttpInfo(after?: string, limit?: number, _options?: ConfigurationOptions): Observable<HttpInfo<ListBatchesResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.listBatches(after, limit, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listBatchesWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * List your organization\'s batches.
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     */
+    public listBatches(after?: string, limit?: number, _options?: ConfigurationOptions): Observable<ListBatchesResponse> {
+        return this.listBatchesWithHttpInfo(after, limit, _options).pipe(map((apiResponse: HttpInfo<ListBatchesResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Retrieves a batch.
+     * @param batchId The ID of the batch to retrieve.
+     */
+    public retrieveBatchWithHttpInfo(batchId: string, _options?: ConfigurationOptions): Observable<HttpInfo<Batch>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.retrieveBatch(batchId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.retrieveBatchWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Retrieves a batch.
+     * @param batchId The ID of the batch to retrieve.
+     */
+    public retrieveBatch(batchId: string, _options?: ConfigurationOptions): Observable<Batch> {
+        return this.retrieveBatchWithHttpInfo(batchId, _options).pipe(map((apiResponse: HttpInfo<Batch>) => apiResponse.data));
     }
 
 }
@@ -1399,7 +1700,7 @@ export class ObservableChatApi {
     }
 
     /**
-     * Creates a model response for the given chat conversation.
+     * Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). 
      * @param createChatCompletionRequest
      */
     public createChatCompletionWithHttpInfo(createChatCompletionRequest: CreateChatCompletionRequest, _options?: ConfigurationOptions): Observable<HttpInfo<CreateChatCompletionResponse>> {
@@ -1423,7 +1724,7 @@ export class ObservableChatApi {
     }
 
     /**
-     * Creates a model response for the given chat conversation.
+     * Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). 
      * @param createChatCompletionRequest
      */
     public createChatCompletion(createChatCompletionRequest: CreateChatCompletionRequest, _options?: ConfigurationOptions): Observable<CreateChatCompletionResponse> {
@@ -1478,6 +1779,164 @@ export class ObservableCompletionsApi {
      */
     public createCompletion(createCompletionRequest: CreateCompletionRequest, _options?: ConfigurationOptions): Observable<CreateCompletionResponse> {
         return this.createCompletionWithHttpInfo(createCompletionRequest, _options).pipe(map((apiResponse: HttpInfo<CreateCompletionResponse>) => apiResponse.data));
+    }
+
+}
+
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
+export class ObservableDefaultApi {
+    private requestFactory: DefaultApiRequestFactory;
+    private responseProcessor: DefaultApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: DefaultApiRequestFactory,
+        responseProcessor?: DefaultApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new DefaultApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new DefaultApiResponseProcessor();
+    }
+
+    /**
+     * Create a new admin-level API key for the organization.
+     * Create an organization admin API key
+     * @param adminApiKeysCreateRequest
+     */
+    public adminApiKeysCreateWithHttpInfo(adminApiKeysCreateRequest: AdminApiKeysCreateRequest, _options?: ConfigurationOptions): Observable<HttpInfo<AdminApiKey>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.adminApiKeysCreate(adminApiKeysCreateRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.adminApiKeysCreateWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Create a new admin-level API key for the organization.
+     * Create an organization admin API key
+     * @param adminApiKeysCreateRequest
+     */
+    public adminApiKeysCreate(adminApiKeysCreateRequest: AdminApiKeysCreateRequest, _options?: ConfigurationOptions): Observable<AdminApiKey> {
+        return this.adminApiKeysCreateWithHttpInfo(adminApiKeysCreateRequest, _options).pipe(map((apiResponse: HttpInfo<AdminApiKey>) => apiResponse.data));
+    }
+
+    /**
+     * Delete the specified admin API key.
+     * Delete an organization admin API key
+     * @param keyId
+     */
+    public adminApiKeysDeleteWithHttpInfo(keyId: string, _options?: ConfigurationOptions): Observable<HttpInfo<AdminApiKeysDelete200Response>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.adminApiKeysDelete(keyId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.adminApiKeysDeleteWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Delete the specified admin API key.
+     * Delete an organization admin API key
+     * @param keyId
+     */
+    public adminApiKeysDelete(keyId: string, _options?: ConfigurationOptions): Observable<AdminApiKeysDelete200Response> {
+        return this.adminApiKeysDeleteWithHttpInfo(keyId, _options).pipe(map((apiResponse: HttpInfo<AdminApiKeysDelete200Response>) => apiResponse.data));
+    }
+
+    /**
+     * Get details for a specific organization API key by its ID.
+     * Retrieve a single organization API key
+     * @param keyId
+     */
+    public adminApiKeysGetWithHttpInfo(keyId: string, _options?: ConfigurationOptions): Observable<HttpInfo<AdminApiKey>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.adminApiKeysGet(keyId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.adminApiKeysGetWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Get details for a specific organization API key by its ID.
+     * Retrieve a single organization API key
+     * @param keyId
+     */
+    public adminApiKeysGet(keyId: string, _options?: ConfigurationOptions): Observable<AdminApiKey> {
+        return this.adminApiKeysGetWithHttpInfo(keyId, _options).pipe(map((apiResponse: HttpInfo<AdminApiKey>) => apiResponse.data));
+    }
+
+    /**
+     * Retrieve a paginated list of organization admin API keys.
+     * List organization API keys
+     * @param [after]
+     * @param [order]
+     * @param [limit]
+     */
+    public adminApiKeysListWithHttpInfo(after?: string, order?: 'asc' | 'desc', limit?: number, _options?: ConfigurationOptions): Observable<HttpInfo<ApiKeyList>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.adminApiKeysList(after, order, limit, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.adminApiKeysListWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Retrieve a paginated list of organization admin API keys.
+     * List organization API keys
+     * @param [after]
+     * @param [order]
+     * @param [limit]
+     */
+    public adminApiKeysList(after?: string, order?: 'asc' | 'desc', limit?: number, _options?: ConfigurationOptions): Observable<ApiKeyList> {
+        return this.adminApiKeysListWithHttpInfo(after, order, limit, _options).pipe(map((apiResponse: HttpInfo<ApiKeyList>) => apiResponse.data));
     }
 
 }
@@ -1549,9 +2008,9 @@ export class ObservableFilesApi {
     }
 
     /**
-     * Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
      * @param file The File object (not file name) to be uploaded. 
-     * @param purpose The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. 
+     * @param purpose The intended purpose of the uploaded file.  Use \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\&quot;vision\\\&quot; for Assistants image file inputs, \\\&quot;batch\\\&quot; for [Batch API](/docs/guides/batch), and \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning). 
      */
     public createFileWithHttpInfo(file: HttpFile, purpose: string, _options?: ConfigurationOptions): Observable<HttpInfo<OpenAIFile>> {
         const _config = mergeConfiguration(this.configuration, _options);
@@ -1574,9 +2033,9 @@ export class ObservableFilesApi {
     }
 
     /**
-     * Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
      * @param file The File object (not file name) to be uploaded. 
-     * @param purpose The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. 
+     * @param purpose The intended purpose of the uploaded file.  Use \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\&quot;vision\\\&quot; for Assistants image file inputs, \\\&quot;batch\\\&quot; for [Batch API](/docs/guides/batch), and \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning). 
      */
     public createFile(file: HttpFile, purpose: string, _options?: ConfigurationOptions): Observable<OpenAIFile> {
         return this.createFileWithHttpInfo(file, purpose, _options).pipe(map((apiResponse: HttpInfo<OpenAIFile>) => apiResponse.data));
@@ -1647,13 +2106,16 @@ export class ObservableFilesApi {
     }
 
     /**
-     * Returns a list of files that belong to the user\'s organization.
+     * Returns a list of files.
      * @param [purpose] Only return files with the given purpose.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. 
+     * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
      */
-    public listFilesWithHttpInfo(purpose?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ListFilesResponse>> {
+    public listFilesWithHttpInfo(purpose?: string, limit?: number, order?: 'asc' | 'desc', after?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ListFilesResponse>> {
         const _config = mergeConfiguration(this.configuration, _options);
 
-        const requestContextPromise = this.requestFactory.listFiles(purpose, _config);
+        const requestContextPromise = this.requestFactory.listFiles(purpose, limit, order, after, _config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
         for (const middleware of _config.middleware) {
@@ -1671,11 +2133,14 @@ export class ObservableFilesApi {
     }
 
     /**
-     * Returns a list of files that belong to the user\'s organization.
+     * Returns a list of files.
      * @param [purpose] Only return files with the given purpose.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. 
+     * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
      */
-    public listFiles(purpose?: string, _options?: ConfigurationOptions): Observable<ListFilesResponse> {
-        return this.listFilesWithHttpInfo(purpose, _options).pipe(map((apiResponse: HttpInfo<ListFilesResponse>) => apiResponse.data));
+    public listFiles(purpose?: string, limit?: number, order?: 'asc' | 'desc', after?: string, _options?: ConfigurationOptions): Observable<ListFilesResponse> {
+        return this.listFilesWithHttpInfo(purpose, limit, order, after, _options).pipe(map((apiResponse: HttpInfo<ListFilesResponse>) => apiResponse.data));
     }
 
     /**
@@ -1989,7 +2454,7 @@ export class ObservableImagesApi {
      * @param [n] The number of images to generate. Must be between 1 and 10.
      * @param [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
      * @param [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
-     * @param [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+     * @param [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
      */
     public createImageEditWithHttpInfo(image: HttpFile, prompt: string, mask?: HttpFile, model?: CreateImageEditRequestModel, n?: number, size?: string, responseFormat?: string, user?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ImagesResponse>> {
         const _config = mergeConfiguration(this.configuration, _options);
@@ -2020,7 +2485,7 @@ export class ObservableImagesApi {
      * @param [n] The number of images to generate. Must be between 1 and 10.
      * @param [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
      * @param [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
-     * @param [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+     * @param [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
      */
     public createImageEdit(image: HttpFile, prompt: string, mask?: HttpFile, model?: CreateImageEditRequestModel, n?: number, size?: string, responseFormat?: string, user?: string, _options?: ConfigurationOptions): Observable<ImagesResponse> {
         return this.createImageEditWithHttpInfo(image, prompt, mask, model, n, size, responseFormat, user, _options).pipe(map((apiResponse: HttpInfo<ImagesResponse>) => apiResponse.data));
@@ -2033,7 +2498,7 @@ export class ObservableImagesApi {
      * @param [n] The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported.
      * @param [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
      * @param [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
-     * @param [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+     * @param [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
      */
     public createImageVariationWithHttpInfo(image: HttpFile, model?: CreateImageEditRequestModel, n?: number, responseFormat?: string, size?: string, user?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ImagesResponse>> {
         const _config = mergeConfiguration(this.configuration, _options);
@@ -2062,10 +2527,158 @@ export class ObservableImagesApi {
      * @param [n] The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported.
      * @param [responseFormat] The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated.
      * @param [size] The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;.
-     * @param [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+     * @param [user] A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
      */
     public createImageVariation(image: HttpFile, model?: CreateImageEditRequestModel, n?: number, responseFormat?: string, size?: string, user?: string, _options?: ConfigurationOptions): Observable<ImagesResponse> {
         return this.createImageVariationWithHttpInfo(image, model, n, responseFormat, size, user, _options).pipe(map((apiResponse: HttpInfo<ImagesResponse>) => apiResponse.data));
+    }
+
+}
+
+import { InvitesApiRequestFactory, InvitesApiResponseProcessor} from "../apis/InvitesApi";
+export class ObservableInvitesApi {
+    private requestFactory: InvitesApiRequestFactory;
+    private responseProcessor: InvitesApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: InvitesApiRequestFactory,
+        responseProcessor?: InvitesApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new InvitesApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new InvitesApiResponseProcessor();
+    }
+
+    /**
+     * Delete an invite. If the invite has already been accepted, it cannot be deleted.
+     * @param inviteId The ID of the invite to delete.
+     */
+    public deleteInviteWithHttpInfo(inviteId: string, _options?: ConfigurationOptions): Observable<HttpInfo<InviteDeleteResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.deleteInvite(inviteId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteInviteWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Delete an invite. If the invite has already been accepted, it cannot be deleted.
+     * @param inviteId The ID of the invite to delete.
+     */
+    public deleteInvite(inviteId: string, _options?: ConfigurationOptions): Observable<InviteDeleteResponse> {
+        return this.deleteInviteWithHttpInfo(inviteId, _options).pipe(map((apiResponse: HttpInfo<InviteDeleteResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+     * @param inviteRequest The invite request payload.
+     */
+    public inviteUserWithHttpInfo(inviteRequest: InviteRequest, _options?: ConfigurationOptions): Observable<HttpInfo<Invite>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.inviteUser(inviteRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.inviteUserWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+     * @param inviteRequest The invite request payload.
+     */
+    public inviteUser(inviteRequest: InviteRequest, _options?: ConfigurationOptions): Observable<Invite> {
+        return this.inviteUserWithHttpInfo(inviteRequest, _options).pipe(map((apiResponse: HttpInfo<Invite>) => apiResponse.data));
+    }
+
+    /**
+     * Returns a list of invites in the organization.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     */
+    public listInvitesWithHttpInfo(limit?: number, after?: string, _options?: ConfigurationOptions): Observable<HttpInfo<InviteListResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.listInvites(limit, after, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listInvitesWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Returns a list of invites in the organization.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     */
+    public listInvites(limit?: number, after?: string, _options?: ConfigurationOptions): Observable<InviteListResponse> {
+        return this.listInvitesWithHttpInfo(limit, after, _options).pipe(map((apiResponse: HttpInfo<InviteListResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Retrieves an invite.
+     * @param inviteId The ID of the invite to retrieve.
+     */
+    public retrieveInviteWithHttpInfo(inviteId: string, _options?: ConfigurationOptions): Observable<HttpInfo<Invite>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.retrieveInvite(inviteId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.retrieveInviteWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Retrieves an invite.
+     * @param inviteId The ID of the invite to retrieve.
+     */
+    public retrieveInvite(inviteId: string, _options?: ConfigurationOptions): Observable<Invite> {
+        return this.retrieveInviteWithHttpInfo(inviteId, _options).pipe(map((apiResponse: HttpInfo<Invite>) => apiResponse.data));
     }
 
 }
@@ -2199,7 +2812,7 @@ export class ObservableModerationsApi {
     }
 
     /**
-     * Classifies if text is potentially harmful.
+     * Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
      * @param createModerationRequest
      */
     public createModerationWithHttpInfo(createModerationRequest: CreateModerationRequest, _options?: ConfigurationOptions): Observable<HttpInfo<CreateModerationResponse>> {
@@ -2223,11 +2836,1967 @@ export class ObservableModerationsApi {
     }
 
     /**
-     * Classifies if text is potentially harmful.
+     * Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
      * @param createModerationRequest
      */
     public createModeration(createModerationRequest: CreateModerationRequest, _options?: ConfigurationOptions): Observable<CreateModerationResponse> {
         return this.createModerationWithHttpInfo(createModerationRequest, _options).pipe(map((apiResponse: HttpInfo<CreateModerationResponse>) => apiResponse.data));
+    }
+
+}
+
+import { ProjectsApiRequestFactory, ProjectsApiResponseProcessor} from "../apis/ProjectsApi";
+export class ObservableProjectsApi {
+    private requestFactory: ProjectsApiRequestFactory;
+    private responseProcessor: ProjectsApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: ProjectsApiRequestFactory,
+        responseProcessor?: ProjectsApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new ProjectsApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new ProjectsApiResponseProcessor();
+    }
+
+    /**
+     * Archives a project in the organization. Archived projects cannot be used or updated.
+     * @param projectId The ID of the project.
+     */
+    public archiveProjectWithHttpInfo(projectId: string, _options?: ConfigurationOptions): Observable<HttpInfo<Project>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.archiveProject(projectId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.archiveProjectWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Archives a project in the organization. Archived projects cannot be used or updated.
+     * @param projectId The ID of the project.
+     */
+    public archiveProject(projectId: string, _options?: ConfigurationOptions): Observable<Project> {
+        return this.archiveProjectWithHttpInfo(projectId, _options).pipe(map((apiResponse: HttpInfo<Project>) => apiResponse.data));
+    }
+
+    /**
+     * Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
+     * @param projectCreateRequest The project create request payload.
+     */
+    public createProjectWithHttpInfo(projectCreateRequest: ProjectCreateRequest, _options?: ConfigurationOptions): Observable<HttpInfo<Project>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.createProject(projectCreateRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createProjectWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
+     * @param projectCreateRequest The project create request payload.
+     */
+    public createProject(projectCreateRequest: ProjectCreateRequest, _options?: ConfigurationOptions): Observable<Project> {
+        return this.createProjectWithHttpInfo(projectCreateRequest, _options).pipe(map((apiResponse: HttpInfo<Project>) => apiResponse.data));
+    }
+
+    /**
+     * Creates a new service account in the project. This also returns an unredacted API key for the service account.
+     * @param projectId The ID of the project.
+     * @param projectServiceAccountCreateRequest The project service account create request payload.
+     */
+    public createProjectServiceAccountWithHttpInfo(projectId: string, projectServiceAccountCreateRequest: ProjectServiceAccountCreateRequest, _options?: ConfigurationOptions): Observable<HttpInfo<ProjectServiceAccountCreateResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.createProjectServiceAccount(projectId, projectServiceAccountCreateRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createProjectServiceAccountWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Creates a new service account in the project. This also returns an unredacted API key for the service account.
+     * @param projectId The ID of the project.
+     * @param projectServiceAccountCreateRequest The project service account create request payload.
+     */
+    public createProjectServiceAccount(projectId: string, projectServiceAccountCreateRequest: ProjectServiceAccountCreateRequest, _options?: ConfigurationOptions): Observable<ProjectServiceAccountCreateResponse> {
+        return this.createProjectServiceAccountWithHttpInfo(projectId, projectServiceAccountCreateRequest, _options).pipe(map((apiResponse: HttpInfo<ProjectServiceAccountCreateResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Adds a user to the project. Users must already be members of the organization to be added to a project.
+     * @param projectId The ID of the project.
+     * @param projectUserCreateRequest The project user create request payload.
+     */
+    public createProjectUserWithHttpInfo(projectId: string, projectUserCreateRequest: ProjectUserCreateRequest, _options?: ConfigurationOptions): Observable<HttpInfo<ProjectUser>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.createProjectUser(projectId, projectUserCreateRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createProjectUserWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Adds a user to the project. Users must already be members of the organization to be added to a project.
+     * @param projectId The ID of the project.
+     * @param projectUserCreateRequest The project user create request payload.
+     */
+    public createProjectUser(projectId: string, projectUserCreateRequest: ProjectUserCreateRequest, _options?: ConfigurationOptions): Observable<ProjectUser> {
+        return this.createProjectUserWithHttpInfo(projectId, projectUserCreateRequest, _options).pipe(map((apiResponse: HttpInfo<ProjectUser>) => apiResponse.data));
+    }
+
+    /**
+     * Deletes an API key from the project.
+     * @param projectId The ID of the project.
+     * @param keyId The ID of the API key.
+     */
+    public deleteProjectApiKeyWithHttpInfo(projectId: string, keyId: string, _options?: ConfigurationOptions): Observable<HttpInfo<ProjectApiKeyDeleteResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.deleteProjectApiKey(projectId, keyId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteProjectApiKeyWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Deletes an API key from the project.
+     * @param projectId The ID of the project.
+     * @param keyId The ID of the API key.
+     */
+    public deleteProjectApiKey(projectId: string, keyId: string, _options?: ConfigurationOptions): Observable<ProjectApiKeyDeleteResponse> {
+        return this.deleteProjectApiKeyWithHttpInfo(projectId, keyId, _options).pipe(map((apiResponse: HttpInfo<ProjectApiKeyDeleteResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Deletes a service account from the project.
+     * @param projectId The ID of the project.
+     * @param serviceAccountId The ID of the service account.
+     */
+    public deleteProjectServiceAccountWithHttpInfo(projectId: string, serviceAccountId: string, _options?: ConfigurationOptions): Observable<HttpInfo<ProjectServiceAccountDeleteResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.deleteProjectServiceAccount(projectId, serviceAccountId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteProjectServiceAccountWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Deletes a service account from the project.
+     * @param projectId The ID of the project.
+     * @param serviceAccountId The ID of the service account.
+     */
+    public deleteProjectServiceAccount(projectId: string, serviceAccountId: string, _options?: ConfigurationOptions): Observable<ProjectServiceAccountDeleteResponse> {
+        return this.deleteProjectServiceAccountWithHttpInfo(projectId, serviceAccountId, _options).pipe(map((apiResponse: HttpInfo<ProjectServiceAccountDeleteResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Deletes a user from the project.
+     * @param projectId The ID of the project.
+     * @param userId The ID of the user.
+     */
+    public deleteProjectUserWithHttpInfo(projectId: string, userId: string, _options?: ConfigurationOptions): Observable<HttpInfo<ProjectUserDeleteResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.deleteProjectUser(projectId, userId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteProjectUserWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Deletes a user from the project.
+     * @param projectId The ID of the project.
+     * @param userId The ID of the user.
+     */
+    public deleteProjectUser(projectId: string, userId: string, _options?: ConfigurationOptions): Observable<ProjectUserDeleteResponse> {
+        return this.deleteProjectUserWithHttpInfo(projectId, userId, _options).pipe(map((apiResponse: HttpInfo<ProjectUserDeleteResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Returns a list of API keys in the project.
+     * @param projectId The ID of the project.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     */
+    public listProjectApiKeysWithHttpInfo(projectId: string, limit?: number, after?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ProjectApiKeyListResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.listProjectApiKeys(projectId, limit, after, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listProjectApiKeysWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Returns a list of API keys in the project.
+     * @param projectId The ID of the project.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     */
+    public listProjectApiKeys(projectId: string, limit?: number, after?: string, _options?: ConfigurationOptions): Observable<ProjectApiKeyListResponse> {
+        return this.listProjectApiKeysWithHttpInfo(projectId, limit, after, _options).pipe(map((apiResponse: HttpInfo<ProjectApiKeyListResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Returns the rate limits per model for a project.
+     * @param projectId The ID of the project.
+     * @param [limit] A limit on the number of objects to be returned. The default is 100. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, beginning with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     */
+    public listProjectRateLimitsWithHttpInfo(projectId: string, limit?: number, after?: string, before?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ProjectRateLimitListResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.listProjectRateLimits(projectId, limit, after, before, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listProjectRateLimitsWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Returns the rate limits per model for a project.
+     * @param projectId The ID of the project.
+     * @param [limit] A limit on the number of objects to be returned. The default is 100. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, beginning with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     */
+    public listProjectRateLimits(projectId: string, limit?: number, after?: string, before?: string, _options?: ConfigurationOptions): Observable<ProjectRateLimitListResponse> {
+        return this.listProjectRateLimitsWithHttpInfo(projectId, limit, after, before, _options).pipe(map((apiResponse: HttpInfo<ProjectRateLimitListResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Returns a list of service accounts in the project.
+     * @param projectId The ID of the project.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     */
+    public listProjectServiceAccountsWithHttpInfo(projectId: string, limit?: number, after?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ProjectServiceAccountListResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.listProjectServiceAccounts(projectId, limit, after, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listProjectServiceAccountsWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Returns a list of service accounts in the project.
+     * @param projectId The ID of the project.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     */
+    public listProjectServiceAccounts(projectId: string, limit?: number, after?: string, _options?: ConfigurationOptions): Observable<ProjectServiceAccountListResponse> {
+        return this.listProjectServiceAccountsWithHttpInfo(projectId, limit, after, _options).pipe(map((apiResponse: HttpInfo<ProjectServiceAccountListResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Returns a list of users in the project.
+     * @param projectId The ID of the project.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     */
+    public listProjectUsersWithHttpInfo(projectId: string, limit?: number, after?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ProjectUserListResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.listProjectUsers(projectId, limit, after, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listProjectUsersWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Returns a list of users in the project.
+     * @param projectId The ID of the project.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     */
+    public listProjectUsers(projectId: string, limit?: number, after?: string, _options?: ConfigurationOptions): Observable<ProjectUserListResponse> {
+        return this.listProjectUsersWithHttpInfo(projectId, limit, after, _options).pipe(map((apiResponse: HttpInfo<ProjectUserListResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Returns a list of projects.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param [includeArchived] If &#x60;true&#x60; returns all projects including those that have been &#x60;archived&#x60;. Archived projects are not included by default.
+     */
+    public listProjectsWithHttpInfo(limit?: number, after?: string, includeArchived?: boolean, _options?: ConfigurationOptions): Observable<HttpInfo<ProjectListResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.listProjects(limit, after, includeArchived, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listProjectsWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Returns a list of projects.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param [includeArchived] If &#x60;true&#x60; returns all projects including those that have been &#x60;archived&#x60;. Archived projects are not included by default.
+     */
+    public listProjects(limit?: number, after?: string, includeArchived?: boolean, _options?: ConfigurationOptions): Observable<ProjectListResponse> {
+        return this.listProjectsWithHttpInfo(limit, after, includeArchived, _options).pipe(map((apiResponse: HttpInfo<ProjectListResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Modifies a project in the organization.
+     * @param projectId The ID of the project.
+     * @param projectUpdateRequest The project update request payload.
+     */
+    public modifyProjectWithHttpInfo(projectId: string, projectUpdateRequest: ProjectUpdateRequest, _options?: ConfigurationOptions): Observable<HttpInfo<Project>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.modifyProject(projectId, projectUpdateRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.modifyProjectWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Modifies a project in the organization.
+     * @param projectId The ID of the project.
+     * @param projectUpdateRequest The project update request payload.
+     */
+    public modifyProject(projectId: string, projectUpdateRequest: ProjectUpdateRequest, _options?: ConfigurationOptions): Observable<Project> {
+        return this.modifyProjectWithHttpInfo(projectId, projectUpdateRequest, _options).pipe(map((apiResponse: HttpInfo<Project>) => apiResponse.data));
+    }
+
+    /**
+     * Modifies a user\'s role in the project.
+     * @param projectId The ID of the project.
+     * @param userId The ID of the user.
+     * @param projectUserUpdateRequest The project user update request payload.
+     */
+    public modifyProjectUserWithHttpInfo(projectId: string, userId: string, projectUserUpdateRequest: ProjectUserUpdateRequest, _options?: ConfigurationOptions): Observable<HttpInfo<ProjectUser>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.modifyProjectUser(projectId, userId, projectUserUpdateRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.modifyProjectUserWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Modifies a user\'s role in the project.
+     * @param projectId The ID of the project.
+     * @param userId The ID of the user.
+     * @param projectUserUpdateRequest The project user update request payload.
+     */
+    public modifyProjectUser(projectId: string, userId: string, projectUserUpdateRequest: ProjectUserUpdateRequest, _options?: ConfigurationOptions): Observable<ProjectUser> {
+        return this.modifyProjectUserWithHttpInfo(projectId, userId, projectUserUpdateRequest, _options).pipe(map((apiResponse: HttpInfo<ProjectUser>) => apiResponse.data));
+    }
+
+    /**
+     * Retrieves a project.
+     * @param projectId The ID of the project.
+     */
+    public retrieveProjectWithHttpInfo(projectId: string, _options?: ConfigurationOptions): Observable<HttpInfo<Project>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.retrieveProject(projectId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.retrieveProjectWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Retrieves a project.
+     * @param projectId The ID of the project.
+     */
+    public retrieveProject(projectId: string, _options?: ConfigurationOptions): Observable<Project> {
+        return this.retrieveProjectWithHttpInfo(projectId, _options).pipe(map((apiResponse: HttpInfo<Project>) => apiResponse.data));
+    }
+
+    /**
+     * Retrieves an API key in the project.
+     * @param projectId The ID of the project.
+     * @param keyId The ID of the API key.
+     */
+    public retrieveProjectApiKeyWithHttpInfo(projectId: string, keyId: string, _options?: ConfigurationOptions): Observable<HttpInfo<ProjectApiKey>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.retrieveProjectApiKey(projectId, keyId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.retrieveProjectApiKeyWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Retrieves an API key in the project.
+     * @param projectId The ID of the project.
+     * @param keyId The ID of the API key.
+     */
+    public retrieveProjectApiKey(projectId: string, keyId: string, _options?: ConfigurationOptions): Observable<ProjectApiKey> {
+        return this.retrieveProjectApiKeyWithHttpInfo(projectId, keyId, _options).pipe(map((apiResponse: HttpInfo<ProjectApiKey>) => apiResponse.data));
+    }
+
+    /**
+     * Retrieves a service account in the project.
+     * @param projectId The ID of the project.
+     * @param serviceAccountId The ID of the service account.
+     */
+    public retrieveProjectServiceAccountWithHttpInfo(projectId: string, serviceAccountId: string, _options?: ConfigurationOptions): Observable<HttpInfo<ProjectServiceAccount>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.retrieveProjectServiceAccount(projectId, serviceAccountId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.retrieveProjectServiceAccountWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Retrieves a service account in the project.
+     * @param projectId The ID of the project.
+     * @param serviceAccountId The ID of the service account.
+     */
+    public retrieveProjectServiceAccount(projectId: string, serviceAccountId: string, _options?: ConfigurationOptions): Observable<ProjectServiceAccount> {
+        return this.retrieveProjectServiceAccountWithHttpInfo(projectId, serviceAccountId, _options).pipe(map((apiResponse: HttpInfo<ProjectServiceAccount>) => apiResponse.data));
+    }
+
+    /**
+     * Retrieves a user in the project.
+     * @param projectId The ID of the project.
+     * @param userId The ID of the user.
+     */
+    public retrieveProjectUserWithHttpInfo(projectId: string, userId: string, _options?: ConfigurationOptions): Observable<HttpInfo<ProjectUser>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.retrieveProjectUser(projectId, userId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.retrieveProjectUserWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Retrieves a user in the project.
+     * @param projectId The ID of the project.
+     * @param userId The ID of the user.
+     */
+    public retrieveProjectUser(projectId: string, userId: string, _options?: ConfigurationOptions): Observable<ProjectUser> {
+        return this.retrieveProjectUserWithHttpInfo(projectId, userId, _options).pipe(map((apiResponse: HttpInfo<ProjectUser>) => apiResponse.data));
+    }
+
+    /**
+     * Updates a project rate limit.
+     * @param projectId The ID of the project.
+     * @param rateLimitId The ID of the rate limit.
+     * @param projectRateLimitUpdateRequest The project rate limit update request payload.
+     */
+    public updateProjectRateLimitsWithHttpInfo(projectId: string, rateLimitId: string, projectRateLimitUpdateRequest: ProjectRateLimitUpdateRequest, _options?: ConfigurationOptions): Observable<HttpInfo<ProjectRateLimit>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.updateProjectRateLimits(projectId, rateLimitId, projectRateLimitUpdateRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.updateProjectRateLimitsWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Updates a project rate limit.
+     * @param projectId The ID of the project.
+     * @param rateLimitId The ID of the rate limit.
+     * @param projectRateLimitUpdateRequest The project rate limit update request payload.
+     */
+    public updateProjectRateLimits(projectId: string, rateLimitId: string, projectRateLimitUpdateRequest: ProjectRateLimitUpdateRequest, _options?: ConfigurationOptions): Observable<ProjectRateLimit> {
+        return this.updateProjectRateLimitsWithHttpInfo(projectId, rateLimitId, projectRateLimitUpdateRequest, _options).pipe(map((apiResponse: HttpInfo<ProjectRateLimit>) => apiResponse.data));
+    }
+
+}
+
+import { RealtimeApiRequestFactory, RealtimeApiResponseProcessor} from "../apis/RealtimeApi";
+export class ObservableRealtimeApi {
+    private requestFactory: RealtimeApiRequestFactory;
+    private responseProcessor: RealtimeApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: RealtimeApiRequestFactory,
+        responseProcessor?: RealtimeApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new RealtimeApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new RealtimeApiResponseProcessor();
+    }
+
+    /**
+     * Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API. 
+     * @param realtimeSessionCreateRequest Create an ephemeral API key with the given session configuration.
+     */
+    public createRealtimeSessionWithHttpInfo(realtimeSessionCreateRequest: RealtimeSessionCreateRequest, _options?: ConfigurationOptions): Observable<HttpInfo<RealtimeSessionCreateResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.createRealtimeSession(realtimeSessionCreateRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createRealtimeSessionWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API. 
+     * @param realtimeSessionCreateRequest Create an ephemeral API key with the given session configuration.
+     */
+    public createRealtimeSession(realtimeSessionCreateRequest: RealtimeSessionCreateRequest, _options?: ConfigurationOptions): Observable<RealtimeSessionCreateResponse> {
+        return this.createRealtimeSessionWithHttpInfo(realtimeSessionCreateRequest, _options).pipe(map((apiResponse: HttpInfo<RealtimeSessionCreateResponse>) => apiResponse.data));
+    }
+
+}
+
+import { UploadsApiRequestFactory, UploadsApiResponseProcessor} from "../apis/UploadsApi";
+export class ObservableUploadsApi {
+    private requestFactory: UploadsApiRequestFactory;
+    private responseProcessor: UploadsApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: UploadsApiRequestFactory,
+        responseProcessor?: UploadsApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new UploadsApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new UploadsApiResponseProcessor();
+    }
+
+    /**
+     * Adds a [Part](/docs/api-reference/uploads/part-object) to an [Upload](/docs/api-reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api-reference/uploads/complete). 
+     * @param uploadId The ID of the Upload. 
+     * @param data The chunk of bytes for this Part. 
+     */
+    public addUploadPartWithHttpInfo(uploadId: string, data: HttpFile, _options?: ConfigurationOptions): Observable<HttpInfo<UploadPart>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.addUploadPart(uploadId, data, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.addUploadPartWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Adds a [Part](/docs/api-reference/uploads/part-object) to an [Upload](/docs/api-reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api-reference/uploads/complete). 
+     * @param uploadId The ID of the Upload. 
+     * @param data The chunk of bytes for this Part. 
+     */
+    public addUploadPart(uploadId: string, data: HttpFile, _options?: ConfigurationOptions): Observable<UploadPart> {
+        return this.addUploadPartWithHttpInfo(uploadId, data, _options).pipe(map((apiResponse: HttpInfo<UploadPart>) => apiResponse.data));
+    }
+
+    /**
+     * Cancels the Upload. No Parts may be added after an Upload is cancelled. 
+     * @param uploadId The ID of the Upload. 
+     */
+    public cancelUploadWithHttpInfo(uploadId: string, _options?: ConfigurationOptions): Observable<HttpInfo<Upload>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.cancelUpload(uploadId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.cancelUploadWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Cancels the Upload. No Parts may be added after an Upload is cancelled. 
+     * @param uploadId The ID of the Upload. 
+     */
+    public cancelUpload(uploadId: string, _options?: ConfigurationOptions): Observable<Upload> {
+        return this.cancelUploadWithHttpInfo(uploadId, _options).pipe(map((apiResponse: HttpInfo<Upload>) => apiResponse.data));
+    }
+
+    /**
+     * Completes the [Upload](/docs/api-reference/uploads/object).   Within the returned Upload object, there is a nested [File](/docs/api-reference/files/object) object that is ready to use in the rest of the platform.  You can specify the order of the Parts by passing in an ordered list of the Part IDs.  The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed. 
+     * @param uploadId The ID of the Upload. 
+     * @param completeUploadRequest
+     */
+    public completeUploadWithHttpInfo(uploadId: string, completeUploadRequest: CompleteUploadRequest, _options?: ConfigurationOptions): Observable<HttpInfo<Upload>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.completeUpload(uploadId, completeUploadRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.completeUploadWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Completes the [Upload](/docs/api-reference/uploads/object).   Within the returned Upload object, there is a nested [File](/docs/api-reference/files/object) object that is ready to use in the rest of the platform.  You can specify the order of the Parts by passing in an ordered list of the Part IDs.  The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed. 
+     * @param uploadId The ID of the Upload. 
+     * @param completeUploadRequest
+     */
+    public completeUpload(uploadId: string, completeUploadRequest: CompleteUploadRequest, _options?: ConfigurationOptions): Observable<Upload> {
+        return this.completeUploadWithHttpInfo(uploadId, completeUploadRequest, _options).pipe(map((apiResponse: HttpInfo<Upload>) => apiResponse.data));
+    }
+
+    /**
+     * Creates an intermediate [Upload](/docs/api-reference/uploads/object) object that you can add [Parts](/docs/api-reference/uploads/part-object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it.  Once you complete the Upload, we will create a [File](/docs/api-reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object.  For certain `purpose`s, the correct `mime_type` must be specified. Please refer to documentation for the supported MIME types for your use case: - [Assistants](/docs/assistants/tools/file-search#supported-files)  For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api-reference/files/create). 
+     * @param createUploadRequest
+     */
+    public createUploadWithHttpInfo(createUploadRequest: CreateUploadRequest, _options?: ConfigurationOptions): Observable<HttpInfo<Upload>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.createUpload(createUploadRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createUploadWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Creates an intermediate [Upload](/docs/api-reference/uploads/object) object that you can add [Parts](/docs/api-reference/uploads/part-object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it.  Once you complete the Upload, we will create a [File](/docs/api-reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object.  For certain `purpose`s, the correct `mime_type` must be specified. Please refer to documentation for the supported MIME types for your use case: - [Assistants](/docs/assistants/tools/file-search#supported-files)  For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api-reference/files/create). 
+     * @param createUploadRequest
+     */
+    public createUpload(createUploadRequest: CreateUploadRequest, _options?: ConfigurationOptions): Observable<Upload> {
+        return this.createUploadWithHttpInfo(createUploadRequest, _options).pipe(map((apiResponse: HttpInfo<Upload>) => apiResponse.data));
+    }
+
+}
+
+import { UsageApiRequestFactory, UsageApiResponseProcessor} from "../apis/UsageApi";
+export class ObservableUsageApi {
+    private requestFactory: UsageApiRequestFactory;
+    private responseProcessor: UsageApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: UsageApiRequestFactory,
+        responseProcessor?: UsageApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new UsageApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new UsageApiResponseProcessor();
+    }
+
+    /**
+     * Get audio speeches usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [userIds] Return only usage for these users.
+     * @param [apiKeyIds] Return only usage for these API keys.
+     * @param [models] Return only usage for these models.
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageAudioSpeechesWithHttpInfo(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', projectIds?: Array<string>, userIds?: Array<string>, apiKeyIds?: Array<string>, models?: Array<string>, groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<HttpInfo<UsageResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.usageAudioSpeeches(startTime, endTime, bucketWidth, projectIds, userIds, apiKeyIds, models, groupBy, limit, page, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.usageAudioSpeechesWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Get audio speeches usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [userIds] Return only usage for these users.
+     * @param [apiKeyIds] Return only usage for these API keys.
+     * @param [models] Return only usage for these models.
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageAudioSpeeches(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', projectIds?: Array<string>, userIds?: Array<string>, apiKeyIds?: Array<string>, models?: Array<string>, groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<UsageResponse> {
+        return this.usageAudioSpeechesWithHttpInfo(startTime, endTime, bucketWidth, projectIds, userIds, apiKeyIds, models, groupBy, limit, page, _options).pipe(map((apiResponse: HttpInfo<UsageResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Get audio transcriptions usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [userIds] Return only usage for these users.
+     * @param [apiKeyIds] Return only usage for these API keys.
+     * @param [models] Return only usage for these models.
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageAudioTranscriptionsWithHttpInfo(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', projectIds?: Array<string>, userIds?: Array<string>, apiKeyIds?: Array<string>, models?: Array<string>, groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<HttpInfo<UsageResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.usageAudioTranscriptions(startTime, endTime, bucketWidth, projectIds, userIds, apiKeyIds, models, groupBy, limit, page, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.usageAudioTranscriptionsWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Get audio transcriptions usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [userIds] Return only usage for these users.
+     * @param [apiKeyIds] Return only usage for these API keys.
+     * @param [models] Return only usage for these models.
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageAudioTranscriptions(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', projectIds?: Array<string>, userIds?: Array<string>, apiKeyIds?: Array<string>, models?: Array<string>, groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<UsageResponse> {
+        return this.usageAudioTranscriptionsWithHttpInfo(startTime, endTime, bucketWidth, projectIds, userIds, apiKeyIds, models, groupBy, limit, page, _options).pipe(map((apiResponse: HttpInfo<UsageResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Get code interpreter sessions usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageCodeInterpreterSessionsWithHttpInfo(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', projectIds?: Array<string>, groupBy?: Array<'project_id'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<HttpInfo<UsageResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.usageCodeInterpreterSessions(startTime, endTime, bucketWidth, projectIds, groupBy, limit, page, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.usageCodeInterpreterSessionsWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Get code interpreter sessions usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageCodeInterpreterSessions(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', projectIds?: Array<string>, groupBy?: Array<'project_id'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<UsageResponse> {
+        return this.usageCodeInterpreterSessionsWithHttpInfo(startTime, endTime, bucketWidth, projectIds, groupBy, limit, page, _options).pipe(map((apiResponse: HttpInfo<UsageResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Get completions usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [userIds] Return only usage for these users.
+     * @param [apiKeyIds] Return only usage for these API keys.
+     * @param [models] Return only usage for these models.
+     * @param [batch] If &#x60;true&#x60;, return batch jobs only. If &#x60;false&#x60;, return non-batch jobs only. By default, return both. 
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60;, &#x60;batch&#x60; or any combination of them.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageCompletionsWithHttpInfo(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', projectIds?: Array<string>, userIds?: Array<string>, apiKeyIds?: Array<string>, models?: Array<string>, batch?: boolean, groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model' | 'batch'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<HttpInfo<UsageResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.usageCompletions(startTime, endTime, bucketWidth, projectIds, userIds, apiKeyIds, models, batch, groupBy, limit, page, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.usageCompletionsWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Get completions usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [userIds] Return only usage for these users.
+     * @param [apiKeyIds] Return only usage for these API keys.
+     * @param [models] Return only usage for these models.
+     * @param [batch] If &#x60;true&#x60;, return batch jobs only. If &#x60;false&#x60;, return non-batch jobs only. By default, return both. 
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60;, &#x60;batch&#x60; or any combination of them.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageCompletions(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', projectIds?: Array<string>, userIds?: Array<string>, apiKeyIds?: Array<string>, models?: Array<string>, batch?: boolean, groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model' | 'batch'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<UsageResponse> {
+        return this.usageCompletionsWithHttpInfo(startTime, endTime, bucketWidth, projectIds, userIds, apiKeyIds, models, batch, groupBy, limit, page, _options).pipe(map((apiResponse: HttpInfo<UsageResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Get costs details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently only &#x60;1d&#x60; is supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only costs for these projects.
+     * @param [groupBy] Group the costs by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;line_item&#x60; and any combination of them.
+     * @param [limit] A limit on the number of buckets to be returned. Limit can range between 1 and 180, and the default is 7. 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageCostsWithHttpInfo(startTime: number, endTime?: number, bucketWidth?: '1d', projectIds?: Array<string>, groupBy?: Array<'project_id' | 'line_item'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<HttpInfo<UsageResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.usageCosts(startTime, endTime, bucketWidth, projectIds, groupBy, limit, page, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.usageCostsWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Get costs details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently only &#x60;1d&#x60; is supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only costs for these projects.
+     * @param [groupBy] Group the costs by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;line_item&#x60; and any combination of them.
+     * @param [limit] A limit on the number of buckets to be returned. Limit can range between 1 and 180, and the default is 7. 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageCosts(startTime: number, endTime?: number, bucketWidth?: '1d', projectIds?: Array<string>, groupBy?: Array<'project_id' | 'line_item'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<UsageResponse> {
+        return this.usageCostsWithHttpInfo(startTime, endTime, bucketWidth, projectIds, groupBy, limit, page, _options).pipe(map((apiResponse: HttpInfo<UsageResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Get embeddings usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [userIds] Return only usage for these users.
+     * @param [apiKeyIds] Return only usage for these API keys.
+     * @param [models] Return only usage for these models.
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageEmbeddingsWithHttpInfo(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', projectIds?: Array<string>, userIds?: Array<string>, apiKeyIds?: Array<string>, models?: Array<string>, groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<HttpInfo<UsageResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.usageEmbeddings(startTime, endTime, bucketWidth, projectIds, userIds, apiKeyIds, models, groupBy, limit, page, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.usageEmbeddingsWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Get embeddings usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [userIds] Return only usage for these users.
+     * @param [apiKeyIds] Return only usage for these API keys.
+     * @param [models] Return only usage for these models.
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageEmbeddings(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', projectIds?: Array<string>, userIds?: Array<string>, apiKeyIds?: Array<string>, models?: Array<string>, groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<UsageResponse> {
+        return this.usageEmbeddingsWithHttpInfo(startTime, endTime, bucketWidth, projectIds, userIds, apiKeyIds, models, groupBy, limit, page, _options).pipe(map((apiResponse: HttpInfo<UsageResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Get images usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [sources] Return only usages for these sources. Possible values are &#x60;image.generation&#x60;, &#x60;image.edit&#x60;, &#x60;image.variation&#x60; or any combination of them.
+     * @param [sizes] Return only usages for these image sizes. Possible values are &#x60;256x256&#x60;, &#x60;512x512&#x60;, &#x60;1024x1024&#x60;, &#x60;1792x1792&#x60;, &#x60;1024x1792&#x60; or any combination of them.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [userIds] Return only usage for these users.
+     * @param [apiKeyIds] Return only usage for these API keys.
+     * @param [models] Return only usage for these models.
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60;, &#x60;size&#x60;, &#x60;source&#x60; or any combination of them.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageImagesWithHttpInfo(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', sources?: Array<'image.generation' | 'image.edit' | 'image.variation'>, sizes?: Array<'256x256' | '512x512' | '1024x1024' | '1792x1792' | '1024x1792'>, projectIds?: Array<string>, userIds?: Array<string>, apiKeyIds?: Array<string>, models?: Array<string>, groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model' | 'size' | 'source'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<HttpInfo<UsageResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.usageImages(startTime, endTime, bucketWidth, sources, sizes, projectIds, userIds, apiKeyIds, models, groupBy, limit, page, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.usageImagesWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Get images usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [sources] Return only usages for these sources. Possible values are &#x60;image.generation&#x60;, &#x60;image.edit&#x60;, &#x60;image.variation&#x60; or any combination of them.
+     * @param [sizes] Return only usages for these image sizes. Possible values are &#x60;256x256&#x60;, &#x60;512x512&#x60;, &#x60;1024x1024&#x60;, &#x60;1792x1792&#x60;, &#x60;1024x1792&#x60; or any combination of them.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [userIds] Return only usage for these users.
+     * @param [apiKeyIds] Return only usage for these API keys.
+     * @param [models] Return only usage for these models.
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60;, &#x60;size&#x60;, &#x60;source&#x60; or any combination of them.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageImages(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', sources?: Array<'image.generation' | 'image.edit' | 'image.variation'>, sizes?: Array<'256x256' | '512x512' | '1024x1024' | '1792x1792' | '1024x1792'>, projectIds?: Array<string>, userIds?: Array<string>, apiKeyIds?: Array<string>, models?: Array<string>, groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model' | 'size' | 'source'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<UsageResponse> {
+        return this.usageImagesWithHttpInfo(startTime, endTime, bucketWidth, sources, sizes, projectIds, userIds, apiKeyIds, models, groupBy, limit, page, _options).pipe(map((apiResponse: HttpInfo<UsageResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Get moderations usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [userIds] Return only usage for these users.
+     * @param [apiKeyIds] Return only usage for these API keys.
+     * @param [models] Return only usage for these models.
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageModerationsWithHttpInfo(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', projectIds?: Array<string>, userIds?: Array<string>, apiKeyIds?: Array<string>, models?: Array<string>, groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<HttpInfo<UsageResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.usageModerations(startTime, endTime, bucketWidth, projectIds, userIds, apiKeyIds, models, groupBy, limit, page, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.usageModerationsWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Get moderations usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [userIds] Return only usage for these users.
+     * @param [apiKeyIds] Return only usage for these API keys.
+     * @param [models] Return only usage for these models.
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageModerations(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', projectIds?: Array<string>, userIds?: Array<string>, apiKeyIds?: Array<string>, models?: Array<string>, groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<UsageResponse> {
+        return this.usageModerationsWithHttpInfo(startTime, endTime, bucketWidth, projectIds, userIds, apiKeyIds, models, groupBy, limit, page, _options).pipe(map((apiResponse: HttpInfo<UsageResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Get vector stores usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageVectorStoresWithHttpInfo(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', projectIds?: Array<string>, groupBy?: Array<'project_id'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<HttpInfo<UsageResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.usageVectorStores(startTime, endTime, bucketWidth, projectIds, groupBy, limit, page, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.usageVectorStoresWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Get vector stores usage details for the organization.
+     * @param startTime Start time (Unix seconds) of the query time range, inclusive.
+     * @param [endTime] End time (Unix seconds) of the query time range, exclusive.
+     * @param [bucketWidth] Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * @param [projectIds] Return only usage for these projects.
+     * @param [groupBy] Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;.
+     * @param [limit] Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * @param [page] A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     */
+    public usageVectorStores(startTime: number, endTime?: number, bucketWidth?: '1m' | '1h' | '1d', projectIds?: Array<string>, groupBy?: Array<'project_id'>, limit?: number, page?: string, _options?: ConfigurationOptions): Observable<UsageResponse> {
+        return this.usageVectorStoresWithHttpInfo(startTime, endTime, bucketWidth, projectIds, groupBy, limit, page, _options).pipe(map((apiResponse: HttpInfo<UsageResponse>) => apiResponse.data));
+    }
+
+}
+
+import { UsersApiRequestFactory, UsersApiResponseProcessor} from "../apis/UsersApi";
+export class ObservableUsersApi {
+    private requestFactory: UsersApiRequestFactory;
+    private responseProcessor: UsersApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: UsersApiRequestFactory,
+        responseProcessor?: UsersApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new UsersApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new UsersApiResponseProcessor();
+    }
+
+    /**
+     * Deletes a user from the organization.
+     * @param userId The ID of the user.
+     */
+    public deleteUserWithHttpInfo(userId: string, _options?: ConfigurationOptions): Observable<HttpInfo<UserDeleteResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.deleteUser(userId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteUserWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Deletes a user from the organization.
+     * @param userId The ID of the user.
+     */
+    public deleteUser(userId: string, _options?: ConfigurationOptions): Observable<UserDeleteResponse> {
+        return this.deleteUserWithHttpInfo(userId, _options).pipe(map((apiResponse: HttpInfo<UserDeleteResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Lists all of the users in the organization.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     */
+    public listUsersWithHttpInfo(limit?: number, after?: string, _options?: ConfigurationOptions): Observable<HttpInfo<UserListResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.listUsers(limit, after, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listUsersWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Lists all of the users in the organization.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     */
+    public listUsers(limit?: number, after?: string, _options?: ConfigurationOptions): Observable<UserListResponse> {
+        return this.listUsersWithHttpInfo(limit, after, _options).pipe(map((apiResponse: HttpInfo<UserListResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Modifies a user\'s role in the organization.
+     * @param userId The ID of the user.
+     * @param userRoleUpdateRequest The new user role to modify. This must be one of &#x60;owner&#x60; or &#x60;member&#x60;.
+     */
+    public modifyUserWithHttpInfo(userId: string, userRoleUpdateRequest: UserRoleUpdateRequest, _options?: ConfigurationOptions): Observable<HttpInfo<User>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.modifyUser(userId, userRoleUpdateRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.modifyUserWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Modifies a user\'s role in the organization.
+     * @param userId The ID of the user.
+     * @param userRoleUpdateRequest The new user role to modify. This must be one of &#x60;owner&#x60; or &#x60;member&#x60;.
+     */
+    public modifyUser(userId: string, userRoleUpdateRequest: UserRoleUpdateRequest, _options?: ConfigurationOptions): Observable<User> {
+        return this.modifyUserWithHttpInfo(userId, userRoleUpdateRequest, _options).pipe(map((apiResponse: HttpInfo<User>) => apiResponse.data));
+    }
+
+    /**
+     * Retrieves a user by their identifier.
+     * @param userId The ID of the user.
+     */
+    public retrieveUserWithHttpInfo(userId: string, _options?: ConfigurationOptions): Observable<HttpInfo<User>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.retrieveUser(userId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.retrieveUserWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Retrieves a user by their identifier.
+     * @param userId The ID of the user.
+     */
+    public retrieveUser(userId: string, _options?: ConfigurationOptions): Observable<User> {
+        return this.retrieveUserWithHttpInfo(userId, _options).pipe(map((apiResponse: HttpInfo<User>) => apiResponse.data));
+    }
+
+}
+
+import { VectorStoresApiRequestFactory, VectorStoresApiResponseProcessor} from "../apis/VectorStoresApi";
+export class ObservableVectorStoresApi {
+    private requestFactory: VectorStoresApiRequestFactory;
+    private responseProcessor: VectorStoresApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: VectorStoresApiRequestFactory,
+        responseProcessor?: VectorStoresApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new VectorStoresApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new VectorStoresApiResponseProcessor();
+    }
+
+    /**
+     * Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+     * @param vectorStoreId The ID of the vector store that the file batch belongs to.
+     * @param batchId The ID of the file batch to cancel.
+     */
+    public cancelVectorStoreFileBatchWithHttpInfo(vectorStoreId: string, batchId: string, _options?: ConfigurationOptions): Observable<HttpInfo<VectorStoreFileBatchObject>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.cancelVectorStoreFileBatch(vectorStoreId, batchId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.cancelVectorStoreFileBatchWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+     * @param vectorStoreId The ID of the vector store that the file batch belongs to.
+     * @param batchId The ID of the file batch to cancel.
+     */
+    public cancelVectorStoreFileBatch(vectorStoreId: string, batchId: string, _options?: ConfigurationOptions): Observable<VectorStoreFileBatchObject> {
+        return this.cancelVectorStoreFileBatchWithHttpInfo(vectorStoreId, batchId, _options).pipe(map((apiResponse: HttpInfo<VectorStoreFileBatchObject>) => apiResponse.data));
+    }
+
+    /**
+     * Create a vector store.
+     * @param createVectorStoreRequest
+     */
+    public createVectorStoreWithHttpInfo(createVectorStoreRequest: CreateVectorStoreRequest, _options?: ConfigurationOptions): Observable<HttpInfo<VectorStoreObject>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.createVectorStore(createVectorStoreRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createVectorStoreWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Create a vector store.
+     * @param createVectorStoreRequest
+     */
+    public createVectorStore(createVectorStoreRequest: CreateVectorStoreRequest, _options?: ConfigurationOptions): Observable<VectorStoreObject> {
+        return this.createVectorStoreWithHttpInfo(createVectorStoreRequest, _options).pipe(map((apiResponse: HttpInfo<VectorStoreObject>) => apiResponse.data));
+    }
+
+    /**
+     * Create a vector store file by attaching a [File](/docs/api-reference/files) to a [vector store](/docs/api-reference/vector-stores/object).
+     * @param vectorStoreId The ID of the vector store for which to create a File. 
+     * @param createVectorStoreFileRequest
+     */
+    public createVectorStoreFileWithHttpInfo(vectorStoreId: string, createVectorStoreFileRequest: CreateVectorStoreFileRequest, _options?: ConfigurationOptions): Observable<HttpInfo<VectorStoreFileObject>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.createVectorStoreFile(vectorStoreId, createVectorStoreFileRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createVectorStoreFileWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Create a vector store file by attaching a [File](/docs/api-reference/files) to a [vector store](/docs/api-reference/vector-stores/object).
+     * @param vectorStoreId The ID of the vector store for which to create a File. 
+     * @param createVectorStoreFileRequest
+     */
+    public createVectorStoreFile(vectorStoreId: string, createVectorStoreFileRequest: CreateVectorStoreFileRequest, _options?: ConfigurationOptions): Observable<VectorStoreFileObject> {
+        return this.createVectorStoreFileWithHttpInfo(vectorStoreId, createVectorStoreFileRequest, _options).pipe(map((apiResponse: HttpInfo<VectorStoreFileObject>) => apiResponse.data));
+    }
+
+    /**
+     * Create a vector store file batch.
+     * @param vectorStoreId The ID of the vector store for which to create a File Batch. 
+     * @param createVectorStoreFileBatchRequest
+     */
+    public createVectorStoreFileBatchWithHttpInfo(vectorStoreId: string, createVectorStoreFileBatchRequest: CreateVectorStoreFileBatchRequest, _options?: ConfigurationOptions): Observable<HttpInfo<VectorStoreFileBatchObject>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.createVectorStoreFileBatch(vectorStoreId, createVectorStoreFileBatchRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createVectorStoreFileBatchWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Create a vector store file batch.
+     * @param vectorStoreId The ID of the vector store for which to create a File Batch. 
+     * @param createVectorStoreFileBatchRequest
+     */
+    public createVectorStoreFileBatch(vectorStoreId: string, createVectorStoreFileBatchRequest: CreateVectorStoreFileBatchRequest, _options?: ConfigurationOptions): Observable<VectorStoreFileBatchObject> {
+        return this.createVectorStoreFileBatchWithHttpInfo(vectorStoreId, createVectorStoreFileBatchRequest, _options).pipe(map((apiResponse: HttpInfo<VectorStoreFileBatchObject>) => apiResponse.data));
+    }
+
+    /**
+     * Delete a vector store.
+     * @param vectorStoreId The ID of the vector store to delete.
+     */
+    public deleteVectorStoreWithHttpInfo(vectorStoreId: string, _options?: ConfigurationOptions): Observable<HttpInfo<DeleteVectorStoreResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.deleteVectorStore(vectorStoreId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteVectorStoreWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Delete a vector store.
+     * @param vectorStoreId The ID of the vector store to delete.
+     */
+    public deleteVectorStore(vectorStoreId: string, _options?: ConfigurationOptions): Observable<DeleteVectorStoreResponse> {
+        return this.deleteVectorStoreWithHttpInfo(vectorStoreId, _options).pipe(map((apiResponse: HttpInfo<DeleteVectorStoreResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api-reference/files/delete) endpoint.
+     * @param vectorStoreId The ID of the vector store that the file belongs to.
+     * @param fileId The ID of the file to delete.
+     */
+    public deleteVectorStoreFileWithHttpInfo(vectorStoreId: string, fileId: string, _options?: ConfigurationOptions): Observable<HttpInfo<DeleteVectorStoreFileResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.deleteVectorStoreFile(vectorStoreId, fileId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteVectorStoreFileWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api-reference/files/delete) endpoint.
+     * @param vectorStoreId The ID of the vector store that the file belongs to.
+     * @param fileId The ID of the file to delete.
+     */
+    public deleteVectorStoreFile(vectorStoreId: string, fileId: string, _options?: ConfigurationOptions): Observable<DeleteVectorStoreFileResponse> {
+        return this.deleteVectorStoreFileWithHttpInfo(vectorStoreId, fileId, _options).pipe(map((apiResponse: HttpInfo<DeleteVectorStoreFileResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Retrieves a vector store.
+     * @param vectorStoreId The ID of the vector store to retrieve.
+     */
+    public getVectorStoreWithHttpInfo(vectorStoreId: string, _options?: ConfigurationOptions): Observable<HttpInfo<VectorStoreObject>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.getVectorStore(vectorStoreId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getVectorStoreWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Retrieves a vector store.
+     * @param vectorStoreId The ID of the vector store to retrieve.
+     */
+    public getVectorStore(vectorStoreId: string, _options?: ConfigurationOptions): Observable<VectorStoreObject> {
+        return this.getVectorStoreWithHttpInfo(vectorStoreId, _options).pipe(map((apiResponse: HttpInfo<VectorStoreObject>) => apiResponse.data));
+    }
+
+    /**
+     * Retrieves a vector store file.
+     * @param vectorStoreId The ID of the vector store that the file belongs to.
+     * @param fileId The ID of the file being retrieved.
+     */
+    public getVectorStoreFileWithHttpInfo(vectorStoreId: string, fileId: string, _options?: ConfigurationOptions): Observable<HttpInfo<VectorStoreFileObject>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.getVectorStoreFile(vectorStoreId, fileId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getVectorStoreFileWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Retrieves a vector store file.
+     * @param vectorStoreId The ID of the vector store that the file belongs to.
+     * @param fileId The ID of the file being retrieved.
+     */
+    public getVectorStoreFile(vectorStoreId: string, fileId: string, _options?: ConfigurationOptions): Observable<VectorStoreFileObject> {
+        return this.getVectorStoreFileWithHttpInfo(vectorStoreId, fileId, _options).pipe(map((apiResponse: HttpInfo<VectorStoreFileObject>) => apiResponse.data));
+    }
+
+    /**
+     * Retrieves a vector store file batch.
+     * @param vectorStoreId The ID of the vector store that the file batch belongs to.
+     * @param batchId The ID of the file batch being retrieved.
+     */
+    public getVectorStoreFileBatchWithHttpInfo(vectorStoreId: string, batchId: string, _options?: ConfigurationOptions): Observable<HttpInfo<VectorStoreFileBatchObject>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.getVectorStoreFileBatch(vectorStoreId, batchId, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getVectorStoreFileBatchWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Retrieves a vector store file batch.
+     * @param vectorStoreId The ID of the vector store that the file batch belongs to.
+     * @param batchId The ID of the file batch being retrieved.
+     */
+    public getVectorStoreFileBatch(vectorStoreId: string, batchId: string, _options?: ConfigurationOptions): Observable<VectorStoreFileBatchObject> {
+        return this.getVectorStoreFileBatchWithHttpInfo(vectorStoreId, batchId, _options).pipe(map((apiResponse: HttpInfo<VectorStoreFileBatchObject>) => apiResponse.data));
+    }
+
+    /**
+     * Returns a list of vector store files in a batch.
+     * @param vectorStoreId The ID of the vector store that the files belong to.
+     * @param batchId The ID of the file batch that the files belong to.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param [filter] Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;.
+     */
+    public listFilesInVectorStoreBatchWithHttpInfo(vectorStoreId: string, batchId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, filter?: 'in_progress' | 'completed' | 'failed' | 'cancelled', _options?: ConfigurationOptions): Observable<HttpInfo<ListVectorStoreFilesResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.listFilesInVectorStoreBatch(vectorStoreId, batchId, limit, order, after, before, filter, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listFilesInVectorStoreBatchWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Returns a list of vector store files in a batch.
+     * @param vectorStoreId The ID of the vector store that the files belong to.
+     * @param batchId The ID of the file batch that the files belong to.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param [filter] Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;.
+     */
+    public listFilesInVectorStoreBatch(vectorStoreId: string, batchId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, filter?: 'in_progress' | 'completed' | 'failed' | 'cancelled', _options?: ConfigurationOptions): Observable<ListVectorStoreFilesResponse> {
+        return this.listFilesInVectorStoreBatchWithHttpInfo(vectorStoreId, batchId, limit, order, after, before, filter, _options).pipe(map((apiResponse: HttpInfo<ListVectorStoreFilesResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Returns a list of vector store files.
+     * @param vectorStoreId The ID of the vector store that the files belong to.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param [filter] Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;.
+     */
+    public listVectorStoreFilesWithHttpInfo(vectorStoreId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, filter?: 'in_progress' | 'completed' | 'failed' | 'cancelled', _options?: ConfigurationOptions): Observable<HttpInfo<ListVectorStoreFilesResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.listVectorStoreFiles(vectorStoreId, limit, order, after, before, filter, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listVectorStoreFilesWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Returns a list of vector store files.
+     * @param vectorStoreId The ID of the vector store that the files belong to.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param [filter] Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;.
+     */
+    public listVectorStoreFiles(vectorStoreId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, filter?: 'in_progress' | 'completed' | 'failed' | 'cancelled', _options?: ConfigurationOptions): Observable<ListVectorStoreFilesResponse> {
+        return this.listVectorStoreFilesWithHttpInfo(vectorStoreId, limit, order, after, before, filter, _options).pipe(map((apiResponse: HttpInfo<ListVectorStoreFilesResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Returns a list of vector stores.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     */
+    public listVectorStoresWithHttpInfo(limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: ConfigurationOptions): Observable<HttpInfo<ListVectorStoresResponse>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.listVectorStores(limit, order, after, before, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listVectorStoresWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Returns a list of vector stores.
+     * @param [limit] A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * @param [order] Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * @param [after] A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * @param [before] A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     */
+    public listVectorStores(limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: ConfigurationOptions): Observable<ListVectorStoresResponse> {
+        return this.listVectorStoresWithHttpInfo(limit, order, after, before, _options).pipe(map((apiResponse: HttpInfo<ListVectorStoresResponse>) => apiResponse.data));
+    }
+
+    /**
+     * Modifies a vector store.
+     * @param vectorStoreId The ID of the vector store to modify.
+     * @param updateVectorStoreRequest
+     */
+    public modifyVectorStoreWithHttpInfo(vectorStoreId: string, updateVectorStoreRequest: UpdateVectorStoreRequest, _options?: ConfigurationOptions): Observable<HttpInfo<VectorStoreObject>> {
+        const _config = mergeConfiguration(this.configuration, _options);
+
+        const requestContextPromise = this.requestFactory.modifyVectorStore(vectorStoreId, updateVectorStoreRequest, _config);
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of _config.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of _config.middleware.reverse()) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.modifyVectorStoreWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Modifies a vector store.
+     * @param vectorStoreId The ID of the vector store to modify.
+     * @param updateVectorStoreRequest
+     */
+    public modifyVectorStore(vectorStoreId: string, updateVectorStoreRequest: UpdateVectorStoreRequest, _options?: ConfigurationOptions): Observable<VectorStoreObject> {
+        return this.modifyVectorStoreWithHttpInfo(vectorStoreId, updateVectorStoreRequest, _options).pipe(map((apiResponse: HttpInfo<VectorStoreObject>) => apiResponse.data));
     }
 
 }

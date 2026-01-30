@@ -13,6 +13,7 @@ Name | Type
 `validationFile` | string
 `integrations` | [Array&lt;CreateFineTuningJobRequestIntegrationsInner&gt;](CreateFineTuningJobRequestIntegrationsInner.md)
 `seed` | number
+`method` | [FineTuneMethod](FineTuneMethod.md)
 
 ## Example
 
@@ -28,6 +29,7 @@ const example = {
   "validationFile": file-abc123,
   "integrations": null,
   "seed": 42,
+  "method": null,
 } satisfies CreateFineTuningJobRequest
 
 console.log(example)

@@ -22,7 +22,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param createdAt The Unix timestamp (in seconds) for when the file was created.
  * @param filename The name of the file.
  * @param &#x60;object&#x60; The object type, which is always `file`.
- * @param purpose The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+ * @param purpose The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
  * @param status Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
  * @param statusDetails Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
  */
@@ -43,7 +43,7 @@ data class OpenAIFile(
     @Schema(example = "null", required = true, description = "The object type, which is always `file`.")
     @get:JsonProperty("object", required = true) val `object`: OpenAIFile.`Object`,
 
-    @Schema(example = "null", required = true, description = "The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.")
+    @Schema(example = "null", required = true, description = "The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.")
     @get:JsonProperty("purpose", required = true) val purpose: OpenAIFile.Purpose,
 
     @Schema(example = "null", required = true, description = "Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.")
@@ -73,15 +73,18 @@ data class OpenAIFile(
     }
 
     /**
-    * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
-    * Values: fineMinusTune,fineMinusTuneMinusResults,assistants,assistants_output
+    * The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
+    * Values: assistants,assistants_output,batch,batch_output,fineMinusTune,fineMinusTuneMinusResults,vision
     */
     enum class Purpose(@get:JsonValue val value: kotlin.String) {
 
+        assistants("assistants"),
+        assistants_output("assistants_output"),
+        batch("batch"),
+        batch_output("batch_output"),
         fineMinusTune("fine-tune"),
         fineMinusTuneMinusResults("fine-tune-results"),
-        assistants("assistants"),
-        assistants_output("assistants_output");
+        vision("vision");
 
         companion object {
             @JvmStatic

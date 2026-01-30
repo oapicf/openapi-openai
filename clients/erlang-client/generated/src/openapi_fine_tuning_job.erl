@@ -20,7 +20,9 @@
        'training_file' := binary(),
        'validation_file' := binary(),
        'integrations' => list(),
-       'seed' := integer()
+       'seed' := integer(),
+       'estimated_finish' => integer(),
+       'method' => openapi_fine_tune_method:openapi_fine_tune_method()
      }.
 
 encode(#{ 'id' := Id,
@@ -38,7 +40,9 @@ encode(#{ 'id' := Id,
           'training_file' := TrainingFile,
           'validation_file' := ValidationFile,
           'integrations' := Integrations,
-          'seed' := Seed
+          'seed' := Seed,
+          'estimated_finish' := EstimatedFinish,
+          'method' := Method
         }) ->
     #{ 'id' => Id,
        'created_at' => CreatedAt,
@@ -55,5 +59,7 @@ encode(#{ 'id' := Id,
        'training_file' => TrainingFile,
        'validation_file' => ValidationFile,
        'integrations' => Integrations,
-       'seed' => Seed
+       'seed' => Seed,
+       'estimated_finish' => EstimatedFinish,
+       'method' => Method
      }.

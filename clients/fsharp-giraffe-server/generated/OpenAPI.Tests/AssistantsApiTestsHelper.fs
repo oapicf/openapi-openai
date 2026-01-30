@@ -24,12 +24,29 @@ module AssistantsApiHandlerTestsHelper =
   let mutable CreateAssistantBody = ""
 
   CreateAssistantBody <- WebUtility.HtmlDecode "{
+  &quot;top_p&quot; : 1,
   &quot;instructions&quot; : &quot;instructions&quot;,
+  &quot;tool_resources&quot; : {
+    &quot;code_interpreter&quot; : {
+      &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ]
+    },
+    &quot;file_search&quot; : {
+      &quot;vector_store_ids&quot; : [ &quot;vector_store_ids&quot; ],
+      &quot;vector_stores&quot; : [ {
+        &quot;chunking_strategy&quot; : {
+          &quot;type&quot; : &quot;auto&quot;
+        },
+        &quot;metadata&quot; : &quot;{}&quot;,
+        &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ]
+      } ]
+    }
+  },
   &quot;metadata&quot; : &quot;{}&quot;,
+  &quot;response_format&quot; : &quot;auto&quot;,
   &quot;name&quot; : &quot;name&quot;,
-  &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ],
+  &quot;temperature&quot; : 1,
   &quot;description&quot; : &quot;description&quot;,
-  &quot;model&quot; : &quot;gpt-4-turbo&quot;,
+  &quot;model&quot; : &quot;gpt-4o&quot;,
   &quot;tools&quot; : [ {
     &quot;type&quot; : &quot;code_interpreter&quot;
   }, {
@@ -48,26 +65,28 @@ module AssistantsApiHandlerTestsHelper =
     CreateAssistantExamples.[mediaType]
       |> getConverter mediaType
 
-  let mutable CreateAssistantFileExamples = Map.empty
-  let mutable CreateAssistantFileBody = ""
-
-  CreateAssistantFileBody <- WebUtility.HtmlDecode "{
-  &quot;file_id&quot; : &quot;file_id&quot;
-}"
-  CreateAssistantFileExamples <- CreateAssistantFileExamples.Add("application/json", CreateAssistantFileBody)
-
-  let getCreateAssistantFileExample mediaType =
-    CreateAssistantFileExamples.[mediaType]
-      |> getConverter mediaType
-
   let mutable CreateMessageExamples = Map.empty
   let mutable CreateMessageBody = ""
 
   CreateMessageBody <- WebUtility.HtmlDecode "{
   &quot;metadata&quot; : &quot;{}&quot;,
   &quot;role&quot; : &quot;user&quot;,
-  &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ],
-  &quot;content&quot; : &quot;content&quot;
+  &quot;attachments&quot; : [ {
+    &quot;file_id&quot; : &quot;file_id&quot;,
+    &quot;tools&quot; : [ {
+      &quot;type&quot; : &quot;code_interpreter&quot;
+    }, {
+      &quot;type&quot; : &quot;code_interpreter&quot;
+    } ]
+  }, {
+    &quot;file_id&quot; : &quot;file_id&quot;,
+    &quot;tools&quot; : [ {
+      &quot;type&quot; : &quot;code_interpreter&quot;
+    }, {
+      &quot;type&quot; : &quot;code_interpreter&quot;
+    } ]
+  } ],
+  &quot;content&quot; : &quot;CreateMessageRequest_content&quot;
 }"
   CreateMessageExamples <- CreateMessageExamples.Add("application/json", CreateMessageBody)
 
@@ -86,13 +105,41 @@ module AssistantsApiHandlerTestsHelper =
   &quot;additional_messages&quot; : [ {
     &quot;metadata&quot; : &quot;{}&quot;,
     &quot;role&quot; : &quot;user&quot;,
-    &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ],
-    &quot;content&quot; : &quot;content&quot;
+    &quot;attachments&quot; : [ {
+      &quot;file_id&quot; : &quot;file_id&quot;,
+      &quot;tools&quot; : [ {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      }, {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      } ]
+    }, {
+      &quot;file_id&quot; : &quot;file_id&quot;,
+      &quot;tools&quot; : [ {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      }, {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      } ]
+    } ],
+    &quot;content&quot; : &quot;CreateMessageRequest_content&quot;
   }, {
     &quot;metadata&quot; : &quot;{}&quot;,
     &quot;role&quot; : &quot;user&quot;,
-    &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ],
-    &quot;content&quot; : &quot;content&quot;
+    &quot;attachments&quot; : [ {
+      &quot;file_id&quot; : &quot;file_id&quot;,
+      &quot;tools&quot; : [ {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      }, {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      } ]
+    }, {
+      &quot;file_id&quot; : &quot;file_id&quot;,
+      &quot;tools&quot; : [ {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      }, {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      } ]
+    } ],
+    &quot;content&quot; : &quot;CreateMessageRequest_content&quot;
   } ],
   &quot;tools&quot; : [ {
     &quot;type&quot; : &quot;code_interpreter&quot;
@@ -109,12 +156,14 @@ module AssistantsApiHandlerTestsHelper =
     &quot;last_messages&quot; : 1,
     &quot;type&quot; : &quot;auto&quot;
   },
+  &quot;top_p&quot; : 1,
   &quot;max_completion_tokens&quot; : 256,
-  &quot;response_format&quot; : &quot;none&quot;,
+  &quot;response_format&quot; : &quot;auto&quot;,
+  &quot;parallel_tool_calls&quot; : true,
   &quot;stream&quot; : true,
   &quot;temperature&quot; : 1,
   &quot;tool_choice&quot; : &quot;none&quot;,
-  &quot;model&quot; : &quot;gpt-4-turbo&quot;,
+  &quot;model&quot; : &quot;gpt-4o&quot;,
   &quot;max_prompt_tokens&quot; : 256
 }"
   CreateRunExamples <- CreateRunExamples.Add("application/json", CreateRunBody)
@@ -127,17 +176,60 @@ module AssistantsApiHandlerTestsHelper =
   let mutable CreateThreadBody = ""
 
   CreateThreadBody <- WebUtility.HtmlDecode "{
+  &quot;tool_resources&quot; : {
+    &quot;code_interpreter&quot; : {
+      &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ]
+    },
+    &quot;file_search&quot; : {
+      &quot;vector_store_ids&quot; : [ &quot;vector_store_ids&quot; ],
+      &quot;vector_stores&quot; : [ {
+        &quot;chunking_strategy&quot; : {
+          &quot;type&quot; : &quot;auto&quot;
+        },
+        &quot;metadata&quot; : &quot;{}&quot;,
+        &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ]
+      } ]
+    }
+  },
   &quot;metadata&quot; : &quot;{}&quot;,
   &quot;messages&quot; : [ {
     &quot;metadata&quot; : &quot;{}&quot;,
     &quot;role&quot; : &quot;user&quot;,
-    &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ],
-    &quot;content&quot; : &quot;content&quot;
+    &quot;attachments&quot; : [ {
+      &quot;file_id&quot; : &quot;file_id&quot;,
+      &quot;tools&quot; : [ {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      }, {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      } ]
+    }, {
+      &quot;file_id&quot; : &quot;file_id&quot;,
+      &quot;tools&quot; : [ {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      }, {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      } ]
+    } ],
+    &quot;content&quot; : &quot;CreateMessageRequest_content&quot;
   }, {
     &quot;metadata&quot; : &quot;{}&quot;,
     &quot;role&quot; : &quot;user&quot;,
-    &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ],
-    &quot;content&quot; : &quot;content&quot;
+    &quot;attachments&quot; : [ {
+      &quot;file_id&quot; : &quot;file_id&quot;,
+      &quot;tools&quot; : [ {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      }, {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      } ]
+    }, {
+      &quot;file_id&quot; : &quot;file_id&quot;,
+      &quot;tools&quot; : [ {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      }, {
+        &quot;type&quot; : &quot;code_interpreter&quot;
+      } ]
+    } ],
+    &quot;content&quot; : &quot;CreateMessageRequest_content&quot;
   } ]
 }"
   CreateThreadExamples <- CreateThreadExamples.Add("application/json", CreateThreadBody)
@@ -151,20 +243,71 @@ module AssistantsApiHandlerTestsHelper =
 
   CreateThreadAndRunBody <- WebUtility.HtmlDecode "{
   &quot;instructions&quot; : &quot;instructions&quot;,
+  &quot;tool_resources&quot; : {
+    &quot;code_interpreter&quot; : {
+      &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ]
+    },
+    &quot;file_search&quot; : {
+      &quot;vector_store_ids&quot; : [ &quot;vector_store_ids&quot; ]
+    }
+  },
   &quot;metadata&quot; : &quot;{}&quot;,
   &quot;assistant_id&quot; : &quot;assistant_id&quot;,
   &quot;thread&quot; : {
+    &quot;tool_resources&quot; : {
+      &quot;code_interpreter&quot; : {
+        &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ]
+      },
+      &quot;file_search&quot; : {
+        &quot;vector_store_ids&quot; : [ &quot;vector_store_ids&quot; ],
+        &quot;vector_stores&quot; : [ {
+          &quot;chunking_strategy&quot; : {
+            &quot;type&quot; : &quot;auto&quot;
+          },
+          &quot;metadata&quot; : &quot;{}&quot;,
+          &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ]
+        } ]
+      }
+    },
     &quot;metadata&quot; : &quot;{}&quot;,
     &quot;messages&quot; : [ {
       &quot;metadata&quot; : &quot;{}&quot;,
       &quot;role&quot; : &quot;user&quot;,
-      &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ],
-      &quot;content&quot; : &quot;content&quot;
+      &quot;attachments&quot; : [ {
+        &quot;file_id&quot; : &quot;file_id&quot;,
+        &quot;tools&quot; : [ {
+          &quot;type&quot; : &quot;code_interpreter&quot;
+        }, {
+          &quot;type&quot; : &quot;code_interpreter&quot;
+        } ]
+      }, {
+        &quot;file_id&quot; : &quot;file_id&quot;,
+        &quot;tools&quot; : [ {
+          &quot;type&quot; : &quot;code_interpreter&quot;
+        }, {
+          &quot;type&quot; : &quot;code_interpreter&quot;
+        } ]
+      } ],
+      &quot;content&quot; : &quot;CreateMessageRequest_content&quot;
     }, {
       &quot;metadata&quot; : &quot;{}&quot;,
       &quot;role&quot; : &quot;user&quot;,
-      &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ],
-      &quot;content&quot; : &quot;content&quot;
+      &quot;attachments&quot; : [ {
+        &quot;file_id&quot; : &quot;file_id&quot;,
+        &quot;tools&quot; : [ {
+          &quot;type&quot; : &quot;code_interpreter&quot;
+        }, {
+          &quot;type&quot; : &quot;code_interpreter&quot;
+        } ]
+      }, {
+        &quot;file_id&quot; : &quot;file_id&quot;,
+        &quot;tools&quot; : [ {
+          &quot;type&quot; : &quot;code_interpreter&quot;
+        }, {
+          &quot;type&quot; : &quot;code_interpreter&quot;
+        } ]
+      } ],
+      &quot;content&quot; : &quot;CreateMessageRequest_content&quot;
     } ]
   },
   &quot;tools&quot; : [ {
@@ -182,12 +325,14 @@ module AssistantsApiHandlerTestsHelper =
     &quot;last_messages&quot; : 1,
     &quot;type&quot; : &quot;auto&quot;
   },
+  &quot;top_p&quot; : 1,
   &quot;max_completion_tokens&quot; : 256,
-  &quot;response_format&quot; : &quot;none&quot;,
+  &quot;response_format&quot; : &quot;auto&quot;,
+  &quot;parallel_tool_calls&quot; : true,
   &quot;stream&quot; : true,
   &quot;temperature&quot; : 1,
   &quot;tool_choice&quot; : &quot;none&quot;,
-  &quot;model&quot; : &quot;gpt-4-turbo&quot;,
+  &quot;model&quot; : &quot;gpt-4o&quot;,
   &quot;max_prompt_tokens&quot; : 256
 }"
   CreateThreadAndRunExamples <- CreateThreadAndRunExamples.Add("application/json", CreateThreadAndRunBody)
@@ -219,23 +364,25 @@ module AssistantsApiHandlerTestsHelper =
 
   ()
 
-  ()
-
-  ()
-
-  ()
-
-  ()
-
 
   let mutable ModifyAssistantExamples = Map.empty
   let mutable ModifyAssistantBody = ""
 
   ModifyAssistantBody <- WebUtility.HtmlDecode "{
+  &quot;top_p&quot; : 1,
   &quot;instructions&quot; : &quot;instructions&quot;,
+  &quot;tool_resources&quot; : {
+    &quot;code_interpreter&quot; : {
+      &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ]
+    },
+    &quot;file_search&quot; : {
+      &quot;vector_store_ids&quot; : [ &quot;vector_store_ids&quot; ]
+    }
+  },
   &quot;metadata&quot; : &quot;{}&quot;,
+  &quot;response_format&quot; : &quot;auto&quot;,
   &quot;name&quot; : &quot;name&quot;,
-  &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ],
+  &quot;temperature&quot; : 1,
   &quot;description&quot; : &quot;description&quot;,
   &quot;model&quot; : &quot;model&quot;,
   &quot;tools&quot; : [ {
@@ -284,6 +431,14 @@ module AssistantsApiHandlerTestsHelper =
   let mutable ModifyThreadBody = ""
 
   ModifyThreadBody <- WebUtility.HtmlDecode "{
+  &quot;tool_resources&quot; : {
+    &quot;code_interpreter&quot; : {
+      &quot;file_ids&quot; : [ &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot;, &quot;file_ids&quot; ]
+    },
+    &quot;file_search&quot; : {
+      &quot;vector_store_ids&quot; : [ &quot;vector_store_ids&quot; ]
+    }
+  },
   &quot;metadata&quot; : &quot;{}&quot;
 }"
   ModifyThreadExamples <- ModifyThreadExamples.Add("application/json", ModifyThreadBody)

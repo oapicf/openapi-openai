@@ -16,6 +16,7 @@ import io.vertx.core.json.Json
 import io.vertx.core.json.JsonArray
 import com.google.gson.reflect.TypeToken
 import com.google.gson.Gson
+import org.openapitools.server.api.model.AudioResponseFormat
 import org.openapitools.server.api.model.CreateSpeechRequest
 import org.openapitools.server.api.model.CreateTranscription200Response
 import org.openapitools.server.api.model.CreateTranscriptionRequestModel
@@ -101,7 +102,8 @@ class AudioApiVertxProxyHandler(private val vertx: Vertx, private val service: A
                     val model = Gson().fromJson(modelParam.encode(), CreateTranscriptionRequestModel::class.java)
                     val language = ApiHandlerUtils.searchStringInJson(params,"language")
                     val prompt = ApiHandlerUtils.searchStringInJson(params,"prompt")
-                    val responseFormat = ApiHandlerUtils.searchStringInJson(params,"response_format")
+                    val responseFormatParam = ApiHandlerUtils.searchJsonObjectInJson(params,"response_format")
+                    val responseFormat = if(responseFormatParam ==null) null else Gson().fromJson(responseFormatParam.encode(), AudioResponseFormat::class.java)
                     val temperature = ApiHandlerUtils.searchDoubleInJson(params,"temperature")
                     val timestampGranularitiesParam = ApiHandlerUtils.searchJsonArrayInJson(params,"timestamp_granularities[]")
                     val timestampGranularities:kotlin.Array<kotlin.String>? = if(timestampGranularitiesParam == null) null
@@ -133,7 +135,8 @@ class AudioApiVertxProxyHandler(private val vertx: Vertx, private val service: A
                     }
                     val model = Gson().fromJson(modelParam.encode(), CreateTranscriptionRequestModel::class.java)
                     val prompt = ApiHandlerUtils.searchStringInJson(params,"prompt")
-                    val responseFormat = ApiHandlerUtils.searchStringInJson(params,"response_format")
+                    val responseFormatParam = ApiHandlerUtils.searchJsonObjectInJson(params,"response_format")
+                    val responseFormat = if(responseFormatParam ==null) null else Gson().fromJson(responseFormatParam.encode(), AudioResponseFormat::class.java)
                     val temperature = ApiHandlerUtils.searchDoubleInJson(params,"temperature")
                     GlobalScope.launch(vertx.dispatcher()){
                         val result = service.createTranslation(file,model,prompt,responseFormat,temperature,context)

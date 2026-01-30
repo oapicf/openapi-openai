@@ -4,6 +4,7 @@ import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
+import org.openapitools.model.ModifyThreadRequestToolResources
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -20,7 +21,8 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param id The identifier, which can be referenced in API endpoints.
  * @param &#x60;object&#x60; The object type, which is always `thread`.
  * @param createdAt The Unix timestamp (in seconds) for when the thread was created.
- * @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+ * @param toolResources 
+ * @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
  */
 data class ThreadObject(
 
@@ -34,7 +36,11 @@ data class ThreadObject(
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("tool_resources", required = true) val toolResources: ModifyThreadRequestToolResources?,
+
+    @field:Valid
+    @Schema(example = "null", required = true, description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
     @get:JsonProperty("metadata", required = true) val metadata: kotlin.Any?
 ) {
 

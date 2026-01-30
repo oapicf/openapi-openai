@@ -3,7 +3,9 @@ package org.openapitools.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.CreateChatCompletionStreamResponseChoicesInner;
+import org.openapitools.model.CreateChatCompletionStreamResponseUsage;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -25,9 +27,9 @@ public class CreateChatCompletionStreamResponse  {
   private String id;
 
  /**
-  * A list of chat completion choices. Can be more than one if `n` is greater than 1.
+  * A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. 
   */
-  @ApiModelProperty(required = true, value = "A list of chat completion choices. Can be more than one if `n` is greater than 1.")
+  @ApiModelProperty(required = true, value = "A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. ")
 
   private List<CreateChatCompletionStreamResponseChoicesInner> choices = new ArrayList<>();
 
@@ -44,6 +46,43 @@ public class CreateChatCompletionStreamResponse  {
   @ApiModelProperty(required = true, value = "The model to generate the completion.")
 
   private String model;
+
+public enum ServiceTierEnum {
+
+SCALE(String.valueOf("scale")), DEFAULT(String.valueOf("default"));
+
+
+    private String value;
+
+    ServiceTierEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    public static ServiceTierEnum fromValue(String value) {
+        for (ServiceTierEnum b : ServiceTierEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        return null;
+    }
+}
+
+ /**
+  * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+  */
+  @ApiModelProperty(example = "scale", value = "The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.")
+
+  private ServiceTierEnum serviceTier;
 
  /**
   * This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
@@ -88,6 +127,10 @@ CHAT_COMPLETION_CHUNK(String.valueOf("chat.completion.chunk"));
   @ApiModelProperty(required = true, value = "The object type, which is always `chat.completion.chunk`.")
 
   private ObjectEnum _object;
+
+  @ApiModelProperty(value = "")
+
+  private CreateChatCompletionStreamResponseUsage usage;
  /**
    * A unique identifier for the chat completion. Each chunk has the same ID.
    * @return id
@@ -107,7 +150,7 @@ CHAT_COMPLETION_CHUNK(String.valueOf("chat.completion.chunk"));
   }
 
  /**
-   * A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1.
+   * A list of chat completion choices. Can contain more than one elements if &#x60;n&#x60; is greater than 1. Can also be empty for the last chunk if you set &#x60;stream_options: {\&quot;include_usage\&quot;: true}&#x60;. 
    * @return choices
   **/
   @JsonProperty("choices")
@@ -166,6 +209,27 @@ CHAT_COMPLETION_CHUNK(String.valueOf("chat.completion.chunk"));
   }
 
  /**
+   * The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request.
+   * @return serviceTier
+  **/
+  @JsonProperty("service_tier")
+  public String getServiceTier() {
+    if (serviceTier == null) {
+      return null;
+    }
+    return serviceTier.value();
+  }
+
+  public void setServiceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
+  }
+
+  public CreateChatCompletionStreamResponse serviceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
+    return this;
+  }
+
+ /**
    * This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. 
    * @return systemFingerprint
   **/
@@ -204,6 +268,24 @@ CHAT_COMPLETION_CHUNK(String.valueOf("chat.completion.chunk"));
     return this;
   }
 
+ /**
+   * Get usage
+   * @return usage
+  **/
+  @JsonProperty("usage")
+  public CreateChatCompletionStreamResponseUsage getUsage() {
+    return usage;
+  }
+
+  public void setUsage(CreateChatCompletionStreamResponseUsage usage) {
+    this.usage = usage;
+  }
+
+  public CreateChatCompletionStreamResponse usage(CreateChatCompletionStreamResponseUsage usage) {
+    this.usage = usage;
+    return this;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -217,13 +299,15 @@ CHAT_COMPLETION_CHUNK(String.valueOf("chat.completion.chunk"));
         Objects.equals(this.choices, createChatCompletionStreamResponse.choices) &&
         Objects.equals(this.created, createChatCompletionStreamResponse.created) &&
         Objects.equals(this.model, createChatCompletionStreamResponse.model) &&
+        Objects.equals(this.serviceTier, createChatCompletionStreamResponse.serviceTier) &&
         Objects.equals(this.systemFingerprint, createChatCompletionStreamResponse.systemFingerprint) &&
-        Objects.equals(this._object, createChatCompletionStreamResponse._object);
+        Objects.equals(this._object, createChatCompletionStreamResponse._object) &&
+        Objects.equals(this.usage, createChatCompletionStreamResponse.usage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, choices, created, model, systemFingerprint, _object);
+    return Objects.hash(id, choices, created, model, serviceTier, systemFingerprint, _object, usage);
   }
 
   @Override
@@ -235,8 +319,10 @@ CHAT_COMPLETION_CHUNK(String.valueOf("chat.completion.chunk"));
     sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    serviceTier: ").append(toIndentedString(serviceTier)).append("\n");
     sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -25,10 +26,16 @@ public class FunctionObject  {
   private String name;
 
  /**
-  * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
+  * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
   */
-  @ApiModelProperty(value = "The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.")
+  @ApiModelProperty(value = "The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.")
   private Map<String, Object> parameters = new HashMap<>();
+
+ /**
+  * Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).
+  */
+  @ApiModelProperty(value = "Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).")
+  private Boolean strict = false;
  /**
   * A description of what the function does, used by the model to choose when and how to call the function.
   * @return description
@@ -79,7 +86,7 @@ public class FunctionObject  {
   }
 
  /**
-  * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.
+  * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.
   * @return parameters
   */
   @JsonProperty("parameters")
@@ -110,6 +117,30 @@ public class FunctionObject  {
     return this;
   }
 
+ /**
+  * Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the &#x60;parameters&#x60; field. Only a subset of JSON Schema is supported when &#x60;strict&#x60; is &#x60;true&#x60;. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).
+  * @return strict
+  */
+  @JsonProperty("strict")
+  public Boolean getStrict() {
+    return strict;
+  }
+
+  /**
+   * Sets the <code>strict</code> property.
+   */
+ public void setStrict(Boolean strict) {
+    this.strict = strict;
+  }
+
+  /**
+   * Sets the <code>strict</code> property.
+   */
+  public FunctionObject strict(Boolean strict) {
+    this.strict = strict;
+    return this;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -122,12 +153,13 @@ public class FunctionObject  {
     FunctionObject functionObject = (FunctionObject) o;
     return Objects.equals(this.description, functionObject.description) &&
         Objects.equals(this.name, functionObject.name) &&
-        Objects.equals(this.parameters, functionObject.parameters);
+        Objects.equals(this.parameters, functionObject.parameters) &&
+        Objects.equals(this.strict, functionObject.strict);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, name, parameters);
+    return Objects.hash(description, name, parameters, strict);
   }
 
   @Override
@@ -138,6 +170,7 @@ public class FunctionObject  {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
+    sb.append("    strict: ").append(toIndentedString(strict)).append("\n");
     sb.append("}");
     return sb.toString();
   }

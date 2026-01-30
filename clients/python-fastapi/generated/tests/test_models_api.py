@@ -42,7 +42,7 @@ def test_retrieve_model(client: TestClient):
     # uncomment below to make a request
     #response = client.request(
     #    "GET",
-    #    "/models/{model}".format(model='gpt-3.5-turbo'),
+    #    "/models/{model}".format(model='gpt-4o-mini'),
     #    headers=headers,
     #)
 
@@ -62,7 +62,7 @@ def test_delete_model(client: TestClient):
     # uncomment below to make a request
     #response = client.request(
     #    "DELETE",
-    #    "/models/{model}".format(model='ft:gpt-3.5-turbo:acemeco:suffix:abc123'),
+    #    "/models/{model}".format(model='ft:gpt-4o-mini:acemeco:suffix:abc123'),
     #    headers=headers,
     #)
 

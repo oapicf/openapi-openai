@@ -210,7 +210,7 @@ class OpenAIFile(Model):
     def purpose(self) -> str:
         """Gets the purpose of this OpenAIFile.
 
-        The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.  # noqa: E501
+        The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.  # noqa: E501
 
         :return: The purpose of this OpenAIFile.
         :rtype: str
@@ -221,12 +221,12 @@ class OpenAIFile(Model):
     def purpose(self, purpose: str):
         """Sets the purpose of this OpenAIFile.
 
-        The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.  # noqa: E501
+        The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.  # noqa: E501
 
         :param purpose: The purpose of this OpenAIFile.
         :type purpose: str
         """
-        allowed_values = ["fine-tune", "fine-tune-results", "assistants", "assistants_output"]  # noqa: E501
+        allowed_values = ["assistants", "assistants_output", "batch", "batch_output", "fine-tune", "fine-tune-results", "vision"]  # noqa: E501
         if purpose not in allowed_values:
             raise ValueError(
                 "Invalid value for `purpose` ({0}), must be one of {1}"

@@ -1,9 +1,9 @@
 const utils = require('../utils/utils');
 const RunStepDeltaStepDetailsToolCallsCodeObject = require('../models/RunStepDeltaStepDetailsToolCallsCodeObject');
 const RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter = require('../models/RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter');
+const RunStepDeltaStepDetailsToolCallsFileSearchObject = require('../models/RunStepDeltaStepDetailsToolCallsFileSearchObject');
 const RunStepDeltaStepDetailsToolCallsFunctionObject = require('../models/RunStepDeltaStepDetailsToolCallsFunctionObject');
 const RunStepDeltaStepDetailsToolCallsFunctionObject_function = require('../models/RunStepDeltaStepDetailsToolCallsFunctionObject_function');
-const RunStepDeltaStepDetailsToolCallsRetrievalObject = require('../models/RunStepDeltaStepDetailsToolCallsRetrievalObject');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
@@ -27,14 +27,15 @@ module.exports = {
                 type: 'string',
                 choices: [
                     'code_interpreter',
-                    'retrieval',
+                    'file_search',
                     'function',
                 ],
             },
             ...RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter.fields(`${keyPrefix}code_interpreter`, isInput),
             {
-                key: `${keyPrefix}retrieval`,
-                label: `For now, this is always going to be an empty object. - [${labelPrefix}retrieval]`,
+                key: `${keyPrefix}file_search`,
+                label: `For now, this is always going to be an empty object. - [${labelPrefix}file_search]`,
+                required: true,
                 dict: true,
             },
             ...RunStepDeltaStepDetailsToolCallsFunctionObject_function.fields(`${keyPrefix}function`, isInput),
@@ -47,7 +48,7 @@ module.exports = {
             'id': bundle.inputData?.[`${keyPrefix}id`],
             'type': bundle.inputData?.[`${keyPrefix}type`],
             'code_interpreter': utils.removeIfEmpty(RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter.mapping(bundle, `${keyPrefix}code_interpreter`)),
-            'retrieval': bundle.inputData?.[`${keyPrefix}retrieval`],
+            'file_search': bundle.inputData?.[`${keyPrefix}file_search`],
             'function': utils.removeIfEmpty(RunStepDeltaStepDetailsToolCallsFunctionObject_function.mapping(bundle, `${keyPrefix}function`)),
         }
     },

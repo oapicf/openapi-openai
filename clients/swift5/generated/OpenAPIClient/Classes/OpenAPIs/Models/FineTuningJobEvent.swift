@@ -13,45 +13,64 @@ import AnyCodable
 /** Fine-tuning job event object */
 public struct FineTuningJobEvent: Codable, JSONEncodable, Hashable {
 
+    public enum Object: String, Codable, CaseIterable {
+        case fineTuningPeriodJobPeriodEvent = "fine_tuning.job.event"
+    }
     public enum Level: String, Codable, CaseIterable {
         case info = "info"
         case warn = "warn"
         case error = "error"
     }
-    public enum Object: String, Codable, CaseIterable {
-        case fineTuningPeriodJobPeriodEvent = "fine_tuning.job.event"
+    public enum ModelType: String, Codable, CaseIterable {
+        case message = "message"
+        case metrics = "metrics"
     }
-    public var id: String
-    public var createdAt: Int
-    public var level: Level
-    public var message: String
+    /** The object type, which is always \"fine_tuning.job.event\". */
     public var object: Object
+    /** The object identifier. */
+    public var id: String
+    /** The Unix timestamp (in seconds) for when the fine-tuning job was created. */
+    public var createdAt: Int
+    /** The log level of the event. */
+    public var level: Level
+    /** The message of the event. */
+    public var message: String
+    /** The type of event. */
+    public var type: ModelType?
+    /** The data associated with the event. */
+    public var data: AnyCodable?
 
-    public init(id: String, createdAt: Int, level: Level, message: String, object: Object) {
+    public init(object: Object, id: String, createdAt: Int, level: Level, message: String, type: ModelType? = nil, data: AnyCodable? = nil) {
+        self.object = object
         self.id = id
         self.createdAt = createdAt
         self.level = level
         self.message = message
-        self.object = object
+        self.type = type
+        self.data = data
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case object
         case id
         case createdAt = "created_at"
         case level
         case message
-        case object
+        case type
+        case data
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(object, forKey: .object)
         try container.encode(id, forKey: .id)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(level, forKey: .level)
         try container.encode(message, forKey: .message)
-        try container.encode(object, forKey: .object)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(data, forKey: .data)
     }
 }
 

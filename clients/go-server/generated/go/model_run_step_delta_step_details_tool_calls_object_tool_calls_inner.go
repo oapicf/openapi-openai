@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -28,7 +28,7 @@ type RunStepDeltaStepDetailsToolCallsObjectToolCallsInner struct {
 	CodeInterpreter RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter `json:"code_interpreter,omitempty"`
 
 	// For now, this is always going to be an empty object.
-	Retrieval map[string]interface{} `json:"retrieval,omitempty"`
+	FileSearch map[string]interface{} `json:"file_search"`
 
 	Function RunStepDeltaStepDetailsToolCallsFunctionObjectFunction `json:"function,omitempty"`
 }
@@ -38,6 +38,7 @@ func AssertRunStepDeltaStepDetailsToolCallsObjectToolCallsInnerRequired(obj RunS
 	elements := map[string]interface{}{
 		"index": obj.Index,
 		"type": obj.Type,
+		"file_search": obj.FileSearch,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {

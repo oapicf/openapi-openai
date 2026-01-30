@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "The `File` object represents a document that has been uploaded to OpenAI.")
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T10:45:02.588292416Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class OpenAIFile   {
   @JsonProperty("id")
   private String id;
@@ -63,16 +63,22 @@ public class OpenAIFile   {
   private ObjectEnum _object;
 
   /**
-   * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+   * The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
    */
   public enum PurposeEnum {
+    ASSISTANTS("assistants"),
+    
+    ASSISTANTS_OUTPUT("assistants_output"),
+    
+    BATCH("batch"),
+    
+    BATCH_OUTPUT("batch_output"),
+    
     FINE_TUNE("fine-tune"),
     
     FINE_TUNE_RESULTS("fine-tune-results"),
     
-    ASSISTANTS("assistants"),
-    
-    ASSISTANTS_OUTPUT("assistants_output");
+    VISION("vision");
 
     private String value;
 
@@ -235,10 +241,10 @@ public class OpenAIFile   {
   }
 
   /**
-   * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+   * The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
    * @return purpose
    */
-  @ApiModelProperty(required = true, value = "The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.")
+  @ApiModelProperty(required = true, value = "The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.")
   public PurposeEnum getPurpose() {
     return purpose;
   }

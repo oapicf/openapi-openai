@@ -7,6 +7,7 @@ authors     = ["F. Bar (foo@bar.baz)"]
 
 imports {
   Root = tosca.resourceTypes.Root
+  ChatCompletionStreamOptions = openapi_server.resourceTypes.ChatCompletionStreamOptions
   CreateCompletionRequestModel = openapi_server.resourceTypes.CreateCompletionRequestModel
   CreateCompletionRequestPrompt = openapi_server.resourceTypes.CreateCompletionRequestPrompt
   CreateCompletionRequestStop = openapi_server.resourceTypes.CreateCompletionRequestStop
@@ -40,7 +41,7 @@ resourceTypes {
         }
         frequency_penalty {
           type =  
-          description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) "
+          description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) "
           optional = false
         }
         logit_bias {
@@ -65,7 +66,7 @@ resourceTypes {
         }
         presence_penalty {
           type =  
-          description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) "
+          description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) "
           optional = false
         }
         seed {
@@ -81,6 +82,11 @@ resourceTypes {
         stream {
           type =  boolean
           description = "Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a &#x60;data: [DONE]&#x60; message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). "
+          optional = false
+        }
+        stream_options {
+          type = ChatCompletionStreamOptions
+          description = ""
           optional = false
         }
         suffix {
@@ -100,7 +106,7 @@ resourceTypes {
         }
         user {
           type =  string
-          description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). "
+          description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). "
           optional = false
         }
     }

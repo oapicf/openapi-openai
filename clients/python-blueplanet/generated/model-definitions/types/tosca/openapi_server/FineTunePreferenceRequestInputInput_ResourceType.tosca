@@ -1,0 +1,49 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FineTunePreferenceRequestInputInput"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FineTunePreferenceRequestInputInput"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ChatCompletionTool = openapi_server.resourceTypes.ChatCompletionTool
+  FineTuneChatRequestInputMessagesInner = openapi_server.resourceTypes.FineTuneChatRequestInputMessagesInner
+}
+resourceTypes {
+
+  FineTunePreferenceRequestInputInput {
+    title = FineTunePreferenceRequestInputInput
+    description = FineTunePreferenceRequestInputInput
+    derivedFrom = Root
+    properties {
+        messages {
+          type = array
+          items.type = FineTuneChatRequestInputMessagesInner
+          description = ""
+          optional = false
+        }
+        tools {
+          type = array
+          items.type = ChatCompletionTool
+          description = "A list of tools the model may generate JSON inputs for."
+          optional = false
+        }
+        parallel_tool_calls {
+          type =  boolean
+          description = "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  FineTunePreferenceRequestInputInput {
+    title = FineTunePreferenceRequestInputInput
+    description = FineTunePreferenceRequestInputInput
+    implements = openapi_server.resourceTypes.FineTunePreferenceRequestInputInput
+
+  }
+}

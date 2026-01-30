@@ -70,16 +70,9 @@ private class OASCreateMessageRequestTest {
     }
 
     @isTest
-    private static void maintainRenamedProperties() {
-        OASCreateMessageRequest createMessageRequest = new OASCreateMessageRequest();
-        Map<String, String> x-property-mappings = createMessageRequest.getx-property-mappings();
-        System.assertEquals('fileIds', x-property-mappings.get('file_ids'));
-    }
-
-    @isTest
     private static void defaultValuesPopulated() {
         OASCreateMessageRequest createMessageRequest = new OASCreateMessageRequest();
-        System.assertEquals(new List<String>(), createMessageRequest.fileIds);
+        System.assertEquals(new List<OASCreateMessageRequestAttachmentsIn>(), createMessageRequest.attachments);
         System.assertEquals(null, createMessageRequest.role);
         System.assertEquals(null, createMessageRequest.content);
         System.assertEquals(null, createMessageRequest.metadata);

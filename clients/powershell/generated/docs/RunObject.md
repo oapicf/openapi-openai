@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **CreatedAt** | **Int32** | The Unix timestamp (in seconds) for when the run was created. | 
 **ThreadId** | **String** | The ID of the [thread](/docs/api-reference/threads) that was executed on as a part of this run. | 
 **AssistantId** | **String** | The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run. | 
-**Status** | **String** | The status of the run, which can be either &#x60;queued&#x60;, &#x60;in_progress&#x60;, &#x60;requires_action&#x60;, &#x60;cancelling&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, or &#x60;expired&#x60;. | 
+**Status** | **String** | The status of the run, which can be either &#x60;queued&#x60;, &#x60;in_progress&#x60;, &#x60;requires_action&#x60;, &#x60;cancelling&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, &#x60;incomplete&#x60;, or &#x60;expired&#x60;. | 
 **RequiredAction** | [**RunObjectRequiredAction**](RunObjectRequiredAction.md) |  | 
 **LastError** | [**RunObjectLastError**](RunObjectLastError.md) |  | 
 **ExpiresAt** | **Int32** | The Unix timestamp (in seconds) for when the run will expire. | 
@@ -20,14 +20,15 @@ Name | Type | Description | Notes
 **Model** | **String** | The model that the [assistant](/docs/api-reference/assistants) used for this run. | 
 **Instructions** | **String** | The instructions that the [assistant](/docs/api-reference/assistants) used for this run. | 
 **Tools** | [**AssistantObjectToolsInner[]**](AssistantObjectToolsInner.md) | The list of tools that the [assistant](/docs/api-reference/assistants) used for this run. | 
-**FileIds** | **String[]** | The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run. | 
-**Metadata** | [**SystemCollectionsHashtable**](.md) | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  | 
+**Metadata** | [**SystemCollectionsHashtable**](.md) | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  | 
 **Usage** | [**RunCompletionUsage**](RunCompletionUsage.md) |  | 
 **Temperature** | **Decimal** | The sampling temperature used for this run. If not set, defaults to 1. | [optional] 
+**TopP** | **Decimal** | The nucleus sampling value used for this run. If not set, defaults to 1. | [optional] 
 **MaxPromptTokens** | **Int32** | The maximum number of prompt tokens specified to have been used over the course of the run.  | 
 **MaxCompletionTokens** | **Int32** | The maximum number of completion tokens specified to have been used over the course of the run.  | 
 **TruncationStrategy** | [**TruncationObject**](TruncationObject.md) |  | 
 **ToolChoice** | [**AssistantsApiToolChoiceOption**](AssistantsApiToolChoiceOption.md) |  | 
+**ParallelToolCalls** | **Boolean** | Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. | [default to $true]
 **ResponseFormat** | [**AssistantsApiResponseFormatOption**](AssistantsApiResponseFormatOption.md) |  | 
 
 ## Examples
@@ -51,14 +52,15 @@ $RunObject = Initialize-PSOpenAPIToolsRunObject  -Id null `
  -Model null `
  -Instructions null `
  -Tools null `
- -FileIds null `
  -Metadata null `
  -Usage null `
  -Temperature null `
+ -TopP null `
  -MaxPromptTokens null `
  -MaxCompletionTokens null `
  -TruncationStrategy null `
  -ToolChoice null `
+ -ParallelToolCalls null `
  -ResponseFormat null
 ```
 

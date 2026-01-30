@@ -6,7 +6,10 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from app.openapi_server.models.base_model import Model
-from app.openapi_server.models.assistants_api_response_format import AssistantsApiResponseFormat  # noqa: F401,E501
+from app.openapi_server.models.response_format_json_object import ResponseFormatJsonObject  # noqa: F401,E501
+from app.openapi_server.models.response_format_json_schema import ResponseFormatJsonSchema  # noqa: F401,E501
+from app.openapi_server.models.response_format_json_schema_json_schema import ResponseFormatJsonSchemaJsonSchema  # noqa: F401,E501
+from app.openapi_server.models.response_format_text import ResponseFormatText  # noqa: F401,E501
 from openapi_server import util
 
 
@@ -16,21 +19,26 @@ class AssistantsApiResponseFormatOption(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, type: str='text'):  # noqa: E501
+    def __init__(self, type: str=None, json_schema: ResponseFormatJsonSchemaJsonSchema=None):  # noqa: E501
         """AssistantsApiResponseFormatOption - a model defined in Swagger
 
         :param type: The type of this AssistantsApiResponseFormatOption.  # noqa: E501
         :type type: str
+        :param json_schema: The json_schema of this AssistantsApiResponseFormatOption.  # noqa: E501
+        :type json_schema: ResponseFormatJsonSchemaJsonSchema
         """
         self.swagger_types = {
-            'type': str
+            'type': str,
+            'json_schema': ResponseFormatJsonSchemaJsonSchema
         }
 
         self.attribute_map = {
-            'type': 'type'
+            'type': 'type',
+            'json_schema': 'json_schema'
         }
 
         self._type = type
+        self._json_schema = json_schema
 
     @classmethod
     def from_dict(cls, dikt) -> 'AssistantsApiResponseFormatOption':
@@ -47,7 +55,7 @@ class AssistantsApiResponseFormatOption(Model):
     def type(self) -> str:
         """Gets the type of this AssistantsApiResponseFormatOption.
 
-        Must be one of `text` or `json_object`.  # noqa: E501
+        The type of response format being defined: `text`  # noqa: E501
 
         :return: The type of this AssistantsApiResponseFormatOption.
         :rtype: str
@@ -58,12 +66,12 @@ class AssistantsApiResponseFormatOption(Model):
     def type(self, type: str):
         """Sets the type of this AssistantsApiResponseFormatOption.
 
-        Must be one of `text` or `json_object`.  # noqa: E501
+        The type of response format being defined: `text`  # noqa: E501
 
         :param type: The type of this AssistantsApiResponseFormatOption.
         :type type: str
         """
-        allowed_values = ["text", "json_object"]  # noqa: E501
+        allowed_values = ["text", "json_object", "json_schema"]  # noqa: E501
         if type not in allowed_values:
             raise ValueError(
                 "Invalid value for `type` ({0}), must be one of {1}"
@@ -71,3 +79,26 @@ class AssistantsApiResponseFormatOption(Model):
             )
 
         self._type = type
+
+    @property
+    def json_schema(self) -> ResponseFormatJsonSchemaJsonSchema:
+        """Gets the json_schema of this AssistantsApiResponseFormatOption.
+
+
+        :return: The json_schema of this AssistantsApiResponseFormatOption.
+        :rtype: ResponseFormatJsonSchemaJsonSchema
+        """
+        return self._json_schema
+
+    @json_schema.setter
+    def json_schema(self, json_schema: ResponseFormatJsonSchemaJsonSchema):
+        """Sets the json_schema of this AssistantsApiResponseFormatOption.
+
+
+        :param json_schema: The json_schema of this AssistantsApiResponseFormatOption.
+        :type json_schema: ResponseFormatJsonSchemaJsonSchema
+        """
+        if json_schema is None:
+            raise ValueError("Invalid value for `json_schema`, must not be `None`")  # noqa: E501
+
+        self._json_schema = json_schema

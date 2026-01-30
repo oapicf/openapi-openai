@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -20,6 +20,8 @@ import (
 // MessageDeltaObjectDeltaContentInner - struct for MessageDeltaObjectDeltaContentInner
 type MessageDeltaObjectDeltaContentInner struct {
 	MessageDeltaContentImageFileObject *MessageDeltaContentImageFileObject
+	MessageDeltaContentImageUrlObject *MessageDeltaContentImageUrlObject
+	MessageDeltaContentRefusalObject *MessageDeltaContentRefusalObject
 	MessageDeltaContentTextObject *MessageDeltaContentTextObject
 }
 
@@ -27,6 +29,20 @@ type MessageDeltaObjectDeltaContentInner struct {
 func MessageDeltaContentImageFileObjectAsMessageDeltaObjectDeltaContentInner(v *MessageDeltaContentImageFileObject) MessageDeltaObjectDeltaContentInner {
 	return MessageDeltaObjectDeltaContentInner{
 		MessageDeltaContentImageFileObject: v,
+	}
+}
+
+// MessageDeltaContentImageUrlObjectAsMessageDeltaObjectDeltaContentInner is a convenience function that returns MessageDeltaContentImageUrlObject wrapped in MessageDeltaObjectDeltaContentInner
+func MessageDeltaContentImageUrlObjectAsMessageDeltaObjectDeltaContentInner(v *MessageDeltaContentImageUrlObject) MessageDeltaObjectDeltaContentInner {
+	return MessageDeltaObjectDeltaContentInner{
+		MessageDeltaContentImageUrlObject: v,
+	}
+}
+
+// MessageDeltaContentRefusalObjectAsMessageDeltaObjectDeltaContentInner is a convenience function that returns MessageDeltaContentRefusalObject wrapped in MessageDeltaObjectDeltaContentInner
+func MessageDeltaContentRefusalObjectAsMessageDeltaObjectDeltaContentInner(v *MessageDeltaContentRefusalObject) MessageDeltaObjectDeltaContentInner {
+	return MessageDeltaObjectDeltaContentInner{
+		MessageDeltaContentRefusalObject: v,
 	}
 }
 
@@ -59,6 +75,40 @@ func (dst *MessageDeltaObjectDeltaContentInner) UnmarshalJSON(data []byte) error
 		dst.MessageDeltaContentImageFileObject = nil
 	}
 
+	// try to unmarshal data into MessageDeltaContentImageUrlObject
+	err = newStrictDecoder(data).Decode(&dst.MessageDeltaContentImageUrlObject)
+	if err == nil {
+		jsonMessageDeltaContentImageUrlObject, _ := json.Marshal(dst.MessageDeltaContentImageUrlObject)
+		if string(jsonMessageDeltaContentImageUrlObject) == "{}" { // empty struct
+			dst.MessageDeltaContentImageUrlObject = nil
+		} else {
+			if err = validator.Validate(dst.MessageDeltaContentImageUrlObject); err != nil {
+				dst.MessageDeltaContentImageUrlObject = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.MessageDeltaContentImageUrlObject = nil
+	}
+
+	// try to unmarshal data into MessageDeltaContentRefusalObject
+	err = newStrictDecoder(data).Decode(&dst.MessageDeltaContentRefusalObject)
+	if err == nil {
+		jsonMessageDeltaContentRefusalObject, _ := json.Marshal(dst.MessageDeltaContentRefusalObject)
+		if string(jsonMessageDeltaContentRefusalObject) == "{}" { // empty struct
+			dst.MessageDeltaContentRefusalObject = nil
+		} else {
+			if err = validator.Validate(dst.MessageDeltaContentRefusalObject); err != nil {
+				dst.MessageDeltaContentRefusalObject = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.MessageDeltaContentRefusalObject = nil
+	}
+
 	// try to unmarshal data into MessageDeltaContentTextObject
 	err = newStrictDecoder(data).Decode(&dst.MessageDeltaContentTextObject)
 	if err == nil {
@@ -79,6 +129,8 @@ func (dst *MessageDeltaObjectDeltaContentInner) UnmarshalJSON(data []byte) error
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.MessageDeltaContentImageFileObject = nil
+		dst.MessageDeltaContentImageUrlObject = nil
+		dst.MessageDeltaContentRefusalObject = nil
 		dst.MessageDeltaContentTextObject = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(MessageDeltaObjectDeltaContentInner)")
@@ -93,6 +145,14 @@ func (dst *MessageDeltaObjectDeltaContentInner) UnmarshalJSON(data []byte) error
 func (src MessageDeltaObjectDeltaContentInner) MarshalJSON() ([]byte, error) {
 	if src.MessageDeltaContentImageFileObject != nil {
 		return json.Marshal(&src.MessageDeltaContentImageFileObject)
+	}
+
+	if src.MessageDeltaContentImageUrlObject != nil {
+		return json.Marshal(&src.MessageDeltaContentImageUrlObject)
+	}
+
+	if src.MessageDeltaContentRefusalObject != nil {
+		return json.Marshal(&src.MessageDeltaContentRefusalObject)
 	}
 
 	if src.MessageDeltaContentTextObject != nil {
@@ -111,6 +171,14 @@ func (obj *MessageDeltaObjectDeltaContentInner) GetActualInstance() (interface{}
 		return obj.MessageDeltaContentImageFileObject
 	}
 
+	if obj.MessageDeltaContentImageUrlObject != nil {
+		return obj.MessageDeltaContentImageUrlObject
+	}
+
+	if obj.MessageDeltaContentRefusalObject != nil {
+		return obj.MessageDeltaContentRefusalObject
+	}
+
 	if obj.MessageDeltaContentTextObject != nil {
 		return obj.MessageDeltaContentTextObject
 	}
@@ -123,6 +191,14 @@ func (obj *MessageDeltaObjectDeltaContentInner) GetActualInstance() (interface{}
 func (obj MessageDeltaObjectDeltaContentInner) GetActualInstanceValue() (interface{}) {
 	if obj.MessageDeltaContentImageFileObject != nil {
 		return *obj.MessageDeltaContentImageFileObject
+	}
+
+	if obj.MessageDeltaContentImageUrlObject != nil {
+		return *obj.MessageDeltaContentImageUrlObject
+	}
+
+	if obj.MessageDeltaContentRefusalObject != nil {
+		return *obj.MessageDeltaContentRefusalObject
 	}
 
 	if obj.MessageDeltaContentTextObject != nil {

@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -13,25 +13,30 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the TruncationObject type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &TruncationObject{}
 
-// TruncationObject struct for TruncationObject
+// TruncationObject Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
 type TruncationObject struct {
 	// The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.
-	Type *string `json:"type,omitempty"`
+	Type string `json:"type"`
 	// The number of most recent messages from the thread when constructing the context for the run.
 	LastMessages NullableInt32 `json:"last_messages,omitempty"`
 }
+
+type _TruncationObject TruncationObject
 
 // NewTruncationObject instantiates a new TruncationObject object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTruncationObject() *TruncationObject {
+func NewTruncationObject(type_ string) *TruncationObject {
 	this := TruncationObject{}
+	this.Type = type_
 	return &this
 }
 
@@ -43,36 +48,28 @@ func NewTruncationObjectWithDefaults() *TruncationObject {
 	return &this
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *TruncationObject) GetType() string {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *TruncationObject) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *TruncationObject) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType sets field value
 func (o *TruncationObject) SetType(v string) {
-	o.Type = &v
+	o.Type = v
 }
 
 // GetLastMessages returns the LastMessages field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -127,13 +124,48 @@ func (o TruncationObject) MarshalJSON() ([]byte, error) {
 
 func (o TruncationObject) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 	if o.LastMessages.IsSet() {
 		toSerialize["last_messages"] = o.LastMessages.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *TruncationObject) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTruncationObject := _TruncationObject{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTruncationObject)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TruncationObject(varTruncationObject)
+
+	return err
 }
 
 type NullableTruncationObject struct {

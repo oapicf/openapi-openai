@@ -1,18 +1,51 @@
 # OpenApiOpenAIClient::CreateChatCompletionRequestResponseFormat
 
-## Properties
+## Class instance methods
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **type** | **String** | Must be one of &#x60;text&#x60; or &#x60;json_object&#x60;. | [optional][default to &#39;text&#39;] |
+### `openapi_one_of`
 
-## Example
+Returns the list of classes defined in oneOf.
+
+#### Example
 
 ```ruby
 require 'openapi_openai'
 
-instance = OpenApiOpenAIClient::CreateChatCompletionRequestResponseFormat.new(
-  type: json_object
-)
+OpenApiOpenAIClient::CreateChatCompletionRequestResponseFormat.openapi_one_of
+# =>
+# [
+#   :'ResponseFormatJsonObject',
+#   :'ResponseFormatJsonSchema',
+#   :'ResponseFormatText'
+# ]
 ```
+
+### build
+
+Find the appropriate object from the `openapi_one_of` list and casts the data into it.
+
+#### Example
+
+```ruby
+require 'openapi_openai'
+
+OpenApiOpenAIClient::CreateChatCompletionRequestResponseFormat.build(data)
+# => #<ResponseFormatJsonObject:0x00007fdd4aab02a0>
+
+OpenApiOpenAIClient::CreateChatCompletionRequestResponseFormat.build(data_that_doesnt_match)
+# => nil
+```
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| **data** | **Mixed** | data to be matched against the list of oneOf items |
+
+#### Return type
+
+- `ResponseFormatJsonObject`
+- `ResponseFormatJsonSchema`
+- `ResponseFormatText`
+- `nil` (if no type matches)
 

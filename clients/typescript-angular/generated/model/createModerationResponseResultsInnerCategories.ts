@@ -30,6 +30,14 @@ export interface CreateModerationResponseResultsInnerCategories {
      */
     'harassment/threatening': boolean;
     /**
+     * Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
+     */
+    illicit: boolean;
+    /**
+     * Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+     */
+    'illicit/violent': boolean;
+    /**
      * Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
      */
     'self-harm': boolean;

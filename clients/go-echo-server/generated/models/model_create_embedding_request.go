@@ -12,6 +12,6 @@ type CreateEmbeddingRequest struct {
 	// The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models. 
 	Dimensions int32 `json:"dimensions,omitempty"`
 
-	// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+	// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 	User string `json:"user,omitempty"`
 }

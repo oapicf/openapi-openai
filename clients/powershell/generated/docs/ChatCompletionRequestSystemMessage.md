@@ -3,7 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Content** | **String** | The contents of the system message. | 
+**Content** | [**ChatCompletionRequestSystemMessageContent**](ChatCompletionRequestSystemMessageContent.md) |  | 
 **Role** | **String** | The role of the messages author, in this case &#x60;system&#x60;. | 
 **Name** | **String** | An optional name for the participant. Provides the model information to differentiate between participants of the same role. | [optional] 
 

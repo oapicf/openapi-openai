@@ -12,7 +12,7 @@
 ## Enum: event
 | Name | Value |
 | ---- | ----- |
-| event | thread.run.expired |
+| event | thread.run.cancelled |
 
 
 

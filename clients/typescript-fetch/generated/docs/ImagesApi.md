@@ -117,7 +117,7 @@ async function example() {
     size: size_example,
     // string | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. (optional)
     responseFormat: responseFormat_example,
-    // string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (optional)
+    // string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)
     user: user_example,
   } satisfies CreateImageEditRequest;
 
@@ -145,7 +145,7 @@ example().catch(console.error);
 | **n** | `number` | The number of images to generate. Must be between 1 and 10. | [Optional] [Defaults to `1`] |
 | **size** | `256x256`, `512x512`, `1024x1024` | The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | [Optional] [Defaults to `&#39;1024x1024&#39;`] [Enum: 256x256, 512x512, 1024x1024] |
 | **responseFormat** | `url`, `b64_json` | The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | [Optional] [Defaults to `&#39;url&#39;`] [Enum: url, b64_json] |
-| **user** | `string` | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  | [Optional] [Defaults to `undefined`] |
+| **user** | `string` | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -203,7 +203,7 @@ async function example() {
     responseFormat: responseFormat_example,
     // string | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. (optional)
     size: size_example,
-    // string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (optional)
+    // string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)
     user: user_example,
   } satisfies CreateImageVariationRequest;
 
@@ -229,7 +229,7 @@ example().catch(console.error);
 | **n** | `number` | The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported. | [Optional] [Defaults to `1`] |
 | **responseFormat** | `url`, `b64_json` | The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | [Optional] [Defaults to `&#39;url&#39;`] [Enum: url, b64_json] |
 | **size** | `256x256`, `512x512`, `1024x1024` | The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | [Optional] [Defaults to `&#39;1024x1024&#39;`] [Enum: 256x256, 512x512, 1024x1024] |
-| **user** | `string` | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  | [Optional] [Defaults to `undefined`] |
+| **user** | `string` | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 

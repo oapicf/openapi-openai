@@ -14,12 +14,12 @@ import org.openapitools.model.CreateMessageRequest;
 import org.openapitools.model.CreateRunRequest;
 import org.openapitools.model.CreateThreadAndRunRequest;
 import org.openapitools.model.CreateThreadRequest;
+import org.openapitools.model.DeleteMessageResponse;
 import org.openapitools.model.DeleteThreadResponse;
-import org.openapitools.model.ListMessageFilesResponse;
+import java.util.List;
 import org.openapitools.model.ListMessagesResponse;
 import org.openapitools.model.ListRunStepsResponse;
 import org.openapitools.model.ListRunsResponse;
-import org.openapitools.model.MessageFileObject;
 import org.openapitools.model.MessageObject;
 import org.openapitools.model.ModifyMessageRequest;
 import org.openapitools.model.ModifyRunRequest;
@@ -29,7 +29,7 @@ import org.openapitools.model.RunStepObject;
 import org.openapitools.model.SubmitToolOutputsRunRequest;
 import org.openapitools.model.ThreadObject;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ThreadsController  {
   /**
    * Uncomment and implement as you see fit.  These operations will map
@@ -50,7 +50,7 @@ public class ThreadsController  {
   */
 
   /*
-    public ResponseContext createRun(RequestContext request , String threadId, CreateRunRequest createRunRequest) {
+    public ResponseContext createRun(RequestContext request , String threadId, CreateRunRequest createRunRequest, List<String> include) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */
@@ -68,6 +68,12 @@ public class ThreadsController  {
   */
 
   /*
+    public ResponseContext deleteMessage(RequestContext request , String threadId, String messageId) {
+        return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
+    }
+  */
+
+  /*
     public ResponseContext deleteThread(RequestContext request , String threadId) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
@@ -80,19 +86,13 @@ public class ThreadsController  {
   */
 
   /*
-    public ResponseContext getMessageFile(RequestContext request , String threadId, String messageId, String fileId) {
-        return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
-    }
-  */
-
-  /*
     public ResponseContext getRun(RequestContext request , String threadId, String runId) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */
 
   /*
-    public ResponseContext getRunStep(RequestContext request , String threadId, String runId, String stepId) {
+    public ResponseContext getRunStep(RequestContext request , String threadId, String runId, String stepId, List<String> include) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */
@@ -104,19 +104,13 @@ public class ThreadsController  {
   */
 
   /*
-    public ResponseContext listMessageFiles(RequestContext request , String threadId, String messageId, Integer limit, String order, String after, String before) {
-        return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
-    }
-  */
-
-  /*
     public ResponseContext listMessages(RequestContext request , String threadId, Integer limit, String order, String after, String before, String runId) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */
 
   /*
-    public ResponseContext listRunSteps(RequestContext request , String threadId, String runId, Integer limit, String order, String after, String before) {
+    public ResponseContext listRunSteps(RequestContext request , String threadId, String runId, Integer limit, String order, String after, String before, List<String> include) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */

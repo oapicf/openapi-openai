@@ -6,6 +6,7 @@ from fastapi.testclient import TestClient
 from pydantic import Field, StrictBytes, StrictFloat, StrictInt, StrictStr, field_validator  # noqa: F401
 from typing import List, Optional, Tuple, Union  # noqa: F401
 from typing_extensions import Annotated  # noqa: F401
+from openapi_server.models.audio_response_format import AudioResponseFormat  # noqa: F401
 from openapi_server.models.create_speech_request import CreateSpeechRequest  # noqa: F401
 from openapi_server.models.create_transcription200_response import CreateTranscription200Response  # noqa: F401
 from openapi_server.models.create_transcription_request_model import CreateTranscriptionRequestModel  # noqa: F401
@@ -77,7 +78,7 @@ def test_create_translation(client: TestClient):
         "file": '/path/to/file',
         "model": openapi_server.CreateTranscriptionRequestModel(),
         "prompt": 'prompt_example',
-        "response_format": 'json',
+        "response_format": json,
         "temperature": 0
     }
     # uncomment below to make a request

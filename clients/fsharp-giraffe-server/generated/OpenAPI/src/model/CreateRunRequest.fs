@@ -27,11 +27,13 @@ module CreateRunRequest =
     Tools : AssistantObjectToolsInner[];
     Metadata : obj;
     Temperature : decimal option;
+    TopP : decimal option;
     Stream : bool option;
     MaxPromptTokens : int option;
     MaxCompletionTokens : int option;
     TruncationStrategy : TruncationObject;
     ToolChoice : AssistantsApiToolChoiceOption;
+    ParallelToolCalls : bool;
     ResponseFormat : AssistantsApiResponseFormatOption;
   }
   //#endregion

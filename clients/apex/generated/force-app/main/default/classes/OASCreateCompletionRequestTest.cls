@@ -78,6 +78,7 @@ private class OASCreateCompletionRequestTest {
         System.assertEquals('logitBias', x-property-mappings.get('logit_bias'));
         System.assertEquals('maxTokens', x-property-mappings.get('max_tokens'));
         System.assertEquals('presencePenalty', x-property-mappings.get('presence_penalty'));
+        System.assertEquals('streamOptions', x-property-mappings.get('stream_options'));
         System.assertEquals('topP', x-property-mappings.get('top_p'));
     }
 
@@ -99,6 +100,7 @@ private class OASCreateCompletionRequestTest {
         System.assertEquals(null, createCompletionRequest.logprobs);
         System.assertEquals(null, createCompletionRequest.seed);
         System.assertEquals(null, createCompletionRequest.stop);
+        System.assertEquals(null, createCompletionRequest.streamOptions);
         System.assertEquals(null, createCompletionRequest.suffix);
         System.assertEquals(null, createCompletionRequest.user);
     }

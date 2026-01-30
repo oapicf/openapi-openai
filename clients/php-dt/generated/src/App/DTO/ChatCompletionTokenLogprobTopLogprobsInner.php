@@ -24,9 +24,9 @@ class ChatCompletionTokenLogprobTopLogprobsInner
     /**
      * A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be &#x60;null&#x60; if there is no bytes representation for the token.
      * @DTA\Data(field="bytes")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection7::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection7::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection25::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection25::class})
      */
-    public ?\App\DTO\Collection7 $bytes = null;
+    public ?\App\DTO\Collection25 $bytes = null;
 
 }

@@ -85,9 +85,9 @@ class FineTuningJob
     /**
      * The compiled results file ID(s) for the fine-tuning job. You can retrieve the results with the [Files API](/docs/api-reference/files/retrieve-contents).
      * @DTA\Data(field="result_files")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection23::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection23::class})
-     * @var \App\DTO\Collection23|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection40::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection40::class})
+     * @var \App\DTO\Collection40|null
      */
     public $result_files;
 
@@ -126,9 +126,9 @@ class FineTuningJob
     /**
      * A list of integrations to enable for this fine-tuning job.
      * @DTA\Data(field="integrations", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection24::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection24::class})
-     * @var \App\DTO\Collection24|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection41::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection41::class})
+     * @var \App\DTO\Collection41|null
      */
     public $integrations;
 
@@ -139,5 +139,21 @@ class FineTuningJob
      * @var int|null
      */
     public $seed;
+
+    /**
+     * The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+     * @DTA\Data(field="estimated_finish", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"int"})
+     * @var int|null
+     */
+    public $estimated_finish;
+
+    /**
+     * @DTA\Data(field="method", nullable=true)
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\FineTuneMethod::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\FineTuneMethod::class})
+     * @var \App\DTO\FineTuneMethod|null
+     */
+    public $method;
 
 }

@@ -35,6 +35,20 @@ API.Client.CreateModerationResponseResultsInnerCategoryScores.prototype.harassme
 API.Client.CreateModerationResponseResultsInnerCategoryScores.prototype.harassmentThreatening;
 
 /**
+ * The score for the category 'illicit'.
+ * @type {!number}
+ * @export
+ */
+API.Client.CreateModerationResponseResultsInnerCategoryScores.prototype.illicit;
+
+/**
+ * The score for the category 'illicit/violent'.
+ * @type {!number}
+ * @export
+ */
+API.Client.CreateModerationResponseResultsInnerCategoryScores.prototype.illicitViolent;
+
+/**
  * The score for the category 'self-harm'.
  * @type {!number}
  * @export

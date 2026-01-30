@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateModerationRequestInputOneOfInnerOneOfImageUrl"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateModerationRequestInputOneOfInnerOneOfImageUrl"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  CreateModerationRequestInputOneOfInnerOneOfImageUrl {
+    title = CreateModerationRequestInputOneOfInnerOneOfImageUrl
+    description = CreateModerationRequestInputOneOfInnerOneOfImageUrl
+    derivedFrom = Root
+    properties {
+        url {
+          type =  string
+          description = "Either a URL of the image or the base64 encoded image data."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateModerationRequestInputOneOfInnerOneOfImageUrl {
+    title = CreateModerationRequestInputOneOfInnerOneOfImageUrl
+    description = CreateModerationRequestInputOneOfInnerOneOfImageUrl
+    implements = openapi_server.resourceTypes.CreateModerationRequestInputOneOfInnerOneOfImageUrl
+
+  }
+}

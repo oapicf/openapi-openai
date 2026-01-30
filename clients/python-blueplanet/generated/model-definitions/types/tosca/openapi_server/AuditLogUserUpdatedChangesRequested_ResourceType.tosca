@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AuditLogUserUpdatedChangesRequested"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AuditLogUserUpdatedChangesRequested"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  AuditLogUserUpdatedChangesRequested {
+    title = AuditLogUserUpdatedChangesRequested
+    description = AuditLogUserUpdatedChangesRequested
+    derivedFrom = Root
+    properties {
+        role {
+          type =  string
+          description = "The role of the user. Is either &#x60;owner&#x60; or &#x60;member&#x60;."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AuditLogUserUpdatedChangesRequested {
+    title = AuditLogUserUpdatedChangesRequested
+    description = AuditLogUserUpdatedChangesRequested
+    implements = openapi_server.resourceTypes.AuditLogUserUpdatedChangesRequested
+
+  }
+}

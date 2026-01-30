@@ -6,24 +6,19 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Stop-Run**](AssistantsApi.md#Stop-Run) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is &#x60;in_progress&#x60;.
 [**New-Assistant**](AssistantsApi.md#New-Assistant) | **POST** /assistants | Create an assistant with a model and instructions.
-[**New-AssistantFile**](AssistantsApi.md#New-AssistantFile) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
 [**New-Message**](AssistantsApi.md#New-Message) | **POST** /threads/{thread_id}/messages | Create a message.
 [**New-Run**](AssistantsApi.md#New-Run) | **POST** /threads/{thread_id}/runs | Create a run.
 [**New-Thread**](AssistantsApi.md#New-Thread) | **POST** /threads | Create a thread.
 [**New-ThreadAndRun**](AssistantsApi.md#New-ThreadAndRun) | **POST** /threads/runs | Create a thread and run it in one request.
 [**Invoke-DeleteAssistant**](AssistantsApi.md#Invoke-DeleteAssistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant.
-[**Invoke-DeleteAssistantFile**](AssistantsApi.md#Invoke-DeleteAssistantFile) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+[**Invoke-DeleteMessage**](AssistantsApi.md#Invoke-DeleteMessage) | **DELETE** /threads/{thread_id}/messages/{message_id} | Deletes a message.
 [**Invoke-DeleteThread**](AssistantsApi.md#Invoke-DeleteThread) | **DELETE** /threads/{thread_id} | Delete a thread.
 [**Get-Assistant**](AssistantsApi.md#Get-Assistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant.
-[**Get-AssistantFile**](AssistantsApi.md#Get-AssistantFile) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
 [**Get-Message**](AssistantsApi.md#Get-Message) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
-[**Get-MessageFile**](AssistantsApi.md#Get-MessageFile) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
 [**Get-Run**](AssistantsApi.md#Get-Run) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
 [**Get-RunStep**](AssistantsApi.md#Get-RunStep) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
 [**Get-Thread**](AssistantsApi.md#Get-Thread) | **GET** /threads/{thread_id} | Retrieves a thread.
-[**Invoke-ListAssistantFiles**](AssistantsApi.md#Invoke-ListAssistantFiles) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
 [**Invoke-ListAssistants**](AssistantsApi.md#Invoke-ListAssistants) | **GET** /assistants | Returns a list of assistants.
-[**Invoke-ListMessageFiles**](AssistantsApi.md#Invoke-ListMessageFiles) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
 [**Invoke-ListMessages**](AssistantsApi.md#Invoke-ListMessages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
 [**Invoke-ListRunSteps**](AssistantsApi.md#Invoke-ListRunSteps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
 [**Invoke-ListRuns**](AssistantsApi.md#Invoke-ListRuns) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
@@ -95,10 +90,27 @@ $Configuration = Get-Configuration
 
 $CreateAssistantRequestModel = Initialize-CreateAssistantRequestModel 
 
-$FunctionObject = Initialize-FunctionObject -Description "MyDescription" -Name "MyName" -Parameters @{ key_example =  }
-$AssistantObjectToolsInner = Initialize-AssistantObjectToolsInner -Type "code_interpreter" -VarFunction $FunctionObject
+$FileSearchRankingOptions = Initialize-FileSearchRankingOptions -Ranker "auto" -ScoreThreshold 0
+$AssistantToolsFileSearchFileSearch = Initialize-AssistantToolsFileSearchFileSearch -MaxNumResults 0 -RankingOptions $FileSearchRankingOptions
 
-$CreateAssistantRequest = Initialize-CreateAssistantRequest -Model $CreateAssistantRequestModel -Name "MyName" -Description "MyDescription" -Instructions "MyInstructions" -Tools $AssistantObjectToolsInner -FileIds "MyFileIds" -Metadata # CreateAssistantRequest | 
+$FunctionObject = Initialize-FunctionObject -Description "MyDescription" -Name "MyName" -Parameters @{ key_example =  } -Strict $false
+$AssistantObjectToolsInner = Initialize-AssistantObjectToolsInner -Type "code_interpreter" -FileSearch $AssistantToolsFileSearchFileSearch -VarFunction $FunctionObject
+
+$CreateAssistantRequestToolResourcesCodeInterpreter = Initialize-CreateAssistantRequestToolResourcesCodeInterpreter -FileIds "MyFileIds"
+
+$StaticChunkingStrategyStatic = Initialize-StaticChunkingStrategyStatic -MaxChunkSizeTokens 0 -ChunkOverlapTokens 0
+$CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = Initialize-CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy -Type "auto" -Static $StaticChunkingStrategyStatic
+
+$CreateAssistantRequestToolResourcesFileSearchVectorStoresInner = Initialize-CreateAssistantRequestToolResourcesFileSearchVectorStoresInner -FileIds "MyFileIds" -ChunkingStrategy $CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy -Metadata 
+
+$CreateAssistantRequestToolResourcesFileSearch = Initialize-CreateAssistantRequestToolResourcesFileSearch -VectorStoreIds "MyVectorStoreIds" -VectorStores $CreateAssistantRequestToolResourcesFileSearchVectorStoresInner
+
+$CreateAssistantRequestToolResources = Initialize-CreateAssistantRequestToolResources -CodeInterpreter $CreateAssistantRequestToolResourcesCodeInterpreter -FileSearch $CreateAssistantRequestToolResourcesFileSearch
+
+$ResponseFormatJsonSchemaJsonSchema = Initialize-ResponseFormatJsonSchemaJsonSchema -Description "MyDescription" -Name "MyName" -Schema @{ key_example =  } -Strict $false
+$AssistantsApiResponseFormatOption = Initialize-AssistantsApiResponseFormatOption -Type "text" -JsonSchema $ResponseFormatJsonSchemaJsonSchema
+
+$CreateAssistantRequest = Initialize-CreateAssistantRequest -Model $CreateAssistantRequestModel -Name "MyName" -Description "MyDescription" -Instructions "MyInstructions" -Tools $AssistantObjectToolsInner -ToolResources $CreateAssistantRequestToolResources -Metadata  -Temperature 1 -TopP 1 -ResponseFormat $AssistantsApiResponseFormatOption # CreateAssistantRequest | 
 
 # Create an assistant with a model and instructions.
 try {
@@ -130,53 +142,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="New-AssistantFile"></a>
-# **New-AssistantFile**
-> AssistantFileObject New-AssistantFile<br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-AssistantId] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-CreateAssistantFileRequest] <PSCustomObject><br>
-
-Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
-### Example
-```powershell
-# general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-Configuration
-
-$AssistantId = "file-abc123" # String | The ID of the assistant for which to create a File. 
-$CreateAssistantFileRequest = Initialize-CreateAssistantFileRequest -FileId "MyFileId" # CreateAssistantFileRequest | 
-
-# Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-try {
-    $Result = New-AssistantFile -AssistantId $AssistantId -CreateAssistantFileRequest $CreateAssistantFileRequest
-} catch {
-    Write-Host ("Exception occurred when calling New-AssistantFile: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
-    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **AssistantId** | **String**| The ID of the assistant for which to create a File.  | 
- **CreateAssistantFileRequest** | [**CreateAssistantFileRequest**](CreateAssistantFileRequest.md)|  | 
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md) (PSCustomObject)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a id="New-Message"></a>
 # **New-Message**
 > MessageObject New-Message<br>
@@ -191,7 +156,12 @@ Create a message.
 $Configuration = Get-Configuration
 
 $ThreadId = "MyThreadId" # String | The ID of the [thread](/docs/api-reference/threads) to create a message for.
-$CreateMessageRequest = Initialize-CreateMessageRequest -Role "user" -Content "MyContent" -FileIds "MyFileIds" -Metadata # CreateMessageRequest | 
+$CreateMessageRequestContent = Initialize-CreateMessageRequestContent 
+
+$CreateMessageRequestAttachmentsInnerToolsInner = Initialize-CreateMessageRequestAttachmentsInnerToolsInner -Type "code_interpreter"
+$CreateMessageRequestAttachmentsInner = Initialize-CreateMessageRequestAttachmentsInner -FileId "MyFileId" -Tools $CreateMessageRequestAttachmentsInnerToolsInner
+
+$CreateMessageRequest = Initialize-CreateMessageRequest -Role "user" -Content $CreateMessageRequestContent -Attachments $CreateMessageRequestAttachmentsInner -Metadata # CreateMessageRequest | 
 
 # Create a message.
 try {
@@ -229,6 +199,7 @@ Name | Type | Description  | Notes
 > RunObject New-Run<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-ThreadId] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-CreateRunRequest] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Include] <String[]><br>
 
 Create a run.
 
@@ -239,22 +210,34 @@ $Configuration = Get-Configuration
 
 $ThreadId = "MyThreadId" # String | The ID of the thread to run.
 $CreateRunRequestModel = Initialize-CreateRunRequestModel 
-$CreateMessageRequest = Initialize-CreateMessageRequest -Role "user" -Content "MyContent" -FileIds "MyFileIds" -Metadata 
 
-$FunctionObject = Initialize-FunctionObject -Description "MyDescription" -Name "MyName" -Parameters @{ key_example =  }
-$AssistantObjectToolsInner = Initialize-AssistantObjectToolsInner -Type "code_interpreter" -VarFunction $FunctionObject
+$CreateMessageRequestContent = Initialize-CreateMessageRequestContent 
+
+$CreateMessageRequestAttachmentsInnerToolsInner = Initialize-CreateMessageRequestAttachmentsInnerToolsInner -Type "code_interpreter"
+$CreateMessageRequestAttachmentsInner = Initialize-CreateMessageRequestAttachmentsInner -FileId "MyFileId" -Tools $CreateMessageRequestAttachmentsInnerToolsInner
+
+$CreateMessageRequest = Initialize-CreateMessageRequest -Role "user" -Content $CreateMessageRequestContent -Attachments $CreateMessageRequestAttachmentsInner -Metadata 
+
+$FileSearchRankingOptions = Initialize-FileSearchRankingOptions -Ranker "auto" -ScoreThreshold 0
+$AssistantToolsFileSearchFileSearch = Initialize-AssistantToolsFileSearchFileSearch -MaxNumResults 0 -RankingOptions $FileSearchRankingOptions
+
+$FunctionObject = Initialize-FunctionObject -Description "MyDescription" -Name "MyName" -Parameters @{ key_example =  } -Strict $false
+$AssistantObjectToolsInner = Initialize-AssistantObjectToolsInner -Type "code_interpreter" -FileSearch $AssistantToolsFileSearchFileSearch -VarFunction $FunctionObject
 
 $TruncationObject = Initialize-TruncationObject -Type "auto" -LastMessages 0
 
-$ChatCompletionNamedToolChoiceFunction = Initialize-ChatCompletionNamedToolChoiceFunction -Name "MyName"
-$AssistantsApiToolChoiceOption = Initialize-AssistantsApiToolChoiceOption -Type "function" -VarFunction $ChatCompletionNamedToolChoiceFunction
+$AssistantsNamedToolChoiceFunction = Initialize-AssistantsNamedToolChoiceFunction -Name "MyName"
+$AssistantsApiToolChoiceOption = Initialize-AssistantsApiToolChoiceOption -Type "function" -VarFunction $AssistantsNamedToolChoiceFunction
 
-$AssistantsApiResponseFormatOption = Initialize-AssistantsApiResponseFormatOption -Type "text"
-$CreateRunRequest = Initialize-CreateRunRequest -AssistantId "MyAssistantId" -Model $CreateRunRequestModel -Instructions "MyInstructions" -AdditionalInstructions "MyAdditionalInstructions" -AdditionalMessages $CreateMessageRequest -Tools $AssistantObjectToolsInner -Metadata  -Temperature 1 -Stream $false -MaxPromptTokens 0 -MaxCompletionTokens 0 -TruncationStrategy $TruncationObject -ToolChoice $AssistantsApiToolChoiceOption -ResponseFormat $AssistantsApiResponseFormatOption # CreateRunRequest | 
+$ResponseFormatJsonSchemaJsonSchema = Initialize-ResponseFormatJsonSchemaJsonSchema -Description "MyDescription" -Name "MyName" -Schema @{ key_example =  } -Strict $false
+$AssistantsApiResponseFormatOption = Initialize-AssistantsApiResponseFormatOption -Type "text" -JsonSchema $ResponseFormatJsonSchemaJsonSchema
+
+$CreateRunRequest = Initialize-CreateRunRequest -AssistantId "MyAssistantId" -Model $CreateRunRequestModel -Instructions "MyInstructions" -AdditionalInstructions "MyAdditionalInstructions" -AdditionalMessages $CreateMessageRequest -Tools $AssistantObjectToolsInner -Metadata  -Temperature 1 -TopP 1 -Stream $false -MaxPromptTokens 0 -MaxCompletionTokens 0 -TruncationStrategy $TruncationObject -ToolChoice $AssistantsApiToolChoiceOption -ParallelToolCalls $false -ResponseFormat $AssistantsApiResponseFormatOption # CreateRunRequest | 
+$Include = "step_details.tool_calls[*].file_search.results[*].content" # String[] | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 
 # Create a run.
 try {
-    $Result = New-Run -ThreadId $ThreadId -CreateRunRequest $CreateRunRequest
+    $Result = New-Run -ThreadId $ThreadId -CreateRunRequest $CreateRunRequest -Include $Include
 } catch {
     Write-Host ("Exception occurred when calling New-Run: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -267,6 +250,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ThreadId** | **String**| The ID of the thread to run. | 
  **CreateRunRequest** | [**CreateRunRequest**](CreateRunRequest.md)|  | 
+ **Include** | [**String[]**](String.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -295,8 +279,25 @@ Create a thread.
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $Configuration = Get-Configuration
 
-$CreateMessageRequest = Initialize-CreateMessageRequest -Role "user" -Content "MyContent" -FileIds "MyFileIds" -Metadata 
-$CreateThreadRequest = Initialize-CreateThreadRequest -Messages $CreateMessageRequest -Metadata # CreateThreadRequest |  (optional)
+$CreateMessageRequestContent = Initialize-CreateMessageRequestContent 
+
+$CreateMessageRequestAttachmentsInnerToolsInner = Initialize-CreateMessageRequestAttachmentsInnerToolsInner -Type "code_interpreter"
+$CreateMessageRequestAttachmentsInner = Initialize-CreateMessageRequestAttachmentsInner -FileId "MyFileId" -Tools $CreateMessageRequestAttachmentsInnerToolsInner
+
+$CreateMessageRequest = Initialize-CreateMessageRequest -Role "user" -Content $CreateMessageRequestContent -Attachments $CreateMessageRequestAttachmentsInner -Metadata 
+
+$CreateAssistantRequestToolResourcesCodeInterpreter = Initialize-CreateAssistantRequestToolResourcesCodeInterpreter -FileIds "MyFileIds"
+
+$StaticChunkingStrategyStatic = Initialize-StaticChunkingStrategyStatic -MaxChunkSizeTokens 0 -ChunkOverlapTokens 0
+$CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = Initialize-CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy -Type "auto" -Static $StaticChunkingStrategyStatic
+
+$CreateThreadRequestToolResourcesFileSearchVectorStoresInner = Initialize-CreateThreadRequestToolResourcesFileSearchVectorStoresInner -FileIds "MyFileIds" -ChunkingStrategy $CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy -Metadata 
+
+$CreateThreadRequestToolResourcesFileSearch = Initialize-CreateThreadRequestToolResourcesFileSearch -VectorStoreIds "MyVectorStoreIds" -VectorStores $CreateThreadRequestToolResourcesFileSearchVectorStoresInner
+
+$CreateThreadRequestToolResources = Initialize-CreateThreadRequestToolResources -CodeInterpreter $CreateAssistantRequestToolResourcesCodeInterpreter -FileSearch $CreateThreadRequestToolResourcesFileSearch
+
+$CreateThreadRequest = Initialize-CreateThreadRequest -Messages $CreateMessageRequest -ToolResources $CreateThreadRequestToolResources -Metadata # CreateThreadRequest |  (optional)
 
 # Create a thread.
 try {
@@ -340,21 +341,46 @@ Create a thread and run it in one request.
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $Configuration = Get-Configuration
 
-$CreateMessageRequest = Initialize-CreateMessageRequest -Role "user" -Content "MyContent" -FileIds "MyFileIds" -Metadata 
-$CreateThreadRequest = Initialize-CreateThreadRequest -Messages $CreateMessageRequest -Metadata 
+$CreateMessageRequestContent = Initialize-CreateMessageRequestContent 
+
+$CreateMessageRequestAttachmentsInnerToolsInner = Initialize-CreateMessageRequestAttachmentsInnerToolsInner -Type "code_interpreter"
+$CreateMessageRequestAttachmentsInner = Initialize-CreateMessageRequestAttachmentsInner -FileId "MyFileId" -Tools $CreateMessageRequestAttachmentsInnerToolsInner
+
+$CreateMessageRequest = Initialize-CreateMessageRequest -Role "user" -Content $CreateMessageRequestContent -Attachments $CreateMessageRequestAttachmentsInner -Metadata 
+
+$CreateAssistantRequestToolResourcesCodeInterpreter = Initialize-CreateAssistantRequestToolResourcesCodeInterpreter -FileIds "MyFileIds"
+
+$StaticChunkingStrategyStatic = Initialize-StaticChunkingStrategyStatic -MaxChunkSizeTokens 0 -ChunkOverlapTokens 0
+$CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = Initialize-CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy -Type "auto" -Static $StaticChunkingStrategyStatic
+
+$CreateThreadRequestToolResourcesFileSearchVectorStoresInner = Initialize-CreateThreadRequestToolResourcesFileSearchVectorStoresInner -FileIds "MyFileIds" -ChunkingStrategy $CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy -Metadata 
+
+$CreateThreadRequestToolResourcesFileSearch = Initialize-CreateThreadRequestToolResourcesFileSearch -VectorStoreIds "MyVectorStoreIds" -VectorStores $CreateThreadRequestToolResourcesFileSearchVectorStoresInner
+
+$CreateThreadRequestToolResources = Initialize-CreateThreadRequestToolResources -CodeInterpreter $CreateAssistantRequestToolResourcesCodeInterpreter -FileSearch $CreateThreadRequestToolResourcesFileSearch
+
+$CreateThreadRequest = Initialize-CreateThreadRequest -Messages $CreateMessageRequest -ToolResources $CreateThreadRequestToolResources -Metadata 
 
 $CreateRunRequestModel = Initialize-CreateRunRequestModel 
 
-$FunctionObject = Initialize-FunctionObject -Description "MyDescription" -Name "MyName" -Parameters @{ key_example =  }
-$CreateThreadAndRunRequestToolsInner = Initialize-CreateThreadAndRunRequestToolsInner -Type "code_interpreter" -VarFunction $FunctionObject
+$FileSearchRankingOptions = Initialize-FileSearchRankingOptions -Ranker "auto" -ScoreThreshold 0
+$AssistantToolsFileSearchFileSearch = Initialize-AssistantToolsFileSearchFileSearch -MaxNumResults 0 -RankingOptions $FileSearchRankingOptions
+
+$FunctionObject = Initialize-FunctionObject -Description "MyDescription" -Name "MyName" -Parameters @{ key_example =  } -Strict $false
+$CreateThreadAndRunRequestToolsInner = Initialize-CreateThreadAndRunRequestToolsInner -Type "code_interpreter" -FileSearch $AssistantToolsFileSearchFileSearch -VarFunction $FunctionObject
+
+$AssistantObjectToolResourcesFileSearch = Initialize-AssistantObjectToolResourcesFileSearch -VectorStoreIds "MyVectorStoreIds"
+$CreateThreadAndRunRequestToolResources = Initialize-CreateThreadAndRunRequestToolResources -CodeInterpreter $CreateAssistantRequestToolResourcesCodeInterpreter -FileSearch $AssistantObjectToolResourcesFileSearch
 
 $TruncationObject = Initialize-TruncationObject -Type "auto" -LastMessages 0
 
-$ChatCompletionNamedToolChoiceFunction = Initialize-ChatCompletionNamedToolChoiceFunction -Name "MyName"
-$AssistantsApiToolChoiceOption = Initialize-AssistantsApiToolChoiceOption -Type "function" -VarFunction $ChatCompletionNamedToolChoiceFunction
+$AssistantsNamedToolChoiceFunction = Initialize-AssistantsNamedToolChoiceFunction -Name "MyName"
+$AssistantsApiToolChoiceOption = Initialize-AssistantsApiToolChoiceOption -Type "function" -VarFunction $AssistantsNamedToolChoiceFunction
 
-$AssistantsApiResponseFormatOption = Initialize-AssistantsApiResponseFormatOption -Type "text"
-$CreateThreadAndRunRequest = Initialize-CreateThreadAndRunRequest -AssistantId "MyAssistantId" -Thread $CreateThreadRequest -Model $CreateRunRequestModel -Instructions "MyInstructions" -Tools $CreateThreadAndRunRequestToolsInner -Metadata  -Temperature 1 -Stream $false -MaxPromptTokens 0 -MaxCompletionTokens 0 -TruncationStrategy $TruncationObject -ToolChoice $AssistantsApiToolChoiceOption -ResponseFormat $AssistantsApiResponseFormatOption # CreateThreadAndRunRequest | 
+$ResponseFormatJsonSchemaJsonSchema = Initialize-ResponseFormatJsonSchemaJsonSchema -Description "MyDescription" -Name "MyName" -Schema @{ key_example =  } -Strict $false
+$AssistantsApiResponseFormatOption = Initialize-AssistantsApiResponseFormatOption -Type "text" -JsonSchema $ResponseFormatJsonSchemaJsonSchema
+
+$CreateThreadAndRunRequest = Initialize-CreateThreadAndRunRequest -AssistantId "MyAssistantId" -Thread $CreateThreadRequest -Model $CreateRunRequestModel -Instructions "MyInstructions" -Tools $CreateThreadAndRunRequestToolsInner -ToolResources $CreateThreadAndRunRequestToolResources -Metadata  -Temperature 1 -TopP 1 -Stream $false -MaxPromptTokens 0 -MaxCompletionTokens 0 -TruncationStrategy $TruncationObject -ToolChoice $AssistantsApiToolChoiceOption -ParallelToolCalls $false -ResponseFormat $AssistantsApiResponseFormatOption # CreateThreadAndRunRequest | 
 
 # Create a thread and run it in one request.
 try {
@@ -430,27 +456,27 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="Invoke-DeleteAssistantFile"></a>
-# **Invoke-DeleteAssistantFile**
-> DeleteAssistantFileResponse Invoke-DeleteAssistantFile<br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-AssistantId] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-FileId] <String><br>
+<a id="Invoke-DeleteMessage"></a>
+# **Invoke-DeleteMessage**
+> DeleteMessageResponse Invoke-DeleteMessage<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-ThreadId] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-MessageId] <String><br>
 
-Delete an assistant file.
+Deletes a message.
 
 ### Example
 ```powershell
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $Configuration = Get-Configuration
 
-$AssistantId = "MyAssistantId" # String | The ID of the assistant that the file belongs to.
-$FileId = "MyFileId" # String | The ID of the file to delete.
+$ThreadId = "MyThreadId" # String | The ID of the thread to which this message belongs.
+$MessageId = "MyMessageId" # String | The ID of the message to delete.
 
-# Delete an assistant file.
+# Deletes a message.
 try {
-    $Result = Invoke-DeleteAssistantFile -AssistantId $AssistantId -FileId $FileId
+    $Result = Invoke-DeleteMessage -ThreadId $ThreadId -MessageId $MessageId
 } catch {
-    Write-Host ("Exception occurred when calling Invoke-DeleteAssistantFile: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occurred when calling Invoke-DeleteMessage: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -459,12 +485,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **AssistantId** | **String**| The ID of the assistant that the file belongs to. | 
- **FileId** | **String**| The ID of the file to delete. | 
+ **ThreadId** | **String**| The ID of the thread to which this message belongs. | 
+ **MessageId** | **String**| The ID of the message to delete. | 
 
 ### Return type
 
-[**DeleteAssistantFileResponse**](DeleteAssistantFileResponse.md) (PSCustomObject)
+[**DeleteMessageResponse**](DeleteMessageResponse.md) (PSCustomObject)
 
 ### Authorization
 
@@ -565,53 +591,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="Get-AssistantFile"></a>
-# **Get-AssistantFile**
-> AssistantFileObject Get-AssistantFile<br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-AssistantId] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-FileId] <String><br>
-
-Retrieves an AssistantFile.
-
-### Example
-```powershell
-# general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-Configuration
-
-$AssistantId = "MyAssistantId" # String | The ID of the assistant who the file belongs to.
-$FileId = "MyFileId" # String | The ID of the file we're getting.
-
-# Retrieves an AssistantFile.
-try {
-    $Result = Get-AssistantFile -AssistantId $AssistantId -FileId $FileId
-} catch {
-    Write-Host ("Exception occurred when calling Get-AssistantFile: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
-    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **AssistantId** | **String**| The ID of the assistant who the file belongs to. | 
- **FileId** | **String**| The ID of the file we&#39;re getting. | 
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md) (PSCustomObject)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a id="Get-Message"></a>
 # **Get-Message**
 > MessageObject Get-Message<br>
@@ -647,56 +626,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MessageObject**](MessageObject.md) (PSCustomObject)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="Get-MessageFile"></a>
-# **Get-MessageFile**
-> MessageFileObject Get-MessageFile<br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-ThreadId] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-MessageId] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-FileId] <String><br>
-
-Retrieves a message file.
-
-### Example
-```powershell
-# general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-Configuration
-
-$ThreadId = "thread_abc123" # String | The ID of the thread to which the message and File belong.
-$MessageId = "msg_abc123" # String | The ID of the message the file belongs to.
-$FileId = "file-abc123" # String | The ID of the file being retrieved.
-
-# Retrieves a message file.
-try {
-    $Result = Get-MessageFile -ThreadId $ThreadId -MessageId $MessageId -FileId $FileId
-} catch {
-    Write-Host ("Exception occurred when calling Get-MessageFile: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
-    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ThreadId** | **String**| The ID of the thread to which the message and File belong. | 
- **MessageId** | **String**| The ID of the message the file belongs to. | 
- **FileId** | **String**| The ID of the file being retrieved. | 
-
-### Return type
-
-[**MessageFileObject**](MessageFileObject.md) (PSCustomObject)
 
 ### Authorization
 
@@ -762,6 +691,7 @@ Name | Type | Description  | Notes
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-ThreadId] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-RunId] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-StepId] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Include] <String[]><br>
 
 Retrieves a run step.
 
@@ -773,10 +703,11 @@ $Configuration = Get-Configuration
 $ThreadId = "MyThreadId" # String | The ID of the thread to which the run and run step belongs.
 $RunId = "MyRunId" # String | The ID of the run to which the run step belongs.
 $StepId = "MyStepId" # String | The ID of the run step to retrieve.
+$Include = "step_details.tool_calls[*].file_search.results[*].content" # String[] | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 
 # Retrieves a run step.
 try {
-    $Result = Get-RunStep -ThreadId $ThreadId -RunId $RunId -StepId $StepId
+    $Result = Get-RunStep -ThreadId $ThreadId -RunId $RunId -StepId $StepId -Include $Include
 } catch {
     Write-Host ("Exception occurred when calling Get-RunStep: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -790,6 +721,7 @@ Name | Type | Description  | Notes
  **ThreadId** | **String**| The ID of the thread to which the run and run step belongs. | 
  **RunId** | **String**| The ID of the run to which the run step belongs. | 
  **StepId** | **String**| The ID of the run step to retrieve. | 
+ **Include** | [**String[]**](String.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -850,62 +782,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="Invoke-ListAssistantFiles"></a>
-# **Invoke-ListAssistantFiles**
-> ListAssistantFilesResponse Invoke-ListAssistantFiles<br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-AssistantId] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Limit] <System.Nullable[Int32]><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Order] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-After] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Before] <String><br>
-
-Returns a list of assistant files.
-
-### Example
-```powershell
-# general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-Configuration
-
-$AssistantId = "MyAssistantId" # String | The ID of the assistant the file belongs to.
-$Limit = 56 # Int32 | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
-$Order = "asc" # String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to "desc")
-$After = "MyAfter" # String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-$Before = "MyBefore" # String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-
-# Returns a list of assistant files.
-try {
-    $Result = Invoke-ListAssistantFiles -AssistantId $AssistantId -Limit $Limit -Order $Order -After $After -Before $Before
-} catch {
-    Write-Host ("Exception occurred when calling Invoke-ListAssistantFiles: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
-    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **AssistantId** | **String**| The ID of the assistant the file belongs to. | 
- **Limit** | **Int32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
- **Order** | **String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &quot;desc&quot;]
- **After** | **String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **Before** | **String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
-
-### Return type
-
-[**ListAssistantFilesResponse**](ListAssistantFilesResponse.md) (PSCustomObject)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a id="Invoke-ListAssistants"></a>
 # **Invoke-ListAssistants**
 > ListAssistantsResponse Invoke-ListAssistants<br>
@@ -924,7 +800,7 @@ $Configuration = Get-Configuration
 $Limit = 56 # Int32 | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
 $Order = "asc" # String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to "desc")
 $After = "MyAfter" # String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-$Before = "MyBefore" # String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+$Before = "MyBefore" # String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 
 # Returns a list of assistants.
 try {
@@ -942,70 +818,11 @@ Name | Type | Description  | Notes
  **Limit** | **Int32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **Order** | **String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &quot;desc&quot;]
  **After** | **String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **Before** | **String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **Before** | **String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
 
 ### Return type
 
 [**ListAssistantsResponse**](ListAssistantsResponse.md) (PSCustomObject)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="Invoke-ListMessageFiles"></a>
-# **Invoke-ListMessageFiles**
-> ListMessageFilesResponse Invoke-ListMessageFiles<br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-ThreadId] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-MessageId] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Limit] <System.Nullable[Int32]><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Order] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-After] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Before] <String><br>
-
-Returns a list of message files.
-
-### Example
-```powershell
-# general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-Configuration
-
-$ThreadId = "MyThreadId" # String | The ID of the thread that the message and files belong to.
-$MessageId = "MyMessageId" # String | The ID of the message that the files belongs to.
-$Limit = 56 # Int32 | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
-$Order = "asc" # String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to "desc")
-$After = "MyAfter" # String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-$Before = "MyBefore" # String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-
-# Returns a list of message files.
-try {
-    $Result = Invoke-ListMessageFiles -ThreadId $ThreadId -MessageId $MessageId -Limit $Limit -Order $Order -After $After -Before $Before
-} catch {
-    Write-Host ("Exception occurred when calling Invoke-ListMessageFiles: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
-    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ThreadId** | **String**| The ID of the thread that the message and files belong to. | 
- **MessageId** | **String**| The ID of the message that the files belongs to. | 
- **Limit** | **Int32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
- **Order** | **String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &quot;desc&quot;]
- **After** | **String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **Before** | **String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
-
-### Return type
-
-[**ListMessageFilesResponse**](ListMessageFilesResponse.md) (PSCustomObject)
 
 ### Authorization
 
@@ -1039,7 +856,7 @@ $ThreadId = "MyThreadId" # String | The ID of the [thread](/docs/api-reference/t
 $Limit = 56 # Int32 | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
 $Order = "asc" # String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to "desc")
 $After = "MyAfter" # String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-$Before = "MyBefore" # String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+$Before = "MyBefore" # String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 $RunId = "MyRunId" # String | Filter messages by the run ID that generated them.  (optional)
 
 # Returns a list of messages for a given thread.
@@ -1059,7 +876,7 @@ Name | Type | Description  | Notes
  **Limit** | **Int32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **Order** | **String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &quot;desc&quot;]
  **After** | **String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **Before** | **String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **Before** | **String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
  **RunId** | **String**| Filter messages by the run ID that generated them.  | [optional] 
 
 ### Return type
@@ -1086,6 +903,7 @@ Name | Type | Description  | Notes
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Order] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-After] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Before] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Include] <String[]><br>
 
 Returns a list of run steps belonging to a run.
 
@@ -1099,11 +917,12 @@ $RunId = "MyRunId" # String | The ID of the run the run steps belong to.
 $Limit = 56 # Int32 | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
 $Order = "asc" # String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to "desc")
 $After = "MyAfter" # String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-$Before = "MyBefore" # String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+$Before = "MyBefore" # String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+$Include = "step_details.tool_calls[*].file_search.results[*].content" # String[] | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 
 # Returns a list of run steps belonging to a run.
 try {
-    $Result = Invoke-ListRunSteps -ThreadId $ThreadId -RunId $RunId -Limit $Limit -Order $Order -After $After -Before $Before
+    $Result = Invoke-ListRunSteps -ThreadId $ThreadId -RunId $RunId -Limit $Limit -Order $Order -After $After -Before $Before -Include $Include
 } catch {
     Write-Host ("Exception occurred when calling Invoke-ListRunSteps: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1119,7 +938,8 @@ Name | Type | Description  | Notes
  **Limit** | **Int32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **Order** | **String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &quot;desc&quot;]
  **After** | **String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **Before** | **String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **Before** | **String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **Include** | [**String[]**](String.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -1156,7 +976,7 @@ $ThreadId = "MyThreadId" # String | The ID of the thread the run belongs to.
 $Limit = 56 # Int32 | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
 $Order = "asc" # String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to "desc")
 $After = "MyAfter" # String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-$Before = "MyBefore" # String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+$Before = "MyBefore" # String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 
 # Returns a list of runs belonging to a thread.
 try {
@@ -1175,7 +995,7 @@ Name | Type | Description  | Notes
  **Limit** | **Int32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **Order** | **String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &quot;desc&quot;]
  **After** | **String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **Before** | **String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **Before** | **String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
 
 ### Return type
 
@@ -1206,10 +1026,20 @@ Modifies an assistant.
 $Configuration = Get-Configuration
 
 $AssistantId = "MyAssistantId" # String | The ID of the assistant to modify.
-$FunctionObject = Initialize-FunctionObject -Description "MyDescription" -Name "MyName" -Parameters @{ key_example =  }
-$AssistantObjectToolsInner = Initialize-AssistantObjectToolsInner -Type "code_interpreter" -VarFunction $FunctionObject
+$FileSearchRankingOptions = Initialize-FileSearchRankingOptions -Ranker "auto" -ScoreThreshold 0
+$AssistantToolsFileSearchFileSearch = Initialize-AssistantToolsFileSearchFileSearch -MaxNumResults 0 -RankingOptions $FileSearchRankingOptions
 
-$ModifyAssistantRequest = Initialize-ModifyAssistantRequest -Model "MyModel" -Name "MyName" -Description "MyDescription" -Instructions "MyInstructions" -Tools $AssistantObjectToolsInner -FileIds "MyFileIds" -Metadata # ModifyAssistantRequest | 
+$FunctionObject = Initialize-FunctionObject -Description "MyDescription" -Name "MyName" -Parameters @{ key_example =  } -Strict $false
+$AssistantObjectToolsInner = Initialize-AssistantObjectToolsInner -Type "code_interpreter" -FileSearch $AssistantToolsFileSearchFileSearch -VarFunction $FunctionObject
+
+$ModifyAssistantRequestToolResourcesCodeInterpreter = Initialize-ModifyAssistantRequestToolResourcesCodeInterpreter -FileIds "MyFileIds"
+$ModifyAssistantRequestToolResourcesFileSearch = Initialize-ModifyAssistantRequestToolResourcesFileSearch -VectorStoreIds "MyVectorStoreIds"
+$ModifyAssistantRequestToolResources = Initialize-ModifyAssistantRequestToolResources -CodeInterpreter $ModifyAssistantRequestToolResourcesCodeInterpreter -FileSearch $ModifyAssistantRequestToolResourcesFileSearch
+
+$ResponseFormatJsonSchemaJsonSchema = Initialize-ResponseFormatJsonSchemaJsonSchema -Description "MyDescription" -Name "MyName" -Schema @{ key_example =  } -Strict $false
+$AssistantsApiResponseFormatOption = Initialize-AssistantsApiResponseFormatOption -Type "text" -JsonSchema $ResponseFormatJsonSchemaJsonSchema
+
+$ModifyAssistantRequest = Initialize-ModifyAssistantRequest -Model "MyModel" -Name "MyName" -Description "MyDescription" -Instructions "MyInstructions" -Tools $AssistantObjectToolsInner -ToolResources $ModifyAssistantRequestToolResources -Metadata  -Temperature 1 -TopP 1 -ResponseFormat $AssistantsApiResponseFormatOption # ModifyAssistantRequest | 
 
 # Modifies an assistant.
 try {
@@ -1356,7 +1186,11 @@ Modifies a thread.
 $Configuration = Get-Configuration
 
 $ThreadId = "MyThreadId" # String | The ID of the thread to modify. Only the `metadata` can be modified.
-$ModifyThreadRequest = Initialize-ModifyThreadRequest -Metadata # ModifyThreadRequest | 
+$CreateAssistantRequestToolResourcesCodeInterpreter = Initialize-CreateAssistantRequestToolResourcesCodeInterpreter -FileIds "MyFileIds"
+$ModifyThreadRequestToolResourcesFileSearch = Initialize-ModifyThreadRequestToolResourcesFileSearch -VectorStoreIds "MyVectorStoreIds"
+$ModifyThreadRequestToolResources = Initialize-ModifyThreadRequestToolResources -CodeInterpreter $CreateAssistantRequestToolResourcesCodeInterpreter -FileSearch $ModifyThreadRequestToolResourcesFileSearch
+
+$ModifyThreadRequest = Initialize-ModifyThreadRequest -ToolResources $ModifyThreadRequestToolResources -Metadata # ModifyThreadRequest | 
 
 # Modifies a thread.
 try {

@@ -27,7 +27,7 @@ RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::__init()
 	//id = std::string();
 	//type = std::string();
 	//code_interpreter = new RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter();
-	//retrieval = null;
+	//file_search = null;
 	//function = new RunStepDeltaStepDetailsToolCallsFunctionObject_function();
 }
 
@@ -54,10 +54,10 @@ RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::__cleanup()
 	//delete code_interpreter;
 	//code_interpreter = NULL;
 	//}
-	//if(retrieval != NULL) {
+	//if(file_search != NULL) {
 	//
-	//delete retrieval;
-	//retrieval = NULL;
+	//delete file_search;
+	//file_search = NULL;
 	//}
 	//if(function != NULL) {
 	//
@@ -119,16 +119,16 @@ RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::fromJson(char* jsonStr)
 			
 		}
 	}
-	const gchar *retrievalKey = "retrieval";
-	node = json_object_get_member(pJsonObject, retrievalKey);
+	const gchar *file_searchKey = "file_search";
+	node = json_object_get_member(pJsonObject, file_searchKey);
 	if (node !=NULL) {
 	
 
 		if (isprimitive("std::string")) {
-			jsonToValue(&retrieval, node, "std::string", "");
+			jsonToValue(&file_search, node, "std::string", "");
 		} else {
 			
-			std::string* obj = static_cast<std::string*> (&retrieval);
+			std::string* obj = static_cast<std::string*> (&file_search);
 			obj->fromJson(json_to_string(node, false));
 			
 		}
@@ -201,19 +201,19 @@ RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::toJson()
 	const gchar *code_interpreterKey = "code_interpreter";
 	json_object_set_member(pJsonObject, code_interpreterKey, node);
 	if (isprimitive("std::string")) {
-		std::string obj = getRetrieval();
+		std::string obj = getFileSearch();
 		node = converttoJson(&obj, "std::string", "");
 	}
 	else {
 		
-		std::string obj = static_cast<std::string> (getRetrieval());
+		std::string obj = static_cast<std::string> (getFileSearch());
 		GError *mygerror;
 		mygerror = NULL;
 		node = json_from_string(obj.toJson(), &mygerror);
 		
 	}
-	const gchar *retrievalKey = "retrieval";
-	json_object_set_member(pJsonObject, retrievalKey, node);
+	const gchar *file_searchKey = "file_search";
+	json_object_set_member(pJsonObject, file_searchKey, node);
 	if (isprimitive("RunStepDeltaStepDetailsToolCallsFunctionObject_function")) {
 		RunStepDeltaStepDetailsToolCallsFunctionObject_function obj = getFunction();
 		node = converttoJson(&obj, "RunStepDeltaStepDetailsToolCallsFunctionObject_function", "");
@@ -285,15 +285,15 @@ RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::setCodeInterpreter(RunS
 }
 
 std::string
-RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::getRetrieval()
+RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::getFileSearch()
 {
-	return retrieval;
+	return file_search;
 }
 
 void
-RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::setRetrieval(std::string  retrieval)
+RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner::setFileSearch(std::string  file_search)
 {
-	this->retrieval = retrieval;
+	this->file_search = file_search;
 }
 
 RunStepDeltaStepDetailsToolCallsFunctionObject_function

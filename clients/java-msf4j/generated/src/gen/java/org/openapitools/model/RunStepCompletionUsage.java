@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Usage statistics related to the run step. This value will be &#x60;null&#x60; while the run step&#39;s status is &#x60;in_progress&#x60;.
  */
 @ApiModel(description = "Usage statistics related to the run step. This value will be `null` while the run step's status is `in_progress`.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStepCompletionUsage   {
   @JsonProperty("completion_tokens")
   private Integer completionTokens;

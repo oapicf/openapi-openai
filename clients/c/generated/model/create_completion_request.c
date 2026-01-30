@@ -19,6 +19,7 @@ static create_completion_request_t *create_completion_request_create_internal(
     int seed,
     create_completion_request_stop_t *stop,
     int stream,
+    chat_completion_stream_options_t *stream_options,
     char *suffix,
     double temperature,
     double top_p,
@@ -41,6 +42,7 @@ static create_completion_request_t *create_completion_request_create_internal(
     create_completion_request_local_var->seed = seed;
     create_completion_request_local_var->stop = stop;
     create_completion_request_local_var->stream = stream;
+    create_completion_request_local_var->stream_options = stream_options;
     create_completion_request_local_var->suffix = suffix;
     create_completion_request_local_var->temperature = temperature;
     create_completion_request_local_var->top_p = top_p;
@@ -64,6 +66,7 @@ __attribute__((deprecated)) create_completion_request_t *create_completion_reque
     int seed,
     create_completion_request_stop_t *stop,
     int stream,
+    chat_completion_stream_options_t *stream_options,
     char *suffix,
     double temperature,
     double top_p,
@@ -83,6 +86,7 @@ __attribute__((deprecated)) create_completion_request_t *create_completion_reque
         seed,
         stop,
         stream,
+        stream_options,
         suffix,
         temperature,
         top_p,
@@ -120,6 +124,10 @@ void create_completion_request_free(create_completion_request_t *create_completi
     if (create_completion_request->stop) {
         create_completion_request_stop_free(create_completion_request->stop);
         create_completion_request->stop = NULL;
+    }
+    if (create_completion_request->stream_options) {
+        chat_completion_stream_options_free(create_completion_request->stream_options);
+        create_completion_request->stream_options = NULL;
     }
     if (create_completion_request->suffix) {
         free(create_completion_request->suffix);
@@ -268,6 +276,19 @@ cJSON *create_completion_request_convertToJSON(create_completion_request_t *crea
     }
 
 
+    // create_completion_request->stream_options
+    if(create_completion_request->stream_options) {
+    cJSON *stream_options_local_JSON = chat_completion_stream_options_convertToJSON(create_completion_request->stream_options);
+    if(stream_options_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "stream_options", stream_options_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
     // create_completion_request->suffix
     if(create_completion_request->suffix) {
     if(cJSON_AddStringToObject(item, "suffix", create_completion_request->suffix) == NULL) {
@@ -322,6 +343,9 @@ create_completion_request_t *create_completion_request_parseFromJSON(cJSON *crea
 
     // define the local variable for create_completion_request->stop
     create_completion_request_stop_t *stop_local_nonprim = NULL;
+
+    // define the local variable for create_completion_request->stream_options
+    chat_completion_stream_options_t *stream_options_local_nonprim = NULL;
 
     // create_completion_request->model
     cJSON *model = cJSON_GetObjectItemCaseSensitive(create_completion_requestJSON, "model");
@@ -492,6 +516,15 @@ create_completion_request_t *create_completion_request_parseFromJSON(cJSON *crea
     }
     }
 
+    // create_completion_request->stream_options
+    cJSON *stream_options = cJSON_GetObjectItemCaseSensitive(create_completion_requestJSON, "stream_options");
+    if (cJSON_IsNull(stream_options)) {
+        stream_options = NULL;
+    }
+    if (stream_options) { 
+    stream_options_local_nonprim = chat_completion_stream_options_parseFromJSON(stream_options); //nonprimitive
+    }
+
     // create_completion_request->suffix
     cJSON *suffix = cJSON_GetObjectItemCaseSensitive(create_completion_requestJSON, "suffix");
     if (cJSON_IsNull(suffix)) {
@@ -555,6 +588,7 @@ create_completion_request_t *create_completion_request_parseFromJSON(cJSON *crea
         seed ? seed->valuedouble : 0,
         stop ? stop_local_nonprim : NULL,
         stream ? stream->valueint : 0,
+        stream_options ? stream_options_local_nonprim : NULL,
         suffix && !cJSON_IsNull(suffix) ? strdup(suffix->valuestring) : NULL,
         temperature ? temperature->valuedouble : 0,
         top_p ? top_p->valuedouble : 0,
@@ -586,6 +620,10 @@ end:
     if (stop_local_nonprim) {
         create_completion_request_stop_free(stop_local_nonprim);
         stop_local_nonprim = NULL;
+    }
+    if (stream_options_local_nonprim) {
+        chat_completion_stream_options_free(stream_options_local_nonprim);
+        stream_options_local_nonprim = NULL;
     }
     return NULL;
 

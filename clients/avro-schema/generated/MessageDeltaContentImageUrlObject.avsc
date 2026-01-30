@@ -1,0 +1,31 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "References an image URL in the content of a message.",
+  "name": "MessageDeltaContentImageUrlObject",
+  "fields": [
+    {
+      "name": "index",
+      "type": "int",
+      "doc": "The index of the content part in the message."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "MessageDeltaContentImageUrlObject_type",
+        "symbols": [
+          "image_url"
+        ]
+      },
+      "doc": "Always `image_url`."
+    },
+    {
+      "name": "image_url",
+      "type": ["null", "model.MessageDeltaContentImageUrlObjectImageUrl"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

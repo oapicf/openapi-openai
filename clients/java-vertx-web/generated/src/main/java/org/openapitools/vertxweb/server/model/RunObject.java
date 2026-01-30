@@ -57,6 +57,7 @@ public class RunObject   {
     CANCELLED("cancelled"),
     FAILED("failed"),
     COMPLETED("completed"),
+    INCOMPLETE("incomplete"),
     EXPIRED("expired");
 
     private String value;
@@ -84,21 +85,22 @@ public class RunObject   {
   private String model;
   private String instructions;
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
-  private List<String> fileIds = new ArrayList<>();
   private Object metadata;
   private RunCompletionUsage usage;
   private BigDecimal temperature;
+  private BigDecimal topP;
   private Integer maxPromptTokens;
   private Integer maxCompletionTokens;
   private TruncationObject truncationStrategy;
   private AssistantsApiToolChoiceOption toolChoice;
+  private Boolean parallelToolCalls = true;
   private AssistantsApiResponseFormatOption responseFormat;
 
   public RunObject () {
 
   }
 
-  public RunObject (String id, ObjectEnum _object, Integer createdAt, String threadId, String assistantId, StatusEnum status, RunObjectRequiredAction requiredAction, RunObjectLastError lastError, Integer expiresAt, Integer startedAt, Integer cancelledAt, Integer failedAt, Integer completedAt, RunObjectIncompleteDetails incompleteDetails, String model, String instructions, List<AssistantObjectToolsInner> tools, List<String> fileIds, Object metadata, RunCompletionUsage usage, BigDecimal temperature, Integer maxPromptTokens, Integer maxCompletionTokens, TruncationObject truncationStrategy, AssistantsApiToolChoiceOption toolChoice, AssistantsApiResponseFormatOption responseFormat) {
+  public RunObject (String id, ObjectEnum _object, Integer createdAt, String threadId, String assistantId, StatusEnum status, RunObjectRequiredAction requiredAction, RunObjectLastError lastError, Integer expiresAt, Integer startedAt, Integer cancelledAt, Integer failedAt, Integer completedAt, RunObjectIncompleteDetails incompleteDetails, String model, String instructions, List<AssistantObjectToolsInner> tools, Object metadata, RunCompletionUsage usage, BigDecimal temperature, BigDecimal topP, Integer maxPromptTokens, Integer maxCompletionTokens, TruncationObject truncationStrategy, AssistantsApiToolChoiceOption toolChoice, Boolean parallelToolCalls, AssistantsApiResponseFormatOption responseFormat) {
     this.id = id;
     this._object = _object;
     this.createdAt = createdAt;
@@ -116,14 +118,15 @@ public class RunObject   {
     this.model = model;
     this.instructions = instructions;
     this.tools = tools;
-    this.fileIds = fileIds;
     this.metadata = metadata;
     this.usage = usage;
     this.temperature = temperature;
+    this.topP = topP;
     this.maxPromptTokens = maxPromptTokens;
     this.maxCompletionTokens = maxCompletionTokens;
     this.truncationStrategy = truncationStrategy;
     this.toolChoice = toolChoice;
+    this.parallelToolCalls = parallelToolCalls;
     this.responseFormat = responseFormat;
   }
 
@@ -281,15 +284,6 @@ public class RunObject   {
   }
 
     
-  @JsonProperty("file_ids")
-  public List<String> getFileIds() {
-    return fileIds;
-  }
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-  }
-
-    
   @JsonProperty("metadata")
   public Object getMetadata() {
     return metadata;
@@ -314,6 +308,15 @@ public class RunObject   {
   }
   public void setTemperature(BigDecimal temperature) {
     this.temperature = temperature;
+  }
+
+    
+  @JsonProperty("top_p")
+  public BigDecimal getTopP() {
+    return topP;
+  }
+  public void setTopP(BigDecimal topP) {
+    this.topP = topP;
   }
 
     
@@ -353,6 +356,15 @@ public class RunObject   {
   }
 
     
+  @JsonProperty("parallel_tool_calls")
+  public Boolean getParallelToolCalls() {
+    return parallelToolCalls;
+  }
+  public void setParallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+  }
+
+    
   @JsonProperty("response_format")
   public AssistantsApiResponseFormatOption getResponseFormat() {
     return responseFormat;
@@ -388,20 +400,21 @@ public class RunObject   {
         Objects.equals(model, runObject.model) &&
         Objects.equals(instructions, runObject.instructions) &&
         Objects.equals(tools, runObject.tools) &&
-        Objects.equals(fileIds, runObject.fileIds) &&
         Objects.equals(metadata, runObject.metadata) &&
         Objects.equals(usage, runObject.usage) &&
         Objects.equals(temperature, runObject.temperature) &&
+        Objects.equals(topP, runObject.topP) &&
         Objects.equals(maxPromptTokens, runObject.maxPromptTokens) &&
         Objects.equals(maxCompletionTokens, runObject.maxCompletionTokens) &&
         Objects.equals(truncationStrategy, runObject.truncationStrategy) &&
         Objects.equals(toolChoice, runObject.toolChoice) &&
+        Objects.equals(parallelToolCalls, runObject.parallelToolCalls) &&
         Objects.equals(responseFormat, runObject.responseFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, threadId, assistantId, status, requiredAction, lastError, expiresAt, startedAt, cancelledAt, failedAt, completedAt, incompleteDetails, model, instructions, tools, fileIds, metadata, usage, temperature, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, responseFormat);
+    return Objects.hash(id, _object, createdAt, threadId, assistantId, status, requiredAction, lastError, expiresAt, startedAt, cancelledAt, failedAt, completedAt, incompleteDetails, model, instructions, tools, metadata, usage, temperature, topP, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, parallelToolCalls, responseFormat);
   }
 
   @Override
@@ -426,14 +439,15 @@ public class RunObject   {
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
     sb.append("    maxPromptTokens: ").append(toIndentedString(maxPromptTokens)).append("\n");
     sb.append("    maxCompletionTokens: ").append(toIndentedString(maxCompletionTokens)).append("\n");
     sb.append("    truncationStrategy: ").append(toIndentedString(truncationStrategy)).append("\n");
     sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
+    sb.append("    parallelToolCalls: ").append(toIndentedString(parallelToolCalls)).append("\n");
     sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();

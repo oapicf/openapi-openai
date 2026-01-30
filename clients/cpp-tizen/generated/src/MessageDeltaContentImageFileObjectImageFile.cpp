@@ -24,6 +24,7 @@ void
 MessageDeltaContentImageFileObject_image_file::__init()
 {
 	//file_id = std::string();
+	//detail = std::string();
 }
 
 void
@@ -33,6 +34,11 @@ MessageDeltaContentImageFileObject_image_file::__cleanup()
 	//
 	//delete file_id;
 	//file_id = NULL;
+	//}
+	//if(detail != NULL) {
+	//
+	//delete detail;
+	//detail = NULL;
 	//}
 	//
 }
@@ -49,6 +55,17 @@ MessageDeltaContentImageFileObject_image_file::fromJson(char* jsonStr)
 
 		if (isprimitive("std::string")) {
 			jsonToValue(&file_id, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *detailKey = "detail";
+	node = json_object_get_member(pJsonObject, detailKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&detail, node, "std::string", "");
 		} else {
 			
 		}
@@ -74,6 +91,15 @@ MessageDeltaContentImageFileObject_image_file::toJson()
 	}
 	const gchar *file_idKey = "file_id";
 	json_object_set_member(pJsonObject, file_idKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getDetail();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *detailKey = "detail";
+	json_object_set_member(pJsonObject, detailKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -92,6 +118,18 @@ void
 MessageDeltaContentImageFileObject_image_file::setFileId(std::string  file_id)
 {
 	this->file_id = file_id;
+}
+
+std::string
+MessageDeltaContentImageFileObject_image_file::getDetail()
+{
+	return detail;
+}
+
+void
+MessageDeltaContentImageFileObject_image_file::setDetail(std::string  detail)
+{
+	this->detail = detail;
 }
 
 

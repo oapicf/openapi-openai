@@ -5,85 +5,173 @@
 
 # Routes for Assistants API
 
-POST /v1/assistants                                            api.AssistantsApiController.createAssistant()
-POST /v1/threads                                               api.AssistantsApiController.createThread()
-POST /v1/threads/runs                                          api.AssistantsApiController.createThreadAndRun()
-GET /v1/assistants                                             api.AssistantsApiController.listAssistants()
-POST /v1/threads/:threadId/runs/:runId/cancel                  api.AssistantsApiController.cancelRun(threadId: String, runId: String)
-POST /v1/assistants/:assistantId/files                         api.AssistantsApiController.createAssistantFile(assistantId: String)
-POST /v1/threads/:threadId/messages                            api.AssistantsApiController.createMessage(threadId: String)
-POST /v1/threads/:threadId/runs                                api.AssistantsApiController.createRun(threadId: String)
-DELETE /v1/assistants/:assistantId                             api.AssistantsApiController.deleteAssistant(assistantId: String)
-DELETE /v1/assistants/:assistantId/files/:fileId               api.AssistantsApiController.deleteAssistantFile(assistantId: String, fileId: String)
-DELETE /v1/threads/:threadId                                   api.AssistantsApiController.deleteThread(threadId: String)
-GET /v1/assistants/:assistantId                                api.AssistantsApiController.getAssistant(assistantId: String)
-GET /v1/assistants/:assistantId/files/:fileId                  api.AssistantsApiController.getAssistantFile(assistantId: String, fileId: String)
-GET /v1/threads/:threadId/messages/:messageId                  api.AssistantsApiController.getMessage(threadId: String, messageId: String)
-GET /v1/threads/:threadId/messages/:messageId/files/:fileId    api.AssistantsApiController.getMessageFile(threadId: String, messageId: String, fileId: String)
-GET /v1/threads/:threadId/runs/:runId                          api.AssistantsApiController.getRun(threadId: String, runId: String)
-GET /v1/threads/:threadId/runs/:runId/steps/:stepId            api.AssistantsApiController.getRunStep(threadId: String, runId: String, stepId: String)
-GET /v1/threads/:threadId                                      api.AssistantsApiController.getThread(threadId: String)
-GET /v1/assistants/:assistantId/files                          api.AssistantsApiController.listAssistantFiles(assistantId: String)
-GET /v1/threads/:threadId/messages/:messageId/files            api.AssistantsApiController.listMessageFiles(threadId: String, messageId: String)
-GET /v1/threads/:threadId/messages                             api.AssistantsApiController.listMessages(threadId: String)
-GET /v1/threads/:threadId/runs/:runId/steps                    api.AssistantsApiController.listRunSteps(threadId: String, runId: String)
-GET /v1/threads/:threadId/runs                                 api.AssistantsApiController.listRuns(threadId: String)
-POST /v1/assistants/:assistantId                               api.AssistantsApiController.modifyAssistant(assistantId: String)
-POST /v1/threads/:threadId/messages/:messageId                 api.AssistantsApiController.modifyMessage(threadId: String, messageId: String)
-POST /v1/threads/:threadId/runs/:runId                         api.AssistantsApiController.modifyRun(threadId: String, runId: String)
-POST /v1/threads/:threadId                                     api.AssistantsApiController.modifyThread(threadId: String)
-POST /v1/threads/:threadId/runs/:runId/submit_tool_outputs     api.AssistantsApiController.submitToolOuputsToRun(threadId: String, runId: String)
+POST /v1/assistants                                                               api.AssistantsApiController.createAssistant()
+POST /v1/threads                                                                  api.AssistantsApiController.createThread()
+POST /v1/threads/runs                                                             api.AssistantsApiController.createThreadAndRun()
+GET /v1/assistants                                                                api.AssistantsApiController.listAssistants()
+POST /v1/threads/:threadId/runs/:runId/cancel                                     api.AssistantsApiController.cancelRun(threadId: String, runId: String)
+POST /v1/threads/:threadId/messages                                               api.AssistantsApiController.createMessage(threadId: String)
+POST /v1/threads/:threadId/runs                                                   api.AssistantsApiController.createRun(threadId: String)
+DELETE /v1/assistants/:assistantId                                                api.AssistantsApiController.deleteAssistant(assistantId: String)
+DELETE /v1/threads/:threadId/messages/:messageId                                  api.AssistantsApiController.deleteMessage(threadId: String, messageId: String)
+DELETE /v1/threads/:threadId                                                      api.AssistantsApiController.deleteThread(threadId: String)
+GET /v1/assistants/:assistantId                                                   api.AssistantsApiController.getAssistant(assistantId: String)
+GET /v1/threads/:threadId/messages/:messageId                                     api.AssistantsApiController.getMessage(threadId: String, messageId: String)
+GET /v1/threads/:threadId/runs/:runId                                             api.AssistantsApiController.getRun(threadId: String, runId: String)
+GET /v1/threads/:threadId/runs/:runId/steps/:stepId                               api.AssistantsApiController.getRunStep(threadId: String, runId: String, stepId: String)
+GET /v1/threads/:threadId                                                         api.AssistantsApiController.getThread(threadId: String)
+GET /v1/threads/:threadId/messages                                                api.AssistantsApiController.listMessages(threadId: String)
+GET /v1/threads/:threadId/runs/:runId/steps                                       api.AssistantsApiController.listRunSteps(threadId: String, runId: String)
+GET /v1/threads/:threadId/runs                                                    api.AssistantsApiController.listRuns(threadId: String)
+POST /v1/assistants/:assistantId                                                  api.AssistantsApiController.modifyAssistant(assistantId: String)
+POST /v1/threads/:threadId/messages/:messageId                                    api.AssistantsApiController.modifyMessage(threadId: String, messageId: String)
+POST /v1/threads/:threadId/runs/:runId                                            api.AssistantsApiController.modifyRun(threadId: String, runId: String)
+POST /v1/threads/:threadId                                                        api.AssistantsApiController.modifyThread(threadId: String)
+POST /v1/threads/:threadId/runs/:runId/submit_tool_outputs                        api.AssistantsApiController.submitToolOuputsToRun(threadId: String, runId: String)
 
 # Routes for Audio API
 
-POST /v1/audio/speech                                          api.AudioApiController.createSpeech()
-POST /v1/audio/transcriptions                                  api.AudioApiController.createTranscription()
-POST /v1/audio/translations                                    api.AudioApiController.createTranslation()
+POST /v1/audio/speech                                                             api.AudioApiController.createSpeech()
+POST /v1/audio/transcriptions                                                     api.AudioApiController.createTranscription()
+POST /v1/audio/translations                                                       api.AudioApiController.createTranslation()
+
+# Routes for AuditLogs API
+
+GET /v1/organization/audit_logs                                                   api.AuditLogsApiController.listAuditLogs()
+
+# Routes for Batch API
+
+POST /v1/batches                                                                  api.BatchApiController.createBatch()
+GET /v1/batches                                                                   api.BatchApiController.listBatches()
+POST /v1/batches/:batchId/cancel                                                  api.BatchApiController.cancelBatch(batchId: String)
+GET /v1/batches/:batchId                                                          api.BatchApiController.retrieveBatch(batchId: String)
 
 # Routes for Chat API
 
-POST /v1/chat/completions                                      api.ChatApiController.createChatCompletion()
+POST /v1/chat/completions                                                         api.ChatApiController.createChatCompletion()
 
 # Routes for Completions API
 
-POST /v1/completions                                           api.CompletionsApiController.createCompletion()
+POST /v1/completions                                                              api.CompletionsApiController.createCompletion()
+
+# Routes for Default API
+
+POST /v1/organization/admin_api_keys                                              api.DefaultApiController.adminApiKeysCreate()
+GET /v1/organization/admin_api_keys                                               api.DefaultApiController.adminApiKeysList()
+DELETE /v1/organization/admin_api_keys/:keyId                                     api.DefaultApiController.adminApiKeysDelete(keyId: String)
+GET /v1/organization/admin_api_keys/:keyId                                        api.DefaultApiController.adminApiKeysGet(keyId: String)
 
 # Routes for Embeddings API
 
-POST /v1/embeddings                                            api.EmbeddingsApiController.createEmbedding()
+POST /v1/embeddings                                                               api.EmbeddingsApiController.createEmbedding()
 
 # Routes for Files API
 
-POST /v1/files                                                 api.FilesApiController.createFile()
-GET /v1/files                                                  api.FilesApiController.listFiles()
-DELETE /v1/files/:fileId                                       api.FilesApiController.deleteFile(fileId: String)
-GET /v1/files/:fileId/content                                  api.FilesApiController.downloadFile(fileId: String)
-GET /v1/files/:fileId                                          api.FilesApiController.retrieveFile(fileId: String)
+POST /v1/files                                                                    api.FilesApiController.createFile()
+GET /v1/files                                                                     api.FilesApiController.listFiles()
+DELETE /v1/files/:fileId                                                          api.FilesApiController.deleteFile(fileId: String)
+GET /v1/files/:fileId/content                                                     api.FilesApiController.downloadFile(fileId: String)
+GET /v1/files/:fileId                                                             api.FilesApiController.retrieveFile(fileId: String)
 
 # Routes for FineTuning API
 
-POST /v1/fine_tuning/jobs                                      api.FineTuningApiController.createFineTuningJob()
-GET /v1/fine_tuning/jobs                                       api.FineTuningApiController.listPaginatedFineTuningJobs()
-POST /v1/fine_tuning/jobs/:fineTuningJobId/cancel              api.FineTuningApiController.cancelFineTuningJob(fineTuningJobId: String)
-GET /v1/fine_tuning/jobs/:fineTuningJobId/events               api.FineTuningApiController.listFineTuningEvents(fineTuningJobId: String)
-GET /v1/fine_tuning/jobs/:fineTuningJobId/checkpoints          api.FineTuningApiController.listFineTuningJobCheckpoints(fineTuningJobId: String)
-GET /v1/fine_tuning/jobs/:fineTuningJobId                      api.FineTuningApiController.retrieveFineTuningJob(fineTuningJobId: String)
+POST /v1/fine_tuning/jobs                                                         api.FineTuningApiController.createFineTuningJob()
+GET /v1/fine_tuning/jobs                                                          api.FineTuningApiController.listPaginatedFineTuningJobs()
+POST /v1/fine_tuning/jobs/:fineTuningJobId/cancel                                 api.FineTuningApiController.cancelFineTuningJob(fineTuningJobId: String)
+GET /v1/fine_tuning/jobs/:fineTuningJobId/events                                  api.FineTuningApiController.listFineTuningEvents(fineTuningJobId: String)
+GET /v1/fine_tuning/jobs/:fineTuningJobId/checkpoints                             api.FineTuningApiController.listFineTuningJobCheckpoints(fineTuningJobId: String)
+GET /v1/fine_tuning/jobs/:fineTuningJobId                                         api.FineTuningApiController.retrieveFineTuningJob(fineTuningJobId: String)
 
 # Routes for Images API
 
-POST /v1/images/generations                                    api.ImagesApiController.createImage()
-POST /v1/images/edits                                          api.ImagesApiController.createImageEdit()
-POST /v1/images/variations                                     api.ImagesApiController.createImageVariation()
+POST /v1/images/generations                                                       api.ImagesApiController.createImage()
+POST /v1/images/edits                                                             api.ImagesApiController.createImageEdit()
+POST /v1/images/variations                                                        api.ImagesApiController.createImageVariation()
+
+# Routes for Invites API
+
+POST /v1/organization/invites                                                     api.InvitesApiController.inviteUser()
+GET /v1/organization/invites                                                      api.InvitesApiController.listInvites()
+DELETE /v1/organization/invites/:inviteId                                         api.InvitesApiController.deleteInvite(inviteId: String)
+GET /v1/organization/invites/:inviteId                                            api.InvitesApiController.retrieveInvite(inviteId: String)
 
 # Routes for Models API
 
-GET /v1/models                                                 api.ModelsApiController.listModels()
-DELETE /v1/models/:model                                       api.ModelsApiController.deleteModel(model: String)
-GET /v1/models/:model                                          api.ModelsApiController.retrieveModel(model: String)
+GET /v1/models                                                                    api.ModelsApiController.listModels()
+DELETE /v1/models/:model                                                          api.ModelsApiController.deleteModel(model: String)
+GET /v1/models/:model                                                             api.ModelsApiController.retrieveModel(model: String)
 
 # Routes for Moderations API
 
-POST /v1/moderations                                           api.ModerationsApiController.createModeration()
+POST /v1/moderations                                                              api.ModerationsApiController.createModeration()
+
+# Routes for Projects API
+
+POST /v1/organization/projects                                                    api.ProjectsApiController.createProject()
+GET /v1/organization/projects                                                     api.ProjectsApiController.listProjects()
+POST /v1/organization/projects/:projectId/archive                                 api.ProjectsApiController.archiveProject(projectId: String)
+POST /v1/organization/projects/:projectId/service_accounts                        api.ProjectsApiController.createProjectServiceAccount(projectId: String)
+POST /v1/organization/projects/:projectId/users                                   api.ProjectsApiController.createProjectUser(projectId: String)
+DELETE /v1/organization/projects/:projectId/api_keys/:keyId                       api.ProjectsApiController.deleteProjectApiKey(projectId: String, keyId: String)
+DELETE /v1/organization/projects/:projectId/service_accounts/:serviceAccountId    api.ProjectsApiController.deleteProjectServiceAccount(projectId: String, serviceAccountId: String)
+DELETE /v1/organization/projects/:projectId/users/:userId                         api.ProjectsApiController.deleteProjectUser(projectId: String, userId: String)
+GET /v1/organization/projects/:projectId/api_keys                                 api.ProjectsApiController.listProjectApiKeys(projectId: String)
+GET /v1/organization/projects/:projectId/rate_limits                              api.ProjectsApiController.listProjectRateLimits(projectId: String)
+GET /v1/organization/projects/:projectId/service_accounts                         api.ProjectsApiController.listProjectServiceAccounts(projectId: String)
+GET /v1/organization/projects/:projectId/users                                    api.ProjectsApiController.listProjectUsers(projectId: String)
+POST /v1/organization/projects/:projectId                                         api.ProjectsApiController.modifyProject(projectId: String)
+POST /v1/organization/projects/:projectId/users/:userId                           api.ProjectsApiController.modifyProjectUser(projectId: String, userId: String)
+GET /v1/organization/projects/:projectId                                          api.ProjectsApiController.retrieveProject(projectId: String)
+GET /v1/organization/projects/:projectId/api_keys/:keyId                          api.ProjectsApiController.retrieveProjectApiKey(projectId: String, keyId: String)
+GET /v1/organization/projects/:projectId/service_accounts/:serviceAccountId       api.ProjectsApiController.retrieveProjectServiceAccount(projectId: String, serviceAccountId: String)
+GET /v1/organization/projects/:projectId/users/:userId                            api.ProjectsApiController.retrieveProjectUser(projectId: String, userId: String)
+POST /v1/organization/projects/:projectId/rate_limits/:rateLimitId                api.ProjectsApiController.updateProjectRateLimits(projectId: String, rateLimitId: String)
+
+# Routes for Realtime API
+
+POST /v1/realtime/sessions                                                        api.RealtimeApiController.createRealtimeSession()
+
+# Routes for Uploads API
+
+POST /v1/uploads                                                                  api.UploadsApiController.createUpload()
+POST /v1/uploads/:uploadId/parts                                                  api.UploadsApiController.addUploadPart(uploadId: String)
+POST /v1/uploads/:uploadId/cancel                                                 api.UploadsApiController.cancelUpload(uploadId: String)
+POST /v1/uploads/:uploadId/complete                                               api.UploadsApiController.completeUpload(uploadId: String)
+
+# Routes for Usage API
+
+GET /v1/organization/usage/audio_speeches                                         api.UsageApiController.usageAudioSpeeches()
+GET /v1/organization/usage/audio_transcriptions                                   api.UsageApiController.usageAudioTranscriptions()
+GET /v1/organization/usage/code_interpreter_sessions                              api.UsageApiController.usageCodeInterpreterSessions()
+GET /v1/organization/usage/completions                                            api.UsageApiController.usageCompletions()
+GET /v1/organization/costs                                                        api.UsageApiController.usageCosts()
+GET /v1/organization/usage/embeddings                                             api.UsageApiController.usageEmbeddings()
+GET /v1/organization/usage/images                                                 api.UsageApiController.usageImages()
+GET /v1/organization/usage/moderations                                            api.UsageApiController.usageModerations()
+GET /v1/organization/usage/vector_stores                                          api.UsageApiController.usageVectorStores()
+
+# Routes for Users API
+
+GET /v1/organization/users                                                        api.UsersApiController.listUsers()
+DELETE /v1/organization/users/:userId                                             api.UsersApiController.deleteUser(userId: String)
+POST /v1/organization/users/:userId                                               api.UsersApiController.modifyUser(userId: String)
+GET /v1/organization/users/:userId                                                api.UsersApiController.retrieveUser(userId: String)
+
+# Routes for VectorStores API
+
+POST /v1/vector_stores                                                            api.VectorStoresApiController.createVectorStore()
+GET /v1/vector_stores                                                             api.VectorStoresApiController.listVectorStores()
+POST /v1/vector_stores/:vectorStoreId/file_batches/:batchId/cancel                api.VectorStoresApiController.cancelVectorStoreFileBatch(vectorStoreId: String, batchId: String)
+POST /v1/vector_stores/:vectorStoreId/files                                       api.VectorStoresApiController.createVectorStoreFile(vectorStoreId: String)
+POST /v1/vector_stores/:vectorStoreId/file_batches                                api.VectorStoresApiController.createVectorStoreFileBatch(vectorStoreId: String)
+DELETE /v1/vector_stores/:vectorStoreId                                           api.VectorStoresApiController.deleteVectorStore(vectorStoreId: String)
+DELETE /v1/vector_stores/:vectorStoreId/files/:fileId                             api.VectorStoresApiController.deleteVectorStoreFile(vectorStoreId: String, fileId: String)
+GET /v1/vector_stores/:vectorStoreId                                              api.VectorStoresApiController.getVectorStore(vectorStoreId: String)
+GET /v1/vector_stores/:vectorStoreId/files/:fileId                                api.VectorStoresApiController.getVectorStoreFile(vectorStoreId: String, fileId: String)
+GET /v1/vector_stores/:vectorStoreId/file_batches/:batchId                        api.VectorStoresApiController.getVectorStoreFileBatch(vectorStoreId: String, batchId: String)
+GET /v1/vector_stores/:vectorStoreId/file_batches/:batchId/files                  api.VectorStoresApiController.listFilesInVectorStoreBatch(vectorStoreId: String, batchId: String)
+GET /v1/vector_stores/:vectorStoreId/files                                        api.VectorStoresApiController.listVectorStoreFiles(vectorStoreId: String)
+POST /v1/vector_stores/:vectorStoreId                                             api.VectorStoresApiController.modifyVectorStore(vectorStoreId: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET /assets/*file           controllers.Assets.at(file)

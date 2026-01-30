@@ -2,6 +2,7 @@ namespace OpenAPI.Model
 
 open System
 open System.Collections.Generic
+open OpenAPI.Model.FineTuneMethod
 open OpenAPI.Model.FineTuningJobError
 open OpenAPI.Model.FineTuningJobHyperparameters
 open OpenAPI.Model.FineTuningJobIntegrationsInner
@@ -36,5 +37,7 @@ module FineTuningJob =
     ValidationFile : string option;
     Integrations : FineTuningJobIntegrationsInner[];
     Seed : int;
+    EstimatedFinish : int option;
+    Method : FineTuneMethod;
   }
   //#endregion

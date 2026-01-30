@@ -23,7 +23,7 @@ import javax.annotation.Generated;
 
 @Schema(name = "RunObject_required_action", description = "Details on the action required to continue the run. Will be `null` if no action is required.")
 @JsonTypeName("RunObject_required_action")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunObjectRequiredAction {
 
   /**

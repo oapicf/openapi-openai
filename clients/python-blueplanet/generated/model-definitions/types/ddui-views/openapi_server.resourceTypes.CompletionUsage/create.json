@@ -14,6 +14,8 @@
       {"model": "completion_tokens" },
       {"model": "prompt_tokens" },
       {"model": "total_tokens" },
+      {"model": "completion_tokens_details" },
+      {"model": "prompt_tokens_details" },
     ]
   }]
 }

@@ -5,22 +5,47 @@ import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T10:45:28.938980301Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T14:09:21.247747647Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageContentImageFileObjectImageFile   {
   
   private String fileId;
 
   /**
-   * The [File](/docs/api-reference/files) ID of the image in the message content.
+   * Specifies the detail level of the image if specified by the user. &#x60;low&#x60; uses fewer tokens, you can opt in to high resolution using &#x60;high&#x60;.
+   */
+  public enum DetailEnum {
+    AUTO("auto"),
+
+        LOW("low"),
+
+        HIGH("high");
+    private String value;
+
+    DetailEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+  }
+
+  private DetailEnum detail = DetailEnum.AUTO;
+
+  /**
+   * The [File](/docs/api-reference/files) ID of the image in the message content. Set &#x60;purpose&#x3D;\&quot;vision\&quot;&#x60; when uploading the File if you need to later display the file content.
    **/
   
-  @ApiModelProperty(required = true, value = "The [File](/docs/api-reference/files) ID of the image in the message content.")
+  @ApiModelProperty(required = true, value = "The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content.")
   @JsonProperty("file_id")
   @NotNull
   public String getFileId() {
@@ -28,6 +53,19 @@ public class MessageContentImageFileObjectImageFile   {
   }
   public void setFileId(String fileId) {
     this.fileId = fileId;
+  }
+
+  /**
+   * Specifies the detail level of the image if specified by the user. &#x60;low&#x60; uses fewer tokens, you can opt in to high resolution using &#x60;high&#x60;.
+   **/
+  
+  @ApiModelProperty(value = "Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.")
+  @JsonProperty("detail")
+  public DetailEnum getDetail() {
+    return detail;
+  }
+  public void setDetail(DetailEnum detail) {
+    this.detail = detail;
   }
 
 
@@ -40,12 +78,13 @@ public class MessageContentImageFileObjectImageFile   {
       return false;
     }
     MessageContentImageFileObjectImageFile messageContentImageFileObjectImageFile = (MessageContentImageFileObjectImageFile) o;
-    return Objects.equals(this.fileId, messageContentImageFileObjectImageFile.fileId);
+    return Objects.equals(this.fileId, messageContentImageFileObjectImageFile.fileId) &&
+        Objects.equals(this.detail, messageContentImageFileObjectImageFile.detail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileId);
+    return Objects.hash(fileId, detail);
   }
 
   @Override
@@ -54,6 +93,7 @@ public class MessageContentImageFileObjectImageFile   {
     sb.append("class MessageContentImageFileObjectImageFile {\n");
     
     sb.append("    fileId: ").append(toIndentedString(fileId)).append("\n");
+    sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("}");
     return sb.toString();
   }

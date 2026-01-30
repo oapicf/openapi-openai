@@ -1,0 +1,45 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Represents an individual API key in a project.",
+  "name": "ProjectApiKey",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "ProjectApiKey_object",
+        "symbols": [
+          "organization_project_api_key"
+        ]
+      },
+      "doc": "The object type, which is always `organization.project.api_key`"
+    },
+    {
+      "name": "redacted_value",
+      "type": "string",
+      "doc": "The redacted value of the API key"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "doc": "The name of the API key"
+    },
+    {
+      "name": "created_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) of when the API key was created"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The identifier, which can be referenced in API endpoints"
+    },
+    {
+      "name": "owner",
+      "type": "model.ProjectApiKeyOwner",
+      "doc": ""
+    }
+  ]
+
+}

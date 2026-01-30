@@ -1,0 +1,76 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ProjectRateLimit"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ProjectRateLimit"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ProjectRateLimit {
+    title = ProjectRateLimit
+    description = ProjectRateLimit
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;project.rate_limit&#x60;"
+          enum = ["project.rate_limit"]
+          optional = true
+        }
+        id {
+          type =  string
+          description = "The identifier, which can be referenced in API endpoints."
+          optional = true
+        }
+        model {
+          type =  string
+          description = "The model this rate limit applies to."
+          optional = true
+        }
+        max_requests_per_1_minute {
+          type =  integer
+          description = "The maximum requests per minute."
+          optional = true
+        }
+        max_tokens_per_1_minute {
+          type =  integer
+          description = "The maximum tokens per minute."
+          optional = true
+        }
+        max_images_per_1_minute {
+          type =  integer
+          description = "The maximum images per minute. Only present for relevant models."
+          optional = false
+        }
+        max_audio_megabytes_per_1_minute {
+          type =  integer
+          description = "The maximum audio megabytes per minute. Only present for relevant models."
+          optional = false
+        }
+        max_requests_per_1_day {
+          type =  integer
+          description = "The maximum requests per day. Only present for relevant models."
+          optional = false
+        }
+        batch_1_day_max_input_tokens {
+          type =  integer
+          description = "The maximum batch input tokens per day. Only present for relevant models."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ProjectRateLimit {
+    title = ProjectRateLimit
+    description = ProjectRateLimit
+    implements = openapi_server.resourceTypes.ProjectRateLimit
+
+  }
+}

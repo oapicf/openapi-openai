@@ -5,10 +5,16 @@
 -export_type([openapi_fine_tuning_job_hyperparameters/0]).
 
 -type openapi_fine_tuning_job_hyperparameters() ::
-    #{ 'n_epochs' := openapi_fine_tuning_job_hyperparameters_n_epochs:openapi_fine_tuning_job_hyperparameters_n_epochs()
+    #{ 'batch_size' => openapi_create_fine_tuning_job_request_hyperparameters_batch_size:openapi_create_fine_tuning_job_request_hyperparameters_batch_size(),
+       'learning_rate_multiplier' => openapi_create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier:openapi_create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier(),
+       'n_epochs' => openapi_create_fine_tuning_job_request_hyperparameters_n_epochs:openapi_create_fine_tuning_job_request_hyperparameters_n_epochs()
      }.
 
-encode(#{ 'n_epochs' := NEpochs
+encode(#{ 'batch_size' := BatchSize,
+          'learning_rate_multiplier' := LearningRateMultiplier,
+          'n_epochs' := NEpochs
         }) ->
-    #{ 'n_epochs' => NEpochs
+    #{ 'batch_size' => BatchSize,
+       'learning_rate_multiplier' => LearningRateMultiplier,
+       'n_epochs' => NEpochs
      }.

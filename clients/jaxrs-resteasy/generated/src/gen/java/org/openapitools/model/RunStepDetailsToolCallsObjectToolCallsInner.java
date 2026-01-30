@@ -10,14 +10,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.RunStepDetailsToolCallsCodeObject;
 import org.openapitools.model.RunStepDetailsToolCallsCodeObjectCodeInterpreter;
+import org.openapitools.model.RunStepDetailsToolCallsFileSearchObject;
+import org.openapitools.model.RunStepDetailsToolCallsFileSearchObjectFileSearch;
 import org.openapitools.model.RunStepDetailsToolCallsFunctionObject;
 import org.openapitools.model.RunStepDetailsToolCallsFunctionObjectFunction;
-import org.openapitools.model.RunStepDetailsToolCallsRetrievalObject;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T10:45:28.938980301Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T14:09:21.247747647Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStepDetailsToolCallsObjectToolCallsInner   {
   
   private String id;
@@ -28,7 +29,7 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
   public enum TypeEnum {
     CODE_INTERPRETER("code_interpreter"),
 
-        RETRIEVAL("retrieval"),
+        FILE_SEARCH("file_search"),
 
         FUNCTION("function");
     private String value;
@@ -46,7 +47,7 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
 
   private TypeEnum type;
   private RunStepDetailsToolCallsCodeObjectCodeInterpreter codeInterpreter;
-  private Object retrieval;
+  private RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch;
   private RunStepDetailsToolCallsFunctionObjectFunction function;
 
   /**
@@ -92,17 +93,17 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
   }
 
   /**
-   * For now, this is always going to be an empty object.
    **/
   
-  @ApiModelProperty(required = true, value = "For now, this is always going to be an empty object.")
-  @JsonProperty("retrieval")
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty("file_search")
   @NotNull
-  public Object getRetrieval() {
-    return retrieval;
+  @Valid
+  public RunStepDetailsToolCallsFileSearchObjectFileSearch getFileSearch() {
+    return fileSearch;
   }
-  public void setRetrieval(Object retrieval) {
-    this.retrieval = retrieval;
+  public void setFileSearch(RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
   }
 
   /**
@@ -132,13 +133,13 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
     return Objects.equals(this.id, runStepDetailsToolCallsObjectToolCallsInner.id) &&
         Objects.equals(this.type, runStepDetailsToolCallsObjectToolCallsInner.type) &&
         Objects.equals(this.codeInterpreter, runStepDetailsToolCallsObjectToolCallsInner.codeInterpreter) &&
-        Objects.equals(this.retrieval, runStepDetailsToolCallsObjectToolCallsInner.retrieval) &&
+        Objects.equals(this.fileSearch, runStepDetailsToolCallsObjectToolCallsInner.fileSearch) &&
         Objects.equals(this.function, runStepDetailsToolCallsObjectToolCallsInner.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, codeInterpreter, retrieval, function);
+    return Objects.hash(id, type, codeInterpreter, fileSearch, function);
   }
 
   @Override
@@ -149,7 +150,7 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    codeInterpreter: ").append(toIndentedString(codeInterpreter)).append("\n");
-    sb.append("    retrieval: ").append(toIndentedString(retrieval)).append("\n");
+    sb.append("    fileSearch: ").append(toIndentedString(fileSearch)).append("\n");
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();

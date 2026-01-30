@@ -7,6 +7,7 @@ from typing import List, Dict  # noqa: F401
 
 from app.openapi_server.models.base_model import Model
 from app.openapi_server.models.create_moderation_response_results_inner_categories import CreateModerationResponseResultsInnerCategories  # noqa: F401,E501
+from app.openapi_server.models.create_moderation_response_results_inner_category_applied_input_types import CreateModerationResponseResultsInnerCategoryAppliedInputTypes  # noqa: F401,E501
 from app.openapi_server.models.create_moderation_response_results_inner_category_scores import CreateModerationResponseResultsInnerCategoryScores  # noqa: F401,E501
 from openapi_server import util
 
@@ -17,7 +18,7 @@ class CreateModerationResponseResultsInner(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, flagged: bool=None, categories: CreateModerationResponseResultsInnerCategories=None, category_scores: CreateModerationResponseResultsInnerCategoryScores=None):  # noqa: E501
+    def __init__(self, flagged: bool=None, categories: CreateModerationResponseResultsInnerCategories=None, category_scores: CreateModerationResponseResultsInnerCategoryScores=None, category_applied_input_types: CreateModerationResponseResultsInnerCategoryAppliedInputTypes=None):  # noqa: E501
         """CreateModerationResponseResultsInner - a model defined in Swagger
 
         :param flagged: The flagged of this CreateModerationResponseResultsInner.  # noqa: E501
@@ -26,22 +27,27 @@ class CreateModerationResponseResultsInner(Model):
         :type categories: CreateModerationResponseResultsInnerCategories
         :param category_scores: The category_scores of this CreateModerationResponseResultsInner.  # noqa: E501
         :type category_scores: CreateModerationResponseResultsInnerCategoryScores
+        :param category_applied_input_types: The category_applied_input_types of this CreateModerationResponseResultsInner.  # noqa: E501
+        :type category_applied_input_types: CreateModerationResponseResultsInnerCategoryAppliedInputTypes
         """
         self.swagger_types = {
             'flagged': bool,
             'categories': CreateModerationResponseResultsInnerCategories,
-            'category_scores': CreateModerationResponseResultsInnerCategoryScores
+            'category_scores': CreateModerationResponseResultsInnerCategoryScores,
+            'category_applied_input_types': CreateModerationResponseResultsInnerCategoryAppliedInputTypes
         }
 
         self.attribute_map = {
             'flagged': 'flagged',
             'categories': 'categories',
-            'category_scores': 'category_scores'
+            'category_scores': 'category_scores',
+            'category_applied_input_types': 'category_applied_input_types'
         }
 
         self._flagged = flagged
         self._categories = categories
         self._category_scores = category_scores
+        self._category_applied_input_types = category_applied_input_types
 
     @classmethod
     def from_dict(cls, dikt) -> 'CreateModerationResponseResultsInner':
@@ -124,3 +130,26 @@ class CreateModerationResponseResultsInner(Model):
             raise ValueError("Invalid value for `category_scores`, must not be `None`")  # noqa: E501
 
         self._category_scores = category_scores
+
+    @property
+    def category_applied_input_types(self) -> CreateModerationResponseResultsInnerCategoryAppliedInputTypes:
+        """Gets the category_applied_input_types of this CreateModerationResponseResultsInner.
+
+
+        :return: The category_applied_input_types of this CreateModerationResponseResultsInner.
+        :rtype: CreateModerationResponseResultsInnerCategoryAppliedInputTypes
+        """
+        return self._category_applied_input_types
+
+    @category_applied_input_types.setter
+    def category_applied_input_types(self, category_applied_input_types: CreateModerationResponseResultsInnerCategoryAppliedInputTypes):
+        """Sets the category_applied_input_types of this CreateModerationResponseResultsInner.
+
+
+        :param category_applied_input_types: The category_applied_input_types of this CreateModerationResponseResultsInner.
+        :type category_applied_input_types: CreateModerationResponseResultsInnerCategoryAppliedInputTypes
+        """
+        if category_applied_input_types is None:
+            raise ValueError("Invalid value for `category_applied_input_types`, must not be `None`")  # noqa: E501
+
+        self._category_applied_input_types = category_applied_input_types

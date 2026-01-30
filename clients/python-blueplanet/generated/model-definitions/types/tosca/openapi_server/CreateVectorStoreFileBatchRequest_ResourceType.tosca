@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateVectorStoreFileBatchRequest"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateVectorStoreFileBatchRequest"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ChunkingStrategyRequestParam = openapi_server.resourceTypes.ChunkingStrategyRequestParam
+}
+resourceTypes {
+
+  CreateVectorStoreFileBatchRequest {
+    title = CreateVectorStoreFileBatchRequest
+    description = CreateVectorStoreFileBatchRequest
+    derivedFrom = Root
+    properties {
+        file_ids {
+          type = array
+          items.type =  string
+          description = "A list of [File](/docs/api-reference/files) IDs that the vector store should use. Useful for tools like &#x60;file_search&#x60; that can access files."
+          optional = true
+        }
+        chunking_strategy {
+          type = ChunkingStrategyRequestParam
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateVectorStoreFileBatchRequest {
+    title = CreateVectorStoreFileBatchRequest
+    description = CreateVectorStoreFileBatchRequest
+    implements = openapi_server.resourceTypes.CreateVectorStoreFileBatchRequest
+
+  }
+}

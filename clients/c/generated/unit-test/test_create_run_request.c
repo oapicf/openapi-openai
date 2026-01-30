@@ -27,12 +27,13 @@ create_run_request_t* instantiate_create_run_request(int include_optional) {
   if (include_optional) {
     create_run_request = create_run_request_create(
       "0",
-      gpt-4-turbo,
+      gpt-4o,
       "0",
       "0",
       list_createList(),
       list_createList(),
       0,
+      1,
       1,
       1,
       256,
@@ -40,12 +41,13 @@ create_run_request_t* instantiate_create_run_request(int include_optional) {
        // false, not to have infinite recursion
       instantiate_truncation_object(0),
       null,
+      1,
       null
     );
   } else {
     create_run_request = create_run_request_create(
       "0",
-      gpt-4-turbo,
+      gpt-4o,
       "0",
       "0",
       list_createList(),
@@ -53,10 +55,12 @@ create_run_request_t* instantiate_create_run_request(int include_optional) {
       0,
       1,
       1,
+      1,
       256,
       256,
       NULL,
       null,
+      1,
       null
     );
   }

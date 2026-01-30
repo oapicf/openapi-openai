@@ -21,12 +21,10 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("MessageContentTextAnnotationsFileCitationObject_file_citation")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageContentTextAnnotationsFileCitationObjectFileCitation {
 
   private String fileId;
-
-  private String quote;
 
   public MessageContentTextAnnotationsFileCitationObjectFileCitation() {
     super();
@@ -35,9 +33,8 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation {
   /**
    * Constructor with only required parameters
    */
-  public MessageContentTextAnnotationsFileCitationObjectFileCitation(String fileId, String quote) {
+  public MessageContentTextAnnotationsFileCitationObjectFileCitation(String fileId) {
     this.fileId = fileId;
-    this.quote = quote;
   }
 
   public MessageContentTextAnnotationsFileCitationObjectFileCitation fileId(String fileId) {
@@ -60,26 +57,6 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation {
     this.fileId = fileId;
   }
 
-  public MessageContentTextAnnotationsFileCitationObjectFileCitation quote(String quote) {
-    this.quote = quote;
-    return this;
-  }
-
-  /**
-   * The specific quote in the file.
-   * @return quote
-   */
-  @NotNull 
-  @Schema(name = "quote", description = "The specific quote in the file.", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("quote")
-  public String getQuote() {
-    return quote;
-  }
-
-  public void setQuote(String quote) {
-    this.quote = quote;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -89,13 +66,12 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation {
       return false;
     }
     MessageContentTextAnnotationsFileCitationObjectFileCitation messageContentTextAnnotationsFileCitationObjectFileCitation = (MessageContentTextAnnotationsFileCitationObjectFileCitation) o;
-    return Objects.equals(this.fileId, messageContentTextAnnotationsFileCitationObjectFileCitation.fileId) &&
-        Objects.equals(this.quote, messageContentTextAnnotationsFileCitationObjectFileCitation.quote);
+    return Objects.equals(this.fileId, messageContentTextAnnotationsFileCitationObjectFileCitation.fileId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileId, quote);
+    return Objects.hash(fileId);
   }
 
   @Override
@@ -103,7 +79,6 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation {
     StringBuilder sb = new StringBuilder();
     sb.append("class MessageContentTextAnnotationsFileCitationObjectFileCitation {\n");
     sb.append("    fileId: ").append(toIndentedString(fileId)).append("\n");
-    sb.append("    quote: ").append(toIndentedString(quote)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -9,9 +9,10 @@ import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.ChatCompletionRequestUserMessageContent;
 
 /**
- * ChatCompletionRequestUserMessage
+ * Messages sent by an end user, containing prompts or additional context information. 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description = "Messages sent by an end user, containing prompts or additional context information. ")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestUserMessage   {
   @JsonProperty("content")
   private ChatCompletionRequestUserMessageContent content;

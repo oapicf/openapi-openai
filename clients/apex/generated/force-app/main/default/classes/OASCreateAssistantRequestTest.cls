@@ -73,18 +73,23 @@ private class OASCreateAssistantRequestTest {
     private static void maintainRenamedProperties() {
         OASCreateAssistantRequest createAssistantRequest = new OASCreateAssistantRequest();
         Map<String, String> x-property-mappings = createAssistantRequest.getx-property-mappings();
-        System.assertEquals('fileIds', x-property-mappings.get('file_ids'));
+        System.assertEquals('toolResources', x-property-mappings.get('tool_resources'));
+        System.assertEquals('topP', x-property-mappings.get('top_p'));
+        System.assertEquals('responseFormat', x-property-mappings.get('response_format'));
     }
 
     @isTest
     private static void defaultValuesPopulated() {
         OASCreateAssistantRequest createAssistantRequest = new OASCreateAssistantRequest();
         System.assertEquals(new List<OASAssistantObjectToolsInner>(), createAssistantRequest.tools);
-        System.assertEquals(new List<String>(), createAssistantRequest.fileIds);
+        System.assertEquals(1, createAssistantRequest.temperature);
+        System.assertEquals(1, createAssistantRequest.topP);
         System.assertEquals(null, createAssistantRequest.model);
         System.assertEquals(null, createAssistantRequest.name);
         System.assertEquals(null, createAssistantRequest.description);
         System.assertEquals(null, createAssistantRequest.instructions);
+        System.assertEquals(null, createAssistantRequest.toolResources);
         System.assertEquals(null, createAssistantRequest.metadata);
+        System.assertEquals(null, createAssistantRequest.responseFormat);
     }
 }

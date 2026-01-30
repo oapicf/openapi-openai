@@ -51,6 +51,13 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
+	/*! \brief Get Whether to enable input audio transcription.
+	 */
+	bool getEnabled();
+
+	/*! \brief Set Whether to enable input audio transcription.
+	 */
+	void setEnabled(bool  enabled);
 	/*! \brief Get 
 	 */
 	std::string getEvent();
@@ -67,6 +74,7 @@ public:
 	void setData(std::string  data);
 
 private:
+	bool enabled;
 	std::string event;
 	std::string data;
 	void __init();

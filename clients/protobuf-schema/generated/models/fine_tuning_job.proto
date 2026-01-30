@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -14,6 +14,7 @@ syntax = "proto3";
 
 package openapitools;
 
+import public "models/fine_tune_method.proto";
 import public "models/fine_tuning_job_error.proto";
 import public "models/fine_tuning_job_hyperparameters.proto";
 import public "models/fine_tuning_job_integrations_inner.proto";
@@ -78,6 +79,11 @@ message FineTuningJob {
 
   // The seed used for the fine-tuning job.
   int32 seed = 3526257;
+
+  // The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+  optional int32 estimated_finish = 324767224;
+
+  FineTuneMethod method = 3813153;
 
 }
 

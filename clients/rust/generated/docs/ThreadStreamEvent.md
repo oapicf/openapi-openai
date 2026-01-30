@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enabled** | Option<**bool**> | Whether to enable input audio transcription. | [optional]
 **event** | **String** |  | 
 **data** | [**models::ThreadObject**](ThreadObject.md) |  | 
 

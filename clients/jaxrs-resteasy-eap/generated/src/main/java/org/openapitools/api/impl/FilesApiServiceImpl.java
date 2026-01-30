@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T10:45:31.742862961Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T14:09:29.020322047Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FilesApiServiceImpl implements FilesApi {
       public Response createFile(MultipartFormDataInput input,SecurityContext securityContext) {
       // do some magic!
@@ -33,7 +33,7 @@ public class FilesApiServiceImpl implements FilesApi {
       // do some magic!
       return Response.ok().build();
   }
-      public Response listFiles(String purpose,SecurityContext securityContext) {
+      public Response listFiles(String purpose,Integer limit,String order,String after,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }

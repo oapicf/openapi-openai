@@ -5,7 +5,7 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
-from openapi_server.models.chat_completion_named_tool_choice_function import ChatCompletionNamedToolChoiceFunction
+from openapi_server.models.assistants_named_tool_choice_function import AssistantsNamedToolChoiceFunction
 from openapi_server import util
 
 
@@ -15,7 +15,7 @@ class ChatCompletionNamedToolChoice(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, type: str=None, function: ChatCompletionNamedToolChoiceFunction=None):
+    def __init__(self, type: str=None, function: AssistantsNamedToolChoiceFunction=None):
         """ChatCompletionNamedToolChoice - a model defined in OpenAPI
 
         :param type: The type of this ChatCompletionNamedToolChoice.
@@ -23,7 +23,7 @@ class ChatCompletionNamedToolChoice(Model):
         """
         self.openapi_types = {
             'type': str,
-            'function': ChatCompletionNamedToolChoiceFunction
+            'function': AssistantsNamedToolChoiceFunction
         }
 
         self.attribute_map = {
@@ -78,7 +78,7 @@ class ChatCompletionNamedToolChoice(Model):
 
 
         :return: The function of this ChatCompletionNamedToolChoice.
-        :rtype: ChatCompletionNamedToolChoiceFunction
+        :rtype: AssistantsNamedToolChoiceFunction
         """
         return self._function
 
@@ -88,7 +88,7 @@ class ChatCompletionNamedToolChoice(Model):
 
 
         :param function: The function of this ChatCompletionNamedToolChoice.
-        :type function: ChatCompletionNamedToolChoiceFunction
+        :type function: AssistantsNamedToolChoiceFunction
         """
         if function is None:
             raise ValueError("Invalid value for `function`, must not be `None`")

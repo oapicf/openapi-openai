@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -51,17 +51,17 @@ func NewImagesAPIController(s ImagesAPIServicer, opts ...ImagesAPIOption) *Image
 // Routes returns all the api routes for the ImagesAPIController
 func (c *ImagesAPIController) Routes() Routes {
 	return Routes{
-		"CreateImage": Route{
-			"CreateImage",
-			strings.ToUpper("Post"),
-			"/v1/images/generations",
-			c.CreateImage,
-		},
 		"CreateImageEdit": Route{
 			"CreateImageEdit",
 			strings.ToUpper("Post"),
 			"/v1/images/edits",
 			c.CreateImageEdit,
+		},
+		"CreateImage": Route{
+			"CreateImage",
+			strings.ToUpper("Post"),
+			"/v1/images/generations",
+			c.CreateImage,
 		},
 		"CreateImageVariation": Route{
 			"CreateImageVariation",
@@ -76,16 +76,16 @@ func (c *ImagesAPIController) Routes() Routes {
 func (c *ImagesAPIController) OrderedRoutes() []Route {
 	return []Route{
 		Route{
-			"CreateImage",
-			strings.ToUpper("Post"),
-			"/v1/images/generations",
-			c.CreateImage,
-		},
-		Route{
 			"CreateImageEdit",
 			strings.ToUpper("Post"),
 			"/v1/images/edits",
 			c.CreateImageEdit,
+		},
+		Route{
+			"CreateImage",
+			strings.ToUpper("Post"),
+			"/v1/images/generations",
+			c.CreateImage,
 		},
 		Route{
 			"CreateImageVariation",
@@ -97,33 +97,6 @@ func (c *ImagesAPIController) OrderedRoutes() []Route {
 }
 
 
-
-// CreateImage - Creates an image given a prompt.
-func (c *ImagesAPIController) CreateImage(w http.ResponseWriter, r *http.Request) {
-	var createImageRequestParam CreateImageRequest
-	d := json.NewDecoder(r.Body)
-	d.DisallowUnknownFields()
-	if err := d.Decode(&createImageRequestParam); err != nil {
-		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
-		return
-	}
-	if err := AssertCreateImageRequestRequired(createImageRequestParam); err != nil {
-		c.errorHandler(w, r, err, nil)
-		return
-	}
-	if err := AssertCreateImageRequestConstraints(createImageRequestParam); err != nil {
-		c.errorHandler(w, r, err, nil)
-		return
-	}
-	result, err := c.service.CreateImage(r.Context(), createImageRequestParam)
-	// If an error occurred, encode the error with the status code
-	if err != nil {
-		c.errorHandler(w, r, err, &result)
-		return
-	}
-	// If no error, encode the body and the result code
-	_ = EncodeJSONResponse(result.Body, &result.Code, w)
-}
 
 // CreateImageEdit - Creates an edited or extended image given an original image and a prompt.
 func (c *ImagesAPIController) CreateImageEdit(w http.ResponseWriter, r *http.Request) {
@@ -174,6 +147,33 @@ func (c *ImagesAPIController) CreateImageEdit(w http.ResponseWriter, r *http.Req
 	
 	userParam := r.FormValue("user")
 	result, err := c.service.CreateImageEdit(r.Context(), imageParam, promptParam, maskParam, modelParam, nParam, sizeParam, responseFormatParam, userParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	_ = EncodeJSONResponse(result.Body, &result.Code, w)
+}
+
+// CreateImage - Creates an image given a prompt.
+func (c *ImagesAPIController) CreateImage(w http.ResponseWriter, r *http.Request) {
+	var createImageRequestParam CreateImageRequest
+	d := json.NewDecoder(r.Body)
+	d.DisallowUnknownFields()
+	if err := d.Decode(&createImageRequestParam); err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	if err := AssertCreateImageRequestRequired(createImageRequestParam); err != nil {
+		c.errorHandler(w, r, err, nil)
+		return
+	}
+	if err := AssertCreateImageRequestConstraints(createImageRequestParam); err != nil {
+		c.errorHandler(w, r, err, nil)
+		return
+	}
+	result, err := c.service.CreateImage(r.Context(), createImageRequestParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)

@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **role** | **String** | The role of the messages author, in this case &#x60;tool&#x60;. |  |
-| **content** | **String** | The contents of the tool message. |  |
+| **content** | [**ChatCompletionRequestToolMessageContent**](ChatCompletionRequestToolMessageContent.md) |  |  |
 | **tool_call_id** | **String** | Tool call that this message is responding to. |  |
 
 ## Example

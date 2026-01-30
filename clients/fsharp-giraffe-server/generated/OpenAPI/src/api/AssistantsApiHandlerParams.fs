@@ -1,23 +1,18 @@
 namespace OpenAPI
 
-open OpenAPI.Model.AssistantFileObject
 open OpenAPI.Model.AssistantObject
-open OpenAPI.Model.CreateAssistantFileRequest
 open OpenAPI.Model.CreateAssistantRequest
 open OpenAPI.Model.CreateMessageRequest
 open OpenAPI.Model.CreateRunRequest
 open OpenAPI.Model.CreateThreadAndRunRequest
 open OpenAPI.Model.CreateThreadRequest
-open OpenAPI.Model.DeleteAssistantFileResponse
 open OpenAPI.Model.DeleteAssistantResponse
+open OpenAPI.Model.DeleteMessageResponse
 open OpenAPI.Model.DeleteThreadResponse
-open OpenAPI.Model.ListAssistantFilesResponse
 open OpenAPI.Model.ListAssistantsResponse
-open OpenAPI.Model.ListMessageFilesResponse
 open OpenAPI.Model.ListMessagesResponse
 open OpenAPI.Model.ListRunStepsResponse
 open OpenAPI.Model.ListRunsResponse
-open OpenAPI.Model.MessageFileObject
 open OpenAPI.Model.MessageObject
 open OpenAPI.Model.ModifyAssistantRequest
 open OpenAPI.Model.ModifyMessageRequest
@@ -69,29 +64,6 @@ module AssistantsApiHandlerParams =
     }
     //#region Path parameters
     [<CLIMutable>]
-    type CreateAssistantFilePathParams = {
-      assistantId : string ;
-    }
-    //#endregion
-
-    //#region Body parameters
-    [<CLIMutable>]
-    type CreateAssistantFileBodyParams = CreateAssistantFileRequest
-    //#endregion
-
-
-    type CreateAssistantFileStatusCode200Response = {
-      content:AssistantFileObject;
-      
-    }
-    type CreateAssistantFileResult = CreateAssistantFileStatusCode200 of CreateAssistantFileStatusCode200Response
-
-    type CreateAssistantFileArgs = {
-      pathParams:CreateAssistantFilePathParams;
-      bodyParams:CreateAssistantFileBodyParams
-    }
-    //#region Path parameters
-    [<CLIMutable>]
     type CreateMessagePathParams = {
       threadId : string ;
     }
@@ -120,6 +92,14 @@ module AssistantsApiHandlerParams =
     }
     //#endregion
 
+    //#region Query parameters
+    [<CLIMutable>]
+    type CreateRunQueryParams = {
+      include : string[] option;
+
+    }
+    //#endregion
+
     //#region Body parameters
     [<CLIMutable>]
     type CreateRunBodyParams = CreateRunRequest
@@ -134,6 +114,7 @@ module AssistantsApiHandlerParams =
 
     type CreateRunArgs = {
       pathParams:CreateRunPathParams;
+      queryParams:Result<CreateRunQueryParams,string>;
       bodyParams:CreateRunBodyParams
     }
 
@@ -187,22 +168,22 @@ module AssistantsApiHandlerParams =
     }
     //#region Path parameters
     [<CLIMutable>]
-    type DeleteAssistantFilePathParams = {
-      assistantId : string ;
+    type DeleteMessagePathParams = {
+      threadId : string ;
     //#endregion
-      fileId : string ;
+      messageId : string ;
     }
     //#endregion
 
 
-    type DeleteAssistantFileStatusCode200Response = {
-      content:DeleteAssistantFileResponse;
+    type DeleteMessageStatusCode200Response = {
+      content:DeleteMessageResponse;
       
     }
-    type DeleteAssistantFileResult = DeleteAssistantFileStatusCode200 of DeleteAssistantFileStatusCode200Response
+    type DeleteMessageResult = DeleteMessageStatusCode200 of DeleteMessageStatusCode200Response
 
-    type DeleteAssistantFileArgs = {
-      pathParams:DeleteAssistantFilePathParams;
+    type DeleteMessageArgs = {
+      pathParams:DeleteMessagePathParams;
     }
     //#region Path parameters
     [<CLIMutable>]
@@ -240,25 +221,6 @@ module AssistantsApiHandlerParams =
     }
     //#region Path parameters
     [<CLIMutable>]
-    type GetAssistantFilePathParams = {
-      assistantId : string ;
-    //#endregion
-      fileId : string ;
-    }
-    //#endregion
-
-
-    type GetAssistantFileStatusCode200Response = {
-      content:AssistantFileObject;
-      
-    }
-    type GetAssistantFileResult = GetAssistantFileStatusCode200 of GetAssistantFileStatusCode200Response
-
-    type GetAssistantFileArgs = {
-      pathParams:GetAssistantFilePathParams;
-    }
-    //#region Path parameters
-    [<CLIMutable>]
     type GetMessagePathParams = {
       threadId : string ;
     //#endregion
@@ -275,27 +237,6 @@ module AssistantsApiHandlerParams =
 
     type GetMessageArgs = {
       pathParams:GetMessagePathParams;
-    }
-    //#region Path parameters
-    [<CLIMutable>]
-    type GetMessageFilePathParams = {
-      threadId : string ;
-    //#endregion
-      messageId : string ;
-    //#endregion
-      fileId : string ;
-    }
-    //#endregion
-
-
-    type GetMessageFileStatusCode200Response = {
-      content:MessageFileObject;
-      
-    }
-    type GetMessageFileResult = GetMessageFileStatusCode200 of GetMessageFileStatusCode200Response
-
-    type GetMessageFileArgs = {
-      pathParams:GetMessageFilePathParams;
     }
     //#region Path parameters
     [<CLIMutable>]
@@ -327,6 +268,14 @@ module AssistantsApiHandlerParams =
     }
     //#endregion
 
+    //#region Query parameters
+    [<CLIMutable>]
+    type GetRunStepQueryParams = {
+      include : string[] option;
+
+    }
+    //#endregion
+
 
     type GetRunStepStatusCode200Response = {
       content:RunStepObject;
@@ -336,6 +285,7 @@ module AssistantsApiHandlerParams =
 
     type GetRunStepArgs = {
       pathParams:GetRunStepPathParams;
+      queryParams:Result<GetRunStepQueryParams,string>;
     }
     //#region Path parameters
     [<CLIMutable>]
@@ -353,41 +303,6 @@ module AssistantsApiHandlerParams =
 
     type GetThreadArgs = {
       pathParams:GetThreadPathParams;
-    }
-    //#region Path parameters
-    [<CLIMutable>]
-    type ListAssistantFilesPathParams = {
-      assistantId : string ;
-    }
-    //#endregion
-
-    //#region Query parameters
-    [<CLIMutable>]
-    type ListAssistantFilesQueryParams = {
-      limit : int option;
-
-
-      order : string option;
-
-
-      after : string option;
-
-
-      before : string option;
-
-    }
-    //#endregion
-
-
-    type ListAssistantFilesStatusCode200Response = {
-      content:ListAssistantFilesResponse;
-      
-    }
-    type ListAssistantFilesResult = ListAssistantFilesStatusCode200 of ListAssistantFilesStatusCode200Response
-
-    type ListAssistantFilesArgs = {
-      pathParams:ListAssistantFilesPathParams;
-      queryParams:Result<ListAssistantFilesQueryParams,string>;
     }
 
     //#region Query parameters
@@ -416,43 +331,6 @@ module AssistantsApiHandlerParams =
 
     type ListAssistantsArgs = {
       queryParams:Result<ListAssistantsQueryParams,string>;
-    }
-    //#region Path parameters
-    [<CLIMutable>]
-    type ListMessageFilesPathParams = {
-      threadId : string ;
-    //#endregion
-      messageId : string ;
-    }
-    //#endregion
-
-    //#region Query parameters
-    [<CLIMutable>]
-    type ListMessageFilesQueryParams = {
-      limit : int option;
-
-
-      order : string option;
-
-
-      after : string option;
-
-
-      before : string option;
-
-    }
-    //#endregion
-
-
-    type ListMessageFilesStatusCode200Response = {
-      content:ListMessageFilesResponse;
-      
-    }
-    type ListMessageFilesResult = ListMessageFilesStatusCode200 of ListMessageFilesStatusCode200Response
-
-    type ListMessageFilesArgs = {
-      pathParams:ListMessageFilesPathParams;
-      queryParams:Result<ListMessageFilesQueryParams,string>;
     }
     //#region Path parameters
     [<CLIMutable>]
@@ -514,6 +392,9 @@ module AssistantsApiHandlerParams =
 
 
       before : string option;
+
+
+      include : string[] option;
 
     }
     //#endregion

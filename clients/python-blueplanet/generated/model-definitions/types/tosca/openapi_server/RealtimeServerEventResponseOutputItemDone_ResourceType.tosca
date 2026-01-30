@@ -1,0 +1,57 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventResponseOutputItemDone"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventResponseOutputItemDone"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RealtimeConversationItem = openapi_server.resourceTypes.RealtimeConversationItem
+}
+resourceTypes {
+
+  RealtimeServerEventResponseOutputItemDone {
+    title = RealtimeServerEventResponseOutputItemDone
+    description = RealtimeServerEventResponseOutputItemDone
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "The unique ID of the server event."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;response.output_item.done&#x60;."
+          enum = ["response.output_item.done"]
+          optional = true
+        }
+        response_id {
+          type =  string
+          description = "The ID of the Response to which the item belongs."
+          optional = true
+        }
+        output_index {
+          type =  integer
+          description = "The index of the output item in the Response."
+          optional = true
+        }
+        item {
+          type = RealtimeConversationItem
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventResponseOutputItemDone {
+    title = RealtimeServerEventResponseOutputItemDone
+    description = RealtimeServerEventResponseOutputItemDone
+    implements = openapi_server.resourceTypes.RealtimeServerEventResponseOutputItemDone
+
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ProjectApiKeyDeleteResponse",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "ProjectApiKeyDeleteResponse_object",
+        "symbols": [
+          "organization_project_api_key_deleted"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "deleted",
+      "type": "boolean",
+      "doc": ""
+    }
+  ]
+
+}

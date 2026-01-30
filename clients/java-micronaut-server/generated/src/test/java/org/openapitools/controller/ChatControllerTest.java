@@ -50,7 +50,7 @@ public class ChatControllerTest {
     /**
      * This test is used to validate the implementation of createChatCompletion() method
      *
-     * The method should: Creates a model response for the given chat conversation.
+     * The method should: Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). 
      *
      * TODO fill in the parameters and test return value.
      */
@@ -80,7 +80,7 @@ public class ChatControllerTest {
         CreateChatCompletionRequest body = new CreateChatCompletionRequest(Arrays.asList(), null);
         String uri = UriTemplate.of("/chat/completions").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@3fc7abf6");
+            .accept("[Ljava.lang.String;@1a8bbf04");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, CreateChatCompletionResponse.class);

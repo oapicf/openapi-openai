@@ -1,0 +1,31 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ChatCompletionRequestToolMessageContent"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ChatCompletionRequestToolMessageContent"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ChatCompletionRequestMessageContentPartText = openapi_server.resourceTypes.ChatCompletionRequestMessageContentPartText
+}
+resourceTypes {
+
+  ChatCompletionRequestToolMessageContent {
+    title = ChatCompletionRequestToolMessageContent
+    description = ChatCompletionRequestToolMessageContent
+    derivedFrom = Root
+    properties {
+    }
+  }
+}
+
+serviceTemplates {
+
+  ChatCompletionRequestToolMessageContent {
+    title = ChatCompletionRequestToolMessageContent
+    description = ChatCompletionRequestToolMessageContent
+    implements = openapi_server.resourceTypes.ChatCompletionRequestToolMessageContent
+
+  }
+}

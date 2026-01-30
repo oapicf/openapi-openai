@@ -21,6 +21,9 @@ import io.kotlintest.specs.ShouldSpec
 import org.openapitools.client.models.MessageDeltaObjectDeltaContentInner
 import org.openapitools.client.models.MessageDeltaContentImageFileObject
 import org.openapitools.client.models.MessageDeltaContentImageFileObjectImageFile
+import org.openapitools.client.models.MessageDeltaContentImageUrlObject
+import org.openapitools.client.models.MessageDeltaContentImageUrlObjectImageUrl
+import org.openapitools.client.models.MessageDeltaContentRefusalObject
 import org.openapitools.client.models.MessageDeltaContentTextObject
 import org.openapitools.client.models.MessageDeltaContentTextObjectText
 
@@ -51,6 +54,18 @@ class MessageDeltaObjectDeltaContentInnerTest : ShouldSpec() {
         should("test text") {
             // uncomment below to test the property
             //modelInstance.text shouldBe ("TODO")
+        }
+
+        // to test the property `refusal`
+        should("test refusal") {
+            // uncomment below to test the property
+            //modelInstance.refusal shouldBe ("TODO")
+        }
+
+        // to test the property `imageUrl`
+        should("test imageUrl") {
+            // uncomment below to test the property
+            //modelInstance.imageUrl shouldBe ("TODO")
         }
 
     }

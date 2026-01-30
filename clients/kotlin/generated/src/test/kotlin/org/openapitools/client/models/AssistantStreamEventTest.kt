@@ -43,5 +43,11 @@ class AssistantStreamEventTest : ShouldSpec() {
             //modelInstance.`data` shouldBe ("TODO")
         }
 
+        // to test the property `enabled` - Whether to enable input audio transcription.
+        should("test enabled") {
+            // uncomment below to test the property
+            //modelInstance.enabled shouldBe ("TODO")
+        }
+
     }
 }

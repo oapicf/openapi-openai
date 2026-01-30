@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -14,6 +14,7 @@ syntax = "proto3";
 
 package openapitools;
 
+import public "models/modify_thread_request_tool_resources.proto";
 import public "models/todo_object_mapping.proto";
 
 message ThreadObject {
@@ -31,7 +32,9 @@ message ThreadObject {
   // The Unix timestamp (in seconds) for when the thread was created.
   int32 created_at = 295938284;
 
-  // Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  ModifyThreadRequestToolResources tool_resources = 450823230;
+
+  // Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
   TODO_OBJECT_MAPPING metadata = 450004177;
 
 }

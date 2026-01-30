@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AssistantsNamedToolChoice"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AssistantsNamedToolChoice"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AssistantsNamedToolChoiceFunction = openapi_server.resourceTypes.AssistantsNamedToolChoiceFunction
+}
+resourceTypes {
+
+  AssistantsNamedToolChoice {
+    title = AssistantsNamedToolChoice
+    description = AssistantsNamedToolChoice
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "The type of the tool. If type is &#x60;function&#x60;, the function name must be set"
+          enum = ["function", "code_interpreter", "file_search"]
+          optional = true
+        }
+        function {
+          type = AssistantsNamedToolChoiceFunction
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AssistantsNamedToolChoice {
+    title = AssistantsNamedToolChoice
+    description = AssistantsNamedToolChoice
+    implements = openapi_server.resourceTypes.AssistantsNamedToolChoice
+
+  }
+}

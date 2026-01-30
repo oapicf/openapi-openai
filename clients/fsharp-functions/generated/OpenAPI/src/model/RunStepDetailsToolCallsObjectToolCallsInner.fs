@@ -5,9 +5,10 @@ open System.Collections.Generic
 open Newtonsoft.Json
 open OpenAPI.Model.RunStepDetailsToolCallsCodeObject
 open OpenAPI.Model.RunStepDetailsToolCallsCodeObjectCodeInterpreter
+open OpenAPI.Model.RunStepDetailsToolCallsFileSearchObject
+open OpenAPI.Model.RunStepDetailsToolCallsFileSearchObjectFileSearch
 open OpenAPI.Model.RunStepDetailsToolCallsFunctionObject
 open OpenAPI.Model.RunStepDetailsToolCallsFunctionObjectFunction
-open OpenAPI.Model.RunStepDetailsToolCallsRetrievalObject
 
 module RunStepDetailsToolCallsObjectToolCallsInner =
 
@@ -21,8 +22,8 @@ module RunStepDetailsToolCallsObjectToolCallsInner =
     Type : string;
     [<JsonProperty(PropertyName = "code_interpreter")>]
     CodeInterpreter : RunStepDetailsToolCallsCodeObjectCodeInterpreter;
-    [<JsonProperty(PropertyName = "retrieval")>]
-    Retrieval : obj;
+    [<JsonProperty(PropertyName = "file_search")>]
+    FileSearch : RunStepDetailsToolCallsFileSearchObjectFileSearch;
     [<JsonProperty(PropertyName = "function")>]
     Function : RunStepDetailsToolCallsFunctionObjectFunction;
   }

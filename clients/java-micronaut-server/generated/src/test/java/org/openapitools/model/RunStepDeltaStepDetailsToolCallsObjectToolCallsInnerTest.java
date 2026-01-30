@@ -3,9 +3,9 @@ package org.openapitools.model;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsCodeObject;
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter;
+import org.openapitools.model.RunStepDeltaStepDetailsToolCallsFileSearchObject;
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsFunctionObject;
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsFunctionObjectFunction;
-import org.openapitools.model.RunStepDeltaStepDetailsToolCallsRetrievalObject;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -58,11 +58,11 @@ public class RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerTest {
     }
 
     /**
-     * Test the property 'retrieval'
+     * Test the property 'fileSearch'
      */
     @Test
-    public void retrievalTest() {
-        // TODO: test retrieval
+    public void fileSearchTest() {
+        // TODO: test fileSearch
     }
 
     /**

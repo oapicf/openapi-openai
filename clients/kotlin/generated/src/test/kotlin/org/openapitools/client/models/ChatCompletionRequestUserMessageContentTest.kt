@@ -19,7 +19,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.ChatCompletionRequestUserMessageContent
-import org.openapitools.client.models.ChatCompletionRequestMessageContentPart
+import org.openapitools.client.models.ChatCompletionRequestUserMessageContentPart
 
 class ChatCompletionRequestUserMessageContentTest : ShouldSpec() {
     init {

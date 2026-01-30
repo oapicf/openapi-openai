@@ -66,7 +66,7 @@ class RunStreamEventOneOf5(Model):
         :param event: The event of this RunStreamEventOneOf5.
         :type event: str
         """
-        allowed_values = ["thread.run.failed"]  # noqa: E501
+        allowed_values = ["thread.run.incomplete"]  # noqa: E501
         if event not in allowed_values:
             raise ValueError(
                 "Invalid value for `event` ({0}), must be one of {1}"

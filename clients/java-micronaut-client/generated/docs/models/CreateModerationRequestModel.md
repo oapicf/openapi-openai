@@ -2,7 +2,7 @@
 
 # CreateModerationRequestModel
 
-Two content moderations models are available: `text-moderation-stable` and `text-moderation-latest`.  The default is `text-moderation-latest` which will be automatically upgraded over time. This ensures you are always using our most accurate model. If you use `text-moderation-stable`, we will provide advanced notice before updating the model. Accuracy of `text-moderation-stable` may be slightly lower than for `text-moderation-latest`. 
+The content moderation model you would like to use. Learn more in [the moderation guide](/docs/guides/moderation), and learn about available models [here](/docs/models#moderation). 
 
 The class is defined in **[CreateModerationRequestModel.java](../../src/main/java/org/openapitools/model/CreateModerationRequestModel.java)**
 

@@ -1,23 +1,18 @@
 package org.openapitools.api;
 
-import org.openapitools.model.AssistantFileObject;
 import org.openapitools.model.AssistantObject;
-import org.openapitools.model.CreateAssistantFileRequest;
 import org.openapitools.model.CreateAssistantRequest;
 import org.openapitools.model.CreateMessageRequest;
 import org.openapitools.model.CreateRunRequest;
 import org.openapitools.model.CreateThreadAndRunRequest;
 import org.openapitools.model.CreateThreadRequest;
-import org.openapitools.model.DeleteAssistantFileResponse;
 import org.openapitools.model.DeleteAssistantResponse;
+import org.openapitools.model.DeleteMessageResponse;
 import org.openapitools.model.DeleteThreadResponse;
-import org.openapitools.model.ListAssistantFilesResponse;
 import org.openapitools.model.ListAssistantsResponse;
-import org.openapitools.model.ListMessageFilesResponse;
 import org.openapitools.model.ListMessagesResponse;
 import org.openapitools.model.ListRunStepsResponse;
 import org.openapitools.model.ListRunsResponse;
-import org.openapitools.model.MessageFileObject;
 import org.openapitools.model.MessageObject;
 import org.openapitools.model.ModifyAssistantRequest;
 import org.openapitools.model.ModifyMessageRequest;
@@ -85,24 +80,6 @@ public class AssistantsApiTest {
 
     
     /**
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     */
-    @Test
-    @Disabled("Not Implemented")
-    public void createAssistantFileTest() {
-        // given
-        String assistantId = "file-abc123";
-        CreateAssistantFileRequest createAssistantFileRequest = new CreateAssistantFileRequest("example");
-
-        // when
-        AssistantFileObject body = api.createAssistantFile(assistantId, createAssistantFileRequest).block();
-
-        // then
-        // TODO implement the createAssistantFileTest()
-    }
-
-    
-    /**
      * Create a message.
      */
     @Test
@@ -110,7 +87,7 @@ public class AssistantsApiTest {
     public void createMessageTest() {
         // given
         String threadId = "example";
-        CreateMessageRequest createMessageRequest = new CreateMessageRequest("example", "example");
+        CreateMessageRequest createMessageRequest = new CreateMessageRequest("example", null);
 
         // when
         MessageObject body = api.createMessage(threadId, createMessageRequest).block();
@@ -129,9 +106,10 @@ public class AssistantsApiTest {
         // given
         String threadId = "example";
         CreateRunRequest createRunRequest = new CreateRunRequest("example");
+        List<String> include = Arrays.asList("example");
 
         // when
-        RunObject body = api.createRun(threadId, createRunRequest).block();
+        RunObject body = api.createRun(threadId, createRunRequest, include).block();
 
         // then
         // TODO implement the createRunTest()
@@ -190,20 +168,20 @@ public class AssistantsApiTest {
 
     
     /**
-     * Delete an assistant file.
+     * Deletes a message.
      */
     @Test
     @Disabled("Not Implemented")
-    public void deleteAssistantFileTest() {
+    public void deleteMessageTest() {
         // given
-        String assistantId = "example";
-        String fileId = "example";
+        String threadId = "example";
+        String messageId = "example";
 
         // when
-        DeleteAssistantFileResponse body = api.deleteAssistantFile(assistantId, fileId).block();
+        DeleteMessageResponse body = api.deleteMessage(threadId, messageId).block();
 
         // then
-        // TODO implement the deleteAssistantFileTest()
+        // TODO implement the deleteMessageTest()
     }
 
     
@@ -242,24 +220,6 @@ public class AssistantsApiTest {
 
     
     /**
-     * Retrieves an AssistantFile.
-     */
-    @Test
-    @Disabled("Not Implemented")
-    public void getAssistantFileTest() {
-        // given
-        String assistantId = "example";
-        String fileId = "example";
-
-        // when
-        AssistantFileObject body = api.getAssistantFile(assistantId, fileId).block();
-
-        // then
-        // TODO implement the getAssistantFileTest()
-    }
-
-    
-    /**
      * Retrieve a message.
      */
     @Test
@@ -274,25 +234,6 @@ public class AssistantsApiTest {
 
         // then
         // TODO implement the getMessageTest()
-    }
-
-    
-    /**
-     * Retrieves a message file.
-     */
-    @Test
-    @Disabled("Not Implemented")
-    public void getMessageFileTest() {
-        // given
-        String threadId = "thread_abc123";
-        String messageId = "msg_abc123";
-        String fileId = "file-abc123";
-
-        // when
-        MessageFileObject body = api.getMessageFile(threadId, messageId, fileId).block();
-
-        // then
-        // TODO implement the getMessageFileTest()
     }
 
     
@@ -324,9 +265,10 @@ public class AssistantsApiTest {
         String threadId = "example";
         String runId = "example";
         String stepId = "example";
+        List<String> include = Arrays.asList("example");
 
         // when
-        RunStepObject body = api.getRunStep(threadId, runId, stepId).block();
+        RunStepObject body = api.getRunStep(threadId, runId, stepId, include).block();
 
         // then
         // TODO implement the getRunStepTest()
@@ -351,27 +293,6 @@ public class AssistantsApiTest {
 
     
     /**
-     * Returns a list of assistant files.
-     */
-    @Test
-    @Disabled("Not Implemented")
-    public void listAssistantFilesTest() {
-        // given
-        String assistantId = "example";
-        Integer limit = 20;
-        String order = "desc";
-        String after = "example";
-        String before = "example";
-
-        // when
-        ListAssistantFilesResponse body = api.listAssistantFiles(assistantId, limit, order, after, before).block();
-
-        // then
-        // TODO implement the listAssistantFilesTest()
-    }
-
-    
-    /**
      * Returns a list of assistants.
      */
     @Test
@@ -388,28 +309,6 @@ public class AssistantsApiTest {
 
         // then
         // TODO implement the listAssistantsTest()
-    }
-
-    
-    /**
-     * Returns a list of message files.
-     */
-    @Test
-    @Disabled("Not Implemented")
-    public void listMessageFilesTest() {
-        // given
-        String threadId = "example";
-        String messageId = "example";
-        Integer limit = 20;
-        String order = "desc";
-        String after = "example";
-        String before = "example";
-
-        // when
-        ListMessageFilesResponse body = api.listMessageFiles(threadId, messageId, limit, order, after, before).block();
-
-        // then
-        // TODO implement the listMessageFilesTest()
     }
 
     
@@ -448,9 +347,10 @@ public class AssistantsApiTest {
         String order = "desc";
         String after = "example";
         String before = "example";
+        List<String> include = Arrays.asList("example");
 
         // when
-        ListRunStepsResponse body = api.listRunSteps(threadId, runId, limit, order, after, before).block();
+        ListRunStepsResponse body = api.listRunSteps(threadId, runId, limit, order, after, before, include).block();
 
         // then
         // TODO implement the listRunStepsTest()

@@ -11,28 +11,6 @@ from openapi_server.models.create_image_request import CreateImageRequest  # noq
 from openapi_server.models.images_response import ImagesResponse  # noqa: F401
 
 
-def test_create_image(client: TestClient):
-    """Test case for create_image
-
-    Creates an image given a prompt.
-    """
-    create_image_request = {"response_format":"url","size":"1024x1024","model":"dall-e-3","style":"vivid","prompt":"A cute baby sea otter","user":"user-1234","n":1,"quality":"standard"}
-
-    headers = {
-        "Authorization": "Bearer special-key",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "POST",
-    #    "/images/generations",
-    #    headers=headers,
-    #    json=create_image_request,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
 def test_create_image_edit(client: TestClient):
     """Test case for create_image_edit
 
@@ -58,6 +36,28 @@ def test_create_image_edit(client: TestClient):
     #    "/images/edits",
     #    headers=headers,
     #    data=data,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_create_image(client: TestClient):
+    """Test case for create_image
+
+    Creates an image given a prompt.
+    """
+    create_image_request = {"response_format":"url","size":"1024x1024","model":"dall-e-3","style":"vivid","prompt":"A cute baby sea otter","user":"user-1234","n":1,"quality":"standard"}
+
+    headers = {
+        "Authorization": "Bearer special-key",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/images/generations",
+    #    headers=headers,
+    #    json=create_image_request,
     #)
 
     # uncomment below to assert the status code of the HTTP response

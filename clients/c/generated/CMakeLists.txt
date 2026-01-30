@@ -48,17 +48,76 @@ set(SRCS
     src/binary.c
     external/cJSON.c
     model/object.c
-    model/assistant_file_object.c
+    model/admin_api_key.c
+    model/admin_api_key_owner.c
+    model/admin_api_keys_create_request.c
+    model/admin_api_keys_delete_200_response.c
+    model/api_key_list.c
+    model/array_of_content_parts_inner.c
     model/assistant_object.c
+    model/assistant_object_tool_resources.c
+    model/assistant_object_tool_resources_code_interpreter.c
+    model/assistant_object_tool_resources_file_search.c
     model/assistant_object_tools_inner.c
     model/assistant_stream_event.c
     model/assistant_tools_code.c
+    model/assistant_tools_file_search.c
+    model/assistant_tools_file_search_file_search.c
+    model/assistant_tools_file_search_type_only.c
     model/assistant_tools_function.c
-    model/assistant_tools_retrieval.c
-    model/assistants_api_named_tool_choice.c
-    model/assistants_api_response_format.c
     model/assistants_api_response_format_option.c
     model/assistants_api_tool_choice_option.c
+    model/assistants_named_tool_choice.c
+    model/assistants_named_tool_choice_function.c
+    model/audio_response_format.c
+    model/audit_log.c
+    model/audit_log_actor.c
+    model/audit_log_actor_api_key.c
+    model/audit_log_actor_service_account.c
+    model/audit_log_actor_session.c
+    model/audit_log_actor_user.c
+    model/audit_log_api_key_created.c
+    model/audit_log_api_key_created_data.c
+    model/audit_log_api_key_deleted.c
+    model/audit_log_api_key_updated.c
+    model/audit_log_api_key_updated_changes_requested.c
+    model/audit_log_event_type.c
+    model/audit_log_invite_accepted.c
+    model/audit_log_invite_sent.c
+    model/audit_log_invite_sent_data.c
+    model/audit_log_login_failed.c
+    model/audit_log_organization_updated.c
+    model/audit_log_organization_updated_changes_requested.c
+    model/audit_log_organization_updated_changes_requested_settings.c
+    model/audit_log_project.c
+    model/audit_log_project_archived.c
+    model/audit_log_project_created.c
+    model/audit_log_project_created_data.c
+    model/audit_log_project_updated.c
+    model/audit_log_project_updated_changes_requested.c
+    model/audit_log_rate_limit_deleted.c
+    model/audit_log_rate_limit_updated.c
+    model/audit_log_rate_limit_updated_changes_requested.c
+    model/audit_log_service_account_created.c
+    model/audit_log_service_account_created_data.c
+    model/audit_log_service_account_deleted.c
+    model/audit_log_service_account_updated.c
+    model/audit_log_service_account_updated_changes_requested.c
+    model/audit_log_user_added.c
+    model/audit_log_user_added_data.c
+    model/audit_log_user_deleted.c
+    model/audit_log_user_updated.c
+    model/audit_log_user_updated_changes_requested.c
+    model/auto_chunking_strategy.c
+    model/auto_chunking_strategy_request_param.c
+    model/batch.c
+    model/batch_errors.c
+    model/batch_errors_data_inner.c
+    model/batch_request_counts.c
+    model/batch_request_input.c
+    model/batch_request_output.c
+    model/batch_request_output_error.c
+    model/batch_request_output_response.c
     model/chat_completion_function_call_option.c
     model/chat_completion_functions.c
     model/chat_completion_message_tool_call.c
@@ -66,34 +125,58 @@ set(SRCS
     model/chat_completion_message_tool_call_chunk_function.c
     model/chat_completion_message_tool_call_function.c
     model/chat_completion_named_tool_choice.c
-    model/chat_completion_named_tool_choice_function.c
     model/chat_completion_request_assistant_message.c
+    model/chat_completion_request_assistant_message_audio.c
+    model/chat_completion_request_assistant_message_content.c
+    model/chat_completion_request_assistant_message_content_part.c
     model/chat_completion_request_assistant_message_function_call.c
+    model/chat_completion_request_developer_message.c
+    model/chat_completion_request_developer_message_content.c
     model/chat_completion_request_function_message.c
     model/chat_completion_request_message.c
-    model/chat_completion_request_message_content_part.c
+    model/chat_completion_request_message_content_part_audio.c
+    model/chat_completion_request_message_content_part_audio_input_audio.c
     model/chat_completion_request_message_content_part_image.c
     model/chat_completion_request_message_content_part_image_image_url.c
+    model/chat_completion_request_message_content_part_refusal.c
     model/chat_completion_request_message_content_part_text.c
     model/chat_completion_request_system_message.c
+    model/chat_completion_request_system_message_content.c
     model/chat_completion_request_tool_message.c
+    model/chat_completion_request_tool_message_content.c
     model/chat_completion_request_user_message.c
     model/chat_completion_request_user_message_content.c
+    model/chat_completion_request_user_message_content_part.c
     model/chat_completion_response_message.c
+    model/chat_completion_response_message_audio.c
+    model/chat_completion_response_message_function_call.c
     model/chat_completion_role.c
+    model/chat_completion_stream_options.c
     model/chat_completion_stream_response_delta.c
     model/chat_completion_stream_response_delta_function_call.c
     model/chat_completion_token_logprob.c
     model/chat_completion_token_logprob_top_logprobs_inner.c
     model/chat_completion_tool.c
     model/chat_completion_tool_choice_option.c
+    model/chunking_strategy_request_param.c
+    model/complete_upload_request.c
     model/completion_usage.c
-    model/create_assistant_file_request.c
+    model/completion_usage_completion_tokens_details.c
+    model/completion_usage_prompt_tokens_details.c
+    model/costs_result.c
+    model/costs_result_amount.c
     model/create_assistant_request.c
     model/create_assistant_request_model.c
+    model/create_assistant_request_tool_resources.c
+    model/create_assistant_request_tool_resources_code_interpreter.c
+    model/create_assistant_request_tool_resources_file_search.c
+    model/create_assistant_request_tool_resources_file_search_vector_stores_inner.c
+    model/create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy.c
+    model/create_batch_request.c
     model/create_chat_completion_function_response.c
     model/create_chat_completion_function_response_choices_inner.c
     model/create_chat_completion_request.c
+    model/create_chat_completion_request_audio.c
     model/create_chat_completion_request_function_call.c
     model/create_chat_completion_request_model.c
     model/create_chat_completion_request_response_format.c
@@ -103,6 +186,7 @@ set(SRCS
     model/create_chat_completion_response_choices_inner_logprobs.c
     model/create_chat_completion_stream_response.c
     model/create_chat_completion_stream_response_choices_inner.c
+    model/create_chat_completion_stream_response_usage.c
     model/create_completion_request.c
     model/create_completion_request_model.c
     model/create_completion_request_prompt.c
@@ -127,20 +211,32 @@ set(SRCS
     model/create_image_request.c
     model/create_image_request_model.c
     model/create_message_request.c
+    model/create_message_request_attachments_inner.c
+    model/create_message_request_attachments_inner_tools_inner.c
+    model/create_message_request_content.c
     model/create_moderation_request.c
     model/create_moderation_request_input.c
+    model/create_moderation_request_input_one_of_inner.c
+    model/create_moderation_request_input_one_of_inner_one_of.c
+    model/create_moderation_request_input_one_of_inner_one_of_1.c
+    model/create_moderation_request_input_one_of_inner_one_of_image_url.c
     model/create_moderation_request_model.c
     model/create_moderation_response.c
     model/create_moderation_response_results_inner.c
     model/create_moderation_response_results_inner_categories.c
+    model/create_moderation_response_results_inner_category_applied_input_types.c
     model/create_moderation_response_results_inner_category_scores.c
     model/create_run_request.c
     model/create_run_request_model.c
     model/create_speech_request.c
     model/create_speech_request_model.c
     model/create_thread_and_run_request.c
+    model/create_thread_and_run_request_tool_resources.c
     model/create_thread_and_run_request_tools_inner.c
     model/create_thread_request.c
+    model/create_thread_request_tool_resources.c
+    model/create_thread_request_tool_resources_file_search.c
+    model/create_thread_request_tool_resources_file_search_vector_stores_inner.c
     model/create_transcription_200_response.c
     model/create_transcription_request_model.c
     model/create_transcription_response_json.c
@@ -148,17 +244,41 @@ set(SRCS
     model/create_translation_200_response.c
     model/create_translation_response_json.c
     model/create_translation_response_verbose_json.c
-    model/delete_assistant_file_response.c
+    model/create_upload_request.c
+    model/create_vector_store_file_batch_request.c
+    model/create_vector_store_file_request.c
+    model/create_vector_store_request.c
+    model/create_vector_store_request_chunking_strategy.c
+    model/default_project_error_response.c
     model/delete_assistant_response.c
     model/delete_file_response.c
     model/delete_message_response.c
     model/delete_model_response.c
     model/delete_thread_response.c
+    model/delete_vector_store_file_response.c
+    model/delete_vector_store_response.c
     model/done_event.c
     model/embedding.c
     model/error.c
     model/error_event.c
     model/error_response.c
+    model/file_search_ranking_options.c
+    model/fine_tune_chat_completion_request_assistant_message.c
+    model/fine_tune_chat_request_input.c
+    model/fine_tune_chat_request_input_messages_inner.c
+    model/fine_tune_completion_request_input.c
+    model/fine_tune_dpo_method.c
+    model/fine_tune_dpo_method_hyperparameters.c
+    model/fine_tune_dpo_method_hyperparameters_batch_size.c
+    model/fine_tune_dpo_method_hyperparameters_beta.c
+    model/fine_tune_dpo_method_hyperparameters_learning_rate_multiplier.c
+    model/fine_tune_dpo_method_hyperparameters_n_epochs.c
+    model/fine_tune_method.c
+    model/fine_tune_preference_request_input.c
+    model/fine_tune_preference_request_input_input.c
+    model/fine_tune_preference_request_input_preferred_completion_inner.c
+    model/fine_tune_supervised_method.c
+    model/fine_tune_supervised_method_hyperparameters.c
     model/fine_tuning_integration.c
     model/fine_tuning_job.c
     model/fine_tuning_job_checkpoint.c
@@ -166,25 +286,36 @@ set(SRCS
     model/fine_tuning_job_error.c
     model/fine_tuning_job_event.c
     model/fine_tuning_job_hyperparameters.c
-    model/fine_tuning_job_hyperparameters_n_epochs.c
     model/fine_tuning_job_integrations_inner.c
     model/function_object.c
     model/image.c
     model/images_response.c
-    model/list_assistant_files_response.c
+    model/invite.c
+    model/invite_delete_response.c
+    model/invite_list_response.c
+    model/invite_projects_inner.c
+    model/invite_request.c
+    model/invite_request_projects_inner.c
     model/list_assistants_response.c
+    model/list_audit_logs_effective_at_parameter.c
+    model/list_audit_logs_response.c
+    model/list_batches_response.c
     model/list_files_response.c
     model/list_fine_tuning_job_checkpoints_response.c
     model/list_fine_tuning_job_events_response.c
-    model/list_message_files_response.c
     model/list_messages_response.c
     model/list_models_response.c
     model/list_paginated_fine_tuning_jobs_response.c
     model/list_run_steps_response.c
     model/list_runs_response.c
     model/list_threads_response.c
+    model/list_vector_store_files_response.c
+    model/list_vector_stores_response.c
     model/message_content_image_file_object.c
     model/message_content_image_file_object_image_file.c
+    model/message_content_image_url_object.c
+    model/message_content_image_url_object_image_url.c
+    model/message_content_refusal_object.c
     model/message_content_text_annotations_file_citation_object.c
     model/message_content_text_annotations_file_citation_object_file_citation.c
     model/message_content_text_annotations_file_path_object.c
@@ -194,6 +325,9 @@ set(SRCS
     model/message_content_text_object_text_annotations_inner.c
     model/message_delta_content_image_file_object.c
     model/message_delta_content_image_file_object_image_file.c
+    model/message_delta_content_image_url_object.c
+    model/message_delta_content_image_url_object_image_url.c
+    model/message_delta_content_refusal_object.c
     model/message_delta_content_text_annotations_file_citation_object.c
     model/message_delta_content_text_annotations_file_citation_object_file_citation.c
     model/message_delta_content_text_annotations_file_path_object.c
@@ -204,10 +338,10 @@ set(SRCS
     model/message_delta_object.c
     model/message_delta_object_delta.c
     model/message_delta_object_delta_content_inner.c
-    model/message_file_object.c
     model/message_object.c
     model/message_object_content_inner.c
     model/message_object_incomplete_details.c
+    model/message_request_content_text_object.c
     model/message_stream_event.c
     model/message_stream_event_one_of.c
     model/message_stream_event_one_of_1.c
@@ -216,10 +350,108 @@ set(SRCS
     model/message_stream_event_one_of_4.c
     model/model.c
     model/modify_assistant_request.c
+    model/modify_assistant_request_tool_resources.c
+    model/modify_assistant_request_tool_resources_code_interpreter.c
+    model/modify_assistant_request_tool_resources_file_search.c
     model/modify_message_request.c
     model/modify_run_request.c
     model/modify_thread_request.c
+    model/modify_thread_request_tool_resources.c
+    model/modify_thread_request_tool_resources_file_search.c
     model/open_ai_file.c
+    model/other_chunking_strategy_response_param.c
+    model/prediction_content.c
+    model/prediction_content_content.c
+    model/project.c
+    model/project_api_key.c
+    model/project_api_key_delete_response.c
+    model/project_api_key_list_response.c
+    model/project_api_key_owner.c
+    model/project_create_request.c
+    model/project_list_response.c
+    model/project_rate_limit.c
+    model/project_rate_limit_list_response.c
+    model/project_rate_limit_update_request.c
+    model/project_service_account.c
+    model/project_service_account_api_key.c
+    model/project_service_account_create_request.c
+    model/project_service_account_create_response.c
+    model/project_service_account_delete_response.c
+    model/project_service_account_list_response.c
+    model/project_update_request.c
+    model/project_user.c
+    model/project_user_create_request.c
+    model/project_user_delete_response.c
+    model/project_user_list_response.c
+    model/project_user_update_request.c
+    model/realtime_client_event_conversation_item_create.c
+    model/realtime_client_event_conversation_item_delete.c
+    model/realtime_client_event_conversation_item_truncate.c
+    model/realtime_client_event_input_audio_buffer_append.c
+    model/realtime_client_event_input_audio_buffer_clear.c
+    model/realtime_client_event_input_audio_buffer_commit.c
+    model/realtime_client_event_response_cancel.c
+    model/realtime_client_event_response_create.c
+    model/realtime_client_event_session_update.c
+    model/realtime_conversation_item.c
+    model/realtime_conversation_item_content_inner.c
+    model/realtime_response.c
+    model/realtime_response_create_params.c
+    model/realtime_response_create_params_conversation.c
+    model/realtime_response_create_params_max_response_output_tokens.c
+    model/realtime_response_create_params_tools_inner.c
+    model/realtime_response_status_details.c
+    model/realtime_response_status_details_error.c
+    model/realtime_response_usage.c
+    model/realtime_response_usage_input_token_details.c
+    model/realtime_response_usage_output_token_details.c
+    model/realtime_server_event_conversation_created.c
+    model/realtime_server_event_conversation_created_conversation.c
+    model/realtime_server_event_conversation_item_created.c
+    model/realtime_server_event_conversation_item_deleted.c
+    model/realtime_server_event_conversation_item_input_audio_transcription_completed.c
+    model/realtime_server_event_conversation_item_input_audio_transcription_failed.c
+    model/realtime_server_event_conversation_item_input_audio_transcription_failed_error.c
+    model/realtime_server_event_conversation_item_truncated.c
+    model/realtime_server_event_error.c
+    model/realtime_server_event_error_error.c
+    model/realtime_server_event_input_audio_buffer_cleared.c
+    model/realtime_server_event_input_audio_buffer_committed.c
+    model/realtime_server_event_input_audio_buffer_speech_started.c
+    model/realtime_server_event_input_audio_buffer_speech_stopped.c
+    model/realtime_server_event_rate_limits_updated.c
+    model/realtime_server_event_rate_limits_updated_rate_limits_inner.c
+    model/realtime_server_event_response_audio_delta.c
+    model/realtime_server_event_response_audio_done.c
+    model/realtime_server_event_response_audio_transcript_delta.c
+    model/realtime_server_event_response_audio_transcript_done.c
+    model/realtime_server_event_response_content_part_added.c
+    model/realtime_server_event_response_content_part_added_part.c
+    model/realtime_server_event_response_content_part_done.c
+    model/realtime_server_event_response_content_part_done_part.c
+    model/realtime_server_event_response_created.c
+    model/realtime_server_event_response_done.c
+    model/realtime_server_event_response_function_call_arguments_delta.c
+    model/realtime_server_event_response_function_call_arguments_done.c
+    model/realtime_server_event_response_output_item_added.c
+    model/realtime_server_event_response_output_item_done.c
+    model/realtime_server_event_response_text_delta.c
+    model/realtime_server_event_response_text_done.c
+    model/realtime_server_event_session_created.c
+    model/realtime_server_event_session_updated.c
+    model/realtime_session.c
+    model/realtime_session_create_request.c
+    model/realtime_session_create_request_turn_detection.c
+    model/realtime_session_create_response.c
+    model/realtime_session_create_response_client_secret.c
+    model/realtime_session_create_response_turn_detection.c
+    model/realtime_session_input_audio_transcription.c
+    model/realtime_session_model.c
+    model/realtime_session_turn_detection.c
+    model/response_format_json_object.c
+    model/response_format_json_schema.c
+    model/response_format_json_schema_json_schema.c
+    model/response_format_text.c
     model/run_completion_usage.c
     model/run_object.c
     model/run_object_incomplete_details.c
@@ -238,11 +470,11 @@ set(SRCS
     model/run_step_delta_step_details_tool_calls_code_output_image_object.c
     model/run_step_delta_step_details_tool_calls_code_output_image_object_image.c
     model/run_step_delta_step_details_tool_calls_code_output_logs_object.c
+    model/run_step_delta_step_details_tool_calls_file_search_object.c
     model/run_step_delta_step_details_tool_calls_function_object.c
     model/run_step_delta_step_details_tool_calls_function_object_function.c
     model/run_step_delta_step_details_tool_calls_object.c
     model/run_step_delta_step_details_tool_calls_object_tool_calls_inner.c
-    model/run_step_delta_step_details_tool_calls_retrieval_object.c
     model/run_step_details_message_creation_object.c
     model/run_step_details_message_creation_object_message_creation.c
     model/run_step_details_tool_calls_code_object.c
@@ -251,11 +483,15 @@ set(SRCS
     model/run_step_details_tool_calls_code_output_image_object.c
     model/run_step_details_tool_calls_code_output_image_object_image.c
     model/run_step_details_tool_calls_code_output_logs_object.c
+    model/run_step_details_tool_calls_file_search_object.c
+    model/run_step_details_tool_calls_file_search_object_file_search.c
+    model/run_step_details_tool_calls_file_search_ranking_options_object.c
+    model/run_step_details_tool_calls_file_search_result_object.c
+    model/run_step_details_tool_calls_file_search_result_object_content_inner.c
     model/run_step_details_tool_calls_function_object.c
     model/run_step_details_tool_calls_function_object_function.c
     model/run_step_details_tool_calls_object.c
     model/run_step_details_tool_calls_object_tool_calls_inner.c
-    model/run_step_details_tool_calls_retrieval_object.c
     model/run_step_object.c
     model/run_step_object_last_error.c
     model/run_step_object_step_details.c
@@ -277,8 +513,13 @@ set(SRCS
     model/run_stream_event_one_of_6.c
     model/run_stream_event_one_of_7.c
     model/run_stream_event_one_of_8.c
+    model/run_stream_event_one_of_9.c
     model/run_tool_call_object.c
     model/run_tool_call_object_function.c
+    model/static_chunking_strategy.c
+    model/static_chunking_strategy_request_param.c
+    model/static_chunking_strategy_response_param.c
+    model/static_chunking_strategy_static.c
     model/submit_tool_outputs_run_request.c
     model/submit_tool_outputs_run_request_tool_outputs_inner.c
     model/thread_object.c
@@ -286,16 +527,52 @@ set(SRCS
     model/transcription_segment.c
     model/transcription_word.c
     model/truncation_object.c
+    model/update_vector_store_request.c
+    model/upload.c
+    model/upload_part.c
+    model/usage_audio_speeches_result.c
+    model/usage_audio_transcriptions_result.c
+    model/usage_code_interpreter_sessions_result.c
+    model/usage_completions_result.c
+    model/usage_embeddings_result.c
+    model/usage_images_result.c
+    model/usage_moderations_result.c
+    model/usage_response.c
+    model/usage_time_bucket.c
+    model/usage_time_bucket_result_inner.c
+    model/usage_vector_stores_result.c
+    model/user.c
+    model/user_delete_response.c
+    model/user_list_response.c
+    model/user_role_update_request.c
+    model/vector_store_expiration_after.c
+    model/vector_store_file_batch_object.c
+    model/vector_store_file_batch_object_file_counts.c
+    model/vector_store_file_object.c
+    model/vector_store_file_object_chunking_strategy.c
+    model/vector_store_file_object_last_error.c
+    model/vector_store_object.c
+    model/vector_store_object_file_counts.c
     api/AssistantsAPI.c
     api/AudioAPI.c
+    api/AuditLogsAPI.c
+    api/BatchAPI.c
     api/ChatAPI.c
     api/CompletionsAPI.c
+    api/DefaultAPI.c
     api/EmbeddingsAPI.c
     api/FilesAPI.c
     api/FineTuningAPI.c
     api/ImagesAPI.c
+    api/InvitesAPI.c
     api/ModelsAPI.c
     api/ModerationsAPI.c
+    api/ProjectsAPI.c
+    api/RealtimeAPI.c
+    api/UploadsAPI.c
+    api/UsageAPI.c
+    api/UsersAPI.c
+    api/VectorStoresAPI.c
 
 )
 
@@ -307,17 +584,76 @@ set(HDRS
     external/cJSON.h
     model/object.h
     model/any_type.h
-    model/assistant_file_object.h
+    model/admin_api_key.h
+    model/admin_api_key_owner.h
+    model/admin_api_keys_create_request.h
+    model/admin_api_keys_delete_200_response.h
+    model/api_key_list.h
+    model/array_of_content_parts_inner.h
     model/assistant_object.h
+    model/assistant_object_tool_resources.h
+    model/assistant_object_tool_resources_code_interpreter.h
+    model/assistant_object_tool_resources_file_search.h
     model/assistant_object_tools_inner.h
     model/assistant_stream_event.h
     model/assistant_tools_code.h
+    model/assistant_tools_file_search.h
+    model/assistant_tools_file_search_file_search.h
+    model/assistant_tools_file_search_type_only.h
     model/assistant_tools_function.h
-    model/assistant_tools_retrieval.h
-    model/assistants_api_named_tool_choice.h
-    model/assistants_api_response_format.h
     model/assistants_api_response_format_option.h
     model/assistants_api_tool_choice_option.h
+    model/assistants_named_tool_choice.h
+    model/assistants_named_tool_choice_function.h
+    model/audio_response_format.h
+    model/audit_log.h
+    model/audit_log_actor.h
+    model/audit_log_actor_api_key.h
+    model/audit_log_actor_service_account.h
+    model/audit_log_actor_session.h
+    model/audit_log_actor_user.h
+    model/audit_log_api_key_created.h
+    model/audit_log_api_key_created_data.h
+    model/audit_log_api_key_deleted.h
+    model/audit_log_api_key_updated.h
+    model/audit_log_api_key_updated_changes_requested.h
+    model/audit_log_event_type.h
+    model/audit_log_invite_accepted.h
+    model/audit_log_invite_sent.h
+    model/audit_log_invite_sent_data.h
+    model/audit_log_login_failed.h
+    model/audit_log_organization_updated.h
+    model/audit_log_organization_updated_changes_requested.h
+    model/audit_log_organization_updated_changes_requested_settings.h
+    model/audit_log_project.h
+    model/audit_log_project_archived.h
+    model/audit_log_project_created.h
+    model/audit_log_project_created_data.h
+    model/audit_log_project_updated.h
+    model/audit_log_project_updated_changes_requested.h
+    model/audit_log_rate_limit_deleted.h
+    model/audit_log_rate_limit_updated.h
+    model/audit_log_rate_limit_updated_changes_requested.h
+    model/audit_log_service_account_created.h
+    model/audit_log_service_account_created_data.h
+    model/audit_log_service_account_deleted.h
+    model/audit_log_service_account_updated.h
+    model/audit_log_service_account_updated_changes_requested.h
+    model/audit_log_user_added.h
+    model/audit_log_user_added_data.h
+    model/audit_log_user_deleted.h
+    model/audit_log_user_updated.h
+    model/audit_log_user_updated_changes_requested.h
+    model/auto_chunking_strategy.h
+    model/auto_chunking_strategy_request_param.h
+    model/batch.h
+    model/batch_errors.h
+    model/batch_errors_data_inner.h
+    model/batch_request_counts.h
+    model/batch_request_input.h
+    model/batch_request_output.h
+    model/batch_request_output_error.h
+    model/batch_request_output_response.h
     model/chat_completion_function_call_option.h
     model/chat_completion_functions.h
     model/chat_completion_message_tool_call.h
@@ -325,34 +661,58 @@ set(HDRS
     model/chat_completion_message_tool_call_chunk_function.h
     model/chat_completion_message_tool_call_function.h
     model/chat_completion_named_tool_choice.h
-    model/chat_completion_named_tool_choice_function.h
     model/chat_completion_request_assistant_message.h
+    model/chat_completion_request_assistant_message_audio.h
+    model/chat_completion_request_assistant_message_content.h
+    model/chat_completion_request_assistant_message_content_part.h
     model/chat_completion_request_assistant_message_function_call.h
+    model/chat_completion_request_developer_message.h
+    model/chat_completion_request_developer_message_content.h
     model/chat_completion_request_function_message.h
     model/chat_completion_request_message.h
-    model/chat_completion_request_message_content_part.h
+    model/chat_completion_request_message_content_part_audio.h
+    model/chat_completion_request_message_content_part_audio_input_audio.h
     model/chat_completion_request_message_content_part_image.h
     model/chat_completion_request_message_content_part_image_image_url.h
+    model/chat_completion_request_message_content_part_refusal.h
     model/chat_completion_request_message_content_part_text.h
     model/chat_completion_request_system_message.h
+    model/chat_completion_request_system_message_content.h
     model/chat_completion_request_tool_message.h
+    model/chat_completion_request_tool_message_content.h
     model/chat_completion_request_user_message.h
     model/chat_completion_request_user_message_content.h
+    model/chat_completion_request_user_message_content_part.h
     model/chat_completion_response_message.h
+    model/chat_completion_response_message_audio.h
+    model/chat_completion_response_message_function_call.h
     model/chat_completion_role.h
+    model/chat_completion_stream_options.h
     model/chat_completion_stream_response_delta.h
     model/chat_completion_stream_response_delta_function_call.h
     model/chat_completion_token_logprob.h
     model/chat_completion_token_logprob_top_logprobs_inner.h
     model/chat_completion_tool.h
     model/chat_completion_tool_choice_option.h
+    model/chunking_strategy_request_param.h
+    model/complete_upload_request.h
     model/completion_usage.h
-    model/create_assistant_file_request.h
+    model/completion_usage_completion_tokens_details.h
+    model/completion_usage_prompt_tokens_details.h
+    model/costs_result.h
+    model/costs_result_amount.h
     model/create_assistant_request.h
     model/create_assistant_request_model.h
+    model/create_assistant_request_tool_resources.h
+    model/create_assistant_request_tool_resources_code_interpreter.h
+    model/create_assistant_request_tool_resources_file_search.h
+    model/create_assistant_request_tool_resources_file_search_vector_stores_inner.h
+    model/create_assistant_request_tool_resources_file_search_vector_stores_inner_chunking_strategy.h
+    model/create_batch_request.h
     model/create_chat_completion_function_response.h
     model/create_chat_completion_function_response_choices_inner.h
     model/create_chat_completion_request.h
+    model/create_chat_completion_request_audio.h
     model/create_chat_completion_request_function_call.h
     model/create_chat_completion_request_model.h
     model/create_chat_completion_request_response_format.h
@@ -362,6 +722,7 @@ set(HDRS
     model/create_chat_completion_response_choices_inner_logprobs.h
     model/create_chat_completion_stream_response.h
     model/create_chat_completion_stream_response_choices_inner.h
+    model/create_chat_completion_stream_response_usage.h
     model/create_completion_request.h
     model/create_completion_request_model.h
     model/create_completion_request_prompt.h
@@ -386,20 +747,32 @@ set(HDRS
     model/create_image_request.h
     model/create_image_request_model.h
     model/create_message_request.h
+    model/create_message_request_attachments_inner.h
+    model/create_message_request_attachments_inner_tools_inner.h
+    model/create_message_request_content.h
     model/create_moderation_request.h
     model/create_moderation_request_input.h
+    model/create_moderation_request_input_one_of_inner.h
+    model/create_moderation_request_input_one_of_inner_one_of.h
+    model/create_moderation_request_input_one_of_inner_one_of_1.h
+    model/create_moderation_request_input_one_of_inner_one_of_image_url.h
     model/create_moderation_request_model.h
     model/create_moderation_response.h
     model/create_moderation_response_results_inner.h
     model/create_moderation_response_results_inner_categories.h
+    model/create_moderation_response_results_inner_category_applied_input_types.h
     model/create_moderation_response_results_inner_category_scores.h
     model/create_run_request.h
     model/create_run_request_model.h
     model/create_speech_request.h
     model/create_speech_request_model.h
     model/create_thread_and_run_request.h
+    model/create_thread_and_run_request_tool_resources.h
     model/create_thread_and_run_request_tools_inner.h
     model/create_thread_request.h
+    model/create_thread_request_tool_resources.h
+    model/create_thread_request_tool_resources_file_search.h
+    model/create_thread_request_tool_resources_file_search_vector_stores_inner.h
     model/create_transcription_200_response.h
     model/create_transcription_request_model.h
     model/create_transcription_response_json.h
@@ -407,17 +780,41 @@ set(HDRS
     model/create_translation_200_response.h
     model/create_translation_response_json.h
     model/create_translation_response_verbose_json.h
-    model/delete_assistant_file_response.h
+    model/create_upload_request.h
+    model/create_vector_store_file_batch_request.h
+    model/create_vector_store_file_request.h
+    model/create_vector_store_request.h
+    model/create_vector_store_request_chunking_strategy.h
+    model/default_project_error_response.h
     model/delete_assistant_response.h
     model/delete_file_response.h
     model/delete_message_response.h
     model/delete_model_response.h
     model/delete_thread_response.h
+    model/delete_vector_store_file_response.h
+    model/delete_vector_store_response.h
     model/done_event.h
     model/embedding.h
     model/error.h
     model/error_event.h
     model/error_response.h
+    model/file_search_ranking_options.h
+    model/fine_tune_chat_completion_request_assistant_message.h
+    model/fine_tune_chat_request_input.h
+    model/fine_tune_chat_request_input_messages_inner.h
+    model/fine_tune_completion_request_input.h
+    model/fine_tune_dpo_method.h
+    model/fine_tune_dpo_method_hyperparameters.h
+    model/fine_tune_dpo_method_hyperparameters_batch_size.h
+    model/fine_tune_dpo_method_hyperparameters_beta.h
+    model/fine_tune_dpo_method_hyperparameters_learning_rate_multiplier.h
+    model/fine_tune_dpo_method_hyperparameters_n_epochs.h
+    model/fine_tune_method.h
+    model/fine_tune_preference_request_input.h
+    model/fine_tune_preference_request_input_input.h
+    model/fine_tune_preference_request_input_preferred_completion_inner.h
+    model/fine_tune_supervised_method.h
+    model/fine_tune_supervised_method_hyperparameters.h
     model/fine_tuning_integration.h
     model/fine_tuning_job.h
     model/fine_tuning_job_checkpoint.h
@@ -425,25 +822,36 @@ set(HDRS
     model/fine_tuning_job_error.h
     model/fine_tuning_job_event.h
     model/fine_tuning_job_hyperparameters.h
-    model/fine_tuning_job_hyperparameters_n_epochs.h
     model/fine_tuning_job_integrations_inner.h
     model/function_object.h
     model/image.h
     model/images_response.h
-    model/list_assistant_files_response.h
+    model/invite.h
+    model/invite_delete_response.h
+    model/invite_list_response.h
+    model/invite_projects_inner.h
+    model/invite_request.h
+    model/invite_request_projects_inner.h
     model/list_assistants_response.h
+    model/list_audit_logs_effective_at_parameter.h
+    model/list_audit_logs_response.h
+    model/list_batches_response.h
     model/list_files_response.h
     model/list_fine_tuning_job_checkpoints_response.h
     model/list_fine_tuning_job_events_response.h
-    model/list_message_files_response.h
     model/list_messages_response.h
     model/list_models_response.h
     model/list_paginated_fine_tuning_jobs_response.h
     model/list_run_steps_response.h
     model/list_runs_response.h
     model/list_threads_response.h
+    model/list_vector_store_files_response.h
+    model/list_vector_stores_response.h
     model/message_content_image_file_object.h
     model/message_content_image_file_object_image_file.h
+    model/message_content_image_url_object.h
+    model/message_content_image_url_object_image_url.h
+    model/message_content_refusal_object.h
     model/message_content_text_annotations_file_citation_object.h
     model/message_content_text_annotations_file_citation_object_file_citation.h
     model/message_content_text_annotations_file_path_object.h
@@ -453,6 +861,9 @@ set(HDRS
     model/message_content_text_object_text_annotations_inner.h
     model/message_delta_content_image_file_object.h
     model/message_delta_content_image_file_object_image_file.h
+    model/message_delta_content_image_url_object.h
+    model/message_delta_content_image_url_object_image_url.h
+    model/message_delta_content_refusal_object.h
     model/message_delta_content_text_annotations_file_citation_object.h
     model/message_delta_content_text_annotations_file_citation_object_file_citation.h
     model/message_delta_content_text_annotations_file_path_object.h
@@ -463,10 +874,10 @@ set(HDRS
     model/message_delta_object.h
     model/message_delta_object_delta.h
     model/message_delta_object_delta_content_inner.h
-    model/message_file_object.h
     model/message_object.h
     model/message_object_content_inner.h
     model/message_object_incomplete_details.h
+    model/message_request_content_text_object.h
     model/message_stream_event.h
     model/message_stream_event_one_of.h
     model/message_stream_event_one_of_1.h
@@ -475,10 +886,108 @@ set(HDRS
     model/message_stream_event_one_of_4.h
     model/model.h
     model/modify_assistant_request.h
+    model/modify_assistant_request_tool_resources.h
+    model/modify_assistant_request_tool_resources_code_interpreter.h
+    model/modify_assistant_request_tool_resources_file_search.h
     model/modify_message_request.h
     model/modify_run_request.h
     model/modify_thread_request.h
+    model/modify_thread_request_tool_resources.h
+    model/modify_thread_request_tool_resources_file_search.h
     model/open_ai_file.h
+    model/other_chunking_strategy_response_param.h
+    model/prediction_content.h
+    model/prediction_content_content.h
+    model/project.h
+    model/project_api_key.h
+    model/project_api_key_delete_response.h
+    model/project_api_key_list_response.h
+    model/project_api_key_owner.h
+    model/project_create_request.h
+    model/project_list_response.h
+    model/project_rate_limit.h
+    model/project_rate_limit_list_response.h
+    model/project_rate_limit_update_request.h
+    model/project_service_account.h
+    model/project_service_account_api_key.h
+    model/project_service_account_create_request.h
+    model/project_service_account_create_response.h
+    model/project_service_account_delete_response.h
+    model/project_service_account_list_response.h
+    model/project_update_request.h
+    model/project_user.h
+    model/project_user_create_request.h
+    model/project_user_delete_response.h
+    model/project_user_list_response.h
+    model/project_user_update_request.h
+    model/realtime_client_event_conversation_item_create.h
+    model/realtime_client_event_conversation_item_delete.h
+    model/realtime_client_event_conversation_item_truncate.h
+    model/realtime_client_event_input_audio_buffer_append.h
+    model/realtime_client_event_input_audio_buffer_clear.h
+    model/realtime_client_event_input_audio_buffer_commit.h
+    model/realtime_client_event_response_cancel.h
+    model/realtime_client_event_response_create.h
+    model/realtime_client_event_session_update.h
+    model/realtime_conversation_item.h
+    model/realtime_conversation_item_content_inner.h
+    model/realtime_response.h
+    model/realtime_response_create_params.h
+    model/realtime_response_create_params_conversation.h
+    model/realtime_response_create_params_max_response_output_tokens.h
+    model/realtime_response_create_params_tools_inner.h
+    model/realtime_response_status_details.h
+    model/realtime_response_status_details_error.h
+    model/realtime_response_usage.h
+    model/realtime_response_usage_input_token_details.h
+    model/realtime_response_usage_output_token_details.h
+    model/realtime_server_event_conversation_created.h
+    model/realtime_server_event_conversation_created_conversation.h
+    model/realtime_server_event_conversation_item_created.h
+    model/realtime_server_event_conversation_item_deleted.h
+    model/realtime_server_event_conversation_item_input_audio_transcription_completed.h
+    model/realtime_server_event_conversation_item_input_audio_transcription_failed.h
+    model/realtime_server_event_conversation_item_input_audio_transcription_failed_error.h
+    model/realtime_server_event_conversation_item_truncated.h
+    model/realtime_server_event_error.h
+    model/realtime_server_event_error_error.h
+    model/realtime_server_event_input_audio_buffer_cleared.h
+    model/realtime_server_event_input_audio_buffer_committed.h
+    model/realtime_server_event_input_audio_buffer_speech_started.h
+    model/realtime_server_event_input_audio_buffer_speech_stopped.h
+    model/realtime_server_event_rate_limits_updated.h
+    model/realtime_server_event_rate_limits_updated_rate_limits_inner.h
+    model/realtime_server_event_response_audio_delta.h
+    model/realtime_server_event_response_audio_done.h
+    model/realtime_server_event_response_audio_transcript_delta.h
+    model/realtime_server_event_response_audio_transcript_done.h
+    model/realtime_server_event_response_content_part_added.h
+    model/realtime_server_event_response_content_part_added_part.h
+    model/realtime_server_event_response_content_part_done.h
+    model/realtime_server_event_response_content_part_done_part.h
+    model/realtime_server_event_response_created.h
+    model/realtime_server_event_response_done.h
+    model/realtime_server_event_response_function_call_arguments_delta.h
+    model/realtime_server_event_response_function_call_arguments_done.h
+    model/realtime_server_event_response_output_item_added.h
+    model/realtime_server_event_response_output_item_done.h
+    model/realtime_server_event_response_text_delta.h
+    model/realtime_server_event_response_text_done.h
+    model/realtime_server_event_session_created.h
+    model/realtime_server_event_session_updated.h
+    model/realtime_session.h
+    model/realtime_session_create_request.h
+    model/realtime_session_create_request_turn_detection.h
+    model/realtime_session_create_response.h
+    model/realtime_session_create_response_client_secret.h
+    model/realtime_session_create_response_turn_detection.h
+    model/realtime_session_input_audio_transcription.h
+    model/realtime_session_model.h
+    model/realtime_session_turn_detection.h
+    model/response_format_json_object.h
+    model/response_format_json_schema.h
+    model/response_format_json_schema_json_schema.h
+    model/response_format_text.h
     model/run_completion_usage.h
     model/run_object.h
     model/run_object_incomplete_details.h
@@ -497,11 +1006,11 @@ set(HDRS
     model/run_step_delta_step_details_tool_calls_code_output_image_object.h
     model/run_step_delta_step_details_tool_calls_code_output_image_object_image.h
     model/run_step_delta_step_details_tool_calls_code_output_logs_object.h
+    model/run_step_delta_step_details_tool_calls_file_search_object.h
     model/run_step_delta_step_details_tool_calls_function_object.h
     model/run_step_delta_step_details_tool_calls_function_object_function.h
     model/run_step_delta_step_details_tool_calls_object.h
     model/run_step_delta_step_details_tool_calls_object_tool_calls_inner.h
-    model/run_step_delta_step_details_tool_calls_retrieval_object.h
     model/run_step_details_message_creation_object.h
     model/run_step_details_message_creation_object_message_creation.h
     model/run_step_details_tool_calls_code_object.h
@@ -510,11 +1019,15 @@ set(HDRS
     model/run_step_details_tool_calls_code_output_image_object.h
     model/run_step_details_tool_calls_code_output_image_object_image.h
     model/run_step_details_tool_calls_code_output_logs_object.h
+    model/run_step_details_tool_calls_file_search_object.h
+    model/run_step_details_tool_calls_file_search_object_file_search.h
+    model/run_step_details_tool_calls_file_search_ranking_options_object.h
+    model/run_step_details_tool_calls_file_search_result_object.h
+    model/run_step_details_tool_calls_file_search_result_object_content_inner.h
     model/run_step_details_tool_calls_function_object.h
     model/run_step_details_tool_calls_function_object_function.h
     model/run_step_details_tool_calls_object.h
     model/run_step_details_tool_calls_object_tool_calls_inner.h
-    model/run_step_details_tool_calls_retrieval_object.h
     model/run_step_object.h
     model/run_step_object_last_error.h
     model/run_step_object_step_details.h
@@ -536,8 +1049,13 @@ set(HDRS
     model/run_stream_event_one_of_6.h
     model/run_stream_event_one_of_7.h
     model/run_stream_event_one_of_8.h
+    model/run_stream_event_one_of_9.h
     model/run_tool_call_object.h
     model/run_tool_call_object_function.h
+    model/static_chunking_strategy.h
+    model/static_chunking_strategy_request_param.h
+    model/static_chunking_strategy_response_param.h
+    model/static_chunking_strategy_static.h
     model/submit_tool_outputs_run_request.h
     model/submit_tool_outputs_run_request_tool_outputs_inner.h
     model/thread_object.h
@@ -545,16 +1063,52 @@ set(HDRS
     model/transcription_segment.h
     model/transcription_word.h
     model/truncation_object.h
+    model/update_vector_store_request.h
+    model/upload.h
+    model/upload_part.h
+    model/usage_audio_speeches_result.h
+    model/usage_audio_transcriptions_result.h
+    model/usage_code_interpreter_sessions_result.h
+    model/usage_completions_result.h
+    model/usage_embeddings_result.h
+    model/usage_images_result.h
+    model/usage_moderations_result.h
+    model/usage_response.h
+    model/usage_time_bucket.h
+    model/usage_time_bucket_result_inner.h
+    model/usage_vector_stores_result.h
+    model/user.h
+    model/user_delete_response.h
+    model/user_list_response.h
+    model/user_role_update_request.h
+    model/vector_store_expiration_after.h
+    model/vector_store_file_batch_object.h
+    model/vector_store_file_batch_object_file_counts.h
+    model/vector_store_file_object.h
+    model/vector_store_file_object_chunking_strategy.h
+    model/vector_store_file_object_last_error.h
+    model/vector_store_object.h
+    model/vector_store_object_file_counts.h
     api/AssistantsAPI.h
     api/AudioAPI.h
+    api/AuditLogsAPI.h
+    api/BatchAPI.h
     api/ChatAPI.h
     api/CompletionsAPI.h
+    api/DefaultAPI.h
     api/EmbeddingsAPI.h
     api/FilesAPI.h
     api/FineTuningAPI.h
     api/ImagesAPI.h
+    api/InvitesAPI.h
     api/ModelsAPI.h
     api/ModerationsAPI.h
+    api/ProjectsAPI.h
+    api/RealtimeAPI.h
+    api/UploadsAPI.h
+    api/UsageAPI.h
+    api/UsersAPI.h
+    api/VectorStoresAPI.h
 
 )
 
@@ -642,14 +1196,24 @@ set(HDRS "")
 #set(SRCS
 #    unit-tests/manual-AssistantsAPI.c
 #    unit-tests/manual-AudioAPI.c
+#    unit-tests/manual-AuditLogsAPI.c
+#    unit-tests/manual-BatchAPI.c
 #    unit-tests/manual-ChatAPI.c
 #    unit-tests/manual-CompletionsAPI.c
+#    unit-tests/manual-DefaultAPI.c
 #    unit-tests/manual-EmbeddingsAPI.c
 #    unit-tests/manual-FilesAPI.c
 #    unit-tests/manual-FineTuningAPI.c
 #    unit-tests/manual-ImagesAPI.c
+#    unit-tests/manual-InvitesAPI.c
 #    unit-tests/manual-ModelsAPI.c
 #    unit-tests/manual-ModerationsAPI.c
+#    unit-tests/manual-ProjectsAPI.c
+#    unit-tests/manual-RealtimeAPI.c
+#    unit-tests/manual-UploadsAPI.c
+#    unit-tests/manual-UsageAPI.c
+#    unit-tests/manual-UsersAPI.c
+#    unit-tests/manual-VectorStoresAPI.c
 #)
 
 ##set header files

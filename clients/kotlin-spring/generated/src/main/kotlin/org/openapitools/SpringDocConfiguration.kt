@@ -32,7 +32,7 @@ class SpringDocConfiguration {
                             .name("MIT")
                             .url("https://github.com/openai/openai-openapi/blob/master/LICENSE")
                     )
-                    .version("2.0.0")
+                    .version("2.3.0")
             )
             .components(
                 Components()

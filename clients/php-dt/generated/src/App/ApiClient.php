@@ -11,10 +11,548 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * OpenAI API
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
- * The version of the OpenAPI document: 2.0.0
+ * The version of the OpenAPI document: 2.3.0
  */
 class ApiClient extends OAGAC\AbstractApiClient
 {
+    //region addUploadPart
+    /**
+     * Adds a [Part](/docs/api-reference/uploads/part-object) to an [Upload](/docs/api-reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api-reference/uploads/complete).
+     * @param \App\DTO\AddUploadPartParameterData $parameters
+     * @param \App\DTO\AddUploadPartRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function addUploadPartRaw(
+        \App\DTO\AddUploadPartParameterData $parameters,
+        \App\DTO\AddUploadPartRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'multipart/form-data',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/uploads/{upload_id}/parts', $this->getPathParameters($parameters), []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Adds a [Part](/docs/api-reference/uploads/part-object) to an [Upload](/docs/api-reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api-reference/uploads/complete).
+     * @param \App\DTO\AddUploadPartParameterData $parameters
+     * @param \App\DTO\AddUploadPartRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function addUploadPart(
+        \App\DTO\AddUploadPartParameterData $parameters,
+        \App\DTO\AddUploadPartRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'multipart/form-data',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->addUploadPartRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\UploadPart();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Adds a [Part](/docs/api-reference/uploads/part-object) to an [Upload](/docs/api-reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api-reference/uploads/complete).
+     * @param \App\DTO\AddUploadPartParameterData $parameters
+     * @param \App\DTO\AddUploadPartRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\UploadPart
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function addUploadPartResult(
+        \App\DTO\AddUploadPartParameterData $parameters,
+        \App\DTO\AddUploadPartRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'multipart/form-data',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\UploadPart
+    {
+        return $this->getSuccessfulContent(...$this->addUploadPart($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region adminApiKeysCreate
+    /**
+     * Create an organization admin API key
+     * @param \App\DTO\AdminApiKeysCreateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function adminApiKeysCreateRaw(
+        \App\DTO\AdminApiKeysCreateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/organization/admin_api_keys', [], []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Create an organization admin API key
+     * @param \App\DTO\AdminApiKeysCreateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function adminApiKeysCreate(
+        \App\DTO\AdminApiKeysCreateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->adminApiKeysCreateRaw($requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* The newly created admin API key. */
+                $responseContent = new \App\DTO\AdminApiKey();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Create an organization admin API key
+     * @param \App\DTO\AdminApiKeysCreateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\AdminApiKey
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function adminApiKeysCreateResult(
+        \App\DTO\AdminApiKeysCreateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\AdminApiKey
+    {
+        return $this->getSuccessfulContent(...$this->adminApiKeysCreate($requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region adminApiKeysDelete
+    /**
+     * Delete an organization admin API key
+     * @param \App\DTO\AdminApiKeysDeleteParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function adminApiKeysDeleteRaw(
+        \App\DTO\AdminApiKeysDeleteParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('DELETE', '/organization/admin_api_keys/{key_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Delete an organization admin API key
+     * @param \App\DTO\AdminApiKeysDeleteParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function adminApiKeysDelete(
+        \App\DTO\AdminApiKeysDeleteParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->adminApiKeysDeleteRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Confirmation that the API key was deleted. */
+                $responseContent = new \App\DTO\AdminApiKeysDelete200Response();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Delete an organization admin API key
+     * @param \App\DTO\AdminApiKeysDeleteParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\AdminApiKeysDelete200Response
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function adminApiKeysDeleteResult(
+        \App\DTO\AdminApiKeysDeleteParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\AdminApiKeysDelete200Response
+    {
+        return $this->getSuccessfulContent(...$this->adminApiKeysDelete($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region adminApiKeysGet
+    /**
+     * Retrieve a single organization API key
+     * @param \App\DTO\AdminApiKeysGetParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function adminApiKeysGetRaw(
+        \App\DTO\AdminApiKeysGetParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/admin_api_keys/{key_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Retrieve a single organization API key
+     * @param \App\DTO\AdminApiKeysGetParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function adminApiKeysGet(
+        \App\DTO\AdminApiKeysGetParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->adminApiKeysGetRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Details of the requested API key. */
+                $responseContent = new \App\DTO\AdminApiKey();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Retrieve a single organization API key
+     * @param \App\DTO\AdminApiKeysGetParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\AdminApiKey
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function adminApiKeysGetResult(
+        \App\DTO\AdminApiKeysGetParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\AdminApiKey
+    {
+        return $this->getSuccessfulContent(...$this->adminApiKeysGet($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region adminApiKeysList
+    /**
+     * List organization API keys
+     * @param \App\DTO\AdminApiKeysListParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function adminApiKeysListRaw(
+        \App\DTO\AdminApiKeysListParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/admin_api_keys', [], $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * List organization API keys
+     * @param \App\DTO\AdminApiKeysListParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function adminApiKeysList(
+        \App\DTO\AdminApiKeysListParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->adminApiKeysListRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* A list of organization API keys. */
+                $responseContent = new \App\DTO\ApiKeyList();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * List organization API keys
+     * @param \App\DTO\AdminApiKeysListParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ApiKeyList
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function adminApiKeysListResult(
+        \App\DTO\AdminApiKeysListParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ApiKeyList
+    {
+        return $this->getSuccessfulContent(...$this->adminApiKeysList($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region archiveProject
+    /**
+     * Archives a project in the organization. Archived projects cannot be used or updated.
+     * @param \App\DTO\ArchiveProjectParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function archiveProjectRaw(
+        \App\DTO\ArchiveProjectParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/organization/projects/{project_id}/archive', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Archives a project in the organization. Archived projects cannot be used or updated.
+     * @param \App\DTO\ArchiveProjectParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function archiveProject(
+        \App\DTO\ArchiveProjectParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->archiveProjectRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project archived successfully. */
+                $responseContent = new \App\DTO\Project();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Archives a project in the organization. Archived projects cannot be used or updated.
+     * @param \App\DTO\ArchiveProjectParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\Project
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function archiveProjectResult(
+        \App\DTO\ArchiveProjectParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\Project
+    {
+        return $this->getSuccessfulContent(...$this->archiveProject($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region cancelBatch
+    /**
+     * Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+     * @param \App\DTO\CancelBatchParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function cancelBatchRaw(
+        \App\DTO\CancelBatchParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/batches/{batch_id}/cancel', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+     * @param \App\DTO\CancelBatchParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function cancelBatch(
+        \App\DTO\CancelBatchParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->cancelBatchRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Batch is cancelling. Returns the cancelling batch's details. */
+                $responseContent = new \App\DTO\Batch();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+     * @param \App\DTO\CancelBatchParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\Batch
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function cancelBatchResult(
+        \App\DTO\CancelBatchParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\Batch
+    {
+        return $this->getSuccessfulContent(...$this->cancelBatch($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
     //region cancelFineTuningJob
     /**
      * Immediately cancel a fine-tune job.
@@ -163,6 +701,241 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
     //endregion
 
+    //region cancelUpload
+    /**
+     * Cancels the Upload. No Parts may be added after an Upload is cancelled.
+     * @param \App\DTO\CancelUploadParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function cancelUploadRaw(
+        \App\DTO\CancelUploadParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/uploads/{upload_id}/cancel', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Cancels the Upload. No Parts may be added after an Upload is cancelled.
+     * @param \App\DTO\CancelUploadParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function cancelUpload(
+        \App\DTO\CancelUploadParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->cancelUploadRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\Upload();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Cancels the Upload. No Parts may be added after an Upload is cancelled.
+     * @param \App\DTO\CancelUploadParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\Upload
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function cancelUploadResult(
+        \App\DTO\CancelUploadParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\Upload
+    {
+        return $this->getSuccessfulContent(...$this->cancelUpload($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region cancelVectorStoreFileBatch
+    /**
+     * Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+     * @param \App\DTO\CancelVectorStoreFileBatchParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function cancelVectorStoreFileBatchRaw(
+        \App\DTO\CancelVectorStoreFileBatchParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+     * @param \App\DTO\CancelVectorStoreFileBatchParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function cancelVectorStoreFileBatch(
+        \App\DTO\CancelVectorStoreFileBatchParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->cancelVectorStoreFileBatchRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\VectorStoreFileBatchObject();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+     * @param \App\DTO\CancelVectorStoreFileBatchParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\VectorStoreFileBatchObject
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function cancelVectorStoreFileBatchResult(
+        \App\DTO\CancelVectorStoreFileBatchParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\VectorStoreFileBatchObject
+    {
+        return $this->getSuccessfulContent(...$this->cancelVectorStoreFileBatch($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region completeUpload
+    /**
+     * Completes the [Upload](/docs/api-reference/uploads/object).   Within the returned Upload object, there is a nested [File](/docs/api-reference/files/object) object that is ready to use in the rest of the platform.  You can specify the order of the Parts by passing in an ordered list of the Part IDs.  The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed.
+     * @param \App\DTO\CompleteUploadParameterData $parameters
+     * @param \App\DTO\CompleteUploadRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function completeUploadRaw(
+        \App\DTO\CompleteUploadParameterData $parameters,
+        \App\DTO\CompleteUploadRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/uploads/{upload_id}/complete', $this->getPathParameters($parameters), []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Completes the [Upload](/docs/api-reference/uploads/object).   Within the returned Upload object, there is a nested [File](/docs/api-reference/files/object) object that is ready to use in the rest of the platform.  You can specify the order of the Parts by passing in an ordered list of the Part IDs.  The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed.
+     * @param \App\DTO\CompleteUploadParameterData $parameters
+     * @param \App\DTO\CompleteUploadRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function completeUpload(
+        \App\DTO\CompleteUploadParameterData $parameters,
+        \App\DTO\CompleteUploadRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->completeUploadRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\Upload();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Completes the [Upload](/docs/api-reference/uploads/object).   Within the returned Upload object, there is a nested [File](/docs/api-reference/files/object) object that is ready to use in the rest of the platform.  You can specify the order of the Parts by passing in an ordered list of the Part IDs.  The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed.
+     * @param \App\DTO\CompleteUploadParameterData $parameters
+     * @param \App\DTO\CompleteUploadRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\Upload
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function completeUploadResult(
+        \App\DTO\CompleteUploadParameterData $parameters,
+        \App\DTO\CompleteUploadRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\Upload
+    {
+        return $this->getSuccessfulContent(...$this->completeUpload($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
     //region createAssistant
     /**
      * Create an assistant with a model and instructions.
@@ -244,11 +1017,10 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
     //endregion
 
-    //region createAssistantFile
+    //region createBatch
     /**
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     * @param \App\DTO\CreateAssistantFileParameterData $parameters
-     * @param \App\DTO\CreateAssistantFileRequest $requestContent
+     * Creates and executes a batch from an uploaded file of requests
+     * @param \App\DTO\CreateBatchRequest $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
@@ -256,15 +1028,14 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      */
-    public function createAssistantFileRaw(
-        \App\DTO\CreateAssistantFileParameterData $parameters,
-        \App\DTO\CreateAssistantFileRequest $requestContent,
+    public function createBatchRaw(
+        \App\DTO\CreateBatchRequest $requestContent,
         iterable $security = ['ApiKeyAuth' => []],
         string $requestMediaType = 'application/json',
         string $responseMediaType = 'application/json'
     ): ResponseInterface
     {
-        $request = $this->createRequest('POST', '/assistants/{assistant_id}/files', $this->getPathParameters($parameters), []);
+        $request = $this->createRequest('POST', '/batches', [], []);
         $request = $this->addBody($request, $requestMediaType, $requestContent);
         $request = $this->addAcceptHeader($request, $responseMediaType);
         $request = $this->addSecurity($request, $security);
@@ -272,9 +1043,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     * @param \App\DTO\CreateAssistantFileParameterData $parameters
-     * @param \App\DTO\CreateAssistantFileRequest $requestContent
+     * Creates and executes a batch from an uploaded file of requests
+     * @param \App\DTO\CreateBatchRequest $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
@@ -283,23 +1053,22 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
      */
-    public function createAssistantFile(
-        \App\DTO\CreateAssistantFileParameterData $parameters,
-        \App\DTO\CreateAssistantFileRequest $requestContent,
+    public function createBatch(
+        \App\DTO\CreateBatchRequest $requestContent,
         iterable $security = ['ApiKeyAuth' => []],
         string $requestMediaType = 'application/json',
         string $responseMediaType = 'application/json'
     ): array
     {
-        $response = $this->createAssistantFileRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
+        $response = $this->createBatchRaw($requestContent, $security, $requestMediaType, $responseMediaType);
         $responseContent = null;
         $contentStrategy = null;
         $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
-                /* OK */
-                $responseContent = new \App\DTO\AssistantFileObject();
+                /* Batch created successfully. */
+                $responseContent = new \App\DTO\Batch();
                 break;
         }
         $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
@@ -307,33 +1076,31 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     * @param \App\DTO\CreateAssistantFileParameterData $parameters
-     * @param \App\DTO\CreateAssistantFileRequest $requestContent
+     * Creates and executes a batch from an uploaded file of requests
+     * @param \App\DTO\CreateBatchRequest $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
-     * @return \App\DTO\AssistantFileObject
+     * @return \App\DTO\Batch
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
      * @throws OAGAC\Exception\UnsuccessfulResponse
      */
-    public function createAssistantFileResult(
-        \App\DTO\CreateAssistantFileParameterData $parameters,
-        \App\DTO\CreateAssistantFileRequest $requestContent,
+    public function createBatchResult(
+        \App\DTO\CreateBatchRequest $requestContent,
         iterable $security = ['ApiKeyAuth' => []],
         string $requestMediaType = 'application/json',
         string $responseMediaType = 'application/json'
-    ): \App\DTO\AssistantFileObject
+    ): \App\DTO\Batch
     {
-        return $this->getSuccessfulContent(...$this->createAssistantFile($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
+        return $this->getSuccessfulContent(...$this->createBatch($requestContent, $security, $requestMediaType, $responseMediaType));
     }
     //endregion
 
     //region createChatCompletion
     /**
-     * Creates a model response for the given chat conversation.
+     * Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning).
      * @param \App\DTO\CreateChatCompletionRequest $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
@@ -357,7 +1124,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Creates a model response for the given chat conversation.
+     * Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning).
      * @param \App\DTO\CreateChatCompletionRequest $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
@@ -390,7 +1157,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Creates a model response for the given chat conversation.
+     * Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning).
      * @param \App\DTO\CreateChatCompletionRequest $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
@@ -576,7 +1343,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     //region createFile
     /**
-     * Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits.
+     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits.
      * @param \App\DTO\CreateFileRequest $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
@@ -600,7 +1367,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits.
+     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits.
      * @param \App\DTO\CreateFileRequest $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
@@ -633,7 +1400,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits.
+     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits.
      * @param \App\DTO\CreateFileRequest $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
@@ -1068,7 +1835,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     //region createModeration
     /**
-     * Classifies if text is potentially harmful.
+     * Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation).
      * @param \App\DTO\CreateModerationRequest $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
@@ -1092,7 +1859,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Classifies if text is potentially harmful.
+     * Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation).
      * @param \App\DTO\CreateModerationRequest $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
@@ -1125,7 +1892,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Classifies if text is potentially harmful.
+     * Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation).
      * @param \App\DTO\CreateModerationRequest $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
@@ -1144,6 +1911,350 @@ class ApiClient extends OAGAC\AbstractApiClient
     ): \App\DTO\CreateModerationResponse
     {
         return $this->getSuccessfulContent(...$this->createModeration($requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region createProject
+    /**
+     * Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
+     * @param \App\DTO\ProjectCreateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function createProjectRaw(
+        \App\DTO\ProjectCreateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/organization/projects', [], []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
+     * @param \App\DTO\ProjectCreateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function createProject(
+        \App\DTO\ProjectCreateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->createProjectRaw($requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project created successfully. */
+                $responseContent = new \App\DTO\Project();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
+     * @param \App\DTO\ProjectCreateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\Project
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function createProjectResult(
+        \App\DTO\ProjectCreateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\Project
+    {
+        return $this->getSuccessfulContent(...$this->createProject($requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region createProjectServiceAccount
+    /**
+     * Creates a new service account in the project. This also returns an unredacted API key for the service account.
+     * @param \App\DTO\CreateProjectServiceAccountParameterData $parameters
+     * @param \App\DTO\ProjectServiceAccountCreateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function createProjectServiceAccountRaw(
+        \App\DTO\CreateProjectServiceAccountParameterData $parameters,
+        \App\DTO\ProjectServiceAccountCreateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/organization/projects/{project_id}/service_accounts', $this->getPathParameters($parameters), []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Creates a new service account in the project. This also returns an unredacted API key for the service account.
+     * @param \App\DTO\CreateProjectServiceAccountParameterData $parameters
+     * @param \App\DTO\ProjectServiceAccountCreateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function createProjectServiceAccount(
+        \App\DTO\CreateProjectServiceAccountParameterData $parameters,
+        \App\DTO\ProjectServiceAccountCreateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->createProjectServiceAccountRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project service account created successfully. */
+                $responseContent = new \App\DTO\ProjectServiceAccountCreateResponse();
+                break;
+            case 400:
+                /* Error response when project is archived. */
+                $responseContent = new \App\DTO\ErrorResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Creates a new service account in the project. This also returns an unredacted API key for the service account.
+     * @param \App\DTO\CreateProjectServiceAccountParameterData $parameters
+     * @param \App\DTO\ProjectServiceAccountCreateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\ProjectServiceAccountCreateResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function createProjectServiceAccountResult(
+        \App\DTO\CreateProjectServiceAccountParameterData $parameters,
+        \App\DTO\ProjectServiceAccountCreateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ProjectServiceAccountCreateResponse
+    {
+        return $this->getSuccessfulContent(...$this->createProjectServiceAccount($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region createProjectUser
+    /**
+     * Adds a user to the project. Users must already be members of the organization to be added to a project.
+     * @param \App\DTO\CreateProjectUserParameterData $parameters
+     * @param \App\DTO\ProjectUserCreateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function createProjectUserRaw(
+        \App\DTO\CreateProjectUserParameterData $parameters,
+        \App\DTO\ProjectUserCreateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/organization/projects/{project_id}/users', $this->getPathParameters($parameters), []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Adds a user to the project. Users must already be members of the organization to be added to a project.
+     * @param \App\DTO\CreateProjectUserParameterData $parameters
+     * @param \App\DTO\ProjectUserCreateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function createProjectUser(
+        \App\DTO\CreateProjectUserParameterData $parameters,
+        \App\DTO\ProjectUserCreateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->createProjectUserRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* User added to project successfully. */
+                $responseContent = new \App\DTO\ProjectUser();
+                break;
+            case 400:
+                /* Error response for various conditions. */
+                $responseContent = new \App\DTO\ErrorResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Adds a user to the project. Users must already be members of the organization to be added to a project.
+     * @param \App\DTO\CreateProjectUserParameterData $parameters
+     * @param \App\DTO\ProjectUserCreateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\ProjectUser
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function createProjectUserResult(
+        \App\DTO\CreateProjectUserParameterData $parameters,
+        \App\DTO\ProjectUserCreateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ProjectUser
+    {
+        return $this->getSuccessfulContent(...$this->createProjectUser($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region createRealtimeSession
+    /**
+     * Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API.
+     * @param \App\DTO\RealtimeSessionCreateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function createRealtimeSessionRaw(
+        \App\DTO\RealtimeSessionCreateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/realtime/sessions', [], []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API.
+     * @param \App\DTO\RealtimeSessionCreateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function createRealtimeSession(
+        \App\DTO\RealtimeSessionCreateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->createRealtimeSessionRaw($requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Session created successfully. */
+                $responseContent = new \App\DTO\RealtimeSessionCreateResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API.
+     * @param \App\DTO\RealtimeSessionCreateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\RealtimeSessionCreateResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function createRealtimeSessionResult(
+        \App\DTO\RealtimeSessionCreateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\RealtimeSessionCreateResponse
+    {
+        return $this->getSuccessfulContent(...$this->createRealtimeSession($requestContent, $security, $requestMediaType, $responseMediaType));
     }
     //endregion
 
@@ -1167,7 +2278,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         string $responseMediaType = 'application/json'
     ): ResponseInterface
     {
-        $request = $this->createRequest('POST', '/threads/{thread_id}/runs', $this->getPathParameters($parameters), []);
+        $request = $this->createRequest('POST', '/threads/{thread_id}/runs', $this->getPathParameters($parameters), $this->getQueryParameters($parameters));
         $request = $this->addBody($request, $requestMediaType, $requestContent);
         $request = $this->addAcceptHeader($request, $responseMediaType);
         $request = $this->addSecurity($request, $security);
@@ -1638,6 +2749,342 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
     //endregion
 
+    //region createUpload
+    /**
+     * Creates an intermediate [Upload](/docs/api-reference/uploads/object) object that you can add [Parts](/docs/api-reference/uploads/part-object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it.  Once you complete the Upload, we will create a [File](/docs/api-reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object.  For certain `purpose`s, the correct `mime_type` must be specified. Please refer to documentation for the supported MIME types for your use case: - [Assistants](/docs/assistants/tools/file-search#supported-files)  For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api-reference/files/create).
+     * @param \App\DTO\CreateUploadRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function createUploadRaw(
+        \App\DTO\CreateUploadRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/uploads', [], []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Creates an intermediate [Upload](/docs/api-reference/uploads/object) object that you can add [Parts](/docs/api-reference/uploads/part-object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it.  Once you complete the Upload, we will create a [File](/docs/api-reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object.  For certain `purpose`s, the correct `mime_type` must be specified. Please refer to documentation for the supported MIME types for your use case: - [Assistants](/docs/assistants/tools/file-search#supported-files)  For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api-reference/files/create).
+     * @param \App\DTO\CreateUploadRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function createUpload(
+        \App\DTO\CreateUploadRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->createUploadRaw($requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\Upload();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Creates an intermediate [Upload](/docs/api-reference/uploads/object) object that you can add [Parts](/docs/api-reference/uploads/part-object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it.  Once you complete the Upload, we will create a [File](/docs/api-reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object.  For certain `purpose`s, the correct `mime_type` must be specified. Please refer to documentation for the supported MIME types for your use case: - [Assistants](/docs/assistants/tools/file-search#supported-files)  For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api-reference/files/create).
+     * @param \App\DTO\CreateUploadRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\Upload
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function createUploadResult(
+        \App\DTO\CreateUploadRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\Upload
+    {
+        return $this->getSuccessfulContent(...$this->createUpload($requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region createVectorStore
+    /**
+     * Create a vector store.
+     * @param \App\DTO\CreateVectorStoreRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function createVectorStoreRaw(
+        \App\DTO\CreateVectorStoreRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/vector_stores', [], []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Create a vector store.
+     * @param \App\DTO\CreateVectorStoreRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function createVectorStore(
+        \App\DTO\CreateVectorStoreRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->createVectorStoreRaw($requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\VectorStoreObject();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Create a vector store.
+     * @param \App\DTO\CreateVectorStoreRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\VectorStoreObject
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function createVectorStoreResult(
+        \App\DTO\CreateVectorStoreRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\VectorStoreObject
+    {
+        return $this->getSuccessfulContent(...$this->createVectorStore($requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region createVectorStoreFile
+    /**
+     * Create a vector store file by attaching a [File](/docs/api-reference/files) to a [vector store](/docs/api-reference/vector-stores/object).
+     * @param \App\DTO\CreateVectorStoreFileParameterData $parameters
+     * @param \App\DTO\CreateVectorStoreFileRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function createVectorStoreFileRaw(
+        \App\DTO\CreateVectorStoreFileParameterData $parameters,
+        \App\DTO\CreateVectorStoreFileRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/vector_stores/{vector_store_id}/files', $this->getPathParameters($parameters), []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Create a vector store file by attaching a [File](/docs/api-reference/files) to a [vector store](/docs/api-reference/vector-stores/object).
+     * @param \App\DTO\CreateVectorStoreFileParameterData $parameters
+     * @param \App\DTO\CreateVectorStoreFileRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function createVectorStoreFile(
+        \App\DTO\CreateVectorStoreFileParameterData $parameters,
+        \App\DTO\CreateVectorStoreFileRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->createVectorStoreFileRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\VectorStoreFileObject();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Create a vector store file by attaching a [File](/docs/api-reference/files) to a [vector store](/docs/api-reference/vector-stores/object).
+     * @param \App\DTO\CreateVectorStoreFileParameterData $parameters
+     * @param \App\DTO\CreateVectorStoreFileRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\VectorStoreFileObject
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function createVectorStoreFileResult(
+        \App\DTO\CreateVectorStoreFileParameterData $parameters,
+        \App\DTO\CreateVectorStoreFileRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\VectorStoreFileObject
+    {
+        return $this->getSuccessfulContent(...$this->createVectorStoreFile($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region createVectorStoreFileBatch
+    /**
+     * Create a vector store file batch.
+     * @param \App\DTO\CreateVectorStoreFileBatchParameterData $parameters
+     * @param \App\DTO\CreateVectorStoreFileBatchRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function createVectorStoreFileBatchRaw(
+        \App\DTO\CreateVectorStoreFileBatchParameterData $parameters,
+        \App\DTO\CreateVectorStoreFileBatchRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/vector_stores/{vector_store_id}/file_batches', $this->getPathParameters($parameters), []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Create a vector store file batch.
+     * @param \App\DTO\CreateVectorStoreFileBatchParameterData $parameters
+     * @param \App\DTO\CreateVectorStoreFileBatchRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function createVectorStoreFileBatch(
+        \App\DTO\CreateVectorStoreFileBatchParameterData $parameters,
+        \App\DTO\CreateVectorStoreFileBatchRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->createVectorStoreFileBatchRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\VectorStoreFileBatchObject();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Create a vector store file batch.
+     * @param \App\DTO\CreateVectorStoreFileBatchParameterData $parameters
+     * @param \App\DTO\CreateVectorStoreFileBatchRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\VectorStoreFileBatchObject
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function createVectorStoreFileBatchResult(
+        \App\DTO\CreateVectorStoreFileBatchParameterData $parameters,
+        \App\DTO\CreateVectorStoreFileBatchRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\VectorStoreFileBatchObject
+    {
+        return $this->getSuccessfulContent(...$this->createVectorStoreFileBatch($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
     //region deleteAssistant
     /**
      * Delete an assistant.
@@ -1709,80 +3156,6 @@ class ApiClient extends OAGAC\AbstractApiClient
     ): \App\DTO\DeleteAssistantResponse
     {
         return $this->getSuccessfulContent(...$this->deleteAssistant($parameters, $security, $responseMediaType));
-    }
-    //endregion
-
-    //region deleteAssistantFile
-    /**
-     * Delete an assistant file.
-     * @param \App\DTO\DeleteAssistantFileParameterData $parameters
-     * @param iterable<string, string[]> $security
-     * @param string $responseMediaType
-     * @return ResponseInterface
-     * @throws ClientExceptionInterface
-     * @throws DT\Exception\InvalidData
-     */
-    public function deleteAssistantFileRaw(
-        \App\DTO\DeleteAssistantFileParameterData $parameters,
-        iterable $security = ['ApiKeyAuth' => []],
-        string $responseMediaType = 'application/json'
-    ): ResponseInterface
-    {
-        $request = $this->createRequest('DELETE', '/assistants/{assistant_id}/files/{file_id}', $this->getPathParameters($parameters), []);
-        $request = $this->addAcceptHeader($request, $responseMediaType);
-        $request = $this->addSecurity($request, $security);
-        return $this->httpClient->sendRequest($request);
-    }
-
-    /**
-     * Delete an assistant file.
-     * @param \App\DTO\DeleteAssistantFileParameterData $parameters
-     * @param iterable<string, string[]> $security
-     * @param string $responseMediaType
-     * @return array
-     * @throws ClientExceptionInterface
-     * @throws DT\Exception\InvalidData
-     * @throws OAGAC\Exception\InvalidResponseBodySchema
-     */
-    public function deleteAssistantFile(
-        \App\DTO\DeleteAssistantFileParameterData $parameters,
-        iterable $security = ['ApiKeyAuth' => []],
-        string $responseMediaType = 'application/json'
-    ): array
-    {
-        $response = $this->deleteAssistantFileRaw($parameters, $security, $responseMediaType);
-        $responseContent = null;
-        $contentStrategy = null;
-        $contentValidator = null;
-        switch ($response->getStatusCode())
-        {
-            case 200:
-                /* OK */
-                $responseContent = new \App\DTO\DeleteAssistantFileResponse();
-                break;
-        }
-        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
-        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
-    }
-
-    /**
-     * Delete an assistant file.
-     * @param \App\DTO\DeleteAssistantFileParameterData $parameters
-     * @param iterable<string, string[]> $security
-     * @param string $responseMediaType
-     * @return \App\DTO\DeleteAssistantFileResponse
-     * @throws ClientExceptionInterface
-     * @throws DT\Exception\InvalidData
-     * @throws OAGAC\Exception\InvalidResponseBodySchema
-     * @throws OAGAC\Exception\UnsuccessfulResponse
-     */
-    public function deleteAssistantFileResult(
-        \App\DTO\DeleteAssistantFileParameterData $parameters,
-        iterable $security = ['ApiKeyAuth' => []],
-        string $responseMediaType = 'application/json'
-    ): \App\DTO\DeleteAssistantFileResponse
-    {
-        return $this->getSuccessfulContent(...$this->deleteAssistantFile($parameters, $security, $responseMediaType));
     }
     //endregion
 
@@ -1860,6 +3233,154 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
     //endregion
 
+    //region deleteInvite
+    /**
+     * Delete an invite. If the invite has already been accepted, it cannot be deleted.
+     * @param \App\DTO\DeleteInviteParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function deleteInviteRaw(
+        \App\DTO\DeleteInviteParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('DELETE', '/organization/invites/{invite_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Delete an invite. If the invite has already been accepted, it cannot be deleted.
+     * @param \App\DTO\DeleteInviteParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function deleteInvite(
+        \App\DTO\DeleteInviteParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->deleteInviteRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Invite deleted successfully. */
+                $responseContent = new \App\DTO\InviteDeleteResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Delete an invite. If the invite has already been accepted, it cannot be deleted.
+     * @param \App\DTO\DeleteInviteParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\InviteDeleteResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function deleteInviteResult(
+        \App\DTO\DeleteInviteParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\InviteDeleteResponse
+    {
+        return $this->getSuccessfulContent(...$this->deleteInvite($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region deleteMessage
+    /**
+     * Deletes a message.
+     * @param \App\DTO\DeleteMessageParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function deleteMessageRaw(
+        \App\DTO\DeleteMessageParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('DELETE', '/threads/{thread_id}/messages/{message_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Deletes a message.
+     * @param \App\DTO\DeleteMessageParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function deleteMessage(
+        \App\DTO\DeleteMessageParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->deleteMessageRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\DeleteMessageResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Deletes a message.
+     * @param \App\DTO\DeleteMessageParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\DeleteMessageResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function deleteMessageResult(
+        \App\DTO\DeleteMessageParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\DeleteMessageResponse
+    {
+        return $this->getSuccessfulContent(...$this->deleteMessage($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
     //region deleteModel
     /**
      * Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
@@ -1934,6 +3455,236 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
     //endregion
 
+    //region deleteProjectApiKey
+    /**
+     * Deletes an API key from the project.
+     * @param \App\DTO\DeleteProjectApiKeyParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function deleteProjectApiKeyRaw(
+        \App\DTO\DeleteProjectApiKeyParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('DELETE', '/organization/projects/{project_id}/api_keys/{key_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Deletes an API key from the project.
+     * @param \App\DTO\DeleteProjectApiKeyParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function deleteProjectApiKey(
+        \App\DTO\DeleteProjectApiKeyParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->deleteProjectApiKeyRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project API key deleted successfully. */
+                $responseContent = new \App\DTO\ProjectApiKeyDeleteResponse();
+                break;
+            case 400:
+                /* Error response for various conditions. */
+                $responseContent = new \App\DTO\ErrorResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Deletes an API key from the project.
+     * @param \App\DTO\DeleteProjectApiKeyParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ProjectApiKeyDeleteResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function deleteProjectApiKeyResult(
+        \App\DTO\DeleteProjectApiKeyParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ProjectApiKeyDeleteResponse
+    {
+        return $this->getSuccessfulContent(...$this->deleteProjectApiKey($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region deleteProjectServiceAccount
+    /**
+     * Deletes a service account from the project.
+     * @param \App\DTO\DeleteProjectServiceAccountParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function deleteProjectServiceAccountRaw(
+        \App\DTO\DeleteProjectServiceAccountParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('DELETE', '/organization/projects/{project_id}/service_accounts/{service_account_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Deletes a service account from the project.
+     * @param \App\DTO\DeleteProjectServiceAccountParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function deleteProjectServiceAccount(
+        \App\DTO\DeleteProjectServiceAccountParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->deleteProjectServiceAccountRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project service account deleted successfully. */
+                $responseContent = new \App\DTO\ProjectServiceAccountDeleteResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Deletes a service account from the project.
+     * @param \App\DTO\DeleteProjectServiceAccountParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ProjectServiceAccountDeleteResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function deleteProjectServiceAccountResult(
+        \App\DTO\DeleteProjectServiceAccountParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ProjectServiceAccountDeleteResponse
+    {
+        return $this->getSuccessfulContent(...$this->deleteProjectServiceAccount($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region deleteProjectUser
+    /**
+     * Deletes a user from the project.
+     * @param \App\DTO\DeleteProjectUserParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function deleteProjectUserRaw(
+        \App\DTO\DeleteProjectUserParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('DELETE', '/organization/projects/{project_id}/users/{user_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Deletes a user from the project.
+     * @param \App\DTO\DeleteProjectUserParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function deleteProjectUser(
+        \App\DTO\DeleteProjectUserParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->deleteProjectUserRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project user deleted successfully. */
+                $responseContent = new \App\DTO\ProjectUserDeleteResponse();
+                break;
+            case 400:
+                /* Error response for various conditions. */
+                $responseContent = new \App\DTO\ErrorResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Deletes a user from the project.
+     * @param \App\DTO\DeleteProjectUserParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ProjectUserDeleteResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function deleteProjectUserResult(
+        \App\DTO\DeleteProjectUserParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ProjectUserDeleteResponse
+    {
+        return $this->getSuccessfulContent(...$this->deleteProjectUser($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
     //region deleteThread
     /**
      * Delete a thread.
@@ -2005,6 +3756,228 @@ class ApiClient extends OAGAC\AbstractApiClient
     ): \App\DTO\DeleteThreadResponse
     {
         return $this->getSuccessfulContent(...$this->deleteThread($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region deleteUser
+    /**
+     * Deletes a user from the organization.
+     * @param \App\DTO\DeleteUserParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function deleteUserRaw(
+        \App\DTO\DeleteUserParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('DELETE', '/organization/users/{user_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Deletes a user from the organization.
+     * @param \App\DTO\DeleteUserParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function deleteUser(
+        \App\DTO\DeleteUserParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->deleteUserRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* User deleted successfully. */
+                $responseContent = new \App\DTO\UserDeleteResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Deletes a user from the organization.
+     * @param \App\DTO\DeleteUserParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\UserDeleteResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function deleteUserResult(
+        \App\DTO\DeleteUserParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\UserDeleteResponse
+    {
+        return $this->getSuccessfulContent(...$this->deleteUser($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region deleteVectorStore
+    /**
+     * Delete a vector store.
+     * @param \App\DTO\DeleteVectorStoreParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function deleteVectorStoreRaw(
+        \App\DTO\DeleteVectorStoreParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('DELETE', '/vector_stores/{vector_store_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Delete a vector store.
+     * @param \App\DTO\DeleteVectorStoreParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function deleteVectorStore(
+        \App\DTO\DeleteVectorStoreParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->deleteVectorStoreRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\DeleteVectorStoreResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Delete a vector store.
+     * @param \App\DTO\DeleteVectorStoreParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\DeleteVectorStoreResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function deleteVectorStoreResult(
+        \App\DTO\DeleteVectorStoreParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\DeleteVectorStoreResponse
+    {
+        return $this->getSuccessfulContent(...$this->deleteVectorStore($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region deleteVectorStoreFile
+    /**
+     * Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api-reference/files/delete) endpoint.
+     * @param \App\DTO\DeleteVectorStoreFileParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function deleteVectorStoreFileRaw(
+        \App\DTO\DeleteVectorStoreFileParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('DELETE', '/vector_stores/{vector_store_id}/files/{file_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api-reference/files/delete) endpoint.
+     * @param \App\DTO\DeleteVectorStoreFileParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function deleteVectorStoreFile(
+        \App\DTO\DeleteVectorStoreFileParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->deleteVectorStoreFileRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\DeleteVectorStoreFileResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api-reference/files/delete) endpoint.
+     * @param \App\DTO\DeleteVectorStoreFileParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\DeleteVectorStoreFileResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function deleteVectorStoreFileResult(
+        \App\DTO\DeleteVectorStoreFileParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\DeleteVectorStoreFileResponse
+    {
+        return $this->getSuccessfulContent(...$this->deleteVectorStoreFile($parameters, $security, $responseMediaType));
     }
     //endregion
 
@@ -2155,80 +4128,6 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
     //endregion
 
-    //region getAssistantFile
-    /**
-     * Retrieves an AssistantFile.
-     * @param \App\DTO\GetAssistantFileParameterData $parameters
-     * @param iterable<string, string[]> $security
-     * @param string $responseMediaType
-     * @return ResponseInterface
-     * @throws ClientExceptionInterface
-     * @throws DT\Exception\InvalidData
-     */
-    public function getAssistantFileRaw(
-        \App\DTO\GetAssistantFileParameterData $parameters,
-        iterable $security = ['ApiKeyAuth' => []],
-        string $responseMediaType = 'application/json'
-    ): ResponseInterface
-    {
-        $request = $this->createRequest('GET', '/assistants/{assistant_id}/files/{file_id}', $this->getPathParameters($parameters), []);
-        $request = $this->addAcceptHeader($request, $responseMediaType);
-        $request = $this->addSecurity($request, $security);
-        return $this->httpClient->sendRequest($request);
-    }
-
-    /**
-     * Retrieves an AssistantFile.
-     * @param \App\DTO\GetAssistantFileParameterData $parameters
-     * @param iterable<string, string[]> $security
-     * @param string $responseMediaType
-     * @return array
-     * @throws ClientExceptionInterface
-     * @throws DT\Exception\InvalidData
-     * @throws OAGAC\Exception\InvalidResponseBodySchema
-     */
-    public function getAssistantFile(
-        \App\DTO\GetAssistantFileParameterData $parameters,
-        iterable $security = ['ApiKeyAuth' => []],
-        string $responseMediaType = 'application/json'
-    ): array
-    {
-        $response = $this->getAssistantFileRaw($parameters, $security, $responseMediaType);
-        $responseContent = null;
-        $contentStrategy = null;
-        $contentValidator = null;
-        switch ($response->getStatusCode())
-        {
-            case 200:
-                /* OK */
-                $responseContent = new \App\DTO\AssistantFileObject();
-                break;
-        }
-        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
-        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
-    }
-
-    /**
-     * Retrieves an AssistantFile.
-     * @param \App\DTO\GetAssistantFileParameterData $parameters
-     * @param iterable<string, string[]> $security
-     * @param string $responseMediaType
-     * @return \App\DTO\AssistantFileObject
-     * @throws ClientExceptionInterface
-     * @throws DT\Exception\InvalidData
-     * @throws OAGAC\Exception\InvalidResponseBodySchema
-     * @throws OAGAC\Exception\UnsuccessfulResponse
-     */
-    public function getAssistantFileResult(
-        \App\DTO\GetAssistantFileParameterData $parameters,
-        iterable $security = ['ApiKeyAuth' => []],
-        string $responseMediaType = 'application/json'
-    ): \App\DTO\AssistantFileObject
-    {
-        return $this->getSuccessfulContent(...$this->getAssistantFile($parameters, $security, $responseMediaType));
-    }
-    //endregion
-
     //region getMessage
     /**
      * Retrieve a message.
@@ -2300,80 +4199,6 @@ class ApiClient extends OAGAC\AbstractApiClient
     ): \App\DTO\MessageObject
     {
         return $this->getSuccessfulContent(...$this->getMessage($parameters, $security, $responseMediaType));
-    }
-    //endregion
-
-    //region getMessageFile
-    /**
-     * Retrieves a message file.
-     * @param \App\DTO\GetMessageFileParameterData $parameters
-     * @param iterable<string, string[]> $security
-     * @param string $responseMediaType
-     * @return ResponseInterface
-     * @throws ClientExceptionInterface
-     * @throws DT\Exception\InvalidData
-     */
-    public function getMessageFileRaw(
-        \App\DTO\GetMessageFileParameterData $parameters,
-        iterable $security = ['ApiKeyAuth' => []],
-        string $responseMediaType = 'application/json'
-    ): ResponseInterface
-    {
-        $request = $this->createRequest('GET', '/threads/{thread_id}/messages/{message_id}/files/{file_id}', $this->getPathParameters($parameters), []);
-        $request = $this->addAcceptHeader($request, $responseMediaType);
-        $request = $this->addSecurity($request, $security);
-        return $this->httpClient->sendRequest($request);
-    }
-
-    /**
-     * Retrieves a message file.
-     * @param \App\DTO\GetMessageFileParameterData $parameters
-     * @param iterable<string, string[]> $security
-     * @param string $responseMediaType
-     * @return array
-     * @throws ClientExceptionInterface
-     * @throws DT\Exception\InvalidData
-     * @throws OAGAC\Exception\InvalidResponseBodySchema
-     */
-    public function getMessageFile(
-        \App\DTO\GetMessageFileParameterData $parameters,
-        iterable $security = ['ApiKeyAuth' => []],
-        string $responseMediaType = 'application/json'
-    ): array
-    {
-        $response = $this->getMessageFileRaw($parameters, $security, $responseMediaType);
-        $responseContent = null;
-        $contentStrategy = null;
-        $contentValidator = null;
-        switch ($response->getStatusCode())
-        {
-            case 200:
-                /* OK */
-                $responseContent = new \App\DTO\MessageFileObject();
-                break;
-        }
-        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
-        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
-    }
-
-    /**
-     * Retrieves a message file.
-     * @param \App\DTO\GetMessageFileParameterData $parameters
-     * @param iterable<string, string[]> $security
-     * @param string $responseMediaType
-     * @return \App\DTO\MessageFileObject
-     * @throws ClientExceptionInterface
-     * @throws DT\Exception\InvalidData
-     * @throws OAGAC\Exception\InvalidResponseBodySchema
-     * @throws OAGAC\Exception\UnsuccessfulResponse
-     */
-    public function getMessageFileResult(
-        \App\DTO\GetMessageFileParameterData $parameters,
-        iterable $security = ['ApiKeyAuth' => []],
-        string $responseMediaType = 'application/json'
-    ): \App\DTO\MessageFileObject
-    {
-        return $this->getSuccessfulContent(...$this->getMessageFile($parameters, $security, $responseMediaType));
     }
     //endregion
 
@@ -2467,7 +4292,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         string $responseMediaType = 'application/json'
     ): ResponseInterface
     {
-        $request = $this->createRequest('GET', '/threads/{thread_id}/runs/{run_id}/steps/{step_id}', $this->getPathParameters($parameters), []);
+        $request = $this->createRequest('GET', '/threads/{thread_id}/runs/{run_id}/steps/{step_id}', $this->getPathParameters($parameters), $this->getQueryParameters($parameters));
         $request = $this->addAcceptHeader($request, $responseMediaType);
         $request = $this->addSecurity($request, $security);
         return $this->httpClient->sendRequest($request);
@@ -2599,31 +4424,31 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
     //endregion
 
-    //region listAssistantFiles
+    //region getVectorStore
     /**
-     * Returns a list of assistant files.
-     * @param \App\DTO\ListAssistantFilesParameterData $parameters
+     * Retrieves a vector store.
+     * @param \App\DTO\GetVectorStoreParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      */
-    public function listAssistantFilesRaw(
-        \App\DTO\ListAssistantFilesParameterData $parameters,
+    public function getVectorStoreRaw(
+        \App\DTO\GetVectorStoreParameterData $parameters,
         iterable $security = ['ApiKeyAuth' => []],
         string $responseMediaType = 'application/json'
     ): ResponseInterface
     {
-        $request = $this->createRequest('GET', '/assistants/{assistant_id}/files', $this->getPathParameters($parameters), $this->getQueryParameters($parameters));
+        $request = $this->createRequest('GET', '/vector_stores/{vector_store_id}', $this->getPathParameters($parameters), []);
         $request = $this->addAcceptHeader($request, $responseMediaType);
         $request = $this->addSecurity($request, $security);
         return $this->httpClient->sendRequest($request);
     }
 
     /**
-     * Returns a list of assistant files.
-     * @param \App\DTO\ListAssistantFilesParameterData $parameters
+     * Retrieves a vector store.
+     * @param \App\DTO\GetVectorStoreParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
@@ -2631,13 +4456,13 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
      */
-    public function listAssistantFiles(
-        \App\DTO\ListAssistantFilesParameterData $parameters,
+    public function getVectorStore(
+        \App\DTO\GetVectorStoreParameterData $parameters,
         iterable $security = ['ApiKeyAuth' => []],
         string $responseMediaType = 'application/json'
     ): array
     {
-        $response = $this->listAssistantFilesRaw($parameters, $security, $responseMediaType);
+        $response = $this->getVectorStoreRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
         $contentStrategy = null;
         $contentValidator = null;
@@ -2645,7 +4470,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* OK */
-                $responseContent = new \App\DTO\ListAssistantFilesResponse();
+                $responseContent = new \App\DTO\VectorStoreObject();
                 break;
         }
         $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
@@ -2653,23 +4478,252 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Returns a list of assistant files.
-     * @param \App\DTO\ListAssistantFilesParameterData $parameters
+     * Retrieves a vector store.
+     * @param \App\DTO\GetVectorStoreParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\ListAssistantFilesResponse
+     * @return \App\DTO\VectorStoreObject
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
      * @throws OAGAC\Exception\UnsuccessfulResponse
      */
-    public function listAssistantFilesResult(
-        \App\DTO\ListAssistantFilesParameterData $parameters,
+    public function getVectorStoreResult(
+        \App\DTO\GetVectorStoreParameterData $parameters,
         iterable $security = ['ApiKeyAuth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\ListAssistantFilesResponse
+    ): \App\DTO\VectorStoreObject
     {
-        return $this->getSuccessfulContent(...$this->listAssistantFiles($parameters, $security, $responseMediaType));
+        return $this->getSuccessfulContent(...$this->getVectorStore($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region getVectorStoreFile
+    /**
+     * Retrieves a vector store file.
+     * @param \App\DTO\GetVectorStoreFileParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function getVectorStoreFileRaw(
+        \App\DTO\GetVectorStoreFileParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/vector_stores/{vector_store_id}/files/{file_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Retrieves a vector store file.
+     * @param \App\DTO\GetVectorStoreFileParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function getVectorStoreFile(
+        \App\DTO\GetVectorStoreFileParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->getVectorStoreFileRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\VectorStoreFileObject();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Retrieves a vector store file.
+     * @param \App\DTO\GetVectorStoreFileParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\VectorStoreFileObject
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function getVectorStoreFileResult(
+        \App\DTO\GetVectorStoreFileParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\VectorStoreFileObject
+    {
+        return $this->getSuccessfulContent(...$this->getVectorStoreFile($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region getVectorStoreFileBatch
+    /**
+     * Retrieves a vector store file batch.
+     * @param \App\DTO\GetVectorStoreFileBatchParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function getVectorStoreFileBatchRaw(
+        \App\DTO\GetVectorStoreFileBatchParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/vector_stores/{vector_store_id}/file_batches/{batch_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Retrieves a vector store file batch.
+     * @param \App\DTO\GetVectorStoreFileBatchParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function getVectorStoreFileBatch(
+        \App\DTO\GetVectorStoreFileBatchParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->getVectorStoreFileBatchRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\VectorStoreFileBatchObject();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Retrieves a vector store file batch.
+     * @param \App\DTO\GetVectorStoreFileBatchParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\VectorStoreFileBatchObject
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function getVectorStoreFileBatchResult(
+        \App\DTO\GetVectorStoreFileBatchParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\VectorStoreFileBatchObject
+    {
+        return $this->getSuccessfulContent(...$this->getVectorStoreFileBatch($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region inviteUser
+    /**
+     * Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+     * @param \App\DTO\InviteRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function inviteUserRaw(
+        \App\DTO\InviteRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/organization/invites', [], []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+     * @param \App\DTO\InviteRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function inviteUser(
+        \App\DTO\InviteRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->inviteUserRaw($requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* User invited successfully. */
+                $responseContent = new \App\DTO\Invite();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+     * @param \App\DTO\InviteRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\Invite
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function inviteUserResult(
+        \App\DTO\InviteRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\Invite
+    {
+        return $this->getSuccessfulContent(...$this->inviteUser($requestContent, $security, $requestMediaType, $responseMediaType));
     }
     //endregion
 
@@ -2747,9 +4801,157 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
     //endregion
 
+    //region listAuditLogs
+    /**
+     * List user actions and configuration changes within this organization.
+     * @param \App\DTO\ListAuditLogsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function listAuditLogsRaw(
+        \App\DTO\ListAuditLogsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/audit_logs', [], $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * List user actions and configuration changes within this organization.
+     * @param \App\DTO\ListAuditLogsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function listAuditLogs(
+        \App\DTO\ListAuditLogsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->listAuditLogsRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Audit logs listed successfully. */
+                $responseContent = new \App\DTO\ListAuditLogsResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * List user actions and configuration changes within this organization.
+     * @param \App\DTO\ListAuditLogsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ListAuditLogsResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function listAuditLogsResult(
+        \App\DTO\ListAuditLogsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ListAuditLogsResponse
+    {
+        return $this->getSuccessfulContent(...$this->listAuditLogs($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region listBatches
+    /**
+     * List your organization's batches.
+     * @param \App\DTO\ListBatchesParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function listBatchesRaw(
+        \App\DTO\ListBatchesParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/batches', [], $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * List your organization's batches.
+     * @param \App\DTO\ListBatchesParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function listBatches(
+        \App\DTO\ListBatchesParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->listBatchesRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Batch listed successfully. */
+                $responseContent = new \App\DTO\ListBatchesResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * List your organization's batches.
+     * @param \App\DTO\ListBatchesParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ListBatchesResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function listBatchesResult(
+        \App\DTO\ListBatchesParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ListBatchesResponse
+    {
+        return $this->getSuccessfulContent(...$this->listBatches($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
     //region listFiles
     /**
-     * Returns a list of files that belong to the user's organization.
+     * Returns a list of files.
      * @param \App\DTO\ListFilesParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
@@ -2770,7 +4972,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Returns a list of files that belong to the user's organization.
+     * Returns a list of files.
      * @param \App\DTO\ListFilesParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
@@ -2801,7 +5003,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Returns a list of files that belong to the user's organization.
+     * Returns a list of files.
      * @param \App\DTO\ListFilesParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
@@ -2818,6 +5020,80 @@ class ApiClient extends OAGAC\AbstractApiClient
     ): \App\DTO\ListFilesResponse
     {
         return $this->getSuccessfulContent(...$this->listFiles($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region listFilesInVectorStoreBatch
+    /**
+     * Returns a list of vector store files in a batch.
+     * @param \App\DTO\ListFilesInVectorStoreBatchParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function listFilesInVectorStoreBatchRaw(
+        \App\DTO\ListFilesInVectorStoreBatchParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/vector_stores/{vector_store_id}/file_batches/{batch_id}/files', $this->getPathParameters($parameters), $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Returns a list of vector store files in a batch.
+     * @param \App\DTO\ListFilesInVectorStoreBatchParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function listFilesInVectorStoreBatch(
+        \App\DTO\ListFilesInVectorStoreBatchParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->listFilesInVectorStoreBatchRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\ListVectorStoreFilesResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Returns a list of vector store files in a batch.
+     * @param \App\DTO\ListFilesInVectorStoreBatchParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ListVectorStoreFilesResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function listFilesInVectorStoreBatchResult(
+        \App\DTO\ListFilesInVectorStoreBatchParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ListVectorStoreFilesResponse
+    {
+        return $this->getSuccessfulContent(...$this->listFilesInVectorStoreBatch($parameters, $security, $responseMediaType));
     }
     //endregion
 
@@ -2969,31 +5245,31 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
     //endregion
 
-    //region listMessageFiles
+    //region listInvites
     /**
-     * Returns a list of message files.
-     * @param \App\DTO\ListMessageFilesParameterData $parameters
+     * Returns a list of invites in the organization.
+     * @param \App\DTO\ListInvitesParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      */
-    public function listMessageFilesRaw(
-        \App\DTO\ListMessageFilesParameterData $parameters,
+    public function listInvitesRaw(
+        \App\DTO\ListInvitesParameterData $parameters,
         iterable $security = ['ApiKeyAuth' => []],
         string $responseMediaType = 'application/json'
     ): ResponseInterface
     {
-        $request = $this->createRequest('GET', '/threads/{thread_id}/messages/{message_id}/files', $this->getPathParameters($parameters), $this->getQueryParameters($parameters));
+        $request = $this->createRequest('GET', '/organization/invites', [], $this->getQueryParameters($parameters));
         $request = $this->addAcceptHeader($request, $responseMediaType);
         $request = $this->addSecurity($request, $security);
         return $this->httpClient->sendRequest($request);
     }
 
     /**
-     * Returns a list of message files.
-     * @param \App\DTO\ListMessageFilesParameterData $parameters
+     * Returns a list of invites in the organization.
+     * @param \App\DTO\ListInvitesParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
@@ -3001,21 +5277,21 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
      */
-    public function listMessageFiles(
-        \App\DTO\ListMessageFilesParameterData $parameters,
+    public function listInvites(
+        \App\DTO\ListInvitesParameterData $parameters,
         iterable $security = ['ApiKeyAuth' => []],
         string $responseMediaType = 'application/json'
     ): array
     {
-        $response = $this->listMessageFilesRaw($parameters, $security, $responseMediaType);
+        $response = $this->listInvitesRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
         $contentStrategy = null;
         $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
-                /* OK */
-                $responseContent = new \App\DTO\ListMessageFilesResponse();
+                /* Invites listed successfully. */
+                $responseContent = new \App\DTO\InviteListResponse();
                 break;
         }
         $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
@@ -3023,23 +5299,23 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Returns a list of message files.
-     * @param \App\DTO\ListMessageFilesParameterData $parameters
+     * Returns a list of invites in the organization.
+     * @param \App\DTO\ListInvitesParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\ListMessageFilesResponse
+     * @return \App\DTO\InviteListResponse
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
      * @throws OAGAC\Exception\UnsuccessfulResponse
      */
-    public function listMessageFilesResult(
-        \App\DTO\ListMessageFilesParameterData $parameters,
+    public function listInvitesResult(
+        \App\DTO\ListInvitesParameterData $parameters,
         iterable $security = ['ApiKeyAuth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\ListMessageFilesResponse
+    ): \App\DTO\InviteListResponse
     {
-        return $this->getSuccessfulContent(...$this->listMessageFiles($parameters, $security, $responseMediaType));
+        return $this->getSuccessfulContent(...$this->listInvites($parameters, $security, $responseMediaType));
     }
     //endregion
 
@@ -3259,6 +5535,384 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
     //endregion
 
+    //region listProjectApiKeys
+    /**
+     * Returns a list of API keys in the project.
+     * @param \App\DTO\ListProjectApiKeysParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function listProjectApiKeysRaw(
+        \App\DTO\ListProjectApiKeysParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/projects/{project_id}/api_keys', $this->getPathParameters($parameters), $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Returns a list of API keys in the project.
+     * @param \App\DTO\ListProjectApiKeysParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function listProjectApiKeys(
+        \App\DTO\ListProjectApiKeysParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->listProjectApiKeysRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project API keys listed successfully. */
+                $responseContent = new \App\DTO\ProjectApiKeyListResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Returns a list of API keys in the project.
+     * @param \App\DTO\ListProjectApiKeysParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ProjectApiKeyListResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function listProjectApiKeysResult(
+        \App\DTO\ListProjectApiKeysParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ProjectApiKeyListResponse
+    {
+        return $this->getSuccessfulContent(...$this->listProjectApiKeys($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region listProjectRateLimits
+    /**
+     * Returns the rate limits per model for a project.
+     * @param \App\DTO\ListProjectRateLimitsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function listProjectRateLimitsRaw(
+        \App\DTO\ListProjectRateLimitsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/projects/{project_id}/rate_limits', $this->getPathParameters($parameters), $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Returns the rate limits per model for a project.
+     * @param \App\DTO\ListProjectRateLimitsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function listProjectRateLimits(
+        \App\DTO\ListProjectRateLimitsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->listProjectRateLimitsRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project rate limits listed successfully. */
+                $responseContent = new \App\DTO\ProjectRateLimitListResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Returns the rate limits per model for a project.
+     * @param \App\DTO\ListProjectRateLimitsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ProjectRateLimitListResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function listProjectRateLimitsResult(
+        \App\DTO\ListProjectRateLimitsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ProjectRateLimitListResponse
+    {
+        return $this->getSuccessfulContent(...$this->listProjectRateLimits($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region listProjectServiceAccounts
+    /**
+     * Returns a list of service accounts in the project.
+     * @param \App\DTO\ListProjectServiceAccountsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function listProjectServiceAccountsRaw(
+        \App\DTO\ListProjectServiceAccountsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/projects/{project_id}/service_accounts', $this->getPathParameters($parameters), $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Returns a list of service accounts in the project.
+     * @param \App\DTO\ListProjectServiceAccountsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function listProjectServiceAccounts(
+        \App\DTO\ListProjectServiceAccountsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->listProjectServiceAccountsRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project service accounts listed successfully. */
+                $responseContent = new \App\DTO\ProjectServiceAccountListResponse();
+                break;
+            case 400:
+                /* Error response when project is archived. */
+                $responseContent = new \App\DTO\ErrorResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Returns a list of service accounts in the project.
+     * @param \App\DTO\ListProjectServiceAccountsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ProjectServiceAccountListResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function listProjectServiceAccountsResult(
+        \App\DTO\ListProjectServiceAccountsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ProjectServiceAccountListResponse
+    {
+        return $this->getSuccessfulContent(...$this->listProjectServiceAccounts($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region listProjectUsers
+    /**
+     * Returns a list of users in the project.
+     * @param \App\DTO\ListProjectUsersParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function listProjectUsersRaw(
+        \App\DTO\ListProjectUsersParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/projects/{project_id}/users', $this->getPathParameters($parameters), $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Returns a list of users in the project.
+     * @param \App\DTO\ListProjectUsersParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function listProjectUsers(
+        \App\DTO\ListProjectUsersParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->listProjectUsersRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project users listed successfully. */
+                $responseContent = new \App\DTO\ProjectUserListResponse();
+                break;
+            case 400:
+                /* Error response when project is archived. */
+                $responseContent = new \App\DTO\ErrorResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Returns a list of users in the project.
+     * @param \App\DTO\ListProjectUsersParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ProjectUserListResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function listProjectUsersResult(
+        \App\DTO\ListProjectUsersParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ProjectUserListResponse
+    {
+        return $this->getSuccessfulContent(...$this->listProjectUsers($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region listProjects
+    /**
+     * Returns a list of projects.
+     * @param \App\DTO\ListProjectsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function listProjectsRaw(
+        \App\DTO\ListProjectsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/projects', [], $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Returns a list of projects.
+     * @param \App\DTO\ListProjectsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function listProjects(
+        \App\DTO\ListProjectsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->listProjectsRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Projects listed successfully. */
+                $responseContent = new \App\DTO\ProjectListResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Returns a list of projects.
+     * @param \App\DTO\ListProjectsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ProjectListResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function listProjectsResult(
+        \App\DTO\ListProjectsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ProjectListResponse
+    {
+        return $this->getSuccessfulContent(...$this->listProjects($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
     //region listRunSteps
     /**
      * Returns a list of run steps belonging to a run.
@@ -3404,6 +6058,228 @@ class ApiClient extends OAGAC\AbstractApiClient
     ): \App\DTO\ListRunsResponse
     {
         return $this->getSuccessfulContent(...$this->listRuns($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region listUsers
+    /**
+     * Lists all of the users in the organization.
+     * @param \App\DTO\ListUsersParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function listUsersRaw(
+        \App\DTO\ListUsersParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/users', [], $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Lists all of the users in the organization.
+     * @param \App\DTO\ListUsersParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function listUsers(
+        \App\DTO\ListUsersParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->listUsersRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Users listed successfully. */
+                $responseContent = new \App\DTO\UserListResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Lists all of the users in the organization.
+     * @param \App\DTO\ListUsersParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\UserListResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function listUsersResult(
+        \App\DTO\ListUsersParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\UserListResponse
+    {
+        return $this->getSuccessfulContent(...$this->listUsers($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region listVectorStoreFiles
+    /**
+     * Returns a list of vector store files.
+     * @param \App\DTO\ListVectorStoreFilesParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function listVectorStoreFilesRaw(
+        \App\DTO\ListVectorStoreFilesParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/vector_stores/{vector_store_id}/files', $this->getPathParameters($parameters), $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Returns a list of vector store files.
+     * @param \App\DTO\ListVectorStoreFilesParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function listVectorStoreFiles(
+        \App\DTO\ListVectorStoreFilesParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->listVectorStoreFilesRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\ListVectorStoreFilesResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Returns a list of vector store files.
+     * @param \App\DTO\ListVectorStoreFilesParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ListVectorStoreFilesResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function listVectorStoreFilesResult(
+        \App\DTO\ListVectorStoreFilesParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ListVectorStoreFilesResponse
+    {
+        return $this->getSuccessfulContent(...$this->listVectorStoreFiles($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region listVectorStores
+    /**
+     * Returns a list of vector stores.
+     * @param \App\DTO\ListVectorStoresParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function listVectorStoresRaw(
+        \App\DTO\ListVectorStoresParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/vector_stores', [], $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Returns a list of vector stores.
+     * @param \App\DTO\ListVectorStoresParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function listVectorStores(
+        \App\DTO\ListVectorStoresParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->listVectorStoresRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\ListVectorStoresResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Returns a list of vector stores.
+     * @param \App\DTO\ListVectorStoresParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ListVectorStoresResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function listVectorStoresResult(
+        \App\DTO\ListVectorStoresParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ListVectorStoresResponse
+    {
+        return $this->getSuccessfulContent(...$this->listVectorStores($parameters, $security, $responseMediaType));
     }
     //endregion
 
@@ -3581,6 +6457,188 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
     //endregion
 
+    //region modifyProject
+    /**
+     * Modifies a project in the organization.
+     * @param \App\DTO\ModifyProjectParameterData $parameters
+     * @param \App\DTO\ProjectUpdateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function modifyProjectRaw(
+        \App\DTO\ModifyProjectParameterData $parameters,
+        \App\DTO\ProjectUpdateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/organization/projects/{project_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Modifies a project in the organization.
+     * @param \App\DTO\ModifyProjectParameterData $parameters
+     * @param \App\DTO\ProjectUpdateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function modifyProject(
+        \App\DTO\ModifyProjectParameterData $parameters,
+        \App\DTO\ProjectUpdateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->modifyProjectRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project updated successfully. */
+                $responseContent = new \App\DTO\Project();
+                break;
+            case 400:
+                /* Error response when updating the default project. */
+                $responseContent = new \App\DTO\ErrorResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Modifies a project in the organization.
+     * @param \App\DTO\ModifyProjectParameterData $parameters
+     * @param \App\DTO\ProjectUpdateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\Project
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function modifyProjectResult(
+        \App\DTO\ModifyProjectParameterData $parameters,
+        \App\DTO\ProjectUpdateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\Project
+    {
+        return $this->getSuccessfulContent(...$this->modifyProject($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region modifyProjectUser
+    /**
+     * Modifies a user's role in the project.
+     * @param \App\DTO\ModifyProjectUserParameterData $parameters
+     * @param \App\DTO\ProjectUserUpdateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function modifyProjectUserRaw(
+        \App\DTO\ModifyProjectUserParameterData $parameters,
+        \App\DTO\ProjectUserUpdateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/organization/projects/{project_id}/users/{user_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Modifies a user's role in the project.
+     * @param \App\DTO\ModifyProjectUserParameterData $parameters
+     * @param \App\DTO\ProjectUserUpdateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function modifyProjectUser(
+        \App\DTO\ModifyProjectUserParameterData $parameters,
+        \App\DTO\ProjectUserUpdateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->modifyProjectUserRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project user's role updated successfully. */
+                $responseContent = new \App\DTO\ProjectUser();
+                break;
+            case 400:
+                /* Error response for various conditions. */
+                $responseContent = new \App\DTO\ErrorResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Modifies a user's role in the project.
+     * @param \App\DTO\ModifyProjectUserParameterData $parameters
+     * @param \App\DTO\ProjectUserUpdateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\ProjectUser
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function modifyProjectUserResult(
+        \App\DTO\ModifyProjectUserParameterData $parameters,
+        \App\DTO\ProjectUserUpdateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ProjectUser
+    {
+        return $this->getSuccessfulContent(...$this->modifyProjectUser($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
     //region modifyRun
     /**
      * Modifies a run.
@@ -3755,6 +6813,254 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
     //endregion
 
+    //region modifyUser
+    /**
+     * Modifies a user's role in the organization.
+     * @param \App\DTO\ModifyUserParameterData $parameters
+     * @param \App\DTO\UserRoleUpdateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function modifyUserRaw(
+        \App\DTO\ModifyUserParameterData $parameters,
+        \App\DTO\UserRoleUpdateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/organization/users/{user_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Modifies a user's role in the organization.
+     * @param \App\DTO\ModifyUserParameterData $parameters
+     * @param \App\DTO\UserRoleUpdateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function modifyUser(
+        \App\DTO\ModifyUserParameterData $parameters,
+        \App\DTO\UserRoleUpdateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->modifyUserRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* User role updated successfully. */
+                $responseContent = new \App\DTO\User();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Modifies a user's role in the organization.
+     * @param \App\DTO\ModifyUserParameterData $parameters
+     * @param \App\DTO\UserRoleUpdateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\User
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function modifyUserResult(
+        \App\DTO\ModifyUserParameterData $parameters,
+        \App\DTO\UserRoleUpdateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\User
+    {
+        return $this->getSuccessfulContent(...$this->modifyUser($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region modifyVectorStore
+    /**
+     * Modifies a vector store.
+     * @param \App\DTO\ModifyVectorStoreParameterData $parameters
+     * @param \App\DTO\UpdateVectorStoreRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function modifyVectorStoreRaw(
+        \App\DTO\ModifyVectorStoreParameterData $parameters,
+        \App\DTO\UpdateVectorStoreRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/vector_stores/{vector_store_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Modifies a vector store.
+     * @param \App\DTO\ModifyVectorStoreParameterData $parameters
+     * @param \App\DTO\UpdateVectorStoreRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function modifyVectorStore(
+        \App\DTO\ModifyVectorStoreParameterData $parameters,
+        \App\DTO\UpdateVectorStoreRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->modifyVectorStoreRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\VectorStoreObject();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Modifies a vector store.
+     * @param \App\DTO\ModifyVectorStoreParameterData $parameters
+     * @param \App\DTO\UpdateVectorStoreRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\VectorStoreObject
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function modifyVectorStoreResult(
+        \App\DTO\ModifyVectorStoreParameterData $parameters,
+        \App\DTO\UpdateVectorStoreRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\VectorStoreObject
+    {
+        return $this->getSuccessfulContent(...$this->modifyVectorStore($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region retrieveBatch
+    /**
+     * Retrieves a batch.
+     * @param \App\DTO\RetrieveBatchParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function retrieveBatchRaw(
+        \App\DTO\RetrieveBatchParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/batches/{batch_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Retrieves a batch.
+     * @param \App\DTO\RetrieveBatchParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function retrieveBatch(
+        \App\DTO\RetrieveBatchParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->retrieveBatchRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Batch retrieved successfully. */
+                $responseContent = new \App\DTO\Batch();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Retrieves a batch.
+     * @param \App\DTO\RetrieveBatchParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\Batch
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function retrieveBatchResult(
+        \App\DTO\RetrieveBatchParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\Batch
+    {
+        return $this->getSuccessfulContent(...$this->retrieveBatch($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
     //region retrieveFile
     /**
      * Returns information about a specific file.
@@ -3903,6 +7209,80 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
     //endregion
 
+    //region retrieveInvite
+    /**
+     * Retrieves an invite.
+     * @param \App\DTO\RetrieveInviteParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function retrieveInviteRaw(
+        \App\DTO\RetrieveInviteParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/invites/{invite_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Retrieves an invite.
+     * @param \App\DTO\RetrieveInviteParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function retrieveInvite(
+        \App\DTO\RetrieveInviteParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->retrieveInviteRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Invite retrieved successfully. */
+                $responseContent = new \App\DTO\Invite();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Retrieves an invite.
+     * @param \App\DTO\RetrieveInviteParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\Invite
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function retrieveInviteResult(
+        \App\DTO\RetrieveInviteParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\Invite
+    {
+        return $this->getSuccessfulContent(...$this->retrieveInvite($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
     //region retrieveModel
     /**
      * Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
@@ -3974,6 +7354,376 @@ class ApiClient extends OAGAC\AbstractApiClient
     ): \App\DTO\Model
     {
         return $this->getSuccessfulContent(...$this->retrieveModel($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region retrieveProject
+    /**
+     * Retrieves a project.
+     * @param \App\DTO\RetrieveProjectParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function retrieveProjectRaw(
+        \App\DTO\RetrieveProjectParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/projects/{project_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Retrieves a project.
+     * @param \App\DTO\RetrieveProjectParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function retrieveProject(
+        \App\DTO\RetrieveProjectParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->retrieveProjectRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project retrieved successfully. */
+                $responseContent = new \App\DTO\Project();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Retrieves a project.
+     * @param \App\DTO\RetrieveProjectParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\Project
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function retrieveProjectResult(
+        \App\DTO\RetrieveProjectParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\Project
+    {
+        return $this->getSuccessfulContent(...$this->retrieveProject($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region retrieveProjectApiKey
+    /**
+     * Retrieves an API key in the project.
+     * @param \App\DTO\RetrieveProjectApiKeyParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function retrieveProjectApiKeyRaw(
+        \App\DTO\RetrieveProjectApiKeyParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/projects/{project_id}/api_keys/{key_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Retrieves an API key in the project.
+     * @param \App\DTO\RetrieveProjectApiKeyParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function retrieveProjectApiKey(
+        \App\DTO\RetrieveProjectApiKeyParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->retrieveProjectApiKeyRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project API key retrieved successfully. */
+                $responseContent = new \App\DTO\ProjectApiKey();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Retrieves an API key in the project.
+     * @param \App\DTO\RetrieveProjectApiKeyParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ProjectApiKey
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function retrieveProjectApiKeyResult(
+        \App\DTO\RetrieveProjectApiKeyParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ProjectApiKey
+    {
+        return $this->getSuccessfulContent(...$this->retrieveProjectApiKey($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region retrieveProjectServiceAccount
+    /**
+     * Retrieves a service account in the project.
+     * @param \App\DTO\RetrieveProjectServiceAccountParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function retrieveProjectServiceAccountRaw(
+        \App\DTO\RetrieveProjectServiceAccountParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/projects/{project_id}/service_accounts/{service_account_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Retrieves a service account in the project.
+     * @param \App\DTO\RetrieveProjectServiceAccountParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function retrieveProjectServiceAccount(
+        \App\DTO\RetrieveProjectServiceAccountParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->retrieveProjectServiceAccountRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project service account retrieved successfully. */
+                $responseContent = new \App\DTO\ProjectServiceAccount();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Retrieves a service account in the project.
+     * @param \App\DTO\RetrieveProjectServiceAccountParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ProjectServiceAccount
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function retrieveProjectServiceAccountResult(
+        \App\DTO\RetrieveProjectServiceAccountParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ProjectServiceAccount
+    {
+        return $this->getSuccessfulContent(...$this->retrieveProjectServiceAccount($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region retrieveProjectUser
+    /**
+     * Retrieves a user in the project.
+     * @param \App\DTO\RetrieveProjectUserParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function retrieveProjectUserRaw(
+        \App\DTO\RetrieveProjectUserParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/projects/{project_id}/users/{user_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Retrieves a user in the project.
+     * @param \App\DTO\RetrieveProjectUserParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function retrieveProjectUser(
+        \App\DTO\RetrieveProjectUserParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->retrieveProjectUserRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project user retrieved successfully. */
+                $responseContent = new \App\DTO\ProjectUser();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Retrieves a user in the project.
+     * @param \App\DTO\RetrieveProjectUserParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\ProjectUser
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function retrieveProjectUserResult(
+        \App\DTO\RetrieveProjectUserParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ProjectUser
+    {
+        return $this->getSuccessfulContent(...$this->retrieveProjectUser($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region retrieveUser
+    /**
+     * Retrieves a user by their identifier.
+     * @param \App\DTO\RetrieveUserParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function retrieveUserRaw(
+        \App\DTO\RetrieveUserParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/users/{user_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Retrieves a user by their identifier.
+     * @param \App\DTO\RetrieveUserParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function retrieveUser(
+        \App\DTO\RetrieveUserParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->retrieveUserRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* User retrieved successfully. */
+                $responseContent = new \App\DTO\User();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Retrieves a user by their identifier.
+     * @param \App\DTO\RetrieveUserParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\User
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function retrieveUserResult(
+        \App\DTO\RetrieveUserParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\User
+    {
+        return $this->getSuccessfulContent(...$this->retrieveUser($parameters, $security, $responseMediaType));
     }
     //endregion
 
@@ -4061,6 +7811,763 @@ class ApiClient extends OAGAC\AbstractApiClient
     ): \App\DTO\RunObject
     {
         return $this->getSuccessfulContent(...$this->submitToolOuputsToRun($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region updateProjectRateLimits
+    /**
+     * Updates a project rate limit.
+     * @param \App\DTO\UpdateProjectRateLimitsParameterData $parameters
+     * @param \App\DTO\ProjectRateLimitUpdateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function updateProjectRateLimitsRaw(
+        \App\DTO\UpdateProjectRateLimitsParameterData $parameters,
+        \App\DTO\ProjectRateLimitUpdateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/organization/projects/{project_id}/rate_limits/{rate_limit_id}', $this->getPathParameters($parameters), []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Updates a project rate limit.
+     * @param \App\DTO\UpdateProjectRateLimitsParameterData $parameters
+     * @param \App\DTO\ProjectRateLimitUpdateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function updateProjectRateLimits(
+        \App\DTO\UpdateProjectRateLimitsParameterData $parameters,
+        \App\DTO\ProjectRateLimitUpdateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->updateProjectRateLimitsRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Project rate limit updated successfully. */
+                $responseContent = new \App\DTO\ProjectRateLimit();
+                break;
+            case 400:
+                /* Error response for various conditions. */
+                $responseContent = new \App\DTO\ErrorResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Updates a project rate limit.
+     * @param \App\DTO\UpdateProjectRateLimitsParameterData $parameters
+     * @param \App\DTO\ProjectRateLimitUpdateRequest $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\ProjectRateLimit
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function updateProjectRateLimitsResult(
+        \App\DTO\UpdateProjectRateLimitsParameterData $parameters,
+        \App\DTO\ProjectRateLimitUpdateRequest $requestContent,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\ProjectRateLimit
+    {
+        return $this->getSuccessfulContent(...$this->updateProjectRateLimits($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region usageAudioSpeeches
+    /**
+     * Get audio speeches usage details for the organization.
+     * @param \App\DTO\UsageAudioSpeechesParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function usageAudioSpeechesRaw(
+        \App\DTO\UsageAudioSpeechesParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/usage/audio_speeches', [], $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Get audio speeches usage details for the organization.
+     * @param \App\DTO\UsageAudioSpeechesParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function usageAudioSpeeches(
+        \App\DTO\UsageAudioSpeechesParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->usageAudioSpeechesRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Usage data retrieved successfully. */
+                $responseContent = new \App\DTO\UsageResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Get audio speeches usage details for the organization.
+     * @param \App\DTO\UsageAudioSpeechesParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\UsageResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function usageAudioSpeechesResult(
+        \App\DTO\UsageAudioSpeechesParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\UsageResponse
+    {
+        return $this->getSuccessfulContent(...$this->usageAudioSpeeches($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region usageAudioTranscriptions
+    /**
+     * Get audio transcriptions usage details for the organization.
+     * @param \App\DTO\UsageAudioTranscriptionsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function usageAudioTranscriptionsRaw(
+        \App\DTO\UsageAudioTranscriptionsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/usage/audio_transcriptions', [], $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Get audio transcriptions usage details for the organization.
+     * @param \App\DTO\UsageAudioTranscriptionsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function usageAudioTranscriptions(
+        \App\DTO\UsageAudioTranscriptionsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->usageAudioTranscriptionsRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Usage data retrieved successfully. */
+                $responseContent = new \App\DTO\UsageResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Get audio transcriptions usage details for the organization.
+     * @param \App\DTO\UsageAudioTranscriptionsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\UsageResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function usageAudioTranscriptionsResult(
+        \App\DTO\UsageAudioTranscriptionsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\UsageResponse
+    {
+        return $this->getSuccessfulContent(...$this->usageAudioTranscriptions($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region usageCodeInterpreterSessions
+    /**
+     * Get code interpreter sessions usage details for the organization.
+     * @param \App\DTO\UsageCodeInterpreterSessionsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function usageCodeInterpreterSessionsRaw(
+        \App\DTO\UsageCodeInterpreterSessionsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/usage/code_interpreter_sessions', [], $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Get code interpreter sessions usage details for the organization.
+     * @param \App\DTO\UsageCodeInterpreterSessionsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function usageCodeInterpreterSessions(
+        \App\DTO\UsageCodeInterpreterSessionsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->usageCodeInterpreterSessionsRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Usage data retrieved successfully. */
+                $responseContent = new \App\DTO\UsageResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Get code interpreter sessions usage details for the organization.
+     * @param \App\DTO\UsageCodeInterpreterSessionsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\UsageResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function usageCodeInterpreterSessionsResult(
+        \App\DTO\UsageCodeInterpreterSessionsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\UsageResponse
+    {
+        return $this->getSuccessfulContent(...$this->usageCodeInterpreterSessions($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region usageCompletions
+    /**
+     * Get completions usage details for the organization.
+     * @param \App\DTO\UsageCompletionsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function usageCompletionsRaw(
+        \App\DTO\UsageCompletionsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/usage/completions', [], $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Get completions usage details for the organization.
+     * @param \App\DTO\UsageCompletionsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function usageCompletions(
+        \App\DTO\UsageCompletionsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->usageCompletionsRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Usage data retrieved successfully. */
+                $responseContent = new \App\DTO\UsageResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Get completions usage details for the organization.
+     * @param \App\DTO\UsageCompletionsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\UsageResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function usageCompletionsResult(
+        \App\DTO\UsageCompletionsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\UsageResponse
+    {
+        return $this->getSuccessfulContent(...$this->usageCompletions($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region usageCosts
+    /**
+     * Get costs details for the organization.
+     * @param \App\DTO\UsageCostsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function usageCostsRaw(
+        \App\DTO\UsageCostsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/costs', [], $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Get costs details for the organization.
+     * @param \App\DTO\UsageCostsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function usageCosts(
+        \App\DTO\UsageCostsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->usageCostsRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Costs data retrieved successfully. */
+                $responseContent = new \App\DTO\UsageResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Get costs details for the organization.
+     * @param \App\DTO\UsageCostsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\UsageResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function usageCostsResult(
+        \App\DTO\UsageCostsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\UsageResponse
+    {
+        return $this->getSuccessfulContent(...$this->usageCosts($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region usageEmbeddings
+    /**
+     * Get embeddings usage details for the organization.
+     * @param \App\DTO\UsageEmbeddingsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function usageEmbeddingsRaw(
+        \App\DTO\UsageEmbeddingsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/usage/embeddings', [], $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Get embeddings usage details for the organization.
+     * @param \App\DTO\UsageEmbeddingsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function usageEmbeddings(
+        \App\DTO\UsageEmbeddingsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->usageEmbeddingsRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Usage data retrieved successfully. */
+                $responseContent = new \App\DTO\UsageResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Get embeddings usage details for the organization.
+     * @param \App\DTO\UsageEmbeddingsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\UsageResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function usageEmbeddingsResult(
+        \App\DTO\UsageEmbeddingsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\UsageResponse
+    {
+        return $this->getSuccessfulContent(...$this->usageEmbeddings($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region usageImages
+    /**
+     * Get images usage details for the organization.
+     * @param \App\DTO\UsageImagesParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function usageImagesRaw(
+        \App\DTO\UsageImagesParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/usage/images', [], $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Get images usage details for the organization.
+     * @param \App\DTO\UsageImagesParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function usageImages(
+        \App\DTO\UsageImagesParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->usageImagesRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Usage data retrieved successfully. */
+                $responseContent = new \App\DTO\UsageResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Get images usage details for the organization.
+     * @param \App\DTO\UsageImagesParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\UsageResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function usageImagesResult(
+        \App\DTO\UsageImagesParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\UsageResponse
+    {
+        return $this->getSuccessfulContent(...$this->usageImages($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region usageModerations
+    /**
+     * Get moderations usage details for the organization.
+     * @param \App\DTO\UsageModerationsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function usageModerationsRaw(
+        \App\DTO\UsageModerationsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/usage/moderations', [], $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Get moderations usage details for the organization.
+     * @param \App\DTO\UsageModerationsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function usageModerations(
+        \App\DTO\UsageModerationsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->usageModerationsRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Usage data retrieved successfully. */
+                $responseContent = new \App\DTO\UsageResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Get moderations usage details for the organization.
+     * @param \App\DTO\UsageModerationsParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\UsageResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function usageModerationsResult(
+        \App\DTO\UsageModerationsParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\UsageResponse
+    {
+        return $this->getSuccessfulContent(...$this->usageModerations($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region usageVectorStores
+    /**
+     * Get vector stores usage details for the organization.
+     * @param \App\DTO\UsageVectorStoresParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function usageVectorStoresRaw(
+        \App\DTO\UsageVectorStoresParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/organization/usage/vector_stores', [], $this->getQueryParameters($parameters));
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Get vector stores usage details for the organization.
+     * @param \App\DTO\UsageVectorStoresParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function usageVectorStores(
+        \App\DTO\UsageVectorStoresParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->usageVectorStoresRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* Usage data retrieved successfully. */
+                $responseContent = new \App\DTO\UsageResponse();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Get vector stores usage details for the organization.
+     * @param \App\DTO\UsageVectorStoresParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\UsageResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function usageVectorStoresResult(
+        \App\DTO\UsageVectorStoresParameterData $parameters,
+        iterable $security = ['ApiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\UsageResponse
+    {
+        return $this->getSuccessfulContent(...$this->usageVectorStores($parameters, $security, $responseMediaType));
     }
     //endregion
 }

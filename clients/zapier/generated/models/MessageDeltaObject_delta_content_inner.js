@@ -1,6 +1,9 @@
 const utils = require('../utils/utils');
 const MessageDeltaContentImageFileObject = require('../models/MessageDeltaContentImageFileObject');
 const MessageDeltaContentImageFileObject_image_file = require('../models/MessageDeltaContentImageFileObject_image_file');
+const MessageDeltaContentImageUrlObject = require('../models/MessageDeltaContentImageUrlObject');
+const MessageDeltaContentImageUrlObject_image_url = require('../models/MessageDeltaContentImageUrlObject_image_url');
+const MessageDeltaContentRefusalObject = require('../models/MessageDeltaContentRefusalObject');
 const MessageDeltaContentTextObject = require('../models/MessageDeltaContentTextObject');
 const MessageDeltaContentTextObject_text = require('../models/MessageDeltaContentTextObject_text');
 
@@ -22,10 +25,18 @@ module.exports = {
                 choices: [
                     'image_file',
                     'text',
+                    'refusal',
+                    'image_url',
                 ],
             },
             ...MessageDeltaContentImageFileObject_image_file.fields(`${keyPrefix}image_file`, isInput),
             ...MessageDeltaContentTextObject_text.fields(`${keyPrefix}text`, isInput),
+            {
+                key: `${keyPrefix}refusal`,
+                label: `[${labelPrefix}refusal]`,
+                type: 'string',
+            },
+            ...MessageDeltaContentImageUrlObject_image_url.fields(`${keyPrefix}image_url`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
@@ -35,6 +46,8 @@ module.exports = {
             'type': bundle.inputData?.[`${keyPrefix}type`],
             'image_file': utils.removeIfEmpty(MessageDeltaContentImageFileObject_image_file.mapping(bundle, `${keyPrefix}image_file`)),
             'text': utils.removeIfEmpty(MessageDeltaContentTextObject_text.mapping(bundle, `${keyPrefix}text`)),
+            'refusal': bundle.inputData?.[`${keyPrefix}refusal`],
+            'image_url': utils.removeIfEmpty(MessageDeltaContentImageUrlObject_image_url.mapping(bundle, `${keyPrefix}image_url`)),
         }
     },
 }

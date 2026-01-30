@@ -26,16 +26,16 @@ case class MessageObject (
     _assistantId: String,
     /* The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints. */
     _runId: String,
-    /* A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message. */
-    _fileIds: List[String],
-    /* Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  */
+    /* A list of files attached to the message, and the tools they were added to. */
+    _attachments: List[CreateMessageRequestAttachmentsInner],
+    /* Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  */
     _metadata: Any
 )
 object MessageObject {
-    def toStringBody(var_id: Object, var_object: Object, var_createdAt: Object, var_threadId: Object, var_status: Object, var_incompleteDetails: Object, var_completedAt: Object, var_incompleteAt: Object, var_role: Object, var_content: Object, var_assistantId: Object, var_runId: Object, var_fileIds: Object, var_metadata: Object) =
+    def toStringBody(var_id: Object, var_object: Object, var_createdAt: Object, var_threadId: Object, var_status: Object, var_incompleteDetails: Object, var_completedAt: Object, var_incompleteAt: Object, var_role: Object, var_content: Object, var_assistantId: Object, var_runId: Object, var_attachments: Object, var_metadata: Object) =
         s"""
         | {
-        | "id":$var_id,"object":$var_object,"createdAt":$var_createdAt,"threadId":$var_threadId,"status":$var_status,"incompleteDetails":$var_incompleteDetails,"completedAt":$var_completedAt,"incompleteAt":$var_incompleteAt,"role":$var_role,"content":$var_content,"assistantId":$var_assistantId,"runId":$var_runId,"fileIds":$var_fileIds,"metadata":$var_metadata
+        | "id":$var_id,"object":$var_object,"createdAt":$var_createdAt,"threadId":$var_threadId,"status":$var_status,"incompleteDetails":$var_incompleteDetails,"completedAt":$var_completedAt,"incompleteAt":$var_incompleteAt,"role":$var_role,"content":$var_content,"assistantId":$var_assistantId,"runId":$var_runId,"attachments":$var_attachments,"metadata":$var_metadata
         | }
         """.stripMargin
 }

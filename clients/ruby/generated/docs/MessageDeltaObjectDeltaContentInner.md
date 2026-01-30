@@ -15,6 +15,8 @@ OpenApiOpenAIClient::MessageDeltaObjectDeltaContentInner.openapi_one_of
 # =>
 # [
 #   :'MessageDeltaContentImageFileObject',
+#   :'MessageDeltaContentImageUrlObject',
+#   :'MessageDeltaContentRefusalObject',
 #   :'MessageDeltaContentTextObject'
 # ]
 ```
@@ -44,6 +46,8 @@ OpenApiOpenAIClient::MessageDeltaObjectDeltaContentInner.build(data_that_doesnt_
 #### Return type
 
 - `MessageDeltaContentImageFileObject`
+- `MessageDeltaContentImageUrlObject`
+- `MessageDeltaContentRefusalObject`
 - `MessageDeltaContentTextObject`
 - `nil` (if no type matches)
 

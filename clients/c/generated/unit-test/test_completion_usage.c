@@ -16,6 +16,8 @@
 #include "../model/completion_usage.h"
 completion_usage_t* instantiate_completion_usage(int include_optional);
 
+#include "test_completion_usage_completion_tokens_details.c"
+#include "test_completion_usage_prompt_tokens_details.c"
 
 
 completion_usage_t* instantiate_completion_usage(int include_optional) {
@@ -24,13 +26,19 @@ completion_usage_t* instantiate_completion_usage(int include_optional) {
     completion_usage = completion_usage_create(
       56,
       56,
-      56
+      56,
+       // false, not to have infinite recursion
+      instantiate_completion_usage_completion_tokens_details(0),
+       // false, not to have infinite recursion
+      instantiate_completion_usage_prompt_tokens_details(0)
     );
   } else {
     completion_usage = completion_usage_create(
       56,
       56,
-      56
+      56,
+      NULL,
+      NULL
     );
   }
 

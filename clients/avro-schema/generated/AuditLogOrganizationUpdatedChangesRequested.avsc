@@ -1,0 +1,33 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The payload used to update the organization settings.",
+  "name": "AuditLogOrganizationUpdatedChangesRequested",
+  "fields": [
+    {
+      "name": "title",
+      "type": ["null", "string"],
+      "doc": "The organization title.",
+      "default": null
+    },
+    {
+      "name": "description",
+      "type": ["null", "string"],
+      "doc": "The organization description.",
+      "default": null
+    },
+    {
+      "name": "name",
+      "type": ["null", "string"],
+      "doc": "The organization name.",
+      "default": null
+    },
+    {
+      "name": "settings",
+      "type": ["null", "model.AuditLogOrganizationUpdatedChangesRequestedSettings"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

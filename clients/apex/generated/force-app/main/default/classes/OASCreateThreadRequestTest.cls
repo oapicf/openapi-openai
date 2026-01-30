@@ -70,9 +70,17 @@ private class OASCreateThreadRequestTest {
     }
 
     @isTest
+    private static void maintainRenamedProperties() {
+        OASCreateThreadRequest createThreadRequest = new OASCreateThreadRequest();
+        Map<String, String> x-property-mappings = createThreadRequest.getx-property-mappings();
+        System.assertEquals('toolResources', x-property-mappings.get('tool_resources'));
+    }
+
+    @isTest
     private static void defaultValuesPopulated() {
         OASCreateThreadRequest createThreadRequest = new OASCreateThreadRequest();
         System.assertEquals(new List<OASCreateMessageRequest>(), createThreadRequest.messages);
+        System.assertEquals(null, createThreadRequest.toolResources);
         System.assertEquals(null, createThreadRequest.metadata);
     }
 }

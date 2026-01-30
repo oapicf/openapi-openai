@@ -2,7 +2,7 @@
 
 # RunStepStreamEventOneOf6
 
-Occurs when a [run step](/docs/api-reference/runs/step-object) expires.
+Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires.
 
 The class is defined in **[RunStepStreamEventOneOf6.java](../../src/main/java/org/openapitools/model/RunStepStreamEventOneOf6.java)**
 

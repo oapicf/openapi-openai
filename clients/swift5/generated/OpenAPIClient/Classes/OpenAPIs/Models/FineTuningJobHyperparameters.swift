@@ -10,16 +10,22 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. */
+/** The hyperparameters used for the fine-tuning job. This value will only be returned when running &#x60;supervised&#x60; jobs. */
 public struct FineTuningJobHyperparameters: Codable, JSONEncodable, Hashable {
 
-    public var nEpochs: FineTuningJobHyperparametersNEpochs
+    public var batchSize: CreateFineTuningJobRequestHyperparametersBatchSize?
+    public var learningRateMultiplier: CreateFineTuningJobRequestHyperparametersLearningRateMultiplier?
+    public var nEpochs: CreateFineTuningJobRequestHyperparametersNEpochs?
 
-    public init(nEpochs: FineTuningJobHyperparametersNEpochs) {
+    public init(batchSize: CreateFineTuningJobRequestHyperparametersBatchSize? = nil, learningRateMultiplier: CreateFineTuningJobRequestHyperparametersLearningRateMultiplier? = nil, nEpochs: CreateFineTuningJobRequestHyperparametersNEpochs? = nil) {
+        self.batchSize = batchSize
+        self.learningRateMultiplier = learningRateMultiplier
         self.nEpochs = nEpochs
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case batchSize = "batch_size"
+        case learningRateMultiplier = "learning_rate_multiplier"
         case nEpochs = "n_epochs"
     }
 
@@ -27,7 +33,9 @@ public struct FineTuningJobHyperparameters: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(nEpochs, forKey: .nEpochs)
+        try container.encodeIfPresent(batchSize, forKey: .batchSize)
+        try container.encodeIfPresent(learningRateMultiplier, forKey: .learningRateMultiplier)
+        try container.encodeIfPresent(nEpochs, forKey: .nEpochs)
     }
 }
 

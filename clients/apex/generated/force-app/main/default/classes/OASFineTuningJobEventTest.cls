@@ -73,7 +73,7 @@ private class OASFineTuningJobEventTest {
     private static void maintainRenamedProperties() {
         OASFineTuningJobEvent fineTuningJobEvent = new OASFineTuningJobEvent();
         Map<String, String> x-property-mappings = fineTuningJobEvent.getx-property-mappings();
-        System.assertEquals('createdAt', x-property-mappings.get('created_at'));
         System.assertEquals('r_object', x-property-mappings.get('object'));
+        System.assertEquals('createdAt', x-property-mappings.get('created_at'));
     }
 }

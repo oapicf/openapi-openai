@@ -20,6 +20,6 @@ public class RestConfiguration extends RouteBuilder {
             .bindingMode(RestBindingMode.auto)
             .clientRequestValidation(false)
             .apiProperty("api.title", "OpenAI API")
-            .apiProperty("api.version", "2.0.0");
+            .apiProperty("api.version", "2.3.0");
     }
 }

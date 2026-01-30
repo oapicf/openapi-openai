@@ -16,12 +16,14 @@
 typedef struct create_thread_request_t create_thread_request_t;
 
 #include "create_message_request.h"
+#include "create_thread_request_tool_resources.h"
 #include "object.h"
 
 
 
 typedef struct create_thread_request_t {
     list_t *messages; //nonprimitive container
+    struct create_thread_request_tool_resources_t *tool_resources; //model
     object_t *metadata; //object
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -29,6 +31,7 @@ typedef struct create_thread_request_t {
 
 __attribute__((deprecated)) create_thread_request_t *create_thread_request_create(
     list_t *messages,
+    create_thread_request_tool_resources_t *tool_resources,
     object_t *metadata
 );
 

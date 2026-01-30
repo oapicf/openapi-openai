@@ -8,6 +8,8 @@ package org.openapitools.server.model
  * @param hateThreatening Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. for example: ''null''
  * @param harassment Content that expresses, incites, or promotes harassing language towards any target. for example: ''null''
  * @param harassmentThreatening Harassment content that also includes violence or serious harm towards any target. for example: ''null''
+ * @param illicit Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category. for example: ''null''
+ * @param illicitViolent Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon. for example: ''null''
  * @param selfHarm Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders. for example: ''null''
  * @param selfHarmIntent Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders. for example: ''null''
  * @param selfHarmInstructions Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts. for example: ''null''
@@ -21,6 +23,8 @@ final case class CreateModerationResponseResultsInnerCategories (
   hateThreatening: Boolean,
   harassment: Boolean,
   harassmentThreatening: Boolean,
+  illicit: Boolean,
+  illicitViolent: Boolean,
   selfHarm: Boolean,
   selfHarmIntent: Boolean,
   selfHarmInstructions: Boolean,

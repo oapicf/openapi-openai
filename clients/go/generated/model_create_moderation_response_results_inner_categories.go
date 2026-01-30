@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -30,6 +30,10 @@ type CreateModerationResponseResultsInnerCategories struct {
 	Harassment bool `json:"harassment"`
 	// Harassment content that also includes violence or serious harm towards any target.
 	HarassmentThreatening bool `json:"harassment/threatening"`
+	// Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
+	Illicit bool `json:"illicit"`
+	// Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+	IllicitViolent bool `json:"illicit/violent"`
 	// Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
 	SelfHarm bool `json:"self-harm"`
 	// Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
@@ -52,12 +56,14 @@ type _CreateModerationResponseResultsInnerCategories CreateModerationResponseRes
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateModerationResponseResultsInnerCategories(hate bool, hateThreatening bool, harassment bool, harassmentThreatening bool, selfHarm bool, selfHarmIntent bool, selfHarmInstructions bool, sexual bool, sexualMinors bool, violence bool, violenceGraphic bool) *CreateModerationResponseResultsInnerCategories {
+func NewCreateModerationResponseResultsInnerCategories(hate bool, hateThreatening bool, harassment bool, harassmentThreatening bool, illicit bool, illicitViolent bool, selfHarm bool, selfHarmIntent bool, selfHarmInstructions bool, sexual bool, sexualMinors bool, violence bool, violenceGraphic bool) *CreateModerationResponseResultsInnerCategories {
 	this := CreateModerationResponseResultsInnerCategories{}
 	this.Hate = hate
 	this.HateThreatening = hateThreatening
 	this.Harassment = harassment
 	this.HarassmentThreatening = harassmentThreatening
+	this.Illicit = illicit
+	this.IllicitViolent = illicitViolent
 	this.SelfHarm = selfHarm
 	this.SelfHarmIntent = selfHarmIntent
 	this.SelfHarmInstructions = selfHarmInstructions
@@ -170,6 +176,54 @@ func (o *CreateModerationResponseResultsInnerCategories) GetHarassmentThreatenin
 // SetHarassmentThreatening sets field value
 func (o *CreateModerationResponseResultsInnerCategories) SetHarassmentThreatening(v bool) {
 	o.HarassmentThreatening = v
+}
+
+// GetIllicit returns the Illicit field value
+func (o *CreateModerationResponseResultsInnerCategories) GetIllicit() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Illicit
+}
+
+// GetIllicitOk returns a tuple with the Illicit field value
+// and a boolean to check if the value has been set.
+func (o *CreateModerationResponseResultsInnerCategories) GetIllicitOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Illicit, true
+}
+
+// SetIllicit sets field value
+func (o *CreateModerationResponseResultsInnerCategories) SetIllicit(v bool) {
+	o.Illicit = v
+}
+
+// GetIllicitViolent returns the IllicitViolent field value
+func (o *CreateModerationResponseResultsInnerCategories) GetIllicitViolent() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IllicitViolent
+}
+
+// GetIllicitViolentOk returns a tuple with the IllicitViolent field value
+// and a boolean to check if the value has been set.
+func (o *CreateModerationResponseResultsInnerCategories) GetIllicitViolentOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IllicitViolent, true
+}
+
+// SetIllicitViolent sets field value
+func (o *CreateModerationResponseResultsInnerCategories) SetIllicitViolent(v bool) {
+	o.IllicitViolent = v
 }
 
 // GetSelfHarm returns the SelfHarm field value
@@ -354,6 +408,8 @@ func (o CreateModerationResponseResultsInnerCategories) ToMap() (map[string]inte
 	toSerialize["hate/threatening"] = o.HateThreatening
 	toSerialize["harassment"] = o.Harassment
 	toSerialize["harassment/threatening"] = o.HarassmentThreatening
+	toSerialize["illicit"] = o.Illicit
+	toSerialize["illicit/violent"] = o.IllicitViolent
 	toSerialize["self-harm"] = o.SelfHarm
 	toSerialize["self-harm/intent"] = o.SelfHarmIntent
 	toSerialize["self-harm/instructions"] = o.SelfHarmInstructions
@@ -373,6 +429,8 @@ func (o *CreateModerationResponseResultsInnerCategories) UnmarshalJSON(data []by
 		"hate/threatening",
 		"harassment",
 		"harassment/threatening",
+		"illicit",
+		"illicit/violent",
 		"self-harm",
 		"self-harm/intent",
 		"self-harm/instructions",

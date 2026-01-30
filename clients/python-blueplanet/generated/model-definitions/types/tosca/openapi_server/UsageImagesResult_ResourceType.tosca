@@ -1,0 +1,76 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server UsageImagesResult"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a UsageImagesResult"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  UsageImagesResult {
+    title = UsageImagesResult
+    description = UsageImagesResult
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          enum = ["organization.usage.images.result"]
+          optional = true
+        }
+        images {
+          type =  integer
+          description = "The number of images processed."
+          optional = true
+        }
+        num_model_requests {
+          type =  integer
+          description = "The count of requests made to the model."
+          optional = true
+        }
+        source {
+          type =  string
+          description = "When &#x60;group_by&#x3D;source&#x60;, this field provides the source of the grouped usage result, possible values are &#x60;image.generation&#x60;, &#x60;image.edit&#x60;, &#x60;image.variation&#x60;."
+          optional = false
+        }
+        size {
+          type =  string
+          description = "When &#x60;group_by&#x3D;size&#x60;, this field provides the image size of the grouped usage result."
+          optional = false
+        }
+        project_id {
+          type =  string
+          description = "When &#x60;group_by&#x3D;project_id&#x60;, this field provides the project ID of the grouped usage result."
+          optional = false
+        }
+        user_id {
+          type =  string
+          description = "When &#x60;group_by&#x3D;user_id&#x60;, this field provides the user ID of the grouped usage result."
+          optional = false
+        }
+        api_key_id {
+          type =  string
+          description = "When &#x60;group_by&#x3D;api_key_id&#x60;, this field provides the API key ID of the grouped usage result."
+          optional = false
+        }
+        model {
+          type =  string
+          description = "When &#x60;group_by&#x3D;model&#x60;, this field provides the model name of the grouped usage result."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  UsageImagesResult {
+    title = UsageImagesResult
+    description = UsageImagesResult
+    implements = openapi_server.resourceTypes.UsageImagesResult
+
+  }
+}

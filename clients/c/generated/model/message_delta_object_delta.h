@@ -30,15 +30,13 @@ openai_api_message_delta_object_delta_ROLE_e message_delta_object_delta_role_Fro
 typedef struct message_delta_object_delta_t {
     openai_api_message_delta_object_delta_ROLE_e role; //enum
     list_t *content; //nonprimitive container
-    list_t *file_ids; //primitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
 } message_delta_object_delta_t;
 
 __attribute__((deprecated)) message_delta_object_delta_t *message_delta_object_delta_create(
     openai_api_message_delta_object_delta_ROLE_e role,
-    list_t *content,
-    list_t *file_ids
+    list_t *content
 );
 
 void message_delta_object_delta_free(message_delta_object_delta_t *message_delta_object_delta);

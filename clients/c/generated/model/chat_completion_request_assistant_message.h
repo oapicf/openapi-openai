@@ -1,7 +1,7 @@
 /*
  * chat_completion_request_assistant_message.h
  *
- * 
+ * Messages sent by the model in response to user messages. 
  */
 
 #ifndef _chat_completion_request_assistant_message_H_
@@ -16,6 +16,8 @@
 typedef struct chat_completion_request_assistant_message_t chat_completion_request_assistant_message_t;
 
 #include "chat_completion_message_tool_call.h"
+#include "chat_completion_request_assistant_message_audio.h"
+#include "chat_completion_request_assistant_message_content.h"
 #include "chat_completion_request_assistant_message_function_call.h"
 
 // Enum ROLE for chat_completion_request_assistant_message
@@ -29,9 +31,11 @@ openai_api_chat_completion_request_assistant_message_ROLE_e chat_completion_requ
 
 
 typedef struct chat_completion_request_assistant_message_t {
-    char *content; // string
+    struct chat_completion_request_assistant_message_content_t *content; //model
+    char *refusal; // string
     openai_api_chat_completion_request_assistant_message_ROLE_e role; //enum
     char *name; // string
+    struct chat_completion_request_assistant_message_audio_t *audio; //model
     list_t *tool_calls; //nonprimitive container
     struct chat_completion_request_assistant_message_function_call_t *function_call; //model
 
@@ -39,9 +43,11 @@ typedef struct chat_completion_request_assistant_message_t {
 } chat_completion_request_assistant_message_t;
 
 __attribute__((deprecated)) chat_completion_request_assistant_message_t *chat_completion_request_assistant_message_create(
-    char *content,
+    chat_completion_request_assistant_message_content_t *content,
+    char *refusal,
     openai_api_chat_completion_request_assistant_message_ROLE_e role,
     char *name,
+    chat_completion_request_assistant_message_audio_t *audio,
     list_t *tool_calls,
     chat_completion_request_assistant_message_function_call_t *function_call
 );

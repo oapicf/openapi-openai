@@ -19,6 +19,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.CreateCompletionRequest
+import org.openapitools.client.models.ChatCompletionStreamOptions
 import org.openapitools.client.models.CreateCompletionRequestModel
 import org.openapitools.client.models.CreateCompletionRequestPrompt
 import org.openapitools.client.models.CreateCompletionRequestStop
@@ -52,7 +53,7 @@ class CreateCompletionRequestTest : ShouldSpec() {
             //modelInstance.echo shouldBe ("TODO")
         }
 
-        // to test the property `frequencyPenalty` - Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+        // to test the property `frequencyPenalty` - Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
         should("test frequencyPenalty") {
             // uncomment below to test the property
             //modelInstance.frequencyPenalty shouldBe ("TODO")
@@ -82,7 +83,7 @@ class CreateCompletionRequestTest : ShouldSpec() {
             //modelInstance.n shouldBe ("TODO")
         }
 
-        // to test the property `presencePenalty` - Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+        // to test the property `presencePenalty` - Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
         should("test presencePenalty") {
             // uncomment below to test the property
             //modelInstance.presencePenalty shouldBe ("TODO")
@@ -106,6 +107,12 @@ class CreateCompletionRequestTest : ShouldSpec() {
             //modelInstance.stream shouldBe ("TODO")
         }
 
+        // to test the property `streamOptions`
+        should("test streamOptions") {
+            // uncomment below to test the property
+            //modelInstance.streamOptions shouldBe ("TODO")
+        }
+
         // to test the property `suffix` - The suffix that comes after a completion of inserted text.  This parameter is only supported for `gpt-3.5-turbo-instruct`. 
         should("test suffix") {
             // uncomment below to test the property
@@ -124,7 +131,7 @@ class CreateCompletionRequestTest : ShouldSpec() {
             //modelInstance.topP shouldBe ("TODO")
         }
 
-        // to test the property `user` - A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+        // to test the property `user` - A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
         should("test user") {
             // uncomment below to test the property
             //modelInstance.user shouldBe ("TODO")

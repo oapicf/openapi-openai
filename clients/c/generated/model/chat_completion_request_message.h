@@ -17,7 +17,9 @@ typedef struct chat_completion_request_message_t chat_completion_request_message
 
 #include "chat_completion_message_tool_call.h"
 #include "chat_completion_request_assistant_message.h"
+#include "chat_completion_request_assistant_message_audio.h"
 #include "chat_completion_request_assistant_message_function_call.h"
+#include "chat_completion_request_developer_message.h"
 #include "chat_completion_request_function_message.h"
 #include "chat_completion_request_system_message.h"
 #include "chat_completion_request_tool_message.h"
@@ -37,6 +39,8 @@ typedef struct chat_completion_request_message_t {
     char *content; // string
     openai_api_chat_completion_request_message_ROLE_e role; //enum
     char *name; // string
+    char *refusal; // string
+    struct chat_completion_request_assistant_message_audio_t *audio; //model
     list_t *tool_calls; //nonprimitive container
     struct chat_completion_request_assistant_message_function_call_t *function_call; //model
     char *tool_call_id; // string
@@ -48,6 +52,8 @@ __attribute__((deprecated)) chat_completion_request_message_t *chat_completion_r
     char *content,
     openai_api_chat_completion_request_message_ROLE_e role,
     char *name,
+    char *refusal,
+    chat_completion_request_assistant_message_audio_t *audio,
     list_t *tool_calls,
     chat_completion_request_assistant_message_function_call_t *function_call,
     char *tool_call_id

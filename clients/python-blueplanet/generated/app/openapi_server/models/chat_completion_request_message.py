@@ -8,7 +8,9 @@ from typing import List, Dict  # noqa: F401
 from app.openapi_server.models.base_model import Model
 from app.openapi_server.models.chat_completion_message_tool_call import ChatCompletionMessageToolCall  # noqa: F401,E501
 from app.openapi_server.models.chat_completion_request_assistant_message import ChatCompletionRequestAssistantMessage  # noqa: F401,E501
+from app.openapi_server.models.chat_completion_request_assistant_message_audio import ChatCompletionRequestAssistantMessageAudio  # noqa: F401,E501
 from app.openapi_server.models.chat_completion_request_assistant_message_function_call import ChatCompletionRequestAssistantMessageFunctionCall  # noqa: F401,E501
+from app.openapi_server.models.chat_completion_request_developer_message import ChatCompletionRequestDeveloperMessage  # noqa: F401,E501
 from app.openapi_server.models.chat_completion_request_function_message import ChatCompletionRequestFunctionMessage  # noqa: F401,E501
 from app.openapi_server.models.chat_completion_request_system_message import ChatCompletionRequestSystemMessage  # noqa: F401,E501
 from app.openapi_server.models.chat_completion_request_tool_message import ChatCompletionRequestToolMessage  # noqa: F401,E501
@@ -22,7 +24,7 @@ class ChatCompletionRequestMessage(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, content: str=None, role: str=None, name: str=None, tool_calls: List[ChatCompletionMessageToolCall]=None, function_call: ChatCompletionRequestAssistantMessageFunctionCall=None, tool_call_id: str=None):  # noqa: E501
+    def __init__(self, content: str=None, role: str=None, name: str=None, refusal: str=None, audio: ChatCompletionRequestAssistantMessageAudio=None, tool_calls: List[ChatCompletionMessageToolCall]=None, function_call: ChatCompletionRequestAssistantMessageFunctionCall=None, tool_call_id: str=None):  # noqa: E501
         """ChatCompletionRequestMessage - a model defined in Swagger
 
         :param content: The content of this ChatCompletionRequestMessage.  # noqa: E501
@@ -31,6 +33,10 @@ class ChatCompletionRequestMessage(Model):
         :type role: str
         :param name: The name of this ChatCompletionRequestMessage.  # noqa: E501
         :type name: str
+        :param refusal: The refusal of this ChatCompletionRequestMessage.  # noqa: E501
+        :type refusal: str
+        :param audio: The audio of this ChatCompletionRequestMessage.  # noqa: E501
+        :type audio: ChatCompletionRequestAssistantMessageAudio
         :param tool_calls: The tool_calls of this ChatCompletionRequestMessage.  # noqa: E501
         :type tool_calls: List[ChatCompletionMessageToolCall]
         :param function_call: The function_call of this ChatCompletionRequestMessage.  # noqa: E501
@@ -42,6 +48,8 @@ class ChatCompletionRequestMessage(Model):
             'content': str,
             'role': str,
             'name': str,
+            'refusal': str,
+            'audio': ChatCompletionRequestAssistantMessageAudio,
             'tool_calls': List[ChatCompletionMessageToolCall],
             'function_call': ChatCompletionRequestAssistantMessageFunctionCall,
             'tool_call_id': str
@@ -51,6 +59,8 @@ class ChatCompletionRequestMessage(Model):
             'content': 'content',
             'role': 'role',
             'name': 'name',
+            'refusal': 'refusal',
+            'audio': 'audio',
             'tool_calls': 'tool_calls',
             'function_call': 'function_call',
             'tool_call_id': 'tool_call_id'
@@ -59,6 +69,8 @@ class ChatCompletionRequestMessage(Model):
         self._content = content
         self._role = role
         self._name = name
+        self._refusal = refusal
+        self._audio = audio
         self._tool_calls = tool_calls
         self._function_call = function_call
         self._tool_call_id = tool_call_id
@@ -152,6 +164,50 @@ class ChatCompletionRequestMessage(Model):
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
+
+    @property
+    def refusal(self) -> str:
+        """Gets the refusal of this ChatCompletionRequestMessage.
+
+        The refusal message by the assistant.  # noqa: E501
+
+        :return: The refusal of this ChatCompletionRequestMessage.
+        :rtype: str
+        """
+        return self._refusal
+
+    @refusal.setter
+    def refusal(self, refusal: str):
+        """Sets the refusal of this ChatCompletionRequestMessage.
+
+        The refusal message by the assistant.  # noqa: E501
+
+        :param refusal: The refusal of this ChatCompletionRequestMessage.
+        :type refusal: str
+        """
+
+        self._refusal = refusal
+
+    @property
+    def audio(self) -> ChatCompletionRequestAssistantMessageAudio:
+        """Gets the audio of this ChatCompletionRequestMessage.
+
+
+        :return: The audio of this ChatCompletionRequestMessage.
+        :rtype: ChatCompletionRequestAssistantMessageAudio
+        """
+        return self._audio
+
+    @audio.setter
+    def audio(self, audio: ChatCompletionRequestAssistantMessageAudio):
+        """Sets the audio of this ChatCompletionRequestMessage.
+
+
+        :param audio: The audio of this ChatCompletionRequestMessage.
+        :type audio: ChatCompletionRequestAssistantMessageAudio
+        """
+
+        self._audio = audio
 
     @property
     def tool_calls(self) -> List[ChatCompletionMessageToolCall]:

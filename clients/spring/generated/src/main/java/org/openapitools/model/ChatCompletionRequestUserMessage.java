@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -21,11 +24,12 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * ChatCompletionRequestUserMessage
+ * Messages sent by an end user, containing prompts or additional context information. 
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
-public class ChatCompletionRequestUserMessage implements ChatCompletionRequestMessage {
+@Schema(name = "ChatCompletionRequestUserMessage", description = "Messages sent by an end user, containing prompts or additional context information. ")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class ChatCompletionRequestUserMessage implements ChatCompletionRequestMessage, FineTuneChatRequestInputMessagesInner {
 
   private ChatCompletionRequestUserMessageContent content;
 

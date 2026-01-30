@@ -10,7 +10,7 @@ Protected Class ChatCompletionNamedToolChoice
 
 
 	#tag Property, Flags = &h0
-		Escapedfunction As OpenAPIClient.Models.ChatCompletionNamedToolChoiceFunction
+		Escapedfunction As OpenAPIClient.Models.AssistantsNamedToolChoiceFunction
 	#tag EndProperty
 
 
@@ -72,7 +72,7 @@ Protected Class ChatCompletionNamedToolChoice
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="ChatCompletionNamedToolChoiceFunction"
+			Type="AssistantsNamedToolChoiceFunction"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

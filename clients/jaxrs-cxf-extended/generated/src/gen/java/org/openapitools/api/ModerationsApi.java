@@ -31,14 +31,14 @@ import javax.validation.Valid;
 public interface ModerationsApi  {
 
     /**
-     * Classifies if text is potentially harmful.
+     * Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
      *
      */
     @POST
     
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @ApiOperation(value = "Classifies if text is potentially harmful.", tags={ "Moderations" })
+    @ApiOperation(value = "Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). ", tags={ "Moderations" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = CreateModerationResponse.class) })
     public CreateModerationResponse createModeration(@Valid CreateModerationRequest createModerationRequest);

@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.CompletionUsage;
 import org.openapitools.model.CreateChatCompletionResponseChoicesInner;
 
@@ -16,7 +17,7 @@ import org.openapitools.model.CreateChatCompletionResponseChoicesInner;
  * Represents a chat completion response returned by model, based on the provided input.
  */
 @ApiModel(description = "Represents a chat completion response returned by model, based on the provided input.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateChatCompletionResponse   {
   @JsonProperty("id")
   private String id;
@@ -29,6 +30,40 @@ public class CreateChatCompletionResponse   {
 
   @JsonProperty("model")
   private String model;
+
+  /**
+   * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+   */
+  public enum ServiceTierEnum {
+    SCALE("scale"),
+    
+    DEFAULT("default");
+
+    private String value;
+
+    ServiceTierEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ServiceTierEnum fromValue(String text) {
+      for (ServiceTierEnum b : ServiceTierEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  @JsonProperty("service_tier")
+  private ServiceTierEnum serviceTier;
 
   @JsonProperty("system_fingerprint")
   private String systemFingerprint;
@@ -145,6 +180,24 @@ public class CreateChatCompletionResponse   {
     this.model = model;
   }
 
+  public CreateChatCompletionResponse serviceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
+    return this;
+  }
+
+   /**
+   * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+   * @return serviceTier
+  **/
+  @ApiModelProperty(example = "scale", value = "The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.")
+  public ServiceTierEnum getServiceTier() {
+    return serviceTier;
+  }
+
+  public void setServiceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
+  }
+
   public CreateChatCompletionResponse systemFingerprint(String systemFingerprint) {
     this.systemFingerprint = systemFingerprint;
     return this;
@@ -213,6 +266,7 @@ public class CreateChatCompletionResponse   {
         Objects.equals(this.choices, createChatCompletionResponse.choices) &&
         Objects.equals(this.created, createChatCompletionResponse.created) &&
         Objects.equals(this.model, createChatCompletionResponse.model) &&
+        Objects.equals(this.serviceTier, createChatCompletionResponse.serviceTier) &&
         Objects.equals(this.systemFingerprint, createChatCompletionResponse.systemFingerprint) &&
         Objects.equals(this._object, createChatCompletionResponse._object) &&
         Objects.equals(this.usage, createChatCompletionResponse.usage);
@@ -220,7 +274,7 @@ public class CreateChatCompletionResponse   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, choices, created, model, systemFingerprint, _object, usage);
+    return Objects.hash(id, choices, created, model, serviceTier, systemFingerprint, _object, usage);
   }
 
   @Override
@@ -232,6 +286,7 @@ public class CreateChatCompletionResponse   {
     sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    serviceTier: ").append(toIndentedString(serviceTier)).append("\n");
     sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");

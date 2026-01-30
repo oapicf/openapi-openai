@@ -4,14 +4,14 @@ All URIs are relative to *https://api.openai.com/v1*
 
 Feature | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_moderation**](MODERATIONS_API.md#create_moderation) | **Post** /moderations | Classifies if text is potentially harmful.
+[**create_moderation**](MODERATIONS_API.md#create_moderation) | **Post** /moderations | Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 
 # **create_moderation**
 > create_moderation (create_moderation_request: CREATE_MODERATION_REQUEST ): detachable CREATE_MODERATION_RESPONSE
 
 
-Classifies if text is potentially harmful.
+Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 
 ### Parameters

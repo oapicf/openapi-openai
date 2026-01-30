@@ -1,7 +1,7 @@
 {
   "namespace": "model",
   "type": "record",
-  "doc": "Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.",
+  "doc": "Occurs when a [run](/docs/api-reference/runs/object) fails.",
   "name": "RunStreamEventOneOf6",
   "fields": [
     {
@@ -10,7 +10,7 @@
         "type": "enum",
         "name": "RunStreamEventOneOf6_event",
         "symbols": [
-          "thread_run_cancelling"
+          "thread_run_failed"
         ]
       },
       "doc": ""

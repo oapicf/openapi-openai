@@ -10,9 +10,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 
+/**
+ * Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
+ **/
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description = "Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class TruncationObject   {
   /**
    * The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.
@@ -60,7 +63,7 @@ public class TruncationObject   {
   }
 
   
-  @ApiModelProperty(value = "The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.")
+  @ApiModelProperty(required = true, value = "The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.")
   @JsonProperty("type")
   public TypeEnum getType() {
     return type;

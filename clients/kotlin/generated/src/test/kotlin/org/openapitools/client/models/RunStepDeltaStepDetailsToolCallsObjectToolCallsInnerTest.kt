@@ -21,9 +21,9 @@ import io.kotlintest.specs.ShouldSpec
 import org.openapitools.client.models.RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
 import org.openapitools.client.models.RunStepDeltaStepDetailsToolCallsCodeObject
 import org.openapitools.client.models.RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+import org.openapitools.client.models.RunStepDeltaStepDetailsToolCallsFileSearchObject
 import org.openapitools.client.models.RunStepDeltaStepDetailsToolCallsFunctionObject
 import org.openapitools.client.models.RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
-import org.openapitools.client.models.RunStepDeltaStepDetailsToolCallsRetrievalObject
 
 class RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerTest : ShouldSpec() {
     init {
@@ -42,6 +42,12 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerTest : ShouldSpec() {
             //modelInstance.type shouldBe ("TODO")
         }
 
+        // to test the property `fileSearch` - For now, this is always going to be an empty object.
+        should("test fileSearch") {
+            // uncomment below to test the property
+            //modelInstance.fileSearch shouldBe ("TODO")
+        }
+
         // to test the property `id` - The ID of the tool call object.
         should("test id") {
             // uncomment below to test the property
@@ -52,12 +58,6 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerTest : ShouldSpec() {
         should("test codeInterpreter") {
             // uncomment below to test the property
             //modelInstance.codeInterpreter shouldBe ("TODO")
-        }
-
-        // to test the property `retrieval` - For now, this is always going to be an empty object.
-        should("test retrieval") {
-            // uncomment below to test the property
-            //modelInstance.retrieval shouldBe ("TODO")
         }
 
         // to test the property `function`

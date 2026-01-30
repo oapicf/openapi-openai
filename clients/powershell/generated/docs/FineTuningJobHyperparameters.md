@@ -3,13 +3,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NEpochs** | [**FineTuningJobHyperparametersNEpochs**](FineTuningJobHyperparametersNEpochs.md) |  | 
+**BatchSize** | [**CreateFineTuningJobRequestHyperparametersBatchSize**](CreateFineTuningJobRequestHyperparametersBatchSize.md) |  | [optional] 
+**LearningRateMultiplier** | [**CreateFineTuningJobRequestHyperparametersLearningRateMultiplier**](CreateFineTuningJobRequestHyperparametersLearningRateMultiplier.md) |  | [optional] 
+**NEpochs** | [**CreateFineTuningJobRequestHyperparametersNEpochs**](CreateFineTuningJobRequestHyperparametersNEpochs.md) |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$FineTuningJobHyperparameters = Initialize-PSOpenAPIToolsFineTuningJobHyperparameters  -NEpochs null
+$FineTuningJobHyperparameters = Initialize-PSOpenAPIToolsFineTuningJobHyperparameters  -BatchSize null `
+ -LearningRateMultiplier null `
+ -NEpochs null
 ```
 
 - Convert the resource to JSON

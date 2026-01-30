@@ -4,11 +4,14 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.AssistantObjectToolsInner;
+import org.openapitools.model.AssistantsApiResponseFormatOption;
+import org.openapitools.model.ModifyAssistantRequestToolResources;
 import org.springframework.lang.Nullable;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -25,7 +28,7 @@ import javax.annotation.Generated;
  * ModifyAssistantRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ModifyAssistantRequest {
 
   private @Nullable String model;
@@ -39,10 +42,15 @@ public class ModifyAssistantRequest {
   @Valid
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
 
-  @Valid
-  private List<String> fileIds = new ArrayList<>();
+  private JsonNullable<ModifyAssistantRequestToolResources> toolResources = JsonNullable.<ModifyAssistantRequestToolResources>undefined();
 
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
+
+  private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
+
+  private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
+
+  private @Nullable AssistantsApiResponseFormatOption responseFormat;
 
   public ModifyAssistantRequest model(@Nullable String model) {
     this.model = model;
@@ -138,11 +146,11 @@ public class ModifyAssistantRequest {
   }
 
   /**
-   * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. 
+   * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
    * @return tools
    */
   @Valid @Size(max = 128) 
-  @Schema(name = "tools", description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "tools", description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("tools")
   public List<AssistantObjectToolsInner> getTools() {
     return tools;
@@ -152,32 +160,24 @@ public class ModifyAssistantRequest {
     this.tools = tools;
   }
 
-  public ModifyAssistantRequest fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  public ModifyAssistantRequest addFileIdsItem(String fileIdsItem) {
-    if (this.fileIds == null) {
-      this.fileIds = new ArrayList<>();
-    }
-    this.fileIds.add(fileIdsItem);
+  public ModifyAssistantRequest toolResources(ModifyAssistantRequestToolResources toolResources) {
+    this.toolResources = JsonNullable.of(toolResources);
     return this;
   }
 
   /**
-   * A list of [File](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. If a file was previously attached to the list but does not show up in the list, it will be deleted from the assistant. 
-   * @return fileIds
+   * Get toolResources
+   * @return toolResources
    */
-  @Size(max = 20) 
-  @Schema(name = "file_ids", description = "A list of [File](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. If a file was previously attached to the list but does not show up in the list, it will be deleted from the assistant. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("file_ids")
-  public List<String> getFileIds() {
-    return fileIds;
+  @Valid 
+  @Schema(name = "tool_resources", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("tool_resources")
+  public JsonNullable<ModifyAssistantRequestToolResources> getToolResources() {
+    return toolResources;
   }
 
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public void setToolResources(JsonNullable<ModifyAssistantRequestToolResources> toolResources) {
+    this.toolResources = toolResources;
   }
 
   public ModifyAssistantRequest metadata(Object metadata) {
@@ -186,11 +186,11 @@ public class ModifyAssistantRequest {
   }
 
   /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
   
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;
@@ -198,6 +198,70 @@ public class ModifyAssistantRequest {
 
   public void setMetadata(JsonNullable<Object> metadata) {
     this.metadata = metadata;
+  }
+
+  public ModifyAssistantRequest temperature(BigDecimal temperature) {
+    this.temperature = JsonNullable.of(temperature);
+    return this;
+  }
+
+  /**
+   * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+   * minimum: 0
+   * maximum: 2
+   * @return temperature
+   */
+  @Valid @DecimalMin(value = "0") @DecimalMax(value = "2") 
+  @Schema(name = "temperature", example = "1", description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("temperature")
+  public JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> getTemperature() {
+    return temperature;
+  }
+
+  public void setTemperature(JsonNullable<BigDecimal> temperature) {
+    this.temperature = temperature;
+  }
+
+  public ModifyAssistantRequest topP(BigDecimal topP) {
+    this.topP = JsonNullable.of(topP);
+    return this;
+  }
+
+  /**
+   * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+   * minimum: 0
+   * maximum: 1
+   * @return topP
+   */
+  @Valid @DecimalMin(value = "0") @DecimalMax(value = "1") 
+  @Schema(name = "top_p", example = "1", description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("top_p")
+  public JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> getTopP() {
+    return topP;
+  }
+
+  public void setTopP(JsonNullable<BigDecimal> topP) {
+    this.topP = topP;
+  }
+
+  public ModifyAssistantRequest responseFormat(@Nullable AssistantsApiResponseFormatOption responseFormat) {
+    this.responseFormat = responseFormat;
+    return this;
+  }
+
+  /**
+   * Get responseFormat
+   * @return responseFormat
+   */
+  @Valid 
+  @Schema(name = "response_format", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("response_format")
+  public @Nullable AssistantsApiResponseFormatOption getResponseFormat() {
+    return responseFormat;
+  }
+
+  public void setResponseFormat(@Nullable AssistantsApiResponseFormatOption responseFormat) {
+    this.responseFormat = responseFormat;
   }
 
   @Override
@@ -214,8 +278,11 @@ public class ModifyAssistantRequest {
         equalsNullable(this.description, modifyAssistantRequest.description) &&
         equalsNullable(this.instructions, modifyAssistantRequest.instructions) &&
         Objects.equals(this.tools, modifyAssistantRequest.tools) &&
-        Objects.equals(this.fileIds, modifyAssistantRequest.fileIds) &&
-        equalsNullable(this.metadata, modifyAssistantRequest.metadata);
+        equalsNullable(this.toolResources, modifyAssistantRequest.toolResources) &&
+        equalsNullable(this.metadata, modifyAssistantRequest.metadata) &&
+        equalsNullable(this.temperature, modifyAssistantRequest.temperature) &&
+        equalsNullable(this.topP, modifyAssistantRequest.topP) &&
+        Objects.equals(this.responseFormat, modifyAssistantRequest.responseFormat);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -224,7 +291,7 @@ public class ModifyAssistantRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, hashCodeNullable(name), hashCodeNullable(description), hashCodeNullable(instructions), tools, fileIds, hashCodeNullable(metadata));
+    return Objects.hash(model, hashCodeNullable(name), hashCodeNullable(description), hashCodeNullable(instructions), tools, hashCodeNullable(toolResources), hashCodeNullable(metadata), hashCodeNullable(temperature), hashCodeNullable(topP), responseFormat);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -243,8 +310,11 @@ public class ModifyAssistantRequest {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
+    sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();
   }

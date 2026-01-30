@@ -16,14 +16,14 @@ Name | Type | Description | Notes
 **Content** | [**[]MessageObjectContentInner**](MessageObjectContentInner.md) | The content of the message in array of text and/or images. | 
 **AssistantId** | **NullableString** | If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message. | 
 **RunId** | **NullableString** | The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is &#x60;null&#x60; when messages are created manually using the create message or create thread endpoints. | 
-**FileIds** | **[]string** | A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message. | [default to {}]
-**Metadata** | **map[string]interface{}** | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  | 
+**Attachments** | [**[]CreateMessageRequestAttachmentsInner**](CreateMessageRequestAttachmentsInner.md) | A list of files attached to the message, and the tools they were added to. | 
+**Metadata** | **map[string]interface{}** | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  | 
 
 ## Methods
 
 ### NewMessageObject
 
-`func NewMessageObject(id string, object string, createdAt int32, threadId string, status string, incompleteDetails NullableMessageObjectIncompleteDetails, completedAt NullableInt32, incompleteAt NullableInt32, role string, content []MessageObjectContentInner, assistantId NullableString, runId NullableString, fileIds []string, metadata map[string]interface{}, ) *MessageObject`
+`func NewMessageObject(id string, object string, createdAt int32, threadId string, status string, incompleteDetails NullableMessageObjectIncompleteDetails, completedAt NullableInt32, incompleteAt NullableInt32, role string, content []MessageObjectContentInner, assistantId NullableString, runId NullableString, attachments []CreateMessageRequestAttachmentsInner, metadata map[string]interface{}, ) *MessageObject`
 
 NewMessageObject instantiates a new MessageObject object
 This constructor will assign default values to properties that have it defined,
@@ -328,26 +328,36 @@ SetRunId sets RunId field to given value.
 `func (o *MessageObject) UnsetRunId()`
 
 UnsetRunId ensures that no value is present for RunId, not even an explicit nil
-### GetFileIds
+### GetAttachments
 
-`func (o *MessageObject) GetFileIds() []string`
+`func (o *MessageObject) GetAttachments() []CreateMessageRequestAttachmentsInner`
 
-GetFileIds returns the FileIds field if non-nil, zero value otherwise.
+GetAttachments returns the Attachments field if non-nil, zero value otherwise.
 
-### GetFileIdsOk
+### GetAttachmentsOk
 
-`func (o *MessageObject) GetFileIdsOk() (*[]string, bool)`
+`func (o *MessageObject) GetAttachmentsOk() (*[]CreateMessageRequestAttachmentsInner, bool)`
 
-GetFileIdsOk returns a tuple with the FileIds field if it's non-nil, zero value otherwise
+GetAttachmentsOk returns a tuple with the Attachments field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFileIds
+### SetAttachments
 
-`func (o *MessageObject) SetFileIds(v []string)`
+`func (o *MessageObject) SetAttachments(v []CreateMessageRequestAttachmentsInner)`
 
-SetFileIds sets FileIds field to given value.
+SetAttachments sets Attachments field to given value.
 
 
+### SetAttachmentsNil
+
+`func (o *MessageObject) SetAttachmentsNil(b bool)`
+
+ SetAttachmentsNil sets the value for Attachments to be an explicit nil
+
+### UnsetAttachments
+`func (o *MessageObject) UnsetAttachments()`
+
+UnsetAttachments ensures that no value is present for Attachments, not even an explicit nil
 ### GetMetadata
 
 `func (o *MessageObject) GetMetadata() map[string]interface{}`

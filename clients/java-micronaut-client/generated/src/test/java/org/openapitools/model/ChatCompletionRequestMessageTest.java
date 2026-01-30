@@ -3,9 +3,12 @@ package org.openapitools.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.ChatCompletionMessageToolCall;
 import org.openapitools.model.ChatCompletionRequestAssistantMessage;
+import org.openapitools.model.ChatCompletionRequestAssistantMessageAudio;
 import org.openapitools.model.ChatCompletionRequestAssistantMessageFunctionCall;
+import org.openapitools.model.ChatCompletionRequestDeveloperMessage;
 import org.openapitools.model.ChatCompletionRequestFunctionMessage;
 import org.openapitools.model.ChatCompletionRequestSystemMessage;
 import org.openapitools.model.ChatCompletionRequestToolMessage;
@@ -51,6 +54,22 @@ public class ChatCompletionRequestMessageTest {
     @Test
     public void nameTest() {
         // TODO: test name
+    }
+
+    /**
+     * Test the property 'refusal'
+     */
+    @Test
+    public void refusalTest() {
+        // TODO: test refusal
+    }
+
+    /**
+     * Test the property 'audio'
+     */
+    @Test
+    public void audioTest() {
+        // TODO: test audio
     }
 
     /**

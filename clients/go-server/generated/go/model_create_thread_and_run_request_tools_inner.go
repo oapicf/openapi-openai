@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -18,6 +18,8 @@ type CreateThreadAndRunRequestToolsInner struct {
 
 	// The type of tool being defined: `code_interpreter`
 	Type string `json:"type"`
+
+	FileSearch AssistantToolsFileSearchFileSearch `json:"file_search,omitempty"`
 
 	Function FunctionObject `json:"function"`
 }
@@ -34,6 +36,9 @@ func AssertCreateThreadAndRunRequestToolsInnerRequired(obj CreateThreadAndRunReq
 		}
 	}
 
+	if err := AssertAssistantToolsFileSearchFileSearchRequired(obj.FileSearch); err != nil {
+		return err
+	}
 	if err := AssertFunctionObjectRequired(obj.Function); err != nil {
 		return err
 	}
@@ -42,6 +47,9 @@ func AssertCreateThreadAndRunRequestToolsInnerRequired(obj CreateThreadAndRunReq
 
 // AssertCreateThreadAndRunRequestToolsInnerConstraints checks if the values respects the defined constraints
 func AssertCreateThreadAndRunRequestToolsInnerConstraints(obj CreateThreadAndRunRequestToolsInner) error {
+	if err := AssertAssistantToolsFileSearchFileSearchConstraints(obj.FileSearch); err != nil {
+		return err
+	}
 	if err := AssertFunctionObjectConstraints(obj.Function); err != nil {
 		return err
 	}

@@ -1,4 +1,6 @@
 const utils = require('../utils/utils');
+const CompletionUsage_completion_tokens_details = require('../models/CompletionUsage_completion_tokens_details');
+const CompletionUsage_prompt_tokens_details = require('../models/CompletionUsage_prompt_tokens_details');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
@@ -22,6 +24,8 @@ module.exports = {
                 required: true,
                 type: 'integer',
             },
+            ...CompletionUsage_completion_tokens_details.fields(`${keyPrefix}completion_tokens_details`, isInput),
+            ...CompletionUsage_prompt_tokens_details.fields(`${keyPrefix}prompt_tokens_details`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
@@ -30,6 +34,8 @@ module.exports = {
             'completion_tokens': bundle.inputData?.[`${keyPrefix}completion_tokens`],
             'prompt_tokens': bundle.inputData?.[`${keyPrefix}prompt_tokens`],
             'total_tokens': bundle.inputData?.[`${keyPrefix}total_tokens`],
+            'completion_tokens_details': utils.removeIfEmpty(CompletionUsage_completion_tokens_details.mapping(bundle, `${keyPrefix}completion_tokens_details`)),
+            'prompt_tokens_details': utils.removeIfEmpty(CompletionUsage_prompt_tokens_details.mapping(bundle, `${keyPrefix}prompt_tokens_details`)),
         }
     },
 }

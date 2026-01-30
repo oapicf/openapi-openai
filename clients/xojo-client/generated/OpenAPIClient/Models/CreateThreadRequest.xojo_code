@@ -10,8 +10,13 @@ Protected Class CreateThreadRequest
 
 
 	#tag Property, Flags = &h0
+		tool_resources As OpenAPIClient.Models.CreateThreadRequestToolResources
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
 		#tag Note
-			Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+			Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 		#tag EndNote
 		metadata As Object
 	#tag EndProperty
@@ -59,6 +64,14 @@ Protected Class CreateThreadRequest
 			Group="Behavior"
 			InitialValue=""
 			Type="CreateMessageRequest"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="tool_resources"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="CreateThreadRequestToolResources"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

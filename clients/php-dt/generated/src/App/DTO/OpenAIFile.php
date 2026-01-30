@@ -46,7 +46,7 @@ class OpenAIFile
     public ?string $object = null;
 
     /**
-     * The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;.
+     * The intended purpose of the file. Supported values are &#x60;assistants&#x60;, &#x60;assistants_output&#x60;, &#x60;batch&#x60;, &#x60;batch_output&#x60;, &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60; and &#x60;vision&#x60;.
      * @DTA\Data(field="purpose")
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      */

@@ -1,0 +1,62 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server User"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a User"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  User {
+    title = User
+    description = User
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;organization.user&#x60;"
+          enum = ["organization.user"]
+          optional = true
+        }
+        id {
+          type =  string
+          description = "The identifier, which can be referenced in API endpoints"
+          optional = true
+        }
+        name {
+          type =  string
+          description = "The name of the user"
+          optional = true
+        }
+        email {
+          type =  string
+          description = "The email address of the user"
+          optional = true
+        }
+        role {
+          type =  string
+          description = "&#x60;owner&#x60; or &#x60;reader&#x60;"
+          enum = ["owner", "reader"]
+          optional = true
+        }
+        added_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) of when the user was added."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  User {
+    title = User
+    description = User
+    implements = openapi_server.resourceTypes.User
+
+  }
+}

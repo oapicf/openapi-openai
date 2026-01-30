@@ -31,11 +31,13 @@ CreateRunRequest::__init()
 	//new std::list()std::list> tools;
 	//metadata = null;
 	//temperature = double(0);
+	//top_p = double(0);
 	//stream = bool(false);
 	//max_prompt_tokens = int(0);
 	//max_completion_tokens = int(0);
 	//truncation_strategy = new TruncationObject();
 	//tool_choice = new AssistantsApiToolChoiceOption();
+	//parallel_tool_calls = bool(false);
 	//response_format = new AssistantsApiResponseFormatOption();
 }
 
@@ -82,6 +84,11 @@ CreateRunRequest::__cleanup()
 	//delete temperature;
 	//temperature = NULL;
 	//}
+	//if(top_p != NULL) {
+	//
+	//delete top_p;
+	//top_p = NULL;
+	//}
 	//if(stream != NULL) {
 	//
 	//delete stream;
@@ -106,6 +113,11 @@ CreateRunRequest::__cleanup()
 	//
 	//delete tool_choice;
 	//tool_choice = NULL;
+	//}
+	//if(parallel_tool_calls != NULL) {
+	//
+	//delete parallel_tool_calls;
+	//parallel_tool_calls = NULL;
 	//}
 	//if(response_format != NULL) {
 	//
@@ -243,6 +255,20 @@ CreateRunRequest::fromJson(char* jsonStr)
 			
 		}
 	}
+	const gchar *top_pKey = "top_p";
+	node = json_object_get_member(pJsonObject, top_pKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("long long")) {
+			jsonToValue(&top_p, node, "long long", "");
+		} else {
+			
+			long long* obj = static_cast<long long*> (&top_p);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
 	const gchar *streamKey = "stream";
 	node = json_object_get_member(pJsonObject, streamKey);
 	if (node !=NULL) {
@@ -301,6 +327,17 @@ CreateRunRequest::fromJson(char* jsonStr)
 			
 			AssistantsApiToolChoiceOption* obj = static_cast<AssistantsApiToolChoiceOption*> (&tool_choice);
 			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *parallel_tool_callsKey = "parallel_tool_calls";
+	node = json_object_get_member(pJsonObject, parallel_tool_callsKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("bool")) {
+			jsonToValue(&parallel_tool_calls, node, "bool", "");
+		} else {
 			
 		}
 	}
@@ -449,6 +486,20 @@ CreateRunRequest::toJson()
 	}
 	const gchar *temperatureKey = "temperature";
 	json_object_set_member(pJsonObject, temperatureKey, node);
+	if (isprimitive("long long")) {
+		long long obj = getTopP();
+		node = converttoJson(&obj, "long long", "");
+	}
+	else {
+		
+		long long obj = static_cast<long long> (getTopP());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *top_pKey = "top_p";
+	json_object_set_member(pJsonObject, top_pKey, node);
 	if (isprimitive("bool")) {
 		bool obj = getStream();
 		node = converttoJson(&obj, "bool", "");
@@ -504,6 +555,15 @@ CreateRunRequest::toJson()
 	}
 	const gchar *tool_choiceKey = "tool_choice";
 	json_object_set_member(pJsonObject, tool_choiceKey, node);
+	if (isprimitive("bool")) {
+		bool obj = getParallelToolCalls();
+		node = converttoJson(&obj, "bool", "");
+	}
+	else {
+		
+	}
+	const gchar *parallel_tool_callsKey = "parallel_tool_calls";
+	json_object_set_member(pJsonObject, parallel_tool_callsKey, node);
 	if (isprimitive("AssistantsApiResponseFormatOption")) {
 		AssistantsApiResponseFormatOption obj = getResponseFormat();
 		node = converttoJson(&obj, "AssistantsApiResponseFormatOption", "");
@@ -622,6 +682,18 @@ CreateRunRequest::setTemperature(long long  temperature)
 	this->temperature = temperature;
 }
 
+long long
+CreateRunRequest::getTopP()
+{
+	return top_p;
+}
+
+void
+CreateRunRequest::setTopP(long long  top_p)
+{
+	this->top_p = top_p;
+}
+
 bool
 CreateRunRequest::getStream()
 {
@@ -680,6 +752,18 @@ void
 CreateRunRequest::setToolChoice(AssistantsApiToolChoiceOption  tool_choice)
 {
 	this->tool_choice = tool_choice;
+}
+
+bool
+CreateRunRequest::getParallelToolCalls()
+{
+	return parallel_tool_calls;
+}
+
+void
+CreateRunRequest::setParallelToolCalls(bool  parallel_tool_calls)
+{
+	this->parallel_tool_calls = parallel_tool_calls;
 }
 
 AssistantsApiResponseFormatOption

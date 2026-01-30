@@ -8,19 +8,22 @@ import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.vertxweb.server.model.CreateMessageRequest;
+import org.openapitools.vertxweb.server.model.CreateThreadRequestToolResources;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateThreadRequest   {
   
   private List<CreateMessageRequest> messages = new ArrayList<>();
+  private CreateThreadRequestToolResources toolResources;
   private Object metadata;
 
   public CreateThreadRequest () {
 
   }
 
-  public CreateThreadRequest (List<CreateMessageRequest> messages, Object metadata) {
+  public CreateThreadRequest (List<CreateMessageRequest> messages, CreateThreadRequestToolResources toolResources, Object metadata) {
     this.messages = messages;
+    this.toolResources = toolResources;
     this.metadata = metadata;
   }
 
@@ -31,6 +34,15 @@ public class CreateThreadRequest   {
   }
   public void setMessages(List<CreateMessageRequest> messages) {
     this.messages = messages;
+  }
+
+    
+  @JsonProperty("tool_resources")
+  public CreateThreadRequestToolResources getToolResources() {
+    return toolResources;
+  }
+  public void setToolResources(CreateThreadRequestToolResources toolResources) {
+    this.toolResources = toolResources;
   }
 
     
@@ -53,12 +65,13 @@ public class CreateThreadRequest   {
     }
     CreateThreadRequest createThreadRequest = (CreateThreadRequest) o;
     return Objects.equals(messages, createThreadRequest.messages) &&
+        Objects.equals(toolResources, createThreadRequest.toolResources) &&
         Objects.equals(metadata, createThreadRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(messages, metadata);
+    return Objects.hash(messages, toolResources, metadata);
   }
 
   @Override
@@ -67,6 +80,7 @@ public class CreateThreadRequest   {
     sb.append("class CreateThreadRequest {\n");
     
     sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

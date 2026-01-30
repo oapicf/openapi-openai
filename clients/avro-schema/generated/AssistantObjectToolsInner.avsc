@@ -11,11 +11,17 @@
         "name": "AssistantObjectToolsInner_type",
         "symbols": [
           "code_interpreter",
-          "retrieval",
+          "file_search",
           "function"
         ]
       },
       "doc": "The type of tool being defined: `code_interpreter`"
+    },
+    {
+      "name": "file_search",
+      "type": ["null", "model.AssistantToolsFileSearchFileSearch"],
+      "doc": "",
+      "default": null
     },
     {
       "name": "function",

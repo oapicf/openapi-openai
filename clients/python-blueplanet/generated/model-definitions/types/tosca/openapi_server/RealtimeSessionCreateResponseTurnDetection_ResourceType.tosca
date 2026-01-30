@@ -1,0 +1,50 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeSessionCreateResponseTurnDetection"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeSessionCreateResponseTurnDetection"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeSessionCreateResponseTurnDetection {
+    title = RealtimeSessionCreateResponseTurnDetection
+    description = RealtimeSessionCreateResponseTurnDetection
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "Type of turn detection, only &#x60;server_vad&#x60; is currently supported. "
+          optional = false
+        }
+        threshold {
+          type =  
+          description = "Activation threshold for VAD (0.0 to 1.0), this defaults to 0.5. A  higher threshold will require louder audio to activate the model, and  thus might perform better in noisy environments. "
+          optional = false
+        }
+        prefix_padding_ms {
+          type =  integer
+          description = "Amount of audio to include before the VAD detected speech (in  milliseconds). Defaults to 300ms. "
+          optional = false
+        }
+        silence_duration_ms {
+          type =  integer
+          description = "Duration of silence to detect speech stop (in milliseconds). Defaults  to 500ms. With shorter values the model will respond more quickly,  but may jump in on short pauses from the user. "
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeSessionCreateResponseTurnDetection {
+    title = RealtimeSessionCreateResponseTurnDetection
+    description = RealtimeSessionCreateResponseTurnDetection
+    implements = openapi_server.resourceTypes.RealtimeSessionCreateResponseTurnDetection
+
+  }
+}

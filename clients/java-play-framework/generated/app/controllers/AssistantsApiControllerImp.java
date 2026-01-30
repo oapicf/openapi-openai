@@ -1,23 +1,18 @@
 package controllers;
 
-import apimodels.AssistantFileObject;
 import apimodels.AssistantObject;
-import apimodels.CreateAssistantFileRequest;
 import apimodels.CreateAssistantRequest;
 import apimodels.CreateMessageRequest;
 import apimodels.CreateRunRequest;
 import apimodels.CreateThreadAndRunRequest;
 import apimodels.CreateThreadRequest;
-import apimodels.DeleteAssistantFileResponse;
 import apimodels.DeleteAssistantResponse;
+import apimodels.DeleteMessageResponse;
 import apimodels.DeleteThreadResponse;
-import apimodels.ListAssistantFilesResponse;
 import apimodels.ListAssistantsResponse;
-import apimodels.ListMessageFilesResponse;
 import apimodels.ListMessagesResponse;
 import apimodels.ListRunStepsResponse;
 import apimodels.ListRunsResponse;
-import apimodels.MessageFileObject;
 import apimodels.MessageObject;
 import apimodels.ModifyAssistantRequest;
 import apimodels.ModifyMessageRequest;
@@ -37,7 +32,7 @@ import java.io.FileInputStream;
 import play.libs.Files.TemporaryFile;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class AssistantsApiControllerImp extends AssistantsApiControllerImpInterface {
     @Override
     public RunObject cancelRun(Http.Request request, String threadId, String runId) throws Exception {
@@ -52,19 +47,13 @@ public class AssistantsApiControllerImp extends AssistantsApiControllerImpInterf
     }
 
     @Override
-    public AssistantFileObject createAssistantFile(Http.Request request, String assistantId, CreateAssistantFileRequest createAssistantFileRequest) throws Exception {
-        //Do your magic!!!
-        return new AssistantFileObject();
-    }
-
-    @Override
     public MessageObject createMessage(Http.Request request, String threadId, CreateMessageRequest createMessageRequest) throws Exception {
         //Do your magic!!!
         return new MessageObject();
     }
 
     @Override
-    public RunObject createRun(Http.Request request, String threadId, CreateRunRequest createRunRequest) throws Exception {
+    public RunObject createRun(Http.Request request, String threadId, CreateRunRequest createRunRequest, List<String> include) throws Exception {
         //Do your magic!!!
         return new RunObject();
     }
@@ -88,9 +77,9 @@ public class AssistantsApiControllerImp extends AssistantsApiControllerImpInterf
     }
 
     @Override
-    public DeleteAssistantFileResponse deleteAssistantFile(Http.Request request, String assistantId, String fileId) throws Exception {
+    public DeleteMessageResponse deleteMessage(Http.Request request, String threadId, String messageId) throws Exception {
         //Do your magic!!!
-        return new DeleteAssistantFileResponse();
+        return new DeleteMessageResponse();
     }
 
     @Override
@@ -106,21 +95,9 @@ public class AssistantsApiControllerImp extends AssistantsApiControllerImpInterf
     }
 
     @Override
-    public AssistantFileObject getAssistantFile(Http.Request request, String assistantId, String fileId) throws Exception {
-        //Do your magic!!!
-        return new AssistantFileObject();
-    }
-
-    @Override
     public MessageObject getMessage(Http.Request request, String threadId, String messageId) throws Exception {
         //Do your magic!!!
         return new MessageObject();
-    }
-
-    @Override
-    public MessageFileObject getMessageFile(Http.Request request, String threadId, String messageId, String fileId) throws Exception {
-        //Do your magic!!!
-        return new MessageFileObject();
     }
 
     @Override
@@ -130,7 +107,7 @@ public class AssistantsApiControllerImp extends AssistantsApiControllerImpInterf
     }
 
     @Override
-    public RunStepObject getRunStep(Http.Request request, String threadId, String runId, String stepId) throws Exception {
+    public RunStepObject getRunStep(Http.Request request, String threadId, String runId, String stepId, List<String> include) throws Exception {
         //Do your magic!!!
         return new RunStepObject();
     }
@@ -142,21 +119,9 @@ public class AssistantsApiControllerImp extends AssistantsApiControllerImpInterf
     }
 
     @Override
-    public ListAssistantFilesResponse listAssistantFiles(Http.Request request, String assistantId, Integer limit, String order, String after, String before) throws Exception {
-        //Do your magic!!!
-        return new ListAssistantFilesResponse();
-    }
-
-    @Override
     public ListAssistantsResponse listAssistants(Http.Request request, Integer limit, String order, String after, String before) throws Exception {
         //Do your magic!!!
         return new ListAssistantsResponse();
-    }
-
-    @Override
-    public ListMessageFilesResponse listMessageFiles(Http.Request request, String threadId, String messageId, Integer limit, String order, String after, String before) throws Exception {
-        //Do your magic!!!
-        return new ListMessageFilesResponse();
     }
 
     @Override
@@ -166,7 +131,7 @@ public class AssistantsApiControllerImp extends AssistantsApiControllerImpInterf
     }
 
     @Override
-    public ListRunStepsResponse listRunSteps(Http.Request request, String threadId, String runId, Integer limit, String order, String after, String before) throws Exception {
+    public ListRunStepsResponse listRunSteps(Http.Request request, String threadId, String runId, Integer limit, String order, String after, String before, List<String> include) throws Exception {
         //Do your magic!!!
         return new ListRunStepsResponse();
     }

@@ -19,6 +19,7 @@ import java.io.IOException
 import okhttp3.Call
 import okhttp3.HttpUrl
 
+import org.openapitools.client.models.AudioResponseFormat
 import org.openapitools.client.models.CreateSpeechRequest
 import org.openapitools.client.models.CreateTranscription200Response
 import org.openapitools.client.models.CreateTranscriptionRequestModel
@@ -123,26 +124,6 @@ open class AudioApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
     }
 
     /**
-     * enum for parameter responseFormat
-     */
-     enum class ResponseFormatCreateTranscription(val value: kotlin.String) {
-         @Json(name = "json") json("json"),
-         @Json(name = "text") text("text"),
-         @Json(name = "srt") srt("srt"),
-         @Json(name = "verbose_json") verbose_json("verbose_json"),
-         @Json(name = "vtt") vtt("vtt");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
      * enum for parameter timestampGranularities
      */
      enum class TimestampGranularitiesCreateTranscription(val value: kotlin.String) {
@@ -166,8 +147,8 @@ open class AudioApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
      * @param file The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
      * @param model 
      * @param language The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.  (optional)
-     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.  (optional)
-     * @param responseFormat The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  (optional, default to ResponseFormat.json)
+     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language.  (optional)
+     * @param responseFormat  (optional, default to AudioResponseFormat.json)
      * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0)
      * @param timestampGranularities The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.  (optional)
      * @return CreateTranscription200Response
@@ -179,7 +160,7 @@ open class AudioApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun createTranscription(file: java.io.File, model: CreateTranscriptionRequestModel, language: kotlin.String? = null, prompt: kotlin.String? = null, responseFormat: ResponseFormatCreateTranscription? = ResponseFormatCreateTranscription.json, temperature: java.math.BigDecimal? = java.math.BigDecimal("0"), timestampGranularities: kotlin.collections.List<TimestampGranularitiesCreateTranscription>? = null) : CreateTranscription200Response {
+    fun createTranscription(file: java.io.File, model: CreateTranscriptionRequestModel, language: kotlin.String? = null, prompt: kotlin.String? = null, responseFormat: AudioResponseFormat? = AudioResponseFormat.json, temperature: java.math.BigDecimal? = java.math.BigDecimal("0"), timestampGranularities: kotlin.collections.List<TimestampGranularitiesCreateTranscription>? = null) : CreateTranscription200Response {
         val localVarResponse = createTranscriptionWithHttpInfo(file = file, model = model, language = language, prompt = prompt, responseFormat = responseFormat, temperature = temperature, timestampGranularities = timestampGranularities)
 
         return when (localVarResponse.responseType) {
@@ -204,8 +185,8 @@ open class AudioApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
      * @param file The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
      * @param model 
      * @param language The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.  (optional)
-     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.  (optional)
-     * @param responseFormat The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  (optional, default to ResponseFormat.json)
+     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language.  (optional)
+     * @param responseFormat  (optional, default to AudioResponseFormat.json)
      * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0)
      * @param timestampGranularities The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.  (optional)
      * @return ApiResponse<CreateTranscription200Response?>
@@ -214,7 +195,7 @@ open class AudioApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun createTranscriptionWithHttpInfo(file: java.io.File, model: CreateTranscriptionRequestModel, language: kotlin.String?, prompt: kotlin.String?, responseFormat: ResponseFormatCreateTranscription?, temperature: java.math.BigDecimal?, timestampGranularities: kotlin.collections.List<TimestampGranularitiesCreateTranscription>?) : ApiResponse<CreateTranscription200Response?> {
+    fun createTranscriptionWithHttpInfo(file: java.io.File, model: CreateTranscriptionRequestModel, language: kotlin.String?, prompt: kotlin.String?, responseFormat: AudioResponseFormat?, temperature: java.math.BigDecimal?, timestampGranularities: kotlin.collections.List<TimestampGranularitiesCreateTranscription>?) : ApiResponse<CreateTranscription200Response?> {
         val localVariableConfig = createTranscriptionRequestConfig(file = file, model = model, language = language, prompt = prompt, responseFormat = responseFormat, temperature = temperature, timestampGranularities = timestampGranularities)
 
         return request<Map<String, PartConfig<*>>, CreateTranscription200Response>(
@@ -228,19 +209,19 @@ open class AudioApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
      * @param file The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
      * @param model 
      * @param language The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.  (optional)
-     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.  (optional)
-     * @param responseFormat The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  (optional, default to ResponseFormat.json)
+     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language.  (optional)
+     * @param responseFormat  (optional, default to AudioResponseFormat.json)
      * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0)
      * @param timestampGranularities The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.  (optional)
      * @return RequestConfig
      */
-    fun createTranscriptionRequestConfig(file: java.io.File, model: CreateTranscriptionRequestModel, language: kotlin.String?, prompt: kotlin.String?, responseFormat: ResponseFormatCreateTranscription?, temperature: java.math.BigDecimal?, timestampGranularities: kotlin.collections.List<TimestampGranularitiesCreateTranscription>?) : RequestConfig<Map<String, PartConfig<*>>> {
+    fun createTranscriptionRequestConfig(file: java.io.File, model: CreateTranscriptionRequestModel, language: kotlin.String?, prompt: kotlin.String?, responseFormat: AudioResponseFormat?, temperature: java.math.BigDecimal?, timestampGranularities: kotlin.collections.List<TimestampGranularitiesCreateTranscription>?) : RequestConfig<Map<String, PartConfig<*>>> {
         val localVariableBody = mapOf(
             "file" to PartConfig(body = file, headers = mutableMapOf()),
             "model" to PartConfig(body = model, headers = mutableMapOf()),
             "language" to PartConfig(body = language, headers = mutableMapOf()),
             "prompt" to PartConfig(body = prompt, headers = mutableMapOf()),
-            "response_format" to PartConfig(body = responseFormat?.value, headers = mutableMapOf()),
+            "response_format" to PartConfig(body = responseFormat, headers = mutableMapOf()),
             "temperature" to PartConfig(body = temperature, headers = mutableMapOf()),
             "timestamp_granularities[]" to PartConfig(body = timestampGranularities?.value, headers = mutableMapOf()),)
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -263,8 +244,8 @@ open class AudioApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
      * 
      * @param file The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
      * @param model 
-     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.  (optional)
-     * @param responseFormat The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  (optional, default to "json")
+     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English.  (optional)
+     * @param responseFormat  (optional, default to AudioResponseFormat.json)
      * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0)
      * @return CreateTranslation200Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -275,7 +256,7 @@ open class AudioApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun createTranslation(file: java.io.File, model: CreateTranscriptionRequestModel, prompt: kotlin.String? = null, responseFormat: kotlin.String? = "json", temperature: java.math.BigDecimal? = java.math.BigDecimal("0")) : CreateTranslation200Response {
+    fun createTranslation(file: java.io.File, model: CreateTranscriptionRequestModel, prompt: kotlin.String? = null, responseFormat: AudioResponseFormat? = AudioResponseFormat.json, temperature: java.math.BigDecimal? = java.math.BigDecimal("0")) : CreateTranslation200Response {
         val localVarResponse = createTranslationWithHttpInfo(file = file, model = model, prompt = prompt, responseFormat = responseFormat, temperature = temperature)
 
         return when (localVarResponse.responseType) {
@@ -299,8 +280,8 @@ open class AudioApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
      * 
      * @param file The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
      * @param model 
-     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.  (optional)
-     * @param responseFormat The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  (optional, default to "json")
+     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English.  (optional)
+     * @param responseFormat  (optional, default to AudioResponseFormat.json)
      * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0)
      * @return ApiResponse<CreateTranslation200Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -308,7 +289,7 @@ open class AudioApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun createTranslationWithHttpInfo(file: java.io.File, model: CreateTranscriptionRequestModel, prompt: kotlin.String?, responseFormat: kotlin.String?, temperature: java.math.BigDecimal?) : ApiResponse<CreateTranslation200Response?> {
+    fun createTranslationWithHttpInfo(file: java.io.File, model: CreateTranscriptionRequestModel, prompt: kotlin.String?, responseFormat: AudioResponseFormat?, temperature: java.math.BigDecimal?) : ApiResponse<CreateTranslation200Response?> {
         val localVariableConfig = createTranslationRequestConfig(file = file, model = model, prompt = prompt, responseFormat = responseFormat, temperature = temperature)
 
         return request<Map<String, PartConfig<*>>, CreateTranslation200Response>(
@@ -321,12 +302,12 @@ open class AudioApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
      *
      * @param file The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
      * @param model 
-     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.  (optional)
-     * @param responseFormat The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  (optional, default to "json")
+     * @param prompt An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English.  (optional)
+     * @param responseFormat  (optional, default to AudioResponseFormat.json)
      * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional, default to 0)
      * @return RequestConfig
      */
-    fun createTranslationRequestConfig(file: java.io.File, model: CreateTranscriptionRequestModel, prompt: kotlin.String?, responseFormat: kotlin.String?, temperature: java.math.BigDecimal?) : RequestConfig<Map<String, PartConfig<*>>> {
+    fun createTranslationRequestConfig(file: java.io.File, model: CreateTranscriptionRequestModel, prompt: kotlin.String?, responseFormat: AudioResponseFormat?, temperature: java.math.BigDecimal?) : RequestConfig<Map<String, PartConfig<*>>> {
         val localVariableBody = mapOf(
             "file" to PartConfig(body = file, headers = mutableMapOf()),
             "model" to PartConfig(body = model, headers = mutableMapOf()),

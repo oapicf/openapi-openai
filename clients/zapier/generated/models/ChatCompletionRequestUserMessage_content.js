@@ -1,5 +1,5 @@
 const utils = require('../utils/utils');
-const ChatCompletionRequestMessageContentPart = require('../models/ChatCompletionRequestMessageContentPart');
+const ChatCompletionRequestUserMessageContentPart = require('../models/ChatCompletionRequestUserMessageContentPart');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {

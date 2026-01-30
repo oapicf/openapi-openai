@@ -9,7 +9,6 @@
 #' @format An \code{R6Class} generator object
 #' @field role The entity that produced the message. One of `user` or `assistant`. character [optional]
 #' @field content The content of the message in array of text and/or images. list(\link{MessageDeltaObjectDeltaContentInner}) [optional]
-#' @field file_ids A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message. list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -18,16 +17,14 @@ MessageDeltaObjectDelta <- R6::R6Class(
   public = list(
     `role` = NULL,
     `content` = NULL,
-    `file_ids` = NULL,
 
     #' @description
     #' Initialize a new MessageDeltaObjectDelta class.
     #'
     #' @param role The entity that produced the message. One of `user` or `assistant`.
     #' @param content The content of the message in array of text and/or images.
-    #' @param file_ids A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.. Default to [].
     #' @param ... Other optional arguments.
-    initialize = function(`role` = NULL, `content` = NULL, `file_ids` = [], ...) {
+    initialize = function(`role` = NULL, `content` = NULL, ...) {
       if (!is.null(`role`)) {
         if (!(`role` %in% c("user", "assistant"))) {
           stop(paste("Error! \"", `role`, "\" cannot be assigned to `role`. Must be \"user\", \"assistant\".", sep = ""))
@@ -41,11 +38,6 @@ MessageDeltaObjectDelta <- R6::R6Class(
         stopifnot(is.vector(`content`), length(`content`) != 0)
         sapply(`content`, function(x) stopifnot(R6::is.R6(x)))
         self$`content` <- `content`
-      }
-      if (!is.null(`file_ids`)) {
-        stopifnot(is.vector(`file_ids`), length(`file_ids`) != 0)
-        sapply(`file_ids`, function(x) stopifnot(is.character(x)))
-        self$`file_ids` <- `file_ids`
       }
     },
 
@@ -88,10 +80,6 @@ MessageDeltaObjectDelta <- R6::R6Class(
         MessageDeltaObjectDeltaObject[["content"]] <-
           lapply(self$`content`, function(x) x$toSimpleType())
       }
-      if (!is.null(self$`file_ids`)) {
-        MessageDeltaObjectDeltaObject[["file_ids"]] <-
-          self$`file_ids`
-      }
       return(MessageDeltaObjectDeltaObject)
     },
 
@@ -110,9 +98,6 @@ MessageDeltaObjectDelta <- R6::R6Class(
       }
       if (!is.null(this_object$`content`)) {
         self$`content` <- ApiClient$new()$deserializeObj(this_object$`content`, "array[MessageDeltaObjectDeltaContentInner]", loadNamespace("openapi"))
-      }
-      if (!is.null(this_object$`file_ids`)) {
-        self$`file_ids` <- ApiClient$new()$deserializeObj(this_object$`file_ids`, "array[character]", loadNamespace("openapi"))
       }
       self
     },
@@ -140,7 +125,6 @@ MessageDeltaObjectDelta <- R6::R6Class(
       }
       self$`role` <- this_object$`role`
       self$`content` <- ApiClient$new()$deserializeObj(this_object$`content`, "array[MessageDeltaObjectDeltaContentInner]", loadNamespace("openapi"))
-      self$`file_ids` <- ApiClient$new()$deserializeObj(this_object$`file_ids`, "array[character]", loadNamespace("openapi"))
       self
     },
 
@@ -165,10 +149,6 @@ MessageDeltaObjectDelta <- R6::R6Class(
     #'
     #' @return true if the values in all fields are valid.
     isValid = function() {
-      if (length(self$`file_ids`) > 10) {
-        return(FALSE)
-      }
-
       TRUE
     },
 
@@ -178,10 +158,6 @@ MessageDeltaObjectDelta <- R6::R6Class(
     #' @return A list of invalid fields (if any).
     getInvalidFields = function() {
       invalid_fields <- list()
-      if (length(self$`file_ids`) > 10) {
-        invalid_fields["file_ids"] <- "Invalid length for `file_ids`, number of items must be less than or equal to 10."
-      }
-
       invalid_fields
     },
 

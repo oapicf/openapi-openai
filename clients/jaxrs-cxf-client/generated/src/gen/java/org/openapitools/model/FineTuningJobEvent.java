@@ -13,11 +13,54 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class FineTuningJobEvent  {
   
-  @ApiModelProperty(required = true, value = "")
+public enum ObjectEnum {
+
+FINE_TUNING_JOB_EVENT(String.valueOf("fine_tuning.job.event"));
+
+
+    private String value;
+
+    ObjectEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    public static ObjectEnum fromValue(String value) {
+        for (ObjectEnum b : ObjectEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
+ /**
+  * The object type, which is always \"fine_tuning.job.event\".
+  */
+  @ApiModelProperty(required = true, value = "The object type, which is always \"fine_tuning.job.event\".")
+
+  private ObjectEnum _object;
+
+ /**
+  * The object identifier.
+  */
+  @ApiModelProperty(required = true, value = "The object identifier.")
 
   private String id;
 
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * The Unix timestamp (in seconds) for when the fine-tuning job was created.
+  */
+  @ApiModelProperty(required = true, value = "The Unix timestamp (in seconds) for when the fine-tuning job was created.")
 
   private Integer createdAt;
 
@@ -51,22 +94,28 @@ INFO(String.valueOf("info")), WARN(String.valueOf("warn")), ERROR(String.valueOf
     }
 }
 
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * The log level of the event.
+  */
+  @ApiModelProperty(required = true, value = "The log level of the event.")
 
   private LevelEnum level;
 
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * The message of the event.
+  */
+  @ApiModelProperty(required = true, value = "The message of the event.")
 
   private String message;
 
-public enum ObjectEnum {
+public enum TypeEnum {
 
-FINE_TUNING_JOB_EVENT(String.valueOf("fine_tuning.job.event"));
+MESSAGE(String.valueOf("message")), METRICS(String.valueOf("metrics"));
 
 
     private String value;
 
-    ObjectEnum (String v) {
+    TypeEnum (String v) {
         value = v;
     }
 
@@ -79,8 +128,8 @@ FINE_TUNING_JOB_EVENT(String.valueOf("fine_tuning.job.event"));
         return String.valueOf(value);
     }
 
-    public static ObjectEnum fromValue(String value) {
-        for (ObjectEnum b : ObjectEnum.values()) {
+    public static TypeEnum fromValue(String value) {
+        for (TypeEnum b : TypeEnum.values()) {
             if (b.value.equals(value)) {
                 return b;
             }
@@ -89,11 +138,42 @@ FINE_TUNING_JOB_EVENT(String.valueOf("fine_tuning.job.event"));
     }
 }
 
-  @ApiModelProperty(required = true, value = "")
-
-  private ObjectEnum _object;
  /**
-   * Get id
+  * The type of event.
+  */
+  @ApiModelProperty(value = "The type of event.")
+
+  private TypeEnum type;
+
+ /**
+  * The data associated with the event.
+  */
+  @ApiModelProperty(value = "The data associated with the event.")
+
+  private Object data;
+ /**
+   * The object type, which is always \&quot;fine_tuning.job.event\&quot;.
+   * @return _object
+  **/
+  @JsonProperty("object")
+  public String getObject() {
+    if (_object == null) {
+      return null;
+    }
+    return _object.value();
+  }
+
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
+  public FineTuningJobEvent _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+ /**
+   * The object identifier.
    * @return id
   **/
   @JsonProperty("id")
@@ -111,7 +191,7 @@ FINE_TUNING_JOB_EVENT(String.valueOf("fine_tuning.job.event"));
   }
 
  /**
-   * Get createdAt
+   * The Unix timestamp (in seconds) for when the fine-tuning job was created.
    * @return createdAt
   **/
   @JsonProperty("created_at")
@@ -129,7 +209,7 @@ FINE_TUNING_JOB_EVENT(String.valueOf("fine_tuning.job.event"));
   }
 
  /**
-   * Get level
+   * The log level of the event.
    * @return level
   **/
   @JsonProperty("level")
@@ -150,7 +230,7 @@ FINE_TUNING_JOB_EVENT(String.valueOf("fine_tuning.job.event"));
   }
 
  /**
-   * Get message
+   * The message of the event.
    * @return message
   **/
   @JsonProperty("message")
@@ -168,23 +248,41 @@ FINE_TUNING_JOB_EVENT(String.valueOf("fine_tuning.job.event"));
   }
 
  /**
-   * Get _object
-   * @return _object
+   * The type of event.
+   * @return type
   **/
-  @JsonProperty("object")
-  public String getObject() {
-    if (_object == null) {
+  @JsonProperty("type")
+  public String getType() {
+    if (type == null) {
       return null;
     }
-    return _object.value();
+    return type.value();
   }
 
-  public void setObject(ObjectEnum _object) {
-    this._object = _object;
+  public void setType(TypeEnum type) {
+    this.type = type;
   }
 
-  public FineTuningJobEvent _object(ObjectEnum _object) {
-    this._object = _object;
+  public FineTuningJobEvent type(TypeEnum type) {
+    this.type = type;
+    return this;
+  }
+
+ /**
+   * The data associated with the event.
+   * @return data
+  **/
+  @JsonProperty("data")
+  public Object getData() {
+    return data;
+  }
+
+  public void setData(Object data) {
+    this.data = data;
+  }
+
+  public FineTuningJobEvent data(Object data) {
+    this.data = data;
     return this;
   }
 
@@ -197,16 +295,18 @@ FINE_TUNING_JOB_EVENT(String.valueOf("fine_tuning.job.event"));
       return false;
     }
     FineTuningJobEvent fineTuningJobEvent = (FineTuningJobEvent) o;
-    return Objects.equals(this.id, fineTuningJobEvent.id) &&
+    return Objects.equals(this._object, fineTuningJobEvent._object) &&
+        Objects.equals(this.id, fineTuningJobEvent.id) &&
         Objects.equals(this.createdAt, fineTuningJobEvent.createdAt) &&
         Objects.equals(this.level, fineTuningJobEvent.level) &&
         Objects.equals(this.message, fineTuningJobEvent.message) &&
-        Objects.equals(this._object, fineTuningJobEvent._object);
+        Objects.equals(this.type, fineTuningJobEvent.type) &&
+        Objects.equals(this.data, fineTuningJobEvent.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, createdAt, level, message, _object);
+    return Objects.hash(_object, id, createdAt, level, message, type, data);
   }
 
   @Override
@@ -214,11 +314,13 @@ FINE_TUNING_JOB_EVENT(String.valueOf("fine_tuning.job.event"));
     StringBuilder sb = new StringBuilder();
     sb.append("class FineTuningJobEvent {\n");
     
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    level: ").append(toIndentedString(level)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

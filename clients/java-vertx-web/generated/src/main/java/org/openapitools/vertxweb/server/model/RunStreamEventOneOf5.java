@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.vertxweb.server.model.RunObject;
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) fails.
+ * Occurs when a [run](/docs/api-reference/runs/object) ends with status &#x60;incomplete&#x60;.
  **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RunStreamEventOneOf5   {
@@ -15,7 +15,7 @@ public class RunStreamEventOneOf5   {
 
 
   public enum EventEnum {
-    THREAD_RUN_FAILED("thread.run.failed");
+    THREAD_RUN_INCOMPLETE("thread.run.incomplete");
 
     private String value;
 

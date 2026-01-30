@@ -22,10 +22,12 @@ create_chat_completion_response_choices_inner_logprobs_t* instantiate_create_cha
   create_chat_completion_response_choices_inner_logprobs_t* create_chat_completion_response_choices_inner_logprobs = NULL;
   if (include_optional) {
     create_chat_completion_response_choices_inner_logprobs = create_chat_completion_response_choices_inner_logprobs_create(
+      list_createList(),
       list_createList()
     );
   } else {
     create_chat_completion_response_choices_inner_logprobs = create_chat_completion_response_choices_inner_logprobs_create(
+      list_createList(),
       list_createList()
     );
   }

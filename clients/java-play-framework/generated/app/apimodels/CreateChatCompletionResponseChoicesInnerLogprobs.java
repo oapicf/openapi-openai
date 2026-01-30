@@ -14,7 +14,7 @@ import javax.validation.Valid;
 /**
  * Log probability information for the choice.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateChatCompletionResponseChoicesInnerLogprobs   {
   @JsonProperty("content")
@@ -22,6 +22,12 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
 @Valid
 
   private List<@Valid ChatCompletionTokenLogprob> content = ;
+
+  @JsonProperty("refusal")
+  @NotNull
+@Valid
+
+  private List<@Valid ChatCompletionTokenLogprob> refusal = ;
 
   public CreateChatCompletionResponseChoicesInnerLogprobs content(List<@Valid ChatCompletionTokenLogprob> content) {
     this.content = content;
@@ -48,6 +54,31 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
     this.content = content;
   }
 
+  public CreateChatCompletionResponseChoicesInnerLogprobs refusal(List<@Valid ChatCompletionTokenLogprob> refusal) {
+    this.refusal = refusal;
+    return this;
+  }
+
+  public CreateChatCompletionResponseChoicesInnerLogprobs addRefusalItem(ChatCompletionTokenLogprob refusalItem) {
+    if (this.refusal == null) {
+      this.refusal = new ArrayList<>();
+    }
+    this.refusal.add(refusalItem);
+    return this;
+  }
+
+   /**
+   * A list of message refusal tokens with log probability information.
+   * @return refusal
+  **/
+  public List<@Valid ChatCompletionTokenLogprob> getRefusal() {
+    return refusal;
+  }
+
+  public void setRefusal(List<@Valid ChatCompletionTokenLogprob> refusal) {
+    this.refusal = refusal;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -58,12 +89,13 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
       return false;
     }
     CreateChatCompletionResponseChoicesInnerLogprobs createChatCompletionResponseChoicesInnerLogprobs = (CreateChatCompletionResponseChoicesInnerLogprobs) o;
-    return Objects.equals(content, createChatCompletionResponseChoicesInnerLogprobs.content);
+    return Objects.equals(content, createChatCompletionResponseChoicesInnerLogprobs.content) &&
+        Objects.equals(refusal, createChatCompletionResponseChoicesInnerLogprobs.refusal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(content);
+    return Objects.hash(content, refusal);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -73,6 +105,7 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
     sb.append("class CreateChatCompletionResponseChoicesInnerLogprobs {\n");
     
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
     sb.append("}");
     return sb.toString();
   }

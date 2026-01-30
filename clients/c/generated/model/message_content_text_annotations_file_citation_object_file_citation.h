@@ -20,14 +20,12 @@ typedef struct message_content_text_annotations_file_citation_object_file_citati
 
 typedef struct message_content_text_annotations_file_citation_object_file_citation_t {
     char *file_id; // string
-    char *quote; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } message_content_text_annotations_file_citation_object_file_citation_t;
 
 __attribute__((deprecated)) message_content_text_annotations_file_citation_object_file_citation_t *message_content_text_annotations_file_citation_object_file_citation_create(
-    char *file_id,
-    char *quote
+    char *file_id
 );
 
 void message_content_text_annotations_file_citation_object_file_citation_free(message_content_text_annotations_file_citation_object_file_citation_t *message_content_text_annotations_file_citation_object_file_citation);

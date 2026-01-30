@@ -1,7 +1,7 @@
 /*
  * TruncationObject.h
  *
- * 
+ * Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
  */
 
 #ifndef _TruncationObject_H_
@@ -20,7 +20,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief 
+/*! \brief Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
  *
  *  \ingroup Models
  *

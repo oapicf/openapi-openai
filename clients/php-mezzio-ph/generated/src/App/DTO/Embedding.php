@@ -21,9 +21,9 @@ class Embedding
     /**
      * The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings).
      * @DTA\Data(field="embedding")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection19::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection19::class})
-     * @var \App\DTO\Collection19|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection37::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection37::class})
+     * @var \App\DTO\Collection37|null
      */
     public $embedding;
 

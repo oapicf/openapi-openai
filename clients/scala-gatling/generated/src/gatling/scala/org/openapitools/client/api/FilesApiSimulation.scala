@@ -118,6 +118,9 @@ class FilesApiSimulation extends Simulation {
         .feed(listFilesQUERYFeeder)
         .exec(http("listFiles")
         .httpRequest("GET","/files")
+        .queryParam("order","${order}")
+        .queryParam("limit","${limit}")
+        .queryParam("after","${after}")
         .queryParam("purpose","${purpose}")
 )
 

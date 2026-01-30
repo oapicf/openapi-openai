@@ -1,0 +1,204 @@
+package org.openapitools.model;
+
+import java.net.URI;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import org.springframework.lang.Nullable;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
+
+/**
+ * RunStepDeltaStepDetailsToolCallsFileSearchObject
+ */
+
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class RunStepDeltaStepDetailsToolCallsFileSearchObject implements RunStepDeltaStepDetailsToolCallsObjectToolCallsInner {
+
+  private Integer index;
+
+  private @Nullable String id;
+
+  /**
+   * The type of tool call. This is always going to be `file_search` for this type of tool call.
+   */
+  public enum TypeEnum {
+    FILE_SEARCH("file_search");
+
+    private final String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  private TypeEnum type;
+
+  private Object fileSearch;
+
+  public RunStepDeltaStepDetailsToolCallsFileSearchObject() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public RunStepDeltaStepDetailsToolCallsFileSearchObject(Integer index, TypeEnum type, Object fileSearch) {
+    this.index = index;
+    this.type = type;
+    this.fileSearch = fileSearch;
+  }
+
+  public RunStepDeltaStepDetailsToolCallsFileSearchObject index(Integer index) {
+    this.index = index;
+    return this;
+  }
+
+  /**
+   * The index of the tool call in the tool calls array.
+   * @return index
+   */
+  @NotNull 
+  @Schema(name = "index", description = "The index of the tool call in the tool calls array.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("index")
+  public Integer getIndex() {
+    return index;
+  }
+
+  public void setIndex(Integer index) {
+    this.index = index;
+  }
+
+  public RunStepDeltaStepDetailsToolCallsFileSearchObject id(@Nullable String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * The ID of the tool call object.
+   * @return id
+   */
+  
+  @Schema(name = "id", description = "The ID of the tool call object.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
+  public @Nullable String getId() {
+    return id;
+  }
+
+  public void setId(@Nullable String id) {
+    this.id = id;
+  }
+
+  public RunStepDeltaStepDetailsToolCallsFileSearchObject type(TypeEnum type) {
+    this.type = type;
+    return this;
+  }
+
+  /**
+   * The type of tool call. This is always going to be `file_search` for this type of tool call.
+   * @return type
+   */
+  @NotNull 
+  @Schema(name = "type", description = "The type of tool call. This is always going to be `file_search` for this type of tool call.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("type")
+  public TypeEnum getType() {
+    return type;
+  }
+
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
+  public RunStepDeltaStepDetailsToolCallsFileSearchObject fileSearch(Object fileSearch) {
+    this.fileSearch = fileSearch;
+    return this;
+  }
+
+  /**
+   * For now, this is always going to be an empty object.
+   * @return fileSearch
+   */
+  @NotNull 
+  @Schema(name = "file_search", description = "For now, this is always going to be an empty object.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("file_search")
+  public Object getFileSearch() {
+    return fileSearch;
+  }
+
+  public void setFileSearch(Object fileSearch) {
+    this.fileSearch = fileSearch;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    RunStepDeltaStepDetailsToolCallsFileSearchObject runStepDeltaStepDetailsToolCallsFileSearchObject = (RunStepDeltaStepDetailsToolCallsFileSearchObject) o;
+    return Objects.equals(this.index, runStepDeltaStepDetailsToolCallsFileSearchObject.index) &&
+        Objects.equals(this.id, runStepDeltaStepDetailsToolCallsFileSearchObject.id) &&
+        Objects.equals(this.type, runStepDeltaStepDetailsToolCallsFileSearchObject.type) &&
+        Objects.equals(this.fileSearch, runStepDeltaStepDetailsToolCallsFileSearchObject.fileSearch);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(index, id, type, fileSearch);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class RunStepDeltaStepDetailsToolCallsFileSearchObject {\n");
+    sb.append("    index: ").append(toIndentedString(index)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    fileSearch: ").append(toIndentedString(fileSearch)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+}
+

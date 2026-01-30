@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -36,12 +36,15 @@ message OpenAIFile {
 
   Object object = 486497474;
 
-  // The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+  // The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
   enum Purpose {
-    PURPOSE_FINE_TUNE = 0;
-    PURPOSE_FINE_TUNE_RESULTS = 1;
-    PURPOSE_ASSISTANTS = 2;
-    PURPOSE_ASSISTANTS_OUTPUT = 3;
+    PURPOSE_ASSISTANTS = 0;
+    PURPOSE_ASSISTANTS_OUTPUT = 1;
+    PURPOSE_BATCH = 2;
+    PURPOSE_BATCH_OUTPUT = 3;
+    PURPOSE_FINE_TUNE = 4;
+    PURPOSE_FINE_TUNE_RESULTS = 5;
+    PURPOSE_VISION = 6;
   }
 
   Purpose purpose = 220463842;

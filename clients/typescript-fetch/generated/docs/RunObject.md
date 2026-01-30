@@ -24,14 +24,15 @@ Name | Type
 `model` | string
 `instructions` | string
 `tools` | [Array&lt;AssistantObjectToolsInner&gt;](AssistantObjectToolsInner.md)
-`fileIds` | Array&lt;string&gt;
 `metadata` | object
 `usage` | [RunCompletionUsage](RunCompletionUsage.md)
 `temperature` | number
+`topP` | number
 `maxPromptTokens` | number
 `maxCompletionTokens` | number
 `truncationStrategy` | [TruncationObject](TruncationObject.md)
 `toolChoice` | [AssistantsApiToolChoiceOption](AssistantsApiToolChoiceOption.md)
+`parallelToolCalls` | boolean
 `responseFormat` | [AssistantsApiResponseFormatOption](AssistantsApiResponseFormatOption.md)
 
 ## Example
@@ -58,14 +59,15 @@ const example = {
   "model": null,
   "instructions": null,
   "tools": null,
-  "fileIds": null,
   "metadata": null,
   "usage": null,
   "temperature": null,
+  "topP": null,
   "maxPromptTokens": null,
   "maxCompletionTokens": null,
   "truncationStrategy": null,
   "toolChoice": null,
+  "parallelToolCalls": null,
   "responseFormat": null,
 } satisfies RunObject
 

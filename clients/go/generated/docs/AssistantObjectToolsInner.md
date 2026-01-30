@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** | The type of tool being defined: &#x60;code_interpreter&#x60; | 
+**FileSearch** | Pointer to [**AssistantToolsFileSearchFileSearch**](AssistantToolsFileSearchFileSearch.md) |  | [optional] 
 **Function** | [**FunctionObject**](FunctionObject.md) |  | 
 
 ## Methods
@@ -45,6 +46,31 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+
+### GetFileSearch
+
+`func (o *AssistantObjectToolsInner) GetFileSearch() AssistantToolsFileSearchFileSearch`
+
+GetFileSearch returns the FileSearch field if non-nil, zero value otherwise.
+
+### GetFileSearchOk
+
+`func (o *AssistantObjectToolsInner) GetFileSearchOk() (*AssistantToolsFileSearchFileSearch, bool)`
+
+GetFileSearchOk returns a tuple with the FileSearch field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFileSearch
+
+`func (o *AssistantObjectToolsInner) SetFileSearch(v AssistantToolsFileSearchFileSearch)`
+
+SetFileSearch sets FileSearch field to given value.
+
+### HasFileSearch
+
+`func (o *AssistantObjectToolsInner) HasFileSearch() bool`
+
+HasFileSearch returns a boolean if a field has been set.
 
 ### GetFunction
 

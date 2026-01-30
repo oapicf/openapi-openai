@@ -25,12 +25,12 @@ create_moderation_request_t* instantiate_create_moderation_request(int include_o
   if (include_optional) {
     create_moderation_request = create_moderation_request_create(
       null,
-      text-moderation-stable
+      omni-moderation-2024-09-26
     );
   } else {
     create_moderation_request = create_moderation_request_create(
       null,
-      text-moderation-stable
+      omni-moderation-2024-09-26
     );
   }
 

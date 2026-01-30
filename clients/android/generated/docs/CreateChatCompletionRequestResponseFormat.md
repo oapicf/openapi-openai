@@ -6,7 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**TypeEnum**](#TypeEnum) | Must be one of &#x60;text&#x60; or &#x60;json_object&#x60;. |  [optional]
+**type** | [**TypeEnum**](#TypeEnum) | The type of response format being defined: &#x60;text&#x60; | 
+**jsonSchema** | [**ResponseFormatJsonSchemaJsonSchema**](ResponseFormatJsonSchemaJsonSchema.md) |  | 
 
 
 ## Enum: TypeEnum

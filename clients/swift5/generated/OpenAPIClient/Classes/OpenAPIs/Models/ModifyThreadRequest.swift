@@ -12,14 +12,17 @@ import AnyCodable
 
 public struct ModifyThreadRequest: Codable, JSONEncodable, Hashable {
 
-    /** Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  */
+    public var toolResources: ModifyThreadRequestToolResources?
+    /** Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  */
     public var metadata: AnyCodable?
 
-    public init(metadata: AnyCodable? = nil) {
+    public init(toolResources: ModifyThreadRequestToolResources? = nil, metadata: AnyCodable? = nil) {
+        self.toolResources = toolResources
         self.metadata = metadata
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case toolResources = "tool_resources"
         case metadata
     }
 
@@ -27,6 +30,7 @@ public struct ModifyThreadRequest: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(toolResources, forKey: .toolResources)
         try container.encodeIfPresent(metadata, forKey: .metadata)
     }
 }

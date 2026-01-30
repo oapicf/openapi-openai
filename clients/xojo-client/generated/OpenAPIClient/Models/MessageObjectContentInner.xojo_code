@@ -15,14 +15,26 @@ Protected Class MessageObjectContentInner
 
 
 	#tag Property, Flags = &h0
+		image_url As OpenAPIClient.Models.MessageContentImageUrlObjectImageUrl
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
 		text As OpenAPIClient.Models.MessageContentTextObjectText
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		refusal As String
 	#tag EndProperty
 
 
     #tag Enum, Name = TypeEnum, Type = Integer, Flags = &h0
         
         ImageFile
+        ImageUrl
         Text
+        Refusal
         
     #tag EndEnum
 
@@ -33,8 +45,12 @@ Protected Class MessageObjectContentInner
 		    
 		    Case TypeEnum.ImageFile
 		      Return "image_file"
+		    Case TypeEnum.ImageUrl
+		      Return "image_url"
 		    Case TypeEnum.Text
 		      Return "text"
+		    Case TypeEnum.Refusal
+		      Return "refusal"
 		    
 		  End Select
 		  Return ""
@@ -84,11 +100,27 @@ Protected Class MessageObjectContentInner
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="image_url"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="MessageContentImageUrlObjectImageUrl"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="text"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
 			Type="MessageContentTextObjectText"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="refusal"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

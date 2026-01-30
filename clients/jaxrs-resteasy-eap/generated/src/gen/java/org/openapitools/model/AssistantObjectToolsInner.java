@@ -9,14 +9,15 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.AssistantToolsCode;
+import org.openapitools.model.AssistantToolsFileSearch;
+import org.openapitools.model.AssistantToolsFileSearchFileSearch;
 import org.openapitools.model.AssistantToolsFunction;
-import org.openapitools.model.AssistantToolsRetrieval;
 import org.openapitools.model.FunctionObject;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T10:45:31.742862961Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T14:09:29.020322047Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class AssistantObjectToolsInner   {
   
 
@@ -26,7 +27,7 @@ public class AssistantObjectToolsInner   {
   public enum TypeEnum {
     CODE_INTERPRETER("code_interpreter"),
 
-        RETRIEVAL("retrieval"),
+        FILE_SEARCH("file_search"),
 
         FUNCTION("function");
     private String value;
@@ -43,6 +44,7 @@ public class AssistantObjectToolsInner   {
   }
 
   private TypeEnum type;
+  private AssistantToolsFileSearchFileSearch fileSearch;
   private FunctionObject function;
 
   /**
@@ -57,6 +59,18 @@ public class AssistantObjectToolsInner   {
   }
   public void setType(TypeEnum type) {
     this.type = type;
+  }
+
+  /**
+   **/
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("file_search")
+  public AssistantToolsFileSearchFileSearch getFileSearch() {
+    return fileSearch;
+  }
+  public void setFileSearch(AssistantToolsFileSearchFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
   }
 
   /**
@@ -83,12 +97,13 @@ public class AssistantObjectToolsInner   {
     }
     AssistantObjectToolsInner assistantObjectToolsInner = (AssistantObjectToolsInner) o;
     return Objects.equals(this.type, assistantObjectToolsInner.type) &&
+        Objects.equals(this.fileSearch, assistantObjectToolsInner.fileSearch) &&
         Objects.equals(this.function, assistantObjectToolsInner.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, function);
+    return Objects.hash(type, fileSearch, function);
   }
 
   @Override
@@ -97,6 +112,7 @@ public class AssistantObjectToolsInner   {
     sb.append("class AssistantObjectToolsInner {\n");
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    fileSearch: ").append(toIndentedString(fileSearch)).append("\n");
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();

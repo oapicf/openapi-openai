@@ -9,7 +9,7 @@ module RunStreamEventOneOf7 =
   //#region RunStreamEventOneOf7
 
   //#region enums
-  type EventEnum = ThreadRunCancelledEnum of string  
+  type EventEnum = ThreadRunCancellingEnum of string  
   //#endregion
 
   type RunStreamEvent_oneOf_7 = {

@@ -14,7 +14,7 @@ type RunStepDeltaStepDetailsToolCallsObjectToolCallsInner struct {
 	CodeInterpreter RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter `json:"code_interpreter,omitempty"`
 
 	// For now, this is always going to be an empty object.
-	Retrieval map[string]interface{} `json:"retrieval,omitempty"`
+	FileSearch map[string]interface{} `json:"file_search"`
 
 	Function RunStepDeltaStepDetailsToolCallsFunctionObjectFunction `json:"function,omitempty"`
 }

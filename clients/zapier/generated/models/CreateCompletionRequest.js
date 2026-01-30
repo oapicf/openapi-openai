@@ -1,4 +1,5 @@
 const utils = require('../utils/utils');
+const ChatCompletionStreamOptions = require('../models/ChatCompletionStreamOptions');
 const CreateCompletionRequest_model = require('../models/CreateCompletionRequest_model');
 const CreateCompletionRequest_prompt = require('../models/CreateCompletionRequest_prompt');
 const CreateCompletionRequest_stop = require('../models/CreateCompletionRequest_stop');
@@ -21,7 +22,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}frequency_penalty`,
-                label: `Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details)  - [${labelPrefix}frequency_penalty]`,
+                label: `Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation)  - [${labelPrefix}frequency_penalty]`,
                 type: 'number',
             },
             {
@@ -46,7 +47,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}presence_penalty`,
-                label: `Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details)  - [${labelPrefix}presence_penalty]`,
+                label: `Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation)  - [${labelPrefix}presence_penalty]`,
                 type: 'number',
             },
             {
@@ -60,6 +61,7 @@ module.exports = {
                 label: `Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions).  - [${labelPrefix}stream]`,
                 type: 'boolean',
             },
+            ...ChatCompletionStreamOptions.fields(`${keyPrefix}stream_options`, isInput),
             {
                 key: `${keyPrefix}suffix`,
                 label: `The suffix that comes after a completion of inserted text.  This parameter is only supported for `gpt-3.5-turbo-instruct`.  - [${labelPrefix}suffix]`,
@@ -77,7 +79,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}user`,
-                label: `A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  - [${labelPrefix}user]`,
+                label: `A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  - [${labelPrefix}user]`,
                 type: 'string',
             },
         ]
@@ -98,6 +100,7 @@ module.exports = {
             'seed': bundle.inputData?.[`${keyPrefix}seed`],
             'stop': utils.removeIfEmpty(CreateCompletionRequest_stop.mapping(bundle, `${keyPrefix}stop`)),
             'stream': bundle.inputData?.[`${keyPrefix}stream`],
+            'stream_options': utils.removeIfEmpty(ChatCompletionStreamOptions.mapping(bundle, `${keyPrefix}stream_options`)),
             'suffix': bundle.inputData?.[`${keyPrefix}suffix`],
             'temperature': bundle.inputData?.[`${keyPrefix}temperature`],
             'top_p': bundle.inputData?.[`${keyPrefix}top_p`],

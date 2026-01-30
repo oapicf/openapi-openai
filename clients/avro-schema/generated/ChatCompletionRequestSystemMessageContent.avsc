@@ -1,0 +1,9 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The contents of the system message.",
+  "name": "ChatCompletionRequestSystemMessageContent",
+  "fields": [
+  ]
+
+}

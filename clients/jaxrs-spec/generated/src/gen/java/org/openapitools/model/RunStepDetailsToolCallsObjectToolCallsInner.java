@@ -5,9 +5,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.RunStepDetailsToolCallsCodeObject;
 import org.openapitools.model.RunStepDetailsToolCallsCodeObjectCodeInterpreter;
+import org.openapitools.model.RunStepDetailsToolCallsFileSearchObject;
+import org.openapitools.model.RunStepDetailsToolCallsFileSearchObjectFileSearch;
 import org.openapitools.model.RunStepDetailsToolCallsFunctionObject;
 import org.openapitools.model.RunStepDetailsToolCallsFunctionObjectFunction;
-import org.openapitools.model.RunStepDetailsToolCallsRetrievalObject;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -22,12 +23,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("RunStepDetailsToolCallsObject_tool_calls_inner")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStepDetailsToolCallsObjectToolCallsInner   {
   private String id;
   public enum TypeEnum {
 
-    CODE_INTERPRETER(String.valueOf("code_interpreter")), RETRIEVAL(String.valueOf("retrieval")), FUNCTION(String.valueOf("function"));
+    CODE_INTERPRETER(String.valueOf("code_interpreter")), FILE_SEARCH(String.valueOf("file_search")), FUNCTION(String.valueOf("function"));
 
 
     private String value;
@@ -74,7 +75,7 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
 
   private TypeEnum type;
   private RunStepDetailsToolCallsCodeObjectCodeInterpreter codeInterpreter;
-  private Object retrieval;
+  private RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch;
   private RunStepDetailsToolCallsFunctionObjectFunction function;
 
   public RunStepDetailsToolCallsObjectToolCallsInner() {
@@ -85,13 +86,13 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
     @JsonProperty(required = true, value = "id") String id,
     @JsonProperty(required = true, value = "type") TypeEnum type,
     @JsonProperty(required = true, value = "code_interpreter") RunStepDetailsToolCallsCodeObjectCodeInterpreter codeInterpreter,
-    @JsonProperty(required = true, value = "retrieval") Object retrieval,
+    @JsonProperty(required = true, value = "file_search") RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch,
     @JsonProperty(required = true, value = "function") RunStepDetailsToolCallsFunctionObjectFunction function
   ) {
     this.id = id;
     this.type = type;
     this.codeInterpreter = codeInterpreter;
-    this.retrieval = retrieval;
+    this.fileSearch = fileSearch;
     this.function = function;
   }
 
@@ -155,23 +156,22 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
   }
 
   /**
-   * For now, this is always going to be an empty object.
    **/
-  public RunStepDetailsToolCallsObjectToolCallsInner retrieval(Object retrieval) {
-    this.retrieval = retrieval;
+  public RunStepDetailsToolCallsObjectToolCallsInner fileSearch(RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
     return this;
   }
 
   
-  @ApiModelProperty(required = true, value = "For now, this is always going to be an empty object.")
-  @JsonProperty(required = true, value = "retrieval")
-  @NotNull public Object getRetrieval() {
-    return retrieval;
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(required = true, value = "file_search")
+  @NotNull @Valid public RunStepDetailsToolCallsFileSearchObjectFileSearch getFileSearch() {
+    return fileSearch;
   }
 
-  @JsonProperty(required = true, value = "retrieval")
-  public void setRetrieval(Object retrieval) {
-    this.retrieval = retrieval;
+  @JsonProperty(required = true, value = "file_search")
+  public void setFileSearch(RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
   }
 
   /**
@@ -206,13 +206,13 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
     return Objects.equals(this.id, runStepDetailsToolCallsObjectToolCallsInner.id) &&
         Objects.equals(this.type, runStepDetailsToolCallsObjectToolCallsInner.type) &&
         Objects.equals(this.codeInterpreter, runStepDetailsToolCallsObjectToolCallsInner.codeInterpreter) &&
-        Objects.equals(this.retrieval, runStepDetailsToolCallsObjectToolCallsInner.retrieval) &&
+        Objects.equals(this.fileSearch, runStepDetailsToolCallsObjectToolCallsInner.fileSearch) &&
         Objects.equals(this.function, runStepDetailsToolCallsObjectToolCallsInner.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, codeInterpreter, retrieval, function);
+    return Objects.hash(id, type, codeInterpreter, fileSearch, function);
   }
 
   @Override
@@ -223,7 +223,7 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    codeInterpreter: ").append(toIndentedString(codeInterpreter)).append("\n");
-    sb.append("    retrieval: ").append(toIndentedString(retrieval)).append("\n");
+    sb.append("    fileSearch: ").append(toIndentedString(fileSearch)).append("\n");
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();

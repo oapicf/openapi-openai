@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -13,27 +13,30 @@ package openapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the FineTuningJobHyperparameters type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &FineTuningJobHyperparameters{}
 
-// FineTuningJobHyperparameters The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+// FineTuningJobHyperparameters The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.
 type FineTuningJobHyperparameters struct {
-	NEpochs FineTuningJobHyperparametersNEpochs `json:"n_epochs"`
+	BatchSize *CreateFineTuningJobRequestHyperparametersBatchSize `json:"batch_size,omitempty"`
+	LearningRateMultiplier *CreateFineTuningJobRequestHyperparametersLearningRateMultiplier `json:"learning_rate_multiplier,omitempty"`
+	NEpochs *CreateFineTuningJobRequestHyperparametersNEpochs `json:"n_epochs,omitempty"`
 }
-
-type _FineTuningJobHyperparameters FineTuningJobHyperparameters
 
 // NewFineTuningJobHyperparameters instantiates a new FineTuningJobHyperparameters object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFineTuningJobHyperparameters(nEpochs FineTuningJobHyperparametersNEpochs) *FineTuningJobHyperparameters {
+func NewFineTuningJobHyperparameters() *FineTuningJobHyperparameters {
 	this := FineTuningJobHyperparameters{}
-	this.NEpochs = nEpochs
+	var batchSize CreateFineTuningJobRequestHyperparametersBatchSize = auto
+	this.BatchSize = &batchSize
+	var learningRateMultiplier CreateFineTuningJobRequestHyperparametersLearningRateMultiplier = auto
+	this.LearningRateMultiplier = &learningRateMultiplier
+	var nEpochs CreateFineTuningJobRequestHyperparametersNEpochs = auto
+	this.NEpochs = &nEpochs
 	return &this
 }
 
@@ -42,33 +45,109 @@ func NewFineTuningJobHyperparameters(nEpochs FineTuningJobHyperparametersNEpochs
 // but it doesn't guarantee that properties required by API are set
 func NewFineTuningJobHyperparametersWithDefaults() *FineTuningJobHyperparameters {
 	this := FineTuningJobHyperparameters{}
-	var nEpochs FineTuningJobHyperparametersNEpochs = auto
-	this.NEpochs = nEpochs
+	var batchSize CreateFineTuningJobRequestHyperparametersBatchSize = auto
+	this.BatchSize = &batchSize
+	var learningRateMultiplier CreateFineTuningJobRequestHyperparametersLearningRateMultiplier = auto
+	this.LearningRateMultiplier = &learningRateMultiplier
+	var nEpochs CreateFineTuningJobRequestHyperparametersNEpochs = auto
+	this.NEpochs = &nEpochs
 	return &this
 }
 
-// GetNEpochs returns the NEpochs field value
-func (o *FineTuningJobHyperparameters) GetNEpochs() FineTuningJobHyperparametersNEpochs {
-	if o == nil {
-		var ret FineTuningJobHyperparametersNEpochs
+// GetBatchSize returns the BatchSize field value if set, zero value otherwise.
+func (o *FineTuningJobHyperparameters) GetBatchSize() CreateFineTuningJobRequestHyperparametersBatchSize {
+	if o == nil || IsNil(o.BatchSize) {
+		var ret CreateFineTuningJobRequestHyperparametersBatchSize
 		return ret
 	}
-
-	return o.NEpochs
+	return *o.BatchSize
 }
 
-// GetNEpochsOk returns a tuple with the NEpochs field value
+// GetBatchSizeOk returns a tuple with the BatchSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FineTuningJobHyperparameters) GetNEpochsOk() (*FineTuningJobHyperparametersNEpochs, bool) {
-	if o == nil {
+func (o *FineTuningJobHyperparameters) GetBatchSizeOk() (*CreateFineTuningJobRequestHyperparametersBatchSize, bool) {
+	if o == nil || IsNil(o.BatchSize) {
 		return nil, false
 	}
-	return &o.NEpochs, true
+	return o.BatchSize, true
 }
 
-// SetNEpochs sets field value
-func (o *FineTuningJobHyperparameters) SetNEpochs(v FineTuningJobHyperparametersNEpochs) {
-	o.NEpochs = v
+// HasBatchSize returns a boolean if a field has been set.
+func (o *FineTuningJobHyperparameters) HasBatchSize() bool {
+	if o != nil && !IsNil(o.BatchSize) {
+		return true
+	}
+
+	return false
+}
+
+// SetBatchSize gets a reference to the given CreateFineTuningJobRequestHyperparametersBatchSize and assigns it to the BatchSize field.
+func (o *FineTuningJobHyperparameters) SetBatchSize(v CreateFineTuningJobRequestHyperparametersBatchSize) {
+	o.BatchSize = &v
+}
+
+// GetLearningRateMultiplier returns the LearningRateMultiplier field value if set, zero value otherwise.
+func (o *FineTuningJobHyperparameters) GetLearningRateMultiplier() CreateFineTuningJobRequestHyperparametersLearningRateMultiplier {
+	if o == nil || IsNil(o.LearningRateMultiplier) {
+		var ret CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+		return ret
+	}
+	return *o.LearningRateMultiplier
+}
+
+// GetLearningRateMultiplierOk returns a tuple with the LearningRateMultiplier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FineTuningJobHyperparameters) GetLearningRateMultiplierOk() (*CreateFineTuningJobRequestHyperparametersLearningRateMultiplier, bool) {
+	if o == nil || IsNil(o.LearningRateMultiplier) {
+		return nil, false
+	}
+	return o.LearningRateMultiplier, true
+}
+
+// HasLearningRateMultiplier returns a boolean if a field has been set.
+func (o *FineTuningJobHyperparameters) HasLearningRateMultiplier() bool {
+	if o != nil && !IsNil(o.LearningRateMultiplier) {
+		return true
+	}
+
+	return false
+}
+
+// SetLearningRateMultiplier gets a reference to the given CreateFineTuningJobRequestHyperparametersLearningRateMultiplier and assigns it to the LearningRateMultiplier field.
+func (o *FineTuningJobHyperparameters) SetLearningRateMultiplier(v CreateFineTuningJobRequestHyperparametersLearningRateMultiplier) {
+	o.LearningRateMultiplier = &v
+}
+
+// GetNEpochs returns the NEpochs field value if set, zero value otherwise.
+func (o *FineTuningJobHyperparameters) GetNEpochs() CreateFineTuningJobRequestHyperparametersNEpochs {
+	if o == nil || IsNil(o.NEpochs) {
+		var ret CreateFineTuningJobRequestHyperparametersNEpochs
+		return ret
+	}
+	return *o.NEpochs
+}
+
+// GetNEpochsOk returns a tuple with the NEpochs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FineTuningJobHyperparameters) GetNEpochsOk() (*CreateFineTuningJobRequestHyperparametersNEpochs, bool) {
+	if o == nil || IsNil(o.NEpochs) {
+		return nil, false
+	}
+	return o.NEpochs, true
+}
+
+// HasNEpochs returns a boolean if a field has been set.
+func (o *FineTuningJobHyperparameters) HasNEpochs() bool {
+	if o != nil && !IsNil(o.NEpochs) {
+		return true
+	}
+
+	return false
+}
+
+// SetNEpochs gets a reference to the given CreateFineTuningJobRequestHyperparametersNEpochs and assigns it to the NEpochs field.
+func (o *FineTuningJobHyperparameters) SetNEpochs(v CreateFineTuningJobRequestHyperparametersNEpochs) {
+	o.NEpochs = &v
 }
 
 func (o FineTuningJobHyperparameters) MarshalJSON() ([]byte, error) {
@@ -81,45 +160,16 @@ func (o FineTuningJobHyperparameters) MarshalJSON() ([]byte, error) {
 
 func (o FineTuningJobHyperparameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["n_epochs"] = o.NEpochs
+	if !IsNil(o.BatchSize) {
+		toSerialize["batch_size"] = o.BatchSize
+	}
+	if !IsNil(o.LearningRateMultiplier) {
+		toSerialize["learning_rate_multiplier"] = o.LearningRateMultiplier
+	}
+	if !IsNil(o.NEpochs) {
+		toSerialize["n_epochs"] = o.NEpochs
+	}
 	return toSerialize, nil
-}
-
-func (o *FineTuningJobHyperparameters) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"n_epochs",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFineTuningJobHyperparameters := _FineTuningJobHyperparameters{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFineTuningJobHyperparameters)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FineTuningJobHyperparameters(varFineTuningJobHyperparameters)
-
-	return err
 }
 
 type NullableFineTuningJobHyperparameters struct {

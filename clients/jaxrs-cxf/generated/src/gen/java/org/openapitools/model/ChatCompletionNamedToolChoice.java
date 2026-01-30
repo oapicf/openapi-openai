@@ -2,7 +2,7 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import org.openapitools.model.ChatCompletionNamedToolChoiceFunction;
+import org.openapitools.model.AssistantsNamedToolChoiceFunction;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -61,7 +61,7 @@ FUNCTION(String.valueOf("function"));
 
   @Valid
 
-  private ChatCompletionNamedToolChoiceFunction function;
+  private AssistantsNamedToolChoiceFunction function;
  /**
    * The type of the tool. Currently, only &#x60;function&#x60; is supported.
    * @return type
@@ -90,15 +90,15 @@ FUNCTION(String.valueOf("function"));
   **/
   @JsonProperty("function")
   @NotNull
-  public ChatCompletionNamedToolChoiceFunction getFunction() {
+  public AssistantsNamedToolChoiceFunction getFunction() {
     return function;
   }
 
-  public void setFunction(ChatCompletionNamedToolChoiceFunction function) {
+  public void setFunction(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
   }
 
-  public ChatCompletionNamedToolChoice function(ChatCompletionNamedToolChoiceFunction function) {
+  public ChatCompletionNamedToolChoice function(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
     return this;
   }

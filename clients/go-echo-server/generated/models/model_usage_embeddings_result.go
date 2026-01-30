@@ -1,0 +1,25 @@
+package models
+
+// UsageEmbeddingsResult - The aggregated embeddings usage details of the specific time bucket.
+type UsageEmbeddingsResult struct {
+
+	Object string `json:"object"`
+
+	// The aggregated number of input tokens used.
+	InputTokens int32 `json:"input_tokens"`
+
+	// The count of requests made to the model.
+	NumModelRequests int32 `json:"num_model_requests"`
+
+	// When `group_by=project_id`, this field provides the project ID of the grouped usage result.
+	ProjectId *string `json:"project_id,omitempty"`
+
+	// When `group_by=user_id`, this field provides the user ID of the grouped usage result.
+	UserId *string `json:"user_id,omitempty"`
+
+	// When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.
+	ApiKeyId *string `json:"api_key_id,omitempty"`
+
+	// When `group_by=model`, this field provides the model name of the grouped usage result.
+	Model *string `json:"model,omitempty"`
+}

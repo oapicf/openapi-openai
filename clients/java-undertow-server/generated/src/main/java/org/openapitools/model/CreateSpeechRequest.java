@@ -3,7 +3,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * OpenAPI document version: 2.0.0
+ * OpenAPI document version: 2.3.0
  * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -23,7 +23,7 @@ import org.openapitools.model.CreateSpeechRequestModel;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T10:45:08.090000084Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateSpeechRequest   {
   
   private CreateSpeechRequestModel model;
@@ -76,7 +76,7 @@ public class CreateSpeechRequest   {
   }
 
   private ResponseFormatEnum responseFormat = ResponseFormatEnum.MP3;
-  private BigDecimal speed = new BigDecimal("1.0");
+  private BigDecimal speed = new BigDecimal("1");
 
   /**
    */
@@ -114,7 +114,7 @@ public class CreateSpeechRequest   {
   }
 
   /**
-   * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+   * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
    */
   public CreateSpeechRequest voice(VoiceEnum voice) {
     this.voice = voice;
@@ -122,7 +122,7 @@ public class CreateSpeechRequest   {
   }
 
   
-  @ApiModelProperty(required = true, value = "The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).")
+  @ApiModelProperty(required = true, value = "The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).")
   @JsonProperty("voice")
   public VoiceEnum getVoice() {
     return voice;
@@ -152,7 +152,7 @@ public class CreateSpeechRequest   {
   /**
    * The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.
    * minimum: 0.25
-   * maximum: 4.0
+   * maximum: 4
    */
   public CreateSpeechRequest speed(BigDecimal speed) {
     this.speed = speed;

@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -33,16 +33,21 @@ type CreateThreadAndRunRequest struct {
 	// Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
 	Tools *[]CreateThreadAndRunRequestToolsInner `json:"tools,omitempty"`
 
-	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	ToolResources *CreateThreadAndRunRequestToolResources `json:"tool_resources,omitempty"`
+
+	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 
 	// What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
 	Temperature *float32 `json:"temperature,omitempty"`
 
+	// An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+	TopP *float32 `json:"top_p,omitempty"`
+
 	// If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. 
 	Stream *bool `json:"stream,omitempty"`
 
-	// The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+	// The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
 	MaxPromptTokens *int32 `json:"max_prompt_tokens,omitempty"`
 
 	// The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
@@ -51,6 +56,9 @@ type CreateThreadAndRunRequest struct {
 	TruncationStrategy TruncationObject `json:"truncation_strategy,omitempty"`
 
 	ToolChoice AssistantsApiToolChoiceOption `json:"tool_choice,omitempty"`
+
+	// Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+	ParallelToolCalls bool `json:"parallel_tool_calls,omitempty"`
 
 	ResponseFormat AssistantsApiResponseFormatOption `json:"response_format,omitempty"`
 }
@@ -79,6 +87,11 @@ func AssertCreateThreadAndRunRequestRequired(obj CreateThreadAndRunRequest) erro
 			if err := AssertCreateThreadAndRunRequestToolsInnerRequired(el); err != nil {
 				return err
 			}
+		}
+	}
+	if obj.ToolResources != nil {
+		if err := AssertCreateThreadAndRunRequestToolResourcesRequired(*obj.ToolResources); err != nil {
+			return err
 		}
 	}
 	if err := AssertTruncationObjectRequired(obj.TruncationStrategy); err != nil {
@@ -110,11 +123,22 @@ func AssertCreateThreadAndRunRequestConstraints(obj CreateThreadAndRunRequest) e
      		}
      	}
     }
+    if obj.ToolResources != nil {
+     	if err := AssertCreateThreadAndRunRequestToolResourcesConstraints(*obj.ToolResources); err != nil {
+     		return err
+     	}
+    }
 	if obj.Temperature != nil && *obj.Temperature < 0 {
 		return &ParsingError{Param: "Temperature", Err: errors.New(errMsgMinValueConstraint)}
 	}
 	if obj.Temperature != nil && *obj.Temperature > 2 {
 		return &ParsingError{Param: "Temperature", Err: errors.New(errMsgMaxValueConstraint)}
+	}
+	if obj.TopP != nil && *obj.TopP < 0 {
+		return &ParsingError{Param: "TopP", Err: errors.New(errMsgMinValueConstraint)}
+	}
+	if obj.TopP != nil && *obj.TopP > 1 {
+		return &ParsingError{Param: "TopP", Err: errors.New(errMsgMaxValueConstraint)}
 	}
 	if obj.MaxPromptTokens != nil && *obj.MaxPromptTokens < 256 {
 		return &ParsingError{Param: "MaxPromptTokens", Err: errors.New(errMsgMinValueConstraint)}

@@ -15,7 +15,7 @@ import java.io.File;
 import org.openapitools.model.ListFilesResponse;
 import org.openapitools.model.OpenAIFile;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FilesController  {
   /**
    * Uncomment and implement as you see fit.  These operations will map
@@ -42,7 +42,7 @@ public class FilesController  {
   */
 
   /*
-    public ResponseContext listFiles(RequestContext request , String purpose) {
+    public ResponseContext listFiles(RequestContext request , String purpose, Integer limit, String order, String after) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */

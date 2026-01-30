@@ -1,5 +1,6 @@
 package controllers;
 
+import apimodels.AudioResponseFormat;
 import java.math.BigDecimal;
 import apimodels.CreateSpeechRequest;
 import apimodels.CreateTranscription200Response;
@@ -16,7 +17,7 @@ import java.io.FileInputStream;
 import play.libs.Files.TemporaryFile;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class AudioApiControllerImp extends AudioApiControllerImpInterface {
     @Override
     public InputStream createSpeech(Http.Request request, CreateSpeechRequest createSpeechRequest) throws Exception {
@@ -25,13 +26,13 @@ public class AudioApiControllerImp extends AudioApiControllerImpInterface {
     }
 
     @Override
-    public CreateTranscription200Response createTranscription(Http.Request request, Http.MultipartFormData.FilePart<TemporaryFile> _file, CreateTranscriptionRequestModel model, String language, String prompt, String responseFormat, BigDecimal temperature, List<String> timestampGranularities) throws Exception {
+    public CreateTranscription200Response createTranscription(Http.Request request, Http.MultipartFormData.FilePart<TemporaryFile> _file, CreateTranscriptionRequestModel model, String language, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature, List<String> timestampGranularities) throws Exception {
         //Do your magic!!!
         return new CreateTranscription200Response();
     }
 
     @Override
-    public CreateTranslation200Response createTranslation(Http.Request request, Http.MultipartFormData.FilePart<TemporaryFile> _file, CreateTranscriptionRequestModel model, String prompt, String responseFormat, BigDecimal temperature) throws Exception {
+    public CreateTranslation200Response createTranslation(Http.Request request, Http.MultipartFormData.FilePart<TemporaryFile> _file, CreateTranscriptionRequestModel model, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature) throws Exception {
         //Do your magic!!!
         return new CreateTranslation200Response();
     }

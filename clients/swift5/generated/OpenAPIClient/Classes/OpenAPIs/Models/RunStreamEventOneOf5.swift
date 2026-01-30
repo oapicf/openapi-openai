@@ -10,11 +10,11 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Occurs when a [run](/docs/api-reference/runs/object) fails. */
+/** Occurs when a [run](/docs/api-reference/runs/object) ends with status &#x60;incomplete&#x60;. */
 public struct RunStreamEventOneOf5: Codable, JSONEncodable, Hashable {
 
     public enum Event: String, Codable, CaseIterable {
-        case threadPeriodRunPeriodFailed = "thread.run.failed"
+        case threadPeriodRunPeriodIncomplete = "thread.run.incomplete"
     }
     public var event: Event
     public var data: RunObject

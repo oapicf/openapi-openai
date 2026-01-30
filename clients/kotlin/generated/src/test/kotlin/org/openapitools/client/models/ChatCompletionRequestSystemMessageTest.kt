@@ -19,13 +19,14 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.ChatCompletionRequestSystemMessage
+import org.openapitools.client.models.ChatCompletionRequestSystemMessageContent
 
 class ChatCompletionRequestSystemMessageTest : ShouldSpec() {
     init {
         // uncomment below to create an instance of ChatCompletionRequestSystemMessage
         //val modelInstance = ChatCompletionRequestSystemMessage()
 
-        // to test the property `content` - The contents of the system message.
+        // to test the property `content`
         should("test content") {
             // uncomment below to test the property
             //modelInstance.content shouldBe ("TODO")

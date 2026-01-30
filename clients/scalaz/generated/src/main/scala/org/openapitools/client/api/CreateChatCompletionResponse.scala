@@ -20,6 +20,8 @@ case class CreateChatCompletionResponse (
   created: Integer,
 /* The model used for the chat completion. */
   model: String,
+/* The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request. */
+  serviceTier: Option[ServiceTier],
 /* This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  */
   systemFingerprint: Option[String],
 /* The object type, which is always `chat.completion`. */
@@ -28,6 +30,28 @@ usage: Option[CompletionUsage])
 
 object CreateChatCompletionResponse {
   import DateTimeCodecs._
+  sealed trait ServiceTier
+  case object Scale extends ServiceTier
+  case object Default extends ServiceTier
+
+  object ServiceTier {
+    def toServiceTier(s: String): Option[ServiceTier] = s match {
+      case "Scale" => Some(Scale)
+      case "Default" => Some(Default)
+      case _ => None
+    }
+
+    def fromServiceTier(x: ServiceTier): String = x match {
+      case Scale => "Scale"
+      case Default => "Default"
+    }
+  }
+
+  implicit val ServiceTierEnumEncoder: EncodeJson[ServiceTier] =
+    EncodeJson[ServiceTier](is => StringEncodeJson(ServiceTier.fromServiceTier(is)))
+
+  implicit val ServiceTierEnumDecoder: DecodeJson[ServiceTier] =
+    DecodeJson.optionDecoder[ServiceTier](n => n.string.flatMap(jStr => ServiceTier.toServiceTier(jStr)), "ServiceTier failed to de-serialize")
   sealed trait `Object`
   case object ChatCompletion extends `Object`
 

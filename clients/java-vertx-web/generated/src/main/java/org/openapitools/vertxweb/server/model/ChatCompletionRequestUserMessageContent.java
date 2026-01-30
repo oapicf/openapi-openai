@@ -2,7 +2,7 @@ package org.openapitools.vertxweb.server.model;
 
 import java.util.Objects;
 import java.util.List;
-import org.openapitools.vertxweb.server.model.ChatCompletionRequestMessageContentPart;
+import org.openapitools.vertxweb.server.model.ChatCompletionRequestUserMessageContentPart;
 
 /**
  * The contents of the user message. 

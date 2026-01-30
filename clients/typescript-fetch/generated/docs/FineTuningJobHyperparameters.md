@@ -1,13 +1,15 @@
 
 # FineTuningJobHyperparameters
 
-The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`nEpochs` | [FineTuningJobHyperparametersNEpochs](FineTuningJobHyperparametersNEpochs.md)
+`batchSize` | [CreateFineTuningJobRequestHyperparametersBatchSize](CreateFineTuningJobRequestHyperparametersBatchSize.md)
+`learningRateMultiplier` | [CreateFineTuningJobRequestHyperparametersLearningRateMultiplier](CreateFineTuningJobRequestHyperparametersLearningRateMultiplier.md)
+`nEpochs` | [CreateFineTuningJobRequestHyperparametersNEpochs](CreateFineTuningJobRequestHyperparametersNEpochs.md)
 
 ## Example
 
@@ -16,6 +18,8 @@ import type { FineTuningJobHyperparameters } from ''
 
 // TODO: Update the object below with actual values
 const example = {
+  "batchSize": null,
+  "learningRateMultiplier": null,
   "nEpochs": null,
 } satisfies FineTuningJobHyperparameters
 

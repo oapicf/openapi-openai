@@ -1,0 +1,41 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventInputAudioBufferCleared"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventInputAudioBufferCleared"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeServerEventInputAudioBufferCleared {
+    title = RealtimeServerEventInputAudioBufferCleared
+    description = RealtimeServerEventInputAudioBufferCleared
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "The unique ID of the server event."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;input_audio_buffer.cleared&#x60;."
+          enum = ["input_audio_buffer.cleared"]
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventInputAudioBufferCleared {
+    title = RealtimeServerEventInputAudioBufferCleared
+    description = RealtimeServerEventInputAudioBufferCleared
+    implements = openapi_server.resourceTypes.RealtimeServerEventInputAudioBufferCleared
+
+  }
+}

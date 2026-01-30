@@ -15,7 +15,7 @@ use serde::{Serialize, Deserialize};
 type ServiceError = Box<dyn Error + Send + Sync + 'static>;
 
 pub const BASE_PATH: &str = "/v1";
-pub const API_VERSION: &str = "2.0.0";
+pub const API_VERSION: &str = "2.3.0";
 
 mod auth;
 pub use auth::{AuthenticationApi, Claims};
@@ -47,13 +47,6 @@ pub enum ListAssistantsResponse {
     /// OK
     OK
     (models::ListAssistantsResponse)
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub enum CreateAssistantFileResponse {
-    /// OK
-    OK
-    (models::AssistantFileObject)
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
@@ -99,13 +92,6 @@ pub enum GetThreadResponse {
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub enum ListAssistantFilesResponse {
-    /// OK
-    OK
-    (models::ListAssistantFilesResponse)
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub enum ListMessagesResponse {
     /// OK
     OK
@@ -141,17 +127,10 @@ pub enum CancelRunResponse {
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub enum DeleteAssistantFileResponse {
+pub enum DeleteMessageResponse {
     /// OK
     OK
-    (models::DeleteAssistantFileResponse)
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub enum GetAssistantFileResponse {
-    /// OK
-    OK
-    (models::AssistantFileObject)
+    (models::DeleteMessageResponse)
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
@@ -166,13 +145,6 @@ pub enum GetRunResponse {
     /// OK
     OK
     (models::RunObject)
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub enum ListMessageFilesResponse {
-    /// OK
-    OK
-    (models::ListMessageFilesResponse)
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
@@ -201,13 +173,6 @@ pub enum SubmitToolOuputsToRunResponse {
     /// OK
     OK
     (models::RunObject)
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub enum GetMessageFileResponse {
-    /// OK
-    OK
-    (models::MessageFileObject)
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
@@ -245,6 +210,41 @@ pub enum CreateTranslationResponse {
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum ListAuditLogsResponse {
+    /// Audit logs listed successfully.
+    AuditLogsListedSuccessfully
+    (models::ListAuditLogsResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum CreateBatchResponse {
+    /// Batch created successfully.
+    BatchCreatedSuccessfully
+    (models::Batch)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum ListBatchesResponse {
+    /// Batch listed successfully.
+    BatchListedSuccessfully
+    (models::ListBatchesResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum CancelBatchResponse {
+    /// Batch is cancelling. Returns the cancelling batch's details.
+    BatchIsCancelling
+    (models::Batch)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum RetrieveBatchResponse {
+    /// Batch retrieved successfully.
+    BatchRetrievedSuccessfully
+    (models::Batch)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub enum CreateChatCompletionResponse {
     /// OK
     OK
@@ -256,6 +256,34 @@ pub enum CreateCompletionResponse {
     /// OK
     OK
     (models::CreateCompletionResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum AdminApiKeysCreateResponse {
+    /// The newly created admin API key.
+    TheNewlyCreatedAdminAPIKey
+    (models::AdminApiKey)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum AdminApiKeysListResponse {
+    /// A list of organization API keys.
+    AListOfOrganizationAPIKeys
+    (models::ApiKeyList)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum AdminApiKeysDeleteResponse {
+    /// Confirmation that the API key was deleted.
+    ConfirmationThatTheAPIKeyWasDeleted
+    (models::AdminApiKeysDelete200Response)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum AdminApiKeysGetResponse {
+    /// Details of the requested API key.
+    DetailsOfTheRequestedAPIKey
+    (models::AdminApiKey)
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
@@ -364,6 +392,34 @@ pub enum CreateImageVariationResponse {
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum InviteUserResponse {
+    /// User invited successfully.
+    UserInvitedSuccessfully
+    (models::Invite)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum ListInvitesResponse {
+    /// Invites listed successfully.
+    InvitesListedSuccessfully
+    (models::InviteListResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum DeleteInviteResponse {
+    /// Invite deleted successfully.
+    InviteDeletedSuccessfully
+    (models::InviteDeleteResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum RetrieveInviteResponse {
+    /// Invite retrieved successfully.
+    InviteRetrievedSuccessfully
+    (models::Invite)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub enum ListModelsResponse {
     /// OK
     OK
@@ -389,6 +445,401 @@ pub enum CreateModerationResponse {
     /// OK
     OK
     (models::CreateModerationResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum CreateProjectResponse {
+    /// Project created successfully.
+    ProjectCreatedSuccessfully
+    (models::Project)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum ListProjectsResponse {
+    /// Projects listed successfully.
+    ProjectsListedSuccessfully
+    (models::ProjectListResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum ArchiveProjectResponse {
+    /// Project archived successfully.
+    ProjectArchivedSuccessfully
+    (models::Project)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum CreateProjectServiceAccountResponse {
+    /// Project service account created successfully.
+    ProjectServiceAccountCreatedSuccessfully
+    (models::ProjectServiceAccountCreateResponse)
+    ,
+    /// Error response when project is archived.
+    ErrorResponseWhenProjectIsArchived
+    (models::ErrorResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum CreateProjectUserResponse {
+    /// User added to project successfully.
+    UserAddedToProjectSuccessfully
+    (models::ProjectUser)
+    ,
+    /// Error response for various conditions.
+    ErrorResponseForVariousConditions
+    (models::ErrorResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum ListProjectApiKeysResponse {
+    /// Project API keys listed successfully.
+    ProjectAPIKeysListedSuccessfully
+    (models::ProjectApiKeyListResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum ListProjectRateLimitsResponse {
+    /// Project rate limits listed successfully.
+    ProjectRateLimitsListedSuccessfully
+    (models::ProjectRateLimitListResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum ListProjectServiceAccountsResponse {
+    /// Project service accounts listed successfully.
+    ProjectServiceAccountsListedSuccessfully
+    (models::ProjectServiceAccountListResponse)
+    ,
+    /// Error response when project is archived.
+    ErrorResponseWhenProjectIsArchived
+    (models::ErrorResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum ListProjectUsersResponse {
+    /// Project users listed successfully.
+    ProjectUsersListedSuccessfully
+    (models::ProjectUserListResponse)
+    ,
+    /// Error response when project is archived.
+    ErrorResponseWhenProjectIsArchived
+    (models::ErrorResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum ModifyProjectResponse {
+    /// Project updated successfully.
+    ProjectUpdatedSuccessfully
+    (models::Project)
+    ,
+    /// Error response when updating the default project.
+    ErrorResponseWhenUpdatingTheDefaultProject
+    (models::ErrorResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum RetrieveProjectResponse {
+    /// Project retrieved successfully.
+    ProjectRetrievedSuccessfully
+    (models::Project)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum DeleteProjectApiKeyResponse {
+    /// Project API key deleted successfully.
+    ProjectAPIKeyDeletedSuccessfully
+    (models::ProjectApiKeyDeleteResponse)
+    ,
+    /// Error response for various conditions.
+    ErrorResponseForVariousConditions
+    (models::ErrorResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum DeleteProjectServiceAccountResponse {
+    /// Project service account deleted successfully.
+    ProjectServiceAccountDeletedSuccessfully
+    (models::ProjectServiceAccountDeleteResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum DeleteProjectUserResponse {
+    /// Project user deleted successfully.
+    ProjectUserDeletedSuccessfully
+    (models::ProjectUserDeleteResponse)
+    ,
+    /// Error response for various conditions.
+    ErrorResponseForVariousConditions
+    (models::ErrorResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum ModifyProjectUserResponse {
+    /// Project user's role updated successfully.
+    ProjectUser
+    (models::ProjectUser)
+    ,
+    /// Error response for various conditions.
+    ErrorResponseForVariousConditions
+    (models::ErrorResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum RetrieveProjectApiKeyResponse {
+    /// Project API key retrieved successfully.
+    ProjectAPIKeyRetrievedSuccessfully
+    (models::ProjectApiKey)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum RetrieveProjectServiceAccountResponse {
+    /// Project service account retrieved successfully.
+    ProjectServiceAccountRetrievedSuccessfully
+    (models::ProjectServiceAccount)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum RetrieveProjectUserResponse {
+    /// Project user retrieved successfully.
+    ProjectUserRetrievedSuccessfully
+    (models::ProjectUser)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum UpdateProjectRateLimitsResponse {
+    /// Project rate limit updated successfully.
+    ProjectRateLimitUpdatedSuccessfully
+    (models::ProjectRateLimit)
+    ,
+    /// Error response for various conditions.
+    ErrorResponseForVariousConditions
+    (models::ErrorResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum CreateRealtimeSessionResponse {
+    /// Session created successfully.
+    SessionCreatedSuccessfully
+    (models::RealtimeSessionCreateResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum CreateUploadResponse {
+    /// OK
+    OK
+    (models::Upload)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum AddUploadPartResponse {
+    /// OK
+    OK
+    (models::UploadPart)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum CancelUploadResponse {
+    /// OK
+    OK
+    (models::Upload)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum CompleteUploadResponse {
+    /// OK
+    OK
+    (models::Upload)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum UsageAudioSpeechesResponse {
+    /// Usage data retrieved successfully.
+    UsageDataRetrievedSuccessfully
+    (models::UsageResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum UsageAudioTranscriptionsResponse {
+    /// Usage data retrieved successfully.
+    UsageDataRetrievedSuccessfully
+    (models::UsageResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum UsageCodeInterpreterSessionsResponse {
+    /// Usage data retrieved successfully.
+    UsageDataRetrievedSuccessfully
+    (models::UsageResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum UsageCompletionsResponse {
+    /// Usage data retrieved successfully.
+    UsageDataRetrievedSuccessfully
+    (models::UsageResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum UsageCostsResponse {
+    /// Costs data retrieved successfully.
+    CostsDataRetrievedSuccessfully
+    (models::UsageResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum UsageEmbeddingsResponse {
+    /// Usage data retrieved successfully.
+    UsageDataRetrievedSuccessfully
+    (models::UsageResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum UsageImagesResponse {
+    /// Usage data retrieved successfully.
+    UsageDataRetrievedSuccessfully
+    (models::UsageResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum UsageModerationsResponse {
+    /// Usage data retrieved successfully.
+    UsageDataRetrievedSuccessfully
+    (models::UsageResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum UsageVectorStoresResponse {
+    /// Usage data retrieved successfully.
+    UsageDataRetrievedSuccessfully
+    (models::UsageResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum ListUsersResponse {
+    /// Users listed successfully.
+    UsersListedSuccessfully
+    (models::UserListResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum DeleteUserResponse {
+    /// User deleted successfully.
+    UserDeletedSuccessfully
+    (models::UserDeleteResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum ModifyUserResponse {
+    /// User role updated successfully.
+    UserRoleUpdatedSuccessfully
+    (models::User)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum RetrieveUserResponse {
+    /// User retrieved successfully.
+    UserRetrievedSuccessfully
+    (models::User)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum CreateVectorStoreResponse {
+    /// OK
+    OK
+    (models::VectorStoreObject)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum ListVectorStoresResponse {
+    /// OK
+    OK
+    (models::ListVectorStoresResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum CreateVectorStoreFileResponse {
+    /// OK
+    OK
+    (models::VectorStoreFileObject)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum CreateVectorStoreFileBatchResponse {
+    /// OK
+    OK
+    (models::VectorStoreFileBatchObject)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum DeleteVectorStoreResponse {
+    /// OK
+    OK
+    (models::DeleteVectorStoreResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum GetVectorStoreResponse {
+    /// OK
+    OK
+    (models::VectorStoreObject)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum ListVectorStoreFilesResponse {
+    /// OK
+    OK
+    (models::ListVectorStoreFilesResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum ModifyVectorStoreResponse {
+    /// OK
+    OK
+    (models::VectorStoreObject)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum CancelVectorStoreFileBatchResponse {
+    /// OK
+    OK
+    (models::VectorStoreFileBatchObject)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum DeleteVectorStoreFileResponse {
+    /// OK
+    OK
+    (models::DeleteVectorStoreFileResponse)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum GetVectorStoreFileResponse {
+    /// OK
+    OK
+    (models::VectorStoreFileObject)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum GetVectorStoreFileBatchResponse {
+    /// OK
+    OK
+    (models::VectorStoreFileBatchObject)
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+pub enum ListFilesInVectorStoreBatchResponse {
+    /// OK
+    OK
+    (models::ListVectorStoreFilesResponse)
 }
 
 /// API
@@ -423,13 +874,6 @@ pub trait Api<C: Send + Sync> {
         before: Option<String>,
         context: &C) -> Result<ListAssistantsResponse, ApiError>;
 
-    /// Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-    async fn create_assistant_file(
-        &self,
-        assistant_id: String,
-        create_assistant_file_request: models::CreateAssistantFileRequest,
-        context: &C) -> Result<CreateAssistantFileResponse, ApiError>;
-
     /// Create a message.
     async fn create_message(
         &self,
@@ -438,10 +882,11 @@ pub trait Api<C: Send + Sync> {
         context: &C) -> Result<CreateMessageResponse, ApiError>;
 
     /// Create a run.
-    async fn create_run(
+    async fn create_run<'a>(
         &self,
         thread_id: String,
         create_run_request: models::CreateRunRequest,
+        include_left_square_bracket_right_square_bracket: Option<&'a Vec<models::CreateRunIncludeParameterInner>>,
         context: &C) -> Result<CreateRunResponse, ApiError>;
 
     /// Delete an assistant.
@@ -467,16 +912,6 @@ pub trait Api<C: Send + Sync> {
         &self,
         thread_id: String,
         context: &C) -> Result<GetThreadResponse, ApiError>;
-
-    /// Returns a list of assistant files.
-    async fn list_assistant_files(
-        &self,
-        assistant_id: String,
-        limit: Option<i32>,
-        order: Option<models::ListAssistantsOrderParameter>,
-        after: Option<String>,
-        before: Option<String>,
-        context: &C) -> Result<ListAssistantFilesResponse, ApiError>;
 
     /// Returns a list of messages for a given thread.
     async fn list_messages(
@@ -520,19 +955,12 @@ pub trait Api<C: Send + Sync> {
         run_id: String,
         context: &C) -> Result<CancelRunResponse, ApiError>;
 
-    /// Delete an assistant file.
-    async fn delete_assistant_file(
+    /// Deletes a message.
+    async fn delete_message(
         &self,
-        assistant_id: String,
-        file_id: String,
-        context: &C) -> Result<DeleteAssistantFileResponse, ApiError>;
-
-    /// Retrieves an AssistantFile.
-    async fn get_assistant_file(
-        &self,
-        assistant_id: String,
-        file_id: String,
-        context: &C) -> Result<GetAssistantFileResponse, ApiError>;
+        thread_id: String,
+        message_id: String,
+        context: &C) -> Result<DeleteMessageResponse, ApiError>;
 
     /// Retrieve a message.
     async fn get_message(
@@ -548,19 +976,8 @@ pub trait Api<C: Send + Sync> {
         run_id: String,
         context: &C) -> Result<GetRunResponse, ApiError>;
 
-    /// Returns a list of message files.
-    async fn list_message_files(
-        &self,
-        thread_id: String,
-        message_id: String,
-        limit: Option<i32>,
-        order: Option<models::ListAssistantsOrderParameter>,
-        after: Option<String>,
-        before: Option<String>,
-        context: &C) -> Result<ListMessageFilesResponse, ApiError>;
-
     /// Returns a list of run steps belonging to a run.
-    async fn list_run_steps(
+    async fn list_run_steps<'a>(
         &self,
         thread_id: String,
         run_id: String,
@@ -568,6 +985,7 @@ pub trait Api<C: Send + Sync> {
         order: Option<models::ListAssistantsOrderParameter>,
         after: Option<String>,
         before: Option<String>,
+        include_left_square_bracket_right_square_bracket: Option<&'a Vec<models::CreateRunIncludeParameterInner>>,
         context: &C) -> Result<ListRunStepsResponse, ApiError>;
 
     /// Modifies a message.
@@ -594,20 +1012,13 @@ pub trait Api<C: Send + Sync> {
         submit_tool_outputs_run_request: models::SubmitToolOutputsRunRequest,
         context: &C) -> Result<SubmitToolOuputsToRunResponse, ApiError>;
 
-    /// Retrieves a message file.
-    async fn get_message_file(
-        &self,
-        thread_id: String,
-        message_id: String,
-        file_id: String,
-        context: &C) -> Result<GetMessageFileResponse, ApiError>;
-
     /// Retrieves a run step.
-    async fn get_run_step(
+    async fn get_run_step<'a>(
         &self,
         thread_id: String,
         run_id: String,
         step_id: String,
+        include_left_square_bracket_right_square_bracket: Option<&'a Vec<models::CreateRunIncludeParameterInner>>,
         context: &C) -> Result<GetRunStepResponse, ApiError>;
 
     /// Generates audio from the input text.
@@ -623,7 +1034,7 @@ pub trait Api<C: Send + Sync> {
         model: models::CreateTranscriptionRequestModel,
         language: Option<String>,
         prompt: Option<String>,
-        response_format: Option<models::CreateTranscriptionRequestResponseFormat>,
+        response_format: Option<models::AudioResponseFormat>,
         temperature: Option<f64>,
         timestamp_granularities_left_square_bracket_right_square_bracket: Option<&'a Vec<models::CreateTranscriptionRequestTimestampGranularitiesInner>>,
         context: &C) -> Result<CreateTranscriptionResponse, ApiError>;
@@ -634,11 +1045,50 @@ pub trait Api<C: Send + Sync> {
         file: swagger::ByteArray,
         model: models::CreateTranscriptionRequestModel,
         prompt: Option<String>,
-        response_format: Option<String>,
+        response_format: Option<models::AudioResponseFormat>,
         temperature: Option<f64>,
         context: &C) -> Result<CreateTranslationResponse, ApiError>;
 
-    /// Creates a model response for the given chat conversation.
+    /// List user actions and configuration changes within this organization.
+    async fn list_audit_logs<'a>(
+        &self,
+        effective_at: Option<models::ListAuditLogsEffectiveAtParameter>,
+        project_ids_left_square_bracket_right_square_bracket: Option<&'a Vec<String>>,
+        event_types_left_square_bracket_right_square_bracket: Option<&'a Vec<models::AuditLogEventType>>,
+        actor_ids_left_square_bracket_right_square_bracket: Option<&'a Vec<String>>,
+        actor_emails_left_square_bracket_right_square_bracket: Option<&'a Vec<String>>,
+        resource_ids_left_square_bracket_right_square_bracket: Option<&'a Vec<String>>,
+        limit: Option<i32>,
+        after: Option<String>,
+        before: Option<String>,
+        context: &C) -> Result<ListAuditLogsResponse, ApiError>;
+
+    /// Creates and executes a batch from an uploaded file of requests
+    async fn create_batch(
+        &self,
+        create_batch_request: models::CreateBatchRequest,
+        context: &C) -> Result<CreateBatchResponse, ApiError>;
+
+    /// List your organization's batches.
+    async fn list_batches(
+        &self,
+        after: Option<String>,
+        limit: Option<i32>,
+        context: &C) -> Result<ListBatchesResponse, ApiError>;
+
+    /// Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+    async fn cancel_batch(
+        &self,
+        batch_id: String,
+        context: &C) -> Result<CancelBatchResponse, ApiError>;
+
+    /// Retrieves a batch.
+    async fn retrieve_batch(
+        &self,
+        batch_id: String,
+        context: &C) -> Result<RetrieveBatchResponse, ApiError>;
+
+    /// Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). 
     async fn create_chat_completion(
         &self,
         create_chat_completion_request: models::CreateChatCompletionRequest,
@@ -650,23 +1100,52 @@ pub trait Api<C: Send + Sync> {
         create_completion_request: models::CreateCompletionRequest,
         context: &C) -> Result<CreateCompletionResponse, ApiError>;
 
+    /// Create an organization admin API key
+    async fn admin_api_keys_create(
+        &self,
+        admin_api_keys_create_request: models::AdminApiKeysCreateRequest,
+        context: &C) -> Result<AdminApiKeysCreateResponse, ApiError>;
+
+    /// List organization API keys
+    async fn admin_api_keys_list(
+        &self,
+        after: Option<swagger::Nullable<String>>,
+        order: Option<models::AdminApiKeysListOrderParameter>,
+        limit: Option<i32>,
+        context: &C) -> Result<AdminApiKeysListResponse, ApiError>;
+
+    /// Delete an organization admin API key
+    async fn admin_api_keys_delete(
+        &self,
+        key_id: String,
+        context: &C) -> Result<AdminApiKeysDeleteResponse, ApiError>;
+
+    /// Retrieve a single organization API key
+    async fn admin_api_keys_get(
+        &self,
+        key_id: String,
+        context: &C) -> Result<AdminApiKeysGetResponse, ApiError>;
+
     /// Creates an embedding vector representing the input text.
     async fn create_embedding(
         &self,
         create_embedding_request: models::CreateEmbeddingRequest,
         context: &C) -> Result<CreateEmbeddingResponse, ApiError>;
 
-    /// Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+    /// Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
     async fn create_file(
         &self,
         file: swagger::ByteArray,
         purpose: models::CreateFileRequestPurpose,
         context: &C) -> Result<CreateFileResponse, ApiError>;
 
-    /// Returns a list of files that belong to the user's organization.
+    /// Returns a list of files.
     async fn list_files(
         &self,
         purpose: Option<String>,
+        limit: Option<i32>,
+        order: Option<models::ListAssistantsOrderParameter>,
+        after: Option<String>,
         context: &C) -> Result<ListFilesResponse, ApiError>;
 
     /// Delete a file.
@@ -743,7 +1222,7 @@ pub trait Api<C: Send + Sync> {
         model: Option<swagger::Nullable<models::CreateImageEditRequestModel>>,
         n: Option<swagger::Nullable<i32>>,
         size: Option<swagger::Nullable<models::CreateImageEditRequestSize>>,
-        response_format: Option<swagger::Nullable<models::CreateImageRequestResponseFormat>>,
+        response_format: Option<swagger::Nullable<models::CreateImageEditRequestResponseFormat>>,
         user: Option<String>,
         context: &C) -> Result<CreateImageEditResponse, ApiError>;
 
@@ -753,10 +1232,35 @@ pub trait Api<C: Send + Sync> {
         image: swagger::ByteArray,
         model: Option<swagger::Nullable<models::CreateImageEditRequestModel>>,
         n: Option<swagger::Nullable<i32>>,
-        response_format: Option<swagger::Nullable<models::CreateImageRequestResponseFormat>>,
+        response_format: Option<swagger::Nullable<models::CreateImageEditRequestResponseFormat>>,
         size: Option<swagger::Nullable<models::CreateImageEditRequestSize>>,
         user: Option<String>,
         context: &C) -> Result<CreateImageVariationResponse, ApiError>;
+
+    /// Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+    async fn invite_user(
+        &self,
+        invite_request: models::InviteRequest,
+        context: &C) -> Result<InviteUserResponse, ApiError>;
+
+    /// Returns a list of invites in the organization.
+    async fn list_invites(
+        &self,
+        limit: Option<i32>,
+        after: Option<String>,
+        context: &C) -> Result<ListInvitesResponse, ApiError>;
+
+    /// Delete an invite. If the invite has already been accepted, it cannot be deleted.
+    async fn delete_invite(
+        &self,
+        invite_id: String,
+        context: &C) -> Result<DeleteInviteResponse, ApiError>;
+
+    /// Retrieves an invite.
+    async fn retrieve_invite(
+        &self,
+        invite_id: String,
+        context: &C) -> Result<RetrieveInviteResponse, ApiError>;
 
     /// Lists the currently available models, and provides basic information about each one such as the owner and availability.
     async fn list_models(
@@ -775,11 +1279,435 @@ pub trait Api<C: Send + Sync> {
         model: String,
         context: &C) -> Result<RetrieveModelResponse, ApiError>;
 
-    /// Classifies if text is potentially harmful.
+    /// Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
     async fn create_moderation(
         &self,
         create_moderation_request: models::CreateModerationRequest,
         context: &C) -> Result<CreateModerationResponse, ApiError>;
+
+    /// Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
+    async fn create_project(
+        &self,
+        project_create_request: models::ProjectCreateRequest,
+        context: &C) -> Result<CreateProjectResponse, ApiError>;
+
+    /// Returns a list of projects.
+    async fn list_projects(
+        &self,
+        limit: Option<i32>,
+        after: Option<String>,
+        include_archived: Option<bool>,
+        context: &C) -> Result<ListProjectsResponse, ApiError>;
+
+    /// Archives a project in the organization. Archived projects cannot be used or updated.
+    async fn archive_project(
+        &self,
+        project_id: String,
+        context: &C) -> Result<ArchiveProjectResponse, ApiError>;
+
+    /// Creates a new service account in the project. This also returns an unredacted API key for the service account.
+    async fn create_project_service_account(
+        &self,
+        project_id: String,
+        project_service_account_create_request: models::ProjectServiceAccountCreateRequest,
+        context: &C) -> Result<CreateProjectServiceAccountResponse, ApiError>;
+
+    /// Adds a user to the project. Users must already be members of the organization to be added to a project.
+    async fn create_project_user(
+        &self,
+        project_id: String,
+        project_user_create_request: models::ProjectUserCreateRequest,
+        context: &C) -> Result<CreateProjectUserResponse, ApiError>;
+
+    /// Returns a list of API keys in the project.
+    async fn list_project_api_keys(
+        &self,
+        project_id: String,
+        limit: Option<i32>,
+        after: Option<String>,
+        context: &C) -> Result<ListProjectApiKeysResponse, ApiError>;
+
+    /// Returns the rate limits per model for a project.
+    async fn list_project_rate_limits(
+        &self,
+        project_id: String,
+        limit: Option<i32>,
+        after: Option<String>,
+        before: Option<String>,
+        context: &C) -> Result<ListProjectRateLimitsResponse, ApiError>;
+
+    /// Returns a list of service accounts in the project.
+    async fn list_project_service_accounts(
+        &self,
+        project_id: String,
+        limit: Option<i32>,
+        after: Option<String>,
+        context: &C) -> Result<ListProjectServiceAccountsResponse, ApiError>;
+
+    /// Returns a list of users in the project.
+    async fn list_project_users(
+        &self,
+        project_id: String,
+        limit: Option<i32>,
+        after: Option<String>,
+        context: &C) -> Result<ListProjectUsersResponse, ApiError>;
+
+    /// Modifies a project in the organization.
+    async fn modify_project(
+        &self,
+        project_id: String,
+        project_update_request: models::ProjectUpdateRequest,
+        context: &C) -> Result<ModifyProjectResponse, ApiError>;
+
+    /// Retrieves a project.
+    async fn retrieve_project(
+        &self,
+        project_id: String,
+        context: &C) -> Result<RetrieveProjectResponse, ApiError>;
+
+    /// Deletes an API key from the project.
+    async fn delete_project_api_key(
+        &self,
+        project_id: String,
+        key_id: String,
+        context: &C) -> Result<DeleteProjectApiKeyResponse, ApiError>;
+
+    /// Deletes a service account from the project.
+    async fn delete_project_service_account(
+        &self,
+        project_id: String,
+        service_account_id: String,
+        context: &C) -> Result<DeleteProjectServiceAccountResponse, ApiError>;
+
+    /// Deletes a user from the project.
+    async fn delete_project_user(
+        &self,
+        project_id: String,
+        user_id: String,
+        context: &C) -> Result<DeleteProjectUserResponse, ApiError>;
+
+    /// Modifies a user's role in the project.
+    async fn modify_project_user(
+        &self,
+        project_id: String,
+        user_id: String,
+        project_user_update_request: models::ProjectUserUpdateRequest,
+        context: &C) -> Result<ModifyProjectUserResponse, ApiError>;
+
+    /// Retrieves an API key in the project.
+    async fn retrieve_project_api_key(
+        &self,
+        project_id: String,
+        key_id: String,
+        context: &C) -> Result<RetrieveProjectApiKeyResponse, ApiError>;
+
+    /// Retrieves a service account in the project.
+    async fn retrieve_project_service_account(
+        &self,
+        project_id: String,
+        service_account_id: String,
+        context: &C) -> Result<RetrieveProjectServiceAccountResponse, ApiError>;
+
+    /// Retrieves a user in the project.
+    async fn retrieve_project_user(
+        &self,
+        project_id: String,
+        user_id: String,
+        context: &C) -> Result<RetrieveProjectUserResponse, ApiError>;
+
+    /// Updates a project rate limit.
+    async fn update_project_rate_limits(
+        &self,
+        project_id: String,
+        rate_limit_id: String,
+        project_rate_limit_update_request: models::ProjectRateLimitUpdateRequest,
+        context: &C) -> Result<UpdateProjectRateLimitsResponse, ApiError>;
+
+    /// Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API. 
+    async fn create_realtime_session(
+        &self,
+        realtime_session_create_request: models::RealtimeSessionCreateRequest,
+        context: &C) -> Result<CreateRealtimeSessionResponse, ApiError>;
+
+    /// Creates an intermediate [Upload](/docs/api-reference/uploads/object) object that you can add [Parts](/docs/api-reference/uploads/part-object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it.  Once you complete the Upload, we will create a [File](/docs/api-reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object.  For certain `purpose`s, the correct `mime_type` must be specified. Please refer to documentation for the supported MIME types for your use case: - [Assistants](/docs/assistants/tools/file-search#supported-files)  For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api-reference/files/create). 
+    async fn create_upload(
+        &self,
+        create_upload_request: models::CreateUploadRequest,
+        context: &C) -> Result<CreateUploadResponse, ApiError>;
+
+    /// Adds a [Part](/docs/api-reference/uploads/part-object) to an [Upload](/docs/api-reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api-reference/uploads/complete). 
+    async fn add_upload_part(
+        &self,
+        upload_id: String,
+        data: swagger::ByteArray,
+        context: &C) -> Result<AddUploadPartResponse, ApiError>;
+
+    /// Cancels the Upload. No Parts may be added after an Upload is cancelled. 
+    async fn cancel_upload(
+        &self,
+        upload_id: String,
+        context: &C) -> Result<CancelUploadResponse, ApiError>;
+
+    /// Completes the [Upload](/docs/api-reference/uploads/object).   Within the returned Upload object, there is a nested [File](/docs/api-reference/files/object) object that is ready to use in the rest of the platform.  You can specify the order of the Parts by passing in an ordered list of the Part IDs.  The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed. 
+    async fn complete_upload(
+        &self,
+        upload_id: String,
+        complete_upload_request: models::CompleteUploadRequest,
+        context: &C) -> Result<CompleteUploadResponse, ApiError>;
+
+    /// Get audio speeches usage details for the organization.
+    async fn usage_audio_speeches<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageAudioSpeechesGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        context: &C) -> Result<UsageAudioSpeechesResponse, ApiError>;
+
+    /// Get audio transcriptions usage details for the organization.
+    async fn usage_audio_transcriptions<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageAudioSpeechesGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        context: &C) -> Result<UsageAudioTranscriptionsResponse, ApiError>;
+
+    /// Get code interpreter sessions usage details for the organization.
+    async fn usage_code_interpreter_sessions<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageCodeInterpreterSessionsGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        context: &C) -> Result<UsageCodeInterpreterSessionsResponse, ApiError>;
+
+    /// Get completions usage details for the organization.
+    async fn usage_completions<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        batch: Option<bool>,
+        group_by: Option<&'a Vec<models::UsageCompletionsGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        context: &C) -> Result<UsageCompletionsResponse, ApiError>;
+
+    /// Get costs details for the organization.
+    async fn usage_costs<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageCostsBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageCostsGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        context: &C) -> Result<UsageCostsResponse, ApiError>;
+
+    /// Get embeddings usage details for the organization.
+    async fn usage_embeddings<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageAudioSpeechesGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        context: &C) -> Result<UsageEmbeddingsResponse, ApiError>;
+
+    /// Get images usage details for the organization.
+    async fn usage_images<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        sources: Option<&'a Vec<models::UsageImagesSourcesParameterInner>>,
+        sizes: Option<&'a Vec<models::UsageImagesSizesParameterInner>>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageImagesGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        context: &C) -> Result<UsageImagesResponse, ApiError>;
+
+    /// Get moderations usage details for the organization.
+    async fn usage_moderations<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageAudioSpeechesGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        context: &C) -> Result<UsageModerationsResponse, ApiError>;
+
+    /// Get vector stores usage details for the organization.
+    async fn usage_vector_stores<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageCodeInterpreterSessionsGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        context: &C) -> Result<UsageVectorStoresResponse, ApiError>;
+
+    /// Lists all of the users in the organization.
+    async fn list_users(
+        &self,
+        limit: Option<i32>,
+        after: Option<String>,
+        context: &C) -> Result<ListUsersResponse, ApiError>;
+
+    /// Deletes a user from the organization.
+    async fn delete_user(
+        &self,
+        user_id: String,
+        context: &C) -> Result<DeleteUserResponse, ApiError>;
+
+    /// Modifies a user's role in the organization.
+    async fn modify_user(
+        &self,
+        user_id: String,
+        user_role_update_request: models::UserRoleUpdateRequest,
+        context: &C) -> Result<ModifyUserResponse, ApiError>;
+
+    /// Retrieves a user by their identifier.
+    async fn retrieve_user(
+        &self,
+        user_id: String,
+        context: &C) -> Result<RetrieveUserResponse, ApiError>;
+
+    /// Create a vector store.
+    async fn create_vector_store(
+        &self,
+        create_vector_store_request: models::CreateVectorStoreRequest,
+        context: &C) -> Result<CreateVectorStoreResponse, ApiError>;
+
+    /// Returns a list of vector stores.
+    async fn list_vector_stores(
+        &self,
+        limit: Option<i32>,
+        order: Option<models::ListAssistantsOrderParameter>,
+        after: Option<String>,
+        before: Option<String>,
+        context: &C) -> Result<ListVectorStoresResponse, ApiError>;
+
+    /// Create a vector store file by attaching a [File](/docs/api-reference/files) to a [vector store](/docs/api-reference/vector-stores/object).
+    async fn create_vector_store_file(
+        &self,
+        vector_store_id: String,
+        create_vector_store_file_request: models::CreateVectorStoreFileRequest,
+        context: &C) -> Result<CreateVectorStoreFileResponse, ApiError>;
+
+    /// Create a vector store file batch.
+    async fn create_vector_store_file_batch(
+        &self,
+        vector_store_id: String,
+        create_vector_store_file_batch_request: models::CreateVectorStoreFileBatchRequest,
+        context: &C) -> Result<CreateVectorStoreFileBatchResponse, ApiError>;
+
+    /// Delete a vector store.
+    async fn delete_vector_store(
+        &self,
+        vector_store_id: String,
+        context: &C) -> Result<DeleteVectorStoreResponse, ApiError>;
+
+    /// Retrieves a vector store.
+    async fn get_vector_store(
+        &self,
+        vector_store_id: String,
+        context: &C) -> Result<GetVectorStoreResponse, ApiError>;
+
+    /// Returns a list of vector store files.
+    async fn list_vector_store_files(
+        &self,
+        vector_store_id: String,
+        limit: Option<i32>,
+        order: Option<models::ListAssistantsOrderParameter>,
+        after: Option<String>,
+        before: Option<String>,
+        filter: Option<models::ListFilesInVectorStoreBatchFilterParameter>,
+        context: &C) -> Result<ListVectorStoreFilesResponse, ApiError>;
+
+    /// Modifies a vector store.
+    async fn modify_vector_store(
+        &self,
+        vector_store_id: String,
+        update_vector_store_request: models::UpdateVectorStoreRequest,
+        context: &C) -> Result<ModifyVectorStoreResponse, ApiError>;
+
+    /// Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+    async fn cancel_vector_store_file_batch(
+        &self,
+        vector_store_id: String,
+        batch_id: String,
+        context: &C) -> Result<CancelVectorStoreFileBatchResponse, ApiError>;
+
+    /// Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api-reference/files/delete) endpoint.
+    async fn delete_vector_store_file(
+        &self,
+        vector_store_id: String,
+        file_id: String,
+        context: &C) -> Result<DeleteVectorStoreFileResponse, ApiError>;
+
+    /// Retrieves a vector store file.
+    async fn get_vector_store_file(
+        &self,
+        vector_store_id: String,
+        file_id: String,
+        context: &C) -> Result<GetVectorStoreFileResponse, ApiError>;
+
+    /// Retrieves a vector store file batch.
+    async fn get_vector_store_file_batch(
+        &self,
+        vector_store_id: String,
+        batch_id: String,
+        context: &C) -> Result<GetVectorStoreFileBatchResponse, ApiError>;
+
+    /// Returns a list of vector store files in a batch.
+    async fn list_files_in_vector_store_batch(
+        &self,
+        vector_store_id: String,
+        batch_id: String,
+        limit: Option<i32>,
+        order: Option<models::ListAssistantsOrderParameter>,
+        after: Option<String>,
+        before: Option<String>,
+        filter: Option<models::ListFilesInVectorStoreBatchFilterParameter>,
+        context: &C) -> Result<ListFilesInVectorStoreBatchResponse, ApiError>;
 
 }
 
@@ -822,13 +1750,6 @@ pub trait ApiNoContext<C: Send + Sync> {
         before: Option<String>,
         ) -> Result<ListAssistantsResponse, ApiError>;
 
-    /// Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-    async fn create_assistant_file(
-        &self,
-        assistant_id: String,
-        create_assistant_file_request: models::CreateAssistantFileRequest,
-        ) -> Result<CreateAssistantFileResponse, ApiError>;
-
     /// Create a message.
     async fn create_message(
         &self,
@@ -837,10 +1758,11 @@ pub trait ApiNoContext<C: Send + Sync> {
         ) -> Result<CreateMessageResponse, ApiError>;
 
     /// Create a run.
-    async fn create_run(
+    async fn create_run<'a>(
         &self,
         thread_id: String,
         create_run_request: models::CreateRunRequest,
+        include_left_square_bracket_right_square_bracket: Option<&'a Vec<models::CreateRunIncludeParameterInner>>,
         ) -> Result<CreateRunResponse, ApiError>;
 
     /// Delete an assistant.
@@ -866,16 +1788,6 @@ pub trait ApiNoContext<C: Send + Sync> {
         &self,
         thread_id: String,
         ) -> Result<GetThreadResponse, ApiError>;
-
-    /// Returns a list of assistant files.
-    async fn list_assistant_files(
-        &self,
-        assistant_id: String,
-        limit: Option<i32>,
-        order: Option<models::ListAssistantsOrderParameter>,
-        after: Option<String>,
-        before: Option<String>,
-        ) -> Result<ListAssistantFilesResponse, ApiError>;
 
     /// Returns a list of messages for a given thread.
     async fn list_messages(
@@ -919,19 +1831,12 @@ pub trait ApiNoContext<C: Send + Sync> {
         run_id: String,
         ) -> Result<CancelRunResponse, ApiError>;
 
-    /// Delete an assistant file.
-    async fn delete_assistant_file(
+    /// Deletes a message.
+    async fn delete_message(
         &self,
-        assistant_id: String,
-        file_id: String,
-        ) -> Result<DeleteAssistantFileResponse, ApiError>;
-
-    /// Retrieves an AssistantFile.
-    async fn get_assistant_file(
-        &self,
-        assistant_id: String,
-        file_id: String,
-        ) -> Result<GetAssistantFileResponse, ApiError>;
+        thread_id: String,
+        message_id: String,
+        ) -> Result<DeleteMessageResponse, ApiError>;
 
     /// Retrieve a message.
     async fn get_message(
@@ -947,19 +1852,8 @@ pub trait ApiNoContext<C: Send + Sync> {
         run_id: String,
         ) -> Result<GetRunResponse, ApiError>;
 
-    /// Returns a list of message files.
-    async fn list_message_files(
-        &self,
-        thread_id: String,
-        message_id: String,
-        limit: Option<i32>,
-        order: Option<models::ListAssistantsOrderParameter>,
-        after: Option<String>,
-        before: Option<String>,
-        ) -> Result<ListMessageFilesResponse, ApiError>;
-
     /// Returns a list of run steps belonging to a run.
-    async fn list_run_steps(
+    async fn list_run_steps<'a>(
         &self,
         thread_id: String,
         run_id: String,
@@ -967,6 +1861,7 @@ pub trait ApiNoContext<C: Send + Sync> {
         order: Option<models::ListAssistantsOrderParameter>,
         after: Option<String>,
         before: Option<String>,
+        include_left_square_bracket_right_square_bracket: Option<&'a Vec<models::CreateRunIncludeParameterInner>>,
         ) -> Result<ListRunStepsResponse, ApiError>;
 
     /// Modifies a message.
@@ -993,20 +1888,13 @@ pub trait ApiNoContext<C: Send + Sync> {
         submit_tool_outputs_run_request: models::SubmitToolOutputsRunRequest,
         ) -> Result<SubmitToolOuputsToRunResponse, ApiError>;
 
-    /// Retrieves a message file.
-    async fn get_message_file(
-        &self,
-        thread_id: String,
-        message_id: String,
-        file_id: String,
-        ) -> Result<GetMessageFileResponse, ApiError>;
-
     /// Retrieves a run step.
-    async fn get_run_step(
+    async fn get_run_step<'a>(
         &self,
         thread_id: String,
         run_id: String,
         step_id: String,
+        include_left_square_bracket_right_square_bracket: Option<&'a Vec<models::CreateRunIncludeParameterInner>>,
         ) -> Result<GetRunStepResponse, ApiError>;
 
     /// Generates audio from the input text.
@@ -1022,7 +1910,7 @@ pub trait ApiNoContext<C: Send + Sync> {
         model: models::CreateTranscriptionRequestModel,
         language: Option<String>,
         prompt: Option<String>,
-        response_format: Option<models::CreateTranscriptionRequestResponseFormat>,
+        response_format: Option<models::AudioResponseFormat>,
         temperature: Option<f64>,
         timestamp_granularities_left_square_bracket_right_square_bracket: Option<&'a Vec<models::CreateTranscriptionRequestTimestampGranularitiesInner>>,
         ) -> Result<CreateTranscriptionResponse, ApiError>;
@@ -1033,11 +1921,50 @@ pub trait ApiNoContext<C: Send + Sync> {
         file: swagger::ByteArray,
         model: models::CreateTranscriptionRequestModel,
         prompt: Option<String>,
-        response_format: Option<String>,
+        response_format: Option<models::AudioResponseFormat>,
         temperature: Option<f64>,
         ) -> Result<CreateTranslationResponse, ApiError>;
 
-    /// Creates a model response for the given chat conversation.
+    /// List user actions and configuration changes within this organization.
+    async fn list_audit_logs<'a>(
+        &self,
+        effective_at: Option<models::ListAuditLogsEffectiveAtParameter>,
+        project_ids_left_square_bracket_right_square_bracket: Option<&'a Vec<String>>,
+        event_types_left_square_bracket_right_square_bracket: Option<&'a Vec<models::AuditLogEventType>>,
+        actor_ids_left_square_bracket_right_square_bracket: Option<&'a Vec<String>>,
+        actor_emails_left_square_bracket_right_square_bracket: Option<&'a Vec<String>>,
+        resource_ids_left_square_bracket_right_square_bracket: Option<&'a Vec<String>>,
+        limit: Option<i32>,
+        after: Option<String>,
+        before: Option<String>,
+        ) -> Result<ListAuditLogsResponse, ApiError>;
+
+    /// Creates and executes a batch from an uploaded file of requests
+    async fn create_batch(
+        &self,
+        create_batch_request: models::CreateBatchRequest,
+        ) -> Result<CreateBatchResponse, ApiError>;
+
+    /// List your organization's batches.
+    async fn list_batches(
+        &self,
+        after: Option<String>,
+        limit: Option<i32>,
+        ) -> Result<ListBatchesResponse, ApiError>;
+
+    /// Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+    async fn cancel_batch(
+        &self,
+        batch_id: String,
+        ) -> Result<CancelBatchResponse, ApiError>;
+
+    /// Retrieves a batch.
+    async fn retrieve_batch(
+        &self,
+        batch_id: String,
+        ) -> Result<RetrieveBatchResponse, ApiError>;
+
+    /// Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). 
     async fn create_chat_completion(
         &self,
         create_chat_completion_request: models::CreateChatCompletionRequest,
@@ -1049,23 +1976,52 @@ pub trait ApiNoContext<C: Send + Sync> {
         create_completion_request: models::CreateCompletionRequest,
         ) -> Result<CreateCompletionResponse, ApiError>;
 
+    /// Create an organization admin API key
+    async fn admin_api_keys_create(
+        &self,
+        admin_api_keys_create_request: models::AdminApiKeysCreateRequest,
+        ) -> Result<AdminApiKeysCreateResponse, ApiError>;
+
+    /// List organization API keys
+    async fn admin_api_keys_list(
+        &self,
+        after: Option<swagger::Nullable<String>>,
+        order: Option<models::AdminApiKeysListOrderParameter>,
+        limit: Option<i32>,
+        ) -> Result<AdminApiKeysListResponse, ApiError>;
+
+    /// Delete an organization admin API key
+    async fn admin_api_keys_delete(
+        &self,
+        key_id: String,
+        ) -> Result<AdminApiKeysDeleteResponse, ApiError>;
+
+    /// Retrieve a single organization API key
+    async fn admin_api_keys_get(
+        &self,
+        key_id: String,
+        ) -> Result<AdminApiKeysGetResponse, ApiError>;
+
     /// Creates an embedding vector representing the input text.
     async fn create_embedding(
         &self,
         create_embedding_request: models::CreateEmbeddingRequest,
         ) -> Result<CreateEmbeddingResponse, ApiError>;
 
-    /// Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+    /// Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
     async fn create_file(
         &self,
         file: swagger::ByteArray,
         purpose: models::CreateFileRequestPurpose,
         ) -> Result<CreateFileResponse, ApiError>;
 
-    /// Returns a list of files that belong to the user's organization.
+    /// Returns a list of files.
     async fn list_files(
         &self,
         purpose: Option<String>,
+        limit: Option<i32>,
+        order: Option<models::ListAssistantsOrderParameter>,
+        after: Option<String>,
         ) -> Result<ListFilesResponse, ApiError>;
 
     /// Delete a file.
@@ -1142,7 +2098,7 @@ pub trait ApiNoContext<C: Send + Sync> {
         model: Option<swagger::Nullable<models::CreateImageEditRequestModel>>,
         n: Option<swagger::Nullable<i32>>,
         size: Option<swagger::Nullable<models::CreateImageEditRequestSize>>,
-        response_format: Option<swagger::Nullable<models::CreateImageRequestResponseFormat>>,
+        response_format: Option<swagger::Nullable<models::CreateImageEditRequestResponseFormat>>,
         user: Option<String>,
         ) -> Result<CreateImageEditResponse, ApiError>;
 
@@ -1152,10 +2108,35 @@ pub trait ApiNoContext<C: Send + Sync> {
         image: swagger::ByteArray,
         model: Option<swagger::Nullable<models::CreateImageEditRequestModel>>,
         n: Option<swagger::Nullable<i32>>,
-        response_format: Option<swagger::Nullable<models::CreateImageRequestResponseFormat>>,
+        response_format: Option<swagger::Nullable<models::CreateImageEditRequestResponseFormat>>,
         size: Option<swagger::Nullable<models::CreateImageEditRequestSize>>,
         user: Option<String>,
         ) -> Result<CreateImageVariationResponse, ApiError>;
+
+    /// Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+    async fn invite_user(
+        &self,
+        invite_request: models::InviteRequest,
+        ) -> Result<InviteUserResponse, ApiError>;
+
+    /// Returns a list of invites in the organization.
+    async fn list_invites(
+        &self,
+        limit: Option<i32>,
+        after: Option<String>,
+        ) -> Result<ListInvitesResponse, ApiError>;
+
+    /// Delete an invite. If the invite has already been accepted, it cannot be deleted.
+    async fn delete_invite(
+        &self,
+        invite_id: String,
+        ) -> Result<DeleteInviteResponse, ApiError>;
+
+    /// Retrieves an invite.
+    async fn retrieve_invite(
+        &self,
+        invite_id: String,
+        ) -> Result<RetrieveInviteResponse, ApiError>;
 
     /// Lists the currently available models, and provides basic information about each one such as the owner and availability.
     async fn list_models(
@@ -1174,11 +2155,435 @@ pub trait ApiNoContext<C: Send + Sync> {
         model: String,
         ) -> Result<RetrieveModelResponse, ApiError>;
 
-    /// Classifies if text is potentially harmful.
+    /// Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
     async fn create_moderation(
         &self,
         create_moderation_request: models::CreateModerationRequest,
         ) -> Result<CreateModerationResponse, ApiError>;
+
+    /// Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
+    async fn create_project(
+        &self,
+        project_create_request: models::ProjectCreateRequest,
+        ) -> Result<CreateProjectResponse, ApiError>;
+
+    /// Returns a list of projects.
+    async fn list_projects(
+        &self,
+        limit: Option<i32>,
+        after: Option<String>,
+        include_archived: Option<bool>,
+        ) -> Result<ListProjectsResponse, ApiError>;
+
+    /// Archives a project in the organization. Archived projects cannot be used or updated.
+    async fn archive_project(
+        &self,
+        project_id: String,
+        ) -> Result<ArchiveProjectResponse, ApiError>;
+
+    /// Creates a new service account in the project. This also returns an unredacted API key for the service account.
+    async fn create_project_service_account(
+        &self,
+        project_id: String,
+        project_service_account_create_request: models::ProjectServiceAccountCreateRequest,
+        ) -> Result<CreateProjectServiceAccountResponse, ApiError>;
+
+    /// Adds a user to the project. Users must already be members of the organization to be added to a project.
+    async fn create_project_user(
+        &self,
+        project_id: String,
+        project_user_create_request: models::ProjectUserCreateRequest,
+        ) -> Result<CreateProjectUserResponse, ApiError>;
+
+    /// Returns a list of API keys in the project.
+    async fn list_project_api_keys(
+        &self,
+        project_id: String,
+        limit: Option<i32>,
+        after: Option<String>,
+        ) -> Result<ListProjectApiKeysResponse, ApiError>;
+
+    /// Returns the rate limits per model for a project.
+    async fn list_project_rate_limits(
+        &self,
+        project_id: String,
+        limit: Option<i32>,
+        after: Option<String>,
+        before: Option<String>,
+        ) -> Result<ListProjectRateLimitsResponse, ApiError>;
+
+    /// Returns a list of service accounts in the project.
+    async fn list_project_service_accounts(
+        &self,
+        project_id: String,
+        limit: Option<i32>,
+        after: Option<String>,
+        ) -> Result<ListProjectServiceAccountsResponse, ApiError>;
+
+    /// Returns a list of users in the project.
+    async fn list_project_users(
+        &self,
+        project_id: String,
+        limit: Option<i32>,
+        after: Option<String>,
+        ) -> Result<ListProjectUsersResponse, ApiError>;
+
+    /// Modifies a project in the organization.
+    async fn modify_project(
+        &self,
+        project_id: String,
+        project_update_request: models::ProjectUpdateRequest,
+        ) -> Result<ModifyProjectResponse, ApiError>;
+
+    /// Retrieves a project.
+    async fn retrieve_project(
+        &self,
+        project_id: String,
+        ) -> Result<RetrieveProjectResponse, ApiError>;
+
+    /// Deletes an API key from the project.
+    async fn delete_project_api_key(
+        &self,
+        project_id: String,
+        key_id: String,
+        ) -> Result<DeleteProjectApiKeyResponse, ApiError>;
+
+    /// Deletes a service account from the project.
+    async fn delete_project_service_account(
+        &self,
+        project_id: String,
+        service_account_id: String,
+        ) -> Result<DeleteProjectServiceAccountResponse, ApiError>;
+
+    /// Deletes a user from the project.
+    async fn delete_project_user(
+        &self,
+        project_id: String,
+        user_id: String,
+        ) -> Result<DeleteProjectUserResponse, ApiError>;
+
+    /// Modifies a user's role in the project.
+    async fn modify_project_user(
+        &self,
+        project_id: String,
+        user_id: String,
+        project_user_update_request: models::ProjectUserUpdateRequest,
+        ) -> Result<ModifyProjectUserResponse, ApiError>;
+
+    /// Retrieves an API key in the project.
+    async fn retrieve_project_api_key(
+        &self,
+        project_id: String,
+        key_id: String,
+        ) -> Result<RetrieveProjectApiKeyResponse, ApiError>;
+
+    /// Retrieves a service account in the project.
+    async fn retrieve_project_service_account(
+        &self,
+        project_id: String,
+        service_account_id: String,
+        ) -> Result<RetrieveProjectServiceAccountResponse, ApiError>;
+
+    /// Retrieves a user in the project.
+    async fn retrieve_project_user(
+        &self,
+        project_id: String,
+        user_id: String,
+        ) -> Result<RetrieveProjectUserResponse, ApiError>;
+
+    /// Updates a project rate limit.
+    async fn update_project_rate_limits(
+        &self,
+        project_id: String,
+        rate_limit_id: String,
+        project_rate_limit_update_request: models::ProjectRateLimitUpdateRequest,
+        ) -> Result<UpdateProjectRateLimitsResponse, ApiError>;
+
+    /// Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API. 
+    async fn create_realtime_session(
+        &self,
+        realtime_session_create_request: models::RealtimeSessionCreateRequest,
+        ) -> Result<CreateRealtimeSessionResponse, ApiError>;
+
+    /// Creates an intermediate [Upload](/docs/api-reference/uploads/object) object that you can add [Parts](/docs/api-reference/uploads/part-object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it.  Once you complete the Upload, we will create a [File](/docs/api-reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object.  For certain `purpose`s, the correct `mime_type` must be specified. Please refer to documentation for the supported MIME types for your use case: - [Assistants](/docs/assistants/tools/file-search#supported-files)  For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api-reference/files/create). 
+    async fn create_upload(
+        &self,
+        create_upload_request: models::CreateUploadRequest,
+        ) -> Result<CreateUploadResponse, ApiError>;
+
+    /// Adds a [Part](/docs/api-reference/uploads/part-object) to an [Upload](/docs/api-reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api-reference/uploads/complete). 
+    async fn add_upload_part(
+        &self,
+        upload_id: String,
+        data: swagger::ByteArray,
+        ) -> Result<AddUploadPartResponse, ApiError>;
+
+    /// Cancels the Upload. No Parts may be added after an Upload is cancelled. 
+    async fn cancel_upload(
+        &self,
+        upload_id: String,
+        ) -> Result<CancelUploadResponse, ApiError>;
+
+    /// Completes the [Upload](/docs/api-reference/uploads/object).   Within the returned Upload object, there is a nested [File](/docs/api-reference/files/object) object that is ready to use in the rest of the platform.  You can specify the order of the Parts by passing in an ordered list of the Part IDs.  The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed. 
+    async fn complete_upload(
+        &self,
+        upload_id: String,
+        complete_upload_request: models::CompleteUploadRequest,
+        ) -> Result<CompleteUploadResponse, ApiError>;
+
+    /// Get audio speeches usage details for the organization.
+    async fn usage_audio_speeches<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageAudioSpeechesGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageAudioSpeechesResponse, ApiError>;
+
+    /// Get audio transcriptions usage details for the organization.
+    async fn usage_audio_transcriptions<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageAudioSpeechesGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageAudioTranscriptionsResponse, ApiError>;
+
+    /// Get code interpreter sessions usage details for the organization.
+    async fn usage_code_interpreter_sessions<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageCodeInterpreterSessionsGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageCodeInterpreterSessionsResponse, ApiError>;
+
+    /// Get completions usage details for the organization.
+    async fn usage_completions<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        batch: Option<bool>,
+        group_by: Option<&'a Vec<models::UsageCompletionsGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageCompletionsResponse, ApiError>;
+
+    /// Get costs details for the organization.
+    async fn usage_costs<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageCostsBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageCostsGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageCostsResponse, ApiError>;
+
+    /// Get embeddings usage details for the organization.
+    async fn usage_embeddings<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageAudioSpeechesGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageEmbeddingsResponse, ApiError>;
+
+    /// Get images usage details for the organization.
+    async fn usage_images<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        sources: Option<&'a Vec<models::UsageImagesSourcesParameterInner>>,
+        sizes: Option<&'a Vec<models::UsageImagesSizesParameterInner>>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageImagesGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageImagesResponse, ApiError>;
+
+    /// Get moderations usage details for the organization.
+    async fn usage_moderations<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageAudioSpeechesGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageModerationsResponse, ApiError>;
+
+    /// Get vector stores usage details for the organization.
+    async fn usage_vector_stores<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageCodeInterpreterSessionsGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageVectorStoresResponse, ApiError>;
+
+    /// Lists all of the users in the organization.
+    async fn list_users(
+        &self,
+        limit: Option<i32>,
+        after: Option<String>,
+        ) -> Result<ListUsersResponse, ApiError>;
+
+    /// Deletes a user from the organization.
+    async fn delete_user(
+        &self,
+        user_id: String,
+        ) -> Result<DeleteUserResponse, ApiError>;
+
+    /// Modifies a user's role in the organization.
+    async fn modify_user(
+        &self,
+        user_id: String,
+        user_role_update_request: models::UserRoleUpdateRequest,
+        ) -> Result<ModifyUserResponse, ApiError>;
+
+    /// Retrieves a user by their identifier.
+    async fn retrieve_user(
+        &self,
+        user_id: String,
+        ) -> Result<RetrieveUserResponse, ApiError>;
+
+    /// Create a vector store.
+    async fn create_vector_store(
+        &self,
+        create_vector_store_request: models::CreateVectorStoreRequest,
+        ) -> Result<CreateVectorStoreResponse, ApiError>;
+
+    /// Returns a list of vector stores.
+    async fn list_vector_stores(
+        &self,
+        limit: Option<i32>,
+        order: Option<models::ListAssistantsOrderParameter>,
+        after: Option<String>,
+        before: Option<String>,
+        ) -> Result<ListVectorStoresResponse, ApiError>;
+
+    /// Create a vector store file by attaching a [File](/docs/api-reference/files) to a [vector store](/docs/api-reference/vector-stores/object).
+    async fn create_vector_store_file(
+        &self,
+        vector_store_id: String,
+        create_vector_store_file_request: models::CreateVectorStoreFileRequest,
+        ) -> Result<CreateVectorStoreFileResponse, ApiError>;
+
+    /// Create a vector store file batch.
+    async fn create_vector_store_file_batch(
+        &self,
+        vector_store_id: String,
+        create_vector_store_file_batch_request: models::CreateVectorStoreFileBatchRequest,
+        ) -> Result<CreateVectorStoreFileBatchResponse, ApiError>;
+
+    /// Delete a vector store.
+    async fn delete_vector_store(
+        &self,
+        vector_store_id: String,
+        ) -> Result<DeleteVectorStoreResponse, ApiError>;
+
+    /// Retrieves a vector store.
+    async fn get_vector_store(
+        &self,
+        vector_store_id: String,
+        ) -> Result<GetVectorStoreResponse, ApiError>;
+
+    /// Returns a list of vector store files.
+    async fn list_vector_store_files(
+        &self,
+        vector_store_id: String,
+        limit: Option<i32>,
+        order: Option<models::ListAssistantsOrderParameter>,
+        after: Option<String>,
+        before: Option<String>,
+        filter: Option<models::ListFilesInVectorStoreBatchFilterParameter>,
+        ) -> Result<ListVectorStoreFilesResponse, ApiError>;
+
+    /// Modifies a vector store.
+    async fn modify_vector_store(
+        &self,
+        vector_store_id: String,
+        update_vector_store_request: models::UpdateVectorStoreRequest,
+        ) -> Result<ModifyVectorStoreResponse, ApiError>;
+
+    /// Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+    async fn cancel_vector_store_file_batch(
+        &self,
+        vector_store_id: String,
+        batch_id: String,
+        ) -> Result<CancelVectorStoreFileBatchResponse, ApiError>;
+
+    /// Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api-reference/files/delete) endpoint.
+    async fn delete_vector_store_file(
+        &self,
+        vector_store_id: String,
+        file_id: String,
+        ) -> Result<DeleteVectorStoreFileResponse, ApiError>;
+
+    /// Retrieves a vector store file.
+    async fn get_vector_store_file(
+        &self,
+        vector_store_id: String,
+        file_id: String,
+        ) -> Result<GetVectorStoreFileResponse, ApiError>;
+
+    /// Retrieves a vector store file batch.
+    async fn get_vector_store_file_batch(
+        &self,
+        vector_store_id: String,
+        batch_id: String,
+        ) -> Result<GetVectorStoreFileBatchResponse, ApiError>;
+
+    /// Returns a list of vector store files in a batch.
+    async fn list_files_in_vector_store_batch(
+        &self,
+        vector_store_id: String,
+        batch_id: String,
+        limit: Option<i32>,
+        order: Option<models::ListAssistantsOrderParameter>,
+        after: Option<String>,
+        before: Option<String>,
+        filter: Option<models::ListFilesInVectorStoreBatchFilterParameter>,
+        ) -> Result<ListFilesInVectorStoreBatchResponse, ApiError>;
 
 }
 
@@ -1244,17 +2649,6 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().list_assistants(limit, order, after, before, &context).await
     }
 
-    /// Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-    async fn create_assistant_file(
-        &self,
-        assistant_id: String,
-        create_assistant_file_request: models::CreateAssistantFileRequest,
-        ) -> Result<CreateAssistantFileResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().create_assistant_file(assistant_id, create_assistant_file_request, &context).await
-    }
-
     /// Create a message.
     async fn create_message(
         &self,
@@ -1267,14 +2661,15 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
     }
 
     /// Create a run.
-    async fn create_run(
+    async fn create_run<'a>(
         &self,
         thread_id: String,
         create_run_request: models::CreateRunRequest,
+        include_left_square_bracket_right_square_bracket: Option<&'a Vec<models::CreateRunIncludeParameterInner>>,
         ) -> Result<CreateRunResponse, ApiError>
     {
         let context = self.context().clone();
-        self.api().create_run(thread_id, create_run_request, &context).await
+        self.api().create_run(thread_id, create_run_request, include_left_square_bracket_right_square_bracket, &context).await
     }
 
     /// Delete an assistant.
@@ -1315,20 +2710,6 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
     {
         let context = self.context().clone();
         self.api().get_thread(thread_id, &context).await
-    }
-
-    /// Returns a list of assistant files.
-    async fn list_assistant_files(
-        &self,
-        assistant_id: String,
-        limit: Option<i32>,
-        order: Option<models::ListAssistantsOrderParameter>,
-        after: Option<String>,
-        before: Option<String>,
-        ) -> Result<ListAssistantFilesResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().list_assistant_files(assistant_id, limit, order, after, before, &context).await
     }
 
     /// Returns a list of messages for a given thread.
@@ -1393,26 +2774,15 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().cancel_run(thread_id, run_id, &context).await
     }
 
-    /// Delete an assistant file.
-    async fn delete_assistant_file(
+    /// Deletes a message.
+    async fn delete_message(
         &self,
-        assistant_id: String,
-        file_id: String,
-        ) -> Result<DeleteAssistantFileResponse, ApiError>
+        thread_id: String,
+        message_id: String,
+        ) -> Result<DeleteMessageResponse, ApiError>
     {
         let context = self.context().clone();
-        self.api().delete_assistant_file(assistant_id, file_id, &context).await
-    }
-
-    /// Retrieves an AssistantFile.
-    async fn get_assistant_file(
-        &self,
-        assistant_id: String,
-        file_id: String,
-        ) -> Result<GetAssistantFileResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_assistant_file(assistant_id, file_id, &context).await
+        self.api().delete_message(thread_id, message_id, &context).await
     }
 
     /// Retrieve a message.
@@ -1437,23 +2807,8 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().get_run(thread_id, run_id, &context).await
     }
 
-    /// Returns a list of message files.
-    async fn list_message_files(
-        &self,
-        thread_id: String,
-        message_id: String,
-        limit: Option<i32>,
-        order: Option<models::ListAssistantsOrderParameter>,
-        after: Option<String>,
-        before: Option<String>,
-        ) -> Result<ListMessageFilesResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().list_message_files(thread_id, message_id, limit, order, after, before, &context).await
-    }
-
     /// Returns a list of run steps belonging to a run.
-    async fn list_run_steps(
+    async fn list_run_steps<'a>(
         &self,
         thread_id: String,
         run_id: String,
@@ -1461,10 +2816,11 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         order: Option<models::ListAssistantsOrderParameter>,
         after: Option<String>,
         before: Option<String>,
+        include_left_square_bracket_right_square_bracket: Option<&'a Vec<models::CreateRunIncludeParameterInner>>,
         ) -> Result<ListRunStepsResponse, ApiError>
     {
         let context = self.context().clone();
-        self.api().list_run_steps(thread_id, run_id, limit, order, after, before, &context).await
+        self.api().list_run_steps(thread_id, run_id, limit, order, after, before, include_left_square_bracket_right_square_bracket, &context).await
     }
 
     /// Modifies a message.
@@ -1503,28 +2859,17 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().submit_tool_ouputs_to_run(thread_id, run_id, submit_tool_outputs_run_request, &context).await
     }
 
-    /// Retrieves a message file.
-    async fn get_message_file(
-        &self,
-        thread_id: String,
-        message_id: String,
-        file_id: String,
-        ) -> Result<GetMessageFileResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_message_file(thread_id, message_id, file_id, &context).await
-    }
-
     /// Retrieves a run step.
-    async fn get_run_step(
+    async fn get_run_step<'a>(
         &self,
         thread_id: String,
         run_id: String,
         step_id: String,
+        include_left_square_bracket_right_square_bracket: Option<&'a Vec<models::CreateRunIncludeParameterInner>>,
         ) -> Result<GetRunStepResponse, ApiError>
     {
         let context = self.context().clone();
-        self.api().get_run_step(thread_id, run_id, step_id, &context).await
+        self.api().get_run_step(thread_id, run_id, step_id, include_left_square_bracket_right_square_bracket, &context).await
     }
 
     /// Generates audio from the input text.
@@ -1544,7 +2889,7 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         model: models::CreateTranscriptionRequestModel,
         language: Option<String>,
         prompt: Option<String>,
-        response_format: Option<models::CreateTranscriptionRequestResponseFormat>,
+        response_format: Option<models::AudioResponseFormat>,
         temperature: Option<f64>,
         timestamp_granularities_left_square_bracket_right_square_bracket: Option<&'a Vec<models::CreateTranscriptionRequestTimestampGranularitiesInner>>,
         ) -> Result<CreateTranscriptionResponse, ApiError>
@@ -1559,7 +2904,7 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         file: swagger::ByteArray,
         model: models::CreateTranscriptionRequestModel,
         prompt: Option<String>,
-        response_format: Option<String>,
+        response_format: Option<models::AudioResponseFormat>,
         temperature: Option<f64>,
         ) -> Result<CreateTranslationResponse, ApiError>
     {
@@ -1567,7 +2912,66 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().create_translation(file, model, prompt, response_format, temperature, &context).await
     }
 
-    /// Creates a model response for the given chat conversation.
+    /// List user actions and configuration changes within this organization.
+    async fn list_audit_logs<'a>(
+        &self,
+        effective_at: Option<models::ListAuditLogsEffectiveAtParameter>,
+        project_ids_left_square_bracket_right_square_bracket: Option<&'a Vec<String>>,
+        event_types_left_square_bracket_right_square_bracket: Option<&'a Vec<models::AuditLogEventType>>,
+        actor_ids_left_square_bracket_right_square_bracket: Option<&'a Vec<String>>,
+        actor_emails_left_square_bracket_right_square_bracket: Option<&'a Vec<String>>,
+        resource_ids_left_square_bracket_right_square_bracket: Option<&'a Vec<String>>,
+        limit: Option<i32>,
+        after: Option<String>,
+        before: Option<String>,
+        ) -> Result<ListAuditLogsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().list_audit_logs(effective_at, project_ids_left_square_bracket_right_square_bracket, event_types_left_square_bracket_right_square_bracket, actor_ids_left_square_bracket_right_square_bracket, actor_emails_left_square_bracket_right_square_bracket, resource_ids_left_square_bracket_right_square_bracket, limit, after, before, &context).await
+    }
+
+    /// Creates and executes a batch from an uploaded file of requests
+    async fn create_batch(
+        &self,
+        create_batch_request: models::CreateBatchRequest,
+        ) -> Result<CreateBatchResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().create_batch(create_batch_request, &context).await
+    }
+
+    /// List your organization's batches.
+    async fn list_batches(
+        &self,
+        after: Option<String>,
+        limit: Option<i32>,
+        ) -> Result<ListBatchesResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().list_batches(after, limit, &context).await
+    }
+
+    /// Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+    async fn cancel_batch(
+        &self,
+        batch_id: String,
+        ) -> Result<CancelBatchResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().cancel_batch(batch_id, &context).await
+    }
+
+    /// Retrieves a batch.
+    async fn retrieve_batch(
+        &self,
+        batch_id: String,
+        ) -> Result<RetrieveBatchResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().retrieve_batch(batch_id, &context).await
+    }
+
+    /// Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). 
     async fn create_chat_completion(
         &self,
         create_chat_completion_request: models::CreateChatCompletionRequest,
@@ -1587,6 +2991,48 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().create_completion(create_completion_request, &context).await
     }
 
+    /// Create an organization admin API key
+    async fn admin_api_keys_create(
+        &self,
+        admin_api_keys_create_request: models::AdminApiKeysCreateRequest,
+        ) -> Result<AdminApiKeysCreateResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().admin_api_keys_create(admin_api_keys_create_request, &context).await
+    }
+
+    /// List organization API keys
+    async fn admin_api_keys_list(
+        &self,
+        after: Option<swagger::Nullable<String>>,
+        order: Option<models::AdminApiKeysListOrderParameter>,
+        limit: Option<i32>,
+        ) -> Result<AdminApiKeysListResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().admin_api_keys_list(after, order, limit, &context).await
+    }
+
+    /// Delete an organization admin API key
+    async fn admin_api_keys_delete(
+        &self,
+        key_id: String,
+        ) -> Result<AdminApiKeysDeleteResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().admin_api_keys_delete(key_id, &context).await
+    }
+
+    /// Retrieve a single organization API key
+    async fn admin_api_keys_get(
+        &self,
+        key_id: String,
+        ) -> Result<AdminApiKeysGetResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().admin_api_keys_get(key_id, &context).await
+    }
+
     /// Creates an embedding vector representing the input text.
     async fn create_embedding(
         &self,
@@ -1597,7 +3043,7 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().create_embedding(create_embedding_request, &context).await
     }
 
-    /// Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+    /// Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
     async fn create_file(
         &self,
         file: swagger::ByteArray,
@@ -1608,14 +3054,17 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().create_file(file, purpose, &context).await
     }
 
-    /// Returns a list of files that belong to the user's organization.
+    /// Returns a list of files.
     async fn list_files(
         &self,
         purpose: Option<String>,
+        limit: Option<i32>,
+        order: Option<models::ListAssistantsOrderParameter>,
+        after: Option<String>,
         ) -> Result<ListFilesResponse, ApiError>
     {
         let context = self.context().clone();
-        self.api().list_files(purpose, &context).await
+        self.api().list_files(purpose, limit, order, after, &context).await
     }
 
     /// Delete a file.
@@ -1732,7 +3181,7 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         model: Option<swagger::Nullable<models::CreateImageEditRequestModel>>,
         n: Option<swagger::Nullable<i32>>,
         size: Option<swagger::Nullable<models::CreateImageEditRequestSize>>,
-        response_format: Option<swagger::Nullable<models::CreateImageRequestResponseFormat>>,
+        response_format: Option<swagger::Nullable<models::CreateImageEditRequestResponseFormat>>,
         user: Option<String>,
         ) -> Result<CreateImageEditResponse, ApiError>
     {
@@ -1746,13 +3195,54 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         image: swagger::ByteArray,
         model: Option<swagger::Nullable<models::CreateImageEditRequestModel>>,
         n: Option<swagger::Nullable<i32>>,
-        response_format: Option<swagger::Nullable<models::CreateImageRequestResponseFormat>>,
+        response_format: Option<swagger::Nullable<models::CreateImageEditRequestResponseFormat>>,
         size: Option<swagger::Nullable<models::CreateImageEditRequestSize>>,
         user: Option<String>,
         ) -> Result<CreateImageVariationResponse, ApiError>
     {
         let context = self.context().clone();
         self.api().create_image_variation(image, model, n, response_format, size, user, &context).await
+    }
+
+    /// Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+    async fn invite_user(
+        &self,
+        invite_request: models::InviteRequest,
+        ) -> Result<InviteUserResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().invite_user(invite_request, &context).await
+    }
+
+    /// Returns a list of invites in the organization.
+    async fn list_invites(
+        &self,
+        limit: Option<i32>,
+        after: Option<String>,
+        ) -> Result<ListInvitesResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().list_invites(limit, after, &context).await
+    }
+
+    /// Delete an invite. If the invite has already been accepted, it cannot be deleted.
+    async fn delete_invite(
+        &self,
+        invite_id: String,
+        ) -> Result<DeleteInviteResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().delete_invite(invite_id, &context).await
+    }
+
+    /// Retrieves an invite.
+    async fn retrieve_invite(
+        &self,
+        invite_id: String,
+        ) -> Result<RetrieveInviteResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().retrieve_invite(invite_id, &context).await
     }
 
     /// Lists the currently available models, and provides basic information about each one such as the owner and availability.
@@ -1784,7 +3274,7 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().retrieve_model(model, &context).await
     }
 
-    /// Classifies if text is potentially harmful.
+    /// Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
     async fn create_moderation(
         &self,
         create_moderation_request: models::CreateModerationRequest,
@@ -1792,6 +3282,630 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
     {
         let context = self.context().clone();
         self.api().create_moderation(create_moderation_request, &context).await
+    }
+
+    /// Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
+    async fn create_project(
+        &self,
+        project_create_request: models::ProjectCreateRequest,
+        ) -> Result<CreateProjectResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().create_project(project_create_request, &context).await
+    }
+
+    /// Returns a list of projects.
+    async fn list_projects(
+        &self,
+        limit: Option<i32>,
+        after: Option<String>,
+        include_archived: Option<bool>,
+        ) -> Result<ListProjectsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().list_projects(limit, after, include_archived, &context).await
+    }
+
+    /// Archives a project in the organization. Archived projects cannot be used or updated.
+    async fn archive_project(
+        &self,
+        project_id: String,
+        ) -> Result<ArchiveProjectResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().archive_project(project_id, &context).await
+    }
+
+    /// Creates a new service account in the project. This also returns an unredacted API key for the service account.
+    async fn create_project_service_account(
+        &self,
+        project_id: String,
+        project_service_account_create_request: models::ProjectServiceAccountCreateRequest,
+        ) -> Result<CreateProjectServiceAccountResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().create_project_service_account(project_id, project_service_account_create_request, &context).await
+    }
+
+    /// Adds a user to the project. Users must already be members of the organization to be added to a project.
+    async fn create_project_user(
+        &self,
+        project_id: String,
+        project_user_create_request: models::ProjectUserCreateRequest,
+        ) -> Result<CreateProjectUserResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().create_project_user(project_id, project_user_create_request, &context).await
+    }
+
+    /// Returns a list of API keys in the project.
+    async fn list_project_api_keys(
+        &self,
+        project_id: String,
+        limit: Option<i32>,
+        after: Option<String>,
+        ) -> Result<ListProjectApiKeysResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().list_project_api_keys(project_id, limit, after, &context).await
+    }
+
+    /// Returns the rate limits per model for a project.
+    async fn list_project_rate_limits(
+        &self,
+        project_id: String,
+        limit: Option<i32>,
+        after: Option<String>,
+        before: Option<String>,
+        ) -> Result<ListProjectRateLimitsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().list_project_rate_limits(project_id, limit, after, before, &context).await
+    }
+
+    /// Returns a list of service accounts in the project.
+    async fn list_project_service_accounts(
+        &self,
+        project_id: String,
+        limit: Option<i32>,
+        after: Option<String>,
+        ) -> Result<ListProjectServiceAccountsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().list_project_service_accounts(project_id, limit, after, &context).await
+    }
+
+    /// Returns a list of users in the project.
+    async fn list_project_users(
+        &self,
+        project_id: String,
+        limit: Option<i32>,
+        after: Option<String>,
+        ) -> Result<ListProjectUsersResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().list_project_users(project_id, limit, after, &context).await
+    }
+
+    /// Modifies a project in the organization.
+    async fn modify_project(
+        &self,
+        project_id: String,
+        project_update_request: models::ProjectUpdateRequest,
+        ) -> Result<ModifyProjectResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().modify_project(project_id, project_update_request, &context).await
+    }
+
+    /// Retrieves a project.
+    async fn retrieve_project(
+        &self,
+        project_id: String,
+        ) -> Result<RetrieveProjectResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().retrieve_project(project_id, &context).await
+    }
+
+    /// Deletes an API key from the project.
+    async fn delete_project_api_key(
+        &self,
+        project_id: String,
+        key_id: String,
+        ) -> Result<DeleteProjectApiKeyResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().delete_project_api_key(project_id, key_id, &context).await
+    }
+
+    /// Deletes a service account from the project.
+    async fn delete_project_service_account(
+        &self,
+        project_id: String,
+        service_account_id: String,
+        ) -> Result<DeleteProjectServiceAccountResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().delete_project_service_account(project_id, service_account_id, &context).await
+    }
+
+    /// Deletes a user from the project.
+    async fn delete_project_user(
+        &self,
+        project_id: String,
+        user_id: String,
+        ) -> Result<DeleteProjectUserResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().delete_project_user(project_id, user_id, &context).await
+    }
+
+    /// Modifies a user's role in the project.
+    async fn modify_project_user(
+        &self,
+        project_id: String,
+        user_id: String,
+        project_user_update_request: models::ProjectUserUpdateRequest,
+        ) -> Result<ModifyProjectUserResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().modify_project_user(project_id, user_id, project_user_update_request, &context).await
+    }
+
+    /// Retrieves an API key in the project.
+    async fn retrieve_project_api_key(
+        &self,
+        project_id: String,
+        key_id: String,
+        ) -> Result<RetrieveProjectApiKeyResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().retrieve_project_api_key(project_id, key_id, &context).await
+    }
+
+    /// Retrieves a service account in the project.
+    async fn retrieve_project_service_account(
+        &self,
+        project_id: String,
+        service_account_id: String,
+        ) -> Result<RetrieveProjectServiceAccountResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().retrieve_project_service_account(project_id, service_account_id, &context).await
+    }
+
+    /// Retrieves a user in the project.
+    async fn retrieve_project_user(
+        &self,
+        project_id: String,
+        user_id: String,
+        ) -> Result<RetrieveProjectUserResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().retrieve_project_user(project_id, user_id, &context).await
+    }
+
+    /// Updates a project rate limit.
+    async fn update_project_rate_limits(
+        &self,
+        project_id: String,
+        rate_limit_id: String,
+        project_rate_limit_update_request: models::ProjectRateLimitUpdateRequest,
+        ) -> Result<UpdateProjectRateLimitsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().update_project_rate_limits(project_id, rate_limit_id, project_rate_limit_update_request, &context).await
+    }
+
+    /// Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API. 
+    async fn create_realtime_session(
+        &self,
+        realtime_session_create_request: models::RealtimeSessionCreateRequest,
+        ) -> Result<CreateRealtimeSessionResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().create_realtime_session(realtime_session_create_request, &context).await
+    }
+
+    /// Creates an intermediate [Upload](/docs/api-reference/uploads/object) object that you can add [Parts](/docs/api-reference/uploads/part-object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it.  Once you complete the Upload, we will create a [File](/docs/api-reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object.  For certain `purpose`s, the correct `mime_type` must be specified. Please refer to documentation for the supported MIME types for your use case: - [Assistants](/docs/assistants/tools/file-search#supported-files)  For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api-reference/files/create). 
+    async fn create_upload(
+        &self,
+        create_upload_request: models::CreateUploadRequest,
+        ) -> Result<CreateUploadResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().create_upload(create_upload_request, &context).await
+    }
+
+    /// Adds a [Part](/docs/api-reference/uploads/part-object) to an [Upload](/docs/api-reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api-reference/uploads/complete). 
+    async fn add_upload_part(
+        &self,
+        upload_id: String,
+        data: swagger::ByteArray,
+        ) -> Result<AddUploadPartResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().add_upload_part(upload_id, data, &context).await
+    }
+
+    /// Cancels the Upload. No Parts may be added after an Upload is cancelled. 
+    async fn cancel_upload(
+        &self,
+        upload_id: String,
+        ) -> Result<CancelUploadResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().cancel_upload(upload_id, &context).await
+    }
+
+    /// Completes the [Upload](/docs/api-reference/uploads/object).   Within the returned Upload object, there is a nested [File](/docs/api-reference/files/object) object that is ready to use in the rest of the platform.  You can specify the order of the Parts by passing in an ordered list of the Part IDs.  The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed. 
+    async fn complete_upload(
+        &self,
+        upload_id: String,
+        complete_upload_request: models::CompleteUploadRequest,
+        ) -> Result<CompleteUploadResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().complete_upload(upload_id, complete_upload_request, &context).await
+    }
+
+    /// Get audio speeches usage details for the organization.
+    async fn usage_audio_speeches<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageAudioSpeechesGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageAudioSpeechesResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().usage_audio_speeches(start_time, end_time, bucket_width, project_ids, user_ids, api_key_ids, models, group_by, limit, page, &context).await
+    }
+
+    /// Get audio transcriptions usage details for the organization.
+    async fn usage_audio_transcriptions<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageAudioSpeechesGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageAudioTranscriptionsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().usage_audio_transcriptions(start_time, end_time, bucket_width, project_ids, user_ids, api_key_ids, models, group_by, limit, page, &context).await
+    }
+
+    /// Get code interpreter sessions usage details for the organization.
+    async fn usage_code_interpreter_sessions<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageCodeInterpreterSessionsGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageCodeInterpreterSessionsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().usage_code_interpreter_sessions(start_time, end_time, bucket_width, project_ids, group_by, limit, page, &context).await
+    }
+
+    /// Get completions usage details for the organization.
+    async fn usage_completions<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        batch: Option<bool>,
+        group_by: Option<&'a Vec<models::UsageCompletionsGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageCompletionsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().usage_completions(start_time, end_time, bucket_width, project_ids, user_ids, api_key_ids, models, batch, group_by, limit, page, &context).await
+    }
+
+    /// Get costs details for the organization.
+    async fn usage_costs<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageCostsBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageCostsGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageCostsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().usage_costs(start_time, end_time, bucket_width, project_ids, group_by, limit, page, &context).await
+    }
+
+    /// Get embeddings usage details for the organization.
+    async fn usage_embeddings<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageAudioSpeechesGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageEmbeddingsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().usage_embeddings(start_time, end_time, bucket_width, project_ids, user_ids, api_key_ids, models, group_by, limit, page, &context).await
+    }
+
+    /// Get images usage details for the organization.
+    async fn usage_images<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        sources: Option<&'a Vec<models::UsageImagesSourcesParameterInner>>,
+        sizes: Option<&'a Vec<models::UsageImagesSizesParameterInner>>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageImagesGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageImagesResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().usage_images(start_time, end_time, bucket_width, sources, sizes, project_ids, user_ids, api_key_ids, models, group_by, limit, page, &context).await
+    }
+
+    /// Get moderations usage details for the organization.
+    async fn usage_moderations<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        user_ids: Option<&'a Vec<String>>,
+        api_key_ids: Option<&'a Vec<String>>,
+        models: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageAudioSpeechesGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageModerationsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().usage_moderations(start_time, end_time, bucket_width, project_ids, user_ids, api_key_ids, models, group_by, limit, page, &context).await
+    }
+
+    /// Get vector stores usage details for the organization.
+    async fn usage_vector_stores<'a>(
+        &self,
+        start_time: i32,
+        end_time: Option<i32>,
+        bucket_width: Option<models::UsageAudioSpeechesBucketWidthParameter>,
+        project_ids: Option<&'a Vec<String>>,
+        group_by: Option<&'a Vec<models::UsageCodeInterpreterSessionsGroupByParameterInner>>,
+        limit: Option<i32>,
+        page: Option<String>,
+        ) -> Result<UsageVectorStoresResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().usage_vector_stores(start_time, end_time, bucket_width, project_ids, group_by, limit, page, &context).await
+    }
+
+    /// Lists all of the users in the organization.
+    async fn list_users(
+        &self,
+        limit: Option<i32>,
+        after: Option<String>,
+        ) -> Result<ListUsersResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().list_users(limit, after, &context).await
+    }
+
+    /// Deletes a user from the organization.
+    async fn delete_user(
+        &self,
+        user_id: String,
+        ) -> Result<DeleteUserResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().delete_user(user_id, &context).await
+    }
+
+    /// Modifies a user's role in the organization.
+    async fn modify_user(
+        &self,
+        user_id: String,
+        user_role_update_request: models::UserRoleUpdateRequest,
+        ) -> Result<ModifyUserResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().modify_user(user_id, user_role_update_request, &context).await
+    }
+
+    /// Retrieves a user by their identifier.
+    async fn retrieve_user(
+        &self,
+        user_id: String,
+        ) -> Result<RetrieveUserResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().retrieve_user(user_id, &context).await
+    }
+
+    /// Create a vector store.
+    async fn create_vector_store(
+        &self,
+        create_vector_store_request: models::CreateVectorStoreRequest,
+        ) -> Result<CreateVectorStoreResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().create_vector_store(create_vector_store_request, &context).await
+    }
+
+    /// Returns a list of vector stores.
+    async fn list_vector_stores(
+        &self,
+        limit: Option<i32>,
+        order: Option<models::ListAssistantsOrderParameter>,
+        after: Option<String>,
+        before: Option<String>,
+        ) -> Result<ListVectorStoresResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().list_vector_stores(limit, order, after, before, &context).await
+    }
+
+    /// Create a vector store file by attaching a [File](/docs/api-reference/files) to a [vector store](/docs/api-reference/vector-stores/object).
+    async fn create_vector_store_file(
+        &self,
+        vector_store_id: String,
+        create_vector_store_file_request: models::CreateVectorStoreFileRequest,
+        ) -> Result<CreateVectorStoreFileResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().create_vector_store_file(vector_store_id, create_vector_store_file_request, &context).await
+    }
+
+    /// Create a vector store file batch.
+    async fn create_vector_store_file_batch(
+        &self,
+        vector_store_id: String,
+        create_vector_store_file_batch_request: models::CreateVectorStoreFileBatchRequest,
+        ) -> Result<CreateVectorStoreFileBatchResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().create_vector_store_file_batch(vector_store_id, create_vector_store_file_batch_request, &context).await
+    }
+
+    /// Delete a vector store.
+    async fn delete_vector_store(
+        &self,
+        vector_store_id: String,
+        ) -> Result<DeleteVectorStoreResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().delete_vector_store(vector_store_id, &context).await
+    }
+
+    /// Retrieves a vector store.
+    async fn get_vector_store(
+        &self,
+        vector_store_id: String,
+        ) -> Result<GetVectorStoreResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_vector_store(vector_store_id, &context).await
+    }
+
+    /// Returns a list of vector store files.
+    async fn list_vector_store_files(
+        &self,
+        vector_store_id: String,
+        limit: Option<i32>,
+        order: Option<models::ListAssistantsOrderParameter>,
+        after: Option<String>,
+        before: Option<String>,
+        filter: Option<models::ListFilesInVectorStoreBatchFilterParameter>,
+        ) -> Result<ListVectorStoreFilesResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().list_vector_store_files(vector_store_id, limit, order, after, before, filter, &context).await
+    }
+
+    /// Modifies a vector store.
+    async fn modify_vector_store(
+        &self,
+        vector_store_id: String,
+        update_vector_store_request: models::UpdateVectorStoreRequest,
+        ) -> Result<ModifyVectorStoreResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().modify_vector_store(vector_store_id, update_vector_store_request, &context).await
+    }
+
+    /// Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+    async fn cancel_vector_store_file_batch(
+        &self,
+        vector_store_id: String,
+        batch_id: String,
+        ) -> Result<CancelVectorStoreFileBatchResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().cancel_vector_store_file_batch(vector_store_id, batch_id, &context).await
+    }
+
+    /// Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api-reference/files/delete) endpoint.
+    async fn delete_vector_store_file(
+        &self,
+        vector_store_id: String,
+        file_id: String,
+        ) -> Result<DeleteVectorStoreFileResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().delete_vector_store_file(vector_store_id, file_id, &context).await
+    }
+
+    /// Retrieves a vector store file.
+    async fn get_vector_store_file(
+        &self,
+        vector_store_id: String,
+        file_id: String,
+        ) -> Result<GetVectorStoreFileResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_vector_store_file(vector_store_id, file_id, &context).await
+    }
+
+    /// Retrieves a vector store file batch.
+    async fn get_vector_store_file_batch(
+        &self,
+        vector_store_id: String,
+        batch_id: String,
+        ) -> Result<GetVectorStoreFileBatchResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_vector_store_file_batch(vector_store_id, batch_id, &context).await
+    }
+
+    /// Returns a list of vector store files in a batch.
+    async fn list_files_in_vector_store_batch(
+        &self,
+        vector_store_id: String,
+        batch_id: String,
+        limit: Option<i32>,
+        order: Option<models::ListAssistantsOrderParameter>,
+        after: Option<String>,
+        before: Option<String>,
+        filter: Option<models::ListFilesInVectorStoreBatchFilterParameter>,
+        ) -> Result<ListFilesInVectorStoreBatchResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().list_files_in_vector_store_batch(vector_store_id, batch_id, limit, order, after, before, filter, &context).await
     }
 
 }

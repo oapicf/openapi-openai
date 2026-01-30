@@ -8,6 +8,8 @@ authors     = ["F. Bar (foo@bar.baz)"]
 imports {
   Root = tosca.resourceTypes.Root
   ChatCompletionMessageToolCall = openapi_server.resourceTypes.ChatCompletionMessageToolCall
+  ChatCompletionRequestAssistantMessageAudio = openapi_server.resourceTypes.ChatCompletionRequestAssistantMessageAudio
+  ChatCompletionRequestAssistantMessageContent = openapi_server.resourceTypes.ChatCompletionRequestAssistantMessageContent
   ChatCompletionRequestAssistantMessageFunctionCall = openapi_server.resourceTypes.ChatCompletionRequestAssistantMessageFunctionCall
 }
 resourceTypes {
@@ -18,8 +20,13 @@ resourceTypes {
     derivedFrom = Root
     properties {
         content {
+          type = ChatCompletionRequestAssistantMessageContent
+          description = ""
+          optional = false
+        }
+        refusal {
           type =  string
-          description = "The contents of the assistant message. Required unless &#x60;tool_calls&#x60; or &#x60;function_call&#x60; is specified. "
+          description = "The refusal message by the assistant."
           optional = false
         }
         role {
@@ -31,6 +38,11 @@ resourceTypes {
         name {
           type =  string
           description = "An optional name for the participant. Provides the model information to differentiate between participants of the same role."
+          optional = false
+        }
+        audio {
+          type = ChatCompletionRequestAssistantMessageAudio
+          description = ""
           optional = false
         }
         tool_calls {

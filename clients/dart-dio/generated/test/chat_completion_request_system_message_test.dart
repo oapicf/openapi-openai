@@ -7,8 +7,7 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(ChatCompletionRequestSystemMessage, () {
-    // The contents of the system message.
-    // String content
+    // ChatCompletionRequestSystemMessageContent content
     test('to test the property `content`', () async {
       // TODO
     });

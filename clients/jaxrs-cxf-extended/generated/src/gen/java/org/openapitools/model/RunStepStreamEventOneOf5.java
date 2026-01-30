@@ -13,9 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is cancelled.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is cancelled.
  */
-@ApiModel(description="Occurs when a [run step](/docs/api-reference/runs/step-object) is cancelled.")
+@ApiModel(description="Occurs when a [run step](/docs/api-reference/run-steps/step-object) is cancelled.")
 
 public class RunStepStreamEventOneOf5  {
   

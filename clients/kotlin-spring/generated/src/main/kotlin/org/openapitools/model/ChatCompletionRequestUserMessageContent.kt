@@ -1,7 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
-import org.openapitools.model.ChatCompletionRequestMessageContentPart
+import org.openapitools.model.ChatCompletionRequestUserMessageContentPart
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email

@@ -23,6 +23,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AssistantStreamEvent  {
   
+ /**
+  * Whether to enable input audio transcription.
+  */
+  @ApiModelProperty(value = "Whether to enable input audio transcription.")
+  private Boolean enabled;
+
 public enum EventEnum {
 
     @JsonProperty("done") DONE(String.valueOf("done"));
@@ -87,6 +93,30 @@ public enum DataEnum {
   @ApiModelProperty(required = true, value = "")
   private DataEnum data;
  /**
+  * Whether to enable input audio transcription.
+  * @return enabled
+  */
+  @JsonProperty("enabled")
+  public Boolean getEnabled() {
+    return enabled;
+  }
+
+  /**
+   * Sets the <code>enabled</code> property.
+   */
+ public void setEnabled(Boolean enabled) {
+    this.enabled = enabled;
+  }
+
+  /**
+   * Sets the <code>enabled</code> property.
+   */
+  public AssistantStreamEvent enabled(Boolean enabled) {
+    this.enabled = enabled;
+    return this;
+  }
+
+ /**
   * Get event
   * @return event
   */
@@ -146,13 +176,14 @@ public enum DataEnum {
       return false;
     }
     AssistantStreamEvent assistantStreamEvent = (AssistantStreamEvent) o;
-    return Objects.equals(this.event, assistantStreamEvent.event) &&
+    return Objects.equals(this.enabled, assistantStreamEvent.enabled) &&
+        Objects.equals(this.event, assistantStreamEvent.event) &&
         Objects.equals(this.data, assistantStreamEvent.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(event, data);
+    return Objects.hash(enabled, event, data);
   }
 
   @Override
@@ -160,6 +191,7 @@ public enum DataEnum {
     StringBuilder sb = new StringBuilder();
     sb.append("class AssistantStreamEvent {\n");
     
+    sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
     sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");

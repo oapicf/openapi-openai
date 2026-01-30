@@ -11,7 +11,7 @@ import { RunStepObject } from './runStepObject';
 
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) moves to an `in_progress` state.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) moves to an `in_progress` state.
  */
 export interface RunStepStreamEventOneOf1 { 
     event: RunStepStreamEventOneOf1.EventEnum;

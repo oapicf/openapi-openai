@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Content** | **string** | The contents of the system message. | 
+**Content** | [**ChatCompletionRequestSystemMessageContent**](ChatCompletionRequestSystemMessageContent.md) |  | 
 **Role** | **string** | The role of the messages author, in this case &#x60;system&#x60;. | 
 **Name** | Pointer to **string** | An optional name for the participant. Provides the model information to differentiate between participants of the same role. | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewChatCompletionRequestSystemMessage
 
-`func NewChatCompletionRequestSystemMessage(content string, role string, ) *ChatCompletionRequestSystemMessage`
+`func NewChatCompletionRequestSystemMessage(content ChatCompletionRequestSystemMessageContent, role string, ) *ChatCompletionRequestSystemMessage`
 
 NewChatCompletionRequestSystemMessage instantiates a new ChatCompletionRequestSystemMessage object
 This constructor will assign default values to properties that have it defined,
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetContent
 
-`func (o *ChatCompletionRequestSystemMessage) GetContent() string`
+`func (o *ChatCompletionRequestSystemMessage) GetContent() ChatCompletionRequestSystemMessageContent`
 
 GetContent returns the Content field if non-nil, zero value otherwise.
 
 ### GetContentOk
 
-`func (o *ChatCompletionRequestSystemMessage) GetContentOk() (*string, bool)`
+`func (o *ChatCompletionRequestSystemMessage) GetContentOk() (*ChatCompletionRequestSystemMessageContent, bool)`
 
 GetContentOk returns a tuple with the Content field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetContent
 
-`func (o *ChatCompletionRequestSystemMessage) SetContent(v string)`
+`func (o *ChatCompletionRequestSystemMessage) SetContent(v ChatCompletionRequestSystemMessageContent)`
 
 SetContent sets Content field to given value.
 

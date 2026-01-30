@@ -1,0 +1,725 @@
+<div class="main-content">
+  <h2><a name=""></a></h2>
+  <p>This is the  API</p>
+
+  <h2><a name="archiveProject"></a>archiveProject</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}/archive</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Project"><a href="">Project</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+  </ul>
+  <h2><a name="createProject"></a>createProject</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Project"><a href="">Project</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      
+      
+      <span class="param-in">Body: </span>
+      <span class="param-name">ProjectCreateRequest</span>
+      <span class="param-type">ProjectCreateRequest(ProjectCreateRequest)</span>
+      
+      <p class="param-description">The project create request payload.</p>
+      </li>
+  </ul>
+  <h2><a name="createProjectServiceAccount"></a>createProjectServiceAccount</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}/service_accounts</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ProjectServiceAccountCreateResponse"><a href="">ProjectServiceAccountCreateResponse</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+      <li class="parameter">
+      
+      
+      
+      
+      <span class="param-in">Body: </span>
+      <span class="param-name">ProjectServiceAccountCreateRequest</span>
+      <span class="param-type">ProjectServiceAccountCreateRequest(ProjectServiceAccountCreateRequest)</span>
+      
+      <p class="param-description">The project service account create request payload.</p>
+      </li>
+  </ul>
+  <h2><a name="createProjectUser"></a>createProjectUser</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}/users</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ProjectUser"><a href="">ProjectUser</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+      <li class="parameter">
+      
+      
+      
+      
+      <span class="param-in">Body: </span>
+      <span class="param-name">ProjectUserCreateRequest</span>
+      <span class="param-type">ProjectUserCreateRequest(ProjectUserCreateRequest)</span>
+      
+      <p class="param-description">The project user create request payload.</p>
+      </li>
+  </ul>
+  <h2><a name="deleteProjectApiKey"></a>deleteProjectApiKey</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}/api_keys/{key_id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ProjectApiKeyDeleteResponse"><a href="">ProjectApiKeyDeleteResponse</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">key_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the API key.</p>
+      </li>
+  </ul>
+  <h2><a name="deleteProjectServiceAccount"></a>deleteProjectServiceAccount</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}/service_accounts/{service_account_id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ProjectServiceAccountDeleteResponse"><a href="">ProjectServiceAccountDeleteResponse</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">service_account_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the service account.</p>
+      </li>
+  </ul>
+  <h2><a name="deleteProjectUser"></a>deleteProjectUser</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}/users/{user_id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>DELETE</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ProjectUserDeleteResponse"><a href="">ProjectUserDeleteResponse</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">user_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the user.</p>
+      </li>
+  </ul>
+  <h2><a name="listProjectApiKeys"></a>listProjectApiKeys</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}/api_keys</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ProjectApiKeyListResponse"><a href="">ProjectApiKeyListResponse</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">limit</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">after</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. </p>
+      </li>
+  </ul>
+  <h2><a name="listProjectRateLimits"></a>listProjectRateLimits</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}/rate_limits</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ProjectRateLimitListResponse"><a href="">ProjectRateLimitListResponse</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">limit</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">A limit on the number of objects to be returned. The default is 100. </p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">after</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. </p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">before</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, beginning with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. </p>
+      </li>
+  </ul>
+  <h2><a name="listProjectServiceAccounts"></a>listProjectServiceAccounts</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}/service_accounts</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ProjectServiceAccountListResponse"><a href="">ProjectServiceAccountListResponse</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">limit</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">after</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. </p>
+      </li>
+  </ul>
+  <h2><a name="listProjectUsers"></a>listProjectUsers</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}/users</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ProjectUserListResponse"><a href="">ProjectUserListResponse</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">limit</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">after</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. </p>
+      </li>
+  </ul>
+  <h2><a name="listProjects"></a>listProjects</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ProjectListResponse"><a href="">ProjectListResponse</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">limit</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">after</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. </p>
+      </li>
+      <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">include_archived</span>
+      <span class="param-type">Boolean</span>
+      
+      <p class="param-description">If &#x60;true&#x60; returns all projects including those that have been &#x60;archived&#x60;. Archived projects are not included by default.</p>
+      </li>
+  </ul>
+  <h2><a name="modifyProject"></a>modifyProject</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Project"><a href="">Project</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+      <li class="parameter">
+      
+      
+      
+      
+      <span class="param-in">Body: </span>
+      <span class="param-name">ProjectUpdateRequest</span>
+      <span class="param-type">ProjectUpdateRequest(ProjectUpdateRequest)</span>
+      
+      <p class="param-description">The project update request payload.</p>
+      </li>
+  </ul>
+  <h2><a name="modifyProjectUser"></a>modifyProjectUser</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}/users/{user_id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ProjectUser"><a href="">ProjectUser</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">user_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the user.</p>
+      </li>
+      <li class="parameter">
+      
+      
+      
+      
+      <span class="param-in">Body: </span>
+      <span class="param-name">ProjectUserUpdateRequest</span>
+      <span class="param-type">ProjectUserUpdateRequest(ProjectUserUpdateRequest)</span>
+      
+      <p class="param-description">The project user update request payload.</p>
+      </li>
+  </ul>
+  <h2><a name="retrieveProject"></a>retrieveProject</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="Project"><a href="">Project</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+  </ul>
+  <h2><a name="retrieveProjectApiKey"></a>retrieveProjectApiKey</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}/api_keys/{key_id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ProjectApiKey"><a href="">ProjectApiKey</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">key_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the API key.</p>
+      </li>
+  </ul>
+  <h2><a name="retrieveProjectServiceAccount"></a>retrieveProjectServiceAccount</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}/service_accounts/{service_account_id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ProjectServiceAccount"><a href="">ProjectServiceAccount</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">service_account_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the service account.</p>
+      </li>
+  </ul>
+  <h2><a name="retrieveProjectUser"></a>retrieveProjectUser</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}/users/{user_id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ProjectUser"><a href="">ProjectUser</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">user_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the user.</p>
+      </li>
+  </ul>
+  <h2><a name="updateProjectRateLimits"></a>updateProjectRateLimits</h2>
+  <hr>
+  <p></p>
+  
+  <h3 class="section">URL</h3>
+  <code>https://api.openai.com/v1/organization/projects/{project_id}/rate_limits/{rate_limit_id}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="ProjectRateLimit"><a href="">ProjectRateLimit</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">project_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the project.</p>
+      </li>
+      <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">rate_limit_id</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The ID of the rate limit.</p>
+      </li>
+      <li class="parameter">
+      
+      
+      
+      
+      <span class="param-in">Body: </span>
+      <span class="param-name">ProjectRateLimitUpdateRequest</span>
+      <span class="param-type">ProjectRateLimitUpdateRequest(ProjectRateLimitUpdateRequest)</span>
+      
+      <p class="param-description">The project rate limit update request payload.</p>
+      </li>
+  </ul>
+</div>

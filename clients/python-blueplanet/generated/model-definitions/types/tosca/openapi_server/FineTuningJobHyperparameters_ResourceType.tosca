@@ -7,7 +7,9 @@ authors     = ["F. Bar (foo@bar.baz)"]
 
 imports {
   Root = tosca.resourceTypes.Root
-  FineTuningJobHyperparametersNEpochs = openapi_server.resourceTypes.FineTuningJobHyperparametersNEpochs
+  CreateFineTuningJobRequestHyperparametersBatchSize = openapi_server.resourceTypes.CreateFineTuningJobRequestHyperparametersBatchSize
+  CreateFineTuningJobRequestHyperparametersLearningRateMultiplier = openapi_server.resourceTypes.CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+  CreateFineTuningJobRequestHyperparametersNEpochs = openapi_server.resourceTypes.CreateFineTuningJobRequestHyperparametersNEpochs
 }
 resourceTypes {
 
@@ -16,10 +18,20 @@ resourceTypes {
     description = FineTuningJobHyperparameters
     derivedFrom = Root
     properties {
-        n_epochs {
-          type = FineTuningJobHyperparametersNEpochs
+        batch_size {
+          type = CreateFineTuningJobRequestHyperparametersBatchSize
           description = ""
-          optional = true
+          optional = false
+        }
+        learning_rate_multiplier {
+          type = CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+          description = ""
+          optional = false
+        }
+        n_epochs {
+          type = CreateFineTuningJobRequestHyperparametersNEpochs
+          description = ""
+          optional = false
         }
     }
   }

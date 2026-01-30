@@ -19,7 +19,7 @@ resourceTypes {
         event {
           type =  string
           description = ""
-          enum = ["thread.run.expired"]
+          enum = ["thread.run.cancelled"]
           optional = true
         }
         data {

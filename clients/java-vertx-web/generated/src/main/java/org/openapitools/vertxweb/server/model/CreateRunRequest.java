@@ -26,18 +26,20 @@ public class CreateRunRequest   {
   private List<AssistantObjectToolsInner> tools;
   private Object metadata;
   private BigDecimal temperature = new BigDecimal("1");
+  private BigDecimal topP = new BigDecimal("1");
   private Boolean stream;
   private Integer maxPromptTokens;
   private Integer maxCompletionTokens;
   private TruncationObject truncationStrategy;
   private AssistantsApiToolChoiceOption toolChoice;
+  private Boolean parallelToolCalls = true;
   private AssistantsApiResponseFormatOption responseFormat;
 
   public CreateRunRequest () {
 
   }
 
-  public CreateRunRequest (String assistantId, CreateRunRequestModel model, String instructions, String additionalInstructions, List<CreateMessageRequest> additionalMessages, List<AssistantObjectToolsInner> tools, Object metadata, BigDecimal temperature, Boolean stream, Integer maxPromptTokens, Integer maxCompletionTokens, TruncationObject truncationStrategy, AssistantsApiToolChoiceOption toolChoice, AssistantsApiResponseFormatOption responseFormat) {
+  public CreateRunRequest (String assistantId, CreateRunRequestModel model, String instructions, String additionalInstructions, List<CreateMessageRequest> additionalMessages, List<AssistantObjectToolsInner> tools, Object metadata, BigDecimal temperature, BigDecimal topP, Boolean stream, Integer maxPromptTokens, Integer maxCompletionTokens, TruncationObject truncationStrategy, AssistantsApiToolChoiceOption toolChoice, Boolean parallelToolCalls, AssistantsApiResponseFormatOption responseFormat) {
     this.assistantId = assistantId;
     this.model = model;
     this.instructions = instructions;
@@ -46,11 +48,13 @@ public class CreateRunRequest   {
     this.tools = tools;
     this.metadata = metadata;
     this.temperature = temperature;
+    this.topP = topP;
     this.stream = stream;
     this.maxPromptTokens = maxPromptTokens;
     this.maxCompletionTokens = maxCompletionTokens;
     this.truncationStrategy = truncationStrategy;
     this.toolChoice = toolChoice;
+    this.parallelToolCalls = parallelToolCalls;
     this.responseFormat = responseFormat;
   }
 
@@ -127,6 +131,15 @@ public class CreateRunRequest   {
   }
 
     
+  @JsonProperty("top_p")
+  public BigDecimal getTopP() {
+    return topP;
+  }
+  public void setTopP(BigDecimal topP) {
+    this.topP = topP;
+  }
+
+    
   @JsonProperty("stream")
   public Boolean getStream() {
     return stream;
@@ -172,6 +185,15 @@ public class CreateRunRequest   {
   }
 
     
+  @JsonProperty("parallel_tool_calls")
+  public Boolean getParallelToolCalls() {
+    return parallelToolCalls;
+  }
+  public void setParallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+  }
+
+    
   @JsonProperty("response_format")
   public AssistantsApiResponseFormatOption getResponseFormat() {
     return responseFormat;
@@ -198,17 +220,19 @@ public class CreateRunRequest   {
         Objects.equals(tools, createRunRequest.tools) &&
         Objects.equals(metadata, createRunRequest.metadata) &&
         Objects.equals(temperature, createRunRequest.temperature) &&
+        Objects.equals(topP, createRunRequest.topP) &&
         Objects.equals(stream, createRunRequest.stream) &&
         Objects.equals(maxPromptTokens, createRunRequest.maxPromptTokens) &&
         Objects.equals(maxCompletionTokens, createRunRequest.maxCompletionTokens) &&
         Objects.equals(truncationStrategy, createRunRequest.truncationStrategy) &&
         Objects.equals(toolChoice, createRunRequest.toolChoice) &&
+        Objects.equals(parallelToolCalls, createRunRequest.parallelToolCalls) &&
         Objects.equals(responseFormat, createRunRequest.responseFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(assistantId, model, instructions, additionalInstructions, additionalMessages, tools, metadata, temperature, stream, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, responseFormat);
+    return Objects.hash(assistantId, model, instructions, additionalInstructions, additionalMessages, tools, metadata, temperature, topP, stream, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, parallelToolCalls, responseFormat);
   }
 
   @Override
@@ -224,11 +248,13 @@ public class CreateRunRequest   {
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
     sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
     sb.append("    maxPromptTokens: ").append(toIndentedString(maxPromptTokens)).append("\n");
     sb.append("    maxCompletionTokens: ").append(toIndentedString(maxCompletionTokens)).append("\n");
     sb.append("    truncationStrategy: ").append(toIndentedString(truncationStrategy)).append("\n");
     sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
+    sb.append("    parallelToolCalls: ").append(toIndentedString(parallelToolCalls)).append("\n");
     sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();

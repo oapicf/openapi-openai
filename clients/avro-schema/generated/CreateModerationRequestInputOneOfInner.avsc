@@ -1,0 +1,31 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateModerationRequestInputOneOfInner",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "CreateModerationRequestInputOneOfInner_type",
+        "symbols": [
+          "image_url",
+          "text"
+        ]
+      },
+      "doc": "Always `image_url`."
+    },
+    {
+      "name": "image_url",
+      "type": "model.CreateModerationRequestInputOneOfInnerOneOfImageUrl",
+      "doc": ""
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "doc": "A string of text to classify."
+    }
+  ]
+
+}

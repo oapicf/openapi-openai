@@ -37,7 +37,7 @@ API.Client.RunStepDeltaStepDetailsToolCallsObjectToolCallsInner.prototype.codeIn
  * @type {!API.Client.Object}
  * @export
  */
-API.Client.RunStepDeltaStepDetailsToolCallsObjectToolCallsInner.prototype.retrieval;
+API.Client.RunStepDeltaStepDetailsToolCallsObjectToolCallsInner.prototype.fileSearch;
 
 /**
  * @type {!API.Client.RunStepDeltaStepDetailsToolCallsFunctionObject_function}
@@ -48,6 +48,6 @@ API.Client.RunStepDeltaStepDetailsToolCallsObjectToolCallsInner.prototype.functi
 /** @enum {string} */
 API.Client.RunStepDeltaStepDetailsToolCallsObjectToolCallsInner.TypeEnum = { 
   code_interpreter: 'code_interpreter',
-  retrieval: 'retrieval',
+  file_search: 'file_search',
   function: 'function',
 }

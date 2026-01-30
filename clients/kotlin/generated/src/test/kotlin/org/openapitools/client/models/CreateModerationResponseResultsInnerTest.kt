@@ -20,6 +20,7 @@ import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.CreateModerationResponseResultsInner
 import org.openapitools.client.models.CreateModerationResponseResultsInnerCategories
+import org.openapitools.client.models.CreateModerationResponseResultsInnerCategoryAppliedInputTypes
 import org.openapitools.client.models.CreateModerationResponseResultsInnerCategoryScores
 
 class CreateModerationResponseResultsInnerTest : ShouldSpec() {
@@ -43,6 +44,12 @@ class CreateModerationResponseResultsInnerTest : ShouldSpec() {
         should("test categoryScores") {
             // uncomment below to test the property
             //modelInstance.categoryScores shouldBe ("TODO")
+        }
+
+        // to test the property `categoryAppliedInputTypes`
+        should("test categoryAppliedInputTypes") {
+            // uncomment below to test the property
+            //modelInstance.categoryAppliedInputTypes shouldBe ("TODO")
         }
 
     }

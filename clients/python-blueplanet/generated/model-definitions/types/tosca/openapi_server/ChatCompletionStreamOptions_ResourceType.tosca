@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ChatCompletionStreamOptions"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ChatCompletionStreamOptions"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ChatCompletionStreamOptions {
+    title = ChatCompletionStreamOptions
+    description = ChatCompletionStreamOptions
+    derivedFrom = Root
+    properties {
+        include_usage {
+          type =  boolean
+          description = "If set, an additional chunk will be streamed before the &#x60;data: [DONE]&#x60; message. The &#x60;usage&#x60; field on this chunk shows the token usage statistics for the entire request, and the &#x60;choices&#x60; field will always be an empty array. All other chunks will also include a &#x60;usage&#x60; field, but with a null value. "
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ChatCompletionStreamOptions {
+    title = ChatCompletionStreamOptions
+    description = ChatCompletionStreamOptions
+    implements = openapi_server.resourceTypes.ChatCompletionStreamOptions
+
+  }
+}

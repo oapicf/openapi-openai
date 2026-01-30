@@ -16,8 +16,9 @@
 package org.openapitools.client.models
 
 import org.openapitools.client.models.AssistantToolsCode
+import org.openapitools.client.models.AssistantToolsFileSearch
+import org.openapitools.client.models.AssistantToolsFileSearchFileSearch
 import org.openapitools.client.models.AssistantToolsFunction
-import org.openapitools.client.models.AssistantToolsRetrieval
 import org.openapitools.client.models.FunctionObject
 
 import com.squareup.moshi.Json
@@ -28,6 +29,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param type The type of tool being defined: `code_interpreter`
  * @param function 
+ * @param fileSearch 
  */
 
 
@@ -38,19 +40,22 @@ data class AssistantObjectToolsInner (
     val type: AssistantObjectToolsInner.Type,
 
     @Json(name = "function")
-    val function: FunctionObject
+    val function: FunctionObject,
+
+    @Json(name = "file_search")
+    val fileSearch: AssistantToolsFileSearchFileSearch? = null
 
 ) {
 
     /**
      * The type of tool being defined: `code_interpreter`
      *
-     * Values: code_interpreter,retrieval,function
+     * Values: code_interpreter,file_search,function
      */
     @JsonClass(generateAdapter = false)
     enum class Type(val value: kotlin.String) {
         @Json(name = "code_interpreter") code_interpreter("code_interpreter"),
-        @Json(name = "retrieval") retrieval("retrieval"),
+        @Json(name = "file_search") file_search("file_search"),
         @Json(name = "function") function("function");
     }
 

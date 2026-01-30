@@ -1,7 +1,7 @@
 #' Create a new ChatCompletionRequestMessageContentPartText
 #'
 #' @description
-#' ChatCompletionRequestMessageContentPartText Class
+#' Learn about [text inputs](/docs/guides/text-generation). 
 #'
 #' @docType class
 #' @title ChatCompletionRequestMessageContentPartText

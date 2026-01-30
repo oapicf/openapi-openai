@@ -7,9 +7,12 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.ChatCompletionMessageToolCall;
 import org.openapitools.model.ChatCompletionRequestAssistantMessage;
+import org.openapitools.model.ChatCompletionRequestAssistantMessageAudio;
 import org.openapitools.model.ChatCompletionRequestAssistantMessageFunctionCall;
+import org.openapitools.model.ChatCompletionRequestDeveloperMessage;
 import org.openapitools.model.ChatCompletionRequestFunctionMessage;
 import org.openapitools.model.ChatCompletionRequestSystemMessage;
 import org.openapitools.model.ChatCompletionRequestToolMessage;
@@ -61,6 +64,10 @@ public enum RoleEnum {
   private RoleEnum role;
 
   private String name;
+
+  private String refusal;
+
+  private ChatCompletionRequestAssistantMessageAudio audio;
 
   private List<@Valid ChatCompletionMessageToolCall> toolCalls = new ArrayList<>();
 
@@ -125,6 +132,43 @@ public enum RoleEnum {
   }
   public void setName(String name) {
     this.name = name;
+  }
+
+
+  /**
+   * The refusal message by the assistant.
+   **/
+  public ChatCompletionRequestMessage refusal(String refusal) {
+    this.refusal = refusal;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "The refusal message by the assistant.")
+  @JsonProperty("refusal")
+  public String getRefusal() {
+    return refusal;
+  }
+  public void setRefusal(String refusal) {
+    this.refusal = refusal;
+  }
+
+
+  /**
+   **/
+  public ChatCompletionRequestMessage audio(ChatCompletionRequestAssistantMessageAudio audio) {
+    this.audio = audio;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("audio")
+  public ChatCompletionRequestAssistantMessageAudio getAudio() {
+    return audio;
+  }
+  public void setAudio(ChatCompletionRequestAssistantMessageAudio audio) {
+    this.audio = audio;
   }
 
 
@@ -206,6 +250,8 @@ public enum RoleEnum {
     return Objects.equals(this.content, chatCompletionRequestMessage.content) &&
         Objects.equals(this.role, chatCompletionRequestMessage.role) &&
         Objects.equals(this.name, chatCompletionRequestMessage.name) &&
+        Objects.equals(this.refusal, chatCompletionRequestMessage.refusal) &&
+        Objects.equals(this.audio, chatCompletionRequestMessage.audio) &&
         Objects.equals(this.toolCalls, chatCompletionRequestMessage.toolCalls) &&
         Objects.equals(this.functionCall, chatCompletionRequestMessage.functionCall) &&
         Objects.equals(this.toolCallId, chatCompletionRequestMessage.toolCallId);
@@ -213,7 +259,7 @@ public enum RoleEnum {
 
   @Override
   public int hashCode() {
-    return Objects.hash(content, role, name, toolCalls, functionCall, toolCallId);
+    return Objects.hash(content, role, name, refusal, audio, toolCalls, functionCall, toolCallId);
   }
 
   @Override
@@ -224,6 +270,8 @@ public enum RoleEnum {
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
+    sb.append("    audio: ").append(toIndentedString(audio)).append("\n");
     sb.append("    toolCalls: ").append(toIndentedString(toolCalls)).append("\n");
     sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
     sb.append("    toolCallId: ").append(toIndentedString(toolCallId)).append("\n");

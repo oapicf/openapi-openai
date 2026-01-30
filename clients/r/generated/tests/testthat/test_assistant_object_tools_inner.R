@@ -13,6 +13,13 @@ test_that("type", {
   #expect_equal(model.instance$`type`, "EXPECTED_RESULT")
 })
 
+test_that("file_search", {
+  # tests for the property `file_search` (AssistantToolsFileSearchFileSearch)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`file_search`, "EXPECTED_RESULT")
+})
+
 test_that("function", {
   # tests for the property `function` (FunctionObject)
 

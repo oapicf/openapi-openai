@@ -68,34 +68,6 @@ public class AssistantsApi extends RouteBuilder {
         
 
         /**
-        POST /assistants/{assistant_id}/files : Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-        **/
-        rest()
-            .securityDefinitions()
-                .bearerToken("ApiKeyAuth").end()
-            .post("/assistants/{assistant_id}/files")
-                .description("Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).")
-                .id("createAssistantFileApi")
-                .produces("application/json")
-                .outType(AssistantFileObject.class)
-                .consumes("application/json")
-                .type(CreateAssistantFileRequest.class)
-                
-                .param()
-                    .name("assistantId")
-                    .type(RestParamType.path)
-                    .required(true)
-                    .description("The ID of the assistant for which to create a File. ")
-                .endParam()
-                .param()
-                    .name("createAssistantFileRequest")
-                    .type(RestParamType.body)
-                    .required(true)
-                .endParam()
-                .to("direct:createAssistantFile");
-        
-
-        /**
         POST /threads/{thread_id}/messages : Create a message.
         **/
         rest()
@@ -142,6 +114,12 @@ public class AssistantsApi extends RouteBuilder {
                     .type(RestParamType.path)
                     .required(true)
                     .description("The ID of the thread to run.")
+                .endParam()
+                .param()
+                    .name("include")
+                    .type(RestParamType.query)
+                    .required(false)
+                    .description("A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")
                 .endParam()
                 .param()
                     .name("createRunRequest")
@@ -216,29 +194,29 @@ public class AssistantsApi extends RouteBuilder {
         
 
         /**
-        DELETE /assistants/{assistant_id}/files/{file_id} : Delete an assistant file.
+        DELETE /threads/{thread_id}/messages/{message_id} : Deletes a message.
         **/
         rest()
             .securityDefinitions()
                 .bearerToken("ApiKeyAuth").end()
-            .delete("/assistants/{assistant_id}/files/{file_id}")
-                .description("Delete an assistant file.")
-                .id("deleteAssistantFileApi")
+            .delete("/threads/{thread_id}/messages/{message_id}")
+                .description("Deletes a message.")
+                .id("deleteMessageApi")
                 .produces("application/json")
-                .outType(DeleteAssistantFileResponse.class)
+                .outType(DeleteMessageResponse.class)
                 .param()
-                    .name("assistantId")
+                    .name("threadId")
                     .type(RestParamType.path)
                     .required(true)
-                    .description("The ID of the assistant that the file belongs to.")
+                    .description("The ID of the thread to which this message belongs.")
                 .endParam()
                 .param()
-                    .name("fileId")
+                    .name("messageId")
                     .type(RestParamType.path)
                     .required(true)
-                    .description("The ID of the file to delete.")
+                    .description("The ID of the message to delete.")
                 .endParam()
-                .to("direct:deleteAssistantFile");
+                .to("direct:deleteMessage");
         
 
         /**
@@ -282,32 +260,6 @@ public class AssistantsApi extends RouteBuilder {
         
 
         /**
-        GET /assistants/{assistant_id}/files/{file_id} : Retrieves an AssistantFile.
-        **/
-        rest()
-            .securityDefinitions()
-                .bearerToken("ApiKeyAuth").end()
-            .get("/assistants/{assistant_id}/files/{file_id}")
-                .description("Retrieves an AssistantFile.")
-                .id("getAssistantFileApi")
-                .produces("application/json")
-                .outType(AssistantFileObject.class)
-                .param()
-                    .name("assistantId")
-                    .type(RestParamType.path)
-                    .required(true)
-                    .description("The ID of the assistant who the file belongs to.")
-                .endParam()
-                .param()
-                    .name("fileId")
-                    .type(RestParamType.path)
-                    .required(true)
-                    .description("The ID of the file we're getting.")
-                .endParam()
-                .to("direct:getAssistantFile");
-        
-
-        /**
         GET /threads/{thread_id}/messages/{message_id} : Retrieve a message.
         **/
         rest()
@@ -331,38 +283,6 @@ public class AssistantsApi extends RouteBuilder {
                     .description("The ID of the message to retrieve.")
                 .endParam()
                 .to("direct:getMessage");
-        
-
-        /**
-        GET /threads/{thread_id}/messages/{message_id}/files/{file_id} : Retrieves a message file.
-        **/
-        rest()
-            .securityDefinitions()
-                .bearerToken("ApiKeyAuth").end()
-            .get("/threads/{thread_id}/messages/{message_id}/files/{file_id}")
-                .description("Retrieves a message file.")
-                .id("getMessageFileApi")
-                .produces("application/json")
-                .outType(MessageFileObject.class)
-                .param()
-                    .name("threadId")
-                    .type(RestParamType.path)
-                    .required(true)
-                    .description("The ID of the thread to which the message and File belong.")
-                .endParam()
-                .param()
-                    .name("messageId")
-                    .type(RestParamType.path)
-                    .required(true)
-                    .description("The ID of the message the file belongs to.")
-                .endParam()
-                .param()
-                    .name("fileId")
-                    .type(RestParamType.path)
-                    .required(true)
-                    .description("The ID of the file being retrieved.")
-                .endParam()
-                .to("direct:getMessageFile");
         
 
         /**
@@ -420,6 +340,12 @@ public class AssistantsApi extends RouteBuilder {
                     .required(true)
                     .description("The ID of the run step to retrieve.")
                 .endParam()
+                .param()
+                    .name("include")
+                    .type(RestParamType.query)
+                    .required(false)
+                    .description("A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")
+                .endParam()
                 .to("direct:getRunStep");
         
 
@@ -441,50 +367,6 @@ public class AssistantsApi extends RouteBuilder {
                     .description("The ID of the thread to retrieve.")
                 .endParam()
                 .to("direct:getThread");
-        
-
-        /**
-        GET /assistants/{assistant_id}/files : Returns a list of assistant files.
-        **/
-        rest()
-            .securityDefinitions()
-                .bearerToken("ApiKeyAuth").end()
-            .get("/assistants/{assistant_id}/files")
-                .description("Returns a list of assistant files.")
-                .id("listAssistantFilesApi")
-                .produces("application/json")
-                .outType(ListAssistantFilesResponse.class)
-                .param()
-                    .name("assistantId")
-                    .type(RestParamType.path)
-                    .required(true)
-                    .description("The ID of the assistant the file belongs to.")
-                .endParam()
-                .param()
-                    .name("limit")
-                    .type(RestParamType.query)
-                    .required(false)
-                    .description("A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")
-                .endParam()
-                .param()
-                    .name("order")
-                    .type(RestParamType.query)
-                    .required(false)
-                    .description("Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")
-                .endParam()
-                .param()
-                    .name("after")
-                    .type(RestParamType.query)
-                    .required(false)
-                    .description("A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")
-                .endParam()
-                .param()
-                    .name("before")
-                    .type(RestParamType.query)
-                    .required(false)
-                    .description("A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")
-                .endParam()
-                .to("direct:listAssistantFiles");
         
 
         /**
@@ -520,59 +402,9 @@ public class AssistantsApi extends RouteBuilder {
                     .name("before")
                     .type(RestParamType.query)
                     .required(false)
-                    .description("A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")
+                    .description("A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")
                 .endParam()
                 .to("direct:listAssistants");
-        
-
-        /**
-        GET /threads/{thread_id}/messages/{message_id}/files : Returns a list of message files.
-        **/
-        rest()
-            .securityDefinitions()
-                .bearerToken("ApiKeyAuth").end()
-            .get("/threads/{thread_id}/messages/{message_id}/files")
-                .description("Returns a list of message files.")
-                .id("listMessageFilesApi")
-                .produces("application/json")
-                .outType(ListMessageFilesResponse.class)
-                .param()
-                    .name("threadId")
-                    .type(RestParamType.path)
-                    .required(true)
-                    .description("The ID of the thread that the message and files belong to.")
-                .endParam()
-                .param()
-                    .name("messageId")
-                    .type(RestParamType.path)
-                    .required(true)
-                    .description("The ID of the message that the files belongs to.")
-                .endParam()
-                .param()
-                    .name("limit")
-                    .type(RestParamType.query)
-                    .required(false)
-                    .description("A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")
-                .endParam()
-                .param()
-                    .name("order")
-                    .type(RestParamType.query)
-                    .required(false)
-                    .description("Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")
-                .endParam()
-                .param()
-                    .name("after")
-                    .type(RestParamType.query)
-                    .required(false)
-                    .description("A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")
-                .endParam()
-                .param()
-                    .name("before")
-                    .type(RestParamType.query)
-                    .required(false)
-                    .description("A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")
-                .endParam()
-                .to("direct:listMessageFiles");
         
 
         /**
@@ -614,7 +446,7 @@ public class AssistantsApi extends RouteBuilder {
                     .name("before")
                     .type(RestParamType.query)
                     .required(false)
-                    .description("A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")
+                    .description("A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")
                 .endParam()
                 .param()
                     .name("runId")
@@ -670,7 +502,13 @@ public class AssistantsApi extends RouteBuilder {
                     .name("before")
                     .type(RestParamType.query)
                     .required(false)
-                    .description("A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")
+                    .description("A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")
+                .endParam()
+                .param()
+                    .name("include")
+                    .type(RestParamType.query)
+                    .required(false)
+                    .description("A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")
                 .endParam()
                 .to("direct:listRunSteps");
         
@@ -714,7 +552,7 @@ public class AssistantsApi extends RouteBuilder {
                     .name("before")
                     .type(RestParamType.query)
                     .required(false)
-                    .description("A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")
+                    .description("A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")
                 .endParam()
                 .to("direct:listRuns");
         

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.CreateMessageRequest;
+import org.openapitools.model.CreateThreadRequestToolResources;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -22,10 +23,14 @@ public class CreateThreadRequest  {
   @Valid
   private List<@Valid CreateMessageRequest> messages = new ArrayList<>();
 
+  @ApiModelProperty(value = "")
+  @Valid
+  private CreateThreadRequestToolResources toolResources;
+
  /**
-  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
   */
-  @ApiModelProperty(value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+  @ApiModelProperty(value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
   private Object metadata;
  /**
   * A list of [messages](/docs/api-reference/messages) to start the thread with.
@@ -60,7 +65,31 @@ public class CreateThreadRequest  {
   }
 
  /**
-  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  * Get toolResources
+  * @return toolResources
+  */
+  @JsonProperty("tool_resources")
+  public CreateThreadRequestToolResources getToolResources() {
+    return toolResources;
+  }
+
+  /**
+   * Sets the <code>toolResources</code> property.
+   */
+ public void setToolResources(CreateThreadRequestToolResources toolResources) {
+    this.toolResources = toolResources;
+  }
+
+  /**
+   * Sets the <code>toolResources</code> property.
+   */
+  public CreateThreadRequest toolResources(CreateThreadRequestToolResources toolResources) {
+    this.toolResources = toolResources;
+    return this;
+  }
+
+ /**
+  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
   * @return metadata
   */
   @JsonProperty("metadata")
@@ -94,12 +123,13 @@ public class CreateThreadRequest  {
     }
     CreateThreadRequest createThreadRequest = (CreateThreadRequest) o;
     return Objects.equals(this.messages, createThreadRequest.messages) &&
+        Objects.equals(this.toolResources, createThreadRequest.toolResources) &&
         Objects.equals(this.metadata, createThreadRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(messages, metadata);
+    return Objects.hash(messages, toolResources, metadata);
   }
 
   @Override
@@ -108,6 +138,7 @@ public class CreateThreadRequest  {
     sb.append("class CreateThreadRequest {\n");
     
     sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

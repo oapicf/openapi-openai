@@ -15,8 +15,8 @@
 | **content** | [**List**](MessageObject_content_inner.md) | The content of the message in array of text and/or images. | [default to null] |
 | **assistant\_id** | **String** | If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message. | [default to null] |
 | **run\_id** | **String** | The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is &#x60;null&#x60; when messages are created manually using the create message or create thread endpoints. | [default to null] |
-| **file\_ids** | **List** | A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message. | [default to []] |
-| **metadata** | [**Object**](.md) | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  | [default to null] |
+| **attachments** | [**List**](CreateMessageRequest_attachments_inner.md) | A list of files attached to the message, and the tools they were added to. | [default to null] |
+| **metadata** | [**Object**](.md) | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  | [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

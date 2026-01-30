@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **HateThreatening** | **bool** | Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. | 
 **Harassment** | **bool** | Content that expresses, incites, or promotes harassing language towards any target. | 
 **HarassmentThreatening** | **bool** | Harassment content that also includes violence or serious harm towards any target. | 
+**Illicit** | **bool** | Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \&quot;how to shoplift\&quot; would fit this category. | 
+**IllicitViolent** | **bool** | Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon. | 
 **SelfHarm** | **bool** | Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders. | 
 **SelfHarmIntent** | **bool** | Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders. | 
 **SelfHarmInstructions** | **bool** | Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts. | 
@@ -20,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewCreateModerationResponseResultsInnerCategories
 
-`func NewCreateModerationResponseResultsInnerCategories(hate bool, hateThreatening bool, harassment bool, harassmentThreatening bool, selfHarm bool, selfHarmIntent bool, selfHarmInstructions bool, sexual bool, sexualMinors bool, violence bool, violenceGraphic bool, ) *CreateModerationResponseResultsInnerCategories`
+`func NewCreateModerationResponseResultsInnerCategories(hate bool, hateThreatening bool, harassment bool, harassmentThreatening bool, illicit bool, illicitViolent bool, selfHarm bool, selfHarmIntent bool, selfHarmInstructions bool, sexual bool, sexualMinors bool, violence bool, violenceGraphic bool, ) *CreateModerationResponseResultsInnerCategories`
 
 NewCreateModerationResponseResultsInnerCategories instantiates a new CreateModerationResponseResultsInnerCategories object
 This constructor will assign default values to properties that have it defined,
@@ -113,6 +115,46 @@ and a boolean to check if the value has been set.
 `func (o *CreateModerationResponseResultsInnerCategories) SetHarassmentThreatening(v bool)`
 
 SetHarassmentThreatening sets HarassmentThreatening field to given value.
+
+
+### GetIllicit
+
+`func (o *CreateModerationResponseResultsInnerCategories) GetIllicit() bool`
+
+GetIllicit returns the Illicit field if non-nil, zero value otherwise.
+
+### GetIllicitOk
+
+`func (o *CreateModerationResponseResultsInnerCategories) GetIllicitOk() (*bool, bool)`
+
+GetIllicitOk returns a tuple with the Illicit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIllicit
+
+`func (o *CreateModerationResponseResultsInnerCategories) SetIllicit(v bool)`
+
+SetIllicit sets Illicit field to given value.
+
+
+### GetIllicitViolent
+
+`func (o *CreateModerationResponseResultsInnerCategories) GetIllicitViolent() bool`
+
+GetIllicitViolent returns the IllicitViolent field if non-nil, zero value otherwise.
+
+### GetIllicitViolentOk
+
+`func (o *CreateModerationResponseResultsInnerCategories) GetIllicitViolentOk() (*bool, bool)`
+
+GetIllicitViolentOk returns a tuple with the IllicitViolent field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIllicitViolent
+
+`func (o *CreateModerationResponseResultsInnerCategories) SetIllicitViolent(v bool)`
+
+SetIllicitViolent sets IllicitViolent field to given value.
 
 
 ### GetSelfHarm

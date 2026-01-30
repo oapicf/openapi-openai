@@ -10,6 +10,11 @@ Protected Class AssistantObjectToolsInner
 
 
 	#tag Property, Flags = &h0
+		file_search As OpenAPIClient.Models.AssistantToolsFileSearchFileSearch
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
 		Escapedfunction As OpenAPIClient.Models.FunctionObject
 	#tag EndProperty
 
@@ -17,7 +22,7 @@ Protected Class AssistantObjectToolsInner
     #tag Enum, Name = TypeEnum, Type = Integer, Flags = &h0
         
         CodeInterpreter
-        Retrieval
+        FileSearch
         Escapedfunction
         
     #tag EndEnum
@@ -29,8 +34,8 @@ Protected Class AssistantObjectToolsInner
 		    
 		    Case TypeEnum.CodeInterpreter
 		      Return "code_interpreter"
-		    Case TypeEnum.Retrieval
-		      Return "retrieval"
+		    Case TypeEnum.FileSearch
+		      Return "file_search"
 		    Case TypeEnum.Escapedfunction
 		      Return "function"
 		    
@@ -71,6 +76,14 @@ Protected Class AssistantObjectToolsInner
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="file_search"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="AssistantToolsFileSearchFileSearch"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

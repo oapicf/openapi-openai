@@ -13,11 +13,5 @@ void main() {
       // TODO
     });
 
-    // The specific quote in the file.
-    // String quote
-    test('to test the property `quote`', () async {
-      // TODO
-    });
-
   });
 }

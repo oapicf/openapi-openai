@@ -24,6 +24,7 @@
       {"model": "seed" },
       {"model": "stop" },
       {"model": "stream" },
+      {"model": "stream_options" },
       {"model": "suffix" },
       {"model": "temperature" },
       {"model": "top_p" },

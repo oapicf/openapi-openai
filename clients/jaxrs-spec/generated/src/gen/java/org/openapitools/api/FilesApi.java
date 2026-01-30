@@ -21,13 +21,13 @@ import javax.validation.Valid;
 */
 @Path("/files")
 @Api(description = "the files API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FilesApi {
 
     @POST
     @Consumes({ "multipart/form-data" })
     @Produces({ "application/json" })
-    @ApiOperation(value = "Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. ", notes = "", response = OpenAIFile.class, authorizations = {
+    @ApiOperation(value = "Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. ", notes = "", response = OpenAIFile.class, authorizations = {
         
         @Authorization(value = "ApiKeyAuth")
          }, tags={ "Files" })
@@ -68,14 +68,14 @@ public class FilesApi {
 
     @GET
     @Produces({ "application/json" })
-    @ApiOperation(value = "Returns a list of files that belong to the user's organization.", notes = "", response = ListFilesResponse.class, authorizations = {
+    @ApiOperation(value = "Returns a list of files.", notes = "", response = ListFilesResponse.class, authorizations = {
         
         @Authorization(value = "ApiKeyAuth")
          }, tags={ "Files" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ListFilesResponse.class)
     })
-    public Response listFiles(@QueryParam("purpose")  @ApiParam("Only return files with the given purpose.")  String purpose) {
+    public Response listFiles(@QueryParam("purpose")  @ApiParam("Only return files with the given purpose.")  String purpose,@QueryParam("limit") @DefaultValue("10000")  @ApiParam("A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. ")  Integer limit,@QueryParam("order") @DefaultValue("desc")  @ApiParam("Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ")  String order,@QueryParam("after")  @ApiParam("A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ")  String after) {
         return Response.ok().entity("magic!").build();
     }
 

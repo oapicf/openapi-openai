@@ -15,6 +15,5 @@ module MessageDeltaObjectDelta =
   type MessageDeltaObject_delta = {
     Role : RoleEnum;
     Content : MessageDeltaObjectDeltaContentInner[];
-    FileIds : string[];
   }
   //#endregion

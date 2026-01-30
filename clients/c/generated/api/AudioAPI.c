@@ -8,19 +8,19 @@
 #define MAX_BUFFER_LENGTH 4096
 #define MAX_NUMBER_LENGTH_LONG 21
 
-// Functions for enum RESPONSEFORMAT for AudioAPI_createTranscription
+// Functions for enum  for AudioAPI_createTranscription
 
-static char* createTranscription_RESPONSEFORMAT_ToString(openai_api_createTranscription_response_format_e RESPONSEFORMAT){
-    char *RESPONSEFORMATArray[] =  { "NULL", "json", "text", "srt", "verbose_json", "vtt" };
-    return RESPONSEFORMATArray[RESPONSEFORMAT];
+static char* createTranscription__ToString(openai_api_createTranscription_response_format_e ){
+    char *Array[] =  { "NULL", "json", "text", "srt", "verbose_json", "vtt" };
+    return Array[];
 }
 
-static openai_api_createTranscription_response_format_e createTranscription_RESPONSEFORMAT_FromString(char* RESPONSEFORMAT){
+static openai_api_createTranscription_response_format_e createTranscription__FromString(char* ){
     int stringToReturn = 0;
-    char *RESPONSEFORMATArray[] =  { "NULL", "json", "text", "srt", "verbose_json", "vtt" };
-    size_t sizeofArray = sizeof(RESPONSEFORMATArray) / sizeof(RESPONSEFORMATArray[0]);
+    char *Array[] =  { "NULL", "json", "text", "srt", "verbose_json", "vtt" };
+    size_t sizeofArray = sizeof(Array) / sizeof(Array[0]);
     while(stringToReturn < sizeofArray) {
-        if(strcmp(RESPONSEFORMAT, RESPONSEFORMATArray[stringToReturn]) == 0) {
+        if(strcmp(, Array[stringToReturn]) == 0) {
             return stringToReturn;
         }
         stringToReturn++;
@@ -29,32 +29,23 @@ static openai_api_createTranscription_response_format_e createTranscription_RESP
 }
 
 /*
-// Function createTranscription_RESPONSEFORMAT_convertToJSON is not currently used,
+// Function createTranscription__convertToJSON is not currently used,
 // since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
 //
-static cJSON *createTranscription_RESPONSEFORMAT_convertToJSON(openai_api_createTranscription_response_format_e RESPONSEFORMAT) {
+static cJSON *createTranscription__convertToJSON(openai_api_createTranscription_response_format_e ) {
     cJSON *item = cJSON_CreateObject();
-    if(cJSON_AddStringToObject(item, "response_format", createTranscription_RESPONSEFORMAT_ToString(RESPONSEFORMAT)) == NULL) {
-        goto fail;
-    }
     return item;
     fail:
     cJSON_Delete(item);
     return NULL;
 }
 
-// Function createTranscription_RESPONSEFORMAT_parseFromJSON is not currently used,
+// Function createTranscription__parseFromJSON is not currently used,
 // since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
 //
-static openai_api_createTranscription_response_format_e createTranscription_RESPONSEFORMAT_parseFromJSON(cJSON* RESPONSEFORMATJSON) {
-    openai_api_createTranscription_response_format_e RESPONSEFORMATVariable = 0;
-    cJSON *RESPONSEFORMATVar = cJSON_GetObjectItemCaseSensitive(RESPONSEFORMATJSON, "response_format");
-    if(!cJSON_IsString(RESPONSEFORMATVar) || (RESPONSEFORMATVar->valuestring == NULL))
-    {
-        goto end;
-    }
-    RESPONSEFORMATVariable = createTranscription_RESPONSEFORMAT_FromString(RESPONSEFORMATVar->valuestring);
-    return RESPONSEFORMATVariable;
+static openai_api_createTranscription_response_format_e createTranscription__parseFromJSON(cJSON* JSON) {
+    openai_api_createTranscription_response_format_e Variable = 0;
+    return Variable;
 end:
     return 0;
 }
@@ -98,6 +89,49 @@ static cJSON *createTranscription_TIMESTAMPGRANULARITIES_convertToJSON(openai_ap
 static openai_api_createTranscription_timestamp_granularities[]_e createTranscription_TIMESTAMPGRANULARITIES_parseFromJSON(cJSON* TIMESTAMPGRANULARITIESJSON) {
     openai_api_createTranscription_timestamp_granularities[]_e TIMESTAMPGRANULARITIESVariable = 0;
     return TIMESTAMPGRANULARITIESVariable;
+end:
+    return 0;
+}
+*/
+
+// Functions for enum  for AudioAPI_createTranslation
+
+static char* createTranslation__ToString(openai_api_createTranslation_response_format_e ){
+    char *Array[] =  { "NULL", "json", "text", "srt", "verbose_json", "vtt" };
+    return Array[];
+}
+
+static openai_api_createTranslation_response_format_e createTranslation__FromString(char* ){
+    int stringToReturn = 0;
+    char *Array[] =  { "NULL", "json", "text", "srt", "verbose_json", "vtt" };
+    size_t sizeofArray = sizeof(Array) / sizeof(Array[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(, Array[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+/*
+// Function createTranslation__convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *createTranslation__convertToJSON(openai_api_createTranslation_response_format_e ) {
+    cJSON *item = cJSON_CreateObject();
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function createTranslation__parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static openai_api_createTranslation_response_format_e createTranslation__parseFromJSON(cJSON* JSON) {
+    openai_api_createTranslation_response_format_e Variable = 0;
+    return Variable;
 end:
     return 0;
 }
@@ -184,7 +218,7 @@ end:
 // Transcribes audio into the input language.
 //
 create_transcription_200_response_t*
-AudioAPI_createTranscription(apiClient_t *apiClient, binary_t* file, create_transcription_request_model_t *model, char *language, char *prompt, openai_api_createTranscription_response_format_e response_format, double temperature, list_t *timestamp_granularities[])
+AudioAPI_createTranscription(apiClient_t *apiClient, binary_t* file, create_transcription_request_model_t *model, char *language, char *prompt, audio_response_format_e response_format, double temperature, list_t *timestamp_granularities[])
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -254,13 +288,13 @@ AudioAPI_createTranscription(apiClient_t *apiClient, binary_t* file, create_tran
 
     // form parameters
     char *keyForm_response_format = NULL;
-    openai_api_createTranscription_response_format_e valueForm_response_format = 0;
+    audio_response_format_e valueForm_response_format = 0;
     keyValuePair_t *keyPairForm_response_format = 0;
     if (response_format != 0)
     {
         keyForm_response_format = strdup("response_format");
         valueForm_response_format = (response_format);
-        keyPairForm_response_format = keyValuePair_create(keyForm_response_format,(void *)valueForm_response_format);
+        keyPairForm_response_format = keyValuePair_create(keyForm_response_format,&valueForm_response_format);
         list_addElement(localVarFormParameters,keyPairForm_response_format);
     }
 
@@ -361,9 +395,6 @@ AudioAPI_createTranscription(apiClient_t *apiClient, binary_t* file, create_tran
         free(keyForm_response_format);
         keyForm_response_format = NULL;
     }
-    if (valueForm_response_format) {
-        valueForm_response_format = 0;
-    }
     free(keyPairForm_response_format);
     if (keyForm_temperature) {
         free(keyForm_temperature);
@@ -385,7 +416,7 @@ end:
 // Translates audio into English.
 //
 create_translation_200_response_t*
-AudioAPI_createTranslation(apiClient_t *apiClient, binary_t* file, create_transcription_request_model_t *model, char *prompt, char *response_format, double temperature)
+AudioAPI_createTranslation(apiClient_t *apiClient, binary_t* file, create_transcription_request_model_t *model, char *prompt, audio_response_format_e response_format, double temperature)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -443,13 +474,13 @@ AudioAPI_createTranslation(apiClient_t *apiClient, binary_t* file, create_transc
 
     // form parameters
     char *keyForm_response_format = NULL;
-    char * valueForm_response_format = 0;
+    audio_response_format_e valueForm_response_format = 0;
     keyValuePair_t *keyPairForm_response_format = 0;
-    if (response_format != NULL)
+    if (response_format != 0)
     {
         keyForm_response_format = strdup("response_format");
-        valueForm_response_format = strdup((response_format));
-        keyPairForm_response_format = keyValuePair_create(keyForm_response_format,valueForm_response_format);
+        valueForm_response_format = (response_format);
+        keyPairForm_response_format = keyValuePair_create(keyForm_response_format,&valueForm_response_format);
         list_addElement(localVarFormParameters,keyPairForm_response_format);
     }
 
@@ -528,10 +559,6 @@ AudioAPI_createTranslation(apiClient_t *apiClient, binary_t* file, create_transc
     if (keyForm_response_format) {
         free(keyForm_response_format);
         keyForm_response_format = NULL;
-    }
-    if (valueForm_response_format) {
-        free(valueForm_response_format);
-        valueForm_response_format = NULL;
     }
     free(keyPairForm_response_format);
     if (keyForm_temperature) {

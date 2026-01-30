@@ -18,9 +18,9 @@ class ListRunStepsResponse
 
     /**
      * @DTA\Data(field="data")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection52::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection52::class})
-     * @var \App\DTO\Collection52|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection143::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection143::class})
+     * @var \App\DTO\Collection143|null
      */
     public $data;
 

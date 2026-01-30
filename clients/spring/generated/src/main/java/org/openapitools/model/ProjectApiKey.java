@@ -1,0 +1,256 @@
+package org.openapitools.model;
+
+import java.net.URI;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import org.openapitools.model.ProjectApiKeyOwner;
+import org.springframework.lang.Nullable;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
+
+/**
+ * Represents an individual API key in a project.
+ */
+
+@Schema(name = "ProjectApiKey", description = "Represents an individual API key in a project.")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class ProjectApiKey {
+
+  /**
+   * The object type, which is always `organization.project.api_key`
+   */
+  public enum ObjectEnum {
+    ORGANIZATION_PROJECT_API_KEY("organization.project.api_key");
+
+    private final String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String value) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  private ObjectEnum _object;
+
+  private String redactedValue;
+
+  private String name;
+
+  private Integer createdAt;
+
+  private String id;
+
+  private ProjectApiKeyOwner owner;
+
+  public ProjectApiKey() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public ProjectApiKey(ObjectEnum _object, String redactedValue, String name, Integer createdAt, String id, ProjectApiKeyOwner owner) {
+    this._object = _object;
+    this.redactedValue = redactedValue;
+    this.name = name;
+    this.createdAt = createdAt;
+    this.id = id;
+    this.owner = owner;
+  }
+
+  public ProjectApiKey _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+  /**
+   * The object type, which is always `organization.project.api_key`
+   * @return _object
+   */
+  @NotNull 
+  @Schema(name = "object", description = "The object type, which is always `organization.project.api_key`", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("object")
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
+  public ProjectApiKey redactedValue(String redactedValue) {
+    this.redactedValue = redactedValue;
+    return this;
+  }
+
+  /**
+   * The redacted value of the API key
+   * @return redactedValue
+   */
+  @NotNull 
+  @Schema(name = "redacted_value", description = "The redacted value of the API key", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("redacted_value")
+  public String getRedactedValue() {
+    return redactedValue;
+  }
+
+  public void setRedactedValue(String redactedValue) {
+    this.redactedValue = redactedValue;
+  }
+
+  public ProjectApiKey name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * The name of the API key
+   * @return name
+   */
+  @NotNull 
+  @Schema(name = "name", description = "The name of the API key", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("name")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public ProjectApiKey createdAt(Integer createdAt) {
+    this.createdAt = createdAt;
+    return this;
+  }
+
+  /**
+   * The Unix timestamp (in seconds) of when the API key was created
+   * @return createdAt
+   */
+  @NotNull 
+  @Schema(name = "created_at", description = "The Unix timestamp (in seconds) of when the API key was created", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("created_at")
+  public Integer getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(Integer createdAt) {
+    this.createdAt = createdAt;
+  }
+
+  public ProjectApiKey id(String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * The identifier, which can be referenced in API endpoints
+   * @return id
+   */
+  @NotNull 
+  @Schema(name = "id", description = "The identifier, which can be referenced in API endpoints", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("id")
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public ProjectApiKey owner(ProjectApiKeyOwner owner) {
+    this.owner = owner;
+    return this;
+  }
+
+  /**
+   * Get owner
+   * @return owner
+   */
+  @NotNull @Valid 
+  @Schema(name = "owner", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("owner")
+  public ProjectApiKeyOwner getOwner() {
+    return owner;
+  }
+
+  public void setOwner(ProjectApiKeyOwner owner) {
+    this.owner = owner;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ProjectApiKey projectApiKey = (ProjectApiKey) o;
+    return Objects.equals(this._object, projectApiKey._object) &&
+        Objects.equals(this.redactedValue, projectApiKey.redactedValue) &&
+        Objects.equals(this.name, projectApiKey.name) &&
+        Objects.equals(this.createdAt, projectApiKey.createdAt) &&
+        Objects.equals(this.id, projectApiKey.id) &&
+        Objects.equals(this.owner, projectApiKey.owner);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(_object, redactedValue, name, createdAt, id, owner);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class ProjectApiKey {\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    redactedValue: ").append(toIndentedString(redactedValue)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+}
+

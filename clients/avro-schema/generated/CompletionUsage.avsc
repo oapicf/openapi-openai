@@ -18,6 +18,18 @@
       "name": "total_tokens",
       "type": "int",
       "doc": "Total number of tokens used in the request (prompt + completion)."
+    },
+    {
+      "name": "completion_tokens_details",
+      "type": ["null", "model.CompletionUsageCompletionTokensDetails"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "prompt_tokens_details",
+      "type": ["null", "model.CompletionUsagePromptTokensDetails"],
+      "doc": "",
+      "default": null
     }
   ]
 

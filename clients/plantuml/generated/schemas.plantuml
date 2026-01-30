@@ -2,11 +2,47 @@
 
 title OpenAI API Schemas Diagram
 
-entity AssistantFileObject {
-    * id: String
-    * object: String
-    * created_at: Integer
-    * assistant_id: String
+entity AdminApiKey {
+    object: String
+    id: String
+    name: String
+    redacted_value: String
+    value: String
+    created_at: Long
+    owner: AdminApiKeyOwner
+}
+
+entity AdminApiKeyOwner {
+    type: String
+    id: String
+    name: String
+    created_at: Long
+    role: String
+}
+
+entity AdminApiKeysCreateRequest {
+    * name: String
+}
+
+entity AdminApiKeysDelete200Response {
+    id: String
+    object: String
+    deleted: Boolean
+}
+
+entity ApiKeyList {
+    object: String
+    data: List<AdminApiKey>
+    has_more: Boolean
+    first_id: String
+    last_id: String
+}
+
+entity ArrayOfContentPartsInner {
+    * type: String
+    * image_file: MessageContentImageFileObjectImageFile
+    * image_url: MessageContentImageUrlObjectImageUrl
+    * text: String
 }
 
 entity AssistantObject {
@@ -18,16 +54,34 @@ entity AssistantObject {
     * model: String
     * instructions: String
     * tools: List<AssistantObjectToolsInner>
-    * file_ids: List<String>
+    tool_resources: AssistantObjectToolResources
     * metadata: Object
+    temperature: BigDecimal
+    top_p: BigDecimal
+    response_format: AssistantsApiResponseFormatOption
+}
+
+entity AssistantObjectToolResources {
+    code_interpreter: AssistantObjectToolResourcesCodeInterpreter
+    file_search: AssistantObjectToolResourcesFileSearch
+}
+
+entity AssistantObjectToolResourcesCodeInterpreter {
+    file_ids: List<String>
+}
+
+entity AssistantObjectToolResourcesFileSearch {
+    vector_store_ids: List<String>
 }
 
 entity AssistantObjectToolsInner {
     * type: String
+    file_search: AssistantToolsFileSearchFileSearch
     * function: FunctionObject
 }
 
 entity AssistantStreamEvent {
+    enabled: Boolean
     * event: String
     * data: String
 }
@@ -36,31 +90,324 @@ entity AssistantToolsCode {
     * type: String
 }
 
+entity AssistantToolsFileSearch {
+    * type: String
+    file_search: AssistantToolsFileSearchFileSearch
+}
+
+entity AssistantToolsFileSearchFileSearch {
+    max_num_results: Integer
+    ranking_options: FileSearchRankingOptions
+}
+
+entity AssistantToolsFileSearchTypeOnly {
+    * type: String
+}
+
 entity AssistantToolsFunction {
     * type: String
     * function: FunctionObject
 }
 
-entity AssistantToolsRetrieval {
-    * type: String
-}
-
-entity AssistantsApiNamedToolChoice {
-    * type: String
-    function: ChatCompletionNamedToolChoiceFunction
-}
-
-entity AssistantsApiResponseFormat {
-    type: String
-}
-
 entity AssistantsApiResponseFormatOption {
-    type: String
+    * type: String
+    * json_schema: ResponseFormatJsonSchemaJsonSchema
 }
 
 entity AssistantsApiToolChoiceOption {
     * type: String
-    function: ChatCompletionNamedToolChoiceFunction
+    function: AssistantsNamedToolChoiceFunction
+}
+
+entity AssistantsNamedToolChoice {
+    * type: String
+    function: AssistantsNamedToolChoiceFunction
+}
+
+entity AssistantsNamedToolChoiceFunction {
+    * name: String
+}
+
+entity AudioResponseFormat {
+}
+
+entity AuditLog {
+    * id: String
+    * type: AuditLogEventType
+    * effective_at: Integer
+    project: AuditLogProject
+    * actor: AuditLogActor
+    api_key.created: AuditLogApiKeyCreated
+    api_key.updated: AuditLogApiKeyUpdated
+    api_key.deleted: AuditLogApiKeyDeleted
+    invite.sent: AuditLogInviteSent
+    invite.accepted: AuditLogInviteAccepted
+    invite.deleted: AuditLogInviteAccepted
+    login.failed: AuditLogLoginFailed
+    logout.failed: AuditLogLoginFailed
+    organization.updated: AuditLogOrganizationUpdated
+    project.created: AuditLogProjectCreated
+    project.updated: AuditLogProjectUpdated
+    project.archived: AuditLogProjectArchived
+    rate_limit.updated: AuditLogRateLimitUpdated
+    rate_limit.deleted: AuditLogRateLimitDeleted
+    service_account.created: AuditLogServiceAccountCreated
+    service_account.updated: AuditLogServiceAccountUpdated
+    service_account.deleted: AuditLogServiceAccountDeleted
+    user.added: AuditLogUserAdded
+    user.updated: AuditLogUserUpdated
+    user.deleted: AuditLogUserDeleted
+}
+
+entity AuditLogActor {
+    type: String
+    session: AuditLogActorSession
+    api_key: AuditLogActorApiKey
+}
+
+entity AuditLogActorApiKey {
+    id: String
+    type: String
+    user: AuditLogActorUser
+    service_account: AuditLogActorServiceAccount
+}
+
+entity AuditLogActorServiceAccount {
+    id: String
+}
+
+entity AuditLogActorSession {
+    user: AuditLogActorUser
+    ip_address: String
+}
+
+entity AuditLogActorUser {
+    id: String
+    email: String
+}
+
+entity AuditLogApiKeyCreated {
+    id: String
+    data: AuditLogApiKeyCreatedData
+}
+
+entity AuditLogApiKeyCreatedData {
+    scopes: List<String>
+}
+
+entity AuditLogApiKeyDeleted {
+    id: String
+}
+
+entity AuditLogApiKeyUpdated {
+    id: String
+    changes_requested: AuditLogApiKeyUpdatedChangesRequested
+}
+
+entity AuditLogApiKeyUpdatedChangesRequested {
+    scopes: List<String>
+}
+
+entity AuditLogEventType {
+}
+
+entity AuditLogInviteAccepted {
+    id: String
+}
+
+entity AuditLogInviteSent {
+    id: String
+    data: AuditLogInviteSentData
+}
+
+entity AuditLogInviteSentData {
+    email: String
+    role: String
+}
+
+entity AuditLogLoginFailed {
+    error_code: String
+    error_message: String
+}
+
+entity AuditLogOrganizationUpdated {
+    id: String
+    changes_requested: AuditLogOrganizationUpdatedChangesRequested
+}
+
+entity AuditLogOrganizationUpdatedChangesRequested {
+    title: String
+    description: String
+    name: String
+    settings: AuditLogOrganizationUpdatedChangesRequestedSettings
+}
+
+entity AuditLogOrganizationUpdatedChangesRequestedSettings {
+    threads_ui_visibility: String
+    usage_dashboard_visibility: String
+}
+
+entity AuditLogProject {
+    id: String
+    name: String
+}
+
+entity AuditLogProjectArchived {
+    id: String
+}
+
+entity AuditLogProjectCreated {
+    id: String
+    data: AuditLogProjectCreatedData
+}
+
+entity AuditLogProjectCreatedData {
+    name: String
+    title: String
+}
+
+entity AuditLogProjectUpdated {
+    id: String
+    changes_requested: AuditLogProjectUpdatedChangesRequested
+}
+
+entity AuditLogProjectUpdatedChangesRequested {
+    title: String
+}
+
+entity AuditLogRateLimitDeleted {
+    id: String
+}
+
+entity AuditLogRateLimitUpdated {
+    id: String
+    changes_requested: AuditLogRateLimitUpdatedChangesRequested
+}
+
+entity AuditLogRateLimitUpdatedChangesRequested {
+    max_requests_per_1_minute: Integer
+    max_tokens_per_1_minute: Integer
+    max_images_per_1_minute: Integer
+    max_audio_megabytes_per_1_minute: Integer
+    max_requests_per_1_day: Integer
+    batch_1_day_max_input_tokens: Integer
+}
+
+entity AuditLogServiceAccountCreated {
+    id: String
+    data: AuditLogServiceAccountCreatedData
+}
+
+entity AuditLogServiceAccountCreatedData {
+    role: String
+}
+
+entity AuditLogServiceAccountDeleted {
+    id: String
+}
+
+entity AuditLogServiceAccountUpdated {
+    id: String
+    changes_requested: AuditLogServiceAccountUpdatedChangesRequested
+}
+
+entity AuditLogServiceAccountUpdatedChangesRequested {
+    role: String
+}
+
+entity AuditLogUserAdded {
+    id: String
+    data: AuditLogUserAddedData
+}
+
+entity AuditLogUserAddedData {
+    role: String
+}
+
+entity AuditLogUserDeleted {
+    id: String
+}
+
+entity AuditLogUserUpdated {
+    id: String
+    changes_requested: AuditLogUserUpdatedChangesRequested
+}
+
+entity AuditLogUserUpdatedChangesRequested {
+    role: String
+}
+
+entity AutoChunkingStrategy {
+    * type: String
+}
+
+entity AutoChunkingStrategyRequestParam {
+    * type: String
+}
+
+entity Batch {
+    * id: String
+    * object: String
+    * endpoint: String
+    errors: BatchErrors
+    * input_file_id: String
+    * completion_window: String
+    * status: String
+    output_file_id: String
+    error_file_id: String
+    * created_at: Integer
+    in_progress_at: Integer
+    expires_at: Integer
+    finalizing_at: Integer
+    completed_at: Integer
+    failed_at: Integer
+    expired_at: Integer
+    cancelling_at: Integer
+    cancelled_at: Integer
+    request_counts: BatchRequestCounts
+    metadata: Object
+}
+
+entity BatchErrors {
+    object: String
+    data: List<BatchErrorsDataInner>
+}
+
+entity BatchErrorsDataInner {
+    code: String
+    message: String
+    param: String
+    line: Integer
+}
+
+entity BatchRequestCounts {
+    * total: Integer
+    * completed: Integer
+    * failed: Integer
+}
+
+entity BatchRequestInput {
+    custom_id: String
+    method: String
+    url: String
+}
+
+entity BatchRequestOutput {
+    id: String
+    custom_id: String
+    response: BatchRequestOutputResponse
+    error: BatchRequestOutputError
+}
+
+entity BatchRequestOutputError {
+    code: String
+    message: String
+}
+
+entity BatchRequestOutputResponse {
+    status_code: Integer
+    request_id: String
+    body: Object
 }
 
 entity ChatCompletionFunctionCallOption {
@@ -98,24 +445,44 @@ entity ChatCompletionMessageToolCallFunction {
 
 entity ChatCompletionNamedToolChoice {
     * type: String
-    * function: ChatCompletionNamedToolChoiceFunction
-}
-
-entity ChatCompletionNamedToolChoiceFunction {
-    * name: String
+    * function: AssistantsNamedToolChoiceFunction
 }
 
 entity ChatCompletionRequestAssistantMessage {
-    content: String
+    content: ChatCompletionRequestAssistantMessageContent
+    refusal: String
     * role: String
     name: String
+    audio: ChatCompletionRequestAssistantMessageAudio
     tool_calls: List<ChatCompletionMessageToolCall>
     function_call: ChatCompletionRequestAssistantMessageFunctionCall
+}
+
+entity ChatCompletionRequestAssistantMessageAudio {
+    * id: String
+}
+
+entity ChatCompletionRequestAssistantMessageContent {
+}
+
+entity ChatCompletionRequestAssistantMessageContentPart {
+    * type: String
+    * text: String
+    * refusal: String
 }
 
 entity ChatCompletionRequestAssistantMessageFunctionCall {
     * arguments: String
     * name: String
+}
+
+entity ChatCompletionRequestDeveloperMessage {
+    * content: ChatCompletionRequestDeveloperMessageContent
+    * role: String
+    name: String
+}
+
+entity ChatCompletionRequestDeveloperMessageContent {
 }
 
 entity ChatCompletionRequestFunctionMessage {
@@ -128,15 +495,21 @@ entity ChatCompletionRequestMessage {
     * content: String
     * role: String
     * name: String
+    refusal: String
+    audio: ChatCompletionRequestAssistantMessageAudio
     tool_calls: List<ChatCompletionMessageToolCall>
     function_call: ChatCompletionRequestAssistantMessageFunctionCall
     * tool_call_id: String
 }
 
-entity ChatCompletionRequestMessageContentPart {
+entity ChatCompletionRequestMessageContentPartAudio {
     * type: String
-    * text: String
-    * image_url: ChatCompletionRequestMessageContentPartImageImageUrl
+    * input_audio: ChatCompletionRequestMessageContentPartAudioInputAudio
+}
+
+entity ChatCompletionRequestMessageContentPartAudioInputAudio {
+    * data: String
+    * format: String
 }
 
 entity ChatCompletionRequestMessageContentPartImage {
@@ -149,21 +522,32 @@ entity ChatCompletionRequestMessageContentPartImageImageUrl {
     detail: String
 }
 
+entity ChatCompletionRequestMessageContentPartRefusal {
+    * type: String
+    * refusal: String
+}
+
 entity ChatCompletionRequestMessageContentPartText {
     * type: String
     * text: String
 }
 
 entity ChatCompletionRequestSystemMessage {
-    * content: String
+    * content: ChatCompletionRequestSystemMessageContent
     * role: String
     name: String
 }
 
+entity ChatCompletionRequestSystemMessageContent {
+}
+
 entity ChatCompletionRequestToolMessage {
     * role: String
-    * content: String
+    * content: ChatCompletionRequestToolMessageContent
     * tool_call_id: String
+}
+
+entity ChatCompletionRequestToolMessageContent {
 }
 
 entity ChatCompletionRequestUserMessage {
@@ -175,14 +559,39 @@ entity ChatCompletionRequestUserMessage {
 entity ChatCompletionRequestUserMessageContent {
 }
 
+entity ChatCompletionRequestUserMessageContentPart {
+    * type: String
+    * text: String
+    * image_url: ChatCompletionRequestMessageContentPartImageImageUrl
+    * input_audio: ChatCompletionRequestMessageContentPartAudioInputAudio
+}
+
 entity ChatCompletionResponseMessage {
     * content: String
+    * refusal: String
     tool_calls: List<ChatCompletionMessageToolCall>
     * role: String
-    function_call: ChatCompletionRequestAssistantMessageFunctionCall
+    function_call: ChatCompletionResponseMessageFunctionCall
+    audio: ChatCompletionResponseMessageAudio
+}
+
+entity ChatCompletionResponseMessageAudio {
+    * id: String
+    * expires_at: Integer
+    * data: String
+    * transcript: String
+}
+
+entity ChatCompletionResponseMessageFunctionCall {
+    * arguments: String
+    * name: String
 }
 
 entity ChatCompletionRole {
+}
+
+entity ChatCompletionStreamOptions {
+    include_usage: Boolean
 }
 
 entity ChatCompletionStreamResponseDelta {
@@ -190,6 +599,7 @@ entity ChatCompletionStreamResponseDelta {
     function_call: ChatCompletionStreamResponseDeltaFunctionCall
     tool_calls: List<ChatCompletionMessageToolCallChunk>
     role: String
+    refusal: String
 }
 
 entity ChatCompletionStreamResponseDeltaFunctionCall {
@@ -217,17 +627,49 @@ entity ChatCompletionTool {
 
 entity ChatCompletionToolChoiceOption {
     * type: String
-    * function: ChatCompletionNamedToolChoiceFunction
+    * function: AssistantsNamedToolChoiceFunction
+}
+
+entity ChunkingStrategyRequestParam {
+    * type: String
+    * static: StaticChunkingStrategy
+}
+
+entity CompleteUploadRequest {
+    * part_ids: List<String>
+    md5: String
 }
 
 entity CompletionUsage {
     * completion_tokens: Integer
     * prompt_tokens: Integer
     * total_tokens: Integer
+    completion_tokens_details: CompletionUsageCompletionTokensDetails
+    prompt_tokens_details: CompletionUsagePromptTokensDetails
 }
 
-entity CreateAssistantFileRequest {
-    * file_id: String
+entity CompletionUsageCompletionTokensDetails {
+    accepted_prediction_tokens: Integer
+    audio_tokens: Integer
+    reasoning_tokens: Integer
+    rejected_prediction_tokens: Integer
+}
+
+entity CompletionUsagePromptTokensDetails {
+    audio_tokens: Integer
+    cached_tokens: Integer
+}
+
+entity CostsResult {
+    * object: String
+    amount: CostsResultAmount
+    line_item: String
+    project_id: String
+}
+
+entity CostsResultAmount {
+    value: BigDecimal
+    currency: String
 }
 
 entity CreateAssistantRequest {
@@ -236,11 +678,46 @@ entity CreateAssistantRequest {
     description: String
     instructions: String
     tools: List<AssistantObjectToolsInner>
-    file_ids: List<String>
+    tool_resources: CreateAssistantRequestToolResources
     metadata: Object
+    temperature: BigDecimal
+    top_p: BigDecimal
+    response_format: AssistantsApiResponseFormatOption
 }
 
 entity CreateAssistantRequestModel {
+}
+
+entity CreateAssistantRequestToolResources {
+    code_interpreter: CreateAssistantRequestToolResourcesCodeInterpreter
+    file_search: CreateAssistantRequestToolResourcesFileSearch
+}
+
+entity CreateAssistantRequestToolResourcesCodeInterpreter {
+    file_ids: List<String>
+}
+
+entity CreateAssistantRequestToolResourcesFileSearch {
+    vector_store_ids: List<String>
+    vector_stores: List<CreateAssistantRequestToolResourcesFileSearchVectorStoresInner>
+}
+
+entity CreateAssistantRequestToolResourcesFileSearchVectorStoresInner {
+    file_ids: List<String>
+    chunking_strategy: CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
+    metadata: Object
+}
+
+entity CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
+    * type: String
+    * static: StaticChunkingStrategyStatic
+}
+
+entity CreateBatchRequest {
+    * input_file_id: String
+    * endpoint: String
+    * completion_window: String
+    metadata: Map
 }
 
 entity CreateChatCompletionFunctionResponse {
@@ -262,24 +739,39 @@ entity CreateChatCompletionFunctionResponseChoicesInner {
 entity CreateChatCompletionRequest {
     * messages: List<ChatCompletionRequestMessage>
     * model: CreateChatCompletionRequestModel
+    store: Boolean
+    reasoning_effort: String
+    metadata: Map
     frequency_penalty: BigDecimal
     logit_bias: Map
     logprobs: Boolean
     top_logprobs: Integer
     max_tokens: Integer
+    max_completion_tokens: Integer
     n: Integer
+    modalities: List<String>
+    prediction: PredictionContent
+    audio: CreateChatCompletionRequestAudio
     presence_penalty: BigDecimal
     response_format: CreateChatCompletionRequestResponseFormat
     seed: Integer
+    service_tier: String
     stop: CreateChatCompletionRequestStop
     stream: Boolean
+    stream_options: ChatCompletionStreamOptions
     temperature: BigDecimal
     top_p: BigDecimal
     tools: List<ChatCompletionTool>
     tool_choice: ChatCompletionToolChoiceOption
+    parallel_tool_calls: Boolean
     user: String
     function_call: CreateChatCompletionRequestFunctionCall
     functions: List<ChatCompletionFunctions>
+}
+
+entity CreateChatCompletionRequestAudio {
+    * voice: String
+    * format: String
 }
 
 entity CreateChatCompletionRequestFunctionCall {
@@ -290,7 +782,8 @@ entity CreateChatCompletionRequestModel {
 }
 
 entity CreateChatCompletionRequestResponseFormat {
-    type: String
+    * type: String
+    * json_schema: ResponseFormatJsonSchemaJsonSchema
 }
 
 entity CreateChatCompletionRequestStop {
@@ -301,6 +794,7 @@ entity CreateChatCompletionResponse {
     * choices: List<CreateChatCompletionResponseChoicesInner>
     * created: Integer
     * model: String
+    service_tier: String
     system_fingerprint: String
     * object: String
     usage: CompletionUsage
@@ -315,6 +809,7 @@ entity CreateChatCompletionResponseChoicesInner {
 
 entity CreateChatCompletionResponseChoicesInnerLogprobs {
     * content: List<ChatCompletionTokenLogprob>
+    * refusal: List<ChatCompletionTokenLogprob>
 }
 
 entity CreateChatCompletionStreamResponse {
@@ -322,8 +817,10 @@ entity CreateChatCompletionStreamResponse {
     * choices: List<CreateChatCompletionStreamResponseChoicesInner>
     * created: Integer
     * model: String
+    service_tier: String
     system_fingerprint: String
     * object: String
+    usage: CreateChatCompletionStreamResponseUsage
 }
 
 entity CreateChatCompletionStreamResponseChoicesInner {
@@ -331,6 +828,12 @@ entity CreateChatCompletionStreamResponseChoicesInner {
     logprobs: CreateChatCompletionResponseChoicesInnerLogprobs
     * finish_reason: String
     * index: Integer
+}
+
+entity CreateChatCompletionStreamResponseUsage {
+    * completion_tokens: Integer
+    * prompt_tokens: Integer
+    * total_tokens: Integer
 }
 
 entity CreateCompletionRequest {
@@ -347,6 +850,7 @@ entity CreateCompletionRequest {
     seed: Integer
     stop: CreateCompletionRequestStop
     stream: Boolean
+    stream_options: ChatCompletionStreamOptions
     suffix: String
     temperature: BigDecimal
     top_p: BigDecimal
@@ -420,6 +924,7 @@ entity CreateFineTuningJobRequest {
     validation_file: String
     integrations: List<CreateFineTuningJobRequestIntegrationsInner>
     seed: Integer
+    method: FineTuneMethod
 }
 
 entity CreateFineTuningJobRequestHyperparameters {
@@ -471,9 +976,21 @@ entity CreateImageRequestModel {
 
 entity CreateMessageRequest {
     * role: String
-    * content: String
-    file_ids: List<String>
+    * content: CreateMessageRequestContent
+    attachments: List<CreateMessageRequestAttachmentsInner>
     metadata: Object
+}
+
+entity CreateMessageRequestAttachmentsInner {
+    file_id: String
+    tools: List<CreateMessageRequestAttachmentsInnerToolsInner>
+}
+
+entity CreateMessageRequestAttachmentsInnerToolsInner {
+    * type: String
+}
+
+entity CreateMessageRequestContent {
 }
 
 entity CreateModerationRequest {
@@ -482,6 +999,26 @@ entity CreateModerationRequest {
 }
 
 entity CreateModerationRequestInput {
+}
+
+entity CreateModerationRequestInputOneOfInner {
+    * type: String
+    * image_url: CreateModerationRequestInputOneOfInnerOneOfImageUrl
+    * text: String
+}
+
+entity CreateModerationRequestInputOneOfInnerOneOf {
+    * type: String
+    * image_url: CreateModerationRequestInputOneOfInnerOneOfImageUrl
+}
+
+entity CreateModerationRequestInputOneOfInnerOneOf1 {
+    * type: String
+    * text: String
+}
+
+entity CreateModerationRequestInputOneOfInnerOneOfImageUrl {
+    * url: URI
 }
 
 entity CreateModerationRequestModel {
@@ -497,6 +1034,7 @@ entity CreateModerationResponseResultsInner {
     * flagged: Boolean
     * categories: CreateModerationResponseResultsInnerCategories
     * category_scores: CreateModerationResponseResultsInnerCategoryScores
+    * category_applied_input_types: CreateModerationResponseResultsInnerCategoryAppliedInputTypes
 }
 
 entity CreateModerationResponseResultsInnerCategories {
@@ -504,6 +1042,8 @@ entity CreateModerationResponseResultsInnerCategories {
     * hate/threatening: Boolean
     * harassment: Boolean
     * harassment/threatening: Boolean
+    * illicit: Boolean
+    * illicit/violent: Boolean
     * self-harm: Boolean
     * self-harm/intent: Boolean
     * self-harm/instructions: Boolean
@@ -513,11 +1053,29 @@ entity CreateModerationResponseResultsInnerCategories {
     * violence/graphic: Boolean
 }
 
+entity CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
+    * hate: List<String>
+    * hate/threatening: List<String>
+    * harassment: List<String>
+    * harassment/threatening: List<String>
+    * illicit: List<String>
+    * illicit/violent: List<String>
+    * self-harm: List<String>
+    * self-harm/intent: List<String>
+    * self-harm/instructions: List<String>
+    * sexual: List<String>
+    * sexual/minors: List<String>
+    * violence: List<String>
+    * violence/graphic: List<String>
+}
+
 entity CreateModerationResponseResultsInnerCategoryScores {
     * hate: BigDecimal
     * hate/threatening: BigDecimal
     * harassment: BigDecimal
     * harassment/threatening: BigDecimal
+    * illicit: BigDecimal
+    * illicit/violent: BigDecimal
     * self-harm: BigDecimal
     * self-harm/intent: BigDecimal
     * self-harm/instructions: BigDecimal
@@ -536,11 +1094,13 @@ entity CreateRunRequest {
     tools: List<AssistantObjectToolsInner>
     metadata: Object
     temperature: BigDecimal
+    top_p: BigDecimal
     stream: Boolean
     max_prompt_tokens: Integer
     max_completion_tokens: Integer
     truncation_strategy: TruncationObject
     tool_choice: AssistantsApiToolChoiceOption
+    parallel_tool_calls: Boolean
     response_format: AssistantsApiResponseFormatOption
 }
 
@@ -564,23 +1124,49 @@ entity CreateThreadAndRunRequest {
     model: CreateRunRequestModel
     instructions: String
     tools: List<CreateThreadAndRunRequestToolsInner>
+    tool_resources: CreateThreadAndRunRequestToolResources
     metadata: Object
     temperature: BigDecimal
+    top_p: BigDecimal
     stream: Boolean
     max_prompt_tokens: Integer
     max_completion_tokens: Integer
     truncation_strategy: TruncationObject
     tool_choice: AssistantsApiToolChoiceOption
+    parallel_tool_calls: Boolean
     response_format: AssistantsApiResponseFormatOption
+}
+
+entity CreateThreadAndRunRequestToolResources {
+    code_interpreter: CreateAssistantRequestToolResourcesCodeInterpreter
+    file_search: AssistantObjectToolResourcesFileSearch
 }
 
 entity CreateThreadAndRunRequestToolsInner {
     * type: String
+    file_search: AssistantToolsFileSearchFileSearch
     * function: FunctionObject
 }
 
 entity CreateThreadRequest {
     messages: List<CreateMessageRequest>
+    tool_resources: CreateThreadRequestToolResources
+    metadata: Object
+}
+
+entity CreateThreadRequestToolResources {
+    code_interpreter: CreateAssistantRequestToolResourcesCodeInterpreter
+    file_search: CreateThreadRequestToolResourcesFileSearch
+}
+
+entity CreateThreadRequestToolResourcesFileSearch {
+    vector_store_ids: List<String>
+    vector_stores: List<CreateThreadRequestToolResourcesFileSearchVectorStoresInner>
+}
+
+entity CreateThreadRequestToolResourcesFileSearchVectorStoresInner {
+    file_ids: List<String>
+    chunking_strategy: CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
     metadata: Object
 }
 
@@ -625,10 +1211,39 @@ entity CreateTranslationResponseVerboseJson {
     segments: List<TranscriptionSegment>
 }
 
-entity DeleteAssistantFileResponse {
-    * id: String
-    * deleted: Boolean
-    * object: String
+entity CreateUploadRequest {
+    * filename: String
+    * purpose: String
+    * bytes: Integer
+    * mime_type: String
+}
+
+entity CreateVectorStoreFileBatchRequest {
+    * file_ids: List<String>
+    chunking_strategy: ChunkingStrategyRequestParam
+}
+
+entity CreateVectorStoreFileRequest {
+    * file_id: String
+    chunking_strategy: ChunkingStrategyRequestParam
+}
+
+entity CreateVectorStoreRequest {
+    file_ids: List<String>
+    name: String
+    expires_after: VectorStoreExpirationAfter
+    chunking_strategy: CreateVectorStoreRequestChunkingStrategy
+    metadata: Object
+}
+
+entity CreateVectorStoreRequestChunkingStrategy {
+    * type: String
+    * static: StaticChunkingStrategy
+}
+
+entity DefaultProjectErrorResponse {
+    * code: Integer
+    * message: String
 }
 
 entity DeleteAssistantResponse {
@@ -661,6 +1276,18 @@ entity DeleteThreadResponse {
     * object: String
 }
 
+entity DeleteVectorStoreFileResponse {
+    * id: String
+    * deleted: Boolean
+    * object: String
+}
+
+entity DeleteVectorStoreResponse {
+    * id: String
+    * deleted: Boolean
+    * object: String
+}
+
 entity DoneEvent {
     * event: String
     * data: String
@@ -688,6 +1315,99 @@ entity ErrorResponse {
     * error: Error
 }
 
+entity FileSearchRankingOptions {
+    ranker: String
+    * score_threshold: BigDecimal
+}
+
+entity FineTuneChatCompletionRequestAssistantMessage {
+}
+
+entity FineTuneChatRequestInput {
+    messages: List<FineTuneChatRequestInputMessagesInner>
+    tools: List<ChatCompletionTool>
+    parallel_tool_calls: Boolean
+    functions: List<ChatCompletionFunctions>
+}
+
+entity FineTuneChatRequestInputMessagesInner {
+    * content: String
+    * role: String
+    * name: String
+    weight: Integer
+    refusal: String
+    audio: ChatCompletionRequestAssistantMessageAudio
+    tool_calls: List<ChatCompletionMessageToolCall>
+    function_call: ChatCompletionRequestAssistantMessageFunctionCall
+    * tool_call_id: String
+}
+
+entity FineTuneCompletionRequestInput {
+    prompt: String
+    completion: String
+}
+
+entity FineTuneDPOMethod {
+    hyperparameters: FineTuneDPOMethodHyperparameters
+}
+
+entity FineTuneDPOMethodHyperparameters {
+    beta: FineTuneDPOMethodHyperparametersBeta
+    batch_size: FineTuneDPOMethodHyperparametersBatchSize
+    learning_rate_multiplier: FineTuneDPOMethodHyperparametersLearningRateMultiplier
+    n_epochs: FineTuneDPOMethodHyperparametersNEpochs
+}
+
+entity FineTuneDPOMethodHyperparametersBatchSize {
+}
+
+entity FineTuneDPOMethodHyperparametersBeta {
+}
+
+entity FineTuneDPOMethodHyperparametersLearningRateMultiplier {
+}
+
+entity FineTuneDPOMethodHyperparametersNEpochs {
+}
+
+entity FineTuneMethod {
+    type: String
+    supervised: FineTuneSupervisedMethod
+    dpo: FineTuneDPOMethod
+}
+
+entity FineTunePreferenceRequestInput {
+    input: FineTunePreferenceRequestInputInput
+    preferred_completion: List<FineTunePreferenceRequestInputPreferredCompletionInner>
+    non_preferred_completion: List<FineTunePreferenceRequestInputPreferredCompletionInner>
+}
+
+entity FineTunePreferenceRequestInputInput {
+    messages: List<FineTuneChatRequestInputMessagesInner>
+    tools: List<ChatCompletionTool>
+    parallel_tool_calls: Boolean
+}
+
+entity FineTunePreferenceRequestInputPreferredCompletionInner {
+    content: ChatCompletionRequestAssistantMessageContent
+    refusal: String
+    * role: String
+    name: String
+    audio: ChatCompletionRequestAssistantMessageAudio
+    tool_calls: List<ChatCompletionMessageToolCall>
+    function_call: ChatCompletionRequestAssistantMessageFunctionCall
+}
+
+entity FineTuneSupervisedMethod {
+    hyperparameters: FineTuneSupervisedMethodHyperparameters
+}
+
+entity FineTuneSupervisedMethodHyperparameters {
+    batch_size: FineTuneDPOMethodHyperparametersBatchSize
+    learning_rate_multiplier: FineTuneDPOMethodHyperparametersLearningRateMultiplier
+    n_epochs: FineTuneDPOMethodHyperparametersNEpochs
+}
+
 entity FineTuningIntegration {
     * type: String
     * wandb: CreateFineTuningJobRequestIntegrationsInnerWandb
@@ -710,6 +1430,8 @@ entity FineTuningJob {
     * validation_file: String
     integrations: List<FineTuningJobIntegrationsInner>
     * seed: Integer
+    estimated_finish: Integer
+    method: FineTuneMethod
 }
 
 entity FineTuningJobCheckpoint {
@@ -739,18 +1461,19 @@ entity FineTuningJobError {
 }
 
 entity FineTuningJobEvent {
+    * object: String
     * id: String
     * created_at: Integer
     * level: String
     * message: String
-    * object: String
+    type: String
+    data: Object
 }
 
 entity FineTuningJobHyperparameters {
-    * n_epochs: FineTuningJobHyperparametersNEpochs
-}
-
-entity FineTuningJobHyperparametersNEpochs {
+    batch_size: CreateFineTuningJobRequestHyperparametersBatchSize
+    learning_rate_multiplier: CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+    n_epochs: CreateFineTuningJobRequestHyperparametersNEpochs
 }
 
 entity FineTuningJobIntegrationsInner {
@@ -762,6 +1485,7 @@ entity FunctionObject {
     description: String
     * name: String
     parameters: Map
+    strict: Boolean
 }
 
 entity Image {
@@ -775,12 +1499,46 @@ entity ImagesResponse {
     * data: List<Image>
 }
 
-entity ListAssistantFilesResponse {
+entity Invite {
     * object: String
-    * data: List<AssistantFileObject>
-    * first_id: String
-    * last_id: String
-    * has_more: Boolean
+    * id: String
+    * email: String
+    * role: String
+    * status: String
+    * invited_at: Integer
+    * expires_at: Integer
+    accepted_at: Integer
+    projects: List<InviteProjectsInner>
+}
+
+entity InviteDeleteResponse {
+    * object: String
+    * id: String
+    * deleted: Boolean
+}
+
+entity InviteListResponse {
+    * object: String
+    * data: List<Invite>
+    first_id: String
+    last_id: String
+    has_more: Boolean
+}
+
+entity InviteProjectsInner {
+    id: String
+    role: String
+}
+
+entity InviteRequest {
+    * email: String
+    * role: String
+    projects: List<InviteRequestProjectsInner>
+}
+
+entity InviteRequestProjectsInner {
+    * id: String
+    * role: String
 }
 
 entity ListAssistantsResponse {
@@ -791,9 +1549,35 @@ entity ListAssistantsResponse {
     * has_more: Boolean
 }
 
-entity ListFilesResponse {
-    * data: List<OpenAIFile>
+entity ListAuditLogsEffectiveAtParameter {
+    gt: Integer
+    gte: Integer
+    lt: Integer
+    lte: Integer
+}
+
+entity ListAuditLogsResponse {
     * object: String
+    * data: List<AuditLog>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
+entity ListBatchesResponse {
+    * data: List<Batch>
+    first_id: String
+    last_id: String
+    * has_more: Boolean
+    * object: String
+}
+
+entity ListFilesResponse {
+    * object: String
+    * data: List<OpenAIFile>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
 }
 
 entity ListFineTuningJobCheckpointsResponse {
@@ -807,14 +1591,6 @@ entity ListFineTuningJobCheckpointsResponse {
 entity ListFineTuningJobEventsResponse {
     * data: List<FineTuningJobEvent>
     * object: String
-}
-
-entity ListMessageFilesResponse {
-    * object: String
-    * data: List<MessageFileObject>
-    * first_id: String
-    * last_id: String
-    * has_more: Boolean
 }
 
 entity ListMessagesResponse {
@@ -860,6 +1636,22 @@ entity ListThreadsResponse {
     * has_more: Boolean
 }
 
+entity ListVectorStoreFilesResponse {
+    * object: String
+    * data: List<VectorStoreFileObject>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
+entity ListVectorStoresResponse {
+    * object: String
+    * data: List<VectorStoreObject>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
 entity MessageContentImageFileObject {
     * type: String
     * image_file: MessageContentImageFileObjectImageFile
@@ -867,6 +1659,22 @@ entity MessageContentImageFileObject {
 
 entity MessageContentImageFileObjectImageFile {
     * file_id: String
+    detail: String
+}
+
+entity MessageContentImageUrlObject {
+    * type: String
+    * image_url: MessageContentImageUrlObjectImageUrl
+}
+
+entity MessageContentImageUrlObjectImageUrl {
+    * url: URI
+    detail: String
+}
+
+entity MessageContentRefusalObject {
+    * type: String
+    * refusal: String
 }
 
 entity MessageContentTextAnnotationsFileCitationObject {
@@ -879,7 +1687,6 @@ entity MessageContentTextAnnotationsFileCitationObject {
 
 entity MessageContentTextAnnotationsFileCitationObjectFileCitation {
     * file_id: String
-    * quote: String
 }
 
 entity MessageContentTextAnnotationsFilePathObject {
@@ -921,6 +1728,24 @@ entity MessageDeltaContentImageFileObject {
 
 entity MessageDeltaContentImageFileObjectImageFile {
     file_id: String
+    detail: String
+}
+
+entity MessageDeltaContentImageUrlObject {
+    * index: Integer
+    * type: String
+    image_url: MessageDeltaContentImageUrlObjectImageUrl
+}
+
+entity MessageDeltaContentImageUrlObjectImageUrl {
+    url: String
+    detail: String
+}
+
+entity MessageDeltaContentRefusalObject {
+    * index: Integer
+    * type: String
+    refusal: String
 }
 
 entity MessageDeltaContentTextAnnotationsFileCitationObject {
@@ -980,7 +1805,6 @@ entity MessageDeltaObject {
 entity MessageDeltaObjectDelta {
     role: String
     content: List<MessageDeltaObjectDeltaContentInner>
-    file_ids: List<String>
 }
 
 entity MessageDeltaObjectDeltaContentInner {
@@ -988,13 +1812,8 @@ entity MessageDeltaObjectDeltaContentInner {
     * type: String
     image_file: MessageDeltaContentImageFileObjectImageFile
     text: MessageDeltaContentTextObjectText
-}
-
-entity MessageFileObject {
-    * id: String
-    * object: String
-    * created_at: Integer
-    * message_id: String
+    refusal: String
+    image_url: MessageDeltaContentImageUrlObjectImageUrl
 }
 
 entity MessageObject {
@@ -1010,18 +1829,25 @@ entity MessageObject {
     * content: List<MessageObjectContentInner>
     * assistant_id: String
     * run_id: String
-    * file_ids: List<String>
+    * attachments: List<CreateMessageRequestAttachmentsInner>
     * metadata: Object
 }
 
 entity MessageObjectContentInner {
     * type: String
     * image_file: MessageContentImageFileObjectImageFile
+    * image_url: MessageContentImageUrlObjectImageUrl
     * text: MessageContentTextObjectText
+    * refusal: String
 }
 
 entity MessageObjectIncompleteDetails {
     * reason: String
+}
+
+entity MessageRequestContentTextObject {
+    * type: String
+    * text: String
 }
 
 entity MessageStreamEvent {
@@ -1067,8 +1893,24 @@ entity ModifyAssistantRequest {
     description: String
     instructions: String
     tools: List<AssistantObjectToolsInner>
-    file_ids: List<String>
+    tool_resources: ModifyAssistantRequestToolResources
     metadata: Object
+    temperature: BigDecimal
+    top_p: BigDecimal
+    response_format: AssistantsApiResponseFormatOption
+}
+
+entity ModifyAssistantRequestToolResources {
+    code_interpreter: ModifyAssistantRequestToolResourcesCodeInterpreter
+    file_search: ModifyAssistantRequestToolResourcesFileSearch
+}
+
+entity ModifyAssistantRequestToolResourcesCodeInterpreter {
+    file_ids: List<String>
+}
+
+entity ModifyAssistantRequestToolResourcesFileSearch {
+    vector_store_ids: List<String>
 }
 
 entity ModifyMessageRequest {
@@ -1080,7 +1922,17 @@ entity ModifyRunRequest {
 }
 
 entity ModifyThreadRequest {
+    tool_resources: ModifyThreadRequestToolResources
     metadata: Object
+}
+
+entity ModifyThreadRequestToolResources {
+    code_interpreter: CreateAssistantRequestToolResourcesCodeInterpreter
+    file_search: ModifyThreadRequestToolResourcesFileSearch
+}
+
+entity ModifyThreadRequestToolResourcesFileSearch {
+    vector_store_ids: List<String>
 }
 
 entity OpenAIFile {
@@ -1092,6 +1944,680 @@ entity OpenAIFile {
     * purpose: String
     * status: String
     status_details: String
+}
+
+entity OtherChunkingStrategyResponseParam {
+    * type: String
+}
+
+entity PredictionContent {
+    * type: String
+    * content: PredictionContentContent
+}
+
+entity PredictionContentContent {
+}
+
+entity Project {
+    * id: String
+    * object: String
+    * name: String
+    * created_at: Integer
+    archived_at: Integer
+    * status: String
+}
+
+entity ProjectApiKey {
+    * object: String
+    * redacted_value: String
+    * name: String
+    * created_at: Integer
+    * id: String
+    * owner: ProjectApiKeyOwner
+}
+
+entity ProjectApiKeyDeleteResponse {
+    * object: String
+    * id: String
+    * deleted: Boolean
+}
+
+entity ProjectApiKeyListResponse {
+    * object: String
+    * data: List<ProjectApiKey>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
+entity ProjectApiKeyOwner {
+    type: String
+    user: ProjectUser
+    service_account: ProjectServiceAccount
+}
+
+entity ProjectCreateRequest {
+    * name: String
+}
+
+entity ProjectListResponse {
+    * object: String
+    * data: List<Project>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
+entity ProjectRateLimit {
+    * object: String
+    * id: String
+    * model: String
+    * max_requests_per_1_minute: Integer
+    * max_tokens_per_1_minute: Integer
+    max_images_per_1_minute: Integer
+    max_audio_megabytes_per_1_minute: Integer
+    max_requests_per_1_day: Integer
+    batch_1_day_max_input_tokens: Integer
+}
+
+entity ProjectRateLimitListResponse {
+    * object: String
+    * data: List<ProjectRateLimit>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
+entity ProjectRateLimitUpdateRequest {
+    max_requests_per_1_minute: Integer
+    max_tokens_per_1_minute: Integer
+    max_images_per_1_minute: Integer
+    max_audio_megabytes_per_1_minute: Integer
+    max_requests_per_1_day: Integer
+    batch_1_day_max_input_tokens: Integer
+}
+
+entity ProjectServiceAccount {
+    * object: String
+    * id: String
+    * name: String
+    * role: String
+    * created_at: Integer
+}
+
+entity ProjectServiceAccountApiKey {
+    * object: String
+    * value: String
+    * name: String
+    * created_at: Integer
+    * id: String
+}
+
+entity ProjectServiceAccountCreateRequest {
+    * name: String
+}
+
+entity ProjectServiceAccountCreateResponse {
+    * object: String
+    * id: String
+    * name: String
+    * role: String
+    * created_at: Integer
+    * api_key: ProjectServiceAccountApiKey
+}
+
+entity ProjectServiceAccountDeleteResponse {
+    * object: String
+    * id: String
+    * deleted: Boolean
+}
+
+entity ProjectServiceAccountListResponse {
+    * object: String
+    * data: List<ProjectServiceAccount>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
+entity ProjectUpdateRequest {
+    * name: String
+}
+
+entity ProjectUser {
+    * object: String
+    * id: String
+    * name: String
+    * email: String
+    * role: String
+    * added_at: Integer
+}
+
+entity ProjectUserCreateRequest {
+    * user_id: String
+    * role: String
+}
+
+entity ProjectUserDeleteResponse {
+    * object: String
+    * id: String
+    * deleted: Boolean
+}
+
+entity ProjectUserListResponse {
+    * object: String
+    * data: List<ProjectUser>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
+entity ProjectUserUpdateRequest {
+    * role: String
+}
+
+entity RealtimeClientEventConversationItemCreate {
+    event_id: String
+    * type: String
+    previous_item_id: String
+    * item: RealtimeConversationItem
+}
+
+entity RealtimeClientEventConversationItemDelete {
+    event_id: String
+    * type: String
+    * item_id: String
+}
+
+entity RealtimeClientEventConversationItemTruncate {
+    event_id: String
+    * type: String
+    * item_id: String
+    * content_index: Integer
+    * audio_end_ms: Integer
+}
+
+entity RealtimeClientEventInputAudioBufferAppend {
+    event_id: String
+    * type: String
+    * audio: String
+}
+
+entity RealtimeClientEventInputAudioBufferClear {
+    event_id: String
+    * type: String
+}
+
+entity RealtimeClientEventInputAudioBufferCommit {
+    event_id: String
+    * type: String
+}
+
+entity RealtimeClientEventResponseCancel {
+    event_id: String
+    * type: String
+    response_id: String
+}
+
+entity RealtimeClientEventResponseCreate {
+    event_id: String
+    * type: String
+    response: RealtimeResponseCreateParams
+}
+
+entity RealtimeClientEventSessionUpdate {
+    event_id: String
+    * type: String
+    * session: RealtimeSessionCreateRequest
+}
+
+entity RealtimeConversationItem {
+    id: String
+    type: String
+    object: String
+    status: String
+    role: String
+    content: List<RealtimeConversationItemContentInner>
+    call_id: String
+    name: String
+    arguments: String
+    output: String
+}
+
+entity RealtimeConversationItemContentInner {
+    type: String
+    text: String
+    id: String
+    audio: String
+    transcript: String
+}
+
+entity RealtimeResponse {
+    id: String
+    object: String
+    status: String
+    status_details: RealtimeResponseStatusDetails
+    output: List<RealtimeConversationItem>
+    metadata: Object
+    usage: RealtimeResponseUsage
+}
+
+entity RealtimeResponseCreateParams {
+    modalities: List<String>
+    instructions: String
+    voice: String
+    output_audio_format: String
+    tools: List<RealtimeResponseCreateParamsToolsInner>
+    tool_choice: String
+    temperature: BigDecimal
+    max_response_output_tokens: RealtimeResponseCreateParamsMaxResponseOutputTokens
+    conversation: RealtimeResponseCreateParamsConversation
+    metadata: Object
+    input: List<RealtimeConversationItem>
+}
+
+entity RealtimeResponseCreateParamsConversation {
+}
+
+entity RealtimeResponseCreateParamsMaxResponseOutputTokens {
+}
+
+entity RealtimeResponseCreateParamsToolsInner {
+    type: String
+    name: String
+    description: String
+    parameters: Object
+}
+
+entity RealtimeResponseStatusDetails {
+    type: String
+    reason: String
+    error: RealtimeResponseStatusDetailsError
+}
+
+entity RealtimeResponseStatusDetailsError {
+    type: String
+    code: String
+}
+
+entity RealtimeResponseUsage {
+    total_tokens: Integer
+    input_tokens: Integer
+    output_tokens: Integer
+    input_token_details: RealtimeResponseUsageInputTokenDetails
+    output_token_details: RealtimeResponseUsageOutputTokenDetails
+}
+
+entity RealtimeResponseUsageInputTokenDetails {
+    cached_tokens: Integer
+    text_tokens: Integer
+    audio_tokens: Integer
+}
+
+entity RealtimeResponseUsageOutputTokenDetails {
+    text_tokens: Integer
+    audio_tokens: Integer
+}
+
+entity RealtimeServerEventConversationCreated {
+    * event_id: String
+    * type: String
+    * conversation: RealtimeServerEventConversationCreatedConversation
+}
+
+entity RealtimeServerEventConversationCreatedConversation {
+    id: String
+    object: String
+}
+
+entity RealtimeServerEventConversationItemCreated {
+    * event_id: String
+    * type: String
+    * previous_item_id: String
+    * item: RealtimeConversationItem
+}
+
+entity RealtimeServerEventConversationItemDeleted {
+    * event_id: String
+    * type: String
+    * item_id: String
+}
+
+entity RealtimeServerEventConversationItemInputAudioTranscriptionCompleted {
+    * event_id: String
+    * type: String
+    * item_id: String
+    * content_index: Integer
+    * transcript: String
+}
+
+entity RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
+    * event_id: String
+    * type: String
+    * item_id: String
+    * content_index: Integer
+    * error: RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
+}
+
+entity RealtimeServerEventConversationItemInputAudioTranscriptionFailedError {
+    type: String
+    code: String
+    message: String
+    param: String
+}
+
+entity RealtimeServerEventConversationItemTruncated {
+    * event_id: String
+    * type: String
+    * item_id: String
+    * content_index: Integer
+    * audio_end_ms: Integer
+}
+
+entity RealtimeServerEventError {
+    * event_id: String
+    * type: String
+    * error: RealtimeServerEventErrorError
+}
+
+entity RealtimeServerEventErrorError {
+    * type: String
+    code: String
+    * message: String
+    param: String
+    event_id: String
+}
+
+entity RealtimeServerEventInputAudioBufferCleared {
+    * event_id: String
+    * type: String
+}
+
+entity RealtimeServerEventInputAudioBufferCommitted {
+    * event_id: String
+    * type: String
+    * previous_item_id: String
+    * item_id: String
+}
+
+entity RealtimeServerEventInputAudioBufferSpeechStarted {
+    * event_id: String
+    * type: String
+    * audio_start_ms: Integer
+    * item_id: String
+}
+
+entity RealtimeServerEventInputAudioBufferSpeechStopped {
+    * event_id: String
+    * type: String
+    * audio_end_ms: Integer
+    * item_id: String
+}
+
+entity RealtimeServerEventRateLimitsUpdated {
+    * event_id: String
+    * type: String
+    * rate_limits: List<RealtimeServerEventRateLimitsUpdatedRateLimitsInner>
+}
+
+entity RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
+    name: String
+    limit: Integer
+    remaining: Integer
+    reset_seconds: BigDecimal
+}
+
+entity RealtimeServerEventResponseAudioDelta {
+    * event_id: String
+    * type: String
+    * response_id: String
+    * item_id: String
+    * output_index: Integer
+    * content_index: Integer
+    * delta: String
+}
+
+entity RealtimeServerEventResponseAudioDone {
+    * event_id: String
+    * type: String
+    * response_id: String
+    * item_id: String
+    * output_index: Integer
+    * content_index: Integer
+}
+
+entity RealtimeServerEventResponseAudioTranscriptDelta {
+    * event_id: String
+    * type: String
+    * response_id: String
+    * item_id: String
+    * output_index: Integer
+    * content_index: Integer
+    * delta: String
+}
+
+entity RealtimeServerEventResponseAudioTranscriptDone {
+    * event_id: String
+    * type: String
+    * response_id: String
+    * item_id: String
+    * output_index: Integer
+    * content_index: Integer
+    * transcript: String
+}
+
+entity RealtimeServerEventResponseContentPartAdded {
+    * event_id: String
+    * type: String
+    * response_id: String
+    * item_id: String
+    * output_index: Integer
+    * content_index: Integer
+    * part: RealtimeServerEventResponseContentPartAddedPart
+}
+
+entity RealtimeServerEventResponseContentPartAddedPart {
+    type: String
+    text: String
+    audio: String
+    transcript: String
+}
+
+entity RealtimeServerEventResponseContentPartDone {
+    * event_id: String
+    * type: String
+    * response_id: String
+    * item_id: String
+    * output_index: Integer
+    * content_index: Integer
+    * part: RealtimeServerEventResponseContentPartDonePart
+}
+
+entity RealtimeServerEventResponseContentPartDonePart {
+    type: String
+    text: String
+    audio: String
+    transcript: String
+}
+
+entity RealtimeServerEventResponseCreated {
+    * event_id: String
+    * type: String
+    * response: RealtimeResponse
+}
+
+entity RealtimeServerEventResponseDone {
+    * event_id: String
+    * type: String
+    * response: RealtimeResponse
+}
+
+entity RealtimeServerEventResponseFunctionCallArgumentsDelta {
+    * event_id: String
+    * type: String
+    * response_id: String
+    * item_id: String
+    * output_index: Integer
+    * call_id: String
+    * delta: String
+}
+
+entity RealtimeServerEventResponseFunctionCallArgumentsDone {
+    * event_id: String
+    * type: String
+    * response_id: String
+    * item_id: String
+    * output_index: Integer
+    * call_id: String
+    * arguments: String
+}
+
+entity RealtimeServerEventResponseOutputItemAdded {
+    * event_id: String
+    * type: String
+    * response_id: String
+    * output_index: Integer
+    * item: RealtimeConversationItem
+}
+
+entity RealtimeServerEventResponseOutputItemDone {
+    * event_id: String
+    * type: String
+    * response_id: String
+    * output_index: Integer
+    * item: RealtimeConversationItem
+}
+
+entity RealtimeServerEventResponseTextDelta {
+    * event_id: String
+    * type: String
+    * response_id: String
+    * item_id: String
+    * output_index: Integer
+    * content_index: Integer
+    * delta: String
+}
+
+entity RealtimeServerEventResponseTextDone {
+    * event_id: String
+    * type: String
+    * response_id: String
+    * item_id: String
+    * output_index: Integer
+    * content_index: Integer
+    * text: String
+}
+
+entity RealtimeServerEventSessionCreated {
+    * event_id: String
+    * type: String
+    * session: RealtimeSession
+}
+
+entity RealtimeServerEventSessionUpdated {
+    * event_id: String
+    * type: String
+    * session: RealtimeSession
+}
+
+entity RealtimeSession {
+    id: String
+    modalities: List<String>
+    model: RealtimeSessionModel
+    instructions: String
+    voice: String
+    input_audio_format: String
+    output_audio_format: String
+    input_audio_transcription: RealtimeSessionInputAudioTranscription
+    turn_detection: RealtimeSessionTurnDetection
+    tools: List<RealtimeResponseCreateParamsToolsInner>
+    tool_choice: String
+    temperature: BigDecimal
+    max_response_output_tokens: RealtimeResponseCreateParamsMaxResponseOutputTokens
+}
+
+entity RealtimeSessionCreateRequest {
+    modalities: List<String>
+    * model: String
+    instructions: String
+    voice: String
+    input_audio_format: String
+    output_audio_format: String
+    input_audio_transcription: RealtimeSessionInputAudioTranscription
+    turn_detection: RealtimeSessionCreateRequestTurnDetection
+    tools: List<RealtimeResponseCreateParamsToolsInner>
+    tool_choice: String
+    temperature: BigDecimal
+    max_response_output_tokens: RealtimeResponseCreateParamsMaxResponseOutputTokens
+}
+
+entity RealtimeSessionCreateRequestTurnDetection {
+    type: String
+    threshold: BigDecimal
+    prefix_padding_ms: Integer
+    silence_duration_ms: Integer
+    create_response: Boolean
+}
+
+entity RealtimeSessionCreateResponse {
+    client_secret: RealtimeSessionCreateResponseClientSecret
+    modalities: List<String>
+    instructions: String
+    voice: String
+    input_audio_format: String
+    output_audio_format: String
+    input_audio_transcription: RealtimeSessionInputAudioTranscription
+    turn_detection: RealtimeSessionCreateResponseTurnDetection
+    tools: List<RealtimeResponseCreateParamsToolsInner>
+    tool_choice: String
+    temperature: BigDecimal
+    max_response_output_tokens: RealtimeResponseCreateParamsMaxResponseOutputTokens
+}
+
+entity RealtimeSessionCreateResponseClientSecret {
+    value: String
+    expires_at: Integer
+}
+
+entity RealtimeSessionCreateResponseTurnDetection {
+    type: String
+    threshold: BigDecimal
+    prefix_padding_ms: Integer
+    silence_duration_ms: Integer
+}
+
+entity RealtimeSessionInputAudioTranscription {
+    model: String
+}
+
+entity RealtimeSessionModel {
+}
+
+entity RealtimeSessionTurnDetection {
+    type: String
+    threshold: BigDecimal
+    prefix_padding_ms: Integer
+    silence_duration_ms: Integer
+}
+
+entity ResponseFormatJsonObject {
+    * type: String
+}
+
+entity ResponseFormatJsonSchema {
+    * type: String
+    * json_schema: ResponseFormatJsonSchemaJsonSchema
+}
+
+entity ResponseFormatJsonSchemaJsonSchema {
+    description: String
+    * name: String
+    schema: Map
+    strict: Boolean
+}
+
+entity ResponseFormatText {
+    * type: String
 }
 
 entity RunCompletionUsage {
@@ -1118,14 +2644,15 @@ entity RunObject {
     * model: String
     * instructions: String
     * tools: List<AssistantObjectToolsInner>
-    * file_ids: List<String>
     * metadata: Object
     * usage: RunCompletionUsage
     temperature: BigDecimal
+    top_p: BigDecimal
     * max_prompt_tokens: Integer
     * max_completion_tokens: Integer
     * truncation_strategy: TruncationObject
     * tool_choice: AssistantsApiToolChoiceOption
+    * parallel_tool_calls: Boolean
     * response_format: AssistantsApiResponseFormatOption
 }
 
@@ -1213,6 +2740,13 @@ entity RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject {
     logs: String
 }
 
+entity RunStepDeltaStepDetailsToolCallsFileSearchObject {
+    * index: Integer
+    id: String
+    * type: String
+    * file_search: Object
+}
+
 entity RunStepDeltaStepDetailsToolCallsFunctionObject {
     * index: Integer
     id: String
@@ -1236,15 +2770,8 @@ entity RunStepDeltaStepDetailsToolCallsObjectToolCallsInner {
     id: String
     * type: String
     code_interpreter: RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
-    retrieval: Object
+    * file_search: Object
     function: RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
-}
-
-entity RunStepDeltaStepDetailsToolCallsRetrievalObject {
-    * index: Integer
-    id: String
-    * type: String
-    retrieval: Object
 }
 
 entity RunStepDetailsMessageCreationObject {
@@ -1287,6 +2814,34 @@ entity RunStepDetailsToolCallsCodeOutputLogsObject {
     * logs: String
 }
 
+entity RunStepDetailsToolCallsFileSearchObject {
+    * id: String
+    * type: String
+    * file_search: RunStepDetailsToolCallsFileSearchObjectFileSearch
+}
+
+entity RunStepDetailsToolCallsFileSearchObjectFileSearch {
+    ranking_options: RunStepDetailsToolCallsFileSearchRankingOptionsObject
+    results: List<RunStepDetailsToolCallsFileSearchResultObject>
+}
+
+entity RunStepDetailsToolCallsFileSearchRankingOptionsObject {
+    * ranker: String
+    * score_threshold: BigDecimal
+}
+
+entity RunStepDetailsToolCallsFileSearchResultObject {
+    * file_id: String
+    * file_name: String
+    * score: BigDecimal
+    content: List<RunStepDetailsToolCallsFileSearchResultObjectContentInner>
+}
+
+entity RunStepDetailsToolCallsFileSearchResultObjectContentInner {
+    type: String
+    text: String
+}
+
 entity RunStepDetailsToolCallsFunctionObject {
     * id: String
     * type: String
@@ -1308,14 +2863,8 @@ entity RunStepDetailsToolCallsObjectToolCallsInner {
     * id: String
     * type: String
     * code_interpreter: RunStepDetailsToolCallsCodeObjectCodeInterpreter
-    * retrieval: Object
+    * file_search: RunStepDetailsToolCallsFileSearchObjectFileSearch
     * function: RunStepDetailsToolCallsFunctionObjectFunction
-}
-
-entity RunStepDetailsToolCallsRetrievalObject {
-    * id: String
-    * type: String
-    * retrieval: Object
 }
 
 entity RunStepObject {
@@ -1438,6 +2987,11 @@ entity RunStreamEventOneOf8 {
     * data: RunObject
 }
 
+entity RunStreamEventOneOf9 {
+    * event: String
+    * data: RunObject
+}
+
 entity RunToolCallObject {
     * id: String
     * type: String
@@ -1447,6 +3001,26 @@ entity RunToolCallObject {
 entity RunToolCallObjectFunction {
     * name: String
     * arguments: String
+}
+
+entity StaticChunkingStrategy {
+    * type: String
+    * static: StaticChunkingStrategyStatic
+}
+
+entity StaticChunkingStrategyRequestParam {
+    * type: String
+    * static: StaticChunkingStrategy
+}
+
+entity StaticChunkingStrategyResponseParam {
+    * type: String
+    * static: StaticChunkingStrategy
+}
+
+entity StaticChunkingStrategyStatic {
+    * max_chunk_size_tokens: Integer
+    * chunk_overlap_tokens: Integer
 }
 
 entity SubmitToolOutputsRunRequest {
@@ -1463,10 +3037,12 @@ entity ThreadObject {
     * id: String
     * object: String
     * created_at: Integer
+    * tool_resources: ModifyThreadRequestToolResources
     * metadata: Object
 }
 
 entity ThreadStreamEvent {
+    enabled: Boolean
     * event: String
     * data: ThreadObject
 }
@@ -1491,15 +3067,452 @@ entity TranscriptionWord {
 }
 
 entity TruncationObject {
-    type: String
+    * type: String
     last_messages: Integer
 }
 
+entity UpdateVectorStoreRequest {
+    name: String
+    expires_after: VectorStoreExpirationAfter
+    metadata: Object
+}
+
+entity Upload {
+    * id: String
+    * created_at: Integer
+    * filename: String
+    * bytes: Integer
+    * purpose: String
+    * status: String
+    * expires_at: Integer
+    object: String
+    file: OpenAIFile
+}
+
+entity UploadPart {
+    * id: String
+    * created_at: Integer
+    * upload_id: String
+    * object: String
+}
+
+entity UsageAudioSpeechesResult {
+    * object: String
+    * characters: Integer
+    * num_model_requests: Integer
+    project_id: String
+    user_id: String
+    api_key_id: String
+    model: String
+}
+
+entity UsageAudioTranscriptionsResult {
+    * object: String
+    * seconds: Integer
+    * num_model_requests: Integer
+    project_id: String
+    user_id: String
+    api_key_id: String
+    model: String
+}
+
+entity UsageCodeInterpreterSessionsResult {
+    * object: String
+    * sessions: Integer
+    project_id: String
+}
+
+entity UsageCompletionsResult {
+    * object: String
+    * input_tokens: Integer
+    input_cached_tokens: Integer
+    * output_tokens: Integer
+    input_audio_tokens: Integer
+    output_audio_tokens: Integer
+    * num_model_requests: Integer
+    project_id: String
+    user_id: String
+    api_key_id: String
+    model: String
+    batch: Boolean
+}
+
+entity UsageEmbeddingsResult {
+    * object: String
+    * input_tokens: Integer
+    * num_model_requests: Integer
+    project_id: String
+    user_id: String
+    api_key_id: String
+    model: String
+}
+
+entity UsageImagesResult {
+    * object: String
+    * images: Integer
+    * num_model_requests: Integer
+    source: String
+    size: String
+    project_id: String
+    user_id: String
+    api_key_id: String
+    model: String
+}
+
+entity UsageModerationsResult {
+    * object: String
+    * input_tokens: Integer
+    * num_model_requests: Integer
+    project_id: String
+    user_id: String
+    api_key_id: String
+    model: String
+}
+
+entity UsageResponse {
+    * object: String
+    * data: List<UsageTimeBucket>
+    * has_more: Boolean
+    * next_page: String
+}
+
+entity UsageTimeBucket {
+    * object: String
+    * start_time: Integer
+    * end_time: Integer
+    * result: List<UsageTimeBucketResultInner>
+}
+
+entity UsageTimeBucketResultInner {
+    * object: String
+    * input_tokens: Integer
+    input_cached_tokens: Integer
+    * output_tokens: Integer
+    input_audio_tokens: Integer
+    output_audio_tokens: Integer
+    * num_model_requests: Integer
+    project_id: String
+    user_id: String
+    api_key_id: String
+    model: String
+    batch: Boolean
+    * images: Integer
+    source: String
+    size: String
+    * characters: Integer
+    * seconds: Integer
+    * usage_bytes: Integer
+    * sessions: Integer
+    amount: CostsResultAmount
+    line_item: String
+}
+
+entity UsageVectorStoresResult {
+    * object: String
+    * usage_bytes: Integer
+    project_id: String
+}
+
+entity User {
+    * object: String
+    * id: String
+    * name: String
+    * email: String
+    * role: String
+    * added_at: Integer
+}
+
+entity UserDeleteResponse {
+    * object: String
+    * id: String
+    * deleted: Boolean
+}
+
+entity UserListResponse {
+    * object: String
+    * data: List<User>
+    * first_id: String
+    * last_id: String
+    * has_more: Boolean
+}
+
+entity UserRoleUpdateRequest {
+    * role: String
+}
+
+entity VectorStoreExpirationAfter {
+    * anchor: String
+    * days: Integer
+}
+
+entity VectorStoreFileBatchObject {
+    * id: String
+    * object: String
+    * created_at: Integer
+    * vector_store_id: String
+    * status: String
+    * file_counts: VectorStoreFileBatchObjectFileCounts
+}
+
+entity VectorStoreFileBatchObjectFileCounts {
+    * in_progress: Integer
+    * completed: Integer
+    * failed: Integer
+    * cancelled: Integer
+    * total: Integer
+}
+
+entity VectorStoreFileObject {
+    * id: String
+    * object: String
+    * usage_bytes: Integer
+    * created_at: Integer
+    * vector_store_id: String
+    * status: String
+    * last_error: VectorStoreFileObjectLastError
+    chunking_strategy: VectorStoreFileObjectChunkingStrategy
+}
+
+entity VectorStoreFileObjectChunkingStrategy {
+    * type: String
+    * static: StaticChunkingStrategy
+}
+
+entity VectorStoreFileObjectLastError {
+    * code: String
+    * message: String
+}
+
+entity VectorStoreObject {
+    * id: String
+    * object: String
+    * created_at: Integer
+    * name: String
+    * usage_bytes: Integer
+    * file_counts: VectorStoreObjectFileCounts
+    * status: String
+    expires_after: VectorStoreExpirationAfter
+    expires_at: Integer
+    * last_active_at: Integer
+    * metadata: Object
+}
+
+entity VectorStoreObjectFileCounts {
+    * in_progress: Integer
+    * completed: Integer
+    * failed: Integer
+    * cancelled: Integer
+    * total: Integer
+}
+
+ChatCompletionRequestAssistantMessage <|--- FineTuneChatCompletionRequestAssistantMessage
 
 RunStepDetailsToolCallsObjectToolCallsInner -- RunStepDetailsToolCallsCodeObjectCodeInterpreter : code_interpreter
+RunStepDetailsToolCallsObjectToolCallsInner -- RunStepDetailsToolCallsFileSearchObjectFileSearch : file_search
 RunStepDetailsToolCallsObjectToolCallsInner -- RunStepDetailsToolCallsFunctionObjectFunction : function
 FineTuningJobCheckpoint -- FineTuningJobCheckpointMetrics : metrics
 MessageDeltaContentTextObjectText -- "0..*" MessageDeltaContentTextObjectTextAnnotationsInner : annotations
+AssistantsApiResponseFormatOption -- ResponseFormatJsonSchemaJsonSchema : json_schema
+ProjectServiceAccountCreateResponse -- ProjectServiceAccountApiKey : api_key
+ListFineTuningJobCheckpointsResponse -- "0..*" FineTuningJobCheckpoint : data
+AuditLogApiKeyCreated -- AuditLogApiKeyCreatedData : data
+AssistantToolsFileSearch -- AssistantToolsFileSearchFileSearch : file_search
+CreateEmbeddingRequest -- CreateEmbeddingRequestInput : input
+CreateEmbeddingRequest -- CreateEmbeddingRequestModel : model
+ChatCompletionRequestMessageContentPartAudio -- ChatCompletionRequestMessageContentPartAudioInputAudio : input_audio
+CreateModerationRequest -- CreateModerationRequestInput : input
+CreateModerationRequest -- CreateModerationRequestModel : model
+CreateSpeechRequest -- CreateSpeechRequestModel : model
+CreateChatCompletionStreamResponseChoicesInner -- ChatCompletionStreamResponseDelta : delta
+CreateChatCompletionStreamResponseChoicesInner -- CreateChatCompletionResponseChoicesInnerLogprobs : logprobs
+RunStreamEventOneOf -- RunObject : data
+ModifyThreadRequest -- ModifyThreadRequestToolResources : tool_resources
+FineTuneChatRequestInput -- "0..*" FineTuneChatRequestInputMessagesInner : messages
+FineTuneChatRequestInput -- "0..*" ChatCompletionTool : tools
+FineTuneChatRequestInput -- "0..*" ChatCompletionFunctions : functions
+MessageContentTextObject -- MessageContentTextObjectText : text
+FineTunePreferenceRequestInput -- FineTunePreferenceRequestInputInput : input
+FineTunePreferenceRequestInput -- "0..*" FineTunePreferenceRequestInputPreferredCompletionInner : preferred_completion
+FineTunePreferenceRequestInput -- "0..*" FineTunePreferenceRequestInputPreferredCompletionInner : non_preferred_completion
+MessageStreamEvent -- MessageObject : data
+RealtimeServerEventError -- RealtimeServerEventErrorError : error
+RunStepDeltaObjectDelta -- RunStepDeltaObjectDeltaStepDetails : step_details
+RealtimeServerEventConversationCreated -- RealtimeServerEventConversationCreatedConversation : conversation
+CreateChatCompletionRequest -- "0..*" ChatCompletionRequestMessage : messages
+CreateChatCompletionRequest -- CreateChatCompletionRequestModel : model
+CreateChatCompletionRequest -- PredictionContent : prediction
+CreateChatCompletionRequest -- CreateChatCompletionRequestAudio : audio
+CreateChatCompletionRequest -- CreateChatCompletionRequestResponseFormat : response_format
+CreateChatCompletionRequest -- CreateChatCompletionRequestStop : stop
+CreateChatCompletionRequest -- ChatCompletionStreamOptions : stream_options
+CreateChatCompletionRequest -- "0..*" ChatCompletionTool : tools
+CreateChatCompletionRequest -- ChatCompletionToolChoiceOption : tool_choice
+CreateChatCompletionRequest -- CreateChatCompletionRequestFunctionCall : function_call
+CreateChatCompletionRequest -- "0..*" ChatCompletionFunctions : functions
+AuditLogProjectUpdated -- AuditLogProjectUpdatedChangesRequested : changes_requested
+ModifyAssistantRequestToolResources -- ModifyAssistantRequestToolResourcesCodeInterpreter : code_interpreter
+ModifyAssistantRequestToolResources -- ModifyAssistantRequestToolResourcesFileSearch : file_search
+CompletionUsage -- CompletionUsageCompletionTokensDetails : completion_tokens_details
+CompletionUsage -- CompletionUsagePromptTokensDetails : prompt_tokens_details
+RunToolCallObject -- RunToolCallObjectFunction : function
+VectorStoreObject -- VectorStoreObjectFileCounts : file_counts
+VectorStoreObject -- VectorStoreExpirationAfter : expires_after
+AuditLogActorApiKey -- AuditLogActorUser : user
+AuditLogActorApiKey -- AuditLogActorServiceAccount : service_account
+AssistantToolsFunction -- FunctionObject : function
+CreateCompletionResponse -- "0..*" CreateCompletionResponseChoicesInner : choices
+CreateCompletionResponse -- CompletionUsage : usage
+FineTuneDPOMethod -- FineTuneDPOMethodHyperparameters : hyperparameters
+ErrorResponse -- Error : error
+ProjectUserListResponse -- "0..*" ProjectUser : data
+ListMessagesResponse -- "0..*" MessageObject : data
+CreateChatCompletionRequestResponseFormat -- ResponseFormatJsonSchemaJsonSchema : json_schema
+FineTuningJobHyperparameters -- CreateFineTuningJobRequestHyperparametersBatchSize : batch_size
+FineTuningJobHyperparameters -- CreateFineTuningJobRequestHyperparametersLearningRateMultiplier : learning_rate_multiplier
+FineTuningJobHyperparameters -- CreateFineTuningJobRequestHyperparametersNEpochs : n_epochs
+CreateThreadRequestToolResourcesFileSearchVectorStoresInner -- CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy : chunking_strategy
+CostsResult -- CostsResultAmount : amount
+RealtimeClientEventResponseCreate -- RealtimeResponseCreateParams : response
+CreateChatCompletionFunctionResponseChoicesInner -- ChatCompletionResponseMessage : message
+CreateTranslation200Response -- "0..*" TranscriptionSegment : segments
+BatchErrors -- "0..*" BatchErrorsDataInner : data
+RunStepDeltaObjectDeltaStepDetails -- RunStepDeltaStepDetailsMessageCreationObjectMessageCreation : message_creation
+RunStepDeltaObjectDeltaStepDetails -- "0..*" RunStepDeltaStepDetailsToolCallsObjectToolCallsInner : tool_calls
+ProjectListResponse -- "0..*" Project : data
+UsageTimeBucket -- "0..*" UsageTimeBucketResultInner : result
+RunObjectRequiredActionSubmitToolOutputs -- "0..*" RunToolCallObject : tool_calls
+ListBatchesResponse -- "0..*" Batch : data
+CreateEmbeddingResponse -- "0..*" Embedding : data
+CreateEmbeddingResponse -- CreateEmbeddingResponseUsage : usage
+MessageDeltaContentTextObjectTextAnnotationsInner -- MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation : file_citation
+MessageDeltaContentTextObjectTextAnnotationsInner -- MessageDeltaContentTextAnnotationsFilePathObjectFilePath : file_path
+CreateChatCompletionFunctionResponse -- "0..*" CreateChatCompletionFunctionResponseChoicesInner : choices
+CreateChatCompletionFunctionResponse -- CompletionUsage : usage
+ChatCompletionRequestUserMessage -- ChatCompletionRequestUserMessageContent : content
+MessageDeltaObject -- MessageDeltaObjectDelta : delta
+RunStepDeltaStepDetailsMessageCreationObject -- RunStepDeltaStepDetailsMessageCreationObjectMessageCreation : message_creation
+VectorStoreFileObjectChunkingStrategy -- StaticChunkingStrategy : static
+CreateVectorStoreRequestChunkingStrategy -- StaticChunkingStrategy : static
+FineTunePreferenceRequestInputPreferredCompletionInner -- ChatCompletionRequestAssistantMessageContent : content
+FineTunePreferenceRequestInputPreferredCompletionInner -- ChatCompletionRequestAssistantMessageAudio : audio
+FineTunePreferenceRequestInputPreferredCompletionInner -- "0..*" ChatCompletionMessageToolCall : tool_calls
+FineTunePreferenceRequestInputPreferredCompletionInner -- ChatCompletionRequestAssistantMessageFunctionCall : function_call
+RunStepStreamEvent -- RunStepObject : data
+RealtimeResponseUsage -- RealtimeResponseUsageInputTokenDetails : input_token_details
+RealtimeResponseUsage -- RealtimeResponseUsageOutputTokenDetails : output_token_details
+ChatCompletionMessageToolCallChunk -- ChatCompletionMessageToolCallChunkFunction : function
+RunStreamEventOneOf7 -- RunObject : data
+MessageDeltaContentImageUrlObject -- MessageDeltaContentImageUrlObjectImageUrl : image_url
+RunStreamEventOneOf6 -- RunObject : data
+RunStreamEventOneOf9 -- RunObject : data
+RunStreamEventOneOf8 -- RunObject : data
+RunStreamEventOneOf3 -- RunObject : data
+RunStreamEventOneOf2 -- RunObject : data
+RunStreamEventOneOf5 -- RunObject : data
+RunStreamEventOneOf4 -- RunObject : data
+RunStepDeltaStepDetailsToolCallsFunctionObject -- RunStepDeltaStepDetailsToolCallsFunctionObjectFunction : function
+RealtimeClientEventConversationItemCreate -- RealtimeConversationItem : item
+RunStreamEventOneOf1 -- RunObject : data
+Batch -- BatchErrors : errors
+Batch -- BatchRequestCounts : request_counts
+ArrayOfContentPartsInner -- MessageContentImageFileObjectImageFile : image_file
+ArrayOfContentPartsInner -- MessageContentImageUrlObjectImageUrl : image_url
+CreateFineTuningJobRequestIntegrationsInner -- CreateFineTuningJobRequestIntegrationsInnerWandb : wandb
+RealtimeClientEventSessionUpdate -- RealtimeSessionCreateRequest : session
+RealtimeServerEventRateLimitsUpdated -- "0..*" RealtimeServerEventRateLimitsUpdatedRateLimitsInner : rate_limits
+MessageObject -- MessageObjectIncompleteDetails : incomplete_details
+MessageObject -- "0..*" MessageObjectContentInner : content
+MessageObject -- "0..*" CreateMessageRequestAttachmentsInner : attachments
+AuditLogActorSession -- AuditLogActorUser : user
+PredictionContent -- PredictionContentContent : content
+ChatCompletionTokenLogprob -- "0..*" ChatCompletionTokenLogprobTopLogprobsInner : top_logprobs
+ChatCompletionRequestMessage -- ChatCompletionRequestAssistantMessageAudio : audio
+ChatCompletionRequestMessage -- "0..*" ChatCompletionMessageToolCall : tool_calls
+ChatCompletionRequestMessage -- ChatCompletionRequestAssistantMessageFunctionCall : function_call
+CreateThreadAndRunRequestToolsInner -- AssistantToolsFileSearchFileSearch : file_search
+CreateThreadAndRunRequestToolsInner -- FunctionObject : function
+FineTuneSupervisedMethodHyperparameters -- FineTuneDPOMethodHyperparametersBatchSize : batch_size
+FineTuneSupervisedMethodHyperparameters -- FineTuneDPOMethodHyperparametersLearningRateMultiplier : learning_rate_multiplier
+FineTuneSupervisedMethodHyperparameters -- FineTuneDPOMethodHyperparametersNEpochs : n_epochs
+CreateFineTuningJobRequestHyperparameters -- CreateFineTuningJobRequestHyperparametersBatchSize : batch_size
+CreateFineTuningJobRequestHyperparameters -- CreateFineTuningJobRequestHyperparametersLearningRateMultiplier : learning_rate_multiplier
+CreateFineTuningJobRequestHyperparameters -- CreateFineTuningJobRequestHyperparametersNEpochs : n_epochs
+FineTuneDPOMethodHyperparameters -- FineTuneDPOMethodHyperparametersBeta : beta
+FineTuneDPOMethodHyperparameters -- FineTuneDPOMethodHyperparametersBatchSize : batch_size
+FineTuneDPOMethodHyperparameters -- FineTuneDPOMethodHyperparametersLearningRateMultiplier : learning_rate_multiplier
+FineTuneDPOMethodHyperparameters -- FineTuneDPOMethodHyperparametersNEpochs : n_epochs
+RealtimeSession -- RealtimeSessionModel : model
+RealtimeSession -- RealtimeSessionInputAudioTranscription : input_audio_transcription
+RealtimeSession -- RealtimeSessionTurnDetection : turn_detection
+RealtimeSession -- "0..*" RealtimeResponseCreateParamsToolsInner : tools
+RealtimeSession -- RealtimeResponseCreateParamsMaxResponseOutputTokens : max_response_output_tokens
+RealtimeServerEventConversationItemInputAudioTranscriptionFailed -- RealtimeServerEventConversationItemInputAudioTranscriptionFailedError : error
+ChatCompletionRequestMessageContentPartImage -- ChatCompletionRequestMessageContentPartImageImageUrl : image_url
+CreateVectorStoreFileBatchRequest -- ChunkingStrategyRequestParam : chunking_strategy
+MessageDeltaContentTextObject -- MessageDeltaContentTextObjectText : text
+CreateThreadRequest -- "0..*" CreateMessageRequest : messages
+CreateThreadRequest -- CreateThreadRequestToolResources : tool_resources
+RealtimeServerEventResponseContentPartDone -- RealtimeServerEventResponseContentPartDonePart : part
+CreateThreadRequestToolResourcesFileSearch -- "0..*" CreateThreadRequestToolResourcesFileSearchVectorStoresInner : vector_stores
+Upload -- OpenAIFile : file
+ThreadStreamEvent -- ThreadObject : data
+ImagesResponse -- "0..*" Image : data
+RunStepObjectStepDetails -- RunStepDetailsMessageCreationObjectMessageCreation : message_creation
+RunStepObjectStepDetails -- "0..*" RunStepDetailsToolCallsObjectToolCallsInner : tool_calls
+ListAuditLogsResponse -- "0..*" AuditLog : data
+RunStepDeltaStepDetailsToolCallsObjectToolCallsInner -- RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter : code_interpreter
+RunStepDeltaStepDetailsToolCallsObjectToolCallsInner -- RunStepDeltaStepDetailsToolCallsFunctionObjectFunction : function
+MessageDeltaContentTextAnnotationsFileCitationObject -- MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation : file_citation
+ListModelsResponse -- "0..*" Model : data
+UserListResponse -- "0..*" User : data
+CreateMessageRequestAttachmentsInner -- "0..*" CreateMessageRequestAttachmentsInnerToolsInner : tools
+RealtimeResponseStatusDetails -- RealtimeResponseStatusDetailsError : error
+MessageContentTextAnnotationsFileCitationObject -- MessageContentTextAnnotationsFileCitationObjectFileCitation : file_citation
+RealtimeSessionCreateRequest -- RealtimeSessionInputAudioTranscription : input_audio_transcription
+RealtimeSessionCreateRequest -- RealtimeSessionCreateRequestTurnDetection : turn_detection
+RealtimeSessionCreateRequest -- "0..*" RealtimeResponseCreateParamsToolsInner : tools
+RealtimeSessionCreateRequest -- RealtimeResponseCreateParamsMaxResponseOutputTokens : max_response_output_tokens
+ModifyAssistantRequest -- "0..*" AssistantObjectToolsInner : tools
+ModifyAssistantRequest -- ModifyAssistantRequestToolResources : tool_resources
+ModifyAssistantRequest -- AssistantsApiResponseFormatOption : response_format
+ChatCompletionRequestUserMessageContentPart -- ChatCompletionRequestMessageContentPartImageImageUrl : image_url
+ChatCompletionRequestUserMessageContentPart -- ChatCompletionRequestMessageContentPartAudioInputAudio : input_audio
+ProjectApiKeyListResponse -- "0..*" ProjectApiKey : data
+RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter -- "0..*" RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner : outputs
+FineTuningJobIntegrationsInner -- CreateFineTuningJobRequestIntegrationsInnerWandb : wandb
+FineTuningIntegration -- CreateFineTuningJobRequestIntegrationsInnerWandb : wandb
+SubmitToolOutputsRunRequest -- "0..*" SubmitToolOutputsRunRequestToolOutputsInner : tool_outputs
+VectorStoreFileBatchObject -- VectorStoreFileBatchObjectFileCounts : file_counts
+CreateTranslationResponseVerboseJson -- "0..*" TranscriptionSegment : segments
+ProjectServiceAccountListResponse -- "0..*" ProjectServiceAccount : data
+CreateMessageRequest -- CreateMessageRequestContent : content
+CreateMessageRequest -- "0..*" CreateMessageRequestAttachmentsInner : attachments
+CreateAssistantRequestToolResourcesFileSearch -- "0..*" CreateAssistantRequestToolResourcesFileSearchVectorStoresInner : vector_stores
+RunStepObject -- RunStepObjectStepDetails : step_details
+RunStepObject -- RunStepObjectLastError : last_error
+RunStepObject -- RunStepCompletionUsage : usage
+ChatCompletionNamedToolChoice -- AssistantsNamedToolChoiceFunction : function
+RealtimeServerEventResponseOutputItemDone -- RealtimeConversationItem : item
+FineTunePreferenceRequestInputInput -- "0..*" FineTuneChatRequestInputMessagesInner : messages
+FineTunePreferenceRequestInputInput -- "0..*" ChatCompletionTool : tools
+CreateAssistantRequestToolResources -- CreateAssistantRequestToolResourcesCodeInterpreter : code_interpreter
+CreateAssistantRequestToolResources -- CreateAssistantRequestToolResourcesFileSearch : file_search
+ResponseFormatJsonSchema -- ResponseFormatJsonSchemaJsonSchema : json_schema
+CreateCompletionResponseChoicesInner -- CreateCompletionResponseChoicesInnerLogprobs : logprobs
+ProjectRateLimitListResponse -- "0..*" ProjectRateLimit : data
+CreateAssistantRequestToolResourcesFileSearchVectorStoresInner -- CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy : chunking_strategy
+ChatCompletionResponseMessage -- "0..*" ChatCompletionMessageToolCall : tool_calls
+ChatCompletionResponseMessage -- ChatCompletionResponseMessageFunctionCall : function_call
+ChatCompletionResponseMessage -- ChatCompletionResponseMessageAudio : audio
+BatchRequestOutput -- BatchRequestOutputResponse : response
+BatchRequestOutput -- BatchRequestOutputError : error
+UsageResponse -- "0..*" UsageTimeBucket : data
+RealtimeServerEventSessionUpdated -- RealtimeSession : session
+StaticChunkingStrategyResponseParam -- StaticChunkingStrategy : static
+Invite -- "0..*" InviteProjectsInner : projects
+RealtimeServerEventConversationItemCreated -- RealtimeConversationItem : item
+ProjectApiKeyOwner -- ProjectUser : user
+ProjectApiKeyOwner -- ProjectServiceAccount : service_account
 ListRunsResponse -- "0..*" RunObject : data
 RunStepDetailsToolCallsFunctionObject -- RunStepDetailsToolCallsFunctionObjectFunction : function
 CreateRunRequest -- CreateRunRequestModel : model
@@ -1508,57 +3521,45 @@ CreateRunRequest -- "0..*" AssistantObjectToolsInner : tools
 CreateRunRequest -- TruncationObject : truncation_strategy
 CreateRunRequest -- AssistantsApiToolChoiceOption : tool_choice
 CreateRunRequest -- AssistantsApiResponseFormatOption : response_format
-ListFineTuningJobCheckpointsResponse -- "0..*" FineTuningJobCheckpoint : data
-ChatCompletionToolChoiceOption -- ChatCompletionNamedToolChoiceFunction : function
+ChatCompletionToolChoiceOption -- AssistantsNamedToolChoiceFunction : function
 RunObjectRequiredAction -- RunObjectRequiredActionSubmitToolOutputs : submit_tool_outputs
-CreateEmbeddingRequest -- CreateEmbeddingRequestInput : input
-CreateEmbeddingRequest -- CreateEmbeddingRequestModel : model
-CreateModerationRequest -- CreateModerationRequestInput : input
-CreateModerationRequest -- CreateModerationRequestModel : model
-CreateSpeechRequest -- CreateSpeechRequestModel : model
-ListAssistantFilesResponse -- "0..*" AssistantFileObject : data
-CreateChatCompletionStreamResponseChoicesInner -- ChatCompletionStreamResponseDelta : delta
-CreateChatCompletionStreamResponseChoicesInner -- CreateChatCompletionResponseChoicesInnerLogprobs : logprobs
-RunStreamEventOneOf -- RunObject : data
-MessageContentTextObject -- MessageContentTextObjectText : text
-MessageStreamEvent -- MessageObject : data
-RunStepDeltaObjectDelta -- RunStepDeltaObjectDeltaStepDetails : step_details
+AuditLogOrganizationUpdated -- AuditLogOrganizationUpdatedChangesRequested : changes_requested
+AssistantObjectToolResources -- AssistantObjectToolResourcesCodeInterpreter : code_interpreter
+AssistantObjectToolResources -- AssistantObjectToolResourcesFileSearch : file_search
+CreateVectorStoreFileRequest -- ChunkingStrategyRequestParam : chunking_strategy
+RealtimeSessionCreateResponse -- RealtimeSessionCreateResponseClientSecret : client_secret
+RealtimeSessionCreateResponse -- RealtimeSessionInputAudioTranscription : input_audio_transcription
+RealtimeSessionCreateResponse -- RealtimeSessionCreateResponseTurnDetection : turn_detection
+RealtimeSessionCreateResponse -- "0..*" RealtimeResponseCreateParamsToolsInner : tools
+RealtimeSessionCreateResponse -- RealtimeResponseCreateParamsMaxResponseOutputTokens : max_response_output_tokens
 RunStepStreamEventOneOf -- RunStepObject : data
-CreateChatCompletionRequest -- "0..*" ChatCompletionRequestMessage : messages
-CreateChatCompletionRequest -- CreateChatCompletionRequestModel : model
-CreateChatCompletionRequest -- CreateChatCompletionRequestResponseFormat : response_format
-CreateChatCompletionRequest -- CreateChatCompletionRequestStop : stop
-CreateChatCompletionRequest -- "0..*" ChatCompletionTool : tools
-CreateChatCompletionRequest -- ChatCompletionToolChoiceOption : tool_choice
-CreateChatCompletionRequest -- CreateChatCompletionRequestFunctionCall : function_call
-CreateChatCompletionRequest -- "0..*" ChatCompletionFunctions : functions
+AuditLogServiceAccountUpdated -- AuditLogServiceAccountUpdatedChangesRequested : changes_requested
+RealtimeResponse -- RealtimeResponseStatusDetails : status_details
+RealtimeResponse -- "0..*" RealtimeConversationItem : output
+RealtimeResponse -- RealtimeResponseUsage : usage
 MessageDeltaObjectDelta -- "0..*" MessageDeltaObjectDeltaContentInner : content
 RunStepDeltaStepDetailsToolCallsCodeOutputImageObject -- RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage : image
-RunToolCallObject -- RunToolCallObjectFunction : function
 RunStepDetailsToolCallsObject -- "0..*" RunStepDetailsToolCallsObjectToolCallsInner : tool_calls
 CreateCompletionRequest -- CreateCompletionRequestModel : model
 CreateCompletionRequest -- CreateCompletionRequestPrompt : prompt
 CreateCompletionRequest -- CreateCompletionRequestStop : stop
-AssistantToolsFunction -- FunctionObject : function
-CreateCompletionResponse -- "0..*" CreateCompletionResponseChoicesInner : choices
-CreateCompletionResponse -- CompletionUsage : usage
+CreateCompletionRequest -- ChatCompletionStreamOptions : stream_options
 CreateModerationResponseResultsInner -- CreateModerationResponseResultsInnerCategories : categories
 CreateModerationResponseResultsInner -- CreateModerationResponseResultsInnerCategoryScores : category_scores
+CreateModerationResponseResultsInner -- CreateModerationResponseResultsInnerCategoryAppliedInputTypes : category_applied_input_types
+RealtimeConversationItem -- "0..*" RealtimeConversationItemContentInner : content
 ListThreadsResponse -- "0..*" ThreadObject : data
-ErrorResponse -- Error : error
-ListMessagesResponse -- "0..*" MessageObject : data
-FineTuningJobHyperparameters -- FineTuningJobHyperparametersNEpochs : n_epochs
+RealtimeServerEventResponseOutputItemAdded -- RealtimeConversationItem : item
+ProjectApiKey -- ProjectApiKeyOwner : owner
 ListAssistantsResponse -- "0..*" AssistantObject : data
-CreateChatCompletionFunctionResponseChoicesInner -- ChatCompletionResponseMessage : message
-CreateTranslation200Response -- "0..*" TranscriptionSegment : segments
 CreateImageRequest -- CreateImageRequestModel : model
+AdminApiKey -- AdminApiKeyOwner : owner
 CreateChatCompletionResponseChoicesInner -- ChatCompletionResponseMessage : message
 CreateChatCompletionResponseChoicesInner -- CreateChatCompletionResponseChoicesInnerLogprobs : logprobs
-RunStepDeltaObjectDeltaStepDetails -- RunStepDeltaStepDetailsMessageCreationObjectMessageCreation : message_creation
-RunStepDeltaObjectDeltaStepDetails -- "0..*" RunStepDeltaStepDetailsToolCallsObjectToolCallsInner : tool_calls
+AssistantObjectToolsInner -- AssistantToolsFileSearchFileSearch : file_search
 AssistantObjectToolsInner -- FunctionObject : function
-RunObjectRequiredActionSubmitToolOutputs -- "0..*" RunToolCallObject : tool_calls
 MessageObjectContentInner -- MessageContentImageFileObjectImageFile : image_file
+MessageObjectContentInner -- MessageContentImageUrlObjectImageUrl : image_url
 MessageObjectContentInner -- MessageContentTextObjectText : text
 RunStepStreamEventOneOf1 -- RunStepObject : data
 RunStepStreamEventOneOf3 -- RunStepObject : data
@@ -1568,12 +3569,8 @@ RunStepStreamEventOneOf2 -- RunStepDeltaObject : data
 RunStepStreamEventOneOf5 -- RunStepObject : data
 RunStepStreamEventOneOf4 -- RunStepObject : data
 RunStepStreamEventOneOf6 -- RunStepObject : data
-CreateEmbeddingResponse -- "0..*" Embedding : data
-CreateEmbeddingResponse -- CreateEmbeddingResponseUsage : usage
-MessageDeltaContentTextObjectTextAnnotationsInner -- MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation : file_citation
-MessageDeltaContentTextObjectTextAnnotationsInner -- MessageDeltaContentTextAnnotationsFilePathObjectFilePath : file_path
-CreateChatCompletionFunctionResponse -- "0..*" CreateChatCompletionFunctionResponseChoicesInner : choices
-CreateChatCompletionFunctionResponse -- CompletionUsage : usage
+CreateThreadRequestToolResources -- CreateAssistantRequestToolResourcesCodeInterpreter : code_interpreter
+CreateThreadRequestToolResources -- CreateThreadRequestToolResourcesFileSearch : file_search
 RunObject -- RunObjectRequiredAction : required_action
 RunObject -- RunObjectLastError : last_error
 RunObject -- RunObjectIncompleteDetails : incomplete_details
@@ -1582,115 +3579,149 @@ RunObject -- RunCompletionUsage : usage
 RunObject -- TruncationObject : truncation_strategy
 RunObject -- AssistantsApiToolChoiceOption : tool_choice
 RunObject -- AssistantsApiResponseFormatOption : response_format
-ChatCompletionRequestUserMessage -- ChatCompletionRequestUserMessageContent : content
-MessageDeltaObject -- MessageDeltaObjectDelta : delta
-RunStepDeltaStepDetailsMessageCreationObject -- RunStepDeltaStepDetailsMessageCreationObjectMessageCreation : message_creation
+RunStepDetailsToolCallsFileSearchResultObject -- "0..*" RunStepDetailsToolCallsFileSearchResultObjectContentInner : content
 ChatCompletionTool -- FunctionObject : function
-AssistantsApiToolChoiceOption -- ChatCompletionNamedToolChoiceFunction : function
-RunStepStreamEvent -- RunStepObject : data
+AssistantsApiToolChoiceOption -- AssistantsNamedToolChoiceFunction : function
 ChatCompletionStreamResponseDelta -- ChatCompletionStreamResponseDeltaFunctionCall : function_call
 ChatCompletionStreamResponseDelta -- "0..*" ChatCompletionMessageToolCallChunk : tool_calls
 RunStepDetailsToolCallsCodeOutputImageObject -- RunStepDetailsToolCallsCodeOutputImageObjectImage : image
-ChatCompletionMessageToolCallChunk -- ChatCompletionMessageToolCallChunkFunction : function
-RunStreamEventOneOf7 -- RunObject : data
-RunStreamEventOneOf6 -- RunObject : data
-RunStreamEventOneOf8 -- RunObject : data
-RunStreamEventOneOf3 -- RunObject : data
-RunStreamEventOneOf2 -- RunObject : data
-RunStreamEventOneOf5 -- RunObject : data
-RunStreamEventOneOf4 -- RunObject : data
-RunStepDeltaStepDetailsToolCallsFunctionObject -- RunStepDeltaStepDetailsToolCallsFunctionObjectFunction : function
-RunStreamEventOneOf1 -- RunObject : data
-ChatCompletionRequestMessageContentPart -- ChatCompletionRequestMessageContentPartImageImageUrl : image_url
-CreateFineTuningJobRequestIntegrationsInner -- CreateFineTuningJobRequestIntegrationsInnerWandb : wandb
+ApiKeyList -- "0..*" AdminApiKey : data
+ListVectorStoreFilesResponse -- "0..*" VectorStoreFileObject : data
+StaticChunkingStrategy -- StaticChunkingStrategyStatic : static
+AuditLogServiceAccountCreated -- AuditLogServiceAccountCreatedData : data
 MessageContentImageFileObject -- MessageContentImageFileObjectImageFile : image_file
+AuditLogApiKeyUpdated -- AuditLogApiKeyUpdatedChangesRequested : changes_requested
 AssistantObject -- "0..*" AssistantObjectToolsInner : tools
+AssistantObject -- AssistantObjectToolResources : tool_resources
+AssistantObject -- AssistantsApiResponseFormatOption : response_format
+AuditLogRateLimitUpdated -- AuditLogRateLimitUpdatedChangesRequested : changes_requested
 MessageDeltaContentTextAnnotationsFilePathObject -- MessageDeltaContentTextAnnotationsFilePathObjectFilePath : file_path
 MessageContentTextAnnotationsFilePathObject -- MessageContentTextAnnotationsFilePathObjectFilePath : file_path
+RunStepDetailsToolCallsFileSearchObjectFileSearch -- RunStepDetailsToolCallsFileSearchRankingOptionsObject : ranking_options
+RunStepDetailsToolCallsFileSearchObjectFileSearch -- "0..*" RunStepDetailsToolCallsFileSearchResultObject : results
 CreateThreadAndRunRequest -- CreateThreadRequest : thread
 CreateThreadAndRunRequest -- CreateRunRequestModel : model
 CreateThreadAndRunRequest -- "0..*" CreateThreadAndRunRequestToolsInner : tools
+CreateThreadAndRunRequest -- CreateThreadAndRunRequestToolResources : tool_resources
 CreateThreadAndRunRequest -- TruncationObject : truncation_strategy
 CreateThreadAndRunRequest -- AssistantsApiToolChoiceOption : tool_choice
 CreateThreadAndRunRequest -- AssistantsApiResponseFormatOption : response_format
+AssistantsNamedToolChoice -- AssistantsNamedToolChoiceFunction : function
+AuditLogInviteSent -- AuditLogInviteSentData : data
 ListRunStepsResponse -- "0..*" RunStepObject : data
-MessageObject -- MessageObjectIncompleteDetails : incomplete_details
-MessageObject -- "0..*" MessageObjectContentInner : content
 CreateFineTuningJobRequest -- CreateFineTuningJobRequestModel : model
 CreateFineTuningJobRequest -- CreateFineTuningJobRequestHyperparameters : hyperparameters
 CreateFineTuningJobRequest -- "0..*" CreateFineTuningJobRequestIntegrationsInner : integrations
+CreateFineTuningJobRequest -- FineTuneMethod : method
 MessageDeltaObjectDeltaContentInner -- MessageDeltaContentImageFileObjectImageFile : image_file
 MessageDeltaObjectDeltaContentInner -- MessageDeltaContentTextObjectText : text
-ChatCompletionTokenLogprob -- "0..*" ChatCompletionTokenLogprobTopLogprobsInner : top_logprobs
-ChatCompletionRequestMessage -- "0..*" ChatCompletionMessageToolCall : tool_calls
-ChatCompletionRequestMessage -- ChatCompletionRequestAssistantMessageFunctionCall : function_call
+MessageDeltaObjectDeltaContentInner -- MessageDeltaContentImageUrlObjectImageUrl : image_url
 RunStepDeltaStepDetailsToolCallsObject -- "0..*" RunStepDeltaStepDetailsToolCallsObjectToolCallsInner : tool_calls
-CreateThreadAndRunRequestToolsInner -- FunctionObject : function
 RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner -- RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage : image
-CreateFineTuningJobRequestHyperparameters -- CreateFineTuningJobRequestHyperparametersBatchSize : batch_size
-CreateFineTuningJobRequestHyperparameters -- CreateFineTuningJobRequestHyperparametersLearningRateMultiplier : learning_rate_multiplier
-CreateFineTuningJobRequestHyperparameters -- CreateFineTuningJobRequestHyperparametersNEpochs : n_epochs
 CreateTranscriptionResponseVerboseJson -- "0..*" TranscriptionWord : words
 CreateTranscriptionResponseVerboseJson -- "0..*" TranscriptionSegment : segments
-ChatCompletionRequestMessageContentPartImage -- ChatCompletionRequestMessageContentPartImageImageUrl : image_url
-MessageDeltaContentTextObject -- MessageDeltaContentTextObjectText : text
-AssistantsApiNamedToolChoice -- ChatCompletionNamedToolChoiceFunction : function
+RealtimeServerEventResponseContentPartAdded -- RealtimeServerEventResponseContentPartAddedPart : part
+CreateModerationRequestInputOneOfInnerOneOf -- CreateModerationRequestInputOneOfInnerOneOfImageUrl : image_url
+AuditLogProjectCreated -- AuditLogProjectCreatedData : data
+AuditLogOrganizationUpdatedChangesRequested -- AuditLogOrganizationUpdatedChangesRequestedSettings : settings
+UpdateVectorStoreRequest -- VectorStoreExpirationAfter : expires_after
+AuditLogUserAdded -- AuditLogUserAddedData : data
+AuditLogUserUpdated -- AuditLogUserUpdatedChangesRequested : changes_requested
+ModifyThreadRequestToolResources -- CreateAssistantRequestToolResourcesCodeInterpreter : code_interpreter
+ModifyThreadRequestToolResources -- ModifyThreadRequestToolResourcesFileSearch : file_search
 RunStepDetailsToolCallsCodeObjectCodeInterpreter -- "0..*" RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner : outputs
-CreateThreadRequest -- "0..*" CreateMessageRequest : messages
+RealtimeResponseCreateParams -- "0..*" RealtimeResponseCreateParamsToolsInner : tools
+RealtimeResponseCreateParams -- RealtimeResponseCreateParamsMaxResponseOutputTokens : max_response_output_tokens
+RealtimeResponseCreateParams -- RealtimeResponseCreateParamsConversation : conversation
+RealtimeResponseCreateParams -- "0..*" RealtimeConversationItem : input
+StaticChunkingStrategyRequestParam -- StaticChunkingStrategy : static
+VectorStoreFileObject -- VectorStoreFileObjectLastError : last_error
+VectorStoreFileObject -- VectorStoreFileObjectChunkingStrategy : chunking_strategy
 CreateChatCompletionResponseChoicesInnerLogprobs -- "0..*" ChatCompletionTokenLogprob : content
-ThreadStreamEvent -- ThreadObject : data
-ImagesResponse -- "0..*" Image : data
-RunStepObjectStepDetails -- RunStepDetailsMessageCreationObjectMessageCreation : message_creation
-RunStepObjectStepDetails -- "0..*" RunStepDetailsToolCallsObjectToolCallsInner : tool_calls
+CreateChatCompletionResponseChoicesInnerLogprobs -- "0..*" ChatCompletionTokenLogprob : refusal
+CreateModerationRequestInputOneOfInner -- CreateModerationRequestInputOneOfInnerOneOfImageUrl : image_url
+ChunkingStrategyRequestParam -- StaticChunkingStrategy : static
+RealtimeServerEventSessionCreated -- RealtimeSession : session
+MessageContentImageUrlObject -- MessageContentImageUrlObjectImageUrl : image_url
 CreateChatCompletionStreamResponse -- "0..*" CreateChatCompletionStreamResponseChoicesInner : choices
-RunStepDeltaStepDetailsToolCallsObjectToolCallsInner -- RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter : code_interpreter
-RunStepDeltaStepDetailsToolCallsObjectToolCallsInner -- RunStepDeltaStepDetailsToolCallsFunctionObjectFunction : function
+CreateChatCompletionStreamResponse -- CreateChatCompletionStreamResponseUsage : usage
 ChatCompletionMessageToolCall -- ChatCompletionMessageToolCallFunction : function
-MessageDeltaContentTextAnnotationsFileCitationObject -- MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation : file_citation
-ListModelsResponse -- "0..*" Model : data
+AssistantToolsFileSearchFileSearch -- FileSearchRankingOptions : ranking_options
+FineTuneChatRequestInputMessagesInner -- ChatCompletionRequestAssistantMessageAudio : audio
+FineTuneChatRequestInputMessagesInner -- "0..*" ChatCompletionMessageToolCall : tool_calls
+FineTuneChatRequestInputMessagesInner -- ChatCompletionRequestAssistantMessageFunctionCall : function_call
 ErrorEvent -- Error : data
 ListFilesResponse -- "0..*" OpenAIFile : data
-MessageContentTextAnnotationsFileCitationObject -- MessageContentTextAnnotationsFileCitationObjectFileCitation : file_citation
+CreateVectorStoreRequest -- VectorStoreExpirationAfter : expires_after
+CreateVectorStoreRequest -- CreateVectorStoreRequestChunkingStrategy : chunking_strategy
+ThreadObject -- ModifyThreadRequestToolResources : tool_resources
 ListPaginatedFineTuningJobsResponse -- "0..*" FineTuningJob : data
-ModifyAssistantRequest -- "0..*" AssistantObjectToolsInner : tools
+AuditLog -- AuditLogProject : project
+AuditLog -- AuditLogActor : actor
+AuditLog -- AuditLogApiKeyCreated : api_key.created
+AuditLog -- AuditLogApiKeyUpdated : api_key.updated
+AuditLog -- AuditLogApiKeyDeleted : api_key.deleted
+AuditLog -- AuditLogInviteSent : invite.sent
+AuditLog -- AuditLogInviteAccepted : invite.accepted
+AuditLog -- AuditLogInviteAccepted : invite.deleted
+AuditLog -- AuditLogLoginFailed : login.failed
+AuditLog -- AuditLogLoginFailed : logout.failed
+AuditLog -- AuditLogOrganizationUpdated : organization.updated
+AuditLog -- AuditLogProjectCreated : project.created
+AuditLog -- AuditLogProjectUpdated : project.updated
+AuditLog -- AuditLogProjectArchived : project.archived
+AuditLog -- AuditLogRateLimitUpdated : rate_limit.updated
+AuditLog -- AuditLogRateLimitDeleted : rate_limit.deleted
+AuditLog -- AuditLogServiceAccountCreated : service_account.created
+AuditLog -- AuditLogServiceAccountUpdated : service_account.updated
+AuditLog -- AuditLogServiceAccountDeleted : service_account.deleted
+AuditLog -- AuditLogUserAdded : user.added
+AuditLog -- AuditLogUserUpdated : user.updated
+AuditLog -- AuditLogUserDeleted : user.deleted
+RealtimeServerEventResponseCreated -- RealtimeResponse : response
+UsageTimeBucketResultInner -- CostsResultAmount : amount
+ChatCompletionRequestAssistantMessage -- ChatCompletionRequestAssistantMessageContent : content
+ChatCompletionRequestAssistantMessage -- ChatCompletionRequestAssistantMessageAudio : audio
 ChatCompletionRequestAssistantMessage -- "0..*" ChatCompletionMessageToolCall : tool_calls
 ChatCompletionRequestAssistantMessage -- ChatCompletionRequestAssistantMessageFunctionCall : function_call
+ListVectorStoresResponse -- "0..*" VectorStoreObject : data
 RunStepDeltaObject -- RunStepDeltaObjectDelta : delta
-RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter -- "0..*" RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner : outputs
-FineTuningJobIntegrationsInner -- CreateFineTuningJobRequestIntegrationsInnerWandb : wandb
 RunStepDetailsToolCallsCodeObject -- RunStepDetailsToolCallsCodeObjectCodeInterpreter : code_interpreter
 CreateModerationResponse -- "0..*" CreateModerationResponseResultsInner : results
-FineTuningIntegration -- CreateFineTuningJobRequestIntegrationsInnerWandb : wandb
-SubmitToolOutputsRunRequest -- "0..*" SubmitToolOutputsRunRequestToolOutputsInner : tool_outputs
-ListMessageFilesResponse -- "0..*" MessageFileObject : data
+CreateThreadAndRunRequestToolResources -- CreateAssistantRequestToolResourcesCodeInterpreter : code_interpreter
+CreateThreadAndRunRequestToolResources -- AssistantObjectToolResourcesFileSearch : file_search
 FineTuningJob -- FineTuningJobError : error
 FineTuningJob -- FineTuningJobHyperparameters : hyperparameters
 FineTuningJob -- "0..*" FineTuningJobIntegrationsInner : integrations
-CreateTranslationResponseVerboseJson -- "0..*" TranscriptionSegment : segments
+FineTuningJob -- FineTuneMethod : method
+ChatCompletionRequestSystemMessage -- ChatCompletionRequestSystemMessageContent : content
 MessageContentTextObjectText -- "0..*" MessageContentTextObjectTextAnnotationsInner : annotations
 RunStreamEvent -- RunObject : data
+RealtimeServerEventResponseDone -- RealtimeResponse : response
+InviteRequest -- "0..*" InviteRequestProjectsInner : projects
 ListFineTuningJobEventsResponse -- "0..*" FineTuningJobEvent : data
 RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner -- RunStepDetailsToolCallsCodeOutputImageObjectImage : image
-RunStepObject -- RunStepObjectStepDetails : step_details
-RunStepObject -- RunStepObjectLastError : last_error
-RunStepObject -- RunStepCompletionUsage : usage
-ChatCompletionNamedToolChoice -- ChatCompletionNamedToolChoiceFunction : function
 MessageDeltaContentImageFileObject -- MessageDeltaContentImageFileObjectImageFile : image_file
+CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy -- StaticChunkingStrategyStatic : static
 RunStepDeltaStepDetailsToolCallsCodeObject -- RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter : code_interpreter
-CreateCompletionResponseChoicesInner -- CreateCompletionResponseChoicesInnerLogprobs : logprobs
+InviteListResponse -- "0..*" Invite : data
+FineTuneSupervisedMethod -- FineTuneSupervisedMethodHyperparameters : hyperparameters
 MessageContentTextObjectTextAnnotationsInner -- MessageContentTextAnnotationsFileCitationObjectFileCitation : file_citation
 MessageContentTextObjectTextAnnotationsInner -- MessageContentTextAnnotationsFilePathObjectFilePath : file_path
 MessageStreamEventOneOf -- MessageObject : data
 CreateAssistantRequest -- CreateAssistantRequestModel : model
 CreateAssistantRequest -- "0..*" AssistantObjectToolsInner : tools
+CreateAssistantRequest -- CreateAssistantRequestToolResources : tool_resources
+CreateAssistantRequest -- AssistantsApiResponseFormatOption : response_format
 MessageStreamEventOneOf2 -- MessageDeltaObject : data
 MessageStreamEventOneOf3 -- MessageObject : data
 MessageStreamEventOneOf4 -- MessageObject : data
+RunStepDetailsToolCallsFileSearchObject -- RunStepDetailsToolCallsFileSearchObjectFileSearch : file_search
+ChatCompletionRequestDeveloperMessage -- ChatCompletionRequestDeveloperMessageContent : content
 CreateChatCompletionResponse -- "0..*" CreateChatCompletionResponseChoicesInner : choices
 CreateChatCompletionResponse -- CompletionUsage : usage
+ChatCompletionRequestToolMessage -- ChatCompletionRequestToolMessageContent : content
 MessageStreamEventOneOf1 -- MessageObject : data
-ChatCompletionResponseMessage -- "0..*" ChatCompletionMessageToolCall : tool_calls
-ChatCompletionResponseMessage -- ChatCompletionRequestAssistantMessageFunctionCall : function_call
 RunStepDetailsMessageCreationObject -- RunStepDetailsMessageCreationObjectMessageCreation : message_creation
 
 @enduml

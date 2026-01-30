@@ -3,10 +3,12 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from openapi_server.models.base_model import Model
+from openapi_server.models.create_message_request_attachments_inner import CreateMessageRequestAttachmentsInner
 from openapi_server.models.message_object_content_inner import MessageObjectContentInner
 from openapi_server.models.message_object_incomplete_details import MessageObjectIncompleteDetails
 from openapi_server import util
 
+from openapi_server.models.create_message_request_attachments_inner import CreateMessageRequestAttachmentsInner  # noqa: E501
 from openapi_server.models.message_object_content_inner import MessageObjectContentInner  # noqa: E501
 from openapi_server.models.message_object_incomplete_details import MessageObjectIncompleteDetails  # noqa: E501
 
@@ -16,7 +18,7 @@ class MessageObject(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id=None, object=None, created_at=None, thread_id=None, status=None, incomplete_details=None, completed_at=None, incomplete_at=None, role=None, content=None, assistant_id=None, run_id=None, file_ids=[], metadata=None):  # noqa: E501
+    def __init__(self, id=None, object=None, created_at=None, thread_id=None, status=None, incomplete_details=None, completed_at=None, incomplete_at=None, role=None, content=None, assistant_id=None, run_id=None, attachments=None, metadata=None):  # noqa: E501
         """MessageObject - a model defined in OpenAPI
 
         :param id: The id of this MessageObject.  # noqa: E501
@@ -43,8 +45,8 @@ class MessageObject(Model):
         :type assistant_id: str
         :param run_id: The run_id of this MessageObject.  # noqa: E501
         :type run_id: str
-        :param file_ids: The file_ids of this MessageObject.  # noqa: E501
-        :type file_ids: List[str]
+        :param attachments: The attachments of this MessageObject.  # noqa: E501
+        :type attachments: List[CreateMessageRequestAttachmentsInner]
         :param metadata: The metadata of this MessageObject.  # noqa: E501
         :type metadata: object
         """
@@ -61,7 +63,7 @@ class MessageObject(Model):
             'content': List[MessageObjectContentInner],
             'assistant_id': str,
             'run_id': str,
-            'file_ids': List[str],
+            'attachments': List[CreateMessageRequestAttachmentsInner],
             'metadata': object
         }
 
@@ -78,7 +80,7 @@ class MessageObject(Model):
             'content': 'content',
             'assistant_id': 'assistant_id',
             'run_id': 'run_id',
-            'file_ids': 'file_ids',
+            'attachments': 'attachments',
             'metadata': 'metadata'
         }
 
@@ -94,7 +96,7 @@ class MessageObject(Model):
         self._content = content
         self._assistant_id = assistant_id
         self._run_id = run_id
-        self._file_ids = file_ids
+        self._attachments = attachments
         self._metadata = metadata
 
     @classmethod
@@ -419,37 +421,35 @@ class MessageObject(Model):
         self._run_id = run_id
 
     @property
-    def file_ids(self) -> List[str]:
-        """Gets the file_ids of this MessageObject.
+    def attachments(self) -> List[CreateMessageRequestAttachmentsInner]:
+        """Gets the attachments of this MessageObject.
 
-        A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.  # noqa: E501
+        A list of files attached to the message, and the tools they were added to.  # noqa: E501
 
-        :return: The file_ids of this MessageObject.
-        :rtype: List[str]
+        :return: The attachments of this MessageObject.
+        :rtype: List[CreateMessageRequestAttachmentsInner]
         """
-        return self._file_ids
+        return self._attachments
 
-    @file_ids.setter
-    def file_ids(self, file_ids: List[str]):
-        """Sets the file_ids of this MessageObject.
+    @attachments.setter
+    def attachments(self, attachments: List[CreateMessageRequestAttachmentsInner]):
+        """Sets the attachments of this MessageObject.
 
-        A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.  # noqa: E501
+        A list of files attached to the message, and the tools they were added to.  # noqa: E501
 
-        :param file_ids: The file_ids of this MessageObject.
-        :type file_ids: List[str]
+        :param attachments: The attachments of this MessageObject.
+        :type attachments: List[CreateMessageRequestAttachmentsInner]
         """
-        if file_ids is None:
-            raise ValueError("Invalid value for `file_ids`, must not be `None`")  # noqa: E501
-        if file_ids is not None and len(file_ids) > 10:
-            raise ValueError("Invalid value for `file_ids`, number of items must be less than or equal to `10`")  # noqa: E501
+        if attachments is None:
+            raise ValueError("Invalid value for `attachments`, must not be `None`")  # noqa: E501
 
-        self._file_ids = file_ids
+        self._attachments = attachments
 
     @property
     def metadata(self) -> object:
         """Gets the metadata of this MessageObject.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.   # noqa: E501
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.   # noqa: E501
 
         :return: The metadata of this MessageObject.
         :rtype: object
@@ -460,7 +460,7 @@ class MessageObject(Model):
     def metadata(self, metadata: object):
         """Sets the metadata of this MessageObject.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.   # noqa: E501
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.   # noqa: E501
 
         :param metadata: The metadata of this MessageObject.
         :type metadata: object

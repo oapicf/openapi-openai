@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enabled** | **NSNumber*** | Whether to enable input audio transcription. | [optional] 
 **event** | **NSString*** |  | 
 **data** | [**OAIThreadObject***](OAIThreadObject.md) |  | 
 

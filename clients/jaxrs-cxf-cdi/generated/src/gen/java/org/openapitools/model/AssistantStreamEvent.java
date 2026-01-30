@@ -24,6 +24,8 @@ import java.util.Objects;
 @ApiModel(description = "Represents an event emitted when streaming a Run.  Each event in a server-sent events stream has an `event` and `data` property:  ``` event: thread.created data: {\"id\": \"thread_123\", \"object\": \"thread\", ...} ```  We emit events whenever a new object is created, transitions to a new state, or is being streamed in parts (deltas). For example, we emit `thread.run.created` when a new run is created, `thread.run.completed` when a run completes, and so on. When an Assistant chooses to create a message during a run, we emit a `thread.message.created event`, a `thread.message.in_progress` event, many `thread.message.delta` events, and finally a `thread.message.completed` event.  We may add additional events over time, so we recommend handling unknown events gracefully in your code. See the [Assistants API quickstart](/docs/assistants/overview) to learn how to integrate the Assistants API with streaming. ")
 public class AssistantStreamEvent   {
   
+  private Boolean enabled;
+
 
 public enum EventEnum {
 
@@ -91,6 +93,25 @@ public enum DataEnum {
   private DataEnum data;
 
   /**
+   * Whether to enable input audio transcription.
+   **/
+  public AssistantStreamEvent enabled(Boolean enabled) {
+    this.enabled = enabled;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "Whether to enable input audio transcription.")
+  @JsonProperty("enabled")
+  public Boolean getEnabled() {
+    return enabled;
+  }
+  public void setEnabled(Boolean enabled) {
+    this.enabled = enabled;
+  }
+
+
+  /**
    **/
   public AssistantStreamEvent event(EventEnum event) {
     this.event = event;
@@ -138,13 +159,14 @@ public enum DataEnum {
       return false;
     }
     AssistantStreamEvent assistantStreamEvent = (AssistantStreamEvent) o;
-    return Objects.equals(this.event, assistantStreamEvent.event) &&
+    return Objects.equals(this.enabled, assistantStreamEvent.enabled) &&
+        Objects.equals(this.event, assistantStreamEvent.event) &&
         Objects.equals(this.data, assistantStreamEvent.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(event, data);
+    return Objects.hash(enabled, event, data);
   }
 
   @Override
@@ -152,6 +174,7 @@ public enum DataEnum {
     StringBuilder sb = new StringBuilder();
     sb.append("class AssistantStreamEvent {\n");
     
+    sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
     sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");

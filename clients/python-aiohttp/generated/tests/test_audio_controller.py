@@ -6,6 +6,7 @@ from aiohttp import web
 from aiohttp import FormData
 from aiohttp import FormData
 
+from openapi_server.models.audio_response_format import AudioResponseFormat
 from openapi_server.models.create_speech_request import CreateSpeechRequest
 from openapi_server.models.create_transcription200_response import CreateTranscription200Response
 from openapi_server.models.create_transcription_request_model import CreateTranscriptionRequestModel
@@ -81,7 +82,7 @@ async def test_create_translation(client):
     data.add_field('file', '/path/to/file')
     data.add_field('model', openapi_server.CreateTranscriptionRequestModel())
     data.add_field('prompt', 'prompt_example')
-    data.add_field('response_format', 'json')
+    data.add_field('response_format', json)
     data.add_field('temperature', 0)
     response = await client.request(
         method='POST',

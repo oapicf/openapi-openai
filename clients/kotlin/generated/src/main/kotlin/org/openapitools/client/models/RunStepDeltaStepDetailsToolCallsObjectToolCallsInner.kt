@@ -17,9 +17,9 @@ package org.openapitools.client.models
 
 import org.openapitools.client.models.RunStepDeltaStepDetailsToolCallsCodeObject
 import org.openapitools.client.models.RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+import org.openapitools.client.models.RunStepDeltaStepDetailsToolCallsFileSearchObject
 import org.openapitools.client.models.RunStepDeltaStepDetailsToolCallsFunctionObject
 import org.openapitools.client.models.RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
-import org.openapitools.client.models.RunStepDeltaStepDetailsToolCallsRetrievalObject
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -29,9 +29,9 @@ import com.squareup.moshi.JsonClass
  *
  * @param index The index of the tool call in the tool calls array.
  * @param type The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
+ * @param fileSearch For now, this is always going to be an empty object.
  * @param id The ID of the tool call object.
  * @param codeInterpreter 
- * @param retrieval For now, this is always going to be an empty object.
  * @param function 
  */
 
@@ -46,16 +46,16 @@ data class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner (
     @Json(name = "type")
     val type: RunStepDeltaStepDetailsToolCallsObjectToolCallsInner.Type,
 
+    /* For now, this is always going to be an empty object. */
+    @Json(name = "file_search")
+    val fileSearch: kotlin.Any,
+
     /* The ID of the tool call object. */
     @Json(name = "id")
     val id: kotlin.String? = null,
 
     @Json(name = "code_interpreter")
     val codeInterpreter: RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter? = null,
-
-    /* For now, this is always going to be an empty object. */
-    @Json(name = "retrieval")
-    val retrieval: kotlin.Any? = null,
 
     @Json(name = "function")
     val function: RunStepDeltaStepDetailsToolCallsFunctionObjectFunction? = null
@@ -65,12 +65,12 @@ data class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner (
     /**
      * The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
      *
-     * Values: code_interpreter,retrieval,function
+     * Values: code_interpreter,file_search,function
      */
     @JsonClass(generateAdapter = false)
     enum class Type(val value: kotlin.String) {
         @Json(name = "code_interpreter") code_interpreter("code_interpreter"),
-        @Json(name = "retrieval") retrieval("retrieval"),
+        @Json(name = "file_search") file_search("file_search"),
         @Json(name = "function") function("function");
     }
 

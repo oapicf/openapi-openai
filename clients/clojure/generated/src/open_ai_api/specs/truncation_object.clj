@@ -7,7 +7,7 @@
 
 (def truncation-object-data
   {
-   (ds/opt :type) string?
+   (ds/req :type) string?
    (ds/opt :last_messages) int?
    })
 

@@ -40,13 +40,19 @@ class OpenAIFile {
 
     enum PurposeEnum {
     
+        ASSISTANTS("assistants"),
+        
+        ASSISTANTS_OUTPUT("assistants_output"),
+        
+        BATCH("batch"),
+        
+        BATCH_OUTPUT("batch_output"),
+        
         FINE_TUNE("fine-tune"),
         
         FINE_TUNE_RESULTS("fine-tune-results"),
         
-        ASSISTANTS("assistants"),
-        
-        ASSISTANTS_OUTPUT("assistants_output")
+        VISION("vision")
     
         private final String value
     
@@ -64,7 +70,7 @@ class OpenAIFile {
         }
     }
 
-    /* The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`. */
+    /* The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`. */
     PurposeEnum purpose
 
     enum StatusEnum {

@@ -4,18 +4,30 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.vertxweb.server.model.ModifyThreadRequestToolResources;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ModifyThreadRequest   {
   
+  private ModifyThreadRequestToolResources toolResources;
   private Object metadata;
 
   public ModifyThreadRequest () {
 
   }
 
-  public ModifyThreadRequest (Object metadata) {
+  public ModifyThreadRequest (ModifyThreadRequestToolResources toolResources, Object metadata) {
+    this.toolResources = toolResources;
     this.metadata = metadata;
+  }
+
+    
+  @JsonProperty("tool_resources")
+  public ModifyThreadRequestToolResources getToolResources() {
+    return toolResources;
+  }
+  public void setToolResources(ModifyThreadRequestToolResources toolResources) {
+    this.toolResources = toolResources;
   }
 
     
@@ -37,12 +49,13 @@ public class ModifyThreadRequest   {
       return false;
     }
     ModifyThreadRequest modifyThreadRequest = (ModifyThreadRequest) o;
-    return Objects.equals(metadata, modifyThreadRequest.metadata);
+    return Objects.equals(toolResources, modifyThreadRequest.toolResources) &&
+        Objects.equals(metadata, modifyThreadRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(metadata);
+    return Objects.hash(toolResources, metadata);
   }
 
   @Override
@@ -50,6 +63,7 @@ public class ModifyThreadRequest   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ModifyThreadRequest {\n");
     
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

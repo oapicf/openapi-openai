@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 # **createTranscription**
 ```swift
-    open class func createTranscription(file: URL, model: CreateTranscriptionRequestModel, language: String? = nil, prompt: String? = nil, responseFormat: ResponseFormat_createTranscription? = nil, temperature: Double? = nil, timestampGranularities: [TimestampGranularities_createTranscription]? = nil, completion: @escaping (_ data: CreateTranscription200Response?, _ error: Error?) -> Void)
+    open class func createTranscription(file: URL, model: CreateTranscriptionRequestModel, language: String? = nil, prompt: String? = nil, responseFormat: AudioResponseFormat? = nil, temperature: Double? = nil, timestampGranularities: [TimestampGranularities_createTranscription]? = nil, completion: @escaping (_ data: CreateTranscription200Response?, _ error: Error?) -> Void)
 ```
 
 Transcribes audio into the input language.
@@ -72,8 +72,8 @@ import OpenAPIClient
 let file = URL(string: "https://example.com")! // URL | The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
 let model = CreateTranscriptionRequest_model() // CreateTranscriptionRequestModel | 
 let language = "language_example" // String | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.  (optional)
-let prompt = "prompt_example" // String | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.  (optional)
-let responseFormat = "responseFormat_example" // String | The format of the transcript output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`.  (optional) (default to .json)
+let prompt = "prompt_example" // String | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language.  (optional)
+let responseFormat = AudioResponseFormat() // AudioResponseFormat |  (optional)
 let temperature = 987 // Double | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional) (default to 0)
 let timestampGranularities = ["inner_example"] // [String] | The timestamp granularities to populate for this transcription. `response_format` must be set `verbose_json` to use timestamp granularities. Either or both of these options are supported: `word`, or `segment`. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.  (optional)
 
@@ -97,8 +97,8 @@ Name | Type | Description  | Notes
  **file** | **URL** | The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  | 
  **model** | [**CreateTranscriptionRequestModel**](CreateTranscriptionRequestModel.md) |  | 
  **language** | **String** | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.  | [optional] 
- **prompt** | **String** | An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.  | [optional] 
- **responseFormat** | **String** | The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  | [optional] [default to .json]
+ **prompt** | **String** | An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language.  | [optional] 
+ **responseFormat** | [**AudioResponseFormat**](AudioResponseFormat.md) |  | [optional] 
  **temperature** | **Double** | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  | [optional] [default to 0]
  **timestampGranularities** | [**[String]**](String.md) | The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.  | [optional] 
 
@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
 
 # **createTranslation**
 ```swift
-    open class func createTranslation(file: URL, model: CreateTranscriptionRequestModel, prompt: String? = nil, responseFormat: String? = nil, temperature: Double? = nil, completion: @escaping (_ data: CreateTranslation200Response?, _ error: Error?) -> Void)
+    open class func createTranslation(file: URL, model: CreateTranscriptionRequestModel, prompt: String? = nil, responseFormat: AudioResponseFormat? = nil, temperature: Double? = nil, completion: @escaping (_ data: CreateTranslation200Response?, _ error: Error?) -> Void)
 ```
 
 Translates audio into English.
@@ -131,8 +131,8 @@ import OpenAPIClient
 
 let file = URL(string: "https://example.com")! // URL | The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
 let model = CreateTranscriptionRequest_model() // CreateTranscriptionRequestModel | 
-let prompt = "prompt_example" // String | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.  (optional)
-let responseFormat = "responseFormat_example" // String | The format of the transcript output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`.  (optional) (default to "json")
+let prompt = "prompt_example" // String | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English.  (optional)
+let responseFormat = AudioResponseFormat() // AudioResponseFormat |  (optional)
 let temperature = 987 // Double | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional) (default to 0)
 
 // Translates audio into English.
@@ -154,8 +154,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file** | **URL** | The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  | 
  **model** | [**CreateTranscriptionRequestModel**](CreateTranscriptionRequestModel.md) |  | 
- **prompt** | **String** | An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.  | [optional] 
- **responseFormat** | **String** | The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  | [optional] [default to &quot;json&quot;]
+ **prompt** | **String** | An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English.  | [optional] 
+ **responseFormat** | [**AudioResponseFormat**](AudioResponseFormat.md) |  | [optional] 
  **temperature** | **Double** | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  | [optional] [default to 0]
 
 ### Return type

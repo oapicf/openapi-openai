@@ -13,6 +13,7 @@
    (ds/req :choices) (s/coll-of create-chat-completion-response-choices-inner-spec)
    (ds/req :created) int?
    (ds/req :model) string?
+   (ds/opt :service_tier) string?
    (ds/opt :system_fingerprint) string?
    (ds/req :object) string?
    (ds/opt :usage) completion-usage-spec

@@ -1,0 +1,51 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "AdminApiKey",
+  "fields": [
+    {
+      "name": "object",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "id",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "name",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "redacted_value",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "value",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "created_at",
+      "type": ["null", "long"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "owner",
+      "type": ["null", "model.AdminApiKeyOwner"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

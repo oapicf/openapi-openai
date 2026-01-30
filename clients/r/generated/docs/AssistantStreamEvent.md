@@ -5,6 +5,7 @@ Represents an event emitted when streaming a Run.  Each event in a server-sent e
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enabled** | **character** | Whether to enable input audio transcription. | [optional] 
 **event** | **character** |  | [Enum: [done]] 
 **data** | **character** |  | [Enum: [[DONE]]] 
 

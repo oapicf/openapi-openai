@@ -1,0 +1,50 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when the model-generated function call arguments are updated. ",
+  "name": "RealtimeServerEventResponseFunctionCallArgumentsDelta",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventResponseFunctionCallArgumentsDelta_type",
+        "symbols": [
+          "response_function_call_arguments_delta"
+        ]
+      },
+      "doc": "The event type, must be `response.function_call_arguments.delta`. "
+    },
+    {
+      "name": "response_id",
+      "type": "string",
+      "doc": "The ID of the response."
+    },
+    {
+      "name": "item_id",
+      "type": "string",
+      "doc": "The ID of the function call item."
+    },
+    {
+      "name": "output_index",
+      "type": "int",
+      "doc": "The index of the output item in the response."
+    },
+    {
+      "name": "call_id",
+      "type": "string",
+      "doc": "The ID of the function call."
+    },
+    {
+      "name": "delta",
+      "type": "string",
+      "doc": "The arguments delta as a JSON string."
+    }
+  ]
+
+}

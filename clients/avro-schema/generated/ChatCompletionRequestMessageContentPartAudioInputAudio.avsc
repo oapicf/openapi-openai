@@ -1,0 +1,26 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ChatCompletionRequestMessageContentPartAudioInputAudio",
+  "fields": [
+    {
+      "name": "data",
+      "type": "string",
+      "doc": "Base64 encoded audio data."
+    },
+    {
+      "name": "format",
+      "type": {
+        "type": "enum",
+        "name": "ChatCompletionRequestMessageContentPartAudioInputAudio_format",
+        "symbols": [
+          "wav",
+          "mp3"
+        ]
+      },
+      "doc": "The format of the encoded audio data. Currently supports \"wav\" and \"mp3\". "
+    }
+  ]
+
+}

@@ -8,12 +8,15 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
+/**
+ * Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
+ **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-
+@ApiModel(description = "Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.")
 public class TruncationObject   {
   
 
@@ -60,8 +63,9 @@ public enum TypeEnum {
   }
 
   
-  @ApiModelProperty(value = "The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.")
+  @ApiModelProperty(required = true, value = "The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.")
   @JsonProperty("type")
+  @NotNull
   public TypeEnum getType() {
     return type;
   }

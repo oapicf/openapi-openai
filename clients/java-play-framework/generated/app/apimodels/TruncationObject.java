@@ -8,9 +8,9 @@ import java.util.Objects;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 /**
- * TruncationObject
+ * Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class TruncationObject   {
   /**
@@ -45,7 +45,8 @@ public class TruncationObject   {
   }
 
   @JsonProperty("type")
-  
+  @NotNull
+
   private TypeEnum type;
 
   @JsonProperty("last_messages")

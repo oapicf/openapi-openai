@@ -12,11 +12,14 @@
 #' @field created_at The Unix timestamp (in seconds) for when the assistant was created. integer
 #' @field name The name of the assistant. The maximum length is 256 characters. character
 #' @field description The description of the assistant. The maximum length is 512 characters. character
-#' @field model ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. character
+#' @field model ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. character
 #' @field instructions The system instructions that the assistant uses. The maximum length is 256,000 characters. character
-#' @field tools A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. list(\link{AssistantObjectToolsInner})
-#' @field file_ids A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. list(character)
-#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. object
+#' @field tools A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. list(\link{AssistantObjectToolsInner})
+#' @field tool_resources  \link{AssistantObjectToolResources} [optional]
+#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. object
+#' @field temperature What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. numeric [optional]
+#' @field top_p An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10\% probability mass are considered.  We generally recommend altering this or temperature but not both. numeric [optional]
+#' @field response_format  \link{AssistantsApiResponseFormatOption} [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -31,8 +34,11 @@ AssistantObject <- R6::R6Class(
     `model` = NULL,
     `instructions` = NULL,
     `tools` = NULL,
-    `file_ids` = NULL,
+    `tool_resources` = NULL,
     `metadata` = NULL,
+    `temperature` = NULL,
+    `top_p` = NULL,
+    `response_format` = NULL,
 
     #' @description
     #' Initialize a new AssistantObject class.
@@ -42,13 +48,16 @@ AssistantObject <- R6::R6Class(
     #' @param created_at The Unix timestamp (in seconds) for when the assistant was created.
     #' @param name The name of the assistant. The maximum length is 256 characters.
     #' @param description The description of the assistant. The maximum length is 512 characters.
-    #' @param model ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them.
+    #' @param model ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them.
     #' @param instructions The system instructions that the assistant uses. The maximum length is 256,000 characters.
-    #' @param tools A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`.
-    #' @param file_ids A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order.
-    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
+    #' @param tools A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`.
+    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
+    #' @param tool_resources tool_resources
+    #' @param temperature What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.. Default to 1.
+    #' @param top_p An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10\% probability mass are considered.  We generally recommend altering this or temperature but not both.. Default to 1.
+    #' @param response_format response_format
     #' @param ... Other optional arguments.
-    initialize = function(`id`, `object`, `created_at`, `name`, `description`, `model`, `instructions`, `tools`, `file_ids`, `metadata`, ...) {
+    initialize = function(`id`, `object`, `created_at`, `name`, `description`, `model`, `instructions`, `tools`, `metadata`, `tool_resources` = NULL, `temperature` = 1, `top_p` = 1, `response_format` = NULL, ...) {
       if (!missing(`id`)) {
         if (!(is.character(`id`) && length(`id`) == 1)) {
           stop(paste("Error! Invalid data for `id`. Must be a string:", `id`))
@@ -99,13 +108,22 @@ AssistantObject <- R6::R6Class(
         sapply(`tools`, function(x) stopifnot(R6::is.R6(x)))
         self$`tools` <- `tools`
       }
-      if (!missing(`file_ids`)) {
-        stopifnot(is.vector(`file_ids`), length(`file_ids`) != 0)
-        sapply(`file_ids`, function(x) stopifnot(is.character(x)))
-        self$`file_ids` <- `file_ids`
-      }
       if (!missing(`metadata`)) {
         self$`metadata` <- `metadata`
+      }
+      if (!is.null(`tool_resources`)) {
+        stopifnot(R6::is.R6(`tool_resources`))
+        self$`tool_resources` <- `tool_resources`
+      }
+      if (!is.null(`temperature`)) {
+        self$`temperature` <- `temperature`
+      }
+      if (!is.null(`top_p`)) {
+        self$`top_p` <- `top_p`
+      }
+      if (!is.null(`response_format`)) {
+        stopifnot(R6::is.R6(`response_format`))
+        self$`response_format` <- `response_format`
       }
     },
 
@@ -172,13 +190,25 @@ AssistantObject <- R6::R6Class(
         AssistantObjectObject[["tools"]] <-
           lapply(self$`tools`, function(x) x$toSimpleType())
       }
-      if (!is.null(self$`file_ids`)) {
-        AssistantObjectObject[["file_ids"]] <-
-          self$`file_ids`
+      if (!is.null(self$`tool_resources`)) {
+        AssistantObjectObject[["tool_resources"]] <-
+          self$`tool_resources`$toSimpleType()
       }
       if (!is.null(self$`metadata`)) {
         AssistantObjectObject[["metadata"]] <-
           self$`metadata`
+      }
+      if (!is.null(self$`temperature`)) {
+        AssistantObjectObject[["temperature"]] <-
+          self$`temperature`
+      }
+      if (!is.null(self$`top_p`)) {
+        AssistantObjectObject[["top_p"]] <-
+          self$`top_p`
+      }
+      if (!is.null(self$`response_format`)) {
+        AssistantObjectObject[["response_format"]] <-
+          self$`response_format`$toSimpleType()
       }
       return(AssistantObjectObject)
     },
@@ -217,11 +247,24 @@ AssistantObject <- R6::R6Class(
       if (!is.null(this_object$`tools`)) {
         self$`tools` <- ApiClient$new()$deserializeObj(this_object$`tools`, "array[AssistantObjectToolsInner]", loadNamespace("openapi"))
       }
-      if (!is.null(this_object$`file_ids`)) {
-        self$`file_ids` <- ApiClient$new()$deserializeObj(this_object$`file_ids`, "array[character]", loadNamespace("openapi"))
+      if (!is.null(this_object$`tool_resources`)) {
+        `tool_resources_object` <- AssistantObjectToolResources$new()
+        `tool_resources_object`$fromJSON(jsonlite::toJSON(this_object$`tool_resources`, auto_unbox = TRUE, digits = NA))
+        self$`tool_resources` <- `tool_resources_object`
       }
       if (!is.null(this_object$`metadata`)) {
         self$`metadata` <- this_object$`metadata`
+      }
+      if (!is.null(this_object$`temperature`)) {
+        self$`temperature` <- this_object$`temperature`
+      }
+      if (!is.null(this_object$`top_p`)) {
+        self$`top_p` <- this_object$`top_p`
+      }
+      if (!is.null(this_object$`response_format`)) {
+        `response_format_object` <- AssistantsApiResponseFormatOption$new()
+        `response_format_object`$fromJSON(jsonlite::toJSON(this_object$`response_format`, auto_unbox = TRUE, digits = NA))
+        self$`response_format` <- `response_format_object`
       }
       self
     },
@@ -255,8 +298,11 @@ AssistantObject <- R6::R6Class(
       self$`model` <- this_object$`model`
       self$`instructions` <- this_object$`instructions`
       self$`tools` <- ApiClient$new()$deserializeObj(this_object$`tools`, "array[AssistantObjectToolsInner]", loadNamespace("openapi"))
-      self$`file_ids` <- ApiClient$new()$deserializeObj(this_object$`file_ids`, "array[character]", loadNamespace("openapi"))
+      self$`tool_resources` <- AssistantObjectToolResources$new()$fromJSON(jsonlite::toJSON(this_object$`tool_resources`, auto_unbox = TRUE, digits = NA))
       self$`metadata` <- this_object$`metadata`
+      self$`temperature` <- this_object$`temperature`
+      self$`top_p` <- this_object$`top_p`
+      self$`response_format` <- AssistantsApiResponseFormatOption$new()$fromJSON(jsonlite::toJSON(this_object$`response_format`, auto_unbox = TRUE, digits = NA))
       self
     },
 
@@ -329,13 +375,6 @@ AssistantObject <- R6::R6Class(
       } else {
         stop(paste("The JSON input `", input, "` is invalid for AssistantObject: the required field `tools` is missing."))
       }
-      # check the required field `file_ids`
-      if (!is.null(input_json$`file_ids`)) {
-        stopifnot(is.vector(input_json$`file_ids`), length(input_json$`file_ids`) != 0)
-        tmp <- sapply(input_json$`file_ids`, function(x) stopifnot(is.character(x)))
-      } else {
-        stop(paste("The JSON input `", input, "` is invalid for AssistantObject: the required field `file_ids` is missing."))
-      }
       # check the required field `metadata`
       if (!is.null(input_json$`metadata`)) {
       } else {
@@ -397,12 +436,17 @@ AssistantObject <- R6::R6Class(
         return(FALSE)
       }
 
-      # check if the required `file_ids` is null
-      if (is.null(self$`file_ids`)) {
+      if (self$`temperature` > 2) {
+        return(FALSE)
+      }
+      if (self$`temperature` < 0) {
         return(FALSE)
       }
 
-      if (length(self$`file_ids`) > 20) {
+      if (self$`top_p` > 1) {
+        return(FALSE)
+      }
+      if (self$`top_p` < 0) {
         return(FALSE)
       }
 
@@ -456,13 +500,18 @@ AssistantObject <- R6::R6Class(
         invalid_fields["tools"] <- "Invalid length for `tools`, number of items must be less than or equal to 128."
       }
 
-      # check if the required `file_ids` is null
-      if (is.null(self$`file_ids`)) {
-        invalid_fields["file_ids"] <- "Non-nullable required field `file_ids` cannot be null."
+      if (self$`temperature` > 2) {
+        invalid_fields["temperature"] <- "Invalid value for `temperature`, must be smaller than or equal to 2."
+      }
+      if (self$`temperature` < 0) {
+        invalid_fields["temperature"] <- "Invalid value for `temperature`, must be bigger than or equal to 0."
       }
 
-      if (length(self$`file_ids`) > 20) {
-        invalid_fields["file_ids"] <- "Invalid length for `file_ids`, number of items must be less than or equal to 20."
+      if (self$`top_p` > 1) {
+        invalid_fields["top_p"] <- "Invalid value for `top_p`, must be smaller than or equal to 1."
+      }
+      if (self$`top_p` < 0) {
+        invalid_fields["top_p"] <- "Invalid value for `top_p`, must be bigger than or equal to 0."
       }
 
       invalid_fields

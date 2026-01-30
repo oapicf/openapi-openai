@@ -3,9 +3,9 @@ package model
 import play.api.libs.json._
 
 /**
-  * Occurs when a [run](/docs/api-reference/runs/object) fails.
+  * Occurs when a [run](/docs/api-reference/runs/object) ends with status `incomplete`.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T10:48:27.489746113Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 case class RunStreamEventOneOf5(
   event: RunStreamEventOneOf5.Event.Value,
   data: RunObject
@@ -16,7 +16,7 @@ object RunStreamEventOneOf5 {
 
   // noinspection TypeAnnotation
   object Event extends Enumeration {
-    val ThreadRunFailed = Value("thread.run.failed")
+    val ThreadRunIncomplete = Value("thread.run.incomplete")
 
     type Event = Value
     implicit lazy val EventJsonFormat: Format[Value] = Format(Reads.enumNameReads(this), Writes.enumNameWrites[this.type])

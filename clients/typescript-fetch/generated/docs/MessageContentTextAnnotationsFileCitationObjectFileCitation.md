@@ -7,7 +7,6 @@
 Name | Type
 ------------ | -------------
 `fileId` | string
-`quote` | string
 
 ## Example
 
@@ -17,7 +16,6 @@ import type { MessageContentTextAnnotationsFileCitationObjectFileCitation } from
 // TODO: Update the object below with actual values
 const example = {
   "fileId": null,
-  "quote": null,
 } satisfies MessageContentTextAnnotationsFileCitationObjectFileCitation
 
 console.log(example)

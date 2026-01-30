@@ -1,0 +1,43 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ProjectApiKeyListResponse",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "ProjectApiKeyListResponse_object",
+        "symbols": [
+          "list"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": {
+        "type": "array",
+        "items": "model.ProjectApiKey"
+      },
+      "doc": ""
+    },
+    {
+      "name": "first_id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "last_id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "has_more",
+      "type": "boolean",
+      "doc": ""
+    }
+  ]
+
+}

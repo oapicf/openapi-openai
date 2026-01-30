@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -15,15 +15,16 @@ syntax = "proto3";
 package openapitools;
 
 import public "models/assistant_tools_code.proto";
+import public "models/assistant_tools_file_search.proto";
+import public "models/assistant_tools_file_search_file_search.proto";
 import public "models/assistant_tools_function.proto";
-import public "models/assistant_tools_retrieval.proto";
 import public "models/function_object.proto";
 
 message CreateThreadAndRunRequestToolsInner {
 
     oneof create_thread_and_run_request_tools_inner {
         AssistantToolsCode assistant_tools_code = 434857521;
-        AssistantToolsRetrieval assistant_tools_retrieval = 302153107;
+        AssistantToolsFileSearch assistant_tools_file_search = 410477126;
         AssistantToolsFunction assistant_tools_function = 434300223;
     }
 }

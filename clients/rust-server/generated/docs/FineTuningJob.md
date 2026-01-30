@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **validation_file** | **swagger::Nullable<String>** | The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents). | 
 **integrations** | [**swagger::Nullable<Vec<models::FineTuningJobIntegrationsInner>>**](FineTuningJob_integrations_inner.md) | A list of integrations to enable for this fine-tuning job. | [optional] [default to None]
 **seed** | **i32** | The seed used for the fine-tuning job. | 
+**estimated_finish** | **i32** | The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running. | [optional] [default to None]
+**method** | [***models::FineTuneMethod**](FineTuneMethod.md) |  | [optional] [default to None]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

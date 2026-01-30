@@ -22,13 +22,15 @@ public struct ThreadObject: Codable, JSONEncodable, Hashable {
     public var object: Object
     /** The Unix timestamp (in seconds) for when the thread was created. */
     public var createdAt: Int
-    /** Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  */
+    public var toolResources: ModifyThreadRequestToolResources?
+    /** Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  */
     public var metadata: AnyCodable?
 
-    public init(id: String, object: Object, createdAt: Int, metadata: AnyCodable?) {
+    public init(id: String, object: Object, createdAt: Int, toolResources: ModifyThreadRequestToolResources?, metadata: AnyCodable?) {
         self.id = id
         self.object = object
         self.createdAt = createdAt
+        self.toolResources = toolResources
         self.metadata = metadata
     }
 
@@ -36,6 +38,7 @@ public struct ThreadObject: Codable, JSONEncodable, Hashable {
         case id
         case object
         case createdAt = "created_at"
+        case toolResources = "tool_resources"
         case metadata
     }
 
@@ -46,6 +49,7 @@ public struct ThreadObject: Codable, JSONEncodable, Hashable {
         try container.encode(id, forKey: .id)
         try container.encode(object, forKey: .object)
         try container.encode(createdAt, forKey: .createdAt)
+        try container.encode(toolResources, forKey: .toolResources)
         try container.encode(metadata, forKey: .metadata)
     }
 }

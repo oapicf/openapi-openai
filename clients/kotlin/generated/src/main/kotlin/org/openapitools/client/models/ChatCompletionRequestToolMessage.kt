@@ -15,6 +15,7 @@
 
 package org.openapitools.client.models
 
+import org.openapitools.client.models.ChatCompletionRequestToolMessageContent
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -23,7 +24,7 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param role The role of the messages author, in this case `tool`.
- * @param content The contents of the tool message.
+ * @param content 
  * @param toolCallId Tool call that this message is responding to.
  */
 
@@ -34,9 +35,8 @@ data class ChatCompletionRequestToolMessage (
     @Json(name = "role")
     val role: ChatCompletionRequestToolMessage.Role,
 
-    /* The contents of the tool message. */
     @Json(name = "content")
-    val content: kotlin.String,
+    val content: ChatCompletionRequestToolMessageContent,
 
     /* Tool call that this message is responding to. */
     @Json(name = "tool_call_id")

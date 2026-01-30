@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FineTuneCompletionRequestInput"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FineTuneCompletionRequestInput"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  FineTuneCompletionRequestInput {
+    title = FineTuneCompletionRequestInput
+    description = FineTuneCompletionRequestInput
+    derivedFrom = Root
+    properties {
+        prompt {
+          type =  string
+          description = "The input prompt for this training example."
+          optional = false
+        }
+        completion {
+          type =  string
+          description = "The desired completion for this training example."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  FineTuneCompletionRequestInput {
+    title = FineTuneCompletionRequestInput
+    description = FineTuneCompletionRequestInput
+    implements = openapi_server.resourceTypes.FineTuneCompletionRequestInput
+
+  }
+}

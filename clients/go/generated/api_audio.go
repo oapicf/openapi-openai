@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -139,7 +139,7 @@ type ApiCreateTranscriptionRequest struct {
 	model *CreateTranscriptionRequestModel
 	language *string
 	prompt *string
-	responseFormat *string
+	responseFormat *AudioResponseFormat
 	temperature *float32
 	timestampGranularities *[]string
 }
@@ -161,14 +161,13 @@ func (r ApiCreateTranscriptionRequest) Language(language string) ApiCreateTransc
 	return r
 }
 
-// An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. 
+// An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language. 
 func (r ApiCreateTranscriptionRequest) Prompt(prompt string) ApiCreateTranscriptionRequest {
 	r.prompt = &prompt
 	return r
 }
 
-// The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
-func (r ApiCreateTranscriptionRequest) ResponseFormat(responseFormat string) ApiCreateTranscriptionRequest {
+func (r ApiCreateTranscriptionRequest) ResponseFormat(responseFormat AudioResponseFormat) ApiCreateTranscriptionRequest {
 	r.responseFormat = &responseFormat
 	return r
 }
@@ -320,7 +319,7 @@ type ApiCreateTranslationRequest struct {
 	file *os.File
 	model *CreateTranscriptionRequestModel
 	prompt *string
-	responseFormat *string
+	responseFormat *AudioResponseFormat
 	temperature *float32
 }
 
@@ -335,14 +334,13 @@ func (r ApiCreateTranslationRequest) Model(model CreateTranscriptionRequestModel
 	return r
 }
 
-// An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. 
+// An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. 
 func (r ApiCreateTranslationRequest) Prompt(prompt string) ApiCreateTranslationRequest {
 	r.prompt = &prompt
 	return r
 }
 
-// The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
-func (r ApiCreateTranslationRequest) ResponseFormat(responseFormat string) ApiCreateTranslationRequest {
+func (r ApiCreateTranslationRequest) ResponseFormat(responseFormat AudioResponseFormat) ApiCreateTranslationRequest {
 	r.responseFormat = &responseFormat
 	return r
 }

@@ -31,7 +31,7 @@ class ChatCompletionRequestMessageContentPartImageImageUrlTest : ShouldSpec() {
             //modelInstance.url shouldBe ("TODO")
         }
 
-        // to test the property `detail` - Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+        // to test the property `detail` - Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
         should("test detail") {
             // uncomment below to test the property
             //modelInstance.detail shouldBe ("TODO")

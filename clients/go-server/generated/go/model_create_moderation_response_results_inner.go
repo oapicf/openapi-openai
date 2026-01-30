@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -22,6 +22,8 @@ type CreateModerationResponseResultsInner struct {
 	Categories CreateModerationResponseResultsInnerCategories `json:"categories"`
 
 	CategoryScores CreateModerationResponseResultsInnerCategoryScores `json:"category_scores"`
+
+	CategoryAppliedInputTypes CreateModerationResponseResultsInnerCategoryAppliedInputTypes `json:"category_applied_input_types"`
 }
 
 // AssertCreateModerationResponseResultsInnerRequired checks if the required fields are not zero-ed
@@ -30,6 +32,7 @@ func AssertCreateModerationResponseResultsInnerRequired(obj CreateModerationResp
 		"flagged": obj.Flagged,
 		"categories": obj.Categories,
 		"category_scores": obj.CategoryScores,
+		"category_applied_input_types": obj.CategoryAppliedInputTypes,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {
@@ -43,6 +46,9 @@ func AssertCreateModerationResponseResultsInnerRequired(obj CreateModerationResp
 	if err := AssertCreateModerationResponseResultsInnerCategoryScoresRequired(obj.CategoryScores); err != nil {
 		return err
 	}
+	if err := AssertCreateModerationResponseResultsInnerCategoryAppliedInputTypesRequired(obj.CategoryAppliedInputTypes); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -52,6 +58,9 @@ func AssertCreateModerationResponseResultsInnerConstraints(obj CreateModerationR
 		return err
 	}
 	if err := AssertCreateModerationResponseResultsInnerCategoryScoresConstraints(obj.CategoryScores); err != nil {
+		return err
+	}
+	if err := AssertCreateModerationResponseResultsInnerCategoryAppliedInputTypesConstraints(obj.CategoryAppliedInputTypes); err != nil {
 		return err
 	}
 	return nil

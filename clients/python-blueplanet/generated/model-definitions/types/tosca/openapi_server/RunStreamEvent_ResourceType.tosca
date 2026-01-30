@@ -17,6 +17,7 @@ imports {
   RunStreamEventOneOf6 = openapi_server.resourceTypes.RunStreamEventOneOf6
   RunStreamEventOneOf7 = openapi_server.resourceTypes.RunStreamEventOneOf7
   RunStreamEventOneOf8 = openapi_server.resourceTypes.RunStreamEventOneOf8
+  RunStreamEventOneOf9 = openapi_server.resourceTypes.RunStreamEventOneOf9
 }
 resourceTypes {
 

@@ -7,8 +7,8 @@
 Name | Type
 ------------ | -------------
 `role` | string
-`content` | string
-`fileIds` | Array&lt;string&gt;
+`content` | [CreateMessageRequestContent](CreateMessageRequestContent.md)
+`attachments` | [Array&lt;CreateMessageRequestAttachmentsInner&gt;](CreateMessageRequestAttachmentsInner.md)
 `metadata` | object
 
 ## Example
@@ -20,7 +20,7 @@ import type { CreateMessageRequest } from ''
 const example = {
   "role": null,
   "content": null,
-  "fileIds": null,
+  "attachments": null,
   "metadata": null,
 } satisfies CreateMessageRequest
 

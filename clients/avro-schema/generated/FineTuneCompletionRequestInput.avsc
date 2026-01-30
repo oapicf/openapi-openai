@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The per-line training example of a fine-tuning input file for completions models",
+  "name": "FineTuneCompletionRequestInput",
+  "fields": [
+    {
+      "name": "prompt",
+      "type": ["null", "string"],
+      "doc": "The input prompt for this training example.",
+      "default": null
+    },
+    {
+      "name": "completion",
+      "type": ["null", "string"],
+      "doc": "The desired completion for this training example.",
+      "default": null
+    }
+  ]
+
+}

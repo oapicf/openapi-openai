@@ -3,7 +3,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * OpenAPI document version: 2.0.0
+ * OpenAPI document version: 2.3.0
  * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -16,11 +16,11 @@ import io.swagger.annotations.ApiModel;
 
 
 /**
- * One of the available [TTS models](/docs/models/tts): `tts-1` or `tts-1-hd` 
+ * One of the available [TTS models](/docs/models#tts): `tts-1` or `tts-1-hd` 
  */
 
-@ApiModel(description = "One of the available [TTS models](/docs/models/tts): `tts-1` or `tts-1-hd` ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T10:45:08.090000084Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description = "One of the available [TTS models](/docs/models#tts): `tts-1` or `tts-1-hd` ")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateSpeechRequestModel   {
   
 

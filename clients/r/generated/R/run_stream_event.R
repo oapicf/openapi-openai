@@ -16,12 +16,12 @@ RunStreamEvent <- R6::R6Class(
     #' @field actual_type the type of the object stored in this instance.
     actual_type = NULL,
     #' @field one_of  a list of types defined in the oneOf schema.
-    one_of = list("RunStreamEventOneOf", "RunStreamEventOneOf1", "RunStreamEventOneOf2", "RunStreamEventOneOf3", "RunStreamEventOneOf4", "RunStreamEventOneOf5", "RunStreamEventOneOf6", "RunStreamEventOneOf7", "RunStreamEventOneOf8"),
+    one_of = list("RunStreamEventOneOf", "RunStreamEventOneOf1", "RunStreamEventOneOf2", "RunStreamEventOneOf3", "RunStreamEventOneOf4", "RunStreamEventOneOf5", "RunStreamEventOneOf6", "RunStreamEventOneOf7", "RunStreamEventOneOf8", "RunStreamEventOneOf9"),
 
     #' @description
     #' Initialize a new RunStreamEvent.
     #'
-    #' @param instance an instance of the object defined in the oneOf schemas: "RunStreamEventOneOf", "RunStreamEventOneOf1", "RunStreamEventOneOf2", "RunStreamEventOneOf3", "RunStreamEventOneOf4", "RunStreamEventOneOf5", "RunStreamEventOneOf6", "RunStreamEventOneOf7", "RunStreamEventOneOf8"
+    #' @param instance an instance of the object defined in the oneOf schemas: "RunStreamEventOneOf", "RunStreamEventOneOf1", "RunStreamEventOneOf2", "RunStreamEventOneOf3", "RunStreamEventOneOf4", "RunStreamEventOneOf5", "RunStreamEventOneOf6", "RunStreamEventOneOf7", "RunStreamEventOneOf8", "RunStreamEventOneOf9"
     initialize = function(instance = NULL) {
       if (is.null(instance)) {
         # do nothing
@@ -52,8 +52,11 @@ RunStreamEvent <- R6::R6Class(
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "RunStreamEventOneOf8") {
         self$actual_instance <- instance
         self$actual_type <- "RunStreamEventOneOf8"
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "RunStreamEventOneOf9") {
+        self$actual_instance <- instance
+        self$actual_type <- "RunStreamEventOneOf9"
       } else {
-        stop(paste("Failed to initialize RunStreamEvent with oneOf schemas RunStreamEventOneOf, RunStreamEventOneOf1, RunStreamEventOneOf2, RunStreamEventOneOf3, RunStreamEventOneOf4, RunStreamEventOneOf5, RunStreamEventOneOf6, RunStreamEventOneOf7, RunStreamEventOneOf8. Provided class name: ",
+        stop(paste("Failed to initialize RunStreamEvent with oneOf schemas RunStreamEventOneOf, RunStreamEventOneOf1, RunStreamEventOneOf2, RunStreamEventOneOf3, RunStreamEventOneOf4, RunStreamEventOneOf5, RunStreamEventOneOf6, RunStreamEventOneOf7, RunStreamEventOneOf8, RunStreamEventOneOf9. Provided class name: ",
                    get(class(instance)[[1]], pos = -1)$classname))
       }
     },
@@ -216,17 +219,32 @@ RunStreamEvent <- R6::R6Class(
         error_messages <- append(error_messages, `RunStreamEventOneOf8_result`["message"])
       }
 
+      `RunStreamEventOneOf9_result` <- tryCatch({
+          `RunStreamEventOneOf9`$public_methods$validateJSON(input)
+          `RunStreamEventOneOf9_instance` <- `RunStreamEventOneOf9`$new()
+          instance <- `RunStreamEventOneOf9_instance`$fromJSON(input)
+          instance_type <- "RunStreamEventOneOf9"
+          matched_schemas <- append(matched_schemas, "RunStreamEventOneOf9")
+          matched <- matched + 1
+        },
+        error = function(err) err
+      )
+
+      if (!is.null(`RunStreamEventOneOf9_result`["error"])) {
+        error_messages <- append(error_messages, `RunStreamEventOneOf9_result`["message"])
+      }
+
       if (matched == 1) {
         # successfully match exactly 1 schema specified in oneOf
         self$actual_instance <- instance
         self$actual_type <- instance_type
       } else if (matched > 1) {
         # more than 1 match
-        stop(paste("Multiple matches found when deserializing the input into RunStreamEvent with oneOf schemas RunStreamEventOneOf, RunStreamEventOneOf1, RunStreamEventOneOf2, RunStreamEventOneOf3, RunStreamEventOneOf4, RunStreamEventOneOf5, RunStreamEventOneOf6, RunStreamEventOneOf7, RunStreamEventOneOf8. Matched schemas: ",
+        stop(paste("Multiple matches found when deserializing the input into RunStreamEvent with oneOf schemas RunStreamEventOneOf, RunStreamEventOneOf1, RunStreamEventOneOf2, RunStreamEventOneOf3, RunStreamEventOneOf4, RunStreamEventOneOf5, RunStreamEventOneOf6, RunStreamEventOneOf7, RunStreamEventOneOf8, RunStreamEventOneOf9. Matched schemas: ",
                    paste(matched_schemas, collapse = ", ")))
       } else {
         # no match
-        stop(paste("No match found when deserializing the input into RunStreamEvent with oneOf schemas RunStreamEventOneOf, RunStreamEventOneOf1, RunStreamEventOneOf2, RunStreamEventOneOf3, RunStreamEventOneOf4, RunStreamEventOneOf5, RunStreamEventOneOf6, RunStreamEventOneOf7, RunStreamEventOneOf8. Details: >>",
+        stop(paste("No match found when deserializing the input into RunStreamEvent with oneOf schemas RunStreamEventOneOf, RunStreamEventOneOf1, RunStreamEventOneOf2, RunStreamEventOneOf3, RunStreamEventOneOf4, RunStreamEventOneOf5, RunStreamEventOneOf6, RunStreamEventOneOf7, RunStreamEventOneOf8, RunStreamEventOneOf9. Details: >>",
                    paste(error_messages, collapse = " >> ")))
       }
 

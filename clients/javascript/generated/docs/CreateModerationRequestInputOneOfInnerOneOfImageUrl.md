@@ -1,0 +1,9 @@
+# OpenapiOpenai.CreateModerationRequestInputOneOfInnerOneOfImageUrl
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**url** | **String** | Either a URL of the image or the base64 encoded image data. | 
+
+

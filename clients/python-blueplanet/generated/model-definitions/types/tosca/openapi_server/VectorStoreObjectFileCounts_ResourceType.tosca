@@ -1,0 +1,55 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server VectorStoreObjectFileCounts"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a VectorStoreObjectFileCounts"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  VectorStoreObjectFileCounts {
+    title = VectorStoreObjectFileCounts
+    description = VectorStoreObjectFileCounts
+    derivedFrom = Root
+    properties {
+        in_progress {
+          type =  integer
+          description = "The number of files that are currently being processed."
+          optional = true
+        }
+        completed {
+          type =  integer
+          description = "The number of files that have been successfully processed."
+          optional = true
+        }
+        failed {
+          type =  integer
+          description = "The number of files that have failed to process."
+          optional = true
+        }
+        cancelled {
+          type =  integer
+          description = "The number of files that were cancelled."
+          optional = true
+        }
+        total {
+          type =  integer
+          description = "The total number of files."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  VectorStoreObjectFileCounts {
+    title = VectorStoreObjectFileCounts
+    description = VectorStoreObjectFileCounts
+    implements = openapi_server.resourceTypes.VectorStoreObjectFileCounts
+
+  }
+}

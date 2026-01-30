@@ -8,6 +8,8 @@ import play.api.libs.json._
   * @param hateThreatening Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
   * @param harassment Content that expresses, incites, or promotes harassing language towards any target.
   * @param harassmentThreatening Harassment content that also includes violence or serious harm towards any target.
+  * @param illicit Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
+  * @param illicitViolent Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
   * @param selfHarm Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
   * @param selfHarmIntent Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
   * @param selfHarmInstructions Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
@@ -16,12 +18,14 @@ import play.api.libs.json._
   * @param violence Content that depicts death, violence, or physical injury.
   * @param violenceGraphic Content that depicts death, violence, or physical injury in graphic detail.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T10:48:27.489746113Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 case class CreateModerationResponseResultsInnerCategories(
   hate: Boolean,
   hateThreatening: Boolean,
   harassment: Boolean,
   harassmentThreatening: Boolean,
+  illicit: Boolean,
+  illicitViolent: Boolean,
   selfHarm: Boolean,
   selfHarmIntent: Boolean,
   selfHarmInstructions: Boolean,

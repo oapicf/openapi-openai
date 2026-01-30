@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
  * Details of the tool call.
  *
  * @param type Always `tool_calls`.
- * @param toolCalls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+ * @param toolCalls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
  */
 
 
@@ -34,7 +34,7 @@ data class RunStepDeltaStepDetailsToolCallsObject (
     @Json(name = "type")
     val type: RunStepDeltaStepDetailsToolCallsObject.Type,
 
-    /* An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`.  */
+    /* An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.  */
     @Json(name = "tool_calls")
     val toolCalls: kotlin.collections.List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>? = null
 

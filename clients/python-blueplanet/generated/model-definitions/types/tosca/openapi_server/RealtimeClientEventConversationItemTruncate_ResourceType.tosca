@@ -1,0 +1,56 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeClientEventConversationItemTruncate"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeClientEventConversationItemTruncate"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeClientEventConversationItemTruncate {
+    title = RealtimeClientEventConversationItemTruncate
+    description = RealtimeClientEventConversationItemTruncate
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "Optional client-generated ID used to identify this event."
+          optional = false
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;conversation.item.truncate&#x60;."
+          enum = ["conversation.item.truncate"]
+          optional = true
+        }
+        item_id {
+          type =  string
+          description = "The ID of the assistant message item to truncate. Only assistant message  items can be truncated. "
+          optional = true
+        }
+        content_index {
+          type =  integer
+          description = "The index of the content part to truncate. Set this to 0."
+          optional = true
+        }
+        audio_end_ms {
+          type =  integer
+          description = "Inclusive duration up to which audio is truncated, in milliseconds. If  the audio_end_ms is greater than the actual audio duration, the server  will respond with an error. "
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeClientEventConversationItemTruncate {
+    title = RealtimeClientEventConversationItemTruncate
+    description = RealtimeClientEventConversationItemTruncate
+    implements = openapi_server.resourceTypes.RealtimeClientEventConversationItemTruncate
+
+  }
+}

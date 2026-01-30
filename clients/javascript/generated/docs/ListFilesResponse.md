@@ -4,16 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**[OpenAIFile]**](OpenAIFile.md) |  | 
 **object** | **String** |  | 
-
-
-
-## Enum: ObjectEnum
-
-
-* `list` (value: `"list"`)
-
-
+**data** | [**[OpenAIFile]**](OpenAIFile.md) |  | 
+**firstId** | **String** |  | 
+**lastId** | **String** |  | 
+**hasMore** | **Boolean** |  | 
 
 

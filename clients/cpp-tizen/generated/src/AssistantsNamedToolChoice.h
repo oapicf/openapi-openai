@@ -1,0 +1,74 @@
+/*
+ * AssistantsNamedToolChoice.h
+ *
+ * Specifies a tool the model should use. Use to force the model to call a specific tool.
+ */
+
+#ifndef _AssistantsNamedToolChoice_H_
+#define _AssistantsNamedToolChoice_H_
+
+
+#include <string>
+#include "AssistantsNamedToolChoice_function.h"
+#include "Object.h"
+
+/** \defgroup Models Data Structures for API
+ *  Classes containing all the Data Structures needed for calling/returned by API endpoints
+ *
+ */
+
+namespace Tizen {
+namespace ArtikCloud {
+
+
+/*! \brief Specifies a tool the model should use. Use to force the model to call a specific tool.
+ *
+ *  \ingroup Models
+ *
+ */
+
+class AssistantsNamedToolChoice : public Object {
+public:
+	/*! \brief Constructor.
+	 */
+	AssistantsNamedToolChoice();
+	AssistantsNamedToolChoice(char* str);
+
+	/*! \brief Destructor.
+	 */
+	virtual ~AssistantsNamedToolChoice();
+
+	/*! \brief Retrieve a string JSON representation of this class.
+	 */
+	char* toJson();
+
+	/*! \brief Fills in members of this class from JSON string representing it.
+	 */
+	void fromJson(char* jsonStr);
+
+	/*! \brief Get The type of the tool. If type is `function`, the function name must be set
+	 */
+	std::string getType();
+
+	/*! \brief Set The type of the tool. If type is `function`, the function name must be set
+	 */
+	void setType(std::string  type);
+	/*! \brief Get 
+	 */
+	AssistantsNamedToolChoice_function getFunction();
+
+	/*! \brief Set 
+	 */
+	void setFunction(AssistantsNamedToolChoice_function  function);
+
+private:
+	std::string type;
+	AssistantsNamedToolChoice_function function;
+	void __init();
+	void __cleanup();
+
+};
+}
+}
+
+#endif /* _AssistantsNamedToolChoice_H_ */

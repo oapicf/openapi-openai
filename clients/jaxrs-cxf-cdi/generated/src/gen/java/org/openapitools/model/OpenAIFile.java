@@ -62,7 +62,7 @@ public enum ObjectEnum {
 
 public enum PurposeEnum {
 
-    @JsonProperty("fine-tune") FINE_TUNE(String.valueOf("fine-tune")), @JsonProperty("fine-tune-results") FINE_TUNE_RESULTS(String.valueOf("fine-tune-results")), @JsonProperty("assistants") ASSISTANTS(String.valueOf("assistants")), @JsonProperty("assistants_output") ASSISTANTS_OUTPUT(String.valueOf("assistants_output"));
+    @JsonProperty("assistants") ASSISTANTS(String.valueOf("assistants")), @JsonProperty("assistants_output") ASSISTANTS_OUTPUT(String.valueOf("assistants_output")), @JsonProperty("batch") BATCH(String.valueOf("batch")), @JsonProperty("batch_output") BATCH_OUTPUT(String.valueOf("batch_output")), @JsonProperty("fine-tune") FINE_TUNE(String.valueOf("fine-tune")), @JsonProperty("fine-tune-results") FINE_TUNE_RESULTS(String.valueOf("fine-tune-results")), @JsonProperty("vision") VISION(String.valueOf("vision"));
 
 
     private String value;
@@ -228,7 +228,7 @@ public enum StatusEnum {
 
 
   /**
-   * The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;.
+   * The intended purpose of the file. Supported values are &#x60;assistants&#x60;, &#x60;assistants_output&#x60;, &#x60;batch&#x60;, &#x60;batch_output&#x60;, &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60; and &#x60;vision&#x60;.
    **/
   public OpenAIFile purpose(PurposeEnum purpose) {
     this.purpose = purpose;
@@ -236,7 +236,7 @@ public enum StatusEnum {
   }
 
   
-  @ApiModelProperty(required = true, value = "The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.")
+  @ApiModelProperty(required = true, value = "The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.")
   @JsonProperty("purpose")
   @NotNull
   public PurposeEnum getPurpose() {

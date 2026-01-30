@@ -1,0 +1,20 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ResponseFormatText",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "ResponseFormatText_type",
+        "symbols": [
+          "text"
+        ]
+      },
+      "doc": "The type of response format being defined: `text`"
+    }
+  ]
+
+}

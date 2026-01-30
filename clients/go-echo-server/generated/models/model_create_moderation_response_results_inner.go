@@ -8,4 +8,6 @@ type CreateModerationResponseResultsInner struct {
 	Categories CreateModerationResponseResultsInnerCategories `json:"categories"`
 
 	CategoryScores CreateModerationResponseResultsInnerCategoryScores `json:"category_scores"`
+
+	CategoryAppliedInputTypes CreateModerationResponseResultsInnerCategoryAppliedInputTypes `json:"category_applied_input_types"`
 }

@@ -18,6 +18,11 @@ class ThreadsThreadIdRunsRunIdStepsStepId
     /**
      * Retrieves a run step.
      * @PHA\Get()
+     * @PHA\Attribute(name=PHAttribute\Transfer::class, options={
+     *     "type":\App\DTO\GetRunStepQueryData::class,
+     *     "objectAttr":"queryData",
+     *     "source": PHAttribute\Transfer::SOURCE_GET
+     * })
      * TODO check if producer is valid, if it has correct priority and if it can be moved to class annotation
      * @PHA\Producer(name=PHProducer\Transfer::class, mediaType="application/json")
      * @param ServerRequestInterface $request
@@ -29,6 +34,8 @@ class ThreadsThreadIdRunsRunIdStepsStepId
     public function getRunStep(ServerRequestInterface $request): \App\DTO\RunStepObject
     {
         //TODO implement method
+        /** @var \App\DTO\GetRunStepQueryData $queryData */
+        $queryData = $request->getAttribute("queryData");
         throw new PHException\HttpCode(501, "Not implemented");
     }
 }

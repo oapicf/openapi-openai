@@ -104,7 +104,7 @@ class RunStepDeltaObjectDeltaStepDetails(Model):
     def tool_calls(self):
         """Gets the tool_calls of this RunStepDeltaObjectDeltaStepDetails.
 
-        An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+        An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
 
         :return: The tool_calls of this RunStepDeltaObjectDeltaStepDetails.
         :rtype: List[RunStepDeltaStepDetailsToolCallsObjectToolCallsInner]
@@ -115,7 +115,7 @@ class RunStepDeltaObjectDeltaStepDetails(Model):
     def tool_calls(self, tool_calls):
         """Sets the tool_calls of this RunStepDeltaObjectDeltaStepDetails.
 
-        An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+        An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
 
         :param tool_calls: The tool_calls of this RunStepDeltaObjectDeltaStepDetails.
         :type tool_calls: List[RunStepDeltaStepDetailsToolCallsObjectToolCallsInner]

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **Flagged** | **Boolean** | Whether any of the below categories are flagged. | 
 **Categories** | [**CreateModerationResponseResultsInnerCategories**](CreateModerationResponseResultsInnerCategories.md) |  | 
 **CategoryScores** | [**CreateModerationResponseResultsInnerCategoryScores**](CreateModerationResponseResultsInnerCategoryScores.md) |  | 
+**CategoryAppliedInputTypes** | [**CreateModerationResponseResultsInnerCategoryAppliedInputTypes**](CreateModerationResponseResultsInnerCategoryAppliedInputTypes.md) |  | 
 
 ## Examples
 
@@ -13,7 +14,8 @@ Name | Type | Description | Notes
 ```powershell
 $CreateModerationResponseResultsInner = Initialize-PSOpenAPIToolsCreateModerationResponseResultsInner  -Flagged null `
  -Categories null `
- -CategoryScores null
+ -CategoryScores null `
+ -CategoryAppliedInputTypes null
 ```
 
 - Convert the resource to JSON

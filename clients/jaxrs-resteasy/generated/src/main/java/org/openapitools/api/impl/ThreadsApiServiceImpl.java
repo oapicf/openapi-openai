@@ -8,12 +8,11 @@ import org.openapitools.model.CreateMessageRequest;
 import org.openapitools.model.CreateRunRequest;
 import org.openapitools.model.CreateThreadAndRunRequest;
 import org.openapitools.model.CreateThreadRequest;
+import org.openapitools.model.DeleteMessageResponse;
 import org.openapitools.model.DeleteThreadResponse;
-import org.openapitools.model.ListMessageFilesResponse;
 import org.openapitools.model.ListMessagesResponse;
 import org.openapitools.model.ListRunStepsResponse;
 import org.openapitools.model.ListRunsResponse;
-import org.openapitools.model.MessageFileObject;
 import org.openapitools.model.MessageObject;
 import org.openapitools.model.ModifyMessageRequest;
 import org.openapitools.model.ModifyRunRequest;
@@ -35,7 +34,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T10:45:28.938980301Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T14:09:21.247747647Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ThreadsApiServiceImpl implements ThreadsApiService {
       public Response cancelRun(String threadId,String runId,SecurityContext securityContext)
       throws NotFoundException {
@@ -47,7 +46,7 @@ public class ThreadsApiServiceImpl implements ThreadsApiService {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response createRun(String threadId,CreateRunRequest createRunRequest,SecurityContext securityContext)
+      public Response createRun(String threadId,CreateRunRequest createRunRequest,List<String> include,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
@@ -62,6 +61,11 @@ public class ThreadsApiServiceImpl implements ThreadsApiService {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
+      public Response deleteMessage(String threadId,String messageId,SecurityContext securityContext)
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+  }
       public Response deleteThread(String threadId,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
@@ -72,17 +76,12 @@ public class ThreadsApiServiceImpl implements ThreadsApiService {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response getMessageFile(String threadId,String messageId,String fileId,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
       public Response getRun(String threadId,String runId,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response getRunStep(String threadId,String runId,String stepId,SecurityContext securityContext)
+      public Response getRunStep(String threadId,String runId,String stepId,List<String> include,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
@@ -92,17 +91,12 @@ public class ThreadsApiServiceImpl implements ThreadsApiService {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response listMessageFiles(String threadId,String messageId,Integer limit,String order,String after,String before,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
       public Response listMessages(String threadId,Integer limit,String order,String after,String before,String runId,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response listRunSteps(String threadId,String runId,Integer limit,String order,String after,String before,SecurityContext securityContext)
+      public Response listRunSteps(String threadId,String runId,Integer limit,String order,String after,String before,List<String> include,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

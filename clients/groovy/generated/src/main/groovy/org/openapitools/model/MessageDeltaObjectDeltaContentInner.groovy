@@ -5,6 +5,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.MessageDeltaContentImageFileObject;
 import org.openapitools.model.MessageDeltaContentImageFileObjectImageFile;
+import org.openapitools.model.MessageDeltaContentImageUrlObject;
+import org.openapitools.model.MessageDeltaContentImageUrlObjectImageUrl;
+import org.openapitools.model.MessageDeltaContentRefusalObject;
 import org.openapitools.model.MessageDeltaContentTextObject;
 import org.openapitools.model.MessageDeltaContentTextObjectText;
 
@@ -17,7 +20,11 @@ class MessageDeltaObjectDeltaContentInner {
     
         IMAGE_FILE("image_file"),
         
-        TEXT("text")
+        TEXT("text"),
+        
+        REFUSAL("refusal"),
+        
+        IMAGE_URL("image_url")
     
         private final String value
     
@@ -41,4 +48,8 @@ class MessageDeltaObjectDeltaContentInner {
     MessageDeltaContentImageFileObjectImageFile imageFile
     
     MessageDeltaContentTextObjectText text
+    
+    String refusal
+    
+    MessageDeltaContentImageUrlObjectImageUrl imageUrl
 }

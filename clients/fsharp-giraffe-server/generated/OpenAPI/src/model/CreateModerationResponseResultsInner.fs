@@ -3,6 +3,7 @@ namespace OpenAPI.Model
 open System
 open System.Collections.Generic
 open OpenAPI.Model.CreateModerationResponseResultsInnerCategories
+open OpenAPI.Model.CreateModerationResponseResultsInnerCategoryAppliedInputTypes
 open OpenAPI.Model.CreateModerationResponseResultsInnerCategoryScores
 
 module CreateModerationResponseResultsInner =
@@ -14,5 +15,6 @@ module CreateModerationResponseResultsInner =
     Flagged : bool;
     Categories : CreateModerationResponseResultsInnerCategories;
     CategoryScores : CreateModerationResponseResultsInnerCategoryScores;
+    CategoryAppliedInputTypes : CreateModerationResponseResultsInnerCategoryAppliedInputTypes;
   }
   //#endregion

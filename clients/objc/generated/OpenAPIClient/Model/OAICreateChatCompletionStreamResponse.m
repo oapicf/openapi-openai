@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"choices": @"choices", @"created": @"created", @"model": @"model", @"systemFingerprint": @"system_fingerprint", @"object": @"object" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"choices": @"choices", @"created": @"created", @"model": @"model", @"serviceTier": @"service_tier", @"systemFingerprint": @"system_fingerprint", @"object": @"object", @"usage": @"usage" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"systemFingerprint", ];
+  NSArray *optionalProperties = @[@"serviceTier", @"systemFingerprint", @"usage"];
   return [optionalProperties containsObject:propertyName];
 }
 

@@ -11,6 +11,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
+/**
+ * Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
+ */
+@ApiModel(description="Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.")
+
 public class TruncationObject  {
   
 public enum TypeEnum {
@@ -46,7 +51,7 @@ public enum TypeEnum {
  /**
   * The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.
   */
-  @ApiModelProperty(value = "The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.")
+  @ApiModelProperty(required = true, value = "The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.")
   private TypeEnum type;
 
  /**
@@ -59,6 +64,7 @@ public enum TypeEnum {
   * @return type
   */
   @JsonProperty("type")
+  @NotNull
   public String getType() {
     return type == null ? null : type.value();
   }

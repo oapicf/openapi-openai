@@ -1,7 +1,7 @@
 /*
  * RunStepStreamEvent_oneOf_1.h
  *
- * Occurs when a [run step](/docs/api-reference/runs/step-object) moves to an &#x60;in_progress&#x60; state.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) moves to an &#x60;in_progress&#x60; state.
  */
 
 #ifndef _RunStepStreamEvent_oneOf_1_H_
@@ -21,7 +21,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief Occurs when a [run step](/docs/api-reference/runs/step-object) moves to an `in_progress` state.
+/*! \brief Occurs when a [run step](/docs/api-reference/run-steps/step-object) moves to an `in_progress` state.
  *
  *  \ingroup Models
  *

@@ -1,0 +1,24 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "id" },
+      {"model": "object" },
+      {"model": "usage_bytes" },
+      {"model": "created_at" },
+      {"model": "vector_store_id" },
+      {"model": "status" },
+      {"model": "last_error" },
+      {"model": "chunking_strategy" },
+    ]
+  }]
+}

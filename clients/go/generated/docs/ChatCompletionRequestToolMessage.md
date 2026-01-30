@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Role** | **string** | The role of the messages author, in this case &#x60;tool&#x60;. | 
-**Content** | **string** | The contents of the tool message. | 
+**Content** | [**ChatCompletionRequestToolMessageContent**](ChatCompletionRequestToolMessageContent.md) |  | 
 **ToolCallId** | **string** | Tool call that this message is responding to. | 
 
 ## Methods
 
 ### NewChatCompletionRequestToolMessage
 
-`func NewChatCompletionRequestToolMessage(role string, content string, toolCallId string, ) *ChatCompletionRequestToolMessage`
+`func NewChatCompletionRequestToolMessage(role string, content ChatCompletionRequestToolMessageContent, toolCallId string, ) *ChatCompletionRequestToolMessage`
 
 NewChatCompletionRequestToolMessage instantiates a new ChatCompletionRequestToolMessage object
 This constructor will assign default values to properties that have it defined,
@@ -49,20 +49,20 @@ SetRole sets Role field to given value.
 
 ### GetContent
 
-`func (o *ChatCompletionRequestToolMessage) GetContent() string`
+`func (o *ChatCompletionRequestToolMessage) GetContent() ChatCompletionRequestToolMessageContent`
 
 GetContent returns the Content field if non-nil, zero value otherwise.
 
 ### GetContentOk
 
-`func (o *ChatCompletionRequestToolMessage) GetContentOk() (*string, bool)`
+`func (o *ChatCompletionRequestToolMessage) GetContentOk() (*ChatCompletionRequestToolMessageContent, bool)`
 
 GetContentOk returns a tuple with the Content field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetContent
 
-`func (o *ChatCompletionRequestToolMessage) SetContent(v string)`
+`func (o *ChatCompletionRequestToolMessage) SetContent(v ChatCompletionRequestToolMessageContent)`
 
 SetContent sets Content field to given value.
 

@@ -10,6 +10,8 @@ Name | Type
 `completionTokens` | number
 `promptTokens` | number
 `totalTokens` | number
+`completionTokensDetails` | [CompletionUsageCompletionTokensDetails](CompletionUsageCompletionTokensDetails.md)
+`promptTokensDetails` | [CompletionUsagePromptTokensDetails](CompletionUsagePromptTokensDetails.md)
 
 ## Example
 
@@ -21,6 +23,8 @@ const example = {
   "completionTokens": null,
   "promptTokens": null,
   "totalTokens": null,
+  "completionTokensDetails": null,
+  "promptTokensDetails": null,
 } satisfies CompletionUsage
 
 console.log(example)

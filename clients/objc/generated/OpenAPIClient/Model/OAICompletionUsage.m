@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"completionTokens": @"completion_tokens", @"promptTokens": @"prompt_tokens", @"totalTokens": @"total_tokens" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"completionTokens": @"completion_tokens", @"promptTokens": @"prompt_tokens", @"totalTokens": @"total_tokens", @"completionTokensDetails": @"completion_tokens_details", @"promptTokensDetails": @"prompt_tokens_details" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[];
+  NSArray *optionalProperties = @[@"completionTokensDetails", @"promptTokensDetails"];
   return [optionalProperties containsObject:propertyName];
 }
 

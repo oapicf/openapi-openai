@@ -11,6 +11,8 @@ Name | Type
 `hateThreatening` | number
 `harassment` | number
 `harassmentThreatening` | number
+`illicit` | number
+`illicitViolent` | number
 `selfHarm` | number
 `selfHarmIntent` | number
 `selfHarmInstructions` | number
@@ -30,6 +32,8 @@ const example = {
   "hateThreatening": null,
   "harassment": null,
   "harassmentThreatening": null,
+  "illicit": null,
+  "illicitViolent": null,
   "selfHarm": null,
   "selfHarmIntent": null,
   "selfHarmInstructions": null,

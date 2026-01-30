@@ -33,14 +33,15 @@
    (ds/req :model) string?
    (ds/req :instructions) string?
    (ds/req :tools) (s/coll-of assistant-object-tools-inner-spec)
-   (ds/req :file_ids) (s/coll-of string?)
    (ds/req :metadata) any?
    (ds/req :usage) run-completion-usage-spec
    (ds/opt :temperature) float?
+   (ds/opt :top_p) float?
    (ds/req :max_prompt_tokens) int?
    (ds/req :max_completion_tokens) int?
    (ds/req :truncation_strategy) truncation-object-spec
    (ds/req :tool_choice) assistants-api-tool-choice-option-spec
+   (ds/req :parallel_tool_calls) boolean?
    (ds/req :response_format) assistants-api-response-format-option-spec
    })
 

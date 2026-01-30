@@ -16,8 +16,8 @@
 | **content** | [**Array&lt;MessageObjectContentInner&gt;**](MessageObjectContentInner.md) | The content of the message in array of text and/or images. |  |
 | **assistant_id** | **String** | If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message. |  |
 | **run_id** | **String** | The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is &#x60;null&#x60; when messages are created manually using the create message or create thread endpoints. |  |
-| **file_ids** | **Array&lt;String&gt;** | A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message. |  |
-| **metadata** | **Object** | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  |  |
+| **attachments** | [**Array&lt;CreateMessageRequestAttachmentsInner&gt;**](CreateMessageRequestAttachmentsInner.md) | A list of files attached to the message, and the tools they were added to. |  |
+| **metadata** | **Object** | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  |  |
 
 ## Example
 
@@ -37,7 +37,7 @@ instance = OpenApiOpenAIClient::MessageObject.new(
   content: null,
   assistant_id: null,
   run_id: null,
-  file_ids: null,
+  attachments: null,
   metadata: null
 )
 ```

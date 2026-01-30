@@ -50,7 +50,7 @@ public class ModerationsControllerTest {
     /**
      * This test is used to validate the implementation of createModeration() method
      *
-     * The method should: Classifies if text is potentially harmful.
+     * The method should: Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
      *
      * TODO fill in the parameters and test return value.
      */
@@ -80,7 +80,7 @@ public class ModerationsControllerTest {
         CreateModerationRequest body = new CreateModerationRequest(null);
         String uri = UriTemplate.of("/moderations").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@5c8e7687");
+            .accept("[Ljava.lang.String;@d367d7d");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, CreateModerationResponse.class);

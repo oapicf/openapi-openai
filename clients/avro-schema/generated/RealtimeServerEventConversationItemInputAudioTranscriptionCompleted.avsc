@@ -1,0 +1,40 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "This event is the output of audio transcription for user audio written to the  user audio buffer. Transcription begins when the input audio buffer is  committed by the client or server (in `server_vad` mode). Transcription runs  asynchronously with Response creation, so this event may come before or after  the Response events.  Realtime API models accept audio natively, and thus input transcription is a  separate process run on a separate ASR (Automatic Speech Recognition) model,  currently always `whisper-1`. Thus the transcript may diverge somewhat from  the model's interpretation, and should be treated as a rough guide. ",
+  "name": "RealtimeServerEventConversationItemInputAudioTranscriptionCompleted",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventConversationItemInputAudioTranscriptionCompleted_type",
+        "symbols": [
+          "conversation_item_input_audio_transcription_completed"
+        ]
+      },
+      "doc": "The event type, must be `conversation.item.input_audio_transcription.completed`. "
+    },
+    {
+      "name": "item_id",
+      "type": "string",
+      "doc": "The ID of the user message item containing the audio."
+    },
+    {
+      "name": "content_index",
+      "type": "int",
+      "doc": "The index of the content part containing the audio."
+    },
+    {
+      "name": "transcript",
+      "type": "string",
+      "doc": "The transcribed text."
+    }
+  ]
+
+}

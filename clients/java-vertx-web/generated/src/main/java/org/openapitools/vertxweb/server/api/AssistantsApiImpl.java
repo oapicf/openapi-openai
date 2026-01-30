@@ -1,23 +1,18 @@
 package org.openapitools.vertxweb.server.api;
 
-import org.openapitools.vertxweb.server.model.AssistantFileObject;
 import org.openapitools.vertxweb.server.model.AssistantObject;
-import org.openapitools.vertxweb.server.model.CreateAssistantFileRequest;
 import org.openapitools.vertxweb.server.model.CreateAssistantRequest;
 import org.openapitools.vertxweb.server.model.CreateMessageRequest;
 import org.openapitools.vertxweb.server.model.CreateRunRequest;
 import org.openapitools.vertxweb.server.model.CreateThreadAndRunRequest;
 import org.openapitools.vertxweb.server.model.CreateThreadRequest;
-import org.openapitools.vertxweb.server.model.DeleteAssistantFileResponse;
 import org.openapitools.vertxweb.server.model.DeleteAssistantResponse;
+import org.openapitools.vertxweb.server.model.DeleteMessageResponse;
 import org.openapitools.vertxweb.server.model.DeleteThreadResponse;
-import org.openapitools.vertxweb.server.model.ListAssistantFilesResponse;
 import org.openapitools.vertxweb.server.model.ListAssistantsResponse;
-import org.openapitools.vertxweb.server.model.ListMessageFilesResponse;
 import org.openapitools.vertxweb.server.model.ListMessagesResponse;
 import org.openapitools.vertxweb.server.model.ListRunStepsResponse;
 import org.openapitools.vertxweb.server.model.ListRunsResponse;
-import org.openapitools.vertxweb.server.model.MessageFileObject;
 import org.openapitools.vertxweb.server.model.MessageObject;
 import org.openapitools.vertxweb.server.model.ModifyAssistantRequest;
 import org.openapitools.vertxweb.server.model.ModifyMessageRequest;
@@ -48,15 +43,11 @@ public class AssistantsApiImpl implements AssistantsApi {
         return Future.failedFuture(new HttpException(501));
     }
 
-    public Future<ApiResponse<AssistantFileObject>> createAssistantFile(String assistantId, CreateAssistantFileRequest createAssistantFileRequest) {
-        return Future.failedFuture(new HttpException(501));
-    }
-
     public Future<ApiResponse<MessageObject>> createMessage(String threadId, CreateMessageRequest createMessageRequest) {
         return Future.failedFuture(new HttpException(501));
     }
 
-    public Future<ApiResponse<RunObject>> createRun(String threadId, CreateRunRequest createRunRequest) {
+    public Future<ApiResponse<RunObject>> createRun(String threadId, CreateRunRequest createRunRequest, List<String> include) {
         return Future.failedFuture(new HttpException(501));
     }
 
@@ -72,7 +63,7 @@ public class AssistantsApiImpl implements AssistantsApi {
         return Future.failedFuture(new HttpException(501));
     }
 
-    public Future<ApiResponse<DeleteAssistantFileResponse>> deleteAssistantFile(String assistantId, String fileId) {
+    public Future<ApiResponse<DeleteMessageResponse>> deleteMessage(String threadId, String messageId) {
         return Future.failedFuture(new HttpException(501));
     }
 
@@ -84,15 +75,7 @@ public class AssistantsApiImpl implements AssistantsApi {
         return Future.failedFuture(new HttpException(501));
     }
 
-    public Future<ApiResponse<AssistantFileObject>> getAssistantFile(String assistantId, String fileId) {
-        return Future.failedFuture(new HttpException(501));
-    }
-
     public Future<ApiResponse<MessageObject>> getMessage(String threadId, String messageId) {
-        return Future.failedFuture(new HttpException(501));
-    }
-
-    public Future<ApiResponse<MessageFileObject>> getMessageFile(String threadId, String messageId, String fileId) {
         return Future.failedFuture(new HttpException(501));
     }
 
@@ -100,7 +83,7 @@ public class AssistantsApiImpl implements AssistantsApi {
         return Future.failedFuture(new HttpException(501));
     }
 
-    public Future<ApiResponse<RunStepObject>> getRunStep(String threadId, String runId, String stepId) {
+    public Future<ApiResponse<RunStepObject>> getRunStep(String threadId, String runId, String stepId, List<String> include) {
         return Future.failedFuture(new HttpException(501));
     }
 
@@ -108,15 +91,7 @@ public class AssistantsApiImpl implements AssistantsApi {
         return Future.failedFuture(new HttpException(501));
     }
 
-    public Future<ApiResponse<ListAssistantFilesResponse>> listAssistantFiles(String assistantId, Integer limit, String order, String after, String before) {
-        return Future.failedFuture(new HttpException(501));
-    }
-
     public Future<ApiResponse<ListAssistantsResponse>> listAssistants(Integer limit, String order, String after, String before) {
-        return Future.failedFuture(new HttpException(501));
-    }
-
-    public Future<ApiResponse<ListMessageFilesResponse>> listMessageFiles(String threadId, String messageId, Integer limit, String order, String after, String before) {
         return Future.failedFuture(new HttpException(501));
     }
 
@@ -124,7 +99,7 @@ public class AssistantsApiImpl implements AssistantsApi {
         return Future.failedFuture(new HttpException(501));
     }
 
-    public Future<ApiResponse<ListRunStepsResponse>> listRunSteps(String threadId, String runId, Integer limit, String order, String after, String before) {
+    public Future<ApiResponse<ListRunStepsResponse>> listRunSteps(String threadId, String runId, Integer limit, String order, String after, String before, List<String> include) {
         return Future.failedFuture(new HttpException(501));
     }
 

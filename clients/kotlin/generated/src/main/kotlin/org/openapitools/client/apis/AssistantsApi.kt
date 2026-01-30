@@ -19,24 +19,19 @@ import java.io.IOException
 import okhttp3.Call
 import okhttp3.HttpUrl
 
-import org.openapitools.client.models.AssistantFileObject
 import org.openapitools.client.models.AssistantObject
-import org.openapitools.client.models.CreateAssistantFileRequest
 import org.openapitools.client.models.CreateAssistantRequest
 import org.openapitools.client.models.CreateMessageRequest
 import org.openapitools.client.models.CreateRunRequest
 import org.openapitools.client.models.CreateThreadAndRunRequest
 import org.openapitools.client.models.CreateThreadRequest
-import org.openapitools.client.models.DeleteAssistantFileResponse
 import org.openapitools.client.models.DeleteAssistantResponse
+import org.openapitools.client.models.DeleteMessageResponse
 import org.openapitools.client.models.DeleteThreadResponse
-import org.openapitools.client.models.ListAssistantFilesResponse
 import org.openapitools.client.models.ListAssistantsResponse
-import org.openapitools.client.models.ListMessageFilesResponse
 import org.openapitools.client.models.ListMessagesResponse
 import org.openapitools.client.models.ListRunStepsResponse
 import org.openapitools.client.models.ListRunsResponse
-import org.openapitools.client.models.MessageFileObject
 import org.openapitools.client.models.MessageObject
 import org.openapitools.client.models.ModifyAssistantRequest
 import org.openapitools.client.models.ModifyMessageRequest
@@ -222,83 +217,6 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
     }
 
     /**
-     * POST /assistants/{assistant_id}/files
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     * 
-     * @param assistantId The ID of the assistant for which to create a File. 
-     * @param createAssistantFileRequest 
-     * @return AssistantFileObject
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun createAssistantFile(assistantId: kotlin.String, createAssistantFileRequest: CreateAssistantFileRequest) : AssistantFileObject {
-        val localVarResponse = createAssistantFileWithHttpInfo(assistantId = assistantId, createAssistantFileRequest = createAssistantFileRequest)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as AssistantFileObject
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * POST /assistants/{assistant_id}/files
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     * 
-     * @param assistantId The ID of the assistant for which to create a File. 
-     * @param createAssistantFileRequest 
-     * @return ApiResponse<AssistantFileObject?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun createAssistantFileWithHttpInfo(assistantId: kotlin.String, createAssistantFileRequest: CreateAssistantFileRequest) : ApiResponse<AssistantFileObject?> {
-        val localVariableConfig = createAssistantFileRequestConfig(assistantId = assistantId, createAssistantFileRequest = createAssistantFileRequest)
-
-        return request<CreateAssistantFileRequest, AssistantFileObject>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation createAssistantFile
-     *
-     * @param assistantId The ID of the assistant for which to create a File. 
-     * @param createAssistantFileRequest 
-     * @return RequestConfig
-     */
-    fun createAssistantFileRequestConfig(assistantId: kotlin.String, createAssistantFileRequest: CreateAssistantFileRequest) : RequestConfig<CreateAssistantFileRequest> {
-        val localVariableBody = createAssistantFileRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Content-Type"] = "application/json"
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.POST,
-            path = "/assistants/{assistant_id}/files".replace("{"+"assistant_id"+"}", encodeURIComponent(assistantId.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
      * POST /threads/{thread_id}/messages
      * Create a message.
      * 
@@ -376,11 +294,28 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
     }
 
     /**
+     * enum for parameter include
+     */
+     enum class IncludeCreateRun(val value: kotlin.String) {
+         @Json(name = "step_details.tool_calls[*].file_search.results[*].content") step_detailsPeriodTool_callsLeft_Square_BracketStarRight_Square_BracketPeriodFile_searchPeriodResultsLeft_Square_BracketStarRight_Square_BracketPeriodContent("step_details.tool_calls[*].file_search.results[*].content");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
      * POST /threads/{thread_id}/runs
      * Create a run.
      * 
      * @param threadId The ID of the thread to run.
      * @param createRunRequest 
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      * @return RunObject
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -390,8 +325,8 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun createRun(threadId: kotlin.String, createRunRequest: CreateRunRequest) : RunObject {
-        val localVarResponse = createRunWithHttpInfo(threadId = threadId, createRunRequest = createRunRequest)
+    fun createRun(threadId: kotlin.String, createRunRequest: CreateRunRequest, include: kotlin.collections.List<IncludeCreateRun>? = null) : RunObject {
+        val localVarResponse = createRunWithHttpInfo(threadId = threadId, createRunRequest = createRunRequest, include = include)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as RunObject
@@ -414,14 +349,15 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      * 
      * @param threadId The ID of the thread to run.
      * @param createRunRequest 
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      * @return ApiResponse<RunObject?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun createRunWithHttpInfo(threadId: kotlin.String, createRunRequest: CreateRunRequest) : ApiResponse<RunObject?> {
-        val localVariableConfig = createRunRequestConfig(threadId = threadId, createRunRequest = createRunRequest)
+    fun createRunWithHttpInfo(threadId: kotlin.String, createRunRequest: CreateRunRequest, include: kotlin.collections.List<IncludeCreateRun>?) : ApiResponse<RunObject?> {
+        val localVariableConfig = createRunRequestConfig(threadId = threadId, createRunRequest = createRunRequest, include = include)
 
         return request<CreateRunRequest, RunObject>(
             localVariableConfig
@@ -433,11 +369,17 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      *
      * @param threadId The ID of the thread to run.
      * @param createRunRequest 
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      * @return RequestConfig
      */
-    fun createRunRequestConfig(threadId: kotlin.String, createRunRequest: CreateRunRequest) : RequestConfig<CreateRunRequest> {
+    fun createRunRequestConfig(threadId: kotlin.String, createRunRequest: CreateRunRequest, include: kotlin.collections.List<IncludeCreateRun>?) : RequestConfig<CreateRunRequest> {
         val localVariableBody = createRunRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (include != null) {
+                    put("include[]", toMultiValue(include.toList(), "multi"))
+                }
+            }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
         localVariableHeaders["Accept"] = "application/json"
@@ -674,12 +616,12 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
     }
 
     /**
-     * DELETE /assistants/{assistant_id}/files/{file_id}
-     * Delete an assistant file.
+     * DELETE /threads/{thread_id}/messages/{message_id}
+     * Deletes a message.
      * 
-     * @param assistantId The ID of the assistant that the file belongs to.
-     * @param fileId The ID of the file to delete.
-     * @return DeleteAssistantFileResponse
+     * @param threadId The ID of the thread to which this message belongs.
+     * @param messageId The ID of the message to delete.
+     * @return DeleteMessageResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -688,11 +630,11 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun deleteAssistantFile(assistantId: kotlin.String, fileId: kotlin.String) : DeleteAssistantFileResponse {
-        val localVarResponse = deleteAssistantFileWithHttpInfo(assistantId = assistantId, fileId = fileId)
+    fun deleteMessage(threadId: kotlin.String, messageId: kotlin.String) : DeleteMessageResponse {
+        val localVarResponse = deleteMessageWithHttpInfo(threadId = threadId, messageId = messageId)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DeleteAssistantFileResponse
+            ResponseType.Success -> (localVarResponse as Success<*>).data as DeleteMessageResponse
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -707,33 +649,33 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
     }
 
     /**
-     * DELETE /assistants/{assistant_id}/files/{file_id}
-     * Delete an assistant file.
+     * DELETE /threads/{thread_id}/messages/{message_id}
+     * Deletes a message.
      * 
-     * @param assistantId The ID of the assistant that the file belongs to.
-     * @param fileId The ID of the file to delete.
-     * @return ApiResponse<DeleteAssistantFileResponse?>
+     * @param threadId The ID of the thread to which this message belongs.
+     * @param messageId The ID of the message to delete.
+     * @return ApiResponse<DeleteMessageResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun deleteAssistantFileWithHttpInfo(assistantId: kotlin.String, fileId: kotlin.String) : ApiResponse<DeleteAssistantFileResponse?> {
-        val localVariableConfig = deleteAssistantFileRequestConfig(assistantId = assistantId, fileId = fileId)
+    fun deleteMessageWithHttpInfo(threadId: kotlin.String, messageId: kotlin.String) : ApiResponse<DeleteMessageResponse?> {
+        val localVariableConfig = deleteMessageRequestConfig(threadId = threadId, messageId = messageId)
 
-        return request<Unit, DeleteAssistantFileResponse>(
+        return request<Unit, DeleteMessageResponse>(
             localVariableConfig
         )
     }
 
     /**
-     * To obtain the request config of the operation deleteAssistantFile
+     * To obtain the request config of the operation deleteMessage
      *
-     * @param assistantId The ID of the assistant that the file belongs to.
-     * @param fileId The ID of the file to delete.
+     * @param threadId The ID of the thread to which this message belongs.
+     * @param messageId The ID of the message to delete.
      * @return RequestConfig
      */
-    fun deleteAssistantFileRequestConfig(assistantId: kotlin.String, fileId: kotlin.String) : RequestConfig<Unit> {
+    fun deleteMessageRequestConfig(threadId: kotlin.String, messageId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -741,7 +683,7 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
 
         return RequestConfig(
             method = RequestMethod.DELETE,
-            path = "/assistants/{assistant_id}/files/{file_id}".replace("{"+"assistant_id"+"}", encodeURIComponent(assistantId.toString())).replace("{"+"file_id"+"}", encodeURIComponent(fileId.toString())),
+            path = "/threads/{thread_id}/messages/{message_id}".replace("{"+"thread_id"+"}", encodeURIComponent(threadId.toString())).replace("{"+"message_id"+"}", encodeURIComponent(messageId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -896,82 +838,6 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
     }
 
     /**
-     * GET /assistants/{assistant_id}/files/{file_id}
-     * Retrieves an AssistantFile.
-     * 
-     * @param assistantId The ID of the assistant who the file belongs to.
-     * @param fileId The ID of the file we&#39;re getting.
-     * @return AssistantFileObject
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getAssistantFile(assistantId: kotlin.String, fileId: kotlin.String) : AssistantFileObject {
-        val localVarResponse = getAssistantFileWithHttpInfo(assistantId = assistantId, fileId = fileId)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as AssistantFileObject
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /assistants/{assistant_id}/files/{file_id}
-     * Retrieves an AssistantFile.
-     * 
-     * @param assistantId The ID of the assistant who the file belongs to.
-     * @param fileId The ID of the file we&#39;re getting.
-     * @return ApiResponse<AssistantFileObject?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun getAssistantFileWithHttpInfo(assistantId: kotlin.String, fileId: kotlin.String) : ApiResponse<AssistantFileObject?> {
-        val localVariableConfig = getAssistantFileRequestConfig(assistantId = assistantId, fileId = fileId)
-
-        return request<Unit, AssistantFileObject>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation getAssistantFile
-     *
-     * @param assistantId The ID of the assistant who the file belongs to.
-     * @param fileId The ID of the file we&#39;re getting.
-     * @return RequestConfig
-     */
-    fun getAssistantFileRequestConfig(assistantId: kotlin.String, fileId: kotlin.String) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/assistants/{assistant_id}/files/{file_id}".replace("{"+"assistant_id"+"}", encodeURIComponent(assistantId.toString())).replace("{"+"file_id"+"}", encodeURIComponent(fileId.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
      * GET /threads/{thread_id}/messages/{message_id}
      * Retrieve a message.
      * 
@@ -1040,85 +906,6 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/threads/{thread_id}/messages/{message_id}".replace("{"+"thread_id"+"}", encodeURIComponent(threadId.toString())).replace("{"+"message_id"+"}", encodeURIComponent(messageId.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * GET /threads/{thread_id}/messages/{message_id}/files/{file_id}
-     * Retrieves a message file.
-     * 
-     * @param threadId The ID of the thread to which the message and File belong.
-     * @param messageId The ID of the message the file belongs to.
-     * @param fileId The ID of the file being retrieved.
-     * @return MessageFileObject
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMessageFile(threadId: kotlin.String, messageId: kotlin.String, fileId: kotlin.String) : MessageFileObject {
-        val localVarResponse = getMessageFileWithHttpInfo(threadId = threadId, messageId = messageId, fileId = fileId)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as MessageFileObject
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /threads/{thread_id}/messages/{message_id}/files/{file_id}
-     * Retrieves a message file.
-     * 
-     * @param threadId The ID of the thread to which the message and File belong.
-     * @param messageId The ID of the message the file belongs to.
-     * @param fileId The ID of the file being retrieved.
-     * @return ApiResponse<MessageFileObject?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun getMessageFileWithHttpInfo(threadId: kotlin.String, messageId: kotlin.String, fileId: kotlin.String) : ApiResponse<MessageFileObject?> {
-        val localVariableConfig = getMessageFileRequestConfig(threadId = threadId, messageId = messageId, fileId = fileId)
-
-        return request<Unit, MessageFileObject>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation getMessageFile
-     *
-     * @param threadId The ID of the thread to which the message and File belong.
-     * @param messageId The ID of the message the file belongs to.
-     * @param fileId The ID of the file being retrieved.
-     * @return RequestConfig
-     */
-    fun getMessageFileRequestConfig(threadId: kotlin.String, messageId: kotlin.String, fileId: kotlin.String) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/threads/{thread_id}/messages/{message_id}/files/{file_id}".replace("{"+"thread_id"+"}", encodeURIComponent(threadId.toString())).replace("{"+"message_id"+"}", encodeURIComponent(messageId.toString())).replace("{"+"file_id"+"}", encodeURIComponent(fileId.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -1203,12 +990,29 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
     }
 
     /**
+     * enum for parameter include
+     */
+     enum class IncludeGetRunStep(val value: kotlin.String) {
+         @Json(name = "step_details.tool_calls[*].file_search.results[*].content") step_detailsPeriodTool_callsLeft_Square_BracketStarRight_Square_BracketPeriodFile_searchPeriodResultsLeft_Square_BracketStarRight_Square_BracketPeriodContent("step_details.tool_calls[*].file_search.results[*].content");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
      * GET /threads/{thread_id}/runs/{run_id}/steps/{step_id}
      * Retrieves a run step.
      * 
      * @param threadId The ID of the thread to which the run and run step belongs.
      * @param runId The ID of the run to which the run step belongs.
      * @param stepId The ID of the run step to retrieve.
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      * @return RunStepObject
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -1218,8 +1022,8 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getRunStep(threadId: kotlin.String, runId: kotlin.String, stepId: kotlin.String) : RunStepObject {
-        val localVarResponse = getRunStepWithHttpInfo(threadId = threadId, runId = runId, stepId = stepId)
+    fun getRunStep(threadId: kotlin.String, runId: kotlin.String, stepId: kotlin.String, include: kotlin.collections.List<IncludeGetRunStep>? = null) : RunStepObject {
+        val localVarResponse = getRunStepWithHttpInfo(threadId = threadId, runId = runId, stepId = stepId, include = include)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as RunStepObject
@@ -1243,14 +1047,15 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      * @param threadId The ID of the thread to which the run and run step belongs.
      * @param runId The ID of the run to which the run step belongs.
      * @param stepId The ID of the run step to retrieve.
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      * @return ApiResponse<RunStepObject?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getRunStepWithHttpInfo(threadId: kotlin.String, runId: kotlin.String, stepId: kotlin.String) : ApiResponse<RunStepObject?> {
-        val localVariableConfig = getRunStepRequestConfig(threadId = threadId, runId = runId, stepId = stepId)
+    fun getRunStepWithHttpInfo(threadId: kotlin.String, runId: kotlin.String, stepId: kotlin.String, include: kotlin.collections.List<IncludeGetRunStep>?) : ApiResponse<RunStepObject?> {
+        val localVariableConfig = getRunStepRequestConfig(threadId = threadId, runId = runId, stepId = stepId, include = include)
 
         return request<Unit, RunStepObject>(
             localVariableConfig
@@ -1263,11 +1068,17 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      * @param threadId The ID of the thread to which the run and run step belongs.
      * @param runId The ID of the run to which the run step belongs.
      * @param stepId The ID of the run step to retrieve.
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      * @return RequestConfig
      */
-    fun getRunStepRequestConfig(threadId: kotlin.String, runId: kotlin.String, stepId: kotlin.String) : RequestConfig<Unit> {
+    fun getRunStepRequestConfig(threadId: kotlin.String, runId: kotlin.String, stepId: kotlin.String, include: kotlin.collections.List<IncludeGetRunStep>?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (include != null) {
+                    put("include[]", toMultiValue(include.toList(), "multi"))
+                }
+            }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
 
@@ -1357,122 +1168,6 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
     /**
      * enum for parameter order
      */
-     enum class OrderListAssistantFiles(val value: kotlin.String) {
-         @Json(name = "asc") asc("asc"),
-         @Json(name = "desc") desc("desc");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * GET /assistants/{assistant_id}/files
-     * Returns a list of assistant files.
-     * 
-     * @param assistantId The ID of the assistant the file belongs to.
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     * @return ListAssistantFilesResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun listAssistantFiles(assistantId: kotlin.String, limit: kotlin.Int? = 20, order: OrderListAssistantFiles? = OrderListAssistantFiles.desc, after: kotlin.String? = null, before: kotlin.String? = null) : ListAssistantFilesResponse {
-        val localVarResponse = listAssistantFilesWithHttpInfo(assistantId = assistantId, limit = limit, order = order, after = after, before = before)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as ListAssistantFilesResponse
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /assistants/{assistant_id}/files
-     * Returns a list of assistant files.
-     * 
-     * @param assistantId The ID of the assistant the file belongs to.
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     * @return ApiResponse<ListAssistantFilesResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun listAssistantFilesWithHttpInfo(assistantId: kotlin.String, limit: kotlin.Int?, order: OrderListAssistantFiles?, after: kotlin.String?, before: kotlin.String?) : ApiResponse<ListAssistantFilesResponse?> {
-        val localVariableConfig = listAssistantFilesRequestConfig(assistantId = assistantId, limit = limit, order = order, after = after, before = before)
-
-        return request<Unit, ListAssistantFilesResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation listAssistantFiles
-     *
-     * @param assistantId The ID of the assistant the file belongs to.
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     * @return RequestConfig
-     */
-    fun listAssistantFilesRequestConfig(assistantId: kotlin.String, limit: kotlin.Int?, order: OrderListAssistantFiles?, after: kotlin.String?, before: kotlin.String?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (limit != null) {
-                    put("limit", listOf(limit.toString()))
-                }
-                if (order != null) {
-                    put("order", listOf(order.value))
-                }
-                if (after != null) {
-                    put("after", listOf(after.toString()))
-                }
-                if (before != null) {
-                    put("before", listOf(before.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/assistants/{assistant_id}/files".replace("{"+"assistant_id"+"}", encodeURIComponent(assistantId.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * enum for parameter order
-     */
      enum class OrderListAssistants(val value: kotlin.String) {
          @Json(name = "asc") asc("asc"),
          @Json(name = "desc") desc("desc");
@@ -1494,7 +1189,7 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @return ListAssistantsResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -1529,7 +1224,7 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @return ApiResponse<ListAssistantsResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -1550,7 +1245,7 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @return RequestConfig
      */
     fun listAssistantsRequestConfig(limit: kotlin.Int?, order: OrderListAssistants?, after: kotlin.String?, before: kotlin.String?) : RequestConfig<Unit> {
@@ -1586,125 +1281,6 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
     /**
      * enum for parameter order
      */
-     enum class OrderListMessageFiles(val value: kotlin.String) {
-         @Json(name = "asc") asc("asc"),
-         @Json(name = "desc") desc("desc");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * GET /threads/{thread_id}/messages/{message_id}/files
-     * Returns a list of message files.
-     * 
-     * @param threadId The ID of the thread that the message and files belong to.
-     * @param messageId The ID of the message that the files belongs to.
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     * @return ListMessageFilesResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun listMessageFiles(threadId: kotlin.String, messageId: kotlin.String, limit: kotlin.Int? = 20, order: OrderListMessageFiles? = OrderListMessageFiles.desc, after: kotlin.String? = null, before: kotlin.String? = null) : ListMessageFilesResponse {
-        val localVarResponse = listMessageFilesWithHttpInfo(threadId = threadId, messageId = messageId, limit = limit, order = order, after = after, before = before)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as ListMessageFilesResponse
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /threads/{thread_id}/messages/{message_id}/files
-     * Returns a list of message files.
-     * 
-     * @param threadId The ID of the thread that the message and files belong to.
-     * @param messageId The ID of the message that the files belongs to.
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     * @return ApiResponse<ListMessageFilesResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun listMessageFilesWithHttpInfo(threadId: kotlin.String, messageId: kotlin.String, limit: kotlin.Int?, order: OrderListMessageFiles?, after: kotlin.String?, before: kotlin.String?) : ApiResponse<ListMessageFilesResponse?> {
-        val localVariableConfig = listMessageFilesRequestConfig(threadId = threadId, messageId = messageId, limit = limit, order = order, after = after, before = before)
-
-        return request<Unit, ListMessageFilesResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation listMessageFiles
-     *
-     * @param threadId The ID of the thread that the message and files belong to.
-     * @param messageId The ID of the message that the files belongs to.
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     * @return RequestConfig
-     */
-    fun listMessageFilesRequestConfig(threadId: kotlin.String, messageId: kotlin.String, limit: kotlin.Int?, order: OrderListMessageFiles?, after: kotlin.String?, before: kotlin.String?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (limit != null) {
-                    put("limit", listOf(limit.toString()))
-                }
-                if (order != null) {
-                    put("order", listOf(order.value))
-                }
-                if (after != null) {
-                    put("after", listOf(after.toString()))
-                }
-                if (before != null) {
-                    put("before", listOf(before.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/threads/{thread_id}/messages/{message_id}/files".replace("{"+"thread_id"+"}", encodeURIComponent(threadId.toString())).replace("{"+"message_id"+"}", encodeURIComponent(messageId.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * enum for parameter order
-     */
      enum class OrderListMessages(val value: kotlin.String) {
          @Json(name = "asc") asc("asc"),
          @Json(name = "desc") desc("desc");
@@ -1727,7 +1303,7 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @param runId Filter messages by the run ID that generated them.  (optional)
      * @return ListMessagesResponse
      * @throws IllegalStateException If the request is not correctly configured
@@ -1764,7 +1340,7 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @param runId Filter messages by the run ID that generated them.  (optional)
      * @return ApiResponse<ListMessagesResponse?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -1787,7 +1363,7 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @param runId Filter messages by the run ID that generated them.  (optional)
      * @return RequestConfig
      */
@@ -1842,6 +1418,22 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      }
 
     /**
+     * enum for parameter include
+     */
+     enum class IncludeListRunSteps(val value: kotlin.String) {
+         @Json(name = "step_details.tool_calls[*].file_search.results[*].content") step_detailsPeriodTool_callsLeft_Square_BracketStarRight_Square_BracketPeriodFile_searchPeriodResultsLeft_Square_BracketStarRight_Square_BracketPeriodContent("step_details.tool_calls[*].file_search.results[*].content");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
      * GET /threads/{thread_id}/runs/{run_id}/steps
      * Returns a list of run steps belonging to a run.
      * 
@@ -1850,7 +1442,8 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      * @return ListRunStepsResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -1860,8 +1453,8 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun listRunSteps(threadId: kotlin.String, runId: kotlin.String, limit: kotlin.Int? = 20, order: OrderListRunSteps? = OrderListRunSteps.desc, after: kotlin.String? = null, before: kotlin.String? = null) : ListRunStepsResponse {
-        val localVarResponse = listRunStepsWithHttpInfo(threadId = threadId, runId = runId, limit = limit, order = order, after = after, before = before)
+    fun listRunSteps(threadId: kotlin.String, runId: kotlin.String, limit: kotlin.Int? = 20, order: OrderListRunSteps? = OrderListRunSteps.desc, after: kotlin.String? = null, before: kotlin.String? = null, include: kotlin.collections.List<IncludeListRunSteps>? = null) : ListRunStepsResponse {
+        val localVarResponse = listRunStepsWithHttpInfo(threadId = threadId, runId = runId, limit = limit, order = order, after = after, before = before, include = include)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListRunStepsResponse
@@ -1887,15 +1480,16 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      * @return ApiResponse<ListRunStepsResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun listRunStepsWithHttpInfo(threadId: kotlin.String, runId: kotlin.String, limit: kotlin.Int?, order: OrderListRunSteps?, after: kotlin.String?, before: kotlin.String?) : ApiResponse<ListRunStepsResponse?> {
-        val localVariableConfig = listRunStepsRequestConfig(threadId = threadId, runId = runId, limit = limit, order = order, after = after, before = before)
+    fun listRunStepsWithHttpInfo(threadId: kotlin.String, runId: kotlin.String, limit: kotlin.Int?, order: OrderListRunSteps?, after: kotlin.String?, before: kotlin.String?, include: kotlin.collections.List<IncludeListRunSteps>?) : ApiResponse<ListRunStepsResponse?> {
+        val localVariableConfig = listRunStepsRequestConfig(threadId = threadId, runId = runId, limit = limit, order = order, after = after, before = before, include = include)
 
         return request<Unit, ListRunStepsResponse>(
             localVariableConfig
@@ -1910,10 +1504,11 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      * @return RequestConfig
      */
-    fun listRunStepsRequestConfig(threadId: kotlin.String, runId: kotlin.String, limit: kotlin.Int?, order: OrderListRunSteps?, after: kotlin.String?, before: kotlin.String?) : RequestConfig<Unit> {
+    fun listRunStepsRequestConfig(threadId: kotlin.String, runId: kotlin.String, limit: kotlin.Int?, order: OrderListRunSteps?, after: kotlin.String?, before: kotlin.String?, include: kotlin.collections.List<IncludeListRunSteps>?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -1928,6 +1523,9 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
                 }
                 if (before != null) {
                     put("before", listOf(before.toString()))
+                }
+                if (include != null) {
+                    put("include[]", toMultiValue(include.toList(), "multi"))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -1968,7 +1566,7 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @return ListRunsResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -2004,7 +1602,7 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @return ApiResponse<ListRunsResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -2026,7 +1624,7 @@ open class AssistantsApi(basePath: kotlin.String = defaultBasePath, client: Call
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @return RequestConfig
      */
     fun listRunsRequestConfig(threadId: kotlin.String, limit: kotlin.Int?, order: OrderListRuns?, after: kotlin.String?, before: kotlin.String?) : RequestConfig<Unit> {

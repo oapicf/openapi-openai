@@ -1,0 +1,38 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The aggregated costs details of the specific time bucket.",
+  "name": "CostsResult",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "CostsResult_object",
+        "symbols": [
+          "organization_costs_result"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "amount",
+      "type": ["null", "model.CostsResultAmount"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "line_item",
+      "type": ["null", "string"],
+      "doc": "When `group_by=line_item`, this field provides the line item of the grouped costs result.",
+      "default": null
+    },
+    {
+      "name": "project_id",
+      "type": ["null", "string"],
+      "doc": "When `group_by=project_id`, this field provides the project ID of the grouped costs result.",
+      "default": null
+    }
+  ]
+
+}

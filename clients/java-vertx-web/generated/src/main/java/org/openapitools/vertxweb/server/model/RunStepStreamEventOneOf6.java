@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.vertxweb.server.model.RunStepObject;
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) expires.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires.
  **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RunStepStreamEventOneOf6   {

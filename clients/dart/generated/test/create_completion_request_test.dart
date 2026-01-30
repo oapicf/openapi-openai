@@ -38,7 +38,7 @@ void main() {
       // TODO
     });
 
-    // Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+    // Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
     // num frequencyPenalty (default value: 0)
     test('to test the property `frequencyPenalty`', () async {
       // TODO
@@ -68,7 +68,7 @@ void main() {
       // TODO
     });
 
-    // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+    // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
     // num presencePenalty (default value: 0)
     test('to test the property `presencePenalty`', () async {
       // TODO
@@ -91,6 +91,11 @@ void main() {
       // TODO
     });
 
+    // ChatCompletionStreamOptions streamOptions
+    test('to test the property `streamOptions`', () async {
+      // TODO
+    });
+
     // The suffix that comes after a completion of inserted text.  This parameter is only supported for `gpt-3.5-turbo-instruct`. 
     // String suffix
     test('to test the property `suffix`', () async {
@@ -109,7 +114,7 @@ void main() {
       // TODO
     });
 
-    // A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+    // A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
     // String user
     test('to test the property `user`', () async {
       // TODO

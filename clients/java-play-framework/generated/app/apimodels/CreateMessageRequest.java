@@ -1,5 +1,7 @@
 package apimodels;
 
+import apimodels.CreateMessageRequestAttachmentsInner;
+import apimodels.CreateMessageRequestContent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +15,7 @@ import javax.validation.Valid;
 /**
  * CreateMessageRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateMessageRequest   {
   /**
@@ -54,14 +56,14 @@ public class CreateMessageRequest   {
 
   @JsonProperty("content")
   @NotNull
-@Size(min=1,max=256000)
+@Valid
 
-  private String content;
+  private CreateMessageRequestContent content;
 
-  @JsonProperty("file_ids")
-  @Size(min=1,max=10)
+  @JsonProperty("attachments")
+  @Valid
 
-  private List<String> fileIds = null;
+  private List<@Valid CreateMessageRequestAttachmentsInner> attachments = null;
 
   @JsonProperty("metadata")
   
@@ -84,46 +86,46 @@ public class CreateMessageRequest   {
     this.role = role;
   }
 
-  public CreateMessageRequest content(String content) {
+  public CreateMessageRequest content(CreateMessageRequestContent content) {
     this.content = content;
     return this;
   }
 
    /**
-   * The content of the message.
+   * Get content
    * @return content
   **/
-  public String getContent() {
+  public CreateMessageRequestContent getContent() {
     return content;
   }
 
-  public void setContent(String content) {
+  public void setContent(CreateMessageRequestContent content) {
     this.content = content;
   }
 
-  public CreateMessageRequest fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public CreateMessageRequest attachments(List<@Valid CreateMessageRequestAttachmentsInner> attachments) {
+    this.attachments = attachments;
     return this;
   }
 
-  public CreateMessageRequest addFileIdsItem(String fileIdsItem) {
-    if (this.fileIds == null) {
-      this.fileIds = new ArrayList<>();
+  public CreateMessageRequest addAttachmentsItem(CreateMessageRequestAttachmentsInner attachmentsItem) {
+    if (this.attachments == null) {
+      this.attachments = new ArrayList<>();
     }
-    this.fileIds.add(fileIdsItem);
+    this.attachments.add(attachmentsItem);
     return this;
   }
 
    /**
-   * A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like `retrieval` and `code_interpreter` that can access and use files.
-   * @return fileIds
+   * A list of files attached to the message, and the tools they should be added to.
+   * @return attachments
   **/
-  public List<String> getFileIds() {
-    return fileIds;
+  public List<@Valid CreateMessageRequestAttachmentsInner> getAttachments() {
+    return attachments;
   }
 
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public void setAttachments(List<@Valid CreateMessageRequestAttachmentsInner> attachments) {
+    this.attachments = attachments;
   }
 
   public CreateMessageRequest metadata(Object metadata) {
@@ -132,7 +134,7 @@ public class CreateMessageRequest   {
   }
 
    /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
   **/
   public Object getMetadata() {
@@ -155,13 +157,13 @@ public class CreateMessageRequest   {
     CreateMessageRequest createMessageRequest = (CreateMessageRequest) o;
     return Objects.equals(role, createMessageRequest.role) &&
         Objects.equals(content, createMessageRequest.content) &&
-        Objects.equals(fileIds, createMessageRequest.fileIds) &&
+        Objects.equals(attachments, createMessageRequest.attachments) &&
         Objects.equals(metadata, createMessageRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, content, fileIds, metadata);
+    return Objects.hash(role, content, attachments, metadata);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -172,7 +174,7 @@ public class CreateMessageRequest   {
     
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

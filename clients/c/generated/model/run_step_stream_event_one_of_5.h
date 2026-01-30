@@ -1,7 +1,7 @@
 /*
  * run_step_stream_event_one_of_5.h
  *
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is cancelled.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is cancelled.
  */
 
 #ifndef _run_step_stream_event_one_of_5_H_

@@ -3,7 +3,7 @@ namespace OpenAPI.Model
 open System
 open System.Collections.Generic
 open Newtonsoft.Json
-open OpenAPI.Model.ChatCompletionNamedToolChoiceFunction
+open OpenAPI.Model.AssistantsNamedToolChoiceFunction
 
 module ChatCompletionNamedToolChoice =
 
@@ -14,7 +14,7 @@ module ChatCompletionNamedToolChoice =
     [<JsonProperty(PropertyName = "type")>]
     Type : string;
     [<JsonProperty(PropertyName = "function")>]
-    Function : ChatCompletionNamedToolChoiceFunction;
+    Function : AssistantsNamedToolChoiceFunction;
   }
 
   //#endregion

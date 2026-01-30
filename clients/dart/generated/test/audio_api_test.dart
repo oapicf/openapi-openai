@@ -26,14 +26,14 @@ void main() {
 
     // Transcribes audio into the input language.
     //
-    //Future<CreateTranscription200Response> createTranscription(MultipartFile file, CreateTranscriptionRequestModel model, { String language, String prompt, String responseFormat, num temperature, List<String> timestampGranularitiesLeftSquareBracketRightSquareBracket }) async
+    //Future<CreateTranscription200Response> createTranscription(MultipartFile file, CreateTranscriptionRequestModel model, { String language, String prompt, AudioResponseFormat responseFormat, num temperature, List<String> timestampGranularitiesLeftSquareBracketRightSquareBracket }) async
     test('test createTranscription', () async {
       // TODO
     });
 
     // Translates audio into English.
     //
-    //Future<CreateTranslation200Response> createTranslation(MultipartFile file, CreateTranscriptionRequestModel model, { String prompt, String responseFormat, num temperature }) async
+    //Future<CreateTranslation200Response> createTranslation(MultipartFile file, CreateTranscriptionRequestModel model, { String prompt, AudioResponseFormat responseFormat, num temperature }) async
     test('test createTranslation', () async {
       // TODO
     });

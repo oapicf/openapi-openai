@@ -26,7 +26,7 @@ import java.io.IOException;
  * @author pkmst
  *
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T10:45:02.588292416Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @Controller
 public class ImagesApiController implements ImagesApi {
     private final ObjectMapper objectMapper;
@@ -53,7 +53,7 @@ public class ImagesApiController implements ImagesApi {
         @ApiParam(value = "The number of images to generate. Must be between 1 and 10.", defaultValue="1") @RequestPart(value="n", required=false)  Integer n,
         @ApiParam(value = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.", allowableValues="256x256, 512x512, 1024x1024", defaultValue="1024x1024") @RequestPart(value="size", required=false)  String size,
         @ApiParam(value = "The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.", allowableValues="url, b64_json", defaultValue="url") @RequestPart(value="response_format", required=false)  String responseFormat,
-        @ApiParam(value = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ") @RequestPart(value="user", required=false)  String user,
+        @ApiParam(value = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ") @RequestPart(value="user", required=false)  String user,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 
@@ -69,7 +69,7 @@ public class ImagesApiController implements ImagesApi {
         @ApiParam(value = "The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.", defaultValue="1") @RequestPart(value="n", required=false)  Integer n,
         @ApiParam(value = "The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.", allowableValues="url, b64_json", defaultValue="url") @RequestPart(value="response_format", required=false)  String responseFormat,
         @ApiParam(value = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.", allowableValues="256x256, 512x512, 1024x1024", defaultValue="1024x1024") @RequestPart(value="size", required=false)  String size,
-        @ApiParam(value = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ") @RequestPart(value="user", required=false)  String user,
+        @ApiParam(value = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ") @RequestPart(value="user", required=false)  String user,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 

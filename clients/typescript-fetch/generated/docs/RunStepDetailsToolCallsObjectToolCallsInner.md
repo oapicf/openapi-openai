@@ -9,7 +9,7 @@ Name | Type
 `id` | string
 `type` | string
 `codeInterpreter` | [RunStepDetailsToolCallsCodeObjectCodeInterpreter](RunStepDetailsToolCallsCodeObjectCodeInterpreter.md)
-`retrieval` | object
+`fileSearch` | [RunStepDetailsToolCallsFileSearchObjectFileSearch](RunStepDetailsToolCallsFileSearchObjectFileSearch.md)
 `_function` | [RunStepDetailsToolCallsFunctionObjectFunction](RunStepDetailsToolCallsFunctionObjectFunction.md)
 
 ## Example
@@ -22,7 +22,7 @@ const example = {
   "id": null,
   "type": null,
   "codeInterpreter": null,
-  "retrieval": null,
+  "fileSearch": null,
   "_function": null,
 } satisfies RunStepDetailsToolCallsObjectToolCallsInner
 

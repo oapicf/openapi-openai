@@ -25,21 +25,31 @@ CreateChatCompletionRequest::__init()
 {
 	//new std::list()std::list> messages;
 	//model = new CreateChatCompletionRequest_model();
+	//store = bool(false);
+	//reasoning_effort = std::string();
+	//new std::map()std::map> metadata;
 	//frequency_penalty = double(0);
 	//new std::map()std::map> logit_bias;
 	//logprobs = bool(false);
 	//top_logprobs = int(0);
 	//max_tokens = int(0);
+	//max_completion_tokens = int(0);
 	//n = int(0);
+	//new std::list()std::list> modalities;
+	//prediction = null;
+	//audio = new CreateChatCompletionRequest_audio();
 	//presence_penalty = double(0);
 	//response_format = new CreateChatCompletionRequest_response_format();
 	//seed = int(0);
+	//service_tier = std::string();
 	//stop = new CreateChatCompletionRequest_stop();
 	//stream = bool(false);
+	//stream_options = new ChatCompletionStreamOptions();
 	//temperature = double(0);
 	//top_p = double(0);
 	//new std::list()std::list> tools;
 	//tool_choice = new ChatCompletionToolChoiceOption();
+	//parallel_tool_calls = bool(false);
 	//user = std::string();
 	//function_call = new CreateChatCompletionRequest_function_call();
 	//new std::list()std::list> functions;
@@ -57,6 +67,21 @@ CreateChatCompletionRequest::__cleanup()
 	//
 	//delete model;
 	//model = NULL;
+	//}
+	//if(store != NULL) {
+	//
+	//delete store;
+	//store = NULL;
+	//}
+	//if(reasoning_effort != NULL) {
+	//
+	//delete reasoning_effort;
+	//reasoning_effort = NULL;
+	//}
+	//if(metadata != NULL) {
+	//metadata.RemoveAll(true);
+	//delete metadata;
+	//metadata = NULL;
 	//}
 	//if(frequency_penalty != NULL) {
 	//
@@ -83,10 +108,30 @@ CreateChatCompletionRequest::__cleanup()
 	//delete max_tokens;
 	//max_tokens = NULL;
 	//}
+	//if(max_completion_tokens != NULL) {
+	//
+	//delete max_completion_tokens;
+	//max_completion_tokens = NULL;
+	//}
 	//if(n != NULL) {
 	//
 	//delete n;
 	//n = NULL;
+	//}
+	//if(modalities != NULL) {
+	//modalities.RemoveAll(true);
+	//delete modalities;
+	//modalities = NULL;
+	//}
+	//if(prediction != NULL) {
+	//
+	//delete prediction;
+	//prediction = NULL;
+	//}
+	//if(audio != NULL) {
+	//
+	//delete audio;
+	//audio = NULL;
 	//}
 	//if(presence_penalty != NULL) {
 	//
@@ -103,6 +148,11 @@ CreateChatCompletionRequest::__cleanup()
 	//delete seed;
 	//seed = NULL;
 	//}
+	//if(service_tier != NULL) {
+	//
+	//delete service_tier;
+	//service_tier = NULL;
+	//}
 	//if(stop != NULL) {
 	//
 	//delete stop;
@@ -112,6 +162,11 @@ CreateChatCompletionRequest::__cleanup()
 	//
 	//delete stream;
 	//stream = NULL;
+	//}
+	//if(stream_options != NULL) {
+	//
+	//delete stream_options;
+	//stream_options = NULL;
 	//}
 	//if(temperature != NULL) {
 	//
@@ -132,6 +187,11 @@ CreateChatCompletionRequest::__cleanup()
 	//
 	//delete tool_choice;
 	//tool_choice = NULL;
+	//}
+	//if(parallel_tool_calls != NULL) {
+	//
+	//delete parallel_tool_calls;
+	//parallel_tool_calls = NULL;
 	//}
 	//if(user != NULL) {
 	//
@@ -194,6 +254,40 @@ CreateChatCompletionRequest::fromJson(char* jsonStr)
 			
 		}
 	}
+	const gchar *storeKey = "store";
+	node = json_object_get_member(pJsonObject, storeKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("bool")) {
+			jsonToValue(&store, node, "bool", "");
+		} else {
+			
+		}
+	}
+	const gchar *reasoning_effortKey = "reasoning_effort";
+	node = json_object_get_member(pJsonObject, reasoning_effortKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&reasoning_effort, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *metadataKey = "metadata";
+	node = json_object_get_member(pJsonObject, metadataKey);
+	if (node !=NULL) {
+	
+		{
+			JsonObject* json_obj = json_node_get_object(node);
+			map<string,string> new_map;
+			json_object_foreach_member(json_obj,helper_func,&new_map);
+			metadata = new_map;
+		}
+		
+	}
 	const gchar *frequency_penaltyKey = "frequency_penalty";
 	node = json_object_get_member(pJsonObject, frequency_penaltyKey);
 	if (node !=NULL) {
@@ -253,6 +347,17 @@ CreateChatCompletionRequest::fromJson(char* jsonStr)
 			
 		}
 	}
+	const gchar *max_completion_tokensKey = "max_completion_tokens";
+	node = json_object_get_member(pJsonObject, max_completion_tokensKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("int")) {
+			jsonToValue(&max_completion_tokens, node, "int", "");
+		} else {
+			
+		}
+	}
 	const gchar *nKey = "n";
 	node = json_object_get_member(pJsonObject, nKey);
 	if (node !=NULL) {
@@ -261,6 +366,56 @@ CreateChatCompletionRequest::fromJson(char* jsonStr)
 		if (isprimitive("int")) {
 			jsonToValue(&n, node, "int", "");
 		} else {
+			
+		}
+	}
+	const gchar *modalitiesKey = "modalities";
+	node = json_object_get_member(pJsonObject, modalitiesKey);
+	if (node !=NULL) {
+	
+		{
+			JsonArray* arr = json_node_get_array(node);
+			JsonNode*  temp_json;
+			list<std::string> new_list;
+			std::string inst;
+			for (guint i=0;i<json_array_get_length(arr);i++) {
+				temp_json = json_array_get_element(arr,i);
+				if (isprimitive("std::string")) {
+					jsonToValue(&inst, temp_json, "std::string", "");
+				} else {
+					
+				}
+				new_list.push_back(inst);
+			}
+			modalities = new_list;
+		}
+		
+	}
+	const gchar *predictionKey = "prediction";
+	node = json_object_get_member(pJsonObject, predictionKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("PredictionContent")) {
+			jsonToValue(&prediction, node, "PredictionContent", "PredictionContent");
+		} else {
+			
+			PredictionContent* obj = static_cast<PredictionContent*> (&prediction);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *audioKey = "audio";
+	node = json_object_get_member(pJsonObject, audioKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("CreateChatCompletionRequest_audio")) {
+			jsonToValue(&audio, node, "CreateChatCompletionRequest_audio", "CreateChatCompletionRequest_audio");
+		} else {
+			
+			CreateChatCompletionRequest_audio* obj = static_cast<CreateChatCompletionRequest_audio*> (&audio);
+			obj->fromJson(json_to_string(node, false));
 			
 		}
 	}
@@ -303,6 +458,17 @@ CreateChatCompletionRequest::fromJson(char* jsonStr)
 			
 		}
 	}
+	const gchar *service_tierKey = "service_tier";
+	node = json_object_get_member(pJsonObject, service_tierKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&service_tier, node, "std::string", "");
+		} else {
+			
+		}
+	}
 	const gchar *stopKey = "stop";
 	node = json_object_get_member(pJsonObject, stopKey);
 	if (node !=NULL) {
@@ -325,6 +491,20 @@ CreateChatCompletionRequest::fromJson(char* jsonStr)
 		if (isprimitive("bool")) {
 			jsonToValue(&stream, node, "bool", "");
 		} else {
+			
+		}
+	}
+	const gchar *stream_optionsKey = "stream_options";
+	node = json_object_get_member(pJsonObject, stream_optionsKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("ChatCompletionStreamOptions")) {
+			jsonToValue(&stream_options, node, "ChatCompletionStreamOptions", "ChatCompletionStreamOptions");
+		} else {
+			
+			ChatCompletionStreamOptions* obj = static_cast<ChatCompletionStreamOptions*> (&stream_options);
+			obj->fromJson(json_to_string(node, false));
 			
 		}
 	}
@@ -391,6 +571,17 @@ CreateChatCompletionRequest::fromJson(char* jsonStr)
 			
 			ChatCompletionToolChoiceOption* obj = static_cast<ChatCompletionToolChoiceOption*> (&tool_choice);
 			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *parallel_tool_callsKey = "parallel_tool_calls";
+	node = json_object_get_member(pJsonObject, parallel_tool_callsKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("bool")) {
+			jsonToValue(&parallel_tool_calls, node, "bool", "");
+		} else {
 			
 		}
 	}
@@ -494,6 +685,43 @@ CreateChatCompletionRequest::toJson()
 	}
 	const gchar *modelKey = "model";
 	json_object_set_member(pJsonObject, modelKey, node);
+	if (isprimitive("bool")) {
+		bool obj = getStore();
+		node = converttoJson(&obj, "bool", "");
+	}
+	else {
+		
+	}
+	const gchar *storeKey = "store";
+	json_object_set_member(pJsonObject, storeKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getReasoningEffort();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *reasoning_effortKey = "reasoning_effort";
+	json_object_set_member(pJsonObject, reasoning_effortKey, node);
+
+
+	{
+		JsonObject* json_obj;
+		map<string, string> new_list = static_cast<map <string, string> > (getMetadata());
+		json_obj = json_object_new();
+		for (map<string, string>::iterator it = new_list.begin(); it != new_list.end(); it++) {
+			string obj = (*it).first;
+			string obj2 = (*it).second;
+			JsonNode* tempnode = json_from_string(obj2.c_str(),NULL);
+			json_object_set_member(json_obj, obj.c_str(), tempnode);
+		}
+	node = json_node_alloc();
+	json_node_init_object(node, json_obj);
+	json_object_unref(json_obj);
+	}
+
+	const gchar *metadataKey = "metadata";
+	json_object_set_member(pJsonObject, metadataKey, node);
 	if (isprimitive("long long")) {
 		long long obj = getFrequencyPenalty();
 		node = converttoJson(&obj, "long long", "");
@@ -555,6 +783,15 @@ CreateChatCompletionRequest::toJson()
 	const gchar *max_tokensKey = "max_tokens";
 	json_object_set_member(pJsonObject, max_tokensKey, node);
 	if (isprimitive("int")) {
+		int obj = getMaxCompletionTokens();
+		node = converttoJson(&obj, "int", "");
+	}
+	else {
+		
+	}
+	const gchar *max_completion_tokensKey = "max_completion_tokens";
+	json_object_set_member(pJsonObject, max_completion_tokensKey, node);
+	if (isprimitive("int")) {
 		int obj = getN();
 		node = converttoJson(&obj, "int", "");
 	}
@@ -563,6 +800,49 @@ CreateChatCompletionRequest::toJson()
 	}
 	const gchar *nKey = "n";
 	json_object_set_member(pJsonObject, nKey, node);
+	if (isprimitive("std::string")) {
+		list<std::string> new_list = static_cast<list <std::string> > (getModalities());
+		node = converttoJson(&new_list, "std::string", "array");
+	} else {
+		node = json_node_alloc();
+		list<std::string> new_list = static_cast<list <std::string> > (getModalities());
+		JsonArray* json_array = json_array_new();
+		GError *mygerror;
+		
+	}
+
+
+	
+	const gchar *modalitiesKey = "modalities";
+	json_object_set_member(pJsonObject, modalitiesKey, node);
+	if (isprimitive("PredictionContent")) {
+		PredictionContent obj = getPrediction();
+		node = converttoJson(&obj, "PredictionContent", "");
+	}
+	else {
+		
+		PredictionContent obj = static_cast<PredictionContent> (getPrediction());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *predictionKey = "prediction";
+	json_object_set_member(pJsonObject, predictionKey, node);
+	if (isprimitive("CreateChatCompletionRequest_audio")) {
+		CreateChatCompletionRequest_audio obj = getAudio();
+		node = converttoJson(&obj, "CreateChatCompletionRequest_audio", "");
+	}
+	else {
+		
+		CreateChatCompletionRequest_audio obj = static_cast<CreateChatCompletionRequest_audio> (getAudio());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *audioKey = "audio";
+	json_object_set_member(pJsonObject, audioKey, node);
 	if (isprimitive("long long")) {
 		long long obj = getPresencePenalty();
 		node = converttoJson(&obj, "long long", "");
@@ -600,6 +880,15 @@ CreateChatCompletionRequest::toJson()
 	}
 	const gchar *seedKey = "seed";
 	json_object_set_member(pJsonObject, seedKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getServiceTier();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *service_tierKey = "service_tier";
+	json_object_set_member(pJsonObject, service_tierKey, node);
 	if (isprimitive("CreateChatCompletionRequest_stop")) {
 		CreateChatCompletionRequest_stop obj = getStop();
 		node = converttoJson(&obj, "CreateChatCompletionRequest_stop", "");
@@ -623,6 +912,20 @@ CreateChatCompletionRequest::toJson()
 	}
 	const gchar *streamKey = "stream";
 	json_object_set_member(pJsonObject, streamKey, node);
+	if (isprimitive("ChatCompletionStreamOptions")) {
+		ChatCompletionStreamOptions obj = getStreamOptions();
+		node = converttoJson(&obj, "ChatCompletionStreamOptions", "");
+	}
+	else {
+		
+		ChatCompletionStreamOptions obj = static_cast<ChatCompletionStreamOptions> (getStreamOptions());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *stream_optionsKey = "stream_options";
+	json_object_set_member(pJsonObject, stream_optionsKey, node);
 	if (isprimitive("long long")) {
 		long long obj = getTemperature();
 		node = converttoJson(&obj, "long long", "");
@@ -690,6 +993,15 @@ CreateChatCompletionRequest::toJson()
 	}
 	const gchar *tool_choiceKey = "tool_choice";
 	json_object_set_member(pJsonObject, tool_choiceKey, node);
+	if (isprimitive("bool")) {
+		bool obj = getParallelToolCalls();
+		node = converttoJson(&obj, "bool", "");
+	}
+	else {
+		
+	}
+	const gchar *parallel_tool_callsKey = "parallel_tool_calls";
+	json_object_set_member(pJsonObject, parallel_tool_callsKey, node);
 	if (isprimitive("std::string")) {
 		std::string obj = getUser();
 		node = converttoJson(&obj, "std::string", "");
@@ -770,6 +1082,42 @@ CreateChatCompletionRequest::setModel(CreateChatCompletionRequest_model  model)
 	this->model = model;
 }
 
+bool
+CreateChatCompletionRequest::getStore()
+{
+	return store;
+}
+
+void
+CreateChatCompletionRequest::setStore(bool  store)
+{
+	this->store = store;
+}
+
+std::string
+CreateChatCompletionRequest::getReasoningEffort()
+{
+	return reasoning_effort;
+}
+
+void
+CreateChatCompletionRequest::setReasoningEffort(std::string  reasoning_effort)
+{
+	this->reasoning_effort = reasoning_effort;
+}
+
+std::map<string, string>
+CreateChatCompletionRequest::getMetadata()
+{
+	return metadata;
+}
+
+void
+CreateChatCompletionRequest::setMetadata(std::map <string, string> metadata)
+{
+	this->metadata = metadata;
+}
+
 long long
 CreateChatCompletionRequest::getFrequencyPenalty()
 {
@@ -831,6 +1179,18 @@ CreateChatCompletionRequest::setMaxTokens(int  max_tokens)
 }
 
 int
+CreateChatCompletionRequest::getMaxCompletionTokens()
+{
+	return max_completion_tokens;
+}
+
+void
+CreateChatCompletionRequest::setMaxCompletionTokens(int  max_completion_tokens)
+{
+	this->max_completion_tokens = max_completion_tokens;
+}
+
+int
 CreateChatCompletionRequest::getN()
 {
 	return n;
@@ -840,6 +1200,42 @@ void
 CreateChatCompletionRequest::setN(int  n)
 {
 	this->n = n;
+}
+
+std::list<std::string>
+CreateChatCompletionRequest::getModalities()
+{
+	return modalities;
+}
+
+void
+CreateChatCompletionRequest::setModalities(std::list <std::string> modalities)
+{
+	this->modalities = modalities;
+}
+
+PredictionContent
+CreateChatCompletionRequest::getPrediction()
+{
+	return prediction;
+}
+
+void
+CreateChatCompletionRequest::setPrediction(PredictionContent  prediction)
+{
+	this->prediction = prediction;
+}
+
+CreateChatCompletionRequest_audio
+CreateChatCompletionRequest::getAudio()
+{
+	return audio;
+}
+
+void
+CreateChatCompletionRequest::setAudio(CreateChatCompletionRequest_audio  audio)
+{
+	this->audio = audio;
 }
 
 long long
@@ -878,6 +1274,18 @@ CreateChatCompletionRequest::setSeed(int  seed)
 	this->seed = seed;
 }
 
+std::string
+CreateChatCompletionRequest::getServiceTier()
+{
+	return service_tier;
+}
+
+void
+CreateChatCompletionRequest::setServiceTier(std::string  service_tier)
+{
+	this->service_tier = service_tier;
+}
+
 CreateChatCompletionRequest_stop
 CreateChatCompletionRequest::getStop()
 {
@@ -900,6 +1308,18 @@ void
 CreateChatCompletionRequest::setStream(bool  stream)
 {
 	this->stream = stream;
+}
+
+ChatCompletionStreamOptions
+CreateChatCompletionRequest::getStreamOptions()
+{
+	return stream_options;
+}
+
+void
+CreateChatCompletionRequest::setStreamOptions(ChatCompletionStreamOptions  stream_options)
+{
+	this->stream_options = stream_options;
 }
 
 long long
@@ -948,6 +1368,18 @@ void
 CreateChatCompletionRequest::setToolChoice(ChatCompletionToolChoiceOption  tool_choice)
 {
 	this->tool_choice = tool_choice;
+}
+
+bool
+CreateChatCompletionRequest::getParallelToolCalls()
+{
+	return parallel_tool_calls;
+}
+
+void
+CreateChatCompletionRequest::setParallelToolCalls(bool  parallel_tool_calls)
+{
+	this->parallel_tool_calls = parallel_tool_calls;
 }
 
 std::string

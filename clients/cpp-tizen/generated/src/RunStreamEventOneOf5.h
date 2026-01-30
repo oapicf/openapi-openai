@@ -1,7 +1,7 @@
 /*
  * RunStreamEvent_oneOf_5.h
  *
- * Occurs when a [run](/docs/api-reference/runs/object) fails.
+ * Occurs when a [run](/docs/api-reference/runs/object) ends with status &#x60;incomplete&#x60;.
  */
 
 #ifndef _RunStreamEvent_oneOf_5_H_
@@ -21,7 +21,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief Occurs when a [run](/docs/api-reference/runs/object) fails.
+/*! \brief Occurs when a [run](/docs/api-reference/runs/object) ends with status `incomplete`.
  *
  *  \ingroup Models
  *

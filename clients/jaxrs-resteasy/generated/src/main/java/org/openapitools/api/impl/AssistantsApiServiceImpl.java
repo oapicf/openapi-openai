@@ -4,13 +4,9 @@ import org.openapitools.api.*;
 import org.openapitools.model.*;
 
 
-import org.openapitools.model.AssistantFileObject;
 import org.openapitools.model.AssistantObject;
-import org.openapitools.model.CreateAssistantFileRequest;
 import org.openapitools.model.CreateAssistantRequest;
-import org.openapitools.model.DeleteAssistantFileResponse;
 import org.openapitools.model.DeleteAssistantResponse;
-import org.openapitools.model.ListAssistantFilesResponse;
 import org.openapitools.model.ListAssistantsResponse;
 import org.openapitools.model.ModifyAssistantRequest;
 
@@ -26,14 +22,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T10:45:28.938980301Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T14:09:21.247747647Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class AssistantsApiServiceImpl implements AssistantsApiService {
       public Response createAssistant(CreateAssistantRequest createAssistantRequest,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
-      public Response createAssistantFile(String assistantId,CreateAssistantFileRequest createAssistantFileRequest,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
@@ -43,22 +34,7 @@ public class AssistantsApiServiceImpl implements AssistantsApiService {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response deleteAssistantFile(String assistantId,String fileId,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
       public Response getAssistant(String assistantId,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
-      public Response getAssistantFile(String assistantId,String fileId,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
-      public Response listAssistantFiles(String assistantId,Integer limit,String order,String after,String before,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

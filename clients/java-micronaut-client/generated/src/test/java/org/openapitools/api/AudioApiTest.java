@@ -1,5 +1,6 @@
 package org.openapitools.api;
 
+import org.openapitools.model.AudioResponseFormat;
 import java.math.BigDecimal;
 import org.openapitools.model.CreateSpeechRequest;
 import org.openapitools.model.CreateTranscription200Response;
@@ -56,7 +57,7 @@ public class AudioApiTest {
         CreateTranscriptionRequestModel model = new CreateTranscriptionRequestModel();
         String language = "example";
         String prompt = "example";
-        String responseFormat = "json";
+        AudioResponseFormat responseFormat = AudioResponseFormat.fromValue("json");
         BigDecimal temperature = new BigDecimal(78);
         List<String> timestampGranularities = Arrays.asList("example");
 
@@ -78,7 +79,7 @@ public class AudioApiTest {
         File _file = null;
         CreateTranscriptionRequestModel model = new CreateTranscriptionRequestModel();
         String prompt = "example";
-        String responseFormat = "json";
+        AudioResponseFormat responseFormat = AudioResponseFormat.fromValue("json");
         BigDecimal temperature = new BigDecimal(78);
 
         // when

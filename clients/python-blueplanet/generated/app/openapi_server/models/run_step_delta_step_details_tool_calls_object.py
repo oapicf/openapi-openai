@@ -81,7 +81,7 @@ class RunStepDeltaStepDetailsToolCallsObject(Model):
     def tool_calls(self) -> List[RunStepDeltaStepDetailsToolCallsObjectToolCallsInner]:
         """Gets the tool_calls of this RunStepDeltaStepDetailsToolCallsObject.
 
-        An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`.   # noqa: E501
+        An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.   # noqa: E501
 
         :return: The tool_calls of this RunStepDeltaStepDetailsToolCallsObject.
         :rtype: List[RunStepDeltaStepDetailsToolCallsObjectToolCallsInner]
@@ -92,7 +92,7 @@ class RunStepDeltaStepDetailsToolCallsObject(Model):
     def tool_calls(self, tool_calls: List[RunStepDeltaStepDetailsToolCallsObjectToolCallsInner]):
         """Sets the tool_calls of this RunStepDeltaStepDetailsToolCallsObject.
 
-        An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`.   # noqa: E501
+        An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.   # noqa: E501
 
         :param tool_calls: The tool_calls of this RunStepDeltaStepDetailsToolCallsObject.
         :type tool_calls: List[RunStepDeltaStepDetailsToolCallsObjectToolCallsInner]

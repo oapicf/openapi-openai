@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -15,6 +15,7 @@ import (
 	"context"
 	"net/http"
 	"errors"
+	"reflect"
 )
 
 // AssistantsAPIService is a service that implements the logic for the AssistantsAPIServicer
@@ -94,6 +95,17 @@ func (s *AssistantsAPIService) CreateThread(ctx context.Context, createThreadReq
 	return Response(http.StatusNotImplemented, nil), errors.New("CreateThread method not implemented")
 }
 
+// CreateThreadAndRun - Create a thread and run it in one request.
+func (s *AssistantsAPIService) CreateThreadAndRun(ctx context.Context, createThreadAndRunRequest CreateThreadAndRunRequest) (ImplResponse, error) {
+	// TODO - update CreateThreadAndRun with the required logic for this service method.
+	// Add api_assistants_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	// TODO: Uncomment the next line to return response Response(200, RunObject{}) or use other options such as http.Ok ...
+	// return Response(200, RunObject{}), nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("CreateThreadAndRun method not implemented")
+}
+
 // GetThread - Retrieves a thread.
 func (s *AssistantsAPIService) GetThread(ctx context.Context, threadId string) (ImplResponse, error) {
 	// TODO - update GetThread with the required logic for this service method.
@@ -171,15 +183,15 @@ func (s *AssistantsAPIService) ModifyMessage(ctx context.Context, threadId strin
 	return Response(http.StatusNotImplemented, nil), errors.New("ModifyMessage method not implemented")
 }
 
-// CreateThreadAndRun - Create a thread and run it in one request.
-func (s *AssistantsAPIService) CreateThreadAndRun(ctx context.Context, createThreadAndRunRequest CreateThreadAndRunRequest) (ImplResponse, error) {
-	// TODO - update CreateThreadAndRun with the required logic for this service method.
+// DeleteMessage - Deletes a message.
+func (s *AssistantsAPIService) DeleteMessage(ctx context.Context, threadId string, messageId string) (ImplResponse, error) {
+	// TODO - update DeleteMessage with the required logic for this service method.
 	// Add api_assistants_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	// TODO: Uncomment the next line to return response Response(200, RunObject{}) or use other options such as http.Ok ...
-	// return Response(200, RunObject{}), nil
+	// TODO: Uncomment the next line to return response Response(200, DeleteMessageResponse{}) or use other options such as http.Ok ...
+	// return Response(200, DeleteMessageResponse{}), nil
 
-	return Response(http.StatusNotImplemented, nil), errors.New("CreateThreadAndRun method not implemented")
+	return Response(http.StatusNotImplemented, nil), errors.New("DeleteMessage method not implemented")
 }
 
 // ListRuns - Returns a list of runs belonging to a thread.
@@ -194,7 +206,7 @@ func (s *AssistantsAPIService) ListRuns(ctx context.Context, threadId string, li
 }
 
 // CreateRun - Create a run.
-func (s *AssistantsAPIService) CreateRun(ctx context.Context, threadId string, createRunRequest CreateRunRequest) (ImplResponse, error) {
+func (s *AssistantsAPIService) CreateRun(ctx context.Context, threadId string, createRunRequest CreateRunRequest, include []string) (ImplResponse, error) {
 	// TODO - update CreateRun with the required logic for this service method.
 	// Add api_assistants_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -226,17 +238,6 @@ func (s *AssistantsAPIService) ModifyRun(ctx context.Context, threadId string, r
 	return Response(http.StatusNotImplemented, nil), errors.New("ModifyRun method not implemented")
 }
 
-// SubmitToolOuputsToRun - When a run has the &#x60;status: \&quot;requires_action\&quot;&#x60; and &#x60;required_action.type&#x60; is &#x60;submit_tool_outputs&#x60;, this endpoint can be used to submit the outputs from the tool calls once they&#39;re all completed. All outputs must be submitted in a single request. 
-func (s *AssistantsAPIService) SubmitToolOuputsToRun(ctx context.Context, threadId string, runId string, submitToolOutputsRunRequest SubmitToolOutputsRunRequest) (ImplResponse, error) {
-	// TODO - update SubmitToolOuputsToRun with the required logic for this service method.
-	// Add api_assistants_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
-
-	// TODO: Uncomment the next line to return response Response(200, RunObject{}) or use other options such as http.Ok ...
-	// return Response(200, RunObject{}), nil
-
-	return Response(http.StatusNotImplemented, nil), errors.New("SubmitToolOuputsToRun method not implemented")
-}
-
 // CancelRun - Cancels a run that is &#x60;in_progress&#x60;.
 func (s *AssistantsAPIService) CancelRun(ctx context.Context, threadId string, runId string) (ImplResponse, error) {
 	// TODO - update CancelRun with the required logic for this service method.
@@ -249,7 +250,7 @@ func (s *AssistantsAPIService) CancelRun(ctx context.Context, threadId string, r
 }
 
 // ListRunSteps - Returns a list of run steps belonging to a run.
-func (s *AssistantsAPIService) ListRunSteps(ctx context.Context, threadId string, runId string, limit int32, order string, after string, before string) (ImplResponse, error) {
+func (s *AssistantsAPIService) ListRunSteps(ctx context.Context, threadId string, runId string, limit int32, order string, after string, before string, include []string) (ImplResponse, error) {
 	// TODO - update ListRunSteps with the required logic for this service method.
 	// Add api_assistants_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -260,7 +261,7 @@ func (s *AssistantsAPIService) ListRunSteps(ctx context.Context, threadId string
 }
 
 // GetRunStep - Retrieves a run step.
-func (s *AssistantsAPIService) GetRunStep(ctx context.Context, threadId string, runId string, stepId string) (ImplResponse, error) {
+func (s *AssistantsAPIService) GetRunStep(ctx context.Context, threadId string, runId string, stepId string, include []string) (ImplResponse, error) {
 	// TODO - update GetRunStep with the required logic for this service method.
 	// Add api_assistants_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -270,68 +271,13 @@ func (s *AssistantsAPIService) GetRunStep(ctx context.Context, threadId string, 
 	return Response(http.StatusNotImplemented, nil), errors.New("GetRunStep method not implemented")
 }
 
-// ListAssistantFiles - Returns a list of assistant files.
-func (s *AssistantsAPIService) ListAssistantFiles(ctx context.Context, assistantId string, limit int32, order string, after string, before string) (ImplResponse, error) {
-	// TODO - update ListAssistantFiles with the required logic for this service method.
+// SubmitToolOuputsToRun - When a run has the &#x60;status: \&quot;requires_action\&quot;&#x60; and &#x60;required_action.type&#x60; is &#x60;submit_tool_outputs&#x60;, this endpoint can be used to submit the outputs from the tool calls once they&#39;re all completed. All outputs must be submitted in a single request. 
+func (s *AssistantsAPIService) SubmitToolOuputsToRun(ctx context.Context, threadId string, runId string, submitToolOutputsRunRequest SubmitToolOutputsRunRequest) (ImplResponse, error) {
+	// TODO - update SubmitToolOuputsToRun with the required logic for this service method.
 	// Add api_assistants_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
-	// TODO: Uncomment the next line to return response Response(200, ListAssistantFilesResponse{}) or use other options such as http.Ok ...
-	// return Response(200, ListAssistantFilesResponse{}), nil
+	// TODO: Uncomment the next line to return response Response(200, RunObject{}) or use other options such as http.Ok ...
+	// return Response(200, RunObject{}), nil
 
-	return Response(http.StatusNotImplemented, nil), errors.New("ListAssistantFiles method not implemented")
-}
-
-// CreateAssistantFile - Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-func (s *AssistantsAPIService) CreateAssistantFile(ctx context.Context, assistantId string, createAssistantFileRequest CreateAssistantFileRequest) (ImplResponse, error) {
-	// TODO - update CreateAssistantFile with the required logic for this service method.
-	// Add api_assistants_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
-
-	// TODO: Uncomment the next line to return response Response(200, AssistantFileObject{}) or use other options such as http.Ok ...
-	// return Response(200, AssistantFileObject{}), nil
-
-	return Response(http.StatusNotImplemented, nil), errors.New("CreateAssistantFile method not implemented")
-}
-
-// GetAssistantFile - Retrieves an AssistantFile.
-func (s *AssistantsAPIService) GetAssistantFile(ctx context.Context, assistantId string, fileId string) (ImplResponse, error) {
-	// TODO - update GetAssistantFile with the required logic for this service method.
-	// Add api_assistants_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
-
-	// TODO: Uncomment the next line to return response Response(200, AssistantFileObject{}) or use other options such as http.Ok ...
-	// return Response(200, AssistantFileObject{}), nil
-
-	return Response(http.StatusNotImplemented, nil), errors.New("GetAssistantFile method not implemented")
-}
-
-// DeleteAssistantFile - Delete an assistant file.
-func (s *AssistantsAPIService) DeleteAssistantFile(ctx context.Context, assistantId string, fileId string) (ImplResponse, error) {
-	// TODO - update DeleteAssistantFile with the required logic for this service method.
-	// Add api_assistants_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
-
-	// TODO: Uncomment the next line to return response Response(200, DeleteAssistantFileResponse{}) or use other options such as http.Ok ...
-	// return Response(200, DeleteAssistantFileResponse{}), nil
-
-	return Response(http.StatusNotImplemented, nil), errors.New("DeleteAssistantFile method not implemented")
-}
-
-// ListMessageFiles - Returns a list of message files.
-func (s *AssistantsAPIService) ListMessageFiles(ctx context.Context, threadId string, messageId string, limit int32, order string, after string, before string) (ImplResponse, error) {
-	// TODO - update ListMessageFiles with the required logic for this service method.
-	// Add api_assistants_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
-
-	// TODO: Uncomment the next line to return response Response(200, ListMessageFilesResponse{}) or use other options such as http.Ok ...
-	// return Response(200, ListMessageFilesResponse{}), nil
-
-	return Response(http.StatusNotImplemented, nil), errors.New("ListMessageFiles method not implemented")
-}
-
-// GetMessageFile - Retrieves a message file.
-func (s *AssistantsAPIService) GetMessageFile(ctx context.Context, threadId string, messageId string, fileId string) (ImplResponse, error) {
-	// TODO - update GetMessageFile with the required logic for this service method.
-	// Add api_assistants_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
-
-	// TODO: Uncomment the next line to return response Response(200, MessageFileObject{}) or use other options such as http.Ok ...
-	// return Response(200, MessageFileObject{}), nil
-
-	return Response(http.StatusNotImplemented, nil), errors.New("GetMessageFile method not implemented")
+	return Response(http.StatusNotImplemented, nil), errors.New("SubmitToolOuputsToRun method not implemented")
 }

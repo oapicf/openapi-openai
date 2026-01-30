@@ -5,6 +5,7 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
+from openapi_server.models.create_moderation_request_input_one_of_inner import CreateModerationRequestInputOneOfInner
 from openapi_server import util
 
 

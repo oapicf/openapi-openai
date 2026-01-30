@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.jackson.nullable.JsonNullable;
 
+/**
+ * Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
+ **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TruncationObject   {
   

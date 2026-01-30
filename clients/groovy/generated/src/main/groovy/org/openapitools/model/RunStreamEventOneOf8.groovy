@@ -10,7 +10,7 @@ class RunStreamEventOneOf8 {
 
     enum EventEnum {
     
-        THREAD_RUN_EXPIRED("thread.run.expired")
+        THREAD_RUN_CANCELLED("thread.run.cancelled")
     
         private final String value
     

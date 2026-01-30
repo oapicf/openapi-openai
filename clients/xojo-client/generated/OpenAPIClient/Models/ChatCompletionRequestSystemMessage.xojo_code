@@ -2,10 +2,7 @@
 Protected Class ChatCompletionRequestSystemMessage
 
 	#tag Property, Flags = &h0
-		#tag Note
-			The contents of the system message.
-		#tag EndNote
-		content As String
+		content As OpenAPIClient.Models.ChatCompletionRequestSystemMessageContent
 	#tag EndProperty
 
 
@@ -83,7 +80,7 @@ Protected Class ChatCompletionRequestSystemMessage
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="String"
+			Type="ChatCompletionRequestSystemMessageContent"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

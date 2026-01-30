@@ -27,6 +27,8 @@ CreateModerationResponse_results_inner_categories::__init()
 	//hatethreatening = bool(false);
 	//harassment = bool(false);
 	//harassmentthreatening = bool(false);
+	//illicit = bool(false);
+	//illicitviolent = bool(false);
 	//selfharm = bool(false);
 	//selfharmintent = bool(false);
 	//selfharminstructions = bool(false);
@@ -58,6 +60,16 @@ CreateModerationResponse_results_inner_categories::__cleanup()
 	//
 	//delete harassmentthreatening;
 	//harassmentthreatening = NULL;
+	//}
+	//if(illicit != NULL) {
+	//
+	//delete illicit;
+	//illicit = NULL;
+	//}
+	//if(illicitviolent != NULL) {
+	//
+	//delete illicitviolent;
+	//illicitviolent = NULL;
 	//}
 	//if(selfharm != NULL) {
 	//
@@ -142,6 +154,28 @@ CreateModerationResponse_results_inner_categories::fromJson(char* jsonStr)
 
 		if (isprimitive("bool")) {
 			jsonToValue(&harassmentthreatening, node, "bool", "");
+		} else {
+			
+		}
+	}
+	const gchar *illicitKey = "illicit";
+	node = json_object_get_member(pJsonObject, illicitKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("bool")) {
+			jsonToValue(&illicit, node, "bool", "");
+		} else {
+			
+		}
+	}
+	const gchar *illicitviolentKey = "illicit/violent";
+	node = json_object_get_member(pJsonObject, illicitviolentKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("bool")) {
+			jsonToValue(&illicitviolent, node, "bool", "");
 		} else {
 			
 		}
@@ -272,6 +306,24 @@ CreateModerationResponse_results_inner_categories::toJson()
 	const gchar *harassmentthreateningKey = "harassment/threatening";
 	json_object_set_member(pJsonObject, harassmentthreateningKey, node);
 	if (isprimitive("bool")) {
+		bool obj = getIllicit();
+		node = converttoJson(&obj, "bool", "");
+	}
+	else {
+		
+	}
+	const gchar *illicitKey = "illicit";
+	json_object_set_member(pJsonObject, illicitKey, node);
+	if (isprimitive("bool")) {
+		bool obj = getIllicitviolent();
+		node = converttoJson(&obj, "bool", "");
+	}
+	else {
+		
+	}
+	const gchar *illicitviolentKey = "illicit/violent";
+	json_object_set_member(pJsonObject, illicitviolentKey, node);
+	if (isprimitive("bool")) {
 		bool obj = getSelfharm();
 		node = converttoJson(&obj, "bool", "");
 	}
@@ -388,6 +440,30 @@ void
 CreateModerationResponse_results_inner_categories::setHarassmentthreatening(bool  harassmentthreatening)
 {
 	this->harassmentthreatening = harassmentthreatening;
+}
+
+bool
+CreateModerationResponse_results_inner_categories::getIllicit()
+{
+	return illicit;
+}
+
+void
+CreateModerationResponse_results_inner_categories::setIllicit(bool  illicit)
+{
+	this->illicit = illicit;
+}
+
+bool
+CreateModerationResponse_results_inner_categories::getIllicitviolent()
+{
+	return illicitviolent;
+}
+
+void
+CreateModerationResponse_results_inner_categories::setIllicitviolent(bool  illicitviolent)
+{
+	this->illicitviolent = illicitviolent;
 }
 
 bool

@@ -16,9 +16,14 @@ void main() {
   // final instance = AssistantsApiResponseFormatOption();
 
   group('test AssistantsApiResponseFormatOption', () {
-    // Must be one of `text` or `json_object`.
-    // String type (default value: 'text')
+    // The type of response format being defined: `text`
+    // String type
     test('to test the property `type`', () async {
+      // TODO
+    });
+
+    // ResponseFormatJsonSchemaJsonSchema jsonSchema
+    test('to test the property `jsonSchema`', () async {
       // TODO
     });
 

@@ -25,10 +25,10 @@ private class OASAudioApiTest {
         client = new OASClient();
         api = new OASAudioApi(client);
 
-        js = JSON.serialize(EncodingUtil.base64Decode([B@54c37dab));
+        js = JSON.serialize(EncodingUtil.base64Decode([B@34fa61ad));
         res.setHeader('Content-Type', '');
         res.setBody(js);
-        expectedResponse = EncodingUtil.base64Decode([B@54c37dab);
+        expectedResponse = EncodingUtil.base64Decode([B@34fa61ad);
         response = (Blob) api.createSpeech(params);
         System.assertEquals(expectedResponse, response);
     }
@@ -50,7 +50,7 @@ private class OASAudioApiTest {
             'model' => '',
             'language' => 'null',
             'prompt' => 'null',
-            'responseFormat' => 'null',
+            'responseFormat' => '',
             'temperature' => '',
             'timestampGranularities' => new List<String>{'word'}
         };
@@ -88,7 +88,7 @@ private class OASAudioApiTest {
             'file' => Blob.valueOf('Sample text file\nContents'),
             'model' => '',
             'prompt' => 'null',
-            'responseFormat' => 'null',
+            'responseFormat' => '',
             'temperature' => ''
         };
 

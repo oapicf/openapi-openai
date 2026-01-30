@@ -3,7 +3,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * OpenAPI document version: 2.0.0
+ * OpenAPI document version: 2.3.0
  * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -16,15 +16,19 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.model.ChatCompletionRequestSystemMessageContent;
 
 
 
+/**
+ * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. 
+ */
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T10:45:08.090000084Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description = "Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. ")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestSystemMessage   {
   
-  private String content;
+  private ChatCompletionRequestSystemMessageContent content;
 
 
   public enum RoleEnum {
@@ -47,20 +51,19 @@ public class ChatCompletionRequestSystemMessage   {
   private String name;
 
   /**
-   * The contents of the system message.
    */
-  public ChatCompletionRequestSystemMessage content(String content) {
+  public ChatCompletionRequestSystemMessage content(ChatCompletionRequestSystemMessageContent content) {
     this.content = content;
     return this;
   }
 
   
-  @ApiModelProperty(required = true, value = "The contents of the system message.")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty("content")
-  public String getContent() {
+  public ChatCompletionRequestSystemMessageContent getContent() {
     return content;
   }
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestSystemMessageContent content) {
     this.content = content;
   }
 

@@ -1,6 +1,7 @@
 package apimodels;
 
 import apimodels.CreateMessageRequest;
+import apimodels.CreateThreadRequestToolResources;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,13 +15,18 @@ import javax.validation.Valid;
 /**
  * CreateThreadRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateThreadRequest   {
   @JsonProperty("messages")
   @Valid
 
   private List<@Valid CreateMessageRequest> messages = null;
+
+  @JsonProperty("tool_resources")
+  @Valid
+
+  private CreateThreadRequestToolResources toolResources;
 
   @JsonProperty("metadata")
   
@@ -51,13 +57,30 @@ public class CreateThreadRequest   {
     this.messages = messages;
   }
 
+  public CreateThreadRequest toolResources(CreateThreadRequestToolResources toolResources) {
+    this.toolResources = toolResources;
+    return this;
+  }
+
+   /**
+   * Get toolResources
+   * @return toolResources
+  **/
+  public CreateThreadRequestToolResources getToolResources() {
+    return toolResources;
+  }
+
+  public void setToolResources(CreateThreadRequestToolResources toolResources) {
+    this.toolResources = toolResources;
+  }
+
   public CreateThreadRequest metadata(Object metadata) {
     this.metadata = metadata;
     return this;
   }
 
    /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
   **/
   public Object getMetadata() {
@@ -79,12 +102,13 @@ public class CreateThreadRequest   {
     }
     CreateThreadRequest createThreadRequest = (CreateThreadRequest) o;
     return Objects.equals(messages, createThreadRequest.messages) &&
+        Objects.equals(toolResources, createThreadRequest.toolResources) &&
         Objects.equals(metadata, createThreadRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(messages, metadata);
+    return Objects.hash(messages, toolResources, metadata);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -94,6 +118,7 @@ public class CreateThreadRequest   {
     sb.append("class CreateThreadRequest {\n");
     
     sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

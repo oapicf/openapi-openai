@@ -1,5 +1,5 @@
 const utils = require('../utils/utils');
-const ChatCompletionNamedToolChoice_function = require('../models/ChatCompletionNamedToolChoice_function');
+const AssistantsNamedToolChoice_function = require('../models/AssistantsNamedToolChoice_function');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
@@ -14,14 +14,14 @@ module.exports = {
                     'function',
                 ],
             },
-            ...ChatCompletionNamedToolChoice_function.fields(`${keyPrefix}function`, isInput),
+            ...AssistantsNamedToolChoice_function.fields(`${keyPrefix}function`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'type': bundle.inputData?.[`${keyPrefix}type`],
-            'function': utils.removeIfEmpty(ChatCompletionNamedToolChoice_function.mapping(bundle, `${keyPrefix}function`)),
+            'function': utils.removeIfEmpty(AssistantsNamedToolChoice_function.mapping(bundle, `${keyPrefix}function`)),
         }
     },
 }

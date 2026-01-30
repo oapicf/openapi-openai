@@ -1,0 +1,33 @@
+
+<h2>RealtimeResponseStatusDetails</h2>
+<ul class="parameter">
+  <li class="param-required-false">type : String
+    <br/>The type of error that caused the response to fail, corresponding  with the &#x60;status&#x60; field (&#x60;completed&#x60;, &#x60;cancelled&#x60;, &#x60;incomplete&#x60;,  &#x60;failed&#x60;). 
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>completed</dd>
+            <dd>cancelled</dd>
+            <dd>failed</dd>
+            <dd>incomplete</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">reason : String
+    <br/>The reason the Response did not complete. For a &#x60;cancelled&#x60; Response,  one of &#x60;turn_detected&#x60; (the server VAD detected a new start of speech)  or &#x60;client_cancelled&#x60; (the client sent a cancel event). For an  &#x60;incomplete&#x60; Response, one of &#x60;max_output_tokens&#x60; or &#x60;content_filter&#x60;  (the server-side safety filter activated and cut off the response). 
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>turn_detected</dd>
+            <dd>client_cancelled</dd>
+            <dd>max_output_tokens</dd>
+            <dd>content_filter</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">error : RealtimeResponse_status_details_error
+    <br/>
+  </li>
+</ul>

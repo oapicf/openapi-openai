@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.util.List;
+import org.openapitools.model.CreateModerationRequestInputOneOfInner;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,9 +9,9 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The input text to classify
+ * Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models. 
  */
-@ApiModel(description="The input text to classify")
+@ApiModel(description="Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models. ")
 
 public class CreateModerationRequestInput  {
     @Override

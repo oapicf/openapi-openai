@@ -1,0 +1,26 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ProjectUserCreateRequest",
+  "fields": [
+    {
+      "name": "user_id",
+      "type": "string",
+      "doc": "The ID of the user."
+    },
+    {
+      "name": "role",
+      "type": {
+        "type": "enum",
+        "name": "ProjectUserCreateRequest_role",
+        "symbols": [
+          "owner",
+          "member"
+        ]
+      },
+      "doc": "`owner` or `member`"
+    }
+  ]
+
+}

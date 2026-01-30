@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -25,6 +25,10 @@ type MessageDeltaObjectDeltaContentInner struct {
 	ImageFile MessageDeltaContentImageFileObjectImageFile `json:"image_file,omitempty"`
 
 	Text MessageDeltaContentTextObjectText `json:"text,omitempty"`
+
+	Refusal string `json:"refusal,omitempty"`
+
+	ImageUrl MessageDeltaContentImageUrlObjectImageUrl `json:"image_url,omitempty"`
 }
 
 // AssertMessageDeltaObjectDeltaContentInnerRequired checks if the required fields are not zero-ed
@@ -45,6 +49,9 @@ func AssertMessageDeltaObjectDeltaContentInnerRequired(obj MessageDeltaObjectDel
 	if err := AssertMessageDeltaContentTextObjectTextRequired(obj.Text); err != nil {
 		return err
 	}
+	if err := AssertMessageDeltaContentImageUrlObjectImageUrlRequired(obj.ImageUrl); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -54,6 +61,9 @@ func AssertMessageDeltaObjectDeltaContentInnerConstraints(obj MessageDeltaObject
 		return err
 	}
 	if err := AssertMessageDeltaContentTextObjectTextConstraints(obj.Text); err != nil {
+		return err
+	}
+	if err := AssertMessageDeltaContentImageUrlObjectImageUrlConstraints(obj.ImageUrl); err != nil {
 		return err
 	}
 	return nil

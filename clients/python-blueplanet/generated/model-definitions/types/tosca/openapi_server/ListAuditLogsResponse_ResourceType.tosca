@@ -1,0 +1,58 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ListAuditLogsResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ListAuditLogsResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AuditLog = openapi_server.resourceTypes.AuditLog
+}
+resourceTypes {
+
+  ListAuditLogsResponse {
+    title = ListAuditLogsResponse
+    description = ListAuditLogsResponse
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          enum = ["list"]
+          optional = true
+        }
+        data {
+          type = array
+          items.type = AuditLog
+          description = ""
+          optional = true
+        }
+        first_id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        last_id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        has_more {
+          type =  boolean
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ListAuditLogsResponse {
+    title = ListAuditLogsResponse
+    description = ListAuditLogsResponse
+    implements = openapi_server.resourceTypes.ListAuditLogsResponse
+
+  }
+}

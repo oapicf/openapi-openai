@@ -52,7 +52,7 @@ public class FilesControllerTest {
     /**
      * This test is used to validate the implementation of createFile() method
      *
-     * The method should: Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports &#x60;.jsonl&#x60; files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     * The method should: Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
      *
      * TODO fill in the parameters and test return value.
      */
@@ -87,7 +87,7 @@ public class FilesControllerTest {
         }};
         String uri = UriTemplate.of("/files").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, form)
-            .accept("[Ljava.lang.String;@3f3a529f");
+            .accept("[Ljava.lang.String;@2b5747f0");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, OpenAIFile.class);
@@ -131,7 +131,7 @@ public class FilesControllerTest {
             put("file_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.DELETE(uri)
-            .accept("[Ljava.lang.String;@ce8b59e");
+            .accept("[Ljava.lang.String;@75352929");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, DeleteFileResponse.class);
@@ -175,7 +175,7 @@ public class FilesControllerTest {
             put("file_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@5aa5b3af");
+            .accept("[Ljava.lang.String;@1d6d5c2a");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, String.class);
@@ -187,7 +187,7 @@ public class FilesControllerTest {
     /**
      * This test is used to validate the implementation of listFiles() method
      *
-     * The method should: Returns a list of files that belong to the user&#39;s organization.
+     * The method should: Returns a list of files.
      *
      * TODO fill in the parameters and test return value.
      */
@@ -196,9 +196,12 @@ public class FilesControllerTest {
     void listFilesMethodTest() {
         // given
         String purpose = "example";
+        Integer limit = 10000;
+        String order = "desc";
+        String after = "example";
 
         // when
-        ListFilesResponse result = controller.listFiles(purpose).block();
+        ListFilesResponse result = controller.listFiles(purpose, limit, order, after).block();
 
         // then
         Assertions.assertTrue(true);
@@ -216,9 +219,12 @@ public class FilesControllerTest {
         // given
         String uri = UriTemplate.of("/files").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@344cf00f");
+            .accept("[Ljava.lang.String;@d06a341");
         request.getParameters()
-            .add("purpose", "example"); // The query parameter format should be 
+            .add("purpose", "example") // The query parameter format should be 
+            .add("limit", String.valueOf(10000)) // The query parameter format should be 
+            .add("order", "desc") // The query parameter format should be 
+            .add("after", "example"); // The query parameter format should be 
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, ListFilesResponse.class);
@@ -262,7 +268,7 @@ public class FilesControllerTest {
             put("file_id", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@598ff2b3");
+            .accept("[Ljava.lang.String;@1c7f0dd6");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, OpenAIFile.class);

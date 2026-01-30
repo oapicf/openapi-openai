@@ -10,6 +10,8 @@ static create_moderation_response_results_inner_categories_t *create_moderation_
     int hate_threatening,
     int harassment,
     int harassment_threatening,
+    int illicit,
+    int illicit_violent,
     int self_harm,
     int self_harm_intent,
     int self_harm_instructions,
@@ -26,6 +28,8 @@ static create_moderation_response_results_inner_categories_t *create_moderation_
     create_moderation_response_results_inner_categories_local_var->hate_threatening = hate_threatening;
     create_moderation_response_results_inner_categories_local_var->harassment = harassment;
     create_moderation_response_results_inner_categories_local_var->harassment_threatening = harassment_threatening;
+    create_moderation_response_results_inner_categories_local_var->illicit = illicit;
+    create_moderation_response_results_inner_categories_local_var->illicit_violent = illicit_violent;
     create_moderation_response_results_inner_categories_local_var->self_harm = self_harm;
     create_moderation_response_results_inner_categories_local_var->self_harm_intent = self_harm_intent;
     create_moderation_response_results_inner_categories_local_var->self_harm_instructions = self_harm_instructions;
@@ -43,6 +47,8 @@ __attribute__((deprecated)) create_moderation_response_results_inner_categories_
     int hate_threatening,
     int harassment,
     int harassment_threatening,
+    int illicit,
+    int illicit_violent,
     int self_harm,
     int self_harm_intent,
     int self_harm_instructions,
@@ -56,6 +62,8 @@ __attribute__((deprecated)) create_moderation_response_results_inner_categories_
         hate_threatening,
         harassment,
         harassment_threatening,
+        illicit,
+        illicit_violent,
         self_harm,
         self_harm_intent,
         self_harm_instructions,
@@ -113,6 +121,24 @@ cJSON *create_moderation_response_results_inner_categories_convertToJSON(create_
         goto fail;
     }
     if(cJSON_AddBoolToObject(item, "harassment/threatening", create_moderation_response_results_inner_categories->harassment_threatening) == NULL) {
+    goto fail; //Bool
+    }
+
+
+    // create_moderation_response_results_inner_categories->illicit
+    if (!create_moderation_response_results_inner_categories->illicit) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "illicit", create_moderation_response_results_inner_categories->illicit) == NULL) {
+    goto fail; //Bool
+    }
+
+
+    // create_moderation_response_results_inner_categories->illicit_violent
+    if (!create_moderation_response_results_inner_categories->illicit_violent) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "illicit/violent", create_moderation_response_results_inner_categories->illicit_violent) == NULL) {
     goto fail; //Bool
     }
 
@@ -251,6 +277,36 @@ create_moderation_response_results_inner_categories_t *create_moderation_respons
     goto end; //Bool
     }
 
+    // create_moderation_response_results_inner_categories->illicit
+    cJSON *illicit = cJSON_GetObjectItemCaseSensitive(create_moderation_response_results_inner_categoriesJSON, "illicit");
+    if (cJSON_IsNull(illicit)) {
+        illicit = NULL;
+    }
+    if (!illicit) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(illicit))
+    {
+    goto end; //Bool
+    }
+
+    // create_moderation_response_results_inner_categories->illicit_violent
+    cJSON *illicit_violent = cJSON_GetObjectItemCaseSensitive(create_moderation_response_results_inner_categoriesJSON, "illicit/violent");
+    if (cJSON_IsNull(illicit_violent)) {
+        illicit_violent = NULL;
+    }
+    if (!illicit_violent) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(illicit_violent))
+    {
+    goto end; //Bool
+    }
+
     // create_moderation_response_results_inner_categories->self_harm
     cJSON *self_harm = cJSON_GetObjectItemCaseSensitive(create_moderation_response_results_inner_categoriesJSON, "self-harm");
     if (cJSON_IsNull(self_harm)) {
@@ -362,6 +418,8 @@ create_moderation_response_results_inner_categories_t *create_moderation_respons
         hate_threatening->valueint,
         harassment->valueint,
         harassment_threatening->valueint,
+        illicit->valueint,
+        illicit_violent->valueint,
         self_harm->valueint,
         self_harm_intent->valueint,
         self_harm_instructions->valueint,

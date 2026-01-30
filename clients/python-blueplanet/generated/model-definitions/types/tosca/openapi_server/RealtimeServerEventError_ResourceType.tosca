@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventError"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventError"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RealtimeServerEventErrorError = openapi_server.resourceTypes.RealtimeServerEventErrorError
+}
+resourceTypes {
+
+  RealtimeServerEventError {
+    title = RealtimeServerEventError
+    description = RealtimeServerEventError
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "The unique ID of the server event."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;error&#x60;."
+          enum = ["error"]
+          optional = true
+        }
+        error {
+          type = RealtimeServerEventErrorError
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventError {
+    title = RealtimeServerEventError
+    description = RealtimeServerEventError
+    implements = openapi_server.resourceTypes.RealtimeServerEventError
+
+  }
+}

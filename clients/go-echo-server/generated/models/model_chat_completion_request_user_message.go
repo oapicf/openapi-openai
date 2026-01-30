@@ -1,5 +1,6 @@
 package models
 
+// ChatCompletionRequestUserMessage - Messages sent by an end user, containing prompts or additional context information. 
 type ChatCompletionRequestUserMessage struct {
 
 	Content ChatCompletionRequestUserMessageContent `json:"content"`

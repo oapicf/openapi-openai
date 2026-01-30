@@ -21,9 +21,9 @@ class CreateCompletionResponse
     /**
      * The list of completion choices the model generated for the input prompt.
      * @DTA\Data(field="choices")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection17::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection17::class})
-     * @var \App\DTO\Collection17|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection36::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection36::class})
+     * @var \App\DTO\Collection36|null
      */
     public $choices;
 

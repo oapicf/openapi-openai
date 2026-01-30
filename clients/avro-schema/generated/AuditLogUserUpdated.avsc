@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The details for events with this `type`.",
+  "name": "AuditLogUserUpdated",
+  "fields": [
+    {
+      "name": "id",
+      "type": ["null", "string"],
+      "doc": "The project ID.",
+      "default": null
+    },
+    {
+      "name": "changes_requested",
+      "type": ["null", "model.AuditLogUserUpdatedChangesRequested"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

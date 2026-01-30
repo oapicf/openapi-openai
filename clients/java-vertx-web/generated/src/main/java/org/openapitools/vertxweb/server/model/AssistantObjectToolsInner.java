@@ -5,8 +5,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.vertxweb.server.model.AssistantToolsCode;
+import org.openapitools.vertxweb.server.model.AssistantToolsFileSearch;
+import org.openapitools.vertxweb.server.model.AssistantToolsFileSearchFileSearch;
 import org.openapitools.vertxweb.server.model.AssistantToolsFunction;
-import org.openapitools.vertxweb.server.model.AssistantToolsRetrieval;
 import org.openapitools.vertxweb.server.model.FunctionObject;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -16,7 +17,7 @@ public class AssistantObjectToolsInner   {
 
   public enum TypeEnum {
     CODE_INTERPRETER("code_interpreter"),
-    RETRIEVAL("retrieval"),
+    FILE_SEARCH("file_search"),
     FUNCTION("function");
 
     private String value;
@@ -33,14 +34,16 @@ public class AssistantObjectToolsInner   {
   }
 
   private TypeEnum type;
+  private AssistantToolsFileSearchFileSearch fileSearch;
   private FunctionObject function;
 
   public AssistantObjectToolsInner () {
 
   }
 
-  public AssistantObjectToolsInner (TypeEnum type, FunctionObject function) {
+  public AssistantObjectToolsInner (TypeEnum type, AssistantToolsFileSearchFileSearch fileSearch, FunctionObject function) {
     this.type = type;
+    this.fileSearch = fileSearch;
     this.function = function;
   }
 
@@ -51,6 +54,15 @@ public class AssistantObjectToolsInner   {
   }
   public void setType(TypeEnum type) {
     this.type = type;
+  }
+
+    
+  @JsonProperty("file_search")
+  public AssistantToolsFileSearchFileSearch getFileSearch() {
+    return fileSearch;
+  }
+  public void setFileSearch(AssistantToolsFileSearchFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
   }
 
     
@@ -73,12 +85,13 @@ public class AssistantObjectToolsInner   {
     }
     AssistantObjectToolsInner assistantObjectToolsInner = (AssistantObjectToolsInner) o;
     return Objects.equals(type, assistantObjectToolsInner.type) &&
+        Objects.equals(fileSearch, assistantObjectToolsInner.fileSearch) &&
         Objects.equals(function, assistantObjectToolsInner.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, function);
+    return Objects.hash(type, fileSearch, function);
   }
 
   @Override
@@ -87,6 +100,7 @@ public class AssistantObjectToolsInner   {
     sb.append("class AssistantObjectToolsInner {\n");
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    fileSearch: ").append(toIndentedString(fileSearch)).append("\n");
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();

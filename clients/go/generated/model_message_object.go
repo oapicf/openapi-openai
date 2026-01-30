@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -45,9 +45,9 @@ type MessageObject struct {
 	AssistantId NullableString `json:"assistant_id"`
 	// The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.
 	RunId NullableString `json:"run_id"`
-	// A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-	FileIds []string `json:"file_ids"`
-	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	// A list of files attached to the message, and the tools they were added to.
+	Attachments []CreateMessageRequestAttachmentsInner `json:"attachments"`
+	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	Metadata map[string]interface{} `json:"metadata"`
 }
 
@@ -57,7 +57,7 @@ type _MessageObject MessageObject
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessageObject(id string, object string, createdAt int32, threadId string, status string, incompleteDetails NullableMessageObjectIncompleteDetails, completedAt NullableInt32, incompleteAt NullableInt32, role string, content []MessageObjectContentInner, assistantId NullableString, runId NullableString, fileIds []string, metadata map[string]interface{}) *MessageObject {
+func NewMessageObject(id string, object string, createdAt int32, threadId string, status string, incompleteDetails NullableMessageObjectIncompleteDetails, completedAt NullableInt32, incompleteAt NullableInt32, role string, content []MessageObjectContentInner, assistantId NullableString, runId NullableString, attachments []CreateMessageRequestAttachmentsInner, metadata map[string]interface{}) *MessageObject {
 	this := MessageObject{}
 	this.Id = id
 	this.Object = object
@@ -71,7 +71,7 @@ func NewMessageObject(id string, object string, createdAt int32, threadId string
 	this.Content = content
 	this.AssistantId = assistantId
 	this.RunId = runId
-	this.FileIds = fileIds
+	this.Attachments = attachments
 	this.Metadata = metadata
 	return &this
 }
@@ -382,28 +382,30 @@ func (o *MessageObject) SetRunId(v string) {
 	o.RunId.Set(&v)
 }
 
-// GetFileIds returns the FileIds field value
-func (o *MessageObject) GetFileIds() []string {
+// GetAttachments returns the Attachments field value
+// If the value is explicit nil, the zero value for []CreateMessageRequestAttachmentsInner will be returned
+func (o *MessageObject) GetAttachments() []CreateMessageRequestAttachmentsInner {
 	if o == nil {
-		var ret []string
+		var ret []CreateMessageRequestAttachmentsInner
 		return ret
 	}
 
-	return o.FileIds
+	return o.Attachments
 }
 
-// GetFileIdsOk returns a tuple with the FileIds field value
+// GetAttachmentsOk returns a tuple with the Attachments field value
 // and a boolean to check if the value has been set.
-func (o *MessageObject) GetFileIdsOk() ([]string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MessageObject) GetAttachmentsOk() ([]CreateMessageRequestAttachmentsInner, bool) {
+	if o == nil || IsNil(o.Attachments) {
 		return nil, false
 	}
-	return o.FileIds, true
+	return o.Attachments, true
 }
 
-// SetFileIds sets field value
-func (o *MessageObject) SetFileIds(v []string) {
-	o.FileIds = v
+// SetAttachments sets field value
+func (o *MessageObject) SetAttachments(v []CreateMessageRequestAttachmentsInner) {
+	o.Attachments = v
 }
 
 // GetMetadata returns the Metadata field value
@@ -454,7 +456,9 @@ func (o MessageObject) ToMap() (map[string]interface{}, error) {
 	toSerialize["content"] = o.Content
 	toSerialize["assistant_id"] = o.AssistantId.Get()
 	toSerialize["run_id"] = o.RunId.Get()
-	toSerialize["file_ids"] = o.FileIds
+	if o.Attachments != nil {
+		toSerialize["attachments"] = o.Attachments
+	}
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
@@ -478,7 +482,7 @@ func (o *MessageObject) UnmarshalJSON(data []byte) (err error) {
 		"content",
 		"assistant_id",
 		"run_id",
-		"file_ids",
+		"attachments",
 		"metadata",
 	}
 

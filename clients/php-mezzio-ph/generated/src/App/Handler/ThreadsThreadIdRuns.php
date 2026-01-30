@@ -18,6 +18,11 @@ class ThreadsThreadIdRuns
     /**
      * Create a run.
      * @PHA\Post()
+     * @PHA\Attribute(name=PHAttribute\Transfer::class, options={
+     *     "type":\App\DTO\CreateRunQueryData::class,
+     *     "objectAttr":"queryData",
+     *     "source": PHAttribute\Transfer::SOURCE_GET
+     * })
      * TODO check if consumer is valid, if it has correct priority and if it can be moved to class annotation
      * @PHA\Consumer(name=PHConsumer\Json::class, mediaRange="application/json")
      * @PHA\Attribute(name=PHAttribute\Transfer::class, options={"type":\App\DTO\CreateRunRequest::class,"objectAttr":"bodyData"})
@@ -32,6 +37,8 @@ class ThreadsThreadIdRuns
     public function createRun(ServerRequestInterface $request): \App\DTO\RunObject
     {
         //TODO implement method
+        /** @var \App\DTO\CreateRunQueryData $queryData */
+        $queryData = $request->getAttribute("queryData");
         /** @var \App\DTO\CreateRunRequest $bodyData */
         $bodyData = $request->getAttribute("bodyData");
         throw new PHException\HttpCode(501, "Not implemented");

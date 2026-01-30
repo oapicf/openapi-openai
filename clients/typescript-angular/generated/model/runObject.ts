@@ -42,7 +42,7 @@ export interface RunObject {
      */
     assistant_id: string;
     /**
-     * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+     * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
      */
     status: RunObject.StatusEnum;
     required_action: RunObjectRequiredAction | null;
@@ -81,11 +81,7 @@ export interface RunObject {
      */
     tools: Array<AssistantObjectToolsInner>;
     /**
-     * The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
-     */
-    file_ids: Array<string>;
-    /**
-     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
      */
     metadata: object | null;
     usage: RunCompletionUsage | null;
@@ -93,6 +89,10 @@ export interface RunObject {
      * The sampling temperature used for this run. If not set, defaults to 1.
      */
     temperature?: number | null;
+    /**
+     * The nucleus sampling value used for this run. If not set, defaults to 1.
+     */
+    top_p?: number | null;
     /**
      * The maximum number of prompt tokens specified to have been used over the course of the run. 
      */
@@ -103,6 +103,10 @@ export interface RunObject {
     max_completion_tokens: number | null;
     truncation_strategy: TruncationObject;
     tool_choice: AssistantsApiToolChoiceOption;
+    /**
+     * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+     */
+    parallel_tool_calls: boolean;
     response_format: AssistantsApiResponseFormatOption;
 }
 export namespace RunObject {
@@ -118,6 +122,7 @@ export namespace RunObject {
         Cancelled: 'cancelled',
         Failed: 'failed',
         Completed: 'completed',
+        Incomplete: 'incomplete',
         Expired: 'expired'
     } as const;
     export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];

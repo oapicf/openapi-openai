@@ -3,7 +3,7 @@ Protected Class CreateChatCompletionRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
-			A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).
+			A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
 		#tag EndNote
 		messages() As OpenAPIClient.Models.ChatCompletionRequestMessage
 	#tag EndProperty
@@ -16,7 +16,31 @@ Protected Class CreateChatCompletionRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
-			Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+			Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. 
+		#tag EndNote
+		store As Xoson.O.OptionalBoolean
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			**o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
+		#tag EndNote
+		reasoning_effort As Xoson.O.OptionalString
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). 
+		#tag EndNote
+		metadata As Dictionary
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. 
 		#tag EndNote
 		frequency_penalty As Xoson.O.OptionalDouble
 	#tag EndProperty
@@ -32,7 +56,7 @@ Protected Class CreateChatCompletionRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
-			Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.
+			Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. 
 		#tag EndNote
 		logprobs As Xoson.O.OptionalBoolean
 	#tag EndProperty
@@ -40,7 +64,7 @@ Protected Class CreateChatCompletionRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
-			An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.
+			An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. 
 		#tag EndNote
 		top_logprobs As Xoson.O.OptionalInteger
 	#tag EndProperty
@@ -48,9 +72,17 @@ Protected Class CreateChatCompletionRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
+			The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). 
 		#tag EndNote
-		max_tokens As Xoson.O.OptionalInteger
+		Attributes( Deprecated ) max_tokens As Xoson.O.OptionalInteger
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). 
+		#tag EndNote
+		max_completion_tokens As Xoson.O.OptionalInteger
 	#tag EndProperty
 
 
@@ -64,7 +96,25 @@ Protected Class CreateChatCompletionRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
-			Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+			Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `["text"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `["text", "audio"]` 
+		#tag EndNote
+		modalities() As String
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		prediction As OpenAPIClient.Models.PredictionContent
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		audio As OpenAPIClient.Models.CreateChatCompletionRequestAudio
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. 
 		#tag EndNote
 		presence_penalty As Xoson.O.OptionalDouble
 	#tag EndProperty
@@ -84,6 +134,14 @@ Protected Class CreateChatCompletionRequest
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. 
+		#tag EndNote
+		service_tier As Xoson.O.OptionalString
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
 		stop As OpenAPIClient.Models.CreateChatCompletionRequestStop
 	#tag EndProperty
 
@@ -97,8 +155,13 @@ Protected Class CreateChatCompletionRequest
 
 
 	#tag Property, Flags = &h0
+		stream_options As OpenAPIClient.Models.ChatCompletionStreamOptions
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
 		#tag Note
-			What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both. 
+			What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. 
 		#tag EndNote
 		temperature As Xoson.O.OptionalDouble
 	#tag EndProperty
@@ -127,7 +190,15 @@ Protected Class CreateChatCompletionRequest
 
 	#tag Property, Flags = &h0
 		#tag Note
-			A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+			Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+		#tag EndNote
+		parallel_tool_calls As Xoson.O.OptionalBoolean
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 		#tag EndNote
 		user As Xoson.O.OptionalString
 	#tag EndProperty
@@ -146,7 +217,70 @@ Protected Class CreateChatCompletionRequest
 	#tag EndProperty
 
 
+    #tag Enum, Name = Reasoning_effortEnum, Type = Integer, Flags = &h0
+        
+        Low
+        Medium
+        High
+        
+    #tag EndEnum
 
+    #tag Enum, Name = ModalitiesEnum, Type = Integer, Flags = &h0
+        
+        Text
+        Audio
+        
+    #tag EndEnum
+
+    #tag Enum, Name = Service_tierEnum, Type = Integer, Flags = &h0
+        
+        Auto
+        Default
+        
+    #tag EndEnum
+
+
+	#tag Method, Flags = &h0
+		Shared Function Reasoning_effortEnumToString(value As Reasoning_effortEnum) As String
+		  Select Case value
+		    
+		    Case Reasoning_effortEnum.Low
+		      Return "low"
+		    Case Reasoning_effortEnum.Medium
+		      Return "medium"
+		    Case Reasoning_effortEnum.High
+		      Return "high"
+		    
+		  End Select
+		  Return ""
+		End Function
+	#tag EndMethod
+	#tag Method, Flags = &h0
+		Shared Function ModalitiesEnumToString(value As ModalitiesEnum) As String
+		  Select Case value
+		    
+		    Case ModalitiesEnum.Text
+		      Return "text"
+		    Case ModalitiesEnum.Audio
+		      Return "audio"
+		    
+		  End Select
+		  Return ""
+		End Function
+	#tag EndMethod
+	#tag Method, Flags = &h0
+		Shared Function Service_tierEnumToString(value As Service_tierEnum) As String
+		  Select Case value
+		    
+		    Case Service_tierEnum.Auto
+		      Return "auto"
+		    Case Service_tierEnum.Default
+		      Return "default"
+		    
+		  End Select
+		  Return ""
+		End Function
+	#tag EndMethod
 
 
 	#tag ViewBehavior
@@ -199,6 +333,22 @@ Protected Class CreateChatCompletionRequest
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="store"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="metadata"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Dictionary"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="frequency_penalty"
 			Visible=false
 			Group="Behavior"
@@ -239,11 +389,35 @@ Protected Class CreateChatCompletionRequest
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="max_completion_tokens"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="n"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="prediction"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="PredictionContent"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="audio"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="CreateChatCompletionRequestAudio"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -287,6 +461,14 @@ Protected Class CreateChatCompletionRequest
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="stream_options"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="ChatCompletionStreamOptions"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="temperature"
 			Visible=false
 			Group="Behavior"
@@ -316,6 +498,14 @@ Protected Class CreateChatCompletionRequest
 			Group="Behavior"
 			InitialValue=""
 			Type="ChatCompletionToolChoiceOption"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="parallel_tool_calls"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

@@ -5,6 +5,8 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
+from openapi_server.models.completion_usage_completion_tokens_details import CompletionUsageCompletionTokensDetails
+from openapi_server.models.completion_usage_prompt_tokens_details import CompletionUsagePromptTokensDetails
 from openapi_server import util
 
 
@@ -14,28 +16,36 @@ class CompletionUsage(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, completion_tokens: int=None, prompt_tokens: int=None, total_tokens: int=None):
+    def __init__(self, completion_tokens: int=None, prompt_tokens: int=None, total_tokens: int=None, completion_tokens_details: CompletionUsageCompletionTokensDetails=None, prompt_tokens_details: CompletionUsagePromptTokensDetails=None):
         """CompletionUsage - a model defined in OpenAPI
 
         :param completion_tokens: The completion_tokens of this CompletionUsage.
         :param prompt_tokens: The prompt_tokens of this CompletionUsage.
         :param total_tokens: The total_tokens of this CompletionUsage.
+        :param completion_tokens_details: The completion_tokens_details of this CompletionUsage.
+        :param prompt_tokens_details: The prompt_tokens_details of this CompletionUsage.
         """
         self.openapi_types = {
             'completion_tokens': int,
             'prompt_tokens': int,
-            'total_tokens': int
+            'total_tokens': int,
+            'completion_tokens_details': CompletionUsageCompletionTokensDetails,
+            'prompt_tokens_details': CompletionUsagePromptTokensDetails
         }
 
         self.attribute_map = {
             'completion_tokens': 'completion_tokens',
             'prompt_tokens': 'prompt_tokens',
-            'total_tokens': 'total_tokens'
+            'total_tokens': 'total_tokens',
+            'completion_tokens_details': 'completion_tokens_details',
+            'prompt_tokens_details': 'prompt_tokens_details'
         }
 
         self._completion_tokens = completion_tokens
         self._prompt_tokens = prompt_tokens
         self._total_tokens = total_tokens
+        self._completion_tokens_details = completion_tokens_details
+        self._prompt_tokens_details = prompt_tokens_details
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'CompletionUsage':
@@ -120,3 +130,45 @@ class CompletionUsage(Model):
             raise ValueError("Invalid value for `total_tokens`, must not be `None`")
 
         self._total_tokens = total_tokens
+
+    @property
+    def completion_tokens_details(self):
+        """Gets the completion_tokens_details of this CompletionUsage.
+
+
+        :return: The completion_tokens_details of this CompletionUsage.
+        :rtype: CompletionUsageCompletionTokensDetails
+        """
+        return self._completion_tokens_details
+
+    @completion_tokens_details.setter
+    def completion_tokens_details(self, completion_tokens_details):
+        """Sets the completion_tokens_details of this CompletionUsage.
+
+
+        :param completion_tokens_details: The completion_tokens_details of this CompletionUsage.
+        :type completion_tokens_details: CompletionUsageCompletionTokensDetails
+        """
+
+        self._completion_tokens_details = completion_tokens_details
+
+    @property
+    def prompt_tokens_details(self):
+        """Gets the prompt_tokens_details of this CompletionUsage.
+
+
+        :return: The prompt_tokens_details of this CompletionUsage.
+        :rtype: CompletionUsagePromptTokensDetails
+        """
+        return self._prompt_tokens_details
+
+    @prompt_tokens_details.setter
+    def prompt_tokens_details(self, prompt_tokens_details):
+        """Sets the prompt_tokens_details of this CompletionUsage.
+
+
+        :param prompt_tokens_details: The prompt_tokens_details of this CompletionUsage.
+        :type prompt_tokens_details: CompletionUsagePromptTokensDetails
+        """
+
+        self._prompt_tokens_details = prompt_tokens_details

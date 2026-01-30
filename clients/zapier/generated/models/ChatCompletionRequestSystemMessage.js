@@ -1,15 +1,11 @@
 const utils = require('../utils/utils');
+const ChatCompletionRequestSystemMessage_content = require('../models/ChatCompletionRequestSystemMessage_content');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
         const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
-            {
-                key: `${keyPrefix}content`,
-                label: `The contents of the system message. - [${labelPrefix}content]`,
-                required: true,
-                type: 'string',
-            },
+            ...ChatCompletionRequestSystemMessage_content.fields(`${keyPrefix}content`, isInput),
             {
                 key: `${keyPrefix}role`,
                 label: `The role of the messages author, in this case `system`. - [${labelPrefix}role]`,
@@ -29,7 +25,7 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
-            'content': bundle.inputData?.[`${keyPrefix}content`],
+            'content': utils.removeIfEmpty(ChatCompletionRequestSystemMessage_content.mapping(bundle, `${keyPrefix}content`)),
             'role': bundle.inputData?.[`${keyPrefix}role`],
             'name': bundle.inputData?.[`${keyPrefix}name`],
         }

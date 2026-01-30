@@ -5,22 +5,28 @@
 -export_type([openapi_fine_tuning_job_event/0]).
 
 -type openapi_fine_tuning_job_event() ::
-    #{ 'id' := binary(),
+    #{ 'object' := binary(),
+       'id' := binary(),
        'created_at' := integer(),
        'level' := binary(),
        'message' := binary(),
-       'object' := binary()
+       'type' => binary(),
+       'data' => maps:map()
      }.
 
-encode(#{ 'id' := Id,
+encode(#{ 'object' := Object,
+          'id' := Id,
           'created_at' := CreatedAt,
           'level' := Level,
           'message' := Message,
-          'object' := Object
+          'type' := Type,
+          'data' := Data
         }) ->
-    #{ 'id' => Id,
+    #{ 'object' => Object,
+       'id' => Id,
        'created_at' => CreatedAt,
        'level' => Level,
        'message' => Message,
-       'object' => Object
+       'type' => Type,
+       'data' => Data
      }.

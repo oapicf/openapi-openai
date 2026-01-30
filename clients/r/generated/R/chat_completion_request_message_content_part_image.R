@@ -1,7 +1,7 @@
 #' Create a new ChatCompletionRequestMessageContentPartImage
 #'
 #' @description
-#' ChatCompletionRequestMessageContentPartImage Class
+#' Learn about [image inputs](/docs/guides/vision). 
 #'
 #' @docType class
 #' @title ChatCompletionRequestMessageContentPartImage

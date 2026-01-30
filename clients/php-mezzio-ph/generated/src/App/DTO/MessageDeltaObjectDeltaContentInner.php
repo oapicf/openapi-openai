@@ -41,4 +41,19 @@ class MessageDeltaObjectDeltaContentInner
      */
     public $text;
 
+    /**
+     * @DTA\Data(field="refusal", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"string"})
+     * @var string|null
+     */
+    public $refusal;
+
+    /**
+     * @DTA\Data(field="image_url", nullable=true)
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\MessageDeltaContentImageUrlObjectImageUrl::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\MessageDeltaContentImageUrlObjectImageUrl::class})
+     * @var \App\DTO\MessageDeltaContentImageUrlObjectImageUrl|null
+     */
+    public $image_url;
+
 }

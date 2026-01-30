@@ -3,6 +3,9 @@ package org.openapitools.model;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.model.MessageContentImageFileObject;
 import org.openapitools.model.MessageContentImageFileObjectImageFile;
+import org.openapitools.model.MessageContentImageUrlObject;
+import org.openapitools.model.MessageContentImageUrlObjectImageUrl;
+import org.openapitools.model.MessageContentRefusalObject;
 import org.openapitools.model.MessageContentTextObject;
 import org.openapitools.model.MessageContentTextObjectText;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
@@ -41,11 +44,27 @@ public class MessageObjectContentInnerTest {
     }
 
     /**
+     * Test the property 'imageUrl'
+     */
+    @Test
+    public void imageUrlTest() {
+        // TODO: test imageUrl
+    }
+
+    /**
      * Test the property 'text'
      */
     @Test
     public void textTest() {
         // TODO: test text
+    }
+
+    /**
+     * Test the property 'refusal'
+     */
+    @Test
+    public void refusalTest() {
+        // TODO: test refusal
     }
 
 }

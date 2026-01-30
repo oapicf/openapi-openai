@@ -2,6 +2,8 @@ namespace OpenAPI.Model
 
 open System
 open System.Collections.Generic
+open OpenAPI.Model.CreateMessageRequestAttachmentsInner
+open OpenAPI.Model.CreateMessageRequestContent
 
 module CreateMessageRequest =
 
@@ -13,8 +15,8 @@ module CreateMessageRequest =
 
   type CreateMessageRequest = {
     Role : RoleEnum;
-    Content : string;
-    FileIds : string[];
+    Content : CreateMessageRequestContent;
+    Attachments : CreateMessageRequestAttachmentsInner[];
     Metadata : obj;
   }
   //#endregion

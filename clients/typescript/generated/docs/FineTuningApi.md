@@ -104,6 +104,24 @@ const request: FineTuningApiCreateFineTuningJobRequest = {
       },
     ],
     seed: 42,
+    method: {
+      type: "supervised",
+      supervised: {
+        hyperparameters: {
+          batchSize: null,
+          learningRateMultiplier: null,
+          nEpochs: null,
+        },
+      },
+      dpo: {
+        hyperparameters: {
+          beta: null,
+          batchSize: null,
+          learningRateMultiplier: null,
+          nEpochs: null,
+        },
+      },
+    },
   },
 };
 

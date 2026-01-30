@@ -25,10 +25,16 @@
     <Compile Include="AssistantsApiTests.fs" />
     <Compile Include="AudioApiTestsHelper.fs" />
     <Compile Include="AudioApiTests.fs" />
+    <Compile Include="AuditLogsApiTestsHelper.fs" />
+    <Compile Include="AuditLogsApiTests.fs" />
+    <Compile Include="BatchApiTestsHelper.fs" />
+    <Compile Include="BatchApiTests.fs" />
     <Compile Include="ChatApiTestsHelper.fs" />
     <Compile Include="ChatApiTests.fs" />
     <Compile Include="CompletionsApiTestsHelper.fs" />
     <Compile Include="CompletionsApiTests.fs" />
+    <Compile Include="DefaultApiTestsHelper.fs" />
+    <Compile Include="DefaultApiTests.fs" />
     <Compile Include="EmbeddingsApiTestsHelper.fs" />
     <Compile Include="EmbeddingsApiTests.fs" />
     <Compile Include="FilesApiTestsHelper.fs" />
@@ -37,10 +43,24 @@
     <Compile Include="FineTuningApiTests.fs" />
     <Compile Include="ImagesApiTestsHelper.fs" />
     <Compile Include="ImagesApiTests.fs" />
+    <Compile Include="InvitesApiTestsHelper.fs" />
+    <Compile Include="InvitesApiTests.fs" />
     <Compile Include="ModelsApiTestsHelper.fs" />
     <Compile Include="ModelsApiTests.fs" />
     <Compile Include="ModerationsApiTestsHelper.fs" />
     <Compile Include="ModerationsApiTests.fs" />
+    <Compile Include="ProjectsApiTestsHelper.fs" />
+    <Compile Include="ProjectsApiTests.fs" />
+    <Compile Include="RealtimeApiTestsHelper.fs" />
+    <Compile Include="RealtimeApiTests.fs" />
+    <Compile Include="UploadsApiTestsHelper.fs" />
+    <Compile Include="UploadsApiTests.fs" />
+    <Compile Include="UsageApiTestsHelper.fs" />
+    <Compile Include="UsageApiTests.fs" />
+    <Compile Include="UsersApiTestsHelper.fs" />
+    <Compile Include="UsersApiTests.fs" />
+    <Compile Include="VectorStoresApiTestsHelper.fs" />
+    <Compile Include="VectorStoresApiTests.fs" />
   </ItemGroup>
 
 </Project>

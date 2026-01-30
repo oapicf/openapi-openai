@@ -60,9 +60,9 @@ ALLOY(String.valueOf("alloy")), ECHO(String.valueOf("echo")), FABLE(String.value
 }
 
  /**
-  * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+  * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
   */
-  @ApiModelProperty(required = true, value = "The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).")
+  @ApiModelProperty(required = true, value = "The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).")
 
   private VoiceEnum voice;
 
@@ -112,7 +112,7 @@ MP3(String.valueOf("mp3")), OPUS(String.valueOf("opus")), AAC(String.valueOf("aa
 
   @Valid
 
-  private BigDecimal speed = new BigDecimal("1.0");
+  private BigDecimal speed = new BigDecimal("1");
  /**
    * Get model
    * @return model
@@ -152,7 +152,7 @@ MP3(String.valueOf("mp3")), OPUS(String.valueOf("opus")), AAC(String.valueOf("aa
   }
 
  /**
-   * The voice to use when generating the audio. Supported voices are &#x60;alloy&#x60;, &#x60;echo&#x60;, &#x60;fable&#x60;, &#x60;onyx&#x60;, &#x60;nova&#x60;, and &#x60;shimmer&#x60;. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+   * The voice to use when generating the audio. Supported voices are &#x60;alloy&#x60;, &#x60;echo&#x60;, &#x60;fable&#x60;, &#x60;onyx&#x60;, &#x60;nova&#x60;, and &#x60;shimmer&#x60;. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
    * @return voice
   **/
   @JsonProperty("voice")
@@ -197,11 +197,11 @@ MP3(String.valueOf("mp3")), OPUS(String.valueOf("opus")), AAC(String.valueOf("aa
  /**
    * The speed of the generated audio. Select a value from &#x60;0.25&#x60; to &#x60;4.0&#x60;. &#x60;1.0&#x60; is the default.
    * minimum: 0.25
-   * maximum: 4.0
+   * maximum: 4
    * @return speed
   **/
   @JsonProperty("speed")
- @DecimalMin("0.25") @DecimalMax("4.0")  public BigDecimal getSpeed() {
+ @DecimalMin("0.25") @DecimalMax("4")  public BigDecimal getSpeed() {
     return speed;
   }
 

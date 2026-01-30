@@ -87,7 +87,7 @@ public enum ResponseFormatEnum {
 
   private ResponseFormatEnum responseFormat = ResponseFormatEnum.MP3;
 
-  private BigDecimal speed = new BigDecimal("1.0");
+  private BigDecimal speed = new BigDecimal("1");
 
   /**
    **/
@@ -129,7 +129,7 @@ public enum ResponseFormatEnum {
 
 
   /**
-   * The voice to use when generating the audio. Supported voices are &#x60;alloy&#x60;, &#x60;echo&#x60;, &#x60;fable&#x60;, &#x60;onyx&#x60;, &#x60;nova&#x60;, and &#x60;shimmer&#x60;. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+   * The voice to use when generating the audio. Supported voices are &#x60;alloy&#x60;, &#x60;echo&#x60;, &#x60;fable&#x60;, &#x60;onyx&#x60;, &#x60;nova&#x60;, and &#x60;shimmer&#x60;. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
    **/
   public CreateSpeechRequest voice(VoiceEnum voice) {
     this.voice = voice;
@@ -137,7 +137,7 @@ public enum ResponseFormatEnum {
   }
 
   
-  @ApiModelProperty(required = true, value = "The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).")
+  @ApiModelProperty(required = true, value = "The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).")
   @JsonProperty("voice")
   @NotNull
   public VoiceEnum getVoice() {
@@ -170,7 +170,7 @@ public enum ResponseFormatEnum {
   /**
    * The speed of the generated audio. Select a value from &#x60;0.25&#x60; to &#x60;4.0&#x60;. &#x60;1.0&#x60; is the default.
    * minimum: 0.25
-   * maximum: 4.0
+   * maximum: 4
    **/
   public CreateSpeechRequest speed(BigDecimal speed) {
     this.speed = speed;
@@ -180,7 +180,7 @@ public enum ResponseFormatEnum {
   
   @ApiModelProperty(value = "The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.")
   @JsonProperty("speed")
- @DecimalMin("0.25") @DecimalMax("4.0")  public BigDecimal getSpeed() {
+ @DecimalMin("0.25") @DecimalMax("4")  public BigDecimal getSpeed() {
     return speed;
   }
   public void setSpeed(BigDecimal speed) {

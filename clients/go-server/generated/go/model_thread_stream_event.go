@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -16,6 +16,9 @@ package openapi
 
 // ThreadStreamEvent - Occurs when a new [thread](/docs/api-reference/threads/object) is created.
 type ThreadStreamEvent struct {
+
+	// Whether to enable input audio transcription.
+	Enabled bool `json:"enabled,omitempty"`
 
 	Event string `json:"event"`
 

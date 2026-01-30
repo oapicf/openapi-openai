@@ -7,6 +7,13 @@ goog.provide('API.Client.AssistantStreamEvent');
 API.Client.AssistantStreamEvent = function() {}
 
 /**
+ * Whether to enable input audio transcription.
+ * @type {!boolean}
+ * @export
+ */
+API.Client.AssistantStreamEvent.prototype.enabled;
+
+/**
  * @type {!string}
  * @export
  */

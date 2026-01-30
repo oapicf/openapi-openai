@@ -37,6 +37,22 @@ test_that("harassment/threatening", {
   #expect_equal(model.instance$`harassment/threatening`, "EXPECTED_RESULT")
 })
 
+test_that("illicit", {
+  # tests for the property `illicit` (numeric)
+  # The score for the category &#39;illicit&#39;.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`illicit`, "EXPECTED_RESULT")
+})
+
+test_that("illicit/violent", {
+  # tests for the property `illicit/violent` (numeric)
+  # The score for the category &#39;illicit/violent&#39;.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`illicit/violent`, "EXPECTED_RESULT")
+})
+
 test_that("self-harm", {
   # tests for the property `self-harm` (numeric)
   # The score for the category &#39;self-harm&#39;.

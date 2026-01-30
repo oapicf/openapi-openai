@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The details for events with this `type`.",
+  "name": "AuditLogInviteSent",
+  "fields": [
+    {
+      "name": "id",
+      "type": ["null", "string"],
+      "doc": "The ID of the invite.",
+      "default": null
+    },
+    {
+      "name": "data",
+      "type": ["null", "model.AuditLogInviteSentData"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

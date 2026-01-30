@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -14,16 +14,17 @@ syntax = "proto3";
 
 package openapitools;
 
+import public "models/response_format_json_object.proto";
+import public "models/response_format_json_schema.proto";
+import public "models/response_format_json_schema_json_schema.proto";
+import public "models/response_format_text.proto";
 
 message CreateChatCompletionRequestResponseFormat {
 
-  // Must be one of `text` or `json_object`.
-  enum Type {
-    TYPE_TEXT = 0;
-    TYPE_JSON_OBJECT = 1;
-  }
-
-  Type type = 3575610;
-
+    oneof create_chat_completion_request_response_format {
+        ResponseFormatText response_format_text = 249201015;
+        ResponseFormatJsonObject response_format_json_object = 319101679;
+        ResponseFormatJsonSchema response_format_json_schema = 434482513;
+    }
 }
 

@@ -1,0 +1,60 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AuditLogRateLimitUpdatedChangesRequested"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AuditLogRateLimitUpdatedChangesRequested"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  AuditLogRateLimitUpdatedChangesRequested {
+    title = AuditLogRateLimitUpdatedChangesRequested
+    description = AuditLogRateLimitUpdatedChangesRequested
+    derivedFrom = Root
+    properties {
+        max_requests_per_1_minute {
+          type =  integer
+          description = "The maximum requests per minute."
+          optional = false
+        }
+        max_tokens_per_1_minute {
+          type =  integer
+          description = "The maximum tokens per minute."
+          optional = false
+        }
+        max_images_per_1_minute {
+          type =  integer
+          description = "The maximum images per minute. Only relevant for certain models."
+          optional = false
+        }
+        max_audio_megabytes_per_1_minute {
+          type =  integer
+          description = "The maximum audio megabytes per minute. Only relevant for certain models."
+          optional = false
+        }
+        max_requests_per_1_day {
+          type =  integer
+          description = "The maximum requests per day. Only relevant for certain models."
+          optional = false
+        }
+        batch_1_day_max_input_tokens {
+          type =  integer
+          description = "The maximum batch input tokens per day. Only relevant for certain models."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AuditLogRateLimitUpdatedChangesRequested {
+    title = AuditLogRateLimitUpdatedChangesRequested
+    description = AuditLogRateLimitUpdatedChangesRequested
+    implements = openapi_server.resourceTypes.AuditLogRateLimitUpdatedChangesRequested
+
+  }
+}

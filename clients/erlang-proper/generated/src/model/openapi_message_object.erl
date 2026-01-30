@@ -21,7 +21,7 @@
   | {'content', list(openapi_message_object_content_inner:openapi_message_object_content_inner()) }
   | {'assistant_id', binary() }
   | {'run_id', binary() }
-  | {'file_ids', list(binary()) }
+  | {'attachments', list(openapi_create_message_request_attachments_inner:openapi_create_message_request_attachments_inner()) }
   | {'metadata', map() }
   ].
 
@@ -42,7 +42,7 @@ openapi_message_object(Fields) ->
             , {'content', list(openapi_message_object_content_inner:openapi_message_object_content_inner()) }
             , {'assistant_id', binary() }
             , {'run_id', binary() }
-            , {'file_ids', list(binary()) }
+            , {'attachments', list(openapi_create_message_request_attachments_inner:openapi_create_message_request_attachments_inner()) }
             , {'metadata', map() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).

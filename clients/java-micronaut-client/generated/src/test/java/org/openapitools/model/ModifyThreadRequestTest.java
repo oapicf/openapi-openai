@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.ModifyThreadRequestToolResources;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -18,6 +19,14 @@ public class ModifyThreadRequestTest {
     @Test
     public void testModifyThreadRequest() {
         // TODO: test ModifyThreadRequest
+    }
+
+    /**
+     * Test the property 'toolResources'
+     */
+    @Test
+    public void toolResourcesTest() {
+        // TODO: test toolResources
     }
 
     /**

@@ -5,6 +5,7 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
+from openapi_server.models.chat_completion_request_system_message_content import ChatCompletionRequestSystemMessageContent
 from openapi_server import util
 
 
@@ -14,7 +15,7 @@ class ChatCompletionRequestSystemMessage(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, content: str=None, role: str=None, name: str=None):
+    def __init__(self, content: ChatCompletionRequestSystemMessageContent=None, role: str=None, name: str=None):
         """ChatCompletionRequestSystemMessage - a model defined in OpenAPI
 
         :param content: The content of this ChatCompletionRequestSystemMessage.
@@ -22,7 +23,7 @@ class ChatCompletionRequestSystemMessage(Model):
         :param name: The name of this ChatCompletionRequestSystemMessage.
         """
         self.openapi_types = {
-            'content': str,
+            'content': ChatCompletionRequestSystemMessageContent,
             'role': str,
             'name': str
         }
@@ -50,10 +51,9 @@ class ChatCompletionRequestSystemMessage(Model):
     def content(self):
         """Gets the content of this ChatCompletionRequestSystemMessage.
 
-        The contents of the system message.
 
         :return: The content of this ChatCompletionRequestSystemMessage.
-        :rtype: str
+        :rtype: ChatCompletionRequestSystemMessageContent
         """
         return self._content
 
@@ -61,10 +61,9 @@ class ChatCompletionRequestSystemMessage(Model):
     def content(self, content):
         """Sets the content of this ChatCompletionRequestSystemMessage.
 
-        The contents of the system message.
 
         :param content: The content of this ChatCompletionRequestSystemMessage.
-        :type content: str
+        :type content: ChatCompletionRequestSystemMessageContent
         """
         if content is None:
             raise ValueError("Invalid value for `content`, must not be `None`")

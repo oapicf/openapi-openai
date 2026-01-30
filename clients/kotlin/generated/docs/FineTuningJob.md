@@ -20,6 +20,8 @@
 | **validationFile** | **kotlin.String** | The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents). |  |
 | **seed** | **kotlin.Int** | The seed used for the fine-tuning job. |  |
 | **integrations** | [**kotlin.collections.List&lt;FineTuningJobIntegrationsInner&gt;**](FineTuningJobIntegrationsInner.md) | A list of integrations to enable for this fine-tuning job. |  [optional] |
+| **estimatedFinish** | **kotlin.Int** | The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running. |  [optional] |
+| **method** | [**FineTuneMethod**](FineTuneMethod.md) |  |  [optional] |
 
 
 <a id="`Object`"></a>

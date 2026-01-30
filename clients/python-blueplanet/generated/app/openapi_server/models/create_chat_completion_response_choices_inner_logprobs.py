@@ -16,21 +16,26 @@ class CreateChatCompletionResponseChoicesInnerLogprobs(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, content: List[ChatCompletionTokenLogprob]=None):  # noqa: E501
+    def __init__(self, content: List[ChatCompletionTokenLogprob]=None, refusal: List[ChatCompletionTokenLogprob]=None):  # noqa: E501
         """CreateChatCompletionResponseChoicesInnerLogprobs - a model defined in Swagger
 
         :param content: The content of this CreateChatCompletionResponseChoicesInnerLogprobs.  # noqa: E501
         :type content: List[ChatCompletionTokenLogprob]
+        :param refusal: The refusal of this CreateChatCompletionResponseChoicesInnerLogprobs.  # noqa: E501
+        :type refusal: List[ChatCompletionTokenLogprob]
         """
         self.swagger_types = {
-            'content': List[ChatCompletionTokenLogprob]
+            'content': List[ChatCompletionTokenLogprob],
+            'refusal': List[ChatCompletionTokenLogprob]
         }
 
         self.attribute_map = {
-            'content': 'content'
+            'content': 'content',
+            'refusal': 'refusal'
         }
 
         self._content = content
+        self._refusal = refusal
 
     @classmethod
     def from_dict(cls, dikt) -> 'CreateChatCompletionResponseChoicesInnerLogprobs':
@@ -67,3 +72,28 @@ class CreateChatCompletionResponseChoicesInnerLogprobs(Model):
             raise ValueError("Invalid value for `content`, must not be `None`")  # noqa: E501
 
         self._content = content
+
+    @property
+    def refusal(self) -> List[ChatCompletionTokenLogprob]:
+        """Gets the refusal of this CreateChatCompletionResponseChoicesInnerLogprobs.
+
+        A list of message refusal tokens with log probability information.  # noqa: E501
+
+        :return: The refusal of this CreateChatCompletionResponseChoicesInnerLogprobs.
+        :rtype: List[ChatCompletionTokenLogprob]
+        """
+        return self._refusal
+
+    @refusal.setter
+    def refusal(self, refusal: List[ChatCompletionTokenLogprob]):
+        """Sets the refusal of this CreateChatCompletionResponseChoicesInnerLogprobs.
+
+        A list of message refusal tokens with log probability information.  # noqa: E501
+
+        :param refusal: The refusal of this CreateChatCompletionResponseChoicesInnerLogprobs.
+        :type refusal: List[ChatCompletionTokenLogprob]
+        """
+        if refusal is None:
+            raise ValueError("Invalid value for `refusal`, must not be `None`")  # noqa: E501
+
+        self._refusal = refusal

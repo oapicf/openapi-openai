@@ -10,10 +10,7 @@ Protected Class ChatCompletionRequestToolMessage
 
 
 	#tag Property, Flags = &h0
-		#tag Note
-			The contents of the tool message.
-		#tag EndNote
-		content As String
+		content As OpenAPIClient.Models.ChatCompletionRequestToolMessageContent
 	#tag EndProperty
 
 
@@ -83,7 +80,7 @@ Protected Class ChatCompletionRequestToolMessage
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="String"
+			Type="ChatCompletionRequestToolMessageContent"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

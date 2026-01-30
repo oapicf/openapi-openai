@@ -20,10 +20,10 @@ class CreateChatCompletionResponse
     /**
      * A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1.
      * @DTA\Data(field="choices")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection10::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection10::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection29::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection29::class})
      */
-    public ?\App\DTO\Collection10 $choices = null;
+    public ?\App\DTO\Collection29 $choices = null;
 
     /**
      * The Unix timestamp (in seconds) of when the chat completion was created.
@@ -38,6 +38,13 @@ class CreateChatCompletionResponse
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      */
     public ?string $model = null;
+
+    /**
+     * The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request.
+     * @DTA\Data(field="service_tier", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"string"})
+     */
+    public ?string $service_tier = null;
 
     /**
      * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism.

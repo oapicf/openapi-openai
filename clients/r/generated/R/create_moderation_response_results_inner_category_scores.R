@@ -11,6 +11,8 @@
 #' @field hate/threatening The score for the category 'hate/threatening'. numeric
 #' @field harassment The score for the category 'harassment'. numeric
 #' @field harassment/threatening The score for the category 'harassment/threatening'. numeric
+#' @field illicit The score for the category 'illicit'. numeric
+#' @field illicit/violent The score for the category 'illicit/violent'. numeric
 #' @field self-harm The score for the category 'self-harm'. numeric
 #' @field self-harm/intent The score for the category 'self-harm/intent'. numeric
 #' @field self-harm/instructions The score for the category 'self-harm/instructions'. numeric
@@ -28,6 +30,8 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
     `hate/threatening` = NULL,
     `harassment` = NULL,
     `harassment/threatening` = NULL,
+    `illicit` = NULL,
+    `illicit/violent` = NULL,
     `self-harm` = NULL,
     `self-harm/intent` = NULL,
     `self-harm/instructions` = NULL,
@@ -43,6 +47,8 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
     #' @param hate/threatening The score for the category 'hate/threatening'.
     #' @param harassment The score for the category 'harassment'.
     #' @param harassment/threatening The score for the category 'harassment/threatening'.
+    #' @param illicit The score for the category 'illicit'.
+    #' @param illicit/violent The score for the category 'illicit/violent'.
     #' @param self-harm The score for the category 'self-harm'.
     #' @param self-harm/intent The score for the category 'self-harm/intent'.
     #' @param self-harm/instructions The score for the category 'self-harm/instructions'.
@@ -51,7 +57,7 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
     #' @param violence The score for the category 'violence'.
     #' @param violence/graphic The score for the category 'violence/graphic'.
     #' @param ... Other optional arguments.
-    initialize = function(`hate`, `hate/threatening`, `harassment`, `harassment/threatening`, `self-harm`, `self-harm/intent`, `self-harm/instructions`, `sexual`, `sexual/minors`, `violence`, `violence/graphic`, ...) {
+    initialize = function(`hate`, `hate/threatening`, `harassment`, `harassment/threatening`, `illicit`, `illicit/violent`, `self-harm`, `self-harm/intent`, `self-harm/instructions`, `sexual`, `sexual/minors`, `violence`, `violence/graphic`, ...) {
       if (!missing(`hate`)) {
         self$`hate` <- `hate`
       }
@@ -63,6 +69,12 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
       }
       if (!missing(`harassment/threatening`)) {
         self$`harassment/threatening` <- `harassment/threatening`
+      }
+      if (!missing(`illicit`)) {
+        self$`illicit` <- `illicit`
+      }
+      if (!missing(`illicit/violent`)) {
+        self$`illicit/violent` <- `illicit/violent`
       }
       if (!missing(`self-harm`)) {
         self$`self-harm` <- `self-harm`
@@ -134,6 +146,14 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
         CreateModerationResponseResultsInnerCategoryScoresObject[["harassment/threatening"]] <-
           self$`harassment/threatening`
       }
+      if (!is.null(self$`illicit`)) {
+        CreateModerationResponseResultsInnerCategoryScoresObject[["illicit"]] <-
+          self$`illicit`
+      }
+      if (!is.null(self$`illicit/violent`)) {
+        CreateModerationResponseResultsInnerCategoryScoresObject[["illicit/violent"]] <-
+          self$`illicit/violent`
+      }
       if (!is.null(self$`self-harm`)) {
         CreateModerationResponseResultsInnerCategoryScoresObject[["self-harm"]] <-
           self$`self-harm`
@@ -184,6 +204,12 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
       if (!is.null(this_object$`harassment/threatening`)) {
         self$`harassment/threatening` <- this_object$`harassment/threatening`
       }
+      if (!is.null(this_object$`illicit`)) {
+        self$`illicit` <- this_object$`illicit`
+      }
+      if (!is.null(this_object$`illicit/violent`)) {
+        self$`illicit/violent` <- this_object$`illicit/violent`
+      }
       if (!is.null(this_object$`self-harm`)) {
         self$`self-harm` <- this_object$`self-harm`
       }
@@ -230,6 +256,8 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
       self$`hate/threatening` <- this_object$`hate/threatening`
       self$`harassment` <- this_object$`harassment`
       self$`harassment/threatening` <- this_object$`harassment/threatening`
+      self$`illicit` <- this_object$`illicit`
+      self$`illicit/violent` <- this_object$`illicit/violent`
       self$`self-harm` <- this_object$`self-harm`
       self$`self-harm/intent` <- this_object$`self-harm/intent`
       self$`self-harm/instructions` <- this_object$`self-harm/instructions`
@@ -265,6 +293,16 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
       if (!is.null(input_json$`harassment/threatening`)) {
       } else {
         stop(paste("The JSON input `", input, "` is invalid for CreateModerationResponseResultsInnerCategoryScores: the required field `harassment/threatening` is missing."))
+      }
+      # check the required field `illicit`
+      if (!is.null(input_json$`illicit`)) {
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for CreateModerationResponseResultsInnerCategoryScores: the required field `illicit` is missing."))
+      }
+      # check the required field `illicit/violent`
+      if (!is.null(input_json$`illicit/violent`)) {
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for CreateModerationResponseResultsInnerCategoryScores: the required field `illicit/violent` is missing."))
       }
       # check the required field `self-harm`
       if (!is.null(input_json$`self-harm`)) {
@@ -336,6 +374,16 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
         return(FALSE)
       }
 
+      # check if the required `illicit` is null
+      if (is.null(self$`illicit`)) {
+        return(FALSE)
+      }
+
+      # check if the required `illicit/violent` is null
+      if (is.null(self$`illicit/violent`)) {
+        return(FALSE)
+      }
+
       # check if the required `self-harm` is null
       if (is.null(self$`self-harm`)) {
         return(FALSE)
@@ -398,6 +446,16 @@ CreateModerationResponseResultsInnerCategoryScores <- R6::R6Class(
       # check if the required `harassment/threatening` is null
       if (is.null(self$`harassment/threatening`)) {
         invalid_fields["harassment/threatening"] <- "Non-nullable required field `harassment/threatening` cannot be null."
+      }
+
+      # check if the required `illicit` is null
+      if (is.null(self$`illicit`)) {
+        invalid_fields["illicit"] <- "Non-nullable required field `illicit` cannot be null."
+      }
+
+      # check if the required `illicit/violent` is null
+      if (is.null(self$`illicit/violent`)) {
+        invalid_fields["illicit/violent"] <- "Non-nullable required field `illicit/violent` cannot be null."
       }
 
       # check if the required `self-harm` is null

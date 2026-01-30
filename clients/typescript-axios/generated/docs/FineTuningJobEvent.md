@@ -6,11 +6,13 @@ Fine-tuning job event object
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **string** |  | [default to undefined]
-**created_at** | **number** |  | [default to undefined]
-**level** | **string** |  | [default to undefined]
-**message** | **string** |  | [default to undefined]
-**object** | **string** |  | [default to undefined]
+**object** | **string** | The object type, which is always \&quot;fine_tuning.job.event\&quot;. | [default to undefined]
+**id** | **string** | The object identifier. | [default to undefined]
+**created_at** | **number** | The Unix timestamp (in seconds) for when the fine-tuning job was created. | [default to undefined]
+**level** | **string** | The log level of the event. | [default to undefined]
+**message** | **string** | The message of the event. | [default to undefined]
+**type** | **string** | The type of event. | [optional] [default to undefined]
+**data** | **object** | The data associated with the event. | [optional] [default to undefined]
 
 ## Example
 
@@ -18,11 +20,13 @@ Name | Type | Description | Notes
 import { FineTuningJobEvent } from './api';
 
 const instance: FineTuningJobEvent = {
+    object,
     id,
     created_at,
     level,
     message,
-    object,
+    type,
+    data,
 };
 ```
 

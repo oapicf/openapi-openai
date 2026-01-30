@@ -1,0 +1,45 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ProjectRateLimitUpdateRequest",
+  "fields": [
+    {
+      "name": "max_requests_per_1_minute",
+      "type": ["null", "int"],
+      "doc": "The maximum requests per minute.",
+      "default": null
+    },
+    {
+      "name": "max_tokens_per_1_minute",
+      "type": ["null", "int"],
+      "doc": "The maximum tokens per minute.",
+      "default": null
+    },
+    {
+      "name": "max_images_per_1_minute",
+      "type": ["null", "int"],
+      "doc": "The maximum images per minute. Only relevant for certain models.",
+      "default": null
+    },
+    {
+      "name": "max_audio_megabytes_per_1_minute",
+      "type": ["null", "int"],
+      "doc": "The maximum audio megabytes per minute. Only relevant for certain models.",
+      "default": null
+    },
+    {
+      "name": "max_requests_per_1_day",
+      "type": ["null", "int"],
+      "doc": "The maximum requests per day. Only relevant for certain models.",
+      "default": null
+    },
+    {
+      "name": "batch_1_day_max_input_tokens",
+      "type": ["null", "int"],
+      "doc": "The maximum batch input tokens per day. Only relevant for certain models.",
+      "default": null
+    }
+  ]
+
+}

@@ -20,13 +20,6 @@ API.Client.MessageDeltaObjectDelta.prototype.role;
  */
 API.Client.MessageDeltaObjectDelta.prototype.content;
 
-/**
- * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
- * @type {!Array<!string>}
- * @export
- */
-API.Client.MessageDeltaObjectDelta.prototype.fileIds;
-
 /** @enum {string} */
 API.Client.MessageDeltaObjectDelta.RoleEnum = { 
   user: 'user',

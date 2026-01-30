@@ -3,40 +3,79 @@
 
 -- /static StaticR Static appStatic
 
-/chat/completions ChatCompletionsR POST
-/completions CompletionsR POST
-/images/generations ImagesGenerationsR POST
-/images/edits ImagesEditsR POST
-/images/variations ImagesVariationsR POST
-/embeddings EmbeddingsR POST
+/assistants AssistantsR GET POST
+/assistants/#Text AssistantsByTextR GET POST DELETE
 /audio/speech AudioSpeechR POST
 /audio/transcriptions AudioTranscriptionsR POST
 /audio/translations AudioTranslationsR POST
+/batches BatchesR GET POST
+/batches/#Text BatchesByTextR GET
+/batches/#Text/cancel BatchesByTextCancelR POST
+/chat/completions ChatCompletionsR POST
+/completions CompletionsR POST
+/embeddings EmbeddingsR POST
 /files FilesR GET POST
 /files/#Text FilesByTextR GET DELETE
 /files/#Text/content FilesByTextContentR GET
 /fine_tuning/jobs FineTuningJobsR GET POST
 /fine_tuning/jobs/#Text FineTuningJobsByTextR GET
-/fine_tuning/jobs/#Text/events FineTuningJobsByTextEventsR GET
 /fine_tuning/jobs/#Text/cancel FineTuningJobsByTextCancelR POST
 /fine_tuning/jobs/#Text/checkpoints FineTuningJobsByTextCheckpointsR GET
+/fine_tuning/jobs/#Text/events FineTuningJobsByTextEventsR GET
+/images/edits ImagesEditsR POST
+/images/generations ImagesGenerationsR POST
+/images/variations ImagesVariationsR POST
 /models ModelsR GET
 /models/#Text ModelsByTextR GET DELETE
 /moderations ModerationsR POST
-/assistants AssistantsR GET POST
-/assistants/#Text AssistantsByTextR GET POST DELETE
+/organization/admin_api_keys OrganizationAdminApiKeysR GET POST
+/organization/admin_api_keys/#Text OrganizationAdminApiKeysByTextR GET DELETE
+/organization/audit_logs OrganizationAuditLogsR GET
+/organization/costs OrganizationCostsR GET
+/organization/invites OrganizationInvitesR GET POST
+/organization/invites/#Text OrganizationInvitesByTextR GET DELETE
+/organization/projects OrganizationProjectsR GET POST
+/organization/projects/#Text OrganizationProjectsByTextR GET POST
+/organization/projects/#Text/api_keys OrganizationProjectsByTextApiKeysR GET
+/organization/projects/#Text/api_keys/#Text OrganizationProjectsByTextApiKeysByTextR GET DELETE
+/organization/projects/#Text/archive OrganizationProjectsByTextArchiveR POST
+/organization/projects/#Text/rate_limits OrganizationProjectsByTextRateLimitsR GET
+/organization/projects/#Text/rate_limits/#Text OrganizationProjectsByTextRateLimitsByTextR POST
+/organization/projects/#Text/service_accounts OrganizationProjectsByTextServiceAccountsR GET POST
+/organization/projects/#Text/service_accounts/#Text OrganizationProjectsByTextServiceAccountsByTextR GET DELETE
+/organization/projects/#Text/users OrganizationProjectsByTextUsersR GET POST
+/organization/projects/#Text/users/#Text OrganizationProjectsByTextUsersByTextR GET POST DELETE
+/organization/usage/audio_speeches OrganizationUsageAudioSpeechesR GET
+/organization/usage/audio_transcriptions OrganizationUsageAudioTranscriptionsR GET
+/organization/usage/code_interpreter_sessions OrganizationUsageCodeInterpreterSessionsR GET
+/organization/usage/completions OrganizationUsageCompletionsR GET
+/organization/usage/embeddings OrganizationUsageEmbeddingsR GET
+/organization/usage/images OrganizationUsageImagesR GET
+/organization/usage/moderations OrganizationUsageModerationsR GET
+/organization/usage/vector_stores OrganizationUsageVectorStoresR GET
+/organization/users OrganizationUsersR GET
+/organization/users/#Text OrganizationUsersByTextR GET POST DELETE
+/realtime/sessions RealtimeSessionsR POST
 /threads ThreadsR POST
-/threads/#Text ThreadsByTextR GET POST DELETE
+/threads/runs ThreadsRunsR POST
+!/threads/#Text ThreadsByTextR GET POST DELETE
 /threads/#Text/messages ThreadsByTextMessagesR GET POST
-/threads/#Text/messages/#Text ThreadsByTextMessagesByTextR GET POST
-!/threads/runs ThreadsRunsR POST
+/threads/#Text/messages/#Text ThreadsByTextMessagesByTextR GET POST DELETE
 /threads/#Text/runs ThreadsByTextRunsR GET POST
 /threads/#Text/runs/#Text ThreadsByTextRunsByTextR GET POST
-/threads/#Text/runs/#Text/submit_tool_outputs ThreadsByTextRunsByTextSubmitToolOutputsR POST
 /threads/#Text/runs/#Text/cancel ThreadsByTextRunsByTextCancelR POST
 /threads/#Text/runs/#Text/steps ThreadsByTextRunsByTextStepsR GET
 /threads/#Text/runs/#Text/steps/#Text ThreadsByTextRunsByTextStepsByTextR GET
-/assistants/#Text/files AssistantsByTextFilesR GET POST
-/assistants/#Text/files/#Text AssistantsByTextFilesByTextR GET DELETE
-/threads/#Text/messages/#Text/files ThreadsByTextMessagesByTextFilesR GET
-/threads/#Text/messages/#Text/files/#Text ThreadsByTextMessagesByTextFilesByTextR GET
+/threads/#Text/runs/#Text/submit_tool_outputs ThreadsByTextRunsByTextSubmitToolOutputsR POST
+/uploads UploadsR POST
+/uploads/#Text/cancel UploadsByTextCancelR POST
+/uploads/#Text/complete UploadsByTextCompleteR POST
+/uploads/#Text/parts UploadsByTextPartsR POST
+/vector_stores VectorStoresR GET POST
+/vector_stores/#Text VectorStoresByTextR GET POST DELETE
+/vector_stores/#Text/file_batches VectorStoresByTextFileBatchesR POST
+/vector_stores/#Text/file_batches/#Text VectorStoresByTextFileBatchesByTextR GET
+/vector_stores/#Text/file_batches/#Text/cancel VectorStoresByTextFileBatchesByTextCancelR POST
+/vector_stores/#Text/file_batches/#Text/files VectorStoresByTextFileBatchesByTextFilesR GET
+/vector_stores/#Text/files VectorStoresByTextFilesR GET POST
+/vector_stores/#Text/files/#Text VectorStoresByTextFilesByTextR GET DELETE

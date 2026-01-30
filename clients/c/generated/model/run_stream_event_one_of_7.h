@@ -1,7 +1,7 @@
 /*
  * run_stream_event_one_of_7.h
  *
- * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
+ * Occurs when a [run](/docs/api-reference/runs/object) moves to a &#x60;cancelling&#x60; status.
  */
 
 #ifndef _run_stream_event_one_of_7_H_
@@ -19,7 +19,7 @@ typedef struct run_stream_event_one_of_7_t run_stream_event_one_of_7_t;
 
 // Enum EVENT for run_stream_event_one_of_7
 
-typedef enum  { openai_api_run_stream_event_one_of_7_EVENT_NULL = 0, openai_api_run_stream_event_one_of_7_EVENT_thread.run.cancelled } openai_api_run_stream_event_one_of_7_EVENT_e;
+typedef enum  { openai_api_run_stream_event_one_of_7_EVENT_NULL = 0, openai_api_run_stream_event_one_of_7_EVENT_thread.run.cancelling } openai_api_run_stream_event_one_of_7_EVENT_e;
 
 char* run_stream_event_one_of_7_event_ToString(openai_api_run_stream_event_one_of_7_EVENT_e event);
 

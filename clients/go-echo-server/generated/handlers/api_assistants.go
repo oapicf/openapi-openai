@@ -21,14 +21,6 @@ func (c *Container) CreateAssistant(ctx echo.Context) error {
 }
 
 
-// CreateAssistantFile - Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-func (c *Container) CreateAssistantFile(ctx echo.Context) error {
-	return ctx.JSON(http.StatusOK, models.HelloWorld {
-		Message: "Hello World",
-	})
-}
-
-
 // CreateMessage - Create a message.
 func (c *Container) CreateMessage(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, models.HelloWorld {
@@ -69,8 +61,8 @@ func (c *Container) DeleteAssistant(ctx echo.Context) error {
 }
 
 
-// DeleteAssistantFile - Delete an assistant file.
-func (c *Container) DeleteAssistantFile(ctx echo.Context) error {
+// DeleteMessage - Deletes a message.
+func (c *Container) DeleteMessage(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, models.HelloWorld {
 		Message: "Hello World",
 	})
@@ -93,24 +85,8 @@ func (c *Container) GetAssistant(ctx echo.Context) error {
 }
 
 
-// GetAssistantFile - Retrieves an AssistantFile.
-func (c *Container) GetAssistantFile(ctx echo.Context) error {
-	return ctx.JSON(http.StatusOK, models.HelloWorld {
-		Message: "Hello World",
-	})
-}
-
-
 // GetMessage - Retrieve a message.
 func (c *Container) GetMessage(ctx echo.Context) error {
-	return ctx.JSON(http.StatusOK, models.HelloWorld {
-		Message: "Hello World",
-	})
-}
-
-
-// GetMessageFile - Retrieves a message file.
-func (c *Container) GetMessageFile(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, models.HelloWorld {
 		Message: "Hello World",
 	})
@@ -141,24 +117,8 @@ func (c *Container) GetThread(ctx echo.Context) error {
 }
 
 
-// ListAssistantFiles - Returns a list of assistant files.
-func (c *Container) ListAssistantFiles(ctx echo.Context) error {
-	return ctx.JSON(http.StatusOK, models.HelloWorld {
-		Message: "Hello World",
-	})
-}
-
-
 // ListAssistants - Returns a list of assistants.
 func (c *Container) ListAssistants(ctx echo.Context) error {
-	return ctx.JSON(http.StatusOK, models.HelloWorld {
-		Message: "Hello World",
-	})
-}
-
-
-// ListMessageFiles - Returns a list of message files.
-func (c *Container) ListMessageFiles(ctx echo.Context) error {
 	return ctx.JSON(http.StatusOK, models.HelloWorld {
 		Message: "Hello World",
 	})

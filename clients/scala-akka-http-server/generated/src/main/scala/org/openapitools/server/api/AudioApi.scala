@@ -11,6 +11,7 @@ import org.openapitools.server.StringDirectives
 import org.openapitools.server.MultipartDirectives
 import org.openapitools.server.FileField
 import org.openapitools.server.PartsAndFiles
+import org.openapitools.server.model.AudioResponseFormat
 import org.openapitools.server.model.CreateSpeechRequest
 import org.openapitools.server.model.CreateTranscription200Response
 import org.openapitools.server.model.CreateTranscriptionRequestModel
@@ -44,7 +45,7 @@ class AudioApi(
             file <- optToTry(partsAndFiles.files.get("file"), s"File file missing")
           } yield { 
             implicit val vp: StringValueProvider = partsAndFiles.form
-            stringFields("model".as[CreateTranscriptionRequestModel], "language".as[String].?, "prompt".as[String].?, "response_format".as[String].?, "temperature".as[Double].?, "timestamp_granularities[]".as[Seq[String]].?) { (model, language, prompt, responseFormat, temperature, timestampGranularitiesLeft_Square_BracketRight_Square_Bracket) =>
+            stringFields("model".as[CreateTranscriptionRequestModel], "language".as[String].?, "prompt".as[String].?, "response_format".as[AudioResponseFormat].?, "temperature".as[Double].?, "timestamp_granularities[]".as[Seq[String]].?) { (model, language, prompt, responseFormat, temperature, timestampGranularitiesLeft_Square_BracketRight_Square_Bracket) =>
               audioService.createTranscription(file = file, model = model, language = language, prompt = prompt, responseFormat = responseFormat, temperature = temperature, timestampGranularitiesLeft_Square_BracketRight_Square_Bracket = timestampGranularitiesLeft_Square_BracketRight_Square_Bracket)
             }
           }
@@ -59,7 +60,7 @@ class AudioApi(
             file <- optToTry(partsAndFiles.files.get("file"), s"File file missing")
           } yield { 
             implicit val vp: StringValueProvider = partsAndFiles.form
-            stringFields("model".as[CreateTranscriptionRequestModel], "prompt".as[String].?, "response_format".as[String].?, "temperature".as[Double].?) { (model, prompt, responseFormat, temperature) =>
+            stringFields("model".as[CreateTranscriptionRequestModel], "prompt".as[String].?, "response_format".as[AudioResponseFormat].?, "temperature".as[Double].?) { (model, prompt, responseFormat, temperature) =>
               audioService.createTranslation(file = file, model = model, prompt = prompt, responseFormat = responseFormat, temperature = temperature)
             }
           }
@@ -85,7 +86,7 @@ trait AudioApiService {
   /**
    * Code: 200, Message: OK, DataType: CreateTranscription200Response
    */
-  def createTranscription(file: (FileInfo, File), model: CreateTranscriptionRequestModel, language: Option[String], prompt: Option[String], responseFormat: Option[String], temperature: Option[Double], timestampGranularitiesLeft_Square_BracketRight_Square_Bracket: Option[Seq[String]])
+  def createTranscription(file: (FileInfo, File), model: CreateTranscriptionRequestModel, language: Option[String], prompt: Option[String], responseFormat: Option[AudioResponseFormat], temperature: Option[Double], timestampGranularitiesLeft_Square_BracketRight_Square_Bracket: Option[Seq[String]])
       (implicit toEntityMarshallerCreateTranscription200Response: ToEntityMarshaller[CreateTranscription200Response]): Route
 
   def createTranslation200(responseCreateTranslation200Response: CreateTranslation200Response)(implicit toEntityMarshallerCreateTranslation200Response: ToEntityMarshaller[CreateTranslation200Response]): Route =
@@ -93,7 +94,7 @@ trait AudioApiService {
   /**
    * Code: 200, Message: OK, DataType: CreateTranslation200Response
    */
-  def createTranslation(file: (FileInfo, File), model: CreateTranscriptionRequestModel, prompt: Option[String], responseFormat: Option[String], temperature: Option[Double])
+  def createTranslation(file: (FileInfo, File), model: CreateTranscriptionRequestModel, prompt: Option[String], responseFormat: Option[AudioResponseFormat], temperature: Option[Double])
       (implicit toEntityMarshallerCreateTranslation200Response: ToEntityMarshaller[CreateTranslation200Response]): Route
 
 }
@@ -103,6 +104,8 @@ trait AudioApiMarshaller {
 
 
   implicit def fromStringUnmarshallerStringList: FromStringUnmarshaller[Seq[String]]
+
+  implicit def fromStringUnmarshallerAudioResponseFormat: FromStringUnmarshaller[AudioResponseFormat]
 
   implicit def fromStringUnmarshallerCreateTranscriptionRequestModel: FromStringUnmarshaller[CreateTranscriptionRequestModel]
 

@@ -12,7 +12,7 @@
 #' @field created_at The Unix timestamp (in seconds) for when the run was created. integer
 #' @field thread_id The ID of the [thread](/docs/api-reference/threads) that was executed on as a part of this run. character
 #' @field assistant_id The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run. character
-#' @field status The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`. character
+#' @field status The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`. character
 #' @field required_action  \link{RunObjectRequiredAction}
 #' @field last_error  \link{RunObjectLastError}
 #' @field expires_at The Unix timestamp (in seconds) for when the run will expire. integer
@@ -24,14 +24,15 @@
 #' @field model The model that the [assistant](/docs/api-reference/assistants) used for this run. character
 #' @field instructions The instructions that the [assistant](/docs/api-reference/assistants) used for this run. character
 #' @field tools The list of tools that the [assistant](/docs/api-reference/assistants) used for this run. list(\link{AssistantObjectToolsInner})
-#' @field file_ids The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run. list(character)
-#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. object
+#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. object
 #' @field usage  \link{RunCompletionUsage}
 #' @field temperature The sampling temperature used for this run. If not set, defaults to 1. numeric [optional]
+#' @field top_p The nucleus sampling value used for this run. If not set, defaults to 1. numeric [optional]
 #' @field max_prompt_tokens The maximum number of prompt tokens specified to have been used over the course of the run. integer
 #' @field max_completion_tokens The maximum number of completion tokens specified to have been used over the course of the run. integer
 #' @field truncation_strategy  \link{TruncationObject}
 #' @field tool_choice  \link{AssistantsApiToolChoiceOption}
+#' @field parallel_tool_calls Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. character
 #' @field response_format  \link{AssistantsApiResponseFormatOption}
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -56,14 +57,15 @@ RunObject <- R6::R6Class(
     `model` = NULL,
     `instructions` = NULL,
     `tools` = NULL,
-    `file_ids` = NULL,
     `metadata` = NULL,
     `usage` = NULL,
     `temperature` = NULL,
+    `top_p` = NULL,
     `max_prompt_tokens` = NULL,
     `max_completion_tokens` = NULL,
     `truncation_strategy` = NULL,
     `tool_choice` = NULL,
+    `parallel_tool_calls` = NULL,
     `response_format` = NULL,
 
     #' @description
@@ -74,7 +76,7 @@ RunObject <- R6::R6Class(
     #' @param created_at The Unix timestamp (in seconds) for when the run was created.
     #' @param thread_id The ID of the [thread](/docs/api-reference/threads) that was executed on as a part of this run.
     #' @param assistant_id The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run.
-    #' @param status The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+    #' @param status The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
     #' @param required_action required_action
     #' @param last_error last_error
     #' @param expires_at The Unix timestamp (in seconds) for when the run will expire.
@@ -86,17 +88,18 @@ RunObject <- R6::R6Class(
     #' @param model The model that the [assistant](/docs/api-reference/assistants) used for this run.
     #' @param instructions The instructions that the [assistant](/docs/api-reference/assistants) used for this run.
     #' @param tools The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
-    #' @param file_ids The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
-    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
+    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
     #' @param usage usage
     #' @param max_prompt_tokens The maximum number of prompt tokens specified to have been used over the course of the run.
     #' @param max_completion_tokens The maximum number of completion tokens specified to have been used over the course of the run.
     #' @param truncation_strategy truncation_strategy
     #' @param tool_choice tool_choice
+    #' @param parallel_tool_calls Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
     #' @param response_format response_format
     #' @param temperature The sampling temperature used for this run. If not set, defaults to 1.
+    #' @param top_p The nucleus sampling value used for this run. If not set, defaults to 1.
     #' @param ... Other optional arguments.
-    initialize = function(`id`, `object`, `created_at`, `thread_id`, `assistant_id`, `status`, `required_action`, `last_error`, `expires_at`, `started_at`, `cancelled_at`, `failed_at`, `completed_at`, `incomplete_details`, `model`, `instructions`, `tools`, `file_ids`, `metadata`, `usage`, `max_prompt_tokens`, `max_completion_tokens`, `truncation_strategy`, `tool_choice`, `response_format`, `temperature` = NULL, ...) {
+    initialize = function(`id`, `object`, `created_at`, `thread_id`, `assistant_id`, `status`, `required_action`, `last_error`, `expires_at`, `started_at`, `cancelled_at`, `failed_at`, `completed_at`, `incomplete_details`, `model`, `instructions`, `tools`, `metadata`, `usage`, `max_prompt_tokens`, `max_completion_tokens`, `truncation_strategy`, `tool_choice`, `parallel_tool_calls`, `response_format`, `temperature` = NULL, `top_p` = NULL, ...) {
       if (!missing(`id`)) {
         if (!(is.character(`id`) && length(`id`) == 1)) {
           stop(paste("Error! Invalid data for `id`. Must be a string:", `id`))
@@ -131,8 +134,8 @@ RunObject <- R6::R6Class(
         self$`assistant_id` <- `assistant_id`
       }
       if (!missing(`status`)) {
-        if (!(`status` %in% c("queued", "in_progress", "requires_action", "cancelling", "cancelled", "failed", "completed", "expired"))) {
-          stop(paste("Error! \"", `status`, "\" cannot be assigned to `status`. Must be \"queued\", \"in_progress\", \"requires_action\", \"cancelling\", \"cancelled\", \"failed\", \"completed\", \"expired\".", sep = ""))
+        if (!(`status` %in% c("queued", "in_progress", "requires_action", "cancelling", "cancelled", "failed", "completed", "incomplete", "expired"))) {
+          stop(paste("Error! \"", `status`, "\" cannot be assigned to `status`. Must be \"queued\", \"in_progress\", \"requires_action\", \"cancelling\", \"cancelled\", \"failed\", \"completed\", \"incomplete\", \"expired\".", sep = ""))
         }
         if (!(is.character(`status`) && length(`status`) == 1)) {
           stop(paste("Error! Invalid data for `status`. Must be a string:", `status`))
@@ -198,11 +201,6 @@ RunObject <- R6::R6Class(
         sapply(`tools`, function(x) stopifnot(R6::is.R6(x)))
         self$`tools` <- `tools`
       }
-      if (!missing(`file_ids`)) {
-        stopifnot(is.vector(`file_ids`), length(`file_ids`) != 0)
-        sapply(`file_ids`, function(x) stopifnot(is.character(x)))
-        self$`file_ids` <- `file_ids`
-      }
       if (!missing(`metadata`)) {
         self$`metadata` <- `metadata`
       }
@@ -230,12 +228,21 @@ RunObject <- R6::R6Class(
         stopifnot(R6::is.R6(`tool_choice`))
         self$`tool_choice` <- `tool_choice`
       }
+      if (!missing(`parallel_tool_calls`)) {
+        if (!(is.logical(`parallel_tool_calls`) && length(`parallel_tool_calls`) == 1)) {
+          stop(paste("Error! Invalid data for `parallel_tool_calls`. Must be a boolean:", `parallel_tool_calls`))
+        }
+        self$`parallel_tool_calls` <- `parallel_tool_calls`
+      }
       if (!missing(`response_format`)) {
         stopifnot(R6::is.R6(`response_format`))
         self$`response_format` <- `response_format`
       }
       if (!is.null(`temperature`)) {
         self$`temperature` <- `temperature`
+      }
+      if (!is.null(`top_p`)) {
+        self$`top_p` <- `top_p`
       }
     },
 
@@ -338,10 +345,6 @@ RunObject <- R6::R6Class(
         RunObjectObject[["tools"]] <-
           lapply(self$`tools`, function(x) x$toSimpleType())
       }
-      if (!is.null(self$`file_ids`)) {
-        RunObjectObject[["file_ids"]] <-
-          self$`file_ids`
-      }
       if (!is.null(self$`metadata`)) {
         RunObjectObject[["metadata"]] <-
           self$`metadata`
@@ -353,6 +356,10 @@ RunObject <- R6::R6Class(
       if (!is.null(self$`temperature`)) {
         RunObjectObject[["temperature"]] <-
           self$`temperature`
+      }
+      if (!is.null(self$`top_p`)) {
+        RunObjectObject[["top_p"]] <-
+          self$`top_p`
       }
       if (!is.null(self$`max_prompt_tokens`)) {
         RunObjectObject[["max_prompt_tokens"]] <-
@@ -369,6 +376,10 @@ RunObject <- R6::R6Class(
       if (!is.null(self$`tool_choice`)) {
         RunObjectObject[["tool_choice"]] <-
           self$`tool_choice`$toSimpleType()
+      }
+      if (!is.null(self$`parallel_tool_calls`)) {
+        RunObjectObject[["parallel_tool_calls"]] <-
+          self$`parallel_tool_calls`
       }
       if (!is.null(self$`response_format`)) {
         RunObjectObject[["response_format"]] <-
@@ -403,8 +414,8 @@ RunObject <- R6::R6Class(
         self$`assistant_id` <- this_object$`assistant_id`
       }
       if (!is.null(this_object$`status`)) {
-        if (!is.null(this_object$`status`) && !(this_object$`status` %in% c("queued", "in_progress", "requires_action", "cancelling", "cancelled", "failed", "completed", "expired"))) {
-          stop(paste("Error! \"", this_object$`status`, "\" cannot be assigned to `status`. Must be \"queued\", \"in_progress\", \"requires_action\", \"cancelling\", \"cancelled\", \"failed\", \"completed\", \"expired\".", sep = ""))
+        if (!is.null(this_object$`status`) && !(this_object$`status` %in% c("queued", "in_progress", "requires_action", "cancelling", "cancelled", "failed", "completed", "incomplete", "expired"))) {
+          stop(paste("Error! \"", this_object$`status`, "\" cannot be assigned to `status`. Must be \"queued\", \"in_progress\", \"requires_action\", \"cancelling\", \"cancelled\", \"failed\", \"completed\", \"incomplete\", \"expired\".", sep = ""))
         }
         self$`status` <- this_object$`status`
       }
@@ -447,9 +458,6 @@ RunObject <- R6::R6Class(
       if (!is.null(this_object$`tools`)) {
         self$`tools` <- ApiClient$new()$deserializeObj(this_object$`tools`, "array[AssistantObjectToolsInner]", loadNamespace("openapi"))
       }
-      if (!is.null(this_object$`file_ids`)) {
-        self$`file_ids` <- ApiClient$new()$deserializeObj(this_object$`file_ids`, "array[character]", loadNamespace("openapi"))
-      }
       if (!is.null(this_object$`metadata`)) {
         self$`metadata` <- this_object$`metadata`
       }
@@ -460,6 +468,9 @@ RunObject <- R6::R6Class(
       }
       if (!is.null(this_object$`temperature`)) {
         self$`temperature` <- this_object$`temperature`
+      }
+      if (!is.null(this_object$`top_p`)) {
+        self$`top_p` <- this_object$`top_p`
       }
       if (!is.null(this_object$`max_prompt_tokens`)) {
         self$`max_prompt_tokens` <- this_object$`max_prompt_tokens`
@@ -476,6 +487,9 @@ RunObject <- R6::R6Class(
         `tool_choice_object` <- AssistantsApiToolChoiceOption$new()
         `tool_choice_object`$fromJSON(jsonlite::toJSON(this_object$`tool_choice`, auto_unbox = TRUE, digits = NA))
         self$`tool_choice` <- `tool_choice_object`
+      }
+      if (!is.null(this_object$`parallel_tool_calls`)) {
+        self$`parallel_tool_calls` <- this_object$`parallel_tool_calls`
       }
       if (!is.null(this_object$`response_format`)) {
         `response_format_object` <- AssistantsApiResponseFormatOption$new()
@@ -511,8 +525,8 @@ RunObject <- R6::R6Class(
       self$`created_at` <- this_object$`created_at`
       self$`thread_id` <- this_object$`thread_id`
       self$`assistant_id` <- this_object$`assistant_id`
-      if (!is.null(this_object$`status`) && !(this_object$`status` %in% c("queued", "in_progress", "requires_action", "cancelling", "cancelled", "failed", "completed", "expired"))) {
-        stop(paste("Error! \"", this_object$`status`, "\" cannot be assigned to `status`. Must be \"queued\", \"in_progress\", \"requires_action\", \"cancelling\", \"cancelled\", \"failed\", \"completed\", \"expired\".", sep = ""))
+      if (!is.null(this_object$`status`) && !(this_object$`status` %in% c("queued", "in_progress", "requires_action", "cancelling", "cancelled", "failed", "completed", "incomplete", "expired"))) {
+        stop(paste("Error! \"", this_object$`status`, "\" cannot be assigned to `status`. Must be \"queued\", \"in_progress\", \"requires_action\", \"cancelling\", \"cancelled\", \"failed\", \"completed\", \"incomplete\", \"expired\".", sep = ""))
       }
       self$`status` <- this_object$`status`
       self$`required_action` <- RunObjectRequiredAction$new()$fromJSON(jsonlite::toJSON(this_object$`required_action`, auto_unbox = TRUE, digits = NA))
@@ -526,14 +540,15 @@ RunObject <- R6::R6Class(
       self$`model` <- this_object$`model`
       self$`instructions` <- this_object$`instructions`
       self$`tools` <- ApiClient$new()$deserializeObj(this_object$`tools`, "array[AssistantObjectToolsInner]", loadNamespace("openapi"))
-      self$`file_ids` <- ApiClient$new()$deserializeObj(this_object$`file_ids`, "array[character]", loadNamespace("openapi"))
       self$`metadata` <- this_object$`metadata`
       self$`usage` <- RunCompletionUsage$new()$fromJSON(jsonlite::toJSON(this_object$`usage`, auto_unbox = TRUE, digits = NA))
       self$`temperature` <- this_object$`temperature`
+      self$`top_p` <- this_object$`top_p`
       self$`max_prompt_tokens` <- this_object$`max_prompt_tokens`
       self$`max_completion_tokens` <- this_object$`max_completion_tokens`
       self$`truncation_strategy` <- TruncationObject$new()$fromJSON(jsonlite::toJSON(this_object$`truncation_strategy`, auto_unbox = TRUE, digits = NA))
       self$`tool_choice` <- AssistantsApiToolChoiceOption$new()$fromJSON(jsonlite::toJSON(this_object$`tool_choice`, auto_unbox = TRUE, digits = NA))
+      self$`parallel_tool_calls` <- this_object$`parallel_tool_calls`
       self$`response_format` <- AssistantsApiResponseFormatOption$new()$fromJSON(jsonlite::toJSON(this_object$`response_format`, auto_unbox = TRUE, digits = NA))
       self
     },
@@ -673,13 +688,6 @@ RunObject <- R6::R6Class(
       } else {
         stop(paste("The JSON input `", input, "` is invalid for RunObject: the required field `tools` is missing."))
       }
-      # check the required field `file_ids`
-      if (!is.null(input_json$`file_ids`)) {
-        stopifnot(is.vector(input_json$`file_ids`), length(input_json$`file_ids`) != 0)
-        tmp <- sapply(input_json$`file_ids`, function(x) stopifnot(is.character(x)))
-      } else {
-        stop(paste("The JSON input `", input, "` is invalid for RunObject: the required field `file_ids` is missing."))
-      }
       # check the required field `metadata`
       if (!is.null(input_json$`metadata`)) {
       } else {
@@ -718,6 +726,14 @@ RunObject <- R6::R6Class(
         stopifnot(R6::is.R6(input_json$`tool_choice`))
       } else {
         stop(paste("The JSON input `", input, "` is invalid for RunObject: the required field `tool_choice` is missing."))
+      }
+      # check the required field `parallel_tool_calls`
+      if (!is.null(input_json$`parallel_tool_calls`)) {
+        if (!(is.logical(input_json$`parallel_tool_calls`) && length(input_json$`parallel_tool_calls`) == 1)) {
+          stop(paste("Error! Invalid data for `parallel_tool_calls`. Must be a boolean:", input_json$`parallel_tool_calls`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for RunObject: the required field `parallel_tool_calls` is missing."))
       }
       # check the required field `response_format`
       if (!is.null(input_json$`response_format`)) {
@@ -789,11 +805,6 @@ RunObject <- R6::R6Class(
         return(FALSE)
       }
 
-      # check if the required `file_ids` is null
-      if (is.null(self$`file_ids`)) {
-        return(FALSE)
-      }
-
       if (self$`max_prompt_tokens` < 256) {
         return(FALSE)
       }
@@ -809,6 +820,11 @@ RunObject <- R6::R6Class(
 
       # check if the required `tool_choice` is null
       if (is.null(self$`tool_choice`)) {
+        return(FALSE)
+      }
+
+      # check if the required `parallel_tool_calls` is null
+      if (is.null(self$`parallel_tool_calls`)) {
         return(FALSE)
       }
 
@@ -875,11 +891,6 @@ RunObject <- R6::R6Class(
         invalid_fields["tools"] <- "Invalid length for `tools`, number of items must be less than or equal to 20."
       }
 
-      # check if the required `file_ids` is null
-      if (is.null(self$`file_ids`)) {
-        invalid_fields["file_ids"] <- "Non-nullable required field `file_ids` cannot be null."
-      }
-
       if (self$`max_prompt_tokens` < 256) {
         invalid_fields["max_prompt_tokens"] <- "Invalid value for `max_prompt_tokens`, must be bigger than or equal to 256."
       }
@@ -896,6 +907,11 @@ RunObject <- R6::R6Class(
       # check if the required `tool_choice` is null
       if (is.null(self$`tool_choice`)) {
         invalid_fields["tool_choice"] <- "Non-nullable required field `tool_choice` cannot be null."
+      }
+
+      # check if the required `parallel_tool_calls` is null
+      if (is.null(self$`parallel_tool_calls`)) {
+        invalid_fields["parallel_tool_calls"] <- "Non-nullable required field `parallel_tool_calls` cannot be null."
       }
 
       # check if the required `response_format` is null

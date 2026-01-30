@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateAssistantRequestToolResources"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateAssistantRequestToolResources"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  CreateAssistantRequestToolResourcesCodeInterpreter = openapi_server.resourceTypes.CreateAssistantRequestToolResourcesCodeInterpreter
+  CreateAssistantRequestToolResourcesFileSearch = openapi_server.resourceTypes.CreateAssistantRequestToolResourcesFileSearch
+}
+resourceTypes {
+
+  CreateAssistantRequestToolResources {
+    title = CreateAssistantRequestToolResources
+    description = CreateAssistantRequestToolResources
+    derivedFrom = Root
+    properties {
+        code_interpreter {
+          type = CreateAssistantRequestToolResourcesCodeInterpreter
+          description = ""
+          optional = false
+        }
+        file_search {
+          type = CreateAssistantRequestToolResourcesFileSearch
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateAssistantRequestToolResources {
+    title = CreateAssistantRequestToolResources
+    description = CreateAssistantRequestToolResources
+    implements = openapi_server.resourceTypes.CreateAssistantRequestToolResources
+
+  }
+}

@@ -5,7 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Messages** | Pointer to [**[]CreateMessageRequest**](CreateMessageRequest.md) | A list of [messages](/docs/api-reference/messages) to start the thread with. | [optional] 
-**Metadata** | Pointer to **map[string]interface{}** | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  | [optional] 
+**ToolResources** | Pointer to [**NullableCreateThreadRequestToolResources**](CreateThreadRequestToolResources.md) |  | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  | [optional] 
 
 ## Methods
 
@@ -51,6 +52,41 @@ SetMessages sets Messages field to given value.
 
 HasMessages returns a boolean if a field has been set.
 
+### GetToolResources
+
+`func (o *CreateThreadRequest) GetToolResources() CreateThreadRequestToolResources`
+
+GetToolResources returns the ToolResources field if non-nil, zero value otherwise.
+
+### GetToolResourcesOk
+
+`func (o *CreateThreadRequest) GetToolResourcesOk() (*CreateThreadRequestToolResources, bool)`
+
+GetToolResourcesOk returns a tuple with the ToolResources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetToolResources
+
+`func (o *CreateThreadRequest) SetToolResources(v CreateThreadRequestToolResources)`
+
+SetToolResources sets ToolResources field to given value.
+
+### HasToolResources
+
+`func (o *CreateThreadRequest) HasToolResources() bool`
+
+HasToolResources returns a boolean if a field has been set.
+
+### SetToolResourcesNil
+
+`func (o *CreateThreadRequest) SetToolResourcesNil(b bool)`
+
+ SetToolResourcesNil sets the value for ToolResources to be an explicit nil
+
+### UnsetToolResources
+`func (o *CreateThreadRequest) UnsetToolResources()`
+
+UnsetToolResources ensures that no value is present for ToolResources, not even an explicit nil
 ### GetMetadata
 
 `func (o *CreateThreadRequest) GetMetadata() map[string]interface{}`

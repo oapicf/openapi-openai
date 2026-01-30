@@ -1,5 +1,6 @@
 # openapi::ChatCompletionRequestUserMessage
 
+Messages sent by an end user, containing prompts or additional context information. 
 
 ## Properties
 Name | Type | Description | Notes

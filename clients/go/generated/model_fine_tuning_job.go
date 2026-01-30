@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -52,6 +52,9 @@ type FineTuningJob struct {
 	Integrations []FineTuningJobIntegrationsInner `json:"integrations,omitempty"`
 	// The seed used for the fine-tuning job.
 	Seed int32 `json:"seed"`
+	// The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+	EstimatedFinish NullableInt32 `json:"estimated_finish,omitempty"`
+	Method *FineTuneMethod `json:"method,omitempty"`
 }
 
 type _FineTuningJob FineTuningJob
@@ -491,6 +494,80 @@ func (o *FineTuningJob) SetSeed(v int32) {
 	o.Seed = v
 }
 
+// GetEstimatedFinish returns the EstimatedFinish field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FineTuningJob) GetEstimatedFinish() int32 {
+	if o == nil || IsNil(o.EstimatedFinish.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.EstimatedFinish.Get()
+}
+
+// GetEstimatedFinishOk returns a tuple with the EstimatedFinish field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FineTuningJob) GetEstimatedFinishOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EstimatedFinish.Get(), o.EstimatedFinish.IsSet()
+}
+
+// HasEstimatedFinish returns a boolean if a field has been set.
+func (o *FineTuningJob) HasEstimatedFinish() bool {
+	if o != nil && o.EstimatedFinish.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEstimatedFinish gets a reference to the given NullableInt32 and assigns it to the EstimatedFinish field.
+func (o *FineTuningJob) SetEstimatedFinish(v int32) {
+	o.EstimatedFinish.Set(&v)
+}
+// SetEstimatedFinishNil sets the value for EstimatedFinish to be an explicit nil
+func (o *FineTuningJob) SetEstimatedFinishNil() {
+	o.EstimatedFinish.Set(nil)
+}
+
+// UnsetEstimatedFinish ensures that no value is present for EstimatedFinish, not even an explicit nil
+func (o *FineTuningJob) UnsetEstimatedFinish() {
+	o.EstimatedFinish.Unset()
+}
+
+// GetMethod returns the Method field value if set, zero value otherwise.
+func (o *FineTuningJob) GetMethod() FineTuneMethod {
+	if o == nil || IsNil(o.Method) {
+		var ret FineTuneMethod
+		return ret
+	}
+	return *o.Method
+}
+
+// GetMethodOk returns a tuple with the Method field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FineTuningJob) GetMethodOk() (*FineTuneMethod, bool) {
+	if o == nil || IsNil(o.Method) {
+		return nil, false
+	}
+	return o.Method, true
+}
+
+// HasMethod returns a boolean if a field has been set.
+func (o *FineTuningJob) HasMethod() bool {
+	if o != nil && !IsNil(o.Method) {
+		return true
+	}
+
+	return false
+}
+
+// SetMethod gets a reference to the given FineTuneMethod and assigns it to the Method field.
+func (o *FineTuningJob) SetMethod(v FineTuneMethod) {
+	o.Method = &v
+}
+
 func (o FineTuningJob) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -519,6 +596,12 @@ func (o FineTuningJob) ToMap() (map[string]interface{}, error) {
 		toSerialize["integrations"] = o.Integrations
 	}
 	toSerialize["seed"] = o.Seed
+	if o.EstimatedFinish.IsSet() {
+		toSerialize["estimated_finish"] = o.EstimatedFinish.Get()
+	}
+	if !IsNil(o.Method) {
+		toSerialize["method"] = o.Method
+	}
 	return toSerialize, nil
 }
 

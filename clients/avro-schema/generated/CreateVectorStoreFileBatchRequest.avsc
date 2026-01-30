@@ -1,0 +1,23 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateVectorStoreFileBatchRequest",
+  "fields": [
+    {
+      "name": "file_ids",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "doc": "A list of [File](/docs/api-reference/files) IDs that the vector store should use. Useful for tools like `file_search` that can access files."
+    },
+    {
+      "name": "chunking_strategy",
+      "type": ["null", "model.ChunkingStrategyRequestParam"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

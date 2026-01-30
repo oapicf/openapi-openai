@@ -31,8 +31,22 @@ API.Client.MessageDeltaObjectDeltaContentInner.prototype.imageFile;
  */
 API.Client.MessageDeltaObjectDeltaContentInner.prototype.text;
 
+/**
+ * @type {!string}
+ * @export
+ */
+API.Client.MessageDeltaObjectDeltaContentInner.prototype.refusal;
+
+/**
+ * @type {!API.Client.MessageDeltaContentImageUrlObject_image_url}
+ * @export
+ */
+API.Client.MessageDeltaObjectDeltaContentInner.prototype.imageUrl;
+
 /** @enum {string} */
 API.Client.MessageDeltaObjectDeltaContentInner.TypeEnum = { 
   image_file: 'image_file',
   text: 'text',
+  refusal: 'refusal',
+  image_url: 'image_url',
 }

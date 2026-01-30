@@ -7,33 +7,48 @@
 #' @title FineTuningJobEvent
 #' @description FineTuningJobEvent Class
 #' @format An \code{R6Class} generator object
-#' @field id  character
-#' @field created_at  integer
-#' @field level  character
-#' @field message  character
-#' @field object  character
+#' @field object The object type, which is always \"fine_tuning.job.event\". character
+#' @field id The object identifier. character
+#' @field created_at The Unix timestamp (in seconds) for when the fine-tuning job was created. integer
+#' @field level The log level of the event. character
+#' @field message The message of the event. character
+#' @field type The type of event. character [optional]
+#' @field data The data associated with the event. object [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
 FineTuningJobEvent <- R6::R6Class(
   "FineTuningJobEvent",
   public = list(
+    `object` = NULL,
     `id` = NULL,
     `created_at` = NULL,
     `level` = NULL,
     `message` = NULL,
-    `object` = NULL,
+    `type` = NULL,
+    `data` = NULL,
 
     #' @description
     #' Initialize a new FineTuningJobEvent class.
     #'
-    #' @param id id
-    #' @param created_at created_at
-    #' @param level level
-    #' @param message message
-    #' @param object object
+    #' @param object The object type, which is always \"fine_tuning.job.event\".
+    #' @param id The object identifier.
+    #' @param created_at The Unix timestamp (in seconds) for when the fine-tuning job was created.
+    #' @param level The log level of the event.
+    #' @param message The message of the event.
+    #' @param type The type of event.
+    #' @param data The data associated with the event.
     #' @param ... Other optional arguments.
-    initialize = function(`id`, `created_at`, `level`, `message`, `object`, ...) {
+    initialize = function(`object`, `id`, `created_at`, `level`, `message`, `type` = NULL, `data` = NULL, ...) {
+      if (!missing(`object`)) {
+        if (!(`object` %in% c("fine_tuning.job.event"))) {
+          stop(paste("Error! \"", `object`, "\" cannot be assigned to `object`. Must be \"fine_tuning.job.event\".", sep = ""))
+        }
+        if (!(is.character(`object`) && length(`object`) == 1)) {
+          stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
+        }
+        self$`object` <- `object`
+      }
       if (!missing(`id`)) {
         if (!(is.character(`id`) && length(`id`) == 1)) {
           stop(paste("Error! Invalid data for `id`. Must be a string:", `id`))
@@ -61,14 +76,17 @@ FineTuningJobEvent <- R6::R6Class(
         }
         self$`message` <- `message`
       }
-      if (!missing(`object`)) {
-        if (!(`object` %in% c("fine_tuning.job.event"))) {
-          stop(paste("Error! \"", `object`, "\" cannot be assigned to `object`. Must be \"fine_tuning.job.event\".", sep = ""))
+      if (!is.null(`type`)) {
+        if (!(`type` %in% c("message", "metrics"))) {
+          stop(paste("Error! \"", `type`, "\" cannot be assigned to `type`. Must be \"message\", \"metrics\".", sep = ""))
         }
-        if (!(is.character(`object`) && length(`object`) == 1)) {
-          stop(paste("Error! Invalid data for `object`. Must be a string:", `object`))
+        if (!(is.character(`type`) && length(`type`) == 1)) {
+          stop(paste("Error! Invalid data for `type`. Must be a string:", `type`))
         }
-        self$`object` <- `object`
+        self$`type` <- `type`
+      }
+      if (!is.null(`data`)) {
+        self$`data` <- `data`
       }
     },
 
@@ -103,6 +121,10 @@ FineTuningJobEvent <- R6::R6Class(
     #' @return A base R type, e.g. a list or numeric/character array.
     toSimpleType = function() {
       FineTuningJobEventObject <- list()
+      if (!is.null(self$`object`)) {
+        FineTuningJobEventObject[["object"]] <-
+          self$`object`
+      }
       if (!is.null(self$`id`)) {
         FineTuningJobEventObject[["id"]] <-
           self$`id`
@@ -119,9 +141,13 @@ FineTuningJobEvent <- R6::R6Class(
         FineTuningJobEventObject[["message"]] <-
           self$`message`
       }
-      if (!is.null(self$`object`)) {
-        FineTuningJobEventObject[["object"]] <-
-          self$`object`
+      if (!is.null(self$`type`)) {
+        FineTuningJobEventObject[["type"]] <-
+          self$`type`
+      }
+      if (!is.null(self$`data`)) {
+        FineTuningJobEventObject[["data"]] <-
+          self$`data`
       }
       return(FineTuningJobEventObject)
     },
@@ -133,6 +159,12 @@ FineTuningJobEvent <- R6::R6Class(
     #' @return the instance of FineTuningJobEvent
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
+      if (!is.null(this_object$`object`)) {
+        if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("fine_tuning.job.event"))) {
+          stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"fine_tuning.job.event\".", sep = ""))
+        }
+        self$`object` <- this_object$`object`
+      }
       if (!is.null(this_object$`id`)) {
         self$`id` <- this_object$`id`
       }
@@ -148,11 +180,14 @@ FineTuningJobEvent <- R6::R6Class(
       if (!is.null(this_object$`message`)) {
         self$`message` <- this_object$`message`
       }
-      if (!is.null(this_object$`object`)) {
-        if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("fine_tuning.job.event"))) {
-          stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"fine_tuning.job.event\".", sep = ""))
+      if (!is.null(this_object$`type`)) {
+        if (!is.null(this_object$`type`) && !(this_object$`type` %in% c("message", "metrics"))) {
+          stop(paste("Error! \"", this_object$`type`, "\" cannot be assigned to `type`. Must be \"message\", \"metrics\".", sep = ""))
         }
-        self$`object` <- this_object$`object`
+        self$`type` <- this_object$`type`
+      }
+      if (!is.null(this_object$`data`)) {
+        self$`data` <- this_object$`data`
       }
       self
     },
@@ -175,6 +210,10 @@ FineTuningJobEvent <- R6::R6Class(
     #' @return the instance of FineTuningJobEvent
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
+      if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("fine_tuning.job.event"))) {
+        stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"fine_tuning.job.event\".", sep = ""))
+      }
+      self$`object` <- this_object$`object`
       self$`id` <- this_object$`id`
       self$`created_at` <- this_object$`created_at`
       if (!is.null(this_object$`level`) && !(this_object$`level` %in% c("info", "warn", "error"))) {
@@ -182,10 +221,11 @@ FineTuningJobEvent <- R6::R6Class(
       }
       self$`level` <- this_object$`level`
       self$`message` <- this_object$`message`
-      if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("fine_tuning.job.event"))) {
-        stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"fine_tuning.job.event\".", sep = ""))
+      if (!is.null(this_object$`type`) && !(this_object$`type` %in% c("message", "metrics"))) {
+        stop(paste("Error! \"", this_object$`type`, "\" cannot be assigned to `type`. Must be \"message\", \"metrics\".", sep = ""))
       }
-      self$`object` <- this_object$`object`
+      self$`type` <- this_object$`type`
+      self$`data` <- this_object$`data`
       self
     },
 
@@ -195,6 +235,14 @@ FineTuningJobEvent <- R6::R6Class(
     #' @param input the JSON input
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
+      # check the required field `object`
+      if (!is.null(input_json$`object`)) {
+        if (!(is.character(input_json$`object`) && length(input_json$`object`) == 1)) {
+          stop(paste("Error! Invalid data for `object`. Must be a string:", input_json$`object`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for FineTuningJobEvent: the required field `object` is missing."))
+      }
       # check the required field `id`
       if (!is.null(input_json$`id`)) {
         if (!(is.character(input_json$`id`) && length(input_json$`id`) == 1)) {
@@ -227,14 +275,6 @@ FineTuningJobEvent <- R6::R6Class(
       } else {
         stop(paste("The JSON input `", input, "` is invalid for FineTuningJobEvent: the required field `message` is missing."))
       }
-      # check the required field `object`
-      if (!is.null(input_json$`object`)) {
-        if (!(is.character(input_json$`object`) && length(input_json$`object`) == 1)) {
-          stop(paste("Error! Invalid data for `object`. Must be a string:", input_json$`object`))
-        }
-      } else {
-        stop(paste("The JSON input `", input, "` is invalid for FineTuningJobEvent: the required field `object` is missing."))
-      }
     },
 
     #' @description
@@ -250,6 +290,11 @@ FineTuningJobEvent <- R6::R6Class(
     #'
     #' @return true if the values in all fields are valid.
     isValid = function() {
+      # check if the required `object` is null
+      if (is.null(self$`object`)) {
+        return(FALSE)
+      }
+
       # check if the required `id` is null
       if (is.null(self$`id`)) {
         return(FALSE)
@@ -270,11 +315,6 @@ FineTuningJobEvent <- R6::R6Class(
         return(FALSE)
       }
 
-      # check if the required `object` is null
-      if (is.null(self$`object`)) {
-        return(FALSE)
-      }
-
       TRUE
     },
 
@@ -284,6 +324,11 @@ FineTuningJobEvent <- R6::R6Class(
     #' @return A list of invalid fields (if any).
     getInvalidFields = function() {
       invalid_fields <- list()
+      # check if the required `object` is null
+      if (is.null(self$`object`)) {
+        invalid_fields["object"] <- "Non-nullable required field `object` cannot be null."
+      }
+
       # check if the required `id` is null
       if (is.null(self$`id`)) {
         invalid_fields["id"] <- "Non-nullable required field `id` cannot be null."
@@ -302,11 +347,6 @@ FineTuningJobEvent <- R6::R6Class(
       # check if the required `message` is null
       if (is.null(self$`message`)) {
         invalid_fields["message"] <- "Non-nullable required field `message` cannot be null."
-      }
-
-      # check if the required `object` is null
-      if (is.null(self$`object`)) {
-        invalid_fields["object"] <- "Non-nullable required field `object` cannot be null."
       }
 
       invalid_fields

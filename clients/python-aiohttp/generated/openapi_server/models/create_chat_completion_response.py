@@ -16,13 +16,14 @@ class CreateChatCompletionResponse(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, choices: List[CreateChatCompletionResponseChoicesInner]=None, created: int=None, model: str=None, system_fingerprint: str=None, object: str=None, usage: CompletionUsage=None):
+    def __init__(self, id: str=None, choices: List[CreateChatCompletionResponseChoicesInner]=None, created: int=None, model: str=None, service_tier: str=None, system_fingerprint: str=None, object: str=None, usage: CompletionUsage=None):
         """CreateChatCompletionResponse - a model defined in OpenAPI
 
         :param id: The id of this CreateChatCompletionResponse.
         :param choices: The choices of this CreateChatCompletionResponse.
         :param created: The created of this CreateChatCompletionResponse.
         :param model: The model of this CreateChatCompletionResponse.
+        :param service_tier: The service_tier of this CreateChatCompletionResponse.
         :param system_fingerprint: The system_fingerprint of this CreateChatCompletionResponse.
         :param object: The object of this CreateChatCompletionResponse.
         :param usage: The usage of this CreateChatCompletionResponse.
@@ -32,6 +33,7 @@ class CreateChatCompletionResponse(Model):
             'choices': List[CreateChatCompletionResponseChoicesInner],
             'created': int,
             'model': str,
+            'service_tier': str,
             'system_fingerprint': str,
             'object': str,
             'usage': CompletionUsage
@@ -42,6 +44,7 @@ class CreateChatCompletionResponse(Model):
             'choices': 'choices',
             'created': 'created',
             'model': 'model',
+            'service_tier': 'service_tier',
             'system_fingerprint': 'system_fingerprint',
             'object': 'object',
             'usage': 'usage'
@@ -51,6 +54,7 @@ class CreateChatCompletionResponse(Model):
         self._choices = choices
         self._created = created
         self._model = model
+        self._service_tier = service_tier
         self._system_fingerprint = system_fingerprint
         self._object = object
         self._usage = usage
@@ -163,6 +167,35 @@ class CreateChatCompletionResponse(Model):
             raise ValueError("Invalid value for `model`, must not be `None`")
 
         self._model = model
+
+    @property
+    def service_tier(self):
+        """Gets the service_tier of this CreateChatCompletionResponse.
+
+        The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+
+        :return: The service_tier of this CreateChatCompletionResponse.
+        :rtype: str
+        """
+        return self._service_tier
+
+    @service_tier.setter
+    def service_tier(self, service_tier):
+        """Sets the service_tier of this CreateChatCompletionResponse.
+
+        The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+
+        :param service_tier: The service_tier of this CreateChatCompletionResponse.
+        :type service_tier: str
+        """
+        allowed_values = [None,"scale", "default"]  # noqa: E501
+        if service_tier not in allowed_values:
+            raise ValueError(
+                "Invalid value for `service_tier` ({0}), must be one of {1}"
+                .format(service_tier, allowed_values)
+            )
+
+        self._service_tier = service_tier
 
     @property
     def system_fingerprint(self):

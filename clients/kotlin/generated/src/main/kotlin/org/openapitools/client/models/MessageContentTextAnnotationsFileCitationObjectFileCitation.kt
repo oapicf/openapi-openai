@@ -23,7 +23,6 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param fileId The ID of the specific File the citation is from.
- * @param quote The specific quote in the file.
  */
 
 
@@ -31,11 +30,7 @@ data class MessageContentTextAnnotationsFileCitationObjectFileCitation (
 
     /* The ID of the specific File the citation is from. */
     @Json(name = "file_id")
-    val fileId: kotlin.String,
-
-    /* The specific quote in the file. */
-    @Json(name = "quote")
-    val quote: kotlin.String
+    val fileId: kotlin.String
 
 ) {
 

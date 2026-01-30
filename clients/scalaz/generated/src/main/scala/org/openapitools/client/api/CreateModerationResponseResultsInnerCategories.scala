@@ -20,6 +20,10 @@ case class CreateModerationResponseResultsInnerCategories (
   harassment: Boolean,
 /* Harassment content that also includes violence or serious harm towards any target. */
   harassmentThreatening: Boolean,
+/* Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category. */
+  illicit: Boolean,
+/* Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon. */
+  illicitViolent: Boolean,
 /* Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders. */
   selfHarm: Boolean,
 /* Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders. */

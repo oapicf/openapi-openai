@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **r#type** | **String** | The type of the tool. Currently, only `function` is supported. | 
-**function** | [**models::ChatCompletionNamedToolChoiceFunction**](ChatCompletionNamedToolChoice_function.md) |  | 
+**function** | [**models::AssistantsNamedToolChoiceFunction**](AssistantsNamedToolChoice_function.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

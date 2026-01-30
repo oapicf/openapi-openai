@@ -11,7 +11,7 @@ import javax.validation.Valid;
 /**
  * CreateSpeechRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateSpeechRequest   {
   @JsonProperty("model")
@@ -27,7 +27,7 @@ public class CreateSpeechRequest   {
   private String input;
 
   /**
-   * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+   * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
    */
   public enum VoiceEnum {
     ALLOY("alloy"),
@@ -115,10 +115,10 @@ public class CreateSpeechRequest   {
 
   @JsonProperty("speed")
   @DecimalMin("0.25")
-@DecimalMax("4.0")
+@DecimalMax("4")
 @Valid
 
-  private BigDecimal speed = new BigDecimal("1.0");
+  private BigDecimal speed = new BigDecimal("1");
 
   public CreateSpeechRequest model(CreateSpeechRequestModel model) {
     this.model = model;
@@ -160,7 +160,7 @@ public class CreateSpeechRequest   {
   }
 
    /**
-   * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+   * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
    * @return voice
   **/
   public VoiceEnum getVoice() {
@@ -196,7 +196,7 @@ public class CreateSpeechRequest   {
    /**
    * The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.
    * minimum: 0.25
-   * maximum: 4.0
+   * maximum: 4
    * @return speed
   **/
   public BigDecimal getSpeed() {

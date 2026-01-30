@@ -10,14 +10,14 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is created.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is created.
  **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-@ApiModel(description = "Occurs when a [run step](/docs/api-reference/runs/step-object) is created.")
+@ApiModel(description = "Occurs when a [run step](/docs/api-reference/run-steps/step-object) is created.")
 public class RunStepStreamEventOneOf   {
   
 

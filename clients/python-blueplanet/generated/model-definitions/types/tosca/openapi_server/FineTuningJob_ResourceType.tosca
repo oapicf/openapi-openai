@@ -7,6 +7,7 @@ authors     = ["F. Bar (foo@bar.baz)"]
 
 imports {
   Root = tosca.resourceTypes.Root
+  FineTuneMethod = openapi_server.resourceTypes.FineTuneMethod
   FineTuningJobError = openapi_server.resourceTypes.FineTuningJobError
   FineTuningJobHyperparameters = openapi_server.resourceTypes.FineTuningJobHyperparameters
   FineTuningJobIntegrationsInner = openapi_server.resourceTypes.FineTuningJobIntegrationsInner
@@ -101,6 +102,16 @@ resourceTypes {
           type =  integer
           description = "The seed used for the fine-tuning job."
           optional = true
+        }
+        estimated_finish {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running."
+          optional = false
+        }
+        method {
+          type = FineTuneMethod
+          description = ""
+          optional = false
         }
     }
   }

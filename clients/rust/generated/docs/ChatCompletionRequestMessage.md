@@ -5,6 +5,7 @@
 | Name | Description |
 |---- | -----|
 | ChatCompletionRequestAssistantMessage |  |
+| ChatCompletionRequestDeveloperMessage |  |
 | ChatCompletionRequestFunctionMessage |  |
 | ChatCompletionRequestSystemMessage |  |
 | ChatCompletionRequestToolMessage |  |

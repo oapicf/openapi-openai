@@ -1,0 +1,36 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ModifyAssistantRequestToolResourcesCodeInterpreter"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ModifyAssistantRequestToolResourcesCodeInterpreter"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ModifyAssistantRequestToolResourcesCodeInterpreter {
+    title = ModifyAssistantRequestToolResourcesCodeInterpreter
+    description = ModifyAssistantRequestToolResourcesCodeInterpreter
+    derivedFrom = Root
+    properties {
+        file_ids {
+          type = array
+          items.type =  string
+          description = "Overrides the list of [file](/docs/api-reference/files) IDs made available to the &#x60;code_interpreter&#x60; tool. There can be a maximum of 20 files associated with the tool. "
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ModifyAssistantRequestToolResourcesCodeInterpreter {
+    title = ModifyAssistantRequestToolResourcesCodeInterpreter
+    description = ModifyAssistantRequestToolResourcesCodeInterpreter
+    implements = openapi_server.resourceTypes.ModifyAssistantRequestToolResourcesCodeInterpreter
+
+  }
+}

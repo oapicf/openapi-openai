@@ -19,12 +19,14 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * The hyperparameters used for the fine-tuning job.
+ * The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of &#x60;method&#x60;, and should be passed in under the &#x60;method&#x60; parameter. 
+ * @deprecated
  */
 
-@Schema(name = "CreateFineTuningJobRequest_hyperparameters", description = "The hyperparameters used for the fine-tuning job.")
+@Deprecated
+@Schema(name = "CreateFineTuningJobRequest_hyperparameters", description = "The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of `method`, and should be passed in under the `method` parameter. ")
 @JsonTypeName("CreateFineTuningJobRequest_hyperparameters")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateFineTuningJobRequestHyperparameters {
 
   private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;

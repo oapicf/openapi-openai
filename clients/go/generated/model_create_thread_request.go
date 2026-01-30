@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -22,7 +22,8 @@ var _ MappedNullable = &CreateThreadRequest{}
 type CreateThreadRequest struct {
 	// A list of [messages](/docs/api-reference/messages) to start the thread with.
 	Messages []CreateMessageRequest `json:"messages,omitempty"`
-	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	ToolResources NullableCreateThreadRequestToolResources `json:"tool_resources,omitempty"`
+	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 }
 
@@ -75,6 +76,48 @@ func (o *CreateThreadRequest) SetMessages(v []CreateMessageRequest) {
 	o.Messages = v
 }
 
+// GetToolResources returns the ToolResources field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateThreadRequest) GetToolResources() CreateThreadRequestToolResources {
+	if o == nil || IsNil(o.ToolResources.Get()) {
+		var ret CreateThreadRequestToolResources
+		return ret
+	}
+	return *o.ToolResources.Get()
+}
+
+// GetToolResourcesOk returns a tuple with the ToolResources field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateThreadRequest) GetToolResourcesOk() (*CreateThreadRequestToolResources, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ToolResources.Get(), o.ToolResources.IsSet()
+}
+
+// HasToolResources returns a boolean if a field has been set.
+func (o *CreateThreadRequest) HasToolResources() bool {
+	if o != nil && o.ToolResources.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetToolResources gets a reference to the given NullableCreateThreadRequestToolResources and assigns it to the ToolResources field.
+func (o *CreateThreadRequest) SetToolResources(v CreateThreadRequestToolResources) {
+	o.ToolResources.Set(&v)
+}
+// SetToolResourcesNil sets the value for ToolResources to be an explicit nil
+func (o *CreateThreadRequest) SetToolResourcesNil() {
+	o.ToolResources.Set(nil)
+}
+
+// UnsetToolResources ensures that no value is present for ToolResources, not even an explicit nil
+func (o *CreateThreadRequest) UnsetToolResources() {
+	o.ToolResources.Unset()
+}
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateThreadRequest) GetMetadata() map[string]interface{} {
 	if o == nil {
@@ -120,6 +163,9 @@ func (o CreateThreadRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Messages) {
 		toSerialize["messages"] = o.Messages
+	}
+	if o.ToolResources.IsSet() {
+		toSerialize["tool_resources"] = o.ToolResources.Get()
 	}
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata

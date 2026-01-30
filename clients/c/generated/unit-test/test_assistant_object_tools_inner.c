@@ -16,6 +16,7 @@
 #include "../model/assistant_object_tools_inner.h"
 assistant_object_tools_inner_t* instantiate_assistant_object_tools_inner(int include_optional);
 
+#include "test_assistant_tools_file_search_file_search.c"
 #include "test_function_object.c"
 
 
@@ -25,11 +26,14 @@ assistant_object_tools_inner_t* instantiate_assistant_object_tools_inner(int inc
     assistant_object_tools_inner = assistant_object_tools_inner_create(
       openai_api_assistant_object_tools_inner_TYPE_code_interpreter,
        // false, not to have infinite recursion
+      instantiate_assistant_tools_file_search_file_search(0),
+       // false, not to have infinite recursion
       instantiate_function_object(0)
     );
   } else {
     assistant_object_tools_inner = assistant_object_tools_inner_create(
       openai_api_assistant_object_tools_inner_TYPE_code_interpreter,
+      NULL,
       NULL
     );
   }

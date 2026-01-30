@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -16,16 +16,16 @@ package openapitools;
 
 import public "models/run_step_details_tool_calls_code_object.proto";
 import public "models/run_step_details_tool_calls_code_object_code_interpreter.proto";
+import public "models/run_step_details_tool_calls_file_search_object.proto";
+import public "models/run_step_details_tool_calls_file_search_object_file_search.proto";
 import public "models/run_step_details_tool_calls_function_object.proto";
 import public "models/run_step_details_tool_calls_function_object_function.proto";
-import public "models/run_step_details_tool_calls_retrieval_object.proto";
-import public "models/todo_object_mapping.proto";
 
 message RunStepDetailsToolCallsObjectToolCallsInner {
 
     oneof run_step_details_tool_calls_object_tool_calls_inner {
         RunStepDetailsToolCallsCodeObject run_step_details_tool_calls_code_object = 393052734;
-        RunStepDetailsToolCallsRetrievalObject run_step_details_tool_calls_retrieval_object = 326599394;
+        RunStepDetailsToolCallsFileSearchObject run_step_details_tool_calls_file_search_object = 293590683;
         RunStepDetailsToolCallsFunctionObject run_step_details_tool_calls_function_object = 419111025;
     }
 }

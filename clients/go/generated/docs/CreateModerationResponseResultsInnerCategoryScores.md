@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **HateThreatening** | **float32** | The score for the category &#39;hate/threatening&#39;. | 
 **Harassment** | **float32** | The score for the category &#39;harassment&#39;. | 
 **HarassmentThreatening** | **float32** | The score for the category &#39;harassment/threatening&#39;. | 
+**Illicit** | **float32** | The score for the category &#39;illicit&#39;. | 
+**IllicitViolent** | **float32** | The score for the category &#39;illicit/violent&#39;. | 
 **SelfHarm** | **float32** | The score for the category &#39;self-harm&#39;. | 
 **SelfHarmIntent** | **float32** | The score for the category &#39;self-harm/intent&#39;. | 
 **SelfHarmInstructions** | **float32** | The score for the category &#39;self-harm/instructions&#39;. | 
@@ -20,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewCreateModerationResponseResultsInnerCategoryScores
 
-`func NewCreateModerationResponseResultsInnerCategoryScores(hate float32, hateThreatening float32, harassment float32, harassmentThreatening float32, selfHarm float32, selfHarmIntent float32, selfHarmInstructions float32, sexual float32, sexualMinors float32, violence float32, violenceGraphic float32, ) *CreateModerationResponseResultsInnerCategoryScores`
+`func NewCreateModerationResponseResultsInnerCategoryScores(hate float32, hateThreatening float32, harassment float32, harassmentThreatening float32, illicit float32, illicitViolent float32, selfHarm float32, selfHarmIntent float32, selfHarmInstructions float32, sexual float32, sexualMinors float32, violence float32, violenceGraphic float32, ) *CreateModerationResponseResultsInnerCategoryScores`
 
 NewCreateModerationResponseResultsInnerCategoryScores instantiates a new CreateModerationResponseResultsInnerCategoryScores object
 This constructor will assign default values to properties that have it defined,
@@ -113,6 +115,46 @@ and a boolean to check if the value has been set.
 `func (o *CreateModerationResponseResultsInnerCategoryScores) SetHarassmentThreatening(v float32)`
 
 SetHarassmentThreatening sets HarassmentThreatening field to given value.
+
+
+### GetIllicit
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) GetIllicit() float32`
+
+GetIllicit returns the Illicit field if non-nil, zero value otherwise.
+
+### GetIllicitOk
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) GetIllicitOk() (*float32, bool)`
+
+GetIllicitOk returns a tuple with the Illicit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIllicit
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) SetIllicit(v float32)`
+
+SetIllicit sets Illicit field to given value.
+
+
+### GetIllicitViolent
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) GetIllicitViolent() float32`
+
+GetIllicitViolent returns the IllicitViolent field if non-nil, zero value otherwise.
+
+### GetIllicitViolentOk
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) GetIllicitViolentOk() (*float32, bool)`
+
+GetIllicitViolentOk returns a tuple with the IllicitViolent field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIllicitViolent
+
+`func (o *CreateModerationResponseResultsInnerCategoryScores) SetIllicitViolent(v float32)`
+
+SetIllicitViolent sets IllicitViolent field to given value.
 
 
 ### GetSelfHarm

@@ -14,6 +14,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ThreadStreamEvent  {
   
+ /**
+  * Whether to enable input audio transcription.
+  */
+  @ApiModelProperty(value = "Whether to enable input audio transcription.")
+
+  private Boolean enabled;
+
 public enum EventEnum {
 
 THREAD_CREATED(String.valueOf("thread.created"));
@@ -51,6 +58,24 @@ THREAD_CREATED(String.valueOf("thread.created"));
   @ApiModelProperty(required = true, value = "")
 
   private ThreadObject data;
+ /**
+   * Whether to enable input audio transcription.
+   * @return enabled
+  **/
+  @JsonProperty("enabled")
+  public Boolean getEnabled() {
+    return enabled;
+  }
+
+  public void setEnabled(Boolean enabled) {
+    this.enabled = enabled;
+  }
+
+  public ThreadStreamEvent enabled(Boolean enabled) {
+    this.enabled = enabled;
+    return this;
+  }
+
  /**
    * Get event
    * @return event
@@ -99,13 +124,14 @@ THREAD_CREATED(String.valueOf("thread.created"));
       return false;
     }
     ThreadStreamEvent threadStreamEvent = (ThreadStreamEvent) o;
-    return Objects.equals(this.event, threadStreamEvent.event) &&
+    return Objects.equals(this.enabled, threadStreamEvent.enabled) &&
+        Objects.equals(this.event, threadStreamEvent.event) &&
         Objects.equals(this.data, threadStreamEvent.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(event, data);
+    return Objects.hash(enabled, event, data);
   }
 
   @Override
@@ -113,6 +139,7 @@ THREAD_CREATED(String.valueOf("thread.created"));
     StringBuilder sb = new StringBuilder();
     sb.append("class ThreadStreamEvent {\n");
     
+    sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
     sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");

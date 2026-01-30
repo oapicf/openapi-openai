@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -123,7 +123,7 @@ func (c *FilesAPIController) OrderedRoutes() []Route {
 
 
 
-// ListFiles - Returns a list of files that belong to the user's organization.
+// ListFiles - Returns a list of files.
 func (c *FilesAPIController) ListFiles(w http.ResponseWriter, r *http.Request) {
 	query, err := parseQuery(r.URL.RawQuery)
 	if err != nil {
@@ -137,7 +137,39 @@ func (c *FilesAPIController) ListFiles(w http.ResponseWriter, r *http.Request) {
 		purposeParam = param
 	} else {
 	}
-	result, err := c.service.ListFiles(r.Context(), purposeParam)
+	var limitParam int32
+	if query.Has("limit") {
+		param, err := parseNumericParameter[int32](
+			query.Get("limit"),
+			WithParse[int32](parseInt32),
+		)
+		if err != nil {
+			c.errorHandler(w, r, &ParsingError{Param: "limit", Err: err}, nil)
+			return
+		}
+
+		limitParam = param
+	} else {
+		var param int32 = 10000
+		limitParam = param
+	}
+	var orderParam string
+	if query.Has("order") {
+		param := query.Get("order")
+
+		orderParam = param
+	} else {
+		param := "desc"
+		orderParam = param
+	}
+	var afterParam string
+	if query.Has("after") {
+		param := query.Get("after")
+
+		afterParam = param
+	} else {
+	}
+	result, err := c.service.ListFiles(r.Context(), purposeParam, limitParam, orderParam, afterParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)
@@ -147,7 +179,7 @@ func (c *FilesAPIController) ListFiles(w http.ResponseWriter, r *http.Request) {
 	_ = EncodeJSONResponse(result.Body, &result.Code, w)
 }
 
-// CreateFile - Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+// CreateFile - Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
 func (c *FilesAPIController) CreateFile(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseMultipartForm(32 << 20); err != nil {
 		c.errorHandler(w, r, &ParsingError{Err: err}, nil)

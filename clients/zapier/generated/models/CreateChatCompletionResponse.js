@@ -30,6 +30,15 @@ module.exports = {
                 type: 'string',
             },
             {
+                key: `${keyPrefix}service_tier`,
+                label: `The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request. - [${labelPrefix}service_tier]`,
+                type: 'string',
+                choices: [
+                    'scale',
+                    'default',
+                ],
+            },
+            {
                 key: `${keyPrefix}system_fingerprint`,
                 label: `This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  - [${labelPrefix}system_fingerprint]`,
                 type: 'string',
@@ -53,6 +62,7 @@ module.exports = {
             'choices': utils.childMapping(bundle.inputData?.[`${keyPrefix}choices`], `${keyPrefix}choices`, CreateChatCompletionResponse_choices_inner),
             'created': bundle.inputData?.[`${keyPrefix}created`],
             'model': bundle.inputData?.[`${keyPrefix}model`],
+            'service_tier': bundle.inputData?.[`${keyPrefix}service_tier`],
             'system_fingerprint': bundle.inputData?.[`${keyPrefix}system_fingerprint`],
             'object': bundle.inputData?.[`${keyPrefix}object`],
             'usage': utils.removeIfEmpty(CompletionUsage.mapping(bundle, `${keyPrefix}usage`)),

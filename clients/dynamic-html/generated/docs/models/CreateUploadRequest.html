@@ -1,0 +1,30 @@
+
+<h2>CreateUploadRequest</h2>
+<ul class="parameter">
+  <li class="param-required-true">filename : String
+    <br/>The name of the file to upload. 
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">purpose : String
+    <br/>The intended purpose of the uploaded file.  See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose). 
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>assistants</dd>
+            <dd>batch</dd>
+            <dd>fine-tune</dd>
+            <dd>vision</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">bytes : Integer
+    <br/>The number of bytes in the file you are uploading. 
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">mimeUnderscoretype : String
+    <br/>The MIME type of the file.  This must fall within the supported MIME types for your file purpose. See the supported MIME types for assistants and vision. 
+  </li>
+</ul>

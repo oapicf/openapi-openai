@@ -18,7 +18,7 @@ void main() {
       // TODO
     });
 
-    // The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+    // The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
     // String voice
     test('to test the property `voice`', () async {
       // TODO
@@ -31,7 +31,7 @@ void main() {
     });
 
     // The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.
-    // num speed (default value: 1.0)
+    // num speed (default value: 1)
     test('to test the property `speed`', () async {
       // TODO
     });

@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -73,7 +73,7 @@ func (c *ModerationsAPIController) OrderedRoutes() []Route {
 
 
 
-// CreateModeration - Classifies if text is potentially harmful.
+// CreateModeration - Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 func (c *ModerationsAPIController) CreateModeration(w http.ResponseWriter, r *http.Request) {
 	var createModerationRequestParam CreateModerationRequest
 	d := json.NewDecoder(r.Body)

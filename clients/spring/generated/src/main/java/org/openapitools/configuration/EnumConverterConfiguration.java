@@ -1,5 +1,7 @@
 package org.openapitools.configuration;
 
+import org.openapitools.model.AudioResponseFormat;
+import org.openapitools.model.AuditLogEventType;
 import org.openapitools.model.ChatCompletionRole;
 
 import org.springframework.context.annotation.Bean;
@@ -16,6 +18,24 @@ import org.springframework.core.convert.converter.Converter;
 @Configuration(value = "org.openapitools.configuration.enumConverterConfiguration")
 public class EnumConverterConfiguration {
 
+    @Bean(name = "org.openapitools.configuration.EnumConverterConfiguration.audioResponseFormatConverter")
+    Converter<String, AudioResponseFormat> audioResponseFormatConverter() {
+        return new Converter<String, AudioResponseFormat>() {
+            @Override
+            public AudioResponseFormat convert(String source) {
+                return AudioResponseFormat.fromValue(source);
+            }
+        };
+    }
+    @Bean(name = "org.openapitools.configuration.EnumConverterConfiguration.auditLogEventTypeConverter")
+    Converter<String, AuditLogEventType> auditLogEventTypeConverter() {
+        return new Converter<String, AuditLogEventType>() {
+            @Override
+            public AuditLogEventType convert(String source) {
+                return AuditLogEventType.fromValue(source);
+            }
+        };
+    }
     @Bean(name = "org.openapitools.configuration.EnumConverterConfiguration.chatCompletionRoleConverter")
     Converter<String, ChatCompletionRole> chatCompletionRoleConverter() {
         return new Converter<String, ChatCompletionRole>() {

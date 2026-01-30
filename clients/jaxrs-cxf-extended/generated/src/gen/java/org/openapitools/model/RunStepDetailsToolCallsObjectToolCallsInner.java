@@ -5,9 +5,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.model.RunStepDetailsToolCallsCodeObject;
 import org.openapitools.model.RunStepDetailsToolCallsCodeObjectCodeInterpreter;
+import org.openapitools.model.RunStepDetailsToolCallsFileSearchObject;
+import org.openapitools.model.RunStepDetailsToolCallsFileSearchObjectFileSearch;
 import org.openapitools.model.RunStepDetailsToolCallsFunctionObject;
 import org.openapitools.model.RunStepDetailsToolCallsFunctionObjectFunction;
-import org.openapitools.model.RunStepDetailsToolCallsRetrievalObject;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -27,7 +28,7 @@ public class RunStepDetailsToolCallsObjectToolCallsInner  {
 public enum TypeEnum {
 
     @JsonProperty("code_interpreter") CODE_INTERPRETER(String.valueOf("code_interpreter")),
-    @JsonProperty("retrieval") RETRIEVAL(String.valueOf("retrieval")),
+    @JsonProperty("file_search") FILE_SEARCH(String.valueOf("file_search")),
     @JsonProperty("function") FUNCTION(String.valueOf("function"));
 
     private String value;
@@ -65,11 +66,9 @@ public enum TypeEnum {
   @Valid
   private RunStepDetailsToolCallsCodeObjectCodeInterpreter codeInterpreter;
 
- /**
-  * For now, this is always going to be an empty object.
-  */
-  @ApiModelProperty(required = true, value = "For now, this is always going to be an empty object.")
-  private Object retrieval;
+  @ApiModelProperty(required = true, value = "")
+  @Valid
+  private RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch;
 
   @ApiModelProperty(required = true, value = "")
   @Valid
@@ -150,27 +149,27 @@ public enum TypeEnum {
   }
 
  /**
-  * For now, this is always going to be an empty object.
-  * @return retrieval
+  * Get fileSearch
+  * @return fileSearch
   */
-  @JsonProperty("retrieval")
+  @JsonProperty("file_search")
   @NotNull
-  public Object getRetrieval() {
-    return retrieval;
+  public RunStepDetailsToolCallsFileSearchObjectFileSearch getFileSearch() {
+    return fileSearch;
   }
 
   /**
-   * Sets the <code>retrieval</code> property.
+   * Sets the <code>fileSearch</code> property.
    */
- public void setRetrieval(Object retrieval) {
-    this.retrieval = retrieval;
+ public void setFileSearch(RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
   }
 
   /**
-   * Sets the <code>retrieval</code> property.
+   * Sets the <code>fileSearch</code> property.
    */
-  public RunStepDetailsToolCallsObjectToolCallsInner retrieval(Object retrieval) {
-    this.retrieval = retrieval;
+  public RunStepDetailsToolCallsObjectToolCallsInner fileSearch(RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
     return this;
   }
 
@@ -212,13 +211,13 @@ public enum TypeEnum {
     return Objects.equals(this.id, runStepDetailsToolCallsObjectToolCallsInner.id) &&
         Objects.equals(this.type, runStepDetailsToolCallsObjectToolCallsInner.type) &&
         Objects.equals(this.codeInterpreter, runStepDetailsToolCallsObjectToolCallsInner.codeInterpreter) &&
-        Objects.equals(this.retrieval, runStepDetailsToolCallsObjectToolCallsInner.retrieval) &&
+        Objects.equals(this.fileSearch, runStepDetailsToolCallsObjectToolCallsInner.fileSearch) &&
         Objects.equals(this.function, runStepDetailsToolCallsObjectToolCallsInner.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, codeInterpreter, retrieval, function);
+    return Objects.hash(id, type, codeInterpreter, fileSearch, function);
   }
 
   @Override
@@ -229,7 +228,7 @@ public enum TypeEnum {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    codeInterpreter: ").append(toIndentedString(codeInterpreter)).append("\n");
-    sb.append("    retrieval: ").append(toIndentedString(retrieval)).append("\n");
+    sb.append("    fileSearch: ").append(toIndentedString(fileSearch)).append("\n");
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();

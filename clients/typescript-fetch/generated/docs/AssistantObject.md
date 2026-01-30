@@ -15,8 +15,11 @@ Name | Type
 `model` | string
 `instructions` | string
 `tools` | [Array&lt;AssistantObjectToolsInner&gt;](AssistantObjectToolsInner.md)
-`fileIds` | Array&lt;string&gt;
+`toolResources` | [AssistantObjectToolResources](AssistantObjectToolResources.md)
 `metadata` | object
+`temperature` | number
+`topP` | number
+`responseFormat` | [AssistantsApiResponseFormatOption](AssistantsApiResponseFormatOption.md)
 
 ## Example
 
@@ -33,8 +36,11 @@ const example = {
   "model": null,
   "instructions": null,
   "tools": null,
-  "fileIds": null,
+  "toolResources": null,
   "metadata": null,
+  "temperature": 1,
+  "topP": 1,
+  "responseFormat": null,
 } satisfies AssistantObject
 
 console.log(example)

@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **cancelledAt** | `Integer` | The Unix timestamp (in seconds) for when the run step was cancelled. | 
 **failedAt** | `Integer` | The Unix timestamp (in seconds) for when the run step failed. | 
 **completedAt** | `Integer` | The Unix timestamp (in seconds) for when the run step completed. | 
-**metadata** | `Object` | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  | 
+**metadata** | `Object` | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  | 
 **usage** | [`RunStepCompletionUsage`](RunStepCompletionUsage.md) |  | 
 
 

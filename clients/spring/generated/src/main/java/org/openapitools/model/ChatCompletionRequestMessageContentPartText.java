@@ -17,11 +17,12 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * ChatCompletionRequestMessageContentPartText
+ * Learn about [text inputs](/docs/guides/text-generation). 
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
-public class ChatCompletionRequestMessageContentPartText implements ChatCompletionRequestMessageContentPart {
+@Schema(name = "ChatCompletionRequestMessageContentPartText", description = "Learn about [text inputs](/docs/guides/text-generation). ")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class ChatCompletionRequestMessageContentPartText implements ChatCompletionRequestAssistantMessageContentPart, ChatCompletionRequestUserMessageContentPart {
 
   /**
    * The type of the content part.

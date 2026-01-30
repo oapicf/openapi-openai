@@ -1,0 +1,293 @@
+package org.openapitools.model;
+
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.RealtimeConversationItem;
+import org.openapitools.model.RealtimeResponseStatusDetails;
+import org.openapitools.model.RealtimeResponseUsage;
+
+/**
+ * The response resource.
+ */
+@ApiModel(description = "The response resource.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class RealtimeResponse   {
+  @JsonProperty("id")
+  private String id;
+
+  /**
+   * The object type, must be `realtime.response`.
+   */
+  public enum ObjectEnum {
+    REALTIME_RESPONSE("realtime.response");
+
+    private String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String text) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + text + "'");
+    }
+  }
+
+  @JsonProperty("object")
+  private ObjectEnum _object;
+
+  /**
+   * The final status of the response (`completed`, `cancelled`, `failed`, or  `incomplete`). 
+   */
+  public enum StatusEnum {
+    COMPLETED("completed"),
+    
+    CANCELLED("cancelled"),
+    
+    FAILED("failed"),
+    
+    INCOMPLETE("incomplete");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String text) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + text + "'");
+    }
+  }
+
+  @JsonProperty("status")
+  private StatusEnum status;
+
+  @JsonProperty("status_details")
+  private RealtimeResponseStatusDetails statusDetails;
+
+  @JsonProperty("output")
+  private List<@Valid RealtimeConversationItem> output = null;
+
+  @JsonProperty("metadata")
+  private Object metadata;
+
+  @JsonProperty("usage")
+  private RealtimeResponseUsage usage;
+
+  public RealtimeResponse id(String id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The unique ID of the response.
+   * @return id
+  **/
+  @ApiModelProperty(value = "The unique ID of the response.")
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public RealtimeResponse _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+   /**
+   * The object type, must be `realtime.response`.
+   * @return _object
+  **/
+  @ApiModelProperty(value = "The object type, must be `realtime.response`.")
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+  public void setObject(ObjectEnum _object) {
+    this._object = _object;
+  }
+
+  public RealtimeResponse status(StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * The final status of the response (`completed`, `cancelled`, `failed`, or  `incomplete`). 
+   * @return status
+  **/
+  @ApiModelProperty(value = "The final status of the response (`completed`, `cancelled`, `failed`, or  `incomplete`). ")
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
+  public RealtimeResponse statusDetails(RealtimeResponseStatusDetails statusDetails) {
+    this.statusDetails = statusDetails;
+    return this;
+  }
+
+   /**
+   * Get statusDetails
+   * @return statusDetails
+  **/
+  @ApiModelProperty(value = "")
+  public RealtimeResponseStatusDetails getStatusDetails() {
+    return statusDetails;
+  }
+
+  public void setStatusDetails(RealtimeResponseStatusDetails statusDetails) {
+    this.statusDetails = statusDetails;
+  }
+
+  public RealtimeResponse output(List<@Valid RealtimeConversationItem> output) {
+    this.output = output;
+    return this;
+  }
+
+  public RealtimeResponse addOutputItem(RealtimeConversationItem outputItem) {
+    if (this.output == null) {
+      this.output = new ArrayList<>();
+    }
+    this.output.add(outputItem);
+    return this;
+  }
+
+   /**
+   * The list of output items generated by the response.
+   * @return output
+  **/
+  @ApiModelProperty(value = "The list of output items generated by the response.")
+  public List<@Valid RealtimeConversationItem> getOutput() {
+    return output;
+  }
+
+  public void setOutput(List<@Valid RealtimeConversationItem> output) {
+    this.output = output;
+  }
+
+  public RealtimeResponse metadata(Object metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+   /**
+   * Developer-provided string key-value pairs associated with this response. 
+   * @return metadata
+  **/
+  @ApiModelProperty(value = "Developer-provided string key-value pairs associated with this response. ")
+  public Object getMetadata() {
+    return metadata;
+  }
+
+  public void setMetadata(Object metadata) {
+    this.metadata = metadata;
+  }
+
+  public RealtimeResponse usage(RealtimeResponseUsage usage) {
+    this.usage = usage;
+    return this;
+  }
+
+   /**
+   * Get usage
+   * @return usage
+  **/
+  @ApiModelProperty(value = "")
+  public RealtimeResponseUsage getUsage() {
+    return usage;
+  }
+
+  public void setUsage(RealtimeResponseUsage usage) {
+    this.usage = usage;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    RealtimeResponse realtimeResponse = (RealtimeResponse) o;
+    return Objects.equals(this.id, realtimeResponse.id) &&
+        Objects.equals(this._object, realtimeResponse._object) &&
+        Objects.equals(this.status, realtimeResponse.status) &&
+        Objects.equals(this.statusDetails, realtimeResponse.statusDetails) &&
+        Objects.equals(this.output, realtimeResponse.output) &&
+        Objects.equals(this.metadata, realtimeResponse.metadata) &&
+        Objects.equals(this.usage, realtimeResponse.usage);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, _object, status, statusDetails, output, metadata, usage);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class RealtimeResponse {\n");
+    
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    statusDetails: ").append(toIndentedString(statusDetails)).append("\n");
+    sb.append("    output: ").append(toIndentedString(output)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+}
+

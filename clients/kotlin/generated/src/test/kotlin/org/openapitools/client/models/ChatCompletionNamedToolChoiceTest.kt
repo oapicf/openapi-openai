@@ -19,7 +19,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.ChatCompletionNamedToolChoice
-import org.openapitools.client.models.ChatCompletionNamedToolChoiceFunction
+import org.openapitools.client.models.AssistantsNamedToolChoiceFunction
 
 class ChatCompletionNamedToolChoiceTest : ShouldSpec() {
     init {

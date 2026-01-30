@@ -1,6 +1,7 @@
 goog.provide('API.Client.ChatCompletionRequestMessageContentPartText');
 
 /**
+ * Learn about [text inputs](/docs/guides/text-generation). 
  * @record
  */
 API.Client.ChatCompletionRequestMessageContentPartText = function() {}

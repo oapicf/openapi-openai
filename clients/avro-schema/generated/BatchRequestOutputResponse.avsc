@@ -1,0 +1,27 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "BatchRequestOutputResponse",
+  "fields": [
+    {
+      "name": "status_code",
+      "type": ["null", "int"],
+      "doc": "The HTTP status code of the response",
+      "default": null
+    },
+    {
+      "name": "request_id",
+      "type": ["null", "string"],
+      "doc": "An unique identifier for the OpenAI API request. Please include this request ID when contacting support.",
+      "default": null
+    },
+    {
+      "name": "body",
+      "type": ["null", "model.object"],
+      "doc": "The JSON body of the response",
+      "default": null
+    }
+  ]
+
+}

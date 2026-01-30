@@ -11,12 +11,15 @@ import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.ChatCompletionFunctions;
 import org.openapitools.model.ChatCompletionRequestMessage;
+import org.openapitools.model.ChatCompletionStreamOptions;
 import org.openapitools.model.ChatCompletionTool;
 import org.openapitools.model.ChatCompletionToolChoiceOption;
+import org.openapitools.model.CreateChatCompletionRequestAudio;
 import org.openapitools.model.CreateChatCompletionRequestFunctionCall;
 import org.openapitools.model.CreateChatCompletionRequestModel;
 import org.openapitools.model.CreateChatCompletionRequestResponseFormat;
 import org.openapitools.model.CreateChatCompletionRequestStop;
+import org.openapitools.model.PredictionContent;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -31,25 +34,176 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("CreateChatCompletionRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateChatCompletionRequest   {
   private @Valid List<ChatCompletionRequestMessage> messages = new ArrayList<>();
   private CreateChatCompletionRequestModel model;
+  private Boolean store = false;
+  public enum ReasoningEffortEnum {
+
+    LOW(String.valueOf("low")), MEDIUM(String.valueOf("medium")), HIGH(String.valueOf("high"));
+
+
+    private String value;
+
+    ReasoningEffortEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    /**
+     * Convert a String into String, as specified in the
+     * <a href="https://download.oracle.com/otndocs/jcp/jaxrs-2_0-fr-eval-spec/index.html">See JAX RS 2.0 Specification, section 3.2, p. 12</a>
+     */
+    public static ReasoningEffortEnum fromString(String s) {
+        for (ReasoningEffortEnum b : ReasoningEffortEnum.values()) {
+            // using Objects.toString() to be safe if value type non-object type
+            // because types like 'int' etc. will be auto-boxed
+            if (java.util.Objects.toString(b.value).equals(s)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected string value '" + s + "'");
+    }
+
+    @JsonCreator
+    public static ReasoningEffortEnum fromValue(String value) {
+        for (ReasoningEffortEnum b : ReasoningEffortEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
+  private ReasoningEffortEnum reasoningEffort = ReasoningEffortEnum.MEDIUM;
+  private @Valid Map<String, String> metadata;
   private BigDecimal frequencyPenalty = new BigDecimal("0");
   private @Valid Map<String, Integer> logitBias;
   private Boolean logprobs = false;
   private Integer topLogprobs;
   private Integer maxTokens;
+  private Integer maxCompletionTokens;
   private Integer n = 1;
+  public enum ModalitiesEnum {
+
+    TEXT(String.valueOf("text")), AUDIO(String.valueOf("audio"));
+
+
+    private String value;
+
+    ModalitiesEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    /**
+     * Convert a String into String, as specified in the
+     * <a href="https://download.oracle.com/otndocs/jcp/jaxrs-2_0-fr-eval-spec/index.html">See JAX RS 2.0 Specification, section 3.2, p. 12</a>
+     */
+    public static ModalitiesEnum fromString(String s) {
+        for (ModalitiesEnum b : ModalitiesEnum.values()) {
+            // using Objects.toString() to be safe if value type non-object type
+            // because types like 'int' etc. will be auto-boxed
+            if (java.util.Objects.toString(b.value).equals(s)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected string value '" + s + "'");
+    }
+
+    @JsonCreator
+    public static ModalitiesEnum fromValue(String value) {
+        for (ModalitiesEnum b : ModalitiesEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
+  private @Valid List<ModalitiesEnum> modalities;
+  private PredictionContent prediction;
+  private CreateChatCompletionRequestAudio audio;
   private BigDecimal presencePenalty = new BigDecimal("0");
   private CreateChatCompletionRequestResponseFormat responseFormat;
   private Integer seed;
+  public enum ServiceTierEnum {
+
+    AUTO(String.valueOf("auto")), DEFAULT(String.valueOf("default"));
+
+
+    private String value;
+
+    ServiceTierEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    /**
+     * Convert a String into String, as specified in the
+     * <a href="https://download.oracle.com/otndocs/jcp/jaxrs-2_0-fr-eval-spec/index.html">See JAX RS 2.0 Specification, section 3.2, p. 12</a>
+     */
+    public static ServiceTierEnum fromString(String s) {
+        for (ServiceTierEnum b : ServiceTierEnum.values()) {
+            // using Objects.toString() to be safe if value type non-object type
+            // because types like 'int' etc. will be auto-boxed
+            if (java.util.Objects.toString(b.value).equals(s)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    @JsonCreator
+    public static ServiceTierEnum fromValue(String value) {
+        for (ServiceTierEnum b : ServiceTierEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        return null;
+    }
+}
+
+  private ServiceTierEnum serviceTier = ServiceTierEnum.AUTO;
   private CreateChatCompletionRequestStop stop = null;
   private Boolean stream = false;
+  private ChatCompletionStreamOptions streamOptions;
   private BigDecimal temperature = new BigDecimal("1");
   private BigDecimal topP = new BigDecimal("1");
   private @Valid List<@Valid ChatCompletionTool> tools = new ArrayList<>();
   private ChatCompletionToolChoiceOption toolChoice;
+  private Boolean parallelToolCalls = true;
   private String user;
   private CreateChatCompletionRequestFunctionCall functionCall;
   private @Valid List<@Valid ChatCompletionFunctions> functions = new ArrayList<>();
@@ -67,7 +221,7 @@ public class CreateChatCompletionRequest   {
   }
 
   /**
-   * A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).
+   * A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
    **/
   public CreateChatCompletionRequest messages(List<ChatCompletionRequestMessage> messages) {
     this.messages = messages;
@@ -75,7 +229,7 @@ public class CreateChatCompletionRequest   {
   }
 
   
-  @ApiModelProperty(required = true, value = "A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).")
+  @ApiModelProperty(required = true, value = "A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). ")
   @JsonProperty(required = true, value = "messages")
   @NotNull @Valid  @Size(min=1)public List<@Valid ChatCompletionRequestMessage> getMessages() {
     return messages;
@@ -122,7 +276,83 @@ public class CreateChatCompletionRequest   {
   }
 
   /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. 
+   **/
+  public CreateChatCompletionRequest store(Boolean store) {
+    this.store = store;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. ")
+  @JsonProperty("store")
+  public Boolean getStore() {
+    return store;
+  }
+
+  @JsonProperty("store")
+  public void setStore(Boolean store) {
+    this.store = store;
+  }
+
+  /**
+   * **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are &#x60;low&#x60;, &#x60;medium&#x60;, and &#x60;high&#x60;. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
+   **/
+  public CreateChatCompletionRequest reasoningEffort(ReasoningEffortEnum reasoningEffort) {
+    this.reasoningEffort = reasoningEffort;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "**o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. ")
+  @JsonProperty("reasoning_effort")
+  public ReasoningEffortEnum getReasoningEffort() {
+    return reasoningEffort;
+  }
+
+  @JsonProperty("reasoning_effort")
+  public void setReasoningEffort(ReasoningEffortEnum reasoningEffort) {
+    this.reasoningEffort = reasoningEffort;
+  }
+
+  /**
+   * Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). 
+   **/
+  public CreateChatCompletionRequest metadata(Map<String, String> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). ")
+  @JsonProperty("metadata")
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+  @JsonProperty("metadata")
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+  public CreateChatCompletionRequest putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  public CreateChatCompletionRequest removeMetadataItem(String key) {
+    if (this.metadata != null) {
+      this.metadata.remove(key);
+    }
+
+    return this;
+  }
+  /**
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model&#39;s likelihood to repeat the same line verbatim. 
    * minimum: -2
    * maximum: 2
    **/
@@ -132,7 +362,7 @@ public class CreateChatCompletionRequest   {
   }
 
   
-  @ApiModelProperty(value = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ")
+  @ApiModelProperty(value = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. ")
   @JsonProperty("frequency_penalty")
   @Valid  @DecimalMin("-2") @DecimalMax("2")public BigDecimal getFrequencyPenalty() {
     return frequencyPenalty;
@@ -180,7 +410,7 @@ public class CreateChatCompletionRequest   {
     return this;
   }
   /**
-   * Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the &#x60;content&#x60; of &#x60;message&#x60;.
+   * Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the &#x60;content&#x60; of &#x60;message&#x60;. 
    **/
   public CreateChatCompletionRequest logprobs(Boolean logprobs) {
     this.logprobs = logprobs;
@@ -188,7 +418,7 @@ public class CreateChatCompletionRequest   {
   }
 
   
-  @ApiModelProperty(value = "Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.")
+  @ApiModelProperty(value = "Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. ")
   @JsonProperty("logprobs")
   public Boolean getLogprobs() {
     return logprobs;
@@ -200,7 +430,7 @@ public class CreateChatCompletionRequest   {
   }
 
   /**
-   * An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. &#x60;logprobs&#x60; must be set to &#x60;true&#x60; if this parameter is used.
+   * An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. &#x60;logprobs&#x60; must be set to &#x60;true&#x60; if this parameter is used. 
    * minimum: 0
    * maximum: 20
    **/
@@ -210,7 +440,7 @@ public class CreateChatCompletionRequest   {
   }
 
   
-  @ApiModelProperty(value = "An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.")
+  @ApiModelProperty(value = "An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. ")
   @JsonProperty("top_logprobs")
    @Min(0) @Max(20)public Integer getTopLogprobs() {
     return topLogprobs;
@@ -222,7 +452,7 @@ public class CreateChatCompletionRequest   {
   }
 
   /**
-   * The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model&#39;s context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
+   * The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of &#x60;max_completion_tokens&#x60;, and is not compatible with [o1 series models](/docs/guides/reasoning). 
    **/
   public CreateChatCompletionRequest maxTokens(Integer maxTokens) {
     this.maxTokens = maxTokens;
@@ -230,7 +460,7 @@ public class CreateChatCompletionRequest   {
   }
 
   
-  @ApiModelProperty(value = "The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. ")
+  @ApiModelProperty(value = "The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). ")
   @JsonProperty("max_tokens")
   public Integer getMaxTokens() {
     return maxTokens;
@@ -239,6 +469,26 @@ public class CreateChatCompletionRequest   {
   @JsonProperty("max_tokens")
   public void setMaxTokens(Integer maxTokens) {
     this.maxTokens = maxTokens;
+  }
+
+  /**
+   * An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). 
+   **/
+  public CreateChatCompletionRequest maxCompletionTokens(Integer maxCompletionTokens) {
+    this.maxCompletionTokens = maxCompletionTokens;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). ")
+  @JsonProperty("max_completion_tokens")
+  public Integer getMaxCompletionTokens() {
+    return maxCompletionTokens;
+  }
+
+  @JsonProperty("max_completion_tokens")
+  public void setMaxCompletionTokens(Integer maxCompletionTokens) {
+    this.maxCompletionTokens = maxCompletionTokens;
   }
 
   /**
@@ -264,7 +514,81 @@ public class CreateChatCompletionRequest   {
   }
 
   /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  &#x60;[\&quot;text\&quot;]&#x60;  The &#x60;gpt-4o-audio-preview&#x60; model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  &#x60;[\&quot;text\&quot;, \&quot;audio\&quot;]&#x60; 
+   **/
+  public CreateChatCompletionRequest modalities(List<ModalitiesEnum> modalities) {
+    this.modalities = modalities;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` ")
+  @JsonProperty("modalities")
+  public List<ModalitiesEnum> getModalities() {
+    return modalities;
+  }
+
+  @JsonProperty("modalities")
+  public void setModalities(List<ModalitiesEnum> modalities) {
+    this.modalities = modalities;
+  }
+
+  public CreateChatCompletionRequest addModalitiesItem(ModalitiesEnum modalitiesItem) {
+    if (this.modalities == null) {
+      this.modalities = new ArrayList<>();
+    }
+
+    this.modalities.add(modalitiesItem);
+    return this;
+  }
+
+  public CreateChatCompletionRequest removeModalitiesItem(ModalitiesEnum modalitiesItem) {
+    if (modalitiesItem != null && this.modalities != null) {
+      this.modalities.remove(modalitiesItem);
+    }
+
+    return this;
+  }
+  /**
+   **/
+  public CreateChatCompletionRequest prediction(PredictionContent prediction) {
+    this.prediction = prediction;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("prediction")
+  @Valid public PredictionContent getPrediction() {
+    return prediction;
+  }
+
+  @JsonProperty("prediction")
+  public void setPrediction(PredictionContent prediction) {
+    this.prediction = prediction;
+  }
+
+  /**
+   **/
+  public CreateChatCompletionRequest audio(CreateChatCompletionRequestAudio audio) {
+    this.audio = audio;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("audio")
+  @Valid public CreateChatCompletionRequestAudio getAudio() {
+    return audio;
+  }
+
+  @JsonProperty("audio")
+  public void setAudio(CreateChatCompletionRequestAudio audio) {
+    this.audio = audio;
+  }
+
+  /**
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics. 
    * minimum: -2
    * maximum: 2
    **/
@@ -274,7 +598,7 @@ public class CreateChatCompletionRequest   {
   }
 
   
-  @ApiModelProperty(value = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ")
+  @ApiModelProperty(value = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. ")
   @JsonProperty("presence_penalty")
   @Valid  @DecimalMin("-2") @DecimalMax("2")public BigDecimal getPresencePenalty() {
     return presencePenalty;
@@ -306,8 +630,8 @@ public class CreateChatCompletionRequest   {
 
   /**
    * This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same &#x60;seed&#x60; and parameters should return the same result. Determinism is not guaranteed, and you should refer to the &#x60;system_fingerprint&#x60; response parameter to monitor changes in the backend. 
-   * minimum: -9223372036854775808
-   * maximum: 9223372036854775807
+   * minimum: -9223372036854776000
+   * maximum: 9223372036854776000
    **/
   public CreateChatCompletionRequest seed(Integer seed) {
     this.seed = seed;
@@ -317,13 +641,33 @@ public class CreateChatCompletionRequest   {
   
   @ApiModelProperty(value = "This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. ")
   @JsonProperty("seed")
-   @Min(-9223372036854775808) @Max(9223372036854775807)public Integer getSeed() {
+   @Min(-9223372036854776000) @Max(9223372036854776000)public Integer getSeed() {
     return seed;
   }
 
   @JsonProperty("seed")
   public void setSeed(Integer seed) {
     this.seed = seed;
+  }
+
+  /**
+   * Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to &#39;auto&#39;, and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to &#39;auto&#39;, and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to &#39;default&#39;, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is &#39;auto&#39;.    When this parameter is set, the response body will include the &#x60;service_tier&#x60; utilized. 
+   **/
+  public CreateChatCompletionRequest serviceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. ")
+  @JsonProperty("service_tier")
+  public ServiceTierEnum getServiceTier() {
+    return serviceTier;
+  }
+
+  @JsonProperty("service_tier")
+  public void setServiceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
   }
 
   /**
@@ -366,7 +710,26 @@ public class CreateChatCompletionRequest   {
   }
 
   /**
-   * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or &#x60;top_p&#x60; but not both. 
+   **/
+  public CreateChatCompletionRequest streamOptions(ChatCompletionStreamOptions streamOptions) {
+    this.streamOptions = streamOptions;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("stream_options")
+  @Valid public ChatCompletionStreamOptions getStreamOptions() {
+    return streamOptions;
+  }
+
+  @JsonProperty("stream_options")
+  public void setStreamOptions(ChatCompletionStreamOptions streamOptions) {
+    this.streamOptions = streamOptions;
+  }
+
+  /**
+   * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or &#x60;top_p&#x60; but not both. 
    * minimum: 0
    * maximum: 2
    **/
@@ -376,7 +739,7 @@ public class CreateChatCompletionRequest   {
   }
 
   
-  @ApiModelProperty(example = "1", value = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both. ")
+  @ApiModelProperty(example = "1", value = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. ")
   @JsonProperty("temperature")
   @Valid  @DecimalMin("0") @DecimalMax("2")public BigDecimal getTemperature() {
     return temperature;
@@ -465,7 +828,27 @@ public class CreateChatCompletionRequest   {
   }
 
   /**
-   * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+   * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+   **/
+  public CreateChatCompletionRequest parallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.")
+  @JsonProperty("parallel_tool_calls")
+  public Boolean getParallelToolCalls() {
+    return parallelToolCalls;
+  }
+
+  @JsonProperty("parallel_tool_calls")
+  public void setParallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+  }
+
+  /**
+   * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
    **/
   public CreateChatCompletionRequest user(String user) {
     this.user = user;
@@ -473,7 +856,7 @@ public class CreateChatCompletionRequest   {
   }
 
   
-  @ApiModelProperty(example = "user-1234", value = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ")
+  @ApiModelProperty(example = "user-1234", value = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ")
   @JsonProperty("user")
   public String getUser() {
     return user;
@@ -551,21 +934,31 @@ public class CreateChatCompletionRequest   {
     CreateChatCompletionRequest createChatCompletionRequest = (CreateChatCompletionRequest) o;
     return Objects.equals(this.messages, createChatCompletionRequest.messages) &&
         Objects.equals(this.model, createChatCompletionRequest.model) &&
+        Objects.equals(this.store, createChatCompletionRequest.store) &&
+        Objects.equals(this.reasoningEffort, createChatCompletionRequest.reasoningEffort) &&
+        Objects.equals(this.metadata, createChatCompletionRequest.metadata) &&
         Objects.equals(this.frequencyPenalty, createChatCompletionRequest.frequencyPenalty) &&
         Objects.equals(this.logitBias, createChatCompletionRequest.logitBias) &&
         Objects.equals(this.logprobs, createChatCompletionRequest.logprobs) &&
         Objects.equals(this.topLogprobs, createChatCompletionRequest.topLogprobs) &&
         Objects.equals(this.maxTokens, createChatCompletionRequest.maxTokens) &&
+        Objects.equals(this.maxCompletionTokens, createChatCompletionRequest.maxCompletionTokens) &&
         Objects.equals(this.n, createChatCompletionRequest.n) &&
+        Objects.equals(this.modalities, createChatCompletionRequest.modalities) &&
+        Objects.equals(this.prediction, createChatCompletionRequest.prediction) &&
+        Objects.equals(this.audio, createChatCompletionRequest.audio) &&
         Objects.equals(this.presencePenalty, createChatCompletionRequest.presencePenalty) &&
         Objects.equals(this.responseFormat, createChatCompletionRequest.responseFormat) &&
         Objects.equals(this.seed, createChatCompletionRequest.seed) &&
+        Objects.equals(this.serviceTier, createChatCompletionRequest.serviceTier) &&
         Objects.equals(this.stop, createChatCompletionRequest.stop) &&
         Objects.equals(this.stream, createChatCompletionRequest.stream) &&
+        Objects.equals(this.streamOptions, createChatCompletionRequest.streamOptions) &&
         Objects.equals(this.temperature, createChatCompletionRequest.temperature) &&
         Objects.equals(this.topP, createChatCompletionRequest.topP) &&
         Objects.equals(this.tools, createChatCompletionRequest.tools) &&
         Objects.equals(this.toolChoice, createChatCompletionRequest.toolChoice) &&
+        Objects.equals(this.parallelToolCalls, createChatCompletionRequest.parallelToolCalls) &&
         Objects.equals(this.user, createChatCompletionRequest.user) &&
         Objects.equals(this.functionCall, createChatCompletionRequest.functionCall) &&
         Objects.equals(this.functions, createChatCompletionRequest.functions);
@@ -573,7 +966,7 @@ public class CreateChatCompletionRequest   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(messages, model, frequencyPenalty, logitBias, logprobs, topLogprobs, maxTokens, n, presencePenalty, responseFormat, seed, stop, stream, temperature, topP, tools, toolChoice, user, functionCall, functions);
+    return Objects.hash(messages, model, store, reasoningEffort, metadata, frequencyPenalty, logitBias, logprobs, topLogprobs, maxTokens, maxCompletionTokens, n, modalities, prediction, audio, presencePenalty, responseFormat, seed, serviceTier, stop, stream, streamOptions, temperature, topP, tools, toolChoice, parallelToolCalls, user, functionCall, functions);
   }
 
   @Override
@@ -583,21 +976,31 @@ public class CreateChatCompletionRequest   {
     
     sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    store: ").append(toIndentedString(store)).append("\n");
+    sb.append("    reasoningEffort: ").append(toIndentedString(reasoningEffort)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    frequencyPenalty: ").append(toIndentedString(frequencyPenalty)).append("\n");
     sb.append("    logitBias: ").append(toIndentedString(logitBias)).append("\n");
     sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
     sb.append("    topLogprobs: ").append(toIndentedString(topLogprobs)).append("\n");
     sb.append("    maxTokens: ").append(toIndentedString(maxTokens)).append("\n");
+    sb.append("    maxCompletionTokens: ").append(toIndentedString(maxCompletionTokens)).append("\n");
     sb.append("    n: ").append(toIndentedString(n)).append("\n");
+    sb.append("    modalities: ").append(toIndentedString(modalities)).append("\n");
+    sb.append("    prediction: ").append(toIndentedString(prediction)).append("\n");
+    sb.append("    audio: ").append(toIndentedString(audio)).append("\n");
     sb.append("    presencePenalty: ").append(toIndentedString(presencePenalty)).append("\n");
     sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
+    sb.append("    serviceTier: ").append(toIndentedString(serviceTier)).append("\n");
     sb.append("    stop: ").append(toIndentedString(stop)).append("\n");
     sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
+    sb.append("    streamOptions: ").append(toIndentedString(streamOptions)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
     sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
     sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
+    sb.append("    parallelToolCalls: ").append(toIndentedString(parallelToolCalls)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
     sb.append("    functions: ").append(toIndentedString(functions)).append("\n");

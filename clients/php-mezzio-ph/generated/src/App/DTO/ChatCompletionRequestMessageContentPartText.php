@@ -6,6 +6,7 @@ namespace App\DTO;
 use Articus\DataTransfer\Annotation as DTA;
 
 /**
+ * Learn about [text inputs](/docs/guides/text-generation).
  */
 class ChatCompletionRequestMessageContentPartText
 {

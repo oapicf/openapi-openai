@@ -1,0 +1,41 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AuditLogRateLimitUpdated"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AuditLogRateLimitUpdated"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AuditLogRateLimitUpdatedChangesRequested = openapi_server.resourceTypes.AuditLogRateLimitUpdatedChangesRequested
+}
+resourceTypes {
+
+  AuditLogRateLimitUpdated {
+    title = AuditLogRateLimitUpdated
+    description = AuditLogRateLimitUpdated
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The rate limit ID"
+          optional = false
+        }
+        changes_requested {
+          type = AuditLogRateLimitUpdatedChangesRequested
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AuditLogRateLimitUpdated {
+    title = AuditLogRateLimitUpdated
+    description = AuditLogRateLimitUpdated
+    implements = openapi_server.resourceTypes.AuditLogRateLimitUpdated
+
+  }
+}

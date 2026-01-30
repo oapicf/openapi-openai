@@ -9,6 +9,7 @@ The class is defined in **[AssistantObjectToolsInner.java](../../src/main/java/o
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | [**TypeEnum**](#TypeEnum) | The type of tool being defined: &#x60;code_interpreter&#x60; | 
+**fileSearch** | [`AssistantToolsFileSearchFileSearch`](AssistantToolsFileSearchFileSearch.md) |  |  [optional property]
 **function** | [`FunctionObject`](FunctionObject.md) |  | 
 
 ## TypeEnum
@@ -16,8 +17,9 @@ Name | Type | Description | Notes
 Name | Value
 ---- | -----
 CODE_INTERPRETER | `"code_interpreter"`
-RETRIEVAL | `"retrieval"`
+FILE_SEARCH | `"file_search"`
 FUNCTION | `"function"`
+
 
 
 

@@ -7,6 +7,7 @@ import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 
+import org.openapitools.model.AudioResponseFormat;
 import java.math.BigDecimal;
 import org.openapitools.model.CreateSpeechRequest;
 import org.openapitools.model.CreateTranscription200Response;
@@ -24,7 +25,7 @@ import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T10:45:28.938980301Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T14:09:21.247747647Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public interface AudioApiService {
       Response createSpeech(CreateSpeechRequest createSpeechRequest,SecurityContext securityContext)
       throws NotFoundException;

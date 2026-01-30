@@ -2,24 +2,19 @@
 
 -export([cancel_run/3, cancel_run/4,
          create_assistant/2, create_assistant/3,
-         create_assistant_file/3, create_assistant_file/4,
          create_message/3, create_message/4,
          create_run/3, create_run/4,
          create_thread/2, create_thread/3,
          create_thread_and_run/2, create_thread_and_run/3,
          delete_assistant/2, delete_assistant/3,
-         delete_assistant_file/3, delete_assistant_file/4,
+         delete_message/3, delete_message/4,
          delete_thread/2, delete_thread/3,
          get_assistant/2, get_assistant/3,
-         get_assistant_file/3, get_assistant_file/4,
          get_message/3, get_message/4,
-         get_message_file/4, get_message_file/5,
          get_run/3, get_run/4,
          get_run_step/4, get_run_step/5,
          get_thread/2, get_thread/3,
-         list_assistant_files/2, list_assistant_files/3,
          list_assistants/1, list_assistants/2,
-         list_message_files/3, list_message_files/4,
          list_messages/2, list_messages/3,
          list_run_steps/3, list_run_steps/4,
          list_runs/2, list_runs/3,
@@ -73,27 +68,6 @@ create_assistant(Ctx, OpenapiCreateAssistantRequest, Optional) ->
 
     openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
-%% @doc Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-%% 
--spec create_assistant_file(ctx:ctx(), binary(), openapi_create_assistant_file_request:openapi_create_assistant_file_request()) -> {ok, openapi_assistant_file_object:openapi_assistant_file_object(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-create_assistant_file(Ctx, AssistantId, OpenapiCreateAssistantFileRequest) ->
-    create_assistant_file(Ctx, AssistantId, OpenapiCreateAssistantFileRequest, #{}).
-
--spec create_assistant_file(ctx:ctx(), binary(), openapi_create_assistant_file_request:openapi_create_assistant_file_request(), maps:map()) -> {ok, openapi_assistant_file_object:openapi_assistant_file_object(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-create_assistant_file(Ctx, AssistantId, OpenapiCreateAssistantFileRequest, Optional) ->
-    _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
-
-    Method = post,
-    Path = [?BASE_URL, "/assistants/", AssistantId, "/files"],
-    QS = [],
-    Headers = [],
-    Body1 = OpenapiCreateAssistantFileRequest,
-    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>]),
-    Opts = maps:get(hackney_opts, Optional, []),
-
-    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
-
 %% @doc Create a message.
 %% 
 -spec create_message(ctx:ctx(), binary(), openapi_create_message_request:openapi_create_message_request()) -> {ok, openapi_message_object:openapi_message_object(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
@@ -128,7 +102,7 @@ create_run(Ctx, ThreadId, OpenapiCreateRunRequest, Optional) ->
 
     Method = post,
     Path = [?BASE_URL, "/threads/", ThreadId, "/runs"],
-    QS = [],
+    QS = lists:flatten([])++openapi_utils:optional_params(['include[]'], _OptionalParams),
     Headers = [],
     Body1 = OpenapiCreateRunRequest,
     ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>]),
@@ -199,19 +173,19 @@ delete_assistant(Ctx, AssistantId, Optional) ->
 
     openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
-%% @doc Delete an assistant file.
+%% @doc Deletes a message.
 %% 
--spec delete_assistant_file(ctx:ctx(), binary(), binary()) -> {ok, openapi_delete_assistant_file_response:openapi_delete_assistant_file_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-delete_assistant_file(Ctx, AssistantId, FileId) ->
-    delete_assistant_file(Ctx, AssistantId, FileId, #{}).
+-spec delete_message(ctx:ctx(), binary(), binary()) -> {ok, openapi_delete_message_response:openapi_delete_message_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+delete_message(Ctx, ThreadId, MessageId) ->
+    delete_message(Ctx, ThreadId, MessageId, #{}).
 
--spec delete_assistant_file(ctx:ctx(), binary(), binary(), maps:map()) -> {ok, openapi_delete_assistant_file_response:openapi_delete_assistant_file_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-delete_assistant_file(Ctx, AssistantId, FileId, Optional) ->
+-spec delete_message(ctx:ctx(), binary(), binary(), maps:map()) -> {ok, openapi_delete_message_response:openapi_delete_message_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+delete_message(Ctx, ThreadId, MessageId, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = delete,
-    Path = [?BASE_URL, "/assistants/", AssistantId, "/files/", FileId, ""],
+    Path = [?BASE_URL, "/threads/", ThreadId, "/messages/", MessageId, ""],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -262,27 +236,6 @@ get_assistant(Ctx, AssistantId, Optional) ->
 
     openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
-%% @doc Retrieves an AssistantFile.
-%% 
--spec get_assistant_file(ctx:ctx(), binary(), binary()) -> {ok, openapi_assistant_file_object:openapi_assistant_file_object(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-get_assistant_file(Ctx, AssistantId, FileId) ->
-    get_assistant_file(Ctx, AssistantId, FileId, #{}).
-
--spec get_assistant_file(ctx:ctx(), binary(), binary(), maps:map()) -> {ok, openapi_assistant_file_object:openapi_assistant_file_object(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-get_assistant_file(Ctx, AssistantId, FileId, Optional) ->
-    _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
-
-    Method = get,
-    Path = [?BASE_URL, "/assistants/", AssistantId, "/files/", FileId, ""],
-    QS = [],
-    Headers = [],
-    Body1 = [],
-    ContentTypeHeader = openapi_utils:select_header_content_type([]),
-    Opts = maps:get(hackney_opts, Optional, []),
-
-    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
-
 %% @doc Retrieve a message.
 %% 
 -spec get_message(ctx:ctx(), binary(), binary()) -> {ok, openapi_message_object:openapi_message_object(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
@@ -296,27 +249,6 @@ get_message(Ctx, ThreadId, MessageId, Optional) ->
 
     Method = get,
     Path = [?BASE_URL, "/threads/", ThreadId, "/messages/", MessageId, ""],
-    QS = [],
-    Headers = [],
-    Body1 = [],
-    ContentTypeHeader = openapi_utils:select_header_content_type([]),
-    Opts = maps:get(hackney_opts, Optional, []),
-
-    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
-
-%% @doc Retrieves a message file.
-%% 
--spec get_message_file(ctx:ctx(), binary(), binary(), binary()) -> {ok, openapi_message_file_object:openapi_message_file_object(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-get_message_file(Ctx, ThreadId, MessageId, FileId) ->
-    get_message_file(Ctx, ThreadId, MessageId, FileId, #{}).
-
--spec get_message_file(ctx:ctx(), binary(), binary(), binary(), maps:map()) -> {ok, openapi_message_file_object:openapi_message_file_object(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-get_message_file(Ctx, ThreadId, MessageId, FileId, Optional) ->
-    _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
-
-    Method = get,
-    Path = [?BASE_URL, "/threads/", ThreadId, "/messages/", MessageId, "/files/", FileId, ""],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -359,7 +291,7 @@ get_run_step(Ctx, ThreadId, RunId, StepId, Optional) ->
 
     Method = get,
     Path = [?BASE_URL, "/threads/", ThreadId, "/runs/", RunId, "/steps/", StepId, ""],
-    QS = [],
+    QS = lists:flatten([])++openapi_utils:optional_params(['include[]'], _OptionalParams),
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
@@ -388,27 +320,6 @@ get_thread(Ctx, ThreadId, Optional) ->
 
     openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
-%% @doc Returns a list of assistant files.
-%% 
--spec list_assistant_files(ctx:ctx(), binary()) -> {ok, openapi_list_assistant_files_response:openapi_list_assistant_files_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-list_assistant_files(Ctx, AssistantId) ->
-    list_assistant_files(Ctx, AssistantId, #{}).
-
--spec list_assistant_files(ctx:ctx(), binary(), maps:map()) -> {ok, openapi_list_assistant_files_response:openapi_list_assistant_files_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-list_assistant_files(Ctx, AssistantId, Optional) ->
-    _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
-
-    Method = get,
-    Path = [?BASE_URL, "/assistants/", AssistantId, "/files"],
-    QS = lists:flatten([])++openapi_utils:optional_params(['limit', 'order', 'after', 'before'], _OptionalParams),
-    Headers = [],
-    Body1 = [],
-    ContentTypeHeader = openapi_utils:select_header_content_type([]),
-    Opts = maps:get(hackney_opts, Optional, []),
-
-    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
-
 %% @doc Returns a list of assistants.
 %% 
 -spec list_assistants(ctx:ctx()) -> {ok, openapi_list_assistants_response:openapi_list_assistants_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
@@ -422,27 +333,6 @@ list_assistants(Ctx, Optional) ->
 
     Method = get,
     Path = [?BASE_URL, "/assistants"],
-    QS = lists:flatten([])++openapi_utils:optional_params(['limit', 'order', 'after', 'before'], _OptionalParams),
-    Headers = [],
-    Body1 = [],
-    ContentTypeHeader = openapi_utils:select_header_content_type([]),
-    Opts = maps:get(hackney_opts, Optional, []),
-
-    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
-
-%% @doc Returns a list of message files.
-%% 
--spec list_message_files(ctx:ctx(), binary(), binary()) -> {ok, openapi_list_message_files_response:openapi_list_message_files_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-list_message_files(Ctx, ThreadId, MessageId) ->
-    list_message_files(Ctx, ThreadId, MessageId, #{}).
-
--spec list_message_files(ctx:ctx(), binary(), binary(), maps:map()) -> {ok, openapi_list_message_files_response:openapi_list_message_files_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-list_message_files(Ctx, ThreadId, MessageId, Optional) ->
-    _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
-
-    Method = get,
-    Path = [?BASE_URL, "/threads/", ThreadId, "/messages/", MessageId, "/files"],
     QS = lists:flatten([])++openapi_utils:optional_params(['limit', 'order', 'after', 'before'], _OptionalParams),
     Headers = [],
     Body1 = [],
@@ -485,7 +375,7 @@ list_run_steps(Ctx, ThreadId, RunId, Optional) ->
 
     Method = get,
     Path = [?BASE_URL, "/threads/", ThreadId, "/runs/", RunId, "/steps"],
-    QS = lists:flatten([])++openapi_utils:optional_params(['limit', 'order', 'after', 'before'], _OptionalParams),
+    QS = lists:flatten([])++openapi_utils:optional_params(['limit', 'order', 'after', 'before', 'include[]'], _OptionalParams),
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),

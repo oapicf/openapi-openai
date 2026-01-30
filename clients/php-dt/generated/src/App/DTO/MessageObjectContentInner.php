@@ -22,10 +22,23 @@ class MessageObjectContentInner
     public ?\App\DTO\MessageContentImageFileObjectImageFile $image_file = null;
 
     /**
+     * @DTA\Data(field="image_url")
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\MessageContentImageUrlObjectImageUrl::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\MessageContentImageUrlObjectImageUrl::class})
+     */
+    public ?\App\DTO\MessageContentImageUrlObjectImageUrl $image_url = null;
+
+    /**
      * @DTA\Data(field="text")
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\MessageContentTextObjectText::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\MessageContentTextObjectText::class})
      */
     public ?\App\DTO\MessageContentTextObjectText $text = null;
+
+    /**
+     * @DTA\Data(field="refusal")
+     * @DTA\Validator(name="Scalar", options={"type":"string"})
+     */
+    public ?string $refusal = null;
 
 }

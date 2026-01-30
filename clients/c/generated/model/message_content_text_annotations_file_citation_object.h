@@ -1,7 +1,7 @@
 /*
  * message_content_text_annotations_file_citation_object.h
  *
- * A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \&quot;retrieval\&quot; tool to search files.
+ * A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \&quot;file_search\&quot; tool to search files.
  */
 
 #ifndef _message_content_text_annotations_file_citation_object_H_

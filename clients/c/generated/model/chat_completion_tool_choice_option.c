@@ -24,7 +24,7 @@ openai_api_chat_completion_tool_choice_option_TYPE_e chat_completion_tool_choice
 
 static chat_completion_tool_choice_option_t *chat_completion_tool_choice_option_create_internal(
     openai_api_chat_completion_tool_choice_option_TYPE_e type,
-    chat_completion_named_tool_choice_function_t *function
+    assistants_named_tool_choice_function_t *function
     ) {
     chat_completion_tool_choice_option_t *chat_completion_tool_choice_option_local_var = malloc(sizeof(chat_completion_tool_choice_option_t));
     if (!chat_completion_tool_choice_option_local_var) {
@@ -39,7 +39,7 @@ static chat_completion_tool_choice_option_t *chat_completion_tool_choice_option_
 
 __attribute__((deprecated)) chat_completion_tool_choice_option_t *chat_completion_tool_choice_option_create(
     openai_api_chat_completion_tool_choice_option_TYPE_e type,
-    chat_completion_named_tool_choice_function_t *function
+    assistants_named_tool_choice_function_t *function
     ) {
     return chat_completion_tool_choice_option_create_internal (
         type,
@@ -57,7 +57,7 @@ void chat_completion_tool_choice_option_free(chat_completion_tool_choice_option_
     }
     listEntry_t *listEntry;
     if (chat_completion_tool_choice_option->function) {
-        chat_completion_named_tool_choice_function_free(chat_completion_tool_choice_option->function);
+        assistants_named_tool_choice_function_free(chat_completion_tool_choice_option->function);
         chat_completion_tool_choice_option->function = NULL;
     }
     free(chat_completion_tool_choice_option);
@@ -80,7 +80,7 @@ cJSON *chat_completion_tool_choice_option_convertToJSON(chat_completion_tool_cho
     if (!chat_completion_tool_choice_option->function) {
         goto fail;
     }
-    cJSON *function_local_JSON = chat_completion_named_tool_choice_function_convertToJSON(chat_completion_tool_choice_option->function);
+    cJSON *function_local_JSON = assistants_named_tool_choice_function_convertToJSON(chat_completion_tool_choice_option->function);
     if(function_local_JSON == NULL) {
     goto fail; //model
     }
@@ -102,7 +102,7 @@ chat_completion_tool_choice_option_t *chat_completion_tool_choice_option_parseFr
     chat_completion_tool_choice_option_t *chat_completion_tool_choice_option_local_var = NULL;
 
     // define the local variable for chat_completion_tool_choice_option->function
-    chat_completion_named_tool_choice_function_t *function_local_nonprim = NULL;
+    assistants_named_tool_choice_function_t *function_local_nonprim = NULL;
 
     // chat_completion_tool_choice_option->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(chat_completion_tool_choice_optionJSON, "type");
@@ -131,7 +131,7 @@ chat_completion_tool_choice_option_t *chat_completion_tool_choice_option_parseFr
     }
 
     
-    function_local_nonprim = chat_completion_named_tool_choice_function_parseFromJSON(function); //nonprimitive
+    function_local_nonprim = assistants_named_tool_choice_function_parseFromJSON(function); //nonprimitive
 
 
     chat_completion_tool_choice_option_local_var = chat_completion_tool_choice_option_create_internal (
@@ -142,7 +142,7 @@ chat_completion_tool_choice_option_t *chat_completion_tool_choice_option_parseFr
     return chat_completion_tool_choice_option_local_var;
 end:
     if (function_local_nonprim) {
-        chat_completion_named_tool_choice_function_free(function_local_nonprim);
+        assistants_named_tool_choice_function_free(function_local_nonprim);
         function_local_nonprim = NULL;
     }
     return NULL;

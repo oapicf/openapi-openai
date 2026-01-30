@@ -2,6 +2,8 @@
 
 # ChatCompletionRequestUserMessage
 
+Messages sent by an end user, containing prompts or additional context information. 
+
 The class is defined in **[ChatCompletionRequestUserMessage.java](../../src/main/java/org/openapitools/model/ChatCompletionRequestUserMessage.java)**
 
 ## Properties

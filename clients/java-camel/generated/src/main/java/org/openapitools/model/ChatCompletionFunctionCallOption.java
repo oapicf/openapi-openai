@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "ChatCompletionFunctionCallOption", description = "Specifying a particular function via `{\"name\": \"my_function\"}` forces the model to call that function. ")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionFunctionCallOption implements CreateChatCompletionRequestFunctionCall {
 
   private String name;

@@ -7,7 +7,7 @@ import io.circe.java8.time._
 import org.openapitools._
 
 /**
- * 
+ * Learn about [text inputs](/docs/guides/text-generation). 
  * @param _type The type of the content part.
  * @param text The text content.
  */

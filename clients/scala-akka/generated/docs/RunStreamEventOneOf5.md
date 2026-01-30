@@ -2,7 +2,7 @@
 
 # RunStreamEventOneOf5
 
-Occurs when a [run](/docs/api-reference/runs/object) fails.
+Occurs when a [run](/docs/api-reference/runs/object) ends with status `incomplete`.
 
 ## Properties
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 
 ## Enum: Event
-Allowed values: [thread.run.failed]
+Allowed values: [thread.run.incomplete]
 
 
 

@@ -1,4 +1,4 @@
-(defproject open-ai-api "2.0.0"
+(defproject open-ai-api "2.3.0"
   :description "The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details."
   :url "https://github.com/oapicf/openapi-openai"
   :license {:name "MIT"

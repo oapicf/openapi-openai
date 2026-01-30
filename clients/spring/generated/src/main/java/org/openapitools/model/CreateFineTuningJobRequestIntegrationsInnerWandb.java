@@ -27,7 +27,7 @@ import javax.annotation.Generated;
 
 @Schema(name = "CreateFineTuningJobRequest_integrations_inner_wandb", description = "The settings for your integration with Weights and Biases. This payload specifies the project that metrics will be sent to. Optionally, you can set an explicit display name for your run, add tags to your run, and set a default entity (team, username, etc) to be associated with your run. ")
 @JsonTypeName("CreateFineTuningJobRequest_integrations_inner_wandb")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateFineTuningJobRequestIntegrationsInnerWandb {
 
   private String project;

@@ -1,5 +1,6 @@
 package org.openapitools.controller;
 
+import org.openapitools.model.AudioResponseFormat;
 import java.math.BigDecimal;
 import io.micronaut.http.multipart.CompletedFileUpload;
 import org.openapitools.model.CreateSpeechRequest;
@@ -84,7 +85,7 @@ public class AudioControllerTest {
         CreateSpeechRequest body = new CreateSpeechRequest(null, "example", "example");
         String uri = UriTemplate.of("/audio/speech").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@5d56c2d2");
+            .accept("[Ljava.lang.String;@22a85176");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, CompletedFileUpload.class);
@@ -108,7 +109,7 @@ public class AudioControllerTest {
         CreateTranscriptionRequestModel model = new CreateTranscriptionRequestModel();
         String language = "example";
         String prompt = "example";
-        String responseFormat = "json";
+        AudioResponseFormat responseFormat = AudioResponseFormat.fromValue("json");
         BigDecimal temperature = new BigDecimal(78);
         List<String> timestampGranularities = Arrays.asList("example");
 
@@ -135,13 +136,13 @@ public class AudioControllerTest {
             put("model", new CreateTranscriptionRequestModel());
             put("language", "example");
             put("prompt", "example");
-            put("response_format", "json");
+            put("response_format", AudioResponseFormat.fromValue("json"));
             put("temperature", new BigDecimal(78));
             put("timestamp_granularities[]", Arrays.asList("example"));
         }};
         String uri = UriTemplate.of("/audio/transcriptions").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, form)
-            .accept("[Ljava.lang.String;@4a249610");
+            .accept("[Ljava.lang.String;@55d8cb9");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, CreateTranscription200Response.class);
@@ -164,7 +165,7 @@ public class AudioControllerTest {
         CompletedFileUpload _file = null;
         CreateTranscriptionRequestModel model = new CreateTranscriptionRequestModel();
         String prompt = "example";
-        String responseFormat = "json";
+        AudioResponseFormat responseFormat = AudioResponseFormat.fromValue("json");
         BigDecimal temperature = new BigDecimal(78);
 
         // when
@@ -189,12 +190,12 @@ public class AudioControllerTest {
             put("file", new FileReader(File.createTempFile("test", ".tmp")));
             put("model", new CreateTranscriptionRequestModel());
             put("prompt", "example");
-            put("response_format", "json");
+            put("response_format", AudioResponseFormat.fromValue("json"));
             put("temperature", new BigDecimal(78));
         }};
         String uri = UriTemplate.of("/audio/translations").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, form)
-            .accept("[Ljava.lang.String;@ebbbe20");
+            .accept("[Ljava.lang.String;@4d4630e");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, CreateTranslation200Response.class);

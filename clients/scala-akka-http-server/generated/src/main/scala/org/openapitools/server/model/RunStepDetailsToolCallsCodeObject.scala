@@ -2,7 +2,7 @@ package org.openapitools.server.model
 
 
 /**
- * = Code interpreter tool call =
+ * = Code Interpreter tool call =
  *
  * Details of the Code Interpreter tool call the run step was involved in.
  *

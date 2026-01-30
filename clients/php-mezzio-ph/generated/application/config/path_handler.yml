@@ -12,11 +12,12 @@ Articus\PathHandler\RouteInjectionFactory:
     '/v1':
     - App\Handler\Assistants
     - App\Handler\AssistantsAssistantId
-    - App\Handler\AssistantsAssistantIdFiles
-    - App\Handler\AssistantsAssistantIdFilesFileId
     - App\Handler\AudioSpeech
     - App\Handler\AudioTranscriptions
     - App\Handler\AudioTranslations
+    - App\Handler\Batches
+    - App\Handler\BatchesBatchId
+    - App\Handler\BatchesBatchIdCancel
     - App\Handler\ChatCompletions
     - App\Handler\Completions
     - App\Handler\Embeddings
@@ -34,19 +35,57 @@ Articus\PathHandler\RouteInjectionFactory:
     - App\Handler\Models
     - App\Handler\ModelsModel
     - App\Handler\Moderations
+    - App\Handler\OrganizationAdminApiKeys
+    - App\Handler\OrganizationAdminApiKeysKeyId
+    - App\Handler\OrganizationAuditLogs
+    - App\Handler\OrganizationCosts
+    - App\Handler\OrganizationInvites
+    - App\Handler\OrganizationInvitesInviteId
+    - App\Handler\OrganizationProjects
+    - App\Handler\OrganizationProjectsProjectId
+    - App\Handler\OrganizationProjectsProjectIdApiKeys
+    - App\Handler\OrganizationProjectsProjectIdApiKeysKeyId
+    - App\Handler\OrganizationProjectsProjectIdArchive
+    - App\Handler\OrganizationProjectsProjectIdRateLimits
+    - App\Handler\OrganizationProjectsProjectIdRateLimitsRateLimitId
+    - App\Handler\OrganizationProjectsProjectIdServiceAccounts
+    - App\Handler\OrganizationProjectsProjectIdServiceAccountsServiceAccountId
+    - App\Handler\OrganizationProjectsProjectIdUsers
+    - App\Handler\OrganizationProjectsProjectIdUsersUserId
+    - App\Handler\OrganizationUsageAudioSpeeches
+    - App\Handler\OrganizationUsageAudioTranscriptions
+    - App\Handler\OrganizationUsageCodeInterpreterSessions
+    - App\Handler\OrganizationUsageCompletions
+    - App\Handler\OrganizationUsageEmbeddings
+    - App\Handler\OrganizationUsageImages
+    - App\Handler\OrganizationUsageModerations
+    - App\Handler\OrganizationUsageVectorStores
+    - App\Handler\OrganizationUsers
+    - App\Handler\OrganizationUsersUserId
+    - App\Handler\RealtimeSessions
     - App\Handler\Threads
     - App\Handler\ThreadsRuns
     - App\Handler\ThreadsThreadId
     - App\Handler\ThreadsThreadIdMessages
     - App\Handler\ThreadsThreadIdMessagesMessageId
-    - App\Handler\ThreadsThreadIdMessagesMessageIdFiles
-    - App\Handler\ThreadsThreadIdMessagesMessageIdFilesFileId
     - App\Handler\ThreadsThreadIdRuns
     - App\Handler\ThreadsThreadIdRunsRunId
     - App\Handler\ThreadsThreadIdRunsRunIdCancel
     - App\Handler\ThreadsThreadIdRunsRunIdSteps
     - App\Handler\ThreadsThreadIdRunsRunIdStepsStepId
     - App\Handler\ThreadsThreadIdRunsRunIdSubmitToolOutputs
+    - App\Handler\Uploads
+    - App\Handler\UploadsUploadIdCancel
+    - App\Handler\UploadsUploadIdComplete
+    - App\Handler\UploadsUploadIdParts
+    - App\Handler\VectorStores
+    - App\Handler\VectorStoresVectorStoreId
+    - App\Handler\VectorStoresVectorStoreIdFileBatches
+    - App\Handler\VectorStoresVectorStoreIdFileBatchesBatchId
+    - App\Handler\VectorStoresVectorStoreIdFileBatchesBatchIdCancel
+    - App\Handler\VectorStoresVectorStoreIdFileBatchesBatchIdFiles
+    - App\Handler\VectorStoresVectorStoreIdFiles
+    - App\Handler\VectorStoresVectorStoreIdFilesFileId
 
 Articus\PathHandler\Handler\PluginManager:
   abstract_factories:
@@ -67,11 +106,12 @@ Articus\PathHandler\Handler\PluginManager:
 Laminas\ServiceManager\AbstractFactory\ConfigAbstractFactory:
   App\Handler\Assistants: []
   App\Handler\AssistantsAssistantId: []
-  App\Handler\AssistantsAssistantIdFiles: []
-  App\Handler\AssistantsAssistantIdFilesFileId: []
   App\Handler\AudioSpeech: []
   App\Handler\AudioTranscriptions: []
   App\Handler\AudioTranslations: []
+  App\Handler\Batches: []
+  App\Handler\BatchesBatchId: []
+  App\Handler\BatchesBatchIdCancel: []
   App\Handler\ChatCompletions: []
   App\Handler\Completions: []
   App\Handler\Embeddings: []
@@ -89,16 +129,54 @@ Laminas\ServiceManager\AbstractFactory\ConfigAbstractFactory:
   App\Handler\Models: []
   App\Handler\ModelsModel: []
   App\Handler\Moderations: []
+  App\Handler\OrganizationAdminApiKeys: []
+  App\Handler\OrganizationAdminApiKeysKeyId: []
+  App\Handler\OrganizationAuditLogs: []
+  App\Handler\OrganizationCosts: []
+  App\Handler\OrganizationInvites: []
+  App\Handler\OrganizationInvitesInviteId: []
+  App\Handler\OrganizationProjects: []
+  App\Handler\OrganizationProjectsProjectId: []
+  App\Handler\OrganizationProjectsProjectIdApiKeys: []
+  App\Handler\OrganizationProjectsProjectIdApiKeysKeyId: []
+  App\Handler\OrganizationProjectsProjectIdArchive: []
+  App\Handler\OrganizationProjectsProjectIdRateLimits: []
+  App\Handler\OrganizationProjectsProjectIdRateLimitsRateLimitId: []
+  App\Handler\OrganizationProjectsProjectIdServiceAccounts: []
+  App\Handler\OrganizationProjectsProjectIdServiceAccountsServiceAccountId: []
+  App\Handler\OrganizationProjectsProjectIdUsers: []
+  App\Handler\OrganizationProjectsProjectIdUsersUserId: []
+  App\Handler\OrganizationUsageAudioSpeeches: []
+  App\Handler\OrganizationUsageAudioTranscriptions: []
+  App\Handler\OrganizationUsageCodeInterpreterSessions: []
+  App\Handler\OrganizationUsageCompletions: []
+  App\Handler\OrganizationUsageEmbeddings: []
+  App\Handler\OrganizationUsageImages: []
+  App\Handler\OrganizationUsageModerations: []
+  App\Handler\OrganizationUsageVectorStores: []
+  App\Handler\OrganizationUsers: []
+  App\Handler\OrganizationUsersUserId: []
+  App\Handler\RealtimeSessions: []
   App\Handler\Threads: []
   App\Handler\ThreadsRuns: []
   App\Handler\ThreadsThreadId: []
   App\Handler\ThreadsThreadIdMessages: []
   App\Handler\ThreadsThreadIdMessagesMessageId: []
-  App\Handler\ThreadsThreadIdMessagesMessageIdFiles: []
-  App\Handler\ThreadsThreadIdMessagesMessageIdFilesFileId: []
   App\Handler\ThreadsThreadIdRuns: []
   App\Handler\ThreadsThreadIdRunsRunId: []
   App\Handler\ThreadsThreadIdRunsRunIdCancel: []
   App\Handler\ThreadsThreadIdRunsRunIdSteps: []
   App\Handler\ThreadsThreadIdRunsRunIdStepsStepId: []
   App\Handler\ThreadsThreadIdRunsRunIdSubmitToolOutputs: []
+  App\Handler\Uploads: []
+  App\Handler\UploadsUploadIdCancel: []
+  App\Handler\UploadsUploadIdComplete: []
+  App\Handler\UploadsUploadIdParts: []
+  App\Handler\VectorStores: []
+  App\Handler\VectorStoresVectorStoreId: []
+  App\Handler\VectorStoresVectorStoreIdFileBatches: []
+  App\Handler\VectorStoresVectorStoreIdFileBatchesBatchId: []
+  App\Handler\VectorStoresVectorStoreIdFileBatchesBatchIdCancel: []
+  App\Handler\VectorStoresVectorStoreIdFileBatchesBatchIdFiles: []
+  App\Handler\VectorStoresVectorStoreIdFiles: []
+  App\Handler\VectorStoresVectorStoreIdFilesFileId: []

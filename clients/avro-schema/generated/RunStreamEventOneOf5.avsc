@@ -1,7 +1,7 @@
 {
   "namespace": "model",
   "type": "record",
-  "doc": "Occurs when a [run](/docs/api-reference/runs/object) fails.",
+  "doc": "Occurs when a [run](/docs/api-reference/runs/object) ends with status `incomplete`.",
   "name": "RunStreamEventOneOf5",
   "fields": [
     {
@@ -10,7 +10,7 @@
         "type": "enum",
         "name": "RunStreamEventOneOf5_event",
         "symbols": [
-          "thread_run_failed"
+          "thread_run_incomplete"
         ]
       },
       "doc": ""

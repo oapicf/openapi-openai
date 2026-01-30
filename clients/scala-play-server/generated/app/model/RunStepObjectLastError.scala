@@ -7,7 +7,7 @@ import play.api.libs.json._
   * @param code One of `server_error` or `rate_limit_exceeded`.
   * @param message A human-readable description of the error.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T10:48:27.489746113Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 case class RunStepObjectLastError(
   code: RunStepObjectLastError.Code.Value,
   message: String

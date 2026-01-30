@@ -14,28 +14,32 @@ class FunctionObject(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, description: str=None, name: str=None, parameters: Dict[str, object]=None):
+    def __init__(self, description: str=None, name: str=None, parameters: Dict[str, object]=None, strict: bool=False):
         """FunctionObject - a model defined in OpenAPI
 
         :param description: The description of this FunctionObject.
         :param name: The name of this FunctionObject.
         :param parameters: The parameters of this FunctionObject.
+        :param strict: The strict of this FunctionObject.
         """
         self.openapi_types = {
             'description': str,
             'name': str,
-            'parameters': Dict[str, object]
+            'parameters': Dict[str, object],
+            'strict': bool
         }
 
         self.attribute_map = {
             'description': 'description',
             'name': 'name',
-            'parameters': 'parameters'
+            'parameters': 'parameters',
+            'strict': 'strict'
         }
 
         self._description = description
         self._name = name
         self._parameters = parameters
+        self._strict = strict
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'FunctionObject':
@@ -98,7 +102,7 @@ class FunctionObject(Model):
     def parameters(self):
         """Gets the parameters of this FunctionObject.
 
-        The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
+        The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
 
         :return: The parameters of this FunctionObject.
         :rtype: Dict[str, object]
@@ -109,10 +113,33 @@ class FunctionObject(Model):
     def parameters(self, parameters):
         """Sets the parameters of this FunctionObject.
 
-        The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
+        The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
 
         :param parameters: The parameters of this FunctionObject.
         :type parameters: Dict[str, object]
         """
 
         self._parameters = parameters
+
+    @property
+    def strict(self):
+        """Gets the strict of this FunctionObject.
+
+        Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).
+
+        :return: The strict of this FunctionObject.
+        :rtype: bool
+        """
+        return self._strict
+
+    @strict.setter
+    def strict(self, strict):
+        """Sets the strict of this FunctionObject.
+
+        Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).
+
+        :param strict: The strict of this FunctionObject.
+        :type strict: bool
+        """
+
+        self._strict = strict

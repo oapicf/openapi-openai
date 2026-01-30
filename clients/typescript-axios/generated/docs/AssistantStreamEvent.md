@@ -6,6 +6,7 @@ Represents an event emitted when streaming a Run.  Each event in a server-sent e
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enabled** | **boolean** | Whether to enable input audio transcription. | [optional] [default to undefined]
 **event** | **string** |  | [default to undefined]
 **data** | **string** |  | [default to undefined]
 
@@ -15,6 +16,7 @@ Name | Type | Description | Notes
 import { AssistantStreamEvent } from './api';
 
 const instance: AssistantStreamEvent = {
+    enabled,
     event,
     data,
 };

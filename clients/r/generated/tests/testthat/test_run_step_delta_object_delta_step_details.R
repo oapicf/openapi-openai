@@ -22,7 +22,7 @@ test_that("message_creation", {
 
 test_that("tool_calls", {
   # tests for the property `tool_calls` (array[RunStepDeltaStepDetailsToolCallsObjectToolCallsInner])
-  # An array of tool calls the run step was involved in. These can be associated with one of three types of tools: &#x60;code_interpreter&#x60;, &#x60;retrieval&#x60;, or &#x60;function&#x60;. 
+  # An array of tool calls the run step was involved in. These can be associated with one of three types of tools: &#x60;code_interpreter&#x60;, &#x60;file_search&#x60;, or &#x60;function&#x60;. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`tool_calls`, "EXPECTED_RESULT")

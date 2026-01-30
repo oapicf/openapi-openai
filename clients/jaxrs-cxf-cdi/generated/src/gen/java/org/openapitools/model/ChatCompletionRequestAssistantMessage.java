@@ -9,19 +9,26 @@ import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.ChatCompletionMessageToolCall;
+import org.openapitools.model.ChatCompletionRequestAssistantMessageAudio;
+import org.openapitools.model.ChatCompletionRequestAssistantMessageContent;
 import org.openapitools.model.ChatCompletionRequestAssistantMessageFunctionCall;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
+/**
+ * Messages sent by the model in response to user messages. 
+ **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-
+@ApiModel(description = "Messages sent by the model in response to user messages. ")
 public class ChatCompletionRequestAssistantMessage   {
   
-  private String content;
+  private ChatCompletionRequestAssistantMessageContent content;
+
+  private String refusal;
 
 
 public enum RoleEnum {
@@ -58,26 +65,46 @@ public enum RoleEnum {
 
   private String name;
 
+  private ChatCompletionRequestAssistantMessageAudio audio;
+
   private List<@Valid ChatCompletionMessageToolCall> toolCalls = new ArrayList<>();
 
   private ChatCompletionRequestAssistantMessageFunctionCall functionCall;
 
   /**
-   * The contents of the assistant message. Required unless &#x60;tool_calls&#x60; or &#x60;function_call&#x60; is specified. 
    **/
-  public ChatCompletionRequestAssistantMessage content(String content) {
+  public ChatCompletionRequestAssistantMessage content(ChatCompletionRequestAssistantMessageContent content) {
     this.content = content;
     return this;
   }
 
   
-  @ApiModelProperty(value = "The contents of the assistant message. Required unless `tool_calls` or `function_call` is specified. ")
+  @ApiModelProperty(value = "")
   @JsonProperty("content")
-  public String getContent() {
+  public ChatCompletionRequestAssistantMessageContent getContent() {
     return content;
   }
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestAssistantMessageContent content) {
     this.content = content;
+  }
+
+
+  /**
+   * The refusal message by the assistant.
+   **/
+  public ChatCompletionRequestAssistantMessage refusal(String refusal) {
+    this.refusal = refusal;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "The refusal message by the assistant.")
+  @JsonProperty("refusal")
+  public String getRefusal() {
+    return refusal;
+  }
+  public void setRefusal(String refusal) {
+    this.refusal = refusal;
   }
 
 
@@ -117,6 +144,24 @@ public enum RoleEnum {
   }
   public void setName(String name) {
     this.name = name;
+  }
+
+
+  /**
+   **/
+  public ChatCompletionRequestAssistantMessage audio(ChatCompletionRequestAssistantMessageAudio audio) {
+    this.audio = audio;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("audio")
+  public ChatCompletionRequestAssistantMessageAudio getAudio() {
+    return audio;
+  }
+  public void setAudio(ChatCompletionRequestAssistantMessageAudio audio) {
+    this.audio = audio;
   }
 
 
@@ -176,15 +221,17 @@ public enum RoleEnum {
     }
     ChatCompletionRequestAssistantMessage chatCompletionRequestAssistantMessage = (ChatCompletionRequestAssistantMessage) o;
     return Objects.equals(this.content, chatCompletionRequestAssistantMessage.content) &&
+        Objects.equals(this.refusal, chatCompletionRequestAssistantMessage.refusal) &&
         Objects.equals(this.role, chatCompletionRequestAssistantMessage.role) &&
         Objects.equals(this.name, chatCompletionRequestAssistantMessage.name) &&
+        Objects.equals(this.audio, chatCompletionRequestAssistantMessage.audio) &&
         Objects.equals(this.toolCalls, chatCompletionRequestAssistantMessage.toolCalls) &&
         Objects.equals(this.functionCall, chatCompletionRequestAssistantMessage.functionCall);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(content, role, name, toolCalls, functionCall);
+    return Objects.hash(content, refusal, role, name, audio, toolCalls, functionCall);
   }
 
   @Override
@@ -193,8 +240,10 @@ public enum RoleEnum {
     sb.append("class ChatCompletionRequestAssistantMessage {\n");
     
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    audio: ").append(toIndentedString(audio)).append("\n");
     sb.append("    toolCalls: ").append(toIndentedString(toolCalls)).append("\n");
     sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
     sb.append("}");

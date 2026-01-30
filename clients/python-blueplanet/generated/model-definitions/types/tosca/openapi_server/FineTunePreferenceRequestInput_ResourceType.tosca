@@ -1,0 +1,49 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FineTunePreferenceRequestInput"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FineTunePreferenceRequestInput"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  FineTunePreferenceRequestInputInput = openapi_server.resourceTypes.FineTunePreferenceRequestInputInput
+  FineTunePreferenceRequestInputPreferredCompletionInner = openapi_server.resourceTypes.FineTunePreferenceRequestInputPreferredCompletionInner
+}
+resourceTypes {
+
+  FineTunePreferenceRequestInput {
+    title = FineTunePreferenceRequestInput
+    description = FineTunePreferenceRequestInput
+    derivedFrom = Root
+    properties {
+        input {
+          type = FineTunePreferenceRequestInputInput
+          description = ""
+          optional = false
+        }
+        preferred_completion {
+          type = array
+          items.type = FineTunePreferenceRequestInputPreferredCompletionInner
+          description = "The preferred completion message for the output."
+          optional = false
+        }
+        non_preferred_completion {
+          type = array
+          items.type = FineTunePreferenceRequestInputPreferredCompletionInner
+          description = "The non-preferred completion message for the output."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  FineTunePreferenceRequestInput {
+    title = FineTunePreferenceRequestInput
+    description = FineTunePreferenceRequestInput
+    implements = openapi_server.resourceTypes.FineTunePreferenceRequestInput
+
+  }
+}

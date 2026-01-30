@@ -17,6 +17,8 @@ import { Observable }                                        from 'rxjs';
 import { OpenApiHttpParams, QueryParamStyle } from '../query.params';
 
 // @ts-ignore
+import { AudioResponseFormat } from '../model/audioResponseFormat';
+// @ts-ignore
 import { CreateSpeechRequest } from '../model/createSpeechRequest';
 // @ts-ignore
 import { CreateTranscription200Response } from '../model/createTranscription200Response';
@@ -105,18 +107,18 @@ export class AudioService extends BaseService {
      * @param file The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
      * @param model 
      * @param language The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
-     * @param prompt An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. 
-     * @param responseFormat The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+     * @param prompt An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language. 
+     * @param responseFormat 
      * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
      * @param timestampGranularities The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public createTranscription(file: Blob, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: string, temperature?: number, timestampGranularities?: Array<string>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<CreateTranscription200Response>;
-    public createTranscription(file: Blob, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: string, temperature?: number, timestampGranularities?: Array<string>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<CreateTranscription200Response>>;
-    public createTranscription(file: Blob, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: string, temperature?: number, timestampGranularities?: Array<string>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<CreateTranscription200Response>>;
-    public createTranscription(file: Blob, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: string, temperature?: number, timestampGranularities?: Array<string>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public createTranscription(file: Blob, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: AudioResponseFormat, temperature?: number, timestampGranularities?: Array<string>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<CreateTranscription200Response>;
+    public createTranscription(file: Blob, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: AudioResponseFormat, temperature?: number, timestampGranularities?: Array<string>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<CreateTranscription200Response>>;
+    public createTranscription(file: Blob, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: AudioResponseFormat, temperature?: number, timestampGranularities?: Array<string>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<CreateTranscription200Response>>;
+    public createTranscription(file: Blob, model: CreateTranscriptionRequestModel, language?: string, prompt?: string, responseFormat?: AudioResponseFormat, temperature?: number, timestampGranularities?: Array<string>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (file === null || file === undefined) {
             throw new Error('Required parameter file was null or undefined when calling createTranscription.');
         }
@@ -219,17 +221,17 @@ export class AudioService extends BaseService {
      * @endpoint post /audio/translations
      * @param file The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
      * @param model 
-     * @param prompt An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. 
-     * @param responseFormat The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
+     * @param prompt An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. 
+     * @param responseFormat 
      * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public createTranslation(file: Blob, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<CreateTranslation200Response>;
-    public createTranslation(file: Blob, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<CreateTranslation200Response>>;
-    public createTranslation(file: Blob, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<CreateTranslation200Response>>;
-    public createTranslation(file: Blob, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: string, temperature?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public createTranslation(file: Blob, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: AudioResponseFormat, temperature?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<CreateTranslation200Response>;
+    public createTranslation(file: Blob, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: AudioResponseFormat, temperature?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<CreateTranslation200Response>>;
+    public createTranslation(file: Blob, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: AudioResponseFormat, temperature?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<CreateTranslation200Response>>;
+    public createTranslation(file: Blob, model: CreateTranscriptionRequestModel, prompt?: string, responseFormat?: AudioResponseFormat, temperature?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (file === null || file === undefined) {
             throw new Error('Required parameter file was null or undefined when calling createTranslation.');
         }

@@ -25,7 +25,6 @@ MessageDeltaObject_delta::__init()
 {
 	//role = std::string();
 	//new std::list()std::list> content;
-	//new std::list()std::list> file_ids;
 }
 
 void
@@ -40,11 +39,6 @@ MessageDeltaObject_delta::__cleanup()
 	//content.RemoveAll(true);
 	//delete content;
 	//content = NULL;
-	//}
-	//if(file_ids != NULL) {
-	//file_ids.RemoveAll(true);
-	//delete file_ids;
-	//file_ids = NULL;
 	//}
 	//
 }
@@ -86,28 +80,6 @@ MessageDeltaObject_delta::fromJson(char* jsonStr)
 				new_list.push_back(inst);
 			}
 			content = new_list;
-		}
-		
-	}
-	const gchar *file_idsKey = "file_ids";
-	node = json_object_get_member(pJsonObject, file_idsKey);
-	if (node !=NULL) {
-	
-		{
-			JsonArray* arr = json_node_get_array(node);
-			JsonNode*  temp_json;
-			list<std::string> new_list;
-			std::string inst;
-			for (guint i=0;i<json_array_get_length(arr);i++) {
-				temp_json = json_array_get_element(arr,i);
-				if (isprimitive("std::string")) {
-					jsonToValue(&inst, temp_json, "std::string", "");
-				} else {
-					
-				}
-				new_list.push_back(inst);
-			}
-			file_ids = new_list;
 		}
 		
 	}
@@ -157,21 +129,6 @@ MessageDeltaObject_delta::toJson()
 	
 	const gchar *contentKey = "content";
 	json_object_set_member(pJsonObject, contentKey, node);
-	if (isprimitive("std::string")) {
-		list<std::string> new_list = static_cast<list <std::string> > (getFileIds());
-		node = converttoJson(&new_list, "std::string", "array");
-	} else {
-		node = json_node_alloc();
-		list<std::string> new_list = static_cast<list <std::string> > (getFileIds());
-		JsonArray* json_array = json_array_new();
-		GError *mygerror;
-		
-	}
-
-
-	
-	const gchar *file_idsKey = "file_ids";
-	json_object_set_member(pJsonObject, file_idsKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -202,18 +159,6 @@ void
 MessageDeltaObject_delta::setContent(std::list <MessageDeltaObject_delta_content_inner> content)
 {
 	this->content = content;
-}
-
-std::list<std::string>
-MessageDeltaObject_delta::getFileIds()
-{
-	return file_ids;
-}
-
-void
-MessageDeltaObject_delta::setFileIds(std::list <std::string> file_ids)
-{
-	this->file_ids = file_ids;
 }
 
 

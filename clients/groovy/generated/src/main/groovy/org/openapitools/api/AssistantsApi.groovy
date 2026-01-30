@@ -1,24 +1,19 @@
 package org.openapitools.api;
 
 import org.openapitools.api.ApiUtils
-import org.openapitools.model.AssistantFileObject
 import org.openapitools.model.AssistantObject
-import org.openapitools.model.CreateAssistantFileRequest
 import org.openapitools.model.CreateAssistantRequest
 import org.openapitools.model.CreateMessageRequest
 import org.openapitools.model.CreateRunRequest
 import org.openapitools.model.CreateThreadAndRunRequest
 import org.openapitools.model.CreateThreadRequest
-import org.openapitools.model.DeleteAssistantFileResponse
 import org.openapitools.model.DeleteAssistantResponse
+import org.openapitools.model.DeleteMessageResponse
 import org.openapitools.model.DeleteThreadResponse
-import org.openapitools.model.ListAssistantFilesResponse
 import org.openapitools.model.ListAssistantsResponse
-import org.openapitools.model.ListMessageFilesResponse
 import org.openapitools.model.ListMessagesResponse
 import org.openapitools.model.ListRunStepsResponse
 import org.openapitools.model.ListRunsResponse
-import org.openapitools.model.MessageFileObject
 import org.openapitools.model.MessageObject
 import org.openapitools.model.ModifyAssistantRequest
 import org.openapitools.model.ModifyMessageRequest
@@ -88,36 +83,6 @@ class AssistantsApi {
 
     }
 
-    def createAssistantFile ( String assistantId, CreateAssistantFileRequest createAssistantFileRequest, Closure onSuccess, Closure onFailure)  {
-        String resourcePath = "/assistants/${assistant_id}/files"
-
-        // params
-        def queryParams = [:]
-        def headerParams = [:]
-        def bodyParams
-        def contentType
-
-        // verify required params are set
-        if (assistantId == null) {
-            throw new RuntimeException("missing required params assistantId")
-        }
-        // verify required params are set
-        if (createAssistantFileRequest == null) {
-            throw new RuntimeException("missing required params createAssistantFileRequest")
-        }
-
-
-
-        contentType = 'application/json';
-        bodyParams = createAssistantFileRequest
-
-
-        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
-                    "POST", "",
-                    AssistantFileObject.class )
-
-    }
-
     def createMessage ( String threadId, CreateMessageRequest createMessageRequest, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/threads/${thread_id}/messages"
 
@@ -148,7 +113,7 @@ class AssistantsApi {
 
     }
 
-    def createRun ( String threadId, CreateRunRequest createRunRequest, Closure onSuccess, Closure onFailure)  {
+    def createRun ( String threadId, CreateRunRequest createRunRequest, List<String> include, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/threads/${thread_id}/runs"
 
         // params
@@ -166,6 +131,9 @@ class AssistantsApi {
             throw new RuntimeException("missing required params createRunRequest")
         }
 
+        if (include != null) {
+            queryParams.put("include[]", include)
+        }
 
 
         contentType = 'application/json';
@@ -250,8 +218,8 @@ class AssistantsApi {
 
     }
 
-    def deleteAssistantFile ( String assistantId, String fileId, Closure onSuccess, Closure onFailure)  {
-        String resourcePath = "/assistants/${assistant_id}/files/${file_id}"
+    def deleteMessage ( String threadId, String messageId, Closure onSuccess, Closure onFailure)  {
+        String resourcePath = "/threads/${thread_id}/messages/${message_id}"
 
         // params
         def queryParams = [:]
@@ -260,12 +228,12 @@ class AssistantsApi {
         def contentType
 
         // verify required params are set
-        if (assistantId == null) {
-            throw new RuntimeException("missing required params assistantId")
+        if (threadId == null) {
+            throw new RuntimeException("missing required params threadId")
         }
         // verify required params are set
-        if (fileId == null) {
-            throw new RuntimeException("missing required params fileId")
+        if (messageId == null) {
+            throw new RuntimeException("missing required params messageId")
         }
 
 
@@ -274,7 +242,7 @@ class AssistantsApi {
 
         apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "DELETE", "",
-                    DeleteAssistantFileResponse.class )
+                    DeleteMessageResponse.class )
 
     }
 
@@ -326,34 +294,6 @@ class AssistantsApi {
 
     }
 
-    def getAssistantFile ( String assistantId, String fileId, Closure onSuccess, Closure onFailure)  {
-        String resourcePath = "/assistants/${assistant_id}/files/${file_id}"
-
-        // params
-        def queryParams = [:]
-        def headerParams = [:]
-        def bodyParams
-        def contentType
-
-        // verify required params are set
-        if (assistantId == null) {
-            throw new RuntimeException("missing required params assistantId")
-        }
-        // verify required params are set
-        if (fileId == null) {
-            throw new RuntimeException("missing required params fileId")
-        }
-
-
-
-
-
-        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
-                    "GET", "",
-                    AssistantFileObject.class )
-
-    }
-
     def getMessage ( String threadId, String messageId, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/threads/${thread_id}/messages/${message_id}"
 
@@ -379,38 +319,6 @@ class AssistantsApi {
         apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     MessageObject.class )
-
-    }
-
-    def getMessageFile ( String threadId, String messageId, String fileId, Closure onSuccess, Closure onFailure)  {
-        String resourcePath = "/threads/${thread_id}/messages/${message_id}/files/${file_id}"
-
-        // params
-        def queryParams = [:]
-        def headerParams = [:]
-        def bodyParams
-        def contentType
-
-        // verify required params are set
-        if (threadId == null) {
-            throw new RuntimeException("missing required params threadId")
-        }
-        // verify required params are set
-        if (messageId == null) {
-            throw new RuntimeException("missing required params messageId")
-        }
-        // verify required params are set
-        if (fileId == null) {
-            throw new RuntimeException("missing required params fileId")
-        }
-
-
-
-
-
-        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
-                    "GET", "",
-                    MessageFileObject.class )
 
     }
 
@@ -442,7 +350,7 @@ class AssistantsApi {
 
     }
 
-    def getRunStep ( String threadId, String runId, String stepId, Closure onSuccess, Closure onFailure)  {
+    def getRunStep ( String threadId, String runId, String stepId, List<String> include, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/threads/${thread_id}/runs/${run_id}/steps/${step_id}"
 
         // params
@@ -464,6 +372,9 @@ class AssistantsApi {
             throw new RuntimeException("missing required params stepId")
         }
 
+        if (include != null) {
+            queryParams.put("include[]", include)
+        }
 
 
 
@@ -498,42 +409,6 @@ class AssistantsApi {
 
     }
 
-    def listAssistantFiles ( String assistantId, Integer limit, String order, String after, String before, Closure onSuccess, Closure onFailure)  {
-        String resourcePath = "/assistants/${assistant_id}/files"
-
-        // params
-        def queryParams = [:]
-        def headerParams = [:]
-        def bodyParams
-        def contentType
-
-        // verify required params are set
-        if (assistantId == null) {
-            throw new RuntimeException("missing required params assistantId")
-        }
-
-        if (limit != null) {
-            queryParams.put("limit", limit)
-        }
-        if (order != null) {
-            queryParams.put("order", order)
-        }
-        if (after != null) {
-            queryParams.put("after", after)
-        }
-        if (before != null) {
-            queryParams.put("before", before)
-        }
-
-
-
-
-        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
-                    "GET", "",
-                    ListAssistantFilesResponse.class )
-
-    }
-
     def listAssistants ( Integer limit, String order, String after, String before, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/assistants"
 
@@ -563,46 +438,6 @@ class AssistantsApi {
         apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     ListAssistantsResponse.class )
-
-    }
-
-    def listMessageFiles ( String threadId, String messageId, Integer limit, String order, String after, String before, Closure onSuccess, Closure onFailure)  {
-        String resourcePath = "/threads/${thread_id}/messages/${message_id}/files"
-
-        // params
-        def queryParams = [:]
-        def headerParams = [:]
-        def bodyParams
-        def contentType
-
-        // verify required params are set
-        if (threadId == null) {
-            throw new RuntimeException("missing required params threadId")
-        }
-        // verify required params are set
-        if (messageId == null) {
-            throw new RuntimeException("missing required params messageId")
-        }
-
-        if (limit != null) {
-            queryParams.put("limit", limit)
-        }
-        if (order != null) {
-            queryParams.put("order", order)
-        }
-        if (after != null) {
-            queryParams.put("after", after)
-        }
-        if (before != null) {
-            queryParams.put("before", before)
-        }
-
-
-
-
-        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
-                    "GET", "",
-                    ListMessageFilesResponse.class )
 
     }
 
@@ -645,7 +480,7 @@ class AssistantsApi {
 
     }
 
-    def listRunSteps ( String threadId, String runId, Integer limit, String order, String after, String before, Closure onSuccess, Closure onFailure)  {
+    def listRunSteps ( String threadId, String runId, Integer limit, String order, String after, String before, List<String> include, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/threads/${thread_id}/runs/${run_id}/steps"
 
         // params
@@ -674,6 +509,9 @@ class AssistantsApi {
         }
         if (before != null) {
             queryParams.put("before", before)
+        }
+        if (include != null) {
+            queryParams.put("include[]", include)
         }
 
 

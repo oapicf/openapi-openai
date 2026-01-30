@@ -9,6 +9,7 @@
 
 
 #include <string>
+#include "ChatCompletionRequestToolMessage_content.h"
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API
@@ -52,13 +53,13 @@ public:
 	/*! \brief Set The role of the messages author, in this case `tool`.
 	 */
 	void setRole(std::string  role);
-	/*! \brief Get The contents of the tool message.
+	/*! \brief Get 
 	 */
-	std::string getContent();
+	ChatCompletionRequestToolMessage_content getContent();
 
-	/*! \brief Set The contents of the tool message.
+	/*! \brief Set 
 	 */
-	void setContent(std::string  content);
+	void setContent(ChatCompletionRequestToolMessage_content  content);
 	/*! \brief Get Tool call that this message is responding to.
 	 */
 	std::string getToolCallId();
@@ -69,7 +70,7 @@ public:
 
 private:
 	std::string role;
-	std::string content;
+	ChatCompletionRequestToolMessage_content content;
 	std::string tool_call_id;
 	void __init();
 	void __cleanup();

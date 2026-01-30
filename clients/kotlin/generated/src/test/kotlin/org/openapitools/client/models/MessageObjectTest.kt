@@ -19,6 +19,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.MessageObject
+import org.openapitools.client.models.CreateMessageRequestAttachmentsInner
 import org.openapitools.client.models.MessageObjectContentInner
 import org.openapitools.client.models.MessageObjectIncompleteDetails
 
@@ -99,13 +100,13 @@ class MessageObjectTest : ShouldSpec() {
             //modelInstance.runId shouldBe ("TODO")
         }
 
-        // to test the property `fileIds` - A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-        should("test fileIds") {
+        // to test the property `attachments` - A list of files attached to the message, and the tools they were added to.
+        should("test attachments") {
             // uncomment below to test the property
-            //modelInstance.fileIds shouldBe ("TODO")
+            //modelInstance.attachments shouldBe ("TODO")
         }
 
-        // to test the property `metadata` - Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+        // to test the property `metadata` - Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
         should("test metadata") {
             // uncomment below to test the property
             //modelInstance.metadata shouldBe ("TODO")

@@ -22,7 +22,8 @@ $Configuration = Get-Configuration
 $CreateCompletionRequestModel = Initialize-CreateCompletionRequestModel 
 $CreateCompletionRequestPrompt = Initialize-CreateCompletionRequestPrompt 
 $CreateCompletionRequestStop = Initialize-CreateCompletionRequestStop 
-$CreateCompletionRequest = Initialize-CreateCompletionRequest -Model $CreateCompletionRequestModel -Prompt $CreateCompletionRequestPrompt -BestOf 0 -Echo $false -FrequencyPenalty 0 -LogitBias @{ key_example = 0 } -Logprobs 0 -MaxTokens 16 -N 1 -PresencePenalty 0 -Seed 0 -Stop $CreateCompletionRequestStop -Stream $false -Suffix "test." -Temperature 1 -TopP 1 -User "user-1234" # CreateCompletionRequest | 
+$ChatCompletionStreamOptions = Initialize-ChatCompletionStreamOptions -IncludeUsage $false
+$CreateCompletionRequest = Initialize-CreateCompletionRequest -Model $CreateCompletionRequestModel -Prompt $CreateCompletionRequestPrompt -BestOf 0 -Echo $false -FrequencyPenalty 0 -LogitBias @{ key_example = 0 } -Logprobs 0 -MaxTokens 16 -N 1 -PresencePenalty 0 -Seed 0 -Stop $CreateCompletionRequestStop -Stream $false -StreamOptions $ChatCompletionStreamOptions -Suffix "test." -Temperature 1 -TopP 1 -User "user-1234" # CreateCompletionRequest | 
 
 # Creates a completion for the provided prompt and parameters.
 try {

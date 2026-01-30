@@ -10,6 +10,5 @@ module MessageContentTextAnnotationsFileCitationObjectFileCitation =
 
   type MessageContentTextAnnotationsFileCitationObject_file_citation = {
     FileId : string;
-    Quote : string;
   }
   //#endregion

@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -43,6 +44,14 @@ public class FunctionObjectTest {
     @Test
     public void parametersTest() {
         // TODO: test parameters
+    }
+
+    /**
+     * Test the property 'strict'
+     */
+    @Test
+    public void strictTest() {
+        // TODO: test strict
     }
 
 }

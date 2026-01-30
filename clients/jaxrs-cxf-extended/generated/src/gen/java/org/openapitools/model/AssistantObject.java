@@ -2,10 +2,14 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.AssistantObjectToolResources;
 import org.openapitools.model.AssistantObjectToolsInner;
+import org.openapitools.model.AssistantsApiResponseFormatOption;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -81,9 +85,9 @@ public enum ObjectEnum {
   private String description;
 
  /**
-  * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. 
+  * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
   */
-  @ApiModelProperty(required = true, value = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. ")
+  @ApiModelProperty(required = true, value = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. ")
   private String model;
 
  /**
@@ -93,23 +97,39 @@ public enum ObjectEnum {
   private String instructions;
 
  /**
-  * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. 
+  * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
   */
-  @ApiModelProperty(required = true, value = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. ")
+  @ApiModelProperty(required = true, value = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
   @Valid
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
 
- /**
-  * A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. 
-  */
-  @ApiModelProperty(required = true, value = "A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. ")
-  private List<String> fileIds = new ArrayList<>();
+  @ApiModelProperty(value = "")
+  @Valid
+  private AssistantObjectToolResources toolResources;
 
  /**
-  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
   */
-  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
   private Object metadata;
+
+ /**
+  * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+  */
+  @ApiModelProperty(example = "1", value = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. ")
+  @Valid
+  private BigDecimal temperature = new BigDecimal("1");
+
+ /**
+  * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+  */
+  @ApiModelProperty(example = "1", value = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ")
+  @Valid
+  private BigDecimal topP = new BigDecimal("1");
+
+  @ApiModelProperty(value = "")
+  @Valid
+  private AssistantsApiResponseFormatOption responseFormat;
  /**
   * The identifier, which can be referenced in API endpoints.
   * @return id
@@ -236,7 +256,7 @@ public enum ObjectEnum {
   }
 
  /**
-  * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. 
+  * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
   * @return model
   */
   @JsonProperty("model")
@@ -286,7 +306,7 @@ public enum ObjectEnum {
   }
 
  /**
-  * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;retrieval&#x60;, or &#x60;function&#x60;. 
+  * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;file_search&#x60;, or &#x60;function&#x60;. 
   * @return tools
   */
   @JsonProperty("tools")
@@ -319,40 +339,31 @@ public enum ObjectEnum {
   }
 
  /**
-  * A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. 
-  * @return fileIds
+  * Get toolResources
+  * @return toolResources
   */
-  @JsonProperty("file_ids")
-  @NotNull
- @Size(max=20)  public List<String> getFileIds() {
-    return fileIds;
+  @JsonProperty("tool_resources")
+  public AssistantObjectToolResources getToolResources() {
+    return toolResources;
   }
 
   /**
-   * Sets the <code>fileIds</code> property.
+   * Sets the <code>toolResources</code> property.
    */
- public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+ public void setToolResources(AssistantObjectToolResources toolResources) {
+    this.toolResources = toolResources;
   }
 
   /**
-   * Sets the <code>fileIds</code> property.
+   * Sets the <code>toolResources</code> property.
    */
-  public AssistantObject fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  /**
-   * Adds a new item to the <code>fileIds</code> list.
-   */
-  public AssistantObject addFileIdsItem(String fileIdsItem) {
-    this.fileIds.add(fileIdsItem);
+  public AssistantObject toolResources(AssistantObjectToolResources toolResources) {
+    this.toolResources = toolResources;
     return this;
   }
 
  /**
-  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
   * @return metadata
   */
   @JsonProperty("metadata")
@@ -376,6 +387,82 @@ public enum ObjectEnum {
     return this;
   }
 
+ /**
+  * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+  * minimum: 0
+  * maximum: 2
+  * @return temperature
+  */
+  @JsonProperty("temperature")
+ @DecimalMin("0") @DecimalMax("2")  public BigDecimal getTemperature() {
+    return temperature;
+  }
+
+  /**
+   * Sets the <code>temperature</code> property.
+   */
+ public void setTemperature(BigDecimal temperature) {
+    this.temperature = temperature;
+  }
+
+  /**
+   * Sets the <code>temperature</code> property.
+   */
+  public AssistantObject temperature(BigDecimal temperature) {
+    this.temperature = temperature;
+    return this;
+  }
+
+ /**
+  * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+  * minimum: 0
+  * maximum: 1
+  * @return topP
+  */
+  @JsonProperty("top_p")
+ @DecimalMin("0") @DecimalMax("1")  public BigDecimal getTopP() {
+    return topP;
+  }
+
+  /**
+   * Sets the <code>topP</code> property.
+   */
+ public void setTopP(BigDecimal topP) {
+    this.topP = topP;
+  }
+
+  /**
+   * Sets the <code>topP</code> property.
+   */
+  public AssistantObject topP(BigDecimal topP) {
+    this.topP = topP;
+    return this;
+  }
+
+ /**
+  * Get responseFormat
+  * @return responseFormat
+  */
+  @JsonProperty("response_format")
+  public AssistantsApiResponseFormatOption getResponseFormat() {
+    return responseFormat;
+  }
+
+  /**
+   * Sets the <code>responseFormat</code> property.
+   */
+ public void setResponseFormat(AssistantsApiResponseFormatOption responseFormat) {
+    this.responseFormat = responseFormat;
+  }
+
+  /**
+   * Sets the <code>responseFormat</code> property.
+   */
+  public AssistantObject responseFormat(AssistantsApiResponseFormatOption responseFormat) {
+    this.responseFormat = responseFormat;
+    return this;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -394,13 +481,16 @@ public enum ObjectEnum {
         Objects.equals(this.model, assistantObject.model) &&
         Objects.equals(this.instructions, assistantObject.instructions) &&
         Objects.equals(this.tools, assistantObject.tools) &&
-        Objects.equals(this.fileIds, assistantObject.fileIds) &&
-        Objects.equals(this.metadata, assistantObject.metadata);
+        Objects.equals(this.toolResources, assistantObject.toolResources) &&
+        Objects.equals(this.metadata, assistantObject.metadata) &&
+        Objects.equals(this.temperature, assistantObject.temperature) &&
+        Objects.equals(this.topP, assistantObject.topP) &&
+        Objects.equals(this.responseFormat, assistantObject.responseFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, name, description, model, instructions, tools, fileIds, metadata);
+    return Objects.hash(id, _object, createdAt, name, description, model, instructions, tools, toolResources, metadata, temperature, topP, responseFormat);
   }
 
   @Override
@@ -416,8 +506,11 @@ public enum ObjectEnum {
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
+    sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -26,6 +26,7 @@ CreateModerationResponse_results_inner::__init()
 	//flagged = bool(false);
 	//categories = new CreateModerationResponse_results_inner_categories();
 	//category_scores = new CreateModerationResponse_results_inner_category_scores();
+	//category_applied_input_types = new CreateModerationResponse_results_inner_category_applied_input_types();
 }
 
 void
@@ -45,6 +46,11 @@ CreateModerationResponse_results_inner::__cleanup()
 	//
 	//delete category_scores;
 	//category_scores = NULL;
+	//}
+	//if(category_applied_input_types != NULL) {
+	//
+	//delete category_applied_input_types;
+	//category_applied_input_types = NULL;
 	//}
 	//
 }
@@ -89,6 +95,20 @@ CreateModerationResponse_results_inner::fromJson(char* jsonStr)
 		} else {
 			
 			CreateModerationResponse_results_inner_category_scores* obj = static_cast<CreateModerationResponse_results_inner_category_scores*> (&category_scores);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *category_applied_input_typesKey = "category_applied_input_types";
+	node = json_object_get_member(pJsonObject, category_applied_input_typesKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("CreateModerationResponse_results_inner_category_applied_input_types")) {
+			jsonToValue(&category_applied_input_types, node, "CreateModerationResponse_results_inner_category_applied_input_types", "CreateModerationResponse_results_inner_category_applied_input_types");
+		} else {
+			
+			CreateModerationResponse_results_inner_category_applied_input_types* obj = static_cast<CreateModerationResponse_results_inner_category_applied_input_types*> (&category_applied_input_types);
 			obj->fromJson(json_to_string(node, false));
 			
 		}
@@ -142,6 +162,20 @@ CreateModerationResponse_results_inner::toJson()
 	}
 	const gchar *category_scoresKey = "category_scores";
 	json_object_set_member(pJsonObject, category_scoresKey, node);
+	if (isprimitive("CreateModerationResponse_results_inner_category_applied_input_types")) {
+		CreateModerationResponse_results_inner_category_applied_input_types obj = getCategoryAppliedInputTypes();
+		node = converttoJson(&obj, "CreateModerationResponse_results_inner_category_applied_input_types", "");
+	}
+	else {
+		
+		CreateModerationResponse_results_inner_category_applied_input_types obj = static_cast<CreateModerationResponse_results_inner_category_applied_input_types> (getCategoryAppliedInputTypes());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *category_applied_input_typesKey = "category_applied_input_types";
+	json_object_set_member(pJsonObject, category_applied_input_typesKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -184,6 +218,18 @@ void
 CreateModerationResponse_results_inner::setCategoryScores(CreateModerationResponse_results_inner_category_scores  category_scores)
 {
 	this->category_scores = category_scores;
+}
+
+CreateModerationResponse_results_inner_category_applied_input_types
+CreateModerationResponse_results_inner::getCategoryAppliedInputTypes()
+{
+	return category_applied_input_types;
+}
+
+void
+CreateModerationResponse_results_inner::setCategoryAppliedInputTypes(CreateModerationResponse_results_inner_category_applied_input_types  category_applied_input_types)
+{
+	this->category_applied_input_types = category_applied_input_types;
 }
 
 

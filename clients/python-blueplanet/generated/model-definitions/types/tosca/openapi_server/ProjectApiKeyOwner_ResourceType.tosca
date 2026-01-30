@@ -1,0 +1,48 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ProjectApiKeyOwner"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ProjectApiKeyOwner"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ProjectServiceAccount = openapi_server.resourceTypes.ProjectServiceAccount
+  ProjectUser = openapi_server.resourceTypes.ProjectUser
+}
+resourceTypes {
+
+  ProjectApiKeyOwner {
+    title = ProjectApiKeyOwner
+    description = ProjectApiKeyOwner
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "&#x60;user&#x60; or &#x60;service_account&#x60;"
+          enum = ["user", "service_account"]
+          optional = false
+        }
+        user {
+          type = ProjectUser
+          description = ""
+          optional = false
+        }
+        service_account {
+          type = ProjectServiceAccount
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ProjectApiKeyOwner {
+    title = ProjectApiKeyOwner
+    description = ProjectApiKeyOwner
+    implements = openapi_server.resourceTypes.ProjectApiKeyOwner
+
+  }
+}

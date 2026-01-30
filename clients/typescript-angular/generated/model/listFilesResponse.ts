@@ -11,14 +11,10 @@ import { OpenAIFile } from './openAIFile';
 
 
 export interface ListFilesResponse { 
+    object: string;
     data: Array<OpenAIFile>;
-    object: ListFilesResponse.ObjectEnum;
+    first_id: string;
+    last_id: string;
+    has_more: boolean;
 }
-export namespace ListFilesResponse {
-    export const ObjectEnum = {
-        List: 'list'
-    } as const;
-    export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
-}
-
 

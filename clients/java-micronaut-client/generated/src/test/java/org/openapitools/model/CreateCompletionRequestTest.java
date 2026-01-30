@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.ChatCompletionStreamOptions;
 import org.openapitools.model.CreateCompletionRequestModel;
 import org.openapitools.model.CreateCompletionRequestPrompt;
 import org.openapitools.model.CreateCompletionRequestStop;
@@ -128,6 +129,14 @@ public class CreateCompletionRequestTest {
     @Test
     public void streamTest() {
         // TODO: test stream
+    }
+
+    /**
+     * Test the property 'streamOptions'
+     */
+    @Test
+    public void streamOptionsTest() {
+        // TODO: test streamOptions
     }
 
     /**

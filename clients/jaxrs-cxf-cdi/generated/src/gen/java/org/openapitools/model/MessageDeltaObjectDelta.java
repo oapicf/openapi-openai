@@ -58,8 +58,6 @@ public enum RoleEnum {
 
   private List<MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
 
-  private List<String> fileIds = new ArrayList<>();
-
   /**
    * The entity that produced the message. One of &#x60;user&#x60; or &#x60;assistant&#x60;.
    **/
@@ -106,33 +104,6 @@ public enum RoleEnum {
   }
 
 
-  /**
-   * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-   **/
-  public MessageDeltaObjectDelta fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  
-  @ApiModelProperty(value = "A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.")
-  @JsonProperty("file_ids")
- @Size(max=10)  public List<String> getFileIds() {
-    return fileIds;
-  }
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-  }
-
-  public MessageDeltaObjectDelta addFileIdsItem(String fileIdsItem) {
-    if (this.fileIds == null) {
-      this.fileIds = new ArrayList<>();
-    }
-    this.fileIds.add(fileIdsItem);
-    return this;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -144,13 +115,12 @@ public enum RoleEnum {
     }
     MessageDeltaObjectDelta messageDeltaObjectDelta = (MessageDeltaObjectDelta) o;
     return Objects.equals(this.role, messageDeltaObjectDelta.role) &&
-        Objects.equals(this.content, messageDeltaObjectDelta.content) &&
-        Objects.equals(this.fileIds, messageDeltaObjectDelta.fileIds);
+        Objects.equals(this.content, messageDeltaObjectDelta.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, content, fileIds);
+    return Objects.hash(role, content);
   }
 
   @Override
@@ -160,7 +130,6 @@ public enum RoleEnum {
     
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

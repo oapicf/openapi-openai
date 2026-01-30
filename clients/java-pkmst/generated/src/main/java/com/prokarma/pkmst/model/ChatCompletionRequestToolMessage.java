@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.prokarma.pkmst.model.ChatCompletionRequestToolMessageContent;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 /**
@@ -15,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  * ChatCompletionRequestToolMessage
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T10:45:02.588292416Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestToolMessage   {
   /**
    * The role of the messages author, in this case `tool`.
@@ -50,7 +51,7 @@ public class ChatCompletionRequestToolMessage   {
   private RoleEnum role;
 
   @JsonProperty("content")
-  private String content;
+  private ChatCompletionRequestToolMessageContent content;
 
   @JsonProperty("tool_call_id")
   private String toolCallId;
@@ -73,21 +74,21 @@ public class ChatCompletionRequestToolMessage   {
     this.role = role;
   }
 
-  public ChatCompletionRequestToolMessage content(String content) {
+  public ChatCompletionRequestToolMessage content(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
     return this;
   }
 
   /**
-   * The contents of the tool message.
+   * Get content
    * @return content
    */
-  @ApiModelProperty(required = true, value = "The contents of the tool message.")
-  public String getContent() {
+  @ApiModelProperty(required = true, value = "")
+  public ChatCompletionRequestToolMessageContent getContent() {
     return content;
   }
 
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
   }
 

@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -22,6 +22,8 @@ var _ MappedNullable = &ThreadStreamEvent{}
 
 // ThreadStreamEvent Occurs when a new [thread](/docs/api-reference/threads/object) is created.
 type ThreadStreamEvent struct {
+	// Whether to enable input audio transcription.
+	Enabled *bool `json:"enabled,omitempty"`
 	Event string `json:"event"`
 	Data ThreadObject `json:"data"`
 }
@@ -45,6 +47,38 @@ func NewThreadStreamEvent(event string, data ThreadObject) *ThreadStreamEvent {
 func NewThreadStreamEventWithDefaults() *ThreadStreamEvent {
 	this := ThreadStreamEvent{}
 	return &this
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *ThreadStreamEvent) GetEnabled() bool {
+	if o == nil || IsNil(o.Enabled) {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ThreadStreamEvent) GetEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.Enabled) {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *ThreadStreamEvent) HasEnabled() bool {
+	if o != nil && !IsNil(o.Enabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *ThreadStreamEvent) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetEvent returns the Event field value
@@ -105,6 +139,9 @@ func (o ThreadStreamEvent) MarshalJSON() ([]byte, error) {
 
 func (o ThreadStreamEvent) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
+	}
 	toSerialize["event"] = o.Event
 	toSerialize["data"] = o.Data
 	return toSerialize, nil

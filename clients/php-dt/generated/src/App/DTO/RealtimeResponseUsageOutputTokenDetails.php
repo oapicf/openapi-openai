@@ -1,0 +1,27 @@
+<?php
+declare(strict_types=1);
+
+namespace App\DTO;
+
+use Articus\DataTransfer\Annotation as DTA;
+
+/**
+ * Details about the output tokens used in the Response.
+ */
+class RealtimeResponseUsageOutputTokenDetails
+{
+    /**
+     * The number of text tokens used in the Response.
+     * @DTA\Data(field="text_tokens", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"int"})
+     */
+    public ?int $text_tokens = null;
+
+    /**
+     * The number of audio tokens used in the Response.
+     * @DTA\Data(field="audio_tokens", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"int"})
+     */
+    public ?int $audio_tokens = null;
+
+}

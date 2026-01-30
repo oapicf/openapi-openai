@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.openapitools.model.ChatCompletionRequestSystemMessageContent;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -10,13 +11,16 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
+/**
+ * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. 
+ */
+@ApiModel(description="Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. ")
+
 public class ChatCompletionRequestSystemMessage  {
   
- /**
-  * The contents of the system message.
-  */
-  @ApiModelProperty(required = true, value = "The contents of the system message.")
-  private String content;
+  @ApiModelProperty(required = true, value = "")
+  @Valid
+  private ChatCompletionRequestSystemMessageContent content;
 
 public enum RoleEnum {
 
@@ -59,26 +63,26 @@ public enum RoleEnum {
   @ApiModelProperty(value = "An optional name for the participant. Provides the model information to differentiate between participants of the same role.")
   private String name;
  /**
-  * The contents of the system message.
+  * Get content
   * @return content
   */
   @JsonProperty("content")
   @NotNull
-  public String getContent() {
+  public ChatCompletionRequestSystemMessageContent getContent() {
     return content;
   }
 
   /**
    * Sets the <code>content</code> property.
    */
- public void setContent(String content) {
+ public void setContent(ChatCompletionRequestSystemMessageContent content) {
     this.content = content;
   }
 
   /**
    * Sets the <code>content</code> property.
    */
-  public ChatCompletionRequestSystemMessage content(String content) {
+  public ChatCompletionRequestSystemMessage content(ChatCompletionRequestSystemMessageContent content) {
     this.content = content;
     return this;
   }

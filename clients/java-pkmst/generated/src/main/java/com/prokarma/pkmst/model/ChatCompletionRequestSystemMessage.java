@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.prokarma.pkmst.model.ChatCompletionRequestSystemMessageContent;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 /**
@@ -12,13 +13,14 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 /**
- * ChatCompletionRequestSystemMessage
+ * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use &#x60;developer&#x60; messages for this purpose instead. 
  */
+@ApiModel(description = "Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. ")
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T10:45:02.588292416Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestSystemMessage   {
   @JsonProperty("content")
-  private String content;
+  private ChatCompletionRequestSystemMessageContent content;
 
   /**
    * The role of the messages author, in this case `system`.
@@ -55,21 +57,21 @@ public class ChatCompletionRequestSystemMessage   {
   @JsonProperty("name")
   private String name;
 
-  public ChatCompletionRequestSystemMessage content(String content) {
+  public ChatCompletionRequestSystemMessage content(ChatCompletionRequestSystemMessageContent content) {
     this.content = content;
     return this;
   }
 
   /**
-   * The contents of the system message.
+   * Get content
    * @return content
    */
-  @ApiModelProperty(required = true, value = "The contents of the system message.")
-  public String getContent() {
+  @ApiModelProperty(required = true, value = "")
+  public ChatCompletionRequestSystemMessageContent getContent() {
     return content;
   }
 
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestSystemMessageContent content) {
     this.content = content;
   }
 

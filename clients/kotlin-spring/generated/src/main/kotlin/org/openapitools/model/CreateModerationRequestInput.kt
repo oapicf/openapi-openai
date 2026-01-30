@@ -1,6 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
+import org.openapitools.model.CreateModerationRequestInputOneOfInner
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -13,7 +14,7 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * The input text to classify
+ * Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models. 
  */
 class CreateModerationRequestInput(
 

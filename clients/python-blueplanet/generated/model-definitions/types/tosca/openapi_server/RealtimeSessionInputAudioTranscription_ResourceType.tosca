@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeSessionInputAudioTranscription"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeSessionInputAudioTranscription"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeSessionInputAudioTranscription {
+    title = RealtimeSessionInputAudioTranscription
+    description = RealtimeSessionInputAudioTranscription
+    derivedFrom = Root
+    properties {
+        model {
+          type =  string
+          description = "The model to use for transcription, &#x60;whisper-1&#x60; is the only currently  supported model. "
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeSessionInputAudioTranscription {
+    title = RealtimeSessionInputAudioTranscription
+    description = RealtimeSessionInputAudioTranscription
+    implements = openapi_server.resourceTypes.RealtimeSessionInputAudioTranscription
+
+  }
+}

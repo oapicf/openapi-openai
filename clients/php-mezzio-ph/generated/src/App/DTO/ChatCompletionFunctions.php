@@ -26,11 +26,11 @@ class ChatCompletionFunctions
     public $name;
 
     /**
-     * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.
+     * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.
      * @DTA\Data(field="parameters", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection2::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection2::class})
-     * @var \App\DTO\Collection2|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection20::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection20::class})
+     * @var \App\DTO\Collection20|null
      */
     public $parameters;
 

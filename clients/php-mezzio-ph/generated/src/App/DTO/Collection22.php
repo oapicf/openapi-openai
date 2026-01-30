@@ -6,9 +6,10 @@ namespace App\DTO;
 use Articus\DataTransfer\Annotation as DTA;
 
 /**
- * @DTA\Strategy(name="ObjectList", options={"type":\App\DTO\OpenAIFile::class})
+ * @DTA\Strategy(name="ObjectList", options={"type":\App\DTO\ChatCompletionFunctions::class})
+ * @DTA\Validator(name="Count", options={"min":1,"max":128}, blocker=true)
  * @DTA\Validator(name="Collection", options={"validators":{
- *     {"name":"TypeCompliant", "options":{"type":\App\DTO\OpenAIFile::class}}
+ *     {"name":"TypeCompliant", "options":{"type":\App\DTO\ChatCompletionFunctions::class}}
  * }})
  */
 class Collection22 extends \ArrayObject

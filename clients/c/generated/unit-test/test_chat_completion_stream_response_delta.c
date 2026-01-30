@@ -27,14 +27,16 @@ chat_completion_stream_response_delta_t* instantiate_chat_completion_stream_resp
        // false, not to have infinite recursion
       instantiate_chat_completion_stream_response_delta_function_call(0),
       list_createList(),
-      openai_api_chat_completion_stream_response_delta_ROLE_system
+      openai_api_chat_completion_stream_response_delta_ROLE_system,
+      "0"
     );
   } else {
     chat_completion_stream_response_delta = chat_completion_stream_response_delta_create(
       "0",
       NULL,
       list_createList(),
-      openai_api_chat_completion_stream_response_delta_ROLE_system
+      openai_api_chat_completion_stream_response_delta_ROLE_system,
+      "0"
     );
   }
 

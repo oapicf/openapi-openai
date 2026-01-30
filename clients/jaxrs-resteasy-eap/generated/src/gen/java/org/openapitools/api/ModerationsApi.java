@@ -24,14 +24,14 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the moderations API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T10:45:31.742862961Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T14:09:29.020322047Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public interface ModerationsApi  {
 
     @POST
     
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "Classifies if text is potentially harmful.", notes = "", response = CreateModerationResponse.class, authorizations = {
+    @io.swagger.annotations.ApiOperation(value = "Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). ", notes = "", response = CreateModerationResponse.class, authorizations = {
         @io.swagger.annotations.Authorization(value = "ApiKeyAuth")
     }, tags={ "Moderations", })
     @io.swagger.annotations.ApiResponses(value = { 

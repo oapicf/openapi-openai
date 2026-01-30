@@ -15,6 +15,7 @@
       {"model": "choices" },
       {"model": "created" },
       {"model": "model" },
+      {"model": "service_tier" },
       {"model": "system_fingerprint" },
       {"model": "object" },
       {"model": "usage" },

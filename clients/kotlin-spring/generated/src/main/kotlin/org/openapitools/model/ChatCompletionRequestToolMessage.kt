@@ -4,6 +4,7 @@ import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
+import org.openapitools.model.ChatCompletionRequestToolMessageContent
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -18,7 +19,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * 
  * @param role The role of the messages author, in this case `tool`.
- * @param content The contents of the tool message.
+ * @param content 
  * @param toolCallId Tool call that this message is responding to.
  */
 data class ChatCompletionRequestToolMessage(
@@ -26,8 +27,9 @@ data class ChatCompletionRequestToolMessage(
     @Schema(example = "null", required = true, description = "The role of the messages author, in this case `tool`.")
     @get:JsonProperty("role", required = true) val role: ChatCompletionRequestToolMessage.Role,
 
-    @Schema(example = "null", required = true, description = "The contents of the tool message.")
-    @get:JsonProperty("content", required = true) val content: kotlin.String,
+    @field:Valid
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("content", required = true) val content: ChatCompletionRequestToolMessageContent,
 
     @Schema(example = "null", required = true, description = "Tool call that this message is responding to.")
     @get:JsonProperty("tool_call_id", required = true) val toolCallId: kotlin.String

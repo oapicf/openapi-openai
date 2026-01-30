@@ -10,14 +10,14 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) fails.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) fails.
  **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-@ApiModel(description = "Occurs when a [run step](/docs/api-reference/runs/step-object) fails.")
+@ApiModel(description = "Occurs when a [run step](/docs/api-reference/run-steps/step-object) fails.")
 public class RunStepStreamEventOneOf4   {
   
 

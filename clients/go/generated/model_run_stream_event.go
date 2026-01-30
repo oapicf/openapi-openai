@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -28,6 +28,7 @@ type RunStreamEvent struct {
 	RunStreamEventOneOf6 *RunStreamEventOneOf6
 	RunStreamEventOneOf7 *RunStreamEventOneOf7
 	RunStreamEventOneOf8 *RunStreamEventOneOf8
+	RunStreamEventOneOf9 *RunStreamEventOneOf9
 }
 
 // RunStreamEventOneOfAsRunStreamEvent is a convenience function that returns RunStreamEventOneOf wrapped in RunStreamEvent
@@ -90,6 +91,13 @@ func RunStreamEventOneOf7AsRunStreamEvent(v *RunStreamEventOneOf7) RunStreamEven
 func RunStreamEventOneOf8AsRunStreamEvent(v *RunStreamEventOneOf8) RunStreamEvent {
 	return RunStreamEvent{
 		RunStreamEventOneOf8: v,
+	}
+}
+
+// RunStreamEventOneOf9AsRunStreamEvent is a convenience function that returns RunStreamEventOneOf9 wrapped in RunStreamEvent
+func RunStreamEventOneOf9AsRunStreamEvent(v *RunStreamEventOneOf9) RunStreamEvent {
+	return RunStreamEvent{
+		RunStreamEventOneOf9: v,
 	}
 }
 
@@ -251,6 +259,23 @@ func (dst *RunStreamEvent) UnmarshalJSON(data []byte) error {
 		dst.RunStreamEventOneOf8 = nil
 	}
 
+	// try to unmarshal data into RunStreamEventOneOf9
+	err = newStrictDecoder(data).Decode(&dst.RunStreamEventOneOf9)
+	if err == nil {
+		jsonRunStreamEventOneOf9, _ := json.Marshal(dst.RunStreamEventOneOf9)
+		if string(jsonRunStreamEventOneOf9) == "{}" { // empty struct
+			dst.RunStreamEventOneOf9 = nil
+		} else {
+			if err = validator.Validate(dst.RunStreamEventOneOf9); err != nil {
+				dst.RunStreamEventOneOf9 = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.RunStreamEventOneOf9 = nil
+	}
+
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.RunStreamEventOneOf = nil
@@ -262,6 +287,7 @@ func (dst *RunStreamEvent) UnmarshalJSON(data []byte) error {
 		dst.RunStreamEventOneOf6 = nil
 		dst.RunStreamEventOneOf7 = nil
 		dst.RunStreamEventOneOf8 = nil
+		dst.RunStreamEventOneOf9 = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(RunStreamEvent)")
 	} else if match == 1 {
@@ -309,6 +335,10 @@ func (src RunStreamEvent) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.RunStreamEventOneOf8)
 	}
 
+	if src.RunStreamEventOneOf9 != nil {
+		return json.Marshal(&src.RunStreamEventOneOf9)
+	}
+
 	return nil, nil // no data in oneOf schemas
 }
 
@@ -353,6 +383,10 @@ func (obj *RunStreamEvent) GetActualInstance() (interface{}) {
 		return obj.RunStreamEventOneOf8
 	}
 
+	if obj.RunStreamEventOneOf9 != nil {
+		return obj.RunStreamEventOneOf9
+	}
+
 	// all schemas are nil
 	return nil
 }
@@ -393,6 +427,10 @@ func (obj RunStreamEvent) GetActualInstanceValue() (interface{}) {
 
 	if obj.RunStreamEventOneOf8 != nil {
 		return *obj.RunStreamEventOneOf8
+	}
+
+	if obj.RunStreamEventOneOf9 != nil {
+		return *obj.RunStreamEventOneOf9
 	}
 
 	// all schemas are nil

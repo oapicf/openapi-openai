@@ -9,12 +9,11 @@ import org.openapitools.model.CreateMessageRequest;
 import org.openapitools.model.CreateRunRequest;
 import org.openapitools.model.CreateThreadAndRunRequest;
 import org.openapitools.model.CreateThreadRequest;
+import org.openapitools.model.DeleteMessageResponse;
 import org.openapitools.model.DeleteThreadResponse;
-import org.openapitools.model.ListMessageFilesResponse;
 import org.openapitools.model.ListMessagesResponse;
 import org.openapitools.model.ListRunStepsResponse;
 import org.openapitools.model.ListRunsResponse;
-import org.openapitools.model.MessageFileObject;
 import org.openapitools.model.MessageObject;
 import org.openapitools.model.ModifyMessageRequest;
 import org.openapitools.model.ModifyRunRequest;
@@ -51,7 +50,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @Validated
 @Tag(name = "Assistants", description = "Build Assistants that can call models and use tools.")
 public interface ThreadsApi {
@@ -93,7 +92,7 @@ public interface ThreadsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"none\", \"file_ids\" : [ \"file_ids\", \"file_ids\" ], \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" }";
+                    String exampleString = "{ \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"top_p\" : 4.145608029883936, \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"auto\", \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"parallel_tool_calls\" : true, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -138,7 +137,7 @@ public interface ThreadsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"metadata\" : \"{}\", \"role\" : \"user\", \"assistant_id\" : \"assistant_id\", \"run_id\" : \"run_id\", \"created_at\" : 0, \"content\" : [ { \"image_file\" : { \"file_id\" : \"file_id\" }, \"type\" : \"image_file\" }, { \"image_file\" : { \"file_id\" : \"file_id\" }, \"type\" : \"image_file\" } ], \"completed_at\" : 6, \"thread_id\" : \"thread_id\", \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ], \"id\" : \"id\", \"incomplete_at\" : 1, \"incomplete_details\" : { \"reason\" : \"content_filter\" }, \"object\" : \"thread.message\", \"status\" : \"in_progress\" }";
+                    String exampleString = "{ \"metadata\" : \"{}\", \"role\" : \"user\", \"assistant_id\" : \"assistant_id\", \"run_id\" : \"run_id\", \"attachments\" : [ { \"file_id\" : \"file_id\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ] }, { \"file_id\" : \"file_id\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ] } ], \"created_at\" : 0, \"content\" : [ { \"image_file\" : { \"file_id\" : \"file_id\", \"detail\" : \"auto\" }, \"type\" : \"image_file\" }, { \"image_file\" : { \"file_id\" : \"file_id\", \"detail\" : \"auto\" }, \"type\" : \"image_file\" } ], \"completed_at\" : 6, \"thread_id\" : \"thread_id\", \"id\" : \"id\", \"incomplete_at\" : 1, \"incomplete_details\" : { \"reason\" : \"content_filter\" }, \"object\" : \"thread.message\", \"status\" : \"in_progress\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -155,6 +154,7 @@ public interface ThreadsApi {
      *
      * @param threadId The ID of the thread to run. (required)
      * @param createRunRequest  (required)
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      * @return OK (status code 200)
      */
     @Operation(
@@ -178,12 +178,13 @@ public interface ThreadsApi {
     )
     default ResponseEntity<RunObject> createRun(
         @NotNull @Parameter(name = "thread_id", description = "The ID of the thread to run.", required = true, in = ParameterIn.PATH) @PathVariable("thread_id") String threadId,
-        @Parameter(name = "CreateRunRequest", description = "", required = true) @Valid @RequestBody CreateRunRequest createRunRequest
+        @Parameter(name = "CreateRunRequest", description = "", required = true) @Valid @RequestBody CreateRunRequest createRunRequest,
+        @Parameter(name = "include[]", description = "A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "include[]", required = false) @Nullable List<String> include
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"none\", \"file_ids\" : [ \"file_ids\", \"file_ids\" ], \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" }";
+                    String exampleString = "{ \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"top_p\" : 4.145608029883936, \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"auto\", \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"parallel_tool_calls\" : true, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -226,7 +227,7 @@ public interface ThreadsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"metadata\" : \"{}\", \"created_at\" : 0, \"id\" : \"id\", \"object\" : \"thread\" }";
+                    String exampleString = "{ \"tool_resources\" : { \"code_interpreter\" : { \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ] }, \"file_search\" : { \"vector_store_ids\" : [ \"vector_store_ids\" ] } }, \"metadata\" : \"{}\", \"created_at\" : 0, \"id\" : \"id\", \"object\" : \"thread\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -269,7 +270,51 @@ public interface ThreadsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"none\", \"file_ids\" : [ \"file_ids\", \"file_ids\" ], \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" }";
+                    String exampleString = "{ \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"top_p\" : 4.145608029883936, \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"auto\", \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"parallel_tool_calls\" : true, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    String PATH_DELETE_MESSAGE = "/threads/{thread_id}/messages/{message_id}";
+    /**
+     * DELETE /threads/{thread_id}/messages/{message_id} : Deletes a message.
+     *
+     * @param threadId The ID of the thread to which this message belongs. (required)
+     * @param messageId The ID of the message to delete. (required)
+     * @return OK (status code 200)
+     */
+    @Operation(
+        operationId = "deleteMessage",
+        summary = "Deletes a message.",
+        tags = { "Assistants" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = DeleteMessageResponse.class))
+            })
+        },
+        security = {
+            @SecurityRequirement(name = "ApiKeyAuth")
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.DELETE,
+        value = ThreadsApi.PATH_DELETE_MESSAGE,
+        produces = { "application/json" }
+    )
+    default ResponseEntity<DeleteMessageResponse> deleteMessage(
+        @NotNull @Parameter(name = "thread_id", description = "The ID of the thread to which this message belongs.", required = true, in = ParameterIn.PATH) @PathVariable("thread_id") String threadId,
+        @NotNull @Parameter(name = "message_id", description = "The ID of the message to delete.", required = true, in = ParameterIn.PATH) @PathVariable("message_id") String messageId
+    ) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"deleted\" : true, \"id\" : \"id\", \"object\" : \"thread.message.deleted\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -355,53 +400,7 @@ public interface ThreadsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"metadata\" : \"{}\", \"role\" : \"user\", \"assistant_id\" : \"assistant_id\", \"run_id\" : \"run_id\", \"created_at\" : 0, \"content\" : [ { \"image_file\" : { \"file_id\" : \"file_id\" }, \"type\" : \"image_file\" }, { \"image_file\" : { \"file_id\" : \"file_id\" }, \"type\" : \"image_file\" } ], \"completed_at\" : 6, \"thread_id\" : \"thread_id\", \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ], \"id\" : \"id\", \"incomplete_at\" : 1, \"incomplete_details\" : { \"reason\" : \"content_filter\" }, \"object\" : \"thread.message\", \"status\" : \"in_progress\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    String PATH_GET_MESSAGE_FILE = "/threads/{thread_id}/messages/{message_id}/files/{file_id}";
-    /**
-     * GET /threads/{thread_id}/messages/{message_id}/files/{file_id} : Retrieves a message file.
-     *
-     * @param threadId The ID of the thread to which the message and File belong. (required)
-     * @param messageId The ID of the message the file belongs to. (required)
-     * @param fileId The ID of the file being retrieved. (required)
-     * @return OK (status code 200)
-     */
-    @Operation(
-        operationId = "getMessageFile",
-        summary = "Retrieves a message file.",
-        tags = { "Assistants" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "OK", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = MessageFileObject.class))
-            })
-        },
-        security = {
-            @SecurityRequirement(name = "ApiKeyAuth")
-        }
-    )
-    @RequestMapping(
-        method = RequestMethod.GET,
-        value = ThreadsApi.PATH_GET_MESSAGE_FILE,
-        produces = { "application/json" }
-    )
-    default ResponseEntity<MessageFileObject> getMessageFile(
-        @NotNull @Parameter(name = "thread_id", description = "The ID of the thread to which the message and File belong.", required = true, in = ParameterIn.PATH) @PathVariable("thread_id") String threadId,
-        @NotNull @Parameter(name = "message_id", description = "The ID of the message the file belongs to.", required = true, in = ParameterIn.PATH) @PathVariable("message_id") String messageId,
-        @NotNull @Parameter(name = "file_id", description = "The ID of the file being retrieved.", required = true, in = ParameterIn.PATH) @PathVariable("file_id") String fileId
-    ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"created_at\" : 0, \"message_id\" : \"message_id\", \"id\" : \"id\", \"object\" : \"thread.message.file\" }";
+                    String exampleString = "{ \"metadata\" : \"{}\", \"role\" : \"user\", \"assistant_id\" : \"assistant_id\", \"run_id\" : \"run_id\", \"attachments\" : [ { \"file_id\" : \"file_id\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ] }, { \"file_id\" : \"file_id\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ] } ], \"created_at\" : 0, \"content\" : [ { \"image_file\" : { \"file_id\" : \"file_id\", \"detail\" : \"auto\" }, \"type\" : \"image_file\" }, { \"image_file\" : { \"file_id\" : \"file_id\", \"detail\" : \"auto\" }, \"type\" : \"image_file\" } ], \"completed_at\" : 6, \"thread_id\" : \"thread_id\", \"id\" : \"id\", \"incomplete_at\" : 1, \"incomplete_details\" : { \"reason\" : \"content_filter\" }, \"object\" : \"thread.message\", \"status\" : \"in_progress\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -445,7 +444,7 @@ public interface ThreadsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"none\", \"file_ids\" : [ \"file_ids\", \"file_ids\" ], \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" }";
+                    String exampleString = "{ \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"top_p\" : 4.145608029883936, \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"auto\", \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"parallel_tool_calls\" : true, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -463,6 +462,7 @@ public interface ThreadsApi {
      * @param threadId The ID of the thread to which the run and run step belongs. (required)
      * @param runId The ID of the run to which the run step belongs. (required)
      * @param stepId The ID of the run step to retrieve. (required)
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      * @return OK (status code 200)
      */
     @Operation(
@@ -486,7 +486,8 @@ public interface ThreadsApi {
     default ResponseEntity<RunStepObject> getRunStep(
         @NotNull @Parameter(name = "thread_id", description = "The ID of the thread to which the run and run step belongs.", required = true, in = ParameterIn.PATH) @PathVariable("thread_id") String threadId,
         @NotNull @Parameter(name = "run_id", description = "The ID of the run to which the run step belongs.", required = true, in = ParameterIn.PATH) @PathVariable("run_id") String runId,
-        @NotNull @Parameter(name = "step_id", description = "The ID of the run step to retrieve.", required = true, in = ParameterIn.PATH) @PathVariable("step_id") String stepId
+        @NotNull @Parameter(name = "step_id", description = "The ID of the run step to retrieve.", required = true, in = ParameterIn.PATH) @PathVariable("step_id") String stepId,
+        @Parameter(name = "include[]", description = "A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "include[]", required = false) @Nullable List<String> include
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
@@ -533,59 +534,7 @@ public interface ThreadsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"metadata\" : \"{}\", \"created_at\" : 0, \"id\" : \"id\", \"object\" : \"thread\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    String PATH_LIST_MESSAGE_FILES = "/threads/{thread_id}/messages/{message_id}/files";
-    /**
-     * GET /threads/{thread_id}/messages/{message_id}/files : Returns a list of message files.
-     *
-     * @param threadId The ID of the thread that the message and files belong to. (required)
-     * @param messageId The ID of the message that the files belongs to. (required)
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     * @return OK (status code 200)
-     */
-    @Operation(
-        operationId = "listMessageFiles",
-        summary = "Returns a list of message files.",
-        tags = { "Assistants" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "OK", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ListMessageFilesResponse.class))
-            })
-        },
-        security = {
-            @SecurityRequirement(name = "ApiKeyAuth")
-        }
-    )
-    @RequestMapping(
-        method = RequestMethod.GET,
-        value = ThreadsApi.PATH_LIST_MESSAGE_FILES,
-        produces = { "application/json" }
-    )
-    default ResponseEntity<ListMessageFilesResponse> listMessageFiles(
-        @NotNull @Parameter(name = "thread_id", description = "The ID of the thread that the message and files belong to.", required = true, in = ParameterIn.PATH) @PathVariable("thread_id") String threadId,
-        @NotNull @Parameter(name = "message_id", description = "The ID of the message that the files belongs to.", required = true, in = ParameterIn.PATH) @PathVariable("message_id") String messageId,
-        @Parameter(name = "limit", description = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "limit", required = false, defaultValue = "20") Integer limit,
-        @Parameter(name = "order", description = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "order", required = false, defaultValue = "desc") String order,
-        @Parameter(name = "after", description = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "after", required = false) @Nullable String after,
-        @Parameter(name = "before", description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "before", required = false) @Nullable String before
-    ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"first_id\" : \"file-abc123\", \"data\" : [ { \"created_at\" : 0, \"message_id\" : \"message_id\", \"id\" : \"id\", \"object\" : \"thread.message.file\" }, { \"created_at\" : 0, \"message_id\" : \"message_id\", \"id\" : \"id\", \"object\" : \"thread.message.file\" } ], \"last_id\" : \"file-abc456\", \"has_more\" : false, \"object\" : \"list\" }";
+                    String exampleString = "{ \"tool_resources\" : { \"code_interpreter\" : { \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ] }, \"file_search\" : { \"vector_store_ids\" : [ \"vector_store_ids\" ] } }, \"metadata\" : \"{}\", \"created_at\" : 0, \"id\" : \"id\", \"object\" : \"thread\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -604,7 +553,7 @@ public interface ThreadsApi {
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @param runId Filter messages by the run ID that generated them.  (optional)
      * @return OK (status code 200)
      */
@@ -631,13 +580,13 @@ public interface ThreadsApi {
         @Parameter(name = "limit", description = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "limit", required = false, defaultValue = "20") Integer limit,
         @Parameter(name = "order", description = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "order", required = false, defaultValue = "desc") String order,
         @Parameter(name = "after", description = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "after", required = false) @Nullable String after,
-        @Parameter(name = "before", description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "before", required = false) @Nullable String before,
+        @Parameter(name = "before", description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "before", required = false) @Nullable String before,
         @Parameter(name = "run_id", description = "Filter messages by the run ID that generated them. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "run_id", required = false) @Nullable String runId
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"first_id\" : \"msg_abc123\", \"data\" : [ { \"metadata\" : \"{}\", \"role\" : \"user\", \"assistant_id\" : \"assistant_id\", \"run_id\" : \"run_id\", \"created_at\" : 0, \"content\" : [ { \"image_file\" : { \"file_id\" : \"file_id\" }, \"type\" : \"image_file\" }, { \"image_file\" : { \"file_id\" : \"file_id\" }, \"type\" : \"image_file\" } ], \"completed_at\" : 6, \"thread_id\" : \"thread_id\", \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ], \"id\" : \"id\", \"incomplete_at\" : 1, \"incomplete_details\" : { \"reason\" : \"content_filter\" }, \"object\" : \"thread.message\", \"status\" : \"in_progress\" }, { \"metadata\" : \"{}\", \"role\" : \"user\", \"assistant_id\" : \"assistant_id\", \"run_id\" : \"run_id\", \"created_at\" : 0, \"content\" : [ { \"image_file\" : { \"file_id\" : \"file_id\" }, \"type\" : \"image_file\" }, { \"image_file\" : { \"file_id\" : \"file_id\" }, \"type\" : \"image_file\" } ], \"completed_at\" : 6, \"thread_id\" : \"thread_id\", \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ], \"id\" : \"id\", \"incomplete_at\" : 1, \"incomplete_details\" : { \"reason\" : \"content_filter\" }, \"object\" : \"thread.message\", \"status\" : \"in_progress\" } ], \"last_id\" : \"msg_abc123\", \"has_more\" : false, \"object\" : \"list\" }";
+                    String exampleString = "{ \"first_id\" : \"msg_abc123\", \"data\" : [ { \"metadata\" : \"{}\", \"role\" : \"user\", \"assistant_id\" : \"assistant_id\", \"run_id\" : \"run_id\", \"attachments\" : [ { \"file_id\" : \"file_id\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ] }, { \"file_id\" : \"file_id\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ] } ], \"created_at\" : 0, \"content\" : [ { \"image_file\" : { \"file_id\" : \"file_id\", \"detail\" : \"auto\" }, \"type\" : \"image_file\" }, { \"image_file\" : { \"file_id\" : \"file_id\", \"detail\" : \"auto\" }, \"type\" : \"image_file\" } ], \"completed_at\" : 6, \"thread_id\" : \"thread_id\", \"id\" : \"id\", \"incomplete_at\" : 1, \"incomplete_details\" : { \"reason\" : \"content_filter\" }, \"object\" : \"thread.message\", \"status\" : \"in_progress\" }, { \"metadata\" : \"{}\", \"role\" : \"user\", \"assistant_id\" : \"assistant_id\", \"run_id\" : \"run_id\", \"attachments\" : [ { \"file_id\" : \"file_id\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ] }, { \"file_id\" : \"file_id\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ] } ], \"created_at\" : 0, \"content\" : [ { \"image_file\" : { \"file_id\" : \"file_id\", \"detail\" : \"auto\" }, \"type\" : \"image_file\" }, { \"image_file\" : { \"file_id\" : \"file_id\", \"detail\" : \"auto\" }, \"type\" : \"image_file\" } ], \"completed_at\" : 6, \"thread_id\" : \"thread_id\", \"id\" : \"id\", \"incomplete_at\" : 1, \"incomplete_details\" : { \"reason\" : \"content_filter\" }, \"object\" : \"thread.message\", \"status\" : \"in_progress\" } ], \"last_id\" : \"msg_abc123\", \"has_more\" : false, \"object\" : \"list\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -657,7 +606,8 @@ public interface ThreadsApi {
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      * @return OK (status code 200)
      */
     @Operation(
@@ -684,7 +634,8 @@ public interface ThreadsApi {
         @Parameter(name = "limit", description = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "limit", required = false, defaultValue = "20") Integer limit,
         @Parameter(name = "order", description = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "order", required = false, defaultValue = "desc") String order,
         @Parameter(name = "after", description = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "after", required = false) @Nullable String after,
-        @Parameter(name = "before", description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "before", required = false) @Nullable String before
+        @Parameter(name = "before", description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "before", required = false) @Nullable String before,
+        @Parameter(name = "include[]", description = "A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "include[]", required = false) @Nullable List<String> include
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
@@ -708,7 +659,7 @@ public interface ThreadsApi {
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      * @return OK (status code 200)
      */
     @Operation(
@@ -734,12 +685,12 @@ public interface ThreadsApi {
         @Parameter(name = "limit", description = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "limit", required = false, defaultValue = "20") Integer limit,
         @Parameter(name = "order", description = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "order", required = false, defaultValue = "desc") String order,
         @Parameter(name = "after", description = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "after", required = false) @Nullable String after,
-        @Parameter(name = "before", description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "before", required = false) @Nullable String before
+        @Parameter(name = "before", description = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ", in = ParameterIn.QUERY) @Valid @RequestParam(value = "before", required = false) @Nullable String before
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"first_id\" : \"run_abc123\", \"data\" : [ { \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"none\", \"file_ids\" : [ \"file_ids\", \"file_ids\" ], \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" }, { \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"none\", \"file_ids\" : [ \"file_ids\", \"file_ids\" ], \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" } ], \"last_id\" : \"run_abc456\", \"has_more\" : false, \"object\" : \"list\" }";
+                    String exampleString = "{ \"first_id\" : \"run_abc123\", \"data\" : [ { \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"top_p\" : 4.145608029883936, \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"auto\", \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"parallel_tool_calls\" : true, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" }, { \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"top_p\" : 4.145608029883936, \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"auto\", \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"parallel_tool_calls\" : true, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" } ], \"last_id\" : \"run_abc456\", \"has_more\" : false, \"object\" : \"list\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -786,7 +737,7 @@ public interface ThreadsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"metadata\" : \"{}\", \"role\" : \"user\", \"assistant_id\" : \"assistant_id\", \"run_id\" : \"run_id\", \"created_at\" : 0, \"content\" : [ { \"image_file\" : { \"file_id\" : \"file_id\" }, \"type\" : \"image_file\" }, { \"image_file\" : { \"file_id\" : \"file_id\" }, \"type\" : \"image_file\" } ], \"completed_at\" : 6, \"thread_id\" : \"thread_id\", \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ], \"id\" : \"id\", \"incomplete_at\" : 1, \"incomplete_details\" : { \"reason\" : \"content_filter\" }, \"object\" : \"thread.message\", \"status\" : \"in_progress\" }";
+                    String exampleString = "{ \"metadata\" : \"{}\", \"role\" : \"user\", \"assistant_id\" : \"assistant_id\", \"run_id\" : \"run_id\", \"attachments\" : [ { \"file_id\" : \"file_id\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ] }, { \"file_id\" : \"file_id\", \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ] } ], \"created_at\" : 0, \"content\" : [ { \"image_file\" : { \"file_id\" : \"file_id\", \"detail\" : \"auto\" }, \"type\" : \"image_file\" }, { \"image_file\" : { \"file_id\" : \"file_id\", \"detail\" : \"auto\" }, \"type\" : \"image_file\" } ], \"completed_at\" : 6, \"thread_id\" : \"thread_id\", \"id\" : \"id\", \"incomplete_at\" : 1, \"incomplete_details\" : { \"reason\" : \"content_filter\" }, \"object\" : \"thread.message\", \"status\" : \"in_progress\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -833,7 +784,7 @@ public interface ThreadsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"none\", \"file_ids\" : [ \"file_ids\", \"file_ids\" ], \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" }";
+                    String exampleString = "{ \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"top_p\" : 4.145608029883936, \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"auto\", \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"parallel_tool_calls\" : true, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -878,7 +829,7 @@ public interface ThreadsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"metadata\" : \"{}\", \"created_at\" : 0, \"id\" : \"id\", \"object\" : \"thread\" }";
+                    String exampleString = "{ \"tool_resources\" : { \"code_interpreter\" : { \"file_ids\" : [ \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\", \"file_ids\" ] }, \"file_search\" : { \"vector_store_ids\" : [ \"vector_store_ids\" ] } }, \"metadata\" : \"{}\", \"created_at\" : 0, \"id\" : \"id\", \"object\" : \"thread\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -925,7 +876,7 @@ public interface ThreadsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"none\", \"file_ids\" : [ \"file_ids\", \"file_ids\" ], \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" }";
+                    String exampleString = "{ \"cancelled_at\" : 5, \"instructions\" : \"instructions\", \"metadata\" : \"{}\", \"assistant_id\" : \"assistant_id\", \"required_action\" : { \"submit_tool_outputs\" : { \"tool_calls\" : [ { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" }, { \"function\" : { \"name\" : \"name\", \"arguments\" : \"arguments\" }, \"id\" : \"id\", \"type\" : \"function\" } ] }, \"type\" : \"submit_tool_outputs\" }, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"created_at\" : 0, \"tools\" : [ { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" }, { \"type\" : \"code_interpreter\" } ], \"top_p\" : 4.145608029883936, \"max_completion_tokens\" : 256, \"thread_id\" : \"thread_id\", \"expires_at\" : 6, \"response_format\" : \"auto\", \"temperature\" : 2.027123023002322, \"tool_choice\" : \"none\", \"model\" : \"model\", \"id\" : \"id\", \"last_error\" : { \"code\" : \"server_error\", \"message\" : \"message\" }, \"incomplete_details\" : { \"reason\" : \"max_completion_tokens\" }, \"truncation_strategy\" : { \"last_messages\" : 1, \"type\" : \"auto\" }, \"completed_at\" : 2, \"parallel_tool_calls\" : true, \"started_at\" : 1, \"failed_at\" : 5, \"max_prompt_tokens\" : 256, \"object\" : \"thread.run\", \"status\" : \"queued\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

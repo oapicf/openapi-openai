@@ -11,6 +11,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
+/**
+ * Learn about [image inputs](/docs/guides/vision). 
+ */
+@ApiModel(description="Learn about [image inputs](/docs/guides/vision). ")
+
 public class ChatCompletionRequestMessageContentPartImage  {
   
 public enum TypeEnum {

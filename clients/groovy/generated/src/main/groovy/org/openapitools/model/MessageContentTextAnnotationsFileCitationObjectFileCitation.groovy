@@ -8,6 +8,4 @@ import io.swagger.annotations.ApiModelProperty;
 class MessageContentTextAnnotationsFileCitationObjectFileCitation {
     /* The ID of the specific File the citation is from. */
     String fileId
-    /* The specific quote in the file. */
-    String quote
 }

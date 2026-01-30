@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -15,7 +15,9 @@ syntax = "proto3";
 package openapitools;
 
 import public "models/assistant_object_tools_inner.proto";
+import public "models/assistants_api_response_format_option.proto";
 import public "models/create_assistant_request_model.proto";
+import public "models/create_assistant_request_tool_resources.proto";
 import public "models/todo_object_mapping.proto";
 
 message CreateAssistantRequest {
@@ -31,14 +33,21 @@ message CreateAssistantRequest {
   // The system instructions that the assistant uses. The maximum length is 256,000 characters. 
   optional string instructions = 220505510;
 
-  // A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. 
+  // A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
   repeated AssistantObjectToolsInner tools = 110545371;
 
-  // A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. 
-  repeated string file_ids = 198337164;
+  CreateAssistantRequestToolResources tool_resources = 450823230;
 
-  // Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  // Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
   TODO_OBJECT_MAPPING metadata = 450004177;
+
+  // What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+  optional float temperature = 321701236;
+
+  // An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+  optional float top_p = 110545926;
+
+  AssistantsApiResponseFormatOption response_format = 367445429;
 
 }
 

@@ -57,33 +57,6 @@ module AssistantsApiHandlers =
           let responseContentType = "application/json"
           ContentResult(Content = content, ContentType = responseContentType, StatusCode = System.Nullable(200))
 
-    //#region CreateAssistantFile
-    /// <summary>
-    /// Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-    /// </summary>
-   [<FunctionName("CreateAssistantFile")>]
-    let CreateAssistantFile
-        ([<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "POST", Route = "/v1/assistants/{assistant_id}/files")>]
-        req:HttpRequest ) =
-
-      use reader = StreamReader(req.Body)
-
-      let mediaTypes = ["application/json";] // currently unused
-
-      let bind (contentType:string) body  =
-        match (contentType.ToLower()) with
-        | "application/json" ->
-          body |> JsonConvert.DeserializeObject<CreateAssistantFileBodyParams>
-        | _ -> failwith (sprintf "TODO - ContentType %s not currently supported" contentType)
-
-      let bodyParams = reader.ReadToEnd() |> bind req.ContentType
-      let result = AssistantsApiService.CreateAssistantFile bodyParams
-      match result with
-      | CreateAssistantFileStatusCode200 resolved ->
-          let content = JsonConvert.SerializeObject resolved.content
-          let responseContentType = "application/json"
-          ContentResult(Content = content, ContentType = responseContentType, StatusCode = System.Nullable(200))
-
     //#region CreateMessage
     /// <summary>
     /// Create a message.
@@ -208,18 +181,18 @@ module AssistantsApiHandlers =
           let responseContentType = "application/json"
           ContentResult(Content = content, ContentType = responseContentType, StatusCode = System.Nullable(200))
 
-    //#region DeleteAssistantFile
+    //#region DeleteMessage
     /// <summary>
-    /// Delete an assistant file.
+    /// Deletes a message.
     /// </summary>
-   [<FunctionName("DeleteAssistantFile")>]
-    let DeleteAssistantFile
-        ([<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "DELETE", Route = "/v1/assistants/{assistant_id}/files/{file_id}")>]
+   [<FunctionName("DeleteMessage")>]
+    let DeleteMessage
+        ([<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "DELETE", Route = "/v1/threads/{thread_id}/messages/{message_id}")>]
         req:HttpRequest ) =
 
-      let result = AssistantsApiService.DeleteAssistantFile ()
+      let result = AssistantsApiService.DeleteMessage ()
       match result with
-      | DeleteAssistantFileStatusCode200 resolved ->
+      | DeleteMessageStatusCode200 resolved ->
           let content = JsonConvert.SerializeObject resolved.content
           let responseContentType = "application/json"
           ContentResult(Content = content, ContentType = responseContentType, StatusCode = System.Nullable(200))
@@ -256,22 +229,6 @@ module AssistantsApiHandlers =
           let responseContentType = "application/json"
           ContentResult(Content = content, ContentType = responseContentType, StatusCode = System.Nullable(200))
 
-    //#region GetAssistantFile
-    /// <summary>
-    /// Retrieves an AssistantFile.
-    /// </summary>
-   [<FunctionName("GetAssistantFile")>]
-    let GetAssistantFile
-        ([<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "GET", Route = "/v1/assistants/{assistant_id}/files/{file_id}")>]
-        req:HttpRequest ) =
-
-      let result = AssistantsApiService.GetAssistantFile ()
-      match result with
-      | GetAssistantFileStatusCode200 resolved ->
-          let content = JsonConvert.SerializeObject resolved.content
-          let responseContentType = "application/json"
-          ContentResult(Content = content, ContentType = responseContentType, StatusCode = System.Nullable(200))
-
     //#region GetMessage
     /// <summary>
     /// Retrieve a message.
@@ -284,22 +241,6 @@ module AssistantsApiHandlers =
       let result = AssistantsApiService.GetMessage ()
       match result with
       | GetMessageStatusCode200 resolved ->
-          let content = JsonConvert.SerializeObject resolved.content
-          let responseContentType = "application/json"
-          ContentResult(Content = content, ContentType = responseContentType, StatusCode = System.Nullable(200))
-
-    //#region GetMessageFile
-    /// <summary>
-    /// Retrieves a message file.
-    /// </summary>
-   [<FunctionName("GetMessageFile")>]
-    let GetMessageFile
-        ([<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "GET", Route = "/v1/threads/{thread_id}/messages/{message_id}/files/{file_id}")>]
-        req:HttpRequest ) =
-
-      let result = AssistantsApiService.GetMessageFile ()
-      match result with
-      | GetMessageFileStatusCode200 resolved ->
           let content = JsonConvert.SerializeObject resolved.content
           let responseContentType = "application/json"
           ContentResult(Content = content, ContentType = responseContentType, StatusCode = System.Nullable(200))
@@ -352,22 +293,6 @@ module AssistantsApiHandlers =
           let responseContentType = "application/json"
           ContentResult(Content = content, ContentType = responseContentType, StatusCode = System.Nullable(200))
 
-    //#region ListAssistantFiles
-    /// <summary>
-    /// Returns a list of assistant files.
-    /// </summary>
-   [<FunctionName("ListAssistantFiles")>]
-    let ListAssistantFiles
-        ([<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "GET", Route = "/v1/assistants/{assistant_id}/files")>]
-        req:HttpRequest ) =
-
-      let result = AssistantsApiService.ListAssistantFiles ()
-      match result with
-      | ListAssistantFilesStatusCode200 resolved ->
-          let content = JsonConvert.SerializeObject resolved.content
-          let responseContentType = "application/json"
-          ContentResult(Content = content, ContentType = responseContentType, StatusCode = System.Nullable(200))
-
     //#region ListAssistants
     /// <summary>
     /// Returns a list of assistants.
@@ -380,22 +305,6 @@ module AssistantsApiHandlers =
       let result = AssistantsApiService.ListAssistants ()
       match result with
       | ListAssistantsStatusCode200 resolved ->
-          let content = JsonConvert.SerializeObject resolved.content
-          let responseContentType = "application/json"
-          ContentResult(Content = content, ContentType = responseContentType, StatusCode = System.Nullable(200))
-
-    //#region ListMessageFiles
-    /// <summary>
-    /// Returns a list of message files.
-    /// </summary>
-   [<FunctionName("ListMessageFiles")>]
-    let ListMessageFiles
-        ([<HttpTrigger(Extensions.Http.AuthorizationLevel.Anonymous, "GET", Route = "/v1/threads/{thread_id}/messages/{message_id}/files")>]
-        req:HttpRequest ) =
-
-      let result = AssistantsApiService.ListMessageFiles ()
-      match result with
-      | ListMessageFilesStatusCode200 resolved ->
           let content = JsonConvert.SerializeObject resolved.content
           let responseContentType = "application/json"
           ContentResult(Content = content, ContentType = responseContentType, StatusCode = System.Nullable(200))

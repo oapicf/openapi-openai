@@ -1,0 +1,40 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "RealtimeServerEventRateLimitsUpdatedRateLimitsInner",
+  "fields": [
+    {
+      "name": "name",
+      "type": ["null", {
+        "type": "enum",
+        "name": "RealtimeServerEventRateLimitsUpdatedRateLimitsInner_name",
+        "symbols": [
+          "requests",
+          "tokens"
+        ]
+      }],
+      "doc": "The name of the rate limit (`requests`, `tokens`). ",
+      "default": null
+    },
+    {
+      "name": "limit",
+      "type": ["null", "int"],
+      "doc": "The maximum allowed value for the rate limit.",
+      "default": null
+    },
+    {
+      "name": "remaining",
+      "type": ["null", "int"],
+      "doc": "The remaining value before the limit is reached.",
+      "default": null
+    },
+    {
+      "name": "reset_seconds",
+      "type": ["null", "double"],
+      "doc": "Seconds until the rate limit resets.",
+      "default": null
+    }
+  ]
+
+}

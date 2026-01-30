@@ -6,10 +6,9 @@ namespace App\DTO;
 use Articus\DataTransfer\Annotation as DTA;
 
 /**
- * @DTA\Strategy(name="ObjectList", options={"type":\App\DTO\CreateThreadAndRunRequestToolsInner::class})
- * @DTA\Validator(name="Count", options={"max":20}, blocker=true)
+ * @DTA\Strategy(name="ObjectList", options={"type":\App\DTO\CreateFineTuningJobRequestIntegrationsInner::class})
  * @DTA\Validator(name="Collection", options={"validators":{
- *     {"name":"TypeCompliant", "options":{"type":\App\DTO\CreateThreadAndRunRequestToolsInner::class}}
+ *     {"name":"TypeCompliant", "options":{"type":\App\DTO\CreateFineTuningJobRequestIntegrationsInner::class}}
  * }})
  */
 class Collection44 extends \ArrayObject

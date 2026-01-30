@@ -1,23 +1,18 @@
 package controllers;
 
-import apimodels.AssistantFileObject;
 import apimodels.AssistantObject;
-import apimodels.CreateAssistantFileRequest;
 import apimodels.CreateAssistantRequest;
 import apimodels.CreateMessageRequest;
 import apimodels.CreateRunRequest;
 import apimodels.CreateThreadAndRunRequest;
 import apimodels.CreateThreadRequest;
-import apimodels.DeleteAssistantFileResponse;
 import apimodels.DeleteAssistantResponse;
+import apimodels.DeleteMessageResponse;
 import apimodels.DeleteThreadResponse;
-import apimodels.ListAssistantFilesResponse;
 import apimodels.ListAssistantsResponse;
-import apimodels.ListMessageFilesResponse;
 import apimodels.ListMessagesResponse;
 import apimodels.ListRunStepsResponse;
 import apimodels.ListRunsResponse;
-import apimodels.MessageFileObject;
 import apimodels.MessageObject;
 import apimodels.ModifyAssistantRequest;
 import apimodels.ModifyMessageRequest;
@@ -83,21 +78,6 @@ public abstract class AssistantsApiControllerImpInterface {
 
     public abstract AssistantObject createAssistant(Http.Request request, CreateAssistantRequest createAssistantRequest) throws Exception;
 
-    public Result createAssistantFileHttp(Http.Request request, String assistantId, CreateAssistantFileRequest createAssistantFileRequest) throws Exception {
-        AssistantFileObject obj = createAssistantFile(request, assistantId, createAssistantFileRequest);
-
-        if (configuration.getBoolean("useOutputBeanValidation")) {
-            OpenAPIUtils.validate(obj);
-        }
-
-        JsonNode result = mapper.valueToTree(obj);
-
-        return ok(result);
-
-    }
-
-    public abstract AssistantFileObject createAssistantFile(Http.Request request, String assistantId, CreateAssistantFileRequest createAssistantFileRequest) throws Exception;
-
     public Result createMessageHttp(Http.Request request, String threadId, CreateMessageRequest createMessageRequest) throws Exception {
         MessageObject obj = createMessage(request, threadId, createMessageRequest);
 
@@ -113,8 +93,8 @@ public abstract class AssistantsApiControllerImpInterface {
 
     public abstract MessageObject createMessage(Http.Request request, String threadId, CreateMessageRequest createMessageRequest) throws Exception;
 
-    public Result createRunHttp(Http.Request request, String threadId, CreateRunRequest createRunRequest) throws Exception {
-        RunObject obj = createRun(request, threadId, createRunRequest);
+    public Result createRunHttp(Http.Request request, String threadId, CreateRunRequest createRunRequest, List<String> include) throws Exception {
+        RunObject obj = createRun(request, threadId, createRunRequest, include);
 
         if (configuration.getBoolean("useOutputBeanValidation")) {
             OpenAPIUtils.validate(obj);
@@ -126,7 +106,7 @@ public abstract class AssistantsApiControllerImpInterface {
 
     }
 
-    public abstract RunObject createRun(Http.Request request, String threadId, CreateRunRequest createRunRequest) throws Exception;
+    public abstract RunObject createRun(Http.Request request, String threadId, CreateRunRequest createRunRequest, List<String> include) throws Exception;
 
     public Result createThreadHttp(Http.Request request, CreateThreadRequest createThreadRequest) throws Exception {
         ThreadObject obj = createThread(request, createThreadRequest);
@@ -173,8 +153,8 @@ public abstract class AssistantsApiControllerImpInterface {
 
     public abstract DeleteAssistantResponse deleteAssistant(Http.Request request, String assistantId) throws Exception;
 
-    public Result deleteAssistantFileHttp(Http.Request request, String assistantId, String fileId) throws Exception {
-        DeleteAssistantFileResponse obj = deleteAssistantFile(request, assistantId, fileId);
+    public Result deleteMessageHttp(Http.Request request, String threadId, String messageId) throws Exception {
+        DeleteMessageResponse obj = deleteMessage(request, threadId, messageId);
 
         if (configuration.getBoolean("useOutputBeanValidation")) {
             OpenAPIUtils.validate(obj);
@@ -186,7 +166,7 @@ public abstract class AssistantsApiControllerImpInterface {
 
     }
 
-    public abstract DeleteAssistantFileResponse deleteAssistantFile(Http.Request request, String assistantId, String fileId) throws Exception;
+    public abstract DeleteMessageResponse deleteMessage(Http.Request request, String threadId, String messageId) throws Exception;
 
     public Result deleteThreadHttp(Http.Request request, String threadId) throws Exception {
         DeleteThreadResponse obj = deleteThread(request, threadId);
@@ -218,21 +198,6 @@ public abstract class AssistantsApiControllerImpInterface {
 
     public abstract AssistantObject getAssistant(Http.Request request, String assistantId) throws Exception;
 
-    public Result getAssistantFileHttp(Http.Request request, String assistantId, String fileId) throws Exception {
-        AssistantFileObject obj = getAssistantFile(request, assistantId, fileId);
-
-        if (configuration.getBoolean("useOutputBeanValidation")) {
-            OpenAPIUtils.validate(obj);
-        }
-
-        JsonNode result = mapper.valueToTree(obj);
-
-        return ok(result);
-
-    }
-
-    public abstract AssistantFileObject getAssistantFile(Http.Request request, String assistantId, String fileId) throws Exception;
-
     public Result getMessageHttp(Http.Request request, String threadId, String messageId) throws Exception {
         MessageObject obj = getMessage(request, threadId, messageId);
 
@@ -247,21 +212,6 @@ public abstract class AssistantsApiControllerImpInterface {
     }
 
     public abstract MessageObject getMessage(Http.Request request, String threadId, String messageId) throws Exception;
-
-    public Result getMessageFileHttp(Http.Request request, String threadId, String messageId, String fileId) throws Exception {
-        MessageFileObject obj = getMessageFile(request, threadId, messageId, fileId);
-
-        if (configuration.getBoolean("useOutputBeanValidation")) {
-            OpenAPIUtils.validate(obj);
-        }
-
-        JsonNode result = mapper.valueToTree(obj);
-
-        return ok(result);
-
-    }
-
-    public abstract MessageFileObject getMessageFile(Http.Request request, String threadId, String messageId, String fileId) throws Exception;
 
     public Result getRunHttp(Http.Request request, String threadId, String runId) throws Exception {
         RunObject obj = getRun(request, threadId, runId);
@@ -278,8 +228,8 @@ public abstract class AssistantsApiControllerImpInterface {
 
     public abstract RunObject getRun(Http.Request request, String threadId, String runId) throws Exception;
 
-    public Result getRunStepHttp(Http.Request request, String threadId, String runId, String stepId) throws Exception {
-        RunStepObject obj = getRunStep(request, threadId, runId, stepId);
+    public Result getRunStepHttp(Http.Request request, String threadId, String runId, String stepId, List<String> include) throws Exception {
+        RunStepObject obj = getRunStep(request, threadId, runId, stepId, include);
 
         if (configuration.getBoolean("useOutputBeanValidation")) {
             OpenAPIUtils.validate(obj);
@@ -291,7 +241,7 @@ public abstract class AssistantsApiControllerImpInterface {
 
     }
 
-    public abstract RunStepObject getRunStep(Http.Request request, String threadId, String runId, String stepId) throws Exception;
+    public abstract RunStepObject getRunStep(Http.Request request, String threadId, String runId, String stepId, List<String> include) throws Exception;
 
     public Result getThreadHttp(Http.Request request, String threadId) throws Exception {
         ThreadObject obj = getThread(request, threadId);
@@ -308,21 +258,6 @@ public abstract class AssistantsApiControllerImpInterface {
 
     public abstract ThreadObject getThread(Http.Request request, String threadId) throws Exception;
 
-    public Result listAssistantFilesHttp(Http.Request request, String assistantId, Integer limit, String order, String after, String before) throws Exception {
-        ListAssistantFilesResponse obj = listAssistantFiles(request, assistantId, limit, order, after, before);
-
-        if (configuration.getBoolean("useOutputBeanValidation")) {
-            OpenAPIUtils.validate(obj);
-        }
-
-        JsonNode result = mapper.valueToTree(obj);
-
-        return ok(result);
-
-    }
-
-    public abstract ListAssistantFilesResponse listAssistantFiles(Http.Request request, String assistantId, Integer limit, String order, String after, String before) throws Exception;
-
     public Result listAssistantsHttp(Http.Request request, Integer limit, String order, String after, String before) throws Exception {
         ListAssistantsResponse obj = listAssistants(request, limit, order, after, before);
 
@@ -337,21 +272,6 @@ public abstract class AssistantsApiControllerImpInterface {
     }
 
     public abstract ListAssistantsResponse listAssistants(Http.Request request, Integer limit, String order, String after, String before) throws Exception;
-
-    public Result listMessageFilesHttp(Http.Request request, String threadId, String messageId, Integer limit, String order, String after, String before) throws Exception {
-        ListMessageFilesResponse obj = listMessageFiles(request, threadId, messageId, limit, order, after, before);
-
-        if (configuration.getBoolean("useOutputBeanValidation")) {
-            OpenAPIUtils.validate(obj);
-        }
-
-        JsonNode result = mapper.valueToTree(obj);
-
-        return ok(result);
-
-    }
-
-    public abstract ListMessageFilesResponse listMessageFiles(Http.Request request, String threadId, String messageId, Integer limit, String order, String after, String before) throws Exception;
 
     public Result listMessagesHttp(Http.Request request, String threadId, Integer limit, String order, String after, String before, String runId) throws Exception {
         ListMessagesResponse obj = listMessages(request, threadId, limit, order, after, before, runId);
@@ -368,8 +288,8 @@ public abstract class AssistantsApiControllerImpInterface {
 
     public abstract ListMessagesResponse listMessages(Http.Request request, String threadId, Integer limit, String order, String after, String before, String runId) throws Exception;
 
-    public Result listRunStepsHttp(Http.Request request, String threadId, String runId, Integer limit, String order, String after, String before) throws Exception {
-        ListRunStepsResponse obj = listRunSteps(request, threadId, runId, limit, order, after, before);
+    public Result listRunStepsHttp(Http.Request request, String threadId, String runId, Integer limit, String order, String after, String before, List<String> include) throws Exception {
+        ListRunStepsResponse obj = listRunSteps(request, threadId, runId, limit, order, after, before, include);
 
         if (configuration.getBoolean("useOutputBeanValidation")) {
             OpenAPIUtils.validate(obj);
@@ -381,7 +301,7 @@ public abstract class AssistantsApiControllerImpInterface {
 
     }
 
-    public abstract ListRunStepsResponse listRunSteps(Http.Request request, String threadId, String runId, Integer limit, String order, String after, String before) throws Exception;
+    public abstract ListRunStepsResponse listRunSteps(Http.Request request, String threadId, String runId, Integer limit, String order, String after, String before, List<String> include) throws Exception;
 
     public Result listRunsHttp(Http.Request request, String threadId, Integer limit, String order, String after, String before) throws Exception {
         ListRunsResponse obj = listRuns(request, threadId, limit, order, after, before);

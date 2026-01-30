@@ -3,6 +3,7 @@ package org.openapitools.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.model.CreateMessageRequestAttachmentsInner;
 import org.openapitools.model.MessageObjectContentInner;
 import org.openapitools.model.MessageObjectIncompleteDetails;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
@@ -121,11 +122,11 @@ public class MessageObjectTest {
     }
 
     /**
-     * Test the property 'fileIds'
+     * Test the property 'attachments'
      */
     @Test
-    public void fileIdsTest() {
-        // TODO: test fileIds
+    public void attachmentsTest() {
+        // TODO: test attachments
     }
 
     /**

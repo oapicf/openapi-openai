@@ -43,7 +43,7 @@ class CreateSpeechRequest {
         }
     }
 
-    /* The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options). */
+    /* The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options). */
     VoiceEnum voice
 
     enum ResponseFormatEnum {
@@ -79,5 +79,5 @@ class CreateSpeechRequest {
     /* The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`. */
     ResponseFormatEnum responseFormat = ResponseFormatEnum.MP3
     /* The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default. */
-    BigDecimal speed = new BigDecimal("1.0")
+    BigDecimal speed = new BigDecimal("1")
 }

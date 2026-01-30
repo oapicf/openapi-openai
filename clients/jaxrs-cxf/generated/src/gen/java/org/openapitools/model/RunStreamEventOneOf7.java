@@ -13,15 +13,15 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
+ * Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.
  */
-@ApiModel(description="Occurs when a [run](/docs/api-reference/runs/object) is cancelled.")
+@ApiModel(description="Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.")
 
 public class RunStreamEventOneOf7  {
   
 public enum EventEnum {
 
-THREAD_RUN_CANCELLED(String.valueOf("thread.run.cancelled"));
+THREAD_RUN_CANCELLING(String.valueOf("thread.run.cancelling"));
 
 
     private String value;

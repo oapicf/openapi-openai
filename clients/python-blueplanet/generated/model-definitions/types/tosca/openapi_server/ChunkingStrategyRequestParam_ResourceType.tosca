@@ -1,0 +1,44 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ChunkingStrategyRequestParam"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ChunkingStrategyRequestParam"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AutoChunkingStrategyRequestParam = openapi_server.resourceTypes.AutoChunkingStrategyRequestParam
+  StaticChunkingStrategy = openapi_server.resourceTypes.StaticChunkingStrategy
+  StaticChunkingStrategyRequestParam = openapi_server.resourceTypes.StaticChunkingStrategyRequestParam
+}
+resourceTypes {
+
+  ChunkingStrategyRequestParam {
+    title = ChunkingStrategyRequestParam
+    description = ChunkingStrategyRequestParam
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "Always &#x60;auto&#x60;."
+          enum = ["auto", "static"]
+          optional = true
+        }
+        static {
+          type = StaticChunkingStrategy
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ChunkingStrategyRequestParam {
+    title = ChunkingStrategyRequestParam
+    description = ChunkingStrategyRequestParam
+    implements = openapi_server.resourceTypes.ChunkingStrategyRequestParam
+
+  }
+}

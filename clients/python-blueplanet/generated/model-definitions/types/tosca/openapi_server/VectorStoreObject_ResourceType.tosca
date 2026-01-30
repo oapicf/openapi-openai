@@ -1,0 +1,89 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server VectorStoreObject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a VectorStoreObject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  VectorStoreExpirationAfter = openapi_server.resourceTypes.VectorStoreExpirationAfter
+  VectorStoreObjectFileCounts = openapi_server.resourceTypes.VectorStoreObjectFileCounts
+}
+resourceTypes {
+
+  VectorStoreObject {
+    title = VectorStoreObject
+    description = VectorStoreObject
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The identifier, which can be referenced in API endpoints."
+          optional = true
+        }
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;vector_store&#x60;."
+          enum = ["vector_store"]
+          optional = true
+        }
+        created_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the vector store was created."
+          optional = true
+        }
+        name {
+          type =  string
+          description = "The name of the vector store."
+          optional = true
+        }
+        usage_bytes {
+          type =  integer
+          description = "The total number of bytes used by the files in the vector store."
+          optional = true
+        }
+        file_counts {
+          type = VectorStoreObjectFileCounts
+          description = ""
+          optional = true
+        }
+        status {
+          type =  string
+          description = "The status of the vector store, which can be either &#x60;expired&#x60;, &#x60;in_progress&#x60;, or &#x60;completed&#x60;. A status of &#x60;completed&#x60; indicates that the vector store is ready for use."
+          enum = ["expired", "in_progress", "completed"]
+          optional = true
+        }
+        expires_after {
+          type = VectorStoreExpirationAfter
+          description = ""
+          optional = false
+        }
+        expires_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the vector store will expire."
+          optional = false
+        }
+        last_active_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the vector store was last active."
+          optional = true
+        }
+        metadata {
+          type =  
+          description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. "
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  VectorStoreObject {
+    title = VectorStoreObject
+    description = VectorStoreObject
+    implements = openapi_server.resourceTypes.VectorStoreObject
+
+  }
+}

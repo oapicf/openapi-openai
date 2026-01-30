@@ -8,6 +8,7 @@ Log probability information for the choice.
 Name | Type
 ------------ | -------------
 `content` | [Array&lt;ChatCompletionTokenLogprob&gt;](ChatCompletionTokenLogprob.md)
+`refusal` | [Array&lt;ChatCompletionTokenLogprob&gt;](ChatCompletionTokenLogprob.md)
 
 ## Example
 
@@ -17,6 +18,7 @@ import type { CreateChatCompletionResponseChoicesInnerLogprobs } from ''
 // TODO: Update the object below with actual values
 const example = {
   "content": null,
+  "refusal": null,
 } satisfies CreateChatCompletionResponseChoicesInnerLogprobs
 
 console.log(example)

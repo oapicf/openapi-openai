@@ -1,0 +1,41 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FileSearchRankingOptions"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FileSearchRankingOptions"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  FileSearchRankingOptions {
+    title = FileSearchRankingOptions
+    description = FileSearchRankingOptions
+    derivedFrom = Root
+    properties {
+        ranker {
+          type =  string
+          description = "The ranker to use for the file search. If not specified will use the &#x60;auto&#x60; ranker."
+          enum = ["auto", "default_2024_08_21"]
+          optional = false
+        }
+        score_threshold {
+          type =  
+          description = "The score threshold for the file search. All values must be a floating point number between 0 and 1."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  FileSearchRankingOptions {
+    title = FileSearchRankingOptions
+    description = FileSearchRankingOptions
+    implements = openapi_server.resourceTypes.FileSearchRankingOptions
+
+  }
+}

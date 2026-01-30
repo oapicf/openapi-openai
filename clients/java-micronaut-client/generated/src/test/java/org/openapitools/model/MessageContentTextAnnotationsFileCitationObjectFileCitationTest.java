@@ -28,12 +28,4 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitationTest {
         // TODO: test fileId
     }
 
-    /**
-     * Test the property 'quote'
-     */
-    @Test
-    public void quoteTest() {
-        // TODO: test quote
-    }
-
 }

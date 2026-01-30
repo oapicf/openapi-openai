@@ -1,0 +1,27 @@
+
+<h2>RealtimeServerEventInputAudioBufferSpeechStarted</h2>
+<ul class="parameter">
+  <li class="param-required-true">eventUnderscoreid : String
+    <br/>The unique ID of the server event.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">type : String
+    <br/>The event type, must be &#x60;input_audio_buffer.speech_started&#x60;.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>input_audio_buffer.speech_started</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">audioUnderscorestartUnderscorems : Integer
+    <br/>Milliseconds from the start of all audio written to the buffer during the  session when speech was first detected. This will correspond to the  beginning of audio sent to the model, and thus includes the  &#x60;prefix_padding_ms&#x60; configured in the Session. 
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">itemUnderscoreid : String
+    <br/>The ID of the user message item that will be created when speech stops. 
+  </li>
+</ul>

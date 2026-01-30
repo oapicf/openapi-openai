@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -20,6 +20,7 @@ import (
 // ChatCompletionRequestMessage - struct for ChatCompletionRequestMessage
 type ChatCompletionRequestMessage struct {
 	ChatCompletionRequestAssistantMessage *ChatCompletionRequestAssistantMessage
+	ChatCompletionRequestDeveloperMessage *ChatCompletionRequestDeveloperMessage
 	ChatCompletionRequestFunctionMessage *ChatCompletionRequestFunctionMessage
 	ChatCompletionRequestSystemMessage *ChatCompletionRequestSystemMessage
 	ChatCompletionRequestToolMessage *ChatCompletionRequestToolMessage
@@ -30,6 +31,13 @@ type ChatCompletionRequestMessage struct {
 func ChatCompletionRequestAssistantMessageAsChatCompletionRequestMessage(v *ChatCompletionRequestAssistantMessage) ChatCompletionRequestMessage {
 	return ChatCompletionRequestMessage{
 		ChatCompletionRequestAssistantMessage: v,
+	}
+}
+
+// ChatCompletionRequestDeveloperMessageAsChatCompletionRequestMessage is a convenience function that returns ChatCompletionRequestDeveloperMessage wrapped in ChatCompletionRequestMessage
+func ChatCompletionRequestDeveloperMessageAsChatCompletionRequestMessage(v *ChatCompletionRequestDeveloperMessage) ChatCompletionRequestMessage {
+	return ChatCompletionRequestMessage{
+		ChatCompletionRequestDeveloperMessage: v,
 	}
 }
 
@@ -81,6 +89,23 @@ func (dst *ChatCompletionRequestMessage) UnmarshalJSON(data []byte) error {
 		}
 	} else {
 		dst.ChatCompletionRequestAssistantMessage = nil
+	}
+
+	// try to unmarshal data into ChatCompletionRequestDeveloperMessage
+	err = newStrictDecoder(data).Decode(&dst.ChatCompletionRequestDeveloperMessage)
+	if err == nil {
+		jsonChatCompletionRequestDeveloperMessage, _ := json.Marshal(dst.ChatCompletionRequestDeveloperMessage)
+		if string(jsonChatCompletionRequestDeveloperMessage) == "{}" { // empty struct
+			dst.ChatCompletionRequestDeveloperMessage = nil
+		} else {
+			if err = validator.Validate(dst.ChatCompletionRequestDeveloperMessage); err != nil {
+				dst.ChatCompletionRequestDeveloperMessage = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.ChatCompletionRequestDeveloperMessage = nil
 	}
 
 	// try to unmarshal data into ChatCompletionRequestFunctionMessage
@@ -154,6 +179,7 @@ func (dst *ChatCompletionRequestMessage) UnmarshalJSON(data []byte) error {
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.ChatCompletionRequestAssistantMessage = nil
+		dst.ChatCompletionRequestDeveloperMessage = nil
 		dst.ChatCompletionRequestFunctionMessage = nil
 		dst.ChatCompletionRequestSystemMessage = nil
 		dst.ChatCompletionRequestToolMessage = nil
@@ -171,6 +197,10 @@ func (dst *ChatCompletionRequestMessage) UnmarshalJSON(data []byte) error {
 func (src ChatCompletionRequestMessage) MarshalJSON() ([]byte, error) {
 	if src.ChatCompletionRequestAssistantMessage != nil {
 		return json.Marshal(&src.ChatCompletionRequestAssistantMessage)
+	}
+
+	if src.ChatCompletionRequestDeveloperMessage != nil {
+		return json.Marshal(&src.ChatCompletionRequestDeveloperMessage)
 	}
 
 	if src.ChatCompletionRequestFunctionMessage != nil {
@@ -201,6 +231,10 @@ func (obj *ChatCompletionRequestMessage) GetActualInstance() (interface{}) {
 		return obj.ChatCompletionRequestAssistantMessage
 	}
 
+	if obj.ChatCompletionRequestDeveloperMessage != nil {
+		return obj.ChatCompletionRequestDeveloperMessage
+	}
+
 	if obj.ChatCompletionRequestFunctionMessage != nil {
 		return obj.ChatCompletionRequestFunctionMessage
 	}
@@ -225,6 +259,10 @@ func (obj *ChatCompletionRequestMessage) GetActualInstance() (interface{}) {
 func (obj ChatCompletionRequestMessage) GetActualInstanceValue() (interface{}) {
 	if obj.ChatCompletionRequestAssistantMessage != nil {
 		return *obj.ChatCompletionRequestAssistantMessage
+	}
+
+	if obj.ChatCompletionRequestDeveloperMessage != nil {
+		return *obj.ChatCompletionRequestDeveloperMessage
 	}
 
 	if obj.ChatCompletionRequestFunctionMessage != nil {

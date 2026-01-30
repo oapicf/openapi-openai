@@ -1,0 +1,48 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventRateLimitsUpdated"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventRateLimitsUpdated"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RealtimeServerEventRateLimitsUpdatedRateLimitsInner = openapi_server.resourceTypes.RealtimeServerEventRateLimitsUpdatedRateLimitsInner
+}
+resourceTypes {
+
+  RealtimeServerEventRateLimitsUpdated {
+    title = RealtimeServerEventRateLimitsUpdated
+    description = RealtimeServerEventRateLimitsUpdated
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "The unique ID of the server event."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;rate_limits.updated&#x60;."
+          enum = ["rate_limits.updated"]
+          optional = true
+        }
+        rate_limits {
+          type = array
+          items.type = RealtimeServerEventRateLimitsUpdatedRateLimitsInner
+          description = "List of rate limit information."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventRateLimitsUpdated {
+    title = RealtimeServerEventRateLimitsUpdated
+    description = RealtimeServerEventRateLimitsUpdated
+    implements = openapi_server.resourceTypes.RealtimeServerEventRateLimitsUpdated
+
+  }
+}

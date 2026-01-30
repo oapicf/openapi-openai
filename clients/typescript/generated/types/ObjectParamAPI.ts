@@ -2,17 +2,76 @@ import { ResponseContext, RequestContext, HttpFile, HttpInfo } from '../http/htt
 import { Configuration, ConfigurationOptions } from '../configuration'
 import type { Middleware } from '../middleware';
 
-import { AssistantFileObject } from '../models/AssistantFileObject';
+import { AdminApiKey } from '../models/AdminApiKey';
+import { AdminApiKeyOwner } from '../models/AdminApiKeyOwner';
+import { AdminApiKeysCreateRequest } from '../models/AdminApiKeysCreateRequest';
+import { AdminApiKeysDelete200Response } from '../models/AdminApiKeysDelete200Response';
+import { ApiKeyList } from '../models/ApiKeyList';
+import { ArrayOfContentPartsInner } from '../models/ArrayOfContentPartsInner';
 import { AssistantObject } from '../models/AssistantObject';
+import { AssistantObjectToolResources } from '../models/AssistantObjectToolResources';
+import { AssistantObjectToolResourcesCodeInterpreter } from '../models/AssistantObjectToolResourcesCodeInterpreter';
+import { AssistantObjectToolResourcesFileSearch } from '../models/AssistantObjectToolResourcesFileSearch';
 import { AssistantObjectToolsInner } from '../models/AssistantObjectToolsInner';
 import { AssistantStreamEvent } from '../models/AssistantStreamEvent';
 import { AssistantToolsCode } from '../models/AssistantToolsCode';
+import { AssistantToolsFileSearch } from '../models/AssistantToolsFileSearch';
+import { AssistantToolsFileSearchFileSearch } from '../models/AssistantToolsFileSearchFileSearch';
+import { AssistantToolsFileSearchTypeOnly } from '../models/AssistantToolsFileSearchTypeOnly';
 import { AssistantToolsFunction } from '../models/AssistantToolsFunction';
-import { AssistantToolsRetrieval } from '../models/AssistantToolsRetrieval';
-import { AssistantsApiNamedToolChoice } from '../models/AssistantsApiNamedToolChoice';
-import { AssistantsApiResponseFormat } from '../models/AssistantsApiResponseFormat';
 import { AssistantsApiResponseFormatOption } from '../models/AssistantsApiResponseFormatOption';
 import { AssistantsApiToolChoiceOption } from '../models/AssistantsApiToolChoiceOption';
+import { AssistantsNamedToolChoice } from '../models/AssistantsNamedToolChoice';
+import { AssistantsNamedToolChoiceFunction } from '../models/AssistantsNamedToolChoiceFunction';
+import { AudioResponseFormat } from '../models/AudioResponseFormat';
+import { AuditLog } from '../models/AuditLog';
+import { AuditLogActor } from '../models/AuditLogActor';
+import { AuditLogActorApiKey } from '../models/AuditLogActorApiKey';
+import { AuditLogActorServiceAccount } from '../models/AuditLogActorServiceAccount';
+import { AuditLogActorSession } from '../models/AuditLogActorSession';
+import { AuditLogActorUser } from '../models/AuditLogActorUser';
+import { AuditLogApiKeyCreated } from '../models/AuditLogApiKeyCreated';
+import { AuditLogApiKeyCreatedData } from '../models/AuditLogApiKeyCreatedData';
+import { AuditLogApiKeyDeleted } from '../models/AuditLogApiKeyDeleted';
+import { AuditLogApiKeyUpdated } from '../models/AuditLogApiKeyUpdated';
+import { AuditLogApiKeyUpdatedChangesRequested } from '../models/AuditLogApiKeyUpdatedChangesRequested';
+import { AuditLogEventType } from '../models/AuditLogEventType';
+import { AuditLogInviteAccepted } from '../models/AuditLogInviteAccepted';
+import { AuditLogInviteSent } from '../models/AuditLogInviteSent';
+import { AuditLogInviteSentData } from '../models/AuditLogInviteSentData';
+import { AuditLogLoginFailed } from '../models/AuditLogLoginFailed';
+import { AuditLogOrganizationUpdated } from '../models/AuditLogOrganizationUpdated';
+import { AuditLogOrganizationUpdatedChangesRequested } from '../models/AuditLogOrganizationUpdatedChangesRequested';
+import { AuditLogOrganizationUpdatedChangesRequestedSettings } from '../models/AuditLogOrganizationUpdatedChangesRequestedSettings';
+import { AuditLogProject } from '../models/AuditLogProject';
+import { AuditLogProjectArchived } from '../models/AuditLogProjectArchived';
+import { AuditLogProjectCreated } from '../models/AuditLogProjectCreated';
+import { AuditLogProjectCreatedData } from '../models/AuditLogProjectCreatedData';
+import { AuditLogProjectUpdated } from '../models/AuditLogProjectUpdated';
+import { AuditLogProjectUpdatedChangesRequested } from '../models/AuditLogProjectUpdatedChangesRequested';
+import { AuditLogRateLimitDeleted } from '../models/AuditLogRateLimitDeleted';
+import { AuditLogRateLimitUpdated } from '../models/AuditLogRateLimitUpdated';
+import { AuditLogRateLimitUpdatedChangesRequested } from '../models/AuditLogRateLimitUpdatedChangesRequested';
+import { AuditLogServiceAccountCreated } from '../models/AuditLogServiceAccountCreated';
+import { AuditLogServiceAccountCreatedData } from '../models/AuditLogServiceAccountCreatedData';
+import { AuditLogServiceAccountDeleted } from '../models/AuditLogServiceAccountDeleted';
+import { AuditLogServiceAccountUpdated } from '../models/AuditLogServiceAccountUpdated';
+import { AuditLogServiceAccountUpdatedChangesRequested } from '../models/AuditLogServiceAccountUpdatedChangesRequested';
+import { AuditLogUserAdded } from '../models/AuditLogUserAdded';
+import { AuditLogUserAddedData } from '../models/AuditLogUserAddedData';
+import { AuditLogUserDeleted } from '../models/AuditLogUserDeleted';
+import { AuditLogUserUpdated } from '../models/AuditLogUserUpdated';
+import { AuditLogUserUpdatedChangesRequested } from '../models/AuditLogUserUpdatedChangesRequested';
+import { AutoChunkingStrategy } from '../models/AutoChunkingStrategy';
+import { AutoChunkingStrategyRequestParam } from '../models/AutoChunkingStrategyRequestParam';
+import { Batch } from '../models/Batch';
+import { BatchErrors } from '../models/BatchErrors';
+import { BatchErrorsDataInner } from '../models/BatchErrorsDataInner';
+import { BatchRequestCounts } from '../models/BatchRequestCounts';
+import { BatchRequestInput } from '../models/BatchRequestInput';
+import { BatchRequestOutput } from '../models/BatchRequestOutput';
+import { BatchRequestOutputError } from '../models/BatchRequestOutputError';
+import { BatchRequestOutputResponse } from '../models/BatchRequestOutputResponse';
 import { ChatCompletionFunctionCallOption } from '../models/ChatCompletionFunctionCallOption';
 import { ChatCompletionFunctions } from '../models/ChatCompletionFunctions';
 import { ChatCompletionMessageToolCall } from '../models/ChatCompletionMessageToolCall';
@@ -20,34 +79,58 @@ import { ChatCompletionMessageToolCallChunk } from '../models/ChatCompletionMess
 import { ChatCompletionMessageToolCallChunkFunction } from '../models/ChatCompletionMessageToolCallChunkFunction';
 import { ChatCompletionMessageToolCallFunction } from '../models/ChatCompletionMessageToolCallFunction';
 import { ChatCompletionNamedToolChoice } from '../models/ChatCompletionNamedToolChoice';
-import { ChatCompletionNamedToolChoiceFunction } from '../models/ChatCompletionNamedToolChoiceFunction';
 import { ChatCompletionRequestAssistantMessage } from '../models/ChatCompletionRequestAssistantMessage';
+import { ChatCompletionRequestAssistantMessageAudio } from '../models/ChatCompletionRequestAssistantMessageAudio';
+import { ChatCompletionRequestAssistantMessageContent } from '../models/ChatCompletionRequestAssistantMessageContent';
+import { ChatCompletionRequestAssistantMessageContentPart } from '../models/ChatCompletionRequestAssistantMessageContentPart';
 import { ChatCompletionRequestAssistantMessageFunctionCall } from '../models/ChatCompletionRequestAssistantMessageFunctionCall';
+import { ChatCompletionRequestDeveloperMessage } from '../models/ChatCompletionRequestDeveloperMessage';
+import { ChatCompletionRequestDeveloperMessageContent } from '../models/ChatCompletionRequestDeveloperMessageContent';
 import { ChatCompletionRequestFunctionMessage } from '../models/ChatCompletionRequestFunctionMessage';
 import { ChatCompletionRequestMessage } from '../models/ChatCompletionRequestMessage';
-import { ChatCompletionRequestMessageContentPart } from '../models/ChatCompletionRequestMessageContentPart';
+import { ChatCompletionRequestMessageContentPartAudio } from '../models/ChatCompletionRequestMessageContentPartAudio';
+import { ChatCompletionRequestMessageContentPartAudioInputAudio } from '../models/ChatCompletionRequestMessageContentPartAudioInputAudio';
 import { ChatCompletionRequestMessageContentPartImage } from '../models/ChatCompletionRequestMessageContentPartImage';
 import { ChatCompletionRequestMessageContentPartImageImageUrl } from '../models/ChatCompletionRequestMessageContentPartImageImageUrl';
+import { ChatCompletionRequestMessageContentPartRefusal } from '../models/ChatCompletionRequestMessageContentPartRefusal';
 import { ChatCompletionRequestMessageContentPartText } from '../models/ChatCompletionRequestMessageContentPartText';
 import { ChatCompletionRequestSystemMessage } from '../models/ChatCompletionRequestSystemMessage';
+import { ChatCompletionRequestSystemMessageContent } from '../models/ChatCompletionRequestSystemMessageContent';
 import { ChatCompletionRequestToolMessage } from '../models/ChatCompletionRequestToolMessage';
+import { ChatCompletionRequestToolMessageContent } from '../models/ChatCompletionRequestToolMessageContent';
 import { ChatCompletionRequestUserMessage } from '../models/ChatCompletionRequestUserMessage';
 import { ChatCompletionRequestUserMessageContent } from '../models/ChatCompletionRequestUserMessageContent';
+import { ChatCompletionRequestUserMessageContentPart } from '../models/ChatCompletionRequestUserMessageContentPart';
 import { ChatCompletionResponseMessage } from '../models/ChatCompletionResponseMessage';
+import { ChatCompletionResponseMessageAudio } from '../models/ChatCompletionResponseMessageAudio';
+import { ChatCompletionResponseMessageFunctionCall } from '../models/ChatCompletionResponseMessageFunctionCall';
 import { ChatCompletionRole } from '../models/ChatCompletionRole';
+import { ChatCompletionStreamOptions } from '../models/ChatCompletionStreamOptions';
 import { ChatCompletionStreamResponseDelta } from '../models/ChatCompletionStreamResponseDelta';
 import { ChatCompletionStreamResponseDeltaFunctionCall } from '../models/ChatCompletionStreamResponseDeltaFunctionCall';
 import { ChatCompletionTokenLogprob } from '../models/ChatCompletionTokenLogprob';
 import { ChatCompletionTokenLogprobTopLogprobsInner } from '../models/ChatCompletionTokenLogprobTopLogprobsInner';
 import { ChatCompletionTool } from '../models/ChatCompletionTool';
 import { ChatCompletionToolChoiceOption } from '../models/ChatCompletionToolChoiceOption';
+import { ChunkingStrategyRequestParam } from '../models/ChunkingStrategyRequestParam';
+import { CompleteUploadRequest } from '../models/CompleteUploadRequest';
 import { CompletionUsage } from '../models/CompletionUsage';
-import { CreateAssistantFileRequest } from '../models/CreateAssistantFileRequest';
+import { CompletionUsageCompletionTokensDetails } from '../models/CompletionUsageCompletionTokensDetails';
+import { CompletionUsagePromptTokensDetails } from '../models/CompletionUsagePromptTokensDetails';
+import { CostsResult } from '../models/CostsResult';
+import { CostsResultAmount } from '../models/CostsResultAmount';
 import { CreateAssistantRequest } from '../models/CreateAssistantRequest';
 import { CreateAssistantRequestModel } from '../models/CreateAssistantRequestModel';
+import { CreateAssistantRequestToolResources } from '../models/CreateAssistantRequestToolResources';
+import { CreateAssistantRequestToolResourcesCodeInterpreter } from '../models/CreateAssistantRequestToolResourcesCodeInterpreter';
+import { CreateAssistantRequestToolResourcesFileSearch } from '../models/CreateAssistantRequestToolResourcesFileSearch';
+import { CreateAssistantRequestToolResourcesFileSearchVectorStoresInner } from '../models/CreateAssistantRequestToolResourcesFileSearchVectorStoresInner';
+import { CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy } from '../models/CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy';
+import { CreateBatchRequest } from '../models/CreateBatchRequest';
 import { CreateChatCompletionFunctionResponse } from '../models/CreateChatCompletionFunctionResponse';
 import { CreateChatCompletionFunctionResponseChoicesInner } from '../models/CreateChatCompletionFunctionResponseChoicesInner';
 import { CreateChatCompletionRequest } from '../models/CreateChatCompletionRequest';
+import { CreateChatCompletionRequestAudio } from '../models/CreateChatCompletionRequestAudio';
 import { CreateChatCompletionRequestFunctionCall } from '../models/CreateChatCompletionRequestFunctionCall';
 import { CreateChatCompletionRequestModel } from '../models/CreateChatCompletionRequestModel';
 import { CreateChatCompletionRequestResponseFormat } from '../models/CreateChatCompletionRequestResponseFormat';
@@ -57,6 +140,7 @@ import { CreateChatCompletionResponseChoicesInner } from '../models/CreateChatCo
 import { CreateChatCompletionResponseChoicesInnerLogprobs } from '../models/CreateChatCompletionResponseChoicesInnerLogprobs';
 import { CreateChatCompletionStreamResponse } from '../models/CreateChatCompletionStreamResponse';
 import { CreateChatCompletionStreamResponseChoicesInner } from '../models/CreateChatCompletionStreamResponseChoicesInner';
+import { CreateChatCompletionStreamResponseUsage } from '../models/CreateChatCompletionStreamResponseUsage';
 import { CreateCompletionRequest } from '../models/CreateCompletionRequest';
 import { CreateCompletionRequestModel } from '../models/CreateCompletionRequestModel';
 import { CreateCompletionRequestPrompt } from '../models/CreateCompletionRequestPrompt';
@@ -81,20 +165,32 @@ import { CreateImageEditRequestModel } from '../models/CreateImageEditRequestMod
 import { CreateImageRequest } from '../models/CreateImageRequest';
 import { CreateImageRequestModel } from '../models/CreateImageRequestModel';
 import { CreateMessageRequest } from '../models/CreateMessageRequest';
+import { CreateMessageRequestAttachmentsInner } from '../models/CreateMessageRequestAttachmentsInner';
+import { CreateMessageRequestAttachmentsInnerToolsInner } from '../models/CreateMessageRequestAttachmentsInnerToolsInner';
+import { CreateMessageRequestContent } from '../models/CreateMessageRequestContent';
 import { CreateModerationRequest } from '../models/CreateModerationRequest';
 import { CreateModerationRequestInput } from '../models/CreateModerationRequestInput';
+import { CreateModerationRequestInputOneOfInner } from '../models/CreateModerationRequestInputOneOfInner';
+import { CreateModerationRequestInputOneOfInnerOneOf } from '../models/CreateModerationRequestInputOneOfInnerOneOf';
+import { CreateModerationRequestInputOneOfInnerOneOf1 } from '../models/CreateModerationRequestInputOneOfInnerOneOf1';
+import { CreateModerationRequestInputOneOfInnerOneOfImageUrl } from '../models/CreateModerationRequestInputOneOfInnerOneOfImageUrl';
 import { CreateModerationRequestModel } from '../models/CreateModerationRequestModel';
 import { CreateModerationResponse } from '../models/CreateModerationResponse';
 import { CreateModerationResponseResultsInner } from '../models/CreateModerationResponseResultsInner';
 import { CreateModerationResponseResultsInnerCategories } from '../models/CreateModerationResponseResultsInnerCategories';
+import { CreateModerationResponseResultsInnerCategoryAppliedInputTypes } from '../models/CreateModerationResponseResultsInnerCategoryAppliedInputTypes';
 import { CreateModerationResponseResultsInnerCategoryScores } from '../models/CreateModerationResponseResultsInnerCategoryScores';
 import { CreateRunRequest } from '../models/CreateRunRequest';
 import { CreateRunRequestModel } from '../models/CreateRunRequestModel';
 import { CreateSpeechRequest } from '../models/CreateSpeechRequest';
 import { CreateSpeechRequestModel } from '../models/CreateSpeechRequestModel';
 import { CreateThreadAndRunRequest } from '../models/CreateThreadAndRunRequest';
+import { CreateThreadAndRunRequestToolResources } from '../models/CreateThreadAndRunRequestToolResources';
 import { CreateThreadAndRunRequestToolsInner } from '../models/CreateThreadAndRunRequestToolsInner';
 import { CreateThreadRequest } from '../models/CreateThreadRequest';
+import { CreateThreadRequestToolResources } from '../models/CreateThreadRequestToolResources';
+import { CreateThreadRequestToolResourcesFileSearch } from '../models/CreateThreadRequestToolResourcesFileSearch';
+import { CreateThreadRequestToolResourcesFileSearchVectorStoresInner } from '../models/CreateThreadRequestToolResourcesFileSearchVectorStoresInner';
 import { CreateTranscription200Response } from '../models/CreateTranscription200Response';
 import { CreateTranscriptionRequestModel } from '../models/CreateTranscriptionRequestModel';
 import { CreateTranscriptionResponseJson } from '../models/CreateTranscriptionResponseJson';
@@ -102,16 +198,40 @@ import { CreateTranscriptionResponseVerboseJson } from '../models/CreateTranscri
 import { CreateTranslation200Response } from '../models/CreateTranslation200Response';
 import { CreateTranslationResponseJson } from '../models/CreateTranslationResponseJson';
 import { CreateTranslationResponseVerboseJson } from '../models/CreateTranslationResponseVerboseJson';
-import { DeleteAssistantFileResponse } from '../models/DeleteAssistantFileResponse';
+import { CreateUploadRequest } from '../models/CreateUploadRequest';
+import { CreateVectorStoreFileBatchRequest } from '../models/CreateVectorStoreFileBatchRequest';
+import { CreateVectorStoreFileRequest } from '../models/CreateVectorStoreFileRequest';
+import { CreateVectorStoreRequest } from '../models/CreateVectorStoreRequest';
+import { CreateVectorStoreRequestChunkingStrategy } from '../models/CreateVectorStoreRequestChunkingStrategy';
+import { DefaultProjectErrorResponse } from '../models/DefaultProjectErrorResponse';
 import { DeleteAssistantResponse } from '../models/DeleteAssistantResponse';
 import { DeleteFileResponse } from '../models/DeleteFileResponse';
 import { DeleteMessageResponse } from '../models/DeleteMessageResponse';
 import { DeleteModelResponse } from '../models/DeleteModelResponse';
 import { DeleteThreadResponse } from '../models/DeleteThreadResponse';
+import { DeleteVectorStoreFileResponse } from '../models/DeleteVectorStoreFileResponse';
+import { DeleteVectorStoreResponse } from '../models/DeleteVectorStoreResponse';
 import { DoneEvent } from '../models/DoneEvent';
 import { Embedding } from '../models/Embedding';
 import { ErrorEvent } from '../models/ErrorEvent';
 import { ErrorResponse } from '../models/ErrorResponse';
+import { FileSearchRankingOptions } from '../models/FileSearchRankingOptions';
+import { FineTuneChatCompletionRequestAssistantMessage } from '../models/FineTuneChatCompletionRequestAssistantMessage';
+import { FineTuneChatRequestInput } from '../models/FineTuneChatRequestInput';
+import { FineTuneChatRequestInputMessagesInner } from '../models/FineTuneChatRequestInputMessagesInner';
+import { FineTuneCompletionRequestInput } from '../models/FineTuneCompletionRequestInput';
+import { FineTuneDPOMethod } from '../models/FineTuneDPOMethod';
+import { FineTuneDPOMethodHyperparameters } from '../models/FineTuneDPOMethodHyperparameters';
+import { FineTuneDPOMethodHyperparametersBatchSize } from '../models/FineTuneDPOMethodHyperparametersBatchSize';
+import { FineTuneDPOMethodHyperparametersBeta } from '../models/FineTuneDPOMethodHyperparametersBeta';
+import { FineTuneDPOMethodHyperparametersLearningRateMultiplier } from '../models/FineTuneDPOMethodHyperparametersLearningRateMultiplier';
+import { FineTuneDPOMethodHyperparametersNEpochs } from '../models/FineTuneDPOMethodHyperparametersNEpochs';
+import { FineTuneMethod } from '../models/FineTuneMethod';
+import { FineTunePreferenceRequestInput } from '../models/FineTunePreferenceRequestInput';
+import { FineTunePreferenceRequestInputInput } from '../models/FineTunePreferenceRequestInputInput';
+import { FineTunePreferenceRequestInputPreferredCompletionInner } from '../models/FineTunePreferenceRequestInputPreferredCompletionInner';
+import { FineTuneSupervisedMethod } from '../models/FineTuneSupervisedMethod';
+import { FineTuneSupervisedMethodHyperparameters } from '../models/FineTuneSupervisedMethodHyperparameters';
 import { FineTuningIntegration } from '../models/FineTuningIntegration';
 import { FineTuningJob } from '../models/FineTuningJob';
 import { FineTuningJobCheckpoint } from '../models/FineTuningJobCheckpoint';
@@ -119,25 +239,36 @@ import { FineTuningJobCheckpointMetrics } from '../models/FineTuningJobCheckpoin
 import { FineTuningJobError } from '../models/FineTuningJobError';
 import { FineTuningJobEvent } from '../models/FineTuningJobEvent';
 import { FineTuningJobHyperparameters } from '../models/FineTuningJobHyperparameters';
-import { FineTuningJobHyperparametersNEpochs } from '../models/FineTuningJobHyperparametersNEpochs';
 import { FineTuningJobIntegrationsInner } from '../models/FineTuningJobIntegrationsInner';
 import { FunctionObject } from '../models/FunctionObject';
 import { Image } from '../models/Image';
 import { ImagesResponse } from '../models/ImagesResponse';
-import { ListAssistantFilesResponse } from '../models/ListAssistantFilesResponse';
+import { Invite } from '../models/Invite';
+import { InviteDeleteResponse } from '../models/InviteDeleteResponse';
+import { InviteListResponse } from '../models/InviteListResponse';
+import { InviteProjectsInner } from '../models/InviteProjectsInner';
+import { InviteRequest } from '../models/InviteRequest';
+import { InviteRequestProjectsInner } from '../models/InviteRequestProjectsInner';
 import { ListAssistantsResponse } from '../models/ListAssistantsResponse';
+import { ListAuditLogsEffectiveAtParameter } from '../models/ListAuditLogsEffectiveAtParameter';
+import { ListAuditLogsResponse } from '../models/ListAuditLogsResponse';
+import { ListBatchesResponse } from '../models/ListBatchesResponse';
 import { ListFilesResponse } from '../models/ListFilesResponse';
 import { ListFineTuningJobCheckpointsResponse } from '../models/ListFineTuningJobCheckpointsResponse';
 import { ListFineTuningJobEventsResponse } from '../models/ListFineTuningJobEventsResponse';
-import { ListMessageFilesResponse } from '../models/ListMessageFilesResponse';
 import { ListMessagesResponse } from '../models/ListMessagesResponse';
 import { ListModelsResponse } from '../models/ListModelsResponse';
 import { ListPaginatedFineTuningJobsResponse } from '../models/ListPaginatedFineTuningJobsResponse';
 import { ListRunStepsResponse } from '../models/ListRunStepsResponse';
 import { ListRunsResponse } from '../models/ListRunsResponse';
 import { ListThreadsResponse } from '../models/ListThreadsResponse';
+import { ListVectorStoreFilesResponse } from '../models/ListVectorStoreFilesResponse';
+import { ListVectorStoresResponse } from '../models/ListVectorStoresResponse';
 import { MessageContentImageFileObject } from '../models/MessageContentImageFileObject';
 import { MessageContentImageFileObjectImageFile } from '../models/MessageContentImageFileObjectImageFile';
+import { MessageContentImageUrlObject } from '../models/MessageContentImageUrlObject';
+import { MessageContentImageUrlObjectImageUrl } from '../models/MessageContentImageUrlObjectImageUrl';
+import { MessageContentRefusalObject } from '../models/MessageContentRefusalObject';
 import { MessageContentTextAnnotationsFileCitationObject } from '../models/MessageContentTextAnnotationsFileCitationObject';
 import { MessageContentTextAnnotationsFileCitationObjectFileCitation } from '../models/MessageContentTextAnnotationsFileCitationObjectFileCitation';
 import { MessageContentTextAnnotationsFilePathObject } from '../models/MessageContentTextAnnotationsFilePathObject';
@@ -147,6 +278,9 @@ import { MessageContentTextObjectText } from '../models/MessageContentTextObject
 import { MessageContentTextObjectTextAnnotationsInner } from '../models/MessageContentTextObjectTextAnnotationsInner';
 import { MessageDeltaContentImageFileObject } from '../models/MessageDeltaContentImageFileObject';
 import { MessageDeltaContentImageFileObjectImageFile } from '../models/MessageDeltaContentImageFileObjectImageFile';
+import { MessageDeltaContentImageUrlObject } from '../models/MessageDeltaContentImageUrlObject';
+import { MessageDeltaContentImageUrlObjectImageUrl } from '../models/MessageDeltaContentImageUrlObjectImageUrl';
+import { MessageDeltaContentRefusalObject } from '../models/MessageDeltaContentRefusalObject';
 import { MessageDeltaContentTextAnnotationsFileCitationObject } from '../models/MessageDeltaContentTextAnnotationsFileCitationObject';
 import { MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation } from '../models/MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation';
 import { MessageDeltaContentTextAnnotationsFilePathObject } from '../models/MessageDeltaContentTextAnnotationsFilePathObject';
@@ -157,10 +291,10 @@ import { MessageDeltaContentTextObjectTextAnnotationsInner } from '../models/Mes
 import { MessageDeltaObject } from '../models/MessageDeltaObject';
 import { MessageDeltaObjectDelta } from '../models/MessageDeltaObjectDelta';
 import { MessageDeltaObjectDeltaContentInner } from '../models/MessageDeltaObjectDeltaContentInner';
-import { MessageFileObject } from '../models/MessageFileObject';
 import { MessageObject } from '../models/MessageObject';
 import { MessageObjectContentInner } from '../models/MessageObjectContentInner';
 import { MessageObjectIncompleteDetails } from '../models/MessageObjectIncompleteDetails';
+import { MessageRequestContentTextObject } from '../models/MessageRequestContentTextObject';
 import { MessageStreamEvent } from '../models/MessageStreamEvent';
 import { MessageStreamEventOneOf } from '../models/MessageStreamEventOneOf';
 import { MessageStreamEventOneOf1 } from '../models/MessageStreamEventOneOf1';
@@ -170,10 +304,108 @@ import { MessageStreamEventOneOf4 } from '../models/MessageStreamEventOneOf4';
 import { Model } from '../models/Model';
 import { ModelError } from '../models/ModelError';
 import { ModifyAssistantRequest } from '../models/ModifyAssistantRequest';
+import { ModifyAssistantRequestToolResources } from '../models/ModifyAssistantRequestToolResources';
+import { ModifyAssistantRequestToolResourcesCodeInterpreter } from '../models/ModifyAssistantRequestToolResourcesCodeInterpreter';
+import { ModifyAssistantRequestToolResourcesFileSearch } from '../models/ModifyAssistantRequestToolResourcesFileSearch';
 import { ModifyMessageRequest } from '../models/ModifyMessageRequest';
 import { ModifyRunRequest } from '../models/ModifyRunRequest';
 import { ModifyThreadRequest } from '../models/ModifyThreadRequest';
+import { ModifyThreadRequestToolResources } from '../models/ModifyThreadRequestToolResources';
+import { ModifyThreadRequestToolResourcesFileSearch } from '../models/ModifyThreadRequestToolResourcesFileSearch';
 import { OpenAIFile } from '../models/OpenAIFile';
+import { OtherChunkingStrategyResponseParam } from '../models/OtherChunkingStrategyResponseParam';
+import { PredictionContent } from '../models/PredictionContent';
+import { PredictionContentContent } from '../models/PredictionContentContent';
+import { Project } from '../models/Project';
+import { ProjectApiKey } from '../models/ProjectApiKey';
+import { ProjectApiKeyDeleteResponse } from '../models/ProjectApiKeyDeleteResponse';
+import { ProjectApiKeyListResponse } from '../models/ProjectApiKeyListResponse';
+import { ProjectApiKeyOwner } from '../models/ProjectApiKeyOwner';
+import { ProjectCreateRequest } from '../models/ProjectCreateRequest';
+import { ProjectListResponse } from '../models/ProjectListResponse';
+import { ProjectRateLimit } from '../models/ProjectRateLimit';
+import { ProjectRateLimitListResponse } from '../models/ProjectRateLimitListResponse';
+import { ProjectRateLimitUpdateRequest } from '../models/ProjectRateLimitUpdateRequest';
+import { ProjectServiceAccount } from '../models/ProjectServiceAccount';
+import { ProjectServiceAccountApiKey } from '../models/ProjectServiceAccountApiKey';
+import { ProjectServiceAccountCreateRequest } from '../models/ProjectServiceAccountCreateRequest';
+import { ProjectServiceAccountCreateResponse } from '../models/ProjectServiceAccountCreateResponse';
+import { ProjectServiceAccountDeleteResponse } from '../models/ProjectServiceAccountDeleteResponse';
+import { ProjectServiceAccountListResponse } from '../models/ProjectServiceAccountListResponse';
+import { ProjectUpdateRequest } from '../models/ProjectUpdateRequest';
+import { ProjectUser } from '../models/ProjectUser';
+import { ProjectUserCreateRequest } from '../models/ProjectUserCreateRequest';
+import { ProjectUserDeleteResponse } from '../models/ProjectUserDeleteResponse';
+import { ProjectUserListResponse } from '../models/ProjectUserListResponse';
+import { ProjectUserUpdateRequest } from '../models/ProjectUserUpdateRequest';
+import { RealtimeClientEventConversationItemCreate } from '../models/RealtimeClientEventConversationItemCreate';
+import { RealtimeClientEventConversationItemDelete } from '../models/RealtimeClientEventConversationItemDelete';
+import { RealtimeClientEventConversationItemTruncate } from '../models/RealtimeClientEventConversationItemTruncate';
+import { RealtimeClientEventInputAudioBufferAppend } from '../models/RealtimeClientEventInputAudioBufferAppend';
+import { RealtimeClientEventInputAudioBufferClear } from '../models/RealtimeClientEventInputAudioBufferClear';
+import { RealtimeClientEventInputAudioBufferCommit } from '../models/RealtimeClientEventInputAudioBufferCommit';
+import { RealtimeClientEventResponseCancel } from '../models/RealtimeClientEventResponseCancel';
+import { RealtimeClientEventResponseCreate } from '../models/RealtimeClientEventResponseCreate';
+import { RealtimeClientEventSessionUpdate } from '../models/RealtimeClientEventSessionUpdate';
+import { RealtimeConversationItem } from '../models/RealtimeConversationItem';
+import { RealtimeConversationItemContentInner } from '../models/RealtimeConversationItemContentInner';
+import { RealtimeResponse } from '../models/RealtimeResponse';
+import { RealtimeResponseCreateParams } from '../models/RealtimeResponseCreateParams';
+import { RealtimeResponseCreateParamsConversation } from '../models/RealtimeResponseCreateParamsConversation';
+import { RealtimeResponseCreateParamsMaxResponseOutputTokens } from '../models/RealtimeResponseCreateParamsMaxResponseOutputTokens';
+import { RealtimeResponseCreateParamsToolsInner } from '../models/RealtimeResponseCreateParamsToolsInner';
+import { RealtimeResponseStatusDetails } from '../models/RealtimeResponseStatusDetails';
+import { RealtimeResponseStatusDetailsError } from '../models/RealtimeResponseStatusDetailsError';
+import { RealtimeResponseUsage } from '../models/RealtimeResponseUsage';
+import { RealtimeResponseUsageInputTokenDetails } from '../models/RealtimeResponseUsageInputTokenDetails';
+import { RealtimeResponseUsageOutputTokenDetails } from '../models/RealtimeResponseUsageOutputTokenDetails';
+import { RealtimeServerEventConversationCreated } from '../models/RealtimeServerEventConversationCreated';
+import { RealtimeServerEventConversationCreatedConversation } from '../models/RealtimeServerEventConversationCreatedConversation';
+import { RealtimeServerEventConversationItemCreated } from '../models/RealtimeServerEventConversationItemCreated';
+import { RealtimeServerEventConversationItemDeleted } from '../models/RealtimeServerEventConversationItemDeleted';
+import { RealtimeServerEventConversationItemInputAudioTranscriptionCompleted } from '../models/RealtimeServerEventConversationItemInputAudioTranscriptionCompleted';
+import { RealtimeServerEventConversationItemInputAudioTranscriptionFailed } from '../models/RealtimeServerEventConversationItemInputAudioTranscriptionFailed';
+import { RealtimeServerEventConversationItemInputAudioTranscriptionFailedError } from '../models/RealtimeServerEventConversationItemInputAudioTranscriptionFailedError';
+import { RealtimeServerEventConversationItemTruncated } from '../models/RealtimeServerEventConversationItemTruncated';
+import { RealtimeServerEventError } from '../models/RealtimeServerEventError';
+import { RealtimeServerEventErrorError } from '../models/RealtimeServerEventErrorError';
+import { RealtimeServerEventInputAudioBufferCleared } from '../models/RealtimeServerEventInputAudioBufferCleared';
+import { RealtimeServerEventInputAudioBufferCommitted } from '../models/RealtimeServerEventInputAudioBufferCommitted';
+import { RealtimeServerEventInputAudioBufferSpeechStarted } from '../models/RealtimeServerEventInputAudioBufferSpeechStarted';
+import { RealtimeServerEventInputAudioBufferSpeechStopped } from '../models/RealtimeServerEventInputAudioBufferSpeechStopped';
+import { RealtimeServerEventRateLimitsUpdated } from '../models/RealtimeServerEventRateLimitsUpdated';
+import { RealtimeServerEventRateLimitsUpdatedRateLimitsInner } from '../models/RealtimeServerEventRateLimitsUpdatedRateLimitsInner';
+import { RealtimeServerEventResponseAudioDelta } from '../models/RealtimeServerEventResponseAudioDelta';
+import { RealtimeServerEventResponseAudioDone } from '../models/RealtimeServerEventResponseAudioDone';
+import { RealtimeServerEventResponseAudioTranscriptDelta } from '../models/RealtimeServerEventResponseAudioTranscriptDelta';
+import { RealtimeServerEventResponseAudioTranscriptDone } from '../models/RealtimeServerEventResponseAudioTranscriptDone';
+import { RealtimeServerEventResponseContentPartAdded } from '../models/RealtimeServerEventResponseContentPartAdded';
+import { RealtimeServerEventResponseContentPartAddedPart } from '../models/RealtimeServerEventResponseContentPartAddedPart';
+import { RealtimeServerEventResponseContentPartDone } from '../models/RealtimeServerEventResponseContentPartDone';
+import { RealtimeServerEventResponseContentPartDonePart } from '../models/RealtimeServerEventResponseContentPartDonePart';
+import { RealtimeServerEventResponseCreated } from '../models/RealtimeServerEventResponseCreated';
+import { RealtimeServerEventResponseDone } from '../models/RealtimeServerEventResponseDone';
+import { RealtimeServerEventResponseFunctionCallArgumentsDelta } from '../models/RealtimeServerEventResponseFunctionCallArgumentsDelta';
+import { RealtimeServerEventResponseFunctionCallArgumentsDone } from '../models/RealtimeServerEventResponseFunctionCallArgumentsDone';
+import { RealtimeServerEventResponseOutputItemAdded } from '../models/RealtimeServerEventResponseOutputItemAdded';
+import { RealtimeServerEventResponseOutputItemDone } from '../models/RealtimeServerEventResponseOutputItemDone';
+import { RealtimeServerEventResponseTextDelta } from '../models/RealtimeServerEventResponseTextDelta';
+import { RealtimeServerEventResponseTextDone } from '../models/RealtimeServerEventResponseTextDone';
+import { RealtimeServerEventSessionCreated } from '../models/RealtimeServerEventSessionCreated';
+import { RealtimeServerEventSessionUpdated } from '../models/RealtimeServerEventSessionUpdated';
+import { RealtimeSession } from '../models/RealtimeSession';
+import { RealtimeSessionCreateRequest } from '../models/RealtimeSessionCreateRequest';
+import { RealtimeSessionCreateRequestTurnDetection } from '../models/RealtimeSessionCreateRequestTurnDetection';
+import { RealtimeSessionCreateResponse } from '../models/RealtimeSessionCreateResponse';
+import { RealtimeSessionCreateResponseClientSecret } from '../models/RealtimeSessionCreateResponseClientSecret';
+import { RealtimeSessionCreateResponseTurnDetection } from '../models/RealtimeSessionCreateResponseTurnDetection';
+import { RealtimeSessionInputAudioTranscription } from '../models/RealtimeSessionInputAudioTranscription';
+import { RealtimeSessionModel } from '../models/RealtimeSessionModel';
+import { RealtimeSessionTurnDetection } from '../models/RealtimeSessionTurnDetection';
+import { ResponseFormatJsonObject } from '../models/ResponseFormatJsonObject';
+import { ResponseFormatJsonSchema } from '../models/ResponseFormatJsonSchema';
+import { ResponseFormatJsonSchemaJsonSchema } from '../models/ResponseFormatJsonSchemaJsonSchema';
+import { ResponseFormatText } from '../models/ResponseFormatText';
 import { RunCompletionUsage } from '../models/RunCompletionUsage';
 import { RunObject } from '../models/RunObject';
 import { RunObjectIncompleteDetails } from '../models/RunObjectIncompleteDetails';
@@ -192,11 +424,11 @@ import { RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner }
 import { RunStepDeltaStepDetailsToolCallsCodeOutputImageObject } from '../models/RunStepDeltaStepDetailsToolCallsCodeOutputImageObject';
 import { RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage } from '../models/RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage';
 import { RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject } from '../models/RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject';
+import { RunStepDeltaStepDetailsToolCallsFileSearchObject } from '../models/RunStepDeltaStepDetailsToolCallsFileSearchObject';
 import { RunStepDeltaStepDetailsToolCallsFunctionObject } from '../models/RunStepDeltaStepDetailsToolCallsFunctionObject';
 import { RunStepDeltaStepDetailsToolCallsFunctionObjectFunction } from '../models/RunStepDeltaStepDetailsToolCallsFunctionObjectFunction';
 import { RunStepDeltaStepDetailsToolCallsObject } from '../models/RunStepDeltaStepDetailsToolCallsObject';
 import { RunStepDeltaStepDetailsToolCallsObjectToolCallsInner } from '../models/RunStepDeltaStepDetailsToolCallsObjectToolCallsInner';
-import { RunStepDeltaStepDetailsToolCallsRetrievalObject } from '../models/RunStepDeltaStepDetailsToolCallsRetrievalObject';
 import { RunStepDetailsMessageCreationObject } from '../models/RunStepDetailsMessageCreationObject';
 import { RunStepDetailsMessageCreationObjectMessageCreation } from '../models/RunStepDetailsMessageCreationObjectMessageCreation';
 import { RunStepDetailsToolCallsCodeObject } from '../models/RunStepDetailsToolCallsCodeObject';
@@ -205,11 +437,15 @@ import { RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner } from '..
 import { RunStepDetailsToolCallsCodeOutputImageObject } from '../models/RunStepDetailsToolCallsCodeOutputImageObject';
 import { RunStepDetailsToolCallsCodeOutputImageObjectImage } from '../models/RunStepDetailsToolCallsCodeOutputImageObjectImage';
 import { RunStepDetailsToolCallsCodeOutputLogsObject } from '../models/RunStepDetailsToolCallsCodeOutputLogsObject';
+import { RunStepDetailsToolCallsFileSearchObject } from '../models/RunStepDetailsToolCallsFileSearchObject';
+import { RunStepDetailsToolCallsFileSearchObjectFileSearch } from '../models/RunStepDetailsToolCallsFileSearchObjectFileSearch';
+import { RunStepDetailsToolCallsFileSearchRankingOptionsObject } from '../models/RunStepDetailsToolCallsFileSearchRankingOptionsObject';
+import { RunStepDetailsToolCallsFileSearchResultObject } from '../models/RunStepDetailsToolCallsFileSearchResultObject';
+import { RunStepDetailsToolCallsFileSearchResultObjectContentInner } from '../models/RunStepDetailsToolCallsFileSearchResultObjectContentInner';
 import { RunStepDetailsToolCallsFunctionObject } from '../models/RunStepDetailsToolCallsFunctionObject';
 import { RunStepDetailsToolCallsFunctionObjectFunction } from '../models/RunStepDetailsToolCallsFunctionObjectFunction';
 import { RunStepDetailsToolCallsObject } from '../models/RunStepDetailsToolCallsObject';
 import { RunStepDetailsToolCallsObjectToolCallsInner } from '../models/RunStepDetailsToolCallsObjectToolCallsInner';
-import { RunStepDetailsToolCallsRetrievalObject } from '../models/RunStepDetailsToolCallsRetrievalObject';
 import { RunStepObject } from '../models/RunStepObject';
 import { RunStepObjectLastError } from '../models/RunStepObjectLastError';
 import { RunStepObjectStepDetails } from '../models/RunStepObjectStepDetails';
@@ -231,8 +467,13 @@ import { RunStreamEventOneOf5 } from '../models/RunStreamEventOneOf5';
 import { RunStreamEventOneOf6 } from '../models/RunStreamEventOneOf6';
 import { RunStreamEventOneOf7 } from '../models/RunStreamEventOneOf7';
 import { RunStreamEventOneOf8 } from '../models/RunStreamEventOneOf8';
+import { RunStreamEventOneOf9 } from '../models/RunStreamEventOneOf9';
 import { RunToolCallObject } from '../models/RunToolCallObject';
 import { RunToolCallObjectFunction } from '../models/RunToolCallObjectFunction';
+import { StaticChunkingStrategy } from '../models/StaticChunkingStrategy';
+import { StaticChunkingStrategyRequestParam } from '../models/StaticChunkingStrategyRequestParam';
+import { StaticChunkingStrategyResponseParam } from '../models/StaticChunkingStrategyResponseParam';
+import { StaticChunkingStrategyStatic } from '../models/StaticChunkingStrategyStatic';
 import { SubmitToolOutputsRunRequest } from '../models/SubmitToolOutputsRunRequest';
 import { SubmitToolOutputsRunRequestToolOutputsInner } from '../models/SubmitToolOutputsRunRequestToolOutputsInner';
 import { ThreadObject } from '../models/ThreadObject';
@@ -240,6 +481,32 @@ import { ThreadStreamEvent } from '../models/ThreadStreamEvent';
 import { TranscriptionSegment } from '../models/TranscriptionSegment';
 import { TranscriptionWord } from '../models/TranscriptionWord';
 import { TruncationObject } from '../models/TruncationObject';
+import { UpdateVectorStoreRequest } from '../models/UpdateVectorStoreRequest';
+import { Upload } from '../models/Upload';
+import { UploadPart } from '../models/UploadPart';
+import { UsageAudioSpeechesResult } from '../models/UsageAudioSpeechesResult';
+import { UsageAudioTranscriptionsResult } from '../models/UsageAudioTranscriptionsResult';
+import { UsageCodeInterpreterSessionsResult } from '../models/UsageCodeInterpreterSessionsResult';
+import { UsageCompletionsResult } from '../models/UsageCompletionsResult';
+import { UsageEmbeddingsResult } from '../models/UsageEmbeddingsResult';
+import { UsageImagesResult } from '../models/UsageImagesResult';
+import { UsageModerationsResult } from '../models/UsageModerationsResult';
+import { UsageResponse } from '../models/UsageResponse';
+import { UsageTimeBucket } from '../models/UsageTimeBucket';
+import { UsageTimeBucketResultInner } from '../models/UsageTimeBucketResultInner';
+import { UsageVectorStoresResult } from '../models/UsageVectorStoresResult';
+import { User } from '../models/User';
+import { UserDeleteResponse } from '../models/UserDeleteResponse';
+import { UserListResponse } from '../models/UserListResponse';
+import { UserRoleUpdateRequest } from '../models/UserRoleUpdateRequest';
+import { VectorStoreExpirationAfter } from '../models/VectorStoreExpirationAfter';
+import { VectorStoreFileBatchObject } from '../models/VectorStoreFileBatchObject';
+import { VectorStoreFileBatchObjectFileCounts } from '../models/VectorStoreFileBatchObjectFileCounts';
+import { VectorStoreFileObject } from '../models/VectorStoreFileObject';
+import { VectorStoreFileObjectChunkingStrategy } from '../models/VectorStoreFileObjectChunkingStrategy';
+import { VectorStoreFileObjectLastError } from '../models/VectorStoreFileObjectLastError';
+import { VectorStoreObject } from '../models/VectorStoreObject';
+import { VectorStoreObjectFileCounts } from '../models/VectorStoreObjectFileCounts';
 
 import { ObservableAssistantsApi } from "./ObservableAPI";
 import { AssistantsApiRequestFactory, AssistantsApiResponseProcessor} from "../apis/AssistantsApi";
@@ -268,22 +535,6 @@ export interface AssistantsApiCreateAssistantRequest {
      * @memberof AssistantsApicreateAssistant
      */
     createAssistantRequest: CreateAssistantRequest
-}
-
-export interface AssistantsApiCreateAssistantFileRequest {
-    /**
-     * The ID of the assistant for which to create a File. 
-     * Defaults to: undefined
-     * @type string
-     * @memberof AssistantsApicreateAssistantFile
-     */
-    assistantId: string
-    /**
-     * 
-     * @type CreateAssistantFileRequest
-     * @memberof AssistantsApicreateAssistantFile
-     */
-    createAssistantFileRequest: CreateAssistantFileRequest
 }
 
 export interface AssistantsApiCreateMessageRequest {
@@ -316,6 +567,13 @@ export interface AssistantsApiCreateRunRequest {
      * @memberof AssistantsApicreateRun
      */
     createRunRequest: CreateRunRequest
+    /**
+     * A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+     * Defaults to: undefined
+     * @type Array&lt;&#39;step_details.tool_calls[*].file_search.results[*].content&#39;&gt;
+     * @memberof AssistantsApicreateRun
+     */
+    include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>
 }
 
 export interface AssistantsApiCreateThreadRequest {
@@ -346,21 +604,21 @@ export interface AssistantsApiDeleteAssistantRequest {
     assistantId: string
 }
 
-export interface AssistantsApiDeleteAssistantFileRequest {
+export interface AssistantsApiDeleteMessageRequest {
     /**
-     * The ID of the assistant that the file belongs to.
+     * The ID of the thread to which this message belongs.
      * Defaults to: undefined
      * @type string
-     * @memberof AssistantsApideleteAssistantFile
+     * @memberof AssistantsApideleteMessage
      */
-    assistantId: string
+    threadId: string
     /**
-     * The ID of the file to delete.
+     * The ID of the message to delete.
      * Defaults to: undefined
      * @type string
-     * @memberof AssistantsApideleteAssistantFile
+     * @memberof AssistantsApideleteMessage
      */
-    fileId: string
+    messageId: string
 }
 
 export interface AssistantsApiDeleteThreadRequest {
@@ -383,23 +641,6 @@ export interface AssistantsApiGetAssistantRequest {
     assistantId: string
 }
 
-export interface AssistantsApiGetAssistantFileRequest {
-    /**
-     * The ID of the assistant who the file belongs to.
-     * Defaults to: undefined
-     * @type string
-     * @memberof AssistantsApigetAssistantFile
-     */
-    assistantId: string
-    /**
-     * The ID of the file we\&#39;re getting.
-     * Defaults to: undefined
-     * @type string
-     * @memberof AssistantsApigetAssistantFile
-     */
-    fileId: string
-}
-
 export interface AssistantsApiGetMessageRequest {
     /**
      * The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
@@ -415,30 +656,6 @@ export interface AssistantsApiGetMessageRequest {
      * @memberof AssistantsApigetMessage
      */
     messageId: string
-}
-
-export interface AssistantsApiGetMessageFileRequest {
-    /**
-     * The ID of the thread to which the message and File belong.
-     * Defaults to: undefined
-     * @type string
-     * @memberof AssistantsApigetMessageFile
-     */
-    threadId: string
-    /**
-     * The ID of the message the file belongs to.
-     * Defaults to: undefined
-     * @type string
-     * @memberof AssistantsApigetMessageFile
-     */
-    messageId: string
-    /**
-     * The ID of the file being retrieved.
-     * Defaults to: undefined
-     * @type string
-     * @memberof AssistantsApigetMessageFile
-     */
-    fileId: string
 }
 
 export interface AssistantsApiGetRunRequest {
@@ -480,6 +697,13 @@ export interface AssistantsApiGetRunStepRequest {
      * @memberof AssistantsApigetRunStep
      */
     stepId: string
+    /**
+     * A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+     * Defaults to: undefined
+     * @type Array&lt;&#39;step_details.tool_calls[*].file_search.results[*].content&#39;&gt;
+     * @memberof AssistantsApigetRunStep
+     */
+    include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>
 }
 
 export interface AssistantsApiGetThreadRequest {
@@ -490,44 +714,6 @@ export interface AssistantsApiGetThreadRequest {
      * @memberof AssistantsApigetThread
      */
     threadId: string
-}
-
-export interface AssistantsApiListAssistantFilesRequest {
-    /**
-     * The ID of the assistant the file belongs to.
-     * Defaults to: undefined
-     * @type string
-     * @memberof AssistantsApilistAssistantFiles
-     */
-    assistantId: string
-    /**
-     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-     * Defaults to: 20
-     * @type number
-     * @memberof AssistantsApilistAssistantFiles
-     */
-    limit?: number
-    /**
-     * Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-     * Defaults to: &#39;desc&#39;
-     * @type &#39;asc&#39; | &#39;desc&#39;
-     * @memberof AssistantsApilistAssistantFiles
-     */
-    order?: 'asc' | 'desc'
-    /**
-     * A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * Defaults to: undefined
-     * @type string
-     * @memberof AssistantsApilistAssistantFiles
-     */
-    after?: string
-    /**
-     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-     * Defaults to: undefined
-     * @type string
-     * @memberof AssistantsApilistAssistantFiles
-     */
-    before?: string
 }
 
 export interface AssistantsApiListAssistantsRequest {
@@ -553,55 +739,10 @@ export interface AssistantsApiListAssistantsRequest {
      */
     after?: string
     /**
-     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      * Defaults to: undefined
      * @type string
      * @memberof AssistantsApilistAssistants
-     */
-    before?: string
-}
-
-export interface AssistantsApiListMessageFilesRequest {
-    /**
-     * The ID of the thread that the message and files belong to.
-     * Defaults to: undefined
-     * @type string
-     * @memberof AssistantsApilistMessageFiles
-     */
-    threadId: string
-    /**
-     * The ID of the message that the files belongs to.
-     * Defaults to: undefined
-     * @type string
-     * @memberof AssistantsApilistMessageFiles
-     */
-    messageId: string
-    /**
-     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-     * Defaults to: 20
-     * @type number
-     * @memberof AssistantsApilistMessageFiles
-     */
-    limit?: number
-    /**
-     * Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-     * Defaults to: &#39;desc&#39;
-     * @type &#39;asc&#39; | &#39;desc&#39;
-     * @memberof AssistantsApilistMessageFiles
-     */
-    order?: 'asc' | 'desc'
-    /**
-     * A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * Defaults to: undefined
-     * @type string
-     * @memberof AssistantsApilistMessageFiles
-     */
-    after?: string
-    /**
-     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-     * Defaults to: undefined
-     * @type string
-     * @memberof AssistantsApilistMessageFiles
      */
     before?: string
 }
@@ -636,7 +777,7 @@ export interface AssistantsApiListMessagesRequest {
      */
     after?: string
     /**
-     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      * Defaults to: undefined
      * @type string
      * @memberof AssistantsApilistMessages
@@ -688,12 +829,19 @@ export interface AssistantsApiListRunStepsRequest {
      */
     after?: string
     /**
-     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      * Defaults to: undefined
      * @type string
      * @memberof AssistantsApilistRunSteps
      */
     before?: string
+    /**
+     * A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+     * Defaults to: undefined
+     * @type Array&lt;&#39;step_details.tool_calls[*].file_search.results[*].content&#39;&gt;
+     * @memberof AssistantsApilistRunSteps
+     */
+    include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>
 }
 
 export interface AssistantsApiListRunsRequest {
@@ -726,7 +874,7 @@ export interface AssistantsApiListRunsRequest {
      */
     after?: string
     /**
-     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      * Defaults to: undefined
      * @type string
      * @memberof AssistantsApilistRuns
@@ -875,22 +1023,6 @@ export class ObjectAssistantsApi {
     }
 
     /**
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     * @param param the request object
-     */
-    public createAssistantFileWithHttpInfo(param: AssistantsApiCreateAssistantFileRequest, options?: ConfigurationOptions): Promise<HttpInfo<AssistantFileObject>> {
-        return this.api.createAssistantFileWithHttpInfo(param.assistantId, param.createAssistantFileRequest,  options).toPromise();
-    }
-
-    /**
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     * @param param the request object
-     */
-    public createAssistantFile(param: AssistantsApiCreateAssistantFileRequest, options?: ConfigurationOptions): Promise<AssistantFileObject> {
-        return this.api.createAssistantFile(param.assistantId, param.createAssistantFileRequest,  options).toPromise();
-    }
-
-    /**
      * Create a message.
      * @param param the request object
      */
@@ -911,7 +1043,7 @@ export class ObjectAssistantsApi {
      * @param param the request object
      */
     public createRunWithHttpInfo(param: AssistantsApiCreateRunRequest, options?: ConfigurationOptions): Promise<HttpInfo<RunObject>> {
-        return this.api.createRunWithHttpInfo(param.threadId, param.createRunRequest,  options).toPromise();
+        return this.api.createRunWithHttpInfo(param.threadId, param.createRunRequest, param.include,  options).toPromise();
     }
 
     /**
@@ -919,7 +1051,7 @@ export class ObjectAssistantsApi {
      * @param param the request object
      */
     public createRun(param: AssistantsApiCreateRunRequest, options?: ConfigurationOptions): Promise<RunObject> {
-        return this.api.createRun(param.threadId, param.createRunRequest,  options).toPromise();
+        return this.api.createRun(param.threadId, param.createRunRequest, param.include,  options).toPromise();
     }
 
     /**
@@ -971,19 +1103,19 @@ export class ObjectAssistantsApi {
     }
 
     /**
-     * Delete an assistant file.
+     * Deletes a message.
      * @param param the request object
      */
-    public deleteAssistantFileWithHttpInfo(param: AssistantsApiDeleteAssistantFileRequest, options?: ConfigurationOptions): Promise<HttpInfo<DeleteAssistantFileResponse>> {
-        return this.api.deleteAssistantFileWithHttpInfo(param.assistantId, param.fileId,  options).toPromise();
+    public deleteMessageWithHttpInfo(param: AssistantsApiDeleteMessageRequest, options?: ConfigurationOptions): Promise<HttpInfo<DeleteMessageResponse>> {
+        return this.api.deleteMessageWithHttpInfo(param.threadId, param.messageId,  options).toPromise();
     }
 
     /**
-     * Delete an assistant file.
+     * Deletes a message.
      * @param param the request object
      */
-    public deleteAssistantFile(param: AssistantsApiDeleteAssistantFileRequest, options?: ConfigurationOptions): Promise<DeleteAssistantFileResponse> {
-        return this.api.deleteAssistantFile(param.assistantId, param.fileId,  options).toPromise();
+    public deleteMessage(param: AssistantsApiDeleteMessageRequest, options?: ConfigurationOptions): Promise<DeleteMessageResponse> {
+        return this.api.deleteMessage(param.threadId, param.messageId,  options).toPromise();
     }
 
     /**
@@ -1019,22 +1151,6 @@ export class ObjectAssistantsApi {
     }
 
     /**
-     * Retrieves an AssistantFile.
-     * @param param the request object
-     */
-    public getAssistantFileWithHttpInfo(param: AssistantsApiGetAssistantFileRequest, options?: ConfigurationOptions): Promise<HttpInfo<AssistantFileObject>> {
-        return this.api.getAssistantFileWithHttpInfo(param.assistantId, param.fileId,  options).toPromise();
-    }
-
-    /**
-     * Retrieves an AssistantFile.
-     * @param param the request object
-     */
-    public getAssistantFile(param: AssistantsApiGetAssistantFileRequest, options?: ConfigurationOptions): Promise<AssistantFileObject> {
-        return this.api.getAssistantFile(param.assistantId, param.fileId,  options).toPromise();
-    }
-
-    /**
      * Retrieve a message.
      * @param param the request object
      */
@@ -1048,22 +1164,6 @@ export class ObjectAssistantsApi {
      */
     public getMessage(param: AssistantsApiGetMessageRequest, options?: ConfigurationOptions): Promise<MessageObject> {
         return this.api.getMessage(param.threadId, param.messageId,  options).toPromise();
-    }
-
-    /**
-     * Retrieves a message file.
-     * @param param the request object
-     */
-    public getMessageFileWithHttpInfo(param: AssistantsApiGetMessageFileRequest, options?: ConfigurationOptions): Promise<HttpInfo<MessageFileObject>> {
-        return this.api.getMessageFileWithHttpInfo(param.threadId, param.messageId, param.fileId,  options).toPromise();
-    }
-
-    /**
-     * Retrieves a message file.
-     * @param param the request object
-     */
-    public getMessageFile(param: AssistantsApiGetMessageFileRequest, options?: ConfigurationOptions): Promise<MessageFileObject> {
-        return this.api.getMessageFile(param.threadId, param.messageId, param.fileId,  options).toPromise();
     }
 
     /**
@@ -1087,7 +1187,7 @@ export class ObjectAssistantsApi {
      * @param param the request object
      */
     public getRunStepWithHttpInfo(param: AssistantsApiGetRunStepRequest, options?: ConfigurationOptions): Promise<HttpInfo<RunStepObject>> {
-        return this.api.getRunStepWithHttpInfo(param.threadId, param.runId, param.stepId,  options).toPromise();
+        return this.api.getRunStepWithHttpInfo(param.threadId, param.runId, param.stepId, param.include,  options).toPromise();
     }
 
     /**
@@ -1095,7 +1195,7 @@ export class ObjectAssistantsApi {
      * @param param the request object
      */
     public getRunStep(param: AssistantsApiGetRunStepRequest, options?: ConfigurationOptions): Promise<RunStepObject> {
-        return this.api.getRunStep(param.threadId, param.runId, param.stepId,  options).toPromise();
+        return this.api.getRunStep(param.threadId, param.runId, param.stepId, param.include,  options).toPromise();
     }
 
     /**
@@ -1115,22 +1215,6 @@ export class ObjectAssistantsApi {
     }
 
     /**
-     * Returns a list of assistant files.
-     * @param param the request object
-     */
-    public listAssistantFilesWithHttpInfo(param: AssistantsApiListAssistantFilesRequest, options?: ConfigurationOptions): Promise<HttpInfo<ListAssistantFilesResponse>> {
-        return this.api.listAssistantFilesWithHttpInfo(param.assistantId, param.limit, param.order, param.after, param.before,  options).toPromise();
-    }
-
-    /**
-     * Returns a list of assistant files.
-     * @param param the request object
-     */
-    public listAssistantFiles(param: AssistantsApiListAssistantFilesRequest, options?: ConfigurationOptions): Promise<ListAssistantFilesResponse> {
-        return this.api.listAssistantFiles(param.assistantId, param.limit, param.order, param.after, param.before,  options).toPromise();
-    }
-
-    /**
      * Returns a list of assistants.
      * @param param the request object
      */
@@ -1144,22 +1228,6 @@ export class ObjectAssistantsApi {
      */
     public listAssistants(param: AssistantsApiListAssistantsRequest = {}, options?: ConfigurationOptions): Promise<ListAssistantsResponse> {
         return this.api.listAssistants(param.limit, param.order, param.after, param.before,  options).toPromise();
-    }
-
-    /**
-     * Returns a list of message files.
-     * @param param the request object
-     */
-    public listMessageFilesWithHttpInfo(param: AssistantsApiListMessageFilesRequest, options?: ConfigurationOptions): Promise<HttpInfo<ListMessageFilesResponse>> {
-        return this.api.listMessageFilesWithHttpInfo(param.threadId, param.messageId, param.limit, param.order, param.after, param.before,  options).toPromise();
-    }
-
-    /**
-     * Returns a list of message files.
-     * @param param the request object
-     */
-    public listMessageFiles(param: AssistantsApiListMessageFilesRequest, options?: ConfigurationOptions): Promise<ListMessageFilesResponse> {
-        return this.api.listMessageFiles(param.threadId, param.messageId, param.limit, param.order, param.after, param.before,  options).toPromise();
     }
 
     /**
@@ -1183,7 +1251,7 @@ export class ObjectAssistantsApi {
      * @param param the request object
      */
     public listRunStepsWithHttpInfo(param: AssistantsApiListRunStepsRequest, options?: ConfigurationOptions): Promise<HttpInfo<ListRunStepsResponse>> {
-        return this.api.listRunStepsWithHttpInfo(param.threadId, param.runId, param.limit, param.order, param.after, param.before,  options).toPromise();
+        return this.api.listRunStepsWithHttpInfo(param.threadId, param.runId, param.limit, param.order, param.after, param.before, param.include,  options).toPromise();
     }
 
     /**
@@ -1191,7 +1259,7 @@ export class ObjectAssistantsApi {
      * @param param the request object
      */
     public listRunSteps(param: AssistantsApiListRunStepsRequest, options?: ConfigurationOptions): Promise<ListRunStepsResponse> {
-        return this.api.listRunSteps(param.threadId, param.runId, param.limit, param.order, param.after, param.before,  options).toPromise();
+        return this.api.listRunSteps(param.threadId, param.runId, param.limit, param.order, param.after, param.before, param.include,  options).toPromise();
     }
 
     /**
@@ -1327,19 +1395,19 @@ export interface AudioApiCreateTranscriptionRequest {
      */
     language?: string
     /**
-     * An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. 
+     * An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language. 
      * Defaults to: undefined
      * @type string
      * @memberof AudioApicreateTranscription
      */
     prompt?: string
     /**
-     * The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
-     * Defaults to: &#39;json&#39;
-     * @type string
+     * 
+     * Defaults to: undefined
+     * @type AudioResponseFormat
      * @memberof AudioApicreateTranscription
      */
-    responseFormat?: string
+    responseFormat?: AudioResponseFormat
     /**
      * The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
      * Defaults to: 0
@@ -1372,19 +1440,19 @@ export interface AudioApiCreateTranslationRequest {
      */
     model: CreateTranscriptionRequestModel
     /**
-     * An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. 
+     * An optional text to guide the model\\\&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. 
      * Defaults to: undefined
      * @type string
      * @memberof AudioApicreateTranslation
      */
     prompt?: string
     /**
-     * The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. 
-     * Defaults to: &#39;json&#39;
-     * @type string
+     * 
+     * Defaults to: undefined
+     * @type AudioResponseFormat
      * @memberof AudioApicreateTranslation
      */
-    responseFormat?: string
+    responseFormat?: AudioResponseFormat
     /**
      * The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
      * Defaults to: 0
@@ -1451,6 +1519,222 @@ export class ObjectAudioApi {
 
 }
 
+import { ObservableAuditLogsApi } from "./ObservableAPI";
+import { AuditLogsApiRequestFactory, AuditLogsApiResponseProcessor} from "../apis/AuditLogsApi";
+
+export interface AuditLogsApiListAuditLogsRequest {
+    /**
+     * Return only events whose &#x60;effective_at&#x60; (Unix seconds) is in this range.
+     * Defaults to: undefined
+     * @type ListAuditLogsEffectiveAtParameter
+     * @memberof AuditLogsApilistAuditLogs
+     */
+    effectiveAt?: ListAuditLogsEffectiveAtParameter
+    /**
+     * Return only events for these projects.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof AuditLogsApilistAuditLogs
+     */
+    projectIds?: Array<string>
+    /**
+     * Return only events with a &#x60;type&#x60; in one of these values. For example, &#x60;project.created&#x60;. For all options, see the documentation for the [audit log object](/docs/api-reference/audit-logs/object).
+     * Defaults to: undefined
+     * @type Array&lt;AuditLogEventType&gt;
+     * @memberof AuditLogsApilistAuditLogs
+     */
+    eventTypes?: Array<AuditLogEventType>
+    /**
+     * Return only events performed by these actors. Can be a user ID, a service account ID, or an api key tracking ID.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof AuditLogsApilistAuditLogs
+     */
+    actorIds?: Array<string>
+    /**
+     * Return only events performed by users with these emails.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof AuditLogsApilistAuditLogs
+     */
+    actorEmails?: Array<string>
+    /**
+     * Return only events performed on these targets. For example, a project ID updated.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof AuditLogsApilistAuditLogs
+     */
+    resourceIds?: Array<string>
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * Defaults to: 20
+     * @type number
+     * @memberof AuditLogsApilistAuditLogs
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof AuditLogsApilistAuditLogs
+     */
+    after?: string
+    /**
+     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof AuditLogsApilistAuditLogs
+     */
+    before?: string
+}
+
+export class ObjectAuditLogsApi {
+    private api: ObservableAuditLogsApi
+
+    public constructor(configuration: Configuration, requestFactory?: AuditLogsApiRequestFactory, responseProcessor?: AuditLogsApiResponseProcessor) {
+        this.api = new ObservableAuditLogsApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * List user actions and configuration changes within this organization.
+     * @param param the request object
+     */
+    public listAuditLogsWithHttpInfo(param: AuditLogsApiListAuditLogsRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<ListAuditLogsResponse>> {
+        return this.api.listAuditLogsWithHttpInfo(param.effectiveAt, param.projectIds, param.eventTypes, param.actorIds, param.actorEmails, param.resourceIds, param.limit, param.after, param.before,  options).toPromise();
+    }
+
+    /**
+     * List user actions and configuration changes within this organization.
+     * @param param the request object
+     */
+    public listAuditLogs(param: AuditLogsApiListAuditLogsRequest = {}, options?: ConfigurationOptions): Promise<ListAuditLogsResponse> {
+        return this.api.listAuditLogs(param.effectiveAt, param.projectIds, param.eventTypes, param.actorIds, param.actorEmails, param.resourceIds, param.limit, param.after, param.before,  options).toPromise();
+    }
+
+}
+
+import { ObservableBatchApi } from "./ObservableAPI";
+import { BatchApiRequestFactory, BatchApiResponseProcessor} from "../apis/BatchApi";
+
+export interface BatchApiCancelBatchRequest {
+    /**
+     * The ID of the batch to cancel.
+     * Defaults to: undefined
+     * @type string
+     * @memberof BatchApicancelBatch
+     */
+    batchId: string
+}
+
+export interface BatchApiCreateBatchRequest {
+    /**
+     * 
+     * @type CreateBatchRequest
+     * @memberof BatchApicreateBatch
+     */
+    createBatchRequest: CreateBatchRequest
+}
+
+export interface BatchApiListBatchesRequest {
+    /**
+     * A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof BatchApilistBatches
+     */
+    after?: string
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * Defaults to: 20
+     * @type number
+     * @memberof BatchApilistBatches
+     */
+    limit?: number
+}
+
+export interface BatchApiRetrieveBatchRequest {
+    /**
+     * The ID of the batch to retrieve.
+     * Defaults to: undefined
+     * @type string
+     * @memberof BatchApiretrieveBatch
+     */
+    batchId: string
+}
+
+export class ObjectBatchApi {
+    private api: ObservableBatchApi
+
+    public constructor(configuration: Configuration, requestFactory?: BatchApiRequestFactory, responseProcessor?: BatchApiResponseProcessor) {
+        this.api = new ObservableBatchApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+     * @param param the request object
+     */
+    public cancelBatchWithHttpInfo(param: BatchApiCancelBatchRequest, options?: ConfigurationOptions): Promise<HttpInfo<Batch>> {
+        return this.api.cancelBatchWithHttpInfo(param.batchId,  options).toPromise();
+    }
+
+    /**
+     * Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+     * @param param the request object
+     */
+    public cancelBatch(param: BatchApiCancelBatchRequest, options?: ConfigurationOptions): Promise<Batch> {
+        return this.api.cancelBatch(param.batchId,  options).toPromise();
+    }
+
+    /**
+     * Creates and executes a batch from an uploaded file of requests
+     * @param param the request object
+     */
+    public createBatchWithHttpInfo(param: BatchApiCreateBatchRequest, options?: ConfigurationOptions): Promise<HttpInfo<Batch>> {
+        return this.api.createBatchWithHttpInfo(param.createBatchRequest,  options).toPromise();
+    }
+
+    /**
+     * Creates and executes a batch from an uploaded file of requests
+     * @param param the request object
+     */
+    public createBatch(param: BatchApiCreateBatchRequest, options?: ConfigurationOptions): Promise<Batch> {
+        return this.api.createBatch(param.createBatchRequest,  options).toPromise();
+    }
+
+    /**
+     * List your organization\'s batches.
+     * @param param the request object
+     */
+    public listBatchesWithHttpInfo(param: BatchApiListBatchesRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<ListBatchesResponse>> {
+        return this.api.listBatchesWithHttpInfo(param.after, param.limit,  options).toPromise();
+    }
+
+    /**
+     * List your organization\'s batches.
+     * @param param the request object
+     */
+    public listBatches(param: BatchApiListBatchesRequest = {}, options?: ConfigurationOptions): Promise<ListBatchesResponse> {
+        return this.api.listBatches(param.after, param.limit,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a batch.
+     * @param param the request object
+     */
+    public retrieveBatchWithHttpInfo(param: BatchApiRetrieveBatchRequest, options?: ConfigurationOptions): Promise<HttpInfo<Batch>> {
+        return this.api.retrieveBatchWithHttpInfo(param.batchId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a batch.
+     * @param param the request object
+     */
+    public retrieveBatch(param: BatchApiRetrieveBatchRequest, options?: ConfigurationOptions): Promise<Batch> {
+        return this.api.retrieveBatch(param.batchId,  options).toPromise();
+    }
+
+}
+
 import { ObservableChatApi } from "./ObservableAPI";
 import { ChatApiRequestFactory, ChatApiResponseProcessor} from "../apis/ChatApi";
 
@@ -1471,7 +1755,7 @@ export class ObjectChatApi {
     }
 
     /**
-     * Creates a model response for the given chat conversation.
+     * Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). 
      * @param param the request object
      */
     public createChatCompletionWithHttpInfo(param: ChatApiCreateChatCompletionRequest, options?: ConfigurationOptions): Promise<HttpInfo<CreateChatCompletionResponse>> {
@@ -1479,7 +1763,7 @@ export class ObjectChatApi {
     }
 
     /**
-     * Creates a model response for the given chat conversation.
+     * Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). 
      * @param param the request object
      */
     public createChatCompletion(param: ChatApiCreateChatCompletionRequest, options?: ConfigurationOptions): Promise<CreateChatCompletionResponse> {
@@ -1521,6 +1805,143 @@ export class ObjectCompletionsApi {
      */
     public createCompletion(param: CompletionsApiCreateCompletionRequest, options?: ConfigurationOptions): Promise<CreateCompletionResponse> {
         return this.api.createCompletion(param.createCompletionRequest,  options).toPromise();
+    }
+
+}
+
+import { ObservableDefaultApi } from "./ObservableAPI";
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
+
+export interface DefaultApiAdminApiKeysCreateRequest {
+    /**
+     * 
+     * @type AdminApiKeysCreateRequest
+     * @memberof DefaultApiadminApiKeysCreate
+     */
+    adminApiKeysCreateRequest: AdminApiKeysCreateRequest
+}
+
+export interface DefaultApiAdminApiKeysDeleteRequest {
+    /**
+     * 
+     * Defaults to: undefined
+     * @type string
+     * @memberof DefaultApiadminApiKeysDelete
+     */
+    keyId: string
+}
+
+export interface DefaultApiAdminApiKeysGetRequest {
+    /**
+     * 
+     * Defaults to: undefined
+     * @type string
+     * @memberof DefaultApiadminApiKeysGet
+     */
+    keyId: string
+}
+
+export interface DefaultApiAdminApiKeysListRequest {
+    /**
+     * 
+     * Defaults to: undefined
+     * @type string
+     * @memberof DefaultApiadminApiKeysList
+     */
+    after?: string
+    /**
+     * 
+     * Defaults to: &#39;asc&#39;
+     * @type &#39;asc&#39; | &#39;desc&#39;
+     * @memberof DefaultApiadminApiKeysList
+     */
+    order?: 'asc' | 'desc'
+    /**
+     * 
+     * Defaults to: 20
+     * @type number
+     * @memberof DefaultApiadminApiKeysList
+     */
+    limit?: number
+}
+
+export class ObjectDefaultApi {
+    private api: ObservableDefaultApi
+
+    public constructor(configuration: Configuration, requestFactory?: DefaultApiRequestFactory, responseProcessor?: DefaultApiResponseProcessor) {
+        this.api = new ObservableDefaultApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Create a new admin-level API key for the organization.
+     * Create an organization admin API key
+     * @param param the request object
+     */
+    public adminApiKeysCreateWithHttpInfo(param: DefaultApiAdminApiKeysCreateRequest, options?: ConfigurationOptions): Promise<HttpInfo<AdminApiKey>> {
+        return this.api.adminApiKeysCreateWithHttpInfo(param.adminApiKeysCreateRequest,  options).toPromise();
+    }
+
+    /**
+     * Create a new admin-level API key for the organization.
+     * Create an organization admin API key
+     * @param param the request object
+     */
+    public adminApiKeysCreate(param: DefaultApiAdminApiKeysCreateRequest, options?: ConfigurationOptions): Promise<AdminApiKey> {
+        return this.api.adminApiKeysCreate(param.adminApiKeysCreateRequest,  options).toPromise();
+    }
+
+    /**
+     * Delete the specified admin API key.
+     * Delete an organization admin API key
+     * @param param the request object
+     */
+    public adminApiKeysDeleteWithHttpInfo(param: DefaultApiAdminApiKeysDeleteRequest, options?: ConfigurationOptions): Promise<HttpInfo<AdminApiKeysDelete200Response>> {
+        return this.api.adminApiKeysDeleteWithHttpInfo(param.keyId,  options).toPromise();
+    }
+
+    /**
+     * Delete the specified admin API key.
+     * Delete an organization admin API key
+     * @param param the request object
+     */
+    public adminApiKeysDelete(param: DefaultApiAdminApiKeysDeleteRequest, options?: ConfigurationOptions): Promise<AdminApiKeysDelete200Response> {
+        return this.api.adminApiKeysDelete(param.keyId,  options).toPromise();
+    }
+
+    /**
+     * Get details for a specific organization API key by its ID.
+     * Retrieve a single organization API key
+     * @param param the request object
+     */
+    public adminApiKeysGetWithHttpInfo(param: DefaultApiAdminApiKeysGetRequest, options?: ConfigurationOptions): Promise<HttpInfo<AdminApiKey>> {
+        return this.api.adminApiKeysGetWithHttpInfo(param.keyId,  options).toPromise();
+    }
+
+    /**
+     * Get details for a specific organization API key by its ID.
+     * Retrieve a single organization API key
+     * @param param the request object
+     */
+    public adminApiKeysGet(param: DefaultApiAdminApiKeysGetRequest, options?: ConfigurationOptions): Promise<AdminApiKey> {
+        return this.api.adminApiKeysGet(param.keyId,  options).toPromise();
+    }
+
+    /**
+     * Retrieve a paginated list of organization admin API keys.
+     * List organization API keys
+     * @param param the request object
+     */
+    public adminApiKeysListWithHttpInfo(param: DefaultApiAdminApiKeysListRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<ApiKeyList>> {
+        return this.api.adminApiKeysListWithHttpInfo(param.after, param.order, param.limit,  options).toPromise();
+    }
+
+    /**
+     * Retrieve a paginated list of organization admin API keys.
+     * List organization API keys
+     * @param param the request object
+     */
+    public adminApiKeysList(param: DefaultApiAdminApiKeysListRequest = {}, options?: ConfigurationOptions): Promise<ApiKeyList> {
+        return this.api.adminApiKeysList(param.after, param.order, param.limit,  options).toPromise();
     }
 
 }
@@ -1574,7 +1995,7 @@ export interface FilesApiCreateFileRequest {
      */
     file: HttpFile
     /**
-     * The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. 
+     * The intended purpose of the uploaded file.  Use \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\&quot;vision\\\&quot; for Assistants image file inputs, \\\&quot;batch\\\&quot; for [Batch API](/docs/guides/batch), and \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning). 
      * Defaults to: undefined
      * @type string
      * @memberof FilesApicreateFile
@@ -1610,6 +2031,27 @@ export interface FilesApiListFilesRequest {
      * @memberof FilesApilistFiles
      */
     purpose?: string
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. 
+     * Defaults to: 10000
+     * @type number
+     * @memberof FilesApilistFiles
+     */
+    limit?: number
+    /**
+     * Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * Defaults to: &#39;desc&#39;
+     * @type &#39;asc&#39; | &#39;desc&#39;
+     * @memberof FilesApilistFiles
+     */
+    order?: 'asc' | 'desc'
+    /**
+     * A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof FilesApilistFiles
+     */
+    after?: string
 }
 
 export interface FilesApiRetrieveFileRequest {
@@ -1630,7 +2072,7 @@ export class ObjectFilesApi {
     }
 
     /**
-     * Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
      * @param param the request object
      */
     public createFileWithHttpInfo(param: FilesApiCreateFileRequest, options?: ConfigurationOptions): Promise<HttpInfo<OpenAIFile>> {
@@ -1638,7 +2080,7 @@ export class ObjectFilesApi {
     }
 
     /**
-     * Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
      * @param param the request object
      */
     public createFile(param: FilesApiCreateFileRequest, options?: ConfigurationOptions): Promise<OpenAIFile> {
@@ -1678,19 +2120,19 @@ export class ObjectFilesApi {
     }
 
     /**
-     * Returns a list of files that belong to the user\'s organization.
+     * Returns a list of files.
      * @param param the request object
      */
     public listFilesWithHttpInfo(param: FilesApiListFilesRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<ListFilesResponse>> {
-        return this.api.listFilesWithHttpInfo(param.purpose,  options).toPromise();
+        return this.api.listFilesWithHttpInfo(param.purpose, param.limit, param.order, param.after,  options).toPromise();
     }
 
     /**
-     * Returns a list of files that belong to the user\'s organization.
+     * Returns a list of files.
      * @param param the request object
      */
     public listFiles(param: FilesApiListFilesRequest = {}, options?: ConfigurationOptions): Promise<ListFilesResponse> {
-        return this.api.listFiles(param.purpose,  options).toPromise();
+        return this.api.listFiles(param.purpose, param.limit, param.order, param.after,  options).toPromise();
     }
 
     /**
@@ -1978,7 +2420,7 @@ export interface ImagesApiCreateImageEditRequest {
      */
     responseFormat?: string
     /**
-     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
      * Defaults to: undefined
      * @type string
      * @memberof ImagesApicreateImageEdit
@@ -2025,7 +2467,7 @@ export interface ImagesApiCreateImageVariationRequest {
      */
     size?: string
     /**
-     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
      * Defaults to: undefined
      * @type string
      * @memberof ImagesApicreateImageVariation
@@ -2086,6 +2528,128 @@ export class ObjectImagesApi {
      */
     public createImageVariation(param: ImagesApiCreateImageVariationRequest, options?: ConfigurationOptions): Promise<ImagesResponse> {
         return this.api.createImageVariation(param.image, param.model, param.n, param.responseFormat, param.size, param.user,  options).toPromise();
+    }
+
+}
+
+import { ObservableInvitesApi } from "./ObservableAPI";
+import { InvitesApiRequestFactory, InvitesApiResponseProcessor} from "../apis/InvitesApi";
+
+export interface InvitesApiDeleteInviteRequest {
+    /**
+     * The ID of the invite to delete.
+     * Defaults to: undefined
+     * @type string
+     * @memberof InvitesApideleteInvite
+     */
+    inviteId: string
+}
+
+export interface InvitesApiInviteUserRequest {
+    /**
+     * The invite request payload.
+     * @type InviteRequest
+     * @memberof InvitesApiinviteUser
+     */
+    inviteRequest: InviteRequest
+}
+
+export interface InvitesApiListInvitesRequest {
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * Defaults to: 20
+     * @type number
+     * @memberof InvitesApilistInvites
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof InvitesApilistInvites
+     */
+    after?: string
+}
+
+export interface InvitesApiRetrieveInviteRequest {
+    /**
+     * The ID of the invite to retrieve.
+     * Defaults to: undefined
+     * @type string
+     * @memberof InvitesApiretrieveInvite
+     */
+    inviteId: string
+}
+
+export class ObjectInvitesApi {
+    private api: ObservableInvitesApi
+
+    public constructor(configuration: Configuration, requestFactory?: InvitesApiRequestFactory, responseProcessor?: InvitesApiResponseProcessor) {
+        this.api = new ObservableInvitesApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Delete an invite. If the invite has already been accepted, it cannot be deleted.
+     * @param param the request object
+     */
+    public deleteInviteWithHttpInfo(param: InvitesApiDeleteInviteRequest, options?: ConfigurationOptions): Promise<HttpInfo<InviteDeleteResponse>> {
+        return this.api.deleteInviteWithHttpInfo(param.inviteId,  options).toPromise();
+    }
+
+    /**
+     * Delete an invite. If the invite has already been accepted, it cannot be deleted.
+     * @param param the request object
+     */
+    public deleteInvite(param: InvitesApiDeleteInviteRequest, options?: ConfigurationOptions): Promise<InviteDeleteResponse> {
+        return this.api.deleteInvite(param.inviteId,  options).toPromise();
+    }
+
+    /**
+     * Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+     * @param param the request object
+     */
+    public inviteUserWithHttpInfo(param: InvitesApiInviteUserRequest, options?: ConfigurationOptions): Promise<HttpInfo<Invite>> {
+        return this.api.inviteUserWithHttpInfo(param.inviteRequest,  options).toPromise();
+    }
+
+    /**
+     * Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+     * @param param the request object
+     */
+    public inviteUser(param: InvitesApiInviteUserRequest, options?: ConfigurationOptions): Promise<Invite> {
+        return this.api.inviteUser(param.inviteRequest,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of invites in the organization.
+     * @param param the request object
+     */
+    public listInvitesWithHttpInfo(param: InvitesApiListInvitesRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<InviteListResponse>> {
+        return this.api.listInvitesWithHttpInfo(param.limit, param.after,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of invites in the organization.
+     * @param param the request object
+     */
+    public listInvites(param: InvitesApiListInvitesRequest = {}, options?: ConfigurationOptions): Promise<InviteListResponse> {
+        return this.api.listInvites(param.limit, param.after,  options).toPromise();
+    }
+
+    /**
+     * Retrieves an invite.
+     * @param param the request object
+     */
+    public retrieveInviteWithHttpInfo(param: InvitesApiRetrieveInviteRequest, options?: ConfigurationOptions): Promise<HttpInfo<Invite>> {
+        return this.api.retrieveInviteWithHttpInfo(param.inviteId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves an invite.
+     * @param param the request object
+     */
+    public retrieveInvite(param: InvitesApiRetrieveInviteRequest, options?: ConfigurationOptions): Promise<Invite> {
+        return this.api.retrieveInvite(param.inviteId,  options).toPromise();
     }
 
 }
@@ -2193,7 +2757,7 @@ export class ObjectModerationsApi {
     }
 
     /**
-     * Classifies if text is potentially harmful.
+     * Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
      * @param param the request object
      */
     public createModerationWithHttpInfo(param: ModerationsApiCreateModerationRequest, options?: ConfigurationOptions): Promise<HttpInfo<CreateModerationResponse>> {
@@ -2201,11 +2765,2237 @@ export class ObjectModerationsApi {
     }
 
     /**
-     * Classifies if text is potentially harmful.
+     * Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
      * @param param the request object
      */
     public createModeration(param: ModerationsApiCreateModerationRequest, options?: ConfigurationOptions): Promise<CreateModerationResponse> {
         return this.api.createModeration(param.createModerationRequest,  options).toPromise();
+    }
+
+}
+
+import { ObservableProjectsApi } from "./ObservableAPI";
+import { ProjectsApiRequestFactory, ProjectsApiResponseProcessor} from "../apis/ProjectsApi";
+
+export interface ProjectsApiArchiveProjectRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApiarchiveProject
+     */
+    projectId: string
+}
+
+export interface ProjectsApiCreateProjectRequest {
+    /**
+     * The project create request payload.
+     * @type ProjectCreateRequest
+     * @memberof ProjectsApicreateProject
+     */
+    projectCreateRequest: ProjectCreateRequest
+}
+
+export interface ProjectsApiCreateProjectServiceAccountRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApicreateProjectServiceAccount
+     */
+    projectId: string
+    /**
+     * The project service account create request payload.
+     * @type ProjectServiceAccountCreateRequest
+     * @memberof ProjectsApicreateProjectServiceAccount
+     */
+    projectServiceAccountCreateRequest: ProjectServiceAccountCreateRequest
+}
+
+export interface ProjectsApiCreateProjectUserRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApicreateProjectUser
+     */
+    projectId: string
+    /**
+     * The project user create request payload.
+     * @type ProjectUserCreateRequest
+     * @memberof ProjectsApicreateProjectUser
+     */
+    projectUserCreateRequest: ProjectUserCreateRequest
+}
+
+export interface ProjectsApiDeleteProjectApiKeyRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApideleteProjectApiKey
+     */
+    projectId: string
+    /**
+     * The ID of the API key.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApideleteProjectApiKey
+     */
+    keyId: string
+}
+
+export interface ProjectsApiDeleteProjectServiceAccountRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApideleteProjectServiceAccount
+     */
+    projectId: string
+    /**
+     * The ID of the service account.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApideleteProjectServiceAccount
+     */
+    serviceAccountId: string
+}
+
+export interface ProjectsApiDeleteProjectUserRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApideleteProjectUser
+     */
+    projectId: string
+    /**
+     * The ID of the user.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApideleteProjectUser
+     */
+    userId: string
+}
+
+export interface ProjectsApiListProjectApiKeysRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApilistProjectApiKeys
+     */
+    projectId: string
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * Defaults to: 20
+     * @type number
+     * @memberof ProjectsApilistProjectApiKeys
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApilistProjectApiKeys
+     */
+    after?: string
+}
+
+export interface ProjectsApiListProjectRateLimitsRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApilistProjectRateLimits
+     */
+    projectId: string
+    /**
+     * A limit on the number of objects to be returned. The default is 100. 
+     * Defaults to: 100
+     * @type number
+     * @memberof ProjectsApilistProjectRateLimits
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApilistProjectRateLimits
+     */
+    after?: string
+    /**
+     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, beginning with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApilistProjectRateLimits
+     */
+    before?: string
+}
+
+export interface ProjectsApiListProjectServiceAccountsRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApilistProjectServiceAccounts
+     */
+    projectId: string
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * Defaults to: 20
+     * @type number
+     * @memberof ProjectsApilistProjectServiceAccounts
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApilistProjectServiceAccounts
+     */
+    after?: string
+}
+
+export interface ProjectsApiListProjectUsersRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApilistProjectUsers
+     */
+    projectId: string
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * Defaults to: 20
+     * @type number
+     * @memberof ProjectsApilistProjectUsers
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApilistProjectUsers
+     */
+    after?: string
+}
+
+export interface ProjectsApiListProjectsRequest {
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * Defaults to: 20
+     * @type number
+     * @memberof ProjectsApilistProjects
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApilistProjects
+     */
+    after?: string
+    /**
+     * If &#x60;true&#x60; returns all projects including those that have been &#x60;archived&#x60;. Archived projects are not included by default.
+     * Defaults to: false
+     * @type boolean
+     * @memberof ProjectsApilistProjects
+     */
+    includeArchived?: boolean
+}
+
+export interface ProjectsApiModifyProjectRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApimodifyProject
+     */
+    projectId: string
+    /**
+     * The project update request payload.
+     * @type ProjectUpdateRequest
+     * @memberof ProjectsApimodifyProject
+     */
+    projectUpdateRequest: ProjectUpdateRequest
+}
+
+export interface ProjectsApiModifyProjectUserRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApimodifyProjectUser
+     */
+    projectId: string
+    /**
+     * The ID of the user.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApimodifyProjectUser
+     */
+    userId: string
+    /**
+     * The project user update request payload.
+     * @type ProjectUserUpdateRequest
+     * @memberof ProjectsApimodifyProjectUser
+     */
+    projectUserUpdateRequest: ProjectUserUpdateRequest
+}
+
+export interface ProjectsApiRetrieveProjectRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApiretrieveProject
+     */
+    projectId: string
+}
+
+export interface ProjectsApiRetrieveProjectApiKeyRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApiretrieveProjectApiKey
+     */
+    projectId: string
+    /**
+     * The ID of the API key.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApiretrieveProjectApiKey
+     */
+    keyId: string
+}
+
+export interface ProjectsApiRetrieveProjectServiceAccountRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApiretrieveProjectServiceAccount
+     */
+    projectId: string
+    /**
+     * The ID of the service account.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApiretrieveProjectServiceAccount
+     */
+    serviceAccountId: string
+}
+
+export interface ProjectsApiRetrieveProjectUserRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApiretrieveProjectUser
+     */
+    projectId: string
+    /**
+     * The ID of the user.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApiretrieveProjectUser
+     */
+    userId: string
+}
+
+export interface ProjectsApiUpdateProjectRateLimitsRequest {
+    /**
+     * The ID of the project.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApiupdateProjectRateLimits
+     */
+    projectId: string
+    /**
+     * The ID of the rate limit.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ProjectsApiupdateProjectRateLimits
+     */
+    rateLimitId: string
+    /**
+     * The project rate limit update request payload.
+     * @type ProjectRateLimitUpdateRequest
+     * @memberof ProjectsApiupdateProjectRateLimits
+     */
+    projectRateLimitUpdateRequest: ProjectRateLimitUpdateRequest
+}
+
+export class ObjectProjectsApi {
+    private api: ObservableProjectsApi
+
+    public constructor(configuration: Configuration, requestFactory?: ProjectsApiRequestFactory, responseProcessor?: ProjectsApiResponseProcessor) {
+        this.api = new ObservableProjectsApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Archives a project in the organization. Archived projects cannot be used or updated.
+     * @param param the request object
+     */
+    public archiveProjectWithHttpInfo(param: ProjectsApiArchiveProjectRequest, options?: ConfigurationOptions): Promise<HttpInfo<Project>> {
+        return this.api.archiveProjectWithHttpInfo(param.projectId,  options).toPromise();
+    }
+
+    /**
+     * Archives a project in the organization. Archived projects cannot be used or updated.
+     * @param param the request object
+     */
+    public archiveProject(param: ProjectsApiArchiveProjectRequest, options?: ConfigurationOptions): Promise<Project> {
+        return this.api.archiveProject(param.projectId,  options).toPromise();
+    }
+
+    /**
+     * Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
+     * @param param the request object
+     */
+    public createProjectWithHttpInfo(param: ProjectsApiCreateProjectRequest, options?: ConfigurationOptions): Promise<HttpInfo<Project>> {
+        return this.api.createProjectWithHttpInfo(param.projectCreateRequest,  options).toPromise();
+    }
+
+    /**
+     * Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
+     * @param param the request object
+     */
+    public createProject(param: ProjectsApiCreateProjectRequest, options?: ConfigurationOptions): Promise<Project> {
+        return this.api.createProject(param.projectCreateRequest,  options).toPromise();
+    }
+
+    /**
+     * Creates a new service account in the project. This also returns an unredacted API key for the service account.
+     * @param param the request object
+     */
+    public createProjectServiceAccountWithHttpInfo(param: ProjectsApiCreateProjectServiceAccountRequest, options?: ConfigurationOptions): Promise<HttpInfo<ProjectServiceAccountCreateResponse>> {
+        return this.api.createProjectServiceAccountWithHttpInfo(param.projectId, param.projectServiceAccountCreateRequest,  options).toPromise();
+    }
+
+    /**
+     * Creates a new service account in the project. This also returns an unredacted API key for the service account.
+     * @param param the request object
+     */
+    public createProjectServiceAccount(param: ProjectsApiCreateProjectServiceAccountRequest, options?: ConfigurationOptions): Promise<ProjectServiceAccountCreateResponse> {
+        return this.api.createProjectServiceAccount(param.projectId, param.projectServiceAccountCreateRequest,  options).toPromise();
+    }
+
+    /**
+     * Adds a user to the project. Users must already be members of the organization to be added to a project.
+     * @param param the request object
+     */
+    public createProjectUserWithHttpInfo(param: ProjectsApiCreateProjectUserRequest, options?: ConfigurationOptions): Promise<HttpInfo<ProjectUser>> {
+        return this.api.createProjectUserWithHttpInfo(param.projectId, param.projectUserCreateRequest,  options).toPromise();
+    }
+
+    /**
+     * Adds a user to the project. Users must already be members of the organization to be added to a project.
+     * @param param the request object
+     */
+    public createProjectUser(param: ProjectsApiCreateProjectUserRequest, options?: ConfigurationOptions): Promise<ProjectUser> {
+        return this.api.createProjectUser(param.projectId, param.projectUserCreateRequest,  options).toPromise();
+    }
+
+    /**
+     * Deletes an API key from the project.
+     * @param param the request object
+     */
+    public deleteProjectApiKeyWithHttpInfo(param: ProjectsApiDeleteProjectApiKeyRequest, options?: ConfigurationOptions): Promise<HttpInfo<ProjectApiKeyDeleteResponse>> {
+        return this.api.deleteProjectApiKeyWithHttpInfo(param.projectId, param.keyId,  options).toPromise();
+    }
+
+    /**
+     * Deletes an API key from the project.
+     * @param param the request object
+     */
+    public deleteProjectApiKey(param: ProjectsApiDeleteProjectApiKeyRequest, options?: ConfigurationOptions): Promise<ProjectApiKeyDeleteResponse> {
+        return this.api.deleteProjectApiKey(param.projectId, param.keyId,  options).toPromise();
+    }
+
+    /**
+     * Deletes a service account from the project.
+     * @param param the request object
+     */
+    public deleteProjectServiceAccountWithHttpInfo(param: ProjectsApiDeleteProjectServiceAccountRequest, options?: ConfigurationOptions): Promise<HttpInfo<ProjectServiceAccountDeleteResponse>> {
+        return this.api.deleteProjectServiceAccountWithHttpInfo(param.projectId, param.serviceAccountId,  options).toPromise();
+    }
+
+    /**
+     * Deletes a service account from the project.
+     * @param param the request object
+     */
+    public deleteProjectServiceAccount(param: ProjectsApiDeleteProjectServiceAccountRequest, options?: ConfigurationOptions): Promise<ProjectServiceAccountDeleteResponse> {
+        return this.api.deleteProjectServiceAccount(param.projectId, param.serviceAccountId,  options).toPromise();
+    }
+
+    /**
+     * Deletes a user from the project.
+     * @param param the request object
+     */
+    public deleteProjectUserWithHttpInfo(param: ProjectsApiDeleteProjectUserRequest, options?: ConfigurationOptions): Promise<HttpInfo<ProjectUserDeleteResponse>> {
+        return this.api.deleteProjectUserWithHttpInfo(param.projectId, param.userId,  options).toPromise();
+    }
+
+    /**
+     * Deletes a user from the project.
+     * @param param the request object
+     */
+    public deleteProjectUser(param: ProjectsApiDeleteProjectUserRequest, options?: ConfigurationOptions): Promise<ProjectUserDeleteResponse> {
+        return this.api.deleteProjectUser(param.projectId, param.userId,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of API keys in the project.
+     * @param param the request object
+     */
+    public listProjectApiKeysWithHttpInfo(param: ProjectsApiListProjectApiKeysRequest, options?: ConfigurationOptions): Promise<HttpInfo<ProjectApiKeyListResponse>> {
+        return this.api.listProjectApiKeysWithHttpInfo(param.projectId, param.limit, param.after,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of API keys in the project.
+     * @param param the request object
+     */
+    public listProjectApiKeys(param: ProjectsApiListProjectApiKeysRequest, options?: ConfigurationOptions): Promise<ProjectApiKeyListResponse> {
+        return this.api.listProjectApiKeys(param.projectId, param.limit, param.after,  options).toPromise();
+    }
+
+    /**
+     * Returns the rate limits per model for a project.
+     * @param param the request object
+     */
+    public listProjectRateLimitsWithHttpInfo(param: ProjectsApiListProjectRateLimitsRequest, options?: ConfigurationOptions): Promise<HttpInfo<ProjectRateLimitListResponse>> {
+        return this.api.listProjectRateLimitsWithHttpInfo(param.projectId, param.limit, param.after, param.before,  options).toPromise();
+    }
+
+    /**
+     * Returns the rate limits per model for a project.
+     * @param param the request object
+     */
+    public listProjectRateLimits(param: ProjectsApiListProjectRateLimitsRequest, options?: ConfigurationOptions): Promise<ProjectRateLimitListResponse> {
+        return this.api.listProjectRateLimits(param.projectId, param.limit, param.after, param.before,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of service accounts in the project.
+     * @param param the request object
+     */
+    public listProjectServiceAccountsWithHttpInfo(param: ProjectsApiListProjectServiceAccountsRequest, options?: ConfigurationOptions): Promise<HttpInfo<ProjectServiceAccountListResponse>> {
+        return this.api.listProjectServiceAccountsWithHttpInfo(param.projectId, param.limit, param.after,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of service accounts in the project.
+     * @param param the request object
+     */
+    public listProjectServiceAccounts(param: ProjectsApiListProjectServiceAccountsRequest, options?: ConfigurationOptions): Promise<ProjectServiceAccountListResponse> {
+        return this.api.listProjectServiceAccounts(param.projectId, param.limit, param.after,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of users in the project.
+     * @param param the request object
+     */
+    public listProjectUsersWithHttpInfo(param: ProjectsApiListProjectUsersRequest, options?: ConfigurationOptions): Promise<HttpInfo<ProjectUserListResponse>> {
+        return this.api.listProjectUsersWithHttpInfo(param.projectId, param.limit, param.after,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of users in the project.
+     * @param param the request object
+     */
+    public listProjectUsers(param: ProjectsApiListProjectUsersRequest, options?: ConfigurationOptions): Promise<ProjectUserListResponse> {
+        return this.api.listProjectUsers(param.projectId, param.limit, param.after,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of projects.
+     * @param param the request object
+     */
+    public listProjectsWithHttpInfo(param: ProjectsApiListProjectsRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<ProjectListResponse>> {
+        return this.api.listProjectsWithHttpInfo(param.limit, param.after, param.includeArchived,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of projects.
+     * @param param the request object
+     */
+    public listProjects(param: ProjectsApiListProjectsRequest = {}, options?: ConfigurationOptions): Promise<ProjectListResponse> {
+        return this.api.listProjects(param.limit, param.after, param.includeArchived,  options).toPromise();
+    }
+
+    /**
+     * Modifies a project in the organization.
+     * @param param the request object
+     */
+    public modifyProjectWithHttpInfo(param: ProjectsApiModifyProjectRequest, options?: ConfigurationOptions): Promise<HttpInfo<Project>> {
+        return this.api.modifyProjectWithHttpInfo(param.projectId, param.projectUpdateRequest,  options).toPromise();
+    }
+
+    /**
+     * Modifies a project in the organization.
+     * @param param the request object
+     */
+    public modifyProject(param: ProjectsApiModifyProjectRequest, options?: ConfigurationOptions): Promise<Project> {
+        return this.api.modifyProject(param.projectId, param.projectUpdateRequest,  options).toPromise();
+    }
+
+    /**
+     * Modifies a user\'s role in the project.
+     * @param param the request object
+     */
+    public modifyProjectUserWithHttpInfo(param: ProjectsApiModifyProjectUserRequest, options?: ConfigurationOptions): Promise<HttpInfo<ProjectUser>> {
+        return this.api.modifyProjectUserWithHttpInfo(param.projectId, param.userId, param.projectUserUpdateRequest,  options).toPromise();
+    }
+
+    /**
+     * Modifies a user\'s role in the project.
+     * @param param the request object
+     */
+    public modifyProjectUser(param: ProjectsApiModifyProjectUserRequest, options?: ConfigurationOptions): Promise<ProjectUser> {
+        return this.api.modifyProjectUser(param.projectId, param.userId, param.projectUserUpdateRequest,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a project.
+     * @param param the request object
+     */
+    public retrieveProjectWithHttpInfo(param: ProjectsApiRetrieveProjectRequest, options?: ConfigurationOptions): Promise<HttpInfo<Project>> {
+        return this.api.retrieveProjectWithHttpInfo(param.projectId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a project.
+     * @param param the request object
+     */
+    public retrieveProject(param: ProjectsApiRetrieveProjectRequest, options?: ConfigurationOptions): Promise<Project> {
+        return this.api.retrieveProject(param.projectId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves an API key in the project.
+     * @param param the request object
+     */
+    public retrieveProjectApiKeyWithHttpInfo(param: ProjectsApiRetrieveProjectApiKeyRequest, options?: ConfigurationOptions): Promise<HttpInfo<ProjectApiKey>> {
+        return this.api.retrieveProjectApiKeyWithHttpInfo(param.projectId, param.keyId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves an API key in the project.
+     * @param param the request object
+     */
+    public retrieveProjectApiKey(param: ProjectsApiRetrieveProjectApiKeyRequest, options?: ConfigurationOptions): Promise<ProjectApiKey> {
+        return this.api.retrieveProjectApiKey(param.projectId, param.keyId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a service account in the project.
+     * @param param the request object
+     */
+    public retrieveProjectServiceAccountWithHttpInfo(param: ProjectsApiRetrieveProjectServiceAccountRequest, options?: ConfigurationOptions): Promise<HttpInfo<ProjectServiceAccount>> {
+        return this.api.retrieveProjectServiceAccountWithHttpInfo(param.projectId, param.serviceAccountId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a service account in the project.
+     * @param param the request object
+     */
+    public retrieveProjectServiceAccount(param: ProjectsApiRetrieveProjectServiceAccountRequest, options?: ConfigurationOptions): Promise<ProjectServiceAccount> {
+        return this.api.retrieveProjectServiceAccount(param.projectId, param.serviceAccountId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a user in the project.
+     * @param param the request object
+     */
+    public retrieveProjectUserWithHttpInfo(param: ProjectsApiRetrieveProjectUserRequest, options?: ConfigurationOptions): Promise<HttpInfo<ProjectUser>> {
+        return this.api.retrieveProjectUserWithHttpInfo(param.projectId, param.userId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a user in the project.
+     * @param param the request object
+     */
+    public retrieveProjectUser(param: ProjectsApiRetrieveProjectUserRequest, options?: ConfigurationOptions): Promise<ProjectUser> {
+        return this.api.retrieveProjectUser(param.projectId, param.userId,  options).toPromise();
+    }
+
+    /**
+     * Updates a project rate limit.
+     * @param param the request object
+     */
+    public updateProjectRateLimitsWithHttpInfo(param: ProjectsApiUpdateProjectRateLimitsRequest, options?: ConfigurationOptions): Promise<HttpInfo<ProjectRateLimit>> {
+        return this.api.updateProjectRateLimitsWithHttpInfo(param.projectId, param.rateLimitId, param.projectRateLimitUpdateRequest,  options).toPromise();
+    }
+
+    /**
+     * Updates a project rate limit.
+     * @param param the request object
+     */
+    public updateProjectRateLimits(param: ProjectsApiUpdateProjectRateLimitsRequest, options?: ConfigurationOptions): Promise<ProjectRateLimit> {
+        return this.api.updateProjectRateLimits(param.projectId, param.rateLimitId, param.projectRateLimitUpdateRequest,  options).toPromise();
+    }
+
+}
+
+import { ObservableRealtimeApi } from "./ObservableAPI";
+import { RealtimeApiRequestFactory, RealtimeApiResponseProcessor} from "../apis/RealtimeApi";
+
+export interface RealtimeApiCreateRealtimeSessionRequest {
+    /**
+     * Create an ephemeral API key with the given session configuration.
+     * @type RealtimeSessionCreateRequest
+     * @memberof RealtimeApicreateRealtimeSession
+     */
+    realtimeSessionCreateRequest: RealtimeSessionCreateRequest
+}
+
+export class ObjectRealtimeApi {
+    private api: ObservableRealtimeApi
+
+    public constructor(configuration: Configuration, requestFactory?: RealtimeApiRequestFactory, responseProcessor?: RealtimeApiResponseProcessor) {
+        this.api = new ObservableRealtimeApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API. 
+     * @param param the request object
+     */
+    public createRealtimeSessionWithHttpInfo(param: RealtimeApiCreateRealtimeSessionRequest, options?: ConfigurationOptions): Promise<HttpInfo<RealtimeSessionCreateResponse>> {
+        return this.api.createRealtimeSessionWithHttpInfo(param.realtimeSessionCreateRequest,  options).toPromise();
+    }
+
+    /**
+     * Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API. 
+     * @param param the request object
+     */
+    public createRealtimeSession(param: RealtimeApiCreateRealtimeSessionRequest, options?: ConfigurationOptions): Promise<RealtimeSessionCreateResponse> {
+        return this.api.createRealtimeSession(param.realtimeSessionCreateRequest,  options).toPromise();
+    }
+
+}
+
+import { ObservableUploadsApi } from "./ObservableAPI";
+import { UploadsApiRequestFactory, UploadsApiResponseProcessor} from "../apis/UploadsApi";
+
+export interface UploadsApiAddUploadPartRequest {
+    /**
+     * The ID of the Upload. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof UploadsApiaddUploadPart
+     */
+    uploadId: string
+    /**
+     * The chunk of bytes for this Part. 
+     * Defaults to: undefined
+     * @type HttpFile
+     * @memberof UploadsApiaddUploadPart
+     */
+    data: HttpFile
+}
+
+export interface UploadsApiCancelUploadRequest {
+    /**
+     * The ID of the Upload. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof UploadsApicancelUpload
+     */
+    uploadId: string
+}
+
+export interface UploadsApiCompleteUploadRequest {
+    /**
+     * The ID of the Upload. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof UploadsApicompleteUpload
+     */
+    uploadId: string
+    /**
+     * 
+     * @type CompleteUploadRequest
+     * @memberof UploadsApicompleteUpload
+     */
+    completeUploadRequest: CompleteUploadRequest
+}
+
+export interface UploadsApiCreateUploadRequest {
+    /**
+     * 
+     * @type CreateUploadRequest
+     * @memberof UploadsApicreateUpload
+     */
+    createUploadRequest: CreateUploadRequest
+}
+
+export class ObjectUploadsApi {
+    private api: ObservableUploadsApi
+
+    public constructor(configuration: Configuration, requestFactory?: UploadsApiRequestFactory, responseProcessor?: UploadsApiResponseProcessor) {
+        this.api = new ObservableUploadsApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Adds a [Part](/docs/api-reference/uploads/part-object) to an [Upload](/docs/api-reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api-reference/uploads/complete). 
+     * @param param the request object
+     */
+    public addUploadPartWithHttpInfo(param: UploadsApiAddUploadPartRequest, options?: ConfigurationOptions): Promise<HttpInfo<UploadPart>> {
+        return this.api.addUploadPartWithHttpInfo(param.uploadId, param.data,  options).toPromise();
+    }
+
+    /**
+     * Adds a [Part](/docs/api-reference/uploads/part-object) to an [Upload](/docs/api-reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api-reference/uploads/complete). 
+     * @param param the request object
+     */
+    public addUploadPart(param: UploadsApiAddUploadPartRequest, options?: ConfigurationOptions): Promise<UploadPart> {
+        return this.api.addUploadPart(param.uploadId, param.data,  options).toPromise();
+    }
+
+    /**
+     * Cancels the Upload. No Parts may be added after an Upload is cancelled. 
+     * @param param the request object
+     */
+    public cancelUploadWithHttpInfo(param: UploadsApiCancelUploadRequest, options?: ConfigurationOptions): Promise<HttpInfo<Upload>> {
+        return this.api.cancelUploadWithHttpInfo(param.uploadId,  options).toPromise();
+    }
+
+    /**
+     * Cancels the Upload. No Parts may be added after an Upload is cancelled. 
+     * @param param the request object
+     */
+    public cancelUpload(param: UploadsApiCancelUploadRequest, options?: ConfigurationOptions): Promise<Upload> {
+        return this.api.cancelUpload(param.uploadId,  options).toPromise();
+    }
+
+    /**
+     * Completes the [Upload](/docs/api-reference/uploads/object).   Within the returned Upload object, there is a nested [File](/docs/api-reference/files/object) object that is ready to use in the rest of the platform.  You can specify the order of the Parts by passing in an ordered list of the Part IDs.  The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed. 
+     * @param param the request object
+     */
+    public completeUploadWithHttpInfo(param: UploadsApiCompleteUploadRequest, options?: ConfigurationOptions): Promise<HttpInfo<Upload>> {
+        return this.api.completeUploadWithHttpInfo(param.uploadId, param.completeUploadRequest,  options).toPromise();
+    }
+
+    /**
+     * Completes the [Upload](/docs/api-reference/uploads/object).   Within the returned Upload object, there is a nested [File](/docs/api-reference/files/object) object that is ready to use in the rest of the platform.  You can specify the order of the Parts by passing in an ordered list of the Part IDs.  The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed. 
+     * @param param the request object
+     */
+    public completeUpload(param: UploadsApiCompleteUploadRequest, options?: ConfigurationOptions): Promise<Upload> {
+        return this.api.completeUpload(param.uploadId, param.completeUploadRequest,  options).toPromise();
+    }
+
+    /**
+     * Creates an intermediate [Upload](/docs/api-reference/uploads/object) object that you can add [Parts](/docs/api-reference/uploads/part-object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it.  Once you complete the Upload, we will create a [File](/docs/api-reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object.  For certain `purpose`s, the correct `mime_type` must be specified. Please refer to documentation for the supported MIME types for your use case: - [Assistants](/docs/assistants/tools/file-search#supported-files)  For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api-reference/files/create). 
+     * @param param the request object
+     */
+    public createUploadWithHttpInfo(param: UploadsApiCreateUploadRequest, options?: ConfigurationOptions): Promise<HttpInfo<Upload>> {
+        return this.api.createUploadWithHttpInfo(param.createUploadRequest,  options).toPromise();
+    }
+
+    /**
+     * Creates an intermediate [Upload](/docs/api-reference/uploads/object) object that you can add [Parts](/docs/api-reference/uploads/part-object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it.  Once you complete the Upload, we will create a [File](/docs/api-reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object.  For certain `purpose`s, the correct `mime_type` must be specified. Please refer to documentation for the supported MIME types for your use case: - [Assistants](/docs/assistants/tools/file-search#supported-files)  For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api-reference/files/create). 
+     * @param param the request object
+     */
+    public createUpload(param: UploadsApiCreateUploadRequest, options?: ConfigurationOptions): Promise<Upload> {
+        return this.api.createUpload(param.createUploadRequest,  options).toPromise();
+    }
+
+}
+
+import { ObservableUsageApi } from "./ObservableAPI";
+import { UsageApiRequestFactory, UsageApiResponseProcessor} from "../apis/UsageApi";
+
+export interface UsageApiUsageAudioSpeechesRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageAudioSpeeches
+     */
+    startTime: number
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageAudioSpeeches
+     */
+    endTime?: number
+    /**
+     * Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * Defaults to: &#39;1d&#39;
+     * @type &#39;1m&#39; | &#39;1h&#39; | &#39;1d&#39;
+     * @memberof UsageApiusageAudioSpeeches
+     */
+    bucketWidth?: '1m' | '1h' | '1d'
+    /**
+     * Return only usage for these projects.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageAudioSpeeches
+     */
+    projectIds?: Array<string>
+    /**
+     * Return only usage for these users.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageAudioSpeeches
+     */
+    userIds?: Array<string>
+    /**
+     * Return only usage for these API keys.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageAudioSpeeches
+     */
+    apiKeyIds?: Array<string>
+    /**
+     * Return only usage for these models.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageAudioSpeeches
+     */
+    models?: Array<string>
+    /**
+     * Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them.
+     * Defaults to: undefined
+     * @type Array&lt;&#39;project_id&#39; | &#39;user_id&#39; | &#39;api_key_id&#39; | &#39;model&#39;&gt;
+     * @memberof UsageApiusageAudioSpeeches
+     */
+    groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model'>
+    /**
+     * Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageAudioSpeeches
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     * Defaults to: undefined
+     * @type string
+     * @memberof UsageApiusageAudioSpeeches
+     */
+    page?: string
+}
+
+export interface UsageApiUsageAudioTranscriptionsRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageAudioTranscriptions
+     */
+    startTime: number
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageAudioTranscriptions
+     */
+    endTime?: number
+    /**
+     * Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * Defaults to: &#39;1d&#39;
+     * @type &#39;1m&#39; | &#39;1h&#39; | &#39;1d&#39;
+     * @memberof UsageApiusageAudioTranscriptions
+     */
+    bucketWidth?: '1m' | '1h' | '1d'
+    /**
+     * Return only usage for these projects.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageAudioTranscriptions
+     */
+    projectIds?: Array<string>
+    /**
+     * Return only usage for these users.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageAudioTranscriptions
+     */
+    userIds?: Array<string>
+    /**
+     * Return only usage for these API keys.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageAudioTranscriptions
+     */
+    apiKeyIds?: Array<string>
+    /**
+     * Return only usage for these models.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageAudioTranscriptions
+     */
+    models?: Array<string>
+    /**
+     * Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them.
+     * Defaults to: undefined
+     * @type Array&lt;&#39;project_id&#39; | &#39;user_id&#39; | &#39;api_key_id&#39; | &#39;model&#39;&gt;
+     * @memberof UsageApiusageAudioTranscriptions
+     */
+    groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model'>
+    /**
+     * Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageAudioTranscriptions
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     * Defaults to: undefined
+     * @type string
+     * @memberof UsageApiusageAudioTranscriptions
+     */
+    page?: string
+}
+
+export interface UsageApiUsageCodeInterpreterSessionsRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageCodeInterpreterSessions
+     */
+    startTime: number
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageCodeInterpreterSessions
+     */
+    endTime?: number
+    /**
+     * Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * Defaults to: &#39;1d&#39;
+     * @type &#39;1m&#39; | &#39;1h&#39; | &#39;1d&#39;
+     * @memberof UsageApiusageCodeInterpreterSessions
+     */
+    bucketWidth?: '1m' | '1h' | '1d'
+    /**
+     * Return only usage for these projects.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageCodeInterpreterSessions
+     */
+    projectIds?: Array<string>
+    /**
+     * Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;.
+     * Defaults to: undefined
+     * @type Array&lt;&#39;project_id&#39;&gt;
+     * @memberof UsageApiusageCodeInterpreterSessions
+     */
+    groupBy?: Array<'project_id'>
+    /**
+     * Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageCodeInterpreterSessions
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     * Defaults to: undefined
+     * @type string
+     * @memberof UsageApiusageCodeInterpreterSessions
+     */
+    page?: string
+}
+
+export interface UsageApiUsageCompletionsRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageCompletions
+     */
+    startTime: number
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageCompletions
+     */
+    endTime?: number
+    /**
+     * Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * Defaults to: &#39;1d&#39;
+     * @type &#39;1m&#39; | &#39;1h&#39; | &#39;1d&#39;
+     * @memberof UsageApiusageCompletions
+     */
+    bucketWidth?: '1m' | '1h' | '1d'
+    /**
+     * Return only usage for these projects.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageCompletions
+     */
+    projectIds?: Array<string>
+    /**
+     * Return only usage for these users.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageCompletions
+     */
+    userIds?: Array<string>
+    /**
+     * Return only usage for these API keys.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageCompletions
+     */
+    apiKeyIds?: Array<string>
+    /**
+     * Return only usage for these models.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageCompletions
+     */
+    models?: Array<string>
+    /**
+     * If &#x60;true&#x60;, return batch jobs only. If &#x60;false&#x60;, return non-batch jobs only. By default, return both. 
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof UsageApiusageCompletions
+     */
+    batch?: boolean
+    /**
+     * Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60;, &#x60;batch&#x60; or any combination of them.
+     * Defaults to: undefined
+     * @type Array&lt;&#39;project_id&#39; | &#39;user_id&#39; | &#39;api_key_id&#39; | &#39;model&#39; | &#39;batch&#39;&gt;
+     * @memberof UsageApiusageCompletions
+     */
+    groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model' | 'batch'>
+    /**
+     * Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageCompletions
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     * Defaults to: undefined
+     * @type string
+     * @memberof UsageApiusageCompletions
+     */
+    page?: string
+}
+
+export interface UsageApiUsageCostsRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageCosts
+     */
+    startTime: number
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageCosts
+     */
+    endTime?: number
+    /**
+     * Width of each time bucket in response. Currently only &#x60;1d&#x60; is supported, default to &#x60;1d&#x60;.
+     * Defaults to: &#39;1d&#39;
+     * @type &#39;1d&#39;
+     * @memberof UsageApiusageCosts
+     */
+    bucketWidth?: '1d'
+    /**
+     * Return only costs for these projects.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageCosts
+     */
+    projectIds?: Array<string>
+    /**
+     * Group the costs by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;line_item&#x60; and any combination of them.
+     * Defaults to: undefined
+     * @type Array&lt;&#39;project_id&#39; | &#39;line_item&#39;&gt;
+     * @memberof UsageApiusageCosts
+     */
+    groupBy?: Array<'project_id' | 'line_item'>
+    /**
+     * A limit on the number of buckets to be returned. Limit can range between 1 and 180, and the default is 7. 
+     * Defaults to: 7
+     * @type number
+     * @memberof UsageApiusageCosts
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     * Defaults to: undefined
+     * @type string
+     * @memberof UsageApiusageCosts
+     */
+    page?: string
+}
+
+export interface UsageApiUsageEmbeddingsRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageEmbeddings
+     */
+    startTime: number
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageEmbeddings
+     */
+    endTime?: number
+    /**
+     * Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * Defaults to: &#39;1d&#39;
+     * @type &#39;1m&#39; | &#39;1h&#39; | &#39;1d&#39;
+     * @memberof UsageApiusageEmbeddings
+     */
+    bucketWidth?: '1m' | '1h' | '1d'
+    /**
+     * Return only usage for these projects.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageEmbeddings
+     */
+    projectIds?: Array<string>
+    /**
+     * Return only usage for these users.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageEmbeddings
+     */
+    userIds?: Array<string>
+    /**
+     * Return only usage for these API keys.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageEmbeddings
+     */
+    apiKeyIds?: Array<string>
+    /**
+     * Return only usage for these models.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageEmbeddings
+     */
+    models?: Array<string>
+    /**
+     * Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them.
+     * Defaults to: undefined
+     * @type Array&lt;&#39;project_id&#39; | &#39;user_id&#39; | &#39;api_key_id&#39; | &#39;model&#39;&gt;
+     * @memberof UsageApiusageEmbeddings
+     */
+    groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model'>
+    /**
+     * Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageEmbeddings
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     * Defaults to: undefined
+     * @type string
+     * @memberof UsageApiusageEmbeddings
+     */
+    page?: string
+}
+
+export interface UsageApiUsageImagesRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageImages
+     */
+    startTime: number
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageImages
+     */
+    endTime?: number
+    /**
+     * Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * Defaults to: &#39;1d&#39;
+     * @type &#39;1m&#39; | &#39;1h&#39; | &#39;1d&#39;
+     * @memberof UsageApiusageImages
+     */
+    bucketWidth?: '1m' | '1h' | '1d'
+    /**
+     * Return only usages for these sources. Possible values are &#x60;image.generation&#x60;, &#x60;image.edit&#x60;, &#x60;image.variation&#x60; or any combination of them.
+     * Defaults to: undefined
+     * @type Array&lt;&#39;image.generation&#39; | &#39;image.edit&#39; | &#39;image.variation&#39;&gt;
+     * @memberof UsageApiusageImages
+     */
+    sources?: Array<'image.generation' | 'image.edit' | 'image.variation'>
+    /**
+     * Return only usages for these image sizes. Possible values are &#x60;256x256&#x60;, &#x60;512x512&#x60;, &#x60;1024x1024&#x60;, &#x60;1792x1792&#x60;, &#x60;1024x1792&#x60; or any combination of them.
+     * Defaults to: undefined
+     * @type Array&lt;&#39;256x256&#39; | &#39;512x512&#39; | &#39;1024x1024&#39; | &#39;1792x1792&#39; | &#39;1024x1792&#39;&gt;
+     * @memberof UsageApiusageImages
+     */
+    sizes?: Array<'256x256' | '512x512' | '1024x1024' | '1792x1792' | '1024x1792'>
+    /**
+     * Return only usage for these projects.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageImages
+     */
+    projectIds?: Array<string>
+    /**
+     * Return only usage for these users.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageImages
+     */
+    userIds?: Array<string>
+    /**
+     * Return only usage for these API keys.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageImages
+     */
+    apiKeyIds?: Array<string>
+    /**
+     * Return only usage for these models.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageImages
+     */
+    models?: Array<string>
+    /**
+     * Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60;, &#x60;size&#x60;, &#x60;source&#x60; or any combination of them.
+     * Defaults to: undefined
+     * @type Array&lt;&#39;project_id&#39; | &#39;user_id&#39; | &#39;api_key_id&#39; | &#39;model&#39; | &#39;size&#39; | &#39;source&#39;&gt;
+     * @memberof UsageApiusageImages
+     */
+    groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model' | 'size' | 'source'>
+    /**
+     * Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageImages
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     * Defaults to: undefined
+     * @type string
+     * @memberof UsageApiusageImages
+     */
+    page?: string
+}
+
+export interface UsageApiUsageModerationsRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageModerations
+     */
+    startTime: number
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageModerations
+     */
+    endTime?: number
+    /**
+     * Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * Defaults to: &#39;1d&#39;
+     * @type &#39;1m&#39; | &#39;1h&#39; | &#39;1d&#39;
+     * @memberof UsageApiusageModerations
+     */
+    bucketWidth?: '1m' | '1h' | '1d'
+    /**
+     * Return only usage for these projects.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageModerations
+     */
+    projectIds?: Array<string>
+    /**
+     * Return only usage for these users.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageModerations
+     */
+    userIds?: Array<string>
+    /**
+     * Return only usage for these API keys.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageModerations
+     */
+    apiKeyIds?: Array<string>
+    /**
+     * Return only usage for these models.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageModerations
+     */
+    models?: Array<string>
+    /**
+     * Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them.
+     * Defaults to: undefined
+     * @type Array&lt;&#39;project_id&#39; | &#39;user_id&#39; | &#39;api_key_id&#39; | &#39;model&#39;&gt;
+     * @memberof UsageApiusageModerations
+     */
+    groupBy?: Array<'project_id' | 'user_id' | 'api_key_id' | 'model'>
+    /**
+     * Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageModerations
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     * Defaults to: undefined
+     * @type string
+     * @memberof UsageApiusageModerations
+     */
+    page?: string
+}
+
+export interface UsageApiUsageVectorStoresRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageVectorStores
+     */
+    startTime: number
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageVectorStores
+     */
+    endTime?: number
+    /**
+     * Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;.
+     * Defaults to: &#39;1d&#39;
+     * @type &#39;1m&#39; | &#39;1h&#39; | &#39;1d&#39;
+     * @memberof UsageApiusageVectorStores
+     */
+    bucketWidth?: '1m' | '1h' | '1d'
+    /**
+     * Return only usage for these projects.
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof UsageApiusageVectorStores
+     */
+    projectIds?: Array<string>
+    /**
+     * Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;.
+     * Defaults to: undefined
+     * @type Array&lt;&#39;project_id&#39;&gt;
+     * @memberof UsageApiusageVectorStores
+     */
+    groupBy?: Array<'project_id'>
+    /**
+     * Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440 
+     * Defaults to: undefined
+     * @type number
+     * @memberof UsageApiusageVectorStores
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response.
+     * Defaults to: undefined
+     * @type string
+     * @memberof UsageApiusageVectorStores
+     */
+    page?: string
+}
+
+export class ObjectUsageApi {
+    private api: ObservableUsageApi
+
+    public constructor(configuration: Configuration, requestFactory?: UsageApiRequestFactory, responseProcessor?: UsageApiResponseProcessor) {
+        this.api = new ObservableUsageApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Get audio speeches usage details for the organization.
+     * @param param the request object
+     */
+    public usageAudioSpeechesWithHttpInfo(param: UsageApiUsageAudioSpeechesRequest, options?: ConfigurationOptions): Promise<HttpInfo<UsageResponse>> {
+        return this.api.usageAudioSpeechesWithHttpInfo(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.userIds, param.apiKeyIds, param.models, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get audio speeches usage details for the organization.
+     * @param param the request object
+     */
+    public usageAudioSpeeches(param: UsageApiUsageAudioSpeechesRequest, options?: ConfigurationOptions): Promise<UsageResponse> {
+        return this.api.usageAudioSpeeches(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.userIds, param.apiKeyIds, param.models, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get audio transcriptions usage details for the organization.
+     * @param param the request object
+     */
+    public usageAudioTranscriptionsWithHttpInfo(param: UsageApiUsageAudioTranscriptionsRequest, options?: ConfigurationOptions): Promise<HttpInfo<UsageResponse>> {
+        return this.api.usageAudioTranscriptionsWithHttpInfo(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.userIds, param.apiKeyIds, param.models, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get audio transcriptions usage details for the organization.
+     * @param param the request object
+     */
+    public usageAudioTranscriptions(param: UsageApiUsageAudioTranscriptionsRequest, options?: ConfigurationOptions): Promise<UsageResponse> {
+        return this.api.usageAudioTranscriptions(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.userIds, param.apiKeyIds, param.models, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get code interpreter sessions usage details for the organization.
+     * @param param the request object
+     */
+    public usageCodeInterpreterSessionsWithHttpInfo(param: UsageApiUsageCodeInterpreterSessionsRequest, options?: ConfigurationOptions): Promise<HttpInfo<UsageResponse>> {
+        return this.api.usageCodeInterpreterSessionsWithHttpInfo(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get code interpreter sessions usage details for the organization.
+     * @param param the request object
+     */
+    public usageCodeInterpreterSessions(param: UsageApiUsageCodeInterpreterSessionsRequest, options?: ConfigurationOptions): Promise<UsageResponse> {
+        return this.api.usageCodeInterpreterSessions(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get completions usage details for the organization.
+     * @param param the request object
+     */
+    public usageCompletionsWithHttpInfo(param: UsageApiUsageCompletionsRequest, options?: ConfigurationOptions): Promise<HttpInfo<UsageResponse>> {
+        return this.api.usageCompletionsWithHttpInfo(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.userIds, param.apiKeyIds, param.models, param.batch, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get completions usage details for the organization.
+     * @param param the request object
+     */
+    public usageCompletions(param: UsageApiUsageCompletionsRequest, options?: ConfigurationOptions): Promise<UsageResponse> {
+        return this.api.usageCompletions(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.userIds, param.apiKeyIds, param.models, param.batch, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get costs details for the organization.
+     * @param param the request object
+     */
+    public usageCostsWithHttpInfo(param: UsageApiUsageCostsRequest, options?: ConfigurationOptions): Promise<HttpInfo<UsageResponse>> {
+        return this.api.usageCostsWithHttpInfo(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get costs details for the organization.
+     * @param param the request object
+     */
+    public usageCosts(param: UsageApiUsageCostsRequest, options?: ConfigurationOptions): Promise<UsageResponse> {
+        return this.api.usageCosts(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get embeddings usage details for the organization.
+     * @param param the request object
+     */
+    public usageEmbeddingsWithHttpInfo(param: UsageApiUsageEmbeddingsRequest, options?: ConfigurationOptions): Promise<HttpInfo<UsageResponse>> {
+        return this.api.usageEmbeddingsWithHttpInfo(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.userIds, param.apiKeyIds, param.models, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get embeddings usage details for the organization.
+     * @param param the request object
+     */
+    public usageEmbeddings(param: UsageApiUsageEmbeddingsRequest, options?: ConfigurationOptions): Promise<UsageResponse> {
+        return this.api.usageEmbeddings(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.userIds, param.apiKeyIds, param.models, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get images usage details for the organization.
+     * @param param the request object
+     */
+    public usageImagesWithHttpInfo(param: UsageApiUsageImagesRequest, options?: ConfigurationOptions): Promise<HttpInfo<UsageResponse>> {
+        return this.api.usageImagesWithHttpInfo(param.startTime, param.endTime, param.bucketWidth, param.sources, param.sizes, param.projectIds, param.userIds, param.apiKeyIds, param.models, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get images usage details for the organization.
+     * @param param the request object
+     */
+    public usageImages(param: UsageApiUsageImagesRequest, options?: ConfigurationOptions): Promise<UsageResponse> {
+        return this.api.usageImages(param.startTime, param.endTime, param.bucketWidth, param.sources, param.sizes, param.projectIds, param.userIds, param.apiKeyIds, param.models, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get moderations usage details for the organization.
+     * @param param the request object
+     */
+    public usageModerationsWithHttpInfo(param: UsageApiUsageModerationsRequest, options?: ConfigurationOptions): Promise<HttpInfo<UsageResponse>> {
+        return this.api.usageModerationsWithHttpInfo(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.userIds, param.apiKeyIds, param.models, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get moderations usage details for the organization.
+     * @param param the request object
+     */
+    public usageModerations(param: UsageApiUsageModerationsRequest, options?: ConfigurationOptions): Promise<UsageResponse> {
+        return this.api.usageModerations(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.userIds, param.apiKeyIds, param.models, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get vector stores usage details for the organization.
+     * @param param the request object
+     */
+    public usageVectorStoresWithHttpInfo(param: UsageApiUsageVectorStoresRequest, options?: ConfigurationOptions): Promise<HttpInfo<UsageResponse>> {
+        return this.api.usageVectorStoresWithHttpInfo(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+    /**
+     * Get vector stores usage details for the organization.
+     * @param param the request object
+     */
+    public usageVectorStores(param: UsageApiUsageVectorStoresRequest, options?: ConfigurationOptions): Promise<UsageResponse> {
+        return this.api.usageVectorStores(param.startTime, param.endTime, param.bucketWidth, param.projectIds, param.groupBy, param.limit, param.page,  options).toPromise();
+    }
+
+}
+
+import { ObservableUsersApi } from "./ObservableAPI";
+import { UsersApiRequestFactory, UsersApiResponseProcessor} from "../apis/UsersApi";
+
+export interface UsersApiDeleteUserRequest {
+    /**
+     * The ID of the user.
+     * Defaults to: undefined
+     * @type string
+     * @memberof UsersApideleteUser
+     */
+    userId: string
+}
+
+export interface UsersApiListUsersRequest {
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * Defaults to: 20
+     * @type number
+     * @memberof UsersApilistUsers
+     */
+    limit?: number
+    /**
+     * A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof UsersApilistUsers
+     */
+    after?: string
+}
+
+export interface UsersApiModifyUserRequest {
+    /**
+     * The ID of the user.
+     * Defaults to: undefined
+     * @type string
+     * @memberof UsersApimodifyUser
+     */
+    userId: string
+    /**
+     * The new user role to modify. This must be one of &#x60;owner&#x60; or &#x60;member&#x60;.
+     * @type UserRoleUpdateRequest
+     * @memberof UsersApimodifyUser
+     */
+    userRoleUpdateRequest: UserRoleUpdateRequest
+}
+
+export interface UsersApiRetrieveUserRequest {
+    /**
+     * The ID of the user.
+     * Defaults to: undefined
+     * @type string
+     * @memberof UsersApiretrieveUser
+     */
+    userId: string
+}
+
+export class ObjectUsersApi {
+    private api: ObservableUsersApi
+
+    public constructor(configuration: Configuration, requestFactory?: UsersApiRequestFactory, responseProcessor?: UsersApiResponseProcessor) {
+        this.api = new ObservableUsersApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Deletes a user from the organization.
+     * @param param the request object
+     */
+    public deleteUserWithHttpInfo(param: UsersApiDeleteUserRequest, options?: ConfigurationOptions): Promise<HttpInfo<UserDeleteResponse>> {
+        return this.api.deleteUserWithHttpInfo(param.userId,  options).toPromise();
+    }
+
+    /**
+     * Deletes a user from the organization.
+     * @param param the request object
+     */
+    public deleteUser(param: UsersApiDeleteUserRequest, options?: ConfigurationOptions): Promise<UserDeleteResponse> {
+        return this.api.deleteUser(param.userId,  options).toPromise();
+    }
+
+    /**
+     * Lists all of the users in the organization.
+     * @param param the request object
+     */
+    public listUsersWithHttpInfo(param: UsersApiListUsersRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<UserListResponse>> {
+        return this.api.listUsersWithHttpInfo(param.limit, param.after,  options).toPromise();
+    }
+
+    /**
+     * Lists all of the users in the organization.
+     * @param param the request object
+     */
+    public listUsers(param: UsersApiListUsersRequest = {}, options?: ConfigurationOptions): Promise<UserListResponse> {
+        return this.api.listUsers(param.limit, param.after,  options).toPromise();
+    }
+
+    /**
+     * Modifies a user\'s role in the organization.
+     * @param param the request object
+     */
+    public modifyUserWithHttpInfo(param: UsersApiModifyUserRequest, options?: ConfigurationOptions): Promise<HttpInfo<User>> {
+        return this.api.modifyUserWithHttpInfo(param.userId, param.userRoleUpdateRequest,  options).toPromise();
+    }
+
+    /**
+     * Modifies a user\'s role in the organization.
+     * @param param the request object
+     */
+    public modifyUser(param: UsersApiModifyUserRequest, options?: ConfigurationOptions): Promise<User> {
+        return this.api.modifyUser(param.userId, param.userRoleUpdateRequest,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a user by their identifier.
+     * @param param the request object
+     */
+    public retrieveUserWithHttpInfo(param: UsersApiRetrieveUserRequest, options?: ConfigurationOptions): Promise<HttpInfo<User>> {
+        return this.api.retrieveUserWithHttpInfo(param.userId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a user by their identifier.
+     * @param param the request object
+     */
+    public retrieveUser(param: UsersApiRetrieveUserRequest, options?: ConfigurationOptions): Promise<User> {
+        return this.api.retrieveUser(param.userId,  options).toPromise();
+    }
+
+}
+
+import { ObservableVectorStoresApi } from "./ObservableAPI";
+import { VectorStoresApiRequestFactory, VectorStoresApiResponseProcessor} from "../apis/VectorStoresApi";
+
+export interface VectorStoresApiCancelVectorStoreFileBatchRequest {
+    /**
+     * The ID of the vector store that the file batch belongs to.
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApicancelVectorStoreFileBatch
+     */
+    vectorStoreId: string
+    /**
+     * The ID of the file batch to cancel.
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApicancelVectorStoreFileBatch
+     */
+    batchId: string
+}
+
+export interface VectorStoresApiCreateVectorStoreRequest {
+    /**
+     * 
+     * @type CreateVectorStoreRequest
+     * @memberof VectorStoresApicreateVectorStore
+     */
+    createVectorStoreRequest: CreateVectorStoreRequest
+}
+
+export interface VectorStoresApiCreateVectorStoreFileRequest {
+    /**
+     * The ID of the vector store for which to create a File. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApicreateVectorStoreFile
+     */
+    vectorStoreId: string
+    /**
+     * 
+     * @type CreateVectorStoreFileRequest
+     * @memberof VectorStoresApicreateVectorStoreFile
+     */
+    createVectorStoreFileRequest: CreateVectorStoreFileRequest
+}
+
+export interface VectorStoresApiCreateVectorStoreFileBatchRequest {
+    /**
+     * The ID of the vector store for which to create a File Batch. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApicreateVectorStoreFileBatch
+     */
+    vectorStoreId: string
+    /**
+     * 
+     * @type CreateVectorStoreFileBatchRequest
+     * @memberof VectorStoresApicreateVectorStoreFileBatch
+     */
+    createVectorStoreFileBatchRequest: CreateVectorStoreFileBatchRequest
+}
+
+export interface VectorStoresApiDeleteVectorStoreRequest {
+    /**
+     * The ID of the vector store to delete.
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApideleteVectorStore
+     */
+    vectorStoreId: string
+}
+
+export interface VectorStoresApiDeleteVectorStoreFileRequest {
+    /**
+     * The ID of the vector store that the file belongs to.
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApideleteVectorStoreFile
+     */
+    vectorStoreId: string
+    /**
+     * The ID of the file to delete.
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApideleteVectorStoreFile
+     */
+    fileId: string
+}
+
+export interface VectorStoresApiGetVectorStoreRequest {
+    /**
+     * The ID of the vector store to retrieve.
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApigetVectorStore
+     */
+    vectorStoreId: string
+}
+
+export interface VectorStoresApiGetVectorStoreFileRequest {
+    /**
+     * The ID of the vector store that the file belongs to.
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApigetVectorStoreFile
+     */
+    vectorStoreId: string
+    /**
+     * The ID of the file being retrieved.
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApigetVectorStoreFile
+     */
+    fileId: string
+}
+
+export interface VectorStoresApiGetVectorStoreFileBatchRequest {
+    /**
+     * The ID of the vector store that the file batch belongs to.
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApigetVectorStoreFileBatch
+     */
+    vectorStoreId: string
+    /**
+     * The ID of the file batch being retrieved.
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApigetVectorStoreFileBatch
+     */
+    batchId: string
+}
+
+export interface VectorStoresApiListFilesInVectorStoreBatchRequest {
+    /**
+     * The ID of the vector store that the files belong to.
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApilistFilesInVectorStoreBatch
+     */
+    vectorStoreId: string
+    /**
+     * The ID of the file batch that the files belong to.
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApilistFilesInVectorStoreBatch
+     */
+    batchId: string
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * Defaults to: 20
+     * @type number
+     * @memberof VectorStoresApilistFilesInVectorStoreBatch
+     */
+    limit?: number
+    /**
+     * Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * Defaults to: &#39;desc&#39;
+     * @type &#39;asc&#39; | &#39;desc&#39;
+     * @memberof VectorStoresApilistFilesInVectorStoreBatch
+     */
+    order?: 'asc' | 'desc'
+    /**
+     * A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApilistFilesInVectorStoreBatch
+     */
+    after?: string
+    /**
+     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApilistFilesInVectorStoreBatch
+     */
+    before?: string
+    /**
+     * Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;.
+     * Defaults to: undefined
+     * @type &#39;in_progress&#39; | &#39;completed&#39; | &#39;failed&#39; | &#39;cancelled&#39;
+     * @memberof VectorStoresApilistFilesInVectorStoreBatch
+     */
+    filter?: 'in_progress' | 'completed' | 'failed' | 'cancelled'
+}
+
+export interface VectorStoresApiListVectorStoreFilesRequest {
+    /**
+     * The ID of the vector store that the files belong to.
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApilistVectorStoreFiles
+     */
+    vectorStoreId: string
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * Defaults to: 20
+     * @type number
+     * @memberof VectorStoresApilistVectorStoreFiles
+     */
+    limit?: number
+    /**
+     * Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * Defaults to: &#39;desc&#39;
+     * @type &#39;asc&#39; | &#39;desc&#39;
+     * @memberof VectorStoresApilistVectorStoreFiles
+     */
+    order?: 'asc' | 'desc'
+    /**
+     * A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApilistVectorStoreFiles
+     */
+    after?: string
+    /**
+     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApilistVectorStoreFiles
+     */
+    before?: string
+    /**
+     * Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;.
+     * Defaults to: undefined
+     * @type &#39;in_progress&#39; | &#39;completed&#39; | &#39;failed&#39; | &#39;cancelled&#39;
+     * @memberof VectorStoresApilistVectorStoreFiles
+     */
+    filter?: 'in_progress' | 'completed' | 'failed' | 'cancelled'
+}
+
+export interface VectorStoresApiListVectorStoresRequest {
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
+     * Defaults to: 20
+     * @type number
+     * @memberof VectorStoresApilistVectorStores
+     */
+    limit?: number
+    /**
+     * Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+     * Defaults to: &#39;desc&#39;
+     * @type &#39;asc&#39; | &#39;desc&#39;
+     * @memberof VectorStoresApilistVectorStores
+     */
+    order?: 'asc' | 'desc'
+    /**
+     * A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApilistVectorStores
+     */
+    after?: string
+    /**
+     * A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApilistVectorStores
+     */
+    before?: string
+}
+
+export interface VectorStoresApiModifyVectorStoreRequest {
+    /**
+     * The ID of the vector store to modify.
+     * Defaults to: undefined
+     * @type string
+     * @memberof VectorStoresApimodifyVectorStore
+     */
+    vectorStoreId: string
+    /**
+     * 
+     * @type UpdateVectorStoreRequest
+     * @memberof VectorStoresApimodifyVectorStore
+     */
+    updateVectorStoreRequest: UpdateVectorStoreRequest
+}
+
+export class ObjectVectorStoresApi {
+    private api: ObservableVectorStoresApi
+
+    public constructor(configuration: Configuration, requestFactory?: VectorStoresApiRequestFactory, responseProcessor?: VectorStoresApiResponseProcessor) {
+        this.api = new ObservableVectorStoresApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+     * @param param the request object
+     */
+    public cancelVectorStoreFileBatchWithHttpInfo(param: VectorStoresApiCancelVectorStoreFileBatchRequest, options?: ConfigurationOptions): Promise<HttpInfo<VectorStoreFileBatchObject>> {
+        return this.api.cancelVectorStoreFileBatchWithHttpInfo(param.vectorStoreId, param.batchId,  options).toPromise();
+    }
+
+    /**
+     * Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+     * @param param the request object
+     */
+    public cancelVectorStoreFileBatch(param: VectorStoresApiCancelVectorStoreFileBatchRequest, options?: ConfigurationOptions): Promise<VectorStoreFileBatchObject> {
+        return this.api.cancelVectorStoreFileBatch(param.vectorStoreId, param.batchId,  options).toPromise();
+    }
+
+    /**
+     * Create a vector store.
+     * @param param the request object
+     */
+    public createVectorStoreWithHttpInfo(param: VectorStoresApiCreateVectorStoreRequest, options?: ConfigurationOptions): Promise<HttpInfo<VectorStoreObject>> {
+        return this.api.createVectorStoreWithHttpInfo(param.createVectorStoreRequest,  options).toPromise();
+    }
+
+    /**
+     * Create a vector store.
+     * @param param the request object
+     */
+    public createVectorStore(param: VectorStoresApiCreateVectorStoreRequest, options?: ConfigurationOptions): Promise<VectorStoreObject> {
+        return this.api.createVectorStore(param.createVectorStoreRequest,  options).toPromise();
+    }
+
+    /**
+     * Create a vector store file by attaching a [File](/docs/api-reference/files) to a [vector store](/docs/api-reference/vector-stores/object).
+     * @param param the request object
+     */
+    public createVectorStoreFileWithHttpInfo(param: VectorStoresApiCreateVectorStoreFileRequest, options?: ConfigurationOptions): Promise<HttpInfo<VectorStoreFileObject>> {
+        return this.api.createVectorStoreFileWithHttpInfo(param.vectorStoreId, param.createVectorStoreFileRequest,  options).toPromise();
+    }
+
+    /**
+     * Create a vector store file by attaching a [File](/docs/api-reference/files) to a [vector store](/docs/api-reference/vector-stores/object).
+     * @param param the request object
+     */
+    public createVectorStoreFile(param: VectorStoresApiCreateVectorStoreFileRequest, options?: ConfigurationOptions): Promise<VectorStoreFileObject> {
+        return this.api.createVectorStoreFile(param.vectorStoreId, param.createVectorStoreFileRequest,  options).toPromise();
+    }
+
+    /**
+     * Create a vector store file batch.
+     * @param param the request object
+     */
+    public createVectorStoreFileBatchWithHttpInfo(param: VectorStoresApiCreateVectorStoreFileBatchRequest, options?: ConfigurationOptions): Promise<HttpInfo<VectorStoreFileBatchObject>> {
+        return this.api.createVectorStoreFileBatchWithHttpInfo(param.vectorStoreId, param.createVectorStoreFileBatchRequest,  options).toPromise();
+    }
+
+    /**
+     * Create a vector store file batch.
+     * @param param the request object
+     */
+    public createVectorStoreFileBatch(param: VectorStoresApiCreateVectorStoreFileBatchRequest, options?: ConfigurationOptions): Promise<VectorStoreFileBatchObject> {
+        return this.api.createVectorStoreFileBatch(param.vectorStoreId, param.createVectorStoreFileBatchRequest,  options).toPromise();
+    }
+
+    /**
+     * Delete a vector store.
+     * @param param the request object
+     */
+    public deleteVectorStoreWithHttpInfo(param: VectorStoresApiDeleteVectorStoreRequest, options?: ConfigurationOptions): Promise<HttpInfo<DeleteVectorStoreResponse>> {
+        return this.api.deleteVectorStoreWithHttpInfo(param.vectorStoreId,  options).toPromise();
+    }
+
+    /**
+     * Delete a vector store.
+     * @param param the request object
+     */
+    public deleteVectorStore(param: VectorStoresApiDeleteVectorStoreRequest, options?: ConfigurationOptions): Promise<DeleteVectorStoreResponse> {
+        return this.api.deleteVectorStore(param.vectorStoreId,  options).toPromise();
+    }
+
+    /**
+     * Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api-reference/files/delete) endpoint.
+     * @param param the request object
+     */
+    public deleteVectorStoreFileWithHttpInfo(param: VectorStoresApiDeleteVectorStoreFileRequest, options?: ConfigurationOptions): Promise<HttpInfo<DeleteVectorStoreFileResponse>> {
+        return this.api.deleteVectorStoreFileWithHttpInfo(param.vectorStoreId, param.fileId,  options).toPromise();
+    }
+
+    /**
+     * Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api-reference/files/delete) endpoint.
+     * @param param the request object
+     */
+    public deleteVectorStoreFile(param: VectorStoresApiDeleteVectorStoreFileRequest, options?: ConfigurationOptions): Promise<DeleteVectorStoreFileResponse> {
+        return this.api.deleteVectorStoreFile(param.vectorStoreId, param.fileId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a vector store.
+     * @param param the request object
+     */
+    public getVectorStoreWithHttpInfo(param: VectorStoresApiGetVectorStoreRequest, options?: ConfigurationOptions): Promise<HttpInfo<VectorStoreObject>> {
+        return this.api.getVectorStoreWithHttpInfo(param.vectorStoreId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a vector store.
+     * @param param the request object
+     */
+    public getVectorStore(param: VectorStoresApiGetVectorStoreRequest, options?: ConfigurationOptions): Promise<VectorStoreObject> {
+        return this.api.getVectorStore(param.vectorStoreId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a vector store file.
+     * @param param the request object
+     */
+    public getVectorStoreFileWithHttpInfo(param: VectorStoresApiGetVectorStoreFileRequest, options?: ConfigurationOptions): Promise<HttpInfo<VectorStoreFileObject>> {
+        return this.api.getVectorStoreFileWithHttpInfo(param.vectorStoreId, param.fileId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a vector store file.
+     * @param param the request object
+     */
+    public getVectorStoreFile(param: VectorStoresApiGetVectorStoreFileRequest, options?: ConfigurationOptions): Promise<VectorStoreFileObject> {
+        return this.api.getVectorStoreFile(param.vectorStoreId, param.fileId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a vector store file batch.
+     * @param param the request object
+     */
+    public getVectorStoreFileBatchWithHttpInfo(param: VectorStoresApiGetVectorStoreFileBatchRequest, options?: ConfigurationOptions): Promise<HttpInfo<VectorStoreFileBatchObject>> {
+        return this.api.getVectorStoreFileBatchWithHttpInfo(param.vectorStoreId, param.batchId,  options).toPromise();
+    }
+
+    /**
+     * Retrieves a vector store file batch.
+     * @param param the request object
+     */
+    public getVectorStoreFileBatch(param: VectorStoresApiGetVectorStoreFileBatchRequest, options?: ConfigurationOptions): Promise<VectorStoreFileBatchObject> {
+        return this.api.getVectorStoreFileBatch(param.vectorStoreId, param.batchId,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of vector store files in a batch.
+     * @param param the request object
+     */
+    public listFilesInVectorStoreBatchWithHttpInfo(param: VectorStoresApiListFilesInVectorStoreBatchRequest, options?: ConfigurationOptions): Promise<HttpInfo<ListVectorStoreFilesResponse>> {
+        return this.api.listFilesInVectorStoreBatchWithHttpInfo(param.vectorStoreId, param.batchId, param.limit, param.order, param.after, param.before, param.filter,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of vector store files in a batch.
+     * @param param the request object
+     */
+    public listFilesInVectorStoreBatch(param: VectorStoresApiListFilesInVectorStoreBatchRequest, options?: ConfigurationOptions): Promise<ListVectorStoreFilesResponse> {
+        return this.api.listFilesInVectorStoreBatch(param.vectorStoreId, param.batchId, param.limit, param.order, param.after, param.before, param.filter,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of vector store files.
+     * @param param the request object
+     */
+    public listVectorStoreFilesWithHttpInfo(param: VectorStoresApiListVectorStoreFilesRequest, options?: ConfigurationOptions): Promise<HttpInfo<ListVectorStoreFilesResponse>> {
+        return this.api.listVectorStoreFilesWithHttpInfo(param.vectorStoreId, param.limit, param.order, param.after, param.before, param.filter,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of vector store files.
+     * @param param the request object
+     */
+    public listVectorStoreFiles(param: VectorStoresApiListVectorStoreFilesRequest, options?: ConfigurationOptions): Promise<ListVectorStoreFilesResponse> {
+        return this.api.listVectorStoreFiles(param.vectorStoreId, param.limit, param.order, param.after, param.before, param.filter,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of vector stores.
+     * @param param the request object
+     */
+    public listVectorStoresWithHttpInfo(param: VectorStoresApiListVectorStoresRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<ListVectorStoresResponse>> {
+        return this.api.listVectorStoresWithHttpInfo(param.limit, param.order, param.after, param.before,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of vector stores.
+     * @param param the request object
+     */
+    public listVectorStores(param: VectorStoresApiListVectorStoresRequest = {}, options?: ConfigurationOptions): Promise<ListVectorStoresResponse> {
+        return this.api.listVectorStores(param.limit, param.order, param.after, param.before,  options).toPromise();
+    }
+
+    /**
+     * Modifies a vector store.
+     * @param param the request object
+     */
+    public modifyVectorStoreWithHttpInfo(param: VectorStoresApiModifyVectorStoreRequest, options?: ConfigurationOptions): Promise<HttpInfo<VectorStoreObject>> {
+        return this.api.modifyVectorStoreWithHttpInfo(param.vectorStoreId, param.updateVectorStoreRequest,  options).toPromise();
+    }
+
+    /**
+     * Modifies a vector store.
+     * @param param the request object
+     */
+    public modifyVectorStore(param: VectorStoresApiModifyVectorStoreRequest, options?: ConfigurationOptions): Promise<VectorStoreObject> {
+        return this.api.modifyVectorStore(param.vectorStoreId, param.updateVectorStoreRequest,  options).toPromise();
     }
 
 }

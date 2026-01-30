@@ -38,7 +38,7 @@ export class ModerationsService extends BaseService {
     }
 
     /**
-     * Classifies if text is potentially harmful.
+     * Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
      * @endpoint post /moderations
      * @param createModerationRequest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.

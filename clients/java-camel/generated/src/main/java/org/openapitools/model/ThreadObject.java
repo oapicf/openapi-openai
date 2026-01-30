@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.openapitools.model.ModifyThreadRequestToolResources;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -20,7 +21,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "ThreadObject", description = "Represents a thread that contains [messages](/docs/api-reference/messages).")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ThreadObject {
 
   private String id;
@@ -62,6 +63,8 @@ public class ThreadObject {
 
   private Integer createdAt;
 
+  private JsonNullable<ModifyThreadRequestToolResources> toolResources = JsonNullable.<ModifyThreadRequestToolResources>undefined();
+
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
   public ThreadObject() {
@@ -71,10 +74,11 @@ public class ThreadObject {
   /**
    * Constructor with only required parameters
    */
-  public ThreadObject(String id, ObjectEnum _object, Integer createdAt, Object metadata) {
+  public ThreadObject(String id, ObjectEnum _object, Integer createdAt, ModifyThreadRequestToolResources toolResources, Object metadata) {
     this.id = id;
     this._object = _object;
     this.createdAt = createdAt;
+    this.toolResources = JsonNullable.of(toolResources);
     this.metadata = JsonNullable.of(metadata);
   }
 
@@ -138,17 +142,37 @@ public class ThreadObject {
     this.createdAt = createdAt;
   }
 
+  public ThreadObject toolResources(ModifyThreadRequestToolResources toolResources) {
+    this.toolResources = JsonNullable.of(toolResources);
+    return this;
+  }
+
+  /**
+   * Get toolResources
+   * @return toolResources
+   */
+  @NotNull @Valid 
+  @Schema(name = "tool_resources", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("tool_resources")
+  public JsonNullable<ModifyThreadRequestToolResources> getToolResources() {
+    return toolResources;
+  }
+
+  public void setToolResources(JsonNullable<ModifyThreadRequestToolResources> toolResources) {
+    this.toolResources = toolResources;
+  }
+
   public ThreadObject metadata(Object metadata) {
     this.metadata = JsonNullable.of(metadata);
     return this;
   }
 
   /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
   @NotNull 
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;
@@ -170,12 +194,13 @@ public class ThreadObject {
     return Objects.equals(this.id, threadObject.id) &&
         Objects.equals(this._object, threadObject._object) &&
         Objects.equals(this.createdAt, threadObject.createdAt) &&
+        Objects.equals(this.toolResources, threadObject.toolResources) &&
         Objects.equals(this.metadata, threadObject.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, metadata);
+    return Objects.hash(id, _object, createdAt, toolResources, metadata);
   }
 
   @Override
@@ -185,6 +210,7 @@ public class ThreadObject {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -23,7 +23,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  * The details of the run step.
  * @param type Always `message_creation`.
  * @param messageCreation 
- * @param toolCalls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+ * @param toolCalls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
  */
 data class RunStepDeltaObjectDeltaStepDetails(
 
@@ -35,7 +35,7 @@ data class RunStepDeltaObjectDeltaStepDetails(
     @get:JsonProperty("message_creation") val messageCreation: RunStepDeltaStepDetailsMessageCreationObjectMessageCreation? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. ")
+    @Schema(example = "null", description = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. ")
     @get:JsonProperty("tool_calls") val toolCalls: kotlin.collections.List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>? = null
 ) {
 

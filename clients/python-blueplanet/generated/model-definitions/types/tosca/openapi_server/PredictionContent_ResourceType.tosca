@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server PredictionContent"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a PredictionContent"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  PredictionContentContent = openapi_server.resourceTypes.PredictionContentContent
+}
+resourceTypes {
+
+  PredictionContent {
+    title = PredictionContent
+    description = PredictionContent
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "The type of the predicted content you want to provide. This type is currently always &#x60;content&#x60;. "
+          enum = ["content"]
+          optional = true
+        }
+        content {
+          type = PredictionContentContent
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  PredictionContent {
+    title = PredictionContent
+    description = PredictionContent
+    implements = openapi_server.resourceTypes.PredictionContent
+
+  }
+}

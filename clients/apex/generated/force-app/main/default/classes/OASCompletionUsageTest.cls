@@ -76,5 +76,7 @@ private class OASCompletionUsageTest {
         System.assertEquals('completionTokens', x-property-mappings.get('completion_tokens'));
         System.assertEquals('promptTokens', x-property-mappings.get('prompt_tokens'));
         System.assertEquals('totalTokens', x-property-mappings.get('total_tokens'));
+        System.assertEquals('completionTokensDetails', x-property-mappings.get('completion_tokens_details'));
+        System.assertEquals('promptTokensDetails', x-property-mappings.get('prompt_tokens_details'));
     }
 }

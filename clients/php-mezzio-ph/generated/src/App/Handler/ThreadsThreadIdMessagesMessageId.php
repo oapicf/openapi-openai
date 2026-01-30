@@ -16,6 +16,22 @@ use Psr\Http\Message\ServerRequestInterface;
 class ThreadsThreadIdMessagesMessageId
 {
     /**
+     * Deletes a message.
+     * @PHA\Delete()
+     * TODO check if producer is valid, if it has correct priority and if it can be moved to class annotation
+     * @PHA\Producer(name=PHProducer\Transfer::class, mediaType="application/json")
+     * @param ServerRequestInterface $request
+     *
+     * @throws PHException\HttpCode 501 if the method is not implemented
+     *
+     * @return \App\DTO\DeleteMessageResponse
+     */
+    public function deleteMessage(ServerRequestInterface $request): \App\DTO\DeleteMessageResponse
+    {
+        //TODO implement method
+        throw new PHException\HttpCode(501, "Not implemented");
+    }
+    /**
      * Retrieve a message.
      * @PHA\Get()
      * TODO check if producer is valid, if it has correct priority and if it can be moved to class annotation

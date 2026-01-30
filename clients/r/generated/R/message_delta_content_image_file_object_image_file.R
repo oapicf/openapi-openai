@@ -7,7 +7,8 @@
 #' @title MessageDeltaContentImageFileObjectImageFile
 #' @description MessageDeltaContentImageFileObjectImageFile Class
 #' @format An \code{R6Class} generator object
-#' @field file_id The [File](/docs/api-reference/files) ID of the image in the message content. character [optional]
+#' @field file_id The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content. character [optional]
+#' @field detail Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`. character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -15,18 +16,29 @@ MessageDeltaContentImageFileObjectImageFile <- R6::R6Class(
   "MessageDeltaContentImageFileObjectImageFile",
   public = list(
     `file_id` = NULL,
+    `detail` = NULL,
 
     #' @description
     #' Initialize a new MessageDeltaContentImageFileObjectImageFile class.
     #'
-    #' @param file_id The [File](/docs/api-reference/files) ID of the image in the message content.
+    #' @param file_id The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content.
+    #' @param detail Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.. Default to "auto".
     #' @param ... Other optional arguments.
-    initialize = function(`file_id` = NULL, ...) {
+    initialize = function(`file_id` = NULL, `detail` = "auto", ...) {
       if (!is.null(`file_id`)) {
         if (!(is.character(`file_id`) && length(`file_id`) == 1)) {
           stop(paste("Error! Invalid data for `file_id`. Must be a string:", `file_id`))
         }
         self$`file_id` <- `file_id`
+      }
+      if (!is.null(`detail`)) {
+        if (!(`detail` %in% c("auto", "low", "high"))) {
+          stop(paste("Error! \"", `detail`, "\" cannot be assigned to `detail`. Must be \"auto\", \"low\", \"high\".", sep = ""))
+        }
+        if (!(is.character(`detail`) && length(`detail`) == 1)) {
+          stop(paste("Error! Invalid data for `detail`. Must be a string:", `detail`))
+        }
+        self$`detail` <- `detail`
       }
     },
 
@@ -65,6 +77,10 @@ MessageDeltaContentImageFileObjectImageFile <- R6::R6Class(
         MessageDeltaContentImageFileObjectImageFileObject[["file_id"]] <-
           self$`file_id`
       }
+      if (!is.null(self$`detail`)) {
+        MessageDeltaContentImageFileObjectImageFileObject[["detail"]] <-
+          self$`detail`
+      }
       return(MessageDeltaContentImageFileObjectImageFileObject)
     },
 
@@ -77,6 +93,12 @@ MessageDeltaContentImageFileObjectImageFile <- R6::R6Class(
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`file_id`)) {
         self$`file_id` <- this_object$`file_id`
+      }
+      if (!is.null(this_object$`detail`)) {
+        if (!is.null(this_object$`detail`) && !(this_object$`detail` %in% c("auto", "low", "high"))) {
+          stop(paste("Error! \"", this_object$`detail`, "\" cannot be assigned to `detail`. Must be \"auto\", \"low\", \"high\".", sep = ""))
+        }
+        self$`detail` <- this_object$`detail`
       }
       self
     },
@@ -100,6 +122,10 @@ MessageDeltaContentImageFileObjectImageFile <- R6::R6Class(
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`file_id` <- this_object$`file_id`
+      if (!is.null(this_object$`detail`) && !(this_object$`detail` %in% c("auto", "low", "high"))) {
+        stop(paste("Error! \"", this_object$`detail`, "\" cannot be assigned to `detail`. Must be \"auto\", \"low\", \"high\".", sep = ""))
+      }
+      self$`detail` <- this_object$`detail`
       self
     },
 

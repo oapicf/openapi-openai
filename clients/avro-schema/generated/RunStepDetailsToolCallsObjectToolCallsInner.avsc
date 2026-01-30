@@ -16,7 +16,7 @@
         "name": "RunStepDetailsToolCallsObjectToolCallsInner_type",
         "symbols": [
           "code_interpreter",
-          "retrieval",
+          "file_search",
           "function"
         ]
       },
@@ -28,9 +28,9 @@
       "doc": ""
     },
     {
-      "name": "retrieval",
-      "type": "model.object",
-      "doc": "For now, this is always going to be an empty object."
+      "name": "file_search",
+      "type": "model.RunStepDetailsToolCallsFileSearchObjectFileSearch",
+      "doc": ""
     },
     {
       "name": "function",

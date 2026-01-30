@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **hateThreatening** | **Boolean!** | Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. | [default to null]
 **harassment** | **Boolean!** | Content that expresses, incites, or promotes harassing language towards any target. | [default to null]
 **harassmentThreatening** | **Boolean!** | Harassment content that also includes violence or serious harm towards any target. | [default to null]
+**illicit** | **Boolean!** | Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \&quot;how to shoplift\&quot; would fit this category. | [default to null]
+**illicitViolent** | **Boolean!** | Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon. | [default to null]
 **selfHarm** | **Boolean!** | Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders. | [default to null]
 **selfHarmIntent** | **Boolean!** | Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders. | [default to null]
 **selfHarmInstructions** | **Boolean!** | Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts. | [default to null]

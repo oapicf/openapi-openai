@@ -5,6 +5,13 @@ context("Test ListFilesResponse")
 
 model_instance <- ListFilesResponse$new()
 
+test_that("object", {
+  # tests for the property `object` (character)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`object`, "EXPECTED_RESULT")
+})
+
 test_that("data", {
   # tests for the property `data` (array[OpenAIFile])
 
@@ -12,9 +19,23 @@ test_that("data", {
   #expect_equal(model.instance$`data`, "EXPECTED_RESULT")
 })
 
-test_that("object", {
-  # tests for the property `object` (character)
+test_that("first_id", {
+  # tests for the property `first_id` (character)
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`object`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`first_id`, "EXPECTED_RESULT")
+})
+
+test_that("last_id", {
+  # tests for the property `last_id` (character)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`last_id`, "EXPECTED_RESULT")
+})
+
+test_that("has_more", {
+  # tests for the property `has_more` (character)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`has_more`, "EXPECTED_RESULT")
 })

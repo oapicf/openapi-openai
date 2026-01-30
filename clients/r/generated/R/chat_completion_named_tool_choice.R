@@ -8,7 +8,7 @@
 #' @description ChatCompletionNamedToolChoice Class
 #' @format An \code{R6Class} generator object
 #' @field type The type of the tool. Currently, only `function` is supported. character
-#' @field function  \link{ChatCompletionNamedToolChoiceFunction}
+#' @field function  \link{AssistantsNamedToolChoiceFunction}
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -96,7 +96,7 @@ ChatCompletionNamedToolChoice <- R6::R6Class(
         self$`type` <- this_object$`type`
       }
       if (!is.null(this_object$`function`)) {
-        `Function__object` <- ChatCompletionNamedToolChoiceFunction$new()
+        `Function__object` <- AssistantsNamedToolChoiceFunction$new()
         `Function__object`$fromJSON(jsonlite::toJSON(this_object$`function`, auto_unbox = TRUE, digits = NA))
         self$`function` <- `Function__object`
       }
@@ -125,7 +125,7 @@ ChatCompletionNamedToolChoice <- R6::R6Class(
         stop(paste("Error! \"", this_object$`type`, "\" cannot be assigned to `type`. Must be \"function\".", sep = ""))
       }
       self$`type` <- this_object$`type`
-      self$`function` <- ChatCompletionNamedToolChoiceFunction$new()$fromJSON(jsonlite::toJSON(this_object$`function`, auto_unbox = TRUE, digits = NA))
+      self$`function` <- AssistantsNamedToolChoiceFunction$new()$fromJSON(jsonlite::toJSON(this_object$`function`, auto_unbox = TRUE, digits = NA))
       self
     },
 

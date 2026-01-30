@@ -36,6 +36,7 @@ CreateCompletionRequest::__init()
 	//seed = int(0);
 	//stop = new CreateCompletionRequest_stop();
 	//stream = bool(false);
+	//stream_options = new ChatCompletionStreamOptions();
 	//suffix = std::string();
 	//temperature = double(0);
 	//top_p = double(0);
@@ -109,6 +110,11 @@ CreateCompletionRequest::__cleanup()
 	//
 	//delete stream;
 	//stream = NULL;
+	//}
+	//if(stream_options != NULL) {
+	//
+	//delete stream_options;
+	//stream_options = NULL;
 	//}
 	//if(suffix != NULL) {
 	//
@@ -294,6 +300,20 @@ CreateCompletionRequest::fromJson(char* jsonStr)
 		if (isprimitive("bool")) {
 			jsonToValue(&stream, node, "bool", "");
 		} else {
+			
+		}
+	}
+	const gchar *stream_optionsKey = "stream_options";
+	node = json_object_get_member(pJsonObject, stream_optionsKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("ChatCompletionStreamOptions")) {
+			jsonToValue(&stream_options, node, "ChatCompletionStreamOptions", "ChatCompletionStreamOptions");
+		} else {
+			
+			ChatCompletionStreamOptions* obj = static_cast<ChatCompletionStreamOptions*> (&stream_options);
+			obj->fromJson(json_to_string(node, false));
 			
 		}
 	}
@@ -511,6 +531,20 @@ CreateCompletionRequest::toJson()
 	}
 	const gchar *streamKey = "stream";
 	json_object_set_member(pJsonObject, streamKey, node);
+	if (isprimitive("ChatCompletionStreamOptions")) {
+		ChatCompletionStreamOptions obj = getStreamOptions();
+		node = converttoJson(&obj, "ChatCompletionStreamOptions", "");
+	}
+	else {
+		
+		ChatCompletionStreamOptions obj = static_cast<ChatCompletionStreamOptions> (getStreamOptions());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *stream_optionsKey = "stream_options";
+	json_object_set_member(pJsonObject, stream_optionsKey, node);
 	if (isprimitive("std::string")) {
 		std::string obj = getSuffix();
 		node = converttoJson(&obj, "std::string", "");
@@ -719,6 +753,18 @@ void
 CreateCompletionRequest::setStream(bool  stream)
 {
 	this->stream = stream;
+}
+
+ChatCompletionStreamOptions
+CreateCompletionRequest::getStreamOptions()
+{
+	return stream_options;
+}
+
+void
+CreateCompletionRequest::setStreamOptions(ChatCompletionStreamOptions  stream_options)
+{
+	this->stream_options = stream_options;
 }
 
 std::string

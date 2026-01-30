@@ -1,0 +1,80 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Represents an individual `invite` to the organization.",
+  "name": "Invite",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "Invite_object",
+        "symbols": [
+          "organization_invite"
+        ]
+      },
+      "doc": "The object type, which is always `organization.invite`"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The identifier, which can be referenced in API endpoints"
+    },
+    {
+      "name": "email",
+      "type": "string",
+      "doc": "The email address of the individual to whom the invite was sent"
+    },
+    {
+      "name": "role",
+      "type": {
+        "type": "enum",
+        "name": "Invite_role",
+        "symbols": [
+          "owner",
+          "reader"
+        ]
+      },
+      "doc": "`owner` or `reader`"
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "Invite_status",
+        "symbols": [
+          "accepted",
+          "expired",
+          "pending"
+        ]
+      },
+      "doc": "`accepted`,`expired`, or `pending`"
+    },
+    {
+      "name": "invited_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) of when the invite was sent."
+    },
+    {
+      "name": "expires_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) of when the invite expires."
+    },
+    {
+      "name": "accepted_at",
+      "type": ["null", "int"],
+      "doc": "The Unix timestamp (in seconds) of when the invite was accepted.",
+      "default": null
+    },
+    {
+      "name": "projects",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.InviteProjectsInner"
+      }],
+      "doc": "The projects that were granted membership upon acceptance of the invite.",
+      "default": null
+    }
+  ]
+
+}

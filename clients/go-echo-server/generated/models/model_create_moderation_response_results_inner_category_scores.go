@@ -15,6 +15,12 @@ type CreateModerationResponseResultsInnerCategoryScores struct {
 	// The score for the category 'harassment/threatening'.
 	HarassmentThreatening float32 `json:"harassment/threatening"`
 
+	// The score for the category 'illicit'.
+	Illicit float32 `json:"illicit"`
+
+	// The score for the category 'illicit/violent'.
+	IllicitViolent float32 `json:"illicit/violent"`
+
 	// The score for the category 'self-harm'.
 	SelfHarm float32 `json:"self-harm"`
 

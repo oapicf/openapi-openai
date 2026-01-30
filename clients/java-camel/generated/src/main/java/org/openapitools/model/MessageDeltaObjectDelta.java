@@ -26,7 +26,7 @@ import javax.annotation.Generated;
 
 @Schema(name = "MessageDeltaObject_delta", description = "The delta containing the fields that have changed on the Message.")
 @JsonTypeName("MessageDeltaObject_delta")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageDeltaObjectDelta {
 
   /**
@@ -68,9 +68,6 @@ public class MessageDeltaObjectDelta {
 
   @Valid
   private List<MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
-
-  @Valid
-  private List<String> fileIds = new ArrayList<>();
 
   public MessageDeltaObjectDelta role(RoleEnum role) {
     this.role = role;
@@ -120,34 +117,6 @@ public class MessageDeltaObjectDelta {
     this.content = content;
   }
 
-  public MessageDeltaObjectDelta fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  public MessageDeltaObjectDelta addFileIdsItem(String fileIdsItem) {
-    if (this.fileIds == null) {
-      this.fileIds = new ArrayList<>();
-    }
-    this.fileIds.add(fileIdsItem);
-    return this;
-  }
-
-  /**
-   * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-   * @return fileIds
-   */
-  @Size(max = 10) 
-  @Schema(name = "file_ids", description = "A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("file_ids")
-  public List<String> getFileIds() {
-    return fileIds;
-  }
-
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -158,13 +127,12 @@ public class MessageDeltaObjectDelta {
     }
     MessageDeltaObjectDelta messageDeltaObjectDelta = (MessageDeltaObjectDelta) o;
     return Objects.equals(this.role, messageDeltaObjectDelta.role) &&
-        Objects.equals(this.content, messageDeltaObjectDelta.content) &&
-        Objects.equals(this.fileIds, messageDeltaObjectDelta.fileIds);
+        Objects.equals(this.content, messageDeltaObjectDelta.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, content, fileIds);
+    return Objects.hash(role, content);
   }
 
   @Override
@@ -173,7 +141,6 @@ public class MessageDeltaObjectDelta {
     sb.append("class MessageDeltaObjectDelta {\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

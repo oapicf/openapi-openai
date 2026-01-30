@@ -13,11 +13,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.CreateFineTuningJobRequestHyperparameters;
 import org.openapitools.model.CreateFineTuningJobRequestIntegrationsInner;
 import org.openapitools.model.CreateFineTuningJobRequestModel;
+import org.openapitools.model.FineTuneMethod;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T10:45:31.742862961Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T14:09:29.020322047Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateFineTuningJobRequest   {
   
   private CreateFineTuningJobRequestModel model;
@@ -27,6 +28,7 @@ public class CreateFineTuningJobRequest   {
   private String validationFile;
   private List<@Valid CreateFineTuningJobRequestIntegrationsInner> integrations;
   private Integer seed;
+  private FineTuneMethod method;
 
   /**
    **/
@@ -42,10 +44,10 @@ public class CreateFineTuningJobRequest   {
   }
 
   /**
-   * The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose &#x60;fine-tune&#x60;.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
+   * The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose &#x60;fine-tune&#x60;.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
    **/
   
-  @ApiModelProperty(example = "file-abc123", required = true, value = "The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. ")
+  @ApiModelProperty(example = "file-abc123", required = true, value = "The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. ")
   @JsonProperty("training_file")
   @NotNull
   public String getTrainingFile() {
@@ -68,12 +70,12 @@ public class CreateFineTuningJobRequest   {
   }
 
   /**
-   * A string of up to 18 characters that will be added to your fine-tuned model name.  For example, a &#x60;suffix&#x60; of \&quot;custom-model-name\&quot; would produce a model name like &#x60;ft:gpt-3.5-turbo:openai:custom-model-name:7p4lURel&#x60;. 
+   * A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a &#x60;suffix&#x60; of \&quot;custom-model-name\&quot; would produce a model name like &#x60;ft:gpt-4o-mini:openai:custom-model-name:7p4lURel&#x60;. 
    **/
   
-  @ApiModelProperty(value = "A string of up to 18 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-3.5-turbo:openai:custom-model-name:7p4lURel`. ")
+  @ApiModelProperty(value = "A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`. ")
   @JsonProperty("suffix")
- @Size(min=1,max=40)  public String getSuffix() {
+ @Size(min=1,max=64)  public String getSuffix() {
     return suffix;
   }
   public void setSuffix(String suffix) {
@@ -121,6 +123,18 @@ public class CreateFineTuningJobRequest   {
     this.seed = seed;
   }
 
+  /**
+   **/
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("method")
+  public FineTuneMethod getMethod() {
+    return method;
+  }
+  public void setMethod(FineTuneMethod method) {
+    this.method = method;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -137,12 +151,13 @@ public class CreateFineTuningJobRequest   {
         Objects.equals(this.suffix, createFineTuningJobRequest.suffix) &&
         Objects.equals(this.validationFile, createFineTuningJobRequest.validationFile) &&
         Objects.equals(this.integrations, createFineTuningJobRequest.integrations) &&
-        Objects.equals(this.seed, createFineTuningJobRequest.seed);
+        Objects.equals(this.seed, createFineTuningJobRequest.seed) &&
+        Objects.equals(this.method, createFineTuningJobRequest.method);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, trainingFile, hyperparameters, suffix, validationFile, integrations, seed);
+    return Objects.hash(model, trainingFile, hyperparameters, suffix, validationFile, integrations, seed, method);
   }
 
   @Override
@@ -157,6 +172,7 @@ public class CreateFineTuningJobRequest   {
     sb.append("    validationFile: ").append(toIndentedString(validationFile)).append("\n");
     sb.append("    integrations: ").append(toIndentedString(integrations)).append("\n");
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("}");
     return sb.toString();
   }

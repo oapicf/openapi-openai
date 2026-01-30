@@ -11,13 +11,16 @@ Name | Type
 `model` | [CreateRunRequestModel](CreateRunRequestModel.md)
 `instructions` | string
 `tools` | [Array&lt;CreateThreadAndRunRequestToolsInner&gt;](CreateThreadAndRunRequestToolsInner.md)
+`toolResources` | [CreateThreadAndRunRequestToolResources](CreateThreadAndRunRequestToolResources.md)
 `metadata` | object
 `temperature` | number
+`topP` | number
 `stream` | boolean
 `maxPromptTokens` | number
 `maxCompletionTokens` | number
 `truncationStrategy` | [TruncationObject](TruncationObject.md)
 `toolChoice` | [AssistantsApiToolChoiceOption](AssistantsApiToolChoiceOption.md)
+`parallelToolCalls` | boolean
 `responseFormat` | [AssistantsApiResponseFormatOption](AssistantsApiResponseFormatOption.md)
 
 ## Example
@@ -32,13 +35,16 @@ const example = {
   "model": null,
   "instructions": null,
   "tools": null,
+  "toolResources": null,
   "metadata": null,
   "temperature": 1,
+  "topP": 1,
   "stream": null,
   "maxPromptTokens": null,
   "maxCompletionTokens": null,
   "truncationStrategy": null,
   "toolChoice": null,
+  "parallelToolCalls": null,
   "responseFormat": null,
 } satisfies CreateThreadAndRunRequest
 

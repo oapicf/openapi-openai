@@ -4,8 +4,9 @@ import groovy.transform.Canonical
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.AssistantToolsCode;
+import org.openapitools.model.AssistantToolsFileSearch;
+import org.openapitools.model.AssistantToolsFileSearchFileSearch;
 import org.openapitools.model.AssistantToolsFunction;
-import org.openapitools.model.AssistantToolsRetrieval;
 import org.openapitools.model.FunctionObject;
 
 @Canonical
@@ -15,7 +16,7 @@ class AssistantObjectToolsInner {
     
         CODE_INTERPRETER("code_interpreter"),
         
-        RETRIEVAL("retrieval"),
+        FILE_SEARCH("file_search"),
         
         FUNCTION("function")
     
@@ -37,6 +38,8 @@ class AssistantObjectToolsInner {
 
     /* The type of tool being defined: `code_interpreter` */
     TypeEnum type
+    
+    AssistantToolsFileSearchFileSearch fileSearch
     
     FunctionObject function
 }

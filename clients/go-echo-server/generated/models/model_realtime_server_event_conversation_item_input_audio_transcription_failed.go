@@ -1,0 +1,19 @@
+package models
+
+// RealtimeServerEventConversationItemInputAudioTranscriptionFailed - Returned when input audio transcription is configured, and a transcription  request for a user message failed. These events are separate from other  `error` events so that the client can identify the related Item. 
+type RealtimeServerEventConversationItemInputAudioTranscriptionFailed struct {
+
+	// The unique ID of the server event.
+	EventId string `json:"event_id"`
+
+	// The event type, must be `conversation.item.input_audio_transcription.failed`. 
+	Type string `json:"type"`
+
+	// The ID of the user message item.
+	ItemId string `json:"item_id"`
+
+	// The index of the content part containing the audio.
+	ContentIndex int32 `json:"content_index"`
+
+	Error RealtimeServerEventConversationItemInputAudioTranscriptionFailedError `json:"error"`
+}

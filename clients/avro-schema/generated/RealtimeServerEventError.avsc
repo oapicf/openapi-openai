@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when an error occurs, which could be a client problem or a server  problem. Most errors are recoverable and the session will stay open, we  recommend to implementors to monitor and log error messages by default. ",
+  "name": "RealtimeServerEventError",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventError_type",
+        "symbols": [
+          "error"
+        ]
+      },
+      "doc": "The event type, must be `error`."
+    },
+    {
+      "name": "error",
+      "type": "model.RealtimeServerEventErrorError",
+      "doc": ""
+    }
+  ]
+
+}

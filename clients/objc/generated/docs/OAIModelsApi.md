@@ -22,7 +22,7 @@ Delete a fine-tuned model. You must have the Owner role in your organization to 
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 
 
-NSString* model = ft:gpt-3.5-turbo:acemeco:suffix:abc123; // The model to delete
+NSString* model = ft:gpt-4o-mini:acemeco:suffix:abc123; // The model to delete
 
 OAIModelsApi*apiInstance = [[OAIModelsApi alloc] init];
 
@@ -118,7 +118,7 @@ Retrieves a model instance, providing basic information about the model such as 
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 
 
-NSString* model = gpt-3.5-turbo; // The ID of the model to use for this request
+NSString* model = gpt-4o-mini; // The ID of the model to use for this request
 
 OAIModelsApi*apiInstance = [[OAIModelsApi alloc] init];
 

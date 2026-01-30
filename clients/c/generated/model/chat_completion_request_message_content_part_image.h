@@ -1,7 +1,7 @@
 /*
  * chat_completion_request_message_content_part_image.h
  *
- * 
+ * Learn about [image inputs](/docs/guides/vision). 
  */
 
 #ifndef _chat_completion_request_message_content_part_image_H_

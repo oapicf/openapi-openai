@@ -3,6 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Enabled** | **Boolean** | Whether to enable input audio transcription. | [optional] 
 **VarEvent** | **String** |  | 
 **VarData** | **String** |  | 
 
@@ -10,7 +11,8 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$AssistantStreamEvent = Initialize-PSOpenAPIToolsAssistantStreamEvent  -VarEvent null `
+$AssistantStreamEvent = Initialize-PSOpenAPIToolsAssistantStreamEvent  -Enabled null `
+ -VarEvent null `
  -VarData null
 ```
 

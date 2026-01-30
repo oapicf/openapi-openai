@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The details for events with this `type`.",
+  "name": "AuditLogUserAdded",
+  "fields": [
+    {
+      "name": "id",
+      "type": ["null", "string"],
+      "doc": "The user ID.",
+      "default": null
+    },
+    {
+      "name": "data",
+      "type": ["null", "model.AuditLogUserAddedData"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

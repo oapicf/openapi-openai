@@ -2,7 +2,7 @@ package org.openapitools.server.model
 
 
 /**
- * = Code interpreter log output =
+ * = Code Interpreter log output =
  *
  * Text output from the Code Interpreter tool call as part of a run step.
  *

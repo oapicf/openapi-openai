@@ -1,5 +1,6 @@
 package org.openapitools.api
 
+import org.openapitools.model.AudioResponseFormat
 import org.openapitools.model.CreateSpeechRequest
 import org.openapitools.model.CreateTranscription200Response
 import org.openapitools.model.CreateTranscriptionRequestModel
@@ -75,8 +76,8 @@ class AudioApiController() {
         @Parameter(description = "The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. ") @Valid @RequestPart("file", required = true) file: org.springframework.web.multipart.MultipartFile,
         @Parameter(description = "", required = true) @Valid @RequestPart(value = "model", required = true) model: CreateTranscriptionRequestModel,
         @Parameter(description = "The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. ") @Valid @RequestParam(value = "language", required = false) language: kotlin.String?,
-        @Parameter(description = "An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. ") @Valid @RequestParam(value = "prompt", required = false) prompt: kotlin.String?,
-        @Parameter(description = "The format of the transcript output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. ", schema = Schema(allowableValues = ["json", "text", "srt", "verbose_json", "vtt"], defaultValue = "json")) @Valid @RequestParam(value = "response_format", required = false) responseFormat: kotlin.String,
+        @Parameter(description = "An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language. ") @Valid @RequestParam(value = "prompt", required = false) prompt: kotlin.String?,
+        @Parameter(description = "", schema = Schema(allowableValues = ["json", "text", "srt", "verbose_json", "vtt"], defaultValue = "json")) @Valid @RequestParam(value = "response_format", required = false) responseFormat: AudioResponseFormat,
         @Parameter(description = "The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. ", schema = Schema(defaultValue = "0")) @Valid @RequestParam(value = "temperature", required = false) temperature: java.math.BigDecimal,
         @Parameter(description = "The timestamp granularities to populate for this transcription. `response_format` must be set `verbose_json` to use timestamp granularities. Either or both of these options are supported: `word`, or `segment`. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. ", schema = Schema(allowableValues = ["word", "segment"])) @Valid @RequestParam(value = "timestamp_granularities[]", required = false) timestampGranularities: kotlin.collections.List<kotlin.String>?
     ): ResponseEntity<CreateTranscription200Response> {
@@ -100,8 +101,8 @@ class AudioApiController() {
     fun createTranslation(
         @Parameter(description = "The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. ") @Valid @RequestPart("file", required = true) file: org.springframework.web.multipart.MultipartFile,
         @Parameter(description = "", required = true) @Valid @RequestPart(value = "model", required = true) model: CreateTranscriptionRequestModel,
-        @Parameter(description = "An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. ") @Valid @RequestParam(value = "prompt", required = false) prompt: kotlin.String?,
-        @Parameter(description = "The format of the transcript output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. ", schema = Schema(defaultValue = "json")) @Valid @RequestParam(value = "response_format", required = false) responseFormat: kotlin.String,
+        @Parameter(description = "An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. ") @Valid @RequestParam(value = "prompt", required = false) prompt: kotlin.String?,
+        @Parameter(description = "", schema = Schema(allowableValues = ["json", "text", "srt", "verbose_json", "vtt"], defaultValue = "json")) @Valid @RequestParam(value = "response_format", required = false) responseFormat: AudioResponseFormat,
         @Parameter(description = "The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. ", schema = Schema(defaultValue = "0")) @Valid @RequestParam(value = "temperature", required = false) temperature: java.math.BigDecimal
     ): ResponseEntity<CreateTranslation200Response> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)

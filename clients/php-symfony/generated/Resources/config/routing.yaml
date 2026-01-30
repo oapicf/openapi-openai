@@ -18,14 +18,6 @@ open_api_server_assistants_createassistant:
     defaults:
         _controller: open_api_server.controller.assistants::createAssistantAction
 
-open_api_server_assistants_createassistantfile:
-    path:     /assistants/{assistant_id}/files
-    methods:  [POST]
-    defaults:
-        _controller: open_api_server.controller.assistants::createAssistantFileAction
-    requirements:
-        assistantId: '[a-z0-9]+'
-
 open_api_server_assistants_createmessage:
     path:     /threads/{thread_id}/messages
     methods:  [POST]
@@ -62,14 +54,14 @@ open_api_server_assistants_deleteassistant:
     requirements:
         assistantId: '[a-z0-9]+'
 
-open_api_server_assistants_deleteassistantfile:
-    path:     /assistants/{assistant_id}/files/{file_id}
+open_api_server_assistants_deletemessage:
+    path:     /threads/{thread_id}/messages/{message_id}
     methods:  [DELETE]
     defaults:
-        _controller: open_api_server.controller.assistants::deleteAssistantFileAction
+        _controller: open_api_server.controller.assistants::deleteMessageAction
     requirements:
-        assistantId: '[a-z0-9]+'
-        fileId: '[a-z0-9]+'
+        threadId: '[a-z0-9]+'
+        messageId: '[a-z0-9]+'
 
 open_api_server_assistants_deletethread:
     path:     /threads/{thread_id}
@@ -87,15 +79,6 @@ open_api_server_assistants_getassistant:
     requirements:
         assistantId: '[a-z0-9]+'
 
-open_api_server_assistants_getassistantfile:
-    path:     /assistants/{assistant_id}/files/{file_id}
-    methods:  [GET]
-    defaults:
-        _controller: open_api_server.controller.assistants::getAssistantFileAction
-    requirements:
-        assistantId: '[a-z0-9]+'
-        fileId: '[a-z0-9]+'
-
 open_api_server_assistants_getmessage:
     path:     /threads/{thread_id}/messages/{message_id}
     methods:  [GET]
@@ -104,16 +87,6 @@ open_api_server_assistants_getmessage:
     requirements:
         threadId: '[a-z0-9]+'
         messageId: '[a-z0-9]+'
-
-open_api_server_assistants_getmessagefile:
-    path:     /threads/{thread_id}/messages/{message_id}/files/{file_id}
-    methods:  [GET]
-    defaults:
-        _controller: open_api_server.controller.assistants::getMessageFileAction
-    requirements:
-        threadId: '[a-z0-9]+'
-        messageId: '[a-z0-9]+'
-        fileId: '[a-z0-9]+'
 
 open_api_server_assistants_getrun:
     path:     /threads/{thread_id}/runs/{run_id}
@@ -142,28 +115,11 @@ open_api_server_assistants_getthread:
     requirements:
         threadId: '[a-z0-9]+'
 
-open_api_server_assistants_listassistantfiles:
-    path:     /assistants/{assistant_id}/files
-    methods:  [GET]
-    defaults:
-        _controller: open_api_server.controller.assistants::listAssistantFilesAction
-    requirements:
-        assistantId: '[a-z0-9]+'
-
 open_api_server_assistants_listassistants:
     path:     /assistants
     methods:  [GET]
     defaults:
         _controller: open_api_server.controller.assistants::listAssistantsAction
-
-open_api_server_assistants_listmessagefiles:
-    path:     /threads/{thread_id}/messages/{message_id}/files
-    methods:  [GET]
-    defaults:
-        _controller: open_api_server.controller.assistants::listMessageFilesAction
-    requirements:
-        threadId: '[a-z0-9]+'
-        messageId: '[a-z0-9]+'
 
 open_api_server_assistants_listmessages:
     path:     /threads/{thread_id}/messages
@@ -252,6 +208,42 @@ open_api_server_audio_createtranslation:
     defaults:
         _controller: open_api_server.controller.audio::createTranslationAction
 
+# auditLogs
+open_api_server_auditLogs_listauditlogs:
+    path:     /organization/audit_logs
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.auditLogs::listAuditLogsAction
+
+# batch
+open_api_server_batch_cancelbatch:
+    path:     /batches/{batch_id}/cancel
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.batch::cancelBatchAction
+    requirements:
+        batchId: '[a-z0-9]+'
+
+open_api_server_batch_createbatch:
+    path:     /batches
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.batch::createBatchAction
+
+open_api_server_batch_listbatches:
+    path:     /batches
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.batch::listBatchesAction
+
+open_api_server_batch_retrievebatch:
+    path:     /batches/{batch_id}
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.batch::retrieveBatchAction
+    requirements:
+        batchId: '[a-z0-9]+'
+
 # chat
 open_api_server_chat_createchatcompletion:
     path:     /chat/completions
@@ -265,6 +257,35 @@ open_api_server_completions_createcompletion:
     methods:  [POST]
     defaults:
         _controller: open_api_server.controller.completions::createCompletionAction
+
+# default
+open_api_server_default_adminapikeyscreate:
+    path:     /organization/admin_api_keys
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.default::adminApiKeysCreateAction
+
+open_api_server_default_adminapikeysdelete:
+    path:     /organization/admin_api_keys/{key_id}
+    methods:  [DELETE]
+    defaults:
+        _controller: open_api_server.controller.default::adminApiKeysDeleteAction
+    requirements:
+        keyId: '[a-z0-9]+'
+
+open_api_server_default_adminapikeysget:
+    path:     /organization/admin_api_keys/{key_id}
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.default::adminApiKeysGetAction
+    requirements:
+        keyId: '[a-z0-9]+'
+
+open_api_server_default_adminapikeyslist:
+    path:     /organization/admin_api_keys
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.default::adminApiKeysListAction
 
 # embeddings
 open_api_server_embeddings_createembedding:
@@ -374,6 +395,35 @@ open_api_server_images_createimagevariation:
     defaults:
         _controller: open_api_server.controller.images::createImageVariationAction
 
+# invites
+open_api_server_invites_deleteinvite:
+    path:     /organization/invites/{invite_id}
+    methods:  [DELETE]
+    defaults:
+        _controller: open_api_server.controller.invites::deleteInviteAction
+    requirements:
+        inviteId: '[a-z0-9]+'
+
+open_api_server_invites_inviteuser:
+    path:     /organization/invites
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.invites::inviteUserAction
+
+open_api_server_invites_listinvites:
+    path:     /organization/invites
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.invites::listInvitesAction
+
+open_api_server_invites_retrieveinvite:
+    path:     /organization/invites/{invite_id}
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.invites::retrieveInviteAction
+    requirements:
+        inviteId: '[a-z0-9]+'
+
 # models
 open_api_server_models_deletemodel:
     path:     /models/{model}
@@ -403,4 +453,391 @@ open_api_server_moderations_createmoderation:
     methods:  [POST]
     defaults:
         _controller: open_api_server.controller.moderations::createModerationAction
+
+# projects
+open_api_server_projects_archiveproject:
+    path:     /organization/projects/{project_id}/archive
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.projects::archiveProjectAction
+    requirements:
+        projectId: '[a-z0-9]+'
+
+open_api_server_projects_createproject:
+    path:     /organization/projects
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.projects::createProjectAction
+
+open_api_server_projects_createprojectserviceaccount:
+    path:     /organization/projects/{project_id}/service_accounts
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.projects::createProjectServiceAccountAction
+    requirements:
+        projectId: '[a-z0-9]+'
+
+open_api_server_projects_createprojectuser:
+    path:     /organization/projects/{project_id}/users
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.projects::createProjectUserAction
+    requirements:
+        projectId: '[a-z0-9]+'
+
+open_api_server_projects_deleteprojectapikey:
+    path:     /organization/projects/{project_id}/api_keys/{key_id}
+    methods:  [DELETE]
+    defaults:
+        _controller: open_api_server.controller.projects::deleteProjectApiKeyAction
+    requirements:
+        projectId: '[a-z0-9]+'
+        keyId: '[a-z0-9]+'
+
+open_api_server_projects_deleteprojectserviceaccount:
+    path:     /organization/projects/{project_id}/service_accounts/{service_account_id}
+    methods:  [DELETE]
+    defaults:
+        _controller: open_api_server.controller.projects::deleteProjectServiceAccountAction
+    requirements:
+        projectId: '[a-z0-9]+'
+        serviceAccountId: '[a-z0-9]+'
+
+open_api_server_projects_deleteprojectuser:
+    path:     /organization/projects/{project_id}/users/{user_id}
+    methods:  [DELETE]
+    defaults:
+        _controller: open_api_server.controller.projects::deleteProjectUserAction
+    requirements:
+        projectId: '[a-z0-9]+'
+        userId: '[a-z0-9]+'
+
+open_api_server_projects_listprojectapikeys:
+    path:     /organization/projects/{project_id}/api_keys
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.projects::listProjectApiKeysAction
+    requirements:
+        projectId: '[a-z0-9]+'
+
+open_api_server_projects_listprojectratelimits:
+    path:     /organization/projects/{project_id}/rate_limits
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.projects::listProjectRateLimitsAction
+    requirements:
+        projectId: '[a-z0-9]+'
+
+open_api_server_projects_listprojectserviceaccounts:
+    path:     /organization/projects/{project_id}/service_accounts
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.projects::listProjectServiceAccountsAction
+    requirements:
+        projectId: '[a-z0-9]+'
+
+open_api_server_projects_listprojectusers:
+    path:     /organization/projects/{project_id}/users
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.projects::listProjectUsersAction
+    requirements:
+        projectId: '[a-z0-9]+'
+
+open_api_server_projects_listprojects:
+    path:     /organization/projects
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.projects::listProjectsAction
+
+open_api_server_projects_modifyproject:
+    path:     /organization/projects/{project_id}
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.projects::modifyProjectAction
+    requirements:
+        projectId: '[a-z0-9]+'
+
+open_api_server_projects_modifyprojectuser:
+    path:     /organization/projects/{project_id}/users/{user_id}
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.projects::modifyProjectUserAction
+    requirements:
+        projectId: '[a-z0-9]+'
+        userId: '[a-z0-9]+'
+
+open_api_server_projects_retrieveproject:
+    path:     /organization/projects/{project_id}
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.projects::retrieveProjectAction
+    requirements:
+        projectId: '[a-z0-9]+'
+
+open_api_server_projects_retrieveprojectapikey:
+    path:     /organization/projects/{project_id}/api_keys/{key_id}
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.projects::retrieveProjectApiKeyAction
+    requirements:
+        projectId: '[a-z0-9]+'
+        keyId: '[a-z0-9]+'
+
+open_api_server_projects_retrieveprojectserviceaccount:
+    path:     /organization/projects/{project_id}/service_accounts/{service_account_id}
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.projects::retrieveProjectServiceAccountAction
+    requirements:
+        projectId: '[a-z0-9]+'
+        serviceAccountId: '[a-z0-9]+'
+
+open_api_server_projects_retrieveprojectuser:
+    path:     /organization/projects/{project_id}/users/{user_id}
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.projects::retrieveProjectUserAction
+    requirements:
+        projectId: '[a-z0-9]+'
+        userId: '[a-z0-9]+'
+
+open_api_server_projects_updateprojectratelimits:
+    path:     /organization/projects/{project_id}/rate_limits/{rate_limit_id}
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.projects::updateProjectRateLimitsAction
+    requirements:
+        projectId: '[a-z0-9]+'
+        rateLimitId: '[a-z0-9]+'
+
+# realtime
+open_api_server_realtime_createrealtimesession:
+    path:     /realtime/sessions
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.realtime::createRealtimeSessionAction
+
+# uploads
+open_api_server_uploads_adduploadpart:
+    path:     /uploads/{upload_id}/parts
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.uploads::addUploadPartAction
+    requirements:
+        uploadId: '[a-z0-9]+'
+
+open_api_server_uploads_cancelupload:
+    path:     /uploads/{upload_id}/cancel
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.uploads::cancelUploadAction
+    requirements:
+        uploadId: '[a-z0-9]+'
+
+open_api_server_uploads_completeupload:
+    path:     /uploads/{upload_id}/complete
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.uploads::completeUploadAction
+    requirements:
+        uploadId: '[a-z0-9]+'
+
+open_api_server_uploads_createupload:
+    path:     /uploads
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.uploads::createUploadAction
+
+# usage
+open_api_server_usage_usageaudiospeeches:
+    path:     /organization/usage/audio_speeches
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.usage::usageAudioSpeechesAction
+
+open_api_server_usage_usageaudiotranscriptions:
+    path:     /organization/usage/audio_transcriptions
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.usage::usageAudioTranscriptionsAction
+
+open_api_server_usage_usagecodeinterpretersessions:
+    path:     /organization/usage/code_interpreter_sessions
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.usage::usageCodeInterpreterSessionsAction
+
+open_api_server_usage_usagecompletions:
+    path:     /organization/usage/completions
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.usage::usageCompletionsAction
+
+open_api_server_usage_usagecosts:
+    path:     /organization/costs
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.usage::usageCostsAction
+
+open_api_server_usage_usageembeddings:
+    path:     /organization/usage/embeddings
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.usage::usageEmbeddingsAction
+
+open_api_server_usage_usageimages:
+    path:     /organization/usage/images
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.usage::usageImagesAction
+
+open_api_server_usage_usagemoderations:
+    path:     /organization/usage/moderations
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.usage::usageModerationsAction
+
+open_api_server_usage_usagevectorstores:
+    path:     /organization/usage/vector_stores
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.usage::usageVectorStoresAction
+
+# users
+open_api_server_users_deleteuser:
+    path:     /organization/users/{user_id}
+    methods:  [DELETE]
+    defaults:
+        _controller: open_api_server.controller.users::deleteUserAction
+    requirements:
+        userId: '[a-z0-9]+'
+
+open_api_server_users_listusers:
+    path:     /organization/users
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.users::listUsersAction
+
+open_api_server_users_modifyuser:
+    path:     /organization/users/{user_id}
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.users::modifyUserAction
+    requirements:
+        userId: '[a-z0-9]+'
+
+open_api_server_users_retrieveuser:
+    path:     /organization/users/{user_id}
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.users::retrieveUserAction
+    requirements:
+        userId: '[a-z0-9]+'
+
+# vectorStores
+open_api_server_vectorStores_cancelvectorstorefilebatch:
+    path:     /vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.vectorStores::cancelVectorStoreFileBatchAction
+    requirements:
+        vectorStoreId: '[a-z0-9]+'
+        batchId: '[a-z0-9]+'
+
+open_api_server_vectorStores_createvectorstore:
+    path:     /vector_stores
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.vectorStores::createVectorStoreAction
+
+open_api_server_vectorStores_createvectorstorefile:
+    path:     /vector_stores/{vector_store_id}/files
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.vectorStores::createVectorStoreFileAction
+    requirements:
+        vectorStoreId: '[a-z0-9]+'
+
+open_api_server_vectorStores_createvectorstorefilebatch:
+    path:     /vector_stores/{vector_store_id}/file_batches
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.vectorStores::createVectorStoreFileBatchAction
+    requirements:
+        vectorStoreId: '[a-z0-9]+'
+
+open_api_server_vectorStores_deletevectorstore:
+    path:     /vector_stores/{vector_store_id}
+    methods:  [DELETE]
+    defaults:
+        _controller: open_api_server.controller.vectorStores::deleteVectorStoreAction
+    requirements:
+        vectorStoreId: '[a-z0-9]+'
+
+open_api_server_vectorStores_deletevectorstorefile:
+    path:     /vector_stores/{vector_store_id}/files/{file_id}
+    methods:  [DELETE]
+    defaults:
+        _controller: open_api_server.controller.vectorStores::deleteVectorStoreFileAction
+    requirements:
+        vectorStoreId: '[a-z0-9]+'
+        fileId: '[a-z0-9]+'
+
+open_api_server_vectorStores_getvectorstore:
+    path:     /vector_stores/{vector_store_id}
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.vectorStores::getVectorStoreAction
+    requirements:
+        vectorStoreId: '[a-z0-9]+'
+
+open_api_server_vectorStores_getvectorstorefile:
+    path:     /vector_stores/{vector_store_id}/files/{file_id}
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.vectorStores::getVectorStoreFileAction
+    requirements:
+        vectorStoreId: '[a-z0-9]+'
+        fileId: '[a-z0-9]+'
+
+open_api_server_vectorStores_getvectorstorefilebatch:
+    path:     /vector_stores/{vector_store_id}/file_batches/{batch_id}
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.vectorStores::getVectorStoreFileBatchAction
+    requirements:
+        vectorStoreId: '[a-z0-9]+'
+        batchId: '[a-z0-9]+'
+
+open_api_server_vectorStores_listfilesinvectorstorebatch:
+    path:     /vector_stores/{vector_store_id}/file_batches/{batch_id}/files
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.vectorStores::listFilesInVectorStoreBatchAction
+    requirements:
+        vectorStoreId: '[a-z0-9]+'
+        batchId: '[a-z0-9]+'
+
+open_api_server_vectorStores_listvectorstorefiles:
+    path:     /vector_stores/{vector_store_id}/files
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.vectorStores::listVectorStoreFilesAction
+    requirements:
+        vectorStoreId: '[a-z0-9]+'
+
+open_api_server_vectorStores_listvectorstores:
+    path:     /vector_stores
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.vectorStores::listVectorStoresAction
+
+open_api_server_vectorStores_modifyvectorstore:
+    path:     /vector_stores/{vector_store_id}
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.vectorStores::modifyVectorStoreAction
+    requirements:
+        vectorStoreId: '[a-z0-9]+'
 

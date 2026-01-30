@@ -55,7 +55,9 @@ static fine_tuning_job_t *fine_tuning_job_create_internal(
     char *training_file,
     char *validation_file,
     list_t *integrations,
-    int seed
+    int seed,
+    int estimated_finish,
+    fine_tune_method_t *method
     ) {
     fine_tuning_job_t *fine_tuning_job_local_var = malloc(sizeof(fine_tuning_job_t));
     if (!fine_tuning_job_local_var) {
@@ -77,6 +79,8 @@ static fine_tuning_job_t *fine_tuning_job_create_internal(
     fine_tuning_job_local_var->validation_file = validation_file;
     fine_tuning_job_local_var->integrations = integrations;
     fine_tuning_job_local_var->seed = seed;
+    fine_tuning_job_local_var->estimated_finish = estimated_finish;
+    fine_tuning_job_local_var->method = method;
 
     fine_tuning_job_local_var->_library_owned = 1;
     return fine_tuning_job_local_var;
@@ -98,7 +102,9 @@ __attribute__((deprecated)) fine_tuning_job_t *fine_tuning_job_create(
     char *training_file,
     char *validation_file,
     list_t *integrations,
-    int seed
+    int seed,
+    int estimated_finish,
+    fine_tune_method_t *method
     ) {
     return fine_tuning_job_create_internal (
         id,
@@ -116,7 +122,9 @@ __attribute__((deprecated)) fine_tuning_job_t *fine_tuning_job_create(
         training_file,
         validation_file,
         integrations,
-        seed
+        seed,
+        estimated_finish,
+        method
         );
 }
 
@@ -174,6 +182,10 @@ void fine_tuning_job_free(fine_tuning_job_t *fine_tuning_job) {
         }
         list_freeList(fine_tuning_job->integrations);
         fine_tuning_job->integrations = NULL;
+    }
+    if (fine_tuning_job->method) {
+        fine_tune_method_free(fine_tuning_job->method);
+        fine_tuning_job->method = NULL;
     }
     free(fine_tuning_job);
 }
@@ -356,6 +368,27 @@ cJSON *fine_tuning_job_convertToJSON(fine_tuning_job_t *fine_tuning_job) {
     goto fail; //Numeric
     }
 
+
+    // fine_tuning_job->estimated_finish
+    if(fine_tuning_job->estimated_finish) {
+    if(cJSON_AddNumberToObject(item, "estimated_finish", fine_tuning_job->estimated_finish) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // fine_tuning_job->method
+    if(fine_tuning_job->method) {
+    cJSON *method_local_JSON = fine_tune_method_convertToJSON(fine_tuning_job->method);
+    if(method_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "method", method_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -379,6 +412,9 @@ fine_tuning_job_t *fine_tuning_job_parseFromJSON(cJSON *fine_tuning_jobJSON){
 
     // define the local list for fine_tuning_job->integrations
     list_t *integrationsList = NULL;
+
+    // define the local variable for fine_tuning_job->method
+    fine_tune_method_t *method_local_nonprim = NULL;
 
     // fine_tuning_job->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(fine_tuning_jobJSON, "id");
@@ -637,6 +673,27 @@ fine_tuning_job_t *fine_tuning_job_parseFromJSON(cJSON *fine_tuning_jobJSON){
     goto end; //Numeric
     }
 
+    // fine_tuning_job->estimated_finish
+    cJSON *estimated_finish = cJSON_GetObjectItemCaseSensitive(fine_tuning_jobJSON, "estimated_finish");
+    if (cJSON_IsNull(estimated_finish)) {
+        estimated_finish = NULL;
+    }
+    if (estimated_finish) { 
+    if(!cJSON_IsNumber(estimated_finish))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // fine_tuning_job->method
+    cJSON *method = cJSON_GetObjectItemCaseSensitive(fine_tuning_jobJSON, "method");
+    if (cJSON_IsNull(method)) {
+        method = NULL;
+    }
+    if (method) { 
+    method_local_nonprim = fine_tune_method_parseFromJSON(method); //nonprimitive
+    }
+
 
     fine_tuning_job_local_var = fine_tuning_job_create_internal (
         strdup(id->valuestring),
@@ -654,7 +711,9 @@ fine_tuning_job_t *fine_tuning_job_parseFromJSON(cJSON *fine_tuning_jobJSON){
         strdup(training_file->valuestring),
         strdup(validation_file->valuestring),
         integrations ? integrationsList : NULL,
-        seed->valuedouble
+        seed->valuedouble,
+        estimated_finish ? estimated_finish->valuedouble : 0,
+        method ? method_local_nonprim : NULL
         );
 
     return fine_tuning_job_local_var;
@@ -684,6 +743,10 @@ end:
         }
         list_freeList(integrationsList);
         integrationsList = NULL;
+    }
+    if (method_local_nonprim) {
+        fine_tune_method_free(method_local_nonprim);
+        method_local_nonprim = NULL;
     }
     return NULL;
 

@@ -17,7 +17,7 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * 
+ * Learn about [image inputs](/docs/guides/vision). 
  * @param type The type of the content part.
  * @param imageUrl 
  */

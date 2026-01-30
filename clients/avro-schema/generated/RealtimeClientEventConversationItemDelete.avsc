@@ -1,0 +1,31 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Send this event when you want to remove any item from the conversation  history. The server will respond with a `conversation.item.deleted` event,  unless the item does not exist in the conversation history, in which case the  server will respond with an error. ",
+  "name": "RealtimeClientEventConversationItemDelete",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": ["null", "string"],
+      "doc": "Optional client-generated ID used to identify this event.",
+      "default": null
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeClientEventConversationItemDelete_type",
+        "symbols": [
+          "conversation_item_delete"
+        ]
+      },
+      "doc": "The event type, must be `conversation.item.delete`."
+    },
+    {
+      "name": "item_id",
+      "type": "string",
+      "doc": "The ID of the item to delete."
+    }
+  ]
+
+}

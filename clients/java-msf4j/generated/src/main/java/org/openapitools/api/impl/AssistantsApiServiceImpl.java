@@ -3,13 +3,9 @@ package org.openapitools.api.impl;
 import org.openapitools.api.*;
 import org.openapitools.model.*;
 
-import org.openapitools.model.AssistantFileObject;
 import org.openapitools.model.AssistantObject;
-import org.openapitools.model.CreateAssistantFileRequest;
 import org.openapitools.model.CreateAssistantRequest;
-import org.openapitools.model.DeleteAssistantFileResponse;
 import org.openapitools.model.DeleteAssistantResponse;
-import org.openapitools.model.ListAssistantFilesResponse;
 import org.openapitools.model.ListAssistantsResponse;
 import org.openapitools.model.ModifyAssistantRequest;
 
@@ -24,17 +20,10 @@ import org.wso2.msf4j.formparam.FileInfo;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class AssistantsApiServiceImpl extends AssistantsApiService {
     @Override
     public Response createAssistant(CreateAssistantRequest createAssistantRequest
- ) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-    }
-    @Override
-    public Response createAssistantFile(String assistantId
-, CreateAssistantFileRequest createAssistantFileRequest
  ) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
@@ -46,31 +35,7 @@ public class AssistantsApiServiceImpl extends AssistantsApiService {
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
-    public Response deleteAssistantFile(String assistantId
-, String fileId
- ) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-    }
-    @Override
     public Response getAssistant(String assistantId
- ) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-    }
-    @Override
-    public Response getAssistantFile(String assistantId
-, String fileId
- ) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-    }
-    @Override
-    public Response listAssistantFiles(String assistantId
-, Integer limit
-, String order
-, String after
-, String before
  ) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

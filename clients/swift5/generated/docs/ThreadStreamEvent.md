@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enabled** | **Bool** | Whether to enable input audio transcription. | [optional] 
 **event** | **String** |  | 
 **data** | [**ThreadObject**](ThreadObject.md) |  | 
 

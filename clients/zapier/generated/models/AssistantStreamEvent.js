@@ -11,6 +11,11 @@ module.exports = {
         const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
+                key: `${keyPrefix}enabled`,
+                label: `Whether to enable input audio transcription. - [${labelPrefix}enabled]`,
+                type: 'boolean',
+            },
+            {
                 key: `${keyPrefix}event`,
                 label: `[${labelPrefix}event]`,
                 required: true,
@@ -33,6 +38,7 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
+            'enabled': bundle.inputData?.[`${keyPrefix}enabled`],
             'event': bundle.inputData?.[`${keyPrefix}event`],
             'data': bundle.inputData?.[`${keyPrefix}data`],
         }

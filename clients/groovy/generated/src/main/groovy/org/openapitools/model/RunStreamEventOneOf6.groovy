@@ -10,7 +10,7 @@ class RunStreamEventOneOf6 {
 
     enum EventEnum {
     
-        THREAD_RUN_CANCELLING("thread.run.cancelling")
+        THREAD_RUN_FAILED("thread.run.failed")
     
         private final String value
     

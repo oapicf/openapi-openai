@@ -21,7 +21,7 @@ library(openapi)
 # Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
 #
 # prepare function argument(s)
-var_model <- "ft:gpt-3.5-turbo:acemeco:suffix:abc123" # character | The model to delete
+var_model <- "ft:gpt-4o-mini:acemeco:suffix:abc123" # character | The model to delete
 
 api_instance <- ModelsApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth
@@ -110,7 +110,7 @@ library(openapi)
 # Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
 #
 # prepare function argument(s)
-var_model <- "gpt-3.5-turbo" # character | The ID of the model to use for this request
+var_model <- "gpt-4o-mini" # character | The ID of the model to use for this request
 
 api_instance <- ModelsApi$new()
 # Configure HTTP bearer authorization: ApiKeyAuth

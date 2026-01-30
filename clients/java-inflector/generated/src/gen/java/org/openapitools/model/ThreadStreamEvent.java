@@ -15,8 +15,11 @@ import org.openapitools.model.ThreadObject;
  **/
 
 @ApiModel(description = "Occurs when a new [thread](/docs/api-reference/threads/object) is created.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ThreadStreamEvent   {
+  @JsonProperty("enabled")
+  private Boolean enabled;
+
   /**
    * Gets or Sets event
    */
@@ -51,6 +54,24 @@ public class ThreadStreamEvent   {
 
   @JsonProperty("data")
   private ThreadObject data;
+
+  /**
+   * Whether to enable input audio transcription.
+   **/
+  public ThreadStreamEvent enabled(Boolean enabled) {
+    this.enabled = enabled;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "Whether to enable input audio transcription.")
+  @JsonProperty("enabled")
+  public Boolean getEnabled() {
+    return enabled;
+  }
+  public void setEnabled(Boolean enabled) {
+    this.enabled = enabled;
+  }
 
   /**
    **/
@@ -96,13 +117,14 @@ public class ThreadStreamEvent   {
       return false;
     }
     ThreadStreamEvent threadStreamEvent = (ThreadStreamEvent) o;
-    return Objects.equals(event, threadStreamEvent.event) &&
+    return Objects.equals(enabled, threadStreamEvent.enabled) &&
+        Objects.equals(event, threadStreamEvent.event) &&
         Objects.equals(data, threadStreamEvent.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(event, data);
+    return Objects.hash(enabled, event, data);
   }
 
   @Override
@@ -110,6 +132,7 @@ public class ThreadStreamEvent   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ThreadStreamEvent {\n");
     
+    sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
     sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");

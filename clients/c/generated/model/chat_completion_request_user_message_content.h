@@ -15,7 +15,7 @@
 
 typedef struct chat_completion_request_user_message_content_t chat_completion_request_user_message_content_t;
 
-#include "chat_completion_request_message_content_part.h"
+#include "chat_completion_request_user_message_content_part.h"
 
 
 

@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"createdAt": @"created_at", @"error": @"error", @"fineTunedModel": @"fine_tuned_model", @"finishedAt": @"finished_at", @"hyperparameters": @"hyperparameters", @"model": @"model", @"object": @"object", @"organizationId": @"organization_id", @"resultFiles": @"result_files", @"status": @"status", @"trainedTokens": @"trained_tokens", @"trainingFile": @"training_file", @"validationFile": @"validation_file", @"integrations": @"integrations", @"seed": @"seed" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"createdAt": @"created_at", @"error": @"error", @"fineTunedModel": @"fine_tuned_model", @"finishedAt": @"finished_at", @"hyperparameters": @"hyperparameters", @"model": @"model", @"object": @"object", @"organizationId": @"organization_id", @"resultFiles": @"result_files", @"status": @"status", @"trainedTokens": @"trained_tokens", @"trainingFile": @"training_file", @"validationFile": @"validation_file", @"integrations": @"integrations", @"seed": @"seed", @"estimatedFinish": @"estimated_finish", @"method": @"method" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"integrations", ];
+  NSArray *optionalProperties = @[@"integrations", @"estimatedFinish", @"method"];
   return [optionalProperties containsObject:propertyName];
 }
 

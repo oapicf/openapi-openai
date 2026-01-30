@@ -10,19 +10,19 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use &#x60;developer&#x60; messages for this purpose instead.  */
 public struct ChatCompletionRequestSystemMessage: Codable, JSONEncodable, Hashable {
 
     public enum Role: String, Codable, CaseIterable {
         case system = "system"
     }
-    /** The contents of the system message. */
-    public var content: String
+    public var content: ChatCompletionRequestSystemMessageContent
     /** The role of the messages author, in this case `system`. */
     public var role: Role
     /** An optional name for the participant. Provides the model information to differentiate between participants of the same role. */
     public var name: String?
 
-    public init(content: String, role: Role, name: String? = nil) {
+    public init(content: ChatCompletionRequestSystemMessageContent, role: Role, name: String? = nil) {
         self.content = content
         self.role = role
         self.name = name

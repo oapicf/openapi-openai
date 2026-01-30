@@ -21,6 +21,16 @@ with Swagger.UString_Vectors;
 with Swagger.UString_Vectors;
 with Swagger.UString_Vectors;
 with Swagger.UString_Vectors;
+with Swagger.UString_Vectors;
+with Swagger.UString_Vectors;
+with Swagger.UString_Vectors;
+with Swagger.UString_Vectors;
+with Swagger.UString_Vectors;
+with Swagger.UString_Vectors;
+with Swagger.UString_Vectors;
+with Swagger.UString_Vectors;
+with Swagger.UString_Vectors;
+with Swagger.UString_Vectors;
 
 package .Servers is
    pragma Warnings (Off, "*use clause for package*");
@@ -45,15 +55,6 @@ package .Servers is
        Result  : out .Models.AssistantObject_Type;
        Context : in out Swagger.Servers.Context_Type);
 
-   --  Create an assistant file by attaching a [File](/docs/api_reference/files) to an [assistant](/docs/api_reference/assistants).
-   overriding
-   procedure Create_Assistant_File
-      (Server : in out Server_Type;
-       Assistant_Id : in Swagger.UString;
-       Create_Assistant_File_Request_Type : in CreateAssistantFileRequest_Type;
-       Result  : out .Models.AssistantFileObject_Type;
-       Context : in out Swagger.Servers.Context_Type);
-
    --  Create a message.
    overriding
    procedure Create_Message
@@ -69,6 +70,7 @@ package .Servers is
       (Server : in out Server_Type;
        Thread_Id : in Swagger.UString;
        Create_Run_Request_Type : in CreateRunRequest_Type;
+       Include_Left_Square_Bracket_Right_Square_Bracket : in Swagger.UString_Vectors.Vector;
        Result  : out .Models.RunObject_Type;
        Context : in out Swagger.Servers.Context_Type);
 
@@ -96,13 +98,13 @@ package .Servers is
        Result  : out .Models.DeleteAssistantResponse_Type;
        Context : in out Swagger.Servers.Context_Type);
 
-   --  Delete an assistant file.
+   --  Deletes a message.
    overriding
-   procedure Delete_Assistant_File
+   procedure Delete_Message
       (Server : in out Server_Type;
-       Assistant_Id : in Swagger.UString;
-       File_Id : in Swagger.UString;
-       Result  : out .Models.DeleteAssistantFileResponse_Type;
+       Thread_Id : in Swagger.UString;
+       Message_Id : in Swagger.UString;
+       Result  : out .Models.DeleteMessageResponse_Type;
        Context : in out Swagger.Servers.Context_Type);
 
    --  Delete a thread.
@@ -121,15 +123,6 @@ package .Servers is
        Result  : out .Models.AssistantObject_Type;
        Context : in out Swagger.Servers.Context_Type);
 
-   --  Retrieves an AssistantFile.
-   overriding
-   procedure Get_Assistant_File
-      (Server : in out Server_Type;
-       Assistant_Id : in Swagger.UString;
-       File_Id : in Swagger.UString;
-       Result  : out .Models.AssistantFileObject_Type;
-       Context : in out Swagger.Servers.Context_Type);
-
    --  Retrieve a message.
    overriding
    procedure Get_Message
@@ -137,16 +130,6 @@ package .Servers is
        Thread_Id : in Swagger.UString;
        Message_Id : in Swagger.UString;
        Result  : out .Models.MessageObject_Type;
-       Context : in out Swagger.Servers.Context_Type);
-
-   --  Retrieves a message file.
-   overriding
-   procedure Get_Message_File
-      (Server : in out Server_Type;
-       Thread_Id : in Swagger.UString;
-       Message_Id : in Swagger.UString;
-       File_Id : in Swagger.UString;
-       Result  : out .Models.MessageFileObject_Type;
        Context : in out Swagger.Servers.Context_Type);
 
    --  Retrieves a run.
@@ -165,6 +148,7 @@ package .Servers is
        Thread_Id : in Swagger.UString;
        Run_Id : in Swagger.UString;
        Step_Id : in Swagger.UString;
+       Include_Left_Square_Bracket_Right_Square_Bracket : in Swagger.UString_Vectors.Vector;
        Result  : out .Models.RunStepObject_Type;
        Context : in out Swagger.Servers.Context_Type);
 
@@ -176,18 +160,6 @@ package .Servers is
        Result  : out .Models.ThreadObject_Type;
        Context : in out Swagger.Servers.Context_Type);
 
-   --  Returns a list of assistant files.
-   overriding
-   procedure List_Assistant_Files
-      (Server : in out Server_Type;
-       Assistant_Id : in Swagger.UString;
-       Limit : in Swagger.Nullable_Integer;
-       Order : in Swagger.Nullable_UString;
-       After : in Swagger.Nullable_UString;
-       Before : in Swagger.Nullable_UString;
-       Result  : out .Models.ListAssistantFilesResponse_Type;
-       Context : in out Swagger.Servers.Context_Type);
-
    --  Returns a list of assistants.
    overriding
    procedure List_Assistants
@@ -197,19 +169,6 @@ package .Servers is
        After : in Swagger.Nullable_UString;
        Before : in Swagger.Nullable_UString;
        Result  : out .Models.ListAssistantsResponse_Type;
-       Context : in out Swagger.Servers.Context_Type);
-
-   --  Returns a list of message files.
-   overriding
-   procedure List_Message_Files
-      (Server : in out Server_Type;
-       Thread_Id : in Swagger.UString;
-       Message_Id : in Swagger.UString;
-       Limit : in Swagger.Nullable_Integer;
-       Order : in Swagger.Nullable_UString;
-       After : in Swagger.Nullable_UString;
-       Before : in Swagger.Nullable_UString;
-       Result  : out .Models.ListMessageFilesResponse_Type;
        Context : in out Swagger.Servers.Context_Type);
 
    --  Returns a list of messages for a given thread.
@@ -235,6 +194,7 @@ package .Servers is
        Order : in Swagger.Nullable_UString;
        After : in Swagger.Nullable_UString;
        Before : in Swagger.Nullable_UString;
+       Include_Left_Square_Bracket_Right_Square_Bracket : in Swagger.UString_Vectors.Vector;
        Result  : out .Models.ListRunStepsResponse_Type;
        Context : in out Swagger.Servers.Context_Type);
 
@@ -314,7 +274,7 @@ package .Servers is
        Model : in .Models.CreateTranscriptionRequestModel_Type;
        Language : in Swagger.Nullable_UString;
        Prompt : in Swagger.Nullable_UString;
-       Response_Format : in Swagger.Nullable_UString;
+       Response_Format : in .Models.AudioResponseFormat_Type;
        Temperature : in Swagger.Number;
        Timestamp_Granularities_Left_Square_Bracket_Right_Square_Bracket : in Swagger.UString_Vectors.Vector;
        Result  : out .Models.CreateTranscription200Response_Type;
@@ -327,12 +287,61 @@ package .Servers is
        File : in Swagger.File_Part_Type;
        Model : in .Models.CreateTranscriptionRequestModel_Type;
        Prompt : in Swagger.Nullable_UString;
-       Response_Format : in Swagger.Nullable_UString;
+       Response_Format : in .Models.AudioResponseFormat_Type;
        Temperature : in Swagger.Number;
        Result  : out .Models.CreateTranslation200Response_Type;
        Context : in out Swagger.Servers.Context_Type);
 
-   --  Creates a model response for the given chat conversation.
+   --  List user actions and configuration changes within this organization.
+   overriding
+   procedure List_Audit_Logs
+      (Server : in out Server_Type;
+       Effective_At : in ListAuditLogsEffectiveAtParameter_Type;
+       Project_Ids_Left_Square_Bracket_Right_Square_Bracket : in Swagger.UString_Vectors.Vector;
+       Event_Types_Left_Square_Bracket_Right_Square_Bracket : in .Models.AuditLogEventType_Type_Vectors.Vector;
+       Actor_Ids_Left_Square_Bracket_Right_Square_Bracket : in Swagger.UString_Vectors.Vector;
+       Actor_Emails_Left_Square_Bracket_Right_Square_Bracket : in Swagger.UString_Vectors.Vector;
+       Resource_Ids_Left_Square_Bracket_Right_Square_Bracket : in Swagger.UString_Vectors.Vector;
+       Limit : in Swagger.Nullable_Integer;
+       After : in Swagger.Nullable_UString;
+       Before : in Swagger.Nullable_UString;
+       Result  : out .Models.ListAuditLogsResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Cancels an in_progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
+   overriding
+   procedure Cancel_Batch
+      (Server : in out Server_Type;
+       Batch_Id : in Swagger.UString;
+       Result  : out .Models.Batch_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Creates and executes a batch from an uploaded file of requests
+   overriding
+   procedure Create_Batch
+      (Server : in out Server_Type;
+       Create_Batch_Request_Type : in CreateBatchRequest_Type;
+       Result  : out .Models.Batch_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  List your organization's batches.
+   overriding
+   procedure List_Batches
+      (Server : in out Server_Type;
+       After : in Swagger.Nullable_UString;
+       Limit : in Swagger.Nullable_Integer;
+       Result  : out .Models.ListBatchesResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Retrieves a batch.
+   overriding
+   procedure Retrieve_Batch
+      (Server : in out Server_Type;
+       Batch_Id : in Swagger.UString;
+       Result  : out .Models.Batch_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text_generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning).
    overriding
    procedure Create_Chat_Completion
       (Server : in out Server_Type;
@@ -348,6 +357,44 @@ package .Servers is
        Result  : out .Models.CreateCompletionResponse_Type;
        Context : in out Swagger.Servers.Context_Type);
 
+   --  Create an organization admin API key
+   --  Create a new admin-level API key for the organization.
+   overriding
+   procedure Admin_Api_Keys_Create
+      (Server : in out Server_Type;
+       Admin_Api_Keys_Create_Request_Type : in AdminApiKeysCreateRequest_Type;
+       Result  : out .Models.AdminApiKey_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Delete an organization admin API key
+   --  Delete the specified admin API key.
+   overriding
+   procedure Admin_Api_Keys_Delete
+      (Server : in out Server_Type;
+       Key_Id : in Swagger.UString;
+       Result  : out .Models.AdminApiKeysDelete200Response_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Retrieve a single organization API key
+   --  Get details for a specific organization API key by its ID.
+   overriding
+   procedure Admin_Api_Keys_Get
+      (Server : in out Server_Type;
+       Key_Id : in Swagger.UString;
+       Result  : out .Models.AdminApiKey_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  List organization API keys
+   --  Retrieve a paginated list of organization admin API keys.
+   overriding
+   procedure Admin_Api_Keys_List
+      (Server : in out Server_Type;
+       After : in Swagger.Nullable_UString;
+       Order : in Swagger.Nullable_UString;
+       Limit : in Swagger.Nullable_Integer;
+       Result  : out .Models.ApiKeyList_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
    --  Creates an embedding vector representing the input text.
    overriding
    procedure Create_Embedding
@@ -356,7 +403,7 @@ package .Servers is
        Result  : out .Models.CreateEmbeddingResponse_Type;
        Context : in out Swagger.Servers.Context_Type);
 
-   --  Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine_tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits.
+   --  Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine_tuning API only supports `.jsonl` files. The input also has certain required formats for fine_tuning [chat](/docs/api_reference/fine_tuning/chat_input) or [completions](/docs/api_reference/fine_tuning/completions_input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api_reference/batch/request_input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits.
    overriding
    procedure Create_File
       (Server : in out Server_Type;
@@ -381,11 +428,14 @@ package .Servers is
        Result  : out Swagger.UString;
        Context : in out Swagger.Servers.Context_Type);
 
-   --  Returns a list of files that belong to the user's organization.
+   --  Returns a list of files.
    overriding
    procedure List_Files
       (Server : in out Server_Type;
        Purpose : in Swagger.Nullable_UString;
+       Limit : in Swagger.Nullable_Integer;
+       Order : in Swagger.Nullable_UString;
+       After : in Swagger.Nullable_UString;
        Result  : out .Models.ListFilesResponse_Type;
        Context : in out Swagger.Servers.Context_Type);
 
@@ -486,6 +536,39 @@ package .Servers is
        Result  : out .Models.ImagesResponse_Type;
        Context : in out Swagger.Servers.Context_Type);
 
+   --  Delete an invite. If the invite has already been accepted, it cannot be deleted.
+   overriding
+   procedure Delete_Invite
+      (Server : in out Server_Type;
+       Invite_Id : in Swagger.UString;
+       Result  : out .Models.InviteDeleteResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
+   overriding
+   procedure Invite_User
+      (Server : in out Server_Type;
+       Invite_Request_Type : in InviteRequest_Type;
+       Result  : out .Models.Invite_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Returns a list of invites in the organization.
+   overriding
+   procedure List_Invites
+      (Server : in out Server_Type;
+       Limit : in Swagger.Nullable_Integer;
+       After : in Swagger.Nullable_UString;
+       Result  : out .Models.InviteListResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Retrieves an invite.
+   overriding
+   procedure Retrieve_Invite
+      (Server : in out Server_Type;
+       Invite_Id : in Swagger.UString;
+       Result  : out .Models.Invite_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
    --  Delete a fine_tuned model. You must have the Owner role in your organization to delete a model.
    overriding
    procedure Delete_Model
@@ -510,12 +593,536 @@ package .Servers is
        Result  : out .Models.Model_Type;
        Context : in out Swagger.Servers.Context_Type);
 
-   --  Classifies if text is potentially harmful.
+   --  Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation).
    overriding
    procedure Create_Moderation
       (Server : in out Server_Type;
        Create_Moderation_Request_Type : in CreateModerationRequest_Type;
        Result  : out .Models.CreateModerationResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Archives a project in the organization. Archived projects cannot be used or updated.
+   overriding
+   procedure Archive_Project
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       Result  : out .Models.Project_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
+   overriding
+   procedure Create_Project
+      (Server : in out Server_Type;
+       Project_Create_Request_Type : in ProjectCreateRequest_Type;
+       Result  : out .Models.Project_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Creates a new service account in the project. This also returns an unredacted API key for the service account.
+   overriding
+   procedure Create_Project_Service_Account
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       Project_Service_Account_Create_Request_Type : in ProjectServiceAccountCreateRequest_Type;
+       Result  : out .Models.ProjectServiceAccountCreateResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Adds a user to the project. Users must already be members of the organization to be added to a project.
+   overriding
+   procedure Create_Project_User
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       Project_User_Create_Request_Type : in ProjectUserCreateRequest_Type;
+       Result  : out .Models.ProjectUser_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Deletes an API key from the project.
+   overriding
+   procedure Delete_Project_Api_Key
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       Key_Id : in Swagger.UString;
+       Result  : out .Models.ProjectApiKeyDeleteResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Deletes a service account from the project.
+   overriding
+   procedure Delete_Project_Service_Account
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       Service_Account_Id : in Swagger.UString;
+       Result  : out .Models.ProjectServiceAccountDeleteResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Deletes a user from the project.
+   overriding
+   procedure Delete_Project_User
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       User_Id : in Swagger.UString;
+       Result  : out .Models.ProjectUserDeleteResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Returns a list of API keys in the project.
+   overriding
+   procedure List_Project_Api_Keys
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       Limit : in Swagger.Nullable_Integer;
+       After : in Swagger.Nullable_UString;
+       Result  : out .Models.ProjectApiKeyListResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Returns the rate limits per model for a project.
+   overriding
+   procedure List_Project_Rate_Limits
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       Limit : in Swagger.Nullable_Integer;
+       After : in Swagger.Nullable_UString;
+       Before : in Swagger.Nullable_UString;
+       Result  : out .Models.ProjectRateLimitListResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Returns a list of service accounts in the project.
+   overriding
+   procedure List_Project_Service_Accounts
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       Limit : in Swagger.Nullable_Integer;
+       After : in Swagger.Nullable_UString;
+       Result  : out .Models.ProjectServiceAccountListResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Returns a list of users in the project.
+   overriding
+   procedure List_Project_Users
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       Limit : in Swagger.Nullable_Integer;
+       After : in Swagger.Nullable_UString;
+       Result  : out .Models.ProjectUserListResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Returns a list of projects.
+   overriding
+   procedure List_Projects
+      (Server : in out Server_Type;
+       Limit : in Swagger.Nullable_Integer;
+       After : in Swagger.Nullable_UString;
+       Include_Archived : in Swagger.Nullable_Boolean;
+       Result  : out .Models.ProjectListResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Modifies a project in the organization.
+   overriding
+   procedure Modify_Project
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       Project_Update_Request_Type : in ProjectUpdateRequest_Type;
+       Result  : out .Models.Project_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Modifies a user's role in the project.
+   overriding
+   procedure Modify_Project_User
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       User_Id : in Swagger.UString;
+       Project_User_Update_Request_Type : in ProjectUserUpdateRequest_Type;
+       Result  : out .Models.ProjectUser_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Retrieves a project.
+   overriding
+   procedure Retrieve_Project
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       Result  : out .Models.Project_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Retrieves an API key in the project.
+   overriding
+   procedure Retrieve_Project_Api_Key
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       Key_Id : in Swagger.UString;
+       Result  : out .Models.ProjectApiKey_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Retrieves a service account in the project.
+   overriding
+   procedure Retrieve_Project_Service_Account
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       Service_Account_Id : in Swagger.UString;
+       Result  : out .Models.ProjectServiceAccount_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Retrieves a user in the project.
+   overriding
+   procedure Retrieve_Project_User
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       User_Id : in Swagger.UString;
+       Result  : out .Models.ProjectUser_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Updates a project rate limit.
+   overriding
+   procedure Update_Project_Rate_Limits
+      (Server : in out Server_Type;
+       Project_Id : in Swagger.UString;
+       Rate_Limit_Id : in Swagger.UString;
+       Project_Rate_Limit_Update_Request_Type : in ProjectRateLimitUpdateRequest_Type;
+       Result  : out .Models.ProjectRateLimit_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Create an ephemeral API token for use in client_side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API.
+   overriding
+   procedure Create_Realtime_Session
+      (Server : in out Server_Type;
+       Realtime_Session_Create_Request_Type : in RealtimeSessionCreateRequest_Type;
+       Result  : out .Models.RealtimeSessionCreateResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Adds a [Part](/docs/api_reference/uploads/part_object) to an [Upload](/docs/api_reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api_reference/uploads/complete).
+   overriding
+   procedure Add_Upload_Part
+      (Server : in out Server_Type;
+       Upload_Id : in Swagger.UString;
+       Data : in Swagger.File_Part_Type;
+       Result  : out .Models.UploadPart_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Cancels the Upload. No Parts may be added after an Upload is cancelled.
+   overriding
+   procedure Cancel_Upload
+      (Server : in out Server_Type;
+       Upload_Id : in Swagger.UString;
+       Result  : out .Models.Upload_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Completes the [Upload](/docs/api_reference/uploads/object).   Within the returned Upload object, there is a nested [File](/docs/api_reference/files/object) object that is ready to use in the rest of the platform.  You can specify the order of the Parts by passing in an ordered list of the Part IDs.  The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed.
+   overriding
+   procedure Complete_Upload
+      (Server : in out Server_Type;
+       Upload_Id : in Swagger.UString;
+       Complete_Upload_Request_Type : in CompleteUploadRequest_Type;
+       Result  : out .Models.Upload_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Creates an intermediate [Upload](/docs/api_reference/uploads/object) object that you can add [Parts](/docs/api_reference/uploads/part_object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it.  Once you complete the Upload, we will create a [File](/docs/api_reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object.  For certain `purpose`s, the correct `mime_type` must be specified. Please refer to documentation for the supported MIME types for your use case: _ [Assistants](/docs/assistants/tools/file_search#supported_files)  For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api_reference/files/create).
+   overriding
+   procedure Create_Upload
+      (Server : in out Server_Type;
+       Create_Upload_Request_Type : in CreateUploadRequest_Type;
+       Result  : out .Models.Upload_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Get audio speeches usage details for the organization.
+   overriding
+   procedure Usage_Audio_Speeches
+      (Server : in out Server_Type;
+       Start_Time : in Integer;
+       End_Time : in Swagger.Nullable_Integer;
+       Bucket_Width : in Swagger.Nullable_UString;
+       Project_Ids : in Swagger.UString_Vectors.Vector;
+       User_Ids : in Swagger.UString_Vectors.Vector;
+       Api_Key_Ids : in Swagger.UString_Vectors.Vector;
+       Models : in Swagger.UString_Vectors.Vector;
+       Group_By : in Swagger.UString_Vectors.Vector;
+       Limit : in Swagger.Nullable_Integer;
+       Page : in Swagger.Nullable_UString;
+       Result  : out .Models.UsageResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Get audio transcriptions usage details for the organization.
+   overriding
+   procedure Usage_Audio_Transcriptions
+      (Server : in out Server_Type;
+       Start_Time : in Integer;
+       End_Time : in Swagger.Nullable_Integer;
+       Bucket_Width : in Swagger.Nullable_UString;
+       Project_Ids : in Swagger.UString_Vectors.Vector;
+       User_Ids : in Swagger.UString_Vectors.Vector;
+       Api_Key_Ids : in Swagger.UString_Vectors.Vector;
+       Models : in Swagger.UString_Vectors.Vector;
+       Group_By : in Swagger.UString_Vectors.Vector;
+       Limit : in Swagger.Nullable_Integer;
+       Page : in Swagger.Nullable_UString;
+       Result  : out .Models.UsageResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Get code interpreter sessions usage details for the organization.
+   overriding
+   procedure Usage_Code_Interpreter_Sessions
+      (Server : in out Server_Type;
+       Start_Time : in Integer;
+       End_Time : in Swagger.Nullable_Integer;
+       Bucket_Width : in Swagger.Nullable_UString;
+       Project_Ids : in Swagger.UString_Vectors.Vector;
+       Group_By : in Swagger.UString_Vectors.Vector;
+       Limit : in Swagger.Nullable_Integer;
+       Page : in Swagger.Nullable_UString;
+       Result  : out .Models.UsageResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Get completions usage details for the organization.
+   overriding
+   procedure Usage_Completions
+      (Server : in out Server_Type;
+       Start_Time : in Integer;
+       End_Time : in Swagger.Nullable_Integer;
+       Bucket_Width : in Swagger.Nullable_UString;
+       Project_Ids : in Swagger.UString_Vectors.Vector;
+       User_Ids : in Swagger.UString_Vectors.Vector;
+       Api_Key_Ids : in Swagger.UString_Vectors.Vector;
+       Models : in Swagger.UString_Vectors.Vector;
+       Batch : in Swagger.Nullable_Boolean;
+       Group_By : in Swagger.UString_Vectors.Vector;
+       Limit : in Swagger.Nullable_Integer;
+       Page : in Swagger.Nullable_UString;
+       Result  : out .Models.UsageResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Get costs details for the organization.
+   overriding
+   procedure Usage_Costs
+      (Server : in out Server_Type;
+       Start_Time : in Integer;
+       End_Time : in Swagger.Nullable_Integer;
+       Bucket_Width : in Swagger.Nullable_UString;
+       Project_Ids : in Swagger.UString_Vectors.Vector;
+       Group_By : in Swagger.UString_Vectors.Vector;
+       Limit : in Swagger.Nullable_Integer;
+       Page : in Swagger.Nullable_UString;
+       Result  : out .Models.UsageResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Get embeddings usage details for the organization.
+   overriding
+   procedure Usage_Embeddings
+      (Server : in out Server_Type;
+       Start_Time : in Integer;
+       End_Time : in Swagger.Nullable_Integer;
+       Bucket_Width : in Swagger.Nullable_UString;
+       Project_Ids : in Swagger.UString_Vectors.Vector;
+       User_Ids : in Swagger.UString_Vectors.Vector;
+       Api_Key_Ids : in Swagger.UString_Vectors.Vector;
+       Models : in Swagger.UString_Vectors.Vector;
+       Group_By : in Swagger.UString_Vectors.Vector;
+       Limit : in Swagger.Nullable_Integer;
+       Page : in Swagger.Nullable_UString;
+       Result  : out .Models.UsageResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Get images usage details for the organization.
+   overriding
+   procedure Usage_Images
+      (Server : in out Server_Type;
+       Start_Time : in Integer;
+       End_Time : in Swagger.Nullable_Integer;
+       Bucket_Width : in Swagger.Nullable_UString;
+       Sources : in Swagger.UString_Vectors.Vector;
+       Sizes : in Swagger.UString_Vectors.Vector;
+       Project_Ids : in Swagger.UString_Vectors.Vector;
+       User_Ids : in Swagger.UString_Vectors.Vector;
+       Api_Key_Ids : in Swagger.UString_Vectors.Vector;
+       Models : in Swagger.UString_Vectors.Vector;
+       Group_By : in Swagger.UString_Vectors.Vector;
+       Limit : in Swagger.Nullable_Integer;
+       Page : in Swagger.Nullable_UString;
+       Result  : out .Models.UsageResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Get moderations usage details for the organization.
+   overriding
+   procedure Usage_Moderations
+      (Server : in out Server_Type;
+       Start_Time : in Integer;
+       End_Time : in Swagger.Nullable_Integer;
+       Bucket_Width : in Swagger.Nullable_UString;
+       Project_Ids : in Swagger.UString_Vectors.Vector;
+       User_Ids : in Swagger.UString_Vectors.Vector;
+       Api_Key_Ids : in Swagger.UString_Vectors.Vector;
+       Models : in Swagger.UString_Vectors.Vector;
+       Group_By : in Swagger.UString_Vectors.Vector;
+       Limit : in Swagger.Nullable_Integer;
+       Page : in Swagger.Nullable_UString;
+       Result  : out .Models.UsageResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Get vector stores usage details for the organization.
+   overriding
+   procedure Usage_Vector_Stores
+      (Server : in out Server_Type;
+       Start_Time : in Integer;
+       End_Time : in Swagger.Nullable_Integer;
+       Bucket_Width : in Swagger.Nullable_UString;
+       Project_Ids : in Swagger.UString_Vectors.Vector;
+       Group_By : in Swagger.UString_Vectors.Vector;
+       Limit : in Swagger.Nullable_Integer;
+       Page : in Swagger.Nullable_UString;
+       Result  : out .Models.UsageResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Deletes a user from the organization.
+   overriding
+   procedure Delete_User
+      (Server : in out Server_Type;
+       User_Id : in Swagger.UString;
+       Result  : out .Models.UserDeleteResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Lists all of the users in the organization.
+   overriding
+   procedure List_Users
+      (Server : in out Server_Type;
+       Limit : in Swagger.Nullable_Integer;
+       After : in Swagger.Nullable_UString;
+       Result  : out .Models.UserListResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Modifies a user's role in the organization.
+   overriding
+   procedure Modify_User
+      (Server : in out Server_Type;
+       User_Id : in Swagger.UString;
+       User_Role_Update_Request_Type : in UserRoleUpdateRequest_Type;
+       Result  : out .Models.User_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Retrieves a user by their identifier.
+   overriding
+   procedure Retrieve_User
+      (Server : in out Server_Type;
+       User_Id : in Swagger.UString;
+       Result  : out .Models.User_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
+   overriding
+   procedure Cancel_Vector_Store_File_Batch
+      (Server : in out Server_Type;
+       Vector_Store_Id : in Swagger.UString;
+       Batch_Id : in Swagger.UString;
+       Result  : out .Models.VectorStoreFileBatchObject_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Create a vector store.
+   overriding
+   procedure Create_Vector_Store
+      (Server : in out Server_Type;
+       Create_Vector_Store_Request_Type : in CreateVectorStoreRequest_Type;
+       Result  : out .Models.VectorStoreObject_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Create a vector store file by attaching a [File](/docs/api_reference/files) to a [vector store](/docs/api_reference/vector_stores/object).
+   overriding
+   procedure Create_Vector_Store_File
+      (Server : in out Server_Type;
+       Vector_Store_Id : in Swagger.UString;
+       Create_Vector_Store_File_Request_Type : in CreateVectorStoreFileRequest_Type;
+       Result  : out .Models.VectorStoreFileObject_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Create a vector store file batch.
+   overriding
+   procedure Create_Vector_Store_File_Batch
+      (Server : in out Server_Type;
+       Vector_Store_Id : in Swagger.UString;
+       Create_Vector_Store_File_Batch_Request_Type : in CreateVectorStoreFileBatchRequest_Type;
+       Result  : out .Models.VectorStoreFileBatchObject_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Delete a vector store.
+   overriding
+   procedure Delete_Vector_Store
+      (Server : in out Server_Type;
+       Vector_Store_Id : in Swagger.UString;
+       Result  : out .Models.DeleteVectorStoreResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api_reference/files/delete) endpoint.
+   overriding
+   procedure Delete_Vector_Store_File
+      (Server : in out Server_Type;
+       Vector_Store_Id : in Swagger.UString;
+       File_Id : in Swagger.UString;
+       Result  : out .Models.DeleteVectorStoreFileResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Retrieves a vector store.
+   overriding
+   procedure Get_Vector_Store
+      (Server : in out Server_Type;
+       Vector_Store_Id : in Swagger.UString;
+       Result  : out .Models.VectorStoreObject_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Retrieves a vector store file.
+   overriding
+   procedure Get_Vector_Store_File
+      (Server : in out Server_Type;
+       Vector_Store_Id : in Swagger.UString;
+       File_Id : in Swagger.UString;
+       Result  : out .Models.VectorStoreFileObject_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Retrieves a vector store file batch.
+   overriding
+   procedure Get_Vector_Store_File_Batch
+      (Server : in out Server_Type;
+       Vector_Store_Id : in Swagger.UString;
+       Batch_Id : in Swagger.UString;
+       Result  : out .Models.VectorStoreFileBatchObject_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Returns a list of vector store files in a batch.
+   overriding
+   procedure List_Files_In_Vector_Store_Batch
+      (Server : in out Server_Type;
+       Vector_Store_Id : in Swagger.UString;
+       Batch_Id : in Swagger.UString;
+       Limit : in Swagger.Nullable_Integer;
+       Order : in Swagger.Nullable_UString;
+       After : in Swagger.Nullable_UString;
+       Before : in Swagger.Nullable_UString;
+       Filter : in Swagger.Nullable_UString;
+       Result  : out .Models.ListVectorStoreFilesResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Returns a list of vector store files.
+   overriding
+   procedure List_Vector_Store_Files
+      (Server : in out Server_Type;
+       Vector_Store_Id : in Swagger.UString;
+       Limit : in Swagger.Nullable_Integer;
+       Order : in Swagger.Nullable_UString;
+       After : in Swagger.Nullable_UString;
+       Before : in Swagger.Nullable_UString;
+       Filter : in Swagger.Nullable_UString;
+       Result  : out .Models.ListVectorStoreFilesResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Returns a list of vector stores.
+   overriding
+   procedure List_Vector_Stores
+      (Server : in out Server_Type;
+       Limit : in Swagger.Nullable_Integer;
+       Order : in Swagger.Nullable_UString;
+       After : in Swagger.Nullable_UString;
+       Before : in Swagger.Nullable_UString;
+       Result  : out .Models.ListVectorStoresResponse_Type;
+       Context : in out Swagger.Servers.Context_Type);
+
+   --  Modifies a vector store.
+   overriding
+   procedure Modify_Vector_Store
+      (Server : in out Server_Type;
+       Vector_Store_Id : in Swagger.UString;
+       Update_Vector_Store_Request_Type : in UpdateVectorStoreRequest_Type;
+       Result  : out .Models.VectorStoreObject_Type;
        Context : in out Swagger.Servers.Context_Type);
 
    package Server_Impl is

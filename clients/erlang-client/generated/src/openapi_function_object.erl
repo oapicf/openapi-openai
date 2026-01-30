@@ -7,14 +7,17 @@
 -type openapi_function_object() ::
     #{ 'description' => binary(),
        'name' := binary(),
-       'parameters' => maps:map()
+       'parameters' => maps:map(),
+       'strict' => boolean()
      }.
 
 encode(#{ 'description' := Description,
           'name' := Name,
-          'parameters' := Parameters
+          'parameters' := Parameters,
+          'strict' := Strict
         }) ->
     #{ 'description' => Description,
        'name' => Name,
-       'parameters' => Parameters
+       'parameters' => Parameters,
+       'strict' => Strict
      }.

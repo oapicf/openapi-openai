@@ -3,6 +3,7 @@ package org.openapitools.api.impl;
 import org.openapitools.api.*;
 import org.openapitools.model.*;
 
+import org.openapitools.model.AudioResponseFormat;
 import java.math.BigDecimal;
 import org.openapitools.model.CreateSpeechRequest;
 import org.openapitools.model.CreateTranscription200Response;
@@ -21,7 +22,7 @@ import org.wso2.msf4j.formparam.FileInfo;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class AudioApiServiceImpl extends AudioApiService {
     @Override
     public Response createSpeech(CreateSpeechRequest createSpeechRequest
@@ -34,7 +35,7 @@ public class AudioApiServiceImpl extends AudioApiService {
 , CreateTranscriptionRequestModel model
 , String language
 , String prompt
-, String responseFormat
+, AudioResponseFormat responseFormat
 , BigDecimal temperature
 , List<String> timestampGranularities
  ) throws NotFoundException {
@@ -45,7 +46,7 @@ public class AudioApiServiceImpl extends AudioApiService {
     public Response createTranslation(InputStream _fileInputStream, FileInfo _fileDetail
 , CreateTranscriptionRequestModel model
 , String prompt
-, String responseFormat
+, AudioResponseFormat responseFormat
 , BigDecimal temperature
  ) throws NotFoundException {
         // do some magic!

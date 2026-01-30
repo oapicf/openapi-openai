@@ -1,23 +1,18 @@
 package controllers;
 
-import apimodels.AssistantFileObject;
 import apimodels.AssistantObject;
-import apimodels.CreateAssistantFileRequest;
 import apimodels.CreateAssistantRequest;
 import apimodels.CreateMessageRequest;
 import apimodels.CreateRunRequest;
 import apimodels.CreateThreadAndRunRequest;
 import apimodels.CreateThreadRequest;
-import apimodels.DeleteAssistantFileResponse;
 import apimodels.DeleteAssistantResponse;
+import apimodels.DeleteMessageResponse;
 import apimodels.DeleteThreadResponse;
-import apimodels.ListAssistantFilesResponse;
 import apimodels.ListAssistantsResponse;
-import apimodels.ListMessageFilesResponse;
 import apimodels.ListMessagesResponse;
 import apimodels.ListRunStepsResponse;
 import apimodels.ListRunsResponse;
-import apimodels.MessageFileObject;
 import apimodels.MessageObject;
 import apimodels.ModifyAssistantRequest;
 import apimodels.ModifyMessageRequest;
@@ -50,7 +45,7 @@ import com.typesafe.config.Config;
 
 import openapitools.OpenAPIUtils.ApiAction;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class AssistantsApiController extends Controller {
     private final AssistantsApiControllerImpInterface imp;
     private final ObjectMapper mapper;
@@ -84,21 +79,6 @@ public class AssistantsApiController extends Controller {
     }
 
     @ApiAction
-    public Result createAssistantFile(Http.Request request, String assistantId) throws Exception {
-        JsonNode nodecreateAssistantFileRequest = request.body().asJson();
-        CreateAssistantFileRequest createAssistantFileRequest;
-        if (nodecreateAssistantFileRequest != null) {
-            createAssistantFileRequest = mapper.readValue(nodecreateAssistantFileRequest.toString(), CreateAssistantFileRequest.class);
-            if (configuration.getBoolean("useInputBeanValidation")) {
-                OpenAPIUtils.validate(createAssistantFileRequest);
-            }
-        } else {
-            throw new IllegalArgumentException("'CreateAssistantFileRequest' parameter is required");
-        }
-        return imp.createAssistantFileHttp(request, assistantId, createAssistantFileRequest);
-    }
-
-    @ApiAction
     public Result createMessage(Http.Request request, String threadId) throws Exception {
         JsonNode nodecreateMessageRequest = request.body().asJson();
         CreateMessageRequest createMessageRequest;
@@ -125,7 +105,16 @@ public class AssistantsApiController extends Controller {
         } else {
             throw new IllegalArgumentException("'CreateRunRequest' parameter is required");
         }
-        return imp.createRunHttp(request, threadId, createRunRequest);
+        String[] includeArray = request.queryString().get("include[]");
+        List<String> includeList = OpenAPIUtils.parametersToList("multi", includeArray);
+        List<String> include = new ArrayList<>();
+        for (String curParam : includeList) {
+            if (!curParam.isEmpty()) {
+                //noinspection UseBulkOperation
+                include.add(curParam);
+            }
+        }
+        return imp.createRunHttp(request, threadId, createRunRequest, include);
     }
 
     @ApiAction
@@ -164,8 +153,8 @@ public class AssistantsApiController extends Controller {
     }
 
     @ApiAction
-    public Result deleteAssistantFile(Http.Request request, String assistantId,String fileId) throws Exception {
-        return imp.deleteAssistantFileHttp(request, assistantId, fileId);
+    public Result deleteMessage(Http.Request request, String threadId,String messageId) throws Exception {
+        return imp.deleteMessageHttp(request, threadId, messageId);
     }
 
     @ApiAction
@@ -179,18 +168,8 @@ public class AssistantsApiController extends Controller {
     }
 
     @ApiAction
-    public Result getAssistantFile(Http.Request request, String assistantId,String fileId) throws Exception {
-        return imp.getAssistantFileHttp(request, assistantId, fileId);
-    }
-
-    @ApiAction
     public Result getMessage(Http.Request request, String threadId,String messageId) throws Exception {
         return imp.getMessageHttp(request, threadId, messageId);
-    }
-
-    @ApiAction
-    public Result getMessageFile(Http.Request request, String threadId,String messageId,String fileId) throws Exception {
-        return imp.getMessageFileHttp(request, threadId, messageId, fileId);
     }
 
     @ApiAction
@@ -200,45 +179,21 @@ public class AssistantsApiController extends Controller {
 
     @ApiAction
     public Result getRunStep(Http.Request request, String threadId,String runId,String stepId) throws Exception {
-        return imp.getRunStepHttp(request, threadId, runId, stepId);
+        String[] includeArray = request.queryString().get("include[]");
+        List<String> includeList = OpenAPIUtils.parametersToList("multi", includeArray);
+        List<String> include = new ArrayList<>();
+        for (String curParam : includeList) {
+            if (!curParam.isEmpty()) {
+                //noinspection UseBulkOperation
+                include.add(curParam);
+            }
+        }
+        return imp.getRunStepHttp(request, threadId, runId, stepId, include);
     }
 
     @ApiAction
     public Result getThread(Http.Request request, String threadId) throws Exception {
         return imp.getThreadHttp(request, threadId);
-    }
-
-    @ApiAction
-    public Result listAssistantFiles(Http.Request request, String assistantId) throws Exception {
-        String valuelimit = request.getQueryString("limit");
-        Integer limit;
-        if (valuelimit != null) {
-            limit = Integer.parseInt(valuelimit);
-        } else {
-            limit = 20;
-        }
-        String valueorder = request.getQueryString("order");
-        String order;
-        if (valueorder != null) {
-            order = valueorder;
-        } else {
-            order = "desc";
-        }
-        String valueafter = request.getQueryString("after");
-        String after;
-        if (valueafter != null) {
-            after = valueafter;
-        } else {
-            after = null;
-        }
-        String valuebefore = request.getQueryString("before");
-        String before;
-        if (valuebefore != null) {
-            before = valuebefore;
-        } else {
-            before = null;
-        }
-        return imp.listAssistantFilesHttp(request, assistantId, limit, order, after, before);
     }
 
     @ApiAction
@@ -272,39 +227,6 @@ public class AssistantsApiController extends Controller {
             before = null;
         }
         return imp.listAssistantsHttp(request, limit, order, after, before);
-    }
-
-    @ApiAction
-    public Result listMessageFiles(Http.Request request, String threadId,String messageId) throws Exception {
-        String valuelimit = request.getQueryString("limit");
-        Integer limit;
-        if (valuelimit != null) {
-            limit = Integer.parseInt(valuelimit);
-        } else {
-            limit = 20;
-        }
-        String valueorder = request.getQueryString("order");
-        String order;
-        if (valueorder != null) {
-            order = valueorder;
-        } else {
-            order = "desc";
-        }
-        String valueafter = request.getQueryString("after");
-        String after;
-        if (valueafter != null) {
-            after = valueafter;
-        } else {
-            after = null;
-        }
-        String valuebefore = request.getQueryString("before");
-        String before;
-        if (valuebefore != null) {
-            before = valuebefore;
-        } else {
-            before = null;
-        }
-        return imp.listMessageFilesHttp(request, threadId, messageId, limit, order, after, before);
     }
 
     @ApiAction
@@ -377,7 +299,16 @@ public class AssistantsApiController extends Controller {
         } else {
             before = null;
         }
-        return imp.listRunStepsHttp(request, threadId, runId, limit, order, after, before);
+        String[] includeArray = request.queryString().get("include[]");
+        List<String> includeList = OpenAPIUtils.parametersToList("multi", includeArray);
+        List<String> include = new ArrayList<>();
+        for (String curParam : includeList) {
+            if (!curParam.isEmpty()) {
+                //noinspection UseBulkOperation
+                include.add(curParam);
+            }
+        }
+        return imp.listRunStepsHttp(request, threadId, runId, limit, order, after, before, include);
     }
 
     @ApiAction

@@ -14,6 +14,7 @@ import org.openapitools.model.RunStreamEventOneOf5;
 import org.openapitools.model.RunStreamEventOneOf6;
 import org.openapitools.model.RunStreamEventOneOf7;
 import org.openapitools.model.RunStreamEventOneOf8;
+import org.openapitools.model.RunStreamEventOneOf9;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 

@@ -1,0 +1,33 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The per-line object of the batch input file",
+  "name": "BatchRequestInput",
+  "fields": [
+    {
+      "name": "custom_id",
+      "type": ["null", "string"],
+      "doc": "A developer-provided per-request id that will be used to match outputs to inputs. Must be unique for each request in a batch.",
+      "default": null
+    },
+    {
+      "name": "method",
+      "type": ["null", {
+        "type": "enum",
+        "name": "BatchRequestInput_method",
+        "symbols": [
+          "POST"
+        ]
+      }],
+      "doc": "The HTTP method to be used for the request. Currently only `POST` is supported.",
+      "default": null
+    },
+    {
+      "name": "url",
+      "type": ["null", "string"],
+      "doc": "The OpenAI API relative URL to be used for the request. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported.",
+      "default": null
+    }
+  ]
+
+}

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Created** | **int** | The Unix timestamp (in seconds) of when the chat completion was created. | 
 **Model** | **string** | The model used for the chat completion. | 
 **Object** | **string** | The object type, which is always &#x60;chat.completion&#x60;. | 
+**ServiceTier** | **string** | The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request. | [optional] 
 **SystemFingerprint** | **string** | This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism.  | [optional] 
 **Usage** | [**CompletionUsage**](CompletionUsage.md) |  | [optional] 
 

@@ -80,7 +80,7 @@ public class CompletionsControllerTest {
         CreateCompletionRequest body = new CreateCompletionRequest(null, null);
         String uri = UriTemplate.of("/completions").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@16279a5d");
+            .accept("[Ljava.lang.String;@3bb99ed3");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, CreateCompletionResponse.class);

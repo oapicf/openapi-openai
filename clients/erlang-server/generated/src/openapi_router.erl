@@ -61,13 +61,6 @@ get_operations() ->
             method => <<"POST">>,
             handler => 'openapi_assistants_handler'
         },
-       'createAssistantFile' => #{
-            servers => [],
-            base_path => "/v1",
-            path => "/assistants/:assistant_id/files",
-            method => <<"POST">>,
-            handler => 'openapi_assistants_handler'
-        },
        'createMessage' => #{
             servers => [],
             base_path => "/v1",
@@ -103,10 +96,10 @@ get_operations() ->
             method => <<"DELETE">>,
             handler => 'openapi_assistants_handler'
         },
-       'deleteAssistantFile' => #{
+       'deleteMessage' => #{
             servers => [],
             base_path => "/v1",
-            path => "/assistants/:assistant_id/files/:file_id",
+            path => "/threads/:thread_id/messages/:message_id",
             method => <<"DELETE">>,
             handler => 'openapi_assistants_handler'
         },
@@ -124,24 +117,10 @@ get_operations() ->
             method => <<"GET">>,
             handler => 'openapi_assistants_handler'
         },
-       'getAssistantFile' => #{
-            servers => [],
-            base_path => "/v1",
-            path => "/assistants/:assistant_id/files/:file_id",
-            method => <<"GET">>,
-            handler => 'openapi_assistants_handler'
-        },
        'getMessage' => #{
             servers => [],
             base_path => "/v1",
             path => "/threads/:thread_id/messages/:message_id",
-            method => <<"GET">>,
-            handler => 'openapi_assistants_handler'
-        },
-       'getMessageFile' => #{
-            servers => [],
-            base_path => "/v1",
-            path => "/threads/:thread_id/messages/:message_id/files/:file_id",
             method => <<"GET">>,
             handler => 'openapi_assistants_handler'
         },
@@ -166,24 +145,10 @@ get_operations() ->
             method => <<"GET">>,
             handler => 'openapi_assistants_handler'
         },
-       'listAssistantFiles' => #{
-            servers => [],
-            base_path => "/v1",
-            path => "/assistants/:assistant_id/files",
-            method => <<"GET">>,
-            handler => 'openapi_assistants_handler'
-        },
        'listAssistants' => #{
             servers => [],
             base_path => "/v1",
             path => "/assistants",
-            method => <<"GET">>,
-            handler => 'openapi_assistants_handler'
-        },
-       'listMessageFiles' => #{
-            servers => [],
-            base_path => "/v1",
-            path => "/threads/:thread_id/messages/:message_id/files",
             method => <<"GET">>,
             handler => 'openapi_assistants_handler'
         },
@@ -264,6 +229,41 @@ get_operations() ->
             method => <<"POST">>,
             handler => 'openapi_audio_handler'
         },
+       'list-audit-logs' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/audit_logs",
+            method => <<"GET">>,
+            handler => 'openapi_audit_logs_handler'
+        },
+       'cancelBatch' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/batches/:batch_id/cancel",
+            method => <<"POST">>,
+            handler => 'openapi_batch_handler'
+        },
+       'createBatch' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/batches",
+            method => <<"POST">>,
+            handler => 'openapi_batch_handler'
+        },
+       'listBatches' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/batches",
+            method => <<"GET">>,
+            handler => 'openapi_batch_handler'
+        },
+       'retrieveBatch' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/batches/:batch_id",
+            method => <<"GET">>,
+            handler => 'openapi_batch_handler'
+        },
        'createChatCompletion' => #{
             servers => [],
             base_path => "/v1",
@@ -277,6 +277,34 @@ get_operations() ->
             path => "/completions",
             method => <<"POST">>,
             handler => 'openapi_completions_handler'
+        },
+       'admin-api-keys-create' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/admin_api_keys",
+            method => <<"POST">>,
+            handler => 'openapi_default_handler'
+        },
+       'admin-api-keys-delete' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/admin_api_keys/:key_id",
+            method => <<"DELETE">>,
+            handler => 'openapi_default_handler'
+        },
+       'admin-api-keys-get' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/admin_api_keys/:key_id",
+            method => <<"GET">>,
+            handler => 'openapi_default_handler'
+        },
+       'admin-api-keys-list' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/admin_api_keys",
+            method => <<"GET">>,
+            handler => 'openapi_default_handler'
         },
        'createEmbedding' => #{
             servers => [],
@@ -383,6 +411,34 @@ get_operations() ->
             method => <<"POST">>,
             handler => 'openapi_images_handler'
         },
+       'delete-invite' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/invites/:invite_id",
+            method => <<"DELETE">>,
+            handler => 'openapi_invites_handler'
+        },
+       'inviteUser' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/invites",
+            method => <<"POST">>,
+            handler => 'openapi_invites_handler'
+        },
+       'list-invites' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/invites",
+            method => <<"GET">>,
+            handler => 'openapi_invites_handler'
+        },
+       'retrieve-invite' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/invites/:invite_id",
+            method => <<"GET">>,
+            handler => 'openapi_invites_handler'
+        },
        'deleteModel' => #{
             servers => [],
             base_path => "/v1",
@@ -410,5 +466,355 @@ get_operations() ->
             path => "/moderations",
             method => <<"POST">>,
             handler => 'openapi_moderations_handler'
+        },
+       'archive-project' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id/archive",
+            method => <<"POST">>,
+            handler => 'openapi_projects_handler'
+        },
+       'create-project' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects",
+            method => <<"POST">>,
+            handler => 'openapi_projects_handler'
+        },
+       'create-project-service-account' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id/service_accounts",
+            method => <<"POST">>,
+            handler => 'openapi_projects_handler'
+        },
+       'create-project-user' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id/users",
+            method => <<"POST">>,
+            handler => 'openapi_projects_handler'
+        },
+       'delete-project-api-key' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id/api_keys/:key_id",
+            method => <<"DELETE">>,
+            handler => 'openapi_projects_handler'
+        },
+       'delete-project-service-account' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id/service_accounts/:service_account_id",
+            method => <<"DELETE">>,
+            handler => 'openapi_projects_handler'
+        },
+       'delete-project-user' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id/users/:user_id",
+            method => <<"DELETE">>,
+            handler => 'openapi_projects_handler'
+        },
+       'list-project-api-keys' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id/api_keys",
+            method => <<"GET">>,
+            handler => 'openapi_projects_handler'
+        },
+       'list-project-rate-limits' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id/rate_limits",
+            method => <<"GET">>,
+            handler => 'openapi_projects_handler'
+        },
+       'list-project-service-accounts' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id/service_accounts",
+            method => <<"GET">>,
+            handler => 'openapi_projects_handler'
+        },
+       'list-project-users' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id/users",
+            method => <<"GET">>,
+            handler => 'openapi_projects_handler'
+        },
+       'list-projects' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects",
+            method => <<"GET">>,
+            handler => 'openapi_projects_handler'
+        },
+       'modify-project' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id",
+            method => <<"POST">>,
+            handler => 'openapi_projects_handler'
+        },
+       'modify-project-user' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id/users/:user_id",
+            method => <<"POST">>,
+            handler => 'openapi_projects_handler'
+        },
+       'retrieve-project' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id",
+            method => <<"GET">>,
+            handler => 'openapi_projects_handler'
+        },
+       'retrieve-project-api-key' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id/api_keys/:key_id",
+            method => <<"GET">>,
+            handler => 'openapi_projects_handler'
+        },
+       'retrieve-project-service-account' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id/service_accounts/:service_account_id",
+            method => <<"GET">>,
+            handler => 'openapi_projects_handler'
+        },
+       'retrieve-project-user' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id/users/:user_id",
+            method => <<"GET">>,
+            handler => 'openapi_projects_handler'
+        },
+       'update-project-rate-limits' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/projects/:project_id/rate_limits/:rate_limit_id",
+            method => <<"POST">>,
+            handler => 'openapi_projects_handler'
+        },
+       'create-realtime-session' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/realtime/sessions",
+            method => <<"POST">>,
+            handler => 'openapi_realtime_handler'
+        },
+       'addUploadPart' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/uploads/:upload_id/parts",
+            method => <<"POST">>,
+            handler => 'openapi_uploads_handler'
+        },
+       'cancelUpload' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/uploads/:upload_id/cancel",
+            method => <<"POST">>,
+            handler => 'openapi_uploads_handler'
+        },
+       'completeUpload' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/uploads/:upload_id/complete",
+            method => <<"POST">>,
+            handler => 'openapi_uploads_handler'
+        },
+       'createUpload' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/uploads",
+            method => <<"POST">>,
+            handler => 'openapi_uploads_handler'
+        },
+       'usage-audio-speeches' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/usage/audio_speeches",
+            method => <<"GET">>,
+            handler => 'openapi_usage_handler'
+        },
+       'usage-audio-transcriptions' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/usage/audio_transcriptions",
+            method => <<"GET">>,
+            handler => 'openapi_usage_handler'
+        },
+       'usage-code-interpreter-sessions' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/usage/code_interpreter_sessions",
+            method => <<"GET">>,
+            handler => 'openapi_usage_handler'
+        },
+       'usage-completions' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/usage/completions",
+            method => <<"GET">>,
+            handler => 'openapi_usage_handler'
+        },
+       'usage-costs' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/costs",
+            method => <<"GET">>,
+            handler => 'openapi_usage_handler'
+        },
+       'usage-embeddings' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/usage/embeddings",
+            method => <<"GET">>,
+            handler => 'openapi_usage_handler'
+        },
+       'usage-images' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/usage/images",
+            method => <<"GET">>,
+            handler => 'openapi_usage_handler'
+        },
+       'usage-moderations' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/usage/moderations",
+            method => <<"GET">>,
+            handler => 'openapi_usage_handler'
+        },
+       'usage-vector-stores' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/usage/vector_stores",
+            method => <<"GET">>,
+            handler => 'openapi_usage_handler'
+        },
+       'delete-user' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/users/:user_id",
+            method => <<"DELETE">>,
+            handler => 'openapi_users_handler'
+        },
+       'list-users' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/users",
+            method => <<"GET">>,
+            handler => 'openapi_users_handler'
+        },
+       'modify-user' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/users/:user_id",
+            method => <<"POST">>,
+            handler => 'openapi_users_handler'
+        },
+       'retrieve-user' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/organization/users/:user_id",
+            method => <<"GET">>,
+            handler => 'openapi_users_handler'
+        },
+       'cancelVectorStoreFileBatch' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/vector_stores/:vector_store_id/file_batches/:batch_id/cancel",
+            method => <<"POST">>,
+            handler => 'openapi_vector_stores_handler'
+        },
+       'createVectorStore' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/vector_stores",
+            method => <<"POST">>,
+            handler => 'openapi_vector_stores_handler'
+        },
+       'createVectorStoreFile' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/vector_stores/:vector_store_id/files",
+            method => <<"POST">>,
+            handler => 'openapi_vector_stores_handler'
+        },
+       'createVectorStoreFileBatch' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/vector_stores/:vector_store_id/file_batches",
+            method => <<"POST">>,
+            handler => 'openapi_vector_stores_handler'
+        },
+       'deleteVectorStore' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/vector_stores/:vector_store_id",
+            method => <<"DELETE">>,
+            handler => 'openapi_vector_stores_handler'
+        },
+       'deleteVectorStoreFile' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/vector_stores/:vector_store_id/files/:file_id",
+            method => <<"DELETE">>,
+            handler => 'openapi_vector_stores_handler'
+        },
+       'getVectorStore' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/vector_stores/:vector_store_id",
+            method => <<"GET">>,
+            handler => 'openapi_vector_stores_handler'
+        },
+       'getVectorStoreFile' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/vector_stores/:vector_store_id/files/:file_id",
+            method => <<"GET">>,
+            handler => 'openapi_vector_stores_handler'
+        },
+       'getVectorStoreFileBatch' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/vector_stores/:vector_store_id/file_batches/:batch_id",
+            method => <<"GET">>,
+            handler => 'openapi_vector_stores_handler'
+        },
+       'listFilesInVectorStoreBatch' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/vector_stores/:vector_store_id/file_batches/:batch_id/files",
+            method => <<"GET">>,
+            handler => 'openapi_vector_stores_handler'
+        },
+       'listVectorStoreFiles' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/vector_stores/:vector_store_id/files",
+            method => <<"GET">>,
+            handler => 'openapi_vector_stores_handler'
+        },
+       'listVectorStores' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/vector_stores",
+            method => <<"GET">>,
+            handler => 'openapi_vector_stores_handler'
+        },
+       'modifyVectorStore' => #{
+            servers => [],
+            base_path => "/v1",
+            path => "/vector_stores/:vector_store_id",
+            method => <<"POST">>,
+            handler => 'openapi_vector_stores_handler'
         }
     }.

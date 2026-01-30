@@ -1,12 +1,14 @@
 # FineTuningJobHyperparameters
 
-The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**n_epochs** | [**FineTuningJobHyperparametersNEpochs**](FineTuningJobHyperparametersNEpochs.md) |  | 
+**batch_size** | [**CreateFineTuningJobRequestHyperparametersBatchSize**](CreateFineTuningJobRequestHyperparametersBatchSize.md) |  | [optional] 
+**learning_rate_multiplier** | [**CreateFineTuningJobRequestHyperparametersLearningRateMultiplier**](CreateFineTuningJobRequestHyperparametersLearningRateMultiplier.md) |  | [optional] 
+**n_epochs** | [**CreateFineTuningJobRequestHyperparametersNEpochs**](CreateFineTuningJobRequestHyperparametersNEpochs.md) |  | [optional] 
 
 ## Example
 

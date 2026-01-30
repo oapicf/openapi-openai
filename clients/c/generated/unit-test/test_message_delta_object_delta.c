@@ -23,13 +23,11 @@ message_delta_object_delta_t* instantiate_message_delta_object_delta(int include
   if (include_optional) {
     message_delta_object_delta = message_delta_object_delta_create(
       openai_api_message_delta_object_delta_ROLE_user,
-      list_createList(),
       list_createList()
     );
   } else {
     message_delta_object_delta = message_delta_object_delta_create(
       openai_api_message_delta_object_delta_ROLE_user,
-      list_createList(),
       list_createList()
     );
   }

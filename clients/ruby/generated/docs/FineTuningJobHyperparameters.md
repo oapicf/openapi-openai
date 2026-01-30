@@ -4,7 +4,9 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **n_epochs** | [**FineTuningJobHyperparametersNEpochs**](FineTuningJobHyperparametersNEpochs.md) |  |  |
+| **batch_size** | [**CreateFineTuningJobRequestHyperparametersBatchSize**](CreateFineTuningJobRequestHyperparametersBatchSize.md) |  | [optional] |
+| **learning_rate_multiplier** | [**CreateFineTuningJobRequestHyperparametersLearningRateMultiplier**](CreateFineTuningJobRequestHyperparametersLearningRateMultiplier.md) |  | [optional] |
+| **n_epochs** | [**CreateFineTuningJobRequestHyperparametersNEpochs**](CreateFineTuningJobRequestHyperparametersNEpochs.md) |  | [optional] |
 
 ## Example
 
@@ -12,6 +14,8 @@
 require 'openapi_openai'
 
 instance = OpenApiOpenAIClient::FineTuningJobHyperparameters.new(
+  batch_size: null,
+  learning_rate_multiplier: null,
   n_epochs: null
 )
 ```

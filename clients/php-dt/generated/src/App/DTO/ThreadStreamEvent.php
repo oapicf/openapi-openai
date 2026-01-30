@@ -11,6 +11,13 @@ use Articus\DataTransfer\Annotation as DTA;
 class ThreadStreamEvent
 {
     /**
+     * Whether to enable input audio transcription.
+     * @DTA\Data(field="enabled", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"bool"})
+     */
+    public ?bool $enabled = null;
+
+    /**
      * @DTA\Data(field="event")
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      */

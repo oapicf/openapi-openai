@@ -11,11 +11,13 @@ Name | Type | Description | Notes
 **tools** | [**array[AssistantObjectToolsInner]**](AssistantObjectToolsInner.md) |  | [optional] [default to null]
 **metadata** | **map** |  | [optional] [default to null]
 **temperature** | **integer** |  | [optional] [default to 1]
+**topUnderscorep** | **integer** |  | [optional] [default to 1]
 **stream** | **boolean** |  | [optional] [default to null]
 **maxUnderscorepromptUnderscoretokens** | **integer** |  | [optional] [default to null]
 **maxUnderscorecompletionUnderscoretokens** | **integer** |  | [optional] [default to null]
 **truncationUnderscorestrategy** | [**TruncationObject**](TruncationObject.md) |  | [optional] [default to null]
 **toolUnderscorechoice** | [**AssistantsApiToolChoiceOption**](AssistantsApiToolChoiceOption.md) |  | [optional] [default to null]
+**parallelUnderscoretoolUnderscorecalls** | **boolean** |  | [optional] [default to true]
 **responseUnderscoreformat** | [**AssistantsApiResponseFormatOption**](AssistantsApiResponseFormatOption.md) |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

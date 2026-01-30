@@ -5,8 +5,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.vertxweb.server.model.AssistantToolsCode;
+import org.openapitools.vertxweb.server.model.AssistantToolsFileSearch;
+import org.openapitools.vertxweb.server.model.AssistantToolsFileSearchFileSearch;
 import org.openapitools.vertxweb.server.model.AssistantToolsFunction;
-import org.openapitools.vertxweb.server.model.AssistantToolsRetrieval;
 import org.openapitools.vertxweb.server.model.FunctionObject;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -16,7 +17,7 @@ public class CreateThreadAndRunRequestToolsInner   {
 
   public enum TypeEnum {
     CODE_INTERPRETER("code_interpreter"),
-    RETRIEVAL("retrieval"),
+    FILE_SEARCH("file_search"),
     FUNCTION("function");
 
     private String value;
@@ -33,14 +34,16 @@ public class CreateThreadAndRunRequestToolsInner   {
   }
 
   private TypeEnum type;
+  private AssistantToolsFileSearchFileSearch fileSearch;
   private FunctionObject function;
 
   public CreateThreadAndRunRequestToolsInner () {
 
   }
 
-  public CreateThreadAndRunRequestToolsInner (TypeEnum type, FunctionObject function) {
+  public CreateThreadAndRunRequestToolsInner (TypeEnum type, AssistantToolsFileSearchFileSearch fileSearch, FunctionObject function) {
     this.type = type;
+    this.fileSearch = fileSearch;
     this.function = function;
   }
 
@@ -51,6 +54,15 @@ public class CreateThreadAndRunRequestToolsInner   {
   }
   public void setType(TypeEnum type) {
     this.type = type;
+  }
+
+    
+  @JsonProperty("file_search")
+  public AssistantToolsFileSearchFileSearch getFileSearch() {
+    return fileSearch;
+  }
+  public void setFileSearch(AssistantToolsFileSearchFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
   }
 
     
@@ -73,12 +85,13 @@ public class CreateThreadAndRunRequestToolsInner   {
     }
     CreateThreadAndRunRequestToolsInner createThreadAndRunRequestToolsInner = (CreateThreadAndRunRequestToolsInner) o;
     return Objects.equals(type, createThreadAndRunRequestToolsInner.type) &&
+        Objects.equals(fileSearch, createThreadAndRunRequestToolsInner.fileSearch) &&
         Objects.equals(function, createThreadAndRunRequestToolsInner.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, function);
+    return Objects.hash(type, fileSearch, function);
   }
 
   @Override
@@ -87,6 +100,7 @@ public class CreateThreadAndRunRequestToolsInner   {
     sb.append("class CreateThreadAndRunRequestToolsInner {\n");
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    fileSearch: ").append(toIndentedString(fileSearch)).append("\n");
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();

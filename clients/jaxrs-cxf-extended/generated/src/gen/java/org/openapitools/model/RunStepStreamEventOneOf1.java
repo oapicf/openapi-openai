@@ -13,9 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) moves to an `in_progress` state.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) moves to an `in_progress` state.
  */
-@ApiModel(description="Occurs when a [run step](/docs/api-reference/runs/step-object) moves to an `in_progress` state.")
+@ApiModel(description="Occurs when a [run step](/docs/api-reference/run-steps/step-object) moves to an `in_progress` state.")
 
 public class RunStepStreamEventOneOf1  {
   

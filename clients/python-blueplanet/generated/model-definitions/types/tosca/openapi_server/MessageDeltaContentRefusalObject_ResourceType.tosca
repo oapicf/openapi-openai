@@ -1,0 +1,46 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server MessageDeltaContentRefusalObject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a MessageDeltaContentRefusalObject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  MessageDeltaContentRefusalObject {
+    title = MessageDeltaContentRefusalObject
+    description = MessageDeltaContentRefusalObject
+    derivedFrom = Root
+    properties {
+        index {
+          type =  integer
+          description = "The index of the refusal part in the message."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "Always &#x60;refusal&#x60;."
+          enum = ["refusal"]
+          optional = true
+        }
+        refusal {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MessageDeltaContentRefusalObject {
+    title = MessageDeltaContentRefusalObject
+    description = MessageDeltaContentRefusalObject
+    implements = openapi_server.resourceTypes.MessageDeltaContentRefusalObject
+
+  }
+}

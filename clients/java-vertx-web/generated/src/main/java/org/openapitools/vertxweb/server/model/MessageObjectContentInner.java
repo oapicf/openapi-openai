@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.vertxweb.server.model.MessageContentImageFileObject;
 import org.openapitools.vertxweb.server.model.MessageContentImageFileObjectImageFile;
+import org.openapitools.vertxweb.server.model.MessageContentImageUrlObject;
+import org.openapitools.vertxweb.server.model.MessageContentImageUrlObjectImageUrl;
+import org.openapitools.vertxweb.server.model.MessageContentRefusalObject;
 import org.openapitools.vertxweb.server.model.MessageContentTextObject;
 import org.openapitools.vertxweb.server.model.MessageContentTextObjectText;
 
@@ -16,7 +19,9 @@ public class MessageObjectContentInner   {
 
   public enum TypeEnum {
     IMAGE_FILE("image_file"),
-    TEXT("text");
+    IMAGE_URL("image_url"),
+    TEXT("text"),
+    REFUSAL("refusal");
 
     private String value;
 
@@ -33,16 +38,20 @@ public class MessageObjectContentInner   {
 
   private TypeEnum type;
   private MessageContentImageFileObjectImageFile imageFile;
+  private MessageContentImageUrlObjectImageUrl imageUrl;
   private MessageContentTextObjectText text;
+  private String refusal;
 
   public MessageObjectContentInner () {
 
   }
 
-  public MessageObjectContentInner (TypeEnum type, MessageContentImageFileObjectImageFile imageFile, MessageContentTextObjectText text) {
+  public MessageObjectContentInner (TypeEnum type, MessageContentImageFileObjectImageFile imageFile, MessageContentImageUrlObjectImageUrl imageUrl, MessageContentTextObjectText text, String refusal) {
     this.type = type;
     this.imageFile = imageFile;
+    this.imageUrl = imageUrl;
     this.text = text;
+    this.refusal = refusal;
   }
 
     
@@ -64,12 +73,30 @@ public class MessageObjectContentInner   {
   }
 
     
+  @JsonProperty("image_url")
+  public MessageContentImageUrlObjectImageUrl getImageUrl() {
+    return imageUrl;
+  }
+  public void setImageUrl(MessageContentImageUrlObjectImageUrl imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
+    
   @JsonProperty("text")
   public MessageContentTextObjectText getText() {
     return text;
   }
   public void setText(MessageContentTextObjectText text) {
     this.text = text;
+  }
+
+    
+  @JsonProperty("refusal")
+  public String getRefusal() {
+    return refusal;
+  }
+  public void setRefusal(String refusal) {
+    this.refusal = refusal;
   }
 
 
@@ -84,12 +111,14 @@ public class MessageObjectContentInner   {
     MessageObjectContentInner messageObjectContentInner = (MessageObjectContentInner) o;
     return Objects.equals(type, messageObjectContentInner.type) &&
         Objects.equals(imageFile, messageObjectContentInner.imageFile) &&
-        Objects.equals(text, messageObjectContentInner.text);
+        Objects.equals(imageUrl, messageObjectContentInner.imageUrl) &&
+        Objects.equals(text, messageObjectContentInner.text) &&
+        Objects.equals(refusal, messageObjectContentInner.refusal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, imageFile, text);
+    return Objects.hash(type, imageFile, imageUrl, text, refusal);
   }
 
   @Override
@@ -99,7 +128,9 @@ public class MessageObjectContentInner   {
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    imageFile: ").append(toIndentedString(imageFile)).append("\n");
+    sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
     sb.append("}");
     return sb.toString();
   }

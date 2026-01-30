@@ -8,24 +8,19 @@ GET     /api                        controllers.ApiDocController.api
 #Functions for Assistants API
 POST     /v1/threads/:threadId/runs/:runId/cancel                     controllers.AssistantsApiController.cancelRun(request: Request, threadId: String, runId: String)
 POST     /v1/assistants                     controllers.AssistantsApiController.createAssistant(request: Request)
-POST     /v1/assistants/:assistantId/files                     controllers.AssistantsApiController.createAssistantFile(request: Request, assistantId: String)
 POST     /v1/threads/:threadId/messages                     controllers.AssistantsApiController.createMessage(request: Request, threadId: String)
 POST     /v1/threads/:threadId/runs                     controllers.AssistantsApiController.createRun(request: Request, threadId: String)
 POST     /v1/threads                     controllers.AssistantsApiController.createThread(request: Request)
 POST     /v1/threads/runs                     controllers.AssistantsApiController.createThreadAndRun(request: Request)
 DELETE     /v1/assistants/:assistantId                     controllers.AssistantsApiController.deleteAssistant(request: Request, assistantId: String)
-DELETE     /v1/assistants/:assistantId/files/:fileId                     controllers.AssistantsApiController.deleteAssistantFile(request: Request, assistantId: String, fileId: String)
+DELETE     /v1/threads/:threadId/messages/:messageId                     controllers.AssistantsApiController.deleteMessage(request: Request, threadId: String, messageId: String)
 DELETE     /v1/threads/:threadId                     controllers.AssistantsApiController.deleteThread(request: Request, threadId: String)
 GET     /v1/assistants/:assistantId                     controllers.AssistantsApiController.getAssistant(request: Request, assistantId: String)
-GET     /v1/assistants/:assistantId/files/:fileId                     controllers.AssistantsApiController.getAssistantFile(request: Request, assistantId: String, fileId: String)
 GET     /v1/threads/:threadId/messages/:messageId                     controllers.AssistantsApiController.getMessage(request: Request, threadId: String, messageId: String)
-GET     /v1/threads/:threadId/messages/:messageId/files/:fileId                     controllers.AssistantsApiController.getMessageFile(request: Request, threadId: String, messageId: String, fileId: String)
 GET     /v1/threads/:threadId/runs/:runId                     controllers.AssistantsApiController.getRun(request: Request, threadId: String, runId: String)
 GET     /v1/threads/:threadId/runs/:runId/steps/:stepId                     controllers.AssistantsApiController.getRunStep(request: Request, threadId: String, runId: String, stepId: String)
 GET     /v1/threads/:threadId                     controllers.AssistantsApiController.getThread(request: Request, threadId: String)
-GET     /v1/assistants/:assistantId/files                     controllers.AssistantsApiController.listAssistantFiles(request: Request, assistantId: String)
 GET     /v1/assistants                     controllers.AssistantsApiController.listAssistants(request: Request)
-GET     /v1/threads/:threadId/messages/:messageId/files                     controllers.AssistantsApiController.listMessageFiles(request: Request, threadId: String, messageId: String)
 GET     /v1/threads/:threadId/messages                     controllers.AssistantsApiController.listMessages(request: Request, threadId: String)
 GET     /v1/threads/:threadId/runs/:runId/steps                     controllers.AssistantsApiController.listRunSteps(request: Request, threadId: String, runId: String)
 GET     /v1/threads/:threadId/runs                     controllers.AssistantsApiController.listRuns(request: Request, threadId: String)
@@ -40,11 +35,26 @@ POST     /v1/audio/speech                     controllers.AudioApiController.cre
 POST     /v1/audio/transcriptions                     controllers.AudioApiController.createTranscription(request: Request)
 POST     /v1/audio/translations                     controllers.AudioApiController.createTranslation(request: Request)
 
+#Functions for AuditLogs API
+GET     /v1/organization/audit_logs                     controllers.AuditLogsApiController.listAuditLogs(request: Request)
+
+#Functions for Batch API
+POST     /v1/batches/:batchId/cancel                     controllers.BatchApiController.cancelBatch(request: Request, batchId: String)
+POST     /v1/batches                     controllers.BatchApiController.createBatch(request: Request)
+GET     /v1/batches                     controllers.BatchApiController.listBatches(request: Request)
+GET     /v1/batches/:batchId                     controllers.BatchApiController.retrieveBatch(request: Request, batchId: String)
+
 #Functions for Chat API
 POST     /v1/chat/completions                     controllers.ChatApiController.createChatCompletion(request: Request)
 
 #Functions for Completions API
 POST     /v1/completions                     controllers.CompletionsApiController.createCompletion(request: Request)
+
+#Functions for Default API
+POST     /v1/organization/admin_api_keys                     controllers.DefaultApiController.adminApiKeysCreate(request: Request)
+DELETE     /v1/organization/admin_api_keys/:keyId                     controllers.DefaultApiController.adminApiKeysDelete(request: Request, keyId: String)
+GET     /v1/organization/admin_api_keys/:keyId                     controllers.DefaultApiController.adminApiKeysGet(request: Request, keyId: String)
+GET     /v1/organization/admin_api_keys                     controllers.DefaultApiController.adminApiKeysList(request: Request)
 
 #Functions for Embeddings API
 POST     /v1/embeddings                     controllers.EmbeddingsApiController.createEmbedding(request: Request)
@@ -69,6 +79,12 @@ POST     /v1/images/generations                     controllers.ImagesApiControl
 POST     /v1/images/edits                     controllers.ImagesApiController.createImageEdit(request: Request)
 POST     /v1/images/variations                     controllers.ImagesApiController.createImageVariation(request: Request)
 
+#Functions for Invites API
+DELETE     /v1/organization/invites/:inviteId                     controllers.InvitesApiController.deleteInvite(request: Request, inviteId: String)
+POST     /v1/organization/invites                     controllers.InvitesApiController.inviteUser(request: Request)
+GET     /v1/organization/invites                     controllers.InvitesApiController.listInvites(request: Request)
+GET     /v1/organization/invites/:inviteId                     controllers.InvitesApiController.retrieveInvite(request: Request, inviteId: String)
+
 #Functions for Models API
 DELETE     /v1/models/:model                     controllers.ModelsApiController.deleteModel(request: Request, model: String)
 GET     /v1/models                     controllers.ModelsApiController.listModels(request: Request)
@@ -76,6 +92,68 @@ GET     /v1/models/:model                     controllers.ModelsApiController.re
 
 #Functions for Moderations API
 POST     /v1/moderations                     controllers.ModerationsApiController.createModeration(request: Request)
+
+#Functions for Projects API
+POST     /v1/organization/projects/:projectId/archive                     controllers.ProjectsApiController.archiveProject(request: Request, projectId: String)
+POST     /v1/organization/projects                     controllers.ProjectsApiController.createProject(request: Request)
+POST     /v1/organization/projects/:projectId/service_accounts                     controllers.ProjectsApiController.createProjectServiceAccount(request: Request, projectId: String)
+POST     /v1/organization/projects/:projectId/users                     controllers.ProjectsApiController.createProjectUser(request: Request, projectId: String)
+DELETE     /v1/organization/projects/:projectId/api_keys/:keyId                     controllers.ProjectsApiController.deleteProjectApiKey(request: Request, projectId: String, keyId: String)
+DELETE     /v1/organization/projects/:projectId/service_accounts/:serviceAccountId                     controllers.ProjectsApiController.deleteProjectServiceAccount(request: Request, projectId: String, serviceAccountId: String)
+DELETE     /v1/organization/projects/:projectId/users/:userId                     controllers.ProjectsApiController.deleteProjectUser(request: Request, projectId: String, userId: String)
+GET     /v1/organization/projects/:projectId/api_keys                     controllers.ProjectsApiController.listProjectApiKeys(request: Request, projectId: String)
+GET     /v1/organization/projects/:projectId/rate_limits                     controllers.ProjectsApiController.listProjectRateLimits(request: Request, projectId: String)
+GET     /v1/organization/projects/:projectId/service_accounts                     controllers.ProjectsApiController.listProjectServiceAccounts(request: Request, projectId: String)
+GET     /v1/organization/projects/:projectId/users                     controllers.ProjectsApiController.listProjectUsers(request: Request, projectId: String)
+GET     /v1/organization/projects                     controllers.ProjectsApiController.listProjects(request: Request)
+POST     /v1/organization/projects/:projectId                     controllers.ProjectsApiController.modifyProject(request: Request, projectId: String)
+POST     /v1/organization/projects/:projectId/users/:userId                     controllers.ProjectsApiController.modifyProjectUser(request: Request, projectId: String, userId: String)
+GET     /v1/organization/projects/:projectId                     controllers.ProjectsApiController.retrieveProject(request: Request, projectId: String)
+GET     /v1/organization/projects/:projectId/api_keys/:keyId                     controllers.ProjectsApiController.retrieveProjectApiKey(request: Request, projectId: String, keyId: String)
+GET     /v1/organization/projects/:projectId/service_accounts/:serviceAccountId                     controllers.ProjectsApiController.retrieveProjectServiceAccount(request: Request, projectId: String, serviceAccountId: String)
+GET     /v1/organization/projects/:projectId/users/:userId                     controllers.ProjectsApiController.retrieveProjectUser(request: Request, projectId: String, userId: String)
+POST     /v1/organization/projects/:projectId/rate_limits/:rateLimitId                     controllers.ProjectsApiController.updateProjectRateLimits(request: Request, projectId: String, rateLimitId: String)
+
+#Functions for Realtime API
+POST     /v1/realtime/sessions                     controllers.RealtimeApiController.createRealtimeSession(request: Request)
+
+#Functions for Uploads API
+POST     /v1/uploads/:uploadId/parts                     controllers.UploadsApiController.addUploadPart(request: Request, uploadId: String)
+POST     /v1/uploads/:uploadId/cancel                     controllers.UploadsApiController.cancelUpload(request: Request, uploadId: String)
+POST     /v1/uploads/:uploadId/complete                     controllers.UploadsApiController.completeUpload(request: Request, uploadId: String)
+POST     /v1/uploads                     controllers.UploadsApiController.createUpload(request: Request)
+
+#Functions for Usage API
+GET     /v1/organization/usage/audio_speeches                     controllers.UsageApiController.usageAudioSpeeches(request: Request)
+GET     /v1/organization/usage/audio_transcriptions                     controllers.UsageApiController.usageAudioTranscriptions(request: Request)
+GET     /v1/organization/usage/code_interpreter_sessions                     controllers.UsageApiController.usageCodeInterpreterSessions(request: Request)
+GET     /v1/organization/usage/completions                     controllers.UsageApiController.usageCompletions(request: Request)
+GET     /v1/organization/costs                     controllers.UsageApiController.usageCosts(request: Request)
+GET     /v1/organization/usage/embeddings                     controllers.UsageApiController.usageEmbeddings(request: Request)
+GET     /v1/organization/usage/images                     controllers.UsageApiController.usageImages(request: Request)
+GET     /v1/organization/usage/moderations                     controllers.UsageApiController.usageModerations(request: Request)
+GET     /v1/organization/usage/vector_stores                     controllers.UsageApiController.usageVectorStores(request: Request)
+
+#Functions for Users API
+DELETE     /v1/organization/users/:userId                     controllers.UsersApiController.deleteUser(request: Request, userId: String)
+GET     /v1/organization/users                     controllers.UsersApiController.listUsers(request: Request)
+POST     /v1/organization/users/:userId                     controllers.UsersApiController.modifyUser(request: Request, userId: String)
+GET     /v1/organization/users/:userId                     controllers.UsersApiController.retrieveUser(request: Request, userId: String)
+
+#Functions for VectorStores API
+POST     /v1/vector_stores/:vectorStoreId/file_batches/:batchId/cancel                     controllers.VectorStoresApiController.cancelVectorStoreFileBatch(request: Request, vectorStoreId: String, batchId: String)
+POST     /v1/vector_stores                     controllers.VectorStoresApiController.createVectorStore(request: Request)
+POST     /v1/vector_stores/:vectorStoreId/files                     controllers.VectorStoresApiController.createVectorStoreFile(request: Request, vectorStoreId: String)
+POST     /v1/vector_stores/:vectorStoreId/file_batches                     controllers.VectorStoresApiController.createVectorStoreFileBatch(request: Request, vectorStoreId: String)
+DELETE     /v1/vector_stores/:vectorStoreId                     controllers.VectorStoresApiController.deleteVectorStore(request: Request, vectorStoreId: String)
+DELETE     /v1/vector_stores/:vectorStoreId/files/:fileId                     controllers.VectorStoresApiController.deleteVectorStoreFile(request: Request, vectorStoreId: String, fileId: String)
+GET     /v1/vector_stores/:vectorStoreId                     controllers.VectorStoresApiController.getVectorStore(request: Request, vectorStoreId: String)
+GET     /v1/vector_stores/:vectorStoreId/files/:fileId                     controllers.VectorStoresApiController.getVectorStoreFile(request: Request, vectorStoreId: String, fileId: String)
+GET     /v1/vector_stores/:vectorStoreId/file_batches/:batchId                     controllers.VectorStoresApiController.getVectorStoreFileBatch(request: Request, vectorStoreId: String, batchId: String)
+GET     /v1/vector_stores/:vectorStoreId/file_batches/:batchId/files                     controllers.VectorStoresApiController.listFilesInVectorStoreBatch(request: Request, vectorStoreId: String, batchId: String)
+GET     /v1/vector_stores/:vectorStoreId/files                     controllers.VectorStoresApiController.listVectorStoreFiles(request: Request, vectorStoreId: String)
+GET     /v1/vector_stores                     controllers.VectorStoresApiController.listVectorStores(request: Request)
+POST     /v1/vector_stores/:vectorStoreId                     controllers.VectorStoresApiController.modifyVectorStore(request: Request, vectorStoreId: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET /assets/*file           controllers.Assets.at(file)

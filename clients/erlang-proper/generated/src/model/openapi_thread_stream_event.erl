@@ -9,7 +9,8 @@
 -export_type([openapi_thread_stream_event/0]).
 
 -type openapi_thread_stream_event() ::
-  [ {'event', binary() }
+  [ {'enabled', boolean() }
+  | {'event', binary() }
   | {'data', openapi_thread_object:openapi_thread_object() }
   ].
 
@@ -18,7 +19,8 @@ openapi_thread_stream_event() ->
     openapi_thread_stream_event([]).
 
 openapi_thread_stream_event(Fields) ->
-  Default = [ {'event', elements([<<"thread.created">>]) }
+  Default = [ {'enabled', boolean() }
+            , {'event', elements([<<"thread.created">>]) }
             , {'data', openapi_thread_object:openapi_thread_object() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).

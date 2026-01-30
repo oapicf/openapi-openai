@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="The delta containing the fields that have changed on the Message.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T10:45:28.938980301Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description="The delta containing the fields that have changed on the Message.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T14:09:21.247747647Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageDeltaObjectDelta   {
   
 
@@ -42,7 +42,6 @@ public class MessageDeltaObjectDelta   {
 
   private RoleEnum role;
   private List<MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
-  private List<String> fileIds = new ArrayList<>();
 
   /**
    * The entity that produced the message. One of &#x60;user&#x60; or &#x60;assistant&#x60;.
@@ -71,19 +70,6 @@ public class MessageDeltaObjectDelta   {
     this.content = content;
   }
 
-  /**
-   * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-   **/
-  
-  @ApiModelProperty(value = "A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.")
-  @JsonProperty("file_ids")
- @Size(max=10)  public List<String> getFileIds() {
-    return fileIds;
-  }
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -95,13 +81,12 @@ public class MessageDeltaObjectDelta   {
     }
     MessageDeltaObjectDelta messageDeltaObjectDelta = (MessageDeltaObjectDelta) o;
     return Objects.equals(this.role, messageDeltaObjectDelta.role) &&
-        Objects.equals(this.content, messageDeltaObjectDelta.content) &&
-        Objects.equals(this.fileIds, messageDeltaObjectDelta.fileIds);
+        Objects.equals(this.content, messageDeltaObjectDelta.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, content, fileIds);
+    return Objects.hash(role, content);
   }
 
   @Override
@@ -111,7 +96,6 @@ public class MessageDeltaObjectDelta   {
     
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

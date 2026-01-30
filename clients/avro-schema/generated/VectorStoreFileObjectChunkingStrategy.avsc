@@ -1,0 +1,26 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The strategy used to chunk the file.",
+  "name": "VectorStoreFileObjectChunkingStrategy",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "VectorStoreFileObjectChunkingStrategy_type",
+        "symbols": [
+          "static",
+          "other"
+        ]
+      },
+      "doc": "Always `static`."
+    },
+    {
+      "name": "static",
+      "type": "model.StaticChunkingStrategy",
+      "doc": ""
+    }
+  ]
+
+}

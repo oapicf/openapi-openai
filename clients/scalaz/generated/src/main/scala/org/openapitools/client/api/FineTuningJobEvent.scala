@@ -12,14 +12,42 @@ import org.joda.time.DateTime
 import FineTuningJobEvent._
 
 case class FineTuningJobEvent (
+  /* The object type, which is always \"fine_tuning.job.event\". */
+  `object`: `Object`,
+/* The object identifier. */
   id: String,
-createdAt: Integer,
-level: Level,
-message: String,
-`object`: `Object`)
+/* The Unix timestamp (in seconds) for when the fine-tuning job was created. */
+  createdAt: Integer,
+/* The log level of the event. */
+  level: Level,
+/* The message of the event. */
+  message: String,
+/* The type of event. */
+  `type`: Option[`Type`],
+/* The data associated with the event. */
+  data: Option[Any])
 
 object FineTuningJobEvent {
   import DateTimeCodecs._
+  sealed trait `Object`
+  case object FineTuningJobEvent extends `Object`
+
+  object `Object` {
+    def to`Object`(s: String): Option[`Object`] = s match {
+      case "FineTuningJobEvent" => Some(FineTuningJobEvent)
+      case _ => None
+    }
+
+    def from`Object`(x: `Object`): String = x match {
+      case FineTuningJobEvent => "FineTuningJobEvent"
+    }
+  }
+
+  implicit val `Object`EnumEncoder: EncodeJson[`Object`] =
+    EncodeJson[`Object`](is => StringEncodeJson(`Object`.from`Object`(is)))
+
+  implicit val `Object`EnumDecoder: DecodeJson[`Object`] =
+    DecodeJson.optionDecoder[`Object`](n => n.string.flatMap(jStr => `Object`.to`Object`(jStr)), "`Object` failed to de-serialize")
   sealed trait Level
   case object Info extends Level
   case object Warn extends Level
@@ -45,25 +73,28 @@ object FineTuningJobEvent {
 
   implicit val LevelEnumDecoder: DecodeJson[Level] =
     DecodeJson.optionDecoder[Level](n => n.string.flatMap(jStr => Level.toLevel(jStr)), "Level failed to de-serialize")
-  sealed trait `Object`
-  case object FineTuningJobEvent extends `Object`
+  sealed trait `Type`
+  case object Message extends `Type`
+  case object Metrics extends `Type`
 
-  object `Object` {
-    def to`Object`(s: String): Option[`Object`] = s match {
-      case "FineTuningJobEvent" => Some(FineTuningJobEvent)
+  object `Type` {
+    def to`Type`(s: String): Option[`Type`] = s match {
+      case "Message" => Some(Message)
+      case "Metrics" => Some(Metrics)
       case _ => None
     }
 
-    def from`Object`(x: `Object`): String = x match {
-      case FineTuningJobEvent => "FineTuningJobEvent"
+    def from`Type`(x: `Type`): String = x match {
+      case Message => "Message"
+      case Metrics => "Metrics"
     }
   }
 
-  implicit val `Object`EnumEncoder: EncodeJson[`Object`] =
-    EncodeJson[`Object`](is => StringEncodeJson(`Object`.from`Object`(is)))
+  implicit val `Type`EnumEncoder: EncodeJson[`Type`] =
+    EncodeJson[`Type`](is => StringEncodeJson(`Type`.from`Type`(is)))
 
-  implicit val `Object`EnumDecoder: DecodeJson[`Object`] =
-    DecodeJson.optionDecoder[`Object`](n => n.string.flatMap(jStr => `Object`.to`Object`(jStr)), "`Object` failed to de-serialize")
+  implicit val `Type`EnumDecoder: DecodeJson[`Type`] =
+    DecodeJson.optionDecoder[`Type`](n => n.string.flatMap(jStr => `Type`.to`Type`(jStr)), "`Type` failed to de-serialize")
 
   implicit val FineTuningJobEventCodecJson: CodecJson[FineTuningJobEvent] = CodecJson.derive[FineTuningJobEvent]
   implicit val FineTuningJobEventDecoder: EntityDecoder[FineTuningJobEvent] = jsonOf[FineTuningJobEvent]

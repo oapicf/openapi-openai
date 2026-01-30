@@ -23,9 +23,11 @@ openai_api_chat_completion_request_assistant_message_ROLE_e chat_completion_requ
 }
 
 static chat_completion_request_assistant_message_t *chat_completion_request_assistant_message_create_internal(
-    char *content,
+    chat_completion_request_assistant_message_content_t *content,
+    char *refusal,
     openai_api_chat_completion_request_assistant_message_ROLE_e role,
     char *name,
+    chat_completion_request_assistant_message_audio_t *audio,
     list_t *tool_calls,
     chat_completion_request_assistant_message_function_call_t *function_call
     ) {
@@ -34,8 +36,10 @@ static chat_completion_request_assistant_message_t *chat_completion_request_assi
         return NULL;
     }
     chat_completion_request_assistant_message_local_var->content = content;
+    chat_completion_request_assistant_message_local_var->refusal = refusal;
     chat_completion_request_assistant_message_local_var->role = role;
     chat_completion_request_assistant_message_local_var->name = name;
+    chat_completion_request_assistant_message_local_var->audio = audio;
     chat_completion_request_assistant_message_local_var->tool_calls = tool_calls;
     chat_completion_request_assistant_message_local_var->function_call = function_call;
 
@@ -44,16 +48,20 @@ static chat_completion_request_assistant_message_t *chat_completion_request_assi
 }
 
 __attribute__((deprecated)) chat_completion_request_assistant_message_t *chat_completion_request_assistant_message_create(
-    char *content,
+    chat_completion_request_assistant_message_content_t *content,
+    char *refusal,
     openai_api_chat_completion_request_assistant_message_ROLE_e role,
     char *name,
+    chat_completion_request_assistant_message_audio_t *audio,
     list_t *tool_calls,
     chat_completion_request_assistant_message_function_call_t *function_call
     ) {
     return chat_completion_request_assistant_message_create_internal (
         content,
+        refusal,
         role,
         name,
+        audio,
         tool_calls,
         function_call
         );
@@ -69,12 +77,20 @@ void chat_completion_request_assistant_message_free(chat_completion_request_assi
     }
     listEntry_t *listEntry;
     if (chat_completion_request_assistant_message->content) {
-        free(chat_completion_request_assistant_message->content);
+        chat_completion_request_assistant_message_content_free(chat_completion_request_assistant_message->content);
         chat_completion_request_assistant_message->content = NULL;
+    }
+    if (chat_completion_request_assistant_message->refusal) {
+        free(chat_completion_request_assistant_message->refusal);
+        chat_completion_request_assistant_message->refusal = NULL;
     }
     if (chat_completion_request_assistant_message->name) {
         free(chat_completion_request_assistant_message->name);
         chat_completion_request_assistant_message->name = NULL;
+    }
+    if (chat_completion_request_assistant_message->audio) {
+        chat_completion_request_assistant_message_audio_free(chat_completion_request_assistant_message->audio);
+        chat_completion_request_assistant_message->audio = NULL;
     }
     if (chat_completion_request_assistant_message->tool_calls) {
         list_ForEach(listEntry, chat_completion_request_assistant_message->tool_calls) {
@@ -95,7 +111,20 @@ cJSON *chat_completion_request_assistant_message_convertToJSON(chat_completion_r
 
     // chat_completion_request_assistant_message->content
     if(chat_completion_request_assistant_message->content) {
-    if(cJSON_AddStringToObject(item, "content", chat_completion_request_assistant_message->content) == NULL) {
+    cJSON *content_local_JSON = chat_completion_request_assistant_message_content_convertToJSON(chat_completion_request_assistant_message->content);
+    if(content_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "content", content_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
+    // chat_completion_request_assistant_message->refusal
+    if(chat_completion_request_assistant_message->refusal) {
+    if(cJSON_AddStringToObject(item, "refusal", chat_completion_request_assistant_message->refusal) == NULL) {
     goto fail; //String
     }
     }
@@ -115,6 +144,19 @@ cJSON *chat_completion_request_assistant_message_convertToJSON(chat_completion_r
     if(chat_completion_request_assistant_message->name) {
     if(cJSON_AddStringToObject(item, "name", chat_completion_request_assistant_message->name) == NULL) {
     goto fail; //String
+    }
+    }
+
+
+    // chat_completion_request_assistant_message->audio
+    if(chat_completion_request_assistant_message->audio) {
+    cJSON *audio_local_JSON = chat_completion_request_assistant_message_audio_convertToJSON(chat_completion_request_assistant_message->audio);
+    if(audio_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "audio", audio_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
     }
     }
 
@@ -163,6 +205,12 @@ chat_completion_request_assistant_message_t *chat_completion_request_assistant_m
 
     chat_completion_request_assistant_message_t *chat_completion_request_assistant_message_local_var = NULL;
 
+    // define the local variable for chat_completion_request_assistant_message->content
+    chat_completion_request_assistant_message_content_t *content_local_nonprim = NULL;
+
+    // define the local variable for chat_completion_request_assistant_message->audio
+    chat_completion_request_assistant_message_audio_t *audio_local_nonprim = NULL;
+
     // define the local list for chat_completion_request_assistant_message->tool_calls
     list_t *tool_callsList = NULL;
 
@@ -175,7 +223,16 @@ chat_completion_request_assistant_message_t *chat_completion_request_assistant_m
         content = NULL;
     }
     if (content) { 
-    if(!cJSON_IsString(content) && !cJSON_IsNull(content))
+    content_local_nonprim = chat_completion_request_assistant_message_content_parseFromJSON(content); //nonprimitive
+    }
+
+    // chat_completion_request_assistant_message->refusal
+    cJSON *refusal = cJSON_GetObjectItemCaseSensitive(chat_completion_request_assistant_messageJSON, "refusal");
+    if (cJSON_IsNull(refusal)) {
+        refusal = NULL;
+    }
+    if (refusal) { 
+    if(!cJSON_IsString(refusal) && !cJSON_IsNull(refusal))
     {
     goto end; //String
     }
@@ -208,6 +265,15 @@ chat_completion_request_assistant_message_t *chat_completion_request_assistant_m
     {
     goto end; //String
     }
+    }
+
+    // chat_completion_request_assistant_message->audio
+    cJSON *audio = cJSON_GetObjectItemCaseSensitive(chat_completion_request_assistant_messageJSON, "audio");
+    if (cJSON_IsNull(audio)) {
+        audio = NULL;
+    }
+    if (audio) { 
+    audio_local_nonprim = chat_completion_request_assistant_message_audio_parseFromJSON(audio); //nonprimitive
     }
 
     // chat_completion_request_assistant_message->tool_calls
@@ -245,15 +311,25 @@ chat_completion_request_assistant_message_t *chat_completion_request_assistant_m
 
 
     chat_completion_request_assistant_message_local_var = chat_completion_request_assistant_message_create_internal (
-        content && !cJSON_IsNull(content) ? strdup(content->valuestring) : NULL,
+        content ? content_local_nonprim : NULL,
+        refusal && !cJSON_IsNull(refusal) ? strdup(refusal->valuestring) : NULL,
         roleVariable,
         name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        audio ? audio_local_nonprim : NULL,
         tool_calls ? tool_callsList : NULL,
         function_call ? function_call_local_nonprim : NULL
         );
 
     return chat_completion_request_assistant_message_local_var;
 end:
+    if (content_local_nonprim) {
+        chat_completion_request_assistant_message_content_free(content_local_nonprim);
+        content_local_nonprim = NULL;
+    }
+    if (audio_local_nonprim) {
+        chat_completion_request_assistant_message_audio_free(audio_local_nonprim);
+        audio_local_nonprim = NULL;
+    }
     if (tool_callsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, tool_callsList) {

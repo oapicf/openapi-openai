@@ -1,0 +1,33 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "A result instance of the file search.",
+  "name": "RunStepDetailsToolCallsFileSearchResultObject",
+  "fields": [
+    {
+      "name": "file_id",
+      "type": "string",
+      "doc": "The ID of the file that result was found in."
+    },
+    {
+      "name": "file_name",
+      "type": "string",
+      "doc": "The name of the file that result was found in."
+    },
+    {
+      "name": "score",
+      "type": "double",
+      "doc": "The score of the result. All values must be a floating point number between 0 and 1."
+    },
+    {
+      "name": "content",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.RunStepDetailsToolCallsFileSearchResultObjectContentInner"
+      }],
+      "doc": "The content of the result that was found. The content is only included if requested via the include query parameter.",
+      "default": null
+    }
+  ]
+
+}

@@ -5,8 +5,7 @@ package org.openapitools.client.model
 case class ChatCompletionRequestToolMessage (
     /* The role of the messages author, in this case `tool`. */
     _role: String,
-    /* The contents of the tool message. */
-    _content: String,
+    _content: ChatCompletionRequestToolMessageContent,
     /* Tool call that this message is responding to. */
     _toolCallId: String
 )

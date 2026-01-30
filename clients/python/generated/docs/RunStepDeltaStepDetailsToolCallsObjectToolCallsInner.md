@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **id** | **str** | The ID of the tool call object. | [optional] 
 **type** | **str** | The type of tool call. This is always going to be &#x60;code_interpreter&#x60; for this type of tool call. | 
 **code_interpreter** | [**RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter**](RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.md) |  | [optional] 
-**retrieval** | **object** | For now, this is always going to be an empty object. | [optional] 
+**file_search** | **object** | For now, this is always going to be an empty object. | 
 **function** | [**RunStepDeltaStepDetailsToolCallsFunctionObjectFunction**](RunStepDeltaStepDetailsToolCallsFunctionObjectFunction.md) |  | [optional] 
 
 ## Example

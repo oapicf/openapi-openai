@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -20,10 +20,9 @@ import (
 // checks if the ChatCompletionRequestSystemMessage type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ChatCompletionRequestSystemMessage{}
 
-// ChatCompletionRequestSystemMessage struct for ChatCompletionRequestSystemMessage
+// ChatCompletionRequestSystemMessage Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. 
 type ChatCompletionRequestSystemMessage struct {
-	// The contents of the system message.
-	Content string `json:"content"`
+	Content ChatCompletionRequestSystemMessageContent `json:"content"`
 	// The role of the messages author, in this case `system`.
 	Role string `json:"role"`
 	// An optional name for the participant. Provides the model information to differentiate between participants of the same role.
@@ -36,7 +35,7 @@ type _ChatCompletionRequestSystemMessage ChatCompletionRequestSystemMessage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChatCompletionRequestSystemMessage(content string, role string) *ChatCompletionRequestSystemMessage {
+func NewChatCompletionRequestSystemMessage(content ChatCompletionRequestSystemMessageContent, role string) *ChatCompletionRequestSystemMessage {
 	this := ChatCompletionRequestSystemMessage{}
 	this.Content = content
 	this.Role = role
@@ -52,9 +51,9 @@ func NewChatCompletionRequestSystemMessageWithDefaults() *ChatCompletionRequestS
 }
 
 // GetContent returns the Content field value
-func (o *ChatCompletionRequestSystemMessage) GetContent() string {
+func (o *ChatCompletionRequestSystemMessage) GetContent() ChatCompletionRequestSystemMessageContent {
 	if o == nil {
-		var ret string
+		var ret ChatCompletionRequestSystemMessageContent
 		return ret
 	}
 
@@ -63,7 +62,7 @@ func (o *ChatCompletionRequestSystemMessage) GetContent() string {
 
 // GetContentOk returns a tuple with the Content field value
 // and a boolean to check if the value has been set.
-func (o *ChatCompletionRequestSystemMessage) GetContentOk() (*string, bool) {
+func (o *ChatCompletionRequestSystemMessage) GetContentOk() (*ChatCompletionRequestSystemMessageContent, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,7 +70,7 @@ func (o *ChatCompletionRequestSystemMessage) GetContentOk() (*string, bool) {
 }
 
 // SetContent sets field value
-func (o *ChatCompletionRequestSystemMessage) SetContent(v string) {
+func (o *ChatCompletionRequestSystemMessage) SetContent(v ChatCompletionRequestSystemMessageContent) {
 	o.Content = v
 }
 

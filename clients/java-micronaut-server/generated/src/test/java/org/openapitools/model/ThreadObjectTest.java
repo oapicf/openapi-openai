@@ -1,5 +1,6 @@
 package org.openapitools.model;
 
+import org.openapitools.model.ModifyThreadRequestToolResources;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -41,6 +42,14 @@ public class ThreadObjectTest {
     @Test
     public void createdAtTest() {
         // TODO: test createdAt
+    }
+
+    /**
+     * Test the property 'toolResources'
+     */
+    @Test
+    public void toolResourcesTest() {
+        // TODO: test toolResources
     }
 
     /**

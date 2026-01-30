@@ -42,7 +42,7 @@ API.Client.OpenAIFile.prototype.filename;
 API.Client.OpenAIFile.prototype.object;
 
 /**
- * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+ * The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
  * @type {!string}
  * @export
  */
@@ -68,10 +68,13 @@ API.Client.OpenAIFile.ObjectEnum = {
 }
 /** @enum {string} */
 API.Client.OpenAIFile.PurposeEnum = { 
-  fine-tune: 'fine-tune',
-  fine-tune-results: 'fine-tune-results',
   assistants: 'assistants',
   assistants_output: 'assistants_output',
+  batch: 'batch',
+  batch_output: 'batch_output',
+  fine-tune: 'fine-tune',
+  fine-tune-results: 'fine-tune-results',
+  vision: 'vision',
 }
 /** @enum {string} */
 API.Client.OpenAIFile.StatusEnum = { 

@@ -1,0 +1,15 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The payload used to update the project.",
+  "name": "AuditLogProjectUpdatedChangesRequested",
+  "fields": [
+    {
+      "name": "title",
+      "type": ["null", "string"],
+      "doc": "The title of the project as seen on the dashboard.",
+      "default": null
+    }
+  ]
+
+}

@@ -12,11 +12,11 @@ import org.openapitools.model.RunStepObject;
 
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) moves to an &#x60;in_progress&#x60; state.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) moves to an &#x60;in_progress&#x60; state.
  **/
 
-@ApiModel(description = "Occurs when a [run step](/docs/api-reference/runs/step-object) moves to an `in_progress` state.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description = "Occurs when a [run step](/docs/api-reference/run-steps/step-object) moves to an `in_progress` state.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStepStreamEventOneOf1   {
   /**
    * Gets or Sets event

@@ -35,6 +35,20 @@ API.Client.CreateModerationResponseResultsInnerCategories.prototype.harassment;
 API.Client.CreateModerationResponseResultsInnerCategories.prototype.harassmentThreatening;
 
 /**
+ * Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
+ * @type {!boolean}
+ * @export
+ */
+API.Client.CreateModerationResponseResultsInnerCategories.prototype.illicit;
+
+/**
+ * Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+ * @type {!boolean}
+ * @export
+ */
+API.Client.CreateModerationResponseResultsInnerCategories.prototype.illicitViolent;
+
+/**
  * Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
  * @type {!boolean}
  * @export

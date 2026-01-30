@@ -4,9 +4,11 @@ import play.api.libs.json._
 
 /**
   * Occurs when a new [thread](/docs/api-reference/threads/object) is created.
+  * @param enabled Whether to enable input audio transcription.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T10:48:27.489746113Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 case class ThreadStreamEvent(
+  enabled: Option[Boolean],
   event: ThreadStreamEvent.Event.Value,
   data: ThreadObject
 )

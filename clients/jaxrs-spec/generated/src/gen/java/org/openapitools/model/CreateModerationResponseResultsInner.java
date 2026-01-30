@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.CreateModerationResponseResultsInnerCategories;
+import org.openapitools.model.CreateModerationResponseResultsInnerCategoryAppliedInputTypes;
 import org.openapitools.model.CreateModerationResponseResultsInnerCategoryScores;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
@@ -19,11 +20,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("CreateModerationResponse_results_inner")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateModerationResponseResultsInner   {
   private Boolean flagged;
   private CreateModerationResponseResultsInnerCategories categories;
   private CreateModerationResponseResultsInnerCategoryScores categoryScores;
+  private CreateModerationResponseResultsInnerCategoryAppliedInputTypes categoryAppliedInputTypes;
 
   public CreateModerationResponseResultsInner() {
   }
@@ -32,11 +34,13 @@ public class CreateModerationResponseResultsInner   {
   public CreateModerationResponseResultsInner(
     @JsonProperty(required = true, value = "flagged") Boolean flagged,
     @JsonProperty(required = true, value = "categories") CreateModerationResponseResultsInnerCategories categories,
-    @JsonProperty(required = true, value = "category_scores") CreateModerationResponseResultsInnerCategoryScores categoryScores
+    @JsonProperty(required = true, value = "category_scores") CreateModerationResponseResultsInnerCategoryScores categoryScores,
+    @JsonProperty(required = true, value = "category_applied_input_types") CreateModerationResponseResultsInnerCategoryAppliedInputTypes categoryAppliedInputTypes
   ) {
     this.flagged = flagged;
     this.categories = categories;
     this.categoryScores = categoryScores;
+    this.categoryAppliedInputTypes = categoryAppliedInputTypes;
   }
 
   /**
@@ -97,6 +101,25 @@ public class CreateModerationResponseResultsInner   {
     this.categoryScores = categoryScores;
   }
 
+  /**
+   **/
+  public CreateModerationResponseResultsInner categoryAppliedInputTypes(CreateModerationResponseResultsInnerCategoryAppliedInputTypes categoryAppliedInputTypes) {
+    this.categoryAppliedInputTypes = categoryAppliedInputTypes;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(required = true, value = "category_applied_input_types")
+  @NotNull @Valid public CreateModerationResponseResultsInnerCategoryAppliedInputTypes getCategoryAppliedInputTypes() {
+    return categoryAppliedInputTypes;
+  }
+
+  @JsonProperty(required = true, value = "category_applied_input_types")
+  public void setCategoryAppliedInputTypes(CreateModerationResponseResultsInnerCategoryAppliedInputTypes categoryAppliedInputTypes) {
+    this.categoryAppliedInputTypes = categoryAppliedInputTypes;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -109,12 +132,13 @@ public class CreateModerationResponseResultsInner   {
     CreateModerationResponseResultsInner createModerationResponseResultsInner = (CreateModerationResponseResultsInner) o;
     return Objects.equals(this.flagged, createModerationResponseResultsInner.flagged) &&
         Objects.equals(this.categories, createModerationResponseResultsInner.categories) &&
-        Objects.equals(this.categoryScores, createModerationResponseResultsInner.categoryScores);
+        Objects.equals(this.categoryScores, createModerationResponseResultsInner.categoryScores) &&
+        Objects.equals(this.categoryAppliedInputTypes, createModerationResponseResultsInner.categoryAppliedInputTypes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(flagged, categories, categoryScores);
+    return Objects.hash(flagged, categories, categoryScores, categoryAppliedInputTypes);
   }
 
   @Override
@@ -125,6 +149,7 @@ public class CreateModerationResponseResultsInner   {
     sb.append("    flagged: ").append(toIndentedString(flagged)).append("\n");
     sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
     sb.append("    categoryScores: ").append(toIndentedString(categoryScores)).append("\n");
+    sb.append("    categoryAppliedInputTypes: ").append(toIndentedString(categoryAppliedInputTypes)).append("\n");
     sb.append("}");
     return sb.toString();
   }

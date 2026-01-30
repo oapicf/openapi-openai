@@ -6,6 +6,8 @@
   self = [super init];
   if (self) {
     // initialize property's default value, if any
+    self.temperature = @1;
+    self.topP = @1;
     
   }
   return self;
@@ -17,7 +19,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"object": @"object", @"createdAt": @"created_at", @"name": @"name", @"_description": @"description", @"model": @"model", @"instructions": @"instructions", @"tools": @"tools", @"fileIds": @"file_ids", @"metadata": @"metadata" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"object": @"object", @"createdAt": @"created_at", @"name": @"name", @"_description": @"description", @"model": @"model", @"instructions": @"instructions", @"tools": @"tools", @"toolResources": @"tool_resources", @"metadata": @"metadata", @"temperature": @"temperature", @"topP": @"top_p", @"responseFormat": @"response_format" }];
 }
 
 /**
@@ -27,7 +29,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[];
+  NSArray *optionalProperties = @[@"toolResources", @"temperature", @"topP", @"responseFormat"];
   return [optionalProperties containsObject:propertyName];
 }
 

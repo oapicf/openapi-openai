@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -18,10 +18,11 @@ import (
 
 
 
+// TruncationObject - Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
 type TruncationObject struct {
 
 	// The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.
-	Type string `json:"type,omitempty"`
+	Type string `json:"type"`
 
 	// The number of most recent messages from the thread when constructing the context for the run.
 	LastMessages *int32 `json:"last_messages,omitempty"`
@@ -29,6 +30,15 @@ type TruncationObject struct {
 
 // AssertTruncationObjectRequired checks if the required fields are not zero-ed
 func AssertTruncationObjectRequired(obj TruncationObject) error {
+	elements := map[string]interface{}{
+		"type": obj.Type,
+	}
+	for name, el := range elements {
+		if isZero := IsZeroValue(el); isZero {
+			return &RequiredError{Field: name}
+		}
+	}
+
 	return nil
 }
 

@@ -27,6 +27,7 @@ create_chat_completion_response_t* instantiate_create_chat_completion_response(i
       list_createList(),
       56,
       "0",
+      openai_api_create_chat_completion_response_SERVICETIER_"scale",
       "0",
       openai_api_create_chat_completion_response_OBJECT_chat.completion,
        // false, not to have infinite recursion
@@ -38,6 +39,7 @@ create_chat_completion_response_t* instantiate_create_chat_completion_response(i
       list_createList(),
       56,
       "0",
+      openai_api_create_chat_completion_response_SERVICETIER_"scale",
       "0",
       openai_api_create_chat_completion_response_OBJECT_chat.completion,
       NULL

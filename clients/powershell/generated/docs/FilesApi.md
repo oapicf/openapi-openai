@@ -4,10 +4,10 @@ All URIs are relative to *https://api.openai.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**New-File**](FilesApi.md#New-File) | **POST** /files | Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports &#x60;.jsonl&#x60; files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+[**New-File**](FilesApi.md#New-File) | **POST** /files | Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
 [**Invoke-DeleteFile**](FilesApi.md#Invoke-DeleteFile) | **DELETE** /files/{file_id} | Delete a file.
 [**Invoke-DownloadFile**](FilesApi.md#Invoke-DownloadFile) | **GET** /files/{file_id}/content | Returns the contents of the specified file.
-[**Invoke-ListFiles**](FilesApi.md#Invoke-ListFiles) | **GET** /files | Returns a list of files that belong to the user&#39;s organization.
+[**Invoke-ListFiles**](FilesApi.md#Invoke-ListFiles) | **GET** /files | Returns a list of files.
 [**Invoke-RetrieveFile**](FilesApi.md#Invoke-RetrieveFile) | **GET** /files/{file_id} | Returns information about a specific file.
 
 
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-File] <System.IO.FileInfo><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Purpose] <String><br>
 
-Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
 
 ### Example
 ```powershell
@@ -25,9 +25,9 @@ Upload a file that can be used across various endpoints. The size of all the fil
 $Configuration = Get-Configuration
 
 $File =  # System.IO.FileInfo | The File object (not file name) to be uploaded. 
-$Purpose = "fine-tune" # String | The intended purpose of the uploaded file.  Use """"fine-tune"""" for [Fine-tuning](/docs/api-reference/fine-tuning) and """"assistants"""" for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. 
+$Purpose = "assistants" # String | The intended purpose of the uploaded file.  Use """"assistants"""" for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, """"vision"""" for Assistants image file inputs, """"batch"""" for [Batch API](/docs/guides/batch), and """"fine-tune"""" for [Fine-tuning](/docs/api-reference/fine-tuning). 
 
-# Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+# Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
 try {
     $Result = New-File -File $File -Purpose $Purpose
 } catch {
@@ -41,7 +41,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **File** | **System.IO.FileInfo****System.IO.FileInfo**| The File object (not file name) to be uploaded.  | 
- **Purpose** | **String**| The intended purpose of the uploaded file.  Use &quot;&quot;&quot;&quot;fine-tune&quot;&quot;&quot;&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and &quot;&quot;&quot;&quot;assistants&quot;&quot;&quot;&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning.  | 
+ **Purpose** | **String**| The intended purpose of the uploaded file.  Use &quot;&quot;&quot;&quot;assistants&quot;&quot;&quot;&quot; for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, &quot;&quot;&quot;&quot;vision&quot;&quot;&quot;&quot; for Assistants image file inputs, &quot;&quot;&quot;&quot;batch&quot;&quot;&quot;&quot; for [Batch API](/docs/guides/batch), and &quot;&quot;&quot;&quot;fine-tune&quot;&quot;&quot;&quot; for [Fine-tuning](/docs/api-reference/fine-tuning).  | 
 
 ### Return type
 
@@ -150,8 +150,11 @@ Name | Type | Description  | Notes
 # **Invoke-ListFiles**
 > ListFilesResponse Invoke-ListFiles<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Purpose] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Limit] <System.Nullable[Int32]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Order] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-After] <String><br>
 
-Returns a list of files that belong to the user's organization.
+Returns a list of files.
 
 ### Example
 ```powershell
@@ -159,10 +162,13 @@ Returns a list of files that belong to the user's organization.
 $Configuration = Get-Configuration
 
 $Purpose = "MyPurpose" # String | Only return files with the given purpose. (optional)
+$Limit = 56 # Int32 | A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000.  (optional) (default to 10000)
+$Order = "asc" # String | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to "desc")
+$After = "MyAfter" # String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
 
-# Returns a list of files that belong to the user's organization.
+# Returns a list of files.
 try {
-    $Result = Invoke-ListFiles -Purpose $Purpose
+    $Result = Invoke-ListFiles -Purpose $Purpose -Limit $Limit -Order $Order -After $After
 } catch {
     Write-Host ("Exception occurred when calling Invoke-ListFiles: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -174,6 +180,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **Purpose** | **String**| Only return files with the given purpose. | [optional] 
+ **Limit** | **Int32**| A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000.  | [optional] [default to 10000]
+ **Order** | **String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &quot;desc&quot;]
+ **After** | **String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
 
 ### Return type
 

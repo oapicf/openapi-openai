@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **hate_threatening** | **REAL_32** | The score for the category &#39;hate/threatening&#39;. | [default to null]
 **harassment** | **REAL_32** | The score for the category &#39;harassment&#39;. | [default to null]
 **harassment_threatening** | **REAL_32** | The score for the category &#39;harassment/threatening&#39;. | [default to null]
+**illicit** | **REAL_32** | The score for the category &#39;illicit&#39;. | [default to null]
+**illicit_violent** | **REAL_32** | The score for the category &#39;illicit/violent&#39;. | [default to null]
 **self_harm** | **REAL_32** | The score for the category &#39;self-harm&#39;. | [default to null]
 **self_harm_intent** | **REAL_32** | The score for the category &#39;self-harm/intent&#39;. | [default to null]
 **self_harm_instructions** | **REAL_32** | The score for the category &#39;self-harm/instructions&#39;. | [default to null]

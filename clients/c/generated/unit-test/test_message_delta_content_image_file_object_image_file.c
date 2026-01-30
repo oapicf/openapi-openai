@@ -22,11 +22,13 @@ message_delta_content_image_file_object_image_file_t* instantiate_message_delta_
   message_delta_content_image_file_object_image_file_t* message_delta_content_image_file_object_image_file = NULL;
   if (include_optional) {
     message_delta_content_image_file_object_image_file = message_delta_content_image_file_object_image_file_create(
-      "0"
+      "0",
+      openai_api_message_delta_content_image_file_object_image_file_DETAIL_"auto"
     );
   } else {
     message_delta_content_image_file_object_image_file = message_delta_content_image_file_object_image_file_create(
-      "0"
+      "0",
+      openai_api_message_delta_content_image_file_object_image_file_DETAIL_"auto"
     );
   }
 

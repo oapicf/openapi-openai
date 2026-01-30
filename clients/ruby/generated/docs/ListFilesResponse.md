@@ -4,8 +4,11 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **data** | [**Array&lt;OpenAIFile&gt;**](OpenAIFile.md) |  |  |
 | **object** | **String** |  |  |
+| **data** | [**Array&lt;OpenAIFile&gt;**](OpenAIFile.md) |  |  |
+| **first_id** | **String** |  |  |
+| **last_id** | **String** |  |  |
+| **has_more** | **Boolean** |  |  |
 
 ## Example
 
@@ -13,8 +16,11 @@
 require 'openapi_openai'
 
 instance = OpenApiOpenAIClient::ListFilesResponse.new(
+  object: list,
   data: null,
-  object: null
+  first_id: file-abc123,
+  last_id: file-abc456,
+  has_more: false
 )
 ```
 

@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -17,16 +17,32 @@ import (
 	"gopkg.in/validator.v2"
 )
 
-// AssistantsApiResponseFormatOption - Specifies the format that the model must output. Compatible with [GPT-4 Turbo](/docs/models/gpt-4-and-gpt-4-turbo) and all GPT-3.5 Turbo models newer than `gpt-3.5-turbo-1106`.  Setting to `{ \"type\": \"json_object\" }` enables JSON mode, which guarantees the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \"stuck\" request. Also note that the message content may be partially cut off if `finish_reason=\"length\"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. 
+// AssistantsApiResponseFormatOption - Specifies the format that the model must output. Compatible with [GPT-4o](/docs/models#gpt-4o), [GPT-4 Turbo](/docs/models#gpt-4-turbo-and-gpt-4), and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`.  Setting to `{ \"type\": \"json_schema\", \"json_schema\": {...} }` enables Structured Outputs which ensures the model will match your supplied JSON schema. Learn more in the [Structured Outputs guide](/docs/guides/structured-outputs).  Setting to `{ \"type\": \"json_object\" }` enables JSON mode, which ensures the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \"stuck\" request. Also note that the message content may be partially cut off if `finish_reason=\"length\"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. 
 type AssistantsApiResponseFormatOption struct {
-	AssistantsApiResponseFormat *AssistantsApiResponseFormat
+	ResponseFormatJsonObject *ResponseFormatJsonObject
+	ResponseFormatJsonSchema *ResponseFormatJsonSchema
+	ResponseFormatText *ResponseFormatText
 	String *string
 }
 
-// AssistantsApiResponseFormatAsAssistantsApiResponseFormatOption is a convenience function that returns AssistantsApiResponseFormat wrapped in AssistantsApiResponseFormatOption
-func AssistantsApiResponseFormatAsAssistantsApiResponseFormatOption(v *AssistantsApiResponseFormat) AssistantsApiResponseFormatOption {
+// ResponseFormatJsonObjectAsAssistantsApiResponseFormatOption is a convenience function that returns ResponseFormatJsonObject wrapped in AssistantsApiResponseFormatOption
+func ResponseFormatJsonObjectAsAssistantsApiResponseFormatOption(v *ResponseFormatJsonObject) AssistantsApiResponseFormatOption {
 	return AssistantsApiResponseFormatOption{
-		AssistantsApiResponseFormat: v,
+		ResponseFormatJsonObject: v,
+	}
+}
+
+// ResponseFormatJsonSchemaAsAssistantsApiResponseFormatOption is a convenience function that returns ResponseFormatJsonSchema wrapped in AssistantsApiResponseFormatOption
+func ResponseFormatJsonSchemaAsAssistantsApiResponseFormatOption(v *ResponseFormatJsonSchema) AssistantsApiResponseFormatOption {
+	return AssistantsApiResponseFormatOption{
+		ResponseFormatJsonSchema: v,
+	}
+}
+
+// ResponseFormatTextAsAssistantsApiResponseFormatOption is a convenience function that returns ResponseFormatText wrapped in AssistantsApiResponseFormatOption
+func ResponseFormatTextAsAssistantsApiResponseFormatOption(v *ResponseFormatText) AssistantsApiResponseFormatOption {
+	return AssistantsApiResponseFormatOption{
+		ResponseFormatText: v,
 	}
 }
 
@@ -42,21 +58,55 @@ func StringAsAssistantsApiResponseFormatOption(v *string) AssistantsApiResponseF
 func (dst *AssistantsApiResponseFormatOption) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into AssistantsApiResponseFormat
-	err = newStrictDecoder(data).Decode(&dst.AssistantsApiResponseFormat)
+	// try to unmarshal data into ResponseFormatJsonObject
+	err = newStrictDecoder(data).Decode(&dst.ResponseFormatJsonObject)
 	if err == nil {
-		jsonAssistantsApiResponseFormat, _ := json.Marshal(dst.AssistantsApiResponseFormat)
-		if string(jsonAssistantsApiResponseFormat) == "{}" { // empty struct
-			dst.AssistantsApiResponseFormat = nil
+		jsonResponseFormatJsonObject, _ := json.Marshal(dst.ResponseFormatJsonObject)
+		if string(jsonResponseFormatJsonObject) == "{}" { // empty struct
+			dst.ResponseFormatJsonObject = nil
 		} else {
-			if err = validator.Validate(dst.AssistantsApiResponseFormat); err != nil {
-				dst.AssistantsApiResponseFormat = nil
+			if err = validator.Validate(dst.ResponseFormatJsonObject); err != nil {
+				dst.ResponseFormatJsonObject = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.AssistantsApiResponseFormat = nil
+		dst.ResponseFormatJsonObject = nil
+	}
+
+	// try to unmarshal data into ResponseFormatJsonSchema
+	err = newStrictDecoder(data).Decode(&dst.ResponseFormatJsonSchema)
+	if err == nil {
+		jsonResponseFormatJsonSchema, _ := json.Marshal(dst.ResponseFormatJsonSchema)
+		if string(jsonResponseFormatJsonSchema) == "{}" { // empty struct
+			dst.ResponseFormatJsonSchema = nil
+		} else {
+			if err = validator.Validate(dst.ResponseFormatJsonSchema); err != nil {
+				dst.ResponseFormatJsonSchema = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.ResponseFormatJsonSchema = nil
+	}
+
+	// try to unmarshal data into ResponseFormatText
+	err = newStrictDecoder(data).Decode(&dst.ResponseFormatText)
+	if err == nil {
+		jsonResponseFormatText, _ := json.Marshal(dst.ResponseFormatText)
+		if string(jsonResponseFormatText) == "{}" { // empty struct
+			dst.ResponseFormatText = nil
+		} else {
+			if err = validator.Validate(dst.ResponseFormatText); err != nil {
+				dst.ResponseFormatText = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.ResponseFormatText = nil
 	}
 
 	// try to unmarshal data into String
@@ -78,7 +128,9 @@ func (dst *AssistantsApiResponseFormatOption) UnmarshalJSON(data []byte) error {
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.AssistantsApiResponseFormat = nil
+		dst.ResponseFormatJsonObject = nil
+		dst.ResponseFormatJsonSchema = nil
+		dst.ResponseFormatText = nil
 		dst.String = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(AssistantsApiResponseFormatOption)")
@@ -91,8 +143,16 @@ func (dst *AssistantsApiResponseFormatOption) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src AssistantsApiResponseFormatOption) MarshalJSON() ([]byte, error) {
-	if src.AssistantsApiResponseFormat != nil {
-		return json.Marshal(&src.AssistantsApiResponseFormat)
+	if src.ResponseFormatJsonObject != nil {
+		return json.Marshal(&src.ResponseFormatJsonObject)
+	}
+
+	if src.ResponseFormatJsonSchema != nil {
+		return json.Marshal(&src.ResponseFormatJsonSchema)
+	}
+
+	if src.ResponseFormatText != nil {
+		return json.Marshal(&src.ResponseFormatText)
 	}
 
 	if src.String != nil {
@@ -107,8 +167,16 @@ func (obj *AssistantsApiResponseFormatOption) GetActualInstance() (interface{}) 
 	if obj == nil {
 		return nil
 	}
-	if obj.AssistantsApiResponseFormat != nil {
-		return obj.AssistantsApiResponseFormat
+	if obj.ResponseFormatJsonObject != nil {
+		return obj.ResponseFormatJsonObject
+	}
+
+	if obj.ResponseFormatJsonSchema != nil {
+		return obj.ResponseFormatJsonSchema
+	}
+
+	if obj.ResponseFormatText != nil {
+		return obj.ResponseFormatText
 	}
 
 	if obj.String != nil {
@@ -121,8 +189,16 @@ func (obj *AssistantsApiResponseFormatOption) GetActualInstance() (interface{}) 
 
 // Get the actual instance value
 func (obj AssistantsApiResponseFormatOption) GetActualInstanceValue() (interface{}) {
-	if obj.AssistantsApiResponseFormat != nil {
-		return *obj.AssistantsApiResponseFormat
+	if obj.ResponseFormatJsonObject != nil {
+		return *obj.ResponseFormatJsonObject
+	}
+
+	if obj.ResponseFormatJsonSchema != nil {
+		return *obj.ResponseFormatJsonSchema
+	}
+
+	if obj.ResponseFormatText != nil {
+		return *obj.ResponseFormatText
 	}
 
 	if obj.String != nil {

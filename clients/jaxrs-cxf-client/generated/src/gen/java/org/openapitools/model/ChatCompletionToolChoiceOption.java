@@ -1,7 +1,7 @@
 package org.openapitools.model;
 
+import org.openapitools.model.AssistantsNamedToolChoiceFunction;
 import org.openapitools.model.ChatCompletionNamedToolChoice;
-import org.openapitools.model.ChatCompletionNamedToolChoiceFunction;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -9,9 +9,9 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Controls which (if any) function is called by the model. `none` means the model will not call a function and instead generates a message. `auto` means the model can pick between generating a message or calling a function. Specifying a particular function via `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that function.  `none` is the default when no functions are present. `auto` is the default if functions are present. 
+ * Controls which (if any) tool is called by the model. `none` means the model will not call any tool and instead generates a message. `auto` means the model can pick between generating a message or calling one or more tools. `required` means the model must call one or more tools. Specifying a particular tool via `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool.  `none` is the default when no tools are present. `auto` is the default if tools are present. 
  */
-@ApiModel(description="Controls which (if any) function is called by the model. `none` means the model will not call a function and instead generates a message. `auto` means the model can pick between generating a message or calling a function. Specifying a particular function via `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that function.  `none` is the default when no functions are present. `auto` is the default if functions are present. ")
+@ApiModel(description="Controls which (if any) tool is called by the model. `none` means the model will not call any tool and instead generates a message. `auto` means the model can pick between generating a message or calling one or more tools. `required` means the model must call one or more tools. Specifying a particular tool via `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool.  `none` is the default when no tools are present. `auto` is the default if tools are present. ")
 
 public class ChatCompletionToolChoiceOption  {
   
@@ -54,7 +54,7 @@ FUNCTION(String.valueOf("function"));
 
   @ApiModelProperty(required = true, value = "")
 
-  private ChatCompletionNamedToolChoiceFunction function;
+  private AssistantsNamedToolChoiceFunction function;
  /**
    * The type of the tool. Currently, only &#x60;function&#x60; is supported.
    * @return type
@@ -81,15 +81,15 @@ FUNCTION(String.valueOf("function"));
    * @return function
   **/
   @JsonProperty("function")
-  public ChatCompletionNamedToolChoiceFunction getFunction() {
+  public AssistantsNamedToolChoiceFunction getFunction() {
     return function;
   }
 
-  public void setFunction(ChatCompletionNamedToolChoiceFunction function) {
+  public void setFunction(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
   }
 
-  public ChatCompletionToolChoiceOption function(ChatCompletionNamedToolChoiceFunction function) {
+  public ChatCompletionToolChoiceOption function(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
     return this;
   }

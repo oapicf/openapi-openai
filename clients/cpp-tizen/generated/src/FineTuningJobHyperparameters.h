@@ -1,7 +1,7 @@
 /*
  * FineTuningJob_hyperparameters.h
  *
- * The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+ * The hyperparameters used for the fine-tuning job. This value will only be returned when running &#x60;supervised&#x60; jobs.
  */
 
 #ifndef _FineTuningJob_hyperparameters_H_
@@ -9,7 +9,9 @@
 
 
 #include <string>
-#include "FineTuningJob_hyperparameters_n_epochs.h"
+#include "CreateFineTuningJobRequest_hyperparameters_batch_size.h"
+#include "CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier.h"
+#include "CreateFineTuningJobRequest_hyperparameters_n_epochs.h"
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API
@@ -21,7 +23,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+/*! \brief The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.
  *
  *  \ingroup Models
  *
@@ -48,14 +50,30 @@ public:
 
 	/*! \brief Get 
 	 */
-	FineTuningJob_hyperparameters_n_epochs getNEpochs();
+	CreateFineTuningJobRequest_hyperparameters_batch_size getBatchSize();
 
 	/*! \brief Set 
 	 */
-	void setNEpochs(FineTuningJob_hyperparameters_n_epochs  n_epochs);
+	void setBatchSize(CreateFineTuningJobRequest_hyperparameters_batch_size  batch_size);
+	/*! \brief Get 
+	 */
+	CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier getLearningRateMultiplier();
+
+	/*! \brief Set 
+	 */
+	void setLearningRateMultiplier(CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier  learning_rate_multiplier);
+	/*! \brief Get 
+	 */
+	CreateFineTuningJobRequest_hyperparameters_n_epochs getNEpochs();
+
+	/*! \brief Set 
+	 */
+	void setNEpochs(CreateFineTuningJobRequest_hyperparameters_n_epochs  n_epochs);
 
 private:
-	FineTuningJob_hyperparameters_n_epochs n_epochs;
+	CreateFineTuningJobRequest_hyperparameters_batch_size batch_size;
+	CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier learning_rate_multiplier;
+	CreateFineTuningJobRequest_hyperparameters_n_epochs n_epochs;
 	void __init();
 	void __cleanup();
 

@@ -29,7 +29,7 @@
     {
       "name": "frequency_penalty",
       "type": ["double", "null"],
-      "doc": "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ",
+      "doc": "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) ",
       "default": 0
     },
     {
@@ -62,7 +62,7 @@
     {
       "name": "presence_penalty",
       "type": ["double", "null"],
-      "doc": "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ",
+      "doc": "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) ",
       "default": 0
     },
     {
@@ -82,6 +82,12 @@
       "type": ["boolean", "null"],
       "doc": "Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). ",
       "default": false
+    },
+    {
+      "name": "stream_options",
+      "type": ["null", "model.ChatCompletionStreamOptions"],
+      "doc": "",
+      "default": null
     },
     {
       "name": "suffix",
@@ -104,7 +110,7 @@
     {
       "name": "user",
       "type": ["null", "string"],
-      "doc": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ",
+      "doc": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ",
       "default": null
     }
   ]

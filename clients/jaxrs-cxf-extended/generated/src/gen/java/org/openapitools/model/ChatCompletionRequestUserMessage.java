@@ -11,6 +11,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
+/**
+ * Messages sent by an end user, containing prompts or additional context information. 
+ */
+@ApiModel(description="Messages sent by an end user, containing prompts or additional context information. ")
+
 public class ChatCompletionRequestUserMessage  {
   
   @ApiModelProperty(required = true, value = "")

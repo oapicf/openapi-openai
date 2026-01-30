@@ -9,15 +9,16 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.RunStepDetailsToolCallsCodeObject;
 import org.openapitools.model.RunStepDetailsToolCallsCodeObjectCodeInterpreter;
+import org.openapitools.model.RunStepDetailsToolCallsFileSearchObject;
+import org.openapitools.model.RunStepDetailsToolCallsFileSearchObjectFileSearch;
 import org.openapitools.model.RunStepDetailsToolCallsFunctionObject;
 import org.openapitools.model.RunStepDetailsToolCallsFunctionObjectFunction;
-import org.openapitools.model.RunStepDetailsToolCallsRetrievalObject;
 
 
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStepDetailsToolCallsObjectToolCallsInner   {
   @JsonProperty("id")
   private String id;
@@ -28,7 +29,7 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
   public enum TypeEnum {
     CODE_INTERPRETER("code_interpreter"),
     
-    RETRIEVAL("retrieval"),
+    FILE_SEARCH("file_search"),
     
     FUNCTION("function");
 
@@ -61,8 +62,8 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
   @JsonProperty("code_interpreter")
   private RunStepDetailsToolCallsCodeObjectCodeInterpreter codeInterpreter;
 
-  @JsonProperty("retrieval")
-  private Object retrieval;
+  @JsonProperty("file_search")
+  private RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch;
 
   @JsonProperty("function")
   private RunStepDetailsToolCallsFunctionObjectFunction function;
@@ -121,21 +122,20 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
   }
 
   /**
-   * For now, this is always going to be an empty object.
    **/
-  public RunStepDetailsToolCallsObjectToolCallsInner retrieval(Object retrieval) {
-    this.retrieval = retrieval;
+  public RunStepDetailsToolCallsObjectToolCallsInner fileSearch(RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
     return this;
   }
 
   
-  @ApiModelProperty(required = true, value = "For now, this is always going to be an empty object.")
-  @JsonProperty("retrieval")
-  public Object getRetrieval() {
-    return retrieval;
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty("file_search")
+  public RunStepDetailsToolCallsFileSearchObjectFileSearch getFileSearch() {
+    return fileSearch;
   }
-  public void setRetrieval(Object retrieval) {
-    this.retrieval = retrieval;
+  public void setFileSearch(RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
   }
 
   /**
@@ -168,13 +168,13 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
     return Objects.equals(id, runStepDetailsToolCallsObjectToolCallsInner.id) &&
         Objects.equals(type, runStepDetailsToolCallsObjectToolCallsInner.type) &&
         Objects.equals(codeInterpreter, runStepDetailsToolCallsObjectToolCallsInner.codeInterpreter) &&
-        Objects.equals(retrieval, runStepDetailsToolCallsObjectToolCallsInner.retrieval) &&
+        Objects.equals(fileSearch, runStepDetailsToolCallsObjectToolCallsInner.fileSearch) &&
         Objects.equals(function, runStepDetailsToolCallsObjectToolCallsInner.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, codeInterpreter, retrieval, function);
+    return Objects.hash(id, type, codeInterpreter, fileSearch, function);
   }
 
   @Override
@@ -185,7 +185,7 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    codeInterpreter: ").append(toIndentedString(codeInterpreter)).append("\n");
-    sb.append("    retrieval: ").append(toIndentedString(retrieval)).append("\n");
+    sb.append("    fileSearch: ").append(toIndentedString(fileSearch)).append("\n");
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();

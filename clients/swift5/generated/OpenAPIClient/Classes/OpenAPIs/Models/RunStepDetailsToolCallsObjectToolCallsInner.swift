@@ -12,17 +12,17 @@ import AnyCodable
 
 public enum RunStepDetailsToolCallsObjectToolCallsInner: Codable, JSONEncodable, Hashable {
     case typeRunStepDetailsToolCallsCodeObject(RunStepDetailsToolCallsCodeObject)
+    case typeRunStepDetailsToolCallsFileSearchObject(RunStepDetailsToolCallsFileSearchObject)
     case typeRunStepDetailsToolCallsFunctionObject(RunStepDetailsToolCallsFunctionObject)
-    case typeRunStepDetailsToolCallsRetrievalObject(RunStepDetailsToolCallsRetrievalObject)
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .typeRunStepDetailsToolCallsCodeObject(let value):
             try container.encode(value)
-        case .typeRunStepDetailsToolCallsFunctionObject(let value):
+        case .typeRunStepDetailsToolCallsFileSearchObject(let value):
             try container.encode(value)
-        case .typeRunStepDetailsToolCallsRetrievalObject(let value):
+        case .typeRunStepDetailsToolCallsFunctionObject(let value):
             try container.encode(value)
         }
     }
@@ -31,10 +31,10 @@ public enum RunStepDetailsToolCallsObjectToolCallsInner: Codable, JSONEncodable,
         let container = try decoder.singleValueContainer()
         if let value = try? container.decode(RunStepDetailsToolCallsCodeObject.self) {
             self = .typeRunStepDetailsToolCallsCodeObject(value)
+        } else if let value = try? container.decode(RunStepDetailsToolCallsFileSearchObject.self) {
+            self = .typeRunStepDetailsToolCallsFileSearchObject(value)
         } else if let value = try? container.decode(RunStepDetailsToolCallsFunctionObject.self) {
             self = .typeRunStepDetailsToolCallsFunctionObject(value)
-        } else if let value = try? container.decode(RunStepDetailsToolCallsRetrievalObject.self) {
-            self = .typeRunStepDetailsToolCallsRetrievalObject(value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of RunStepDetailsToolCallsObjectToolCallsInner"))
         }

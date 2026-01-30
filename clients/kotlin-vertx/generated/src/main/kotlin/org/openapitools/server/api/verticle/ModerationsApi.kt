@@ -19,7 +19,7 @@ import java.util.Map
 interface ModerationsApi  {
     fun init(vertx:Vertx,config:JsonObject)
     /* createModeration
-     * Classifies if text is potentially harmful. */
+     * Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation).  */
     suspend fun createModeration(createModerationRequest:CreateModerationRequest?,context:OperationRequest):Response<CreateModerationResponse>
     companion object {
         const val address = "ModerationsApi-service"

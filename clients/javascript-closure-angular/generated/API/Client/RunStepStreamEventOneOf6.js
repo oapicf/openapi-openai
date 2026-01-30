@@ -1,7 +1,7 @@
 goog.provide('API.Client.RunStepStreamEvent_oneOf_6');
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) expires.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires.
  * @record
  */
 API.Client.RunStepStreamEventOneOf6 = function() {}

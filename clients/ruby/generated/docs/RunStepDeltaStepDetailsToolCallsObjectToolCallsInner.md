@@ -15,8 +15,8 @@ OpenApiOpenAIClient::RunStepDeltaStepDetailsToolCallsObjectToolCallsInner.openap
 # =>
 # [
 #   :'RunStepDeltaStepDetailsToolCallsCodeObject',
-#   :'RunStepDeltaStepDetailsToolCallsFunctionObject',
-#   :'RunStepDeltaStepDetailsToolCallsRetrievalObject'
+#   :'RunStepDeltaStepDetailsToolCallsFileSearchObject',
+#   :'RunStepDeltaStepDetailsToolCallsFunctionObject'
 # ]
 ```
 
@@ -45,7 +45,7 @@ OpenApiOpenAIClient::RunStepDeltaStepDetailsToolCallsObjectToolCallsInner.build(
 #### Return type
 
 - `RunStepDeltaStepDetailsToolCallsCodeObject`
+- `RunStepDeltaStepDetailsToolCallsFileSearchObject`
 - `RunStepDeltaStepDetailsToolCallsFunctionObject`
-- `RunStepDeltaStepDetailsToolCallsRetrievalObject`
 - `nil` (if no type matches)
 

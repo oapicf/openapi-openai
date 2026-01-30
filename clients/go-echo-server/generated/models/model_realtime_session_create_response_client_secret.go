@@ -1,0 +1,11 @@
+package models
+
+// RealtimeSessionCreateResponseClientSecret - Ephemeral key returned by the API.
+type RealtimeSessionCreateResponseClientSecret struct {
+
+	// Ephemeral key usable in client environments to authenticate connections to the Realtime API. Use this in client-side environments rather than a standard API token, which should only be used server-side. 
+	Value string `json:"value,omitempty"`
+
+	// Timestamp for when the token expires. Currently, all tokens expire after one minute. 
+	ExpiresAt int32 `json:"expires_at,omitempty"`
+}

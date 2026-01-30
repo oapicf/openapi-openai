@@ -1,0 +1,50 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when the model-generated audio is updated.",
+  "name": "RealtimeServerEventResponseAudioDelta",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventResponseAudioDelta_type",
+        "symbols": [
+          "response_audio_delta"
+        ]
+      },
+      "doc": "The event type, must be `response.audio.delta`."
+    },
+    {
+      "name": "response_id",
+      "type": "string",
+      "doc": "The ID of the response."
+    },
+    {
+      "name": "item_id",
+      "type": "string",
+      "doc": "The ID of the item."
+    },
+    {
+      "name": "output_index",
+      "type": "int",
+      "doc": "The index of the output item in the response."
+    },
+    {
+      "name": "content_index",
+      "type": "int",
+      "doc": "The index of the content part in the item's content array."
+    },
+    {
+      "name": "delta",
+      "type": "string",
+      "doc": "Base64-encoded audio data delta."
+    }
+  ]
+
+}

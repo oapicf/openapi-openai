@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -15,24 +15,19 @@ syntax = "proto3";
 package openapitools.services.assistantsservice;
 
 import "google/protobuf/empty.proto";
-import public "models/assistant_file_object.proto";
 import public "models/assistant_object.proto";
-import public "models/create_assistant_file_request.proto";
 import public "models/create_assistant_request.proto";
 import public "models/create_message_request.proto";
 import public "models/create_run_request.proto";
 import public "models/create_thread_and_run_request.proto";
 import public "models/create_thread_request.proto";
-import public "models/delete_assistant_file_response.proto";
 import public "models/delete_assistant_response.proto";
+import public "models/delete_message_response.proto";
 import public "models/delete_thread_response.proto";
-import public "models/list_assistant_files_response.proto";
 import public "models/list_assistants_response.proto";
-import public "models/list_message_files_response.proto";
 import public "models/list_messages_response.proto";
 import public "models/list_run_steps_response.proto";
 import public "models/list_runs_response.proto";
-import public "models/message_file_object.proto";
 import public "models/message_object.proto";
 import public "models/modify_assistant_request.proto";
 import public "models/modify_message_request.proto";
@@ -48,8 +43,6 @@ service AssistantsService {
 
   rpc CreateAssistant (CreateAssistantRequest) returns (CreateAssistantResponse);
 
-  rpc CreateAssistantFile (CreateAssistantFileRequest) returns (CreateAssistantFileResponse);
-
   rpc CreateMessage (CreateMessageRequest) returns (CreateMessageResponse);
 
   rpc CreateRun (CreateRunRequest) returns (CreateRunResponse);
@@ -60,17 +53,13 @@ service AssistantsService {
 
   rpc DeleteAssistant (DeleteAssistantRequest) returns (DeleteAssistantResponse);
 
-  rpc DeleteAssistantFile (DeleteAssistantFileRequest) returns (DeleteAssistantFileResponse);
+  rpc DeleteMessage (DeleteMessageRequest) returns (DeleteMessageResponse);
 
   rpc DeleteThread (DeleteThreadRequest) returns (DeleteThreadResponse);
 
   rpc GetAssistant (GetAssistantRequest) returns (GetAssistantResponse);
 
-  rpc GetAssistantFile (GetAssistantFileRequest) returns (GetAssistantFileResponse);
-
   rpc GetMessage (GetMessageRequest) returns (GetMessageResponse);
-
-  rpc GetMessageFile (GetMessageFileRequest) returns (GetMessageFileResponse);
 
   rpc GetRun (GetRunRequest) returns (GetRunResponse);
 
@@ -78,11 +67,7 @@ service AssistantsService {
 
   rpc GetThread (GetThreadRequest) returns (GetThreadResponse);
 
-  rpc ListAssistantFiles (ListAssistantFilesRequest) returns (ListAssistantFilesResponse);
-
   rpc ListAssistants (ListAssistantsRequest) returns (ListAssistantsResponse);
-
-  rpc ListMessageFiles (ListMessageFilesRequest) returns (ListMessageFilesResponse);
 
   rpc ListMessages (ListMessagesRequest) returns (ListMessagesResponse);
 
@@ -125,18 +110,6 @@ message CreateAssistantResponse {
         AssistantObject assistant_object_200 = 1;
     }
 }
-message CreateAssistantFileRequest {
-  // The ID of the assistant for which to create a File. 
-  string assistant_id = 1;
-  CreateAssistantFileRequest create_assistant_file_request = 2;
-
-}
-
-message CreateAssistantFileResponse {
-    oneof response {
-        AssistantFileObject assistant_file_object_200 = 1;
-    }
-}
 message CreateMessageRequest {
   // The ID of the [thread](/docs/api-reference/threads) to create a message for.
   string thread_id = 1;
@@ -153,6 +126,8 @@ message CreateRunRequest {
   // The ID of the thread to run.
   string thread_id = 1;
   CreateRunRequest create_run_request = 2;
+  // A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+  repeated string include = 3;
 
 }
 
@@ -192,17 +167,17 @@ message DeleteAssistantResponse {
         DeleteAssistantResponse delete_assistant_response_200 = 1;
     }
 }
-message DeleteAssistantFileRequest {
-  // The ID of the assistant that the file belongs to.
-  string assistant_id = 1;
-  // The ID of the file to delete.
-  string file_id = 2;
+message DeleteMessageRequest {
+  // The ID of the thread to which this message belongs.
+  string thread_id = 1;
+  // The ID of the message to delete.
+  string message_id = 2;
 
 }
 
-message DeleteAssistantFileResponse {
+message DeleteMessageResponse {
     oneof response {
-        DeleteAssistantFileResponse delete_assistant_file_response_200 = 1;
+        DeleteMessageResponse delete_message_response_200 = 1;
     }
 }
 message DeleteThreadRequest {
@@ -227,19 +202,6 @@ message GetAssistantResponse {
         AssistantObject assistant_object_200 = 1;
     }
 }
-message GetAssistantFileRequest {
-  // The ID of the assistant who the file belongs to.
-  string assistant_id = 1;
-  // The ID of the file we're getting.
-  string file_id = 2;
-
-}
-
-message GetAssistantFileResponse {
-    oneof response {
-        AssistantFileObject assistant_file_object_200 = 1;
-    }
-}
 message GetMessageRequest {
   // The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
   string thread_id = 1;
@@ -251,21 +213,6 @@ message GetMessageRequest {
 message GetMessageResponse {
     oneof response {
         MessageObject message_object_200 = 1;
-    }
-}
-message GetMessageFileRequest {
-  // The ID of the thread to which the message and File belong.
-  string thread_id = 1;
-  // The ID of the message the file belongs to.
-  string message_id = 2;
-  // The ID of the file being retrieved.
-  string file_id = 3;
-
-}
-
-message GetMessageFileResponse {
-    oneof response {
-        MessageFileObject message_file_object_200 = 1;
     }
 }
 message GetRunRequest {
@@ -288,6 +235,8 @@ message GetRunStepRequest {
   string run_id = 2;
   // The ID of the run step to retrieve.
   string step_id = 3;
+  // A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+  repeated string include = 4;
 
 }
 
@@ -307,25 +256,6 @@ message GetThreadResponse {
         ThreadObject thread_object_200 = 1;
     }
 }
-message ListAssistantFilesRequest {
-  // The ID of the assistant the file belongs to.
-  string assistant_id = 1;
-  // A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-  int32 limit = 2;
-  // Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
-  string order = 3;
-  // A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-  string after = 4;
-  // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-  string before = 5;
-
-}
-
-message ListAssistantFilesResponse {
-    oneof response {
-        ListAssistantFilesResponse list_assistant_files_response_200 = 1;
-    }
-}
 message ListAssistantsRequest {
   // A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
   int32 limit = 1;
@@ -333,7 +263,7 @@ message ListAssistantsRequest {
   string order = 2;
   // A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
   string after = 3;
-  // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+  // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
   string before = 4;
 
 }
@@ -341,27 +271,6 @@ message ListAssistantsRequest {
 message ListAssistantsResponse {
     oneof response {
         ListAssistantsResponse list_assistants_response_200 = 1;
-    }
-}
-message ListMessageFilesRequest {
-  // The ID of the thread that the message and files belong to.
-  string thread_id = 1;
-  // The ID of the message that the files belongs to.
-  string message_id = 2;
-  // A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-  int32 limit = 3;
-  // Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
-  string order = 4;
-  // A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-  string after = 5;
-  // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-  string before = 6;
-
-}
-
-message ListMessageFilesResponse {
-    oneof response {
-        ListMessageFilesResponse list_message_files_response_200 = 1;
     }
 }
 message ListMessagesRequest {
@@ -373,7 +282,7 @@ message ListMessagesRequest {
   string order = 3;
   // A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
   string after = 4;
-  // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+  // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
   string before = 5;
   // Filter messages by the run ID that generated them. 
   string run_id = 6;
@@ -396,8 +305,10 @@ message ListRunStepsRequest {
   string order = 4;
   // A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
   string after = 5;
-  // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+  // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
   string before = 6;
+  // A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+  repeated string include = 7;
 
 }
 
@@ -415,7 +326,7 @@ message ListRunsRequest {
   string order = 3;
   // A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
   string after = 4;
-  // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+  // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
   string before = 5;
 
 }

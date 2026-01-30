@@ -7,9 +7,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.prokarma.pkmst.model.RunStepDetailsToolCallsCodeObject;
 import com.prokarma.pkmst.model.RunStepDetailsToolCallsCodeObjectCodeInterpreter;
+import com.prokarma.pkmst.model.RunStepDetailsToolCallsFileSearchObject;
+import com.prokarma.pkmst.model.RunStepDetailsToolCallsFileSearchObjectFileSearch;
 import com.prokarma.pkmst.model.RunStepDetailsToolCallsFunctionObject;
 import com.prokarma.pkmst.model.RunStepDetailsToolCallsFunctionObjectFunction;
-import com.prokarma.pkmst.model.RunStepDetailsToolCallsRetrievalObject;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 /**
@@ -21,7 +22,7 @@ import io.swagger.annotations.ApiModelProperty;
  * RunStepDetailsToolCallsObjectToolCallsInner
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T10:45:02.588292416Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStepDetailsToolCallsObjectToolCallsInner   {
   @JsonProperty("id")
   private String id;
@@ -32,7 +33,7 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
   public enum TypeEnum {
     CODE_INTERPRETER("code_interpreter"),
     
-    RETRIEVAL("retrieval"),
+    FILE_SEARCH("file_search"),
     
     FUNCTION("function");
 
@@ -65,8 +66,8 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
   @JsonProperty("code_interpreter")
   private RunStepDetailsToolCallsCodeObjectCodeInterpreter codeInterpreter;
 
-  @JsonProperty("retrieval")
-  private Object retrieval;
+  @JsonProperty("file_search")
+  private RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch;
 
   @JsonProperty("function")
   private RunStepDetailsToolCallsFunctionObjectFunction function;
@@ -125,22 +126,22 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
     this.codeInterpreter = codeInterpreter;
   }
 
-  public RunStepDetailsToolCallsObjectToolCallsInner retrieval(Object retrieval) {
-    this.retrieval = retrieval;
+  public RunStepDetailsToolCallsObjectToolCallsInner fileSearch(RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
     return this;
   }
 
   /**
-   * For now, this is always going to be an empty object.
-   * @return retrieval
+   * Get fileSearch
+   * @return fileSearch
    */
-  @ApiModelProperty(required = true, value = "For now, this is always going to be an empty object.")
-  public Object getRetrieval() {
-    return retrieval;
+  @ApiModelProperty(required = true, value = "")
+  public RunStepDetailsToolCallsFileSearchObjectFileSearch getFileSearch() {
+    return fileSearch;
   }
 
-  public void setRetrieval(Object retrieval) {
-    this.retrieval = retrieval;
+  public void setFileSearch(RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
   }
 
   public RunStepDetailsToolCallsObjectToolCallsInner function(RunStepDetailsToolCallsFunctionObjectFunction function) {
@@ -174,13 +175,13 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
     return Objects.equals(this.id, runStepDetailsToolCallsObjectToolCallsInner.id) &&
         Objects.equals(this.type, runStepDetailsToolCallsObjectToolCallsInner.type) &&
         Objects.equals(this.codeInterpreter, runStepDetailsToolCallsObjectToolCallsInner.codeInterpreter) &&
-        Objects.equals(this.retrieval, runStepDetailsToolCallsObjectToolCallsInner.retrieval) &&
+        Objects.equals(this.fileSearch, runStepDetailsToolCallsObjectToolCallsInner.fileSearch) &&
         Objects.equals(this.function, runStepDetailsToolCallsObjectToolCallsInner.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, codeInterpreter, retrieval, function);
+    return Objects.hash(id, type, codeInterpreter, fileSearch, function);
   }
 
   @Override
@@ -191,7 +192,7 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    codeInterpreter: ").append(toIndentedString(codeInterpreter)).append("\n");
-    sb.append("    retrieval: ").append(toIndentedString(retrieval)).append("\n");
+    sb.append("    fileSearch: ").append(toIndentedString(fileSearch)).append("\n");
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();

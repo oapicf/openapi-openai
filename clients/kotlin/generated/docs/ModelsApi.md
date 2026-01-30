@@ -22,7 +22,7 @@ Delete a fine-tuned model. You must have the Owner role in your organization to 
 //import org.openapitools.client.models.*
 
 val apiInstance = ModelsApi()
-val model : kotlin.String = ft:gpt-3.5-turbo:acemeco:suffix:abc123 // kotlin.String | The model to delete
+val model : kotlin.String = ft:gpt-4o-mini:acemeco:suffix:abc123 // kotlin.String | The model to delete
 try {
     val result : DeleteModelResponse = apiInstance.deleteModel(model)
     println(result)
@@ -111,7 +111,7 @@ Retrieves a model instance, providing basic information about the model such as 
 //import org.openapitools.client.models.*
 
 val apiInstance = ModelsApi()
-val model : kotlin.String = gpt-3.5-turbo // kotlin.String | The ID of the model to use for this request
+val model : kotlin.String = gpt-4o-mini // kotlin.String | The ID of the model to use for this request
 try {
     val result : Model = apiInstance.retrieveModel(model)
     println(result)

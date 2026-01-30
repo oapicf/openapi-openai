@@ -17,29 +17,38 @@
 create_assistant_request_t* instantiate_create_assistant_request(int include_optional);
 
 #include "test_create_assistant_request_model.c"
+#include "test_create_assistant_request_tool_resources.c"
+#include "test_assistants_api_response_format_option.c"
 
 
 create_assistant_request_t* instantiate_create_assistant_request(int include_optional) {
   create_assistant_request_t* create_assistant_request = NULL;
   if (include_optional) {
     create_assistant_request = create_assistant_request_create(
-      gpt-4-turbo,
+      gpt-4o,
       "0",
       "0",
       "0",
       list_createList(),
-      list_createList(),
-      0
+       // false, not to have infinite recursion
+      instantiate_create_assistant_request_tool_resources(0),
+      0,
+      1,
+      1,
+      null
     );
   } else {
     create_assistant_request = create_assistant_request_create(
-      gpt-4-turbo,
+      gpt-4o,
       "0",
       "0",
       "0",
       list_createList(),
-      list_createList(),
-      0
+      NULL,
+      0,
+      1,
+      1,
+      null
     );
   }
 

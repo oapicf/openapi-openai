@@ -14,7 +14,7 @@ test_that("model", {
 
 test_that("training_file", {
   # tests for the property `training_file` (character)
-  # The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose &#x60;fine-tune&#x60;.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
+  # The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose &#x60;fine-tune&#x60;.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`training_file`, "EXPECTED_RESULT")
@@ -29,7 +29,7 @@ test_that("hyperparameters", {
 
 test_that("suffix", {
   # tests for the property `suffix` (character)
-  # A string of up to 18 characters that will be added to your fine-tuned model name.  For example, a &#x60;suffix&#x60; of \&quot;custom-model-name\&quot; would produce a model name like &#x60;ft:gpt-3.5-turbo:openai:custom-model-name:7p4lURel&#x60;. 
+  # A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a &#x60;suffix&#x60; of \&quot;custom-model-name\&quot; would produce a model name like &#x60;ft:gpt-4o-mini:openai:custom-model-name:7p4lURel&#x60;. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`suffix`, "EXPECTED_RESULT")
@@ -57,4 +57,11 @@ test_that("seed", {
 
   # uncomment below to test the property
   #expect_equal(model.instance$`seed`, "EXPECTED_RESULT")
+})
+
+test_that("method", {
+  # tests for the property `method` (FineTuneMethod)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`method`, "EXPECTED_RESULT")
 })

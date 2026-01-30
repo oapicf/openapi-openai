@@ -6,9 +6,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.vertxweb.server.model.RunStepDetailsToolCallsCodeObject;
 import org.openapitools.vertxweb.server.model.RunStepDetailsToolCallsCodeObjectCodeInterpreter;
+import org.openapitools.vertxweb.server.model.RunStepDetailsToolCallsFileSearchObject;
+import org.openapitools.vertxweb.server.model.RunStepDetailsToolCallsFileSearchObjectFileSearch;
 import org.openapitools.vertxweb.server.model.RunStepDetailsToolCallsFunctionObject;
 import org.openapitools.vertxweb.server.model.RunStepDetailsToolCallsFunctionObjectFunction;
-import org.openapitools.vertxweb.server.model.RunStepDetailsToolCallsRetrievalObject;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RunStepDetailsToolCallsObjectToolCallsInner   {
@@ -18,7 +19,7 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
 
   public enum TypeEnum {
     CODE_INTERPRETER("code_interpreter"),
-    RETRIEVAL("retrieval"),
+    FILE_SEARCH("file_search"),
     FUNCTION("function");
 
     private String value;
@@ -36,18 +37,18 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
 
   private TypeEnum type;
   private RunStepDetailsToolCallsCodeObjectCodeInterpreter codeInterpreter;
-  private Object retrieval;
+  private RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch;
   private RunStepDetailsToolCallsFunctionObjectFunction function;
 
   public RunStepDetailsToolCallsObjectToolCallsInner () {
 
   }
 
-  public RunStepDetailsToolCallsObjectToolCallsInner (String id, TypeEnum type, RunStepDetailsToolCallsCodeObjectCodeInterpreter codeInterpreter, Object retrieval, RunStepDetailsToolCallsFunctionObjectFunction function) {
+  public RunStepDetailsToolCallsObjectToolCallsInner (String id, TypeEnum type, RunStepDetailsToolCallsCodeObjectCodeInterpreter codeInterpreter, RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch, RunStepDetailsToolCallsFunctionObjectFunction function) {
     this.id = id;
     this.type = type;
     this.codeInterpreter = codeInterpreter;
-    this.retrieval = retrieval;
+    this.fileSearch = fileSearch;
     this.function = function;
   }
 
@@ -79,12 +80,12 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
   }
 
     
-  @JsonProperty("retrieval")
-  public Object getRetrieval() {
-    return retrieval;
+  @JsonProperty("file_search")
+  public RunStepDetailsToolCallsFileSearchObjectFileSearch getFileSearch() {
+    return fileSearch;
   }
-  public void setRetrieval(Object retrieval) {
-    this.retrieval = retrieval;
+  public void setFileSearch(RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch) {
+    this.fileSearch = fileSearch;
   }
 
     
@@ -109,13 +110,13 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
     return Objects.equals(id, runStepDetailsToolCallsObjectToolCallsInner.id) &&
         Objects.equals(type, runStepDetailsToolCallsObjectToolCallsInner.type) &&
         Objects.equals(codeInterpreter, runStepDetailsToolCallsObjectToolCallsInner.codeInterpreter) &&
-        Objects.equals(retrieval, runStepDetailsToolCallsObjectToolCallsInner.retrieval) &&
+        Objects.equals(fileSearch, runStepDetailsToolCallsObjectToolCallsInner.fileSearch) &&
         Objects.equals(function, runStepDetailsToolCallsObjectToolCallsInner.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, codeInterpreter, retrieval, function);
+    return Objects.hash(id, type, codeInterpreter, fileSearch, function);
   }
 
   @Override
@@ -126,7 +127,7 @@ public class RunStepDetailsToolCallsObjectToolCallsInner   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    codeInterpreter: ").append(toIndentedString(codeInterpreter)).append("\n");
-    sb.append("    retrieval: ").append(toIndentedString(retrieval)).append("\n");
+    sb.append("    fileSearch: ").append(toIndentedString(fileSearch)).append("\n");
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();

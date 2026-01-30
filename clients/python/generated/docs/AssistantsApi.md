@@ -6,24 +6,19 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancel_run**](AssistantsApi.md#cancel_run) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is &#x60;in_progress&#x60;.
 [**create_assistant**](AssistantsApi.md#create_assistant) | **POST** /assistants | Create an assistant with a model and instructions.
-[**create_assistant_file**](AssistantsApi.md#create_assistant_file) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
 [**create_message**](AssistantsApi.md#create_message) | **POST** /threads/{thread_id}/messages | Create a message.
 [**create_run**](AssistantsApi.md#create_run) | **POST** /threads/{thread_id}/runs | Create a run.
 [**create_thread**](AssistantsApi.md#create_thread) | **POST** /threads | Create a thread.
 [**create_thread_and_run**](AssistantsApi.md#create_thread_and_run) | **POST** /threads/runs | Create a thread and run it in one request.
 [**delete_assistant**](AssistantsApi.md#delete_assistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant.
-[**delete_assistant_file**](AssistantsApi.md#delete_assistant_file) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+[**delete_message**](AssistantsApi.md#delete_message) | **DELETE** /threads/{thread_id}/messages/{message_id} | Deletes a message.
 [**delete_thread**](AssistantsApi.md#delete_thread) | **DELETE** /threads/{thread_id} | Delete a thread.
 [**get_assistant**](AssistantsApi.md#get_assistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant.
-[**get_assistant_file**](AssistantsApi.md#get_assistant_file) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
 [**get_message**](AssistantsApi.md#get_message) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
-[**get_message_file**](AssistantsApi.md#get_message_file) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
 [**get_run**](AssistantsApi.md#get_run) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
 [**get_run_step**](AssistantsApi.md#get_run_step) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
 [**get_thread**](AssistantsApi.md#get_thread) | **GET** /threads/{thread_id} | Retrieves a thread.
-[**list_assistant_files**](AssistantsApi.md#list_assistant_files) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
 [**list_assistants**](AssistantsApi.md#list_assistants) | **GET** /assistants | Returns a list of assistants.
-[**list_message_files**](AssistantsApi.md#list_message_files) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
 [**list_messages**](AssistantsApi.md#list_messages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
 [**list_run_steps**](AssistantsApi.md#list_run_steps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
 [**list_runs**](AssistantsApi.md#list_runs) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
@@ -189,85 +184,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_assistant_file**
-> AssistantFileObject create_assistant_file(assistant_id, create_assistant_file_request)
-
-Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
-### Example
-
-* Bearer Authentication (ApiKeyAuth):
-
-```python
-import openapiopenai
-from openapiopenai.models.assistant_file_object import AssistantFileObject
-from openapiopenai.models.create_assistant_file_request import CreateAssistantFileRequest
-from openapiopenai.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.openai.com/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapiopenai.Configuration(
-    host = "https://api.openai.com/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: ApiKeyAuth
-configuration = openapiopenai.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with openapiopenai.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapiopenai.AssistantsApi(api_client)
-    assistant_id = 'file-abc123' # str | The ID of the assistant for which to create a File. 
-    create_assistant_file_request = openapiopenai.CreateAssistantFileRequest() # CreateAssistantFileRequest | 
-
-    try:
-        # Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-        api_response = api_instance.create_assistant_file(assistant_id, create_assistant_file_request)
-        print("The response of AssistantsApi->create_assistant_file:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AssistantsApi->create_assistant_file: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistant_id** | **str**| The ID of the assistant for which to create a File.  | 
- **create_assistant_file_request** | [**CreateAssistantFileRequest**](CreateAssistantFileRequest.md)|  | 
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **create_message**
 > MessageObject create_message(thread_id, create_message_request)
 
@@ -348,7 +264,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_run**
-> RunObject create_run(thread_id, create_run_request)
+> RunObject create_run(thread_id, create_run_request, include=include)
 
 Create a run.
 
@@ -385,10 +301,11 @@ with openapiopenai.ApiClient(configuration) as api_client:
     api_instance = openapiopenai.AssistantsApi(api_client)
     thread_id = 'thread_id_example' # str | The ID of the thread to run.
     create_run_request = openapiopenai.CreateRunRequest() # CreateRunRequest | 
+    include = ['include_example'] # List[str] | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 
     try:
         # Create a run.
-        api_response = api_instance.create_run(thread_id, create_run_request)
+        api_response = api_instance.create_run(thread_id, create_run_request, include=include)
         print("The response of AssistantsApi->create_run:\n")
         pprint(api_response)
     except Exception as e:
@@ -404,6 +321,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **thread_id** | **str**| The ID of the thread to run. | 
  **create_run_request** | [**CreateRunRequest**](CreateRunRequest.md)|  | 
+ **include** | [**List[str]**](str.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -656,10 +574,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_assistant_file**
-> DeleteAssistantFileResponse delete_assistant_file(assistant_id, file_id)
+# **delete_message**
+> DeleteMessageResponse delete_message(thread_id, message_id)
 
-Delete an assistant file.
+Deletes a message.
 
 ### Example
 
@@ -667,7 +585,7 @@ Delete an assistant file.
 
 ```python
 import openapiopenai
-from openapiopenai.models.delete_assistant_file_response import DeleteAssistantFileResponse
+from openapiopenai.models.delete_message_response import DeleteMessageResponse
 from openapiopenai.rest import ApiException
 from pprint import pprint
 
@@ -691,16 +609,16 @@ configuration = openapiopenai.Configuration(
 with openapiopenai.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapiopenai.AssistantsApi(api_client)
-    assistant_id = 'assistant_id_example' # str | The ID of the assistant that the file belongs to.
-    file_id = 'file_id_example' # str | The ID of the file to delete.
+    thread_id = 'thread_id_example' # str | The ID of the thread to which this message belongs.
+    message_id = 'message_id_example' # str | The ID of the message to delete.
 
     try:
-        # Delete an assistant file.
-        api_response = api_instance.delete_assistant_file(assistant_id, file_id)
-        print("The response of AssistantsApi->delete_assistant_file:\n")
+        # Deletes a message.
+        api_response = api_instance.delete_message(thread_id, message_id)
+        print("The response of AssistantsApi->delete_message:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling AssistantsApi->delete_assistant_file: %s\n" % e)
+        print("Exception when calling AssistantsApi->delete_message: %s\n" % e)
 ```
 
 
@@ -710,12 +628,12 @@ with openapiopenai.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **assistant_id** | **str**| The ID of the assistant that the file belongs to. | 
- **file_id** | **str**| The ID of the file to delete. | 
+ **thread_id** | **str**| The ID of the thread to which this message belongs. | 
+ **message_id** | **str**| The ID of the message to delete. | 
 
 ### Return type
 
-[**DeleteAssistantFileResponse**](DeleteAssistantFileResponse.md)
+[**DeleteMessageResponse**](DeleteMessageResponse.md)
 
 ### Authorization
 
@@ -886,84 +804,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_assistant_file**
-> AssistantFileObject get_assistant_file(assistant_id, file_id)
-
-Retrieves an AssistantFile.
-
-### Example
-
-* Bearer Authentication (ApiKeyAuth):
-
-```python
-import openapiopenai
-from openapiopenai.models.assistant_file_object import AssistantFileObject
-from openapiopenai.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.openai.com/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapiopenai.Configuration(
-    host = "https://api.openai.com/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: ApiKeyAuth
-configuration = openapiopenai.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with openapiopenai.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapiopenai.AssistantsApi(api_client)
-    assistant_id = 'assistant_id_example' # str | The ID of the assistant who the file belongs to.
-    file_id = 'file_id_example' # str | The ID of the file we're getting.
-
-    try:
-        # Retrieves an AssistantFile.
-        api_response = api_instance.get_assistant_file(assistant_id, file_id)
-        print("The response of AssistantsApi->get_assistant_file:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AssistantsApi->get_assistant_file: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistant_id** | **str**| The ID of the assistant who the file belongs to. | 
- **file_id** | **str**| The ID of the file we&#39;re getting. | 
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_message**
 > MessageObject get_message(thread_id, message_id)
 
@@ -1024,86 +864,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MessageObject**](MessageObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_message_file**
-> MessageFileObject get_message_file(thread_id, message_id, file_id)
-
-Retrieves a message file.
-
-### Example
-
-* Bearer Authentication (ApiKeyAuth):
-
-```python
-import openapiopenai
-from openapiopenai.models.message_file_object import MessageFileObject
-from openapiopenai.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.openai.com/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapiopenai.Configuration(
-    host = "https://api.openai.com/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: ApiKeyAuth
-configuration = openapiopenai.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with openapiopenai.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapiopenai.AssistantsApi(api_client)
-    thread_id = 'thread_abc123' # str | The ID of the thread to which the message and File belong.
-    message_id = 'msg_abc123' # str | The ID of the message the file belongs to.
-    file_id = 'file-abc123' # str | The ID of the file being retrieved.
-
-    try:
-        # Retrieves a message file.
-        api_response = api_instance.get_message_file(thread_id, message_id, file_id)
-        print("The response of AssistantsApi->get_message_file:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AssistantsApi->get_message_file: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **thread_id** | **str**| The ID of the thread to which the message and File belong. | 
- **message_id** | **str**| The ID of the message the file belongs to. | 
- **file_id** | **str**| The ID of the file being retrieved. | 
-
-### Return type
-
-[**MessageFileObject**](MessageFileObject.md)
 
 ### Authorization
 
@@ -1201,7 +961,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_run_step**
-> RunStepObject get_run_step(thread_id, run_id, step_id)
+> RunStepObject get_run_step(thread_id, run_id, step_id, include=include)
 
 Retrieves a run step.
 
@@ -1238,10 +998,11 @@ with openapiopenai.ApiClient(configuration) as api_client:
     thread_id = 'thread_id_example' # str | The ID of the thread to which the run and run step belongs.
     run_id = 'run_id_example' # str | The ID of the run to which the run step belongs.
     step_id = 'step_id_example' # str | The ID of the run step to retrieve.
+    include = ['include_example'] # List[str] | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 
     try:
         # Retrieves a run step.
-        api_response = api_instance.get_run_step(thread_id, run_id, step_id)
+        api_response = api_instance.get_run_step(thread_id, run_id, step_id, include=include)
         print("The response of AssistantsApi->get_run_step:\n")
         pprint(api_response)
     except Exception as e:
@@ -1258,6 +1019,7 @@ Name | Type | Description  | Notes
  **thread_id** | **str**| The ID of the thread to which the run and run step belongs. | 
  **run_id** | **str**| The ID of the run to which the run step belongs. | 
  **step_id** | **str**| The ID of the run step to retrieve. | 
+ **include** | [**List[str]**](str.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -1356,90 +1118,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_assistant_files**
-> ListAssistantFilesResponse list_assistant_files(assistant_id, limit=limit, order=order, after=after, before=before)
-
-Returns a list of assistant files.
-
-### Example
-
-* Bearer Authentication (ApiKeyAuth):
-
-```python
-import openapiopenai
-from openapiopenai.models.list_assistant_files_response import ListAssistantFilesResponse
-from openapiopenai.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.openai.com/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapiopenai.Configuration(
-    host = "https://api.openai.com/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: ApiKeyAuth
-configuration = openapiopenai.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with openapiopenai.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapiopenai.AssistantsApi(api_client)
-    assistant_id = 'assistant_id_example' # str | The ID of the assistant the file belongs to.
-    limit = 20 # int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
-    order = desc # str | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to desc)
-    after = 'after_example' # str | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-    before = 'before_example' # str | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-
-    try:
-        # Returns a list of assistant files.
-        api_response = api_instance.list_assistant_files(assistant_id, limit=limit, order=order, after=after, before=before)
-        print("The response of AssistantsApi->list_assistant_files:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AssistantsApi->list_assistant_files: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistant_id** | **str**| The ID of the assistant the file belongs to. | 
- **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
- **order** | **str**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to desc]
- **after** | **str**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **str**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
-
-### Return type
-
-[**ListAssistantFilesResponse**](ListAssistantFilesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **list_assistants**
 > ListAssistantsResponse list_assistants(limit=limit, order=order, after=after, before=before)
 
@@ -1478,7 +1156,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
     limit = 20 # int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
     order = desc # str | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to desc)
     after = 'after_example' # str | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-    before = 'before_example' # str | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+    before = 'before_example' # str | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 
     try:
         # Returns a list of assistants.
@@ -1499,97 +1177,11 @@ Name | Type | Description  | Notes
  **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | **str**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to desc]
  **after** | **str**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **str**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **str**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
 
 ### Return type
 
 [**ListAssistantsResponse**](ListAssistantsResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **list_message_files**
-> ListMessageFilesResponse list_message_files(thread_id, message_id, limit=limit, order=order, after=after, before=before)
-
-Returns a list of message files.
-
-### Example
-
-* Bearer Authentication (ApiKeyAuth):
-
-```python
-import openapiopenai
-from openapiopenai.models.list_message_files_response import ListMessageFilesResponse
-from openapiopenai.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.openai.com/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapiopenai.Configuration(
-    host = "https://api.openai.com/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: ApiKeyAuth
-configuration = openapiopenai.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with openapiopenai.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapiopenai.AssistantsApi(api_client)
-    thread_id = 'thread_id_example' # str | The ID of the thread that the message and files belong to.
-    message_id = 'message_id_example' # str | The ID of the message that the files belongs to.
-    limit = 20 # int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
-    order = desc # str | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to desc)
-    after = 'after_example' # str | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-    before = 'before_example' # str | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-
-    try:
-        # Returns a list of message files.
-        api_response = api_instance.list_message_files(thread_id, message_id, limit=limit, order=order, after=after, before=before)
-        print("The response of AssistantsApi->list_message_files:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AssistantsApi->list_message_files: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **thread_id** | **str**| The ID of the thread that the message and files belong to. | 
- **message_id** | **str**| The ID of the message that the files belongs to. | 
- **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
- **order** | **str**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to desc]
- **after** | **str**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **str**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
-
-### Return type
-
-[**ListMessageFilesResponse**](ListMessageFilesResponse.md)
 
 ### Authorization
 
@@ -1647,7 +1239,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
     limit = 20 # int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
     order = desc # str | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to desc)
     after = 'after_example' # str | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-    before = 'before_example' # str | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+    before = 'before_example' # str | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
     run_id = 'run_id_example' # str | Filter messages by the run ID that generated them.  (optional)
 
     try:
@@ -1670,7 +1262,7 @@ Name | Type | Description  | Notes
  **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | **str**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to desc]
  **after** | **str**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **str**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **str**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
  **run_id** | **str**| Filter messages by the run ID that generated them.  | [optional] 
 
 ### Return type
@@ -1695,7 +1287,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_run_steps**
-> ListRunStepsResponse list_run_steps(thread_id, run_id, limit=limit, order=order, after=after, before=before)
+> ListRunStepsResponse list_run_steps(thread_id, run_id, limit=limit, order=order, after=after, before=before, include=include)
 
 Returns a list of run steps belonging to a run.
 
@@ -1734,11 +1326,12 @@ with openapiopenai.ApiClient(configuration) as api_client:
     limit = 20 # int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
     order = desc # str | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to desc)
     after = 'after_example' # str | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-    before = 'before_example' # str | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+    before = 'before_example' # str | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+    include = ['include_example'] # List[str] | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 
     try:
         # Returns a list of run steps belonging to a run.
-        api_response = api_instance.list_run_steps(thread_id, run_id, limit=limit, order=order, after=after, before=before)
+        api_response = api_instance.list_run_steps(thread_id, run_id, limit=limit, order=order, after=after, before=before, include=include)
         print("The response of AssistantsApi->list_run_steps:\n")
         pprint(api_response)
     except Exception as e:
@@ -1757,7 +1350,8 @@ Name | Type | Description  | Notes
  **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | **str**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to desc]
  **after** | **str**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **str**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **str**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **include** | [**List[str]**](str.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -1819,7 +1413,7 @@ with openapiopenai.ApiClient(configuration) as api_client:
     limit = 20 # int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
     order = desc # str | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to desc)
     after = 'after_example' # str | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-    before = 'before_example' # str | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+    before = 'before_example' # str | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 
     try:
         # Returns a list of runs belonging to a thread.
@@ -1841,7 +1435,7 @@ Name | Type | Description  | Notes
  **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | **str**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to desc]
  **after** | **str**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **str**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **str**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
 
 ### Return type
 

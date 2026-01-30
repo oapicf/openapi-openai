@@ -27,14 +27,24 @@ Description on how to create Apis is given inside individual api guides:
 
 * [AssistantsApi](docs/apis/AssistantsApi.md)
 * [AudioApi](docs/apis/AudioApi.md)
+* [AuditLogsApi](docs/apis/AuditLogsApi.md)
+* [BatchApi](docs/apis/BatchApi.md)
 * [ChatApi](docs/apis/ChatApi.md)
 * [CompletionsApi](docs/apis/CompletionsApi.md)
+* [DefaultApi](docs/apis/DefaultApi.md)
 * [EmbeddingsApi](docs/apis/EmbeddingsApi.md)
 * [FilesApi](docs/apis/FilesApi.md)
 * [FineTuningApi](docs/apis/FineTuningApi.md)
 * [ImagesApi](docs/apis/ImagesApi.md)
+* [InvitesApi](docs/apis/InvitesApi.md)
 * [ModelsApi](docs/apis/ModelsApi.md)
 * [ModerationsApi](docs/apis/ModerationsApi.md)
+* [ProjectsApi](docs/apis/ProjectsApi.md)
+* [RealtimeApi](docs/apis/RealtimeApi.md)
+* [UploadsApi](docs/apis/UploadsApi.md)
+* [UsageApi](docs/apis/UsageApi.md)
+* [UsersApi](docs/apis/UsersApi.md)
+* [VectorStoresApi](docs/apis/VectorStoresApi.md)
 
 
 ## Auth methods
@@ -43,6 +53,16 @@ Details on auth methods can be found in the [auth.md](doc/auth.md).
 
 ## Author
 
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
+blah+oapicf@cliffano.com
 blah+oapicf@cliffano.com
 blah+oapicf@cliffano.com
 blah+oapicf@cliffano.com

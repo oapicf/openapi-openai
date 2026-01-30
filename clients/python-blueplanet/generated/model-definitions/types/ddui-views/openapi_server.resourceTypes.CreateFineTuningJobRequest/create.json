@@ -18,6 +18,7 @@
       {"model": "validation_file" },
       {"model": "integrations" },
       {"model": "seed" },
+      {"model": "method" },
     ]
   }]
 }

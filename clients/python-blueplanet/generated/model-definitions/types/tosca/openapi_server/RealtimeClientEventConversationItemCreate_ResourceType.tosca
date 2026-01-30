@@ -1,0 +1,52 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeClientEventConversationItemCreate"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeClientEventConversationItemCreate"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RealtimeConversationItem = openapi_server.resourceTypes.RealtimeConversationItem
+}
+resourceTypes {
+
+  RealtimeClientEventConversationItemCreate {
+    title = RealtimeClientEventConversationItemCreate
+    description = RealtimeClientEventConversationItemCreate
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "Optional client-generated ID used to identify this event."
+          optional = false
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;conversation.item.create&#x60;."
+          enum = ["conversation.item.create"]
+          optional = true
+        }
+        previous_item_id {
+          type =  string
+          description = "The ID of the preceding item after which the new item will be inserted.  If not set, the new item will be appended to the end of the conversation.  If set, it allows an item to be inserted mid-conversation. If the ID  cannot be found, an error will be returned and the item will not be added. "
+          optional = false
+        }
+        item {
+          type = RealtimeConversationItem
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeClientEventConversationItemCreate {
+    title = RealtimeClientEventConversationItemCreate
+    description = RealtimeClientEventConversationItemCreate
+    implements = openapi_server.resourceTypes.RealtimeClientEventConversationItemCreate
+
+  }
+}

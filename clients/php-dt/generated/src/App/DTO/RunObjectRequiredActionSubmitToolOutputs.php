@@ -13,9 +13,9 @@ class RunObjectRequiredActionSubmitToolOutputs
     /**
      * A list of the relevant tool calls.
      * @DTA\Data(field="tool_calls")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection45::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection45::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection133::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection133::class})
      */
-    public ?\App\DTO\Collection45 $tool_calls = null;
+    public ?\App\DTO\Collection133 $tool_calls = null;
 
 }

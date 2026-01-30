@@ -4,6 +4,7 @@
             [open-ai-api.specs.fine-tuning-job-error :refer :all]
             [open-ai-api.specs.fine-tuning-job-hyperparameters :refer :all]
             [open-ai-api.specs.fine-tuning-job-integrations-inner :refer :all]
+            [open-ai-api.specs.fine-tune-method :refer :all]
             )
   (:import (java.io File)))
 
@@ -26,6 +27,8 @@
    (ds/req :validation_file) string?
    (ds/opt :integrations) (s/coll-of fine-tuning-job-integrations-inner-spec)
    (ds/req :seed) int?
+   (ds/opt :estimated_finish) int?
+   (ds/opt :method) fine-tune-method-spec
    })
 
 (def fine-tuning-job-spec

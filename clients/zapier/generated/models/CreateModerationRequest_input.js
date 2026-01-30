@@ -1,4 +1,5 @@
 const utils = require('../utils/utils');
+const CreateModerationRequest_input_oneOf_inner = require('../models/CreateModerationRequest_input_oneOf_inner');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {

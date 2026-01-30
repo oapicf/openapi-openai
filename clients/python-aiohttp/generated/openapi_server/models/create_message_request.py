@@ -5,6 +5,8 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
+from openapi_server.models.create_message_request_attachments_inner import CreateMessageRequestAttachmentsInner
+from openapi_server.models.create_message_request_content import CreateMessageRequestContent
 from openapi_server import util
 
 
@@ -14,31 +16,31 @@ class CreateMessageRequest(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, role: str=None, content: str=None, file_ids: List[str]=[], metadata: object=None):
+    def __init__(self, role: str=None, content: CreateMessageRequestContent=None, attachments: List[CreateMessageRequestAttachmentsInner]=None, metadata: object=None):
         """CreateMessageRequest - a model defined in OpenAPI
 
         :param role: The role of this CreateMessageRequest.
         :param content: The content of this CreateMessageRequest.
-        :param file_ids: The file_ids of this CreateMessageRequest.
+        :param attachments: The attachments of this CreateMessageRequest.
         :param metadata: The metadata of this CreateMessageRequest.
         """
         self.openapi_types = {
             'role': str,
-            'content': str,
-            'file_ids': List[str],
+            'content': CreateMessageRequestContent,
+            'attachments': List[CreateMessageRequestAttachmentsInner],
             'metadata': object
         }
 
         self.attribute_map = {
             'role': 'role',
             'content': 'content',
-            'file_ids': 'file_ids',
+            'attachments': 'attachments',
             'metadata': 'metadata'
         }
 
         self._role = role
         self._content = content
-        self._file_ids = file_ids
+        self._attachments = attachments
         self._metadata = metadata
 
     @classmethod
@@ -83,10 +85,9 @@ class CreateMessageRequest(Model):
     def content(self):
         """Gets the content of this CreateMessageRequest.
 
-        The content of the message.
 
         :return: The content of this CreateMessageRequest.
-        :rtype: str
+        :rtype: CreateMessageRequestContent
         """
         return self._content
 
@@ -94,52 +95,43 @@ class CreateMessageRequest(Model):
     def content(self, content):
         """Sets the content of this CreateMessageRequest.
 
-        The content of the message.
 
         :param content: The content of this CreateMessageRequest.
-        :type content: str
+        :type content: CreateMessageRequestContent
         """
         if content is None:
             raise ValueError("Invalid value for `content`, must not be `None`")
-        if content is not None and len(content) > 256000:
-            raise ValueError("Invalid value for `content`, length must be less than or equal to `256000`")
-        if content is not None and len(content) < 1:
-            raise ValueError("Invalid value for `content`, length must be greater than or equal to `1`")
 
         self._content = content
 
     @property
-    def file_ids(self):
-        """Gets the file_ids of this CreateMessageRequest.
+    def attachments(self):
+        """Gets the attachments of this CreateMessageRequest.
 
-        A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like `retrieval` and `code_interpreter` that can access and use files.
+        A list of files attached to the message, and the tools they should be added to.
 
-        :return: The file_ids of this CreateMessageRequest.
-        :rtype: List[str]
+        :return: The attachments of this CreateMessageRequest.
+        :rtype: List[CreateMessageRequestAttachmentsInner]
         """
-        return self._file_ids
+        return self._attachments
 
-    @file_ids.setter
-    def file_ids(self, file_ids):
-        """Sets the file_ids of this CreateMessageRequest.
+    @attachments.setter
+    def attachments(self, attachments):
+        """Sets the attachments of this CreateMessageRequest.
 
-        A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like `retrieval` and `code_interpreter` that can access and use files.
+        A list of files attached to the message, and the tools they should be added to.
 
-        :param file_ids: The file_ids of this CreateMessageRequest.
-        :type file_ids: List[str]
+        :param attachments: The attachments of this CreateMessageRequest.
+        :type attachments: List[CreateMessageRequestAttachmentsInner]
         """
-        if file_ids is not None and len(file_ids) > 10:
-            raise ValueError("Invalid value for `file_ids`, number of items must be less than or equal to `10`")
-        if file_ids is not None and len(file_ids) < 1:
-            raise ValueError("Invalid value for `file_ids`, number of items must be greater than or equal to `1`")
 
-        self._file_ids = file_ids
+        self._attachments = attachments
 
     @property
     def metadata(self):
         """Gets the metadata of this CreateMessageRequest.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
         :return: The metadata of this CreateMessageRequest.
         :rtype: object
@@ -150,7 +142,7 @@ class CreateMessageRequest(Model):
     def metadata(self, metadata):
         """Sets the metadata of this CreateMessageRequest.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
         :param metadata: The metadata of this CreateMessageRequest.
         :type metadata: object

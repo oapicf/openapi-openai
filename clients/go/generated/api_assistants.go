@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -237,118 +238,6 @@ func (a *AssistantsAPIService) CreateAssistantExecute(r ApiCreateAssistantReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateAssistantFileRequest struct {
-	ctx context.Context
-	ApiService *AssistantsAPIService
-	assistantId string
-	createAssistantFileRequest *CreateAssistantFileRequest
-}
-
-func (r ApiCreateAssistantFileRequest) CreateAssistantFileRequest(createAssistantFileRequest CreateAssistantFileRequest) ApiCreateAssistantFileRequest {
-	r.createAssistantFileRequest = &createAssistantFileRequest
-	return r
-}
-
-func (r ApiCreateAssistantFileRequest) Execute() (*AssistantFileObject, *http.Response, error) {
-	return r.ApiService.CreateAssistantFileExecute(r)
-}
-
-/*
-CreateAssistantFile Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assistantId The ID of the assistant for which to create a File. 
- @return ApiCreateAssistantFileRequest
-*/
-func (a *AssistantsAPIService) CreateAssistantFile(ctx context.Context, assistantId string) ApiCreateAssistantFileRequest {
-	return ApiCreateAssistantFileRequest{
-		ApiService: a,
-		ctx: ctx,
-		assistantId: assistantId,
-	}
-}
-
-// Execute executes the request
-//  @return AssistantFileObject
-func (a *AssistantsAPIService) CreateAssistantFileExecute(r ApiCreateAssistantFileRequest) (*AssistantFileObject, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AssistantFileObject
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssistantsAPIService.CreateAssistantFile")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/assistants/{assistant_id}/files"
-	localVarPath = strings.Replace(localVarPath, "{"+"assistant_id"+"}", url.PathEscape(parameterValueToString(r.assistantId, "assistantId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.createAssistantFileRequest == nil {
-		return localVarReturnValue, nil, reportError("createAssistantFileRequest is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.createAssistantFileRequest
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiCreateMessageRequest struct {
 	ctx context.Context
 	ApiService *AssistantsAPIService
@@ -466,10 +355,17 @@ type ApiCreateRunRequest struct {
 	ApiService *AssistantsAPIService
 	threadId string
 	createRunRequest *CreateRunRequest
+	include *[]string
 }
 
 func (r ApiCreateRunRequest) CreateRunRequest(createRunRequest CreateRunRequest) ApiCreateRunRequest {
 	r.createRunRequest = &createRunRequest
+	return r
+}
+
+// A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+func (r ApiCreateRunRequest) Include(include []string) ApiCreateRunRequest {
+	r.include = &include
 	return r
 }
 
@@ -517,6 +413,17 @@ func (a *AssistantsAPIService) CreateRunExecute(r ApiCreateRunRequest) (*RunObje
 		return localVarReturnValue, nil, reportError("createRunRequest is required and must be specified")
 	}
 
+	if r.include != nil {
+		t := *r.include
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "include[]", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "include[]", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -887,52 +794,52 @@ func (a *AssistantsAPIService) DeleteAssistantExecute(r ApiDeleteAssistantReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteAssistantFileRequest struct {
+type ApiDeleteMessageRequest struct {
 	ctx context.Context
 	ApiService *AssistantsAPIService
-	assistantId string
-	fileId string
+	threadId string
+	messageId string
 }
 
-func (r ApiDeleteAssistantFileRequest) Execute() (*DeleteAssistantFileResponse, *http.Response, error) {
-	return r.ApiService.DeleteAssistantFileExecute(r)
+func (r ApiDeleteMessageRequest) Execute() (*DeleteMessageResponse, *http.Response, error) {
+	return r.ApiService.DeleteMessageExecute(r)
 }
 
 /*
-DeleteAssistantFile Delete an assistant file.
+DeleteMessage Deletes a message.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assistantId The ID of the assistant that the file belongs to.
- @param fileId The ID of the file to delete.
- @return ApiDeleteAssistantFileRequest
+ @param threadId The ID of the thread to which this message belongs.
+ @param messageId The ID of the message to delete.
+ @return ApiDeleteMessageRequest
 */
-func (a *AssistantsAPIService) DeleteAssistantFile(ctx context.Context, assistantId string, fileId string) ApiDeleteAssistantFileRequest {
-	return ApiDeleteAssistantFileRequest{
+func (a *AssistantsAPIService) DeleteMessage(ctx context.Context, threadId string, messageId string) ApiDeleteMessageRequest {
+	return ApiDeleteMessageRequest{
 		ApiService: a,
 		ctx: ctx,
-		assistantId: assistantId,
-		fileId: fileId,
+		threadId: threadId,
+		messageId: messageId,
 	}
 }
 
 // Execute executes the request
-//  @return DeleteAssistantFileResponse
-func (a *AssistantsAPIService) DeleteAssistantFileExecute(r ApiDeleteAssistantFileRequest) (*DeleteAssistantFileResponse, *http.Response, error) {
+//  @return DeleteMessageResponse
+func (a *AssistantsAPIService) DeleteMessageExecute(r ApiDeleteMessageRequest) (*DeleteMessageResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DeleteAssistantFileResponse
+		localVarReturnValue  *DeleteMessageResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssistantsAPIService.DeleteAssistantFile")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssistantsAPIService.DeleteMessage")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/assistants/{assistant_id}/files/{file_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"assistant_id"+"}", url.PathEscape(parameterValueToString(r.assistantId, "assistantId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"file_id"+"}", url.PathEscape(parameterValueToString(r.fileId, "fileId")), -1)
+	localVarPath := localBasePath + "/threads/{thread_id}/messages/{message_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"thread_id"+"}", url.PathEscape(parameterValueToString(r.threadId, "threadId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"message_id"+"}", url.PathEscape(parameterValueToString(r.messageId, "messageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1194,111 +1101,6 @@ func (a *AssistantsAPIService) GetAssistantExecute(r ApiGetAssistantRequest) (*A
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetAssistantFileRequest struct {
-	ctx context.Context
-	ApiService *AssistantsAPIService
-	assistantId string
-	fileId string
-}
-
-func (r ApiGetAssistantFileRequest) Execute() (*AssistantFileObject, *http.Response, error) {
-	return r.ApiService.GetAssistantFileExecute(r)
-}
-
-/*
-GetAssistantFile Retrieves an AssistantFile.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assistantId The ID of the assistant who the file belongs to.
- @param fileId The ID of the file we're getting.
- @return ApiGetAssistantFileRequest
-*/
-func (a *AssistantsAPIService) GetAssistantFile(ctx context.Context, assistantId string, fileId string) ApiGetAssistantFileRequest {
-	return ApiGetAssistantFileRequest{
-		ApiService: a,
-		ctx: ctx,
-		assistantId: assistantId,
-		fileId: fileId,
-	}
-}
-
-// Execute executes the request
-//  @return AssistantFileObject
-func (a *AssistantsAPIService) GetAssistantFileExecute(r ApiGetAssistantFileRequest) (*AssistantFileObject, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AssistantFileObject
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssistantsAPIService.GetAssistantFile")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/assistants/{assistant_id}/files/{file_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"assistant_id"+"}", url.PathEscape(parameterValueToString(r.assistantId, "assistantId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"file_id"+"}", url.PathEscape(parameterValueToString(r.fileId, "fileId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiGetMessageRequest struct {
 	ctx context.Context
 	ApiService *AssistantsAPIService
@@ -1345,115 +1147,6 @@ func (a *AssistantsAPIService) GetMessageExecute(r ApiGetMessageRequest) (*Messa
 	localVarPath := localBasePath + "/threads/{thread_id}/messages/{message_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"thread_id"+"}", url.PathEscape(parameterValueToString(r.threadId, "threadId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"message_id"+"}", url.PathEscape(parameterValueToString(r.messageId, "messageId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetMessageFileRequest struct {
-	ctx context.Context
-	ApiService *AssistantsAPIService
-	threadId string
-	messageId string
-	fileId string
-}
-
-func (r ApiGetMessageFileRequest) Execute() (*MessageFileObject, *http.Response, error) {
-	return r.ApiService.GetMessageFileExecute(r)
-}
-
-/*
-GetMessageFile Retrieves a message file.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param threadId The ID of the thread to which the message and File belong.
- @param messageId The ID of the message the file belongs to.
- @param fileId The ID of the file being retrieved.
- @return ApiGetMessageFileRequest
-*/
-func (a *AssistantsAPIService) GetMessageFile(ctx context.Context, threadId string, messageId string, fileId string) ApiGetMessageFileRequest {
-	return ApiGetMessageFileRequest{
-		ApiService: a,
-		ctx: ctx,
-		threadId: threadId,
-		messageId: messageId,
-		fileId: fileId,
-	}
-}
-
-// Execute executes the request
-//  @return MessageFileObject
-func (a *AssistantsAPIService) GetMessageFileExecute(r ApiGetMessageFileRequest) (*MessageFileObject, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *MessageFileObject
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssistantsAPIService.GetMessageFile")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/threads/{thread_id}/messages/{message_id}/files/{file_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"thread_id"+"}", url.PathEscape(parameterValueToString(r.threadId, "threadId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"message_id"+"}", url.PathEscape(parameterValueToString(r.messageId, "messageId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"file_id"+"}", url.PathEscape(parameterValueToString(r.fileId, "fileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1624,6 +1317,13 @@ type ApiGetRunStepRequest struct {
 	threadId string
 	runId string
 	stepId string
+	include *[]string
+}
+
+// A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+func (r ApiGetRunStepRequest) Include(include []string) ApiGetRunStepRequest {
+	r.include = &include
+	return r
 }
 
 func (r ApiGetRunStepRequest) Execute() (*RunStepObject, *http.Response, error) {
@@ -1673,6 +1373,17 @@ func (a *AssistantsAPIService) GetRunStepExecute(r ApiGetRunStepRequest) (*RunSt
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.include != nil {
+		t := *r.include
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "include[]", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "include[]", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1828,155 +1539,6 @@ func (a *AssistantsAPIService) GetThreadExecute(r ApiGetThreadRequest) (*ThreadO
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListAssistantFilesRequest struct {
-	ctx context.Context
-	ApiService *AssistantsAPIService
-	assistantId string
-	limit *int32
-	order *string
-	after *string
-	before *string
-}
-
-// A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-func (r ApiListAssistantFilesRequest) Limit(limit int32) ApiListAssistantFilesRequest {
-	r.limit = &limit
-	return r
-}
-
-// Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-func (r ApiListAssistantFilesRequest) Order(order string) ApiListAssistantFilesRequest {
-	r.order = &order
-	return r
-}
-
-// A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-func (r ApiListAssistantFilesRequest) After(after string) ApiListAssistantFilesRequest {
-	r.after = &after
-	return r
-}
-
-// A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-func (r ApiListAssistantFilesRequest) Before(before string) ApiListAssistantFilesRequest {
-	r.before = &before
-	return r
-}
-
-func (r ApiListAssistantFilesRequest) Execute() (*ListAssistantFilesResponse, *http.Response, error) {
-	return r.ApiService.ListAssistantFilesExecute(r)
-}
-
-/*
-ListAssistantFiles Returns a list of assistant files.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assistantId The ID of the assistant the file belongs to.
- @return ApiListAssistantFilesRequest
-*/
-func (a *AssistantsAPIService) ListAssistantFiles(ctx context.Context, assistantId string) ApiListAssistantFilesRequest {
-	return ApiListAssistantFilesRequest{
-		ApiService: a,
-		ctx: ctx,
-		assistantId: assistantId,
-	}
-}
-
-// Execute executes the request
-//  @return ListAssistantFilesResponse
-func (a *AssistantsAPIService) ListAssistantFilesExecute(r ApiListAssistantFilesRequest) (*ListAssistantFilesResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ListAssistantFilesResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssistantsAPIService.ListAssistantFiles")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/assistants/{assistant_id}/files"
-	localVarPath = strings.Replace(localVarPath, "{"+"assistant_id"+"}", url.PathEscape(parameterValueToString(r.assistantId, "assistantId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-        var defaultValue int32 = 20
-        parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-        r.limit = &defaultValue
-	}
-	if r.order != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "order", r.order, "form", "")
-	} else {
-        var defaultValue string = "desc"
-        parameterAddToHeaderOrQuery(localVarQueryParams, "order", defaultValue, "form", "")
-        r.order = &defaultValue
-	}
-	if r.after != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "form", "")
-	}
-	if r.before != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "form", "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiListAssistantsRequest struct {
 	ctx context.Context
 	ApiService *AssistantsAPIService
@@ -2004,7 +1566,7 @@ func (r ApiListAssistantsRequest) After(after string) ApiListAssistantsRequest {
 	return r
 }
 
-// A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+// A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
 func (r ApiListAssistantsRequest) Before(before string) ApiListAssistantsRequest {
 	r.before = &before
 	return r
@@ -2122,159 +1684,6 @@ func (a *AssistantsAPIService) ListAssistantsExecute(r ApiListAssistantsRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListMessageFilesRequest struct {
-	ctx context.Context
-	ApiService *AssistantsAPIService
-	threadId string
-	messageId string
-	limit *int32
-	order *string
-	after *string
-	before *string
-}
-
-// A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-func (r ApiListMessageFilesRequest) Limit(limit int32) ApiListMessageFilesRequest {
-	r.limit = &limit
-	return r
-}
-
-// Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-func (r ApiListMessageFilesRequest) Order(order string) ApiListMessageFilesRequest {
-	r.order = &order
-	return r
-}
-
-// A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-func (r ApiListMessageFilesRequest) After(after string) ApiListMessageFilesRequest {
-	r.after = &after
-	return r
-}
-
-// A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-func (r ApiListMessageFilesRequest) Before(before string) ApiListMessageFilesRequest {
-	r.before = &before
-	return r
-}
-
-func (r ApiListMessageFilesRequest) Execute() (*ListMessageFilesResponse, *http.Response, error) {
-	return r.ApiService.ListMessageFilesExecute(r)
-}
-
-/*
-ListMessageFiles Returns a list of message files.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param threadId The ID of the thread that the message and files belong to.
- @param messageId The ID of the message that the files belongs to.
- @return ApiListMessageFilesRequest
-*/
-func (a *AssistantsAPIService) ListMessageFiles(ctx context.Context, threadId string, messageId string) ApiListMessageFilesRequest {
-	return ApiListMessageFilesRequest{
-		ApiService: a,
-		ctx: ctx,
-		threadId: threadId,
-		messageId: messageId,
-	}
-}
-
-// Execute executes the request
-//  @return ListMessageFilesResponse
-func (a *AssistantsAPIService) ListMessageFilesExecute(r ApiListMessageFilesRequest) (*ListMessageFilesResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ListMessageFilesResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssistantsAPIService.ListMessageFiles")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/threads/{thread_id}/messages/{message_id}/files"
-	localVarPath = strings.Replace(localVarPath, "{"+"thread_id"+"}", url.PathEscape(parameterValueToString(r.threadId, "threadId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"message_id"+"}", url.PathEscape(parameterValueToString(r.messageId, "messageId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-        var defaultValue int32 = 20
-        parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-        r.limit = &defaultValue
-	}
-	if r.order != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "order", r.order, "form", "")
-	} else {
-        var defaultValue string = "desc"
-        parameterAddToHeaderOrQuery(localVarQueryParams, "order", defaultValue, "form", "")
-        r.order = &defaultValue
-	}
-	if r.after != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "form", "")
-	}
-	if r.before != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "form", "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiListMessagesRequest struct {
 	ctx context.Context
 	ApiService *AssistantsAPIService
@@ -2304,7 +1713,7 @@ func (r ApiListMessagesRequest) After(after string) ApiListMessagesRequest {
 	return r
 }
 
-// A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+// A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
 func (r ApiListMessagesRequest) Before(before string) ApiListMessagesRequest {
 	r.before = &before
 	return r
@@ -2443,6 +1852,7 @@ type ApiListRunStepsRequest struct {
 	order *string
 	after *string
 	before *string
+	include *[]string
 }
 
 // A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
@@ -2463,9 +1873,15 @@ func (r ApiListRunStepsRequest) After(after string) ApiListRunStepsRequest {
 	return r
 }
 
-// A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+// A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
 func (r ApiListRunStepsRequest) Before(before string) ApiListRunStepsRequest {
 	r.before = &before
+	return r
+}
+
+// A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+func (r ApiListRunStepsRequest) Include(include []string) ApiListRunStepsRequest {
+	r.include = &include
 	return r
 }
 
@@ -2532,6 +1948,17 @@ func (a *AssistantsAPIService) ListRunStepsExecute(r ApiListRunStepsRequest) (*L
 	}
 	if r.before != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "form", "")
+	}
+	if r.include != nil {
+		t := *r.include
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "include[]", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "include[]", t, "form", "multi")
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2615,7 +2042,7 @@ func (r ApiListRunsRequest) After(after string) ApiListRunsRequest {
 	return r
 }
 
-// A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+// A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
 func (r ApiListRunsRequest) Before(before string) ApiListRunsRequest {
 	r.before = &before
 	return r

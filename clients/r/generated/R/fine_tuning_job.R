@@ -23,6 +23,8 @@
 #' @field validation_file The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents). character
 #' @field integrations A list of integrations to enable for this fine-tuning job. list(\link{FineTuningJobIntegrationsInner}) [optional]
 #' @field seed The seed used for the fine-tuning job. integer
+#' @field estimated_finish The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running. integer [optional]
+#' @field method  \link{FineTuneMethod} [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -45,6 +47,8 @@ FineTuningJob <- R6::R6Class(
     `validation_file` = NULL,
     `integrations` = NULL,
     `seed` = NULL,
+    `estimated_finish` = NULL,
+    `method` = NULL,
 
     #' @description
     #' Initialize a new FineTuningJob class.
@@ -65,8 +69,10 @@ FineTuningJob <- R6::R6Class(
     #' @param validation_file The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents).
     #' @param seed The seed used for the fine-tuning job.
     #' @param integrations A list of integrations to enable for this fine-tuning job.
+    #' @param estimated_finish The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+    #' @param method method
     #' @param ... Other optional arguments.
-    initialize = function(`id`, `created_at`, `error`, `fine_tuned_model`, `finished_at`, `hyperparameters`, `model`, `object`, `organization_id`, `result_files`, `status`, `trained_tokens`, `training_file`, `validation_file`, `seed`, `integrations` = NULL, ...) {
+    initialize = function(`id`, `created_at`, `error`, `fine_tuned_model`, `finished_at`, `hyperparameters`, `model`, `object`, `organization_id`, `result_files`, `status`, `trained_tokens`, `training_file`, `validation_file`, `seed`, `integrations` = NULL, `estimated_finish` = NULL, `method` = NULL, ...) {
       if (!missing(`id`)) {
         if (!(is.character(`id`) && length(`id`) == 1)) {
           stop(paste("Error! Invalid data for `id`. Must be a string:", `id`))
@@ -162,6 +168,16 @@ FineTuningJob <- R6::R6Class(
         stopifnot(is.vector(`integrations`), length(`integrations`) != 0)
         sapply(`integrations`, function(x) stopifnot(R6::is.R6(x)))
         self$`integrations` <- `integrations`
+      }
+      if (!is.null(`estimated_finish`)) {
+        if (!(is.numeric(`estimated_finish`) && length(`estimated_finish`) == 1)) {
+          stop(paste("Error! Invalid data for `estimated_finish`. Must be an integer:", `estimated_finish`))
+        }
+        self$`estimated_finish` <- `estimated_finish`
+      }
+      if (!is.null(`method`)) {
+        stopifnot(R6::is.R6(`method`))
+        self$`method` <- `method`
       }
     },
 
@@ -260,6 +276,14 @@ FineTuningJob <- R6::R6Class(
         FineTuningJobObject[["seed"]] <-
           self$`seed`
       }
+      if (!is.null(self$`estimated_finish`)) {
+        FineTuningJobObject[["estimated_finish"]] <-
+          self$`estimated_finish`
+      }
+      if (!is.null(self$`method`)) {
+        FineTuningJobObject[["method"]] <-
+          self$`method`$toSimpleType()
+      }
       return(FineTuningJobObject)
     },
 
@@ -328,6 +352,14 @@ FineTuningJob <- R6::R6Class(
       if (!is.null(this_object$`seed`)) {
         self$`seed` <- this_object$`seed`
       }
+      if (!is.null(this_object$`estimated_finish`)) {
+        self$`estimated_finish` <- this_object$`estimated_finish`
+      }
+      if (!is.null(this_object$`method`)) {
+        `method_object` <- FineTuneMethod$new()
+        `method_object`$fromJSON(jsonlite::toJSON(this_object$`method`, auto_unbox = TRUE, digits = NA))
+        self$`method` <- `method_object`
+      }
       self
     },
 
@@ -371,6 +403,8 @@ FineTuningJob <- R6::R6Class(
       self$`validation_file` <- this_object$`validation_file`
       self$`integrations` <- ApiClient$new()$deserializeObj(this_object$`integrations`, "array[FineTuningJobIntegrationsInner]", loadNamespace("openapi"))
       self$`seed` <- this_object$`seed`
+      self$`estimated_finish` <- this_object$`estimated_finish`
+      self$`method` <- FineTuneMethod$new()$fromJSON(jsonlite::toJSON(this_object$`method`, auto_unbox = TRUE, digits = NA))
       self
     },
 

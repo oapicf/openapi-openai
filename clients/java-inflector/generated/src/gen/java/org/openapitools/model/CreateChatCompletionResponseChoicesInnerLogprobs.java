@@ -18,10 +18,13 @@ import org.openapitools.model.ChatCompletionTokenLogprob;
  **/
 
 @ApiModel(description = "Log probability information for the choice.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateChatCompletionResponseChoicesInnerLogprobs   {
   @JsonProperty("content")
   private List<ChatCompletionTokenLogprob> content = ;
+
+  @JsonProperty("refusal")
+  private List<ChatCompletionTokenLogprob> refusal = ;
 
   /**
    * A list of message content tokens with log probability information.
@@ -41,6 +44,24 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
     this.content = content;
   }
 
+  /**
+   * A list of message refusal tokens with log probability information.
+   **/
+  public CreateChatCompletionResponseChoicesInnerLogprobs refusal(List<ChatCompletionTokenLogprob> refusal) {
+    this.refusal = refusal;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "A list of message refusal tokens with log probability information.")
+  @JsonProperty("refusal")
+  public List<ChatCompletionTokenLogprob> getRefusal() {
+    return refusal;
+  }
+  public void setRefusal(List<ChatCompletionTokenLogprob> refusal) {
+    this.refusal = refusal;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -51,12 +72,13 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
       return false;
     }
     CreateChatCompletionResponseChoicesInnerLogprobs createChatCompletionResponseChoicesInnerLogprobs = (CreateChatCompletionResponseChoicesInnerLogprobs) o;
-    return Objects.equals(content, createChatCompletionResponseChoicesInnerLogprobs.content);
+    return Objects.equals(content, createChatCompletionResponseChoicesInnerLogprobs.content) &&
+        Objects.equals(refusal, createChatCompletionResponseChoicesInnerLogprobs.refusal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(content);
+    return Objects.hash(content, refusal);
   }
 
   @Override
@@ -65,6 +87,7 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
     sb.append("class CreateChatCompletionResponseChoicesInnerLogprobs {\n");
     
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -73,7 +73,7 @@ func (c *ChatAPIController) OrderedRoutes() []Route {
 
 
 
-// CreateChatCompletion - Creates a model response for the given chat conversation.
+// CreateChatCompletion - Creates a model response for the given chat conversation. Learn more in the [text generation](/docs/guides/text-generation), [vision](/docs/guides/vision), and [audio](/docs/guides/audio) guides.  Parameter support can differ depending on the model used to generate the response, particularly for newer reasoning models. Parameters that are only supported for reasoning models are noted below. For the current state of  unsupported parameters in reasoning models,  [refer to the reasoning guide](/docs/guides/reasoning). 
 func (c *ChatAPIController) CreateChatCompletion(w http.ResponseWriter, r *http.Request) {
 	var createChatCompletionRequestParam CreateChatCompletionRequest
 	d := json.NewDecoder(r.Body)

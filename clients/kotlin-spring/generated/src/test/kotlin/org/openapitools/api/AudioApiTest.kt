@@ -1,5 +1,6 @@
 package org.openapitools.api
 
+import org.openapitools.model.AudioResponseFormat
 import org.openapitools.model.CreateSpeechRequest
 import org.openapitools.model.CreateTranscription200Response
 import org.openapitools.model.CreateTranscriptionRequestModel
@@ -38,7 +39,7 @@ class AudioApiTest {
         val model: CreateTranscriptionRequestModel = TODO()
         val language: kotlin.String? = TODO()
         val prompt: kotlin.String? = TODO()
-        val responseFormat: kotlin.String = TODO()
+        val responseFormat: AudioResponseFormat = TODO()
         val temperature: java.math.BigDecimal = TODO()
         val timestampGranularities: kotlin.collections.List<kotlin.String>? = TODO()
         
@@ -58,7 +59,7 @@ class AudioApiTest {
         val file: org.springframework.web.multipart.MultipartFile = TODO()
         val model: CreateTranscriptionRequestModel = TODO()
         val prompt: kotlin.String? = TODO()
-        val responseFormat: kotlin.String = TODO()
+        val responseFormat: AudioResponseFormat = TODO()
         val temperature: java.math.BigDecimal = TODO()
         
         val response: ResponseEntity<CreateTranslation200Response> = api.createTranslation(file, model, prompt, responseFormat, temperature)

@@ -8,15 +8,15 @@
  * Do not edit the class manually.
  */
 import { RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter } from './runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter';
-import { RunStepDeltaStepDetailsToolCallsRetrievalObject } from './runStepDeltaStepDetailsToolCallsRetrievalObject';
 import { RunStepDeltaStepDetailsToolCallsCodeObject } from './runStepDeltaStepDetailsToolCallsCodeObject';
 import { RunStepDeltaStepDetailsToolCallsFunctionObject } from './runStepDeltaStepDetailsToolCallsFunctionObject';
 import { RunStepDeltaStepDetailsToolCallsFunctionObjectFunction } from './runStepDeltaStepDetailsToolCallsFunctionObjectFunction';
+import { RunStepDeltaStepDetailsToolCallsFileSearchObject } from './runStepDeltaStepDetailsToolCallsFileSearchObject';
 
 
 /**
  * @type RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
  * @export
  */
-export type RunStepDeltaStepDetailsToolCallsObjectToolCallsInner = RunStepDeltaStepDetailsToolCallsCodeObject | RunStepDeltaStepDetailsToolCallsFunctionObject | RunStepDeltaStepDetailsToolCallsRetrievalObject;
+export type RunStepDeltaStepDetailsToolCallsObjectToolCallsInner = RunStepDeltaStepDetailsToolCallsCodeObject | RunStepDeltaStepDetailsToolCallsFileSearchObject | RunStepDeltaStepDetailsToolCallsFunctionObject;
 

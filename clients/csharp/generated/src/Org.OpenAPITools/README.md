@@ -11,7 +11,7 @@ outputDir: out
 
 # https://openapi-generator.tech/docs/generators/csharp
 additionalProperties:
-  packageGuid: '{3EA1A929-33B5-4C02-9F6F-FCAB656FC0F3}'
+  packageGuid: '{8AA21E03-1E82-42F5-A8AC-639BEFCC3BED}'
 
 # https://openapi-generator.tech/docs/integrations/#github-integration
 # gitHost:
@@ -108,7 +108,7 @@ namespace YourProject
 
 ## Api Information
 - appName: OpenAI API
-- appVersion: 2.0.0
+- appVersion: 2.3.0
 - appDescription: The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
 ## Build

@@ -5,15 +5,16 @@ import io.finch.circe._
 import io.circe.generic.semiauto._
 import io.circe.java8.time._
 import org.openapitools._
+import org.openapitools.models.ChatCompletionRequestToolMessageContent
 
 /**
  * 
  * @param role The role of the messages author, in this case `tool`.
- * @param content The contents of the tool message.
+ * @param content 
  * @param toolUnderscorecallUnderscoreid Tool call that this message is responding to.
  */
 case class ChatCompletionRequestToolMessage(role: String,
-                content: String,
+                content: ChatCompletionRequestToolMessageContent,
                 toolUnderscorecallUnderscoreid: String
                 )
 

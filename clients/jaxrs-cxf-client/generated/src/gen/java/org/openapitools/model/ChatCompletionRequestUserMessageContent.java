@@ -1,7 +1,7 @@
 package org.openapitools.model;
 
 import java.util.List;
-import org.openapitools.model.ChatCompletionRequestMessageContentPart;
+import org.openapitools.model.ChatCompletionRequestUserMessageContentPart;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

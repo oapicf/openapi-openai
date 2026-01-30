@@ -25,6 +25,7 @@ typedef struct run_stream_event_t run_stream_event_t;
 #include "run_stream_event_one_of_6.h"
 #include "run_stream_event_one_of_7.h"
 #include "run_stream_event_one_of_8.h"
+#include "run_stream_event_one_of_9.h"
 
 // Enum EVENT for run_stream_event
 

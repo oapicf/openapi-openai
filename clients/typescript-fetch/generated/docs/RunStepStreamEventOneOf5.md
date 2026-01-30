@@ -1,7 +1,7 @@
 
 # RunStepStreamEventOneOf5
 
-Occurs when a [run step](/docs/api-reference/runs/step-object) is cancelled.
+Occurs when a [run step](/docs/api-reference/run-steps/step-object) is cancelled.
 
 ## Properties
 

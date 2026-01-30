@@ -1,4 +1,5 @@
 const utils = require('../utils/utils');
+const FineTuneMethod = require('../models/FineTuneMethod');
 const FineTuningJob_error = require('../models/FineTuningJob_error');
 const FineTuningJob_hyperparameters = require('../models/FineTuningJob_hyperparameters');
 const FineTuningJob_integrations_inner = require('../models/FineTuningJob_integrations_inner');
@@ -104,6 +105,12 @@ module.exports = {
                 required: true,
                 type: 'integer',
             },
+            {
+                key: `${keyPrefix}estimated_finish`,
+                label: `The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running. - [${labelPrefix}estimated_finish]`,
+                type: 'integer',
+            },
+            ...FineTuneMethod.fields(`${keyPrefix}method`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
@@ -125,6 +132,8 @@ module.exports = {
             'validation_file': bundle.inputData?.[`${keyPrefix}validation_file`],
             'integrations': utils.childMapping(bundle.inputData?.[`${keyPrefix}integrations`], `${keyPrefix}integrations`, FineTuningJob_integrations_inner),
             'seed': bundle.inputData?.[`${keyPrefix}seed`],
+            'estimated_finish': bundle.inputData?.[`${keyPrefix}estimated_finish`],
+            'method': utils.removeIfEmpty(FineTuneMethod.mapping(bundle, `${keyPrefix}method`)),
         }
     },
 }

@@ -18,4 +18,12 @@ class CreateRunParameterData
      */
     public ?string $thread_id = null;
 
+    /**
+     * A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.
+     * @DTA\Data(subset="query", field="include[]", nullable=true)
+     * @DTA\Strategy(subset="query", name="QueryStringScalarArray", options={"type":"string", "format":"multi"})
+     * @DTA\Validator(subset="query", name="QueryStringScalarArray", options={"type":"string", "format":"multi"})
+     */
+    public ?array $include = null;
+
 }

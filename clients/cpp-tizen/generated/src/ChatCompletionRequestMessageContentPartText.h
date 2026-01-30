@@ -1,7 +1,7 @@
 /*
  * ChatCompletionRequestMessageContentPartText.h
  *
- * 
+ * Learn about [text inputs](/docs/guides/text-generation). 
  */
 
 #ifndef _ChatCompletionRequestMessageContentPartText_H_
@@ -20,7 +20,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief 
+/*! \brief Learn about [text inputs](/docs/guides/text-generation). 
  *
  *  \ingroup Models
  *

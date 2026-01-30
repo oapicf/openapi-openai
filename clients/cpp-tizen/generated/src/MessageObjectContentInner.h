@@ -11,6 +11,9 @@
 #include <string>
 #include "MessageContentImageFileObject.h"
 #include "MessageContentImageFileObject_image_file.h"
+#include "MessageContentImageUrlObject.h"
+#include "MessageContentImageUrlObject_image_url.h"
+#include "MessageContentRefusalObject.h"
 #include "MessageContentTextObject.h"
 #include "MessageContentTextObject_text.h"
 #include "Object.h"
@@ -65,16 +68,32 @@ public:
 	void setImageFile(MessageContentImageFileObject_image_file  image_file);
 	/*! \brief Get 
 	 */
+	MessageContentImageUrlObject_image_url getImageUrl();
+
+	/*! \brief Set 
+	 */
+	void setImageUrl(MessageContentImageUrlObject_image_url  image_url);
+	/*! \brief Get 
+	 */
 	MessageContentTextObject_text getText();
 
 	/*! \brief Set 
 	 */
 	void setText(MessageContentTextObject_text  text);
+	/*! \brief Get 
+	 */
+	std::string getRefusal();
+
+	/*! \brief Set 
+	 */
+	void setRefusal(std::string  refusal);
 
 private:
 	std::string type;
 	MessageContentImageFileObject_image_file image_file;
+	MessageContentImageUrlObject_image_url image_url;
 	MessageContentTextObject_text text;
+	std::string refusal;
 	void __init();
 	void __cleanup();
 

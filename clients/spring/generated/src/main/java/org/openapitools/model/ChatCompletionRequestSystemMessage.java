@@ -5,10 +5,14 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.openapitools.model.ChatCompletionRequestSystemMessageContent;
 import org.springframework.lang.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -20,13 +24,14 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * ChatCompletionRequestSystemMessage
+ * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use &#x60;developer&#x60; messages for this purpose instead. 
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
-public class ChatCompletionRequestSystemMessage implements ChatCompletionRequestMessage {
+@Schema(name = "ChatCompletionRequestSystemMessage", description = "Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. ")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class ChatCompletionRequestSystemMessage implements ChatCompletionRequestMessage, FineTuneChatRequestInputMessagesInner {
 
-  private String content;
+  private ChatCompletionRequestSystemMessageContent content;
 
   /**
    * The role of the messages author, in this case `system`.
@@ -72,28 +77,28 @@ public class ChatCompletionRequestSystemMessage implements ChatCompletionRequest
   /**
    * Constructor with only required parameters
    */
-  public ChatCompletionRequestSystemMessage(String content, RoleEnum role) {
+  public ChatCompletionRequestSystemMessage(ChatCompletionRequestSystemMessageContent content, RoleEnum role) {
     this.content = content;
     this.role = role;
   }
 
-  public ChatCompletionRequestSystemMessage content(String content) {
+  public ChatCompletionRequestSystemMessage content(ChatCompletionRequestSystemMessageContent content) {
     this.content = content;
     return this;
   }
 
   /**
-   * The contents of the system message.
+   * Get content
    * @return content
    */
-  @NotNull 
-  @Schema(name = "content", description = "The contents of the system message.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull @Valid 
+  @Schema(name = "content", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("content")
-  public String getContent() {
+  public ChatCompletionRequestSystemMessageContent getContent() {
     return content;
   }
 
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestSystemMessageContent content) {
     this.content = content;
   }
 

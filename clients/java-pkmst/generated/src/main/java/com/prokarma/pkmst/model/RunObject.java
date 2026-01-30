@@ -29,7 +29,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  */
 @ApiModel(description = "Represents an execution run on a [thread](/docs/api-reference/threads).")
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T10:45:02.588292416Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunObject   {
   @JsonProperty("id")
   private String id;
@@ -76,7 +76,7 @@ public class RunObject   {
   private String assistantId;
 
   /**
-   * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+   * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
    */
   public enum StatusEnum {
     QUEUED("queued"),
@@ -92,6 +92,8 @@ public class RunObject   {
     FAILED("failed"),
     
     COMPLETED("completed"),
+    
+    INCOMPLETE("incomplete"),
     
     EXPIRED("expired");
 
@@ -155,10 +157,6 @@ public class RunObject   {
   
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
 
-  @JsonProperty("file_ids")
-  
-  private List<String> fileIds = new ArrayList<>();
-
   @JsonProperty("metadata")
   private Object metadata;
 
@@ -167,6 +165,9 @@ public class RunObject   {
 
   @JsonProperty("temperature")
   private BigDecimal temperature;
+
+  @JsonProperty("top_p")
+  private BigDecimal topP;
 
   @JsonProperty("max_prompt_tokens")
   private Integer maxPromptTokens;
@@ -179,6 +180,9 @@ public class RunObject   {
 
   @JsonProperty("tool_choice")
   private AssistantsApiToolChoiceOption toolChoice;
+
+  @JsonProperty("parallel_tool_calls")
+  private Boolean parallelToolCalls = true;
 
   @JsonProperty("response_format")
   private AssistantsApiResponseFormatOption responseFormat;
@@ -279,10 +283,10 @@ public class RunObject   {
   }
 
   /**
-   * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+   * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
    * @return status
    */
-  @ApiModelProperty(required = true, value = "The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.")
+  @ApiModelProperty(required = true, value = "The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.")
   public StatusEnum getStatus() {
     return status;
   }
@@ -497,42 +501,16 @@ public class RunObject   {
     this.tools = tools;
   }
 
-  public RunObject fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  public RunObject addFileIdsItem(String fileIdsItem) {
-    if (this.fileIds == null) {
-      this.fileIds = new ArrayList<>();
-    }
-    this.fileIds.add(fileIdsItem);
-    return this;
-  }
-
-  /**
-   * The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
-   * @return fileIds
-   */
-  @ApiModelProperty(required = true, value = "The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.")
-  public List<String> getFileIds() {
-    return fileIds;
-  }
-
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-  }
-
   public RunObject metadata(Object metadata) {
     this.metadata = metadata;
     return this;
   }
 
   /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
-  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
   public Object getMetadata() {
     return metadata;
   }
@@ -575,6 +553,24 @@ public class RunObject   {
 
   public void setTemperature(BigDecimal temperature) {
     this.temperature = temperature;
+  }
+
+  public RunObject topP(BigDecimal topP) {
+    this.topP = topP;
+    return this;
+  }
+
+  /**
+   * The nucleus sampling value used for this run. If not set, defaults to 1.
+   * @return topP
+   */
+  @ApiModelProperty(value = "The nucleus sampling value used for this run. If not set, defaults to 1.")
+  public BigDecimal getTopP() {
+    return topP;
+  }
+
+  public void setTopP(BigDecimal topP) {
+    this.topP = topP;
   }
 
   public RunObject maxPromptTokens(Integer maxPromptTokens) {
@@ -651,6 +647,24 @@ public class RunObject   {
     this.toolChoice = toolChoice;
   }
 
+  public RunObject parallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+    return this;
+  }
+
+  /**
+   * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+   * @return parallelToolCalls
+   */
+  @ApiModelProperty(required = true, value = "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.")
+  public Boolean getParallelToolCalls() {
+    return parallelToolCalls;
+  }
+
+  public void setParallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+  }
+
   public RunObject responseFormat(AssistantsApiResponseFormatOption responseFormat) {
     this.responseFormat = responseFormat;
     return this;
@@ -696,20 +710,21 @@ public class RunObject   {
         Objects.equals(this.model, runObject.model) &&
         Objects.equals(this.instructions, runObject.instructions) &&
         Objects.equals(this.tools, runObject.tools) &&
-        Objects.equals(this.fileIds, runObject.fileIds) &&
         Objects.equals(this.metadata, runObject.metadata) &&
         Objects.equals(this.usage, runObject.usage) &&
         Objects.equals(this.temperature, runObject.temperature) &&
+        Objects.equals(this.topP, runObject.topP) &&
         Objects.equals(this.maxPromptTokens, runObject.maxPromptTokens) &&
         Objects.equals(this.maxCompletionTokens, runObject.maxCompletionTokens) &&
         Objects.equals(this.truncationStrategy, runObject.truncationStrategy) &&
         Objects.equals(this.toolChoice, runObject.toolChoice) &&
+        Objects.equals(this.parallelToolCalls, runObject.parallelToolCalls) &&
         Objects.equals(this.responseFormat, runObject.responseFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, threadId, assistantId, status, requiredAction, lastError, expiresAt, startedAt, cancelledAt, failedAt, completedAt, incompleteDetails, model, instructions, tools, fileIds, metadata, usage, temperature, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, responseFormat);
+    return Objects.hash(id, _object, createdAt, threadId, assistantId, status, requiredAction, lastError, expiresAt, startedAt, cancelledAt, failedAt, completedAt, incompleteDetails, model, instructions, tools, metadata, usage, temperature, topP, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, parallelToolCalls, responseFormat);
   }
 
   @Override
@@ -734,14 +749,15 @@ public class RunObject   {
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
     sb.append("    maxPromptTokens: ").append(toIndentedString(maxPromptTokens)).append("\n");
     sb.append("    maxCompletionTokens: ").append(toIndentedString(maxCompletionTokens)).append("\n");
     sb.append("    truncationStrategy: ").append(toIndentedString(truncationStrategy)).append("\n");
     sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
+    sb.append("    parallelToolCalls: ").append(toIndentedString(parallelToolCalls)).append("\n");
     sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();

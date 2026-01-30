@@ -19,40 +19,34 @@ import java.util.Objects;
 
 public class ListFilesResponse   {
   
+  private String _object;
+
   private List<@Valid OpenAIFile> data = new ArrayList<>();
 
+  private String firstId;
 
-public enum ObjectEnum {
+  private String lastId;
 
-    @JsonProperty("list") LIST(String.valueOf("list"));
+  private Boolean hasMore;
 
+  /**
+   **/
+  public ListFilesResponse _object(String _object) {
+    this._object = _object;
+    return this;
+  }
 
-    private String value;
+  
+  @ApiModelProperty(example = "list", required = true, value = "")
+  @JsonProperty("object")
+  @NotNull
+  public String getObject() {
+    return _object;
+  }
+  public void setObject(String _object) {
+    this._object = _object;
+  }
 
-    ObjectEnum(String v) {
-        value = v;
-    }
-
-    public String value() {
-        return value;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
-
-    public static ObjectEnum fromValue(String value) {
-        for (ObjectEnum b : ObjectEnum.values()) {
-            if (b.value.equals(value)) {
-                return b;
-            }
-        }
-        throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-}
-
-  private ObjectEnum _object;
 
   /**
    **/
@@ -83,20 +77,58 @@ public enum ObjectEnum {
 
   /**
    **/
-  public ListFilesResponse _object(ObjectEnum _object) {
-    this._object = _object;
+  public ListFilesResponse firstId(String firstId) {
+    this.firstId = firstId;
     return this;
   }
 
   
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty("object")
+  @ApiModelProperty(example = "file-abc123", required = true, value = "")
+  @JsonProperty("first_id")
   @NotNull
-  public ObjectEnum getObject() {
-    return _object;
+  public String getFirstId() {
+    return firstId;
   }
-  public void setObject(ObjectEnum _object) {
-    this._object = _object;
+  public void setFirstId(String firstId) {
+    this.firstId = firstId;
+  }
+
+
+  /**
+   **/
+  public ListFilesResponse lastId(String lastId) {
+    this.lastId = lastId;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "file-abc456", required = true, value = "")
+  @JsonProperty("last_id")
+  @NotNull
+  public String getLastId() {
+    return lastId;
+  }
+  public void setLastId(String lastId) {
+    this.lastId = lastId;
+  }
+
+
+  /**
+   **/
+  public ListFilesResponse hasMore(Boolean hasMore) {
+    this.hasMore = hasMore;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "false", required = true, value = "")
+  @JsonProperty("has_more")
+  @NotNull
+  public Boolean getHasMore() {
+    return hasMore;
+  }
+  public void setHasMore(Boolean hasMore) {
+    this.hasMore = hasMore;
   }
 
 
@@ -110,13 +142,16 @@ public enum ObjectEnum {
       return false;
     }
     ListFilesResponse listFilesResponse = (ListFilesResponse) o;
-    return Objects.equals(this.data, listFilesResponse.data) &&
-        Objects.equals(this._object, listFilesResponse._object);
+    return Objects.equals(this._object, listFilesResponse._object) &&
+        Objects.equals(this.data, listFilesResponse.data) &&
+        Objects.equals(this.firstId, listFilesResponse.firstId) &&
+        Objects.equals(this.lastId, listFilesResponse.lastId) &&
+        Objects.equals(this.hasMore, listFilesResponse.hasMore);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, _object);
+    return Objects.hash(_object, data, firstId, lastId, hasMore);
   }
 
   @Override
@@ -124,8 +159,11 @@ public enum ObjectEnum {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListFilesResponse {\n");
     
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    firstId: ").append(toIndentedString(firstId)).append("\n");
+    sb.append("    lastId: ").append(toIndentedString(lastId)).append("\n");
+    sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,0 +1,46 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server DeleteVectorStoreResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a DeleteVectorStoreResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  DeleteVectorStoreResponse {
+    title = DeleteVectorStoreResponse
+    description = DeleteVectorStoreResponse
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        deleted {
+          type =  boolean
+          description = ""
+          optional = true
+        }
+        object {
+          type =  string
+          description = ""
+          enum = ["vector_store.deleted"]
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  DeleteVectorStoreResponse {
+    title = DeleteVectorStoreResponse
+    description = DeleteVectorStoreResponse
+    implements = openapi_server.resourceTypes.DeleteVectorStoreResponse
+
+  }
+}

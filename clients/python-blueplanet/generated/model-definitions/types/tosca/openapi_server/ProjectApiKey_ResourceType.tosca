@@ -1,0 +1,62 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ProjectApiKey"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ProjectApiKey"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ProjectApiKeyOwner = openapi_server.resourceTypes.ProjectApiKeyOwner
+}
+resourceTypes {
+
+  ProjectApiKey {
+    title = ProjectApiKey
+    description = ProjectApiKey
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;organization.project.api_key&#x60;"
+          enum = ["organization.project.api_key"]
+          optional = true
+        }
+        redacted_value {
+          type =  string
+          description = "The redacted value of the API key"
+          optional = true
+        }
+        name {
+          type =  string
+          description = "The name of the API key"
+          optional = true
+        }
+        created_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) of when the API key was created"
+          optional = true
+        }
+        id {
+          type =  string
+          description = "The identifier, which can be referenced in API endpoints"
+          optional = true
+        }
+        owner {
+          type = ProjectApiKeyOwner
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ProjectApiKey {
+    title = ProjectApiKey
+    description = ProjectApiKey
+    implements = openapi_server.resourceTypes.ProjectApiKey
+
+  }
+}

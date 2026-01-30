@@ -1,0 +1,55 @@
+/*
+ * realtime_server_event_conversation_item_input_audio_transcription_failed.h
+ *
+ * Returned when input audio transcription is configured, and a transcription  request for a user message failed. These events are separate from other  &#x60;error&#x60; events so that the client can identify the related Item. 
+ */
+
+#ifndef _realtime_server_event_conversation_item_input_audio_transcription_failed_H_
+#define _realtime_server_event_conversation_item_input_audio_transcription_failed_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct realtime_server_event_conversation_item_input_audio_transcription_failed_t realtime_server_event_conversation_item_input_audio_transcription_failed_t;
+
+#include "realtime_server_event_conversation_item_input_audio_transcription_failed_error.h"
+
+// Enum TYPE for realtime_server_event_conversation_item_input_audio_transcription_failed
+
+typedef enum  { openai_api_realtime_server_event_conversation_item_input_audio_transcription_failed_TYPE_NULL = 0, openai_api_realtime_server_event_conversation_item_input_audio_transcription_failed_TYPE_conversation.item.input_audio_transcription.failed } openai_api_realtime_server_event_conversation_item_input_audio_transcription_failed_TYPE_e;
+
+char* realtime_server_event_conversation_item_input_audio_transcription_failed_type_ToString(openai_api_realtime_server_event_conversation_item_input_audio_transcription_failed_TYPE_e type);
+
+openai_api_realtime_server_event_conversation_item_input_audio_transcription_failed_TYPE_e realtime_server_event_conversation_item_input_audio_transcription_failed_type_FromString(char* type);
+
+
+
+typedef struct realtime_server_event_conversation_item_input_audio_transcription_failed_t {
+    char *event_id; // string
+    openai_api_realtime_server_event_conversation_item_input_audio_transcription_failed_TYPE_e type; //enum
+    char *item_id; // string
+    int content_index; //numeric
+    struct realtime_server_event_conversation_item_input_audio_transcription_failed_error_t *error; //model
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} realtime_server_event_conversation_item_input_audio_transcription_failed_t;
+
+__attribute__((deprecated)) realtime_server_event_conversation_item_input_audio_transcription_failed_t *realtime_server_event_conversation_item_input_audio_transcription_failed_create(
+    char *event_id,
+    openai_api_realtime_server_event_conversation_item_input_audio_transcription_failed_TYPE_e type,
+    char *item_id,
+    int content_index,
+    realtime_server_event_conversation_item_input_audio_transcription_failed_error_t *error
+);
+
+void realtime_server_event_conversation_item_input_audio_transcription_failed_free(realtime_server_event_conversation_item_input_audio_transcription_failed_t *realtime_server_event_conversation_item_input_audio_transcription_failed);
+
+realtime_server_event_conversation_item_input_audio_transcription_failed_t *realtime_server_event_conversation_item_input_audio_transcription_failed_parseFromJSON(cJSON *realtime_server_event_conversation_item_input_audio_transcription_failedJSON);
+
+cJSON *realtime_server_event_conversation_item_input_audio_transcription_failed_convertToJSON(realtime_server_event_conversation_item_input_audio_transcription_failed_t *realtime_server_event_conversation_item_input_audio_transcription_failed);
+
+#endif /* _realtime_server_event_conversation_item_input_audio_transcription_failed_H_ */
+

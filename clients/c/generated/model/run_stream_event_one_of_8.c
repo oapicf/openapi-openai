@@ -5,13 +5,13 @@
 
 
 char* run_stream_event_one_of_8_event_ToString(openai_api_run_stream_event_one_of_8_EVENT_e event) {
-    char* eventArray[] =  { "NULL", "thread.run.expired" };
+    char* eventArray[] =  { "NULL", "thread.run.cancelled" };
     return eventArray[event];
 }
 
 openai_api_run_stream_event_one_of_8_EVENT_e run_stream_event_one_of_8_event_FromString(char* event){
     int stringToReturn = 0;
-    char *eventArray[] =  { "NULL", "thread.run.expired" };
+    char *eventArray[] =  { "NULL", "thread.run.cancelled" };
     size_t sizeofArray = sizeof(eventArray) / sizeof(eventArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(event, eventArray[stringToReturn]) == 0) {

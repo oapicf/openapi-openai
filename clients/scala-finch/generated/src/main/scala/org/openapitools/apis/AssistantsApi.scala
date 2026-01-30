@@ -3,24 +3,19 @@ package org.openapitools.apis
 import java.io._
 import org.openapitools._
 import org.openapitools.models._
-import org.openapitools.models.AssistantFileObject
 import org.openapitools.models.AssistantObject
-import org.openapitools.models.CreateAssistantFileRequest
 import org.openapitools.models.CreateAssistantRequest
 import org.openapitools.models.CreateMessageRequest
 import org.openapitools.models.CreateRunRequest
 import org.openapitools.models.CreateThreadAndRunRequest
 import org.openapitools.models.CreateThreadRequest
-import org.openapitools.models.DeleteAssistantFileResponse
 import org.openapitools.models.DeleteAssistantResponse
+import org.openapitools.models.DeleteMessageResponse
 import org.openapitools.models.DeleteThreadResponse
-import org.openapitools.models.ListAssistantFilesResponse
 import org.openapitools.models.ListAssistantsResponse
-import org.openapitools.models.ListMessageFilesResponse
 import org.openapitools.models.ListMessagesResponse
 import org.openapitools.models.ListRunStepsResponse
 import org.openapitools.models.ListRunsResponse
-import org.openapitools.models.MessageFileObject
 import org.openapitools.models.MessageObject
 import org.openapitools.models.ModifyAssistantRequest
 import org.openapitools.models.ModifyMessageRequest
@@ -28,6 +23,7 @@ import org.openapitools.models.ModifyRunRequest
 import org.openapitools.models.ModifyThreadRequest
 import org.openapitools.models.RunObject
 import org.openapitools.models.RunStepObject
+import scala.collection.immutable.Seq
 import org.openapitools.models.SubmitToolOutputsRunRequest
 import org.openapitools.models.ThreadObject
 import io.finch.circe._
@@ -52,24 +48,19 @@ object AssistantsApi {
     def endpoints(da: DataAccessor) =
         cancelRun(da) :+:
         createAssistant(da) :+:
-        createAssistantFile(da) :+:
         createMessage(da) :+:
         createRun(da) :+:
         createThread(da) :+:
         createThreadAndRun(da) :+:
         deleteAssistant(da) :+:
-        deleteAssistantFile(da) :+:
+        deleteMessage(da) :+:
         deleteThread(da) :+:
         getAssistant(da) :+:
-        getAssistantFile(da) :+:
         getMessage(da) :+:
-        getMessageFile(da) :+:
         getRun(da) :+:
         getRunStep(da) :+:
         getThread(da) :+:
-        listAssistantFiles(da) :+:
         listAssistants(da) :+:
-        listMessageFiles(da) :+:
         listMessages(da) :+:
         listRunSteps(da) :+:
         listRuns(da) :+:
@@ -130,20 +121,6 @@ object AssistantsApi {
 
         /**
         * 
-        * @return An endpoint representing a AssistantFileObject
-        */
-        private def createAssistantFile(da: DataAccessor): Endpoint[AssistantFileObject] =
-        post("assistants" :: string :: "files" :: jsonBody[CreateAssistantFileRequest]) { (assistantId: String, createAssistantFileRequest: CreateAssistantFileRequest) =>
-          da.Assistants_createAssistantFile(assistantId, createAssistantFileRequest) match {
-            case Left(error) => checkError(error)
-            case Right(data) => Ok(data)
-          }
-        } handle {
-          case e: Exception => BadRequest(e)
-        }
-
-        /**
-        * 
         * @return An endpoint representing a MessageObject
         */
         private def createMessage(da: DataAccessor): Endpoint[MessageObject] =
@@ -161,8 +138,8 @@ object AssistantsApi {
         * @return An endpoint representing a RunObject
         */
         private def createRun(da: DataAccessor): Endpoint[RunObject] =
-        post("threads" :: string :: "runs" :: jsonBody[CreateRunRequest]) { (threadId: String, createRunRequest: CreateRunRequest) =>
-          da.Assistants_createRun(threadId, createRunRequest) match {
+        post("threads" :: string :: "runs" :: jsonBody[CreateRunRequest] :: params("include[]")) { (threadId: String, createRunRequest: CreateRunRequest, includeLeft_Square_BracketRight_Square_Bracket: Seq[String]) =>
+          da.Assistants_createRun(threadId, createRunRequest, includeLeft_Square_BracketRight_Square_Bracket) match {
             case Left(error) => checkError(error)
             case Right(data) => Ok(data)
           }
@@ -214,11 +191,11 @@ object AssistantsApi {
 
         /**
         * 
-        * @return An endpoint representing a DeleteAssistantFileResponse
+        * @return An endpoint representing a DeleteMessageResponse
         */
-        private def deleteAssistantFile(da: DataAccessor): Endpoint[DeleteAssistantFileResponse] =
-        delete("assistants" :: string :: "files" :: string) { (assistantId: String, fileId: String) =>
-          da.Assistants_deleteAssistantFile(assistantId, fileId) match {
+        private def deleteMessage(da: DataAccessor): Endpoint[DeleteMessageResponse] =
+        delete("threads" :: string :: "messages" :: string) { (threadId: String, messageId: String) =>
+          da.Assistants_deleteMessage(threadId, messageId) match {
             case Left(error) => checkError(error)
             case Right(data) => Ok(data)
           }
@@ -256,39 +233,11 @@ object AssistantsApi {
 
         /**
         * 
-        * @return An endpoint representing a AssistantFileObject
-        */
-        private def getAssistantFile(da: DataAccessor): Endpoint[AssistantFileObject] =
-        get("assistants" :: string :: "files" :: string) { (assistantId: String, fileId: String) =>
-          da.Assistants_getAssistantFile(assistantId, fileId) match {
-            case Left(error) => checkError(error)
-            case Right(data) => Ok(data)
-          }
-        } handle {
-          case e: Exception => BadRequest(e)
-        }
-
-        /**
-        * 
         * @return An endpoint representing a MessageObject
         */
         private def getMessage(da: DataAccessor): Endpoint[MessageObject] =
         get("threads" :: string :: "messages" :: string) { (threadId: String, messageId: String) =>
           da.Assistants_getMessage(threadId, messageId) match {
-            case Left(error) => checkError(error)
-            case Right(data) => Ok(data)
-          }
-        } handle {
-          case e: Exception => BadRequest(e)
-        }
-
-        /**
-        * 
-        * @return An endpoint representing a MessageFileObject
-        */
-        private def getMessageFile(da: DataAccessor): Endpoint[MessageFileObject] =
-        get("threads" :: string :: "messages" :: string :: "files" :: string) { (threadId: String, messageId: String, fileId: String) =>
-          da.Assistants_getMessageFile(threadId, messageId, fileId) match {
             case Left(error) => checkError(error)
             case Right(data) => Ok(data)
           }
@@ -315,8 +264,8 @@ object AssistantsApi {
         * @return An endpoint representing a RunStepObject
         */
         private def getRunStep(da: DataAccessor): Endpoint[RunStepObject] =
-        get("threads" :: string :: "runs" :: string :: "steps" :: string) { (threadId: String, runId: String, stepId: String) =>
-          da.Assistants_getRunStep(threadId, runId, stepId) match {
+        get("threads" :: string :: "runs" :: string :: "steps" :: string :: params("include[]")) { (threadId: String, runId: String, stepId: String, includeLeft_Square_BracketRight_Square_Bracket: Seq[String]) =>
+          da.Assistants_getRunStep(threadId, runId, stepId, includeLeft_Square_BracketRight_Square_Bracket) match {
             case Left(error) => checkError(error)
             case Right(data) => Ok(data)
           }
@@ -340,39 +289,11 @@ object AssistantsApi {
 
         /**
         * 
-        * @return An endpoint representing a ListAssistantFilesResponse
-        */
-        private def listAssistantFiles(da: DataAccessor): Endpoint[ListAssistantFilesResponse] =
-        get("assistants" :: string :: "files" :: paramOption("limit").map(_.map(_.toInt)) :: paramOption("order") :: paramOption("after") :: paramOption("before")) { (assistantId: String, limit: Option[Int], order: Option[String], after: Option[String], before: Option[String]) =>
-          da.Assistants_listAssistantFiles(assistantId, limit, order, after, before) match {
-            case Left(error) => checkError(error)
-            case Right(data) => Ok(data)
-          }
-        } handle {
-          case e: Exception => BadRequest(e)
-        }
-
-        /**
-        * 
         * @return An endpoint representing a ListAssistantsResponse
         */
         private def listAssistants(da: DataAccessor): Endpoint[ListAssistantsResponse] =
         get("assistants" :: paramOption("limit").map(_.map(_.toInt)) :: paramOption("order") :: paramOption("after") :: paramOption("before")) { (limit: Option[Int], order: Option[String], after: Option[String], before: Option[String]) =>
           da.Assistants_listAssistants(limit, order, after, before) match {
-            case Left(error) => checkError(error)
-            case Right(data) => Ok(data)
-          }
-        } handle {
-          case e: Exception => BadRequest(e)
-        }
-
-        /**
-        * 
-        * @return An endpoint representing a ListMessageFilesResponse
-        */
-        private def listMessageFiles(da: DataAccessor): Endpoint[ListMessageFilesResponse] =
-        get("threads" :: string :: "messages" :: string :: "files" :: paramOption("limit").map(_.map(_.toInt)) :: paramOption("order") :: paramOption("after") :: paramOption("before")) { (threadId: String, messageId: String, limit: Option[Int], order: Option[String], after: Option[String], before: Option[String]) =>
-          da.Assistants_listMessageFiles(threadId, messageId, limit, order, after, before) match {
             case Left(error) => checkError(error)
             case Right(data) => Ok(data)
           }
@@ -399,8 +320,8 @@ object AssistantsApi {
         * @return An endpoint representing a ListRunStepsResponse
         */
         private def listRunSteps(da: DataAccessor): Endpoint[ListRunStepsResponse] =
-        get("threads" :: string :: "runs" :: string :: "steps" :: paramOption("limit").map(_.map(_.toInt)) :: paramOption("order") :: paramOption("after") :: paramOption("before")) { (threadId: String, runId: String, limit: Option[Int], order: Option[String], after: Option[String], before: Option[String]) =>
-          da.Assistants_listRunSteps(threadId, runId, limit, order, after, before) match {
+        get("threads" :: string :: "runs" :: string :: "steps" :: paramOption("limit").map(_.map(_.toInt)) :: paramOption("order") :: paramOption("after") :: paramOption("before") :: params("include[]")) { (threadId: String, runId: String, limit: Option[Int], order: Option[String], after: Option[String], before: Option[String], includeLeft_Square_BracketRight_Square_Bracket: Seq[String]) =>
+          da.Assistants_listRunSteps(threadId, runId, limit, order, after, before, includeLeft_Square_BracketRight_Square_Bracket) match {
             case Left(error) => checkError(error)
             case Right(data) => Ok(data)
           }

@@ -1,0 +1,46 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ProjectUserDeleteResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ProjectUserDeleteResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ProjectUserDeleteResponse {
+    title = ProjectUserDeleteResponse
+    description = ProjectUserDeleteResponse
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          enum = ["organization.project.user.deleted"]
+          optional = true
+        }
+        id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        deleted {
+          type =  boolean
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ProjectUserDeleteResponse {
+    title = ProjectUserDeleteResponse
+    description = ProjectUserDeleteResponse
+    implements = openapi_server.resourceTypes.ProjectUserDeleteResponse
+
+  }
+}

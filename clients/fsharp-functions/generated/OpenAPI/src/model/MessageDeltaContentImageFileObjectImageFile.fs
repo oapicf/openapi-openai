@@ -12,6 +12,8 @@ module MessageDeltaContentImageFileObjectImageFile =
   type MessageDeltaContentImageFileObjectImageFile = {
     [<JsonProperty(PropertyName = "file_id")>]
     FileId : string;
+    [<JsonProperty(PropertyName = "detail")>]
+    Detail : string;
   }
 
   //#endregion

@@ -2,7 +2,7 @@
 
 # FineTuningJobHyperparameters
 
-The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.
 
 The class is defined in **[FineTuningJobHyperparameters.java](../../src/main/java/org/openapitools/model/FineTuningJobHyperparameters.java)**
 
@@ -10,7 +10,11 @@ The class is defined in **[FineTuningJobHyperparameters.java](../../src/main/jav
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**nEpochs** | [`FineTuningJobHyperparametersNEpochs`](FineTuningJobHyperparametersNEpochs.md) |  | 
+**batchSize** | [`CreateFineTuningJobRequestHyperparametersBatchSize`](CreateFineTuningJobRequestHyperparametersBatchSize.md) |  |  [optional property]
+**learningRateMultiplier** | [`CreateFineTuningJobRequestHyperparametersLearningRateMultiplier`](CreateFineTuningJobRequestHyperparametersLearningRateMultiplier.md) |  |  [optional property]
+**nEpochs** | [`CreateFineTuningJobRequestHyperparametersNEpochs`](CreateFineTuningJobRequestHyperparametersNEpochs.md) |  |  [optional property]
+
+
 
 
 

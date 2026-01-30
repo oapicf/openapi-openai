@@ -73,7 +73,7 @@ public enum DetailEnum {
 
 
   /**
-   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
    **/
   public ChatCompletionRequestMessageContentPartImageImageUrl detail(DetailEnum detail) {
     this.detail = detail;
@@ -81,7 +81,7 @@ public enum DetailEnum {
   }
 
   
-  @ApiModelProperty(value = "Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).")
+  @ApiModelProperty(value = "Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).")
   @JsonProperty("detail")
   public DetailEnum getDetail() {
     return detail;

@@ -26,6 +26,7 @@ FunctionObject::__init()
 	//description = std::string();
 	//name = std::string();
 	//new std::map()std::map> parameters;
+	//strict = bool(false);
 }
 
 void
@@ -45,6 +46,11 @@ FunctionObject::__cleanup()
 	//parameters.RemoveAll(true);
 	//delete parameters;
 	//parameters = NULL;
+	//}
+	//if(strict != NULL) {
+	//
+	//delete strict;
+	//strict = NULL;
 	//}
 	//
 }
@@ -87,6 +93,17 @@ FunctionObject::fromJson(char* jsonStr)
 			parameters = new_map;
 		}
 		
+	}
+	const gchar *strictKey = "strict";
+	node = json_object_get_member(pJsonObject, strictKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("bool")) {
+			jsonToValue(&strict, node, "bool", "");
+		} else {
+			
+		}
 	}
 }
 
@@ -137,6 +154,15 @@ FunctionObject::toJson()
 
 	const gchar *parametersKey = "parameters";
 	json_object_set_member(pJsonObject, parametersKey, node);
+	if (isprimitive("bool")) {
+		bool obj = getStrict();
+		node = converttoJson(&obj, "bool", "");
+	}
+	else {
+		
+	}
+	const gchar *strictKey = "strict";
+	json_object_set_member(pJsonObject, strictKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -179,6 +205,18 @@ void
 FunctionObject::setParameters(std::map <string, string> parameters)
 {
 	this->parameters = parameters;
+}
+
+bool
+FunctionObject::getStrict()
+{
+	return strict;
+}
+
+void
+FunctionObject::setStrict(bool  strict)
+{
+	this->strict = strict;
 }
 
 

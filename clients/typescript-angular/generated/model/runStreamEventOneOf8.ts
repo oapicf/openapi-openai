@@ -11,7 +11,7 @@ import { RunObject } from './runObject';
 
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) expires.
+ * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
  */
 export interface RunStreamEventOneOf8 { 
     event: RunStreamEventOneOf8.EventEnum;
@@ -19,7 +19,7 @@ export interface RunStreamEventOneOf8 {
 }
 export namespace RunStreamEventOneOf8 {
     export const EventEnum = {
-        ThreadRunExpired: 'thread.run.expired'
+        ThreadRunCancelled: 'thread.run.cancelled'
     } as const;
     export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

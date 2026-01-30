@@ -1,24 +1,19 @@
 from typing import List, Dict
 from aiohttp import web
 
-from openapi_server.models.assistant_file_object import AssistantFileObject
 from openapi_server.models.assistant_object import AssistantObject
-from openapi_server.models.create_assistant_file_request import CreateAssistantFileRequest
 from openapi_server.models.create_assistant_request import CreateAssistantRequest
 from openapi_server.models.create_message_request import CreateMessageRequest
 from openapi_server.models.create_run_request import CreateRunRequest
 from openapi_server.models.create_thread_and_run_request import CreateThreadAndRunRequest
 from openapi_server.models.create_thread_request import CreateThreadRequest
-from openapi_server.models.delete_assistant_file_response import DeleteAssistantFileResponse
 from openapi_server.models.delete_assistant_response import DeleteAssistantResponse
+from openapi_server.models.delete_message_response import DeleteMessageResponse
 from openapi_server.models.delete_thread_response import DeleteThreadResponse
-from openapi_server.models.list_assistant_files_response import ListAssistantFilesResponse
 from openapi_server.models.list_assistants_response import ListAssistantsResponse
-from openapi_server.models.list_message_files_response import ListMessageFilesResponse
 from openapi_server.models.list_messages_response import ListMessagesResponse
 from openapi_server.models.list_run_steps_response import ListRunStepsResponse
 from openapi_server.models.list_runs_response import ListRunsResponse
-from openapi_server.models.message_file_object import MessageFileObject
 from openapi_server.models.message_object import MessageObject
 from openapi_server.models.modify_assistant_request import ModifyAssistantRequest
 from openapi_server.models.modify_message_request import ModifyMessageRequest
@@ -58,21 +53,6 @@ async def create_assistant(request: web.Request, body) -> web.Response:
     return web.Response(status=200)
 
 
-async def create_assistant_file(request: web.Request, assistant_id, body) -> web.Response:
-    """Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
-    
-
-    :param assistant_id: The ID of the assistant for which to create a File. 
-    :type assistant_id: str
-    :param body: 
-    :type body: dict | bytes
-
-    """
-    body = CreateAssistantFileRequest.from_dict(body)
-    return web.Response(status=200)
-
-
 async def create_message(request: web.Request, thread_id, body) -> web.Response:
     """Create a message.
 
@@ -88,7 +68,7 @@ async def create_message(request: web.Request, thread_id, body) -> web.Response:
     return web.Response(status=200)
 
 
-async def create_run(request: web.Request, thread_id, body) -> web.Response:
+async def create_run(request: web.Request, thread_id, body, include=None) -> web.Response:
     """Create a run.
 
     
@@ -97,6 +77,8 @@ async def create_run(request: web.Request, thread_id, body) -> web.Response:
     :type thread_id: str
     :param body: 
     :type body: dict | bytes
+    :param include: A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+    :type include: List[str]
 
     """
     body = CreateRunRequest.from_dict(body)
@@ -141,15 +123,15 @@ async def delete_assistant(request: web.Request, assistant_id) -> web.Response:
     return web.Response(status=200)
 
 
-async def delete_assistant_file(request: web.Request, assistant_id, file_id) -> web.Response:
-    """Delete an assistant file.
+async def delete_message(request: web.Request, thread_id, message_id) -> web.Response:
+    """Deletes a message.
 
     
 
-    :param assistant_id: The ID of the assistant that the file belongs to.
-    :type assistant_id: str
-    :param file_id: The ID of the file to delete.
-    :type file_id: str
+    :param thread_id: The ID of the thread to which this message belongs.
+    :type thread_id: str
+    :param message_id: The ID of the message to delete.
+    :type message_id: str
 
     """
     return web.Response(status=200)
@@ -179,20 +161,6 @@ async def get_assistant(request: web.Request, assistant_id) -> web.Response:
     return web.Response(status=200)
 
 
-async def get_assistant_file(request: web.Request, assistant_id, file_id) -> web.Response:
-    """Retrieves an AssistantFile.
-
-    
-
-    :param assistant_id: The ID of the assistant who the file belongs to.
-    :type assistant_id: str
-    :param file_id: The ID of the file we&#39;re getting.
-    :type file_id: str
-
-    """
-    return web.Response(status=200)
-
-
 async def get_message(request: web.Request, thread_id, message_id) -> web.Response:
     """Retrieve a message.
 
@@ -202,22 +170,6 @@ async def get_message(request: web.Request, thread_id, message_id) -> web.Respon
     :type thread_id: str
     :param message_id: The ID of the message to retrieve.
     :type message_id: str
-
-    """
-    return web.Response(status=200)
-
-
-async def get_message_file(request: web.Request, thread_id, message_id, file_id) -> web.Response:
-    """Retrieves a message file.
-
-    
-
-    :param thread_id: The ID of the thread to which the message and File belong.
-    :type thread_id: str
-    :param message_id: The ID of the message the file belongs to.
-    :type message_id: str
-    :param file_id: The ID of the file being retrieved.
-    :type file_id: str
 
     """
     return web.Response(status=200)
@@ -237,7 +189,7 @@ async def get_run(request: web.Request, thread_id, run_id) -> web.Response:
     return web.Response(status=200)
 
 
-async def get_run_step(request: web.Request, thread_id, run_id, step_id) -> web.Response:
+async def get_run_step(request: web.Request, thread_id, run_id, step_id, include=None) -> web.Response:
     """Retrieves a run step.
 
     
@@ -248,6 +200,8 @@ async def get_run_step(request: web.Request, thread_id, run_id, step_id) -> web.
     :type run_id: str
     :param step_id: The ID of the run step to retrieve.
     :type step_id: str
+    :param include: A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+    :type include: List[str]
 
     """
     return web.Response(status=200)
@@ -265,26 +219,6 @@ async def get_thread(request: web.Request, thread_id) -> web.Response:
     return web.Response(status=200)
 
 
-async def list_assistant_files(request: web.Request, assistant_id, limit=None, order=None, after=None, before=None) -> web.Response:
-    """Returns a list of assistant files.
-
-    
-
-    :param assistant_id: The ID of the assistant the file belongs to.
-    :type assistant_id: str
-    :param limit: A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-    :type limit: int
-    :param order: Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-    :type order: str
-    :param after: A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-    :type after: str
-    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-    :type before: str
-
-    """
-    return web.Response(status=200)
-
-
 async def list_assistants(request: web.Request, limit=None, order=None, after=None, before=None) -> web.Response:
     """Returns a list of assistants.
 
@@ -296,29 +230,7 @@ async def list_assistants(request: web.Request, limit=None, order=None, after=No
     :type order: str
     :param after: A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
     :type after: str
-    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-    :type before: str
-
-    """
-    return web.Response(status=200)
-
-
-async def list_message_files(request: web.Request, thread_id, message_id, limit=None, order=None, after=None, before=None) -> web.Response:
-    """Returns a list of message files.
-
-    
-
-    :param thread_id: The ID of the thread that the message and files belong to.
-    :type thread_id: str
-    :param message_id: The ID of the message that the files belongs to.
-    :type message_id: str
-    :param limit: A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-    :type limit: int
-    :param order: Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-    :type order: str
-    :param after: A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-    :type after: str
-    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
     :type before: str
 
     """
@@ -338,7 +250,7 @@ async def list_messages(request: web.Request, thread_id, limit=None, order=None,
     :type order: str
     :param after: A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
     :type after: str
-    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
     :type before: str
     :param run_id: Filter messages by the run ID that generated them. 
     :type run_id: str
@@ -347,7 +259,7 @@ async def list_messages(request: web.Request, thread_id, limit=None, order=None,
     return web.Response(status=200)
 
 
-async def list_run_steps(request: web.Request, thread_id, run_id, limit=None, order=None, after=None, before=None) -> web.Response:
+async def list_run_steps(request: web.Request, thread_id, run_id, limit=None, order=None, after=None, before=None, include=None) -> web.Response:
     """Returns a list of run steps belonging to a run.
 
     
@@ -362,8 +274,10 @@ async def list_run_steps(request: web.Request, thread_id, run_id, limit=None, or
     :type order: str
     :param after: A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
     :type after: str
-    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
     :type before: str
+    :param include: A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+    :type include: List[str]
 
     """
     return web.Response(status=200)
@@ -382,7 +296,7 @@ async def list_runs(request: web.Request, thread_id, limit=None, order=None, aft
     :type order: str
     :param after: A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
     :type after: str
-    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+    :param before: A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
     :type before: str
 
     """

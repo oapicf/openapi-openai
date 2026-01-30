@@ -13,29 +13,38 @@ import AnyCodable
 /** Represents a streamed chunk of a chat completion response returned by model, based on the provided input. */
 public struct CreateChatCompletionStreamResponse: Codable, JSONEncodable, Hashable {
 
+    public enum ServiceTier: String, Codable, CaseIterable {
+        case scale = "scale"
+        case _default = "default"
+    }
     public enum Object: String, Codable, CaseIterable {
         case chatPeriodCompletionPeriodChunk = "chat.completion.chunk"
     }
     /** A unique identifier for the chat completion. Each chunk has the same ID. */
     public var id: String
-    /** A list of chat completion choices. Can be more than one if `n` is greater than 1. */
+    /** A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`.  */
     public var choices: [CreateChatCompletionStreamResponseChoicesInner]
     /** The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp. */
     public var created: Int
     /** The model to generate the completion. */
     public var model: String
+    /** The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request. */
+    public var serviceTier: ServiceTier?
     /** This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  */
     public var systemFingerprint: String?
     /** The object type, which is always `chat.completion.chunk`. */
     public var object: Object
+    public var usage: CreateChatCompletionStreamResponseUsage?
 
-    public init(id: String, choices: [CreateChatCompletionStreamResponseChoicesInner], created: Int, model: String, systemFingerprint: String? = nil, object: Object) {
+    public init(id: String, choices: [CreateChatCompletionStreamResponseChoicesInner], created: Int, model: String, serviceTier: ServiceTier? = nil, systemFingerprint: String? = nil, object: Object, usage: CreateChatCompletionStreamResponseUsage? = nil) {
         self.id = id
         self.choices = choices
         self.created = created
         self.model = model
+        self.serviceTier = serviceTier
         self.systemFingerprint = systemFingerprint
         self.object = object
+        self.usage = usage
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -43,8 +52,10 @@ public struct CreateChatCompletionStreamResponse: Codable, JSONEncodable, Hashab
         case choices
         case created
         case model
+        case serviceTier = "service_tier"
         case systemFingerprint = "system_fingerprint"
         case object
+        case usage
     }
 
     // Encodable protocol methods
@@ -55,8 +66,10 @@ public struct CreateChatCompletionStreamResponse: Codable, JSONEncodable, Hashab
         try container.encode(choices, forKey: .choices)
         try container.encode(created, forKey: .created)
         try container.encode(model, forKey: .model)
+        try container.encodeIfPresent(serviceTier, forKey: .serviceTier)
         try container.encodeIfPresent(systemFingerprint, forKey: .systemFingerprint)
         try container.encode(object, forKey: .object)
+        try container.encodeIfPresent(usage, forKey: .usage)
     }
 }
 

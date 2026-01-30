@@ -13,15 +13,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) expires.
+ * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
  */
-@ApiModel(description="Occurs when a [run](/docs/api-reference/runs/object) expires.")
+@ApiModel(description="Occurs when a [run](/docs/api-reference/runs/object) is cancelled.")
 
 public class RunStreamEventOneOf8  {
   
 public enum EventEnum {
 
-    @JsonProperty("thread.run.expired") THREAD_RUN_EXPIRED(String.valueOf("thread.run.expired"));
+    @JsonProperty("thread.run.cancelled") THREAD_RUN_CANCELLED(String.valueOf("thread.run.cancelled"));
 
     private String value;
 

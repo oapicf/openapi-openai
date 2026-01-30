@@ -17,7 +17,7 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) expires.
+ * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
  * @param event 
  * @param &#x60;data&#x60; 
  */
@@ -33,11 +33,11 @@ data class RunStreamEventOneOf8(
 
     /**
     * 
-    * Values: threadPeriodRunPeriodExpired
+    * Values: threadPeriodRunPeriodCancelled
     */
     enum class Event(@get:JsonValue val value: kotlin.String) {
 
-        threadPeriodRunPeriodExpired("thread.run.expired");
+        threadPeriodRunPeriodCancelled("thread.run.cancelled");
 
         companion object {
             @JvmStatic

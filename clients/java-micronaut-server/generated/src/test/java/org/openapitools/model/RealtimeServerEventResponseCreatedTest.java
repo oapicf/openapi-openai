@@ -1,0 +1,47 @@
+package org.openapitools.model;
+
+import org.openapitools.model.RealtimeResponse;
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
+
+/**
+ * Model tests for RealtimeServerEventResponseCreated
+ */
+@MicronautTest
+public class RealtimeServerEventResponseCreatedTest {
+    private final RealtimeServerEventResponseCreated model = null;
+
+    /**
+     * Model tests for RealtimeServerEventResponseCreated
+     */
+    @Test
+    public void testRealtimeServerEventResponseCreated() {
+        // TODO: test RealtimeServerEventResponseCreated
+    }
+
+    /**
+     * Test the property 'eventId'
+     */
+    @Test
+    public void eventIdTest() {
+        // TODO: test eventId
+    }
+
+    /**
+     * Test the property 'type'
+     */
+    @Test
+    public void typeTest() {
+        // TODO: test type
+    }
+
+    /**
+     * Test the property 'response'
+     */
+    @Test
+    public void responseTest() {
+        // TODO: test response
+    }
+
+}

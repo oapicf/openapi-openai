@@ -1,0 +1,50 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ListAuditLogsEffectiveAtParameter"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ListAuditLogsEffectiveAtParameter"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ListAuditLogsEffectiveAtParameter {
+    title = ListAuditLogsEffectiveAtParameter
+    description = ListAuditLogsEffectiveAtParameter
+    derivedFrom = Root
+    properties {
+        gt {
+          type =  integer
+          description = "Return only events whose &#x60;effective_at&#x60; (Unix seconds) is greater than this value."
+          optional = false
+        }
+        gte {
+          type =  integer
+          description = "Return only events whose &#x60;effective_at&#x60; (Unix seconds) is greater than or equal to this value."
+          optional = false
+        }
+        lt {
+          type =  integer
+          description = "Return only events whose &#x60;effective_at&#x60; (Unix seconds) is less than this value."
+          optional = false
+        }
+        lte {
+          type =  integer
+          description = "Return only events whose &#x60;effective_at&#x60; (Unix seconds) is less than or equal to this value."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ListAuditLogsEffectiveAtParameter {
+    title = ListAuditLogsEffectiveAtParameter
+    description = ListAuditLogsEffectiveAtParameter
+    implements = openapi_server.resourceTypes.ListAuditLogsEffectiveAtParameter
+
+  }
+}

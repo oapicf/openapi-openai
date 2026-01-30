@@ -9,6 +9,9 @@ imports {
   Root = tosca.resourceTypes.Root
   MessageDeltaContentImageFileObject = openapi_server.resourceTypes.MessageDeltaContentImageFileObject
   MessageDeltaContentImageFileObjectImageFile = openapi_server.resourceTypes.MessageDeltaContentImageFileObjectImageFile
+  MessageDeltaContentImageUrlObject = openapi_server.resourceTypes.MessageDeltaContentImageUrlObject
+  MessageDeltaContentImageUrlObjectImageUrl = openapi_server.resourceTypes.MessageDeltaContentImageUrlObjectImageUrl
+  MessageDeltaContentRefusalObject = openapi_server.resourceTypes.MessageDeltaContentRefusalObject
   MessageDeltaContentTextObject = openapi_server.resourceTypes.MessageDeltaContentTextObject
   MessageDeltaContentTextObjectText = openapi_server.resourceTypes.MessageDeltaContentTextObjectText
 }
@@ -27,7 +30,7 @@ resourceTypes {
         type {
           type =  string
           description = "Always &#x60;image_file&#x60;."
-          enum = ["image_file", "text"]
+          enum = ["image_file", "text", "refusal", "image_url"]
           optional = true
         }
         image_file {
@@ -37,6 +40,16 @@ resourceTypes {
         }
         text {
           type = MessageDeltaContentTextObjectText
+          description = ""
+          optional = false
+        }
+        refusal {
+          type =  string
+          description = ""
+          optional = false
+        }
+        image_url {
+          type = MessageDeltaContentImageUrlObjectImageUrl
           description = ""
           optional = false
         }

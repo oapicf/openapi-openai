@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.vertxweb.server.model.RunObject;
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
+ * Occurs when a [run](/docs/api-reference/runs/object) moves to a &#x60;cancelling&#x60; status.
  **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RunStreamEventOneOf7   {
@@ -15,7 +15,7 @@ public class RunStreamEventOneOf7   {
 
 
   public enum EventEnum {
-    THREAD_RUN_CANCELLED("thread.run.cancelled");
+    THREAD_RUN_CANCELLING("thread.run.cancelling");
 
     private String value;
 

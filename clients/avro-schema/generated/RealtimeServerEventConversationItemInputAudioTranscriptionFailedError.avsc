@@ -1,0 +1,33 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Details of the transcription error.",
+  "name": "RealtimeServerEventConversationItemInputAudioTranscriptionFailedError",
+  "fields": [
+    {
+      "name": "type",
+      "type": ["null", "string"],
+      "doc": "The type of error.",
+      "default": null
+    },
+    {
+      "name": "code",
+      "type": ["null", "string"],
+      "doc": "Error code, if any.",
+      "default": null
+    },
+    {
+      "name": "message",
+      "type": ["null", "string"],
+      "doc": "A human-readable error message.",
+      "default": null
+    },
+    {
+      "name": "param",
+      "type": ["null", "string"],
+      "doc": "Parameter related to the error, if any.",
+      "default": null
+    }
+  ]
+
+}

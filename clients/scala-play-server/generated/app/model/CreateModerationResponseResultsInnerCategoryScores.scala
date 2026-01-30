@@ -8,6 +8,8 @@ import play.api.libs.json._
   * @param hateThreatening The score for the category 'hate/threatening'.
   * @param harassment The score for the category 'harassment'.
   * @param harassmentThreatening The score for the category 'harassment/threatening'.
+  * @param illicit The score for the category 'illicit'.
+  * @param illicitViolent The score for the category 'illicit/violent'.
   * @param selfHarm The score for the category 'self-harm'.
   * @param selfHarmIntent The score for the category 'self-harm/intent'.
   * @param selfHarmInstructions The score for the category 'self-harm/instructions'.
@@ -16,12 +18,14 @@ import play.api.libs.json._
   * @param violence The score for the category 'violence'.
   * @param violenceGraphic The score for the category 'violence/graphic'.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T10:48:27.489746113Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 case class CreateModerationResponseResultsInnerCategoryScores(
   hate: BigDecimal,
   hateThreatening: BigDecimal,
   harassment: BigDecimal,
   harassmentThreatening: BigDecimal,
+  illicit: BigDecimal,
+  illicitViolent: BigDecimal,
   selfHarm: BigDecimal,
   selfHarmIntent: BigDecimal,
   selfHarmInstructions: BigDecimal,

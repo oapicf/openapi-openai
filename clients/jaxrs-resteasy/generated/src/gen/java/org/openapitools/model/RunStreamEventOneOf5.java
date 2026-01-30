@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="Occurs when a [run](/docs/api-reference/runs/object) fails.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T10:45:28.938980301Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description="Occurs when a [run](/docs/api-reference/runs/object) ends with status `incomplete`.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T14:09:21.247747647Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStreamEventOneOf5   {
   
 
@@ -21,7 +21,7 @@ public class RunStreamEventOneOf5   {
    * Gets or Sets event
    */
   public enum EventEnum {
-    THREAD_RUN_FAILED("thread.run.failed");
+    THREAD_RUN_INCOMPLETE("thread.run.incomplete");
     private String value;
 
     EventEnum(String value) {

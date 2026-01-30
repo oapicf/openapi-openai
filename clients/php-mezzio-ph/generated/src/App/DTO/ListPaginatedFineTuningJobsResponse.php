@@ -11,9 +11,9 @@ class ListPaginatedFineTuningJobsResponse
 {
     /**
      * @DTA\Data(field="data")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection25::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection25::class})
-     * @var \App\DTO\Collection25|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection42::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection42::class})
+     * @var \App\DTO\Collection42|null
      */
     public $data;
 

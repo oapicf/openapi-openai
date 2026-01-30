@@ -24,6 +24,7 @@ void
 CreateThreadRequest::__init()
 {
 	//new std::list()std::list> messages;
+	//tool_resources = new CreateThreadRequest_tool_resources();
 	//metadata = null;
 }
 
@@ -34,6 +35,11 @@ CreateThreadRequest::__cleanup()
 	//messages.RemoveAll(true);
 	//delete messages;
 	//messages = NULL;
+	//}
+	//if(tool_resources != NULL) {
+	//
+	//delete tool_resources;
+	//tool_resources = NULL;
 	//}
 	//if(metadata != NULL) {
 	//
@@ -71,6 +77,20 @@ CreateThreadRequest::fromJson(char* jsonStr)
 			messages = new_list;
 		}
 		
+	}
+	const gchar *tool_resourcesKey = "tool_resources";
+	node = json_object_get_member(pJsonObject, tool_resourcesKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("CreateThreadRequest_tool_resources")) {
+			jsonToValue(&tool_resources, node, "CreateThreadRequest_tool_resources", "CreateThreadRequest_tool_resources");
+		} else {
+			
+			CreateThreadRequest_tool_resources* obj = static_cast<CreateThreadRequest_tool_resources*> (&tool_resources);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
 	}
 	const gchar *metadataKey = "metadata";
 	node = json_object_get_member(pJsonObject, metadataKey);
@@ -123,6 +143,20 @@ CreateThreadRequest::toJson()
 	
 	const gchar *messagesKey = "messages";
 	json_object_set_member(pJsonObject, messagesKey, node);
+	if (isprimitive("CreateThreadRequest_tool_resources")) {
+		CreateThreadRequest_tool_resources obj = getToolResources();
+		node = converttoJson(&obj, "CreateThreadRequest_tool_resources", "");
+	}
+	else {
+		
+		CreateThreadRequest_tool_resources obj = static_cast<CreateThreadRequest_tool_resources> (getToolResources());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *tool_resourcesKey = "tool_resources";
+	json_object_set_member(pJsonObject, tool_resourcesKey, node);
 	if (isprimitive("std::string")) {
 		std::string obj = getMetadata();
 		node = converttoJson(&obj, "std::string", "");
@@ -155,6 +189,18 @@ void
 CreateThreadRequest::setMessages(std::list <CreateMessageRequest> messages)
 {
 	this->messages = messages;
+}
+
+CreateThreadRequest_tool_resources
+CreateThreadRequest::getToolResources()
+{
+	return tool_resources;
+}
+
+void
+CreateThreadRequest::setToolResources(CreateThreadRequest_tool_resources  tool_resources)
+{
+	this->tool_resources = tool_resources;
 }
 
 std::string

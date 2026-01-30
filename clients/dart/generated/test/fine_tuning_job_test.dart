@@ -110,6 +110,17 @@ void main() {
       // TODO
     });
 
+    // The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+    // int estimatedFinish
+    test('to test the property `estimatedFinish`', () async {
+      // TODO
+    });
+
+    // FineTuneMethod method
+    test('to test the property `method`', () async {
+      // TODO
+    });
+
 
   });
 

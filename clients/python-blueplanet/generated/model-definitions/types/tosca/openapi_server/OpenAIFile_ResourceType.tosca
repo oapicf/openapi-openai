@@ -43,8 +43,8 @@ resourceTypes {
         }
         purpose {
           type =  string
-          description = "The intended purpose of the file. Supported values are &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60;, &#x60;assistants&#x60;, and &#x60;assistants_output&#x60;."
-          enum = ["fine-tune", "fine-tune-results", "assistants", "assistants_output"]
+          description = "The intended purpose of the file. Supported values are &#x60;assistants&#x60;, &#x60;assistants_output&#x60;, &#x60;batch&#x60;, &#x60;batch_output&#x60;, &#x60;fine-tune&#x60;, &#x60;fine-tune-results&#x60; and &#x60;vision&#x60;."
+          enum = ["assistants", "assistants_output", "batch", "batch_output", "fine-tune", "fine-tune-results", "vision"]
           optional = true
         }
         status {

@@ -13,7 +13,7 @@ import org.openapitools.model.RunObject;
  * Occurs when a [run](/docs/api-reference/runs/object) moves to a &#x60;queued&#x60; status.
  */
 @ApiModel(description = "Occurs when a [run](/docs/api-reference/runs/object) moves to a `queued` status.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStreamEventOneOf1   {
   /**
    * Gets or Sets event

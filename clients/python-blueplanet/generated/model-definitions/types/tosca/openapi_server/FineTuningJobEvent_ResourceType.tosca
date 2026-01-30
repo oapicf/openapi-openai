@@ -15,32 +15,43 @@ resourceTypes {
     description = FineTuningJobEvent
     derivedFrom = Root
     properties {
+        object {
+          type =  string
+          description = "The object type, which is always \&quot;fine_tuning.job.event\&quot;."
+          enum = ["fine_tuning.job.event"]
+          optional = true
+        }
         id {
           type =  string
-          description = ""
+          description = "The object identifier."
           optional = true
         }
         created_at {
           type =  integer
-          description = ""
+          description = "The Unix timestamp (in seconds) for when the fine-tuning job was created."
           optional = true
         }
         level {
           type =  string
-          description = ""
+          description = "The log level of the event."
           enum = ["info", "warn", "error"]
           optional = true
         }
         message {
           type =  string
-          description = ""
+          description = "The message of the event."
           optional = true
         }
-        object {
+        type {
           type =  string
-          description = ""
-          enum = ["fine_tuning.job.event"]
-          optional = true
+          description = "The type of event."
+          enum = ["message", "metrics"]
+          optional = false
+        }
+        data {
+          type =  
+          description = "The data associated with the event."
+          optional = false
         }
     }
   }

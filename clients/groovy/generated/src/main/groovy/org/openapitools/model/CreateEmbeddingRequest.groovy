@@ -39,6 +39,6 @@ class CreateEmbeddingRequest {
     EncodingFormatEnum encodingFormat = EncodingFormatEnum.FLOAT
     /* The number of dimensions the resulting output embeddings should have. Only supported in `text-embedding-3` and later models.  */
     Integer dimensions
-    /* A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  */
+    /* A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  */
     String user
 }

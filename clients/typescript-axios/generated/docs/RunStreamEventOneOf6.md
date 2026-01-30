@@ -1,6 +1,6 @@
 # RunStreamEventOneOf6
 
-Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.
+Occurs when a [run](/docs/api-reference/runs/object) fails.
 
 ## Properties
 

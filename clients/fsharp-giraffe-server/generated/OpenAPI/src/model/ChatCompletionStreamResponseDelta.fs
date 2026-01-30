@@ -19,5 +19,6 @@ module ChatCompletionStreamResponseDelta =
     FunctionCall : ChatCompletionStreamResponseDeltaFunctionCall;
     ToolCalls : ChatCompletionMessageToolCallChunk[];
     Role : RoleEnum;
+    Refusal : string option;
   }
   //#endregion

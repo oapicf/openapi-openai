@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.CompletionUsage;
 import org.openapitools.model.CreateChatCompletionResponseChoicesInner;
 import javax.validation.constraints.*;
@@ -30,6 +31,39 @@ public class CreateChatCompletionResponse   {
   private Integer created;
 
   private String model;
+
+
+public enum ServiceTierEnum {
+
+    @JsonProperty("scale") SCALE(String.valueOf("scale")), @JsonProperty("default") DEFAULT(String.valueOf("default"));
+
+
+    private String value;
+
+    ServiceTierEnum(String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    public static ServiceTierEnum fromValue(String value) {
+        for (ServiceTierEnum b : ServiceTierEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        return null;
+    }
+}
+
+  private ServiceTierEnum serviceTier;
 
   private String systemFingerprint;
 
@@ -157,6 +191,25 @@ public enum ObjectEnum {
 
 
   /**
+   * The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request.
+   **/
+  public CreateChatCompletionResponse serviceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "scale", value = "The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.")
+  @JsonProperty("service_tier")
+  public ServiceTierEnum getServiceTier() {
+    return serviceTier;
+  }
+  public void setServiceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
+  }
+
+
+  /**
    * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. 
    **/
   public CreateChatCompletionResponse systemFingerprint(String systemFingerprint) {
@@ -227,6 +280,7 @@ public enum ObjectEnum {
         Objects.equals(this.choices, createChatCompletionResponse.choices) &&
         Objects.equals(this.created, createChatCompletionResponse.created) &&
         Objects.equals(this.model, createChatCompletionResponse.model) &&
+        Objects.equals(this.serviceTier, createChatCompletionResponse.serviceTier) &&
         Objects.equals(this.systemFingerprint, createChatCompletionResponse.systemFingerprint) &&
         Objects.equals(this._object, createChatCompletionResponse._object) &&
         Objects.equals(this.usage, createChatCompletionResponse.usage);
@@ -234,7 +288,7 @@ public enum ObjectEnum {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, choices, created, model, systemFingerprint, _object, usage);
+    return Objects.hash(id, choices, created, model, serviceTier, systemFingerprint, _object, usage);
   }
 
   @Override
@@ -246,6 +300,7 @@ public enum ObjectEnum {
     sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    serviceTier: ").append(toIndentedString(serviceTier)).append("\n");
     sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");

@@ -71,24 +71,19 @@ _()
     declare -A operations
     operations["cancelRun"]=1
     operations["createAssistant"]=1
-    operations["createAssistantFile"]=1
     operations["createMessage"]=1
     operations["createRun"]=1
     operations["createThread"]=1
     operations["createThreadAndRun"]=1
     operations["deleteAssistant"]=1
-    operations["deleteAssistantFile"]=1
+    operations["deleteMessage"]=1
     operations["deleteThread"]=1
     operations["getAssistant"]=1
-    operations["getAssistantFile"]=1
     operations["getMessage"]=1
-    operations["getMessageFile"]=1
     operations["getRun"]=1
     operations["getRunStep"]=1
     operations["getThread"]=1
-    operations["listAssistantFiles"]=1
     operations["listAssistants"]=1
-    operations["listMessageFiles"]=1
     operations["listMessages"]=1
     operations["listRunSteps"]=1
     operations["listRuns"]=1
@@ -100,8 +95,17 @@ _()
     operations["createSpeech"]=1
     operations["createTranscription"]=1
     operations["createTranslation"]=1
+    operations["listAuditLogs"]=1
+    operations["cancelBatch"]=1
+    operations["createBatch"]=1
+    operations["listBatches"]=1
+    operations["retrieveBatch"]=1
     operations["createChatCompletion"]=1
     operations["createCompletion"]=1
+    operations["adminApiKeysCreate"]=1
+    operations["adminApiKeysDelete"]=1
+    operations["adminApiKeysGet"]=1
+    operations["adminApiKeysList"]=1
     operations["createEmbedding"]=1
     operations["createFile"]=1
     operations["deleteFile"]=1
@@ -117,36 +121,85 @@ _()
     operations["createImage"]=1
     operations["createImageEdit"]=1
     operations["createImageVariation"]=1
+    operations["deleteInvite"]=1
+    operations["inviteUser"]=1
+    operations["listInvites"]=1
+    operations["retrieveInvite"]=1
     operations["deleteModel"]=1
     operations["listModels"]=1
     operations["retrieveModel"]=1
     operations["createModeration"]=1
+    operations["archiveProject"]=1
+    operations["createProject"]=1
+    operations["createProjectServiceAccount"]=1
+    operations["createProjectUser"]=1
+    operations["deleteProjectApiKey"]=1
+    operations["deleteProjectServiceAccount"]=1
+    operations["deleteProjectUser"]=1
+    operations["listProjectApiKeys"]=1
+    operations["listProjectRateLimits"]=1
+    operations["listProjectServiceAccounts"]=1
+    operations["listProjectUsers"]=1
+    operations["listProjects"]=1
+    operations["modifyProject"]=1
+    operations["modifyProjectUser"]=1
+    operations["retrieveProject"]=1
+    operations["retrieveProjectApiKey"]=1
+    operations["retrieveProjectServiceAccount"]=1
+    operations["retrieveProjectUser"]=1
+    operations["updateProjectRateLimits"]=1
+    operations["createRealtimeSession"]=1
+    operations["addUploadPart"]=1
+    operations["cancelUpload"]=1
+    operations["completeUpload"]=1
+    operations["createUpload"]=1
+    operations["usageAudioSpeeches"]=1
+    operations["usageAudioTranscriptions"]=1
+    operations["usageCodeInterpreterSessions"]=1
+    operations["usageCompletions"]=1
+    operations["usageCosts"]=1
+    operations["usageEmbeddings"]=1
+    operations["usageImages"]=1
+    operations["usageModerations"]=1
+    operations["usageVectorStores"]=1
+    operations["deleteUser"]=1
+    operations["listUsers"]=1
+    operations["modifyUser"]=1
+    operations["retrieveUser"]=1
+    operations["cancelVectorStoreFileBatch"]=1
+    operations["createVectorStore"]=1
+    operations["createVectorStoreFile"]=1
+    operations["createVectorStoreFileBatch"]=1
+    operations["deleteVectorStore"]=1
+    operations["deleteVectorStoreFile"]=1
+    operations["getVectorStore"]=1
+    operations["getVectorStoreFile"]=1
+    operations["getVectorStoreFileBatch"]=1
+    operations["listFilesInVectorStoreBatch"]=1
+    operations["listVectorStoreFiles"]=1
+    operations["listVectorStores"]=1
+    operations["modifyVectorStore"]=1
 
     # An associative array of operations to their parameters
     # Only include path, query and header parameters
     declare -A operation_parameters
     operation_parameters["cancelRun"]="thread_id= run_id= "
     operation_parameters["createAssistant"]=""
-    operation_parameters["createAssistantFile"]="assistant_id= "
     operation_parameters["createMessage"]="thread_id= "
-    operation_parameters["createRun"]="thread_id= "
+    operation_parameters["createRun"]="thread_id= include[]= "
     operation_parameters["createThread"]=""
     operation_parameters["createThreadAndRun"]=""
     operation_parameters["deleteAssistant"]="assistant_id= "
-    operation_parameters["deleteAssistantFile"]="assistant_id= file_id= "
+    operation_parameters["deleteMessage"]="thread_id= message_id= "
     operation_parameters["deleteThread"]="thread_id= "
     operation_parameters["getAssistant"]="assistant_id= "
-    operation_parameters["getAssistantFile"]="assistant_id= file_id= "
     operation_parameters["getMessage"]="thread_id= message_id= "
-    operation_parameters["getMessageFile"]="thread_id= message_id= file_id= "
     operation_parameters["getRun"]="thread_id= run_id= "
-    operation_parameters["getRunStep"]="thread_id= run_id= step_id= "
+    operation_parameters["getRunStep"]="thread_id= run_id= step_id= include[]= "
     operation_parameters["getThread"]="thread_id= "
-    operation_parameters["listAssistantFiles"]="assistant_id= limit= order= after= before= "
     operation_parameters["listAssistants"]="limit= order= after= before= "
-    operation_parameters["listMessageFiles"]="thread_id= message_id= limit= order= after= before= "
     operation_parameters["listMessages"]="thread_id= limit= order= after= before= run_id= "
-    operation_parameters["listRunSteps"]="thread_id= run_id= limit= order= after= before= "
+    operation_parameters["listRunSteps"]="thread_id= run_id= limit= order= after= before= include[]= "
     operation_parameters["listRuns"]="thread_id= limit= order= after= before= "
     operation_parameters["modifyAssistant"]="assistant_id= "
     operation_parameters["modifyMessage"]="thread_id= message_id= "
@@ -156,13 +209,22 @@ _()
     operation_parameters["createSpeech"]=""
     operation_parameters["createTranscription"]=""
     operation_parameters["createTranslation"]=""
+    operation_parameters["listAuditLogs"]="effective_at= project_ids[]= event_types[]= actor_ids[]= actor_emails[]= resource_ids[]= limit= after= before= "
+    operation_parameters["cancelBatch"]="batch_id= "
+    operation_parameters["createBatch"]=""
+    operation_parameters["listBatches"]="after= limit= "
+    operation_parameters["retrieveBatch"]="batch_id= "
     operation_parameters["createChatCompletion"]=""
     operation_parameters["createCompletion"]=""
+    operation_parameters["adminApiKeysCreate"]=""
+    operation_parameters["adminApiKeysDelete"]="key_id= "
+    operation_parameters["adminApiKeysGet"]="key_id= "
+    operation_parameters["adminApiKeysList"]="after= order= limit= "
     operation_parameters["createEmbedding"]=""
     operation_parameters["createFile"]=""
     operation_parameters["deleteFile"]="file_id= "
     operation_parameters["downloadFile"]="file_id= "
-    operation_parameters["listFiles"]="purpose= "
+    operation_parameters["listFiles"]="purpose= limit= order= after= "
     operation_parameters["retrieveFile"]="file_id= "
     operation_parameters["cancelFineTuningJob"]="fine_tuning_job_id= "
     operation_parameters["createFineTuningJob"]=""
@@ -173,13 +235,81 @@ _()
     operation_parameters["createImage"]=""
     operation_parameters["createImageEdit"]=""
     operation_parameters["createImageVariation"]=""
+    operation_parameters["deleteInvite"]="invite_id= "
+    operation_parameters["inviteUser"]=""
+    operation_parameters["listInvites"]="limit= after= "
+    operation_parameters["retrieveInvite"]="invite_id= "
     operation_parameters["deleteModel"]="model= "
     operation_parameters["listModels"]=""
     operation_parameters["retrieveModel"]="model= "
     operation_parameters["createModeration"]=""
+    operation_parameters["archiveProject"]="project_id= "
+    operation_parameters["createProject"]=""
+    operation_parameters["createProjectServiceAccount"]="project_id= "
+    operation_parameters["createProjectUser"]="project_id= "
+    operation_parameters["deleteProjectApiKey"]="project_id= key_id= "
+    operation_parameters["deleteProjectServiceAccount"]="project_id= service_account_id= "
+    operation_parameters["deleteProjectUser"]="project_id= user_id= "
+    operation_parameters["listProjectApiKeys"]="project_id= limit= after= "
+    operation_parameters["listProjectRateLimits"]="project_id= limit= after= before= "
+    operation_parameters["listProjectServiceAccounts"]="project_id= limit= after= "
+    operation_parameters["listProjectUsers"]="project_id= limit= after= "
+    operation_parameters["listProjects"]="limit= after= include_archived= "
+    operation_parameters["modifyProject"]="project_id= "
+    operation_parameters["modifyProjectUser"]="project_id= user_id= "
+    operation_parameters["retrieveProject"]="project_id= "
+    operation_parameters["retrieveProjectApiKey"]="project_id= key_id= "
+    operation_parameters["retrieveProjectServiceAccount"]="project_id= service_account_id= "
+    operation_parameters["retrieveProjectUser"]="project_id= user_id= "
+    operation_parameters["updateProjectRateLimits"]="project_id= rate_limit_id= "
+    operation_parameters["createRealtimeSession"]=""
+    operation_parameters["addUploadPart"]="upload_id= "
+    operation_parameters["cancelUpload"]="upload_id= "
+    operation_parameters["completeUpload"]="upload_id= "
+    operation_parameters["createUpload"]=""
+    operation_parameters["usageAudioSpeeches"]="start_time= end_time= bucket_width= project_ids= user_ids= api_key_ids= models= group_by= limit= page= "
+    operation_parameters["usageAudioTranscriptions"]="start_time= end_time= bucket_width= project_ids= user_ids= api_key_ids= models= group_by= limit= page= "
+    operation_parameters["usageCodeInterpreterSessions"]="start_time= end_time= bucket_width= project_ids= group_by= limit= page= "
+    operation_parameters["usageCompletions"]="start_time= end_time= bucket_width= project_ids= user_ids= api_key_ids= models= batch= group_by= limit= page= "
+    operation_parameters["usageCosts"]="start_time= end_time= bucket_width= project_ids= group_by= limit= page= "
+    operation_parameters["usageEmbeddings"]="start_time= end_time= bucket_width= project_ids= user_ids= api_key_ids= models= group_by= limit= page= "
+    operation_parameters["usageImages"]="start_time= end_time= bucket_width= sources= sizes= project_ids= user_ids= api_key_ids= models= group_by= limit= page= "
+    operation_parameters["usageModerations"]="start_time= end_time= bucket_width= project_ids= user_ids= api_key_ids= models= group_by= limit= page= "
+    operation_parameters["usageVectorStores"]="start_time= end_time= bucket_width= project_ids= group_by= limit= page= "
+    operation_parameters["deleteUser"]="user_id= "
+    operation_parameters["listUsers"]="limit= after= "
+    operation_parameters["modifyUser"]="user_id= "
+    operation_parameters["retrieveUser"]="user_id= "
+    operation_parameters["cancelVectorStoreFileBatch"]="vector_store_id= batch_id= "
+    operation_parameters["createVectorStore"]=""
+    operation_parameters["createVectorStoreFile"]="vector_store_id= "
+    operation_parameters["createVectorStoreFileBatch"]="vector_store_id= "
+    operation_parameters["deleteVectorStore"]="vector_store_id= "
+    operation_parameters["deleteVectorStoreFile"]="vector_store_id= file_id= "
+    operation_parameters["getVectorStore"]="vector_store_id= "
+    operation_parameters["getVectorStoreFile"]="vector_store_id= file_id= "
+    operation_parameters["getVectorStoreFileBatch"]="vector_store_id= batch_id= "
+    operation_parameters["listFilesInVectorStoreBatch"]="vector_store_id= batch_id= limit= order= after= before= filter= "
+    operation_parameters["listVectorStoreFiles"]="vector_store_id= limit= order= after= before= filter= "
+    operation_parameters["listVectorStores"]="limit= order= after= before= "
+    operation_parameters["modifyVectorStore"]="vector_store_id= "
 
     # An associative array of possible values for enum parameters
     declare -A operation_parameters_enum_values
+    operation_parameters_enum_values["listProjects::include_archived"]="true false"
+    operation_parameters_enum_values["listProjects::include_archived"]="true false"
+    operation_parameters_enum_values["listProjects::include_archived"]="true false"
+    operation_parameters_enum_values["usageCompletions::batch"]="true false"
+    operation_parameters_enum_values["usageCompletions::batch"]="true false"
+    operation_parameters_enum_values["usageCompletions::batch"]="true false"
+    operation_parameters_enum_values["usageCompletions::batch"]="true false"
+    operation_parameters_enum_values["usageCompletions::batch"]="true false"
+    operation_parameters_enum_values["usageCompletions::batch"]="true false"
+    operation_parameters_enum_values["usageCompletions::batch"]="true false"
+    operation_parameters_enum_values["usageCompletions::batch"]="true false"
+    operation_parameters_enum_values["usageCompletions::batch"]="true false"
+    operation_parameters_enum_values["usageCompletions::batch"]="true false"
+    operation_parameters_enum_values["usageCompletions::batch"]="true false"
 
     #
     # Check if this is OSX and use special __osx_init_completion function

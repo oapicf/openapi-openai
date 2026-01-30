@@ -5,11 +5,16 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.AssistantObjectToolResources;
 import org.openapitools.model.AssistantObjectToolsInner;
+import org.openapitools.model.AssistantsApiResponseFormatOption;
 import org.springframework.lang.Nullable;
+import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -25,7 +30,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "AssistantObject", description = "Represents an `assistant` that can call the model and use tools.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class AssistantObject {
 
   private String id;
@@ -78,10 +83,15 @@ public class AssistantObject {
   @Valid
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
 
-  @Valid
-  private List<String> fileIds = new ArrayList<>();
+  private JsonNullable<AssistantObjectToolResources> toolResources = JsonNullable.<AssistantObjectToolResources>undefined();
 
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
+
+  private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
+
+  private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
+
+  private @Nullable AssistantsApiResponseFormatOption responseFormat;
 
   public AssistantObject() {
     super();
@@ -90,7 +100,7 @@ public class AssistantObject {
   /**
    * Constructor with only required parameters
    */
-  public AssistantObject(String id, ObjectEnum _object, Integer createdAt, String name, String description, String model, String instructions, List<AssistantObjectToolsInner> tools, List<String> fileIds, Object metadata) {
+  public AssistantObject(String id, ObjectEnum _object, Integer createdAt, String name, String description, String model, String instructions, List<AssistantObjectToolsInner> tools, Object metadata) {
     this.id = id;
     this._object = _object;
     this.createdAt = createdAt;
@@ -99,7 +109,6 @@ public class AssistantObject {
     this.model = model;
     this.instructions = JsonNullable.of(instructions);
     this.tools = tools;
-    this.fileIds = fileIds;
     this.metadata = JsonNullable.of(metadata);
   }
 
@@ -209,11 +218,11 @@ public class AssistantObject {
   }
 
   /**
-   * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. 
+   * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
    * @return model
    */
   @NotNull 
-  @Schema(name = "model", description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models/overview) for descriptions of them. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "model", description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("model")
   public String getModel() {
     return model;
@@ -257,11 +266,11 @@ public class AssistantObject {
   }
 
   /**
-   * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. 
+   * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
    * @return tools
    */
   @NotNull @Valid @Size(max = 128) 
-  @Schema(name = "tools", description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "tools", description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("tools")
   public List<AssistantObjectToolsInner> getTools() {
     return tools;
@@ -271,32 +280,24 @@ public class AssistantObject {
     this.tools = tools;
   }
 
-  public AssistantObject fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  public AssistantObject addFileIdsItem(String fileIdsItem) {
-    if (this.fileIds == null) {
-      this.fileIds = new ArrayList<>();
-    }
-    this.fileIds.add(fileIdsItem);
+  public AssistantObject toolResources(AssistantObjectToolResources toolResources) {
+    this.toolResources = JsonNullable.of(toolResources);
     return this;
   }
 
   /**
-   * A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. 
-   * @return fileIds
+   * Get toolResources
+   * @return toolResources
    */
-  @NotNull @Size(max = 20) 
-  @Schema(name = "file_ids", description = "A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. ", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("file_ids")
-  public List<String> getFileIds() {
-    return fileIds;
+  @Valid 
+  @Schema(name = "tool_resources", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("tool_resources")
+  public JsonNullable<AssistantObjectToolResources> getToolResources() {
+    return toolResources;
   }
 
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public void setToolResources(JsonNullable<AssistantObjectToolResources> toolResources) {
+    this.toolResources = toolResources;
   }
 
   public AssistantObject metadata(Object metadata) {
@@ -305,11 +306,11 @@ public class AssistantObject {
   }
 
   /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
   @NotNull 
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;
@@ -317,6 +318,70 @@ public class AssistantObject {
 
   public void setMetadata(JsonNullable<Object> metadata) {
     this.metadata = metadata;
+  }
+
+  public AssistantObject temperature(BigDecimal temperature) {
+    this.temperature = JsonNullable.of(temperature);
+    return this;
+  }
+
+  /**
+   * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+   * minimum: 0
+   * maximum: 2
+   * @return temperature
+   */
+  @Valid @DecimalMin(value = "0") @DecimalMax(value = "2") 
+  @Schema(name = "temperature", example = "1", description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("temperature")
+  public JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> getTemperature() {
+    return temperature;
+  }
+
+  public void setTemperature(JsonNullable<BigDecimal> temperature) {
+    this.temperature = temperature;
+  }
+
+  public AssistantObject topP(BigDecimal topP) {
+    this.topP = JsonNullable.of(topP);
+    return this;
+  }
+
+  /**
+   * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+   * minimum: 0
+   * maximum: 1
+   * @return topP
+   */
+  @Valid @DecimalMin(value = "0") @DecimalMax(value = "1") 
+  @Schema(name = "top_p", example = "1", description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("top_p")
+  public JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> getTopP() {
+    return topP;
+  }
+
+  public void setTopP(JsonNullable<BigDecimal> topP) {
+    this.topP = topP;
+  }
+
+  public AssistantObject responseFormat(@Nullable AssistantsApiResponseFormatOption responseFormat) {
+    this.responseFormat = responseFormat;
+    return this;
+  }
+
+  /**
+   * Get responseFormat
+   * @return responseFormat
+   */
+  @Valid 
+  @Schema(name = "response_format", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("response_format")
+  public @Nullable AssistantsApiResponseFormatOption getResponseFormat() {
+    return responseFormat;
+  }
+
+  public void setResponseFormat(@Nullable AssistantsApiResponseFormatOption responseFormat) {
+    this.responseFormat = responseFormat;
   }
 
   @Override
@@ -336,13 +401,27 @@ public class AssistantObject {
         Objects.equals(this.model, assistantObject.model) &&
         Objects.equals(this.instructions, assistantObject.instructions) &&
         Objects.equals(this.tools, assistantObject.tools) &&
-        Objects.equals(this.fileIds, assistantObject.fileIds) &&
-        Objects.equals(this.metadata, assistantObject.metadata);
+        equalsNullable(this.toolResources, assistantObject.toolResources) &&
+        Objects.equals(this.metadata, assistantObject.metadata) &&
+        equalsNullable(this.temperature, assistantObject.temperature) &&
+        equalsNullable(this.topP, assistantObject.topP) &&
+        Objects.equals(this.responseFormat, assistantObject.responseFormat);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, name, description, model, instructions, tools, fileIds, metadata);
+    return Objects.hash(id, _object, createdAt, name, description, model, instructions, tools, hashCodeNullable(toolResources), metadata, hashCodeNullable(temperature), hashCodeNullable(topP), responseFormat);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -357,8 +436,11 @@ public class AssistantObject {
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
+    sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();
   }

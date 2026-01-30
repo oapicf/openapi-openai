@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -15,6 +15,7 @@ syntax = "proto3";
 package openapitools;
 
 import public "models/create_moderation_response_results_inner_categories.proto";
+import public "models/create_moderation_response_results_inner_category_applied_input_types.proto";
 import public "models/create_moderation_response_results_inner_category_scores.proto";
 
 message CreateModerationResponseResultsInner {
@@ -25,6 +26,8 @@ message CreateModerationResponseResultsInner {
   CreateModerationResponseResultsInnerCategories categories = 222774814;
 
   CreateModerationResponseResultsInnerCategoryScores category_scores = 261039487;
+
+  CreateModerationResponseResultsInnerCategoryAppliedInputTypes category_applied_input_types = 130666946;
 
 }
 

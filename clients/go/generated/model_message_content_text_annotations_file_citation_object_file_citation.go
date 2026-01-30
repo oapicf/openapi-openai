@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -24,8 +24,6 @@ var _ MappedNullable = &MessageContentTextAnnotationsFileCitationObjectFileCitat
 type MessageContentTextAnnotationsFileCitationObjectFileCitation struct {
 	// The ID of the specific File the citation is from.
 	FileId string `json:"file_id"`
-	// The specific quote in the file.
-	Quote string `json:"quote"`
 }
 
 type _MessageContentTextAnnotationsFileCitationObjectFileCitation MessageContentTextAnnotationsFileCitationObjectFileCitation
@@ -34,10 +32,9 @@ type _MessageContentTextAnnotationsFileCitationObjectFileCitation MessageContent
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessageContentTextAnnotationsFileCitationObjectFileCitation(fileId string, quote string) *MessageContentTextAnnotationsFileCitationObjectFileCitation {
+func NewMessageContentTextAnnotationsFileCitationObjectFileCitation(fileId string) *MessageContentTextAnnotationsFileCitationObjectFileCitation {
 	this := MessageContentTextAnnotationsFileCitationObjectFileCitation{}
 	this.FileId = fileId
-	this.Quote = quote
 	return &this
 }
 
@@ -73,30 +70,6 @@ func (o *MessageContentTextAnnotationsFileCitationObjectFileCitation) SetFileId(
 	o.FileId = v
 }
 
-// GetQuote returns the Quote field value
-func (o *MessageContentTextAnnotationsFileCitationObjectFileCitation) GetQuote() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Quote
-}
-
-// GetQuoteOk returns a tuple with the Quote field value
-// and a boolean to check if the value has been set.
-func (o *MessageContentTextAnnotationsFileCitationObjectFileCitation) GetQuoteOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Quote, true
-}
-
-// SetQuote sets field value
-func (o *MessageContentTextAnnotationsFileCitationObjectFileCitation) SetQuote(v string) {
-	o.Quote = v
-}
-
 func (o MessageContentTextAnnotationsFileCitationObjectFileCitation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -108,7 +81,6 @@ func (o MessageContentTextAnnotationsFileCitationObjectFileCitation) MarshalJSON
 func (o MessageContentTextAnnotationsFileCitationObjectFileCitation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["file_id"] = o.FileId
-	toSerialize["quote"] = o.Quote
 	return toSerialize, nil
 }
 
@@ -118,7 +90,6 @@ func (o *MessageContentTextAnnotationsFileCitationObjectFileCitation) UnmarshalJ
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"file_id",
-		"quote",
 	}
 
 	allProperties := make(map[string]interface{})

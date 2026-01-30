@@ -18,6 +18,7 @@ package org.openapitools.client.models
 import org.openapitools.client.models.AssistantsApiResponseFormatOption
 import org.openapitools.client.models.AssistantsApiToolChoiceOption
 import org.openapitools.client.models.CreateRunRequestModel
+import org.openapitools.client.models.CreateThreadAndRunRequestToolResources
 import org.openapitools.client.models.CreateThreadAndRunRequestToolsInner
 import org.openapitools.client.models.CreateThreadRequest
 import org.openapitools.client.models.TruncationObject
@@ -33,13 +34,16 @@ import com.squareup.moshi.JsonClass
  * @param model 
  * @param instructions Override the default system message of the assistant. This is useful for modifying the behavior on a per-run basis.
  * @param tools Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
- * @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+ * @param toolResources 
+ * @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
  * @param temperature What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+ * @param topP An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
  * @param stream If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. 
- * @param maxPromptTokens The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+ * @param maxPromptTokens The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
  * @param maxCompletionTokens The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
  * @param truncationStrategy 
  * @param toolChoice 
+ * @param parallelToolCalls Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
  * @param responseFormat 
  */
 
@@ -64,7 +68,10 @@ data class CreateThreadAndRunRequest (
     @Json(name = "tools")
     val tools: kotlin.collections.List<CreateThreadAndRunRequestToolsInner>? = null,
 
-    /* Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  */
+    @Json(name = "tool_resources")
+    val toolResources: CreateThreadAndRunRequestToolResources? = null,
+
+    /* Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  */
     @Json(name = "metadata")
     val metadata: kotlin.Any? = null,
 
@@ -72,11 +79,15 @@ data class CreateThreadAndRunRequest (
     @Json(name = "temperature")
     val temperature: java.math.BigDecimal? = java.math.BigDecimal("1"),
 
+    /* An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.  */
+    @Json(name = "top_p")
+    val topP: java.math.BigDecimal? = java.math.BigDecimal("1"),
+
     /* If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message.  */
     @Json(name = "stream")
     val stream: kotlin.Boolean? = null,
 
-    /* The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info.  */
+    /* The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info.  */
     @Json(name = "max_prompt_tokens")
     val maxPromptTokens: kotlin.Int? = null,
 
@@ -89,6 +100,10 @@ data class CreateThreadAndRunRequest (
 
     @Json(name = "tool_choice")
     val toolChoice: AssistantsApiToolChoiceOption? = null,
+
+    /* Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. */
+    @Json(name = "parallel_tool_calls")
+    val parallelToolCalls: kotlin.Boolean? = true,
 
     @Json(name = "response_format")
     val responseFormat: AssistantsApiResponseFormatOption? = null

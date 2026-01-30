@@ -15,6 +15,13 @@ class CreateThreadAndRunRequestToolsInner
     public ?string $type = null;
 
     /**
+     * @DTA\Data(field="file_search", nullable=true)
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\AssistantToolsFileSearchFileSearch::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\AssistantToolsFileSearchFileSearch::class})
+     */
+    public ?\App\DTO\AssistantToolsFileSearchFileSearch $file_search = null;
+
+    /**
      * @DTA\Data(field="function")
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\FunctionObject::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\FunctionObject::class})

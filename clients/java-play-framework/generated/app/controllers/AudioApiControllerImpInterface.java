@@ -1,5 +1,6 @@
 package controllers;
 
+import apimodels.AudioResponseFormat;
 import java.math.BigDecimal;
 import apimodels.CreateSpeechRequest;
 import apimodels.CreateTranscription200Response;
@@ -41,7 +42,7 @@ public abstract class AudioApiControllerImpInterface {
 
     public abstract InputStream createSpeech(Http.Request request, CreateSpeechRequest createSpeechRequest) throws Exception;
 
-    public Result createTranscriptionHttp(Http.Request request, Http.MultipartFormData.FilePart<TemporaryFile> _file, CreateTranscriptionRequestModel model, String language, String prompt, String responseFormat, BigDecimal temperature, List<String> timestampGranularities) throws Exception {
+    public Result createTranscriptionHttp(Http.Request request, Http.MultipartFormData.FilePart<TemporaryFile> _file, CreateTranscriptionRequestModel model, String language, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature, List<String> timestampGranularities) throws Exception {
         CreateTranscription200Response obj = createTranscription(request, _file, model, language, prompt, responseFormat, temperature, timestampGranularities);
 
         if (configuration.getBoolean("useOutputBeanValidation")) {
@@ -54,9 +55,9 @@ public abstract class AudioApiControllerImpInterface {
 
     }
 
-    public abstract CreateTranscription200Response createTranscription(Http.Request request, Http.MultipartFormData.FilePart<TemporaryFile> _file, CreateTranscriptionRequestModel model, String language, String prompt, String responseFormat, BigDecimal temperature, List<String> timestampGranularities) throws Exception;
+    public abstract CreateTranscription200Response createTranscription(Http.Request request, Http.MultipartFormData.FilePart<TemporaryFile> _file, CreateTranscriptionRequestModel model, String language, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature, List<String> timestampGranularities) throws Exception;
 
-    public Result createTranslationHttp(Http.Request request, Http.MultipartFormData.FilePart<TemporaryFile> _file, CreateTranscriptionRequestModel model, String prompt, String responseFormat, BigDecimal temperature) throws Exception {
+    public Result createTranslationHttp(Http.Request request, Http.MultipartFormData.FilePart<TemporaryFile> _file, CreateTranscriptionRequestModel model, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature) throws Exception {
         CreateTranslation200Response obj = createTranslation(request, _file, model, prompt, responseFormat, temperature);
 
         if (configuration.getBoolean("useOutputBeanValidation")) {
@@ -69,6 +70,6 @@ public abstract class AudioApiControllerImpInterface {
 
     }
 
-    public abstract CreateTranslation200Response createTranslation(Http.Request request, Http.MultipartFormData.FilePart<TemporaryFile> _file, CreateTranscriptionRequestModel model, String prompt, String responseFormat, BigDecimal temperature) throws Exception;
+    public abstract CreateTranslation200Response createTranslation(Http.Request request, Http.MultipartFormData.FilePart<TemporaryFile> _file, CreateTranscriptionRequestModel model, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature) throws Exception;
 
 }

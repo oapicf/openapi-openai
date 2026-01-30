@@ -16,15 +16,15 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
+ * Occurs when a [run](/docs/api-reference/runs/object) moves to a &#x60;cancelling&#x60; status.
  **/
-@ApiModel(description = "Occurs when a [run](/docs/api-reference/runs/object) is cancelled.")
+@ApiModel(description = "Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.")
 @JsonTypeName("RunStreamEvent_oneOf_7")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStreamEventOneOf7   {
   public enum EventEnum {
 
-    THREAD_RUN_CANCELLED(String.valueOf("thread.run.cancelled"));
+    THREAD_RUN_CANCELLING(String.valueOf("thread.run.cancelling"));
 
 
     private String value;

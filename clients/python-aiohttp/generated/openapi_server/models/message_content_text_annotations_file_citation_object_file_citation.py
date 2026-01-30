@@ -14,24 +14,20 @@ class MessageContentTextAnnotationsFileCitationObjectFileCitation(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, file_id: str=None, quote: str=None):
+    def __init__(self, file_id: str=None):
         """MessageContentTextAnnotationsFileCitationObjectFileCitation - a model defined in OpenAPI
 
         :param file_id: The file_id of this MessageContentTextAnnotationsFileCitationObjectFileCitation.
-        :param quote: The quote of this MessageContentTextAnnotationsFileCitationObjectFileCitation.
         """
         self.openapi_types = {
-            'file_id': str,
-            'quote': str
+            'file_id': str
         }
 
         self.attribute_map = {
-            'file_id': 'file_id',
-            'quote': 'quote'
+            'file_id': 'file_id'
         }
 
         self._file_id = file_id
-        self._quote = quote
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'MessageContentTextAnnotationsFileCitationObjectFileCitation':
@@ -66,28 +62,3 @@ class MessageContentTextAnnotationsFileCitationObjectFileCitation(Model):
             raise ValueError("Invalid value for `file_id`, must not be `None`")
 
         self._file_id = file_id
-
-    @property
-    def quote(self):
-        """Gets the quote of this MessageContentTextAnnotationsFileCitationObjectFileCitation.
-
-        The specific quote in the file.
-
-        :return: The quote of this MessageContentTextAnnotationsFileCitationObjectFileCitation.
-        :rtype: str
-        """
-        return self._quote
-
-    @quote.setter
-    def quote(self, quote):
-        """Sets the quote of this MessageContentTextAnnotationsFileCitationObjectFileCitation.
-
-        The specific quote in the file.
-
-        :param quote: The quote of this MessageContentTextAnnotationsFileCitationObjectFileCitation.
-        :type quote: str
-        """
-        if quote is None:
-            raise ValueError("Invalid value for `quote`, must not be `None`")
-
-        self._quote = quote

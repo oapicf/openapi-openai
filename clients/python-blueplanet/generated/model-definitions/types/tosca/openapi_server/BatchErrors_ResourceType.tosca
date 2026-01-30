@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server BatchErrors"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a BatchErrors"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  BatchErrorsDataInner = openapi_server.resourceTypes.BatchErrorsDataInner
+}
+resourceTypes {
+
+  BatchErrors {
+    title = BatchErrors
+    description = BatchErrors
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;list&#x60;."
+          optional = false
+        }
+        data {
+          type = array
+          items.type = BatchErrorsDataInner
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  BatchErrors {
+    title = BatchErrors
+    description = BatchErrors
+    implements = openapi_server.resourceTypes.BatchErrors
+
+  }
+}

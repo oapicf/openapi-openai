@@ -3,8 +3,7 @@ package org.openapitools.client.model
 
 
 case class ChatCompletionRequestSystemMessage (
-    /* The contents of the system message. */
-    _content: String,
+    _content: ChatCompletionRequestSystemMessageContent,
     /* The role of the messages author, in this case `system`. */
     _role: String,
     /* An optional name for the participant. Provides the model information to differentiate between participants of the same role. */

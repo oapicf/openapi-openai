@@ -27,6 +27,7 @@ ChatCompletionStreamResponseDelta::__init()
 	//function_call = new ChatCompletionStreamResponseDelta_function_call();
 	//new std::list()std::list> tool_calls;
 	//role = std::string();
+	//refusal = std::string();
 }
 
 void
@@ -51,6 +52,11 @@ ChatCompletionStreamResponseDelta::__cleanup()
 	//
 	//delete role;
 	//role = NULL;
+	//}
+	//if(refusal != NULL) {
+	//
+	//delete refusal;
+	//refusal = NULL;
 	//}
 	//
 }
@@ -116,6 +122,17 @@ ChatCompletionStreamResponseDelta::fromJson(char* jsonStr)
 
 		if (isprimitive("std::string")) {
 			jsonToValue(&role, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *refusalKey = "refusal";
+	node = json_object_get_member(pJsonObject, refusalKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&refusal, node, "std::string", "");
 		} else {
 			
 		}
@@ -189,6 +206,15 @@ ChatCompletionStreamResponseDelta::toJson()
 	}
 	const gchar *roleKey = "role";
 	json_object_set_member(pJsonObject, roleKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getRefusal();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *refusalKey = "refusal";
+	json_object_set_member(pJsonObject, refusalKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -243,6 +269,18 @@ void
 ChatCompletionStreamResponseDelta::setRole(std::string  role)
 {
 	this->role = role;
+}
+
+std::string
+ChatCompletionStreamResponseDelta::getRefusal()
+{
+	return refusal;
+}
+
+void
+ChatCompletionStreamResponseDelta::setRefusal(std::string  refusal)
+{
+	this->refusal = refusal;
 }
 
 

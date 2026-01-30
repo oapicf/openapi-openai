@@ -55,8 +55,11 @@ public struct FineTuningJob: Codable, JSONEncodable, Hashable {
     public var integrations: [FineTuningJobIntegrationsInner]?
     /** The seed used for the fine-tuning job. */
     public var seed: Int
+    /** The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running. */
+    public var estimatedFinish: Int?
+    public var method: FineTuneMethod?
 
-    public init(id: String, createdAt: Int, error: FineTuningJobError?, fineTunedModel: String?, finishedAt: Int?, hyperparameters: FineTuningJobHyperparameters, model: String, object: Object, organizationId: String, resultFiles: [String], status: Status, trainedTokens: Int?, trainingFile: String, validationFile: String?, integrations: [FineTuningJobIntegrationsInner]? = nil, seed: Int) {
+    public init(id: String, createdAt: Int, error: FineTuningJobError?, fineTunedModel: String?, finishedAt: Int?, hyperparameters: FineTuningJobHyperparameters, model: String, object: Object, organizationId: String, resultFiles: [String], status: Status, trainedTokens: Int?, trainingFile: String, validationFile: String?, integrations: [FineTuningJobIntegrationsInner]? = nil, seed: Int, estimatedFinish: Int? = nil, method: FineTuneMethod? = nil) {
         self.id = id
         self.createdAt = createdAt
         self.error = error
@@ -73,6 +76,8 @@ public struct FineTuningJob: Codable, JSONEncodable, Hashable {
         self.validationFile = validationFile
         self.integrations = integrations
         self.seed = seed
+        self.estimatedFinish = estimatedFinish
+        self.method = method
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -92,6 +97,8 @@ public struct FineTuningJob: Codable, JSONEncodable, Hashable {
         case validationFile = "validation_file"
         case integrations
         case seed
+        case estimatedFinish = "estimated_finish"
+        case method
     }
 
     // Encodable protocol methods
@@ -114,6 +121,8 @@ public struct FineTuningJob: Codable, JSONEncodable, Hashable {
         try container.encode(validationFile, forKey: .validationFile)
         try container.encodeIfPresent(integrations, forKey: .integrations)
         try container.encode(seed, forKey: .seed)
+        try container.encodeIfPresent(estimatedFinish, forKey: .estimatedFinish)
+        try container.encodeIfPresent(method, forKey: .method)
     }
 }
 

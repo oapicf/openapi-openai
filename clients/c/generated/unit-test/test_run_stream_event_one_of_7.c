@@ -23,13 +23,13 @@ run_stream_event_one_of_7_t* instantiate_run_stream_event_one_of_7(int include_o
   run_stream_event_one_of_7_t* run_stream_event_one_of_7 = NULL;
   if (include_optional) {
     run_stream_event_one_of_7 = run_stream_event_one_of_7_create(
-      openai_api_run_stream_event_one_of_7_EVENT_thread.run.cancelled,
+      openai_api_run_stream_event_one_of_7_EVENT_thread.run.cancelling,
        // false, not to have infinite recursion
       instantiate_run_object(0)
     );
   } else {
     run_stream_event_one_of_7 = run_stream_event_one_of_7_create(
-      openai_api_run_stream_event_one_of_7_EVENT_thread.run.cancelled,
+      openai_api_run_stream_event_one_of_7_EVENT_thread.run.cancelling,
       NULL
     );
   }

@@ -12,6 +12,7 @@
   [ {'description', binary() }
   | {'name', binary() }
   | {'parameters', map() }
+  | {'strict', boolean() }
   ].
 
 
@@ -22,6 +23,7 @@ openapi_function_object(Fields) ->
   Default = [ {'description', binary() }
             , {'name', binary() }
             , {'parameters', map() }
+            , {'strict', boolean() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

@@ -1,0 +1,58 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server InviteListResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a InviteListResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  Invite = openapi_server.resourceTypes.Invite
+}
+resourceTypes {
+
+  InviteListResponse {
+    title = InviteListResponse
+    description = InviteListResponse
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;list&#x60;"
+          enum = ["list"]
+          optional = true
+        }
+        data {
+          type = array
+          items.type = Invite
+          description = ""
+          optional = true
+        }
+        first_id {
+          type =  string
+          description = "The first &#x60;invite_id&#x60; in the retrieved &#x60;list&#x60;"
+          optional = false
+        }
+        last_id {
+          type =  string
+          description = "The last &#x60;invite_id&#x60; in the retrieved &#x60;list&#x60;"
+          optional = false
+        }
+        has_more {
+          type =  boolean
+          description = "The &#x60;has_more&#x60; property is used for pagination to indicate there are additional results."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  InviteListResponse {
+    title = InviteListResponse
+    description = InviteListResponse
+    implements = openapi_server.resourceTypes.InviteListResponse
+
+  }
+}

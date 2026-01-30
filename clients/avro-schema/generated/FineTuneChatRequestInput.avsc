@@ -1,0 +1,42 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The per-line training example of a fine-tuning input file for chat models using the supervised method.",
+  "name": "FineTuneChatRequestInput",
+  "fields": [
+    {
+      "name": "messages",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.FineTuneChatRequestInputMessagesInner"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "tools",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.ChatCompletionTool"
+      }],
+      "doc": "A list of tools the model may generate JSON inputs for.",
+      "default": null
+    },
+    {
+      "name": "parallel_tool_calls",
+      "type": ["boolean", "null"],
+      "doc": "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.",
+      "default": true
+    },
+    {
+      "name": "functions",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.ChatCompletionFunctions"
+      }],
+      "doc": "A list of functions the model may generate JSON inputs for.",
+      "default": null
+    }
+  ]
+
+}

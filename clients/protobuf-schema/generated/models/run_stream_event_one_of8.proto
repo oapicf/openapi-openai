@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -19,7 +19,7 @@ import public "models/run_object.proto";
 message RunStreamEventOneOf8 {
 
   enum Event {
-    EVENT_THREAD_RUN_EXPIRED = 0;
+    EVENT_THREAD_RUN_CANCELLED = 0;
   }
 
   Event event = 96891546;

@@ -4,6 +4,7 @@
             [open-ai-api.specs.create-completion-request-model :refer :all]
             [open-ai-api.specs.create-completion-request-prompt :refer :all]
             [open-ai-api.specs.create-completion-request-stop :refer :all]
+            [open-ai-api.specs.chat-completion-stream-options :refer :all]
             )
   (:import (java.io File)))
 
@@ -23,6 +24,7 @@
    (ds/opt :seed) int?
    (ds/opt :stop) create-completion-request-stop-spec
    (ds/opt :stream) boolean?
+   (ds/opt :stream_options) chat-completion-stream-options-spec
    (ds/opt :suffix) string?
    (ds/opt :temperature) float?
    (ds/opt :top_p) float?

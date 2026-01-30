@@ -3,6 +3,7 @@ package org.openapitools.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.CompletionUsage;
 import org.openapitools.model.CreateChatCompletionResponseChoicesInner;
 
@@ -45,6 +46,43 @@ public class CreateChatCompletionResponse  {
   @ApiModelProperty(required = true, value = "The model used for the chat completion.")
 
   private String model;
+
+public enum ServiceTierEnum {
+
+SCALE(String.valueOf("scale")), DEFAULT(String.valueOf("default"));
+
+
+    private String value;
+
+    ServiceTierEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    public static ServiceTierEnum fromValue(String value) {
+        for (ServiceTierEnum b : ServiceTierEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        return null;
+    }
+}
+
+ /**
+  * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+  */
+  @ApiModelProperty(example = "scale", value = "The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.")
+
+  private ServiceTierEnum serviceTier;
 
  /**
   * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
@@ -171,6 +209,27 @@ CHAT_COMPLETION(String.valueOf("chat.completion"));
   }
 
  /**
+   * The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request.
+   * @return serviceTier
+  **/
+  @JsonProperty("service_tier")
+  public String getServiceTier() {
+    if (serviceTier == null) {
+      return null;
+    }
+    return serviceTier.value();
+  }
+
+  public void setServiceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
+  }
+
+  public CreateChatCompletionResponse serviceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
+    return this;
+  }
+
+ /**
    * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism. 
    * @return systemFingerprint
   **/
@@ -240,6 +299,7 @@ CHAT_COMPLETION(String.valueOf("chat.completion"));
         Objects.equals(this.choices, createChatCompletionResponse.choices) &&
         Objects.equals(this.created, createChatCompletionResponse.created) &&
         Objects.equals(this.model, createChatCompletionResponse.model) &&
+        Objects.equals(this.serviceTier, createChatCompletionResponse.serviceTier) &&
         Objects.equals(this.systemFingerprint, createChatCompletionResponse.systemFingerprint) &&
         Objects.equals(this._object, createChatCompletionResponse._object) &&
         Objects.equals(this.usage, createChatCompletionResponse.usage);
@@ -247,7 +307,7 @@ CHAT_COMPLETION(String.valueOf("chat.completion"));
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, choices, created, model, systemFingerprint, _object, usage);
+    return Objects.hash(id, choices, created, model, serviceTier, systemFingerprint, _object, usage);
   }
 
   @Override
@@ -259,6 +319,7 @@ CHAT_COMPLETION(String.valueOf("chat.completion"));
     sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    serviceTier: ").append(toIndentedString(serviceTier)).append("\n");
     sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");

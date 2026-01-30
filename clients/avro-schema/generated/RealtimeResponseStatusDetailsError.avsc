@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "A description of the error that caused the response to fail,  populated when the `status` is `failed`. ",
+  "name": "RealtimeResponseStatusDetailsError",
+  "fields": [
+    {
+      "name": "type",
+      "type": ["null", "string"],
+      "doc": "The type of error.",
+      "default": null
+    },
+    {
+      "name": "code",
+      "type": ["null", "string"],
+      "doc": "Error code, if any.",
+      "default": null
+    }
+  ]
+
+}

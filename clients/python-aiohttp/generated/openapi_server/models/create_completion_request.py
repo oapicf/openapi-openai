@@ -5,6 +5,7 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
+from openapi_server.models.chat_completion_stream_options import ChatCompletionStreamOptions
 from openapi_server.models.create_completion_request_model import CreateCompletionRequestModel
 from openapi_server.models.create_completion_request_prompt import CreateCompletionRequestPrompt
 from openapi_server.models.create_completion_request_stop import CreateCompletionRequestStop
@@ -17,7 +18,7 @@ class CreateCompletionRequest(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, model: CreateCompletionRequestModel=None, prompt: CreateCompletionRequestPrompt=None, best_of: int=1, echo: bool=False, frequency_penalty: float=0, logit_bias: Dict[str, int]=None, logprobs: int=None, max_tokens: int=16, n: int=1, presence_penalty: float=0, seed: int=None, stop: CreateCompletionRequestStop=None, stream: bool=False, suffix: str=None, temperature: float=1, top_p: float=1, user: str=None):
+    def __init__(self, model: CreateCompletionRequestModel=None, prompt: CreateCompletionRequestPrompt=None, best_of: int=1, echo: bool=False, frequency_penalty: float=0, logit_bias: Dict[str, int]=None, logprobs: int=None, max_tokens: int=16, n: int=1, presence_penalty: float=0, seed: int=None, stop: CreateCompletionRequestStop=None, stream: bool=False, stream_options: ChatCompletionStreamOptions=None, suffix: str=None, temperature: float=1, top_p: float=1, user: str=None):
         """CreateCompletionRequest - a model defined in OpenAPI
 
         :param model: The model of this CreateCompletionRequest.
@@ -33,6 +34,7 @@ class CreateCompletionRequest(Model):
         :param seed: The seed of this CreateCompletionRequest.
         :param stop: The stop of this CreateCompletionRequest.
         :param stream: The stream of this CreateCompletionRequest.
+        :param stream_options: The stream_options of this CreateCompletionRequest.
         :param suffix: The suffix of this CreateCompletionRequest.
         :param temperature: The temperature of this CreateCompletionRequest.
         :param top_p: The top_p of this CreateCompletionRequest.
@@ -52,6 +54,7 @@ class CreateCompletionRequest(Model):
             'seed': int,
             'stop': CreateCompletionRequestStop,
             'stream': bool,
+            'stream_options': ChatCompletionStreamOptions,
             'suffix': str,
             'temperature': float,
             'top_p': float,
@@ -72,6 +75,7 @@ class CreateCompletionRequest(Model):
             'seed': 'seed',
             'stop': 'stop',
             'stream': 'stream',
+            'stream_options': 'stream_options',
             'suffix': 'suffix',
             'temperature': 'temperature',
             'top_p': 'top_p',
@@ -91,6 +95,7 @@ class CreateCompletionRequest(Model):
         self._seed = seed
         self._stop = stop
         self._stream = stream
+        self._stream_options = stream_options
         self._suffix = suffix
         self._temperature = temperature
         self._top_p = top_p
@@ -205,7 +210,7 @@ class CreateCompletionRequest(Model):
     def frequency_penalty(self):
         """Gets the frequency_penalty of this CreateCompletionRequest.
 
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
 
         :return: The frequency_penalty of this CreateCompletionRequest.
         :rtype: float
@@ -216,7 +221,7 @@ class CreateCompletionRequest(Model):
     def frequency_penalty(self, frequency_penalty):
         """Sets the frequency_penalty of this CreateCompletionRequest.
 
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
 
         :param frequency_penalty: The frequency_penalty of this CreateCompletionRequest.
         :type frequency_penalty: float
@@ -334,7 +339,7 @@ class CreateCompletionRequest(Model):
     def presence_penalty(self):
         """Gets the presence_penalty of this CreateCompletionRequest.
 
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
 
         :return: The presence_penalty of this CreateCompletionRequest.
         :rtype: float
@@ -345,7 +350,7 @@ class CreateCompletionRequest(Model):
     def presence_penalty(self, presence_penalty):
         """Sets the presence_penalty of this CreateCompletionRequest.
 
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
 
         :param presence_penalty: The presence_penalty of this CreateCompletionRequest.
         :type presence_penalty: float
@@ -377,10 +382,10 @@ class CreateCompletionRequest(Model):
         :param seed: The seed of this CreateCompletionRequest.
         :type seed: int
         """
-        if seed is not None and seed > 9223372036854775807:
-            raise ValueError("Invalid value for `seed`, must be a value less than or equal to `9223372036854775807`")
-        if seed is not None and seed < -9223372036854775808:
-            raise ValueError("Invalid value for `seed`, must be a value greater than or equal to `-9223372036854775808`")
+        if seed is not None and seed > 9223372036854776000:
+            raise ValueError("Invalid value for `seed`, must be a value less than or equal to `9223372036854776000`")
+        if seed is not None and seed < -9223372036854776000:
+            raise ValueError("Invalid value for `seed`, must be a value greater than or equal to `-9223372036854776000`")
 
         self._seed = seed
 
@@ -427,6 +432,27 @@ class CreateCompletionRequest(Model):
         """
 
         self._stream = stream
+
+    @property
+    def stream_options(self):
+        """Gets the stream_options of this CreateCompletionRequest.
+
+
+        :return: The stream_options of this CreateCompletionRequest.
+        :rtype: ChatCompletionStreamOptions
+        """
+        return self._stream_options
+
+    @stream_options.setter
+    def stream_options(self, stream_options):
+        """Sets the stream_options of this CreateCompletionRequest.
+
+
+        :param stream_options: The stream_options of this CreateCompletionRequest.
+        :type stream_options: ChatCompletionStreamOptions
+        """
+
+        self._stream_options = stream_options
 
     @property
     def suffix(self):
@@ -509,7 +535,7 @@ class CreateCompletionRequest(Model):
     def user(self):
         """Gets the user of this CreateCompletionRequest.
 
-        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 
         :return: The user of this CreateCompletionRequest.
         :rtype: str
@@ -520,7 +546,7 @@ class CreateCompletionRequest(Model):
     def user(self, user):
         """Sets the user of this CreateCompletionRequest.
 
-        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 
         :param user: The user of this CreateCompletionRequest.
         :type user: str

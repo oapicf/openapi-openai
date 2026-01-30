@@ -23,7 +23,7 @@ test_that("name", {
 
 test_that("parameters", {
   # tests for the property `parameters` (map(AnyType))
-  # The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.
+  # The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting &#x60;parameters&#x60; defines a function with an empty parameter list.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`parameters`, "EXPECTED_RESULT")

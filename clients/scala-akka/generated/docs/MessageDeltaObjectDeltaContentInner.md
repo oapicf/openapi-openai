@@ -11,10 +11,12 @@ Name | Type | Description | Notes
 **`type`** | [**`Type`**](#`Type`) | Always &#x60;image_file&#x60;. | 
 **imageFile** | [**MessageDeltaContentImageFileObjectImageFile**](MessageDeltaContentImageFileObjectImageFile.md) |  |  [optional]
 **text** | [**MessageDeltaContentTextObjectText**](MessageDeltaContentTextObjectText.md) |  |  [optional]
+**refusal** | **String** |  |  [optional]
+**imageUrl** | [**MessageDeltaContentImageUrlObjectImageUrl**](MessageDeltaContentImageUrlObjectImageUrl.md) |  |  [optional]
 
 
 ## Enum: `Type`
-Allowed values: [image_file, text]
+Allowed values: [image_file, text, refusal, image_url]
 
 
 

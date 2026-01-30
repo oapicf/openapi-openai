@@ -68,40 +68,6 @@ private class OASAssistantsApiTest {
     }
 
     /**
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     *
-     * 
-     */
-    @isTest
-    private static void createAssistantFileTest() {
-        HttpResponse res = new HttpResponse();
-        res.setStatusCode(200);
-        res.setStatus('OK');
-        Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
-
-        Map<String, Object> params = new Map<String, Object>{
-            'assistantId' => file-abc123,
-            'oaSCreateAssistantFileRequest' => ''
-        };
-
-        OASClient client;
-        OASAssistantsApi api;
-        OASAssistantFileObject response;
-        OASAssistantFileObject expectedResponse;
-        String js = '';
-
-        client = new OASClient();
-        api = new OASAssistantsApi(client);
-
-        js = JSON.serialize(OASAssistantFileObject.getExample());
-        res.setHeader('Content-Type', 'application/json');
-        res.setBody(js);
-        expectedResponse = OASAssistantFileObject.getExample();
-        response = (OASAssistantFileObject) api.createAssistantFile(params);
-        System.assertEquals(expectedResponse, response);
-    }
-
-    /**
      * Create a message.
      *
      * 
@@ -149,7 +115,8 @@ private class OASAssistantsApiTest {
 
         Map<String, Object> params = new Map<String, Object>{
             'threadId' => 'null',
-            'oaSCreateRunRequest' => ''
+            'oaSCreateRunRequest' => '',
+            'include' => new List<String>{'step_details.tool_calls[*].file_search.results[*].content'}
         };
 
         OASClient client;
@@ -269,36 +236,36 @@ private class OASAssistantsApiTest {
     }
 
     /**
-     * Delete an assistant file.
+     * Deletes a message.
      *
      * 
      */
     @isTest
-    private static void deleteAssistantFileTest() {
+    private static void deleteMessageTest() {
         HttpResponse res = new HttpResponse();
         res.setStatusCode(200);
         res.setStatus('OK');
         Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
 
         Map<String, Object> params = new Map<String, Object>{
-            'assistantId' => 'null',
-            'fileId' => 'null'
+            'threadId' => 'null',
+            'messageId' => 'null'
         };
 
         OASClient client;
         OASAssistantsApi api;
-        OASDeleteAssistantFileResponse response;
-        OASDeleteAssistantFileResponse expectedResponse;
+        OASDeleteMessageResponse response;
+        OASDeleteMessageResponse expectedResponse;
         String js = '';
 
         client = new OASClient();
         api = new OASAssistantsApi(client);
 
-        js = JSON.serialize(OASDeleteAssistantFileResponse.getExample());
+        js = JSON.serialize(OASDeleteMessageResponse.getExample());
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
-        expectedResponse = OASDeleteAssistantFileResponse.getExample();
-        response = (OASDeleteAssistantFileResponse) api.deleteAssistantFile(params);
+        expectedResponse = OASDeleteMessageResponse.getExample();
+        response = (OASDeleteMessageResponse) api.deleteMessage(params);
         System.assertEquals(expectedResponse, response);
     }
 
@@ -369,40 +336,6 @@ private class OASAssistantsApiTest {
     }
 
     /**
-     * Retrieves an AssistantFile.
-     *
-     * 
-     */
-    @isTest
-    private static void getAssistantFileTest() {
-        HttpResponse res = new HttpResponse();
-        res.setStatusCode(200);
-        res.setStatus('OK');
-        Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
-
-        Map<String, Object> params = new Map<String, Object>{
-            'assistantId' => 'null',
-            'fileId' => 'null'
-        };
-
-        OASClient client;
-        OASAssistantsApi api;
-        OASAssistantFileObject response;
-        OASAssistantFileObject expectedResponse;
-        String js = '';
-
-        client = new OASClient();
-        api = new OASAssistantsApi(client);
-
-        js = JSON.serialize(OASAssistantFileObject.getExample());
-        res.setHeader('Content-Type', 'application/json');
-        res.setBody(js);
-        expectedResponse = OASAssistantFileObject.getExample();
-        response = (OASAssistantFileObject) api.getAssistantFile(params);
-        System.assertEquals(expectedResponse, response);
-    }
-
-    /**
      * Retrieve a message.
      *
      * 
@@ -433,41 +366,6 @@ private class OASAssistantsApiTest {
         res.setBody(js);
         expectedResponse = OASMessageObject.getExample();
         response = (OASMessageObject) api.getMessage(params);
-        System.assertEquals(expectedResponse, response);
-    }
-
-    /**
-     * Retrieves a message file.
-     *
-     * 
-     */
-    @isTest
-    private static void getMessageFileTest() {
-        HttpResponse res = new HttpResponse();
-        res.setStatusCode(200);
-        res.setStatus('OK');
-        Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
-
-        Map<String, Object> params = new Map<String, Object>{
-            'threadId' => thread_abc123,
-            'messageId' => msg_abc123,
-            'fileId' => file-abc123
-        };
-
-        OASClient client;
-        OASAssistantsApi api;
-        OASMessageFileObject response;
-        OASMessageFileObject expectedResponse;
-        String js = '';
-
-        client = new OASClient();
-        api = new OASAssistantsApi(client);
-
-        js = JSON.serialize(OASMessageFileObject.getExample());
-        res.setHeader('Content-Type', 'application/json');
-        res.setBody(js);
-        expectedResponse = OASMessageFileObject.getExample();
-        response = (OASMessageFileObject) api.getMessageFile(params);
         System.assertEquals(expectedResponse, response);
     }
 
@@ -520,7 +418,8 @@ private class OASAssistantsApiTest {
         Map<String, Object> params = new Map<String, Object>{
             'threadId' => 'null',
             'runId' => 'null',
-            'stepId' => 'null'
+            'stepId' => 'null',
+            'include' => new List<String>{'step_details.tool_calls[*].file_search.results[*].content'}
         };
 
         OASClient client;
@@ -574,43 +473,6 @@ private class OASAssistantsApiTest {
     }
 
     /**
-     * Returns a list of assistant files.
-     *
-     * 
-     */
-    @isTest
-    private static void listAssistantFilesTest() {
-        HttpResponse res = new HttpResponse();
-        res.setStatusCode(200);
-        res.setStatus('OK');
-        Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
-
-        Map<String, Object> params = new Map<String, Object>{
-            'assistantId' => 'null',
-            'r_limit' => '',
-            'order' => asc,
-            'after' => 'null',
-            'before' => 'null'
-        };
-
-        OASClient client;
-        OASAssistantsApi api;
-        OASListAssistantFilesResponse response;
-        OASListAssistantFilesResponse expectedResponse;
-        String js = '';
-
-        client = new OASClient();
-        api = new OASAssistantsApi(client);
-
-        js = JSON.serialize(OASListAssistantFilesResponse.getExample());
-        res.setHeader('Content-Type', 'application/json');
-        res.setBody(js);
-        expectedResponse = OASListAssistantFilesResponse.getExample();
-        response = (OASListAssistantFilesResponse) api.listAssistantFiles(params);
-        System.assertEquals(expectedResponse, response);
-    }
-
-    /**
      * Returns a list of assistants.
      *
      * 
@@ -643,44 +505,6 @@ private class OASAssistantsApiTest {
         res.setBody(js);
         expectedResponse = OASListAssistantsResponse.getExample();
         response = (OASListAssistantsResponse) api.listAssistants(params);
-        System.assertEquals(expectedResponse, response);
-    }
-
-    /**
-     * Returns a list of message files.
-     *
-     * 
-     */
-    @isTest
-    private static void listMessageFilesTest() {
-        HttpResponse res = new HttpResponse();
-        res.setStatusCode(200);
-        res.setStatus('OK');
-        Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
-
-        Map<String, Object> params = new Map<String, Object>{
-            'threadId' => 'null',
-            'messageId' => 'null',
-            'r_limit' => '',
-            'order' => asc,
-            'after' => 'null',
-            'before' => 'null'
-        };
-
-        OASClient client;
-        OASAssistantsApi api;
-        OASListMessageFilesResponse response;
-        OASListMessageFilesResponse expectedResponse;
-        String js = '';
-
-        client = new OASClient();
-        api = new OASAssistantsApi(client);
-
-        js = JSON.serialize(OASListMessageFilesResponse.getExample());
-        res.setHeader('Content-Type', 'application/json');
-        res.setBody(js);
-        expectedResponse = OASListMessageFilesResponse.getExample();
-        response = (OASListMessageFilesResponse) api.listMessageFiles(params);
         System.assertEquals(expectedResponse, response);
     }
 
@@ -740,7 +564,8 @@ private class OASAssistantsApiTest {
             'r_limit' => '',
             'order' => asc,
             'after' => 'null',
-            'before' => 'null'
+            'before' => 'null',
+            'include' => new List<String>{'step_details.tool_calls[*].file_search.results[*].content'}
         };
 
         OASClient client;

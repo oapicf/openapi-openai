@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -20,7 +20,7 @@ import (
 // checks if the ChatCompletionRequestMessageContentPartImage type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ChatCompletionRequestMessageContentPartImage{}
 
-// ChatCompletionRequestMessageContentPartImage struct for ChatCompletionRequestMessageContentPartImage
+// ChatCompletionRequestMessageContentPartImage Learn about [image inputs](/docs/guides/vision). 
 type ChatCompletionRequestMessageContentPartImage struct {
 	// The type of the content part.
 	Type string `json:"type"`

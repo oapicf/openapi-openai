@@ -3,7 +3,7 @@
 Exposes the following operation IDs:
 
 - `POST` to `/files`, OperationId: `createFile`:
-Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports &#x60;.jsonl&#x60; files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. .
+Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. .
 
 
 - `DELETE` to `/files/:file_id`, OperationId: `deleteFile`:
@@ -15,7 +15,7 @@ Returns the contents of the specified file..
 
 
 - `GET` to `/files`, OperationId: `listFiles`:
-Returns a list of files that belong to the user&#39;s organization..
+Returns a list of files..
 
 
 - `GET` to `/files/:file_id`, OperationId: `retrieveFile`:
@@ -45,10 +45,10 @@ Returns information about a specific file..
 -type class() :: 'files'.
 
 -type operation_id() ::
-    'createFile' %% Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports &#x60;.jsonl&#x60; files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+    'createFile' %% Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
     | 'deleteFile' %% Delete a file.
     | 'downloadFile' %% Returns the contents of the specified file.
-    | 'listFiles' %% Returns a list of files that belong to the user&#39;s organization.
+    | 'listFiles' %% Returns a list of files.
     | 'retrieveFile'. %% Returns information about a specific file.
 
 

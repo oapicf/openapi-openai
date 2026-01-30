@@ -11,4 +11,8 @@ type CompletionUsage struct {
 
 	// Total number of tokens used in the request (prompt + completion).
 	TotalTokens int32 `json:"total_tokens"`
+
+	CompletionTokensDetails CompletionUsageCompletionTokensDetails `json:"completion_tokens_details,omitempty"`
+
+	PromptTokensDetails CompletionUsagePromptTokensDetails `json:"prompt_tokens_details,omitempty"`
 }

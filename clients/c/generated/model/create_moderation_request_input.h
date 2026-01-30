@@ -1,7 +1,7 @@
 /*
  * create_moderation_request_input.h
  *
- * The input text to classify
+ * Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models. 
  */
 
 #ifndef _create_moderation_request_input_H_
@@ -15,6 +15,7 @@
 
 typedef struct create_moderation_request_input_t create_moderation_request_input_t;
 
+#include "create_moderation_request_input_one_of_inner.h"
 
 
 

@@ -13,7 +13,9 @@ import CreateChatCompletionResponseChoicesInnerLogprobs._
 
 case class CreateChatCompletionResponseChoicesInnerLogprobs (
   /* A list of message content tokens with log probability information. */
-  content: List[ChatCompletionTokenLogprob])
+  content: List[ChatCompletionTokenLogprob],
+/* A list of message refusal tokens with log probability information. */
+  refusal: List[ChatCompletionTokenLogprob])
 
 object CreateChatCompletionResponseChoicesInnerLogprobs {
   import DateTimeCodecs._

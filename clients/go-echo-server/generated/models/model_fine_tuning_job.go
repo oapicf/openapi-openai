@@ -48,4 +48,9 @@ type FineTuningJob struct {
 
 	// The seed used for the fine-tuning job.
 	Seed int32 `json:"seed"`
+
+	// The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+	EstimatedFinish *int32 `json:"estimated_finish,omitempty"`
+
+	Method FineTuneMethod `json:"method,omitempty"`
 }

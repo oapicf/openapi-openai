@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -24,8 +24,6 @@ type MessageDeltaObjectDelta struct {
 	Role *string `json:"role,omitempty"`
 	// The content of the message in array of text and/or images.
 	Content []MessageDeltaObjectDeltaContentInner `json:"content,omitempty"`
-	// A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-	FileIds []string `json:"file_ids,omitempty"`
 }
 
 // NewMessageDeltaObjectDelta instantiates a new MessageDeltaObjectDelta object
@@ -109,38 +107,6 @@ func (o *MessageDeltaObjectDelta) SetContent(v []MessageDeltaObjectDeltaContentI
 	o.Content = v
 }
 
-// GetFileIds returns the FileIds field value if set, zero value otherwise.
-func (o *MessageDeltaObjectDelta) GetFileIds() []string {
-	if o == nil || IsNil(o.FileIds) {
-		var ret []string
-		return ret
-	}
-	return o.FileIds
-}
-
-// GetFileIdsOk returns a tuple with the FileIds field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MessageDeltaObjectDelta) GetFileIdsOk() ([]string, bool) {
-	if o == nil || IsNil(o.FileIds) {
-		return nil, false
-	}
-	return o.FileIds, true
-}
-
-// HasFileIds returns a boolean if a field has been set.
-func (o *MessageDeltaObjectDelta) HasFileIds() bool {
-	if o != nil && !IsNil(o.FileIds) {
-		return true
-	}
-
-	return false
-}
-
-// SetFileIds gets a reference to the given []string and assigns it to the FileIds field.
-func (o *MessageDeltaObjectDelta) SetFileIds(v []string) {
-	o.FileIds = v
-}
-
 func (o MessageDeltaObjectDelta) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -156,9 +122,6 @@ func (o MessageDeltaObjectDelta) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Content) {
 		toSerialize["content"] = o.Content
-	}
-	if !IsNil(o.FileIds) {
-		toSerialize["file_ids"] = o.FileIds
 	}
 	return toSerialize, nil
 }

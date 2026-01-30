@@ -27,7 +27,7 @@ open_ai_file_t* instantiate_open_ai_file(int include_optional) {
       56,
       "0",
       openai_api_open_ai_file_OBJECT_file,
-      openai_api_open_ai_file_PURPOSE_fine-tune,
+      openai_api_open_ai_file_PURPOSE_assistants,
       openai_api_open_ai_file_STATUS_uploaded,
       "0"
     );
@@ -38,7 +38,7 @@ open_ai_file_t* instantiate_open_ai_file(int include_optional) {
       56,
       "0",
       openai_api_open_ai_file_OBJECT_file,
-      openai_api_open_ai_file_PURPOSE_fine-tune,
+      openai_api_open_ai_file_PURPOSE_assistants,
       openai_api_open_ai_file_STATUS_uploaded,
       "0"
     );

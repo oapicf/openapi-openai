@@ -1,0 +1,36 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ModifyThreadRequestToolResourcesFileSearch"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ModifyThreadRequestToolResourcesFileSearch"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ModifyThreadRequestToolResourcesFileSearch {
+    title = ModifyThreadRequestToolResourcesFileSearch
+    description = ModifyThreadRequestToolResourcesFileSearch
+    derivedFrom = Root
+    properties {
+        vector_store_ids {
+          type = array
+          items.type =  string
+          description = "The [vector store](/docs/api-reference/vector-stores/object) attached to this thread. There can be a maximum of 1 vector store attached to the thread. "
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ModifyThreadRequestToolResourcesFileSearch {
+    title = ModifyThreadRequestToolResourcesFileSearch
+    description = ModifyThreadRequestToolResourcesFileSearch
+    implements = openapi_server.resourceTypes.ModifyThreadRequestToolResourcesFileSearch
+
+  }
+}

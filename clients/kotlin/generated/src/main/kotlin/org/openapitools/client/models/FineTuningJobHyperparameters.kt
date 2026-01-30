@@ -15,22 +15,32 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.FineTuningJobHyperparametersNEpochs
+import org.openapitools.client.models.CreateFineTuningJobRequestHyperparametersBatchSize
+import org.openapitools.client.models.CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+import org.openapitools.client.models.CreateFineTuningJobRequestHyperparametersNEpochs
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+ * The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.
  *
+ * @param batchSize 
+ * @param learningRateMultiplier 
  * @param nEpochs 
  */
 
 
 data class FineTuningJobHyperparameters (
 
+    @Json(name = "batch_size")
+    val batchSize: CreateFineTuningJobRequestHyperparametersBatchSize? = null,
+
+    @Json(name = "learning_rate_multiplier")
+    val learningRateMultiplier: CreateFineTuningJobRequestHyperparametersLearningRateMultiplier? = null,
+
     @Json(name = "n_epochs")
-    val nEpochs: FineTuningJobHyperparametersNEpochs
+    val nEpochs: CreateFineTuningJobRequestHyperparametersNEpochs? = null
 
 ) {
 

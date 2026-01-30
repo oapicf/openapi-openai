@@ -13,11 +13,13 @@
        'tools' => list(),
        'metadata' => maps:map(),
        'temperature' => integer(),
+       'top_p' => integer(),
        'stream' => boolean(),
        'max_prompt_tokens' => integer(),
        'max_completion_tokens' => integer(),
        'truncation_strategy' => openapi_truncation_object:openapi_truncation_object(),
        'tool_choice' => openapi_assistants_api_tool_choice_option:openapi_assistants_api_tool_choice_option(),
+       'parallel_tool_calls' => boolean(),
        'response_format' => openapi_assistants_api_response_format_option:openapi_assistants_api_response_format_option()
      }.
 
@@ -29,11 +31,13 @@ encode(#{ 'assistant_id' := AssistantId,
           'tools' := Tools,
           'metadata' := Metadata,
           'temperature' := Temperature,
+          'top_p' := TopP,
           'stream' := Stream,
           'max_prompt_tokens' := MaxPromptTokens,
           'max_completion_tokens' := MaxCompletionTokens,
           'truncation_strategy' := TruncationStrategy,
           'tool_choice' := ToolChoice,
+          'parallel_tool_calls' := ParallelToolCalls,
           'response_format' := ResponseFormat
         }) ->
     #{ 'assistant_id' => AssistantId,
@@ -44,10 +48,12 @@ encode(#{ 'assistant_id' := AssistantId,
        'tools' => Tools,
        'metadata' => Metadata,
        'temperature' => Temperature,
+       'top_p' => TopP,
        'stream' => Stream,
        'max_prompt_tokens' => MaxPromptTokens,
        'max_completion_tokens' => MaxCompletionTokens,
        'truncation_strategy' => TruncationStrategy,
        'tool_choice' => ToolChoice,
+       'parallel_tool_calls' => ParallelToolCalls,
        'response_format' => ResponseFormat
      }.

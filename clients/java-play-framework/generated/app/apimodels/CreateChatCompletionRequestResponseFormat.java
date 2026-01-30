@@ -1,5 +1,9 @@
 package apimodels;
 
+import apimodels.ResponseFormatJsonObject;
+import apimodels.ResponseFormatJsonSchema;
+import apimodels.ResponseFormatJsonSchemaJsonSchema;
+import apimodels.ResponseFormatText;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
@@ -8,18 +12,20 @@ import java.util.Objects;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 /**
- * An object specifying the format that the model must output. Compatible with [GPT-4 Turbo](/docs/models/gpt-4-and-gpt-4-turbo) and all GPT-3.5 Turbo models newer than &#x60;gpt-3.5-turbo-1106&#x60;.  Setting to &#x60;{ \&quot;type\&quot;: \&quot;json_object\&quot; }&#x60; enables JSON mode, which guarantees the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \&quot;stuck\&quot; request. Also note that the message content may be partially cut off if &#x60;finish_reason&#x3D;\&quot;length\&quot;&#x60;, which indicates the generation exceeded &#x60;max_tokens&#x60; or the conversation exceeded the max context length. 
+ * An object specifying the format that the model must output.  Setting to &#x60;{ \&quot;type\&quot;: \&quot;json_schema\&quot;, \&quot;json_schema\&quot;: {...} }&#x60; enables Structured Outputs which ensures the model will match your supplied JSON schema. Learn more in the [Structured Outputs guide](/docs/guides/structured-outputs).  Setting to &#x60;{ \&quot;type\&quot;: \&quot;json_object\&quot; }&#x60; enables JSON mode, which ensures the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \&quot;stuck\&quot; request. Also note that the message content may be partially cut off if &#x60;finish_reason&#x3D;\&quot;length\&quot;&#x60;, which indicates the generation exceeded &#x60;max_tokens&#x60; or the conversation exceeded the max context length. 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateChatCompletionRequestResponseFormat   {
   /**
-   * Must be one of `text` or `json_object`.
+   * The type of response format being defined: `text`
    */
   public enum TypeEnum {
     TEXT("text"),
     
-    JSON_OBJECT("json_object");
+    JSON_OBJECT("json_object"),
+    
+    JSON_SCHEMA("json_schema");
 
     private final String value;
 
@@ -45,8 +51,15 @@ public class CreateChatCompletionRequestResponseFormat   {
   }
 
   @JsonProperty("type")
-  
-  private TypeEnum type = TypeEnum.TEXT;
+  @NotNull
+
+  private TypeEnum type;
+
+  @JsonProperty("json_schema")
+  @NotNull
+@Valid
+
+  private ResponseFormatJsonSchemaJsonSchema jsonSchema;
 
   public CreateChatCompletionRequestResponseFormat type(TypeEnum type) {
     this.type = type;
@@ -54,7 +67,7 @@ public class CreateChatCompletionRequestResponseFormat   {
   }
 
    /**
-   * Must be one of `text` or `json_object`.
+   * The type of response format being defined: `text`
    * @return type
   **/
   public TypeEnum getType() {
@@ -63,6 +76,23 @@ public class CreateChatCompletionRequestResponseFormat   {
 
   public void setType(TypeEnum type) {
     this.type = type;
+  }
+
+  public CreateChatCompletionRequestResponseFormat jsonSchema(ResponseFormatJsonSchemaJsonSchema jsonSchema) {
+    this.jsonSchema = jsonSchema;
+    return this;
+  }
+
+   /**
+   * Get jsonSchema
+   * @return jsonSchema
+  **/
+  public ResponseFormatJsonSchemaJsonSchema getJsonSchema() {
+    return jsonSchema;
+  }
+
+  public void setJsonSchema(ResponseFormatJsonSchemaJsonSchema jsonSchema) {
+    this.jsonSchema = jsonSchema;
   }
 
 
@@ -75,12 +105,13 @@ public class CreateChatCompletionRequestResponseFormat   {
       return false;
     }
     CreateChatCompletionRequestResponseFormat createChatCompletionRequestResponseFormat = (CreateChatCompletionRequestResponseFormat) o;
-    return Objects.equals(type, createChatCompletionRequestResponseFormat.type);
+    return Objects.equals(type, createChatCompletionRequestResponseFormat.type) &&
+        Objects.equals(jsonSchema, createChatCompletionRequestResponseFormat.jsonSchema);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type);
+    return Objects.hash(type, jsonSchema);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -90,6 +121,7 @@ public class CreateChatCompletionRequestResponseFormat   {
     sb.append("class CreateChatCompletionRequestResponseFormat {\n");
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    jsonSchema: ").append(toIndentedString(jsonSchema)).append("\n");
     sb.append("}");
     return sb.toString();
   }

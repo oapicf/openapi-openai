@@ -15,11 +15,11 @@ class ChatCompletionRequestToolMessage
     public ?string $role = null;
 
     /**
-     * The contents of the tool message.
      * @DTA\Data(field="content")
-     * @DTA\Validator(name="Scalar", options={"type":"string"})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\ChatCompletionRequestToolMessageContent::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\ChatCompletionRequestToolMessageContent::class})
      */
-    public ?string $content = null;
+    public ?\App\DTO\ChatCompletionRequestToolMessageContent $content = null;
 
     /**
      * Tool call that this message is responding to.

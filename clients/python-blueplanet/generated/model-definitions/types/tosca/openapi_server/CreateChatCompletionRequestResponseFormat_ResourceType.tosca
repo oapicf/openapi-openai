@@ -7,6 +7,10 @@ authors     = ["F. Bar (foo@bar.baz)"]
 
 imports {
   Root = tosca.resourceTypes.Root
+  ResponseFormatJsonObject = openapi_server.resourceTypes.ResponseFormatJsonObject
+  ResponseFormatJsonSchema = openapi_server.resourceTypes.ResponseFormatJsonSchema
+  ResponseFormatJsonSchemaJsonSchema = openapi_server.resourceTypes.ResponseFormatJsonSchemaJsonSchema
+  ResponseFormatText = openapi_server.resourceTypes.ResponseFormatText
 }
 resourceTypes {
 
@@ -17,9 +21,14 @@ resourceTypes {
     properties {
         type {
           type =  string
-          description = "Must be one of &#x60;text&#x60; or &#x60;json_object&#x60;."
-          enum = ["text", "json_object"]
-          optional = false
+          description = "The type of response format being defined: &#x60;text&#x60;"
+          enum = ["text", "json_object", "json_schema"]
+          optional = true
+        }
+        json_schema {
+          type = ResponseFormatJsonSchemaJsonSchema
+          description = ""
+          optional = true
         }
     }
   }

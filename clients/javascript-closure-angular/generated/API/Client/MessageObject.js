@@ -90,14 +90,14 @@ API.Client.MessageObject.prototype.assistantId;
 API.Client.MessageObject.prototype.runId;
 
 /**
- * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
- * @type {!Array<!string>}
+ * A list of files attached to the message, and the tools they were added to.
+ * @type {!Array<!API.Client.CreateMessageRequest_attachments_inner>}
  * @export
  */
-API.Client.MessageObject.prototype.fileIds;
+API.Client.MessageObject.prototype.attachments;
 
 /**
- * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+ * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
  * @type {!API.Client.Object}
  * @export
  */

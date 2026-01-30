@@ -1,0 +1,55 @@
+
+<h2>VectorStoreFileObject</h2>
+<ul class="parameter">
+  <li class="param-required-true">id : String
+    <br/>The identifier, which can be referenced in API endpoints.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">object : String
+    <br/>The object type, which is always &#x60;vector_store.file&#x60;.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>vector_store.file</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">usageUnderscorebytes : Integer
+    <br/>The total vector store usage in bytes. Note that this may be different from the original file size.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">createdUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) for when the vector store file was created.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">vectorUnderscorestoreUnderscoreid : String
+    <br/>The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">status : String
+    <br/>The status of the vector store file, which can be either &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;cancelled&#x60;, or &#x60;failed&#x60;. The status &#x60;completed&#x60; indicates that the vector store file is ready for use.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>in_progress</dd>
+            <dd>completed</dd>
+            <dd>cancelled</dd>
+            <dd>failed</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">lastUnderscoreerror : VectorStoreFileObject_last_error
+    <br/>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">chunkingUnderscorestrategy : VectorStoreFileObject_chunking_strategy
+    <br/>
+  </li>
+</ul>

@@ -1,5 +1,6 @@
 package org.openapitools.model;
 
+import org.openapitools.model.ChatCompletionRequestToolMessageContent;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
@@ -45,12 +46,9 @@ TOOL(String.valueOf("tool"));
 
   private RoleEnum role;
 
- /**
-  * The contents of the tool message.
-  */
-  @ApiModelProperty(required = true, value = "The contents of the tool message.")
+  @ApiModelProperty(required = true, value = "")
 
-  private String content;
+  private ChatCompletionRequestToolMessageContent content;
 
  /**
   * Tool call that this message is responding to.
@@ -80,19 +78,19 @@ TOOL(String.valueOf("tool"));
   }
 
  /**
-   * The contents of the tool message.
+   * Get content
    * @return content
   **/
   @JsonProperty("content")
-  public String getContent() {
+  public ChatCompletionRequestToolMessageContent getContent() {
     return content;
   }
 
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
   }
 
-  public ChatCompletionRequestToolMessage content(String content) {
+  public ChatCompletionRequestToolMessage content(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
     return this;
   }

@@ -1,0 +1,52 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server BatchRequestOutput"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a BatchRequestOutput"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  BatchRequestOutputError = openapi_server.resourceTypes.BatchRequestOutputError
+  BatchRequestOutputResponse = openapi_server.resourceTypes.BatchRequestOutputResponse
+}
+resourceTypes {
+
+  BatchRequestOutput {
+    title = BatchRequestOutput
+    description = BatchRequestOutput
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        custom_id {
+          type =  string
+          description = "A developer-provided per-request id that will be used to match outputs to inputs."
+          optional = false
+        }
+        response {
+          type = BatchRequestOutputResponse
+          description = ""
+          optional = false
+        }
+        error {
+          type = BatchRequestOutputError
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  BatchRequestOutput {
+    title = BatchRequestOutput
+    description = BatchRequestOutput
+    implements = openapi_server.resourceTypes.BatchRequestOutput
+
+  }
+}

@@ -25,7 +25,7 @@ public:
 	ModerationsManager();
 	virtual ~ModerationsManager();
 
-/*! \brief Classifies if text is potentially harmful.. *Synchronous*
+/*! \brief Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). . *Synchronous*
  *
  * 
  * \param createModerationRequest  *Required*
@@ -38,7 +38,7 @@ bool createModerationSync(char * accessToken,
 	void(* handler)(CreateModerationResponse, Error, void* )
 	, void* userData);
 
-/*! \brief Classifies if text is potentially harmful.. *Asynchronous*
+/*! \brief Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). . *Asynchronous*
  *
  * 
  * \param createModerationRequest  *Required*

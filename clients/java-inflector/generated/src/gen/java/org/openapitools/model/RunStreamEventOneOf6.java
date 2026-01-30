@@ -12,17 +12,17 @@ import org.openapitools.model.RunObject;
 
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) moves to a &#x60;cancelling&#x60; status.
+ * Occurs when a [run](/docs/api-reference/runs/object) fails.
  **/
 
-@ApiModel(description = "Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description = "Occurs when a [run](/docs/api-reference/runs/object) fails.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStreamEventOneOf6   {
   /**
    * Gets or Sets event
    */
   public enum EventEnum {
-    THREAD_RUN_CANCELLING("thread.run.cancelling");
+    THREAD_RUN_FAILED("thread.run.failed");
 
     private String value;
 

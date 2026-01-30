@@ -28,6 +28,19 @@
       "doc": "The model used for the chat completion."
     },
     {
+      "name": "service_tier",
+      "type": ["null", {
+        "type": "enum",
+        "name": "CreateChatCompletionResponse_serviceUnderscoretier",
+        "symbols": [
+          "scale",
+          "default"
+        ]
+      }],
+      "doc": "The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.",
+      "default": null
+    },
+    {
       "name": "system_fingerprint",
       "type": ["null", "string"],
       "doc": "This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. ",

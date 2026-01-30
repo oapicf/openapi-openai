@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Messages sent by an end user, containing prompts or additional context information. 
  *
  * @param content 
  * @param role The role of the messages author, in this case `user`.

@@ -14,6 +14,7 @@ public struct CreateRunRequest: Codable, JSONEncodable, Hashable {
 
     public static let toolsRule = ArrayRule(minItems: nil, maxItems: 20, uniqueItems: false)
     public static let temperatureRule = NumericRule<Double>(minimum: 0, exclusiveMinimum: false, maximum: 2, exclusiveMaximum: false, multipleOf: nil)
+    public static let topPRule = NumericRule<Double>(minimum: 0, exclusiveMinimum: false, maximum: 1, exclusiveMaximum: false, multipleOf: nil)
     public static let maxPromptTokensRule = NumericRule<Int>(minimum: 256, exclusiveMinimum: false, maximum: nil, exclusiveMaximum: false, multipleOf: nil)
     public static let maxCompletionTokensRule = NumericRule<Int>(minimum: 256, exclusiveMinimum: false, maximum: nil, exclusiveMaximum: false, multipleOf: nil)
     /** The ID of the [assistant](/docs/api-reference/assistants) to use to execute this run. */
@@ -27,21 +28,25 @@ public struct CreateRunRequest: Codable, JSONEncodable, Hashable {
     public var additionalMessages: [CreateMessageRequest]?
     /** Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis. */
     public var tools: [AssistantObjectToolsInner]?
-    /** Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  */
+    /** Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  */
     public var metadata: AnyCodable?
     /** What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  */
     public var temperature: Double? = 1
+    /** An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.  */
+    public var topP: Double? = 1
     /** If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message.  */
     public var stream: Bool?
-    /** The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info.  */
+    /** The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info.  */
     public var maxPromptTokens: Int?
-    /** The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `complete`. See `incomplete_details` for more info.  */
+    /** The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info.  */
     public var maxCompletionTokens: Int?
     public var truncationStrategy: TruncationObject?
     public var toolChoice: AssistantsApiToolChoiceOption?
+    /** Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. */
+    public var parallelToolCalls: Bool? = true
     public var responseFormat: AssistantsApiResponseFormatOption?
 
-    public init(assistantId: String, model: CreateRunRequestModel? = nil, instructions: String? = nil, additionalInstructions: String? = nil, additionalMessages: [CreateMessageRequest]? = nil, tools: [AssistantObjectToolsInner]? = nil, metadata: AnyCodable? = nil, temperature: Double? = 1, stream: Bool? = nil, maxPromptTokens: Int? = nil, maxCompletionTokens: Int? = nil, truncationStrategy: TruncationObject? = nil, toolChoice: AssistantsApiToolChoiceOption? = nil, responseFormat: AssistantsApiResponseFormatOption? = nil) {
+    public init(assistantId: String, model: CreateRunRequestModel? = nil, instructions: String? = nil, additionalInstructions: String? = nil, additionalMessages: [CreateMessageRequest]? = nil, tools: [AssistantObjectToolsInner]? = nil, metadata: AnyCodable? = nil, temperature: Double? = 1, topP: Double? = 1, stream: Bool? = nil, maxPromptTokens: Int? = nil, maxCompletionTokens: Int? = nil, truncationStrategy: TruncationObject? = nil, toolChoice: AssistantsApiToolChoiceOption? = nil, parallelToolCalls: Bool? = true, responseFormat: AssistantsApiResponseFormatOption? = nil) {
         self.assistantId = assistantId
         self.model = model
         self.instructions = instructions
@@ -50,11 +55,13 @@ public struct CreateRunRequest: Codable, JSONEncodable, Hashable {
         self.tools = tools
         self.metadata = metadata
         self.temperature = temperature
+        self.topP = topP
         self.stream = stream
         self.maxPromptTokens = maxPromptTokens
         self.maxCompletionTokens = maxCompletionTokens
         self.truncationStrategy = truncationStrategy
         self.toolChoice = toolChoice
+        self.parallelToolCalls = parallelToolCalls
         self.responseFormat = responseFormat
     }
 
@@ -67,11 +74,13 @@ public struct CreateRunRequest: Codable, JSONEncodable, Hashable {
         case tools
         case metadata
         case temperature
+        case topP = "top_p"
         case stream
         case maxPromptTokens = "max_prompt_tokens"
         case maxCompletionTokens = "max_completion_tokens"
         case truncationStrategy = "truncation_strategy"
         case toolChoice = "tool_choice"
+        case parallelToolCalls = "parallel_tool_calls"
         case responseFormat = "response_format"
     }
 
@@ -87,11 +96,13 @@ public struct CreateRunRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(tools, forKey: .tools)
         try container.encodeIfPresent(metadata, forKey: .metadata)
         try container.encodeIfPresent(temperature, forKey: .temperature)
+        try container.encodeIfPresent(topP, forKey: .topP)
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(maxPromptTokens, forKey: .maxPromptTokens)
         try container.encodeIfPresent(maxCompletionTokens, forKey: .maxCompletionTokens)
         try container.encodeIfPresent(truncationStrategy, forKey: .truncationStrategy)
         try container.encodeIfPresent(toolChoice, forKey: .toolChoice)
+        try container.encodeIfPresent(parallelToolCalls, forKey: .parallelToolCalls)
         try container.encodeIfPresent(responseFormat, forKey: .responseFormat)
     }
 }

@@ -8,7 +8,7 @@
 #' @description RunStepDetailsToolCallsObject Class
 #' @format An \code{R6Class} generator object
 #' @field type Always `tool_calls`. character
-#' @field tool_calls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. list(\link{RunStepDetailsToolCallsObjectToolCallsInner})
+#' @field tool_calls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. list(\link{RunStepDetailsToolCallsObjectToolCallsInner})
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -22,7 +22,7 @@ RunStepDetailsToolCallsObject <- R6::R6Class(
     #' Initialize a new RunStepDetailsToolCallsObject class.
     #'
     #' @param type Always `tool_calls`.
-    #' @param tool_calls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`.
+    #' @param tool_calls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.
     #' @param ... Other optional arguments.
     initialize = function(`type`, `tool_calls`, ...) {
       if (!missing(`type`)) {

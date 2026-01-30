@@ -1,0 +1,66 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AdminApiKey"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AdminApiKey"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AdminApiKeyOwner = openapi_server.resourceTypes.AdminApiKeyOwner
+}
+resourceTypes {
+
+  AdminApiKey {
+    title = AdminApiKey
+    description = AdminApiKey
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          optional = false
+        }
+        id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        redacted_value {
+          type =  string
+          description = ""
+          optional = false
+        }
+        value {
+          type =  string
+          description = ""
+          optional = false
+        }
+        created_at {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        owner {
+          type = AdminApiKeyOwner
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AdminApiKey {
+    title = AdminApiKey
+    description = AdminApiKey
+    implements = openapi_server.resourceTypes.AdminApiKey
+
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The content part that is done.",
+  "name": "RealtimeServerEventResponseContentPartDonePart",
+  "fields": [
+    {
+      "name": "type",
+      "type": ["null", {
+        "type": "enum",
+        "name": "RealtimeServerEventResponseContentPartDonePart_type",
+        "symbols": [
+          "audio",
+          "text"
+        ]
+      }],
+      "doc": "The content type (\"text\", \"audio\").",
+      "default": null
+    },
+    {
+      "name": "text",
+      "type": ["null", "string"],
+      "doc": "The text content (if type is \"text\").",
+      "default": null
+    },
+    {
+      "name": "audio",
+      "type": ["null", "string"],
+      "doc": "Base64-encoded audio data (if type is \"audio\").",
+      "default": null
+    },
+    {
+      "name": "transcript",
+      "type": ["null", "string"],
+      "doc": "The transcript of the audio (if type is \"audio\").",
+      "default": null
+    }
+  ]
+
+}

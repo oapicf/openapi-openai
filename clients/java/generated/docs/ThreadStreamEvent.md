@@ -8,6 +8,7 @@ Occurs when a new [thread](/docs/api-reference/threads/object) is created.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**enabled** | **Boolean** | Whether to enable input audio transcription. |  [optional] |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**data** | [**ThreadObject**](ThreadObject.md) |  |  |
 

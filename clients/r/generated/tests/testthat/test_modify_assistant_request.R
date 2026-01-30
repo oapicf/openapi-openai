@@ -38,24 +38,46 @@ test_that("instructions", {
 
 test_that("tools", {
   # tests for the property `tools` (array[AssistantObjectToolsInner])
-  # A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;retrieval&#x60;, or &#x60;function&#x60;. 
+  # A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;file_search&#x60;, or &#x60;function&#x60;. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`tools`, "EXPECTED_RESULT")
 })
 
-test_that("file_ids", {
-  # tests for the property `file_ids` (array[character])
-  # A list of [File](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. If a file was previously attached to the list but does not show up in the list, it will be deleted from the assistant. 
+test_that("tool_resources", {
+  # tests for the property `tool_resources` (ModifyAssistantRequestToolResources)
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`file_ids`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`tool_resources`, "EXPECTED_RESULT")
 })
 
 test_that("metadata", {
   # tests for the property `metadata` (object)
-  # Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  # Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`metadata`, "EXPECTED_RESULT")
+})
+
+test_that("temperature", {
+  # tests for the property `temperature` (numeric)
+  # What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`temperature`, "EXPECTED_RESULT")
+})
+
+test_that("top_p", {
+  # tests for the property `top_p` (numeric)
+  # An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`top_p`, "EXPECTED_RESULT")
+})
+
+test_that("response_format", {
+  # tests for the property `response_format` (AssistantsApiResponseFormatOption)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`response_format`, "EXPECTED_RESULT")
 })

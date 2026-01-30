@@ -3,13 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **String** | Must be one of &#x60;text&#x60; or &#x60;json_object&#x60;. | [optional] [default to "text"]
+**Type** | **String** | The type of response format being defined: &#x60;text&#x60; | 
+**JsonSchema** | [**ResponseFormatJsonSchemaJsonSchema**](ResponseFormatJsonSchemaJsonSchema.md) |  | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$AssistantsApiResponseFormatOption = Initialize-PSOpenAPIToolsAssistantsApiResponseFormatOption  -Type json_object
+$AssistantsApiResponseFormatOption = Initialize-PSOpenAPIToolsAssistantsApiResponseFormatOption  -Type null `
+ -JsonSchema null
 ```
 
 - Convert the resource to JSON

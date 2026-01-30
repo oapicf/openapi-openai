@@ -20,6 +20,7 @@ import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.CreateChatCompletionStreamResponse
 import org.openapitools.client.models.CreateChatCompletionStreamResponseChoicesInner
+import org.openapitools.client.models.CreateChatCompletionStreamResponseUsage
 
 class CreateChatCompletionStreamResponseTest : ShouldSpec() {
     init {
@@ -32,7 +33,7 @@ class CreateChatCompletionStreamResponseTest : ShouldSpec() {
             //modelInstance.id shouldBe ("TODO")
         }
 
-        // to test the property `choices` - A list of chat completion choices. Can be more than one if `n` is greater than 1.
+        // to test the property `choices` - A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. 
         should("test choices") {
             // uncomment below to test the property
             //modelInstance.choices shouldBe ("TODO")
@@ -56,10 +57,22 @@ class CreateChatCompletionStreamResponseTest : ShouldSpec() {
             //modelInstance.`object` shouldBe ("TODO")
         }
 
+        // to test the property `serviceTier` - The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+        should("test serviceTier") {
+            // uncomment below to test the property
+            //modelInstance.serviceTier shouldBe ("TODO")
+        }
+
         // to test the property `systemFingerprint` - This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
         should("test systemFingerprint") {
             // uncomment below to test the property
             //modelInstance.systemFingerprint shouldBe ("TODO")
+        }
+
+        // to test the property `usage`
+        should("test usage") {
+            // uncomment below to test the property
+            //modelInstance.usage shouldBe ("TODO")
         }
 
     }

@@ -8,7 +8,7 @@ import org.openapitools._
 import org.openapitools.models.ChatCompletionRequestMessageContentPartImageImageUrl
 
 /**
- * 
+ * Learn about [image inputs](/docs/guides/vision). 
  * @param _type The type of the content part.
  * @param imageUnderscoreurl 
  */

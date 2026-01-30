@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -13,84 +13,162 @@ package openapi
 
 import (
 	"encoding/json"
+	"fmt"
+	"gopkg.in/validator.v2"
 )
 
-// checks if the CreateChatCompletionRequestResponseFormat type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateChatCompletionRequestResponseFormat{}
-
-// CreateChatCompletionRequestResponseFormat An object specifying the format that the model must output. Compatible with [GPT-4 Turbo](/docs/models/gpt-4-and-gpt-4-turbo) and all GPT-3.5 Turbo models newer than `gpt-3.5-turbo-1106`.  Setting to `{ \"type\": \"json_object\" }` enables JSON mode, which guarantees the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \"stuck\" request. Also note that the message content may be partially cut off if `finish_reason=\"length\"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. 
+// CreateChatCompletionRequestResponseFormat - An object specifying the format that the model must output.  Setting to `{ \"type\": \"json_schema\", \"json_schema\": {...} }` enables Structured Outputs which ensures the model will match your supplied JSON schema. Learn more in the [Structured Outputs guide](/docs/guides/structured-outputs).  Setting to `{ \"type\": \"json_object\" }` enables JSON mode, which ensures the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \"stuck\" request. Also note that the message content may be partially cut off if `finish_reason=\"length\"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. 
 type CreateChatCompletionRequestResponseFormat struct {
-	// Must be one of `text` or `json_object`.
-	Type *string `json:"type,omitempty"`
+	ResponseFormatJsonObject *ResponseFormatJsonObject
+	ResponseFormatJsonSchema *ResponseFormatJsonSchema
+	ResponseFormatText *ResponseFormatText
 }
 
-// NewCreateChatCompletionRequestResponseFormat instantiates a new CreateChatCompletionRequestResponseFormat object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewCreateChatCompletionRequestResponseFormat() *CreateChatCompletionRequestResponseFormat {
-	this := CreateChatCompletionRequestResponseFormat{}
-	var type_ string = "text"
-	this.Type = &type_
-	return &this
-}
-
-// NewCreateChatCompletionRequestResponseFormatWithDefaults instantiates a new CreateChatCompletionRequestResponseFormat object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewCreateChatCompletionRequestResponseFormatWithDefaults() *CreateChatCompletionRequestResponseFormat {
-	this := CreateChatCompletionRequestResponseFormat{}
-	var type_ string = "text"
-	this.Type = &type_
-	return &this
-}
-
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *CreateChatCompletionRequestResponseFormat) GetType() string {
-	if o == nil || IsNil(o.Type) {
-		var ret string
-		return ret
+// ResponseFormatJsonObjectAsCreateChatCompletionRequestResponseFormat is a convenience function that returns ResponseFormatJsonObject wrapped in CreateChatCompletionRequestResponseFormat
+func ResponseFormatJsonObjectAsCreateChatCompletionRequestResponseFormat(v *ResponseFormatJsonObject) CreateChatCompletionRequestResponseFormat {
+	return CreateChatCompletionRequestResponseFormat{
+		ResponseFormatJsonObject: v,
 	}
-	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateChatCompletionRequestResponseFormat) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
-		return nil, false
+// ResponseFormatJsonSchemaAsCreateChatCompletionRequestResponseFormat is a convenience function that returns ResponseFormatJsonSchema wrapped in CreateChatCompletionRequestResponseFormat
+func ResponseFormatJsonSchemaAsCreateChatCompletionRequestResponseFormat(v *ResponseFormatJsonSchema) CreateChatCompletionRequestResponseFormat {
+	return CreateChatCompletionRequestResponseFormat{
+		ResponseFormatJsonSchema: v,
 	}
-	return o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *CreateChatCompletionRequestResponseFormat) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
+// ResponseFormatTextAsCreateChatCompletionRequestResponseFormat is a convenience function that returns ResponseFormatText wrapped in CreateChatCompletionRequestResponseFormat
+func ResponseFormatTextAsCreateChatCompletionRequestResponseFormat(v *ResponseFormatText) CreateChatCompletionRequestResponseFormat {
+	return CreateChatCompletionRequestResponseFormat{
+		ResponseFormatText: v,
+	}
+}
+
+
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *CreateChatCompletionRequestResponseFormat) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into ResponseFormatJsonObject
+	err = newStrictDecoder(data).Decode(&dst.ResponseFormatJsonObject)
+	if err == nil {
+		jsonResponseFormatJsonObject, _ := json.Marshal(dst.ResponseFormatJsonObject)
+		if string(jsonResponseFormatJsonObject) == "{}" { // empty struct
+			dst.ResponseFormatJsonObject = nil
+		} else {
+			if err = validator.Validate(dst.ResponseFormatJsonObject); err != nil {
+				dst.ResponseFormatJsonObject = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.ResponseFormatJsonObject = nil
 	}
 
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *CreateChatCompletionRequestResponseFormat) SetType(v string) {
-	o.Type = &v
-}
-
-func (o CreateChatCompletionRequestResponseFormat) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
+	// try to unmarshal data into ResponseFormatJsonSchema
+	err = newStrictDecoder(data).Decode(&dst.ResponseFormatJsonSchema)
+	if err == nil {
+		jsonResponseFormatJsonSchema, _ := json.Marshal(dst.ResponseFormatJsonSchema)
+		if string(jsonResponseFormatJsonSchema) == "{}" { // empty struct
+			dst.ResponseFormatJsonSchema = nil
+		} else {
+			if err = validator.Validate(dst.ResponseFormatJsonSchema); err != nil {
+				dst.ResponseFormatJsonSchema = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.ResponseFormatJsonSchema = nil
 	}
-	return json.Marshal(toSerialize)
+
+	// try to unmarshal data into ResponseFormatText
+	err = newStrictDecoder(data).Decode(&dst.ResponseFormatText)
+	if err == nil {
+		jsonResponseFormatText, _ := json.Marshal(dst.ResponseFormatText)
+		if string(jsonResponseFormatText) == "{}" { // empty struct
+			dst.ResponseFormatText = nil
+		} else {
+			if err = validator.Validate(dst.ResponseFormatText); err != nil {
+				dst.ResponseFormatText = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.ResponseFormatText = nil
+	}
+
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.ResponseFormatJsonObject = nil
+		dst.ResponseFormatJsonSchema = nil
+		dst.ResponseFormatText = nil
+
+		return fmt.Errorf("data matches more than one schema in oneOf(CreateChatCompletionRequestResponseFormat)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(CreateChatCompletionRequestResponseFormat)")
+	}
 }
 
-func (o CreateChatCompletionRequestResponseFormat) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src CreateChatCompletionRequestResponseFormat) MarshalJSON() ([]byte, error) {
+	if src.ResponseFormatJsonObject != nil {
+		return json.Marshal(&src.ResponseFormatJsonObject)
 	}
-	return toSerialize, nil
+
+	if src.ResponseFormatJsonSchema != nil {
+		return json.Marshal(&src.ResponseFormatJsonSchema)
+	}
+
+	if src.ResponseFormatText != nil {
+		return json.Marshal(&src.ResponseFormatText)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *CreateChatCompletionRequestResponseFormat) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.ResponseFormatJsonObject != nil {
+		return obj.ResponseFormatJsonObject
+	}
+
+	if obj.ResponseFormatJsonSchema != nil {
+		return obj.ResponseFormatJsonSchema
+	}
+
+	if obj.ResponseFormatText != nil {
+		return obj.ResponseFormatText
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj CreateChatCompletionRequestResponseFormat) GetActualInstanceValue() (interface{}) {
+	if obj.ResponseFormatJsonObject != nil {
+		return *obj.ResponseFormatJsonObject
+	}
+
+	if obj.ResponseFormatJsonSchema != nil {
+		return *obj.ResponseFormatJsonSchema
+	}
+
+	if obj.ResponseFormatText != nil {
+		return *obj.ResponseFormatText
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableCreateChatCompletionRequestResponseFormat struct {

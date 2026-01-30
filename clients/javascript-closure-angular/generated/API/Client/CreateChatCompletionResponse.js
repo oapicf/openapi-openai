@@ -35,6 +35,13 @@ API.Client.CreateChatCompletionResponse.prototype.created;
 API.Client.CreateChatCompletionResponse.prototype.model;
 
 /**
+ * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+ * @type {!string}
+ * @export
+ */
+API.Client.CreateChatCompletionResponse.prototype.serviceTier;
+
+/**
  * This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
  * @type {!string}
  * @export
@@ -54,6 +61,11 @@ API.Client.CreateChatCompletionResponse.prototype.object;
  */
 API.Client.CreateChatCompletionResponse.prototype.usage;
 
+/** @enum {string} */
+API.Client.CreateChatCompletionResponse.ServiceTierEnum = { 
+  scale: 'scale',
+  default: 'default',
+}
 /** @enum {string} */
 API.Client.CreateChatCompletionResponse.ObjectEnum = { 
   chat.completion: 'chat.completion',

@@ -87,5 +87,6 @@ private class OASCreateFineTuningJobRequestTest {
         System.assertEquals(null, createFineTuningJobRequest.suffix);
         System.assertEquals(null, createFineTuningJobRequest.validationFile);
         System.assertEquals(null, createFineTuningJobRequest.seed);
+        System.assertEquals(null, createFineTuningJobRequest.method);
     }
 }

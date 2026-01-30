@@ -1,0 +1,45 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when the model-generated audio is done. Also emitted when a Response is interrupted, incomplete, or cancelled. ",
+  "name": "RealtimeServerEventResponseAudioDone",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventResponseAudioDone_type",
+        "symbols": [
+          "response_audio_done"
+        ]
+      },
+      "doc": "The event type, must be `response.audio.done`."
+    },
+    {
+      "name": "response_id",
+      "type": "string",
+      "doc": "The ID of the response."
+    },
+    {
+      "name": "item_id",
+      "type": "string",
+      "doc": "The ID of the item."
+    },
+    {
+      "name": "output_index",
+      "type": "int",
+      "doc": "The index of the output item in the response."
+    },
+    {
+      "name": "content_index",
+      "type": "int",
+      "doc": "The index of the content part in the item's content array."
+    }
+  ]
+
+}

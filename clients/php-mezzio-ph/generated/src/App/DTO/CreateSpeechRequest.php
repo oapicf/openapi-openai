@@ -27,7 +27,7 @@ class CreateSpeechRequest
     public $input;
 
     /**
-     * The voice to use when generating the audio. Supported voices are &#x60;alloy&#x60;, &#x60;echo&#x60;, &#x60;fable&#x60;, &#x60;onyx&#x60;, &#x60;nova&#x60;, and &#x60;shimmer&#x60;. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+     * The voice to use when generating the audio. Supported voices are &#x60;alloy&#x60;, &#x60;echo&#x60;, &#x60;fable&#x60;, &#x60;onyx&#x60;, &#x60;nova&#x60;, and &#x60;shimmer&#x60;. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
      * @DTA\Data(field="voice")
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      * @var string|null
@@ -47,7 +47,7 @@ class CreateSpeechRequest
      * @DTA\Data(field="speed", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"float"})
      * @DTA\Validator(name="GreaterThan", options={"min":0.25, "inclusive":true})
-     * @DTA\Validator(name="LessThan", options={"max":4.0, "inclusive":true})
+     * @DTA\Validator(name="LessThan", options={"max":4, "inclusive":true})
      * @var float|null
      */
     public $speed;

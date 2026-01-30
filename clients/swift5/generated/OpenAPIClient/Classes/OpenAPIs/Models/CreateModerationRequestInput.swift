@@ -10,15 +10,18 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The input text to classify */
+/** Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models.  */
 public enum CreateModerationRequestInput: Codable, JSONEncodable, Hashable {
     case typeString(String)
+    case type[CreateModerationRequestInputOneOfInner]([CreateModerationRequestInputOneOfInner])
     case type[String]([String])
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .typeString(let value):
+            try container.encode(value)
+        case .type[CreateModerationRequestInputOneOfInner](let value):
             try container.encode(value)
         case .type[String](let value):
             try container.encode(value)
@@ -29,6 +32,8 @@ public enum CreateModerationRequestInput: Codable, JSONEncodable, Hashable {
         let container = try decoder.singleValueContainer()
         if let value = try? container.decode(String.self) {
             self = .typeString(value)
+        } else if let value = try? container.decode([CreateModerationRequestInputOneOfInner].self) {
+            self = .type[CreateModerationRequestInputOneOfInner](value)
         } else if let value = try? container.decode([String].self) {
             self = .type[String](value)
         } else {

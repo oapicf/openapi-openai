@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -186,7 +186,7 @@ func (r ApiCreateImageEditRequest) ResponseFormat(responseFormat string) ApiCrea
 	return r
 }
 
-// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 func (r ApiCreateImageEditRequest) User(user string) ApiCreateImageEditRequest {
 	r.user = &user
 	return r
@@ -380,7 +380,7 @@ func (r ApiCreateImageVariationRequest) Size(size string) ApiCreateImageVariatio
 	return r
 }
 
-// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 func (r ApiCreateImageVariationRequest) User(user string) ApiCreateImageVariationRequest {
 	r.user = &user
 	return r

@@ -1,0 +1,42 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ApiKeyList",
+  "fields": [
+    {
+      "name": "object",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "data",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.AdminApiKey"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "has_more",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "first_id",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "last_id",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

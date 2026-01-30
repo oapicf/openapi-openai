@@ -1,5 +1,5 @@
 # Org.OpenAPITools.Model.RunStepStreamEventOneOf
-Occurs when a [run step](/docs/api-reference/runs/step-object) is created.
+Occurs when a [run step](/docs/api-reference/run-steps/step-object) is created.
 
 ## Properties
 

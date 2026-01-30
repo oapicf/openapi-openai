@@ -18,6 +18,11 @@
       "name": "category_scores",
       "type": "model.CreateModerationResponseResultsInnerCategoryScores",
       "doc": ""
+    },
+    {
+      "name": "category_applied_input_types",
+      "type": "model.CreateModerationResponseResultsInnerCategoryAppliedInputTypes",
+      "doc": ""
     }
   ]
 

@@ -10,7 +10,8 @@ import Foundation
 import AnyCodable
 #endif
 
-/** The hyperparameters used for the fine-tuning job. */
+/** The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of &#x60;method&#x60;, and should be passed in under the &#x60;method&#x60; parameter.  */
+@available(*, deprecated, message: "This schema is deprecated.")
 public struct CreateFineTuningJobRequestHyperparameters: Codable, JSONEncodable, Hashable {
 
     public var batchSize: CreateFineTuningJobRequestHyperparametersBatchSize?

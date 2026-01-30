@@ -32,7 +32,7 @@ API.Client.CreateCompletionRequest.prototype.bestOf;
 API.Client.CreateCompletionRequest.prototype.echo;
 
 /**
- * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+ * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
  * @type {!number}
  * @export
  */
@@ -67,7 +67,7 @@ API.Client.CreateCompletionRequest.prototype.maxTokens;
 API.Client.CreateCompletionRequest.prototype.n;
 
 /**
- * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+ * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
  * @type {!number}
  * @export
  */
@@ -94,6 +94,12 @@ API.Client.CreateCompletionRequest.prototype.stop;
 API.Client.CreateCompletionRequest.prototype.stream;
 
 /**
+ * @type {!API.Client.ChatCompletionStreamOptions}
+ * @export
+ */
+API.Client.CreateCompletionRequest.prototype.streamOptions;
+
+/**
  * The suffix that comes after a completion of inserted text.  This parameter is only supported for `gpt-3.5-turbo-instruct`. 
  * @type {!string}
  * @export
@@ -115,7 +121,7 @@ API.Client.CreateCompletionRequest.prototype.temperature;
 API.Client.CreateCompletionRequest.prototype.topP;
 
 /**
- * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+ * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
  * @type {!string}
  * @export
  */

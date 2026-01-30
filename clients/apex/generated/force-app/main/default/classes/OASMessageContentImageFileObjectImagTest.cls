@@ -75,4 +75,11 @@ private class OASMessageContentImageFileObjectImagTest {
         Map<String, String> x-property-mappings = messageContentImageFileObjectImageFile.getx-property-mappings();
         System.assertEquals('fileId', x-property-mappings.get('file_id'));
     }
+
+    @isTest
+    private static void defaultValuesPopulated() {
+        OASMessageContentImageFileObjectImag messageContentImageFileObjectImageFile = new OASMessageContentImageFileObjectImag();
+        System.assertEquals(DetailEnum.AUTO, messageContentImageFileObjectImageFile.detail);
+        System.assertEquals(null, messageContentImageFileObjectImageFile.fileId);
+    }
 }

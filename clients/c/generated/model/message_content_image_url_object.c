@@ -1,0 +1,150 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include "message_content_image_url_object.h"
+
+
+char* message_content_image_url_object_type_ToString(openai_api_message_content_image_url_object_TYPE_e type) {
+    char* typeArray[] =  { "NULL", "image_url" };
+    return typeArray[type];
+}
+
+openai_api_message_content_image_url_object_TYPE_e message_content_image_url_object_type_FromString(char* type){
+    int stringToReturn = 0;
+    char *typeArray[] =  { "NULL", "image_url" };
+    size_t sizeofArray = sizeof(typeArray) / sizeof(typeArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(type, typeArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+static message_content_image_url_object_t *message_content_image_url_object_create_internal(
+    openai_api_message_content_image_url_object_TYPE_e type,
+    message_content_image_url_object_image_url_t *image_url
+    ) {
+    message_content_image_url_object_t *message_content_image_url_object_local_var = malloc(sizeof(message_content_image_url_object_t));
+    if (!message_content_image_url_object_local_var) {
+        return NULL;
+    }
+    message_content_image_url_object_local_var->type = type;
+    message_content_image_url_object_local_var->image_url = image_url;
+
+    message_content_image_url_object_local_var->_library_owned = 1;
+    return message_content_image_url_object_local_var;
+}
+
+__attribute__((deprecated)) message_content_image_url_object_t *message_content_image_url_object_create(
+    openai_api_message_content_image_url_object_TYPE_e type,
+    message_content_image_url_object_image_url_t *image_url
+    ) {
+    return message_content_image_url_object_create_internal (
+        type,
+        image_url
+        );
+}
+
+void message_content_image_url_object_free(message_content_image_url_object_t *message_content_image_url_object) {
+    if(NULL == message_content_image_url_object){
+        return ;
+    }
+    if(message_content_image_url_object->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "message_content_image_url_object_free");
+        return ;
+    }
+    listEntry_t *listEntry;
+    if (message_content_image_url_object->image_url) {
+        message_content_image_url_object_image_url_free(message_content_image_url_object->image_url);
+        message_content_image_url_object->image_url = NULL;
+    }
+    free(message_content_image_url_object);
+}
+
+cJSON *message_content_image_url_object_convertToJSON(message_content_image_url_object_t *message_content_image_url_object) {
+    cJSON *item = cJSON_CreateObject();
+
+    // message_content_image_url_object->type
+    if (openai_api_message_content_image_url_object_TYPE_NULL == message_content_image_url_object->type) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "type", message_content_image_url_object_type_ToString(message_content_image_url_object->type)) == NULL)
+    {
+    goto fail; //Enum
+    }
+
+
+    // message_content_image_url_object->image_url
+    if (!message_content_image_url_object->image_url) {
+        goto fail;
+    }
+    cJSON *image_url_local_JSON = message_content_image_url_object_image_url_convertToJSON(message_content_image_url_object->image_url);
+    if(image_url_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "image_url", image_url_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+    return item;
+fail:
+    if (item) {
+        cJSON_Delete(item);
+    }
+    return NULL;
+}
+
+message_content_image_url_object_t *message_content_image_url_object_parseFromJSON(cJSON *message_content_image_url_objectJSON){
+
+    message_content_image_url_object_t *message_content_image_url_object_local_var = NULL;
+
+    // define the local variable for message_content_image_url_object->image_url
+    message_content_image_url_object_image_url_t *image_url_local_nonprim = NULL;
+
+    // message_content_image_url_object->type
+    cJSON *type = cJSON_GetObjectItemCaseSensitive(message_content_image_url_objectJSON, "type");
+    if (cJSON_IsNull(type)) {
+        type = NULL;
+    }
+    if (!type) {
+        goto end;
+    }
+
+    openai_api_message_content_image_url_object_TYPE_e typeVariable;
+    
+    if(!cJSON_IsString(type))
+    {
+    goto end; //Enum
+    }
+    typeVariable = message_content_image_url_object_type_FromString(type->valuestring);
+
+    // message_content_image_url_object->image_url
+    cJSON *image_url = cJSON_GetObjectItemCaseSensitive(message_content_image_url_objectJSON, "image_url");
+    if (cJSON_IsNull(image_url)) {
+        image_url = NULL;
+    }
+    if (!image_url) {
+        goto end;
+    }
+
+    
+    image_url_local_nonprim = message_content_image_url_object_image_url_parseFromJSON(image_url); //nonprimitive
+
+
+    message_content_image_url_object_local_var = message_content_image_url_object_create_internal (
+        typeVariable,
+        image_url_local_nonprim
+        );
+
+    return message_content_image_url_object_local_var;
+end:
+    if (image_url_local_nonprim) {
+        message_content_image_url_object_image_url_free(image_url_local_nonprim);
+        image_url_local_nonprim = NULL;
+    }
+    return NULL;
+
+}

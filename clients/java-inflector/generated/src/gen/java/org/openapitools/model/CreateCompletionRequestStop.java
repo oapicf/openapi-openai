@@ -12,7 +12,7 @@ import java.util.List;
  **/
 
 @ApiModel(description = "Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateCompletionRequestStop   {
 
   @Override

@@ -16,17 +16,21 @@
 #include "../model/create_chat_completion_request_response_format.h"
 create_chat_completion_request_response_format_t* instantiate_create_chat_completion_request_response_format(int include_optional);
 
+#include "test_response_format_json_schema_json_schema.c"
 
 
 create_chat_completion_request_response_format_t* instantiate_create_chat_completion_request_response_format(int include_optional) {
   create_chat_completion_request_response_format_t* create_chat_completion_request_response_format = NULL;
   if (include_optional) {
     create_chat_completion_request_response_format = create_chat_completion_request_response_format_create(
-      openai_api_create_chat_completion_request_response_format_TYPE_"text"
+      openai_api_create_chat_completion_request_response_format_TYPE_text,
+       // false, not to have infinite recursion
+      instantiate_response_format_json_schema_json_schema(0)
     );
   } else {
     create_chat_completion_request_response_format = create_chat_completion_request_response_format_create(
-      openai_api_create_chat_completion_request_response_format_TYPE_"text"
+      openai_api_create_chat_completion_request_response_format_TYPE_text,
+      NULL
     );
   }
 

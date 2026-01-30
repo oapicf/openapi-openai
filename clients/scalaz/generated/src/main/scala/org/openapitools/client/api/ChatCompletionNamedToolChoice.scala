@@ -14,7 +14,7 @@ import ChatCompletionNamedToolChoice._
 case class ChatCompletionNamedToolChoice (
   /* The type of the tool. Currently, only `function` is supported. */
   `type`: `Type`,
-function: ChatCompletionNamedToolChoiceFunction)
+function: AssistantsNamedToolChoiceFunction)
 
 object ChatCompletionNamedToolChoice {
   import DateTimeCodecs._

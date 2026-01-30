@@ -1,7 +1,7 @@
 @isTest
 private class OASModerationsApiTest {
     /**
-     * Classifies if text is potentially harmful.
+     * Classifies if text and/or image inputs are potentially harmful. Learn\nmore in the [moderation guide](/docs/guides/moderation).\n
      *
      * 
      */

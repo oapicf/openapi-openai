@@ -1,7 +1,7 @@
 #' Create a new RunStepStreamEventOneOf5
 #'
 #' @description
-#' Occurs when a [run step](/docs/api-reference/runs/step-object) is cancelled.
+#' Occurs when a [run step](/docs/api-reference/run-steps/step-object) is cancelled.
 #'
 #' @docType class
 #' @title RunStepStreamEventOneOf5

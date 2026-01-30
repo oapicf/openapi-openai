@@ -10,29 +10,35 @@ import Foundation
 import AnyCodable
 #endif
 
-/** An object specifying the format that the model must output. Compatible with [GPT-4 Turbo](/docs/models/gpt-4-and-gpt-4-turbo) and all GPT-3.5 Turbo models newer than &#x60;gpt-3.5-turbo-1106&#x60;.  Setting to &#x60;{ \&quot;type\&quot;: \&quot;json_object\&quot; }&#x60; enables JSON mode, which guarantees the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \&quot;stuck\&quot; request. Also note that the message content may be partially cut off if &#x60;finish_reason&#x3D;\&quot;length\&quot;&#x60;, which indicates the generation exceeded &#x60;max_tokens&#x60; or the conversation exceeded the max context length.  */
-public struct CreateChatCompletionRequestResponseFormat: Codable, JSONEncodable, Hashable {
-
-    public enum ModelType: String, Codable, CaseIterable {
-        case text = "text"
-        case jsonObject = "json_object"
-    }
-    /** Must be one of `text` or `json_object`. */
-    public var type: ModelType? = .text
-
-    public init(type: ModelType? = .text) {
-        self.type = type
-    }
-
-    public enum CodingKeys: String, CodingKey, CaseIterable {
-        case type
-    }
-
-    // Encodable protocol methods
+/** An object specifying the format that the model must output.  Setting to &#x60;{ \&quot;type\&quot;: \&quot;json_schema\&quot;, \&quot;json_schema\&quot;: {...} }&#x60; enables Structured Outputs which ensures the model will match your supplied JSON schema. Learn more in the [Structured Outputs guide](/docs/guides/structured-outputs).  Setting to &#x60;{ \&quot;type\&quot;: \&quot;json_object\&quot; }&#x60; enables JSON mode, which ensures the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \&quot;stuck\&quot; request. Also note that the message content may be partially cut off if &#x60;finish_reason&#x3D;\&quot;length\&quot;&#x60;, which indicates the generation exceeded &#x60;max_tokens&#x60; or the conversation exceeded the max context length.  */
+public enum CreateChatCompletionRequestResponseFormat: Codable, JSONEncodable, Hashable {
+    case typeResponseFormatJsonObject(ResponseFormatJsonObject)
+    case typeResponseFormatJsonSchema(ResponseFormatJsonSchema)
+    case typeResponseFormatText(ResponseFormatText)
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .typeResponseFormatJsonObject(let value):
+            try container.encode(value)
+        case .typeResponseFormatJsonSchema(let value):
+            try container.encode(value)
+        case .typeResponseFormatText(let value):
+            try container.encode(value)
+        }
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(ResponseFormatJsonObject.self) {
+            self = .typeResponseFormatJsonObject(value)
+        } else if let value = try? container.decode(ResponseFormatJsonSchema.self) {
+            self = .typeResponseFormatJsonSchema(value)
+        } else if let value = try? container.decode(ResponseFormatText.self) {
+            self = .typeResponseFormatText(value)
+        } else {
+            throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of CreateChatCompletionRequestResponseFormat"))
+        }
     }
 }
 

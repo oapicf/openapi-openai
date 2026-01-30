@@ -24,26 +24,21 @@ from fastapi import (  # noqa: F401
 
 from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from pydantic import Field, StrictInt, StrictStr, field_validator
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Annotated
-from openapi_server.models.assistant_file_object import AssistantFileObject
 from openapi_server.models.assistant_object import AssistantObject
-from openapi_server.models.create_assistant_file_request import CreateAssistantFileRequest
 from openapi_server.models.create_assistant_request import CreateAssistantRequest
 from openapi_server.models.create_message_request import CreateMessageRequest
 from openapi_server.models.create_run_request import CreateRunRequest
 from openapi_server.models.create_thread_and_run_request import CreateThreadAndRunRequest
 from openapi_server.models.create_thread_request import CreateThreadRequest
-from openapi_server.models.delete_assistant_file_response import DeleteAssistantFileResponse
 from openapi_server.models.delete_assistant_response import DeleteAssistantResponse
+from openapi_server.models.delete_message_response import DeleteMessageResponse
 from openapi_server.models.delete_thread_response import DeleteThreadResponse
-from openapi_server.models.list_assistant_files_response import ListAssistantFilesResponse
 from openapi_server.models.list_assistants_response import ListAssistantsResponse
-from openapi_server.models.list_message_files_response import ListMessageFilesResponse
 from openapi_server.models.list_messages_response import ListMessagesResponse
 from openapi_server.models.list_run_steps_response import ListRunStepsResponse
 from openapi_server.models.list_runs_response import ListRunsResponse
-from openapi_server.models.message_file_object import MessageFileObject
 from openapi_server.models.message_object import MessageObject
 from openapi_server.models.modify_assistant_request import ModifyAssistantRequest
 from openapi_server.models.modify_message_request import ModifyMessageRequest
@@ -75,7 +70,7 @@ async def list_assistants(
     limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
     order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query(desc, description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
     after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
-    before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
+    before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -186,6 +181,26 @@ async def create_thread(
     return await BaseAssistantsApi.subclasses[0]().create_thread(create_thread_request)
 
 
+@router.post(
+    "/threads/runs",
+    responses={
+        200: {"model": RunObject, "description": "OK"},
+    },
+    tags=["Assistants"],
+    summary="Create a thread and run it in one request.",
+    response_model_by_alias=True,
+)
+async def create_thread_and_run(
+    create_thread_and_run_request: CreateThreadAndRunRequest = Body(None, description=""),
+    token_ApiKeyAuth: TokenModel = Security(
+        get_token_ApiKeyAuth
+    ),
+) -> RunObject:
+    if not BaseAssistantsApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseAssistantsApi.subclasses[0]().create_thread_and_run(create_thread_and_run_request)
+
+
 @router.get(
     "/threads/{thread_id}",
     responses={
@@ -261,7 +276,7 @@ async def list_messages(
     limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
     order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query(desc, description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
     after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
-    before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
+    before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
     run_id: Annotated[Optional[StrictStr], Field(description="Filter messages by the run ID that generated them. ")] = Query(None, description="Filter messages by the run ID that generated them. ", alias="run_id"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
@@ -336,24 +351,25 @@ async def modify_message(
     return await BaseAssistantsApi.subclasses[0]().modify_message(thread_id, message_id, modify_message_request)
 
 
-@router.post(
-    "/threads/runs",
+@router.delete(
+    "/threads/{thread_id}/messages/{message_id}",
     responses={
-        200: {"model": RunObject, "description": "OK"},
+        200: {"model": DeleteMessageResponse, "description": "OK"},
     },
     tags=["Assistants"],
-    summary="Create a thread and run it in one request.",
+    summary="Deletes a message.",
     response_model_by_alias=True,
 )
-async def create_thread_and_run(
-    create_thread_and_run_request: CreateThreadAndRunRequest = Body(None, description=""),
+async def delete_message(
+    thread_id: Annotated[StrictStr, Field(description="The ID of the thread to which this message belongs.")] = Path(..., description="The ID of the thread to which this message belongs."),
+    message_id: Annotated[StrictStr, Field(description="The ID of the message to delete.")] = Path(..., description="The ID of the message to delete."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
-) -> RunObject:
+) -> DeleteMessageResponse:
     if not BaseAssistantsApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseAssistantsApi.subclasses[0]().create_thread_and_run(create_thread_and_run_request)
+    return await BaseAssistantsApi.subclasses[0]().delete_message(thread_id, message_id)
 
 
 @router.get(
@@ -370,7 +386,7 @@ async def list_runs(
     limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
     order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query(desc, description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
     after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
-    before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
+    before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -392,13 +408,14 @@ async def list_runs(
 async def create_run(
     thread_id: Annotated[StrictStr, Field(description="The ID of the thread to run.")] = Path(..., description="The ID of the thread to run."),
     create_run_request: CreateRunRequest = Body(None, description=""),
+    include: Annotated[Optional[List[StrictStr]], Field(description="A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")] = Query(None, description="A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", alias="include[]"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
 ) -> RunObject:
     if not BaseAssistantsApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseAssistantsApi.subclasses[0]().create_run(thread_id, create_run_request)
+    return await BaseAssistantsApi.subclasses[0]().create_run(thread_id, create_run_request, include)
 
 
 @router.get(
@@ -445,28 +462,6 @@ async def modify_run(
 
 
 @router.post(
-    "/threads/{thread_id}/runs/{run_id}/submit_tool_outputs",
-    responses={
-        200: {"model": RunObject, "description": "OK"},
-    },
-    tags=["Assistants"],
-    summary="When a run has the &#x60;status: \&quot;requires_action\&quot;&#x60; and &#x60;required_action.type&#x60; is &#x60;submit_tool_outputs&#x60;, this endpoint can be used to submit the outputs from the tool calls once they&#39;re all completed. All outputs must be submitted in a single request. ",
-    response_model_by_alias=True,
-)
-async def submit_tool_ouputs_to_run(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the [thread](/docs/api-reference/threads) to which this run belongs.")] = Path(..., description="The ID of the [thread](/docs/api-reference/threads) to which this run belongs."),
-    run_id: Annotated[StrictStr, Field(description="The ID of the run that requires the tool output submission.")] = Path(..., description="The ID of the run that requires the tool output submission."),
-    submit_tool_outputs_run_request: SubmitToolOutputsRunRequest = Body(None, description=""),
-    token_ApiKeyAuth: TokenModel = Security(
-        get_token_ApiKeyAuth
-    ),
-) -> RunObject:
-    if not BaseAssistantsApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseAssistantsApi.subclasses[0]().submit_tool_ouputs_to_run(thread_id, run_id, submit_tool_outputs_run_request)
-
-
-@router.post(
     "/threads/{thread_id}/runs/{run_id}/cancel",
     responses={
         200: {"model": RunObject, "description": "OK"},
@@ -502,14 +497,15 @@ async def list_run_steps(
     limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
     order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query(desc, description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
     after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
-    before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
+    before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
+    include: Annotated[Optional[List[StrictStr]], Field(description="A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")] = Query(None, description="A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", alias="include[]"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
 ) -> ListRunStepsResponse:
     if not BaseAssistantsApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseAssistantsApi.subclasses[0]().list_run_steps(thread_id, run_id, limit, order, after, before)
+    return await BaseAssistantsApi.subclasses[0]().list_run_steps(thread_id, run_id, limit, order, after, before, include)
 
 
 @router.get(
@@ -525,144 +521,33 @@ async def get_run_step(
     thread_id: Annotated[StrictStr, Field(description="The ID of the thread to which the run and run step belongs.")] = Path(..., description="The ID of the thread to which the run and run step belongs."),
     run_id: Annotated[StrictStr, Field(description="The ID of the run to which the run step belongs.")] = Path(..., description="The ID of the run to which the run step belongs."),
     step_id: Annotated[StrictStr, Field(description="The ID of the run step to retrieve.")] = Path(..., description="The ID of the run step to retrieve."),
+    include: Annotated[Optional[List[StrictStr]], Field(description="A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")] = Query(None, description="A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", alias="include[]"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
 ) -> RunStepObject:
     if not BaseAssistantsApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseAssistantsApi.subclasses[0]().get_run_step(thread_id, run_id, step_id)
-
-
-@router.get(
-    "/assistants/{assistant_id}/files",
-    responses={
-        200: {"model": ListAssistantFilesResponse, "description": "OK"},
-    },
-    tags=["Assistants"],
-    summary="Returns a list of assistant files.",
-    response_model_by_alias=True,
-)
-async def list_assistant_files(
-    assistant_id: Annotated[StrictStr, Field(description="The ID of the assistant the file belongs to.")] = Path(..., description="The ID of the assistant the file belongs to."),
-    limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
-    order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query(desc, description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
-    after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
-    before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
-    token_ApiKeyAuth: TokenModel = Security(
-        get_token_ApiKeyAuth
-    ),
-) -> ListAssistantFilesResponse:
-    if not BaseAssistantsApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseAssistantsApi.subclasses[0]().list_assistant_files(assistant_id, limit, order, after, before)
+    return await BaseAssistantsApi.subclasses[0]().get_run_step(thread_id, run_id, step_id, include)
 
 
 @router.post(
-    "/assistants/{assistant_id}/files",
+    "/threads/{thread_id}/runs/{run_id}/submit_tool_outputs",
     responses={
-        200: {"model": AssistantFileObject, "description": "OK"},
+        200: {"model": RunObject, "description": "OK"},
     },
     tags=["Assistants"],
-    summary="Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).",
+    summary="When a run has the &#x60;status: \&quot;requires_action\&quot;&#x60; and &#x60;required_action.type&#x60; is &#x60;submit_tool_outputs&#x60;, this endpoint can be used to submit the outputs from the tool calls once they&#39;re all completed. All outputs must be submitted in a single request. ",
     response_model_by_alias=True,
 )
-async def create_assistant_file(
-    assistant_id: Annotated[StrictStr, Field(description="The ID of the assistant for which to create a File. ")] = Path(..., description="The ID of the assistant for which to create a File. "),
-    create_assistant_file_request: CreateAssistantFileRequest = Body(None, description=""),
+async def submit_tool_ouputs_to_run(
+    thread_id: Annotated[StrictStr, Field(description="The ID of the [thread](/docs/api-reference/threads) to which this run belongs.")] = Path(..., description="The ID of the [thread](/docs/api-reference/threads) to which this run belongs."),
+    run_id: Annotated[StrictStr, Field(description="The ID of the run that requires the tool output submission.")] = Path(..., description="The ID of the run that requires the tool output submission."),
+    submit_tool_outputs_run_request: SubmitToolOutputsRunRequest = Body(None, description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
-) -> AssistantFileObject:
+) -> RunObject:
     if not BaseAssistantsApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseAssistantsApi.subclasses[0]().create_assistant_file(assistant_id, create_assistant_file_request)
-
-
-@router.get(
-    "/assistants/{assistant_id}/files/{file_id}",
-    responses={
-        200: {"model": AssistantFileObject, "description": "OK"},
-    },
-    tags=["Assistants"],
-    summary="Retrieves an AssistantFile.",
-    response_model_by_alias=True,
-)
-async def get_assistant_file(
-    assistant_id: Annotated[StrictStr, Field(description="The ID of the assistant who the file belongs to.")] = Path(..., description="The ID of the assistant who the file belongs to."),
-    file_id: Annotated[StrictStr, Field(description="The ID of the file we're getting.")] = Path(..., description="The ID of the file we&#39;re getting."),
-    token_ApiKeyAuth: TokenModel = Security(
-        get_token_ApiKeyAuth
-    ),
-) -> AssistantFileObject:
-    if not BaseAssistantsApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseAssistantsApi.subclasses[0]().get_assistant_file(assistant_id, file_id)
-
-
-@router.delete(
-    "/assistants/{assistant_id}/files/{file_id}",
-    responses={
-        200: {"model": DeleteAssistantFileResponse, "description": "OK"},
-    },
-    tags=["Assistants"],
-    summary="Delete an assistant file.",
-    response_model_by_alias=True,
-)
-async def delete_assistant_file(
-    assistant_id: Annotated[StrictStr, Field(description="The ID of the assistant that the file belongs to.")] = Path(..., description="The ID of the assistant that the file belongs to."),
-    file_id: Annotated[StrictStr, Field(description="The ID of the file to delete.")] = Path(..., description="The ID of the file to delete."),
-    token_ApiKeyAuth: TokenModel = Security(
-        get_token_ApiKeyAuth
-    ),
-) -> DeleteAssistantFileResponse:
-    if not BaseAssistantsApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseAssistantsApi.subclasses[0]().delete_assistant_file(assistant_id, file_id)
-
-
-@router.get(
-    "/threads/{thread_id}/messages/{message_id}/files",
-    responses={
-        200: {"model": ListMessageFilesResponse, "description": "OK"},
-    },
-    tags=["Assistants"],
-    summary="Returns a list of message files.",
-    response_model_by_alias=True,
-)
-async def list_message_files(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the thread that the message and files belong to.")] = Path(..., description="The ID of the thread that the message and files belong to."),
-    message_id: Annotated[StrictStr, Field(description="The ID of the message that the files belongs to.")] = Path(..., description="The ID of the message that the files belongs to."),
-    limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
-    order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query(desc, description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
-    after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
-    before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
-    token_ApiKeyAuth: TokenModel = Security(
-        get_token_ApiKeyAuth
-    ),
-) -> ListMessageFilesResponse:
-    if not BaseAssistantsApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseAssistantsApi.subclasses[0]().list_message_files(thread_id, message_id, limit, order, after, before)
-
-
-@router.get(
-    "/threads/{thread_id}/messages/{message_id}/files/{file_id}",
-    responses={
-        200: {"model": MessageFileObject, "description": "OK"},
-    },
-    tags=["Assistants"],
-    summary="Retrieves a message file.",
-    response_model_by_alias=True,
-)
-async def get_message_file(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the thread to which the message and File belong.")] = Path(..., description="The ID of the thread to which the message and File belong."),
-    message_id: Annotated[StrictStr, Field(description="The ID of the message the file belongs to.")] = Path(..., description="The ID of the message the file belongs to."),
-    file_id: Annotated[StrictStr, Field(description="The ID of the file being retrieved.")] = Path(..., description="The ID of the file being retrieved."),
-    token_ApiKeyAuth: TokenModel = Security(
-        get_token_ApiKeyAuth
-    ),
-) -> MessageFileObject:
-    if not BaseAssistantsApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseAssistantsApi.subclasses[0]().get_message_file(thread_id, message_id, file_id)
+    return await BaseAssistantsApi.subclasses[0]().submit_tool_ouputs_to_run(thread_id, run_id, submit_tool_outputs_run_request)

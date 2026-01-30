@@ -10,13 +10,16 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.MessageContentImageFileObject;
 import org.openapitools.model.MessageContentImageFileObjectImageFile;
+import org.openapitools.model.MessageContentImageUrlObject;
+import org.openapitools.model.MessageContentImageUrlObjectImageUrl;
+import org.openapitools.model.MessageContentRefusalObject;
 import org.openapitools.model.MessageContentTextObject;
 import org.openapitools.model.MessageContentTextObjectText;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T10:45:31.742862961Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T14:09:29.020322047Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageObjectContentInner   {
   
 
@@ -26,7 +29,11 @@ public class MessageObjectContentInner   {
   public enum TypeEnum {
     IMAGE_FILE("image_file"),
 
-        TEXT("text");
+        IMAGE_URL("image_url"),
+
+        TEXT("text"),
+
+        REFUSAL("refusal");
     private String value;
 
     TypeEnum(String value) {
@@ -42,7 +49,9 @@ public class MessageObjectContentInner   {
 
   private TypeEnum type;
   private MessageContentImageFileObjectImageFile imageFile;
+  private MessageContentImageUrlObjectImageUrl imageUrl;
   private MessageContentTextObjectText text;
+  private String refusal;
 
   /**
    * Always &#x60;image_file&#x60;.
@@ -75,6 +84,19 @@ public class MessageObjectContentInner   {
    **/
   
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("image_url")
+  @NotNull
+  public MessageContentImageUrlObjectImageUrl getImageUrl() {
+    return imageUrl;
+  }
+  public void setImageUrl(MessageContentImageUrlObjectImageUrl imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
+  /**
+   **/
+  
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty("text")
   @NotNull
   public MessageContentTextObjectText getText() {
@@ -82,6 +104,19 @@ public class MessageObjectContentInner   {
   }
   public void setText(MessageContentTextObjectText text) {
     this.text = text;
+  }
+
+  /**
+   **/
+  
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty("refusal")
+  @NotNull
+  public String getRefusal() {
+    return refusal;
+  }
+  public void setRefusal(String refusal) {
+    this.refusal = refusal;
   }
 
 
@@ -96,12 +131,14 @@ public class MessageObjectContentInner   {
     MessageObjectContentInner messageObjectContentInner = (MessageObjectContentInner) o;
     return Objects.equals(this.type, messageObjectContentInner.type) &&
         Objects.equals(this.imageFile, messageObjectContentInner.imageFile) &&
-        Objects.equals(this.text, messageObjectContentInner.text);
+        Objects.equals(this.imageUrl, messageObjectContentInner.imageUrl) &&
+        Objects.equals(this.text, messageObjectContentInner.text) &&
+        Objects.equals(this.refusal, messageObjectContentInner.refusal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, imageFile, text);
+    return Objects.hash(type, imageFile, imageUrl, text, refusal);
   }
 
   @Override
@@ -111,7 +148,9 @@ public class MessageObjectContentInner   {
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    imageFile: ").append(toIndentedString(imageFile)).append("\n");
+    sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
     sb.append("}");
     return sb.toString();
   }

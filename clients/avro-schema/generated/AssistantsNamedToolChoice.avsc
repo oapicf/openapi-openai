@@ -1,0 +1,28 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Specifies a tool the model should use. Use to force the model to call a specific tool.",
+  "name": "AssistantsNamedToolChoice",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "AssistantsNamedToolChoice_type",
+        "symbols": [
+          "function",
+          "code_interpreter",
+          "file_search"
+        ]
+      },
+      "doc": "The type of the tool. If type is `function`, the function name must be set"
+    },
+    {
+      "name": "function",
+      "type": ["null", "model.AssistantsNamedToolChoiceFunction"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

@@ -2,6 +2,7 @@ namespace OpenAPI.Model
 
 open System
 open System.Collections.Generic
+open OpenAPI.Model.ChatCompletionRequestToolMessageContent
 
 module ChatCompletionRequestToolMessage =
 
@@ -13,7 +14,7 @@ module ChatCompletionRequestToolMessage =
 
   type ChatCompletionRequestToolMessage = {
     Role : RoleEnum;
-    Content : string;
+    Content : ChatCompletionRequestToolMessageContent;
     ToolCallId : string;
   }
   //#endregion

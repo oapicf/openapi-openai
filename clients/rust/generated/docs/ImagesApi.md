@@ -55,7 +55,7 @@ Name | Type | Description  | Required | Notes
 **n** | Option<**i32**> | The number of images to generate. Must be between 1 and 10. |  |[default to 1]
 **size** | Option<**String**> | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. |  |[default to 1024x1024]
 **response_format** | Option<**String**> | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. |  |[default to url]
-**user** | Option<**String**> | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  |  |
+**user** | Option<**String**> | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  |  |
 
 ### Return type
 
@@ -88,7 +88,7 @@ Name | Type | Description  | Required | Notes
 **n** | Option<**i32**> | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. |  |[default to 1]
 **response_format** | Option<**String**> | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. |  |[default to url]
 **size** | Option<**String**> | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. |  |[default to 1024x1024]
-**user** | Option<**String**> | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  |  |
+**user** | Option<**String**> | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  |  |
 
 ### Return type
 

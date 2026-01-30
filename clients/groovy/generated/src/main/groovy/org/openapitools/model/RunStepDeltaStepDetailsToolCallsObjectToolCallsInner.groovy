@@ -5,9 +5,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsCodeObject;
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter;
+import org.openapitools.model.RunStepDeltaStepDetailsToolCallsFileSearchObject;
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsFunctionObject;
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsFunctionObjectFunction;
-import org.openapitools.model.RunStepDeltaStepDetailsToolCallsRetrievalObject;
 
 @Canonical
 class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner {
@@ -20,7 +20,7 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner {
     
         CODE_INTERPRETER("code_interpreter"),
         
-        RETRIEVAL("retrieval"),
+        FILE_SEARCH("file_search"),
         
         FUNCTION("function")
     
@@ -45,7 +45,7 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner {
     
     RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter codeInterpreter
     /* For now, this is always going to be an empty object. */
-    Object retrieval
+    Object fileSearch
     
     RunStepDeltaStepDetailsToolCallsFunctionObjectFunction function
 }

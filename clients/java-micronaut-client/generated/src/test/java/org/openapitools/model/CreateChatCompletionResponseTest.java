@@ -3,6 +3,7 @@ package org.openapitools.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.CompletionUsage;
 import org.openapitools.model.CreateChatCompletionResponseChoicesInner;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
@@ -54,6 +55,14 @@ public class CreateChatCompletionResponseTest {
     @Test
     public void modelTest() {
         // TODO: test model
+    }
+
+    /**
+     * Test the property 'serviceTier'
+     */
+    @Test
+    public void serviceTierTest() {
+        // TODO: test serviceTier
     }
 
     /**

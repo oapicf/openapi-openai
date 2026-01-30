@@ -45,7 +45,7 @@ public struct CreateImageRequest: Codable, JSONEncodable, Hashable {
     public var size: Size? = ._1024x1024
     /** The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`. */
     public var style: Style? = .vivid
-    /** A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  */
+    /** A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  */
     public var user: String?
 
     public init(prompt: String, model: CreateImageRequestModel? = nil, n: Int? = 1, quality: Quality? = .standard, responseFormat: ResponseFormat? = .url, size: Size? = ._1024x1024, style: Style? = .vivid, user: String? = nil) {

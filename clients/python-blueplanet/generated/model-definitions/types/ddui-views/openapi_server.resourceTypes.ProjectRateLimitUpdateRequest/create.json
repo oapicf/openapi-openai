@@ -1,0 +1,22 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "max_requests_per_1_minute" },
+      {"model": "max_tokens_per_1_minute" },
+      {"model": "max_images_per_1_minute" },
+      {"model": "max_audio_megabytes_per_1_minute" },
+      {"model": "max_requests_per_1_day" },
+      {"model": "batch_1_day_max_input_tokens" },
+    ]
+  }]
+}

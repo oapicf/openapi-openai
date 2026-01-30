@@ -1,0 +1,31 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server PredictionContentContent"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a PredictionContentContent"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ChatCompletionRequestMessageContentPartText = openapi_server.resourceTypes.ChatCompletionRequestMessageContentPartText
+}
+resourceTypes {
+
+  PredictionContentContent {
+    title = PredictionContentContent
+    description = PredictionContentContent
+    derivedFrom = Root
+    properties {
+    }
+  }
+}
+
+serviceTemplates {
+
+  PredictionContentContent {
+    title = PredictionContentContent
+    description = PredictionContentContent
+    implements = openapi_server.resourceTypes.PredictionContentContent
+
+  }
+}

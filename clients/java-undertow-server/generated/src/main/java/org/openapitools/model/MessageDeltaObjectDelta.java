@@ -3,7 +3,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * OpenAPI document version: 2.0.0
+ * OpenAPI document version: 2.3.0
  * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -28,7 +28,7 @@ import org.openapitools.model.MessageDeltaObjectDeltaContentInner;
  */
 
 @ApiModel(description = "The delta containing the fields that have changed on the Message.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T10:45:08.090000084Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageDeltaObjectDelta   {
   
 
@@ -52,7 +52,6 @@ public class MessageDeltaObjectDelta   {
 
   private RoleEnum role;
   private List<MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
-  private List<String> fileIds = new ArrayList<>();
 
   /**
    * The entity that produced the message. One of `user` or `assistant`.
@@ -90,24 +89,6 @@ public class MessageDeltaObjectDelta   {
     this.content = content;
   }
 
-  /**
-   * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-   */
-  public MessageDeltaObjectDelta fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  
-  @ApiModelProperty(value = "A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.")
-  @JsonProperty("file_ids")
-  public List<String> getFileIds() {
-    return fileIds;
-  }
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -119,13 +100,12 @@ public class MessageDeltaObjectDelta   {
     }
     MessageDeltaObjectDelta messageDeltaObjectDelta = (MessageDeltaObjectDelta) o;
     return Objects.equals(role, messageDeltaObjectDelta.role) &&
-        Objects.equals(content, messageDeltaObjectDelta.content) &&
-        Objects.equals(fileIds, messageDeltaObjectDelta.fileIds);
+        Objects.equals(content, messageDeltaObjectDelta.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, content, fileIds);
+    return Objects.hash(role, content);
   }
 
   @Override
@@ -135,7 +115,6 @@ public class MessageDeltaObjectDelta   {
     
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

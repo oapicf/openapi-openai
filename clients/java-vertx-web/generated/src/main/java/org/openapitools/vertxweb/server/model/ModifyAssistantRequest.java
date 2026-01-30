@@ -3,11 +3,14 @@ package org.openapitools.vertxweb.server.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.vertxweb.server.model.AssistantObjectToolsInner;
+import org.openapitools.vertxweb.server.model.AssistantsApiResponseFormatOption;
+import org.openapitools.vertxweb.server.model.ModifyAssistantRequestToolResources;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ModifyAssistantRequest   {
@@ -17,21 +20,27 @@ public class ModifyAssistantRequest   {
   private String description;
   private String instructions;
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
-  private List<String> fileIds = new ArrayList<>();
+  private ModifyAssistantRequestToolResources toolResources;
   private Object metadata;
+  private BigDecimal temperature = new BigDecimal("1");
+  private BigDecimal topP = new BigDecimal("1");
+  private AssistantsApiResponseFormatOption responseFormat;
 
   public ModifyAssistantRequest () {
 
   }
 
-  public ModifyAssistantRequest (String model, String name, String description, String instructions, List<AssistantObjectToolsInner> tools, List<String> fileIds, Object metadata) {
+  public ModifyAssistantRequest (String model, String name, String description, String instructions, List<AssistantObjectToolsInner> tools, ModifyAssistantRequestToolResources toolResources, Object metadata, BigDecimal temperature, BigDecimal topP, AssistantsApiResponseFormatOption responseFormat) {
     this.model = model;
     this.name = name;
     this.description = description;
     this.instructions = instructions;
     this.tools = tools;
-    this.fileIds = fileIds;
+    this.toolResources = toolResources;
     this.metadata = metadata;
+    this.temperature = temperature;
+    this.topP = topP;
+    this.responseFormat = responseFormat;
   }
 
     
@@ -80,12 +89,12 @@ public class ModifyAssistantRequest   {
   }
 
     
-  @JsonProperty("file_ids")
-  public List<String> getFileIds() {
-    return fileIds;
+  @JsonProperty("tool_resources")
+  public ModifyAssistantRequestToolResources getToolResources() {
+    return toolResources;
   }
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public void setToolResources(ModifyAssistantRequestToolResources toolResources) {
+    this.toolResources = toolResources;
   }
 
     
@@ -95,6 +104,33 @@ public class ModifyAssistantRequest   {
   }
   public void setMetadata(Object metadata) {
     this.metadata = metadata;
+  }
+
+    
+  @JsonProperty("temperature")
+  public BigDecimal getTemperature() {
+    return temperature;
+  }
+  public void setTemperature(BigDecimal temperature) {
+    this.temperature = temperature;
+  }
+
+    
+  @JsonProperty("top_p")
+  public BigDecimal getTopP() {
+    return topP;
+  }
+  public void setTopP(BigDecimal topP) {
+    this.topP = topP;
+  }
+
+    
+  @JsonProperty("response_format")
+  public AssistantsApiResponseFormatOption getResponseFormat() {
+    return responseFormat;
+  }
+  public void setResponseFormat(AssistantsApiResponseFormatOption responseFormat) {
+    this.responseFormat = responseFormat;
   }
 
 
@@ -112,13 +148,16 @@ public class ModifyAssistantRequest   {
         Objects.equals(description, modifyAssistantRequest.description) &&
         Objects.equals(instructions, modifyAssistantRequest.instructions) &&
         Objects.equals(tools, modifyAssistantRequest.tools) &&
-        Objects.equals(fileIds, modifyAssistantRequest.fileIds) &&
-        Objects.equals(metadata, modifyAssistantRequest.metadata);
+        Objects.equals(toolResources, modifyAssistantRequest.toolResources) &&
+        Objects.equals(metadata, modifyAssistantRequest.metadata) &&
+        Objects.equals(temperature, modifyAssistantRequest.temperature) &&
+        Objects.equals(topP, modifyAssistantRequest.topP) &&
+        Objects.equals(responseFormat, modifyAssistantRequest.responseFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, name, description, instructions, tools, fileIds, metadata);
+    return Objects.hash(model, name, description, instructions, tools, toolResources, metadata, temperature, topP, responseFormat);
   }
 
   @Override
@@ -131,8 +170,11 @@ public class ModifyAssistantRequest   {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
+    sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();
   }

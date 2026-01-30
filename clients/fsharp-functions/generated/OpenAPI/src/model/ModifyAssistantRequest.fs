@@ -4,6 +4,9 @@ open System
 open System.Collections.Generic
 open Newtonsoft.Json
 open OpenAPI.Model.AssistantObjectToolsInner
+open OpenAPI.Model.AssistantsApiResponseFormatOption
+open OpenAPI.Model.ModifyAssistantRequestToolResources
+open OpenAPI.Model.decimal option
 open OpenAPI.Model.string option
 
 module ModifyAssistantRequest =
@@ -22,10 +25,16 @@ module ModifyAssistantRequest =
     Instructions : string option;
     [<JsonProperty(PropertyName = "tools")>]
     Tools : AssistantObjectToolsInner[];
-    [<JsonProperty(PropertyName = "file_ids")>]
-    FileIds : string[];
+    [<JsonProperty(PropertyName = "tool_resources")>]
+    ToolResources : ModifyAssistantRequestToolResources;
     [<JsonProperty(PropertyName = "metadata")>]
     Metadata : obj;
+    [<JsonProperty(PropertyName = "temperature")>]
+    Temperature : decimal option;
+    [<JsonProperty(PropertyName = "top_p")>]
+    TopP : decimal option;
+    [<JsonProperty(PropertyName = "response_format")>]
+    ResponseFormat : AssistantsApiResponseFormatOption;
   }
 
   //#endregion

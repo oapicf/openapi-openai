@@ -1,0 +1,56 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ArrayOfContentPartsInner"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ArrayOfContentPartsInner"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  MessageContentImageFileObject = openapi_server.resourceTypes.MessageContentImageFileObject
+  MessageContentImageFileObjectImageFile = openapi_server.resourceTypes.MessageContentImageFileObjectImageFile
+  MessageContentImageUrlObject = openapi_server.resourceTypes.MessageContentImageUrlObject
+  MessageContentImageUrlObjectImageUrl = openapi_server.resourceTypes.MessageContentImageUrlObjectImageUrl
+  MessageRequestContentTextObject = openapi_server.resourceTypes.MessageRequestContentTextObject
+}
+resourceTypes {
+
+  ArrayOfContentPartsInner {
+    title = ArrayOfContentPartsInner
+    description = ArrayOfContentPartsInner
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "Always &#x60;image_file&#x60;."
+          enum = ["image_file", "image_url", "text"]
+          optional = true
+        }
+        image_file {
+          type = MessageContentImageFileObjectImageFile
+          description = ""
+          optional = true
+        }
+        image_url {
+          type = MessageContentImageUrlObjectImageUrl
+          description = ""
+          optional = true
+        }
+        text {
+          type =  string
+          description = "Text content to be sent to the model"
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ArrayOfContentPartsInner {
+    title = ArrayOfContentPartsInner
+    description = ArrayOfContentPartsInner
+    implements = openapi_server.resourceTypes.ArrayOfContentPartsInner
+
+  }
+}

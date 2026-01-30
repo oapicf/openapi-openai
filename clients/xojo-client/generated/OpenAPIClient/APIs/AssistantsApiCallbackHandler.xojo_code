@@ -13,12 +13,6 @@ Protected Interface AssistantsApiCallbackHandler
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CreateAssistantFileCallback(status As OpenAPIClient.OpenAPIClientException, Optional data As OpenAPIClient.Models.AssistantFileObject)
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub CreateMessageCallback(status As OpenAPIClient.OpenAPIClientException, Optional data As OpenAPIClient.Models.MessageObject)
 		  
 		End Sub
@@ -49,7 +43,7 @@ Protected Interface AssistantsApiCallbackHandler
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub DeleteAssistantFileCallback(status As OpenAPIClient.OpenAPIClientException, Optional data As OpenAPIClient.Models.DeleteAssistantFileResponse)
+		Sub DeleteMessageCallback(status As OpenAPIClient.OpenAPIClientException, Optional data As OpenAPIClient.Models.DeleteMessageResponse)
 		  
 		End Sub
 	#tag EndMethod
@@ -67,19 +61,7 @@ Protected Interface AssistantsApiCallbackHandler
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub GetAssistantFileCallback(status As OpenAPIClient.OpenAPIClientException, Optional data As OpenAPIClient.Models.AssistantFileObject)
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub GetMessageCallback(status As OpenAPIClient.OpenAPIClientException, Optional data As OpenAPIClient.Models.MessageObject)
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub GetMessageFileCallback(status As OpenAPIClient.OpenAPIClientException, Optional data As OpenAPIClient.Models.MessageFileObject)
 		  
 		End Sub
 	#tag EndMethod
@@ -103,19 +85,7 @@ Protected Interface AssistantsApiCallbackHandler
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ListAssistantFilesCallback(status As OpenAPIClient.OpenAPIClientException, Optional data As OpenAPIClient.Models.ListAssistantFilesResponse)
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub ListAssistantsCallback(status As OpenAPIClient.OpenAPIClientException, Optional data As OpenAPIClient.Models.ListAssistantsResponse)
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub ListMessageFilesCallback(status As OpenAPIClient.OpenAPIClientException, Optional data As OpenAPIClient.Models.ListMessageFilesResponse)
 		  
 		End Sub
 	#tag EndMethod

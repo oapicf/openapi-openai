@@ -51,8 +51,10 @@ open class FilesApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
      * enum for parameter purpose
      */
      enum class PurposeCreateFile(val value: kotlin.String) {
+         @Json(name = "assistants") assistants("assistants"),
+         @Json(name = "batch") batch("batch"),
          @Json(name = "fine-tune") fineMinusTune("fine-tune"),
-         @Json(name = "assistants") assistants("assistants");
+         @Json(name = "vision") vision("vision");
 
         /**
          * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -66,10 +68,10 @@ open class FilesApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
 
     /**
      * POST /files
-     * Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports &#x60;.jsonl&#x60; files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
      * 
      * @param file The File object (not file name) to be uploaded. 
-     * @param purpose The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. 
+     * @param purpose The intended purpose of the uploaded file.  Use \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\&quot;vision\\\&quot; for Assistants image file inputs, \\\&quot;batch\\\&quot; for [Batch API](/docs/guides/batch), and \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning). 
      * @return OpenAIFile
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -99,10 +101,10 @@ open class FilesApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
 
     /**
      * POST /files
-     * Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports &#x60;.jsonl&#x60; files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+     * Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
      * 
      * @param file The File object (not file name) to be uploaded. 
-     * @param purpose The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. 
+     * @param purpose The intended purpose of the uploaded file.  Use \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\&quot;vision\\\&quot; for Assistants image file inputs, \\\&quot;batch\\\&quot; for [Batch API](/docs/guides/batch), and \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning). 
      * @return ApiResponse<OpenAIFile?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -121,7 +123,7 @@ open class FilesApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
      * To obtain the request config of the operation createFile
      *
      * @param file The File object (not file name) to be uploaded. 
-     * @param purpose The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. 
+     * @param purpose The intended purpose of the uploaded file.  Use \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\&quot;vision\\\&quot; for Assistants image file inputs, \\\&quot;batch\\\&quot; for [Batch API](/docs/guides/batch), and \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning). 
      * @return RequestConfig
      */
     fun createFileRequestConfig(file: java.io.File, purpose: PurposeCreateFile) : RequestConfig<Map<String, PartConfig<*>>> {
@@ -289,10 +291,30 @@ open class FilesApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
     }
 
     /**
+     * enum for parameter order
+     */
+     enum class OrderListFiles(val value: kotlin.String) {
+         @Json(name = "asc") asc("asc"),
+         @Json(name = "desc") desc("desc");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
      * GET /files
-     * Returns a list of files that belong to the user&#39;s organization.
+     * Returns a list of files.
      * 
      * @param purpose Only return files with the given purpose. (optional)
+     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000.  (optional, default to 10000)
+     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
+     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
      * @return ListFilesResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -302,8 +324,8 @@ open class FilesApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun listFiles(purpose: kotlin.String? = null) : ListFilesResponse {
-        val localVarResponse = listFilesWithHttpInfo(purpose = purpose)
+    fun listFiles(purpose: kotlin.String? = null, limit: kotlin.Int? = 10000, order: OrderListFiles? = OrderListFiles.desc, after: kotlin.String? = null) : ListFilesResponse {
+        val localVarResponse = listFilesWithHttpInfo(purpose = purpose, limit = limit, order = order, after = after)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ListFilesResponse
@@ -322,17 +344,20 @@ open class FilesApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
 
     /**
      * GET /files
-     * Returns a list of files that belong to the user&#39;s organization.
+     * Returns a list of files.
      * 
      * @param purpose Only return files with the given purpose. (optional)
+     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000.  (optional, default to 10000)
+     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
+     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
      * @return ApiResponse<ListFilesResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun listFilesWithHttpInfo(purpose: kotlin.String?) : ApiResponse<ListFilesResponse?> {
-        val localVariableConfig = listFilesRequestConfig(purpose = purpose)
+    fun listFilesWithHttpInfo(purpose: kotlin.String?, limit: kotlin.Int?, order: OrderListFiles?, after: kotlin.String?) : ApiResponse<ListFilesResponse?> {
+        val localVariableConfig = listFilesRequestConfig(purpose = purpose, limit = limit, order = order, after = after)
 
         return request<Unit, ListFilesResponse>(
             localVariableConfig
@@ -343,14 +368,26 @@ open class FilesApi(basePath: kotlin.String = defaultBasePath, client: Call.Fact
      * To obtain the request config of the operation listFiles
      *
      * @param purpose Only return files with the given purpose. (optional)
+     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000.  (optional, default to 10000)
+     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to Order.desc)
+     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
      * @return RequestConfig
      */
-    fun listFilesRequestConfig(purpose: kotlin.String?) : RequestConfig<Unit> {
+    fun listFilesRequestConfig(purpose: kotlin.String?, limit: kotlin.Int?, order: OrderListFiles?, after: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (purpose != null) {
                     put("purpose", listOf(purpose.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (order != null) {
+                    put("order", listOf(order.value))
+                }
+                if (after != null) {
+                    put("after", listOf(after.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

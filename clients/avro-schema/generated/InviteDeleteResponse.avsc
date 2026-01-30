@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "InviteDeleteResponse",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "InviteDeleteResponse_object",
+        "symbols": [
+          "organization_invite_deleted"
+        ]
+      },
+      "doc": "The object type, which is always `organization.invite.deleted`"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "deleted",
+      "type": "boolean",
+      "doc": ""
+    }
+  ]
+
+}

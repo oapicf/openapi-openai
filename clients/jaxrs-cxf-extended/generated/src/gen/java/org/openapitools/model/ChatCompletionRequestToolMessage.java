@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.openapitools.model.ChatCompletionRequestToolMessageContent;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -47,11 +48,9 @@ public enum RoleEnum {
   @ApiModelProperty(required = true, value = "The role of the messages author, in this case `tool`.")
   private RoleEnum role;
 
- /**
-  * The contents of the tool message.
-  */
-  @ApiModelProperty(required = true, value = "The contents of the tool message.")
-  private String content;
+  @ApiModelProperty(required = true, value = "")
+  @Valid
+  private ChatCompletionRequestToolMessageContent content;
 
  /**
   * Tool call that this message is responding to.
@@ -84,26 +83,26 @@ public enum RoleEnum {
   }
 
  /**
-  * The contents of the tool message.
+  * Get content
   * @return content
   */
   @JsonProperty("content")
   @NotNull
-  public String getContent() {
+  public ChatCompletionRequestToolMessageContent getContent() {
     return content;
   }
 
   /**
    * Sets the <code>content</code> property.
    */
- public void setContent(String content) {
+ public void setContent(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
   }
 
   /**
    * Sets the <code>content</code> property.
    */
-  public ChatCompletionRequestToolMessage content(String content) {
+  public ChatCompletionRequestToolMessage content(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
     return this;
   }

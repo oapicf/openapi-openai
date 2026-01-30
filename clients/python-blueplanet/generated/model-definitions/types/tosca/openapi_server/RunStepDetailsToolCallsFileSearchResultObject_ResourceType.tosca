@@ -1,0 +1,52 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunStepDetailsToolCallsFileSearchResultObject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunStepDetailsToolCallsFileSearchResultObject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RunStepDetailsToolCallsFileSearchResultObjectContentInner = openapi_server.resourceTypes.RunStepDetailsToolCallsFileSearchResultObjectContentInner
+}
+resourceTypes {
+
+  RunStepDetailsToolCallsFileSearchResultObject {
+    title = RunStepDetailsToolCallsFileSearchResultObject
+    description = RunStepDetailsToolCallsFileSearchResultObject
+    derivedFrom = Root
+    properties {
+        file_id {
+          type =  string
+          description = "The ID of the file that result was found in."
+          optional = true
+        }
+        file_name {
+          type =  string
+          description = "The name of the file that result was found in."
+          optional = true
+        }
+        score {
+          type =  
+          description = "The score of the result. All values must be a floating point number between 0 and 1."
+          optional = true
+        }
+        content {
+          type = array
+          items.type = RunStepDetailsToolCallsFileSearchResultObjectContentInner
+          description = "The content of the result that was found. The content is only included if requested via the include query parameter."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunStepDetailsToolCallsFileSearchResultObject {
+    title = RunStepDetailsToolCallsFileSearchResultObject
+    description = RunStepDetailsToolCallsFileSearchResultObject
+    implements = openapi_server.resourceTypes.RunStepDetailsToolCallsFileSearchResultObject
+
+  }
+}

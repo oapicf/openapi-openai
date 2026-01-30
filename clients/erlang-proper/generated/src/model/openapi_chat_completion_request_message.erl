@@ -12,6 +12,8 @@
   [ {'content', binary() }
   | {'role', binary() }
   | {'name', binary() }
+  | {'refusal', binary() }
+  | {'audio', openapi_chat_completion_request_assistant_message_audio:openapi_chat_completion_request_assistant_message_audio() }
   | {'tool_calls', list(openapi_chat_completion_message_tool_call:openapi_chat_completion_message_tool_call()) }
   | {'function_call', openapi_chat_completion_request_assistant_message_function_call:openapi_chat_completion_request_assistant_message_function_call() }
   | {'tool_call_id', binary() }
@@ -25,6 +27,8 @@ openapi_chat_completion_request_message(Fields) ->
   Default = [ {'content', binary() }
             , {'role', elements([<<"function">>]) }
             , {'name', binary() }
+            , {'refusal', binary() }
+            , {'audio', openapi_chat_completion_request_assistant_message_audio:openapi_chat_completion_request_assistant_message_audio() }
             , {'tool_calls', list(openapi_chat_completion_message_tool_call:openapi_chat_completion_message_tool_call()) }
             , {'function_call', openapi_chat_completion_request_assistant_message_function_call:openapi_chat_completion_request_assistant_message_function_call() }
             , {'tool_call_id', binary() }

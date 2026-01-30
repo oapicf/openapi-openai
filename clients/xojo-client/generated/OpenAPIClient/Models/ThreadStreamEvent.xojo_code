@@ -2,6 +2,14 @@
 Protected Class ThreadStreamEvent
 
 	#tag Property, Flags = &h0
+		#tag Note
+			Whether to enable input audio transcription.
+		#tag EndNote
+		enabled As Xoson.O.OptionalBoolean
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
 		Escapedevent As String
 	#tag EndProperty
 
@@ -62,6 +70,14 @@ Protected Class ThreadStreamEvent
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="enabled"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

@@ -74,6 +74,9 @@ private class OASListFilesResponseTest {
         OASListFilesResponse listFilesResponse = new OASListFilesResponse();
         Map<String, String> x-property-mappings = listFilesResponse.getx-property-mappings();
         System.assertEquals('r_object', x-property-mappings.get('object'));
+        System.assertEquals('firstId', x-property-mappings.get('first_id'));
+        System.assertEquals('lastId', x-property-mappings.get('last_id'));
+        System.assertEquals('hasMore', x-property-mappings.get('has_more'));
     }
 
     @isTest
@@ -81,5 +84,8 @@ private class OASListFilesResponseTest {
         OASListFilesResponse listFilesResponse = new OASListFilesResponse();
         System.assertEquals(new List<OASOpenAIFile>(), listFilesResponse.data);
         System.assertEquals(null, listFilesResponse.r_object);
+        System.assertEquals(null, listFilesResponse.firstId);
+        System.assertEquals(null, listFilesResponse.lastId);
+        System.assertEquals(null, listFilesResponse.hasMore);
     }
 }

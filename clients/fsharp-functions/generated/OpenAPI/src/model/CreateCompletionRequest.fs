@@ -3,6 +3,7 @@ namespace OpenAPI.Model
 open System
 open System.Collections.Generic
 open Newtonsoft.Json
+open OpenAPI.Model.ChatCompletionStreamOptions
 open OpenAPI.Model.CreateCompletionRequestModel
 open OpenAPI.Model.CreateCompletionRequestPrompt
 open OpenAPI.Model.CreateCompletionRequestStop
@@ -44,6 +45,8 @@ module CreateCompletionRequest =
     Stop : CreateCompletionRequestStop;
     [<JsonProperty(PropertyName = "stream")>]
     Stream : bool option;
+    [<JsonProperty(PropertyName = "stream_options")>]
+    StreamOptions : ChatCompletionStreamOptions;
     [<JsonProperty(PropertyName = "suffix")>]
     Suffix : string option;
     [<JsonProperty(PropertyName = "temperature")>]

@@ -1,0 +1,22 @@
+
+<h2>BatchRequestInput</h2>
+<ul class="parameter">
+  <li class="param-required-false">customUnderscoreid : String
+    <br/>A developer-provided per-request id that will be used to match outputs to inputs. Must be unique for each request in a batch.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">method : String
+    <br/>The HTTP method to be used for the request. Currently only &#x60;POST&#x60; is supported.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>POST</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">url : String
+    <br/>The OpenAI API relative URL to be used for the request. Currently &#x60;/v1/chat/completions&#x60;, &#x60;/v1/embeddings&#x60;, and &#x60;/v1/completions&#x60; are supported.
+  </li>
+</ul>

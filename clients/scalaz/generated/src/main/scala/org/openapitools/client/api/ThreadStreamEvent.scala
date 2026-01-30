@@ -12,7 +12,9 @@ import org.joda.time.DateTime
 import ThreadStreamEvent._
 
 case class ThreadStreamEvent (
-  event: Event,
+  /* Whether to enable input audio transcription. */
+  enabled: Option[Boolean],
+event: Event,
 data: ThreadObject)
 
 object ThreadStreamEvent {

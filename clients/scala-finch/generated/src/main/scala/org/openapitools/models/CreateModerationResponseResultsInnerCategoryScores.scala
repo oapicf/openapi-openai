@@ -13,6 +13,8 @@ import org.openapitools.models.BigDecimal
  * @param hateSlashthreatening The score for the category 'hate/threatening'.
  * @param harassment The score for the category 'harassment'.
  * @param harassmentSlashthreatening The score for the category 'harassment/threatening'.
+ * @param illicit The score for the category 'illicit'.
+ * @param illicitSlashviolent The score for the category 'illicit/violent'.
  * @param selfMinusharm The score for the category 'self-harm'.
  * @param selfMinusharmSlashintent The score for the category 'self-harm/intent'.
  * @param selfMinusharmSlashinstructions The score for the category 'self-harm/instructions'.
@@ -25,6 +27,8 @@ case class CreateModerationResponseResultsInnerCategoryScores(hate: BigDecimal,
                 hateSlashthreatening: BigDecimal,
                 harassment: BigDecimal,
                 harassmentSlashthreatening: BigDecimal,
+                illicit: BigDecimal,
+                illicitSlashviolent: BigDecimal,
                 selfMinusharm: BigDecimal,
                 selfMinusharmSlashintent: BigDecimal,
                 selfMinusharmSlashinstructions: BigDecimal,

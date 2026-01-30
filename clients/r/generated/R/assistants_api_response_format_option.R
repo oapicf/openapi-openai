@@ -16,23 +16,29 @@ AssistantsApiResponseFormatOption <- R6::R6Class(
     #' @field actual_type the type of the object stored in this instance.
     actual_type = NULL,
     #' @field one_of  a list of types defined in the oneOf schema.
-    one_of = list("AssistantsApiResponseFormat", "character"),
+    one_of = list("ResponseFormatJsonObject", "ResponseFormatJsonSchema", "ResponseFormatText", "character"),
 
     #' @description
     #' Initialize a new AssistantsApiResponseFormatOption.
     #'
-    #' @param instance an instance of the object defined in the oneOf schemas: "AssistantsApiResponseFormat", "character"
+    #' @param instance an instance of the object defined in the oneOf schemas: "ResponseFormatJsonObject", "ResponseFormatJsonSchema", "ResponseFormatText", "character"
     initialize = function(instance = NULL) {
       if (is.null(instance)) {
         # do nothing
-      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "AssistantsApiResponseFormat") {
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "ResponseFormatJsonObject") {
         self$actual_instance <- instance
-        self$actual_type <- "AssistantsApiResponseFormat"
+        self$actual_type <- "ResponseFormatJsonObject"
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "ResponseFormatJsonSchema") {
+        self$actual_instance <- instance
+        self$actual_type <- "ResponseFormatJsonSchema"
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "ResponseFormatText") {
+        self$actual_instance <- instance
+        self$actual_type <- "ResponseFormatText"
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "character") {
         self$actual_instance <- instance
         self$actual_type <- "character"
       } else {
-        stop(paste("Failed to initialize AssistantsApiResponseFormatOption with oneOf schemas AssistantsApiResponseFormat, character. Provided class name: ",
+        stop(paste("Failed to initialize AssistantsApiResponseFormatOption with oneOf schemas ResponseFormatJsonObject, ResponseFormatJsonSchema, ResponseFormatText, character. Provided class name: ",
                    get(class(instance)[[1]], pos = -1)$classname))
       }
     },
@@ -76,19 +82,49 @@ AssistantsApiResponseFormatOption <- R6::R6Class(
         error_messages <- append(error_messages, `character_result`["message"])
       }
 
-      `AssistantsApiResponseFormat_result` <- tryCatch({
-          `AssistantsApiResponseFormat`$public_methods$validateJSON(input)
-          `AssistantsApiResponseFormat_instance` <- `AssistantsApiResponseFormat`$new()
-          instance <- `AssistantsApiResponseFormat_instance`$fromJSON(input)
-          instance_type <- "AssistantsApiResponseFormat"
-          matched_schemas <- append(matched_schemas, "AssistantsApiResponseFormat")
+      `ResponseFormatText_result` <- tryCatch({
+          `ResponseFormatText`$public_methods$validateJSON(input)
+          `ResponseFormatText_instance` <- `ResponseFormatText`$new()
+          instance <- `ResponseFormatText_instance`$fromJSON(input)
+          instance_type <- "ResponseFormatText"
+          matched_schemas <- append(matched_schemas, "ResponseFormatText")
           matched <- matched + 1
         },
         error = function(err) err
       )
 
-      if (!is.null(`AssistantsApiResponseFormat_result`["error"])) {
-        error_messages <- append(error_messages, `AssistantsApiResponseFormat_result`["message"])
+      if (!is.null(`ResponseFormatText_result`["error"])) {
+        error_messages <- append(error_messages, `ResponseFormatText_result`["message"])
+      }
+
+      `ResponseFormatJsonObject_result` <- tryCatch({
+          `ResponseFormatJsonObject`$public_methods$validateJSON(input)
+          `ResponseFormatJsonObject_instance` <- `ResponseFormatJsonObject`$new()
+          instance <- `ResponseFormatJsonObject_instance`$fromJSON(input)
+          instance_type <- "ResponseFormatJsonObject"
+          matched_schemas <- append(matched_schemas, "ResponseFormatJsonObject")
+          matched <- matched + 1
+        },
+        error = function(err) err
+      )
+
+      if (!is.null(`ResponseFormatJsonObject_result`["error"])) {
+        error_messages <- append(error_messages, `ResponseFormatJsonObject_result`["message"])
+      }
+
+      `ResponseFormatJsonSchema_result` <- tryCatch({
+          `ResponseFormatJsonSchema`$public_methods$validateJSON(input)
+          `ResponseFormatJsonSchema_instance` <- `ResponseFormatJsonSchema`$new()
+          instance <- `ResponseFormatJsonSchema_instance`$fromJSON(input)
+          instance_type <- "ResponseFormatJsonSchema"
+          matched_schemas <- append(matched_schemas, "ResponseFormatJsonSchema")
+          matched <- matched + 1
+        },
+        error = function(err) err
+      )
+
+      if (!is.null(`ResponseFormatJsonSchema_result`["error"])) {
+        error_messages <- append(error_messages, `ResponseFormatJsonSchema_result`["message"])
       }
 
       if (matched == 1) {
@@ -97,11 +133,11 @@ AssistantsApiResponseFormatOption <- R6::R6Class(
         self$actual_type <- instance_type
       } else if (matched > 1) {
         # more than 1 match
-        stop(paste("Multiple matches found when deserializing the input into AssistantsApiResponseFormatOption with oneOf schemas AssistantsApiResponseFormat, character. Matched schemas: ",
+        stop(paste("Multiple matches found when deserializing the input into AssistantsApiResponseFormatOption with oneOf schemas ResponseFormatJsonObject, ResponseFormatJsonSchema, ResponseFormatText, character. Matched schemas: ",
                    paste(matched_schemas, collapse = ", ")))
       } else {
         # no match
-        stop(paste("No match found when deserializing the input into AssistantsApiResponseFormatOption with oneOf schemas AssistantsApiResponseFormat, character. Details: >>",
+        stop(paste("No match found when deserializing the input into AssistantsApiResponseFormatOption with oneOf schemas ResponseFormatJsonObject, ResponseFormatJsonSchema, ResponseFormatText, character. Details: >>",
                    paste(error_messages, collapse = " >> ")))
       }
 

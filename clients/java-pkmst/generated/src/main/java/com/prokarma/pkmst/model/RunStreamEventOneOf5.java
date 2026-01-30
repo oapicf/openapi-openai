@@ -14,17 +14,17 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) fails.
+ * Occurs when a [run](/docs/api-reference/runs/object) ends with status &#x60;incomplete&#x60;.
  */
-@ApiModel(description = "Occurs when a [run](/docs/api-reference/runs/object) fails.")
+@ApiModel(description = "Occurs when a [run](/docs/api-reference/runs/object) ends with status `incomplete`.")
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T10:45:02.588292416Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStreamEventOneOf5   {
   /**
    * Gets or Sets event
    */
   public enum EventEnum {
-    THREAD_RUN_FAILED("thread.run.failed");
+    THREAD_RUN_INCOMPLETE("thread.run.incomplete");
 
     private String value;
 

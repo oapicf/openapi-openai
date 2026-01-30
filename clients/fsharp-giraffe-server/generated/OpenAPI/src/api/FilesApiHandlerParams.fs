@@ -70,6 +70,15 @@ module FilesApiHandlerParams =
     type ListFilesQueryParams = {
       purpose : string option;
 
+
+      limit : int option;
+
+
+      order : string option;
+
+
+      after : string option;
+
     }
     //#endregion
 

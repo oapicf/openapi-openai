@@ -75,4 +75,11 @@ private class OASMessageDeltaContentImageFileObjecTest {
         Map<String, String> x-property-mappings = messageDeltaContentImageFileObjectImageFile.getx-property-mappings();
         System.assertEquals('fileId', x-property-mappings.get('file_id'));
     }
+
+    @isTest
+    private static void defaultValuesPopulated() {
+        OASMessageDeltaContentImageFileObjec messageDeltaContentImageFileObjectImageFile = new OASMessageDeltaContentImageFileObjec();
+        System.assertEquals(DetailEnum.AUTO, messageDeltaContentImageFileObjectImageFile.detail);
+        System.assertEquals(null, messageDeltaContentImageFileObjectImageFile.fileId);
+    }
 }

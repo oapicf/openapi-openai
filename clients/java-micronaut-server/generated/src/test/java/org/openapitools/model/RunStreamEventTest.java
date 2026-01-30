@@ -10,6 +10,7 @@ import org.openapitools.model.RunStreamEventOneOf5;
 import org.openapitools.model.RunStreamEventOneOf6;
 import org.openapitools.model.RunStreamEventOneOf7;
 import org.openapitools.model.RunStreamEventOneOf8;
+import org.openapitools.model.RunStreamEventOneOf9;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;

@@ -14,10 +14,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
-
+/**
+ * Messages sent by an end user, containing prompts or additional context information. 
+ **/
+@ApiModel(description = "Messages sent by an end user, containing prompts or additional context information. ")
 @JsonTypeName("ChatCompletionRequestUserMessage")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestUserMessage   {
   private ChatCompletionRequestUserMessageContent content;
   public enum RoleEnum {

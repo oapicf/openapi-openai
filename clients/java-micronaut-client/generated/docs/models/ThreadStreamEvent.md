@@ -10,8 +10,10 @@ The class is defined in **[ThreadStreamEvent.java](../../src/main/java/org/opena
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enabled** | `Boolean` | Whether to enable input audio transcription. |  [optional property]
 **event** | [**EventEnum**](#EventEnum) |  | 
 **data** | [`ThreadObject`](ThreadObject.md) |  | 
+
 
 ## EventEnum
 

@@ -1,6 +1,7 @@
 package org.openapitools.api.impl;
 
 import org.openapitools.api.*;
+import org.openapitools.model.AudioResponseFormat;
 import java.math.BigDecimal;
 import org.openapitools.model.CreateSpeechRequest;
 import org.openapitools.model.CreateTranscription200Response;
@@ -41,7 +42,7 @@ public class AudioApiServiceImpl implements AudioApi {
      * Transcribes audio into the input language.
      *
      */
-    public CreateTranscription200Response createTranscription( Attachment _fileDetail, CreateTranscriptionRequestModel model, String language, String prompt, String responseFormat, BigDecimal temperature, List<String> timestampGranularities) {
+    public CreateTranscription200Response createTranscription( Attachment _fileDetail, CreateTranscriptionRequestModel model, String language, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature, List<String> timestampGranularities) {
         // TODO: Implement...
 
         return null;
@@ -51,7 +52,7 @@ public class AudioApiServiceImpl implements AudioApi {
      * Translates audio into English.
      *
      */
-    public CreateTranslation200Response createTranslation( Attachment _fileDetail, CreateTranscriptionRequestModel model, String prompt, String responseFormat, BigDecimal temperature) {
+    public CreateTranslation200Response createTranslation( Attachment _fileDetail, CreateTranscriptionRequestModel model, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature) {
         // TODO: Implement...
 
         return null;

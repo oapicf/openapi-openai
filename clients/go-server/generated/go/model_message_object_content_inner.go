@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -21,7 +21,11 @@ type MessageObjectContentInner struct {
 
 	ImageFile MessageContentImageFileObjectImageFile `json:"image_file"`
 
+	ImageUrl MessageContentImageUrlObjectImageUrl `json:"image_url"`
+
 	Text MessageContentTextObjectText `json:"text"`
+
+	Refusal string `json:"refusal"`
 }
 
 // AssertMessageObjectContentInnerRequired checks if the required fields are not zero-ed
@@ -29,7 +33,9 @@ func AssertMessageObjectContentInnerRequired(obj MessageObjectContentInner) erro
 	elements := map[string]interface{}{
 		"type": obj.Type,
 		"image_file": obj.ImageFile,
+		"image_url": obj.ImageUrl,
 		"text": obj.Text,
+		"refusal": obj.Refusal,
 	}
 	for name, el := range elements {
 		if isZero := IsZeroValue(el); isZero {
@@ -38,6 +44,9 @@ func AssertMessageObjectContentInnerRequired(obj MessageObjectContentInner) erro
 	}
 
 	if err := AssertMessageContentImageFileObjectImageFileRequired(obj.ImageFile); err != nil {
+		return err
+	}
+	if err := AssertMessageContentImageUrlObjectImageUrlRequired(obj.ImageUrl); err != nil {
 		return err
 	}
 	if err := AssertMessageContentTextObjectTextRequired(obj.Text); err != nil {
@@ -49,6 +58,9 @@ func AssertMessageObjectContentInnerRequired(obj MessageObjectContentInner) erro
 // AssertMessageObjectContentInnerConstraints checks if the values respects the defined constraints
 func AssertMessageObjectContentInnerConstraints(obj MessageObjectContentInner) error {
 	if err := AssertMessageContentImageFileObjectImageFileConstraints(obj.ImageFile); err != nil {
+		return err
+	}
+	if err := AssertMessageContentImageUrlObjectImageUrlConstraints(obj.ImageUrl); err != nil {
 		return err
 	}
 	if err := AssertMessageContentTextObjectTextConstraints(obj.Text); err != nil {

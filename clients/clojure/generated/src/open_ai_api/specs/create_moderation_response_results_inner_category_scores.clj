@@ -11,6 +11,8 @@
    (ds/req :hatethreatening) float?
    (ds/req :harassment) float?
    (ds/req :harassmentthreatening) float?
+   (ds/req :illicit) float?
+   (ds/req :illicitviolent) float?
    (ds/req :self-harm) float?
    (ds/req :self-harmintent) float?
    (ds/req :self-harminstructions) float?

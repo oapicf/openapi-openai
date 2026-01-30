@@ -32,10 +32,14 @@ create_moderation_response_results_inner_categories_t* instantiate_create_modera
       1,
       1,
       1,
+      1,
+      1,
       1
     );
   } else {
     create_moderation_response_results_inner_categories = create_moderation_response_results_inner_categories_create(
+      1,
+      1,
       1,
       1,
       1,

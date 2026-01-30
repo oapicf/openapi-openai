@@ -14,6 +14,10 @@ import { ThreadObject } from './threadObject';
  * Occurs when a new [thread](/docs/api-reference/threads/object) is created.
  */
 export interface ThreadStreamEvent { 
+    /**
+     * Whether to enable input audio transcription.
+     */
+    enabled?: boolean;
     event: ThreadStreamEvent.EventEnum;
     data: ThreadObject;
 }

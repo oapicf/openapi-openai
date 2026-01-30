@@ -10,7 +10,7 @@
 
 -type openapi_chat_completion_request_tool_message() ::
   [ {'role', binary() }
-  | {'content', binary() }
+  | {'content', openapi_chat_completion_request_tool_message_content:openapi_chat_completion_request_tool_message_content() }
   | {'tool_call_id', binary() }
   ].
 
@@ -20,7 +20,7 @@ openapi_chat_completion_request_tool_message() ->
 
 openapi_chat_completion_request_tool_message(Fields) ->
   Default = [ {'role', elements([<<"tool">>]) }
-            , {'content', binary() }
+            , {'content', openapi_chat_completion_request_tool_message_content:openapi_chat_completion_request_tool_message_content() }
             , {'tool_call_id', binary() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).

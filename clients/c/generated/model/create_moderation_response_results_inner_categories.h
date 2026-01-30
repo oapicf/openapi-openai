@@ -23,6 +23,8 @@ typedef struct create_moderation_response_results_inner_categories_t {
     int hate_threatening; //boolean
     int harassment; //boolean
     int harassment_threatening; //boolean
+    int illicit; //boolean
+    int illicit_violent; //boolean
     int self_harm; //boolean
     int self_harm_intent; //boolean
     int self_harm_instructions; //boolean
@@ -39,6 +41,8 @@ __attribute__((deprecated)) create_moderation_response_results_inner_categories_
     int hate_threatening,
     int harassment,
     int harassment_threatening,
+    int illicit,
+    int illicit_violent,
     int self_harm,
     int self_harm_intent,
     int self_harm_instructions,

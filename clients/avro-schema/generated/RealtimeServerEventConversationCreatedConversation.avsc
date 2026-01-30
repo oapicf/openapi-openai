@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The conversation resource.",
+  "name": "RealtimeServerEventConversationCreatedConversation",
+  "fields": [
+    {
+      "name": "id",
+      "type": ["null", "string"],
+      "doc": "The unique ID of the conversation.",
+      "default": null
+    },
+    {
+      "name": "object",
+      "type": ["null", "string"],
+      "doc": "The object type, must be `realtime.conversation`.",
+      "default": null
+    }
+  ]
+
+}

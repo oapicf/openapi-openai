@@ -1,13 +1,26 @@
 {
   "namespace": "model",
   "type": "record",
-  "doc": "The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.",
+  "doc": "The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.",
   "name": "FineTuningJobHyperparameters",
   "fields": [
     {
+      "name": "batch_size",
+      "type": ["null", "model.CreateFineTuningJobRequestHyperparametersBatchSize"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "learning_rate_multiplier",
+      "type": ["null", "model.CreateFineTuningJobRequestHyperparametersLearningRateMultiplier"],
+      "doc": "",
+      "default": null
+    },
+    {
       "name": "n_epochs",
-      "type": "model.FineTuningJobHyperparametersNEpochs",
-      "doc": ""
+      "type": ["null", "model.CreateFineTuningJobRequestHyperparametersNEpochs"],
+      "doc": "",
+      "default": null
     }
   ]
 

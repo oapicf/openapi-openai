@@ -18,12 +18,12 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is created.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is created.
  */
 
-@Schema(name = "RunStepStreamEvent_oneOf", description = "Occurs when a [run step](/docs/api-reference/runs/step-object) is created.")
+@Schema(name = "RunStepStreamEvent_oneOf", description = "Occurs when a [run step](/docs/api-reference/run-steps/step-object) is created.")
 @JsonTypeName("RunStepStreamEvent_oneOf")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStepStreamEventOneOf implements RunStepStreamEvent {
 
   /**

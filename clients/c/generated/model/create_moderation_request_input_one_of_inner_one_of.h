@@ -1,0 +1,49 @@
+/*
+ * create_moderation_request_input_one_of_inner_one_of.h
+ *
+ * An object describing an image to classify.
+ */
+
+#ifndef _create_moderation_request_input_one_of_inner_one_of_H_
+#define _create_moderation_request_input_one_of_inner_one_of_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct create_moderation_request_input_one_of_inner_one_of_t create_moderation_request_input_one_of_inner_one_of_t;
+
+#include "create_moderation_request_input_one_of_inner_one_of_image_url.h"
+
+// Enum TYPE for create_moderation_request_input_one_of_inner_one_of
+
+typedef enum  { openai_api_create_moderation_request_input_one_of_inner_one_of_TYPE_NULL = 0, openai_api_create_moderation_request_input_one_of_inner_one_of_TYPE_image_url } openai_api_create_moderation_request_input_one_of_inner_one_of_TYPE_e;
+
+char* create_moderation_request_input_one_of_inner_one_of_type_ToString(openai_api_create_moderation_request_input_one_of_inner_one_of_TYPE_e type);
+
+openai_api_create_moderation_request_input_one_of_inner_one_of_TYPE_e create_moderation_request_input_one_of_inner_one_of_type_FromString(char* type);
+
+
+
+typedef struct create_moderation_request_input_one_of_inner_one_of_t {
+    openai_api_create_moderation_request_input_one_of_inner_one_of_TYPE_e type; //enum
+    struct create_moderation_request_input_one_of_inner_one_of_image_url_t *image_url; //model
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} create_moderation_request_input_one_of_inner_one_of_t;
+
+__attribute__((deprecated)) create_moderation_request_input_one_of_inner_one_of_t *create_moderation_request_input_one_of_inner_one_of_create(
+    openai_api_create_moderation_request_input_one_of_inner_one_of_TYPE_e type,
+    create_moderation_request_input_one_of_inner_one_of_image_url_t *image_url
+);
+
+void create_moderation_request_input_one_of_inner_one_of_free(create_moderation_request_input_one_of_inner_one_of_t *create_moderation_request_input_one_of_inner_one_of);
+
+create_moderation_request_input_one_of_inner_one_of_t *create_moderation_request_input_one_of_inner_one_of_parseFromJSON(cJSON *create_moderation_request_input_one_of_inner_one_ofJSON);
+
+cJSON *create_moderation_request_input_one_of_inner_one_of_convertToJSON(create_moderation_request_input_one_of_inner_one_of_t *create_moderation_request_input_one_of_inner_one_of);
+
+#endif /* _create_moderation_request_input_one_of_inner_one_of_H_ */
+

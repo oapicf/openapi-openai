@@ -11,24 +11,19 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancel_run**](AssistantsApi.md#cancel_run) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is &#x60;in_progress&#x60;.
 [**create_assistant**](AssistantsApi.md#create_assistant) | **POST** /assistants | Create an assistant with a model and instructions.
-[**create_assistant_file**](AssistantsApi.md#create_assistant_file) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
 [**create_message**](AssistantsApi.md#create_message) | **POST** /threads/{thread_id}/messages | Create a message.
 [**create_run**](AssistantsApi.md#create_run) | **POST** /threads/{thread_id}/runs | Create a run.
 [**create_thread**](AssistantsApi.md#create_thread) | **POST** /threads | Create a thread.
 [**create_thread_and_run**](AssistantsApi.md#create_thread_and_run) | **POST** /threads/runs | Create a thread and run it in one request.
 [**delete_assistant**](AssistantsApi.md#delete_assistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant.
-[**delete_assistant_file**](AssistantsApi.md#delete_assistant_file) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+[**delete_message**](AssistantsApi.md#delete_message) | **DELETE** /threads/{thread_id}/messages/{message_id} | Deletes a message.
 [**delete_thread**](AssistantsApi.md#delete_thread) | **DELETE** /threads/{thread_id} | Delete a thread.
 [**get_assistant**](AssistantsApi.md#get_assistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant.
-[**get_assistant_file**](AssistantsApi.md#get_assistant_file) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
 [**get_message**](AssistantsApi.md#get_message) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
-[**get_message_file**](AssistantsApi.md#get_message_file) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
 [**get_run**](AssistantsApi.md#get_run) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
 [**get_run_step**](AssistantsApi.md#get_run_step) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
 [**get_thread**](AssistantsApi.md#get_thread) | **GET** /threads/{thread_id} | Retrieves a thread.
-[**list_assistant_files**](AssistantsApi.md#list_assistant_files) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
 [**list_assistants**](AssistantsApi.md#list_assistants) | **GET** /assistants | Returns a list of assistants.
-[**list_message_files**](AssistantsApi.md#list_message_files) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
 [**list_messages**](AssistantsApi.md#list_messages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
 [**list_run_steps**](AssistantsApi.md#list_run_steps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
 [**list_runs**](AssistantsApi.md#list_runs) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
@@ -137,56 +132,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_assistant_file**
-> AssistantFileObject create_assistant_file(assistant_id => $assistant_id, create_assistant_file_request => $create_assistant_file_request)
-
-Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
-### Example
-```perl
-use Data::Dumper;
-use WWW::OpenAPIClient::AssistantsApi;
-my $api_instance = WWW::OpenAPIClient::AssistantsApi->new(
-
-    # Configure bearer access token for authorization: ApiKeyAuth
-    access_token => 'YOUR_BEARER_TOKEN',
-    
-);
-
-my $assistant_id = file-abc123; # string | The ID of the assistant for which to create a File. 
-my $create_assistant_file_request = WWW::OpenAPIClient::Object::CreateAssistantFileRequest->new(); # CreateAssistantFileRequest | 
-
-eval {
-    my $result = $api_instance->create_assistant_file(assistant_id => $assistant_id, create_assistant_file_request => $create_assistant_file_request);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling AssistantsApi->create_assistant_file: $@\n";
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistant_id** | **string**| The ID of the assistant for which to create a File.  | 
- **create_assistant_file_request** | [**CreateAssistantFileRequest**](CreateAssistantFileRequest.md)|  | 
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **create_message**
 > MessageObject create_message(thread_id => $thread_id, create_message_request => $create_message_request)
 
@@ -238,7 +183,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_run**
-> RunObject create_run(thread_id => $thread_id, create_run_request => $create_run_request)
+> RunObject create_run(thread_id => $thread_id, create_run_request => $create_run_request, include[] => $include[])
 
 Create a run.
 
@@ -255,9 +200,10 @@ my $api_instance = WWW::OpenAPIClient::AssistantsApi->new(
 
 my $thread_id = "thread_id_example"; # string | The ID of the thread to run.
 my $create_run_request = WWW::OpenAPIClient::Object::CreateRunRequest->new(); # CreateRunRequest | 
+my $include[] = [("null")]; # ARRAY[string] | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
 
 eval {
-    my $result = $api_instance->create_run(thread_id => $thread_id, create_run_request => $create_run_request);
+    my $result = $api_instance->create_run(thread_id => $thread_id, create_run_request => $create_run_request, include[] => $include[]);
     print Dumper($result);
 };
 if ($@) {
@@ -271,6 +217,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **thread_id** | **string**| The ID of the thread to run. | 
  **create_run_request** | [**CreateRunRequest**](CreateRunRequest.md)|  | 
+ **include[]** | [**ARRAY[string]**](string.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -431,10 +378,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_assistant_file**
-> DeleteAssistantFileResponse delete_assistant_file(assistant_id => $assistant_id, file_id => $file_id)
+# **delete_message**
+> DeleteMessageResponse delete_message(thread_id => $thread_id, message_id => $message_id)
 
-Delete an assistant file.
+Deletes a message.
 
 ### Example
 ```perl
@@ -447,15 +394,15 @@ my $api_instance = WWW::OpenAPIClient::AssistantsApi->new(
     
 );
 
-my $assistant_id = "assistant_id_example"; # string | The ID of the assistant that the file belongs to.
-my $file_id = "file_id_example"; # string | The ID of the file to delete.
+my $thread_id = "thread_id_example"; # string | The ID of the thread to which this message belongs.
+my $message_id = "message_id_example"; # string | The ID of the message to delete.
 
 eval {
-    my $result = $api_instance->delete_assistant_file(assistant_id => $assistant_id, file_id => $file_id);
+    my $result = $api_instance->delete_message(thread_id => $thread_id, message_id => $message_id);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling AssistantsApi->delete_assistant_file: $@\n";
+    warn "Exception when calling AssistantsApi->delete_message: $@\n";
 }
 ```
 
@@ -463,12 +410,12 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **assistant_id** | **string**| The ID of the assistant that the file belongs to. | 
- **file_id** | **string**| The ID of the file to delete. | 
+ **thread_id** | **string**| The ID of the thread to which this message belongs. | 
+ **message_id** | **string**| The ID of the message to delete. | 
 
 ### Return type
 
-[**DeleteAssistantFileResponse**](DeleteAssistantFileResponse.md)
+[**DeleteMessageResponse**](DeleteMessageResponse.md)
 
 ### Authorization
 
@@ -577,56 +524,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_assistant_file**
-> AssistantFileObject get_assistant_file(assistant_id => $assistant_id, file_id => $file_id)
-
-Retrieves an AssistantFile.
-
-### Example
-```perl
-use Data::Dumper;
-use WWW::OpenAPIClient::AssistantsApi;
-my $api_instance = WWW::OpenAPIClient::AssistantsApi->new(
-
-    # Configure bearer access token for authorization: ApiKeyAuth
-    access_token => 'YOUR_BEARER_TOKEN',
-    
-);
-
-my $assistant_id = "assistant_id_example"; # string | The ID of the assistant who the file belongs to.
-my $file_id = "file_id_example"; # string | The ID of the file we're getting.
-
-eval {
-    my $result = $api_instance->get_assistant_file(assistant_id => $assistant_id, file_id => $file_id);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling AssistantsApi->get_assistant_file: $@\n";
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistant_id** | **string**| The ID of the assistant who the file belongs to. | 
- **file_id** | **string**| The ID of the file we&#39;re getting. | 
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_message**
 > MessageObject get_message(thread_id => $thread_id, message_id => $message_id)
 
@@ -665,58 +562,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MessageObject**](MessageObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_message_file**
-> MessageFileObject get_message_file(thread_id => $thread_id, message_id => $message_id, file_id => $file_id)
-
-Retrieves a message file.
-
-### Example
-```perl
-use Data::Dumper;
-use WWW::OpenAPIClient::AssistantsApi;
-my $api_instance = WWW::OpenAPIClient::AssistantsApi->new(
-
-    # Configure bearer access token for authorization: ApiKeyAuth
-    access_token => 'YOUR_BEARER_TOKEN',
-    
-);
-
-my $thread_id = thread_abc123; # string | The ID of the thread to which the message and File belong.
-my $message_id = msg_abc123; # string | The ID of the message the file belongs to.
-my $file_id = file-abc123; # string | The ID of the file being retrieved.
-
-eval {
-    my $result = $api_instance->get_message_file(thread_id => $thread_id, message_id => $message_id, file_id => $file_id);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling AssistantsApi->get_message_file: $@\n";
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **thread_id** | **string**| The ID of the thread to which the message and File belong. | 
- **message_id** | **string**| The ID of the message the file belongs to. | 
- **file_id** | **string**| The ID of the file being retrieved. | 
-
-### Return type
-
-[**MessageFileObject**](MessageFileObject.md)
 
 ### Authorization
 
@@ -780,7 +625,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_run_step**
-> RunStepObject get_run_step(thread_id => $thread_id, run_id => $run_id, step_id => $step_id)
+> RunStepObject get_run_step(thread_id => $thread_id, run_id => $run_id, step_id => $step_id, include[] => $include[])
 
 Retrieves a run step.
 
@@ -798,9 +643,10 @@ my $api_instance = WWW::OpenAPIClient::AssistantsApi->new(
 my $thread_id = "thread_id_example"; # string | The ID of the thread to which the run and run step belongs.
 my $run_id = "run_id_example"; # string | The ID of the run to which the run step belongs.
 my $step_id = "step_id_example"; # string | The ID of the run step to retrieve.
+my $include[] = [("null")]; # ARRAY[string] | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
 
 eval {
-    my $result = $api_instance->get_run_step(thread_id => $thread_id, run_id => $run_id, step_id => $step_id);
+    my $result = $api_instance->get_run_step(thread_id => $thread_id, run_id => $run_id, step_id => $step_id, include[] => $include[]);
     print Dumper($result);
 };
 if ($@) {
@@ -815,6 +661,7 @@ Name | Type | Description  | Notes
  **thread_id** | **string**| The ID of the thread to which the run and run step belongs. | 
  **run_id** | **string**| The ID of the run to which the run step belongs. | 
  **step_id** | **string**| The ID of the run step to retrieve. | 
+ **include[]** | [**ARRAY[string]**](string.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -879,62 +726,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_assistant_files**
-> ListAssistantFilesResponse list_assistant_files(assistant_id => $assistant_id, limit => $limit, order => $order, after => $after, before => $before)
-
-Returns a list of assistant files.
-
-### Example
-```perl
-use Data::Dumper;
-use WWW::OpenAPIClient::AssistantsApi;
-my $api_instance = WWW::OpenAPIClient::AssistantsApi->new(
-
-    # Configure bearer access token for authorization: ApiKeyAuth
-    access_token => 'YOUR_BEARER_TOKEN',
-    
-);
-
-my $assistant_id = "assistant_id_example"; # string | The ID of the assistant the file belongs to.
-my $limit = 20; # int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-my $order = 'desc'; # string | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
-my $after = "after_example"; # string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-my $before = "before_example"; # string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-
-eval {
-    my $result = $api_instance->list_assistant_files(assistant_id => $assistant_id, limit => $limit, order => $order, after => $after, before => $before);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling AssistantsApi->list_assistant_files: $@\n";
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistant_id** | **string**| The ID of the assistant the file belongs to. | 
- **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
- **order** | **string**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &#39;desc&#39;]
- **after** | **string**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
-
-### Return type
-
-[**ListAssistantFilesResponse**](ListAssistantFilesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **list_assistants**
 > ListAssistantsResponse list_assistants(limit => $limit, order => $order, after => $after, before => $before)
 
@@ -954,7 +745,7 @@ my $api_instance = WWW::OpenAPIClient::AssistantsApi->new(
 my $limit = 20; # int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
 my $order = 'desc'; # string | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
 my $after = "after_example"; # string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-my $before = "before_example"; # string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+my $before = "before_example"; # string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
 
 eval {
     my $result = $api_instance->list_assistants(limit => $limit, order => $order, after => $after, before => $before);
@@ -972,69 +763,11 @@ Name | Type | Description  | Notes
  **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | **string**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &#39;desc&#39;]
  **after** | **string**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
 
 ### Return type
 
 [**ListAssistantsResponse**](ListAssistantsResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **list_message_files**
-> ListMessageFilesResponse list_message_files(thread_id => $thread_id, message_id => $message_id, limit => $limit, order => $order, after => $after, before => $before)
-
-Returns a list of message files.
-
-### Example
-```perl
-use Data::Dumper;
-use WWW::OpenAPIClient::AssistantsApi;
-my $api_instance = WWW::OpenAPIClient::AssistantsApi->new(
-
-    # Configure bearer access token for authorization: ApiKeyAuth
-    access_token => 'YOUR_BEARER_TOKEN',
-    
-);
-
-my $thread_id = "thread_id_example"; # string | The ID of the thread that the message and files belong to.
-my $message_id = "message_id_example"; # string | The ID of the message that the files belongs to.
-my $limit = 20; # int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-my $order = 'desc'; # string | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
-my $after = "after_example"; # string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-my $before = "before_example"; # string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
-
-eval {
-    my $result = $api_instance->list_message_files(thread_id => $thread_id, message_id => $message_id, limit => $limit, order => $order, after => $after, before => $before);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling AssistantsApi->list_message_files: $@\n";
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **thread_id** | **string**| The ID of the thread that the message and files belong to. | 
- **message_id** | **string**| The ID of the message that the files belongs to. | 
- **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
- **order** | **string**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &#39;desc&#39;]
- **after** | **string**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
-
-### Return type
-
-[**ListMessageFilesResponse**](ListMessageFilesResponse.md)
 
 ### Authorization
 
@@ -1067,7 +800,7 @@ my $thread_id = "thread_id_example"; # string | The ID of the [thread](/docs/api
 my $limit = 20; # int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
 my $order = 'desc'; # string | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
 my $after = "after_example"; # string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-my $before = "before_example"; # string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+my $before = "before_example"; # string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
 my $run_id = "run_id_example"; # string | Filter messages by the run ID that generated them. 
 
 eval {
@@ -1087,7 +820,7 @@ Name | Type | Description  | Notes
  **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | **string**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &#39;desc&#39;]
  **after** | **string**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
  **run_id** | **string**| Filter messages by the run ID that generated them.  | [optional] 
 
 ### Return type
@@ -1106,7 +839,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_run_steps**
-> ListRunStepsResponse list_run_steps(thread_id => $thread_id, run_id => $run_id, limit => $limit, order => $order, after => $after, before => $before)
+> ListRunStepsResponse list_run_steps(thread_id => $thread_id, run_id => $run_id, limit => $limit, order => $order, after => $after, before => $before, include[] => $include[])
 
 Returns a list of run steps belonging to a run.
 
@@ -1126,10 +859,11 @@ my $run_id = "run_id_example"; # string | The ID of the run the run steps belong
 my $limit = 20; # int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
 my $order = 'desc'; # string | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
 my $after = "after_example"; # string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-my $before = "before_example"; # string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+my $before = "before_example"; # string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+my $include[] = [("null")]; # ARRAY[string] | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
 
 eval {
-    my $result = $api_instance->list_run_steps(thread_id => $thread_id, run_id => $run_id, limit => $limit, order => $order, after => $after, before => $before);
+    my $result = $api_instance->list_run_steps(thread_id => $thread_id, run_id => $run_id, limit => $limit, order => $order, after => $after, before => $before, include[] => $include[]);
     print Dumper($result);
 };
 if ($@) {
@@ -1146,7 +880,8 @@ Name | Type | Description  | Notes
  **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | **string**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &#39;desc&#39;]
  **after** | **string**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **include[]** | [**ARRAY[string]**](string.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -1183,7 +918,7 @@ my $thread_id = "thread_id_example"; # string | The ID of the thread the run bel
 my $limit = 20; # int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
 my $order = 'desc'; # string | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
 my $after = "after_example"; # string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
-my $before = "before_example"; # string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
+my $before = "before_example"; # string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
 
 eval {
     my $result = $api_instance->list_runs(thread_id => $thread_id, limit => $limit, order => $order, after => $after, before => $before);
@@ -1202,7 +937,7 @@ Name | Type | Description  | Notes
  **limit** | **int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
  **order** | **string**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &#39;desc&#39;]
  **after** | **string**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **string**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
 
 ### Return type
 

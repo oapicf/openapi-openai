@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.FineTuneMethod;
 import org.openapitools.model.FineTuningJobError;
 import org.openapitools.model.FineTuningJobHyperparameters;
 import org.openapitools.model.FineTuningJobIntegrationsInner;
@@ -21,7 +22,7 @@ import org.openapitools.model.FineTuningJobIntegrationsInner;
  **/
 
 @ApiModel(description = "The `fine_tuning.job` object represents a fine-tuning job that has been created through the API. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FineTuningJob   {
   @JsonProperty("id")
   private String id;
@@ -138,6 +139,12 @@ public class FineTuningJob   {
 
   @JsonProperty("seed")
   private Integer seed;
+
+  @JsonProperty("estimated_finish")
+  private Integer estimatedFinish;
+
+  @JsonProperty("method")
+  private FineTuneMethod method;
 
   /**
    * The object identifier, which can be referenced in the API endpoints.
@@ -425,6 +432,41 @@ public class FineTuningJob   {
     this.seed = seed;
   }
 
+  /**
+   * The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+   **/
+  public FineTuningJob estimatedFinish(Integer estimatedFinish) {
+    this.estimatedFinish = estimatedFinish;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.")
+  @JsonProperty("estimated_finish")
+  public Integer getEstimatedFinish() {
+    return estimatedFinish;
+  }
+  public void setEstimatedFinish(Integer estimatedFinish) {
+    this.estimatedFinish = estimatedFinish;
+  }
+
+  /**
+   **/
+  public FineTuningJob method(FineTuneMethod method) {
+    this.method = method;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("method")
+  public FineTuneMethod getMethod() {
+    return method;
+  }
+  public void setMethod(FineTuneMethod method) {
+    this.method = method;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -450,12 +492,14 @@ public class FineTuningJob   {
         Objects.equals(trainingFile, fineTuningJob.trainingFile) &&
         Objects.equals(validationFile, fineTuningJob.validationFile) &&
         Objects.equals(integrations, fineTuningJob.integrations) &&
-        Objects.equals(seed, fineTuningJob.seed);
+        Objects.equals(seed, fineTuningJob.seed) &&
+        Objects.equals(estimatedFinish, fineTuningJob.estimatedFinish) &&
+        Objects.equals(method, fineTuningJob.method);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, createdAt, error, fineTunedModel, finishedAt, hyperparameters, model, _object, organizationId, resultFiles, status, trainedTokens, trainingFile, validationFile, integrations, seed);
+    return Objects.hash(id, createdAt, error, fineTunedModel, finishedAt, hyperparameters, model, _object, organizationId, resultFiles, status, trainedTokens, trainingFile, validationFile, integrations, seed, estimatedFinish, method);
   }
 
   @Override
@@ -479,6 +523,8 @@ public class FineTuningJob   {
     sb.append("    validationFile: ").append(toIndentedString(validationFile)).append("\n");
     sb.append("    integrations: ").append(toIndentedString(integrations)).append("\n");
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
+    sb.append("    estimatedFinish: ").append(toIndentedString(estimatedFinish)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("}");
     return sb.toString();
   }

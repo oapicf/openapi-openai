@@ -16,23 +16,23 @@ ChatCompletionRequestUserMessageContent <- R6::R6Class(
     #' @field actual_type the type of the object stored in this instance.
     actual_type = NULL,
     #' @field one_of  a list of types defined in the oneOf schema.
-    one_of = list("array[ChatCompletionRequestMessageContentPart]", "character"),
+    one_of = list("array[ChatCompletionRequestUserMessageContentPart]", "character"),
 
     #' @description
     #' Initialize a new ChatCompletionRequestUserMessageContent.
     #'
-    #' @param instance an instance of the object defined in the oneOf schemas: "array[ChatCompletionRequestMessageContentPart]", "character"
+    #' @param instance an instance of the object defined in the oneOf schemas: "array[ChatCompletionRequestUserMessageContentPart]", "character"
     initialize = function(instance = NULL) {
       if (is.null(instance)) {
         # do nothing
-      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "array[ChatCompletionRequestMessageContentPart]") {
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "array[ChatCompletionRequestUserMessageContentPart]") {
         self$actual_instance <- instance
-        self$actual_type <- "array[ChatCompletionRequestMessageContentPart]"
+        self$actual_type <- "array[ChatCompletionRequestUserMessageContentPart]"
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "character") {
         self$actual_instance <- instance
         self$actual_type <- "character"
       } else {
-        stop(paste("Failed to initialize ChatCompletionRequestUserMessageContent with oneOf schemas array[ChatCompletionRequestMessageContentPart], character. Provided class name: ",
+        stop(paste("Failed to initialize ChatCompletionRequestUserMessageContent with oneOf schemas array[ChatCompletionRequestUserMessageContentPart], character. Provided class name: ",
                    get(class(instance)[[1]], pos = -1)$classname))
       }
     },
@@ -76,19 +76,19 @@ ChatCompletionRequestUserMessageContent <- R6::R6Class(
         error_messages <- append(error_messages, `character_result`["message"])
       }
 
-      `array[ChatCompletionRequestMessageContentPart]_result` <- tryCatch({
-          `array[ChatCompletionRequestMessageContentPart]`$public_methods$validateJSON(input)
-          `array[ChatCompletionRequestMessageContentPart]_instance` <- `array[ChatCompletionRequestMessageContentPart]`$new()
-          instance <- `array[ChatCompletionRequestMessageContentPart]_instance`$fromJSON(input)
-          instance_type <- "array[ChatCompletionRequestMessageContentPart]"
-          matched_schemas <- append(matched_schemas, "array[ChatCompletionRequestMessageContentPart]")
+      `array[ChatCompletionRequestUserMessageContentPart]_result` <- tryCatch({
+          `array[ChatCompletionRequestUserMessageContentPart]`$public_methods$validateJSON(input)
+          `array[ChatCompletionRequestUserMessageContentPart]_instance` <- `array[ChatCompletionRequestUserMessageContentPart]`$new()
+          instance <- `array[ChatCompletionRequestUserMessageContentPart]_instance`$fromJSON(input)
+          instance_type <- "array[ChatCompletionRequestUserMessageContentPart]"
+          matched_schemas <- append(matched_schemas, "array[ChatCompletionRequestUserMessageContentPart]")
           matched <- matched + 1
         },
         error = function(err) err
       )
 
-      if (!is.null(`array[ChatCompletionRequestMessageContentPart]_result`["error"])) {
-        error_messages <- append(error_messages, `array[ChatCompletionRequestMessageContentPart]_result`["message"])
+      if (!is.null(`array[ChatCompletionRequestUserMessageContentPart]_result`["error"])) {
+        error_messages <- append(error_messages, `array[ChatCompletionRequestUserMessageContentPart]_result`["message"])
       }
 
       if (matched == 1) {
@@ -97,11 +97,11 @@ ChatCompletionRequestUserMessageContent <- R6::R6Class(
         self$actual_type <- instance_type
       } else if (matched > 1) {
         # more than 1 match
-        stop(paste("Multiple matches found when deserializing the input into ChatCompletionRequestUserMessageContent with oneOf schemas array[ChatCompletionRequestMessageContentPart], character. Matched schemas: ",
+        stop(paste("Multiple matches found when deserializing the input into ChatCompletionRequestUserMessageContent with oneOf schemas array[ChatCompletionRequestUserMessageContentPart], character. Matched schemas: ",
                    paste(matched_schemas, collapse = ", ")))
       } else {
         # no match
-        stop(paste("No match found when deserializing the input into ChatCompletionRequestUserMessageContent with oneOf schemas array[ChatCompletionRequestMessageContentPart], character. Details: >>",
+        stop(paste("No match found when deserializing the input into ChatCompletionRequestUserMessageContent with oneOf schemas array[ChatCompletionRequestUserMessageContentPart], character. Details: >>",
                    paste(error_messages, collapse = " >> ")))
       }
 

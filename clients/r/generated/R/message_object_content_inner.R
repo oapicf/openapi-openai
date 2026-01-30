@@ -16,23 +16,29 @@ MessageObjectContentInner <- R6::R6Class(
     #' @field actual_type the type of the object stored in this instance.
     actual_type = NULL,
     #' @field one_of  a list of types defined in the oneOf schema.
-    one_of = list("MessageContentImageFileObject", "MessageContentTextObject"),
+    one_of = list("MessageContentImageFileObject", "MessageContentImageUrlObject", "MessageContentRefusalObject", "MessageContentTextObject"),
 
     #' @description
     #' Initialize a new MessageObjectContentInner.
     #'
-    #' @param instance an instance of the object defined in the oneOf schemas: "MessageContentImageFileObject", "MessageContentTextObject"
+    #' @param instance an instance of the object defined in the oneOf schemas: "MessageContentImageFileObject", "MessageContentImageUrlObject", "MessageContentRefusalObject", "MessageContentTextObject"
     initialize = function(instance = NULL) {
       if (is.null(instance)) {
         # do nothing
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "MessageContentImageFileObject") {
         self$actual_instance <- instance
         self$actual_type <- "MessageContentImageFileObject"
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "MessageContentImageUrlObject") {
+        self$actual_instance <- instance
+        self$actual_type <- "MessageContentImageUrlObject"
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "MessageContentRefusalObject") {
+        self$actual_instance <- instance
+        self$actual_type <- "MessageContentRefusalObject"
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "MessageContentTextObject") {
         self$actual_instance <- instance
         self$actual_type <- "MessageContentTextObject"
       } else {
-        stop(paste("Failed to initialize MessageObjectContentInner with oneOf schemas MessageContentImageFileObject, MessageContentTextObject. Provided class name: ",
+        stop(paste("Failed to initialize MessageObjectContentInner with oneOf schemas MessageContentImageFileObject, MessageContentImageUrlObject, MessageContentRefusalObject, MessageContentTextObject. Provided class name: ",
                    get(class(instance)[[1]], pos = -1)$classname))
       }
     },
@@ -75,6 +81,21 @@ MessageObjectContentInner <- R6::R6Class(
         error_messages <- append(error_messages, `MessageContentImageFileObject_result`["message"])
       }
 
+      `MessageContentImageUrlObject_result` <- tryCatch({
+          `MessageContentImageUrlObject`$public_methods$validateJSON(input)
+          `MessageContentImageUrlObject_instance` <- `MessageContentImageUrlObject`$new()
+          instance <- `MessageContentImageUrlObject_instance`$fromJSON(input)
+          instance_type <- "MessageContentImageUrlObject"
+          matched_schemas <- append(matched_schemas, "MessageContentImageUrlObject")
+          matched <- matched + 1
+        },
+        error = function(err) err
+      )
+
+      if (!is.null(`MessageContentImageUrlObject_result`["error"])) {
+        error_messages <- append(error_messages, `MessageContentImageUrlObject_result`["message"])
+      }
+
       `MessageContentTextObject_result` <- tryCatch({
           `MessageContentTextObject`$public_methods$validateJSON(input)
           `MessageContentTextObject_instance` <- `MessageContentTextObject`$new()
@@ -90,17 +111,32 @@ MessageObjectContentInner <- R6::R6Class(
         error_messages <- append(error_messages, `MessageContentTextObject_result`["message"])
       }
 
+      `MessageContentRefusalObject_result` <- tryCatch({
+          `MessageContentRefusalObject`$public_methods$validateJSON(input)
+          `MessageContentRefusalObject_instance` <- `MessageContentRefusalObject`$new()
+          instance <- `MessageContentRefusalObject_instance`$fromJSON(input)
+          instance_type <- "MessageContentRefusalObject"
+          matched_schemas <- append(matched_schemas, "MessageContentRefusalObject")
+          matched <- matched + 1
+        },
+        error = function(err) err
+      )
+
+      if (!is.null(`MessageContentRefusalObject_result`["error"])) {
+        error_messages <- append(error_messages, `MessageContentRefusalObject_result`["message"])
+      }
+
       if (matched == 1) {
         # successfully match exactly 1 schema specified in oneOf
         self$actual_instance <- instance
         self$actual_type <- instance_type
       } else if (matched > 1) {
         # more than 1 match
-        stop(paste("Multiple matches found when deserializing the input into MessageObjectContentInner with oneOf schemas MessageContentImageFileObject, MessageContentTextObject. Matched schemas: ",
+        stop(paste("Multiple matches found when deserializing the input into MessageObjectContentInner with oneOf schemas MessageContentImageFileObject, MessageContentImageUrlObject, MessageContentRefusalObject, MessageContentTextObject. Matched schemas: ",
                    paste(matched_schemas, collapse = ", ")))
       } else {
         # no match
-        stop(paste("No match found when deserializing the input into MessageObjectContentInner with oneOf schemas MessageContentImageFileObject, MessageContentTextObject. Details: >>",
+        stop(paste("No match found when deserializing the input into MessageObjectContentInner with oneOf schemas MessageContentImageFileObject, MessageContentImageUrlObject, MessageContentRefusalObject, MessageContentTextObject. Details: >>",
                    paste(error_messages, collapse = " >> ")))
       }
 

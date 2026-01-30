@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AuditLogApiKeyDeleted"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AuditLogApiKeyDeleted"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  AuditLogApiKeyDeleted {
+    title = AuditLogApiKeyDeleted
+    description = AuditLogApiKeyDeleted
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The tracking ID of the API key."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AuditLogApiKeyDeleted {
+    title = AuditLogApiKeyDeleted
+    description = AuditLogApiKeyDeleted
+    implements = openapi_server.resourceTypes.AuditLogApiKeyDeleted
+
+  }
+}

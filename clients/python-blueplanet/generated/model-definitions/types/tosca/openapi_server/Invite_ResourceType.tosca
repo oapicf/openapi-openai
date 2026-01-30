@@ -1,0 +1,80 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server Invite"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a Invite"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  InviteProjectsInner = openapi_server.resourceTypes.InviteProjectsInner
+}
+resourceTypes {
+
+  Invite {
+    title = Invite
+    description = Invite
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;organization.invite&#x60;"
+          enum = ["organization.invite"]
+          optional = true
+        }
+        id {
+          type =  string
+          description = "The identifier, which can be referenced in API endpoints"
+          optional = true
+        }
+        email {
+          type =  string
+          description = "The email address of the individual to whom the invite was sent"
+          optional = true
+        }
+        role {
+          type =  string
+          description = "&#x60;owner&#x60; or &#x60;reader&#x60;"
+          enum = ["owner", "reader"]
+          optional = true
+        }
+        status {
+          type =  string
+          description = "&#x60;accepted&#x60;,&#x60;expired&#x60;, or &#x60;pending&#x60;"
+          enum = ["accepted", "expired", "pending"]
+          optional = true
+        }
+        invited_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) of when the invite was sent."
+          optional = true
+        }
+        expires_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) of when the invite expires."
+          optional = true
+        }
+        accepted_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) of when the invite was accepted."
+          optional = false
+        }
+        projects {
+          type = array
+          items.type = InviteProjectsInner
+          description = "The projects that were granted membership upon acceptance of the invite."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  Invite {
+    title = Invite
+    description = Invite
+    implements = openapi_server.resourceTypes.Invite
+
+  }
+}

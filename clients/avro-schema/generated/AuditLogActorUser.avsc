@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The user who performed the audit logged action.",
+  "name": "AuditLogActorUser",
+  "fields": [
+    {
+      "name": "id",
+      "type": ["null", "string"],
+      "doc": "The user id.",
+      "default": null
+    },
+    {
+      "name": "email",
+      "type": ["null", "string"],
+      "doc": "The user email.",
+      "default": null
+    }
+  ]
+
+}

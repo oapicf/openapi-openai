@@ -22,10 +22,6 @@ export interface MessageDeltaObjectDelta {
      * The content of the message in array of text and/or images.
      */
     content?: Array<MessageDeltaObjectDeltaContentInner>;
-    /**
-     * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-     */
-    file_ids?: Array<string>;
 }
 export namespace MessageDeltaObjectDelta {
     export const RoleEnum = {

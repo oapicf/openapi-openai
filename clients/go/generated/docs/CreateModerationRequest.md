@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Input** | [**CreateModerationRequestInput**](CreateModerationRequestInput.md) |  | 
-**Model** | Pointer to [**CreateModerationRequestModel**](CreateModerationRequestModel.md) |  | [optional] [default to text-moderation-latest]
+**Model** | Pointer to [**CreateModerationRequestModel**](CreateModerationRequestModel.md) |  | [optional] [default to omni-moderation-latest]
 
 ## Methods
 

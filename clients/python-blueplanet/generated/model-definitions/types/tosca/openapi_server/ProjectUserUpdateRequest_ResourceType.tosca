@@ -1,0 +1,36 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ProjectUserUpdateRequest"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ProjectUserUpdateRequest"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ProjectUserUpdateRequest {
+    title = ProjectUserUpdateRequest
+    description = ProjectUserUpdateRequest
+    derivedFrom = Root
+    properties {
+        role {
+          type =  string
+          description = "&#x60;owner&#x60; or &#x60;member&#x60;"
+          enum = ["owner", "member"]
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ProjectUserUpdateRequest {
+    title = ProjectUserUpdateRequest
+    description = ProjectUserUpdateRequest
+    implements = openapi_server.resourceTypes.ProjectUserUpdateRequest
+
+  }
+}

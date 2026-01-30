@@ -6,7 +6,7 @@
 
 -type openapi_chat_completion_request_tool_message() ::
     #{ 'role' := binary(),
-       'content' := binary(),
+       'content' := openapi_chat_completion_request_tool_message_content:openapi_chat_completion_request_tool_message_content(),
        'tool_call_id' := binary()
      }.
 

@@ -1,0 +1,17 @@
+package models
+
+type CreateVectorStoreRequest struct {
+
+	// A list of [File](/docs/api-reference/files) IDs that the vector store should use. Useful for tools like `file_search` that can access files.
+	FileIds []string `json:"file_ids,omitempty"`
+
+	// The name of the vector store.
+	Name string `json:"name,omitempty"`
+
+	ExpiresAfter VectorStoreExpirationAfter `json:"expires_after,omitempty"`
+
+	ChunkingStrategy CreateVectorStoreRequestChunkingStrategy `json:"chunking_strategy,omitempty"`
+
+	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
+}

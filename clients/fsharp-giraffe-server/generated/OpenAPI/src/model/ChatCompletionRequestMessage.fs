@@ -4,7 +4,9 @@ open System
 open System.Collections.Generic
 open OpenAPI.Model.ChatCompletionMessageToolCall
 open OpenAPI.Model.ChatCompletionRequestAssistantMessage
+open OpenAPI.Model.ChatCompletionRequestAssistantMessageAudio
 open OpenAPI.Model.ChatCompletionRequestAssistantMessageFunctionCall
+open OpenAPI.Model.ChatCompletionRequestDeveloperMessage
 open OpenAPI.Model.ChatCompletionRequestFunctionMessage
 open OpenAPI.Model.ChatCompletionRequestSystemMessage
 open OpenAPI.Model.ChatCompletionRequestToolMessage
@@ -23,6 +25,8 @@ module ChatCompletionRequestMessage =
     Content : string option;
     Role : RoleEnum;
     Name : string;
+    Refusal : string option;
+    Audio : ChatCompletionRequestAssistantMessageAudio;
     ToolCalls : ChatCompletionMessageToolCall[];
     FunctionCall : ChatCompletionRequestAssistantMessageFunctionCall;
     ToolCallId : string;

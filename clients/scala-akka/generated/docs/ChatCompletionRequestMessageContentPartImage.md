@@ -2,6 +2,7 @@
 
 # ChatCompletionRequestMessageContentPartImage
 
+Learn about [image inputs](/docs/guides/vision). 
 
 ## Properties
 

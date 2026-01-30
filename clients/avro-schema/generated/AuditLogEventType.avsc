@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "enum",
+  "doc": "The event type.",
+  "name": "AuditLogEventType",
+  "symbols": [
+    "api_key_created",
+    "api_key_updated",
+    "api_key_deleted",
+    "invite_sent",
+    "invite_accepted",
+    "invite_deleted",
+    "login_succeeded",
+    "login_failed",
+    "logout_succeeded",
+    "logout_failed",
+    "organization_updated",
+    "project_created",
+    "project_updated",
+    "project_archived",
+    "service_account_created",
+    "service_account_updated",
+    "service_account_deleted",
+    "rate_limit_updated",
+    "rate_limit_deleted",
+    "user_added",
+    "user_updated",
+    "user_deleted"
+  ]
+}

@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server StaticChunkingStrategyResponseParam"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a StaticChunkingStrategyResponseParam"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  StaticChunkingStrategy = openapi_server.resourceTypes.StaticChunkingStrategy
+}
+resourceTypes {
+
+  StaticChunkingStrategyResponseParam {
+    title = StaticChunkingStrategyResponseParam
+    description = StaticChunkingStrategyResponseParam
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "Always &#x60;static&#x60;."
+          enum = ["static"]
+          optional = true
+        }
+        static {
+          type = StaticChunkingStrategy
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  StaticChunkingStrategyResponseParam {
+    title = StaticChunkingStrategyResponseParam
+    description = StaticChunkingStrategyResponseParam
+    implements = openapi_server.resourceTypes.StaticChunkingStrategyResponseParam
+
+  }
+}

@@ -264,138 +264,6 @@ Protected Class AssistantsApi
 
 
 	#tag Method, Flags = &h0
-		Sub CreateAssistantFile(, assistantId As String, createAssistantFileRequest As OpenAPIClient.Models.CreateAssistantFileRequest)
-		  // Operation createAssistantFile
-		  // Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-		  // - 
-		  // - parameter assistantId: (path) The ID of the assistant for which to create a File.  
-		  // - parameter createAssistantFileRequest: (body)  
-		  //
-		  // Invokes AssistantsApiCallbackHandler.CreateAssistantFileCallback(AssistantFileObject) on completion. 
-		  //
-		  // - POST /assistants/{assistant_id}/files
-		  // - defaultResponse: Nil
-		  //
-		  // - Bearer Token:
-		  //   - type: http
-		  //   - name: ApiKeyAuth
-		  //
-		  
-		  Dim localVarHTTPSocket As New HTTPSecureSocket
-		  Me.PrivateFuncPrepareSocket(localVarHTTPSocket)
-		  localVarHTTPSocket.SetRequestContent(Xoson.toJSON(createAssistantFileRequest), "application/json")
-		  
-		  
-		  
-
-
-		  Dim localVarPath As String = "/assistants/{assistant_id}/files"
-		  
-		  Dim localVarPathStringassistantId As String = assistantId
-		  
-		  localVarPath = localVarPath.ReplaceAllB("{assistant_id}", localVarPathStringassistantId)
-		  
-		  
-		  AddHandler localVarHTTPSocket.PageReceived, addressof me.CreateAssistantFile_handler
-		  AddHandler localVarHTTPSocket.Error, addressof Me.CreateAssistantFile_error
-		  
-		  
-		  localVarHTTPSocket.SendRequest("POST", Me.BasePath + localVarPath)
-		  if localVarHTTPSocket.LastErrorCode <> 0 then
-		    Dim localVarException As New OpenAPIClient.OpenAPIClientException(localVarHTTPSocket.LastErrorCode)
-			Raise localVarException
-		  end if
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function CreateAssistantFilePrivateFuncDeserializeResponse(HTTPStatus As Integer, Headers As InternetHeaders, error As OpenAPIClient.OpenAPIClientException, Content As String, ByRef outData As OpenAPIClient.Models.AssistantFileObject) As Boolean
-		  Dim contentType As String = Headers.Value("Content-Type")
-		  Dim contentEncoding As TextEncoding = OpenAPIClient.EncodingFromContentType(contentType)
-		  Content = DefineEncoding(Content, contentEncoding)
-		  
-		  If HTTPStatus > 199 and HTTPStatus < 300 then
-		    If contentType.LeftB(16) = "application/json" then
-		      
-			  outData = New OpenAPIClient.Models.AssistantFileObject
-			  Try
-		        Xoson.fromJSON(outData, Content.toText())
-
-		      Catch e As JSONException
-		        error.Message = error.Message + " with JSON parse exception: " + e.Message
-		        error.ErrorNumber = kErrorInvalidJSON
-		        Return False
-		        
-		      Catch e As Xojo.Data.InvalidJSONException
-		        error.Message = error.Message + " with Xojo.Data.JSON parse exception: " + e.Message
-		        error.ErrorNumber = kErrorInvalidJSON
-		        Return False
-		        
-		      Catch e As Xoson.XosonException
-		        error.Message = error.Message + " with Xoson parse exception: " + e.Message
-		        error.ErrorNumber = kErrorXosonProblem
-		        Return False
-
-		      End Try
-		      
-		      
-		    ElseIf contentType.LeftB(19) = "multipart/form-data" then
-		      error.Message = "Unsupported media type: " + contentType
-		      error.ErrorNumber = kErrorUnsupportedMediaType
-		      Return False
-
-		    ElseIf contentType.LeftB(33) = "application/x-www-form-urlencoded" then
-		      error.Message = "Unsupported media type: " + contentType
-		      error.ErrorNumber = kErrorUnsupportedMediaType
-		      Return False
-
-		    Else
-		      error.Message = "Unsupported media type: " + contentType
-		      error.ErrorNumber = kErrorUnsupportedMediaType
-		      Return False
-
-		    End If
-		  Else
-		    error.Message = error.Message + ". " + Content
-			error.ErrorNumber = kErrorHTTPFail
-		    Return False
-		  End If
-		  
-		  Return True
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub CreateAssistantFile_error(sender As HTTPSecureSocket, Code As Integer)
-		  If sender <> nil Then sender.Close()
-
-		  Dim error As New OpenAPIClient.OpenAPIClientException(Code)
-		  Dim data As OpenAPIClient.Models.AssistantFileObject
-		  CallbackHandler.CreateAssistantFileCallback(error, data)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub CreateAssistantFile_handler(sender As HTTPSecureSocket, URL As String, HTTPStatus As Integer, Headers As InternetHeaders, Content As String)
-		  #Pragma Unused URL
-		  
-
-		  If sender <> nil Then sender.Close()
-		  
-		  Dim error As New OpenAPIClient.OpenAPIClientException(HTTPStatus, "", Content)
-		  
-		  Dim data As OpenAPIClient.Models.AssistantFileObject
-		  Call CreateAssistantFilePrivateFuncDeserializeResponse(HTTPStatus, Headers, error, Content, data)
-		  
-		  CallbackHandler.CreateAssistantFileCallback(error, data)
-		End Sub
-	#tag EndMethod
-
-
-
-
-	#tag Method, Flags = &h0
 		Sub CreateMessage(, threadId As String, createMessageRequest As OpenAPIClient.Models.CreateMessageRequest)
 		  // Operation createMessage
 		  // Create a message.
@@ -528,12 +396,13 @@ Protected Class AssistantsApi
 
 
 	#tag Method, Flags = &h0
-		Sub CreateRun(, threadId As String, createRunRequest As OpenAPIClient.Models.CreateRunRequest)
+		Sub CreateRun(, threadId As String, createRunRequest As OpenAPIClient.Models.CreateRunRequest, include() As IncludeEnum_CreateRun)
 		  // Operation createRun
 		  // Create a run.
 		  // - 
 		  // - parameter threadId: (path) The ID of the thread to run. 
 		  // - parameter createRunRequest: (body)  
+		  // - parameter include: (query) A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional, default to Nil)
 		  //
 		  // Invokes AssistantsApiCallbackHandler.CreateRunCallback(RunObject) on completion. 
 		  //
@@ -548,7 +417,26 @@ Protected Class AssistantsApi
 		  Dim localVarHTTPSocket As New HTTPSecureSocket
 		  Me.PrivateFuncPrepareSocket(localVarHTTPSocket)
 		  localVarHTTPSocket.SetRequestContent(Xoson.toJSON(createRunRequest), "application/json")
+		  Dim localVarQueryParams As String = "?"
 		  
+		  Dim localVarQueryStringsinclude() As String
+		  For Each localVarIteminclude As IncludeEnum_CreateRun in include
+		    Dim encodedParameter As String = EncodeURLComponent(IncludeEnum_CreateRunToString(localVarIteminclude))
+		    Select Case "form"
+		      Case "form"
+		        localVarQueryStringsinclude.Append("include=" + encodedParameter)
+		      Case "spaceDelimited"
+		        localVarQueryStringsinclude.Append("include=" + encodedParameter)
+		      Case "pipeDelimited"
+		        localVarQueryStringsinclude.Append("include=" + encodedParameter)
+		      Case "deepObject"
+		        Raise New OpenAPIClient.OpenAPIClientException(kErrorUnsupportedFeature, "deepObject query parameters are not supported")
+		    End Select
+		  Next
+		  
+		  Dim localVarQueryStringinclude As String
+		  localVarQueryStringinclude = Join(localVarQueryStringsinclude, "&")
+
 		  
 		  
 
@@ -564,7 +452,7 @@ Protected Class AssistantsApi
 		  AddHandler localVarHTTPSocket.Error, addressof Me.CreateRun_error
 		  
 		  
-		  localVarHTTPSocket.SendRequest("POST", Me.BasePath + localVarPath)
+		  localVarHTTPSocket.SendRequest("POST", Me.BasePath + localVarPath + localVarQueryParams)
 		  if localVarHTTPSocket.LastErrorCode <> 0 then
 		    Dim localVarException As New OpenAPIClient.OpenAPIClientException(localVarHTTPSocket.LastErrorCode)
 			Raise localVarException
@@ -658,6 +546,17 @@ Protected Class AssistantsApi
 
 
 
+	#tag Method, Flags = &h21
+		Private Function IncludeEnum_CreateRunToString(value As IncludeEnum_CreateRun) As String
+		  Select Case value
+		    
+		    Case IncludeEnum_CreateRun.StepDetailsPeriodToolCallsLeftSquareBracketStarRightSquareBracketPeriodFileSearchPeriodResultsLeftSquareBracketStarRightSquareBracketPeriodContent
+		      Return "step_details.tool_calls[*].file_search.results[*].content"
+		    
+		  End Select
+		  Return ""
+		End Function
+	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub CreateThread(, Optional createThreadRequest As OpenAPIClient.Models.CreateThreadRequest)
@@ -1047,16 +946,16 @@ Protected Class AssistantsApi
 
 
 	#tag Method, Flags = &h0
-		Sub DeleteAssistantFile(, assistantId As String, fileId As String)
-		  // Operation deleteAssistantFile
-		  // Delete an assistant file.
+		Sub DeleteMessage(, threadId As String, messageId As String)
+		  // Operation deleteMessage
+		  // Deletes a message.
 		  // - 
-		  // - parameter assistantId: (path) The ID of the assistant that the file belongs to. 
-		  // - parameter fileId: (path) The ID of the file to delete. 
+		  // - parameter threadId: (path) The ID of the thread to which this message belongs. 
+		  // - parameter messageId: (path) The ID of the message to delete. 
 		  //
-		  // Invokes AssistantsApiCallbackHandler.DeleteAssistantFileCallback(DeleteAssistantFileResponse) on completion. 
+		  // Invokes AssistantsApiCallbackHandler.DeleteMessageCallback(DeleteMessageResponse) on completion. 
 		  //
-		  // - DELETE /assistants/{assistant_id}/files/{file_id}
+		  // - DELETE /threads/{thread_id}/messages/{message_id}
 		  // - defaultResponse: Nil
 		  //
 		  // - Bearer Token:
@@ -1072,18 +971,18 @@ Protected Class AssistantsApi
 		  
 
 
-		  Dim localVarPath As String = "/assistants/{assistant_id}/files/{file_id}"
+		  Dim localVarPath As String = "/threads/{thread_id}/messages/{message_id}"
 		  
-		  Dim localVarPathStringassistantId As String = assistantId
+		  Dim localVarPathStringthreadId As String = threadId
 		  
-		  localVarPath = localVarPath.ReplaceAllB("{assistant_id}", localVarPathStringassistantId)
-		  Dim localVarPathStringfileId As String = fileId
+		  localVarPath = localVarPath.ReplaceAllB("{thread_id}", localVarPathStringthreadId)
+		  Dim localVarPathStringmessageId As String = messageId
 		  
-		  localVarPath = localVarPath.ReplaceAllB("{file_id}", localVarPathStringfileId)
+		  localVarPath = localVarPath.ReplaceAllB("{message_id}", localVarPathStringmessageId)
 		  
 		  
-		  AddHandler localVarHTTPSocket.PageReceived, addressof me.DeleteAssistantFile_handler
-		  AddHandler localVarHTTPSocket.Error, addressof Me.DeleteAssistantFile_error
+		  AddHandler localVarHTTPSocket.PageReceived, addressof me.DeleteMessage_handler
+		  AddHandler localVarHTTPSocket.Error, addressof Me.DeleteMessage_error
 		  
 		  
 		  localVarHTTPSocket.SendRequest("DELETE", Me.BasePath + localVarPath)
@@ -1096,7 +995,7 @@ Protected Class AssistantsApi
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function DeleteAssistantFilePrivateFuncDeserializeResponse(HTTPStatus As Integer, Headers As InternetHeaders, error As OpenAPIClient.OpenAPIClientException, Content As String, ByRef outData As OpenAPIClient.Models.DeleteAssistantFileResponse) As Boolean
+		Private Function DeleteMessagePrivateFuncDeserializeResponse(HTTPStatus As Integer, Headers As InternetHeaders, error As OpenAPIClient.OpenAPIClientException, Content As String, ByRef outData As OpenAPIClient.Models.DeleteMessageResponse) As Boolean
 		  Dim contentType As String = Headers.Value("Content-Type")
 		  Dim contentEncoding As TextEncoding = OpenAPIClient.EncodingFromContentType(contentType)
 		  Content = DefineEncoding(Content, contentEncoding)
@@ -1104,7 +1003,7 @@ Protected Class AssistantsApi
 		  If HTTPStatus > 199 and HTTPStatus < 300 then
 		    If contentType.LeftB(16) = "application/json" then
 		      
-			  outData = New OpenAPIClient.Models.DeleteAssistantFileResponse
+			  outData = New OpenAPIClient.Models.DeleteMessageResponse
 			  Try
 		        Xoson.fromJSON(outData, Content.toText())
 
@@ -1153,17 +1052,17 @@ Protected Class AssistantsApi
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DeleteAssistantFile_error(sender As HTTPSecureSocket, Code As Integer)
+		Private Sub DeleteMessage_error(sender As HTTPSecureSocket, Code As Integer)
 		  If sender <> nil Then sender.Close()
 
 		  Dim error As New OpenAPIClient.OpenAPIClientException(Code)
-		  Dim data As OpenAPIClient.Models.DeleteAssistantFileResponse
-		  CallbackHandler.DeleteAssistantFileCallback(error, data)
+		  Dim data As OpenAPIClient.Models.DeleteMessageResponse
+		  CallbackHandler.DeleteMessageCallback(error, data)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DeleteAssistantFile_handler(sender As HTTPSecureSocket, URL As String, HTTPStatus As Integer, Headers As InternetHeaders, Content As String)
+		Private Sub DeleteMessage_handler(sender As HTTPSecureSocket, URL As String, HTTPStatus As Integer, Headers As InternetHeaders, Content As String)
 		  #Pragma Unused URL
 		  
 
@@ -1171,10 +1070,10 @@ Protected Class AssistantsApi
 		  
 		  Dim error As New OpenAPIClient.OpenAPIClientException(HTTPStatus, "", Content)
 		  
-		  Dim data As OpenAPIClient.Models.DeleteAssistantFileResponse
-		  Call DeleteAssistantFilePrivateFuncDeserializeResponse(HTTPStatus, Headers, error, Content, data)
+		  Dim data As OpenAPIClient.Models.DeleteMessageResponse
+		  Call DeleteMessagePrivateFuncDeserializeResponse(HTTPStatus, Headers, error, Content, data)
 		  
-		  CallbackHandler.DeleteAssistantFileCallback(error, data)
+		  CallbackHandler.DeleteMessageCallback(error, data)
 		End Sub
 	#tag EndMethod
 
@@ -1444,141 +1343,6 @@ Protected Class AssistantsApi
 
 
 	#tag Method, Flags = &h0
-		Sub GetAssistantFile(, assistantId As String, fileId As String)
-		  // Operation getAssistantFile
-		  // Retrieves an AssistantFile.
-		  // - 
-		  // - parameter assistantId: (path) The ID of the assistant who the file belongs to. 
-		  // - parameter fileId: (path) The ID of the file we&#39;re getting. 
-		  //
-		  // Invokes AssistantsApiCallbackHandler.GetAssistantFileCallback(AssistantFileObject) on completion. 
-		  //
-		  // - GET /assistants/{assistant_id}/files/{file_id}
-		  // - defaultResponse: Nil
-		  //
-		  // - Bearer Token:
-		  //   - type: http
-		  //   - name: ApiKeyAuth
-		  //
-		  
-		  Dim localVarHTTPSocket As New HTTPSecureSocket
-		  Me.PrivateFuncPrepareSocket(localVarHTTPSocket)
-		  
-		  
-		  
-		  
-
-
-		  Dim localVarPath As String = "/assistants/{assistant_id}/files/{file_id}"
-		  
-		  Dim localVarPathStringassistantId As String = assistantId
-		  
-		  localVarPath = localVarPath.ReplaceAllB("{assistant_id}", localVarPathStringassistantId)
-		  Dim localVarPathStringfileId As String = fileId
-		  
-		  localVarPath = localVarPath.ReplaceAllB("{file_id}", localVarPathStringfileId)
-		  
-		  
-		  AddHandler localVarHTTPSocket.PageReceived, addressof me.GetAssistantFile_handler
-		  AddHandler localVarHTTPSocket.Error, addressof Me.GetAssistantFile_error
-		  
-		  
-		  localVarHTTPSocket.SendRequest("GET", Me.BasePath + localVarPath)
-		  if localVarHTTPSocket.LastErrorCode <> 0 then
-		    Dim localVarException As New OpenAPIClient.OpenAPIClientException(localVarHTTPSocket.LastErrorCode)
-			Raise localVarException
-		  end if
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function GetAssistantFilePrivateFuncDeserializeResponse(HTTPStatus As Integer, Headers As InternetHeaders, error As OpenAPIClient.OpenAPIClientException, Content As String, ByRef outData As OpenAPIClient.Models.AssistantFileObject) As Boolean
-		  Dim contentType As String = Headers.Value("Content-Type")
-		  Dim contentEncoding As TextEncoding = OpenAPIClient.EncodingFromContentType(contentType)
-		  Content = DefineEncoding(Content, contentEncoding)
-		  
-		  If HTTPStatus > 199 and HTTPStatus < 300 then
-		    If contentType.LeftB(16) = "application/json" then
-		      
-			  outData = New OpenAPIClient.Models.AssistantFileObject
-			  Try
-		        Xoson.fromJSON(outData, Content.toText())
-
-		      Catch e As JSONException
-		        error.Message = error.Message + " with JSON parse exception: " + e.Message
-		        error.ErrorNumber = kErrorInvalidJSON
-		        Return False
-		        
-		      Catch e As Xojo.Data.InvalidJSONException
-		        error.Message = error.Message + " with Xojo.Data.JSON parse exception: " + e.Message
-		        error.ErrorNumber = kErrorInvalidJSON
-		        Return False
-		        
-		      Catch e As Xoson.XosonException
-		        error.Message = error.Message + " with Xoson parse exception: " + e.Message
-		        error.ErrorNumber = kErrorXosonProblem
-		        Return False
-
-		      End Try
-		      
-		      
-		    ElseIf contentType.LeftB(19) = "multipart/form-data" then
-		      error.Message = "Unsupported media type: " + contentType
-		      error.ErrorNumber = kErrorUnsupportedMediaType
-		      Return False
-
-		    ElseIf contentType.LeftB(33) = "application/x-www-form-urlencoded" then
-		      error.Message = "Unsupported media type: " + contentType
-		      error.ErrorNumber = kErrorUnsupportedMediaType
-		      Return False
-
-		    Else
-		      error.Message = "Unsupported media type: " + contentType
-		      error.ErrorNumber = kErrorUnsupportedMediaType
-		      Return False
-
-		    End If
-		  Else
-		    error.Message = error.Message + ". " + Content
-			error.ErrorNumber = kErrorHTTPFail
-		    Return False
-		  End If
-		  
-		  Return True
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub GetAssistantFile_error(sender As HTTPSecureSocket, Code As Integer)
-		  If sender <> nil Then sender.Close()
-
-		  Dim error As New OpenAPIClient.OpenAPIClientException(Code)
-		  Dim data As OpenAPIClient.Models.AssistantFileObject
-		  CallbackHandler.GetAssistantFileCallback(error, data)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub GetAssistantFile_handler(sender As HTTPSecureSocket, URL As String, HTTPStatus As Integer, Headers As InternetHeaders, Content As String)
-		  #Pragma Unused URL
-		  
-
-		  If sender <> nil Then sender.Close()
-		  
-		  Dim error As New OpenAPIClient.OpenAPIClientException(HTTPStatus, "", Content)
-		  
-		  Dim data As OpenAPIClient.Models.AssistantFileObject
-		  Call GetAssistantFilePrivateFuncDeserializeResponse(HTTPStatus, Headers, error, Content, data)
-		  
-		  CallbackHandler.GetAssistantFileCallback(error, data)
-		End Sub
-	#tag EndMethod
-
-
-
-
-	#tag Method, Flags = &h0
 		Sub GetMessage(, threadId As String, messageId As String)
 		  // Operation getMessage
 		  // Retrieve a message.
@@ -1707,145 +1471,6 @@ Protected Class AssistantsApi
 		  Call GetMessagePrivateFuncDeserializeResponse(HTTPStatus, Headers, error, Content, data)
 		  
 		  CallbackHandler.GetMessageCallback(error, data)
-		End Sub
-	#tag EndMethod
-
-
-
-
-	#tag Method, Flags = &h0
-		Sub GetMessageFile(, threadId As String, messageId As String, fileId As String)
-		  // Operation getMessageFile
-		  // Retrieves a message file.
-		  // - 
-		  // - parameter threadId: (path) The ID of the thread to which the message and File belong. 
-		  // - parameter messageId: (path) The ID of the message the file belongs to. 
-		  // - parameter fileId: (path) The ID of the file being retrieved. 
-		  //
-		  // Invokes AssistantsApiCallbackHandler.GetMessageFileCallback(MessageFileObject) on completion. 
-		  //
-		  // - GET /threads/{thread_id}/messages/{message_id}/files/{file_id}
-		  // - defaultResponse: Nil
-		  //
-		  // - Bearer Token:
-		  //   - type: http
-		  //   - name: ApiKeyAuth
-		  //
-		  
-		  Dim localVarHTTPSocket As New HTTPSecureSocket
-		  Me.PrivateFuncPrepareSocket(localVarHTTPSocket)
-		  
-		  
-		  
-		  
-
-
-		  Dim localVarPath As String = "/threads/{thread_id}/messages/{message_id}/files/{file_id}"
-		  
-		  Dim localVarPathStringthreadId As String = threadId
-		  
-		  localVarPath = localVarPath.ReplaceAllB("{thread_id}", localVarPathStringthreadId)
-		  Dim localVarPathStringmessageId As String = messageId
-		  
-		  localVarPath = localVarPath.ReplaceAllB("{message_id}", localVarPathStringmessageId)
-		  Dim localVarPathStringfileId As String = fileId
-		  
-		  localVarPath = localVarPath.ReplaceAllB("{file_id}", localVarPathStringfileId)
-		  
-		  
-		  AddHandler localVarHTTPSocket.PageReceived, addressof me.GetMessageFile_handler
-		  AddHandler localVarHTTPSocket.Error, addressof Me.GetMessageFile_error
-		  
-		  
-		  localVarHTTPSocket.SendRequest("GET", Me.BasePath + localVarPath)
-		  if localVarHTTPSocket.LastErrorCode <> 0 then
-		    Dim localVarException As New OpenAPIClient.OpenAPIClientException(localVarHTTPSocket.LastErrorCode)
-			Raise localVarException
-		  end if
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function GetMessageFilePrivateFuncDeserializeResponse(HTTPStatus As Integer, Headers As InternetHeaders, error As OpenAPIClient.OpenAPIClientException, Content As String, ByRef outData As OpenAPIClient.Models.MessageFileObject) As Boolean
-		  Dim contentType As String = Headers.Value("Content-Type")
-		  Dim contentEncoding As TextEncoding = OpenAPIClient.EncodingFromContentType(contentType)
-		  Content = DefineEncoding(Content, contentEncoding)
-		  
-		  If HTTPStatus > 199 and HTTPStatus < 300 then
-		    If contentType.LeftB(16) = "application/json" then
-		      
-			  outData = New OpenAPIClient.Models.MessageFileObject
-			  Try
-		        Xoson.fromJSON(outData, Content.toText())
-
-		      Catch e As JSONException
-		        error.Message = error.Message + " with JSON parse exception: " + e.Message
-		        error.ErrorNumber = kErrorInvalidJSON
-		        Return False
-		        
-		      Catch e As Xojo.Data.InvalidJSONException
-		        error.Message = error.Message + " with Xojo.Data.JSON parse exception: " + e.Message
-		        error.ErrorNumber = kErrorInvalidJSON
-		        Return False
-		        
-		      Catch e As Xoson.XosonException
-		        error.Message = error.Message + " with Xoson parse exception: " + e.Message
-		        error.ErrorNumber = kErrorXosonProblem
-		        Return False
-
-		      End Try
-		      
-		      
-		    ElseIf contentType.LeftB(19) = "multipart/form-data" then
-		      error.Message = "Unsupported media type: " + contentType
-		      error.ErrorNumber = kErrorUnsupportedMediaType
-		      Return False
-
-		    ElseIf contentType.LeftB(33) = "application/x-www-form-urlencoded" then
-		      error.Message = "Unsupported media type: " + contentType
-		      error.ErrorNumber = kErrorUnsupportedMediaType
-		      Return False
-
-		    Else
-		      error.Message = "Unsupported media type: " + contentType
-		      error.ErrorNumber = kErrorUnsupportedMediaType
-		      Return False
-
-		    End If
-		  Else
-		    error.Message = error.Message + ". " + Content
-			error.ErrorNumber = kErrorHTTPFail
-		    Return False
-		  End If
-		  
-		  Return True
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub GetMessageFile_error(sender As HTTPSecureSocket, Code As Integer)
-		  If sender <> nil Then sender.Close()
-
-		  Dim error As New OpenAPIClient.OpenAPIClientException(Code)
-		  Dim data As OpenAPIClient.Models.MessageFileObject
-		  CallbackHandler.GetMessageFileCallback(error, data)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub GetMessageFile_handler(sender As HTTPSecureSocket, URL As String, HTTPStatus As Integer, Headers As InternetHeaders, Content As String)
-		  #Pragma Unused URL
-		  
-
-		  If sender <> nil Then sender.Close()
-		  
-		  Dim error As New OpenAPIClient.OpenAPIClientException(HTTPStatus, "", Content)
-		  
-		  Dim data As OpenAPIClient.Models.MessageFileObject
-		  Call GetMessageFilePrivateFuncDeserializeResponse(HTTPStatus, Headers, error, Content, data)
-		  
-		  CallbackHandler.GetMessageFileCallback(error, data)
 		End Sub
 	#tag EndMethod
 
@@ -1988,13 +1613,14 @@ Protected Class AssistantsApi
 
 
 	#tag Method, Flags = &h0
-		Sub GetRunStep(, threadId As String, runId As String, stepId As String)
+		Sub GetRunStep(, threadId As String, runId As String, stepId As String, include() As IncludeEnum_GetRunStep)
 		  // Operation getRunStep
 		  // Retrieves a run step.
 		  // - 
 		  // - parameter threadId: (path) The ID of the thread to which the run and run step belongs. 
 		  // - parameter runId: (path) The ID of the run to which the run step belongs. 
 		  // - parameter stepId: (path) The ID of the run step to retrieve. 
+		  // - parameter include: (query) A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional, default to Nil)
 		  //
 		  // Invokes AssistantsApiCallbackHandler.GetRunStepCallback(RunStepObject) on completion. 
 		  //
@@ -2009,7 +1635,26 @@ Protected Class AssistantsApi
 		  Dim localVarHTTPSocket As New HTTPSecureSocket
 		  Me.PrivateFuncPrepareSocket(localVarHTTPSocket)
 		  
+		  Dim localVarQueryParams As String = "?"
 		  
+		  Dim localVarQueryStringsinclude() As String
+		  For Each localVarIteminclude As IncludeEnum_GetRunStep in include
+		    Dim encodedParameter As String = EncodeURLComponent(IncludeEnum_GetRunStepToString(localVarIteminclude))
+		    Select Case "form"
+		      Case "form"
+		        localVarQueryStringsinclude.Append("include=" + encodedParameter)
+		      Case "spaceDelimited"
+		        localVarQueryStringsinclude.Append("include=" + encodedParameter)
+		      Case "pipeDelimited"
+		        localVarQueryStringsinclude.Append("include=" + encodedParameter)
+		      Case "deepObject"
+		        Raise New OpenAPIClient.OpenAPIClientException(kErrorUnsupportedFeature, "deepObject query parameters are not supported")
+		    End Select
+		  Next
+		  
+		  Dim localVarQueryStringinclude As String
+		  localVarQueryStringinclude = Join(localVarQueryStringsinclude, "&")
+
 		  
 		  
 
@@ -2031,7 +1676,7 @@ Protected Class AssistantsApi
 		  AddHandler localVarHTTPSocket.Error, addressof Me.GetRunStep_error
 		  
 		  
-		  localVarHTTPSocket.SendRequest("GET", Me.BasePath + localVarPath)
+		  localVarHTTPSocket.SendRequest("GET", Me.BasePath + localVarPath + localVarQueryParams)
 		  if localVarHTTPSocket.LastErrorCode <> 0 then
 		    Dim localVarException As New OpenAPIClient.OpenAPIClientException(localVarHTTPSocket.LastErrorCode)
 			Raise localVarException
@@ -2125,6 +1770,17 @@ Protected Class AssistantsApi
 
 
 
+	#tag Method, Flags = &h21
+		Private Function IncludeEnum_GetRunStepToString(value As IncludeEnum_GetRunStep) As String
+		  Select Case value
+		    
+		    Case IncludeEnum_GetRunStep.StepDetailsPeriodToolCallsLeftSquareBracketStarRightSquareBracketPeriodFileSearchPeriodResultsLeftSquareBracketStarRightSquareBracketPeriodContent
+		      Return "step_details.tool_calls[*].file_search.results[*].content"
+		    
+		  End Select
+		  Return ""
+		End Function
+	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub GetThread(, threadId As String)
@@ -2258,163 +1914,6 @@ Protected Class AssistantsApi
 
 
 	#tag Method, Flags = &h0
-		Sub ListAssistantFiles(, assistantId As String, Optional limit As Xoson.O.OptionalInteger, order As OrderEnum_ListAssistantFiles, Optional after As Xoson.O.OptionalString, Optional before As Xoson.O.OptionalString)
-		  // Operation listAssistantFiles
-		  // Returns a list of assistant files.
-		  // - 
-		  // - parameter assistantId: (path) The ID of the assistant the file belongs to. 
-		  // - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-		  // - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
-		  // - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional, default to Sample)
-		  // - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional, default to Sample)
-		  //
-		  // Invokes AssistantsApiCallbackHandler.ListAssistantFilesCallback(ListAssistantFilesResponse) on completion. 
-		  //
-		  // - GET /assistants/{assistant_id}/files
-		  // - defaultResponse: Nil
-		  //
-		  // - Bearer Token:
-		  //   - type: http
-		  //   - name: ApiKeyAuth
-		  //
-		  
-		  Dim localVarHTTPSocket As New HTTPSecureSocket
-		  Me.PrivateFuncPrepareSocket(localVarHTTPSocket)
-		  
-		  Dim localVarQueryParams As String = "?"
-		  If limit <> nil Then localVarQueryParams = localVarQueryParams + EncodeURLComponent("limit") + "=" + EncodeURLComponent(limit.ToString)
-		  
-		  localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("order") + "=" + EncodeURLComponent(OrderEnum_ListAssistantFilesToString(order))
-		  
-		  If after <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("after") + "=" + EncodeURLComponent(after)
-		  
-		  If before <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("before") + "=" + EncodeURLComponent(before)
-		  
-
-		  
-		  
-
-
-		  Dim localVarPath As String = "/assistants/{assistant_id}/files"
-		  
-		  Dim localVarPathStringassistantId As String = assistantId
-		  
-		  localVarPath = localVarPath.ReplaceAllB("{assistant_id}", localVarPathStringassistantId)
-		  
-		  
-		  AddHandler localVarHTTPSocket.PageReceived, addressof me.ListAssistantFiles_handler
-		  AddHandler localVarHTTPSocket.Error, addressof Me.ListAssistantFiles_error
-		  
-		  
-		  localVarHTTPSocket.SendRequest("GET", Me.BasePath + localVarPath + localVarQueryParams)
-		  if localVarHTTPSocket.LastErrorCode <> 0 then
-		    Dim localVarException As New OpenAPIClient.OpenAPIClientException(localVarHTTPSocket.LastErrorCode)
-			Raise localVarException
-		  end if
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function ListAssistantFilesPrivateFuncDeserializeResponse(HTTPStatus As Integer, Headers As InternetHeaders, error As OpenAPIClient.OpenAPIClientException, Content As String, ByRef outData As OpenAPIClient.Models.ListAssistantFilesResponse) As Boolean
-		  Dim contentType As String = Headers.Value("Content-Type")
-		  Dim contentEncoding As TextEncoding = OpenAPIClient.EncodingFromContentType(contentType)
-		  Content = DefineEncoding(Content, contentEncoding)
-		  
-		  If HTTPStatus > 199 and HTTPStatus < 300 then
-		    If contentType.LeftB(16) = "application/json" then
-		      
-			  outData = New OpenAPIClient.Models.ListAssistantFilesResponse
-			  Try
-		        Xoson.fromJSON(outData, Content.toText())
-
-		      Catch e As JSONException
-		        error.Message = error.Message + " with JSON parse exception: " + e.Message
-		        error.ErrorNumber = kErrorInvalidJSON
-		        Return False
-		        
-		      Catch e As Xojo.Data.InvalidJSONException
-		        error.Message = error.Message + " with Xojo.Data.JSON parse exception: " + e.Message
-		        error.ErrorNumber = kErrorInvalidJSON
-		        Return False
-		        
-		      Catch e As Xoson.XosonException
-		        error.Message = error.Message + " with Xoson parse exception: " + e.Message
-		        error.ErrorNumber = kErrorXosonProblem
-		        Return False
-
-		      End Try
-		      
-		      
-		    ElseIf contentType.LeftB(19) = "multipart/form-data" then
-		      error.Message = "Unsupported media type: " + contentType
-		      error.ErrorNumber = kErrorUnsupportedMediaType
-		      Return False
-
-		    ElseIf contentType.LeftB(33) = "application/x-www-form-urlencoded" then
-		      error.Message = "Unsupported media type: " + contentType
-		      error.ErrorNumber = kErrorUnsupportedMediaType
-		      Return False
-
-		    Else
-		      error.Message = "Unsupported media type: " + contentType
-		      error.ErrorNumber = kErrorUnsupportedMediaType
-		      Return False
-
-		    End If
-		  Else
-		    error.Message = error.Message + ". " + Content
-			error.ErrorNumber = kErrorHTTPFail
-		    Return False
-		  End If
-		  
-		  Return True
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub ListAssistantFiles_error(sender As HTTPSecureSocket, Code As Integer)
-		  If sender <> nil Then sender.Close()
-
-		  Dim error As New OpenAPIClient.OpenAPIClientException(Code)
-		  Dim data As OpenAPIClient.Models.ListAssistantFilesResponse
-		  CallbackHandler.ListAssistantFilesCallback(error, data)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub ListAssistantFiles_handler(sender As HTTPSecureSocket, URL As String, HTTPStatus As Integer, Headers As InternetHeaders, Content As String)
-		  #Pragma Unused URL
-		  
-
-		  If sender <> nil Then sender.Close()
-		  
-		  Dim error As New OpenAPIClient.OpenAPIClientException(HTTPStatus, "", Content)
-		  
-		  Dim data As OpenAPIClient.Models.ListAssistantFilesResponse
-		  Call ListAssistantFilesPrivateFuncDeserializeResponse(HTTPStatus, Headers, error, Content, data)
-		  
-		  CallbackHandler.ListAssistantFilesCallback(error, data)
-		End Sub
-	#tag EndMethod
-
-
-
-	#tag Method, Flags = &h21
-		Private Function OrderEnum_ListAssistantFilesToString(value As OrderEnum_ListAssistantFiles) As String
-		  Select Case value
-		    
-		    Case OrderEnum_ListAssistantFiles.Asc
-		      Return "asc"
-		    Case OrderEnum_ListAssistantFiles.Desc
-		      Return "desc"
-		    
-		  End Select
-		  Return ""
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub ListAssistants(, Optional limit As Xoson.O.OptionalInteger, order As OrderEnum_ListAssistants, Optional after As Xoson.O.OptionalString, Optional before As Xoson.O.OptionalString)
 		  // Operation listAssistants
 		  // Returns a list of assistants.
@@ -2422,7 +1921,7 @@ Protected Class AssistantsApi
 		  // - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
 		  // - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
 		  // - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional, default to Sample)
-		  // - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional, default to Sample)
+		  // - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional, default to Sample)
 		  //
 		  // Invokes AssistantsApiCallbackHandler.ListAssistantsCallback(ListAssistantsResponse) on completion. 
 		  //
@@ -2568,167 +2067,6 @@ Protected Class AssistantsApi
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ListMessageFiles(, threadId As String, messageId As String, Optional limit As Xoson.O.OptionalInteger, order As OrderEnum_ListMessageFiles, Optional after As Xoson.O.OptionalString, Optional before As Xoson.O.OptionalString)
-		  // Operation listMessageFiles
-		  // Returns a list of message files.
-		  // - 
-		  // - parameter threadId: (path) The ID of the thread that the message and files belong to. 
-		  // - parameter messageId: (path) The ID of the message that the files belongs to. 
-		  // - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-		  // - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
-		  // - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional, default to Sample)
-		  // - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional, default to Sample)
-		  //
-		  // Invokes AssistantsApiCallbackHandler.ListMessageFilesCallback(ListMessageFilesResponse) on completion. 
-		  //
-		  // - GET /threads/{thread_id}/messages/{message_id}/files
-		  // - defaultResponse: Nil
-		  //
-		  // - Bearer Token:
-		  //   - type: http
-		  //   - name: ApiKeyAuth
-		  //
-		  
-		  Dim localVarHTTPSocket As New HTTPSecureSocket
-		  Me.PrivateFuncPrepareSocket(localVarHTTPSocket)
-		  
-		  Dim localVarQueryParams As String = "?"
-		  If limit <> nil Then localVarQueryParams = localVarQueryParams + EncodeURLComponent("limit") + "=" + EncodeURLComponent(limit.ToString)
-		  
-		  localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("order") + "=" + EncodeURLComponent(OrderEnum_ListMessageFilesToString(order))
-		  
-		  If after <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("after") + "=" + EncodeURLComponent(after)
-		  
-		  If before <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("before") + "=" + EncodeURLComponent(before)
-		  
-
-		  
-		  
-
-
-		  Dim localVarPath As String = "/threads/{thread_id}/messages/{message_id}/files"
-		  
-		  Dim localVarPathStringthreadId As String = threadId
-		  
-		  localVarPath = localVarPath.ReplaceAllB("{thread_id}", localVarPathStringthreadId)
-		  Dim localVarPathStringmessageId As String = messageId
-		  
-		  localVarPath = localVarPath.ReplaceAllB("{message_id}", localVarPathStringmessageId)
-		  
-		  
-		  AddHandler localVarHTTPSocket.PageReceived, addressof me.ListMessageFiles_handler
-		  AddHandler localVarHTTPSocket.Error, addressof Me.ListMessageFiles_error
-		  
-		  
-		  localVarHTTPSocket.SendRequest("GET", Me.BasePath + localVarPath + localVarQueryParams)
-		  if localVarHTTPSocket.LastErrorCode <> 0 then
-		    Dim localVarException As New OpenAPIClient.OpenAPIClientException(localVarHTTPSocket.LastErrorCode)
-			Raise localVarException
-		  end if
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function ListMessageFilesPrivateFuncDeserializeResponse(HTTPStatus As Integer, Headers As InternetHeaders, error As OpenAPIClient.OpenAPIClientException, Content As String, ByRef outData As OpenAPIClient.Models.ListMessageFilesResponse) As Boolean
-		  Dim contentType As String = Headers.Value("Content-Type")
-		  Dim contentEncoding As TextEncoding = OpenAPIClient.EncodingFromContentType(contentType)
-		  Content = DefineEncoding(Content, contentEncoding)
-		  
-		  If HTTPStatus > 199 and HTTPStatus < 300 then
-		    If contentType.LeftB(16) = "application/json" then
-		      
-			  outData = New OpenAPIClient.Models.ListMessageFilesResponse
-			  Try
-		        Xoson.fromJSON(outData, Content.toText())
-
-		      Catch e As JSONException
-		        error.Message = error.Message + " with JSON parse exception: " + e.Message
-		        error.ErrorNumber = kErrorInvalidJSON
-		        Return False
-		        
-		      Catch e As Xojo.Data.InvalidJSONException
-		        error.Message = error.Message + " with Xojo.Data.JSON parse exception: " + e.Message
-		        error.ErrorNumber = kErrorInvalidJSON
-		        Return False
-		        
-		      Catch e As Xoson.XosonException
-		        error.Message = error.Message + " with Xoson parse exception: " + e.Message
-		        error.ErrorNumber = kErrorXosonProblem
-		        Return False
-
-		      End Try
-		      
-		      
-		    ElseIf contentType.LeftB(19) = "multipart/form-data" then
-		      error.Message = "Unsupported media type: " + contentType
-		      error.ErrorNumber = kErrorUnsupportedMediaType
-		      Return False
-
-		    ElseIf contentType.LeftB(33) = "application/x-www-form-urlencoded" then
-		      error.Message = "Unsupported media type: " + contentType
-		      error.ErrorNumber = kErrorUnsupportedMediaType
-		      Return False
-
-		    Else
-		      error.Message = "Unsupported media type: " + contentType
-		      error.ErrorNumber = kErrorUnsupportedMediaType
-		      Return False
-
-		    End If
-		  Else
-		    error.Message = error.Message + ". " + Content
-			error.ErrorNumber = kErrorHTTPFail
-		    Return False
-		  End If
-		  
-		  Return True
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub ListMessageFiles_error(sender As HTTPSecureSocket, Code As Integer)
-		  If sender <> nil Then sender.Close()
-
-		  Dim error As New OpenAPIClient.OpenAPIClientException(Code)
-		  Dim data As OpenAPIClient.Models.ListMessageFilesResponse
-		  CallbackHandler.ListMessageFilesCallback(error, data)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub ListMessageFiles_handler(sender As HTTPSecureSocket, URL As String, HTTPStatus As Integer, Headers As InternetHeaders, Content As String)
-		  #Pragma Unused URL
-		  
-
-		  If sender <> nil Then sender.Close()
-		  
-		  Dim error As New OpenAPIClient.OpenAPIClientException(HTTPStatus, "", Content)
-		  
-		  Dim data As OpenAPIClient.Models.ListMessageFilesResponse
-		  Call ListMessageFilesPrivateFuncDeserializeResponse(HTTPStatus, Headers, error, Content, data)
-		  
-		  CallbackHandler.ListMessageFilesCallback(error, data)
-		End Sub
-	#tag EndMethod
-
-
-
-	#tag Method, Flags = &h21
-		Private Function OrderEnum_ListMessageFilesToString(value As OrderEnum_ListMessageFiles) As String
-		  Select Case value
-		    
-		    Case OrderEnum_ListMessageFiles.Asc
-		      Return "asc"
-		    Case OrderEnum_ListMessageFiles.Desc
-		      Return "desc"
-		    
-		  End Select
-		  Return ""
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub ListMessages(, threadId As String, Optional limit As Xoson.O.OptionalInteger, order As OrderEnum_ListMessages, Optional after As Xoson.O.OptionalString, Optional before As Xoson.O.OptionalString, Optional runId As Xoson.O.OptionalString)
 		  // Operation listMessages
 		  // Returns a list of messages for a given thread.
@@ -2737,7 +2075,7 @@ Protected Class AssistantsApi
 		  // - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
 		  // - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
 		  // - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional, default to Sample)
-		  // - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional, default to Sample)
+		  // - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional, default to Sample)
 		  // - parameter runId: (query) Filter messages by the run ID that generated them.  (optional, default to Sample)
 		  //
 		  // Invokes AssistantsApiCallbackHandler.ListMessagesCallback(ListMessagesResponse) on completion. 
@@ -2889,7 +2227,7 @@ Protected Class AssistantsApi
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ListRunSteps(, threadId As String, runId As String, Optional limit As Xoson.O.OptionalInteger, order As OrderEnum_ListRunSteps, Optional after As Xoson.O.OptionalString, Optional before As Xoson.O.OptionalString)
+		Sub ListRunSteps(, threadId As String, runId As String, Optional limit As Xoson.O.OptionalInteger, order As OrderEnum_ListRunSteps, Optional after As Xoson.O.OptionalString, Optional before As Xoson.O.OptionalString, include() As IncludeEnum_ListRunSteps)
 		  // Operation listRunSteps
 		  // Returns a list of run steps belonging to a run.
 		  // - 
@@ -2898,7 +2236,8 @@ Protected Class AssistantsApi
 		  // - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
 		  // - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
 		  // - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional, default to Sample)
-		  // - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional, default to Sample)
+		  // - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional, default to Sample)
+		  // - parameter include: (query) A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional, default to Nil)
 		  //
 		  // Invokes AssistantsApiCallbackHandler.ListRunStepsCallback(ListRunStepsResponse) on completion. 
 		  //
@@ -2922,6 +2261,24 @@ Protected Class AssistantsApi
 		  
 		  If before <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("before") + "=" + EncodeURLComponent(before)
 		  
+		  
+		  Dim localVarQueryStringsinclude() As String
+		  For Each localVarIteminclude As IncludeEnum_ListRunSteps in include
+		    Dim encodedParameter As String = EncodeURLComponent(IncludeEnum_ListRunStepsToString(localVarIteminclude))
+		    Select Case "form"
+		      Case "form"
+		        localVarQueryStringsinclude.Append("include=" + encodedParameter)
+		      Case "spaceDelimited"
+		        localVarQueryStringsinclude.Append("include=" + encodedParameter)
+		      Case "pipeDelimited"
+		        localVarQueryStringsinclude.Append("include=" + encodedParameter)
+		      Case "deepObject"
+		        Raise New OpenAPIClient.OpenAPIClientException(kErrorUnsupportedFeature, "deepObject query parameters are not supported")
+		    End Select
+		  Next
+		  
+		  Dim localVarQueryStringinclude As String
+		  localVarQueryStringinclude = Join(localVarQueryStringsinclude, "&")
 
 		  
 		  
@@ -3048,6 +2405,17 @@ Protected Class AssistantsApi
 		  Return ""
 		End Function
 	#tag EndMethod
+	#tag Method, Flags = &h21
+		Private Function IncludeEnum_ListRunStepsToString(value As IncludeEnum_ListRunSteps) As String
+		  Select Case value
+		    
+		    Case IncludeEnum_ListRunSteps.StepDetailsPeriodToolCallsLeftSquareBracketStarRightSquareBracketPeriodFileSearchPeriodResultsLeftSquareBracketStarRightSquareBracketPeriodContent
+		      Return "step_details.tool_calls[*].file_search.results[*].content"
+		    
+		  End Select
+		  Return ""
+		End Function
+	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub ListRuns(, threadId As String, Optional limit As Xoson.O.OptionalInteger, order As OrderEnum_ListRuns, Optional after As Xoson.O.OptionalString, Optional before As Xoson.O.OptionalString)
@@ -3058,7 +2426,7 @@ Protected Class AssistantsApi
 		  // - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
 		  // - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to desc)
 		  // - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional, default to Sample)
-		  // - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional, default to Sample)
+		  // - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional, default to Sample)
 		  //
 		  // Invokes AssistantsApiCallbackHandler.ListRunsCallback(ListRunsResponse) on completion. 
 		  //
@@ -3954,21 +3322,19 @@ Protected Class AssistantsApi
 		UseHTTPS As Boolean = true
 	#tag EndProperty
 
-	#tag Enum, Name = OrderEnum_ListAssistantFiles, Type = Integer, Flags = &h0
+	#tag Enum, Name = IncludeEnum_CreateRun, Type = Integer, Flags = &h0
 		
-        Asc
-        Desc
+        StepDetailsPeriodToolCallsLeftSquareBracketStarRightSquareBracketPeriodFileSearchPeriodResultsLeftSquareBracketStarRightSquareBracketPeriodContent
+		
+	#tag EndEnum
+
+	#tag Enum, Name = IncludeEnum_GetRunStep, Type = Integer, Flags = &h0
+		
+        StepDetailsPeriodToolCallsLeftSquareBracketStarRightSquareBracketPeriodFileSearchPeriodResultsLeftSquareBracketStarRightSquareBracketPeriodContent
 		
 	#tag EndEnum
 
 	#tag Enum, Name = OrderEnum_ListAssistants, Type = Integer, Flags = &h0
-		
-        Asc
-        Desc
-		
-	#tag EndEnum
-
-	#tag Enum, Name = OrderEnum_ListMessageFiles, Type = Integer, Flags = &h0
 		
         Asc
         Desc
@@ -3986,6 +3352,12 @@ Protected Class AssistantsApi
 		
         Asc
         Desc
+		
+	#tag EndEnum
+
+	#tag Enum, Name = IncludeEnum_ListRunSteps, Type = Integer, Flags = &h0
+		
+        StepDetailsPeriodToolCallsLeftSquareBracketStarRightSquareBracketPeriodFileSearchPeriodResultsLeftSquareBracketStarRightSquareBracketPeriodContent
 		
 	#tag EndEnum
 

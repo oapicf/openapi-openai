@@ -4,6 +4,7 @@ import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
+import org.openapitools.model.ChatCompletionRequestSystemMessageContent
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -16,15 +17,16 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * 
- * @param content The contents of the system message.
+ * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. 
+ * @param content 
  * @param role The role of the messages author, in this case `system`.
  * @param name An optional name for the participant. Provides the model information to differentiate between participants of the same role.
  */
 data class ChatCompletionRequestSystemMessage(
 
-    @Schema(example = "null", required = true, description = "The contents of the system message.")
-    @get:JsonProperty("content", required = true) val content: kotlin.String,
+    @field:Valid
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("content", required = true) val content: ChatCompletionRequestSystemMessageContent,
 
     @Schema(example = "null", required = true, description = "The role of the messages author, in this case `system`.")
     @get:JsonProperty("role", required = true) val role: ChatCompletionRequestSystemMessage.Role,

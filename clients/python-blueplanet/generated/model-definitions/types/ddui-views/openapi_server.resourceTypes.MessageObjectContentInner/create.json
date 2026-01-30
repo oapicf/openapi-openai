@@ -13,7 +13,9 @@
     "children": [
       {"model": "type" },
       {"model": "image_file" },
+      {"model": "image_url" },
       {"model": "text" },
+      {"model": "refusal" },
     ]
   }]
 }

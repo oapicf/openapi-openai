@@ -21,6 +21,10 @@ public struct CreateModerationResponseResultsInnerCategoryScores: Codable, JSONE
     public var harassment: Double
     /** The score for the category 'harassment/threatening'. */
     public var harassmentThreatening: Double
+    /** The score for the category 'illicit'. */
+    public var illicit: Double
+    /** The score for the category 'illicit/violent'. */
+    public var illicitViolent: Double
     /** The score for the category 'self-harm'. */
     public var selfHarm: Double
     /** The score for the category 'self-harm/intent'. */
@@ -36,11 +40,13 @@ public struct CreateModerationResponseResultsInnerCategoryScores: Codable, JSONE
     /** The score for the category 'violence/graphic'. */
     public var violenceGraphic: Double
 
-    public init(hate: Double, hateThreatening: Double, harassment: Double, harassmentThreatening: Double, selfHarm: Double, selfHarmIntent: Double, selfHarmInstructions: Double, sexual: Double, sexualMinors: Double, violence: Double, violenceGraphic: Double) {
+    public init(hate: Double, hateThreatening: Double, harassment: Double, harassmentThreatening: Double, illicit: Double, illicitViolent: Double, selfHarm: Double, selfHarmIntent: Double, selfHarmInstructions: Double, sexual: Double, sexualMinors: Double, violence: Double, violenceGraphic: Double) {
         self.hate = hate
         self.hateThreatening = hateThreatening
         self.harassment = harassment
         self.harassmentThreatening = harassmentThreatening
+        self.illicit = illicit
+        self.illicitViolent = illicitViolent
         self.selfHarm = selfHarm
         self.selfHarmIntent = selfHarmIntent
         self.selfHarmInstructions = selfHarmInstructions
@@ -55,6 +61,8 @@ public struct CreateModerationResponseResultsInnerCategoryScores: Codable, JSONE
         case hateThreatening = "hate/threatening"
         case harassment
         case harassmentThreatening = "harassment/threatening"
+        case illicit
+        case illicitViolent = "illicit/violent"
         case selfHarm = "self-harm"
         case selfHarmIntent = "self-harm/intent"
         case selfHarmInstructions = "self-harm/instructions"
@@ -72,6 +80,8 @@ public struct CreateModerationResponseResultsInnerCategoryScores: Codable, JSONE
         try container.encode(hateThreatening, forKey: .hateThreatening)
         try container.encode(harassment, forKey: .harassment)
         try container.encode(harassmentThreatening, forKey: .harassmentThreatening)
+        try container.encode(illicit, forKey: .illicit)
+        try container.encode(illicitViolent, forKey: .illicitViolent)
         try container.encode(selfHarm, forKey: .selfHarm)
         try container.encode(selfHarmIntent, forKey: .selfHarmIntent)
         try container.encode(selfHarmInstructions, forKey: .selfHarmInstructions)

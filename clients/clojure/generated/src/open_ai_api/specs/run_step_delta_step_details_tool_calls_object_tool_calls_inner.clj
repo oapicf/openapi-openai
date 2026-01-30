@@ -14,7 +14,7 @@
    (ds/opt :id) string?
    (ds/req :type) string?
    (ds/opt :code_interpreter) run-step-delta-step-details-tool-calls-code-object-code-interpreter-spec
-   (ds/opt :retrieval) any?
+   (ds/req :file_search) any?
    (ds/opt :function) run-step-delta-step-details-tool-calls-function-object-function-spec
    })
 

@@ -1,0 +1,169 @@
+package org.openapitools.model;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.math.BigDecimal;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
+
+import io.swagger.annotations.*;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.jackson.nullable.JsonNullable;
+
+/**
+ * The ranking options for the file search. If not specified, the file search tool will use the &#x60;auto&#x60; ranker and a score_threshold of 0.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
+ **/
+@ApiModel(description = "The ranking options for the file search. If not specified, the file search tool will use the `auto` ranker and a score_threshold of 0.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")
+@JsonTypeName("FileSearchRankingOptions")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class FileSearchRankingOptions   {
+  public enum RankerEnum {
+
+    AUTO(String.valueOf("auto")), DEFAULT_2024_08_21(String.valueOf("default_2024_08_21"));
+
+
+    private String value;
+
+    RankerEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    /**
+     * Convert a String into String, as specified in the
+     * <a href="https://download.oracle.com/otndocs/jcp/jaxrs-2_0-fr-eval-spec/index.html">See JAX RS 2.0 Specification, section 3.2, p. 12</a>
+     */
+    public static RankerEnum fromString(String s) {
+        for (RankerEnum b : RankerEnum.values()) {
+            // using Objects.toString() to be safe if value type non-object type
+            // because types like 'int' etc. will be auto-boxed
+            if (java.util.Objects.toString(b.value).equals(s)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected string value '" + s + "'");
+    }
+
+    @JsonCreator
+    public static RankerEnum fromValue(String value) {
+        for (RankerEnum b : RankerEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
+  private RankerEnum ranker;
+  private BigDecimal scoreThreshold;
+
+  public FileSearchRankingOptions() {
+  }
+
+  @JsonCreator
+  public FileSearchRankingOptions(
+    @JsonProperty(required = true, value = "score_threshold") BigDecimal scoreThreshold
+  ) {
+    this.scoreThreshold = scoreThreshold;
+  }
+
+  /**
+   * The ranker to use for the file search. If not specified will use the &#x60;auto&#x60; ranker.
+   **/
+  public FileSearchRankingOptions ranker(RankerEnum ranker) {
+    this.ranker = ranker;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "The ranker to use for the file search. If not specified will use the `auto` ranker.")
+  @JsonProperty("ranker")
+  public RankerEnum getRanker() {
+    return ranker;
+  }
+
+  @JsonProperty("ranker")
+  public void setRanker(RankerEnum ranker) {
+    this.ranker = ranker;
+  }
+
+  /**
+   * The score threshold for the file search. All values must be a floating point number between 0 and 1.
+   * minimum: 0
+   * maximum: 1
+   **/
+  public FileSearchRankingOptions scoreThreshold(BigDecimal scoreThreshold) {
+    this.scoreThreshold = scoreThreshold;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "The score threshold for the file search. All values must be a floating point number between 0 and 1.")
+  @JsonProperty(required = true, value = "score_threshold")
+  @NotNull @Valid  @DecimalMin("0") @DecimalMax("1")public BigDecimal getScoreThreshold() {
+    return scoreThreshold;
+  }
+
+  @JsonProperty(required = true, value = "score_threshold")
+  public void setScoreThreshold(BigDecimal scoreThreshold) {
+    this.scoreThreshold = scoreThreshold;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    FileSearchRankingOptions fileSearchRankingOptions = (FileSearchRankingOptions) o;
+    return Objects.equals(this.ranker, fileSearchRankingOptions.ranker) &&
+        Objects.equals(this.scoreThreshold, fileSearchRankingOptions.scoreThreshold);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(ranker, scoreThreshold);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class FileSearchRankingOptions {\n");
+    
+    sb.append("    ranker: ").append(toIndentedString(ranker)).append("\n");
+    sb.append("    scoreThreshold: ").append(toIndentedString(scoreThreshold)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+}
+

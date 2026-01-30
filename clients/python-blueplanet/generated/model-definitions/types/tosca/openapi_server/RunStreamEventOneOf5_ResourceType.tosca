@@ -19,7 +19,7 @@ resourceTypes {
         event {
           type =  string
           description = ""
-          enum = ["thread.run.failed"]
+          enum = ["thread.run.incomplete"]
           optional = true
         }
         data {

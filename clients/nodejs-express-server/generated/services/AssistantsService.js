@@ -44,28 +44,6 @@ const createAssistant = ({ createAssistantRequest }) => new Promise(
   },
 );
 /**
-* Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-*
-* assistantUnderscoreid String The ID of the assistant for which to create a File. 
-* createAssistantFileRequest CreateAssistantFileRequest 
-* returns AssistantFileObject
-* */
-const createAssistantFile = ({ assistantUnderscoreid, createAssistantFileRequest }) => new Promise(
-  async (resolve, reject) => {
-    try {
-      resolve(Service.successResponse({
-        assistantUnderscoreid,
-        createAssistantFileRequest,
-      }));
-    } catch (e) {
-      reject(Service.rejectResponse(
-        e.message || 'Invalid input',
-        e.status || 405,
-      ));
-    }
-  },
-);
-/**
 * Create a message.
 *
 * threadUnderscoreid String The ID of the [thread](/docs/api-reference/threads) to create a message for.
@@ -92,14 +70,16 @@ const createMessage = ({ threadUnderscoreid, createMessageRequest }) => new Prom
 *
 * threadUnderscoreid String The ID of the thread to run.
 * createRunRequest CreateRunRequest 
+* includeLeft_Square_BracketRight_Square_Bracket List A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 * returns RunObject
 * */
-const createRun = ({ threadUnderscoreid, createRunRequest }) => new Promise(
+const createRun = ({ threadUnderscoreid, createRunRequest, includeLeft_Square_BracketRight_Square_Bracket }) => new Promise(
   async (resolve, reject) => {
     try {
       resolve(Service.successResponse({
         threadUnderscoreid,
         createRunRequest,
+        includeLeft_Square_BracketRight_Square_Bracket,
       }));
     } catch (e) {
       reject(Service.rejectResponse(
@@ -170,18 +150,18 @@ const deleteAssistant = ({ assistantUnderscoreid }) => new Promise(
   },
 );
 /**
-* Delete an assistant file.
+* Deletes a message.
 *
-* assistantUnderscoreid String The ID of the assistant that the file belongs to.
-* fileUnderscoreid String The ID of the file to delete.
-* returns DeleteAssistantFileResponse
+* threadUnderscoreid String The ID of the thread to which this message belongs.
+* messageUnderscoreid String The ID of the message to delete.
+* returns DeleteMessageResponse
 * */
-const deleteAssistantFile = ({ assistantUnderscoreid, fileUnderscoreid }) => new Promise(
+const deleteMessage = ({ threadUnderscoreid, messageUnderscoreid }) => new Promise(
   async (resolve, reject) => {
     try {
       resolve(Service.successResponse({
-        assistantUnderscoreid,
-        fileUnderscoreid,
+        threadUnderscoreid,
+        messageUnderscoreid,
       }));
     } catch (e) {
       reject(Service.rejectResponse(
@@ -232,28 +212,6 @@ const getAssistant = ({ assistantUnderscoreid }) => new Promise(
   },
 );
 /**
-* Retrieves an AssistantFile.
-*
-* assistantUnderscoreid String The ID of the assistant who the file belongs to.
-* fileUnderscoreid String The ID of the file we're getting.
-* returns AssistantFileObject
-* */
-const getAssistantFile = ({ assistantUnderscoreid, fileUnderscoreid }) => new Promise(
-  async (resolve, reject) => {
-    try {
-      resolve(Service.successResponse({
-        assistantUnderscoreid,
-        fileUnderscoreid,
-      }));
-    } catch (e) {
-      reject(Service.rejectResponse(
-        e.message || 'Invalid input',
-        e.status || 405,
-      ));
-    }
-  },
-);
-/**
 * Retrieve a message.
 *
 * threadUnderscoreid String The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
@@ -266,30 +224,6 @@ const getMessage = ({ threadUnderscoreid, messageUnderscoreid }) => new Promise(
       resolve(Service.successResponse({
         threadUnderscoreid,
         messageUnderscoreid,
-      }));
-    } catch (e) {
-      reject(Service.rejectResponse(
-        e.message || 'Invalid input',
-        e.status || 405,
-      ));
-    }
-  },
-);
-/**
-* Retrieves a message file.
-*
-* threadUnderscoreid String The ID of the thread to which the message and File belong.
-* messageUnderscoreid String The ID of the message the file belongs to.
-* fileUnderscoreid String The ID of the file being retrieved.
-* returns MessageFileObject
-* */
-const getMessageFile = ({ threadUnderscoreid, messageUnderscoreid, fileUnderscoreid }) => new Promise(
-  async (resolve, reject) => {
-    try {
-      resolve(Service.successResponse({
-        threadUnderscoreid,
-        messageUnderscoreid,
-        fileUnderscoreid,
       }));
     } catch (e) {
       reject(Service.rejectResponse(
@@ -327,15 +261,17 @@ const getRun = ({ threadUnderscoreid, runUnderscoreid }) => new Promise(
 * threadUnderscoreid String The ID of the thread to which the run and run step belongs.
 * runUnderscoreid String The ID of the run to which the run step belongs.
 * stepUnderscoreid String The ID of the run step to retrieve.
+* includeLeft_Square_BracketRight_Square_Bracket List A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 * returns RunStepObject
 * */
-const getRunStep = ({ threadUnderscoreid, runUnderscoreid, stepUnderscoreid }) => new Promise(
+const getRunStep = ({ threadUnderscoreid, runUnderscoreid, stepUnderscoreid, includeLeft_Square_BracketRight_Square_Bracket }) => new Promise(
   async (resolve, reject) => {
     try {
       resolve(Service.successResponse({
         threadUnderscoreid,
         runUnderscoreid,
         stepUnderscoreid,
+        includeLeft_Square_BracketRight_Square_Bracket,
       }));
     } catch (e) {
       reject(Service.rejectResponse(
@@ -366,40 +302,12 @@ const getThread = ({ threadUnderscoreid }) => new Promise(
   },
 );
 /**
-* Returns a list of assistant files.
-*
-* assistantUnderscoreid String The ID of the assistant the file belongs to.
-* limit Integer A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional)
-* order String Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional)
-* after String A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-* before String A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-* returns ListAssistantFilesResponse
-* */
-const listAssistantFiles = ({ assistantUnderscoreid, limit, order, after, before }) => new Promise(
-  async (resolve, reject) => {
-    try {
-      resolve(Service.successResponse({
-        assistantUnderscoreid,
-        limit,
-        order,
-        after,
-        before,
-      }));
-    } catch (e) {
-      reject(Service.rejectResponse(
-        e.message || 'Invalid input',
-        e.status || 405,
-      ));
-    }
-  },
-);
-/**
 * Returns a list of assistants.
 *
 * limit Integer A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional)
 * order String Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional)
 * after String A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-* before String A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+* before String A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 * returns ListAssistantsResponse
 * */
 const listAssistants = ({ limit, order, after, before }) => new Promise(
@@ -420,43 +328,13 @@ const listAssistants = ({ limit, order, after, before }) => new Promise(
   },
 );
 /**
-* Returns a list of message files.
-*
-* threadUnderscoreid String The ID of the thread that the message and files belong to.
-* messageUnderscoreid String The ID of the message that the files belongs to.
-* limit Integer A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional)
-* order String Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional)
-* after String A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-* before String A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-* returns ListMessageFilesResponse
-* */
-const listMessageFiles = ({ threadUnderscoreid, messageUnderscoreid, limit, order, after, before }) => new Promise(
-  async (resolve, reject) => {
-    try {
-      resolve(Service.successResponse({
-        threadUnderscoreid,
-        messageUnderscoreid,
-        limit,
-        order,
-        after,
-        before,
-      }));
-    } catch (e) {
-      reject(Service.rejectResponse(
-        e.message || 'Invalid input',
-        e.status || 405,
-      ));
-    }
-  },
-);
-/**
 * Returns a list of messages for a given thread.
 *
 * threadUnderscoreid String The ID of the [thread](/docs/api-reference/threads) the messages belong to.
 * limit Integer A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional)
 * order String Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional)
 * after String A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-* before String A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+* before String A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 * runUnderscoreid String Filter messages by the run ID that generated them.  (optional)
 * returns ListMessagesResponse
 * */
@@ -487,10 +365,11 @@ const listMessages = ({ threadUnderscoreid, limit, order, after, before, runUnde
 * limit Integer A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional)
 * order String Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional)
 * after String A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-* before String A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+* before String A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+* includeLeft_Square_BracketRight_Square_Bracket List A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 * returns ListRunStepsResponse
 * */
-const listRunSteps = ({ threadUnderscoreid, runUnderscoreid, limit, order, after, before }) => new Promise(
+const listRunSteps = ({ threadUnderscoreid, runUnderscoreid, limit, order, after, before, includeLeft_Square_BracketRight_Square_Bracket }) => new Promise(
   async (resolve, reject) => {
     try {
       resolve(Service.successResponse({
@@ -500,6 +379,7 @@ const listRunSteps = ({ threadUnderscoreid, runUnderscoreid, limit, order, after
         order,
         after,
         before,
+        includeLeft_Square_BracketRight_Square_Bracket,
       }));
     } catch (e) {
       reject(Service.rejectResponse(
@@ -516,7 +396,7 @@ const listRunSteps = ({ threadUnderscoreid, runUnderscoreid, limit, order, after
 * limit Integer A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional)
 * order String Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional)
 * after String A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-* before String A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+* before String A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 * returns ListRunsResponse
 * */
 const listRuns = ({ threadUnderscoreid, limit, order, after, before }) => new Promise(
@@ -657,24 +537,19 @@ const submitToolOuputsToRun = ({ threadUnderscoreid, runUnderscoreid, submitTool
 module.exports = {
   cancelRun,
   createAssistant,
-  createAssistantFile,
   createMessage,
   createRun,
   createThread,
   createThreadAndRun,
   deleteAssistant,
-  deleteAssistantFile,
+  deleteMessage,
   deleteThread,
   getAssistant,
-  getAssistantFile,
   getMessage,
-  getMessageFile,
   getRun,
   getRunStep,
   getThread,
-  listAssistantFiles,
   listAssistants,
-  listMessageFiles,
   listMessages,
   listRunSteps,
   listRuns,

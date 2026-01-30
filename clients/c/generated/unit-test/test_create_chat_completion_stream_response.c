@@ -16,6 +16,7 @@
 #include "../model/create_chat_completion_stream_response.h"
 create_chat_completion_stream_response_t* instantiate_create_chat_completion_stream_response(int include_optional);
 
+#include "test_create_chat_completion_stream_response_usage.c"
 
 
 create_chat_completion_stream_response_t* instantiate_create_chat_completion_stream_response(int include_optional) {
@@ -26,8 +27,11 @@ create_chat_completion_stream_response_t* instantiate_create_chat_completion_str
       list_createList(),
       56,
       "0",
+      openai_api_create_chat_completion_stream_response_SERVICETIER_"scale",
       "0",
-      openai_api_create_chat_completion_stream_response_OBJECT_chat.completion.chunk
+      openai_api_create_chat_completion_stream_response_OBJECT_chat.completion.chunk,
+       // false, not to have infinite recursion
+      instantiate_create_chat_completion_stream_response_usage(0)
     );
   } else {
     create_chat_completion_stream_response = create_chat_completion_stream_response_create(
@@ -35,8 +39,10 @@ create_chat_completion_stream_response_t* instantiate_create_chat_completion_str
       list_createList(),
       56,
       "0",
+      openai_api_create_chat_completion_stream_response_SERVICETIER_"scale",
       "0",
-      openai_api_create_chat_completion_stream_response_OBJECT_chat.completion.chunk
+      openai_api_create_chat_completion_stream_response_OBJECT_chat.completion.chunk,
+      NULL
     );
   }
 

@@ -2,7 +2,7 @@
 
 # RunStreamEventOneOf7
 
-Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
+Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.
 
 The class is defined in **[RunStreamEventOneOf7.java](../../src/main/java/org/openapitools/model/RunStreamEventOneOf7.java)**
 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 Name | Value
 ---- | -----
-THREAD_RUN_CANCELLED | `"thread.run.cancelled"`
+THREAD_RUN_CANCELLING | `"thread.run.cancelling"`
 
 
 

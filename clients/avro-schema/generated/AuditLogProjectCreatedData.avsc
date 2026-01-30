@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The payload used to create the project.",
+  "name": "AuditLogProjectCreatedData",
+  "fields": [
+    {
+      "name": "name",
+      "type": ["null", "string"],
+      "doc": "The project name.",
+      "default": null
+    },
+    {
+      "name": "title",
+      "type": ["null", "string"],
+      "doc": "The title of the project as seen on the dashboard.",
+      "default": null
+    }
+  ]
+
+}

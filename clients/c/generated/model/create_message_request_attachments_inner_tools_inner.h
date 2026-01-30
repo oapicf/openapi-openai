@@ -1,0 +1,48 @@
+/*
+ * create_message_request_attachments_inner_tools_inner.h
+ *
+ * 
+ */
+
+#ifndef _create_message_request_attachments_inner_tools_inner_H_
+#define _create_message_request_attachments_inner_tools_inner_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct create_message_request_attachments_inner_tools_inner_t create_message_request_attachments_inner_tools_inner_t;
+
+#include "assistant_tools_code.h"
+#include "assistant_tools_file_search_type_only.h"
+
+// Enum TYPE for create_message_request_attachments_inner_tools_inner
+
+typedef enum  { openai_api_create_message_request_attachments_inner_tools_inner_TYPE_NULL = 0, openai_api_create_message_request_attachments_inner_tools_inner_TYPE_code_interpreter, openai_api_create_message_request_attachments_inner_tools_inner_TYPE_file_search } openai_api_create_message_request_attachments_inner_tools_inner_TYPE_e;
+
+char* create_message_request_attachments_inner_tools_inner_type_ToString(openai_api_create_message_request_attachments_inner_tools_inner_TYPE_e type);
+
+openai_api_create_message_request_attachments_inner_tools_inner_TYPE_e create_message_request_attachments_inner_tools_inner_type_FromString(char* type);
+
+
+
+typedef struct create_message_request_attachments_inner_tools_inner_t {
+    openai_api_create_message_request_attachments_inner_tools_inner_TYPE_e type; //enum
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} create_message_request_attachments_inner_tools_inner_t;
+
+__attribute__((deprecated)) create_message_request_attachments_inner_tools_inner_t *create_message_request_attachments_inner_tools_inner_create(
+    openai_api_create_message_request_attachments_inner_tools_inner_TYPE_e type
+);
+
+void create_message_request_attachments_inner_tools_inner_free(create_message_request_attachments_inner_tools_inner_t *create_message_request_attachments_inner_tools_inner);
+
+create_message_request_attachments_inner_tools_inner_t *create_message_request_attachments_inner_tools_inner_parseFromJSON(cJSON *create_message_request_attachments_inner_tools_innerJSON);
+
+cJSON *create_message_request_attachments_inner_tools_inner_convertToJSON(create_message_request_attachments_inner_tools_inner_t *create_message_request_attachments_inner_tools_inner);
+
+#endif /* _create_message_request_attachments_inner_tools_inner_H_ */
+

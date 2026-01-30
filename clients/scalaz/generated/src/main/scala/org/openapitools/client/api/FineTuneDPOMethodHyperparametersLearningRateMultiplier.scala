@@ -1,0 +1,22 @@
+package org.openapitools.client.api
+
+import argonaut._
+import argonaut.EncodeJson._
+import argonaut.DecodeJson._
+
+import org.http4s.{EntityDecoder, EntityEncoder}
+import org.http4s.argonaut._
+import org.joda.time.DateTime
+
+
+import FineTuneDPOMethodHyperparametersLearningRateMultiplier._
+
+case class FineTuneDPOMethodHyperparametersLearningRateMultiplier (
+  
+object FineTuneDPOMethodHyperparametersLearningRateMultiplier {
+  import DateTimeCodecs._
+
+  implicit val FineTuneDPOMethodHyperparametersLearningRateMultiplierCodecJson: CodecJson[FineTuneDPOMethodHyperparametersLearningRateMultiplier] = CodecJson.derive[FineTuneDPOMethodHyperparametersLearningRateMultiplier]
+  implicit val FineTuneDPOMethodHyperparametersLearningRateMultiplierDecoder: EntityDecoder[FineTuneDPOMethodHyperparametersLearningRateMultiplier] = jsonOf[FineTuneDPOMethodHyperparametersLearningRateMultiplier]
+  implicit val FineTuneDPOMethodHyperparametersLearningRateMultiplierEncoder: EntityEncoder[FineTuneDPOMethodHyperparametersLearningRateMultiplier] = jsonEncoderOf[FineTuneDPOMethodHyperparametersLearningRateMultiplier]
+}

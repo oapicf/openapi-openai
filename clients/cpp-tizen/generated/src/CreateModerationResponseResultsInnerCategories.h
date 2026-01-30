@@ -73,6 +73,20 @@ public:
 	/*! \brief Set Harassment content that also includes violence or serious harm towards any target.
 	 */
 	void setHarassmentthreatening(bool  harassmentthreatening);
+	/*! \brief Get Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
+	 */
+	bool getIllicit();
+
+	/*! \brief Set Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
+	 */
+	void setIllicit(bool  illicit);
+	/*! \brief Get Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+	 */
+	bool getIllicitviolent();
+
+	/*! \brief Set Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+	 */
+	void setIllicitviolent(bool  illicitviolent);
 	/*! \brief Get Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
 	 */
 	bool getSelfharm();
@@ -128,6 +142,8 @@ private:
 	bool hatethreatening;
 	bool harassment;
 	bool harassmentthreatening;
+	bool illicit;
+	bool illicitviolent;
 	bool selfharm;
 	bool selfharmintent;
 	bool selfharminstructions;

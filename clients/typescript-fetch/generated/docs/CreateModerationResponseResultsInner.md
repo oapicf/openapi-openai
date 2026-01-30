@@ -9,6 +9,7 @@ Name | Type
 `flagged` | boolean
 `categories` | [CreateModerationResponseResultsInnerCategories](CreateModerationResponseResultsInnerCategories.md)
 `categoryScores` | [CreateModerationResponseResultsInnerCategoryScores](CreateModerationResponseResultsInnerCategoryScores.md)
+`categoryAppliedInputTypes` | [CreateModerationResponseResultsInnerCategoryAppliedInputTypes](CreateModerationResponseResultsInnerCategoryAppliedInputTypes.md)
 
 ## Example
 
@@ -20,6 +21,7 @@ const example = {
   "flagged": null,
   "categories": null,
   "categoryScores": null,
+  "categoryAppliedInputTypes": null,
 } satisfies CreateModerationResponseResultsInner
 
 console.log(example)

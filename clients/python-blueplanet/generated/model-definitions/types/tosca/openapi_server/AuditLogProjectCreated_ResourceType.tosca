@@ -1,0 +1,41 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AuditLogProjectCreated"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AuditLogProjectCreated"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AuditLogProjectCreatedData = openapi_server.resourceTypes.AuditLogProjectCreatedData
+}
+resourceTypes {
+
+  AuditLogProjectCreated {
+    title = AuditLogProjectCreated
+    description = AuditLogProjectCreated
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The project ID."
+          optional = false
+        }
+        data {
+          type = AuditLogProjectCreatedData
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AuditLogProjectCreated {
+    title = AuditLogProjectCreated
+    description = AuditLogProjectCreated
+    implements = openapi_server.resourceTypes.AuditLogProjectCreated
+
+  }
+}

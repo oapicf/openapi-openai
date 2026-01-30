@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The details for events with this `type`.",
+  "name": "AuditLogApiKeyCreated",
+  "fields": [
+    {
+      "name": "id",
+      "type": ["null", "string"],
+      "doc": "The tracking ID of the API key.",
+      "default": null
+    },
+    {
+      "name": "data",
+      "type": ["null", "model.AuditLogApiKeyCreatedData"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

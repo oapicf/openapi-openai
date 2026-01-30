@@ -22,6 +22,7 @@
   | {'seed', integer() }
   | {'stop', openapi_create_completion_request_stop:openapi_create_completion_request_stop() }
   | {'stream', boolean() }
+  | {'stream_options', openapi_chat_completion_stream_options:openapi_chat_completion_stream_options() }
   | {'suffix', binary() }
   | {'temperature', integer() }
   | {'top_p', integer() }
@@ -43,9 +44,10 @@ openapi_create_completion_request(Fields) ->
             , {'max_tokens', integer(0) }
             , {'n', integer(1, 128) }
             , {'presence_penalty', integer() }
-            , {'seed', integer(-9223372036854775808, 9223372036854775807) }
+            , {'seed', integer(-9223372036854776000, 9223372036854776000) }
             , {'stop', openapi_create_completion_request_stop:openapi_create_completion_request_stop() }
             , {'stream', boolean() }
+            , {'stream_options', openapi_chat_completion_stream_options:openapi_chat_completion_stream_options() }
             , {'suffix', binary() }
             , {'temperature', integer() }
             , {'top_p', integer() }

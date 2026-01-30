@@ -6,24 +6,19 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CancelRun**](AssistantsAPI.md#CancelRun) | **Post** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is &#x60;in_progress&#x60;.
 [**CreateAssistant**](AssistantsAPI.md#CreateAssistant) | **Post** /assistants | Create an assistant with a model and instructions.
-[**CreateAssistantFile**](AssistantsAPI.md#CreateAssistantFile) | **Post** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
 [**CreateMessage**](AssistantsAPI.md#CreateMessage) | **Post** /threads/{thread_id}/messages | Create a message.
 [**CreateRun**](AssistantsAPI.md#CreateRun) | **Post** /threads/{thread_id}/runs | Create a run.
 [**CreateThread**](AssistantsAPI.md#CreateThread) | **Post** /threads | Create a thread.
 [**CreateThreadAndRun**](AssistantsAPI.md#CreateThreadAndRun) | **Post** /threads/runs | Create a thread and run it in one request.
 [**DeleteAssistant**](AssistantsAPI.md#DeleteAssistant) | **Delete** /assistants/{assistant_id} | Delete an assistant.
-[**DeleteAssistantFile**](AssistantsAPI.md#DeleteAssistantFile) | **Delete** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+[**DeleteMessage**](AssistantsAPI.md#DeleteMessage) | **Delete** /threads/{thread_id}/messages/{message_id} | Deletes a message.
 [**DeleteThread**](AssistantsAPI.md#DeleteThread) | **Delete** /threads/{thread_id} | Delete a thread.
 [**GetAssistant**](AssistantsAPI.md#GetAssistant) | **Get** /assistants/{assistant_id} | Retrieves an assistant.
-[**GetAssistantFile**](AssistantsAPI.md#GetAssistantFile) | **Get** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
 [**GetMessage**](AssistantsAPI.md#GetMessage) | **Get** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
-[**GetMessageFile**](AssistantsAPI.md#GetMessageFile) | **Get** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
 [**GetRun**](AssistantsAPI.md#GetRun) | **Get** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
 [**GetRunStep**](AssistantsAPI.md#GetRunStep) | **Get** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
 [**GetThread**](AssistantsAPI.md#GetThread) | **Get** /threads/{thread_id} | Retrieves a thread.
-[**ListAssistantFiles**](AssistantsAPI.md#ListAssistantFiles) | **Get** /assistants/{assistant_id}/files | Returns a list of assistant files.
 [**ListAssistants**](AssistantsAPI.md#ListAssistants) | **Get** /assistants | Returns a list of assistants.
-[**ListMessageFiles**](AssistantsAPI.md#ListMessageFiles) | **Get** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
 [**ListMessages**](AssistantsAPI.md#ListMessages) | **Get** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
 [**ListRunSteps**](AssistantsAPI.md#ListRunSteps) | **Get** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
 [**ListRuns**](AssistantsAPI.md#ListRuns) | **Get** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
@@ -170,76 +165,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateAssistantFile
-
-> AssistantFileObject CreateAssistantFile(ctx, assistantId).CreateAssistantFileRequest(createAssistantFileRequest).Execute()
-
-Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/oapicf/openapi-openai"
-)
-
-func main() {
-	assistantId := "file-abc123" // string | The ID of the assistant for which to create a File. 
-	createAssistantFileRequest := *openapiclient.NewCreateAssistantFileRequest("FileId_example") // CreateAssistantFileRequest | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AssistantsAPI.CreateAssistantFile(context.Background(), assistantId).CreateAssistantFileRequest(createAssistantFileRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AssistantsAPI.CreateAssistantFile``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateAssistantFile`: AssistantFileObject
-	fmt.Fprintf(os.Stdout, "Response from `AssistantsAPI.CreateAssistantFile`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**assistantId** | **string** | The ID of the assistant for which to create a File.  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateAssistantFileRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **createAssistantFileRequest** | [**CreateAssistantFileRequest**](CreateAssistantFileRequest.md) |  | 
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## CreateMessage
 
 > MessageObject CreateMessage(ctx, threadId).CreateMessageRequest(createMessageRequest).Execute()
@@ -260,7 +185,7 @@ import (
 
 func main() {
 	threadId := "threadId_example" // string | The ID of the [thread](/docs/api-reference/threads) to create a message for.
-	createMessageRequest := *openapiclient.NewCreateMessageRequest("Role_example", "Content_example") // CreateMessageRequest | 
+	createMessageRequest := *openapiclient.NewCreateMessageRequest("Role_example", openapiclient.CreateMessageRequest_content{ArrayOfArrayOfContentPartsInner: new([]ArrayOfContentPartsInner)}) // CreateMessageRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -312,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## CreateRun
 
-> RunObject CreateRun(ctx, threadId).CreateRunRequest(createRunRequest).Execute()
+> RunObject CreateRun(ctx, threadId).CreateRunRequest(createRunRequest).Include(include).Execute()
 
 Create a run.
 
@@ -331,10 +256,11 @@ import (
 func main() {
 	threadId := "threadId_example" // string | The ID of the thread to run.
 	createRunRequest := *openapiclient.NewCreateRunRequest("AssistantId_example") // CreateRunRequest | 
+	include := []string{"Include_example"} // []string | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AssistantsAPI.CreateRun(context.Background(), threadId).CreateRunRequest(createRunRequest).Execute()
+	resp, r, err := apiClient.AssistantsAPI.CreateRun(context.Background(), threadId).CreateRunRequest(createRunRequest).Include(include).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AssistantsAPI.CreateRun``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -361,6 +287,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **createRunRequest** | [**CreateRunRequest**](CreateRunRequest.md) |  | 
+ **include** | **[]string** | A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | 
 
 ### Return type
 
@@ -576,11 +503,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DeleteAssistantFile
+## DeleteMessage
 
-> DeleteAssistantFileResponse DeleteAssistantFile(ctx, assistantId, fileId).Execute()
+> DeleteMessageResponse DeleteMessage(ctx, threadId, messageId).Execute()
 
-Delete an assistant file.
+Deletes a message.
 
 ### Example
 
@@ -595,18 +522,18 @@ import (
 )
 
 func main() {
-	assistantId := "assistantId_example" // string | The ID of the assistant that the file belongs to.
-	fileId := "fileId_example" // string | The ID of the file to delete.
+	threadId := "threadId_example" // string | The ID of the thread to which this message belongs.
+	messageId := "messageId_example" // string | The ID of the message to delete.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AssistantsAPI.DeleteAssistantFile(context.Background(), assistantId, fileId).Execute()
+	resp, r, err := apiClient.AssistantsAPI.DeleteMessage(context.Background(), threadId, messageId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AssistantsAPI.DeleteAssistantFile``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `AssistantsAPI.DeleteMessage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteAssistantFile`: DeleteAssistantFileResponse
-	fmt.Fprintf(os.Stdout, "Response from `AssistantsAPI.DeleteAssistantFile`: %v\n", resp)
+	// response from `DeleteMessage`: DeleteMessageResponse
+	fmt.Fprintf(os.Stdout, "Response from `AssistantsAPI.DeleteMessage`: %v\n", resp)
 }
 ```
 
@@ -616,12 +543,12 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**assistantId** | **string** | The ID of the assistant that the file belongs to. | 
-**fileId** | **string** | The ID of the file to delete. | 
+**threadId** | **string** | The ID of the thread to which this message belongs. | 
+**messageId** | **string** | The ID of the message to delete. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteAssistantFileRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteMessageRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -631,7 +558,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteAssistantFileResponse**](DeleteAssistantFileResponse.md)
+[**DeleteMessageResponse**](DeleteMessageResponse.md)
 
 ### Authorization
 
@@ -783,77 +710,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetAssistantFile
-
-> AssistantFileObject GetAssistantFile(ctx, assistantId, fileId).Execute()
-
-Retrieves an AssistantFile.
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/oapicf/openapi-openai"
-)
-
-func main() {
-	assistantId := "assistantId_example" // string | The ID of the assistant who the file belongs to.
-	fileId := "fileId_example" // string | The ID of the file we're getting.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AssistantsAPI.GetAssistantFile(context.Background(), assistantId, fileId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AssistantsAPI.GetAssistantFile``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetAssistantFile`: AssistantFileObject
-	fmt.Fprintf(os.Stdout, "Response from `AssistantsAPI.GetAssistantFile`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**assistantId** | **string** | The ID of the assistant who the file belongs to. | 
-**fileId** | **string** | The ID of the file we&#39;re getting. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAssistantFileRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## GetMessage
 
 > MessageObject GetMessage(ctx, threadId, messageId).Execute()
@@ -910,80 +766,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MessageObject**](MessageObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetMessageFile
-
-> MessageFileObject GetMessageFile(ctx, threadId, messageId, fileId).Execute()
-
-Retrieves a message file.
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/oapicf/openapi-openai"
-)
-
-func main() {
-	threadId := "thread_abc123" // string | The ID of the thread to which the message and File belong.
-	messageId := "msg_abc123" // string | The ID of the message the file belongs to.
-	fileId := "file-abc123" // string | The ID of the file being retrieved.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AssistantsAPI.GetMessageFile(context.Background(), threadId, messageId, fileId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AssistantsAPI.GetMessageFile``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetMessageFile`: MessageFileObject
-	fmt.Fprintf(os.Stdout, "Response from `AssistantsAPI.GetMessageFile`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**threadId** | **string** | The ID of the thread to which the message and File belong. | 
-**messageId** | **string** | The ID of the message the file belongs to. | 
-**fileId** | **string** | The ID of the file being retrieved. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetMessageFileRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-
-### Return type
-
-[**MessageFileObject**](MessageFileObject.md)
 
 ### Authorization
 
@@ -1072,7 +854,7 @@ Name | Type | Description  | Notes
 
 ## GetRunStep
 
-> RunStepObject GetRunStep(ctx, threadId, runId, stepId).Execute()
+> RunStepObject GetRunStep(ctx, threadId, runId, stepId).Include(include).Execute()
 
 Retrieves a run step.
 
@@ -1092,10 +874,11 @@ func main() {
 	threadId := "threadId_example" // string | The ID of the thread to which the run and run step belongs.
 	runId := "runId_example" // string | The ID of the run to which the run step belongs.
 	stepId := "stepId_example" // string | The ID of the run step to retrieve.
+	include := []string{"Include_example"} // []string | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AssistantsAPI.GetRunStep(context.Background(), threadId, runId, stepId).Execute()
+	resp, r, err := apiClient.AssistantsAPI.GetRunStep(context.Background(), threadId, runId, stepId).Include(include).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AssistantsAPI.GetRunStep``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1125,6 +908,7 @@ Name | Type | Description  | Notes
 
 
 
+ **include** | **[]string** | A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | 
 
 ### Return type
 
@@ -1212,82 +996,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListAssistantFiles
-
-> ListAssistantFilesResponse ListAssistantFiles(ctx, assistantId).Limit(limit).Order(order).After(after).Before(before).Execute()
-
-Returns a list of assistant files.
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/oapicf/openapi-openai"
-)
-
-func main() {
-	assistantId := "assistantId_example" // string | The ID of the assistant the file belongs to.
-	limit := int32(56) // int32 | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
-	order := "order_example" // string | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to "desc")
-	after := "after_example" // string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-	before := "before_example" // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AssistantsAPI.ListAssistantFiles(context.Background(), assistantId).Limit(limit).Order(order).After(after).Before(before).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AssistantsAPI.ListAssistantFiles``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListAssistantFiles`: ListAssistantFilesResponse
-	fmt.Fprintf(os.Stdout, "Response from `AssistantsAPI.ListAssistantFiles`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**assistantId** | **string** | The ID of the assistant the file belongs to. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListAssistantFilesRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **limit** | **int32** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [default to 20]
- **order** | **string** | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [default to &quot;desc&quot;]
- **after** | **string** | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | 
- **before** | **string** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | 
-
-### Return type
-
-[**ListAssistantFilesResponse**](ListAssistantFilesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## ListAssistants
 
 > ListAssistantsResponse ListAssistants(ctx).Limit(limit).Order(order).After(after).Before(before).Execute()
@@ -1310,7 +1018,7 @@ func main() {
 	limit := int32(56) // int32 | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
 	order := "order_example" // string | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to "desc")
 	after := "after_example" // string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-	before := "before_example" // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+	before := "before_example" // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1338,90 +1046,11 @@ Name | Type | Description  | Notes
  **limit** | **int32** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [default to 20]
  **order** | **string** | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [default to &quot;desc&quot;]
  **after** | **string** | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | 
- **before** | **string** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | 
+ **before** | **string** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | 
 
 ### Return type
 
 [**ListAssistantsResponse**](ListAssistantsResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ListMessageFiles
-
-> ListMessageFilesResponse ListMessageFiles(ctx, threadId, messageId).Limit(limit).Order(order).After(after).Before(before).Execute()
-
-Returns a list of message files.
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/oapicf/openapi-openai"
-)
-
-func main() {
-	threadId := "threadId_example" // string | The ID of the thread that the message and files belong to.
-	messageId := "messageId_example" // string | The ID of the message that the files belongs to.
-	limit := int32(56) // int32 | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
-	order := "order_example" // string | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to "desc")
-	after := "after_example" // string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-	before := "before_example" // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AssistantsAPI.ListMessageFiles(context.Background(), threadId, messageId).Limit(limit).Order(order).After(after).Before(before).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AssistantsAPI.ListMessageFiles``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListMessageFiles`: ListMessageFilesResponse
-	fmt.Fprintf(os.Stdout, "Response from `AssistantsAPI.ListMessageFiles`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**threadId** | **string** | The ID of the thread that the message and files belong to. | 
-**messageId** | **string** | The ID of the message that the files belongs to. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListMessageFilesRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **limit** | **int32** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [default to 20]
- **order** | **string** | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [default to &quot;desc&quot;]
- **after** | **string** | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | 
- **before** | **string** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | 
-
-### Return type
-
-[**ListMessageFilesResponse**](ListMessageFilesResponse.md)
 
 ### Authorization
 
@@ -1460,7 +1089,7 @@ func main() {
 	limit := int32(56) // int32 | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
 	order := "order_example" // string | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to "desc")
 	after := "after_example" // string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-	before := "before_example" // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+	before := "before_example" // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 	runId := "runId_example" // string | Filter messages by the run ID that generated them.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -1494,7 +1123,7 @@ Name | Type | Description  | Notes
  **limit** | **int32** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [default to 20]
  **order** | **string** | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [default to &quot;desc&quot;]
  **after** | **string** | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | 
- **before** | **string** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | 
+ **before** | **string** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | 
  **runId** | **string** | Filter messages by the run ID that generated them.  | 
 
 ### Return type
@@ -1517,7 +1146,7 @@ Name | Type | Description  | Notes
 
 ## ListRunSteps
 
-> ListRunStepsResponse ListRunSteps(ctx, threadId, runId).Limit(limit).Order(order).After(after).Before(before).Execute()
+> ListRunStepsResponse ListRunSteps(ctx, threadId, runId).Limit(limit).Order(order).After(after).Before(before).Include(include).Execute()
 
 Returns a list of run steps belonging to a run.
 
@@ -1539,11 +1168,12 @@ func main() {
 	limit := int32(56) // int32 | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
 	order := "order_example" // string | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to "desc")
 	after := "after_example" // string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-	before := "before_example" // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+	before := "before_example" // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+	include := []string{"Include_example"} // []string | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AssistantsAPI.ListRunSteps(context.Background(), threadId, runId).Limit(limit).Order(order).After(after).Before(before).Execute()
+	resp, r, err := apiClient.AssistantsAPI.ListRunSteps(context.Background(), threadId, runId).Limit(limit).Order(order).After(after).Before(before).Include(include).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AssistantsAPI.ListRunSteps``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1574,7 +1204,8 @@ Name | Type | Description  | Notes
  **limit** | **int32** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [default to 20]
  **order** | **string** | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [default to &quot;desc&quot;]
  **after** | **string** | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | 
- **before** | **string** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | 
+ **before** | **string** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | 
+ **include** | **[]string** | A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | 
 
 ### Return type
 
@@ -1617,7 +1248,7 @@ func main() {
 	limit := int32(56) // int32 | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
 	order := "order_example" // string | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to "desc")
 	after := "after_example" // string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-	before := "before_example" // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+	before := "before_example" // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1650,7 +1281,7 @@ Name | Type | Description  | Notes
  **limit** | **int32** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [default to 20]
  **order** | **string** | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [default to &quot;desc&quot;]
  **after** | **string** | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | 
- **before** | **string** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | 
+ **before** | **string** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | 
 
 ### Return type
 

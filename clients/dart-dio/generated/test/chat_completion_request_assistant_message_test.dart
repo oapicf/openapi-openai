@@ -3,13 +3,18 @@ import 'package:openapi/openapi.dart';
 
 // tests for ChatCompletionRequestAssistantMessage
 void main() {
-  final instance = ChatCompletionRequestAssistantMessageBuilder();
+  //final instance = ChatCompletionRequestAssistantMessageBuilder();
   // TODO add properties to the builder and call build()
 
   group(ChatCompletionRequestAssistantMessage, () {
-    // The contents of the assistant message. Required unless `tool_calls` or `function_call` is specified. 
-    // String content
+    // ChatCompletionRequestAssistantMessageContent content
     test('to test the property `content`', () async {
+      // TODO
+    });
+
+    // The refusal message by the assistant.
+    // String refusal
+    test('to test the property `refusal`', () async {
       // TODO
     });
 
@@ -22,6 +27,11 @@ void main() {
     // An optional name for the participant. Provides the model information to differentiate between participants of the same role.
     // String name
     test('to test the property `name`', () async {
+      // TODO
+    });
+
+    // ChatCompletionRequestAssistantMessageAudio audio
+    test('to test the property `audio`', () async {
       // TODO
     });
 

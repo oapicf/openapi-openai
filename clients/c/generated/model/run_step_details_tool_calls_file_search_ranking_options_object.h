@@ -1,0 +1,48 @@
+/*
+ * run_step_details_tool_calls_file_search_ranking_options_object.h
+ *
+ * The ranking options for the file search.
+ */
+
+#ifndef _run_step_details_tool_calls_file_search_ranking_options_object_H_
+#define _run_step_details_tool_calls_file_search_ranking_options_object_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct run_step_details_tool_calls_file_search_ranking_options_object_t run_step_details_tool_calls_file_search_ranking_options_object_t;
+
+
+// Enum RANKER for run_step_details_tool_calls_file_search_ranking_options_object
+
+typedef enum  { openai_api_run_step_details_tool_calls_file_search_ranking_options_object_RANKER_NULL = 0, openai_api_run_step_details_tool_calls_file_search_ranking_options_object_RANKER_default_2024_08_21 } openai_api_run_step_details_tool_calls_file_search_ranking_options_object_RANKER_e;
+
+char* run_step_details_tool_calls_file_search_ranking_options_object_ranker_ToString(openai_api_run_step_details_tool_calls_file_search_ranking_options_object_RANKER_e ranker);
+
+openai_api_run_step_details_tool_calls_file_search_ranking_options_object_RANKER_e run_step_details_tool_calls_file_search_ranking_options_object_ranker_FromString(char* ranker);
+
+
+
+typedef struct run_step_details_tool_calls_file_search_ranking_options_object_t {
+    openai_api_run_step_details_tool_calls_file_search_ranking_options_object_RANKER_e ranker; //enum
+    double score_threshold; //numeric
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} run_step_details_tool_calls_file_search_ranking_options_object_t;
+
+__attribute__((deprecated)) run_step_details_tool_calls_file_search_ranking_options_object_t *run_step_details_tool_calls_file_search_ranking_options_object_create(
+    openai_api_run_step_details_tool_calls_file_search_ranking_options_object_RANKER_e ranker,
+    double score_threshold
+);
+
+void run_step_details_tool_calls_file_search_ranking_options_object_free(run_step_details_tool_calls_file_search_ranking_options_object_t *run_step_details_tool_calls_file_search_ranking_options_object);
+
+run_step_details_tool_calls_file_search_ranking_options_object_t *run_step_details_tool_calls_file_search_ranking_options_object_parseFromJSON(cJSON *run_step_details_tool_calls_file_search_ranking_options_objectJSON);
+
+cJSON *run_step_details_tool_calls_file_search_ranking_options_object_convertToJSON(run_step_details_tool_calls_file_search_ranking_options_object_t *run_step_details_tool_calls_file_search_ranking_options_object);
+
+#endif /* _run_step_details_tool_calls_file_search_ranking_options_object_H_ */
+

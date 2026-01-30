@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **String** | The type of tool being defined: &#x60;code_interpreter&#x60; | 
+**FileSearch** | [**AssistantToolsFileSearchFileSearch**](AssistantToolsFileSearchFileSearch.md) |  | [optional] 
 **VarFunction** | [**FunctionObject**](FunctionObject.md) |  | 
 
 ## Examples
@@ -11,6 +12,7 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $AssistantObjectToolsInner = Initialize-PSOpenAPIToolsAssistantObjectToolsInner  -Type null `
+ -FileSearch null `
  -VarFunction null
 ```
 

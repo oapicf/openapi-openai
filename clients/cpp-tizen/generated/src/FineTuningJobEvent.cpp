@@ -23,16 +23,23 @@ FineTuningJobEvent::~FineTuningJobEvent()
 void
 FineTuningJobEvent::__init()
 {
+	//object = std::string();
 	//id = std::string();
 	//created_at = int(0);
 	//level = std::string();
 	//message = std::string();
-	//object = std::string();
+	//type = std::string();
+	//data = null;
 }
 
 void
 FineTuningJobEvent::__cleanup()
 {
+	//if(object != NULL) {
+	//
+	//delete object;
+	//object = NULL;
+	//}
 	//if(id != NULL) {
 	//
 	//delete id;
@@ -53,10 +60,15 @@ FineTuningJobEvent::__cleanup()
 	//delete message;
 	//message = NULL;
 	//}
-	//if(object != NULL) {
+	//if(type != NULL) {
 	//
-	//delete object;
-	//object = NULL;
+	//delete type;
+	//type = NULL;
+	//}
+	//if(data != NULL) {
+	//
+	//delete data;
+	//data = NULL;
 	//}
 	//
 }
@@ -66,6 +78,17 @@ FineTuningJobEvent::fromJson(char* jsonStr)
 {
 	JsonObject *pJsonObject = json_node_get_object(json_from_string(jsonStr,NULL));
 	JsonNode *node;
+	const gchar *objectKey = "object";
+	node = json_object_get_member(pJsonObject, objectKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&object, node, "std::string", "");
+		} else {
+			
+		}
+	}
 	const gchar *idKey = "id";
 	node = json_object_get_member(pJsonObject, idKey);
 	if (node !=NULL) {
@@ -110,14 +133,28 @@ FineTuningJobEvent::fromJson(char* jsonStr)
 			
 		}
 	}
-	const gchar *objectKey = "object";
-	node = json_object_get_member(pJsonObject, objectKey);
+	const gchar *typeKey = "type";
+	node = json_object_get_member(pJsonObject, typeKey);
 	if (node !=NULL) {
 	
 
 		if (isprimitive("std::string")) {
-			jsonToValue(&object, node, "std::string", "");
+			jsonToValue(&type, node, "std::string", "");
 		} else {
+			
+		}
+	}
+	const gchar *dataKey = "data";
+	node = json_object_get_member(pJsonObject, dataKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&data, node, "std::string", "");
+		} else {
+			
+			std::string* obj = static_cast<std::string*> (&data);
+			obj->fromJson(json_to_string(node, false));
 			
 		}
 	}
@@ -133,6 +170,15 @@ FineTuningJobEvent::toJson()
 {
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;
+	if (isprimitive("std::string")) {
+		std::string obj = getObject();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *objectKey = "object";
+	json_object_set_member(pJsonObject, objectKey, node);
 	if (isprimitive("std::string")) {
 		std::string obj = getId();
 		node = converttoJson(&obj, "std::string", "");
@@ -170,20 +216,46 @@ FineTuningJobEvent::toJson()
 	const gchar *messageKey = "message";
 	json_object_set_member(pJsonObject, messageKey, node);
 	if (isprimitive("std::string")) {
-		std::string obj = getObject();
+		std::string obj = getType();
 		node = converttoJson(&obj, "std::string", "");
 	}
 	else {
 		
 	}
-	const gchar *objectKey = "object";
-	json_object_set_member(pJsonObject, objectKey, node);
+	const gchar *typeKey = "type";
+	json_object_set_member(pJsonObject, typeKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getData();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+		std::string obj = static_cast<std::string> (getData());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *dataKey = "data";
+	json_object_set_member(pJsonObject, dataKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
 	char * ret = json_to_string(node, false);
 	json_node_free(node);
 	return ret;
+}
+
+std::string
+FineTuningJobEvent::getObject()
+{
+	return object;
+}
+
+void
+FineTuningJobEvent::setObject(std::string  object)
+{
+	this->object = object;
 }
 
 std::string
@@ -235,15 +307,27 @@ FineTuningJobEvent::setMessage(std::string  message)
 }
 
 std::string
-FineTuningJobEvent::getObject()
+FineTuningJobEvent::getType()
 {
-	return object;
+	return type;
 }
 
 void
-FineTuningJobEvent::setObject(std::string  object)
+FineTuningJobEvent::setType(std::string  type)
 {
-	this->object = object;
+	this->type = type;
+}
+
+std::string
+FineTuningJobEvent::getData()
+{
+	return data;
+}
+
+void
+FineTuningJobEvent::setData(std::string  data)
+{
+	this->data = data;
 }
 
 

@@ -1,7 +1,7 @@
 /*
  * run_step_stream_event_one_of.h
  *
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is created.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is created.
  */
 
 #ifndef _run_step_stream_event_one_of_H_

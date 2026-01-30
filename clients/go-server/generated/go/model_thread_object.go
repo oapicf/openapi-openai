@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -26,7 +26,9 @@ type ThreadObject struct {
 	// The Unix timestamp (in seconds) for when the thread was created.
 	CreatedAt int32 `json:"created_at"`
 
-	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	ToolResources *ModifyThreadRequestToolResources `json:"tool_resources"`
+
+	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	Metadata *map[string]interface{} `json:"metadata"`
 }
 
@@ -36,6 +38,7 @@ func AssertThreadObjectRequired(obj ThreadObject) error {
 		"id": obj.Id,
 		"object": obj.Object,
 		"created_at": obj.CreatedAt,
+		"tool_resources": obj.ToolResources,
 		"metadata": obj.Metadata,
 	}
 	for name, el := range elements {
@@ -44,10 +47,20 @@ func AssertThreadObjectRequired(obj ThreadObject) error {
 		}
 	}
 
+	if obj.ToolResources != nil {
+		if err := AssertModifyThreadRequestToolResourcesRequired(*obj.ToolResources); err != nil {
+			return err
+		}
+	}
 	return nil
 }
 
 // AssertThreadObjectConstraints checks if the values respects the defined constraints
 func AssertThreadObjectConstraints(obj ThreadObject) error {
+    if obj.ToolResources != nil {
+     	if err := AssertModifyThreadRequestToolResourcesConstraints(*obj.ToolResources); err != nil {
+     		return err
+     	}
+    }
 	return nil
 }

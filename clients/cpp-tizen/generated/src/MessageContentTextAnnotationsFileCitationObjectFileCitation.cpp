@@ -24,7 +24,6 @@ void
 MessageContentTextAnnotationsFileCitationObject_file_citation::__init()
 {
 	//file_id = std::string();
-	//quote = std::string();
 }
 
 void
@@ -34,11 +33,6 @@ MessageContentTextAnnotationsFileCitationObject_file_citation::__cleanup()
 	//
 	//delete file_id;
 	//file_id = NULL;
-	//}
-	//if(quote != NULL) {
-	//
-	//delete quote;
-	//quote = NULL;
 	//}
 	//
 }
@@ -55,17 +49,6 @@ MessageContentTextAnnotationsFileCitationObject_file_citation::fromJson(char* js
 
 		if (isprimitive("std::string")) {
 			jsonToValue(&file_id, node, "std::string", "");
-		} else {
-			
-		}
-	}
-	const gchar *quoteKey = "quote";
-	node = json_object_get_member(pJsonObject, quoteKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("std::string")) {
-			jsonToValue(&quote, node, "std::string", "");
 		} else {
 			
 		}
@@ -91,15 +74,6 @@ MessageContentTextAnnotationsFileCitationObject_file_citation::toJson()
 	}
 	const gchar *file_idKey = "file_id";
 	json_object_set_member(pJsonObject, file_idKey, node);
-	if (isprimitive("std::string")) {
-		std::string obj = getQuote();
-		node = converttoJson(&obj, "std::string", "");
-	}
-	else {
-		
-	}
-	const gchar *quoteKey = "quote";
-	json_object_set_member(pJsonObject, quoteKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -118,18 +92,6 @@ void
 MessageContentTextAnnotationsFileCitationObject_file_citation::setFileId(std::string  file_id)
 {
 	this->file_id = file_id;
-}
-
-std::string
-MessageContentTextAnnotationsFileCitationObject_file_citation::getQuote()
-{
-	return quote;
-}
-
-void
-MessageContentTextAnnotationsFileCitationObject_file_citation::setQuote(std::string  quote)
-{
-	this->quote = quote;
 }
 
 

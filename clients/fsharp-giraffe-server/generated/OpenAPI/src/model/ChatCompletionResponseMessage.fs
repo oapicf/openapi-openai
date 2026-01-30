@@ -3,7 +3,8 @@ namespace OpenAPI.Model
 open System
 open System.Collections.Generic
 open OpenAPI.Model.ChatCompletionMessageToolCall
-open OpenAPI.Model.ChatCompletionRequestAssistantMessageFunctionCall
+open OpenAPI.Model.ChatCompletionResponseMessageAudio
+open OpenAPI.Model.ChatCompletionResponseMessageFunctionCall
 open OpenAPI.Model.string option
 
 module ChatCompletionResponseMessage =
@@ -16,8 +17,10 @@ module ChatCompletionResponseMessage =
 
   type ChatCompletionResponseMessage = {
     Content : string option;
+    Refusal : string option;
     ToolCalls : ChatCompletionMessageToolCall[];
     Role : RoleEnum;
-    FunctionCall : ChatCompletionRequestAssistantMessageFunctionCall;
+    FunctionCall : ChatCompletionResponseMessageFunctionCall;
+    Audio : ChatCompletionResponseMessageAudio;
   }
   //#endregion

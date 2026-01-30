@@ -130,3 +130,18 @@ test_that("seed", {
   # uncomment below to test the property
   #expect_equal(model.instance$`seed`, "EXPECTED_RESULT")
 })
+
+test_that("estimated_finish", {
+  # tests for the property `estimated_finish` (integer)
+  # The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`estimated_finish`, "EXPECTED_RESULT")
+})
+
+test_that("method", {
+  # tests for the property `method` (FineTuneMethod)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`method`, "EXPECTED_RESULT")
+})

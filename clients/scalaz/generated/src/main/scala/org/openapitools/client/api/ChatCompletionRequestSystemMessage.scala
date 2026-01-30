@@ -12,8 +12,7 @@ import org.joda.time.DateTime
 import ChatCompletionRequestSystemMessage._
 
 case class ChatCompletionRequestSystemMessage (
-  /* The contents of the system message. */
-  content: String,
+  content: ChatCompletionRequestSystemMessageContent,
 /* The role of the messages author, in this case `system`. */
   role: Role,
 /* An optional name for the participant. Provides the model information to differentiate between participants of the same role. */

@@ -24,7 +24,7 @@ openai_api_chat_completion_request_tool_message_ROLE_e chat_completion_request_t
 
 static chat_completion_request_tool_message_t *chat_completion_request_tool_message_create_internal(
     openai_api_chat_completion_request_tool_message_ROLE_e role,
-    char *content,
+    chat_completion_request_tool_message_content_t *content,
     char *tool_call_id
     ) {
     chat_completion_request_tool_message_t *chat_completion_request_tool_message_local_var = malloc(sizeof(chat_completion_request_tool_message_t));
@@ -41,7 +41,7 @@ static chat_completion_request_tool_message_t *chat_completion_request_tool_mess
 
 __attribute__((deprecated)) chat_completion_request_tool_message_t *chat_completion_request_tool_message_create(
     openai_api_chat_completion_request_tool_message_ROLE_e role,
-    char *content,
+    chat_completion_request_tool_message_content_t *content,
     char *tool_call_id
     ) {
     return chat_completion_request_tool_message_create_internal (
@@ -61,7 +61,7 @@ void chat_completion_request_tool_message_free(chat_completion_request_tool_mess
     }
     listEntry_t *listEntry;
     if (chat_completion_request_tool_message->content) {
-        free(chat_completion_request_tool_message->content);
+        chat_completion_request_tool_message_content_free(chat_completion_request_tool_message->content);
         chat_completion_request_tool_message->content = NULL;
     }
     if (chat_completion_request_tool_message->tool_call_id) {
@@ -88,8 +88,13 @@ cJSON *chat_completion_request_tool_message_convertToJSON(chat_completion_reques
     if (!chat_completion_request_tool_message->content) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "content", chat_completion_request_tool_message->content) == NULL) {
-    goto fail; //String
+    cJSON *content_local_JSON = chat_completion_request_tool_message_content_convertToJSON(chat_completion_request_tool_message->content);
+    if(content_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "content", content_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
     }
 
 
@@ -112,6 +117,9 @@ fail:
 chat_completion_request_tool_message_t *chat_completion_request_tool_message_parseFromJSON(cJSON *chat_completion_request_tool_messageJSON){
 
     chat_completion_request_tool_message_t *chat_completion_request_tool_message_local_var = NULL;
+
+    // define the local variable for chat_completion_request_tool_message->content
+    chat_completion_request_tool_message_content_t *content_local_nonprim = NULL;
 
     // chat_completion_request_tool_message->role
     cJSON *role = cJSON_GetObjectItemCaseSensitive(chat_completion_request_tool_messageJSON, "role");
@@ -140,10 +148,7 @@ chat_completion_request_tool_message_t *chat_completion_request_tool_message_par
     }
 
     
-    if(!cJSON_IsString(content))
-    {
-    goto end; //String
-    }
+    content_local_nonprim = chat_completion_request_tool_message_content_parseFromJSON(content); //nonprimitive
 
     // chat_completion_request_tool_message->tool_call_id
     cJSON *tool_call_id = cJSON_GetObjectItemCaseSensitive(chat_completion_request_tool_messageJSON, "tool_call_id");
@@ -163,12 +168,16 @@ chat_completion_request_tool_message_t *chat_completion_request_tool_message_par
 
     chat_completion_request_tool_message_local_var = chat_completion_request_tool_message_create_internal (
         roleVariable,
-        strdup(content->valuestring),
+        content_local_nonprim,
         strdup(tool_call_id->valuestring)
         );
 
     return chat_completion_request_tool_message_local_var;
 end:
+    if (content_local_nonprim) {
+        chat_completion_request_tool_message_content_free(content_local_nonprim);
+        content_local_nonprim = NULL;
+    }
     return NULL;
 
 }

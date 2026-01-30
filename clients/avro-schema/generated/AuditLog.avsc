@@ -1,0 +1,155 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "A log of a user action or configuration change within this organization.",
+  "name": "AuditLog",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The ID of this log."
+    },
+    {
+      "name": "type",
+      "type": "model.AuditLogEventType",
+      "doc": ""
+    },
+    {
+      "name": "effective_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) of the event."
+    },
+    {
+      "name": "project",
+      "type": ["null", "model.AuditLogProject"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "actor",
+      "type": "model.AuditLogActor",
+      "doc": ""
+    },
+    {
+      "name": "api_key.created",
+      "type": ["null", "model.AuditLogApiKeyCreated"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "api_key.updated",
+      "type": ["null", "model.AuditLogApiKeyUpdated"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "api_key.deleted",
+      "type": ["null", "model.AuditLogApiKeyDeleted"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "invite.sent",
+      "type": ["null", "model.AuditLogInviteSent"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "invite.accepted",
+      "type": ["null", "model.AuditLogInviteAccepted"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "invite.deleted",
+      "type": ["null", "model.AuditLogInviteAccepted"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "login.failed",
+      "type": ["null", "model.AuditLogLoginFailed"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "logout.failed",
+      "type": ["null", "model.AuditLogLoginFailed"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "organization.updated",
+      "type": ["null", "model.AuditLogOrganizationUpdated"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "project.created",
+      "type": ["null", "model.AuditLogProjectCreated"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "project.updated",
+      "type": ["null", "model.AuditLogProjectUpdated"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "project.archived",
+      "type": ["null", "model.AuditLogProjectArchived"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "rate_limit.updated",
+      "type": ["null", "model.AuditLogRateLimitUpdated"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "rate_limit.deleted",
+      "type": ["null", "model.AuditLogRateLimitDeleted"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "service_account.created",
+      "type": ["null", "model.AuditLogServiceAccountCreated"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "service_account.updated",
+      "type": ["null", "model.AuditLogServiceAccountUpdated"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "service_account.deleted",
+      "type": ["null", "model.AuditLogServiceAccountDeleted"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "user.added",
+      "type": ["null", "model.AuditLogUserAdded"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "user.updated",
+      "type": ["null", "model.AuditLogUserUpdated"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "user.deleted",
+      "type": ["null", "model.AuditLogUserDeleted"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

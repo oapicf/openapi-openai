@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateAssistantRequestToolResourcesFileSearchVectorStoresInner"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateAssistantRequestToolResourcesFileSearchVectorStoresInner"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy = openapi_server.resourceTypes.CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
+}
+resourceTypes {
+
+  CreateAssistantRequestToolResourcesFileSearchVectorStoresInner {
+    title = CreateAssistantRequestToolResourcesFileSearchVectorStoresInner
+    description = CreateAssistantRequestToolResourcesFileSearchVectorStoresInner
+    derivedFrom = Root
+    properties {
+        file_ids {
+          type = array
+          items.type =  string
+          description = "A list of [file](/docs/api-reference/files) IDs to add to the vector store. There can be a maximum of 10000 files in a vector store. "
+          optional = false
+        }
+        chunking_strategy {
+          type = CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
+          description = ""
+          optional = false
+        }
+        metadata {
+          type =  
+          description = "Set of 16 key-value pairs that can be attached to a vector store. This can be useful for storing additional information about the vector store in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. "
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateAssistantRequestToolResourcesFileSearchVectorStoresInner {
+    title = CreateAssistantRequestToolResourcesFileSearchVectorStoresInner
+    description = CreateAssistantRequestToolResourcesFileSearchVectorStoresInner
+    implements = openapi_server.resourceTypes.CreateAssistantRequestToolResourcesFileSearchVectorStoresInner
+
+  }
+}

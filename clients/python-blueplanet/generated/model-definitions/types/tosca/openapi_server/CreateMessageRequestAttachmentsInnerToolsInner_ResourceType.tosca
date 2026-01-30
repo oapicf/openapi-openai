@@ -1,0 +1,38 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateMessageRequestAttachmentsInnerToolsInner"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateMessageRequestAttachmentsInnerToolsInner"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AssistantToolsCode = openapi_server.resourceTypes.AssistantToolsCode
+  AssistantToolsFileSearchTypeOnly = openapi_server.resourceTypes.AssistantToolsFileSearchTypeOnly
+}
+resourceTypes {
+
+  CreateMessageRequestAttachmentsInnerToolsInner {
+    title = CreateMessageRequestAttachmentsInnerToolsInner
+    description = CreateMessageRequestAttachmentsInnerToolsInner
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "The type of tool being defined: &#x60;code_interpreter&#x60;"
+          enum = ["code_interpreter", "file_search"]
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateMessageRequestAttachmentsInnerToolsInner {
+    title = CreateMessageRequestAttachmentsInnerToolsInner
+    description = CreateMessageRequestAttachmentsInnerToolsInner
+    implements = openapi_server.resourceTypes.CreateMessageRequestAttachmentsInnerToolsInner
+
+  }
+}

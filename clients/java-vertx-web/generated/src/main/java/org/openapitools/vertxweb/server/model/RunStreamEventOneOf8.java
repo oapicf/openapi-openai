@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.vertxweb.server.model.RunObject;
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) expires.
+ * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
  **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RunStreamEventOneOf8   {
@@ -15,7 +15,7 @@ public class RunStreamEventOneOf8   {
 
 
   public enum EventEnum {
-    THREAD_RUN_EXPIRED("thread.run.expired");
+    THREAD_RUN_CANCELLED("thread.run.cancelled");
 
     private String value;
 

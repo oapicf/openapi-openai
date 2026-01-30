@@ -116,6 +116,19 @@ API.Client.FineTuningJob.prototype.integrations;
  */
 API.Client.FineTuningJob.prototype.seed;
 
+/**
+ * The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+ * @type {!number}
+ * @export
+ */
+API.Client.FineTuningJob.prototype.estimatedFinish;
+
+/**
+ * @type {!API.Client.FineTuneMethod}
+ * @export
+ */
+API.Client.FineTuningJob.prototype.method;
+
 /** @enum {string} */
 API.Client.FineTuningJob.ObjectEnum = { 
   fine_tuning.job: 'fine_tuning.job',

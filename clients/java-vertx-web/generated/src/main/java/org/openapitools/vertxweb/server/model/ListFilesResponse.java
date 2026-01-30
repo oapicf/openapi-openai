@@ -3,7 +3,6 @@ package org.openapitools.vertxweb.server.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,33 +11,30 @@ import org.openapitools.vertxweb.server.model.OpenAIFile;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ListFilesResponse   {
   
+  private String _object;
   private List<OpenAIFile> data = new ArrayList<>();
-
-
-  public enum ObjectEnum {
-    LIST("list");
-
-    private String value;
-
-    ObjectEnum(String value) {
-      this.value = value;
-    }
-
-    @Override
-    @JsonValue
-    public String toString() {
-      return value;
-    }
-  }
-
-  private ObjectEnum _object;
+  private String firstId;
+  private String lastId;
+  private Boolean hasMore;
 
   public ListFilesResponse () {
 
   }
 
-  public ListFilesResponse (List<OpenAIFile> data, ObjectEnum _object) {
+  public ListFilesResponse (String _object, List<OpenAIFile> data, String firstId, String lastId, Boolean hasMore) {
+    this._object = _object;
     this.data = data;
+    this.firstId = firstId;
+    this.lastId = lastId;
+    this.hasMore = hasMore;
+  }
+
+    
+  @JsonProperty("object")
+  public String getObject() {
+    return _object;
+  }
+  public void setObject(String _object) {
     this._object = _object;
   }
 
@@ -52,12 +48,30 @@ public class ListFilesResponse   {
   }
 
     
-  @JsonProperty("object")
-  public ObjectEnum getObject() {
-    return _object;
+  @JsonProperty("first_id")
+  public String getFirstId() {
+    return firstId;
   }
-  public void setObject(ObjectEnum _object) {
-    this._object = _object;
+  public void setFirstId(String firstId) {
+    this.firstId = firstId;
+  }
+
+    
+  @JsonProperty("last_id")
+  public String getLastId() {
+    return lastId;
+  }
+  public void setLastId(String lastId) {
+    this.lastId = lastId;
+  }
+
+    
+  @JsonProperty("has_more")
+  public Boolean getHasMore() {
+    return hasMore;
+  }
+  public void setHasMore(Boolean hasMore) {
+    this.hasMore = hasMore;
   }
 
 
@@ -70,13 +84,16 @@ public class ListFilesResponse   {
       return false;
     }
     ListFilesResponse listFilesResponse = (ListFilesResponse) o;
-    return Objects.equals(data, listFilesResponse.data) &&
-        Objects.equals(_object, listFilesResponse._object);
+    return Objects.equals(_object, listFilesResponse._object) &&
+        Objects.equals(data, listFilesResponse.data) &&
+        Objects.equals(firstId, listFilesResponse.firstId) &&
+        Objects.equals(lastId, listFilesResponse.lastId) &&
+        Objects.equals(hasMore, listFilesResponse.hasMore);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, _object);
+    return Objects.hash(_object, data, firstId, lastId, hasMore);
   }
 
   @Override
@@ -84,8 +101,11 @@ public class ListFilesResponse   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListFilesResponse {\n");
     
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    firstId: ").append(toIndentedString(firstId)).append("\n");
+    sb.append("    lastId: ").append(toIndentedString(lastId)).append("\n");
+    sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
     sb.append("}");
     return sb.toString();
   }

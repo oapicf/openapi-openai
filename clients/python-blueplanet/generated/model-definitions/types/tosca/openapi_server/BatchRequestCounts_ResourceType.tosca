@@ -1,0 +1,45 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server BatchRequestCounts"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a BatchRequestCounts"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  BatchRequestCounts {
+    title = BatchRequestCounts
+    description = BatchRequestCounts
+    derivedFrom = Root
+    properties {
+        total {
+          type =  integer
+          description = "Total number of requests in the batch."
+          optional = true
+        }
+        completed {
+          type =  integer
+          description = "Number of requests that have been completed successfully."
+          optional = true
+        }
+        failed {
+          type =  integer
+          description = "Number of requests that have failed."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  BatchRequestCounts {
+    title = BatchRequestCounts
+    description = BatchRequestCounts
+    implements = openapi_server.resourceTypes.BatchRequestCounts
+
+  }
+}

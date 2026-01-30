@@ -7,11 +7,13 @@ Fine-tuning job event object
 
 Name | Type
 ------------ | -------------
+`object` | string
 `id` | string
 `createdAt` | number
 `level` | string
 `message` | string
-`object` | string
+`type` | string
+`data` | object
 
 ## Example
 
@@ -20,11 +22,13 @@ import type { FineTuningJobEvent } from ''
 
 // TODO: Update the object below with actual values
 const example = {
+  "object": null,
   "id": null,
   "createdAt": null,
   "level": null,
   "message": null,
-  "object": null,
+  "type": null,
+  "data": null,
 } satisfies FineTuningJobEvent
 
 console.log(example)

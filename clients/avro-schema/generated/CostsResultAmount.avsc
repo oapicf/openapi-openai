@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The monetary value in its associated currency.",
+  "name": "CostsResultAmount",
+  "fields": [
+    {
+      "name": "value",
+      "type": ["null", "double"],
+      "doc": "The numeric value of the cost.",
+      "default": null
+    },
+    {
+      "name": "currency",
+      "type": ["null", "string"],
+      "doc": "Lowercase ISO-4217 currency e.g. \"usd\"",
+      "default": null
+    }
+  ]
+
+}

@@ -2,7 +2,7 @@ package org.openapitools.server.model
 
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) expires.
+ * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
  *
  * @param event  for example: ''null''
  * @param data  for example: ''null''

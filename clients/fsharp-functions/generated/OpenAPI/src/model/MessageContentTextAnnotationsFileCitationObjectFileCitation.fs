@@ -12,8 +12,6 @@ module MessageContentTextAnnotationsFileCitationObjectFileCitation =
   type MessageContentTextAnnotationsFileCitationObjectFileCitation = {
     [<JsonProperty(PropertyName = "file_id")>]
     FileId : string;
-    [<JsonProperty(PropertyName = "quote")>]
-    Quote : string;
   }
 
   //#endregion

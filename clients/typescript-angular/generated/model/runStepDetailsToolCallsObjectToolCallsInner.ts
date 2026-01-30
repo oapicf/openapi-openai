@@ -7,16 +7,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { RunStepDetailsToolCallsRetrievalObject } from './runStepDetailsToolCallsRetrievalObject';
 import { RunStepDetailsToolCallsCodeObjectCodeInterpreter } from './runStepDetailsToolCallsCodeObjectCodeInterpreter';
 import { RunStepDetailsToolCallsFunctionObject } from './runStepDetailsToolCallsFunctionObject';
+import { RunStepDetailsToolCallsFileSearchObject } from './runStepDetailsToolCallsFileSearchObject';
 import { RunStepDetailsToolCallsFunctionObjectFunction } from './runStepDetailsToolCallsFunctionObjectFunction';
 import { RunStepDetailsToolCallsCodeObject } from './runStepDetailsToolCallsCodeObject';
+import { RunStepDetailsToolCallsFileSearchObjectFileSearch } from './runStepDetailsToolCallsFileSearchObjectFileSearch';
 
 
 /**
  * @type RunStepDetailsToolCallsObjectToolCallsInner
  * @export
  */
-export type RunStepDetailsToolCallsObjectToolCallsInner = RunStepDetailsToolCallsCodeObject | RunStepDetailsToolCallsFunctionObject | RunStepDetailsToolCallsRetrievalObject;
+export type RunStepDetailsToolCallsObjectToolCallsInner = RunStepDetailsToolCallsCodeObject | RunStepDetailsToolCallsFileSearchObject | RunStepDetailsToolCallsFunctionObject;
 

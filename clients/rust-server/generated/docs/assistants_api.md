@@ -8,29 +8,24 @@ Method | HTTP request | Description
 **createThread**](assistants_api.md#createThread) | **POST** /threads | Create a thread.
 **createThreadAndRun**](assistants_api.md#createThreadAndRun) | **POST** /threads/runs | Create a thread and run it in one request.
 **listAssistants**](assistants_api.md#listAssistants) | **GET** /assistants | Returns a list of assistants.
-**createAssistantFile**](assistants_api.md#createAssistantFile) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
 **createMessage**](assistants_api.md#createMessage) | **POST** /threads/{thread_id}/messages | Create a message.
 **createRun**](assistants_api.md#createRun) | **POST** /threads/{thread_id}/runs | Create a run.
 **deleteAssistant**](assistants_api.md#deleteAssistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant.
 **deleteThread**](assistants_api.md#deleteThread) | **DELETE** /threads/{thread_id} | Delete a thread.
 **getAssistant**](assistants_api.md#getAssistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant.
 **getThread**](assistants_api.md#getThread) | **GET** /threads/{thread_id} | Retrieves a thread.
-**listAssistantFiles**](assistants_api.md#listAssistantFiles) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
 **listMessages**](assistants_api.md#listMessages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
 **listRuns**](assistants_api.md#listRuns) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
 **modifyAssistant**](assistants_api.md#modifyAssistant) | **POST** /assistants/{assistant_id} | Modifies an assistant.
 **modifyThread**](assistants_api.md#modifyThread) | **POST** /threads/{thread_id} | Modifies a thread.
 **cancelRun**](assistants_api.md#cancelRun) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is `in_progress`.
-**deleteAssistantFile**](assistants_api.md#deleteAssistantFile) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
-**getAssistantFile**](assistants_api.md#getAssistantFile) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
+**deleteMessage**](assistants_api.md#deleteMessage) | **DELETE** /threads/{thread_id}/messages/{message_id} | Deletes a message.
 **getMessage**](assistants_api.md#getMessage) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
 **getRun**](assistants_api.md#getRun) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
-**listMessageFiles**](assistants_api.md#listMessageFiles) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
 **listRunSteps**](assistants_api.md#listRunSteps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
 **modifyMessage**](assistants_api.md#modifyMessage) | **POST** /threads/{thread_id}/messages/{message_id} | Modifies a message.
 **modifyRun**](assistants_api.md#modifyRun) | **POST** /threads/{thread_id}/runs/{run_id} | Modifies a run.
 **submitToolOuputsToRun**](assistants_api.md#submitToolOuputsToRun) | **POST** /threads/{thread_id}/runs/{run_id}/submit_tool_outputs | When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request. 
-**getMessageFile**](assistants_api.md#getMessageFile) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
 **getRunStep**](assistants_api.md#getRunStep) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
 
 
@@ -138,7 +133,7 @@ Name | Type | Description  | Notes
  **limit** | **i32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [default to 20]
  **order** | [****](.md)| Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  | 
  **after** | **String**| A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  | 
- **before** | **String**| A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  | 
+ **before** | **String**| A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  | 
 
 ### Return type
 
@@ -151,33 +146,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **createAssistantFile**
-> models::AssistantFileObject createAssistantFile(ctx, assistant_id, create_assistant_file_request)
-Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **assistant_id** | **String**| The ID of the assistant for which to create a File.  | 
-  **create_assistant_file_request** | [**CreateAssistantFileRequest**](CreateAssistantFileRequest.md)|  | 
-
-### Return type
-
-[**models::AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -210,7 +178,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createRun**
-> models::RunObject createRun(ctx, thread_id, create_run_request)
+> models::RunObject createRun(ctx, thread_id, create_run_request, optional)
 Create a run.
 
 ### Required Parameters
@@ -220,6 +188,16 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context containing the authentication | nil if no authentication
   **thread_id** | **String**| The ID of the thread to run. | 
   **create_run_request** | [**CreateRunRequest**](CreateRunRequest.md)|  | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **thread_id** | **String**| The ID of the thread to run. | 
+ **create_run_request** | [**CreateRunRequest**](CreateRunRequest.md)|  | 
+ **include_left_square_bracket_right_square_bracket** | [**models::CreateRunIncludeParameterInner**](models::CreateRunIncludeParameterInner.md)| A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | 
 
 ### Return type
 
@@ -340,44 +318,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **listAssistantFiles**
-> models::ListAssistantFilesResponse listAssistantFiles(ctx, assistant_id, optional)
-Returns a list of assistant files.
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **assistant_id** | **String**| The ID of the assistant the file belongs to. | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistant_id** | **String**| The ID of the assistant the file belongs to. | 
- **limit** | **i32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [default to 20]
- **order** | [****](.md)| Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  | 
- **after** | **String**| A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  | 
- **before** | **String**| A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  | 
-
-### Return type
-
-[**models::ListAssistantFilesResponse**](ListAssistantFilesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **listMessages**
 > models::ListMessagesResponse listMessages(ctx, thread_id, optional)
 Returns a list of messages for a given thread.
@@ -399,7 +339,7 @@ Name | Type | Description  | Notes
  **limit** | **i32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [default to 20]
  **order** | [****](.md)| Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  | 
  **after** | **String**| A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  | 
- **before** | **String**| A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  | 
+ **before** | **String**| A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  | 
  **run_id** | **String**| Filter messages by the run ID that generated them.  | 
 
 ### Return type
@@ -438,7 +378,7 @@ Name | Type | Description  | Notes
  **limit** | **i32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [default to 20]
  **order** | [****](.md)| Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  | 
  **after** | **String**| A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  | 
- **before** | **String**| A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  | 
+ **before** | **String**| A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  | 
 
 ### Return type
 
@@ -536,48 +476,21 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **deleteAssistantFile**
-> models::DeleteAssistantFileResponse deleteAssistantFile(ctx, assistant_id, file_id)
-Delete an assistant file.
+# **deleteMessage**
+> models::DeleteMessageResponse deleteMessage(ctx, thread_id, message_id)
+Deletes a message.
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **assistant_id** | **String**| The ID of the assistant that the file belongs to. | 
-  **file_id** | **String**| The ID of the file to delete. | 
+  **thread_id** | **String**| The ID of the thread to which this message belongs. | 
+  **message_id** | **String**| The ID of the message to delete. | 
 
 ### Return type
 
-[**models::DeleteAssistantFileResponse**](DeleteAssistantFileResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getAssistantFile**
-> models::AssistantFileObject getAssistantFile(ctx, assistant_id, file_id)
-Retrieves an AssistantFile.
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **assistant_id** | **String**| The ID of the assistant who the file belongs to. | 
-  **file_id** | **String**| The ID of the file we're getting. | 
-
-### Return type
-
-[**models::AssistantFileObject**](AssistantFileObject.md)
+[**models::DeleteMessageResponse**](DeleteMessageResponse.md)
 
 ### Authorization
 
@@ -644,46 +557,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **listMessageFiles**
-> models::ListMessageFilesResponse listMessageFiles(ctx, thread_id, message_id, optional)
-Returns a list of message files.
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **thread_id** | **String**| The ID of the thread that the message and files belong to. | 
-  **message_id** | **String**| The ID of the message that the files belongs to. | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **thread_id** | **String**| The ID of the thread that the message and files belong to. | 
- **message_id** | **String**| The ID of the message that the files belongs to. | 
- **limit** | **i32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [default to 20]
- **order** | [****](.md)| Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  | 
- **after** | **String**| A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  | 
- **before** | **String**| A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  | 
-
-### Return type
-
-[**models::ListMessageFilesResponse**](ListMessageFilesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **listRunSteps**
 > models::ListRunStepsResponse listRunSteps(ctx, thread_id, run_id, optional)
 Returns a list of run steps belonging to a run.
@@ -707,7 +580,8 @@ Name | Type | Description  | Notes
  **limit** | **i32**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [default to 20]
  **order** | [****](.md)| Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  | 
  **after** | **String**| A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  | 
- **before** | **String**| A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  | 
+ **before** | **String**| A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  | 
+ **include_left_square_bracket_right_square_bracket** | [**models::CreateRunIncludeParameterInner**](models::CreateRunIncludeParameterInner.md)| A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | 
 
 ### Return type
 
@@ -808,36 +682,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getMessageFile**
-> models::MessageFileObject getMessageFile(ctx, thread_id, message_id, file_id)
-Retrieves a message file.
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **thread_id** | **String**| The ID of the thread to which the message and File belong. | 
-  **message_id** | **String**| The ID of the message the file belongs to. | 
-  **file_id** | **String**| The ID of the file being retrieved. | 
-
-### Return type
-
-[**models::MessageFileObject**](MessageFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **getRunStep**
-> models::RunStepObject getRunStep(ctx, thread_id, run_id, step_id)
+> models::RunStepObject getRunStep(ctx, thread_id, run_id, step_id, optional)
 Retrieves a run step.
 
 ### Required Parameters
@@ -848,6 +694,17 @@ Name | Type | Description  | Notes
   **thread_id** | **String**| The ID of the thread to which the run and run step belongs. | 
   **run_id** | **String**| The ID of the run to which the run step belongs. | 
   **step_id** | **String**| The ID of the run step to retrieve. | 
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **thread_id** | **String**| The ID of the thread to which the run and run step belongs. | 
+ **run_id** | **String**| The ID of the run to which the run step belongs. | 
+ **step_id** | **String**| The ID of the run step to retrieve. | 
+ **include_left_square_bracket_right_square_bracket** | [**models::CreateRunIncludeParameterInner**](models::CreateRunIncludeParameterInner.md)| A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | 
 
 ### Return type
 

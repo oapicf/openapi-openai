@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.model.CreateMessageRequestAttachmentsInner;
 import org.openapitools.model.MessageObjectContentInner;
 import org.openapitools.model.MessageObjectIncompleteDetails;
 import javax.validation.constraints.*;
@@ -140,7 +141,7 @@ public enum RoleEnum {
 
   private String runId;
 
-  private List<String> fileIds = new ArrayList<>();
+  private List<@Valid CreateMessageRequestAttachmentsInner> attachments;
 
   private Object metadata;
 
@@ -392,35 +393,35 @@ public enum RoleEnum {
 
 
   /**
-   * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
+   * A list of files attached to the message, and the tools they were added to.
    **/
-  public MessageObject fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public MessageObject attachments(List<@Valid CreateMessageRequestAttachmentsInner> attachments) {
+    this.attachments = attachments;
     return this;
   }
 
   
-  @ApiModelProperty(required = true, value = "A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.")
-  @JsonProperty("file_ids")
+  @ApiModelProperty(required = true, value = "A list of files attached to the message, and the tools they were added to.")
+  @JsonProperty("attachments")
   @NotNull
- @Size(max=10)  public List<String> getFileIds() {
-    return fileIds;
+  public List<@Valid CreateMessageRequestAttachmentsInner> getAttachments() {
+    return attachments;
   }
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public void setAttachments(List<@Valid CreateMessageRequestAttachmentsInner> attachments) {
+    this.attachments = attachments;
   }
 
-  public MessageObject addFileIdsItem(String fileIdsItem) {
-    if (this.fileIds == null) {
-      this.fileIds = new ArrayList<>();
+  public MessageObject addAttachmentsItem(CreateMessageRequestAttachmentsInner attachmentsItem) {
+    if (this.attachments == null) {
+      this.attachments = new ArrayList<>();
     }
-    this.fileIds.add(fileIdsItem);
+    this.attachments.add(attachmentsItem);
     return this;
   }
 
 
   /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    **/
   public MessageObject metadata(Object metadata) {
     this.metadata = metadata;
@@ -428,7 +429,7 @@ public enum RoleEnum {
   }
 
   
-  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
   @JsonProperty("metadata")
   @NotNull
   public Object getMetadata() {
@@ -461,13 +462,13 @@ public enum RoleEnum {
         Objects.equals(this.content, messageObject.content) &&
         Objects.equals(this.assistantId, messageObject.assistantId) &&
         Objects.equals(this.runId, messageObject.runId) &&
-        Objects.equals(this.fileIds, messageObject.fileIds) &&
+        Objects.equals(this.attachments, messageObject.attachments) &&
         Objects.equals(this.metadata, messageObject.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, threadId, status, incompleteDetails, completedAt, incompleteAt, role, content, assistantId, runId, fileIds, metadata);
+    return Objects.hash(id, _object, createdAt, threadId, status, incompleteDetails, completedAt, incompleteAt, role, content, assistantId, runId, attachments, metadata);
   }
 
   @Override
@@ -487,7 +488,7 @@ public enum RoleEnum {
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    assistantId: ").append(toIndentedString(assistantId)).append("\n");
     sb.append("    runId: ").append(toIndentedString(runId)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

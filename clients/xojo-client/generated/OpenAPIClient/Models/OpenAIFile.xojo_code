@@ -43,7 +43,7 @@ Protected Class OpenAIFile
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+			The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
 		#tag EndNote
 		purpose As String
 	#tag EndProperty
@@ -73,10 +73,13 @@ Protected Class OpenAIFile
 
     #tag Enum, Name = PurposeEnum, Type = Integer, Flags = &h0
         
-        FineTune
-        FineTuneResults
         Assistants
         AssistantsOutput
+        Batch
+        BatchOutput
+        FineTune
+        FineTuneResults
+        Vision
         
     #tag EndEnum
 
@@ -104,14 +107,20 @@ Protected Class OpenAIFile
 		Shared Function PurposeEnumToString(value As PurposeEnum) As String
 		  Select Case value
 		    
-		    Case PurposeEnum.FineTune
-		      Return "fine-tune"
-		    Case PurposeEnum.FineTuneResults
-		      Return "fine-tune-results"
 		    Case PurposeEnum.Assistants
 		      Return "assistants"
 		    Case PurposeEnum.AssistantsOutput
 		      Return "assistants_output"
+		    Case PurposeEnum.Batch
+		      Return "batch"
+		    Case PurposeEnum.BatchOutput
+		      Return "batch_output"
+		    Case PurposeEnum.FineTune
+		      Return "fine-tune"
+		    Case PurposeEnum.FineTuneResults
+		      Return "fine-tune-results"
+		    Case PurposeEnum.Vision
+		      Return "vision"
 		    
 		  End Select
 		  Return ""

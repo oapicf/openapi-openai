@@ -8,7 +8,7 @@
 #' @description ChatCompletionRequestToolMessage Class
 #' @format An \code{R6Class} generator object
 #' @field role The role of the messages author, in this case `tool`. character
-#' @field content The contents of the tool message. character
+#' @field content  \link{ChatCompletionRequestToolMessageContent}
 #' @field tool_call_id Tool call that this message is responding to. character
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -24,7 +24,7 @@ ChatCompletionRequestToolMessage <- R6::R6Class(
     #' Initialize a new ChatCompletionRequestToolMessage class.
     #'
     #' @param role The role of the messages author, in this case `tool`.
-    #' @param content The contents of the tool message.
+    #' @param content content
     #' @param tool_call_id Tool call that this message is responding to.
     #' @param ... Other optional arguments.
     initialize = function(`role`, `content`, `tool_call_id`, ...) {
@@ -38,9 +38,7 @@ ChatCompletionRequestToolMessage <- R6::R6Class(
         self$`role` <- `role`
       }
       if (!missing(`content`)) {
-        if (!(is.character(`content`) && length(`content`) == 1)) {
-          stop(paste("Error! Invalid data for `content`. Must be a string:", `content`))
-        }
+        stopifnot(R6::is.R6(`content`))
         self$`content` <- `content`
       }
       if (!missing(`tool_call_id`)) {
@@ -88,7 +86,7 @@ ChatCompletionRequestToolMessage <- R6::R6Class(
       }
       if (!is.null(self$`content`)) {
         ChatCompletionRequestToolMessageObject[["content"]] <-
-          self$`content`
+          self$`content`$toSimpleType()
       }
       if (!is.null(self$`tool_call_id`)) {
         ChatCompletionRequestToolMessageObject[["tool_call_id"]] <-
@@ -111,7 +109,9 @@ ChatCompletionRequestToolMessage <- R6::R6Class(
         self$`role` <- this_object$`role`
       }
       if (!is.null(this_object$`content`)) {
-        self$`content` <- this_object$`content`
+        `content_object` <- ChatCompletionRequestToolMessageContent$new()
+        `content_object`$fromJSON(jsonlite::toJSON(this_object$`content`, auto_unbox = TRUE, digits = NA))
+        self$`content` <- `content_object`
       }
       if (!is.null(this_object$`tool_call_id`)) {
         self$`tool_call_id` <- this_object$`tool_call_id`
@@ -141,7 +141,7 @@ ChatCompletionRequestToolMessage <- R6::R6Class(
         stop(paste("Error! \"", this_object$`role`, "\" cannot be assigned to `role`. Must be \"tool\".", sep = ""))
       }
       self$`role` <- this_object$`role`
-      self$`content` <- this_object$`content`
+      self$`content` <- ChatCompletionRequestToolMessageContent$new()$fromJSON(jsonlite::toJSON(this_object$`content`, auto_unbox = TRUE, digits = NA))
       self$`tool_call_id` <- this_object$`tool_call_id`
       self
     },
@@ -162,9 +162,7 @@ ChatCompletionRequestToolMessage <- R6::R6Class(
       }
       # check the required field `content`
       if (!is.null(input_json$`content`)) {
-        if (!(is.character(input_json$`content`) && length(input_json$`content`) == 1)) {
-          stop(paste("Error! Invalid data for `content`. Must be a string:", input_json$`content`))
-        }
+        stopifnot(R6::is.R6(input_json$`content`))
       } else {
         stop(paste("The JSON input `", input, "` is invalid for ChatCompletionRequestToolMessage: the required field `content` is missing."))
       }

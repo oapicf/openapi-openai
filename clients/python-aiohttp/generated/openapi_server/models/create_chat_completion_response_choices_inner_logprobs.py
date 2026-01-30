@@ -15,20 +15,24 @@ class CreateChatCompletionResponseChoicesInnerLogprobs(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, content: List[ChatCompletionTokenLogprob]=None):
+    def __init__(self, content: List[ChatCompletionTokenLogprob]=None, refusal: List[ChatCompletionTokenLogprob]=None):
         """CreateChatCompletionResponseChoicesInnerLogprobs - a model defined in OpenAPI
 
         :param content: The content of this CreateChatCompletionResponseChoicesInnerLogprobs.
+        :param refusal: The refusal of this CreateChatCompletionResponseChoicesInnerLogprobs.
         """
         self.openapi_types = {
-            'content': List[ChatCompletionTokenLogprob]
+            'content': List[ChatCompletionTokenLogprob],
+            'refusal': List[ChatCompletionTokenLogprob]
         }
 
         self.attribute_map = {
-            'content': 'content'
+            'content': 'content',
+            'refusal': 'refusal'
         }
 
         self._content = content
+        self._refusal = refusal
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'CreateChatCompletionResponseChoicesInnerLogprobs':
@@ -63,3 +67,28 @@ class CreateChatCompletionResponseChoicesInnerLogprobs(Model):
             raise ValueError("Invalid value for `content`, must not be `None`")
 
         self._content = content
+
+    @property
+    def refusal(self):
+        """Gets the refusal of this CreateChatCompletionResponseChoicesInnerLogprobs.
+
+        A list of message refusal tokens with log probability information.
+
+        :return: The refusal of this CreateChatCompletionResponseChoicesInnerLogprobs.
+        :rtype: List[ChatCompletionTokenLogprob]
+        """
+        return self._refusal
+
+    @refusal.setter
+    def refusal(self, refusal):
+        """Sets the refusal of this CreateChatCompletionResponseChoicesInnerLogprobs.
+
+        A list of message refusal tokens with log probability information.
+
+        :param refusal: The refusal of this CreateChatCompletionResponseChoicesInnerLogprobs.
+        :type refusal: List[ChatCompletionTokenLogprob]
+        """
+        if refusal is None:
+            raise ValueError("Invalid value for `refusal`, must not be `None`")
+
+        self._refusal = refusal

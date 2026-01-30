@@ -10,7 +10,6 @@
   {
    (ds/opt :role) string?
    (ds/opt :content) (s/coll-of message-delta-object-delta-content-inner-spec)
-   (ds/opt :file_ids) (s/coll-of string?)
    })
 
 (def message-delta-object-delta-spec

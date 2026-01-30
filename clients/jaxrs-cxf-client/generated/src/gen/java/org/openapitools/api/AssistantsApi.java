@@ -1,23 +1,18 @@
 package org.openapitools.api;
 
-import org.openapitools.model.AssistantFileObject;
 import org.openapitools.model.AssistantObject;
-import org.openapitools.model.CreateAssistantFileRequest;
 import org.openapitools.model.CreateAssistantRequest;
 import org.openapitools.model.CreateMessageRequest;
 import org.openapitools.model.CreateRunRequest;
 import org.openapitools.model.CreateThreadAndRunRequest;
 import org.openapitools.model.CreateThreadRequest;
-import org.openapitools.model.DeleteAssistantFileResponse;
 import org.openapitools.model.DeleteAssistantResponse;
+import org.openapitools.model.DeleteMessageResponse;
 import org.openapitools.model.DeleteThreadResponse;
-import org.openapitools.model.ListAssistantFilesResponse;
 import org.openapitools.model.ListAssistantsResponse;
-import org.openapitools.model.ListMessageFilesResponse;
 import org.openapitools.model.ListMessagesResponse;
 import org.openapitools.model.ListRunStepsResponse;
 import org.openapitools.model.ListRunsResponse;
-import org.openapitools.model.MessageFileObject;
 import org.openapitools.model.MessageObject;
 import org.openapitools.model.ModifyAssistantRequest;
 import org.openapitools.model.ModifyMessageRequest;
@@ -75,19 +70,6 @@ public interface AssistantsApi  {
     public AssistantObject createAssistant(CreateAssistantRequest createAssistantRequest);
 
     /**
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     *
-     */
-    @POST
-    @Path("/assistants/{assistant_id}/files")
-    @Consumes({ "application/json" })
-    @Produces({ "application/json" })
-    @ApiOperation(value = "Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).", tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = AssistantFileObject.class) })
-    public AssistantFileObject createAssistantFile(@PathParam("assistant_id") String assistantId, CreateAssistantFileRequest createAssistantFileRequest);
-
-    /**
      * Create a message.
      *
      */
@@ -111,7 +93,7 @@ public interface AssistantsApi  {
     @ApiOperation(value = "Create a run.", tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = RunObject.class) })
-    public RunObject createRun(@PathParam("thread_id") String threadId, CreateRunRequest createRunRequest);
+    public RunObject createRun(@PathParam("thread_id") String threadId, CreateRunRequest createRunRequest, @QueryParam("include[]") List<String> include);
 
     /**
      * Create a thread.
@@ -152,16 +134,16 @@ public interface AssistantsApi  {
     public DeleteAssistantResponse deleteAssistant(@PathParam("assistant_id") String assistantId);
 
     /**
-     * Delete an assistant file.
+     * Deletes a message.
      *
      */
     @DELETE
-    @Path("/assistants/{assistant_id}/files/{file_id}")
+    @Path("/threads/{thread_id}/messages/{message_id}")
     @Produces({ "application/json" })
-    @ApiOperation(value = "Delete an assistant file.", tags={  })
+    @ApiOperation(value = "Deletes a message.", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = DeleteAssistantFileResponse.class) })
-    public DeleteAssistantFileResponse deleteAssistantFile(@PathParam("assistant_id") String assistantId, @PathParam("file_id") String fileId);
+        @ApiResponse(code = 200, message = "OK", response = DeleteMessageResponse.class) })
+    public DeleteMessageResponse deleteMessage(@PathParam("thread_id") String threadId, @PathParam("message_id") String messageId);
 
     /**
      * Delete a thread.
@@ -188,18 +170,6 @@ public interface AssistantsApi  {
     public AssistantObject getAssistant(@PathParam("assistant_id") String assistantId);
 
     /**
-     * Retrieves an AssistantFile.
-     *
-     */
-    @GET
-    @Path("/assistants/{assistant_id}/files/{file_id}")
-    @Produces({ "application/json" })
-    @ApiOperation(value = "Retrieves an AssistantFile.", tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = AssistantFileObject.class) })
-    public AssistantFileObject getAssistantFile(@PathParam("assistant_id") String assistantId, @PathParam("file_id") String fileId);
-
-    /**
      * Retrieve a message.
      *
      */
@@ -210,18 +180,6 @@ public interface AssistantsApi  {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = MessageObject.class) })
     public MessageObject getMessage(@PathParam("thread_id") String threadId, @PathParam("message_id") String messageId);
-
-    /**
-     * Retrieves a message file.
-     *
-     */
-    @GET
-    @Path("/threads/{thread_id}/messages/{message_id}/files/{file_id}")
-    @Produces({ "application/json" })
-    @ApiOperation(value = "Retrieves a message file.", tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = MessageFileObject.class) })
-    public MessageFileObject getMessageFile(@PathParam("thread_id") String threadId, @PathParam("message_id") String messageId, @PathParam("file_id") String fileId);
 
     /**
      * Retrieves a run.
@@ -245,7 +203,7 @@ public interface AssistantsApi  {
     @ApiOperation(value = "Retrieves a run step.", tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = RunStepObject.class) })
-    public RunStepObject getRunStep(@PathParam("thread_id") String threadId, @PathParam("run_id") String runId, @PathParam("step_id") String stepId);
+    public RunStepObject getRunStep(@PathParam("thread_id") String threadId, @PathParam("run_id") String runId, @PathParam("step_id") String stepId, @QueryParam("include[]") List<String> include);
 
     /**
      * Retrieves a thread.
@@ -260,18 +218,6 @@ public interface AssistantsApi  {
     public ThreadObject getThread(@PathParam("thread_id") String threadId);
 
     /**
-     * Returns a list of assistant files.
-     *
-     */
-    @GET
-    @Path("/assistants/{assistant_id}/files")
-    @Produces({ "application/json" })
-    @ApiOperation(value = "Returns a list of assistant files.", tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = ListAssistantFilesResponse.class) })
-    public ListAssistantFilesResponse listAssistantFiles(@PathParam("assistant_id") String assistantId, @QueryParam("limit") @DefaultValue("20")Integer limit, @QueryParam("order") @DefaultValue("desc")String order, @QueryParam("after") String after, @QueryParam("before") String before);
-
-    /**
      * Returns a list of assistants.
      *
      */
@@ -282,18 +228,6 @@ public interface AssistantsApi  {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ListAssistantsResponse.class) })
     public ListAssistantsResponse listAssistants(@QueryParam("limit") @DefaultValue("20")Integer limit, @QueryParam("order") @DefaultValue("desc")String order, @QueryParam("after") String after, @QueryParam("before") String before);
-
-    /**
-     * Returns a list of message files.
-     *
-     */
-    @GET
-    @Path("/threads/{thread_id}/messages/{message_id}/files")
-    @Produces({ "application/json" })
-    @ApiOperation(value = "Returns a list of message files.", tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = ListMessageFilesResponse.class) })
-    public ListMessageFilesResponse listMessageFiles(@PathParam("thread_id") String threadId, @PathParam("message_id") String messageId, @QueryParam("limit") @DefaultValue("20")Integer limit, @QueryParam("order") @DefaultValue("desc")String order, @QueryParam("after") String after, @QueryParam("before") String before);
 
     /**
      * Returns a list of messages for a given thread.
@@ -317,7 +251,7 @@ public interface AssistantsApi  {
     @ApiOperation(value = "Returns a list of run steps belonging to a run.", tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ListRunStepsResponse.class) })
-    public ListRunStepsResponse listRunSteps(@PathParam("thread_id") String threadId, @PathParam("run_id") String runId, @QueryParam("limit") @DefaultValue("20")Integer limit, @QueryParam("order") @DefaultValue("desc")String order, @QueryParam("after") String after, @QueryParam("before") String before);
+    public ListRunStepsResponse listRunSteps(@PathParam("thread_id") String threadId, @PathParam("run_id") String runId, @QueryParam("limit") @DefaultValue("20")Integer limit, @QueryParam("order") @DefaultValue("desc")String order, @QueryParam("after") String after, @QueryParam("before") String before, @QueryParam("include[]") List<String> include);
 
     /**
      * Returns a list of runs belonging to a thread.

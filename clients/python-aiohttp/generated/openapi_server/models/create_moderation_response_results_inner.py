@@ -6,6 +6,7 @@ from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
 from openapi_server.models.create_moderation_response_results_inner_categories import CreateModerationResponseResultsInnerCategories
+from openapi_server.models.create_moderation_response_results_inner_category_applied_input_types import CreateModerationResponseResultsInnerCategoryAppliedInputTypes
 from openapi_server.models.create_moderation_response_results_inner_category_scores import CreateModerationResponseResultsInnerCategoryScores
 from openapi_server import util
 
@@ -16,28 +17,32 @@ class CreateModerationResponseResultsInner(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, flagged: bool=None, categories: CreateModerationResponseResultsInnerCategories=None, category_scores: CreateModerationResponseResultsInnerCategoryScores=None):
+    def __init__(self, flagged: bool=None, categories: CreateModerationResponseResultsInnerCategories=None, category_scores: CreateModerationResponseResultsInnerCategoryScores=None, category_applied_input_types: CreateModerationResponseResultsInnerCategoryAppliedInputTypes=None):
         """CreateModerationResponseResultsInner - a model defined in OpenAPI
 
         :param flagged: The flagged of this CreateModerationResponseResultsInner.
         :param categories: The categories of this CreateModerationResponseResultsInner.
         :param category_scores: The category_scores of this CreateModerationResponseResultsInner.
+        :param category_applied_input_types: The category_applied_input_types of this CreateModerationResponseResultsInner.
         """
         self.openapi_types = {
             'flagged': bool,
             'categories': CreateModerationResponseResultsInnerCategories,
-            'category_scores': CreateModerationResponseResultsInnerCategoryScores
+            'category_scores': CreateModerationResponseResultsInnerCategoryScores,
+            'category_applied_input_types': CreateModerationResponseResultsInnerCategoryAppliedInputTypes
         }
 
         self.attribute_map = {
             'flagged': 'flagged',
             'categories': 'categories',
-            'category_scores': 'category_scores'
+            'category_scores': 'category_scores',
+            'category_applied_input_types': 'category_applied_input_types'
         }
 
         self._flagged = flagged
         self._categories = categories
         self._category_scores = category_scores
+        self._category_applied_input_types = category_applied_input_types
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'CreateModerationResponseResultsInner':
@@ -118,3 +123,26 @@ class CreateModerationResponseResultsInner(Model):
             raise ValueError("Invalid value for `category_scores`, must not be `None`")
 
         self._category_scores = category_scores
+
+    @property
+    def category_applied_input_types(self):
+        """Gets the category_applied_input_types of this CreateModerationResponseResultsInner.
+
+
+        :return: The category_applied_input_types of this CreateModerationResponseResultsInner.
+        :rtype: CreateModerationResponseResultsInnerCategoryAppliedInputTypes
+        """
+        return self._category_applied_input_types
+
+    @category_applied_input_types.setter
+    def category_applied_input_types(self, category_applied_input_types):
+        """Sets the category_applied_input_types of this CreateModerationResponseResultsInner.
+
+
+        :param category_applied_input_types: The category_applied_input_types of this CreateModerationResponseResultsInner.
+        :type category_applied_input_types: CreateModerationResponseResultsInnerCategoryAppliedInputTypes
+        """
+        if category_applied_input_types is None:
+            raise ValueError("Invalid value for `category_applied_input_types`, must not be `None`")
+
+        self._category_applied_input_types = category_applied_input_types

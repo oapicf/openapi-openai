@@ -7,6 +7,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { CreateChatCompletionStreamResponseUsage } from './createChatCompletionStreamResponseUsage';
 import { CreateChatCompletionStreamResponseChoicesInner } from './createChatCompletionStreamResponseChoicesInner';
 
 
@@ -19,7 +20,7 @@ export interface CreateChatCompletionStreamResponse {
      */
     id: string;
     /**
-     * A list of chat completion choices. Can be more than one if `n` is greater than 1.
+     * A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. 
      */
     choices: Array<CreateChatCompletionStreamResponseChoicesInner>;
     /**
@@ -31,6 +32,10 @@ export interface CreateChatCompletionStreamResponse {
      */
     model: string;
     /**
+     * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+     */
+    service_tier?: CreateChatCompletionStreamResponse.ServiceTierEnum | null;
+    /**
      * This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
      */
     system_fingerprint?: string;
@@ -38,8 +43,14 @@ export interface CreateChatCompletionStreamResponse {
      * The object type, which is always `chat.completion.chunk`.
      */
     object: CreateChatCompletionStreamResponse.ObjectEnum;
+    usage?: CreateChatCompletionStreamResponseUsage | null;
 }
 export namespace CreateChatCompletionStreamResponse {
+    export const ServiceTierEnum = {
+        Scale: 'scale',
+        Default: 'default'
+    } as const;
+    export type ServiceTierEnum = typeof ServiceTierEnum[keyof typeof ServiceTierEnum];
     export const ObjectEnum = {
         ChatCompletionChunk: 'chat.completion.chunk'
     } as const;

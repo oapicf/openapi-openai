@@ -18,7 +18,7 @@ openapi_run_stream_event_one_of_8() ->
     openapi_run_stream_event_one_of_8([]).
 
 openapi_run_stream_event_one_of_8(Fields) ->
-  Default = [ {'event', elements([<<"thread.run.expired">>]) }
+  Default = [ {'event', elements([<<"thread.run.cancelled">>]) }
             , {'data', openapi_run_object:openapi_run_object() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).

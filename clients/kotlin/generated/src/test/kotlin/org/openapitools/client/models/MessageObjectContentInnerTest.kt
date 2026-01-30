@@ -21,6 +21,9 @@ import io.kotlintest.specs.ShouldSpec
 import org.openapitools.client.models.MessageObjectContentInner
 import org.openapitools.client.models.MessageContentImageFileObject
 import org.openapitools.client.models.MessageContentImageFileObjectImageFile
+import org.openapitools.client.models.MessageContentImageUrlObject
+import org.openapitools.client.models.MessageContentImageUrlObjectImageUrl
+import org.openapitools.client.models.MessageContentRefusalObject
 import org.openapitools.client.models.MessageContentTextObject
 import org.openapitools.client.models.MessageContentTextObjectText
 
@@ -41,10 +44,22 @@ class MessageObjectContentInnerTest : ShouldSpec() {
             //modelInstance.imageFile shouldBe ("TODO")
         }
 
+        // to test the property `imageUrl`
+        should("test imageUrl") {
+            // uncomment below to test the property
+            //modelInstance.imageUrl shouldBe ("TODO")
+        }
+
         // to test the property `text`
         should("test text") {
             // uncomment below to test the property
             //modelInstance.text shouldBe ("TODO")
+        }
+
+        // to test the property `refusal`
+        should("test refusal") {
+            // uncomment below to test the property
+            //modelInstance.refusal shouldBe ("TODO")
         }
 
     }

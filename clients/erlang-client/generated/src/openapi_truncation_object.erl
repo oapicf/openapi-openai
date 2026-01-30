@@ -5,7 +5,7 @@
 -export_type([openapi_truncation_object/0]).
 
 -type openapi_truncation_object() ::
-    #{ 'type' => binary(),
+    #{ 'type' := binary(),
        'last_messages' => integer()
      }.
 

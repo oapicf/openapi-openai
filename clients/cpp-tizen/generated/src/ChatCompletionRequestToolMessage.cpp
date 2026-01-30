@@ -24,7 +24,7 @@ void
 ChatCompletionRequestToolMessage::__init()
 {
 	//role = std::string();
-	//content = std::string();
+	//content = new ChatCompletionRequestToolMessage_content();
 	//tool_call_id = std::string();
 }
 
@@ -70,9 +70,12 @@ ChatCompletionRequestToolMessage::fromJson(char* jsonStr)
 	if (node !=NULL) {
 	
 
-		if (isprimitive("std::string")) {
-			jsonToValue(&content, node, "std::string", "");
+		if (isprimitive("ChatCompletionRequestToolMessage_content")) {
+			jsonToValue(&content, node, "ChatCompletionRequestToolMessage_content", "ChatCompletionRequestToolMessage_content");
 		} else {
+			
+			ChatCompletionRequestToolMessage_content* obj = static_cast<ChatCompletionRequestToolMessage_content*> (&content);
+			obj->fromJson(json_to_string(node, false));
 			
 		}
 	}
@@ -108,11 +111,16 @@ ChatCompletionRequestToolMessage::toJson()
 	}
 	const gchar *roleKey = "role";
 	json_object_set_member(pJsonObject, roleKey, node);
-	if (isprimitive("std::string")) {
-		std::string obj = getContent();
-		node = converttoJson(&obj, "std::string", "");
+	if (isprimitive("ChatCompletionRequestToolMessage_content")) {
+		ChatCompletionRequestToolMessage_content obj = getContent();
+		node = converttoJson(&obj, "ChatCompletionRequestToolMessage_content", "");
 	}
 	else {
+		
+		ChatCompletionRequestToolMessage_content obj = static_cast<ChatCompletionRequestToolMessage_content> (getContent());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
 		
 	}
 	const gchar *contentKey = "content";
@@ -146,14 +154,14 @@ ChatCompletionRequestToolMessage::setRole(std::string  role)
 	this->role = role;
 }
 
-std::string
+ChatCompletionRequestToolMessage_content
 ChatCompletionRequestToolMessage::getContent()
 {
 	return content;
 }
 
 void
-ChatCompletionRequestToolMessage::setContent(std::string  content)
+ChatCompletionRequestToolMessage::setContent(ChatCompletionRequestToolMessage_content  content)
 {
 	this->content = content;
 }

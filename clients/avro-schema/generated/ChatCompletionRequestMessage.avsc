@@ -26,6 +26,18 @@
       "doc": "The name of the function to call."
     },
     {
+      "name": "refusal",
+      "type": ["null", "string"],
+      "doc": "The refusal message by the assistant.",
+      "default": null
+    },
+    {
+      "name": "audio",
+      "type": ["null", "model.ChatCompletionRequestAssistantMessageAudio"],
+      "doc": "",
+      "default": null
+    },
+    {
       "name": "tool_calls",
       "type": ["null", {
         "type": "array",

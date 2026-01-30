@@ -258,7 +258,7 @@ static bool createTranscriptionProcessor(MemoryStruct_s p_chunk, long code, char
 }
 
 static bool createTranscriptionHelper(char * accessToken,
-	std::string file, CreateTranscriptionRequest_model model, std::string language, std::string prompt, std::string responseFormat, long long temperature, std::list<std::string> timestampGranularitiesLeft_Square_BracketRight_Square_Bracket, 
+	std::string file, CreateTranscriptionRequest_model model, std::string language, std::string prompt, AudioResponseFormat responseFormat, long long temperature, std::list<std::string> timestampGranularitiesLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(CreateTranscription_200_response, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -329,7 +329,7 @@ static bool createTranscriptionHelper(char * accessToken,
 
 
 bool AudioManager::createTranscriptionAsync(char * accessToken,
-	std::string file, CreateTranscriptionRequest_model model, std::string language, std::string prompt, std::string responseFormat, long long temperature, std::list<std::string> timestampGranularitiesLeft_Square_BracketRight_Square_Bracket, 
+	std::string file, CreateTranscriptionRequest_model model, std::string language, std::string prompt, AudioResponseFormat responseFormat, long long temperature, std::list<std::string> timestampGranularitiesLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(CreateTranscription_200_response, Error, void* )
 	, void* userData)
 {
@@ -339,7 +339,7 @@ bool AudioManager::createTranscriptionAsync(char * accessToken,
 }
 
 bool AudioManager::createTranscriptionSync(char * accessToken,
-	std::string file, CreateTranscriptionRequest_model model, std::string language, std::string prompt, std::string responseFormat, long long temperature, std::list<std::string> timestampGranularitiesLeft_Square_BracketRight_Square_Bracket, 
+	std::string file, CreateTranscriptionRequest_model model, std::string language, std::string prompt, AudioResponseFormat responseFormat, long long temperature, std::list<std::string> timestampGranularitiesLeft_Square_BracketRight_Square_Bracket, 
 	void(* handler)(CreateTranscription_200_response, Error, void* )
 	, void* userData)
 {
@@ -404,7 +404,7 @@ static bool createTranslationProcessor(MemoryStruct_s p_chunk, long code, char* 
 }
 
 static bool createTranslationHelper(char * accessToken,
-	std::string file, CreateTranscriptionRequest_model model, std::string prompt, std::string responseFormat, long long temperature, 
+	std::string file, CreateTranscriptionRequest_model model, std::string prompt, AudioResponseFormat responseFormat, long long temperature, 
 	void(* handler)(CreateTranslation_200_response, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -475,7 +475,7 @@ static bool createTranslationHelper(char * accessToken,
 
 
 bool AudioManager::createTranslationAsync(char * accessToken,
-	std::string file, CreateTranscriptionRequest_model model, std::string prompt, std::string responseFormat, long long temperature, 
+	std::string file, CreateTranscriptionRequest_model model, std::string prompt, AudioResponseFormat responseFormat, long long temperature, 
 	void(* handler)(CreateTranslation_200_response, Error, void* )
 	, void* userData)
 {
@@ -485,7 +485,7 @@ bool AudioManager::createTranslationAsync(char * accessToken,
 }
 
 bool AudioManager::createTranslationSync(char * accessToken,
-	std::string file, CreateTranscriptionRequest_model model, std::string prompt, std::string responseFormat, long long temperature, 
+	std::string file, CreateTranscriptionRequest_model model, std::string prompt, AudioResponseFormat responseFormat, long long temperature, 
 	void(* handler)(CreateTranslation_200_response, Error, void* )
 	, void* userData)
 {

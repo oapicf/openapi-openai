@@ -7,10 +7,14 @@ package org.openapitools.server.model
  * @param completionTokens Number of tokens in the generated completion. for example: ''null''
  * @param promptTokens Number of tokens in the prompt. for example: ''null''
  * @param totalTokens Total number of tokens used in the request (prompt + completion). for example: ''null''
+ * @param completionTokensDetails  for example: ''null''
+ * @param promptTokensDetails  for example: ''null''
 */
 final case class CompletionUsage (
   completionTokens: Int,
   promptTokens: Int,
-  totalTokens: Int
+  totalTokens: Int,
+  completionTokensDetails: Option[CompletionUsageCompletionTokensDetails] = None,
+  promptTokensDetails: Option[CompletionUsagePromptTokensDetails] = None
 )
 

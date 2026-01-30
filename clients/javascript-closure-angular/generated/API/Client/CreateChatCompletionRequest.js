@@ -6,7 +6,7 @@ goog.provide('API.Client.CreateChatCompletionRequest');
 API.Client.CreateChatCompletionRequest = function() {}
 
 /**
- * A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).
+ * A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
  * @type {!Array<!API.Client.ChatCompletionRequestMessage>}
  * @export
  */
@@ -19,7 +19,28 @@ API.Client.CreateChatCompletionRequest.prototype.messages;
 API.Client.CreateChatCompletionRequest.prototype.model;
 
 /**
- * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+ * Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. 
+ * @type {!boolean}
+ * @export
+ */
+API.Client.CreateChatCompletionRequest.prototype.store;
+
+/**
+ * **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
+ * @type {!string}
+ * @export
+ */
+API.Client.CreateChatCompletionRequest.prototype.reasoningEffort;
+
+/**
+ * Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). 
+ * @type {!Object<!string, string>}
+ * @export
+ */
+API.Client.CreateChatCompletionRequest.prototype.metadata;
+
+/**
+ * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. 
  * @type {!number}
  * @export
  */
@@ -33,25 +54,32 @@ API.Client.CreateChatCompletionRequest.prototype.frequencyPenalty;
 API.Client.CreateChatCompletionRequest.prototype.logitBias;
 
 /**
- * Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.
+ * Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. 
  * @type {!boolean}
  * @export
  */
 API.Client.CreateChatCompletionRequest.prototype.logprobs;
 
 /**
- * An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.
+ * An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. 
  * @type {!number}
  * @export
  */
 API.Client.CreateChatCompletionRequest.prototype.topLogprobs;
 
 /**
- * The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
+ * The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). 
  * @type {!number}
  * @export
  */
 API.Client.CreateChatCompletionRequest.prototype.maxTokens;
+
+/**
+ * An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). 
+ * @type {!number}
+ * @export
+ */
+API.Client.CreateChatCompletionRequest.prototype.maxCompletionTokens;
 
 /**
  * How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.
@@ -61,7 +89,26 @@ API.Client.CreateChatCompletionRequest.prototype.maxTokens;
 API.Client.CreateChatCompletionRequest.prototype.n;
 
 /**
- * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+ * Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
+ * @type {!Array<!string>}
+ * @export
+ */
+API.Client.CreateChatCompletionRequest.prototype.modalities;
+
+/**
+ * @type {!API.Client.PredictionContent}
+ * @export
+ */
+API.Client.CreateChatCompletionRequest.prototype.prediction;
+
+/**
+ * @type {!API.Client.CreateChatCompletionRequest_audio}
+ * @export
+ */
+API.Client.CreateChatCompletionRequest.prototype.audio;
+
+/**
+ * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. 
  * @type {!number}
  * @export
  */
@@ -81,6 +128,13 @@ API.Client.CreateChatCompletionRequest.prototype.responseFormat;
 API.Client.CreateChatCompletionRequest.prototype.seed;
 
 /**
+ * Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. 
+ * @type {!string}
+ * @export
+ */
+API.Client.CreateChatCompletionRequest.prototype.serviceTier;
+
+/**
  * @type {!API.Client.CreateChatCompletionRequest_stop}
  * @export
  */
@@ -94,7 +148,13 @@ API.Client.CreateChatCompletionRequest.prototype.stop;
 API.Client.CreateChatCompletionRequest.prototype.stream;
 
 /**
- * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both. 
+ * @type {!API.Client.ChatCompletionStreamOptions}
+ * @export
+ */
+API.Client.CreateChatCompletionRequest.prototype.streamOptions;
+
+/**
+ * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. 
  * @type {!number}
  * @export
  */
@@ -121,7 +181,14 @@ API.Client.CreateChatCompletionRequest.prototype.tools;
 API.Client.CreateChatCompletionRequest.prototype.toolChoice;
 
 /**
- * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+ * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+ * @type {!boolean}
+ * @export
+ */
+API.Client.CreateChatCompletionRequest.prototype.parallelToolCalls;
+
+/**
+ * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
  * @type {!string}
  * @export
  */
@@ -140,3 +207,19 @@ API.Client.CreateChatCompletionRequest.prototype.functionCall;
  */
 API.Client.CreateChatCompletionRequest.prototype.functions;
 
+/** @enum {string} */
+API.Client.CreateChatCompletionRequest.ReasoningEffortEnum = { 
+  low: 'low',
+  medium: 'medium',
+  high: 'high',
+}
+/** @enum {string} */
+API.Client.CreateChatCompletionRequest.Array&lt;!ModalitiesEnum&gt; = { 
+  text: 'text',
+  audio: 'audio',
+}
+/** @enum {string} */
+API.Client.CreateChatCompletionRequest.ServiceTierEnum = { 
+  auto: 'auto',
+  default: 'default',
+}

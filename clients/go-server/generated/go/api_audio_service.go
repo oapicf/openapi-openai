@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -41,7 +41,7 @@ func (s *AudioAPIService) CreateSpeech(ctx context.Context, createSpeechRequest 
 }
 
 // CreateTranscription - Transcribes audio into the input language.
-func (s *AudioAPIService) CreateTranscription(ctx context.Context, file *os.File, model CreateTranscriptionRequestModel, language string, prompt string, responseFormat string, temperature float32, timestampGranularities []string) (ImplResponse, error) {
+func (s *AudioAPIService) CreateTranscription(ctx context.Context, file *os.File, model CreateTranscriptionRequestModel, language string, prompt string, responseFormat AudioResponseFormat, temperature float32, timestampGranularities []string) (ImplResponse, error) {
 	// TODO - update CreateTranscription with the required logic for this service method.
 	// Add api_audio_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
@@ -52,7 +52,7 @@ func (s *AudioAPIService) CreateTranscription(ctx context.Context, file *os.File
 }
 
 // CreateTranslation - Translates audio into English.
-func (s *AudioAPIService) CreateTranslation(ctx context.Context, file *os.File, model CreateTranscriptionRequestModel, prompt string, responseFormat string, temperature float32) (ImplResponse, error) {
+func (s *AudioAPIService) CreateTranslation(ctx context.Context, file *os.File, model CreateTranscriptionRequestModel, prompt string, responseFormat AudioResponseFormat, temperature float32) (ImplResponse, error) {
 	// TODO - update CreateTranslation with the required logic for this service method.
 	// Add api_audio_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

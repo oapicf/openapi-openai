@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Messages sent by an end user, containing prompts or additional context information.  */
 public struct ChatCompletionRequestUserMessage: Codable, JSONEncodable, Hashable {
 
     public enum Role: String, Codable, CaseIterable {

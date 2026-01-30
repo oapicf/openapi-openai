@@ -11,13 +11,13 @@
 // Functions for enum PURPOSE for FilesAPI_createFile
 
 static char* createFile_PURPOSE_ToString(openai_api_createFile_purpose_e PURPOSE){
-    char *PURPOSEArray[] =  { "NULL", "fine-tune", "assistants" };
+    char *PURPOSEArray[] =  { "NULL", "assistants", "batch", "fine-tune", "vision" };
     return PURPOSEArray[PURPOSE];
 }
 
 static openai_api_createFile_purpose_e createFile_PURPOSE_FromString(char* PURPOSE){
     int stringToReturn = 0;
-    char *PURPOSEArray[] =  { "NULL", "fine-tune", "assistants" };
+    char *PURPOSEArray[] =  { "NULL", "assistants", "batch", "fine-tune", "vision" };
     size_t sizeofArray = sizeof(PURPOSEArray) / sizeof(PURPOSEArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(PURPOSE, PURPOSEArray[stringToReturn]) == 0) {
@@ -60,8 +60,60 @@ end:
 }
 */
 
+// Functions for enum ORDER for FilesAPI_listFiles
 
-// Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+static char* listFiles_ORDER_ToString(openai_api_listFiles_order_e ORDER){
+    char *ORDERArray[] =  { "NULL", "asc", "desc" };
+    return ORDERArray[ORDER];
+}
+
+static openai_api_listFiles_order_e listFiles_ORDER_FromString(char* ORDER){
+    int stringToReturn = 0;
+    char *ORDERArray[] =  { "NULL", "asc", "desc" };
+    size_t sizeofArray = sizeof(ORDERArray) / sizeof(ORDERArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(ORDER, ORDERArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+/*
+// Function listFiles_ORDER_convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *listFiles_ORDER_convertToJSON(openai_api_listFiles_order_e ORDER) {
+    cJSON *item = cJSON_CreateObject();
+    if(cJSON_AddStringToObject(item, "order", listFiles_ORDER_ToString(ORDER)) == NULL) {
+        goto fail;
+    }
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function listFiles_ORDER_parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static openai_api_listFiles_order_e listFiles_ORDER_parseFromJSON(cJSON* ORDERJSON) {
+    openai_api_listFiles_order_e ORDERVariable = 0;
+    cJSON *ORDERVar = cJSON_GetObjectItemCaseSensitive(ORDERJSON, "order");
+    if(!cJSON_IsString(ORDERVar) || (ORDERVar->valuestring == NULL))
+    {
+        goto end;
+    }
+    ORDERVariable = listFiles_ORDER_FromString(ORDERVar->valuestring);
+    return ORDERVariable;
+end:
+    return 0;
+}
+*/
+
+
+// Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
 //
 open_ai_file_t*
 FilesAPI_createFile(apiClient_t *apiClient, binary_t* file, openai_api_createFile_purpose_e purpose)
@@ -324,10 +376,10 @@ end:
 
 }
 
-// Returns a list of files that belong to the user's organization.
+// Returns a list of files.
 //
 list_files_response_t*
-FilesAPI_listFiles(apiClient_t *apiClient, char *purpose)
+FilesAPI_listFiles(apiClient_t *apiClient, char *purpose, int *limit, openai_api_listFiles_order_e order, char *after)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -357,6 +409,44 @@ FilesAPI_listFiles(apiClient_t *apiClient, char *purpose)
         valueQuery_purpose = strdup((purpose));
         keyPairQuery_purpose = keyValuePair_create(keyQuery_purpose, valueQuery_purpose);
         list_addElement(localVarQueryParameters,keyPairQuery_purpose);
+    }
+
+    // query parameters
+    char *keyQuery_limit = NULL;
+    char * valueQuery_limit = NULL;
+    keyValuePair_t *keyPairQuery_limit = 0;
+    if (limit)
+    {
+        keyQuery_limit = strdup("limit");
+        valueQuery_limit = calloc(1,MAX_NUMBER_LENGTH);
+        snprintf(valueQuery_limit, MAX_NUMBER_LENGTH, "%d", *limit);
+        keyPairQuery_limit = keyValuePair_create(keyQuery_limit, valueQuery_limit);
+        list_addElement(localVarQueryParameters,keyPairQuery_limit);
+    }
+
+    // query parameters
+    char *keyQuery_order = NULL;
+    openai_api_listFiles_order_e valueQuery_order ;
+    keyValuePair_t *keyPairQuery_order = 0;
+    if (order)
+    {
+        keyQuery_order = strdup("order");
+        valueQuery_order = (order);
+        keyPairQuery_order = keyValuePair_create(keyQuery_order, strdup(listFiles_ORDER_ToString(
+        valueQuery_order)));
+        list_addElement(localVarQueryParameters,keyPairQuery_order);
+    }
+
+    // query parameters
+    char *keyQuery_after = NULL;
+    char * valueQuery_after = NULL;
+    keyValuePair_t *keyPairQuery_after = 0;
+    if (after)
+    {
+        keyQuery_after = strdup("after");
+        valueQuery_after = strdup((after));
+        keyPairQuery_after = keyValuePair_create(keyQuery_after, valueQuery_after);
+        list_addElement(localVarQueryParameters,keyPairQuery_after);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     apiClient_invoke(apiClient,
@@ -408,6 +498,38 @@ FilesAPI_listFiles(apiClient_t *apiClient, char *purpose)
     if(keyPairQuery_purpose){
         keyValuePair_free(keyPairQuery_purpose);
         keyPairQuery_purpose = NULL;
+    }
+    if(keyQuery_limit){
+        free(keyQuery_limit);
+        keyQuery_limit = NULL;
+    }
+    if(valueQuery_limit){
+        free(valueQuery_limit);
+        valueQuery_limit = NULL;
+    }
+    if(keyPairQuery_limit){
+        keyValuePair_free(keyPairQuery_limit);
+        keyPairQuery_limit = NULL;
+    }
+    if(keyQuery_order){
+        free(keyQuery_order);
+        keyQuery_order = NULL;
+    }
+    if(keyPairQuery_order){
+        keyValuePair_free(keyPairQuery_order);
+        keyPairQuery_order = NULL;
+    }
+    if(keyQuery_after){
+        free(keyQuery_after);
+        keyQuery_after = NULL;
+    }
+    if(valueQuery_after){
+        free(valueQuery_after);
+        valueQuery_after = NULL;
+    }
+    if(keyPairQuery_after){
+        keyValuePair_free(keyPairQuery_after);
+        keyPairQuery_after = NULL;
     }
     return elementToReturn;
 end:

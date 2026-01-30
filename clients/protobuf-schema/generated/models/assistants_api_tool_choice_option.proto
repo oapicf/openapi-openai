@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -14,15 +14,15 @@ syntax = "proto3";
 
 package openapitools;
 
-import public "models/assistants_api_named_tool_choice.proto";
-import public "models/chat_completion_named_tool_choice_function.proto";
+import public "models/assistants_named_tool_choice.proto";
+import public "models/assistants_named_tool_choice_function.proto";
 
 message AssistantsApiToolChoiceOption {
 
     oneof assistants_api_tool_choice_option {
-        // `none` means the model will not call a function and instead generates a message. `auto` means the model can pick between generating a message or calling a function. 
+        // `none` means the model will not call any tools and instead generates a message. `auto` means the model can pick between generating a message or calling one or more tools. `required` means the model must call one or more tools before responding to the user. 
         string string = 355114992;
-        AssistantsApiNamedToolChoice assistants_api_named_tool_choice = 369867731;
+        AssistantsNamedToolChoice assistants_named_tool_choice = 497179208;
     }
 }
 

@@ -6,24 +6,19 @@ All URIs are relative to *https://api.openai.com/v1*
 |------------- | ------------- | -------------|
 | [**cancelRun**](AssistantsApi.md#cancelrun) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is &#x60;in_progress&#x60;. |
 | [**createAssistant**](AssistantsApi.md#createassistantoperation) | **POST** /assistants | Create an assistant with a model and instructions. |
-| [**createAssistantFile**](AssistantsApi.md#createassistantfileoperation) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants). |
 | [**createMessage**](AssistantsApi.md#createmessageoperation) | **POST** /threads/{thread_id}/messages | Create a message. |
 | [**createRun**](AssistantsApi.md#createrunoperation) | **POST** /threads/{thread_id}/runs | Create a run. |
 | [**createThread**](AssistantsApi.md#createthreadoperation) | **POST** /threads | Create a thread. |
 | [**createThreadAndRun**](AssistantsApi.md#createthreadandrunoperation) | **POST** /threads/runs | Create a thread and run it in one request. |
 | [**deleteAssistant**](AssistantsApi.md#deleteassistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant. |
-| [**deleteAssistantFile**](AssistantsApi.md#deleteassistantfile) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file. |
+| [**deleteMessage**](AssistantsApi.md#deletemessage) | **DELETE** /threads/{thread_id}/messages/{message_id} | Deletes a message. |
 | [**deleteThread**](AssistantsApi.md#deletethread) | **DELETE** /threads/{thread_id} | Delete a thread. |
 | [**getAssistant**](AssistantsApi.md#getassistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant. |
-| [**getAssistantFile**](AssistantsApi.md#getassistantfile) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile. |
 | [**getMessage**](AssistantsApi.md#getmessage) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message. |
-| [**getMessageFile**](AssistantsApi.md#getmessagefile) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file. |
 | [**getRun**](AssistantsApi.md#getrun) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run. |
 | [**getRunStep**](AssistantsApi.md#getrunstep) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step. |
 | [**getThread**](AssistantsApi.md#getthread) | **GET** /threads/{thread_id} | Retrieves a thread. |
-| [**listAssistantFiles**](AssistantsApi.md#listassistantfiles) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files. |
 | [**listAssistants**](AssistantsApi.md#listassistants) | **GET** /assistants | Returns a list of assistants. |
-| [**listMessageFiles**](AssistantsApi.md#listmessagefiles) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files. |
 | [**listMessages**](AssistantsApi.md#listmessages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread. |
 | [**listRunSteps**](AssistantsApi.md#listrunsteps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run. |
 | [**listRuns**](AssistantsApi.md#listruns) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread. |
@@ -176,78 +171,6 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## createAssistantFile
-
-> AssistantFileObject createAssistantFile(assistantId, createAssistantFileRequest)
-
-Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
-### Example
-
-```ts
-import {
-  Configuration,
-  AssistantsApi,
-} from '';
-import type { CreateAssistantFileOperationRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: ApiKeyAuth
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AssistantsApi(config);
-
-  const body = {
-    // string | The ID of the assistant for which to create a File. 
-    assistantId: file-abc123,
-    // CreateAssistantFileRequest
-    createAssistantFileRequest: ...,
-  } satisfies CreateAssistantFileOperationRequest;
-
-  try {
-    const data = await api.createAssistantFile(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **assistantId** | `string` | The ID of the assistant for which to create a File.  | [Defaults to `undefined`] |
-| **createAssistantFileRequest** | [CreateAssistantFileRequest](CreateAssistantFileRequest.md) |  | |
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
 ## createMessage
 
 > MessageObject createMessage(threadId, createMessageRequest)
@@ -322,7 +245,7 @@ example().catch(console.error);
 
 ## createRun
 
-> RunObject createRun(threadId, createRunRequest)
+> RunObject createRun(threadId, createRunRequest, include)
 
 Create a run.
 
@@ -348,6 +271,8 @@ async function example() {
     threadId: threadId_example,
     // CreateRunRequest
     createRunRequest: ...,
+    // Array<'step_details.tool_calls[*].file_search.results[*].content'> | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
+    include: ...,
   } satisfies CreateRunOperationRequest;
 
   try {
@@ -369,6 +294,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **threadId** | `string` | The ID of the thread to run. | [Defaults to `undefined`] |
 | **createRunRequest** | [CreateRunRequest](CreateRunRequest.md) |  | |
+| **include** | `step_details.tool_calls[*].file_search.results[*].content` | A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [Optional] [Enum: step_details.tool_calls[*].file_search.results[*].content] |
 
 ### Return type
 
@@ -599,11 +525,11 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## deleteAssistantFile
+## deleteMessage
 
-> DeleteAssistantFileResponse deleteAssistantFile(assistantId, fileId)
+> DeleteMessageResponse deleteMessage(threadId, messageId)
 
-Delete an assistant file.
+Deletes a message.
 
 ### Example
 
@@ -612,7 +538,7 @@ import {
   Configuration,
   AssistantsApi,
 } from '';
-import type { DeleteAssistantFileRequest } from '';
+import type { DeleteMessageRequest } from '';
 
 async function example() {
   console.log("🚀 Testing  SDK...");
@@ -623,14 +549,14 @@ async function example() {
   const api = new AssistantsApi(config);
 
   const body = {
-    // string | The ID of the assistant that the file belongs to.
-    assistantId: assistantId_example,
-    // string | The ID of the file to delete.
-    fileId: fileId_example,
-  } satisfies DeleteAssistantFileRequest;
+    // string | The ID of the thread to which this message belongs.
+    threadId: threadId_example,
+    // string | The ID of the message to delete.
+    messageId: messageId_example,
+  } satisfies DeleteMessageRequest;
 
   try {
-    const data = await api.deleteAssistantFile(body);
+    const data = await api.deleteMessage(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -646,12 +572,12 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **assistantId** | `string` | The ID of the assistant that the file belongs to. | [Defaults to `undefined`] |
-| **fileId** | `string` | The ID of the file to delete. | [Defaults to `undefined`] |
+| **threadId** | `string` | The ID of the thread to which this message belongs. | [Defaults to `undefined`] |
+| **messageId** | `string` | The ID of the message to delete. | [Defaults to `undefined`] |
 
 ### Return type
 
-[**DeleteAssistantFileResponse**](DeleteAssistantFileResponse.md)
+[**DeleteMessageResponse**](DeleteMessageResponse.md)
 
 ### Authorization
 
@@ -809,78 +735,6 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## getAssistantFile
-
-> AssistantFileObject getAssistantFile(assistantId, fileId)
-
-Retrieves an AssistantFile.
-
-### Example
-
-```ts
-import {
-  Configuration,
-  AssistantsApi,
-} from '';
-import type { GetAssistantFileRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: ApiKeyAuth
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AssistantsApi(config);
-
-  const body = {
-    // string | The ID of the assistant who the file belongs to.
-    assistantId: assistantId_example,
-    // string | The ID of the file we\'re getting.
-    fileId: fileId_example,
-  } satisfies GetAssistantFileRequest;
-
-  try {
-    const data = await api.getAssistantFile(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **assistantId** | `string` | The ID of the assistant who the file belongs to. | [Defaults to `undefined`] |
-| **fileId** | `string` | The ID of the file we\&#39;re getting. | [Defaults to `undefined`] |
-
-### Return type
-
-[**AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
 ## getMessage
 
 > MessageObject getMessage(threadId, messageId)
@@ -934,81 +788,6 @@ example().catch(console.error);
 ### Return type
 
 [**MessageObject**](MessageObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## getMessageFile
-
-> MessageFileObject getMessageFile(threadId, messageId, fileId)
-
-Retrieves a message file.
-
-### Example
-
-```ts
-import {
-  Configuration,
-  AssistantsApi,
-} from '';
-import type { GetMessageFileRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: ApiKeyAuth
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AssistantsApi(config);
-
-  const body = {
-    // string | The ID of the thread to which the message and File belong.
-    threadId: thread_abc123,
-    // string | The ID of the message the file belongs to.
-    messageId: msg_abc123,
-    // string | The ID of the file being retrieved.
-    fileId: file-abc123,
-  } satisfies GetMessageFileRequest;
-
-  try {
-    const data = await api.getMessageFile(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **threadId** | `string` | The ID of the thread to which the message and File belong. | [Defaults to `undefined`] |
-| **messageId** | `string` | The ID of the message the file belongs to. | [Defaults to `undefined`] |
-| **fileId** | `string` | The ID of the file being retrieved. | [Defaults to `undefined`] |
-
-### Return type
-
-[**MessageFileObject**](MessageFileObject.md)
 
 ### Authorization
 
@@ -1102,7 +881,7 @@ example().catch(console.error);
 
 ## getRunStep
 
-> RunStepObject getRunStep(threadId, runId, stepId)
+> RunStepObject getRunStep(threadId, runId, stepId, include)
 
 Retrieves a run step.
 
@@ -1130,6 +909,8 @@ async function example() {
     runId: runId_example,
     // string | The ID of the run step to retrieve.
     stepId: stepId_example,
+    // Array<'step_details.tool_calls[*].file_search.results[*].content'> | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
+    include: ...,
   } satisfies GetRunStepRequest;
 
   try {
@@ -1152,6 +933,7 @@ example().catch(console.error);
 | **threadId** | `string` | The ID of the thread to which the run and run step belongs. | [Defaults to `undefined`] |
 | **runId** | `string` | The ID of the run to which the run step belongs. | [Defaults to `undefined`] |
 | **stepId** | `string` | The ID of the run step to retrieve. | [Defaults to `undefined`] |
+| **include** | `step_details.tool_calls[*].file_search.results[*].content` | A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [Optional] [Enum: step_details.tool_calls[*].file_search.results[*].content] |
 
 ### Return type
 
@@ -1244,87 +1026,6 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## listAssistantFiles
-
-> ListAssistantFilesResponse listAssistantFiles(assistantId, limit, order, after, before)
-
-Returns a list of assistant files.
-
-### Example
-
-```ts
-import {
-  Configuration,
-  AssistantsApi,
-} from '';
-import type { ListAssistantFilesRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: ApiKeyAuth
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AssistantsApi(config);
-
-  const body = {
-    // string | The ID of the assistant the file belongs to.
-    assistantId: assistantId_example,
-    // number | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional)
-    limit: 56,
-    // 'asc' | 'desc' | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional)
-    order: order_example,
-    // string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-    after: after_example,
-    // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-    before: before_example,
-  } satisfies ListAssistantFilesRequest;
-
-  try {
-    const data = await api.listAssistantFiles(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **assistantId** | `string` | The ID of the assistant the file belongs to. | [Defaults to `undefined`] |
-| **limit** | `number` | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [Optional] [Defaults to `20`] |
-| **order** | `asc`, `desc` | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [Optional] [Defaults to `&#39;desc&#39;`] [Enum: asc, desc] |
-| **after** | `string` | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [Optional] [Defaults to `undefined`] |
-| **before** | `string` | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [Optional] [Defaults to `undefined`] |
-
-### Return type
-
-[**ListAssistantFilesResponse**](ListAssistantFilesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
 ## listAssistants
 
 > ListAssistantsResponse listAssistants(limit, order, after, before)
@@ -1355,7 +1056,7 @@ async function example() {
     order: order_example,
     // string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
     after: after_example,
-    // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+    // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
     before: before_example,
   } satisfies ListAssistantsRequest;
 
@@ -1379,95 +1080,11 @@ example().catch(console.error);
 | **limit** | `number` | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [Optional] [Defaults to `20`] |
 | **order** | `asc`, `desc` | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [Optional] [Defaults to `&#39;desc&#39;`] [Enum: asc, desc] |
 | **after** | `string` | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [Optional] [Defaults to `undefined`] |
-| **before** | `string` | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [Optional] [Defaults to `undefined`] |
+| **before** | `string` | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
 [**ListAssistantsResponse**](ListAssistantsResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## listMessageFiles
-
-> ListMessageFilesResponse listMessageFiles(threadId, messageId, limit, order, after, before)
-
-Returns a list of message files.
-
-### Example
-
-```ts
-import {
-  Configuration,
-  AssistantsApi,
-} from '';
-import type { ListMessageFilesRequest } from '';
-
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: ApiKeyAuth
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AssistantsApi(config);
-
-  const body = {
-    // string | The ID of the thread that the message and files belong to.
-    threadId: threadId_example,
-    // string | The ID of the message that the files belongs to.
-    messageId: messageId_example,
-    // number | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional)
-    limit: 56,
-    // 'asc' | 'desc' | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional)
-    order: order_example,
-    // string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-    after: after_example,
-    // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-    before: before_example,
-  } satisfies ListMessageFilesRequest;
-
-  try {
-    const data = await api.listMessageFiles(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **threadId** | `string` | The ID of the thread that the message and files belong to. | [Defaults to `undefined`] |
-| **messageId** | `string` | The ID of the message that the files belongs to. | [Defaults to `undefined`] |
-| **limit** | `number` | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [Optional] [Defaults to `20`] |
-| **order** | `asc`, `desc` | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [Optional] [Defaults to `&#39;desc&#39;`] [Enum: asc, desc] |
-| **after** | `string` | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [Optional] [Defaults to `undefined`] |
-| **before** | `string` | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [Optional] [Defaults to `undefined`] |
-
-### Return type
-
-[**ListMessageFilesResponse**](ListMessageFilesResponse.md)
 
 ### Authorization
 
@@ -1519,7 +1136,7 @@ async function example() {
     order: order_example,
     // string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
     after: after_example,
-    // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+    // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
     before: before_example,
     // string | Filter messages by the run ID that generated them.  (optional)
     runId: runId_example,
@@ -1546,7 +1163,7 @@ example().catch(console.error);
 | **limit** | `number` | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [Optional] [Defaults to `20`] |
 | **order** | `asc`, `desc` | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [Optional] [Defaults to `&#39;desc&#39;`] [Enum: asc, desc] |
 | **after** | `string` | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [Optional] [Defaults to `undefined`] |
-| **before** | `string` | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [Optional] [Defaults to `undefined`] |
+| **before** | `string` | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [Optional] [Defaults to `undefined`] |
 | **runId** | `string` | Filter messages by the run ID that generated them.  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
@@ -1573,7 +1190,7 @@ example().catch(console.error);
 
 ## listRunSteps
 
-> ListRunStepsResponse listRunSteps(threadId, runId, limit, order, after, before)
+> ListRunStepsResponse listRunSteps(threadId, runId, limit, order, after, before, include)
 
 Returns a list of run steps belonging to a run.
 
@@ -1605,8 +1222,10 @@ async function example() {
     order: order_example,
     // string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
     after: after_example,
-    // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+    // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
     before: before_example,
+    // Array<'step_details.tool_calls[*].file_search.results[*].content'> | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
+    include: ...,
   } satisfies ListRunStepsRequest;
 
   try {
@@ -1631,7 +1250,8 @@ example().catch(console.error);
 | **limit** | `number` | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [Optional] [Defaults to `20`] |
 | **order** | `asc`, `desc` | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [Optional] [Defaults to `&#39;desc&#39;`] [Enum: asc, desc] |
 | **after** | `string` | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [Optional] [Defaults to `undefined`] |
-| **before** | `string` | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [Optional] [Defaults to `undefined`] |
+| **before** | `string` | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [Optional] [Defaults to `undefined`] |
+| **include** | `step_details.tool_calls[*].file_search.results[*].content` | A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [Optional] [Enum: step_details.tool_calls[*].file_search.results[*].content] |
 
 ### Return type
 
@@ -1687,7 +1307,7 @@ async function example() {
     order: order_example,
     // string | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
     after: after_example,
-    // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+    // string | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
     before: before_example,
   } satisfies ListRunsRequest;
 
@@ -1712,7 +1332,7 @@ example().catch(console.error);
 | **limit** | `number` | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [Optional] [Defaults to `20`] |
 | **order** | `asc`, `desc` | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [Optional] [Defaults to `&#39;desc&#39;`] [Enum: asc, desc] |
 | **after** | `string` | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [Optional] [Defaults to `undefined`] |
-| **before** | `string` | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [Optional] [Defaults to `undefined`] |
+| **before** | `string` | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 

@@ -1,0 +1,136 @@
+package org.openapitools.model;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.openapitools.model.ChunkingStrategyRequestParam;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
+
+import io.swagger.annotations.*;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.jackson.nullable.JsonNullable;
+
+
+
+@JsonTypeName("CreateVectorStoreFileBatchRequest")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class CreateVectorStoreFileBatchRequest   {
+  private @Valid List<String> fileIds = new ArrayList<>();
+  private ChunkingStrategyRequestParam chunkingStrategy;
+
+  public CreateVectorStoreFileBatchRequest() {
+  }
+
+  @JsonCreator
+  public CreateVectorStoreFileBatchRequest(
+    @JsonProperty(required = true, value = "file_ids") List<String> fileIds
+  ) {
+    this.fileIds = fileIds;
+  }
+
+  /**
+   * A list of [File](/docs/api-reference/files) IDs that the vector store should use. Useful for tools like &#x60;file_search&#x60; that can access files.
+   **/
+  public CreateVectorStoreFileBatchRequest fileIds(List<String> fileIds) {
+    this.fileIds = fileIds;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "A list of [File](/docs/api-reference/files) IDs that the vector store should use. Useful for tools like `file_search` that can access files.")
+  @JsonProperty(required = true, value = "file_ids")
+  @NotNull  @Size(min=1,max=500)public List<String> getFileIds() {
+    return fileIds;
+  }
+
+  @JsonProperty(required = true, value = "file_ids")
+  public void setFileIds(List<String> fileIds) {
+    this.fileIds = fileIds;
+  }
+
+  public CreateVectorStoreFileBatchRequest addFileIdsItem(String fileIdsItem) {
+    if (this.fileIds == null) {
+      this.fileIds = new ArrayList<>();
+    }
+
+    this.fileIds.add(fileIdsItem);
+    return this;
+  }
+
+  public CreateVectorStoreFileBatchRequest removeFileIdsItem(String fileIdsItem) {
+    if (fileIdsItem != null && this.fileIds != null) {
+      this.fileIds.remove(fileIdsItem);
+    }
+
+    return this;
+  }
+  /**
+   **/
+  public CreateVectorStoreFileBatchRequest chunkingStrategy(ChunkingStrategyRequestParam chunkingStrategy) {
+    this.chunkingStrategy = chunkingStrategy;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("chunking_strategy")
+  @Valid public ChunkingStrategyRequestParam getChunkingStrategy() {
+    return chunkingStrategy;
+  }
+
+  @JsonProperty("chunking_strategy")
+  public void setChunkingStrategy(ChunkingStrategyRequestParam chunkingStrategy) {
+    this.chunkingStrategy = chunkingStrategy;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    CreateVectorStoreFileBatchRequest createVectorStoreFileBatchRequest = (CreateVectorStoreFileBatchRequest) o;
+    return Objects.equals(this.fileIds, createVectorStoreFileBatchRequest.fileIds) &&
+        Objects.equals(this.chunkingStrategy, createVectorStoreFileBatchRequest.chunkingStrategy);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(fileIds, chunkingStrategy);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class CreateVectorStoreFileBatchRequest {\n");
+    
+    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    chunkingStrategy: ").append(toIndentedString(chunkingStrategy)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+}
+

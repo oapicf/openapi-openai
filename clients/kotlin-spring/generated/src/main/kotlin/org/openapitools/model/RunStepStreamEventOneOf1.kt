@@ -17,7 +17,7 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) moves to an `in_progress` state.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) moves to an `in_progress` state.
  * @param event 
  * @param &#x60;data&#x60; 
  */

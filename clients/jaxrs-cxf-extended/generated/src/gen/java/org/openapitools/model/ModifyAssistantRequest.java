@@ -1,10 +1,13 @@
 package org.openapitools.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.AssistantObjectToolsInner;
+import org.openapitools.model.AssistantsApiResponseFormatOption;
+import org.openapitools.model.ModifyAssistantRequestToolResources;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -37,23 +40,39 @@ public class ModifyAssistantRequest  {
   private String instructions;
 
  /**
-  * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. 
+  * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
   */
-  @ApiModelProperty(value = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. ")
+  @ApiModelProperty(value = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
   @Valid
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
 
- /**
-  * A list of [File](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. If a file was previously attached to the list but does not show up in the list, it will be deleted from the assistant. 
-  */
-  @ApiModelProperty(value = "A list of [File](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. If a file was previously attached to the list but does not show up in the list, it will be deleted from the assistant. ")
-  private List<String> fileIds = new ArrayList<>();
+  @ApiModelProperty(value = "")
+  @Valid
+  private ModifyAssistantRequestToolResources toolResources;
 
  /**
-  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
   */
-  @ApiModelProperty(value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+  @ApiModelProperty(value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
   private Object metadata;
+
+ /**
+  * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+  */
+  @ApiModelProperty(example = "1", value = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. ")
+  @Valid
+  private BigDecimal temperature = new BigDecimal("1");
+
+ /**
+  * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+  */
+  @ApiModelProperty(example = "1", value = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ")
+  @Valid
+  private BigDecimal topP = new BigDecimal("1");
+
+  @ApiModelProperty(value = "")
+  @Valid
+  private AssistantsApiResponseFormatOption responseFormat;
  /**
   * Get model
   * @return model
@@ -151,7 +170,7 @@ public class ModifyAssistantRequest  {
   }
 
  /**
-  * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;retrieval&#x60;, or &#x60;function&#x60;. 
+  * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;file_search&#x60;, or &#x60;function&#x60;. 
   * @return tools
   */
   @JsonProperty("tools")
@@ -183,39 +202,31 @@ public class ModifyAssistantRequest  {
   }
 
  /**
-  * A list of [File](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. If a file was previously attached to the list but does not show up in the list, it will be deleted from the assistant. 
-  * @return fileIds
+  * Get toolResources
+  * @return toolResources
   */
-  @JsonProperty("file_ids")
- @Size(max=20)  public List<String> getFileIds() {
-    return fileIds;
+  @JsonProperty("tool_resources")
+  public ModifyAssistantRequestToolResources getToolResources() {
+    return toolResources;
   }
 
   /**
-   * Sets the <code>fileIds</code> property.
+   * Sets the <code>toolResources</code> property.
    */
- public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+ public void setToolResources(ModifyAssistantRequestToolResources toolResources) {
+    this.toolResources = toolResources;
   }
 
   /**
-   * Sets the <code>fileIds</code> property.
+   * Sets the <code>toolResources</code> property.
    */
-  public ModifyAssistantRequest fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  /**
-   * Adds a new item to the <code>fileIds</code> list.
-   */
-  public ModifyAssistantRequest addFileIdsItem(String fileIdsItem) {
-    this.fileIds.add(fileIdsItem);
+  public ModifyAssistantRequest toolResources(ModifyAssistantRequestToolResources toolResources) {
+    this.toolResources = toolResources;
     return this;
   }
 
  /**
-  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
   * @return metadata
   */
   @JsonProperty("metadata")
@@ -238,6 +249,82 @@ public class ModifyAssistantRequest  {
     return this;
   }
 
+ /**
+  * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+  * minimum: 0
+  * maximum: 2
+  * @return temperature
+  */
+  @JsonProperty("temperature")
+ @DecimalMin("0") @DecimalMax("2")  public BigDecimal getTemperature() {
+    return temperature;
+  }
+
+  /**
+   * Sets the <code>temperature</code> property.
+   */
+ public void setTemperature(BigDecimal temperature) {
+    this.temperature = temperature;
+  }
+
+  /**
+   * Sets the <code>temperature</code> property.
+   */
+  public ModifyAssistantRequest temperature(BigDecimal temperature) {
+    this.temperature = temperature;
+    return this;
+  }
+
+ /**
+  * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+  * minimum: 0
+  * maximum: 1
+  * @return topP
+  */
+  @JsonProperty("top_p")
+ @DecimalMin("0") @DecimalMax("1")  public BigDecimal getTopP() {
+    return topP;
+  }
+
+  /**
+   * Sets the <code>topP</code> property.
+   */
+ public void setTopP(BigDecimal topP) {
+    this.topP = topP;
+  }
+
+  /**
+   * Sets the <code>topP</code> property.
+   */
+  public ModifyAssistantRequest topP(BigDecimal topP) {
+    this.topP = topP;
+    return this;
+  }
+
+ /**
+  * Get responseFormat
+  * @return responseFormat
+  */
+  @JsonProperty("response_format")
+  public AssistantsApiResponseFormatOption getResponseFormat() {
+    return responseFormat;
+  }
+
+  /**
+   * Sets the <code>responseFormat</code> property.
+   */
+ public void setResponseFormat(AssistantsApiResponseFormatOption responseFormat) {
+    this.responseFormat = responseFormat;
+  }
+
+  /**
+   * Sets the <code>responseFormat</code> property.
+   */
+  public ModifyAssistantRequest responseFormat(AssistantsApiResponseFormatOption responseFormat) {
+    this.responseFormat = responseFormat;
+    return this;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -253,13 +340,16 @@ public class ModifyAssistantRequest  {
         Objects.equals(this.description, modifyAssistantRequest.description) &&
         Objects.equals(this.instructions, modifyAssistantRequest.instructions) &&
         Objects.equals(this.tools, modifyAssistantRequest.tools) &&
-        Objects.equals(this.fileIds, modifyAssistantRequest.fileIds) &&
-        Objects.equals(this.metadata, modifyAssistantRequest.metadata);
+        Objects.equals(this.toolResources, modifyAssistantRequest.toolResources) &&
+        Objects.equals(this.metadata, modifyAssistantRequest.metadata) &&
+        Objects.equals(this.temperature, modifyAssistantRequest.temperature) &&
+        Objects.equals(this.topP, modifyAssistantRequest.topP) &&
+        Objects.equals(this.responseFormat, modifyAssistantRequest.responseFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, name, description, instructions, tools, fileIds, metadata);
+    return Objects.hash(model, name, description, instructions, tools, toolResources, metadata, temperature, topP, responseFormat);
   }
 
   @Override
@@ -272,8 +362,11 @@ public class ModifyAssistantRequest  {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
+    sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();
   }

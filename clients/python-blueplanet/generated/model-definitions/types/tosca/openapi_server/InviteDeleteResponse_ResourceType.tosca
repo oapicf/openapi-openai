@@ -1,0 +1,46 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server InviteDeleteResponse"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a InviteDeleteResponse"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  InviteDeleteResponse {
+    title = InviteDeleteResponse
+    description = InviteDeleteResponse
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;organization.invite.deleted&#x60;"
+          enum = ["organization.invite.deleted"]
+          optional = true
+        }
+        id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        deleted {
+          type =  boolean
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  InviteDeleteResponse {
+    title = InviteDeleteResponse
+    description = InviteDeleteResponse
+    implements = openapi_server.resourceTypes.InviteDeleteResponse
+
+  }
+}

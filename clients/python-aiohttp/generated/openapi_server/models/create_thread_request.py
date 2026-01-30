@@ -6,6 +6,7 @@ from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
 from openapi_server.models.create_message_request import CreateMessageRequest
+from openapi_server.models.create_thread_request_tool_resources import CreateThreadRequestToolResources
 from openapi_server import util
 
 
@@ -15,23 +16,27 @@ class CreateThreadRequest(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, messages: List[CreateMessageRequest]=None, metadata: object=None):
+    def __init__(self, messages: List[CreateMessageRequest]=None, tool_resources: CreateThreadRequestToolResources=None, metadata: object=None):
         """CreateThreadRequest - a model defined in OpenAPI
 
         :param messages: The messages of this CreateThreadRequest.
+        :param tool_resources: The tool_resources of this CreateThreadRequest.
         :param metadata: The metadata of this CreateThreadRequest.
         """
         self.openapi_types = {
             'messages': List[CreateMessageRequest],
+            'tool_resources': CreateThreadRequestToolResources,
             'metadata': object
         }
 
         self.attribute_map = {
             'messages': 'messages',
+            'tool_resources': 'tool_resources',
             'metadata': 'metadata'
         }
 
         self._messages = messages
+        self._tool_resources = tool_resources
         self._metadata = metadata
 
     @classmethod
@@ -67,10 +72,31 @@ class CreateThreadRequest(Model):
         self._messages = messages
 
     @property
+    def tool_resources(self):
+        """Gets the tool_resources of this CreateThreadRequest.
+
+
+        :return: The tool_resources of this CreateThreadRequest.
+        :rtype: CreateThreadRequestToolResources
+        """
+        return self._tool_resources
+
+    @tool_resources.setter
+    def tool_resources(self, tool_resources):
+        """Sets the tool_resources of this CreateThreadRequest.
+
+
+        :param tool_resources: The tool_resources of this CreateThreadRequest.
+        :type tool_resources: CreateThreadRequestToolResources
+        """
+
+        self._tool_resources = tool_resources
+
+    @property
     def metadata(self):
         """Gets the metadata of this CreateThreadRequest.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
         :return: The metadata of this CreateThreadRequest.
         :rtype: object
@@ -81,7 +107,7 @@ class CreateThreadRequest(Model):
     def metadata(self, metadata):
         """Sets the metadata of this CreateThreadRequest.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
         :param metadata: The metadata of this CreateThreadRequest.
         :type metadata: object

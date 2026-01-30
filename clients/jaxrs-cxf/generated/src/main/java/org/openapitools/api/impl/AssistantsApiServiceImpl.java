@@ -1,24 +1,19 @@
 package org.openapitools.api.impl;
 
 import org.openapitools.api.*;
-import org.openapitools.model.AssistantFileObject;
 import org.openapitools.model.AssistantObject;
-import org.openapitools.model.CreateAssistantFileRequest;
 import org.openapitools.model.CreateAssistantRequest;
 import org.openapitools.model.CreateMessageRequest;
 import org.openapitools.model.CreateRunRequest;
 import org.openapitools.model.CreateThreadAndRunRequest;
 import org.openapitools.model.CreateThreadRequest;
-import org.openapitools.model.DeleteAssistantFileResponse;
 import org.openapitools.model.DeleteAssistantResponse;
+import org.openapitools.model.DeleteMessageResponse;
 import org.openapitools.model.DeleteThreadResponse;
-import org.openapitools.model.ListAssistantFilesResponse;
 import org.openapitools.model.ListAssistantsResponse;
-import org.openapitools.model.ListMessageFilesResponse;
 import org.openapitools.model.ListMessagesResponse;
 import org.openapitools.model.ListRunStepsResponse;
 import org.openapitools.model.ListRunsResponse;
-import org.openapitools.model.MessageFileObject;
 import org.openapitools.model.MessageObject;
 import org.openapitools.model.ModifyAssistantRequest;
 import org.openapitools.model.ModifyMessageRequest;
@@ -69,16 +64,6 @@ public class AssistantsApiServiceImpl implements AssistantsApi {
     }
 
     /**
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     *
-     */
-    public AssistantFileObject createAssistantFile(String assistantId, CreateAssistantFileRequest createAssistantFileRequest) {
-        // TODO: Implement...
-
-        return null;
-    }
-
-    /**
      * Create a message.
      *
      */
@@ -92,7 +77,7 @@ public class AssistantsApiServiceImpl implements AssistantsApi {
      * Create a run.
      *
      */
-    public RunObject createRun(String threadId, CreateRunRequest createRunRequest) {
+    public RunObject createRun(String threadId, CreateRunRequest createRunRequest, List<String> include) {
         // TODO: Implement...
 
         return null;
@@ -129,10 +114,10 @@ public class AssistantsApiServiceImpl implements AssistantsApi {
     }
 
     /**
-     * Delete an assistant file.
+     * Deletes a message.
      *
      */
-    public DeleteAssistantFileResponse deleteAssistantFile(String assistantId, String fileId) {
+    public DeleteMessageResponse deleteMessage(String threadId, String messageId) {
         // TODO: Implement...
 
         return null;
@@ -159,30 +144,10 @@ public class AssistantsApiServiceImpl implements AssistantsApi {
     }
 
     /**
-     * Retrieves an AssistantFile.
-     *
-     */
-    public AssistantFileObject getAssistantFile(String assistantId, String fileId) {
-        // TODO: Implement...
-
-        return null;
-    }
-
-    /**
      * Retrieve a message.
      *
      */
     public MessageObject getMessage(String threadId, String messageId) {
-        // TODO: Implement...
-
-        return null;
-    }
-
-    /**
-     * Retrieves a message file.
-     *
-     */
-    public MessageFileObject getMessageFile(String threadId, String messageId, String fileId) {
         // TODO: Implement...
 
         return null;
@@ -202,7 +167,7 @@ public class AssistantsApiServiceImpl implements AssistantsApi {
      * Retrieves a run step.
      *
      */
-    public RunStepObject getRunStep(String threadId, String runId, String stepId) {
+    public RunStepObject getRunStep(String threadId, String runId, String stepId, List<String> include) {
         // TODO: Implement...
 
         return null;
@@ -219,30 +184,10 @@ public class AssistantsApiServiceImpl implements AssistantsApi {
     }
 
     /**
-     * Returns a list of assistant files.
-     *
-     */
-    public ListAssistantFilesResponse listAssistantFiles(String assistantId, Integer limit, String order, String after, String before) {
-        // TODO: Implement...
-
-        return null;
-    }
-
-    /**
      * Returns a list of assistants.
      *
      */
     public ListAssistantsResponse listAssistants(Integer limit, String order, String after, String before) {
-        // TODO: Implement...
-
-        return null;
-    }
-
-    /**
-     * Returns a list of message files.
-     *
-     */
-    public ListMessageFilesResponse listMessageFiles(String threadId, String messageId, Integer limit, String order, String after, String before) {
         // TODO: Implement...
 
         return null;
@@ -262,7 +207,7 @@ public class AssistantsApiServiceImpl implements AssistantsApi {
      * Returns a list of run steps belonging to a run.
      *
      */
-    public ListRunStepsResponse listRunSteps(String threadId, String runId, Integer limit, String order, String after, String before) {
+    public ListRunStepsResponse listRunSteps(String threadId, String runId, Integer limit, String order, String after, String before, List<String> include) {
         // TODO: Implement...
 
         return null;

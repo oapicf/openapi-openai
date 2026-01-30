@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.vertxweb.server.model.ChatCompletionStreamOptions;
 import org.openapitools.vertxweb.server.model.CreateCompletionRequestModel;
 import org.openapitools.vertxweb.server.model.CreateCompletionRequestPrompt;
 import org.openapitools.vertxweb.server.model.CreateCompletionRequestStop;
@@ -27,6 +28,7 @@ public class CreateCompletionRequest   {
   private Integer seed;
   private CreateCompletionRequestStop stop = null;
   private Boolean stream = false;
+  private ChatCompletionStreamOptions streamOptions;
   private String suffix;
   private BigDecimal temperature = new BigDecimal("1");
   private BigDecimal topP = new BigDecimal("1");
@@ -36,7 +38,7 @@ public class CreateCompletionRequest   {
 
   }
 
-  public CreateCompletionRequest (CreateCompletionRequestModel model, CreateCompletionRequestPrompt prompt, Integer bestOf, Boolean echo, BigDecimal frequencyPenalty, Map<String, Integer> logitBias, Integer logprobs, Integer maxTokens, Integer n, BigDecimal presencePenalty, Integer seed, CreateCompletionRequestStop stop, Boolean stream, String suffix, BigDecimal temperature, BigDecimal topP, String user) {
+  public CreateCompletionRequest (CreateCompletionRequestModel model, CreateCompletionRequestPrompt prompt, Integer bestOf, Boolean echo, BigDecimal frequencyPenalty, Map<String, Integer> logitBias, Integer logprobs, Integer maxTokens, Integer n, BigDecimal presencePenalty, Integer seed, CreateCompletionRequestStop stop, Boolean stream, ChatCompletionStreamOptions streamOptions, String suffix, BigDecimal temperature, BigDecimal topP, String user) {
     this.model = model;
     this.prompt = prompt;
     this.bestOf = bestOf;
@@ -50,6 +52,7 @@ public class CreateCompletionRequest   {
     this.seed = seed;
     this.stop = stop;
     this.stream = stream;
+    this.streamOptions = streamOptions;
     this.suffix = suffix;
     this.temperature = temperature;
     this.topP = topP;
@@ -174,6 +177,15 @@ public class CreateCompletionRequest   {
   }
 
     
+  @JsonProperty("stream_options")
+  public ChatCompletionStreamOptions getStreamOptions() {
+    return streamOptions;
+  }
+  public void setStreamOptions(ChatCompletionStreamOptions streamOptions) {
+    this.streamOptions = streamOptions;
+  }
+
+    
   @JsonProperty("suffix")
   public String getSuffix() {
     return suffix;
@@ -232,6 +244,7 @@ public class CreateCompletionRequest   {
         Objects.equals(seed, createCompletionRequest.seed) &&
         Objects.equals(stop, createCompletionRequest.stop) &&
         Objects.equals(stream, createCompletionRequest.stream) &&
+        Objects.equals(streamOptions, createCompletionRequest.streamOptions) &&
         Objects.equals(suffix, createCompletionRequest.suffix) &&
         Objects.equals(temperature, createCompletionRequest.temperature) &&
         Objects.equals(topP, createCompletionRequest.topP) &&
@@ -240,7 +253,7 @@ public class CreateCompletionRequest   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, prompt, bestOf, echo, frequencyPenalty, logitBias, logprobs, maxTokens, n, presencePenalty, seed, stop, stream, suffix, temperature, topP, user);
+    return Objects.hash(model, prompt, bestOf, echo, frequencyPenalty, logitBias, logprobs, maxTokens, n, presencePenalty, seed, stop, stream, streamOptions, suffix, temperature, topP, user);
   }
 
   @Override
@@ -261,6 +274,7 @@ public class CreateCompletionRequest   {
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
     sb.append("    stop: ").append(toIndentedString(stop)).append("\n");
     sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
+    sb.append("    streamOptions: ").append(toIndentedString(streamOptions)).append("\n");
     sb.append("    suffix: ").append(toIndentedString(suffix)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
     sb.append("    topP: ").append(toIndentedString(topP)).append("\n");

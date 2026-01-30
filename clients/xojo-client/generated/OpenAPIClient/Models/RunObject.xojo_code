@@ -43,7 +43,7 @@ Protected Class RunObject
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+			The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
 		#tag EndNote
 		status As String
 	#tag EndProperty
@@ -130,15 +130,7 @@ Protected Class RunObject
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
-		#tag EndNote
-		file_ids() As String
-	#tag EndProperty
-
-
-	#tag Property, Flags = &h0
-		#tag Note
-			Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+			Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 		#tag EndNote
 		metadata As Object
 	#tag EndProperty
@@ -154,6 +146,14 @@ Protected Class RunObject
 			The sampling temperature used for this run. If not set, defaults to 1.
 		#tag EndNote
 		temperature As Xoson.O.OptionalDouble
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			The nucleus sampling value used for this run. If not set, defaults to 1.
+		#tag EndNote
+		top_p As Xoson.O.OptionalDouble
 	#tag EndProperty
 
 
@@ -184,6 +184,14 @@ Protected Class RunObject
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+		#tag EndNote
+		parallel_tool_calls As Boolean
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
 		response_format As OpenAPIClient.Models.AssistantsApiResponseFormatOption
 	#tag EndProperty
 
@@ -203,6 +211,7 @@ Protected Class RunObject
         Cancelled
         Failed
         Completed
+        Incomplete
         Expired
         
     #tag EndEnum
@@ -237,6 +246,8 @@ Protected Class RunObject
 		      Return "failed"
 		    Case StatusEnum.Completed
 		      Return "completed"
+		    Case StatusEnum.Incomplete
+		      Return "incomplete"
 		    Case StatusEnum.Expired
 		      Return "expired"
 		    
@@ -400,14 +411,6 @@ Protected Class RunObject
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="file_ids"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="metadata"
 			Visible=false
 			Group="Behavior"
@@ -425,6 +428,14 @@ Protected Class RunObject
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="temperature"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="top_p"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
@@ -461,6 +472,14 @@ Protected Class RunObject
 			Group="Behavior"
 			InitialValue=""
 			Type="AssistantsApiToolChoiceOption"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="parallel_tool_calls"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

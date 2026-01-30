@@ -5,8 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**List[OpenAIFile]**](OpenAIFile.md) |  | 
 **object** | **str** |  | 
+**data** | [**List[OpenAIFile]**](OpenAIFile.md) |  | 
+**first_id** | **str** |  | 
+**last_id** | **str** |  | 
+**has_more** | **bool** |  | 
 
 ## Example
 

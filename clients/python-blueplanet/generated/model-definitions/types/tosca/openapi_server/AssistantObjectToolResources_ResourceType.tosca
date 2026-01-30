@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AssistantObjectToolResources"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AssistantObjectToolResources"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AssistantObjectToolResourcesCodeInterpreter = openapi_server.resourceTypes.AssistantObjectToolResourcesCodeInterpreter
+  AssistantObjectToolResourcesFileSearch = openapi_server.resourceTypes.AssistantObjectToolResourcesFileSearch
+}
+resourceTypes {
+
+  AssistantObjectToolResources {
+    title = AssistantObjectToolResources
+    description = AssistantObjectToolResources
+    derivedFrom = Root
+    properties {
+        code_interpreter {
+          type = AssistantObjectToolResourcesCodeInterpreter
+          description = ""
+          optional = false
+        }
+        file_search {
+          type = AssistantObjectToolResourcesFileSearch
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AssistantObjectToolResources {
+    title = AssistantObjectToolResources
+    description = AssistantObjectToolResources
+    implements = openapi_server.resourceTypes.AssistantObjectToolResources
+
+  }
+}

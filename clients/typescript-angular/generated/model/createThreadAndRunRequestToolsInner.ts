@@ -7,7 +7,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { AssistantToolsRetrieval } from './assistantToolsRetrieval';
+import { AssistantToolsFileSearchFileSearch } from './assistantToolsFileSearchFileSearch';
+import { AssistantToolsFileSearch } from './assistantToolsFileSearch';
 import { AssistantToolsFunction } from './assistantToolsFunction';
 import { FunctionObject } from './functionObject';
 import { AssistantToolsCode } from './assistantToolsCode';
@@ -17,5 +18,5 @@ import { AssistantToolsCode } from './assistantToolsCode';
  * @type CreateThreadAndRunRequestToolsInner
  * @export
  */
-export type CreateThreadAndRunRequestToolsInner = AssistantToolsCode | AssistantToolsFunction | AssistantToolsRetrieval;
+export type CreateThreadAndRunRequestToolsInner = AssistantToolsCode | AssistantToolsFileSearch | AssistantToolsFunction;
 

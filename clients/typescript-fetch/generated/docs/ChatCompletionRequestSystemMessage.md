@@ -1,12 +1,13 @@
 
 # ChatCompletionRequestSystemMessage
 
+Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`content` | string
+`content` | [ChatCompletionRequestSystemMessageContent](ChatCompletionRequestSystemMessageContent.md)
 `role` | string
 `name` | string
 

@@ -15,7 +15,7 @@ test_that("url", {
 
 test_that("detail", {
   # tests for the property `detail` (character)
-  # Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+  # Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
 
   # uncomment below to test the property
   #expect_equal(model.instance$`detail`, "EXPECTED_RESULT")

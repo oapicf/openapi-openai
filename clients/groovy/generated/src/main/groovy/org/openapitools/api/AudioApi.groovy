@@ -1,6 +1,7 @@
 package org.openapitools.api;
 
 import org.openapitools.api.ApiUtils
+import org.openapitools.model.AudioResponseFormat
 import java.math.BigDecimal
 import org.openapitools.model.CreateSpeechRequest
 import org.openapitools.model.CreateTranscription200Response
@@ -38,7 +39,7 @@ class AudioApi {
 
     }
 
-    def createTranscription ( File _file, CreateTranscriptionRequestModel model, String language, String prompt, String responseFormat, BigDecimal temperature, List<String> timestampGranularities, Closure onSuccess, Closure onFailure)  {
+    def createTranscription ( File _file, CreateTranscriptionRequestModel model, String language, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature, List<String> timestampGranularities, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/audio/transcriptions"
 
         // params
@@ -75,7 +76,7 @@ class AudioApi {
 
     }
 
-    def createTranslation ( File _file, CreateTranscriptionRequestModel model, String prompt, String responseFormat, BigDecimal temperature, Closure onSuccess, Closure onFailure)  {
+    def createTranslation ( File _file, CreateTranscriptionRequestModel model, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/audio/translations"
 
         // params

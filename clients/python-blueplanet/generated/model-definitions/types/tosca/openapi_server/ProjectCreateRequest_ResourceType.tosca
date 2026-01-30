@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ProjectCreateRequest"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ProjectCreateRequest"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ProjectCreateRequest {
+    title = ProjectCreateRequest
+    description = ProjectCreateRequest
+    derivedFrom = Root
+    properties {
+        name {
+          type =  string
+          description = "The friendly name of the project, this name appears in reports."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ProjectCreateRequest {
+    title = ProjectCreateRequest
+    description = ProjectCreateRequest
+    implements = openapi_server.resourceTypes.ProjectCreateRequest
+
+  }
+}

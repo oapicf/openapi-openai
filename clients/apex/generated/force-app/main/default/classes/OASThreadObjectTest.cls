@@ -75,5 +75,6 @@ private class OASThreadObjectTest {
         Map<String, String> x-property-mappings = threadObject.getx-property-mappings();
         System.assertEquals('r_object', x-property-mappings.get('object'));
         System.assertEquals('createdAt', x-property-mappings.get('created_at'));
+        System.assertEquals('toolResources', x-property-mappings.get('tool_resources'));
     }
 }

@@ -1,0 +1,40 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The API Key used to perform the audit logged action.",
+  "name": "AuditLogActorApiKey",
+  "fields": [
+    {
+      "name": "id",
+      "type": ["null", "string"],
+      "doc": "The tracking id of the API key.",
+      "default": null
+    },
+    {
+      "name": "type",
+      "type": ["null", {
+        "type": "enum",
+        "name": "AuditLogActorApiKey_type",
+        "symbols": [
+          "user",
+          "service_account"
+        ]
+      }],
+      "doc": "The type of API key. Can be either `user` or `service_account`.",
+      "default": null
+    },
+    {
+      "name": "user",
+      "type": ["null", "model.AuditLogActorUser"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "service_account",
+      "type": ["null", "model.AuditLogActorServiceAccount"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

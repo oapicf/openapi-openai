@@ -22,6 +22,11 @@ void main() {
       // TODO
     });
 
+    // AssistantToolsFileSearchFileSearch fileSearch
+    test('to test the property `fileSearch`', () async {
+      // TODO
+    });
+
     // FunctionObject function_
     test('to test the property `function_`', () async {
       // TODO

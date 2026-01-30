@@ -9,6 +9,7 @@ from app.openapi_server.models.base_model import Model
 from app.openapi_server.models.assistants_api_response_format_option import AssistantsApiResponseFormatOption  # noqa: F401,E501
 from app.openapi_server.models.assistants_api_tool_choice_option import AssistantsApiToolChoiceOption  # noqa: F401,E501
 from app.openapi_server.models.create_run_request_model import CreateRunRequestModel  # noqa: F401,E501
+from app.openapi_server.models.create_thread_and_run_request_tool_resources import CreateThreadAndRunRequestToolResources  # noqa: F401,E501
 from app.openapi_server.models.create_thread_and_run_request_tools_inner import CreateThreadAndRunRequestToolsInner  # noqa: F401,E501
 from app.openapi_server.models.create_thread_request import CreateThreadRequest  # noqa: F401,E501
 from app.openapi_server.models.truncation_object import TruncationObject  # noqa: F401,E501
@@ -21,7 +22,7 @@ class CreateThreadAndRunRequest(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, assistant_id: str=None, thread: CreateThreadRequest=None, model: CreateRunRequestModel=None, instructions: str=None, tools: List[CreateThreadAndRunRequestToolsInner]=None, metadata: object=None, temperature: float=1, stream: bool=None, max_prompt_tokens: int=None, max_completion_tokens: int=None, truncation_strategy: TruncationObject=None, tool_choice: AssistantsApiToolChoiceOption=None, response_format: AssistantsApiResponseFormatOption=None):  # noqa: E501
+    def __init__(self, assistant_id: str=None, thread: CreateThreadRequest=None, model: CreateRunRequestModel=None, instructions: str=None, tools: List[CreateThreadAndRunRequestToolsInner]=None, tool_resources: CreateThreadAndRunRequestToolResources=None, metadata: object=None, temperature: float=1, top_p: float=1, stream: bool=None, max_prompt_tokens: int=None, max_completion_tokens: int=None, truncation_strategy: TruncationObject=None, tool_choice: AssistantsApiToolChoiceOption=None, parallel_tool_calls: bool=True, response_format: AssistantsApiResponseFormatOption=None):  # noqa: E501
         """CreateThreadAndRunRequest - a model defined in Swagger
 
         :param assistant_id: The assistant_id of this CreateThreadAndRunRequest.  # noqa: E501
@@ -34,10 +35,14 @@ class CreateThreadAndRunRequest(Model):
         :type instructions: str
         :param tools: The tools of this CreateThreadAndRunRequest.  # noqa: E501
         :type tools: List[CreateThreadAndRunRequestToolsInner]
+        :param tool_resources: The tool_resources of this CreateThreadAndRunRequest.  # noqa: E501
+        :type tool_resources: CreateThreadAndRunRequestToolResources
         :param metadata: The metadata of this CreateThreadAndRunRequest.  # noqa: E501
         :type metadata: object
         :param temperature: The temperature of this CreateThreadAndRunRequest.  # noqa: E501
         :type temperature: float
+        :param top_p: The top_p of this CreateThreadAndRunRequest.  # noqa: E501
+        :type top_p: float
         :param stream: The stream of this CreateThreadAndRunRequest.  # noqa: E501
         :type stream: bool
         :param max_prompt_tokens: The max_prompt_tokens of this CreateThreadAndRunRequest.  # noqa: E501
@@ -48,6 +53,8 @@ class CreateThreadAndRunRequest(Model):
         :type truncation_strategy: TruncationObject
         :param tool_choice: The tool_choice of this CreateThreadAndRunRequest.  # noqa: E501
         :type tool_choice: AssistantsApiToolChoiceOption
+        :param parallel_tool_calls: The parallel_tool_calls of this CreateThreadAndRunRequest.  # noqa: E501
+        :type parallel_tool_calls: bool
         :param response_format: The response_format of this CreateThreadAndRunRequest.  # noqa: E501
         :type response_format: AssistantsApiResponseFormatOption
         """
@@ -57,13 +64,16 @@ class CreateThreadAndRunRequest(Model):
             'model': CreateRunRequestModel,
             'instructions': str,
             'tools': List[CreateThreadAndRunRequestToolsInner],
+            'tool_resources': CreateThreadAndRunRequestToolResources,
             'metadata': object,
             'temperature': float,
+            'top_p': float,
             'stream': bool,
             'max_prompt_tokens': int,
             'max_completion_tokens': int,
             'truncation_strategy': TruncationObject,
             'tool_choice': AssistantsApiToolChoiceOption,
+            'parallel_tool_calls': bool,
             'response_format': AssistantsApiResponseFormatOption
         }
 
@@ -73,13 +83,16 @@ class CreateThreadAndRunRequest(Model):
             'model': 'model',
             'instructions': 'instructions',
             'tools': 'tools',
+            'tool_resources': 'tool_resources',
             'metadata': 'metadata',
             'temperature': 'temperature',
+            'top_p': 'top_p',
             'stream': 'stream',
             'max_prompt_tokens': 'max_prompt_tokens',
             'max_completion_tokens': 'max_completion_tokens',
             'truncation_strategy': 'truncation_strategy',
             'tool_choice': 'tool_choice',
+            'parallel_tool_calls': 'parallel_tool_calls',
             'response_format': 'response_format'
         }
 
@@ -88,13 +101,16 @@ class CreateThreadAndRunRequest(Model):
         self._model = model
         self._instructions = instructions
         self._tools = tools
+        self._tool_resources = tool_resources
         self._metadata = metadata
         self._temperature = temperature
+        self._top_p = top_p
         self._stream = stream
         self._max_prompt_tokens = max_prompt_tokens
         self._max_completion_tokens = max_completion_tokens
         self._truncation_strategy = truncation_strategy
         self._tool_choice = tool_choice
+        self._parallel_tool_calls = parallel_tool_calls
         self._response_format = response_format
 
     @classmethod
@@ -224,10 +240,31 @@ class CreateThreadAndRunRequest(Model):
         self._tools = tools
 
     @property
+    def tool_resources(self) -> CreateThreadAndRunRequestToolResources:
+        """Gets the tool_resources of this CreateThreadAndRunRequest.
+
+
+        :return: The tool_resources of this CreateThreadAndRunRequest.
+        :rtype: CreateThreadAndRunRequestToolResources
+        """
+        return self._tool_resources
+
+    @tool_resources.setter
+    def tool_resources(self, tool_resources: CreateThreadAndRunRequestToolResources):
+        """Sets the tool_resources of this CreateThreadAndRunRequest.
+
+
+        :param tool_resources: The tool_resources of this CreateThreadAndRunRequest.
+        :type tool_resources: CreateThreadAndRunRequestToolResources
+        """
+
+        self._tool_resources = tool_resources
+
+    @property
     def metadata(self) -> object:
         """Gets the metadata of this CreateThreadAndRunRequest.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.   # noqa: E501
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.   # noqa: E501
 
         :return: The metadata of this CreateThreadAndRunRequest.
         :rtype: object
@@ -238,7 +275,7 @@ class CreateThreadAndRunRequest(Model):
     def metadata(self, metadata: object):
         """Sets the metadata of this CreateThreadAndRunRequest.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.   # noqa: E501
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.   # noqa: E501
 
         :param metadata: The metadata of this CreateThreadAndRunRequest.
         :type metadata: object
@@ -274,6 +311,33 @@ class CreateThreadAndRunRequest(Model):
         self._temperature = temperature
 
     @property
+    def top_p(self) -> float:
+        """Gets the top_p of this CreateThreadAndRunRequest.
+
+        An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.   # noqa: E501
+
+        :return: The top_p of this CreateThreadAndRunRequest.
+        :rtype: float
+        """
+        return self._top_p
+
+    @top_p.setter
+    def top_p(self, top_p: float):
+        """Sets the top_p of this CreateThreadAndRunRequest.
+
+        An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.   # noqa: E501
+
+        :param top_p: The top_p of this CreateThreadAndRunRequest.
+        :type top_p: float
+        """
+        if top_p is not None and top_p > 1:  # noqa: E501
+            raise ValueError("Invalid value for `top_p`, must be a value less than or equal to `1`")  # noqa: E501
+        if top_p is not None and top_p < 0:  # noqa: E501
+            raise ValueError("Invalid value for `top_p`, must be a value greater than or equal to `0`")  # noqa: E501
+
+        self._top_p = top_p
+
+    @property
     def stream(self) -> bool:
         """Gets the stream of this CreateThreadAndRunRequest.
 
@@ -300,7 +364,7 @@ class CreateThreadAndRunRequest(Model):
     def max_prompt_tokens(self) -> int:
         """Gets the max_prompt_tokens of this CreateThreadAndRunRequest.
 
-        The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info.   # noqa: E501
+        The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info.   # noqa: E501
 
         :return: The max_prompt_tokens of this CreateThreadAndRunRequest.
         :rtype: int
@@ -311,7 +375,7 @@ class CreateThreadAndRunRequest(Model):
     def max_prompt_tokens(self, max_prompt_tokens: int):
         """Sets the max_prompt_tokens of this CreateThreadAndRunRequest.
 
-        The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info.   # noqa: E501
+        The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info.   # noqa: E501
 
         :param max_prompt_tokens: The max_prompt_tokens of this CreateThreadAndRunRequest.
         :type max_prompt_tokens: int
@@ -387,6 +451,29 @@ class CreateThreadAndRunRequest(Model):
         """
 
         self._tool_choice = tool_choice
+
+    @property
+    def parallel_tool_calls(self) -> bool:
+        """Gets the parallel_tool_calls of this CreateThreadAndRunRequest.
+
+        Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.  # noqa: E501
+
+        :return: The parallel_tool_calls of this CreateThreadAndRunRequest.
+        :rtype: bool
+        """
+        return self._parallel_tool_calls
+
+    @parallel_tool_calls.setter
+    def parallel_tool_calls(self, parallel_tool_calls: bool):
+        """Sets the parallel_tool_calls of this CreateThreadAndRunRequest.
+
+        Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.  # noqa: E501
+
+        :param parallel_tool_calls: The parallel_tool_calls of this CreateThreadAndRunRequest.
+        :type parallel_tool_calls: bool
+        """
+
+        self._parallel_tool_calls = parallel_tool_calls
 
     @property
     def response_format(self) -> AssistantsApiResponseFormatOption:

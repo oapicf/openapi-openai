@@ -1,0 +1,52 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventConversationItemCreated"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventConversationItemCreated"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RealtimeConversationItem = openapi_server.resourceTypes.RealtimeConversationItem
+}
+resourceTypes {
+
+  RealtimeServerEventConversationItemCreated {
+    title = RealtimeServerEventConversationItemCreated
+    description = RealtimeServerEventConversationItemCreated
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "The unique ID of the server event."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;conversation.item.created&#x60;."
+          enum = ["conversation.item.created"]
+          optional = true
+        }
+        previous_item_id {
+          type =  string
+          description = "The ID of the preceding item in the Conversation context, allows the  client to understand the order of the conversation. "
+          optional = true
+        }
+        item {
+          type = RealtimeConversationItem
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventConversationItemCreated {
+    title = RealtimeServerEventConversationItemCreated
+    description = RealtimeServerEventConversationItemCreated
+    implements = openapi_server.resourceTypes.RealtimeServerEventConversationItemCreated
+
+  }
+}

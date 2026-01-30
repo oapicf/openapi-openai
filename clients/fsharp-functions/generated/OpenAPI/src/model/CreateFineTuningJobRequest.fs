@@ -6,6 +6,7 @@ open Newtonsoft.Json
 open OpenAPI.Model.CreateFineTuningJobRequestHyperparameters
 open OpenAPI.Model.CreateFineTuningJobRequestIntegrationsInner
 open OpenAPI.Model.CreateFineTuningJobRequestModel
+open OpenAPI.Model.FineTuneMethod
 open OpenAPI.Model.int option
 open OpenAPI.Model.string option
 
@@ -29,6 +30,8 @@ module CreateFineTuningJobRequest =
     Integrations : CreateFineTuningJobRequestIntegrationsInner[];
     [<JsonProperty(PropertyName = "seed")>]
     Seed : int option;
+    [<JsonProperty(PropertyName = "method")>]
+    Method : FineTuneMethod;
   }
 
   //#endregion

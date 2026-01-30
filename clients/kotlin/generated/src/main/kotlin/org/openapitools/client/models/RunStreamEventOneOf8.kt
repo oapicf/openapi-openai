@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) expires.
+ * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
  *
  * @param event 
  * @param `data` 
@@ -41,11 +41,11 @@ data class RunStreamEventOneOf8 (
     /**
      * 
      *
-     * Values: threadPeriodRunPeriodExpired
+     * Values: threadPeriodRunPeriodCancelled
      */
     @JsonClass(generateAdapter = false)
     enum class Event(val value: kotlin.String) {
-        @Json(name = "thread.run.expired") threadPeriodRunPeriodExpired("thread.run.expired");
+        @Json(name = "thread.run.cancelled") threadPeriodRunPeriodCancelled("thread.run.cancelled");
     }
 
 }

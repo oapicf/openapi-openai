@@ -1,0 +1,51 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server UploadPart"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a UploadPart"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  UploadPart {
+    title = UploadPart
+    description = UploadPart
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The upload Part unique identifier, which can be referenced in API endpoints."
+          optional = true
+        }
+        created_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the Part was created."
+          optional = true
+        }
+        upload_id {
+          type =  string
+          description = "The ID of the Upload object that this Part was added to."
+          optional = true
+        }
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;upload.part&#x60;."
+          enum = ["upload.part"]
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  UploadPart {
+    title = UploadPart
+    description = UploadPart
+    implements = openapi_server.resourceTypes.UploadPart
+
+  }
+}

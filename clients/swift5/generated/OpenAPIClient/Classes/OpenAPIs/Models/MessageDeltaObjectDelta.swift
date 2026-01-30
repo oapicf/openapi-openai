@@ -17,24 +17,19 @@ public struct MessageDeltaObjectDelta: Codable, JSONEncodable, Hashable {
         case user = "user"
         case assistant = "assistant"
     }
-    public static let fileIdsRule = ArrayRule(minItems: nil, maxItems: 10, uniqueItems: false)
     /** The entity that produced the message. One of `user` or `assistant`. */
     public var role: Role?
     /** The content of the message in array of text and/or images. */
     public var content: [MessageDeltaObjectDeltaContentInner]?
-    /** A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message. */
-    public var fileIds: [String]?
 
-    public init(role: Role? = nil, content: [MessageDeltaObjectDeltaContentInner]? = nil, fileIds: [String]? = nil) {
+    public init(role: Role? = nil, content: [MessageDeltaObjectDeltaContentInner]? = nil) {
         self.role = role
         self.content = content
-        self.fileIds = fileIds
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case role
         case content
-        case fileIds = "file_ids"
     }
 
     // Encodable protocol methods
@@ -43,7 +38,6 @@ public struct MessageDeltaObjectDelta: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(role, forKey: .role)
         try container.encodeIfPresent(content, forKey: .content)
-        try container.encodeIfPresent(fileIds, forKey: .fileIds)
     }
 }
 

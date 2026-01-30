@@ -2,7 +2,7 @@
 
 # RunStreamEventOneOf8
 
-Occurs when a [run](/docs/api-reference/runs/object) expires.
+Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
 
 The class is defined in **[RunStreamEventOneOf8.java](../../src/main/java/org/openapitools/model/RunStreamEventOneOf8.java)**
 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 Name | Value
 ---- | -----
-THREAD_RUN_EXPIRED | `"thread.run.expired"`
+THREAD_RUN_CANCELLED | `"thread.run.cancelled"`
 
 
 

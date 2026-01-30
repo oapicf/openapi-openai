@@ -7,6 +7,7 @@
 
 (def assistant-stream-event-data
   {
+   (ds/opt :enabled) boolean?
    (ds/req :event) string?
    (ds/req :data) string?
    })

@@ -22,11 +22,13 @@ assistant_stream_event_t* instantiate_assistant_stream_event(int include_optiona
   assistant_stream_event_t* assistant_stream_event = NULL;
   if (include_optional) {
     assistant_stream_event = assistant_stream_event_create(
+      1,
       openai_api_assistant_stream_event_EVENT_done,
       openai_api_assistant_stream_event_DATA_[DONE]
     );
   } else {
     assistant_stream_event = assistant_stream_event_create(
+      1,
       openai_api_assistant_stream_event_EVENT_done,
       openai_api_assistant_stream_event_DATA_[DONE]
     );

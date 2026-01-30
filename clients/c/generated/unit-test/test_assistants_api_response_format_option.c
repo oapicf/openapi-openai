@@ -16,17 +16,21 @@
 #include "../model/assistants_api_response_format_option.h"
 assistants_api_response_format_option_t* instantiate_assistants_api_response_format_option(int include_optional);
 
+#include "test_response_format_json_schema_json_schema.c"
 
 
 assistants_api_response_format_option_t* instantiate_assistants_api_response_format_option(int include_optional) {
   assistants_api_response_format_option_t* assistants_api_response_format_option = NULL;
   if (include_optional) {
     assistants_api_response_format_option = assistants_api_response_format_option_create(
-      openai_api_assistants_api_response_format_option_TYPE_"text"
+      openai_api_assistants_api_response_format_option_TYPE_text,
+       // false, not to have infinite recursion
+      instantiate_response_format_json_schema_json_schema(0)
     );
   } else {
     assistants_api_response_format_option = assistants_api_response_format_option_create(
-      openai_api_assistants_api_response_format_option_TYPE_"text"
+      openai_api_assistants_api_response_format_option_TYPE_text,
+      NULL
     );
   }
 

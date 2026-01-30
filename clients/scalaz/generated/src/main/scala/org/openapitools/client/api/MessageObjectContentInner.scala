@@ -15,24 +15,32 @@ case class MessageObjectContentInner (
   /* Always `image_file`. */
   `type`: `Type`,
 imageFile: MessageContentImageFileObjectImageFile,
-text: MessageContentTextObjectText)
+imageUrl: MessageContentImageUrlObjectImageUrl,
+text: MessageContentTextObjectText,
+refusal: String)
 
 object MessageObjectContentInner {
   import DateTimeCodecs._
   sealed trait `Type`
   case object ImageFile extends `Type`
+  case object ImageUrl extends `Type`
   case object Text extends `Type`
+  case object Refusal extends `Type`
 
   object `Type` {
     def to`Type`(s: String): Option[`Type`] = s match {
       case "ImageFile" => Some(ImageFile)
+      case "ImageUrl" => Some(ImageUrl)
       case "Text" => Some(Text)
+      case "Refusal" => Some(Refusal)
       case _ => None
     }
 
     def from`Type`(x: `Type`): String = x match {
       case ImageFile => "ImageFile"
+      case ImageUrl => "ImageUrl"
       case Text => "Text"
+      case Refusal => "Refusal"
     }
   }
 

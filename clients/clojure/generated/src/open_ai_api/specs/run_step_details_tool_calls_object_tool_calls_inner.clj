@@ -2,7 +2,7 @@
   (:require [clojure.spec.alpha :as s]
             [spec-tools.data-spec :as ds]
             [open-ai-api.specs.run-step-details-tool-calls-code-object-code-interpreter :refer :all]
-            [open-ai-api.specs. :refer :all]
+            [open-ai-api.specs.run-step-details-tool-calls-file-search-object-file-search :refer :all]
             [open-ai-api.specs.run-step-details-tool-calls-function-object-function :refer :all]
             )
   (:import (java.io File)))
@@ -13,7 +13,7 @@
    (ds/req :id) string?
    (ds/req :type) string?
    (ds/req :code_interpreter) run-step-details-tool-calls-code-object-code-interpreter-spec
-   (ds/req :retrieval) any?
+   (ds/req :file_search) run-step-details-tool-calls-file-search-object-file-search-spec
    (ds/req :function) run-step-details-tool-calls-function-object-function-spec
    })
 

@@ -1,0 +1,45 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeResponseUsageInputTokenDetails"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeResponseUsageInputTokenDetails"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeResponseUsageInputTokenDetails {
+    title = RealtimeResponseUsageInputTokenDetails
+    description = RealtimeResponseUsageInputTokenDetails
+    derivedFrom = Root
+    properties {
+        cached_tokens {
+          type =  integer
+          description = "The number of cached tokens used in the Response."
+          optional = false
+        }
+        text_tokens {
+          type =  integer
+          description = "The number of text tokens used in the Response."
+          optional = false
+        }
+        audio_tokens {
+          type =  integer
+          description = "The number of audio tokens used in the Response."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeResponseUsageInputTokenDetails {
+    title = RealtimeResponseUsageInputTokenDetails
+    description = RealtimeResponseUsageInputTokenDetails
+    implements = openapi_server.resourceTypes.RealtimeResponseUsageInputTokenDetails
+
+  }
+}

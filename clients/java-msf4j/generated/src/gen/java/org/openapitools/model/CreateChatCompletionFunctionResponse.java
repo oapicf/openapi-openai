@@ -16,7 +16,7 @@ import org.openapitools.model.CreateChatCompletionFunctionResponseChoicesInner;
  * Represents a chat completion response returned by model, based on the provided input.
  */
 @ApiModel(description = "Represents a chat completion response returned by model, based on the provided input.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateChatCompletionFunctionResponse   {
   @JsonProperty("id")
   private String id;

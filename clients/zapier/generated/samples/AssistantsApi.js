@@ -3,8 +3,6 @@ module.exports = {
         { data: {} },
     "AssistantObjectSample": 
         { data: {} },
-    "AssistantFileObjectSample": 
-        { data: {} },
     "MessageObjectSample": 
         { data: {} },
     "RunObjectSample": 
@@ -15,17 +13,13 @@ module.exports = {
         { data: {} },
     "DeleteAssistantResponseSample": 
         { data: {} },
-    "DeleteAssistantFileResponseSample": 
+    "DeleteMessageResponseSample": 
         { data: {} },
     "DeleteThreadResponseSample": 
         { data: {} },
     "AssistantObjectSample": 
         { data: {} },
-    "AssistantFileObjectSample": 
-        { data: {} },
     "MessageObjectSample": 
-        { data: {} },
-    "MessageFileObjectSample": 
         { data: {} },
     "RunObjectSample": 
         { data: {} },
@@ -33,11 +27,7 @@ module.exports = {
         { data: {} },
     "ThreadObjectSample": 
         { data: {} },
-    "ListAssistantFilesResponseSample": 
-        { data: {} },
     "ListAssistantsResponseSample": 
-        { data: {} },
-    "ListMessageFilesResponseSample": 
         { data: {} },
     "ListMessagesResponseSample": 
         { data: {} },

@@ -2,10 +2,15 @@
 Protected Class ChatCompletionRequestAssistantMessage
 
 	#tag Property, Flags = &h0
+		content As OpenAPIClient.Models.ChatCompletionRequestAssistantMessageContent
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
 		#tag Note
-			The contents of the assistant message. Required unless `tool_calls` or `function_call` is specified. 
+			The refusal message by the assistant.
 		#tag EndNote
-		content As Xoson.O.OptionalString
+		refusal As Xoson.O.OptionalString
 	#tag EndProperty
 
 
@@ -22,6 +27,11 @@ Protected Class ChatCompletionRequestAssistantMessage
 			An optional name for the participant. Provides the model information to differentiate between participants of the same role.
 		#tag EndNote
 		name As Xoson.O.OptionalString
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		audio As OpenAPIClient.Models.ChatCompletionRequestAssistantMessageAudio
 	#tag EndProperty
 
 
@@ -96,6 +106,14 @@ Protected Class ChatCompletionRequestAssistantMessage
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
+			Type="ChatCompletionRequestAssistantMessageContent"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="refusal"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType=""
 		#tag EndViewProperty
@@ -105,6 +123,14 @@ Protected Class ChatCompletionRequestAssistantMessage
 			Group="Behavior"
 			InitialValue=""
 			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="audio"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="ChatCompletionRequestAssistantMessageAudio"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

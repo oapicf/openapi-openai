@@ -1,7 +1,8 @@
 const utils = require('../utils/utils');
 const AssistantToolsCode = require('../models/AssistantToolsCode');
+const AssistantToolsFileSearch = require('../models/AssistantToolsFileSearch');
+const AssistantToolsFileSearch_file_search = require('../models/AssistantToolsFileSearch_file_search');
 const AssistantToolsFunction = require('../models/AssistantToolsFunction');
-const AssistantToolsRetrieval = require('../models/AssistantToolsRetrieval');
 const FunctionObject = require('../models/FunctionObject');
 
 module.exports = {
@@ -15,10 +16,11 @@ module.exports = {
                 type: 'string',
                 choices: [
                     'code_interpreter',
-                    'retrieval',
+                    'file_search',
                     'function',
                 ],
             },
+            ...AssistantToolsFileSearch_file_search.fields(`${keyPrefix}file_search`, isInput),
             ...FunctionObject.fields(`${keyPrefix}function`, isInput),
         ]
     },
@@ -26,6 +28,7 @@ module.exports = {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'type': bundle.inputData?.[`${keyPrefix}type`],
+            'file_search': utils.removeIfEmpty(AssistantToolsFileSearch_file_search.mapping(bundle, `${keyPrefix}file_search`)),
             'function': utils.removeIfEmpty(FunctionObject.mapping(bundle, `${keyPrefix}function`)),
         }
     },

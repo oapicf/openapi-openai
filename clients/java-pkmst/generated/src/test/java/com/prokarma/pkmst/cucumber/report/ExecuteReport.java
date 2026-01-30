@@ -95,9 +95,33 @@ public class ExecuteReport {
 
     reportBuilder = new ReportBuilder(jsonFiles, configuration);
     reportBuilder.generateReports();
+    reportOutputDirectory = new File("./report/Batch-report-html/");
+    jsonFiles = new ArrayList();
+    jsonFiles.add("./report/Batch-report-json/Batch.json");
+
+    configuration = new Configuration(reportOutputDirectory,projectName);
+    // optionally only if you need
+    configuration.setParallelTesting(parallelTesting);
+    configuration.setRunWithJenkins(runWithJenkins);
+    configuration.setBuildNumber(buildNumber);
+
+    reportBuilder = new ReportBuilder(jsonFiles, configuration);
+    reportBuilder.generateReports();
     reportOutputDirectory = new File("./report/Files-report-html/");
     jsonFiles = new ArrayList();
     jsonFiles.add("./report/Files-report-json/Files.json");
+
+    configuration = new Configuration(reportOutputDirectory,projectName);
+    // optionally only if you need
+    configuration.setParallelTesting(parallelTesting);
+    configuration.setRunWithJenkins(runWithJenkins);
+    configuration.setBuildNumber(buildNumber);
+
+    reportBuilder = new ReportBuilder(jsonFiles, configuration);
+    reportBuilder.generateReports();
+    reportOutputDirectory = new File("./report/Uploads-report-html/");
+    jsonFiles = new ArrayList();
+    jsonFiles.add("./report/Uploads-report-json/Uploads.json");
 
     configuration = new Configuration(reportOutputDirectory,projectName);
     // optionally only if you need
@@ -134,6 +158,18 @@ public class ExecuteReport {
     reportOutputDirectory = new File("./report/Moderations-report-html/");
     jsonFiles = new ArrayList();
     jsonFiles.add("./report/Moderations-report-json/Moderations.json");
+
+    configuration = new Configuration(reportOutputDirectory,projectName);
+    // optionally only if you need
+    configuration.setParallelTesting(parallelTesting);
+    configuration.setRunWithJenkins(runWithJenkins);
+    configuration.setBuildNumber(buildNumber);
+
+    reportBuilder = new ReportBuilder(jsonFiles, configuration);
+    reportBuilder.generateReports();
+    reportOutputDirectory = new File("./report/Audit Logs-report-html/");
+    jsonFiles = new ArrayList();
+    jsonFiles.add("./report/Audit Logs-report-json/Audit Logs.json");
 
     configuration = new Configuration(reportOutputDirectory,projectName);
     // optionally only if you need

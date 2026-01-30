@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  * Occurs when a new [thread](/docs/api-reference/threads/object) is created.
  * @param event 
  * @param &#x60;data&#x60; 
+ * @param enabled Whether to enable input audio transcription.
  */
 data class ThreadStreamEvent(
 
@@ -28,7 +29,10 @@ data class ThreadStreamEvent(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("data", required = true) val `data`: ThreadObject
+    @get:JsonProperty("data", required = true) val `data`: ThreadObject,
+
+    @Schema(example = "null", description = "Whether to enable input audio transcription.")
+    @get:JsonProperty("enabled") val enabled: kotlin.Boolean? = null
 ) {
 
     /**

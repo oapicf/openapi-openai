@@ -20,10 +20,10 @@ class CreateCompletionResponse
     /**
      * The list of completion choices the model generated for the input prompt.
      * @DTA\Data(field="choices")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection17::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection17::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection36::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection36::class})
      */
-    public ?\App\DTO\Collection17 $choices = null;
+    public ?\App\DTO\Collection36 $choices = null;
 
     /**
      * The Unix timestamp (in seconds) of when the completion was created.

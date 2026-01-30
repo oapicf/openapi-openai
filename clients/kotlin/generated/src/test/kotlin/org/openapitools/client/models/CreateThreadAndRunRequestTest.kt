@@ -22,6 +22,7 @@ import org.openapitools.client.models.CreateThreadAndRunRequest
 import org.openapitools.client.models.AssistantsApiResponseFormatOption
 import org.openapitools.client.models.AssistantsApiToolChoiceOption
 import org.openapitools.client.models.CreateRunRequestModel
+import org.openapitools.client.models.CreateThreadAndRunRequestToolResources
 import org.openapitools.client.models.CreateThreadAndRunRequestToolsInner
 import org.openapitools.client.models.CreateThreadRequest
 import org.openapitools.client.models.TruncationObject
@@ -61,7 +62,13 @@ class CreateThreadAndRunRequestTest : ShouldSpec() {
             //modelInstance.tools shouldBe ("TODO")
         }
 
-        // to test the property `metadata` - Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+        // to test the property `toolResources`
+        should("test toolResources") {
+            // uncomment below to test the property
+            //modelInstance.toolResources shouldBe ("TODO")
+        }
+
+        // to test the property `metadata` - Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
         should("test metadata") {
             // uncomment below to test the property
             //modelInstance.metadata shouldBe ("TODO")
@@ -73,13 +80,19 @@ class CreateThreadAndRunRequestTest : ShouldSpec() {
             //modelInstance.temperature shouldBe ("TODO")
         }
 
+        // to test the property `topP` - An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+        should("test topP") {
+            // uncomment below to test the property
+            //modelInstance.topP shouldBe ("TODO")
+        }
+
         // to test the property `stream` - If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. 
         should("test stream") {
             // uncomment below to test the property
             //modelInstance.stream shouldBe ("TODO")
         }
 
-        // to test the property `maxPromptTokens` - The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+        // to test the property `maxPromptTokens` - The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
         should("test maxPromptTokens") {
             // uncomment below to test the property
             //modelInstance.maxPromptTokens shouldBe ("TODO")
@@ -101,6 +114,12 @@ class CreateThreadAndRunRequestTest : ShouldSpec() {
         should("test toolChoice") {
             // uncomment below to test the property
             //modelInstance.toolChoice shouldBe ("TODO")
+        }
+
+        // to test the property `parallelToolCalls` - Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+        should("test parallelToolCalls") {
+            // uncomment below to test the property
+            //modelInstance.parallelToolCalls shouldBe ("TODO")
         }
 
         // to test the property `responseFormat`

@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.FineTuneMethod;
 import org.openapitools.model.FineTuningJobError;
 import org.openapitools.model.FineTuningJobHyperparameters;
 import org.openapitools.model.FineTuningJobIntegrationsInner;
@@ -96,4 +97,8 @@ class FineTuningJob {
     List<FineTuningJobIntegrationsInner> integrations
     /* The seed used for the fine-tuning job. */
     Integer seed
+    /* The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running. */
+    Integer estimatedFinish
+    
+    FineTuneMethod method
 }

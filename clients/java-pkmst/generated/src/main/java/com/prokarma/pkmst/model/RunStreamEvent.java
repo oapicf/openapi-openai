@@ -14,6 +14,7 @@ import com.prokarma.pkmst.model.RunStreamEventOneOf5;
 import com.prokarma.pkmst.model.RunStreamEventOneOf6;
 import com.prokarma.pkmst.model.RunStreamEventOneOf7;
 import com.prokarma.pkmst.model.RunStreamEventOneOf8;
+import com.prokarma.pkmst.model.RunStreamEventOneOf9;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 /**
@@ -25,7 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
  * RunStreamEvent
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T10:45:02.588292416Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStreamEvent   {
   /**
    * Gets or Sets event

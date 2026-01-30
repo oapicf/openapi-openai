@@ -29,6 +29,18 @@ module.exports = {
                 type: 'boolean',
             },
             {
+                key: `${keyPrefix}illicit`,
+                label: `Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category. - [${labelPrefix}illicit]`,
+                required: true,
+                type: 'boolean',
+            },
+            {
+                key: `${keyPrefix}illicit/violent`,
+                label: `Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon. - [${labelPrefix}illicit/violent]`,
+                required: true,
+                type: 'boolean',
+            },
+            {
                 key: `${keyPrefix}self-harm`,
                 label: `Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders. - [${labelPrefix}self-harm]`,
                 required: true,
@@ -79,6 +91,8 @@ module.exports = {
             'hate/threatening': bundle.inputData?.[`${keyPrefix}hate/threatening`],
             'harassment': bundle.inputData?.[`${keyPrefix}harassment`],
             'harassment/threatening': bundle.inputData?.[`${keyPrefix}harassment/threatening`],
+            'illicit': bundle.inputData?.[`${keyPrefix}illicit`],
+            'illicit/violent': bundle.inputData?.[`${keyPrefix}illicit/violent`],
             'self-harm': bundle.inputData?.[`${keyPrefix}self-harm`],
             'self-harm/intent': bundle.inputData?.[`${keyPrefix}self-harm/intent`],
             'self-harm/instructions': bundle.inputData?.[`${keyPrefix}self-harm/instructions`],

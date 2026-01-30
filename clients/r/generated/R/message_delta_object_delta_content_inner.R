@@ -16,23 +16,29 @@ MessageDeltaObjectDeltaContentInner <- R6::R6Class(
     #' @field actual_type the type of the object stored in this instance.
     actual_type = NULL,
     #' @field one_of  a list of types defined in the oneOf schema.
-    one_of = list("MessageDeltaContentImageFileObject", "MessageDeltaContentTextObject"),
+    one_of = list("MessageDeltaContentImageFileObject", "MessageDeltaContentImageUrlObject", "MessageDeltaContentRefusalObject", "MessageDeltaContentTextObject"),
 
     #' @description
     #' Initialize a new MessageDeltaObjectDeltaContentInner.
     #'
-    #' @param instance an instance of the object defined in the oneOf schemas: "MessageDeltaContentImageFileObject", "MessageDeltaContentTextObject"
+    #' @param instance an instance of the object defined in the oneOf schemas: "MessageDeltaContentImageFileObject", "MessageDeltaContentImageUrlObject", "MessageDeltaContentRefusalObject", "MessageDeltaContentTextObject"
     initialize = function(instance = NULL) {
       if (is.null(instance)) {
         # do nothing
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "MessageDeltaContentImageFileObject") {
         self$actual_instance <- instance
         self$actual_type <- "MessageDeltaContentImageFileObject"
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "MessageDeltaContentImageUrlObject") {
+        self$actual_instance <- instance
+        self$actual_type <- "MessageDeltaContentImageUrlObject"
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "MessageDeltaContentRefusalObject") {
+        self$actual_instance <- instance
+        self$actual_type <- "MessageDeltaContentRefusalObject"
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "MessageDeltaContentTextObject") {
         self$actual_instance <- instance
         self$actual_type <- "MessageDeltaContentTextObject"
       } else {
-        stop(paste("Failed to initialize MessageDeltaObjectDeltaContentInner with oneOf schemas MessageDeltaContentImageFileObject, MessageDeltaContentTextObject. Provided class name: ",
+        stop(paste("Failed to initialize MessageDeltaObjectDeltaContentInner with oneOf schemas MessageDeltaContentImageFileObject, MessageDeltaContentImageUrlObject, MessageDeltaContentRefusalObject, MessageDeltaContentTextObject. Provided class name: ",
                    get(class(instance)[[1]], pos = -1)$classname))
       }
     },
@@ -90,17 +96,47 @@ MessageDeltaObjectDeltaContentInner <- R6::R6Class(
         error_messages <- append(error_messages, `MessageDeltaContentTextObject_result`["message"])
       }
 
+      `MessageDeltaContentRefusalObject_result` <- tryCatch({
+          `MessageDeltaContentRefusalObject`$public_methods$validateJSON(input)
+          `MessageDeltaContentRefusalObject_instance` <- `MessageDeltaContentRefusalObject`$new()
+          instance <- `MessageDeltaContentRefusalObject_instance`$fromJSON(input)
+          instance_type <- "MessageDeltaContentRefusalObject"
+          matched_schemas <- append(matched_schemas, "MessageDeltaContentRefusalObject")
+          matched <- matched + 1
+        },
+        error = function(err) err
+      )
+
+      if (!is.null(`MessageDeltaContentRefusalObject_result`["error"])) {
+        error_messages <- append(error_messages, `MessageDeltaContentRefusalObject_result`["message"])
+      }
+
+      `MessageDeltaContentImageUrlObject_result` <- tryCatch({
+          `MessageDeltaContentImageUrlObject`$public_methods$validateJSON(input)
+          `MessageDeltaContentImageUrlObject_instance` <- `MessageDeltaContentImageUrlObject`$new()
+          instance <- `MessageDeltaContentImageUrlObject_instance`$fromJSON(input)
+          instance_type <- "MessageDeltaContentImageUrlObject"
+          matched_schemas <- append(matched_schemas, "MessageDeltaContentImageUrlObject")
+          matched <- matched + 1
+        },
+        error = function(err) err
+      )
+
+      if (!is.null(`MessageDeltaContentImageUrlObject_result`["error"])) {
+        error_messages <- append(error_messages, `MessageDeltaContentImageUrlObject_result`["message"])
+      }
+
       if (matched == 1) {
         # successfully match exactly 1 schema specified in oneOf
         self$actual_instance <- instance
         self$actual_type <- instance_type
       } else if (matched > 1) {
         # more than 1 match
-        stop(paste("Multiple matches found when deserializing the input into MessageDeltaObjectDeltaContentInner with oneOf schemas MessageDeltaContentImageFileObject, MessageDeltaContentTextObject. Matched schemas: ",
+        stop(paste("Multiple matches found when deserializing the input into MessageDeltaObjectDeltaContentInner with oneOf schemas MessageDeltaContentImageFileObject, MessageDeltaContentImageUrlObject, MessageDeltaContentRefusalObject, MessageDeltaContentTextObject. Matched schemas: ",
                    paste(matched_schemas, collapse = ", ")))
       } else {
         # no match
-        stop(paste("No match found when deserializing the input into MessageDeltaObjectDeltaContentInner with oneOf schemas MessageDeltaContentImageFileObject, MessageDeltaContentTextObject. Details: >>",
+        stop(paste("No match found when deserializing the input into MessageDeltaObjectDeltaContentInner with oneOf schemas MessageDeltaContentImageFileObject, MessageDeltaContentImageUrlObject, MessageDeltaContentRefusalObject, MessageDeltaContentTextObject. Details: >>",
                    paste(error_messages, collapse = " >> ")))
       }
 

@@ -1,0 +1,24 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CreateMessageRequestAttachmentsInner",
+  "fields": [
+    {
+      "name": "file_id",
+      "type": ["null", "string"],
+      "doc": "The ID of the file to attach to the message.",
+      "default": null
+    },
+    {
+      "name": "tools",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.CreateMessageRequestAttachmentsInnerToolsInner"
+      }],
+      "doc": "The tools to add this file to.",
+      "default": null
+    }
+  ]
+
+}

@@ -14,13 +14,15 @@ class CreateModerationResponseResultsInnerCategories(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, hate: bool=None, hate_threatening: bool=None, harassment: bool=None, harassment_threatening: bool=None, self_harm: bool=None, self_harm_intent: bool=None, self_harm_instructions: bool=None, sexual: bool=None, sexual_minors: bool=None, violence: bool=None, violence_graphic: bool=None):
+    def __init__(self, hate: bool=None, hate_threatening: bool=None, harassment: bool=None, harassment_threatening: bool=None, illicit: bool=None, illicit_violent: bool=None, self_harm: bool=None, self_harm_intent: bool=None, self_harm_instructions: bool=None, sexual: bool=None, sexual_minors: bool=None, violence: bool=None, violence_graphic: bool=None):
         """CreateModerationResponseResultsInnerCategories - a model defined in OpenAPI
 
         :param hate: The hate of this CreateModerationResponseResultsInnerCategories.
         :param hate_threatening: The hate_threatening of this CreateModerationResponseResultsInnerCategories.
         :param harassment: The harassment of this CreateModerationResponseResultsInnerCategories.
         :param harassment_threatening: The harassment_threatening of this CreateModerationResponseResultsInnerCategories.
+        :param illicit: The illicit of this CreateModerationResponseResultsInnerCategories.
+        :param illicit_violent: The illicit_violent of this CreateModerationResponseResultsInnerCategories.
         :param self_harm: The self_harm of this CreateModerationResponseResultsInnerCategories.
         :param self_harm_intent: The self_harm_intent of this CreateModerationResponseResultsInnerCategories.
         :param self_harm_instructions: The self_harm_instructions of this CreateModerationResponseResultsInnerCategories.
@@ -34,6 +36,8 @@ class CreateModerationResponseResultsInnerCategories(Model):
             'hate_threatening': bool,
             'harassment': bool,
             'harassment_threatening': bool,
+            'illicit': bool,
+            'illicit_violent': bool,
             'self_harm': bool,
             'self_harm_intent': bool,
             'self_harm_instructions': bool,
@@ -48,6 +52,8 @@ class CreateModerationResponseResultsInnerCategories(Model):
             'hate_threatening': 'hate/threatening',
             'harassment': 'harassment',
             'harassment_threatening': 'harassment/threatening',
+            'illicit': 'illicit',
+            'illicit_violent': 'illicit/violent',
             'self_harm': 'self-harm',
             'self_harm_intent': 'self-harm/intent',
             'self_harm_instructions': 'self-harm/instructions',
@@ -61,6 +67,8 @@ class CreateModerationResponseResultsInnerCategories(Model):
         self._hate_threatening = hate_threatening
         self._harassment = harassment
         self._harassment_threatening = harassment_threatening
+        self._illicit = illicit
+        self._illicit_violent = illicit_violent
         self._self_harm = self_harm
         self._self_harm_intent = self_harm_intent
         self._self_harm_instructions = self_harm_instructions
@@ -177,6 +185,56 @@ class CreateModerationResponseResultsInnerCategories(Model):
             raise ValueError("Invalid value for `harassment_threatening`, must not be `None`")
 
         self._harassment_threatening = harassment_threatening
+
+    @property
+    def illicit(self):
+        """Gets the illicit of this CreateModerationResponseResultsInnerCategories.
+
+        Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
+
+        :return: The illicit of this CreateModerationResponseResultsInnerCategories.
+        :rtype: bool
+        """
+        return self._illicit
+
+    @illicit.setter
+    def illicit(self, illicit):
+        """Sets the illicit of this CreateModerationResponseResultsInnerCategories.
+
+        Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
+
+        :param illicit: The illicit of this CreateModerationResponseResultsInnerCategories.
+        :type illicit: bool
+        """
+        if illicit is None:
+            raise ValueError("Invalid value for `illicit`, must not be `None`")
+
+        self._illicit = illicit
+
+    @property
+    def illicit_violent(self):
+        """Gets the illicit_violent of this CreateModerationResponseResultsInnerCategories.
+
+        Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+
+        :return: The illicit_violent of this CreateModerationResponseResultsInnerCategories.
+        :rtype: bool
+        """
+        return self._illicit_violent
+
+    @illicit_violent.setter
+    def illicit_violent(self, illicit_violent):
+        """Sets the illicit_violent of this CreateModerationResponseResultsInnerCategories.
+
+        Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+
+        :param illicit_violent: The illicit_violent of this CreateModerationResponseResultsInnerCategories.
+        :type illicit_violent: bool
+        """
+        if illicit_violent is None:
+            raise ValueError("Invalid value for `illicit_violent`, must not be `None`")
+
+        self._illicit_violent = illicit_violent
 
     @property
     def self_harm(self):

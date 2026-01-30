@@ -1,13 +1,13 @@
 #' Create a new ChatCompletionRequestSystemMessage
 #'
 #' @description
-#' ChatCompletionRequestSystemMessage Class
+#' Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. 
 #'
 #' @docType class
 #' @title ChatCompletionRequestSystemMessage
 #' @description ChatCompletionRequestSystemMessage Class
 #' @format An \code{R6Class} generator object
-#' @field content The contents of the system message. character
+#' @field content  \link{ChatCompletionRequestSystemMessageContent}
 #' @field role The role of the messages author, in this case `system`. character
 #' @field name An optional name for the participant. Provides the model information to differentiate between participants of the same role. character [optional]
 #' @importFrom R6 R6Class
@@ -23,15 +23,13 @@ ChatCompletionRequestSystemMessage <- R6::R6Class(
     #' @description
     #' Initialize a new ChatCompletionRequestSystemMessage class.
     #'
-    #' @param content The contents of the system message.
+    #' @param content content
     #' @param role The role of the messages author, in this case `system`.
     #' @param name An optional name for the participant. Provides the model information to differentiate between participants of the same role.
     #' @param ... Other optional arguments.
     initialize = function(`content`, `role`, `name` = NULL, ...) {
       if (!missing(`content`)) {
-        if (!(is.character(`content`) && length(`content`) == 1)) {
-          stop(paste("Error! Invalid data for `content`. Must be a string:", `content`))
-        }
+        stopifnot(R6::is.R6(`content`))
         self$`content` <- `content`
       }
       if (!missing(`role`)) {
@@ -84,7 +82,7 @@ ChatCompletionRequestSystemMessage <- R6::R6Class(
       ChatCompletionRequestSystemMessageObject <- list()
       if (!is.null(self$`content`)) {
         ChatCompletionRequestSystemMessageObject[["content"]] <-
-          self$`content`
+          self$`content`$toSimpleType()
       }
       if (!is.null(self$`role`)) {
         ChatCompletionRequestSystemMessageObject[["role"]] <-
@@ -105,7 +103,9 @@ ChatCompletionRequestSystemMessage <- R6::R6Class(
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`content`)) {
-        self$`content` <- this_object$`content`
+        `content_object` <- ChatCompletionRequestSystemMessageContent$new()
+        `content_object`$fromJSON(jsonlite::toJSON(this_object$`content`, auto_unbox = TRUE, digits = NA))
+        self$`content` <- `content_object`
       }
       if (!is.null(this_object$`role`)) {
         if (!is.null(this_object$`role`) && !(this_object$`role` %in% c("system"))) {
@@ -137,7 +137,7 @@ ChatCompletionRequestSystemMessage <- R6::R6Class(
     #' @return the instance of ChatCompletionRequestSystemMessage
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`content` <- this_object$`content`
+      self$`content` <- ChatCompletionRequestSystemMessageContent$new()$fromJSON(jsonlite::toJSON(this_object$`content`, auto_unbox = TRUE, digits = NA))
       if (!is.null(this_object$`role`) && !(this_object$`role` %in% c("system"))) {
         stop(paste("Error! \"", this_object$`role`, "\" cannot be assigned to `role`. Must be \"system\".", sep = ""))
       }
@@ -154,9 +154,7 @@ ChatCompletionRequestSystemMessage <- R6::R6Class(
       input_json <- jsonlite::fromJSON(input)
       # check the required field `content`
       if (!is.null(input_json$`content`)) {
-        if (!(is.character(input_json$`content`) && length(input_json$`content`) == 1)) {
-          stop(paste("Error! Invalid data for `content`. Must be a string:", input_json$`content`))
-        }
+        stopifnot(R6::is.R6(input_json$`content`))
       } else {
         stop(paste("The JSON input `", input, "` is invalid for ChatCompletionRequestSystemMessage: the required field `content` is missing."))
       }

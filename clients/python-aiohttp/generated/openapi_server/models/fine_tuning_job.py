@@ -5,6 +5,7 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
+from openapi_server.models.fine_tune_method import FineTuneMethod
 from openapi_server.models.fine_tuning_job_error import FineTuningJobError
 from openapi_server.models.fine_tuning_job_hyperparameters import FineTuningJobHyperparameters
 from openapi_server.models.fine_tuning_job_integrations_inner import FineTuningJobIntegrationsInner
@@ -17,7 +18,7 @@ class FineTuningJob(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, created_at: int=None, error: FineTuningJobError=None, fine_tuned_model: str=None, finished_at: int=None, hyperparameters: FineTuningJobHyperparameters=None, model: str=None, object: str=None, organization_id: str=None, result_files: List[str]=None, status: str=None, trained_tokens: int=None, training_file: str=None, validation_file: str=None, integrations: List[FineTuningJobIntegrationsInner]=None, seed: int=None):
+    def __init__(self, id: str=None, created_at: int=None, error: FineTuningJobError=None, fine_tuned_model: str=None, finished_at: int=None, hyperparameters: FineTuningJobHyperparameters=None, model: str=None, object: str=None, organization_id: str=None, result_files: List[str]=None, status: str=None, trained_tokens: int=None, training_file: str=None, validation_file: str=None, integrations: List[FineTuningJobIntegrationsInner]=None, seed: int=None, estimated_finish: int=None, method: FineTuneMethod=None):
         """FineTuningJob - a model defined in OpenAPI
 
         :param id: The id of this FineTuningJob.
@@ -36,6 +37,8 @@ class FineTuningJob(Model):
         :param validation_file: The validation_file of this FineTuningJob.
         :param integrations: The integrations of this FineTuningJob.
         :param seed: The seed of this FineTuningJob.
+        :param estimated_finish: The estimated_finish of this FineTuningJob.
+        :param method: The method of this FineTuningJob.
         """
         self.openapi_types = {
             'id': str,
@@ -53,7 +56,9 @@ class FineTuningJob(Model):
             'training_file': str,
             'validation_file': str,
             'integrations': List[FineTuningJobIntegrationsInner],
-            'seed': int
+            'seed': int,
+            'estimated_finish': int,
+            'method': FineTuneMethod
         }
 
         self.attribute_map = {
@@ -72,7 +77,9 @@ class FineTuningJob(Model):
             'training_file': 'training_file',
             'validation_file': 'validation_file',
             'integrations': 'integrations',
-            'seed': 'seed'
+            'seed': 'seed',
+            'estimated_finish': 'estimated_finish',
+            'method': 'method'
         }
 
         self._id = id
@@ -91,6 +98,8 @@ class FineTuningJob(Model):
         self._validation_file = validation_file
         self._integrations = integrations
         self._seed = seed
+        self._estimated_finish = estimated_finish
+        self._method = method
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'FineTuningJob':
@@ -504,3 +513,47 @@ class FineTuningJob(Model):
             raise ValueError("Invalid value for `seed`, must not be `None`")
 
         self._seed = seed
+
+    @property
+    def estimated_finish(self):
+        """Gets the estimated_finish of this FineTuningJob.
+
+        The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+
+        :return: The estimated_finish of this FineTuningJob.
+        :rtype: int
+        """
+        return self._estimated_finish
+
+    @estimated_finish.setter
+    def estimated_finish(self, estimated_finish):
+        """Sets the estimated_finish of this FineTuningJob.
+
+        The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+
+        :param estimated_finish: The estimated_finish of this FineTuningJob.
+        :type estimated_finish: int
+        """
+
+        self._estimated_finish = estimated_finish
+
+    @property
+    def method(self):
+        """Gets the method of this FineTuningJob.
+
+
+        :return: The method of this FineTuningJob.
+        :rtype: FineTuneMethod
+        """
+        return self._method
+
+    @method.setter
+    def method(self, method):
+        """Sets the method of this FineTuningJob.
+
+
+        :param method: The method of this FineTuningJob.
+        :type method: FineTuneMethod
+        """
+
+        self._method = method

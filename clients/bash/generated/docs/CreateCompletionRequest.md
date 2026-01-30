@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **seed** | **integer** |  | [optional] [default to null]
 **stop** | [**CreateCompletionRequestStop**](CreateCompletionRequestStop.md) |  | [optional] [default to null]
 **stream** | **boolean** |  | [optional] [default to false]
+**streamUnderscoreoptions** | [**ChatCompletionStreamOptions**](ChatCompletionStreamOptions.md) |  | [optional] [default to null]
 **suffix** | **string** |  | [optional] [default to null]
 **temperature** | **integer** |  | [optional] [default to 1]
 **topUnderscorep** | **integer** |  | [optional] [default to 1]

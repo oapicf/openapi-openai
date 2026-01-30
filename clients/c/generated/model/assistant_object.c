@@ -31,8 +31,11 @@ static assistant_object_t *assistant_object_create_internal(
     char *model,
     char *instructions,
     list_t *tools,
-    list_t *file_ids,
-    object_t *metadata
+    assistant_object_tool_resources_t *tool_resources,
+    object_t *metadata,
+    double temperature,
+    double top_p,
+    assistants_api_response_format_option_t *response_format
     ) {
     assistant_object_t *assistant_object_local_var = malloc(sizeof(assistant_object_t));
     if (!assistant_object_local_var) {
@@ -46,8 +49,11 @@ static assistant_object_t *assistant_object_create_internal(
     assistant_object_local_var->model = model;
     assistant_object_local_var->instructions = instructions;
     assistant_object_local_var->tools = tools;
-    assistant_object_local_var->file_ids = file_ids;
+    assistant_object_local_var->tool_resources = tool_resources;
     assistant_object_local_var->metadata = metadata;
+    assistant_object_local_var->temperature = temperature;
+    assistant_object_local_var->top_p = top_p;
+    assistant_object_local_var->response_format = response_format;
 
     assistant_object_local_var->_library_owned = 1;
     return assistant_object_local_var;
@@ -62,8 +68,11 @@ __attribute__((deprecated)) assistant_object_t *assistant_object_create(
     char *model,
     char *instructions,
     list_t *tools,
-    list_t *file_ids,
-    object_t *metadata
+    assistant_object_tool_resources_t *tool_resources,
+    object_t *metadata,
+    double temperature,
+    double top_p,
+    assistants_api_response_format_option_t *response_format
     ) {
     return assistant_object_create_internal (
         id,
@@ -74,8 +83,11 @@ __attribute__((deprecated)) assistant_object_t *assistant_object_create(
         model,
         instructions,
         tools,
-        file_ids,
-        metadata
+        tool_resources,
+        metadata,
+        temperature,
+        top_p,
+        response_format
         );
 }
 
@@ -115,16 +127,17 @@ void assistant_object_free(assistant_object_t *assistant_object) {
         list_freeList(assistant_object->tools);
         assistant_object->tools = NULL;
     }
-    if (assistant_object->file_ids) {
-        list_ForEach(listEntry, assistant_object->file_ids) {
-            free(listEntry->data);
-        }
-        list_freeList(assistant_object->file_ids);
-        assistant_object->file_ids = NULL;
+    if (assistant_object->tool_resources) {
+        assistant_object_tool_resources_free(assistant_object->tool_resources);
+        assistant_object->tool_resources = NULL;
     }
     if (assistant_object->metadata) {
         object_free(assistant_object->metadata);
         assistant_object->metadata = NULL;
+    }
+    if (assistant_object->response_format) {
+        assistants_api_response_format_option_free(assistant_object->response_format);
+        assistant_object->response_format = NULL;
     }
     free(assistant_object);
 }
@@ -217,20 +230,15 @@ cJSON *assistant_object_convertToJSON(assistant_object_t *assistant_object) {
     }
 
 
-    // assistant_object->file_ids
-    if (!assistant_object->file_ids) {
-        goto fail;
+    // assistant_object->tool_resources
+    if(assistant_object->tool_resources) {
+    cJSON *tool_resources_local_JSON = assistant_object_tool_resources_convertToJSON(assistant_object->tool_resources);
+    if(tool_resources_local_JSON == NULL) {
+    goto fail; //model
     }
-    cJSON *file_ids = cJSON_AddArrayToObject(item, "file_ids");
-    if(file_ids == NULL) {
-        goto fail; //primitive container
-    }
-
-    listEntry_t *file_idsListEntry;
-    list_ForEach(file_idsListEntry, assistant_object->file_ids) {
-    if(cJSON_AddStringToObject(file_ids, "", file_idsListEntry->data) == NULL)
-    {
-        goto fail;
+    cJSON_AddItemToObject(item, "tool_resources", tool_resources_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
     }
     }
 
@@ -248,6 +256,35 @@ cJSON *assistant_object_convertToJSON(assistant_object_t *assistant_object) {
     goto fail;
     }
 
+
+    // assistant_object->temperature
+    if(assistant_object->temperature) {
+    if(cJSON_AddNumberToObject(item, "temperature", assistant_object->temperature) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // assistant_object->top_p
+    if(assistant_object->top_p) {
+    if(cJSON_AddNumberToObject(item, "top_p", assistant_object->top_p) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // assistant_object->response_format
+    if(assistant_object->response_format) {
+    cJSON *response_format_local_JSON = assistants_api_response_format_option_convertToJSON(assistant_object->response_format);
+    if(response_format_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "response_format", response_format_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -263,8 +300,11 @@ assistant_object_t *assistant_object_parseFromJSON(cJSON *assistant_objectJSON){
     // define the local list for assistant_object->tools
     list_t *toolsList = NULL;
 
-    // define the local list for assistant_object->file_ids
-    list_t *file_idsList = NULL;
+    // define the local variable for assistant_object->tool_resources
+    assistant_object_tool_resources_t *tool_resources_local_nonprim = NULL;
+
+    // define the local variable for assistant_object->response_format
+    assistants_api_response_format_option_t *response_format_local_nonprim = NULL;
 
     // assistant_object->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(assistant_objectJSON, "id");
@@ -400,29 +440,13 @@ assistant_object_t *assistant_object_parseFromJSON(cJSON *assistant_objectJSON){
         list_addElement(toolsList, toolsItem);
     }
 
-    // assistant_object->file_ids
-    cJSON *file_ids = cJSON_GetObjectItemCaseSensitive(assistant_objectJSON, "file_ids");
-    if (cJSON_IsNull(file_ids)) {
-        file_ids = NULL;
+    // assistant_object->tool_resources
+    cJSON *tool_resources = cJSON_GetObjectItemCaseSensitive(assistant_objectJSON, "tool_resources");
+    if (cJSON_IsNull(tool_resources)) {
+        tool_resources = NULL;
     }
-    if (!file_ids) {
-        goto end;
-    }
-
-    
-    cJSON *file_ids_local = NULL;
-    if(!cJSON_IsArray(file_ids)) {
-        goto end;//primitive container
-    }
-    file_idsList = list_createList();
-
-    cJSON_ArrayForEach(file_ids_local, file_ids)
-    {
-        if(!cJSON_IsString(file_ids_local))
-        {
-            goto end;
-        }
-        list_addElement(file_idsList , strdup(file_ids_local->valuestring));
+    if (tool_resources) { 
+    tool_resources_local_nonprim = assistant_object_tool_resources_parseFromJSON(tool_resources); //nonprimitive
     }
 
     // assistant_object->metadata
@@ -438,6 +462,39 @@ assistant_object_t *assistant_object_parseFromJSON(cJSON *assistant_objectJSON){
     
     metadata_local_object = object_parseFromJSON(metadata); //object
 
+    // assistant_object->temperature
+    cJSON *temperature = cJSON_GetObjectItemCaseSensitive(assistant_objectJSON, "temperature");
+    if (cJSON_IsNull(temperature)) {
+        temperature = NULL;
+    }
+    if (temperature) { 
+    if(!cJSON_IsNumber(temperature))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // assistant_object->top_p
+    cJSON *top_p = cJSON_GetObjectItemCaseSensitive(assistant_objectJSON, "top_p");
+    if (cJSON_IsNull(top_p)) {
+        top_p = NULL;
+    }
+    if (top_p) { 
+    if(!cJSON_IsNumber(top_p))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // assistant_object->response_format
+    cJSON *response_format = cJSON_GetObjectItemCaseSensitive(assistant_objectJSON, "response_format");
+    if (cJSON_IsNull(response_format)) {
+        response_format = NULL;
+    }
+    if (response_format) { 
+    response_format_local_nonprim = assistants_api_response_format_option_parseFromJSON(response_format); //nonprimitive
+    }
+
 
     assistant_object_local_var = assistant_object_create_internal (
         strdup(id->valuestring),
@@ -448,8 +505,11 @@ assistant_object_t *assistant_object_parseFromJSON(cJSON *assistant_objectJSON){
         strdup(model->valuestring),
         strdup(instructions->valuestring),
         toolsList,
-        file_idsList,
-        metadata_local_object
+        tool_resources ? tool_resources_local_nonprim : NULL,
+        metadata_local_object,
+        temperature ? temperature->valuedouble : 0,
+        top_p ? top_p->valuedouble : 0,
+        response_format ? response_format_local_nonprim : NULL
         );
 
     return assistant_object_local_var;
@@ -463,14 +523,13 @@ end:
         list_freeList(toolsList);
         toolsList = NULL;
     }
-    if (file_idsList) {
-        listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, file_idsList) {
-            free(listEntry->data);
-            listEntry->data = NULL;
-        }
-        list_freeList(file_idsList);
-        file_idsList = NULL;
+    if (tool_resources_local_nonprim) {
+        assistant_object_tool_resources_free(tool_resources_local_nonprim);
+        tool_resources_local_nonprim = NULL;
+    }
+    if (response_format_local_nonprim) {
+        assistants_api_response_format_option_free(response_format_local_nonprim);
+        response_format_local_nonprim = NULL;
     }
     return NULL;
 

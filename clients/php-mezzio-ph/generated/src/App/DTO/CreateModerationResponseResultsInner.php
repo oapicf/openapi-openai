@@ -33,4 +33,12 @@ class CreateModerationResponseResultsInner
      */
     public $category_scores;
 
+    /**
+     * @DTA\Data(field="category_applied_input_types")
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\CreateModerationResponseResultsInnerCategoryAppliedInputTypes::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\CreateModerationResponseResultsInnerCategoryAppliedInputTypes::class})
+     * @var \App\DTO\CreateModerationResponseResultsInnerCategoryAppliedInputTypes|null
+     */
+    public $category_applied_input_types;
+
 }

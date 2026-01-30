@@ -14,36 +14,44 @@ class FineTuningJobEvent(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, created_at: int=None, level: str=None, message: str=None, object: str=None):
+    def __init__(self, object: str=None, id: str=None, created_at: int=None, level: str=None, message: str=None, type: str=None, data: object=None):
         """FineTuningJobEvent - a model defined in OpenAPI
 
+        :param object: The object of this FineTuningJobEvent.
         :param id: The id of this FineTuningJobEvent.
         :param created_at: The created_at of this FineTuningJobEvent.
         :param level: The level of this FineTuningJobEvent.
         :param message: The message of this FineTuningJobEvent.
-        :param object: The object of this FineTuningJobEvent.
+        :param type: The type of this FineTuningJobEvent.
+        :param data: The data of this FineTuningJobEvent.
         """
         self.openapi_types = {
+            'object': str,
             'id': str,
             'created_at': int,
             'level': str,
             'message': str,
-            'object': str
+            'type': str,
+            'data': object
         }
 
         self.attribute_map = {
+            'object': 'object',
             'id': 'id',
             'created_at': 'created_at',
             'level': 'level',
             'message': 'message',
-            'object': 'object'
+            'type': 'type',
+            'data': 'data'
         }
 
+        self._object = object
         self._id = id
         self._created_at = created_at
         self._level = level
         self._message = message
-        self._object = object
+        self._type = type
+        self._data = data
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'FineTuningJobEvent':
@@ -55,9 +63,39 @@ class FineTuningJobEvent(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
+    def object(self):
+        """Gets the object of this FineTuningJobEvent.
+
+        The object type, which is always \"fine_tuning.job.event\".
+
+        :return: The object of this FineTuningJobEvent.
+        :rtype: str
+        """
+        return self._object
+
+    @object.setter
+    def object(self, object):
+        """Sets the object of this FineTuningJobEvent.
+
+        The object type, which is always \"fine_tuning.job.event\".
+
+        :param object: The object of this FineTuningJobEvent.
+        :type object: str
+        """
+        allowed_values = ["fine_tuning.job.event"]  # noqa: E501
+        if object not in allowed_values:
+            raise ValueError(
+                "Invalid value for `object` ({0}), must be one of {1}"
+                .format(object, allowed_values)
+            )
+
+        self._object = object
+
+    @property
     def id(self):
         """Gets the id of this FineTuningJobEvent.
 
+        The object identifier.
 
         :return: The id of this FineTuningJobEvent.
         :rtype: str
@@ -68,6 +106,7 @@ class FineTuningJobEvent(Model):
     def id(self, id):
         """Sets the id of this FineTuningJobEvent.
 
+        The object identifier.
 
         :param id: The id of this FineTuningJobEvent.
         :type id: str
@@ -81,6 +120,7 @@ class FineTuningJobEvent(Model):
     def created_at(self):
         """Gets the created_at of this FineTuningJobEvent.
 
+        The Unix timestamp (in seconds) for when the fine-tuning job was created.
 
         :return: The created_at of this FineTuningJobEvent.
         :rtype: int
@@ -91,6 +131,7 @@ class FineTuningJobEvent(Model):
     def created_at(self, created_at):
         """Sets the created_at of this FineTuningJobEvent.
 
+        The Unix timestamp (in seconds) for when the fine-tuning job was created.
 
         :param created_at: The created_at of this FineTuningJobEvent.
         :type created_at: int
@@ -104,6 +145,7 @@ class FineTuningJobEvent(Model):
     def level(self):
         """Gets the level of this FineTuningJobEvent.
 
+        The log level of the event.
 
         :return: The level of this FineTuningJobEvent.
         :rtype: str
@@ -114,6 +156,7 @@ class FineTuningJobEvent(Model):
     def level(self, level):
         """Sets the level of this FineTuningJobEvent.
 
+        The log level of the event.
 
         :param level: The level of this FineTuningJobEvent.
         :type level: str
@@ -131,6 +174,7 @@ class FineTuningJobEvent(Model):
     def message(self):
         """Gets the message of this FineTuningJobEvent.
 
+        The message of the event.
 
         :return: The message of this FineTuningJobEvent.
         :rtype: str
@@ -141,6 +185,7 @@ class FineTuningJobEvent(Model):
     def message(self, message):
         """Sets the message of this FineTuningJobEvent.
 
+        The message of the event.
 
         :param message: The message of this FineTuningJobEvent.
         :type message: str
@@ -151,28 +196,53 @@ class FineTuningJobEvent(Model):
         self._message = message
 
     @property
-    def object(self):
-        """Gets the object of this FineTuningJobEvent.
+    def type(self):
+        """Gets the type of this FineTuningJobEvent.
 
+        The type of event.
 
-        :return: The object of this FineTuningJobEvent.
+        :return: The type of this FineTuningJobEvent.
         :rtype: str
         """
-        return self._object
+        return self._type
 
-    @object.setter
-    def object(self, object):
-        """Sets the object of this FineTuningJobEvent.
+    @type.setter
+    def type(self, type):
+        """Sets the type of this FineTuningJobEvent.
 
+        The type of event.
 
-        :param object: The object of this FineTuningJobEvent.
-        :type object: str
+        :param type: The type of this FineTuningJobEvent.
+        :type type: str
         """
-        allowed_values = ["fine_tuning.job.event"]  # noqa: E501
-        if object not in allowed_values:
+        allowed_values = ["message", "metrics"]  # noqa: E501
+        if type not in allowed_values:
             raise ValueError(
-                "Invalid value for `object` ({0}), must be one of {1}"
-                .format(object, allowed_values)
+                "Invalid value for `type` ({0}), must be one of {1}"
+                .format(type, allowed_values)
             )
 
-        self._object = object
+        self._type = type
+
+    @property
+    def data(self):
+        """Gets the data of this FineTuningJobEvent.
+
+        The data associated with the event.
+
+        :return: The data of this FineTuningJobEvent.
+        :rtype: object
+        """
+        return self._data
+
+    @data.setter
+    def data(self, data):
+        """Sets the data of this FineTuningJobEvent.
+
+        The data associated with the event.
+
+        :param data: The data of this FineTuningJobEvent.
+        :type data: object
+        """
+
+        self._data = data

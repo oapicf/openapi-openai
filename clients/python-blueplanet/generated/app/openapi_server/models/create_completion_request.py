@@ -6,6 +6,7 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from app.openapi_server.models.base_model import Model
+from app.openapi_server.models.chat_completion_stream_options import ChatCompletionStreamOptions  # noqa: F401,E501
 from app.openapi_server.models.create_completion_request_model import CreateCompletionRequestModel  # noqa: F401,E501
 from app.openapi_server.models.create_completion_request_prompt import CreateCompletionRequestPrompt  # noqa: F401,E501
 from app.openapi_server.models.create_completion_request_stop import CreateCompletionRequestStop  # noqa: F401,E501
@@ -18,7 +19,7 @@ class CreateCompletionRequest(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, model: CreateCompletionRequestModel=None, prompt: CreateCompletionRequestPrompt=None, best_of: int=1, echo: bool=False, frequency_penalty: float=0, logit_bias: Dict[str, int]=None, logprobs: int=None, max_tokens: int=16, n: int=1, presence_penalty: float=0, seed: int=None, stop: CreateCompletionRequestStop=None, stream: bool=False, suffix: str=None, temperature: float=1, top_p: float=1, user: str=None):  # noqa: E501
+    def __init__(self, model: CreateCompletionRequestModel=None, prompt: CreateCompletionRequestPrompt=None, best_of: int=1, echo: bool=False, frequency_penalty: float=0, logit_bias: Dict[str, int]=None, logprobs: int=None, max_tokens: int=16, n: int=1, presence_penalty: float=0, seed: int=None, stop: CreateCompletionRequestStop=None, stream: bool=False, stream_options: ChatCompletionStreamOptions=None, suffix: str=None, temperature: float=1, top_p: float=1, user: str=None):  # noqa: E501
         """CreateCompletionRequest - a model defined in Swagger
 
         :param model: The model of this CreateCompletionRequest.  # noqa: E501
@@ -47,6 +48,8 @@ class CreateCompletionRequest(Model):
         :type stop: CreateCompletionRequestStop
         :param stream: The stream of this CreateCompletionRequest.  # noqa: E501
         :type stream: bool
+        :param stream_options: The stream_options of this CreateCompletionRequest.  # noqa: E501
+        :type stream_options: ChatCompletionStreamOptions
         :param suffix: The suffix of this CreateCompletionRequest.  # noqa: E501
         :type suffix: str
         :param temperature: The temperature of this CreateCompletionRequest.  # noqa: E501
@@ -70,6 +73,7 @@ class CreateCompletionRequest(Model):
             'seed': int,
             'stop': CreateCompletionRequestStop,
             'stream': bool,
+            'stream_options': ChatCompletionStreamOptions,
             'suffix': str,
             'temperature': float,
             'top_p': float,
@@ -90,6 +94,7 @@ class CreateCompletionRequest(Model):
             'seed': 'seed',
             'stop': 'stop',
             'stream': 'stream',
+            'stream_options': 'stream_options',
             'suffix': 'suffix',
             'temperature': 'temperature',
             'top_p': 'top_p',
@@ -109,6 +114,7 @@ class CreateCompletionRequest(Model):
         self._seed = seed
         self._stop = stop
         self._stream = stream
+        self._stream_options = stream_options
         self._suffix = suffix
         self._temperature = temperature
         self._top_p = top_p
@@ -225,7 +231,7 @@ class CreateCompletionRequest(Model):
     def frequency_penalty(self) -> float:
         """Gets the frequency_penalty of this CreateCompletionRequest.
 
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details)   # noqa: E501
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation)   # noqa: E501
 
         :return: The frequency_penalty of this CreateCompletionRequest.
         :rtype: float
@@ -236,7 +242,7 @@ class CreateCompletionRequest(Model):
     def frequency_penalty(self, frequency_penalty: float):
         """Sets the frequency_penalty of this CreateCompletionRequest.
 
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details)   # noqa: E501
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation)   # noqa: E501
 
         :param frequency_penalty: The frequency_penalty of this CreateCompletionRequest.
         :type frequency_penalty: float
@@ -354,7 +360,7 @@ class CreateCompletionRequest(Model):
     def presence_penalty(self) -> float:
         """Gets the presence_penalty of this CreateCompletionRequest.
 
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details)   # noqa: E501
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation)   # noqa: E501
 
         :return: The presence_penalty of this CreateCompletionRequest.
         :rtype: float
@@ -365,7 +371,7 @@ class CreateCompletionRequest(Model):
     def presence_penalty(self, presence_penalty: float):
         """Sets the presence_penalty of this CreateCompletionRequest.
 
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details)   # noqa: E501
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation)   # noqa: E501
 
         :param presence_penalty: The presence_penalty of this CreateCompletionRequest.
         :type presence_penalty: float
@@ -397,10 +403,10 @@ class CreateCompletionRequest(Model):
         :param seed: The seed of this CreateCompletionRequest.
         :type seed: int
         """
-        if seed is not None and seed > 9223372036854775807:  # noqa: E501
-            raise ValueError("Invalid value for `seed`, must be a value less than or equal to `9223372036854775807`")  # noqa: E501
-        if seed is not None and seed < -9223372036854775808:  # noqa: E501
-            raise ValueError("Invalid value for `seed`, must be a value greater than or equal to `-9223372036854775808`")  # noqa: E501
+        if seed is not None and seed > 9223372036854776000:  # noqa: E501
+            raise ValueError("Invalid value for `seed`, must be a value less than or equal to `9223372036854776000`")  # noqa: E501
+        if seed is not None and seed < -9223372036854776000:  # noqa: E501
+            raise ValueError("Invalid value for `seed`, must be a value greater than or equal to `-9223372036854776000`")  # noqa: E501
 
         self._seed = seed
 
@@ -447,6 +453,27 @@ class CreateCompletionRequest(Model):
         """
 
         self._stream = stream
+
+    @property
+    def stream_options(self) -> ChatCompletionStreamOptions:
+        """Gets the stream_options of this CreateCompletionRequest.
+
+
+        :return: The stream_options of this CreateCompletionRequest.
+        :rtype: ChatCompletionStreamOptions
+        """
+        return self._stream_options
+
+    @stream_options.setter
+    def stream_options(self, stream_options: ChatCompletionStreamOptions):
+        """Sets the stream_options of this CreateCompletionRequest.
+
+
+        :param stream_options: The stream_options of this CreateCompletionRequest.
+        :type stream_options: ChatCompletionStreamOptions
+        """
+
+        self._stream_options = stream_options
 
     @property
     def suffix(self) -> str:
@@ -529,7 +556,7 @@ class CreateCompletionRequest(Model):
     def user(self) -> str:
         """Gets the user of this CreateCompletionRequest.
 
-        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).   # noqa: E501
+        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).   # noqa: E501
 
         :return: The user of this CreateCompletionRequest.
         :rtype: str
@@ -540,7 +567,7 @@ class CreateCompletionRequest(Model):
     def user(self, user: str):
         """Sets the user of this CreateCompletionRequest.
 
-        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).   # noqa: E501
+        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).   # noqa: E501
 
         :param user: The user of this CreateCompletionRequest.
         :type user: str

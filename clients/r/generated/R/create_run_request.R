@@ -13,13 +13,15 @@
 #' @field additional_instructions Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions. character [optional]
 #' @field additional_messages Adds additional messages to the thread before creating the run. list(\link{CreateMessageRequest}) [optional]
 #' @field tools Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis. list(\link{AssistantObjectToolsInner}) [optional]
-#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. object [optional]
+#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. object [optional]
 #' @field temperature What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. numeric [optional]
+#' @field top_p An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10\% probability mass are considered.  We generally recommend altering this or temperature but not both. numeric [optional]
 #' @field stream If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. character [optional]
-#' @field max_prompt_tokens The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. integer [optional]
-#' @field max_completion_tokens The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. integer [optional]
+#' @field max_prompt_tokens The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. integer [optional]
+#' @field max_completion_tokens The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. integer [optional]
 #' @field truncation_strategy  \link{TruncationObject} [optional]
 #' @field tool_choice  \link{AssistantsApiToolChoiceOption} [optional]
+#' @field parallel_tool_calls Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. character [optional]
 #' @field response_format  \link{AssistantsApiResponseFormatOption} [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -35,11 +37,13 @@ CreateRunRequest <- R6::R6Class(
     `tools` = NULL,
     `metadata` = NULL,
     `temperature` = NULL,
+    `top_p` = NULL,
     `stream` = NULL,
     `max_prompt_tokens` = NULL,
     `max_completion_tokens` = NULL,
     `truncation_strategy` = NULL,
     `tool_choice` = NULL,
+    `parallel_tool_calls` = NULL,
     `response_format` = NULL,
 
     #' @description
@@ -51,16 +55,18 @@ CreateRunRequest <- R6::R6Class(
     #' @param additional_instructions Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions.
     #' @param additional_messages Adds additional messages to the thread before creating the run.
     #' @param tools Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
-    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
+    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
     #' @param temperature What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.. Default to 1.
+    #' @param top_p An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10\% probability mass are considered.  We generally recommend altering this or temperature but not both.. Default to 1.
     #' @param stream If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message.
-    #' @param max_prompt_tokens The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info.
-    #' @param max_completion_tokens The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `complete`. See `incomplete_details` for more info.
+    #' @param max_prompt_tokens The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info.
+    #' @param max_completion_tokens The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info.
     #' @param truncation_strategy truncation_strategy
     #' @param tool_choice tool_choice
+    #' @param parallel_tool_calls Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.. Default to TRUE.
     #' @param response_format response_format
     #' @param ... Other optional arguments.
-    initialize = function(`assistant_id`, `model` = NULL, `instructions` = NULL, `additional_instructions` = NULL, `additional_messages` = NULL, `tools` = NULL, `metadata` = NULL, `temperature` = 1, `stream` = NULL, `max_prompt_tokens` = NULL, `max_completion_tokens` = NULL, `truncation_strategy` = NULL, `tool_choice` = NULL, `response_format` = NULL, ...) {
+    initialize = function(`assistant_id`, `model` = NULL, `instructions` = NULL, `additional_instructions` = NULL, `additional_messages` = NULL, `tools` = NULL, `metadata` = NULL, `temperature` = 1, `top_p` = 1, `stream` = NULL, `max_prompt_tokens` = NULL, `max_completion_tokens` = NULL, `truncation_strategy` = NULL, `tool_choice` = NULL, `parallel_tool_calls` = TRUE, `response_format` = NULL, ...) {
       if (!missing(`assistant_id`)) {
         if (!(is.character(`assistant_id`) && length(`assistant_id`) == 1)) {
           stop(paste("Error! Invalid data for `assistant_id`. Must be a string:", `assistant_id`))
@@ -99,6 +105,9 @@ CreateRunRequest <- R6::R6Class(
       if (!is.null(`temperature`)) {
         self$`temperature` <- `temperature`
       }
+      if (!is.null(`top_p`)) {
+        self$`top_p` <- `top_p`
+      }
       if (!is.null(`stream`)) {
         if (!(is.logical(`stream`) && length(`stream`) == 1)) {
           stop(paste("Error! Invalid data for `stream`. Must be a boolean:", `stream`))
@@ -124,6 +133,12 @@ CreateRunRequest <- R6::R6Class(
       if (!is.null(`tool_choice`)) {
         stopifnot(R6::is.R6(`tool_choice`))
         self$`tool_choice` <- `tool_choice`
+      }
+      if (!is.null(`parallel_tool_calls`)) {
+        if (!(is.logical(`parallel_tool_calls`) && length(`parallel_tool_calls`) == 1)) {
+          stop(paste("Error! Invalid data for `parallel_tool_calls`. Must be a boolean:", `parallel_tool_calls`))
+        }
+        self$`parallel_tool_calls` <- `parallel_tool_calls`
       }
       if (!is.null(`response_format`)) {
         stopifnot(R6::is.R6(`response_format`))
@@ -194,6 +209,10 @@ CreateRunRequest <- R6::R6Class(
         CreateRunRequestObject[["temperature"]] <-
           self$`temperature`
       }
+      if (!is.null(self$`top_p`)) {
+        CreateRunRequestObject[["top_p"]] <-
+          self$`top_p`
+      }
       if (!is.null(self$`stream`)) {
         CreateRunRequestObject[["stream"]] <-
           self$`stream`
@@ -213,6 +232,10 @@ CreateRunRequest <- R6::R6Class(
       if (!is.null(self$`tool_choice`)) {
         CreateRunRequestObject[["tool_choice"]] <-
           self$`tool_choice`$toSimpleType()
+      }
+      if (!is.null(self$`parallel_tool_calls`)) {
+        CreateRunRequestObject[["parallel_tool_calls"]] <-
+          self$`parallel_tool_calls`
       }
       if (!is.null(self$`response_format`)) {
         CreateRunRequestObject[["response_format"]] <-
@@ -254,6 +277,9 @@ CreateRunRequest <- R6::R6Class(
       if (!is.null(this_object$`temperature`)) {
         self$`temperature` <- this_object$`temperature`
       }
+      if (!is.null(this_object$`top_p`)) {
+        self$`top_p` <- this_object$`top_p`
+      }
       if (!is.null(this_object$`stream`)) {
         self$`stream` <- this_object$`stream`
       }
@@ -272,6 +298,9 @@ CreateRunRequest <- R6::R6Class(
         `tool_choice_object` <- AssistantsApiToolChoiceOption$new()
         `tool_choice_object`$fromJSON(jsonlite::toJSON(this_object$`tool_choice`, auto_unbox = TRUE, digits = NA))
         self$`tool_choice` <- `tool_choice_object`
+      }
+      if (!is.null(this_object$`parallel_tool_calls`)) {
+        self$`parallel_tool_calls` <- this_object$`parallel_tool_calls`
       }
       if (!is.null(this_object$`response_format`)) {
         `response_format_object` <- AssistantsApiResponseFormatOption$new()
@@ -307,11 +336,13 @@ CreateRunRequest <- R6::R6Class(
       self$`tools` <- ApiClient$new()$deserializeObj(this_object$`tools`, "array[AssistantObjectToolsInner]", loadNamespace("openapi"))
       self$`metadata` <- this_object$`metadata`
       self$`temperature` <- this_object$`temperature`
+      self$`top_p` <- this_object$`top_p`
       self$`stream` <- this_object$`stream`
       self$`max_prompt_tokens` <- this_object$`max_prompt_tokens`
       self$`max_completion_tokens` <- this_object$`max_completion_tokens`
       self$`truncation_strategy` <- TruncationObject$new()$fromJSON(jsonlite::toJSON(this_object$`truncation_strategy`, auto_unbox = TRUE, digits = NA))
       self$`tool_choice` <- AssistantsApiToolChoiceOption$new()$fromJSON(jsonlite::toJSON(this_object$`tool_choice`, auto_unbox = TRUE, digits = NA))
+      self$`parallel_tool_calls` <- this_object$`parallel_tool_calls`
       self$`response_format` <- AssistantsApiResponseFormatOption$new()$fromJSON(jsonlite::toJSON(this_object$`response_format`, auto_unbox = TRUE, digits = NA))
       self
     },
@@ -361,6 +392,13 @@ CreateRunRequest <- R6::R6Class(
         return(FALSE)
       }
 
+      if (self$`top_p` > 1) {
+        return(FALSE)
+      }
+      if (self$`top_p` < 0) {
+        return(FALSE)
+      }
+
       if (self$`max_prompt_tokens` < 256) {
         return(FALSE)
       }
@@ -392,6 +430,13 @@ CreateRunRequest <- R6::R6Class(
       }
       if (self$`temperature` < 0) {
         invalid_fields["temperature"] <- "Invalid value for `temperature`, must be bigger than or equal to 0."
+      }
+
+      if (self$`top_p` > 1) {
+        invalid_fields["top_p"] <- "Invalid value for `top_p`, must be smaller than or equal to 1."
+      }
+      if (self$`top_p` < 0) {
+        invalid_fields["top_p"] <- "Invalid value for `top_p`, must be bigger than or equal to 0."
       }
 
       if (self$`max_prompt_tokens` < 256) {

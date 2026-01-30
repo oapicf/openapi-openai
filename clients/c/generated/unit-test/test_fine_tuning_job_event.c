@@ -22,19 +22,23 @@ fine_tuning_job_event_t* instantiate_fine_tuning_job_event(int include_optional)
   fine_tuning_job_event_t* fine_tuning_job_event = NULL;
   if (include_optional) {
     fine_tuning_job_event = fine_tuning_job_event_create(
+      openai_api_fine_tuning_job_event_OBJECT_fine_tuning.job.event,
       "0",
       56,
       openai_api_fine_tuning_job_event_LEVEL_info,
       "0",
-      openai_api_fine_tuning_job_event_OBJECT_fine_tuning.job.event
+      openai_api_fine_tuning_job_event_TYPE_message,
+      0
     );
   } else {
     fine_tuning_job_event = fine_tuning_job_event_create(
+      openai_api_fine_tuning_job_event_OBJECT_fine_tuning.job.event,
       "0",
       56,
       openai_api_fine_tuning_job_event_LEVEL_info,
       "0",
-      openai_api_fine_tuning_job_event_OBJECT_fine_tuning.job.event
+      openai_api_fine_tuning_job_event_TYPE_message,
+      0
     );
   }
 

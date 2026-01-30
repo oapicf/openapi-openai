@@ -18,9 +18,9 @@ class ListMessagesResponse
 
     /**
      * @DTA\Data(field="data")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection43::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection43::class})
-     * @var \App\DTO\Collection43|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection137::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection137::class})
+     * @var \App\DTO\Collection137|null
      */
     public $data;
 

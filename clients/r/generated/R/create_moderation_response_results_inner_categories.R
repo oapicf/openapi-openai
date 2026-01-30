@@ -11,6 +11,8 @@
 #' @field hate/threatening Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. character
 #' @field harassment Content that expresses, incites, or promotes harassing language towards any target. character
 #' @field harassment/threatening Harassment content that also includes violence or serious harm towards any target. character
+#' @field illicit Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category. character
+#' @field illicit/violent Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon. character
 #' @field self-harm Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders. character
 #' @field self-harm/intent Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders. character
 #' @field self-harm/instructions Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts. character
@@ -28,6 +30,8 @@ CreateModerationResponseResultsInnerCategories <- R6::R6Class(
     `hate/threatening` = NULL,
     `harassment` = NULL,
     `harassment/threatening` = NULL,
+    `illicit` = NULL,
+    `illicit/violent` = NULL,
     `self-harm` = NULL,
     `self-harm/intent` = NULL,
     `self-harm/instructions` = NULL,
@@ -43,6 +47,8 @@ CreateModerationResponseResultsInnerCategories <- R6::R6Class(
     #' @param hate/threatening Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.
     #' @param harassment Content that expresses, incites, or promotes harassing language towards any target.
     #' @param harassment/threatening Harassment content that also includes violence or serious harm towards any target.
+    #' @param illicit Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
+    #' @param illicit/violent Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
     #' @param self-harm Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
     #' @param self-harm/intent Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.
     #' @param self-harm/instructions Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.
@@ -51,7 +57,7 @@ CreateModerationResponseResultsInnerCategories <- R6::R6Class(
     #' @param violence Content that depicts death, violence, or physical injury.
     #' @param violence/graphic Content that depicts death, violence, or physical injury in graphic detail.
     #' @param ... Other optional arguments.
-    initialize = function(`hate`, `hate/threatening`, `harassment`, `harassment/threatening`, `self-harm`, `self-harm/intent`, `self-harm/instructions`, `sexual`, `sexual/minors`, `violence`, `violence/graphic`, ...) {
+    initialize = function(`hate`, `hate/threatening`, `harassment`, `harassment/threatening`, `illicit`, `illicit/violent`, `self-harm`, `self-harm/intent`, `self-harm/instructions`, `sexual`, `sexual/minors`, `violence`, `violence/graphic`, ...) {
       if (!missing(`hate`)) {
         if (!(is.logical(`hate`) && length(`hate`) == 1)) {
           stop(paste("Error! Invalid data for `hate`. Must be a boolean:", `hate`))
@@ -75,6 +81,18 @@ CreateModerationResponseResultsInnerCategories <- R6::R6Class(
           stop(paste("Error! Invalid data for `harassment/threatening`. Must be a boolean:", `harassment/threatening`))
         }
         self$`harassment/threatening` <- `harassment/threatening`
+      }
+      if (!missing(`illicit`)) {
+        if (!(is.logical(`illicit`) && length(`illicit`) == 1)) {
+          stop(paste("Error! Invalid data for `illicit`. Must be a boolean:", `illicit`))
+        }
+        self$`illicit` <- `illicit`
+      }
+      if (!missing(`illicit/violent`)) {
+        if (!(is.logical(`illicit/violent`) && length(`illicit/violent`) == 1)) {
+          stop(paste("Error! Invalid data for `illicit/violent`. Must be a boolean:", `illicit/violent`))
+        }
+        self$`illicit/violent` <- `illicit/violent`
       }
       if (!missing(`self-harm`)) {
         if (!(is.logical(`self-harm`) && length(`self-harm`) == 1)) {
@@ -167,6 +185,14 @@ CreateModerationResponseResultsInnerCategories <- R6::R6Class(
         CreateModerationResponseResultsInnerCategoriesObject[["harassment/threatening"]] <-
           self$`harassment/threatening`
       }
+      if (!is.null(self$`illicit`)) {
+        CreateModerationResponseResultsInnerCategoriesObject[["illicit"]] <-
+          self$`illicit`
+      }
+      if (!is.null(self$`illicit/violent`)) {
+        CreateModerationResponseResultsInnerCategoriesObject[["illicit/violent"]] <-
+          self$`illicit/violent`
+      }
       if (!is.null(self$`self-harm`)) {
         CreateModerationResponseResultsInnerCategoriesObject[["self-harm"]] <-
           self$`self-harm`
@@ -217,6 +243,12 @@ CreateModerationResponseResultsInnerCategories <- R6::R6Class(
       if (!is.null(this_object$`harassment/threatening`)) {
         self$`harassment/threatening` <- this_object$`harassment/threatening`
       }
+      if (!is.null(this_object$`illicit`)) {
+        self$`illicit` <- this_object$`illicit`
+      }
+      if (!is.null(this_object$`illicit/violent`)) {
+        self$`illicit/violent` <- this_object$`illicit/violent`
+      }
       if (!is.null(this_object$`self-harm`)) {
         self$`self-harm` <- this_object$`self-harm`
       }
@@ -263,6 +295,8 @@ CreateModerationResponseResultsInnerCategories <- R6::R6Class(
       self$`hate/threatening` <- this_object$`hate/threatening`
       self$`harassment` <- this_object$`harassment`
       self$`harassment/threatening` <- this_object$`harassment/threatening`
+      self$`illicit` <- this_object$`illicit`
+      self$`illicit/violent` <- this_object$`illicit/violent`
       self$`self-harm` <- this_object$`self-harm`
       self$`self-harm/intent` <- this_object$`self-harm/intent`
       self$`self-harm/instructions` <- this_object$`self-harm/instructions`
@@ -310,6 +344,22 @@ CreateModerationResponseResultsInnerCategories <- R6::R6Class(
         }
       } else {
         stop(paste("The JSON input `", input, "` is invalid for CreateModerationResponseResultsInnerCategories: the required field `harassment/threatening` is missing."))
+      }
+      # check the required field `illicit`
+      if (!is.null(input_json$`illicit`)) {
+        if (!(is.logical(input_json$`illicit`) && length(input_json$`illicit`) == 1)) {
+          stop(paste("Error! Invalid data for `illicit`. Must be a boolean:", input_json$`illicit`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for CreateModerationResponseResultsInnerCategories: the required field `illicit` is missing."))
+      }
+      # check the required field `illicit/violent`
+      if (!is.null(input_json$`illicit/violent`)) {
+        if (!(is.logical(input_json$`illicit/violent`) && length(input_json$`illicit/violent`) == 1)) {
+          stop(paste("Error! Invalid data for `illicit/violent`. Must be a boolean:", input_json$`illicit/violent`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for CreateModerationResponseResultsInnerCategories: the required field `illicit/violent` is missing."))
       }
       # check the required field `self-harm`
       if (!is.null(input_json$`self-harm`)) {
@@ -402,6 +452,16 @@ CreateModerationResponseResultsInnerCategories <- R6::R6Class(
         return(FALSE)
       }
 
+      # check if the required `illicit` is null
+      if (is.null(self$`illicit`)) {
+        return(FALSE)
+      }
+
+      # check if the required `illicit/violent` is null
+      if (is.null(self$`illicit/violent`)) {
+        return(FALSE)
+      }
+
       # check if the required `self-harm` is null
       if (is.null(self$`self-harm`)) {
         return(FALSE)
@@ -464,6 +524,16 @@ CreateModerationResponseResultsInnerCategories <- R6::R6Class(
       # check if the required `harassment/threatening` is null
       if (is.null(self$`harassment/threatening`)) {
         invalid_fields["harassment/threatening"] <- "Non-nullable required field `harassment/threatening` cannot be null."
+      }
+
+      # check if the required `illicit` is null
+      if (is.null(self$`illicit`)) {
+        invalid_fields["illicit"] <- "Non-nullable required field `illicit` cannot be null."
+      }
+
+      # check if the required `illicit/violent` is null
+      if (is.null(self$`illicit/violent`)) {
+        invalid_fields["illicit/violent"] <- "Non-nullable required field `illicit/violent` cannot be null."
       }
 
       # check if the required `self-harm` is null

@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -19,8 +19,7 @@ type ChatCompletionRequestToolMessage struct {
 	// The role of the messages author, in this case `tool`.
 	Role string `json:"role"`
 
-	// The contents of the tool message.
-	Content string `json:"content"`
+	Content ChatCompletionRequestToolMessageContent `json:"content"`
 
 	// Tool call that this message is responding to.
 	ToolCallId string `json:"tool_call_id"`
@@ -39,10 +38,16 @@ func AssertChatCompletionRequestToolMessageRequired(obj ChatCompletionRequestToo
 		}
 	}
 
+	if err := AssertChatCompletionRequestToolMessageContentRequired(obj.Content); err != nil {
+		return err
+	}
 	return nil
 }
 
 // AssertChatCompletionRequestToolMessageConstraints checks if the values respects the defined constraints
 func AssertChatCompletionRequestToolMessageConstraints(obj ChatCompletionRequestToolMessage) error {
+	if err := AssertChatCompletionRequestToolMessageContentConstraints(obj.Content); err != nil {
+		return err
+	}
 	return nil
 }

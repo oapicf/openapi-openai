@@ -2,6 +2,7 @@ namespace OpenAPI.Model
 
 open System
 open System.Collections.Generic
+open OpenAPI.Model.CreateMessageRequestAttachmentsInner
 open OpenAPI.Model.MessageObjectContentInner
 open OpenAPI.Model.MessageObjectIncompleteDetails
 open OpenAPI.Model.int option
@@ -34,7 +35,7 @@ module MessageObject =
     Content : MessageObjectContentInner[];
     AssistantId : string option;
     RunId : string option;
-    FileIds : string[];
+    Attachments : CreateMessageRequestAttachmentsInner[];
     Metadata : obj;
   }
   //#endregion

@@ -1,0 +1,27 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "id" },
+      {"model": "object" },
+      {"model": "created_at" },
+      {"model": "name" },
+      {"model": "usage_bytes" },
+      {"model": "file_counts" },
+      {"model": "status" },
+      {"model": "expires_after" },
+      {"model": "expires_at" },
+      {"model": "last_active_at" },
+      {"model": "metadata" },
+    ]
+  }]
+}

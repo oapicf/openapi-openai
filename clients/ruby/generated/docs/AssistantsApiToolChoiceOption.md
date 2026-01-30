@@ -14,7 +14,7 @@ require 'openapi_openai'
 OpenApiOpenAIClient::AssistantsApiToolChoiceOption.openapi_one_of
 # =>
 # [
-#   :'AssistantsApiNamedToolChoice',
+#   :'AssistantsNamedToolChoice',
 #   :'String'
 # ]
 ```
@@ -29,7 +29,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'openapi_openai'
 
 OpenApiOpenAIClient::AssistantsApiToolChoiceOption.build(data)
-# => #<AssistantsApiNamedToolChoice:0x00007fdd4aab02a0>
+# => #<AssistantsNamedToolChoice:0x00007fdd4aab02a0>
 
 OpenApiOpenAIClient::AssistantsApiToolChoiceOption.build(data_that_doesnt_match)
 # => nil
@@ -43,7 +43,7 @@ OpenApiOpenAIClient::AssistantsApiToolChoiceOption.build(data_that_doesnt_match)
 
 #### Return type
 
-- `AssistantsApiNamedToolChoice`
+- `AssistantsNamedToolChoice`
 - `String`
 - `nil` (if no type matches)
 

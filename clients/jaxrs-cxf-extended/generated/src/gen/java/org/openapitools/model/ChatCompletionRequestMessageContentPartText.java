@@ -10,6 +10,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
+/**
+ * Learn about [text inputs](/docs/guides/text-generation). 
+ */
+@ApiModel(description="Learn about [text inputs](/docs/guides/text-generation). ")
+
 public class ChatCompletionRequestMessageContentPartText  {
   
 public enum TypeEnum {

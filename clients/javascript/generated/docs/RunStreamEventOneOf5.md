@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Enum: EventEnum
 
 
-* `thread.run.failed` (value: `"thread.run.failed"`)
+* `thread.run.incomplete` (value: `"thread.run.incomplete"`)
 
 
 

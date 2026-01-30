@@ -10,16 +10,16 @@ import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.RunObject;
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
+ * Occurs when a [run](/docs/api-reference/runs/object) moves to a &#x60;cancelling&#x60; status.
  */
-@ApiModel(description = "Occurs when a [run](/docs/api-reference/runs/object) is cancelled.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description = "Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStreamEventOneOf7   {
   /**
    * Gets or Sets event
    */
   public enum EventEnum {
-    THREAD_RUN_CANCELLED("thread.run.cancelled");
+    THREAD_RUN_CANCELLING("thread.run.cancelling");
 
     private String value;
 

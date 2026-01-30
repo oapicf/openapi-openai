@@ -1,0 +1,43 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ListAuditLogsResponse",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "ListAuditLogsResponse_object",
+        "symbols": [
+          "list"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": {
+        "type": "array",
+        "items": "model.AuditLog"
+      },
+      "doc": ""
+    },
+    {
+      "name": "first_id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "last_id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "has_more",
+      "type": "boolean",
+      "doc": ""
+    }
+  ]
+
+}

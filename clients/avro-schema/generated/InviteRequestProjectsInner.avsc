@@ -1,0 +1,26 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "InviteRequestProjectsInner",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "Project's public ID"
+    },
+    {
+      "name": "role",
+      "type": {
+        "type": "enum",
+        "name": "InviteRequestProjectsInner_role",
+        "symbols": [
+          "member",
+          "owner"
+        ]
+      },
+      "doc": "Project membership role"
+    }
+  ]
+
+}

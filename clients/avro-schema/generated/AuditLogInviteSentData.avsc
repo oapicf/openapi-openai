@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The payload used to create the invite.",
+  "name": "AuditLogInviteSentData",
+  "fields": [
+    {
+      "name": "email",
+      "type": ["null", "string"],
+      "doc": "The email invited to the organization.",
+      "default": null
+    },
+    {
+      "name": "role",
+      "type": ["null", "string"],
+      "doc": "The role the email was invited to be. Is either `owner` or `member`.",
+      "default": null
+    }
+  ]
+
+}

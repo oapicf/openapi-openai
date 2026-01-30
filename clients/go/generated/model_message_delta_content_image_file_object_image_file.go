@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -20,8 +20,10 @@ var _ MappedNullable = &MessageDeltaContentImageFileObjectImageFile{}
 
 // MessageDeltaContentImageFileObjectImageFile struct for MessageDeltaContentImageFileObjectImageFile
 type MessageDeltaContentImageFileObjectImageFile struct {
-	// The [File](/docs/api-reference/files) ID of the image in the message content.
+	// The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content.
 	FileId *string `json:"file_id,omitempty"`
+	// Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
+	Detail *string `json:"detail,omitempty"`
 }
 
 // NewMessageDeltaContentImageFileObjectImageFile instantiates a new MessageDeltaContentImageFileObjectImageFile object
@@ -30,6 +32,8 @@ type MessageDeltaContentImageFileObjectImageFile struct {
 // will change when the set of required properties is changed
 func NewMessageDeltaContentImageFileObjectImageFile() *MessageDeltaContentImageFileObjectImageFile {
 	this := MessageDeltaContentImageFileObjectImageFile{}
+	var detail string = "auto"
+	this.Detail = &detail
 	return &this
 }
 
@@ -38,6 +42,8 @@ func NewMessageDeltaContentImageFileObjectImageFile() *MessageDeltaContentImageF
 // but it doesn't guarantee that properties required by API are set
 func NewMessageDeltaContentImageFileObjectImageFileWithDefaults() *MessageDeltaContentImageFileObjectImageFile {
 	this := MessageDeltaContentImageFileObjectImageFile{}
+	var detail string = "auto"
+	this.Detail = &detail
 	return &this
 }
 
@@ -73,6 +79,38 @@ func (o *MessageDeltaContentImageFileObjectImageFile) SetFileId(v string) {
 	o.FileId = &v
 }
 
+// GetDetail returns the Detail field value if set, zero value otherwise.
+func (o *MessageDeltaContentImageFileObjectImageFile) GetDetail() string {
+	if o == nil || IsNil(o.Detail) {
+		var ret string
+		return ret
+	}
+	return *o.Detail
+}
+
+// GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MessageDeltaContentImageFileObjectImageFile) GetDetailOk() (*string, bool) {
+	if o == nil || IsNil(o.Detail) {
+		return nil, false
+	}
+	return o.Detail, true
+}
+
+// HasDetail returns a boolean if a field has been set.
+func (o *MessageDeltaContentImageFileObjectImageFile) HasDetail() bool {
+	if o != nil && !IsNil(o.Detail) {
+		return true
+	}
+
+	return false
+}
+
+// SetDetail gets a reference to the given string and assigns it to the Detail field.
+func (o *MessageDeltaContentImageFileObjectImageFile) SetDetail(v string) {
+	o.Detail = &v
+}
+
 func (o MessageDeltaContentImageFileObjectImageFile) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -85,6 +123,9 @@ func (o MessageDeltaContentImageFileObjectImageFile) ToMap() (map[string]interfa
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.FileId) {
 		toSerialize["file_id"] = o.FileId
+	}
+	if !IsNil(o.Detail) {
+		toSerialize["detail"] = o.Detail
 	}
 	return toSerialize, nil
 }

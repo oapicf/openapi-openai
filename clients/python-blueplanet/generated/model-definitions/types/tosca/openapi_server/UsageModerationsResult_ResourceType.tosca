@@ -1,0 +1,66 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server UsageModerationsResult"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a UsageModerationsResult"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  UsageModerationsResult {
+    title = UsageModerationsResult
+    description = UsageModerationsResult
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          enum = ["organization.usage.moderations.result"]
+          optional = true
+        }
+        input_tokens {
+          type =  integer
+          description = "The aggregated number of input tokens used."
+          optional = true
+        }
+        num_model_requests {
+          type =  integer
+          description = "The count of requests made to the model."
+          optional = true
+        }
+        project_id {
+          type =  string
+          description = "When &#x60;group_by&#x3D;project_id&#x60;, this field provides the project ID of the grouped usage result."
+          optional = false
+        }
+        user_id {
+          type =  string
+          description = "When &#x60;group_by&#x3D;user_id&#x60;, this field provides the user ID of the grouped usage result."
+          optional = false
+        }
+        api_key_id {
+          type =  string
+          description = "When &#x60;group_by&#x3D;api_key_id&#x60;, this field provides the API key ID of the grouped usage result."
+          optional = false
+        }
+        model {
+          type =  string
+          description = "When &#x60;group_by&#x3D;model&#x60;, this field provides the model name of the grouped usage result."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  UsageModerationsResult {
+    title = UsageModerationsResult
+    description = UsageModerationsResult
+    implements = openapi_server.resourceTypes.UsageModerationsResult
+
+  }
+}

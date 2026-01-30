@@ -1,0 +1,30 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AuditLogEventType"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AuditLogEventType"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  AuditLogEventType {
+    title = AuditLogEventType
+    description = AuditLogEventType
+    derivedFrom = Root
+    properties {
+    }
+  }
+}
+
+serviceTemplates {
+
+  AuditLogEventType {
+    title = AuditLogEventType
+    description = AuditLogEventType
+    implements = openapi_server.resourceTypes.AuditLogEventType
+
+  }
+}

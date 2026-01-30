@@ -17,7 +17,7 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * Occurs when parts of a [run step](/docs/api-reference/runs/step-object) are being streamed.
+ * Occurs when parts of a [run step](/docs/api-reference/run-steps/step-object) are being streamed.
  * @param event 
  * @param &#x60;data&#x60; 
  */

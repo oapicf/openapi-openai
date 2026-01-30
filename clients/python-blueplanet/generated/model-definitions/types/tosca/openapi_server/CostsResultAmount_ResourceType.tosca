@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CostsResultAmount"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CostsResultAmount"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  CostsResultAmount {
+    title = CostsResultAmount
+    description = CostsResultAmount
+    derivedFrom = Root
+    properties {
+        value {
+          type =  
+          description = "The numeric value of the cost."
+          optional = false
+        }
+        currency {
+          type =  string
+          description = "Lowercase ISO-4217 currency e.g. \&quot;usd\&quot;"
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CostsResultAmount {
+    title = CostsResultAmount
+    description = CostsResultAmount
+    implements = openapi_server.resourceTypes.CostsResultAmount
+
+  }
+}

@@ -1,7 +1,7 @@
 #' Create a new RunStepStreamEventOneOf4
 #'
 #' @description
-#' Occurs when a [run step](/docs/api-reference/runs/step-object) fails.
+#' Occurs when a [run step](/docs/api-reference/run-steps/step-object) fails.
 #'
 #' @docType class
 #' @title RunStepStreamEventOneOf4

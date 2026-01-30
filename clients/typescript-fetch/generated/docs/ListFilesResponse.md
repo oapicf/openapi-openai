@@ -6,8 +6,11 @@
 
 Name | Type
 ------------ | -------------
-`data` | [Array&lt;OpenAIFile&gt;](OpenAIFile.md)
 `object` | string
+`data` | [Array&lt;OpenAIFile&gt;](OpenAIFile.md)
+`firstId` | string
+`lastId` | string
+`hasMore` | boolean
 
 ## Example
 
@@ -16,8 +19,11 @@ import type { ListFilesResponse } from ''
 
 // TODO: Update the object below with actual values
 const example = {
+  "object": list,
   "data": null,
-  "object": null,
+  "firstId": file-abc123,
+  "lastId": file-abc456,
+  "hasMore": false,
 } satisfies ListFilesResponse
 
 console.log(example)

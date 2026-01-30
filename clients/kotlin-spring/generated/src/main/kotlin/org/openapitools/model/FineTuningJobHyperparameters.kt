@@ -2,7 +2,9 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
-import org.openapitools.model.FineTuningJobHyperparametersNEpochs
+import org.openapitools.model.CreateFineTuningJobRequestHyperparametersBatchSize
+import org.openapitools.model.CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+import org.openapitools.model.CreateFineTuningJobRequestHyperparametersNEpochs
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -15,14 +17,24 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+ * The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.
+ * @param batchSize 
+ * @param learningRateMultiplier 
  * @param nEpochs 
  */
 data class FineTuningJobHyperparameters(
 
     @field:Valid
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("n_epochs", required = true) val nEpochs: FineTuningJobHyperparametersNEpochs
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("batch_size") val batchSize: CreateFineTuningJobRequestHyperparametersBatchSize? = null,
+
+    @field:Valid
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("learning_rate_multiplier") val learningRateMultiplier: CreateFineTuningJobRequestHyperparametersLearningRateMultiplier? = null,
+
+    @field:Valid
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("n_epochs") val nEpochs: CreateFineTuningJobRequestHyperparametersNEpochs? = null
 ) {
 
 }

@@ -8,7 +8,7 @@ import org.openapitools._
 import org.openapitools.models.RunStepObject
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is created.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is created.
  * @param event 
  * @param data 
  */

@@ -1,0 +1,27 @@
+
+<h2>RealtimeServerEventConversationItemCreated</h2>
+<ul class="parameter">
+  <li class="param-required-true">eventUnderscoreid : String
+    <br/>The unique ID of the server event.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">type : String
+    <br/>The event type, must be &#x60;conversation.item.created&#x60;.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>conversation.item.created</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">previousUnderscoreitemUnderscoreid : String
+    <br/>The ID of the preceding item in the Conversation context, allows the  client to understand the order of the conversation. 
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">item : RealtimeConversationItem
+    <br/>
+  </li>
+</ul>

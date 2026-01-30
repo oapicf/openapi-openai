@@ -1,7 +1,7 @@
 /*
  * RunStepStreamEvent_oneOf_6.h
  *
- * Occurs when a [run step](/docs/api-reference/runs/step-object) expires.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires.
  */
 
 #ifndef _RunStepStreamEvent_oneOf_6_H_
@@ -21,7 +21,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief Occurs when a [run step](/docs/api-reference/runs/step-object) expires.
+/*! \brief Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires.
  *
  *  \ingroup Models
  *

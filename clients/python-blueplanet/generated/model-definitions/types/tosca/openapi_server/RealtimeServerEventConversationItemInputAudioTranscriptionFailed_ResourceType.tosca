@@ -1,0 +1,57 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventConversationItemInputAudioTranscriptionFailed"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventConversationItemInputAudioTranscriptionFailed"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RealtimeServerEventConversationItemInputAudioTranscriptionFailedError = openapi_server.resourceTypes.RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
+}
+resourceTypes {
+
+  RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
+    title = RealtimeServerEventConversationItemInputAudioTranscriptionFailed
+    description = RealtimeServerEventConversationItemInputAudioTranscriptionFailed
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "The unique ID of the server event."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;conversation.item.input_audio_transcription.failed&#x60;. "
+          enum = ["conversation.item.input_audio_transcription.failed"]
+          optional = true
+        }
+        item_id {
+          type =  string
+          description = "The ID of the user message item."
+          optional = true
+        }
+        content_index {
+          type =  integer
+          description = "The index of the content part containing the audio."
+          optional = true
+        }
+        error {
+          type = RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
+    title = RealtimeServerEventConversationItemInputAudioTranscriptionFailed
+    description = RealtimeServerEventConversationItemInputAudioTranscriptionFailed
+    implements = openapi_server.resourceTypes.RealtimeServerEventConversationItemInputAudioTranscriptionFailed
+
+  }
+}

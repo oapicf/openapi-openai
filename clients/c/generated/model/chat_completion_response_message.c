@@ -24,18 +24,22 @@ openai_api_chat_completion_response_message_ROLE_e chat_completion_response_mess
 
 static chat_completion_response_message_t *chat_completion_response_message_create_internal(
     char *content,
+    char *refusal,
     list_t *tool_calls,
     openai_api_chat_completion_response_message_ROLE_e role,
-    chat_completion_request_assistant_message_function_call_t *function_call
+    chat_completion_response_message_function_call_t *function_call,
+    chat_completion_response_message_audio_t *audio
     ) {
     chat_completion_response_message_t *chat_completion_response_message_local_var = malloc(sizeof(chat_completion_response_message_t));
     if (!chat_completion_response_message_local_var) {
         return NULL;
     }
     chat_completion_response_message_local_var->content = content;
+    chat_completion_response_message_local_var->refusal = refusal;
     chat_completion_response_message_local_var->tool_calls = tool_calls;
     chat_completion_response_message_local_var->role = role;
     chat_completion_response_message_local_var->function_call = function_call;
+    chat_completion_response_message_local_var->audio = audio;
 
     chat_completion_response_message_local_var->_library_owned = 1;
     return chat_completion_response_message_local_var;
@@ -43,15 +47,19 @@ static chat_completion_response_message_t *chat_completion_response_message_crea
 
 __attribute__((deprecated)) chat_completion_response_message_t *chat_completion_response_message_create(
     char *content,
+    char *refusal,
     list_t *tool_calls,
     openai_api_chat_completion_response_message_ROLE_e role,
-    chat_completion_request_assistant_message_function_call_t *function_call
+    chat_completion_response_message_function_call_t *function_call,
+    chat_completion_response_message_audio_t *audio
     ) {
     return chat_completion_response_message_create_internal (
         content,
+        refusal,
         tool_calls,
         role,
-        function_call
+        function_call,
+        audio
         );
 }
 
@@ -68,6 +76,10 @@ void chat_completion_response_message_free(chat_completion_response_message_t *c
         free(chat_completion_response_message->content);
         chat_completion_response_message->content = NULL;
     }
+    if (chat_completion_response_message->refusal) {
+        free(chat_completion_response_message->refusal);
+        chat_completion_response_message->refusal = NULL;
+    }
     if (chat_completion_response_message->tool_calls) {
         list_ForEach(listEntry, chat_completion_response_message->tool_calls) {
             chat_completion_message_tool_call_free(listEntry->data);
@@ -76,8 +88,12 @@ void chat_completion_response_message_free(chat_completion_response_message_t *c
         chat_completion_response_message->tool_calls = NULL;
     }
     if (chat_completion_response_message->function_call) {
-        chat_completion_request_assistant_message_function_call_free(chat_completion_response_message->function_call);
+        chat_completion_response_message_function_call_free(chat_completion_response_message->function_call);
         chat_completion_response_message->function_call = NULL;
+    }
+    if (chat_completion_response_message->audio) {
+        chat_completion_response_message_audio_free(chat_completion_response_message->audio);
+        chat_completion_response_message->audio = NULL;
     }
     free(chat_completion_response_message);
 }
@@ -90,6 +106,15 @@ cJSON *chat_completion_response_message_convertToJSON(chat_completion_response_m
         goto fail;
     }
     if(cJSON_AddStringToObject(item, "content", chat_completion_response_message->content) == NULL) {
+    goto fail; //String
+    }
+
+
+    // chat_completion_response_message->refusal
+    if (!chat_completion_response_message->refusal) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "refusal", chat_completion_response_message->refusal) == NULL) {
     goto fail; //String
     }
 
@@ -126,11 +151,24 @@ cJSON *chat_completion_response_message_convertToJSON(chat_completion_response_m
 
     // chat_completion_response_message->function_call
     if(chat_completion_response_message->function_call) {
-    cJSON *function_call_local_JSON = chat_completion_request_assistant_message_function_call_convertToJSON(chat_completion_response_message->function_call);
+    cJSON *function_call_local_JSON = chat_completion_response_message_function_call_convertToJSON(chat_completion_response_message->function_call);
     if(function_call_local_JSON == NULL) {
     goto fail; //model
     }
     cJSON_AddItemToObject(item, "function_call", function_call_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
+    // chat_completion_response_message->audio
+    if(chat_completion_response_message->audio) {
+    cJSON *audio_local_JSON = chat_completion_response_message_audio_convertToJSON(chat_completion_response_message->audio);
+    if(audio_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "audio", audio_local_JSON);
     if(item->child == NULL) {
     goto fail;
     }
@@ -152,7 +190,10 @@ chat_completion_response_message_t *chat_completion_response_message_parseFromJS
     list_t *tool_callsList = NULL;
 
     // define the local variable for chat_completion_response_message->function_call
-    chat_completion_request_assistant_message_function_call_t *function_call_local_nonprim = NULL;
+    chat_completion_response_message_function_call_t *function_call_local_nonprim = NULL;
+
+    // define the local variable for chat_completion_response_message->audio
+    chat_completion_response_message_audio_t *audio_local_nonprim = NULL;
 
     // chat_completion_response_message->content
     cJSON *content = cJSON_GetObjectItemCaseSensitive(chat_completion_response_messageJSON, "content");
@@ -165,6 +206,21 @@ chat_completion_response_message_t *chat_completion_response_message_parseFromJS
 
     
     if(!cJSON_IsString(content))
+    {
+    goto end; //String
+    }
+
+    // chat_completion_response_message->refusal
+    cJSON *refusal = cJSON_GetObjectItemCaseSensitive(chat_completion_response_messageJSON, "refusal");
+    if (cJSON_IsNull(refusal)) {
+        refusal = NULL;
+    }
+    if (!refusal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(refusal))
     {
     goto end; //String
     }
@@ -216,15 +272,26 @@ chat_completion_response_message_t *chat_completion_response_message_parseFromJS
         function_call = NULL;
     }
     if (function_call) { 
-    function_call_local_nonprim = chat_completion_request_assistant_message_function_call_parseFromJSON(function_call); //nonprimitive
+    function_call_local_nonprim = chat_completion_response_message_function_call_parseFromJSON(function_call); //nonprimitive
+    }
+
+    // chat_completion_response_message->audio
+    cJSON *audio = cJSON_GetObjectItemCaseSensitive(chat_completion_response_messageJSON, "audio");
+    if (cJSON_IsNull(audio)) {
+        audio = NULL;
+    }
+    if (audio) { 
+    audio_local_nonprim = chat_completion_response_message_audio_parseFromJSON(audio); //nonprimitive
     }
 
 
     chat_completion_response_message_local_var = chat_completion_response_message_create_internal (
         strdup(content->valuestring),
+        strdup(refusal->valuestring),
         tool_calls ? tool_callsList : NULL,
         roleVariable,
-        function_call ? function_call_local_nonprim : NULL
+        function_call ? function_call_local_nonprim : NULL,
+        audio ? audio_local_nonprim : NULL
         );
 
     return chat_completion_response_message_local_var;
@@ -239,8 +306,12 @@ end:
         tool_callsList = NULL;
     }
     if (function_call_local_nonprim) {
-        chat_completion_request_assistant_message_function_call_free(function_call_local_nonprim);
+        chat_completion_response_message_function_call_free(function_call_local_nonprim);
         function_call_local_nonprim = NULL;
+    }
+    if (audio_local_nonprim) {
+        chat_completion_response_message_audio_free(audio_local_nonprim);
+        audio_local_nonprim = NULL;
     }
     return NULL;
 

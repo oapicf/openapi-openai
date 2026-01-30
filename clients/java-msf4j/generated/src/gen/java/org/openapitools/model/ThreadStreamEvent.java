@@ -12,8 +12,11 @@ import org.openapitools.model.ThreadObject;
  * Occurs when a new [thread](/docs/api-reference/threads/object) is created.
  */
 @ApiModel(description = "Occurs when a new [thread](/docs/api-reference/threads/object) is created.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ThreadStreamEvent   {
+  @JsonProperty("enabled")
+  private Boolean enabled;
+
   /**
    * Gets or Sets event
    */
@@ -48,6 +51,24 @@ public class ThreadStreamEvent   {
 
   @JsonProperty("data")
   private ThreadObject data;
+
+  public ThreadStreamEvent enabled(Boolean enabled) {
+    this.enabled = enabled;
+    return this;
+  }
+
+   /**
+   * Whether to enable input audio transcription.
+   * @return enabled
+  **/
+  @ApiModelProperty(value = "Whether to enable input audio transcription.")
+  public Boolean getEnabled() {
+    return enabled;
+  }
+
+  public void setEnabled(Boolean enabled) {
+    this.enabled = enabled;
+  }
 
   public ThreadStreamEvent event(EventEnum event) {
     this.event = event;
@@ -95,13 +116,14 @@ public class ThreadStreamEvent   {
       return false;
     }
     ThreadStreamEvent threadStreamEvent = (ThreadStreamEvent) o;
-    return Objects.equals(this.event, threadStreamEvent.event) &&
+    return Objects.equals(this.enabled, threadStreamEvent.enabled) &&
+        Objects.equals(this.event, threadStreamEvent.event) &&
         Objects.equals(this.data, threadStreamEvent.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(event, data);
+    return Objects.hash(enabled, event, data);
   }
 
   @Override
@@ -109,6 +131,7 @@ public class ThreadStreamEvent   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ThreadStreamEvent {\n");
     
+    sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
     sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");

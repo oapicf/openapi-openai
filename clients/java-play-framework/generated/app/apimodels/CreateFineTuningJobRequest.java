@@ -3,6 +3,7 @@ package apimodels;
 import apimodels.CreateFineTuningJobRequestHyperparameters;
 import apimodels.CreateFineTuningJobRequestIntegrationsInner;
 import apimodels.CreateFineTuningJobRequestModel;
+import apimodels.FineTuneMethod;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +17,7 @@ import javax.validation.Valid;
 /**
  * CreateFineTuningJobRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateFineTuningJobRequest   {
   @JsonProperty("model")
@@ -36,7 +37,7 @@ public class CreateFineTuningJobRequest   {
   private CreateFineTuningJobRequestHyperparameters hyperparameters;
 
   @JsonProperty("suffix")
-  @Size(min=1,max=40)
+  @Size(min=1,max=64)
 
   private String suffix;
 
@@ -54,6 +55,11 @@ public class CreateFineTuningJobRequest   {
 @Max(2147483647)
 
   private Integer seed;
+
+  @JsonProperty("method")
+  @Valid
+
+  private FineTuneMethod method;
 
   public CreateFineTuningJobRequest model(CreateFineTuningJobRequestModel model) {
     this.model = model;
@@ -78,7 +84,7 @@ public class CreateFineTuningJobRequest   {
   }
 
    /**
-   * The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/upload) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
+   * The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
    * @return trainingFile
   **/
   public String getTrainingFile() {
@@ -112,7 +118,7 @@ public class CreateFineTuningJobRequest   {
   }
 
    /**
-   * A string of up to 18 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-3.5-turbo:openai:custom-model-name:7p4lURel`. 
+   * A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`. 
    * @return suffix
   **/
   public String getSuffix() {
@@ -184,6 +190,23 @@ public class CreateFineTuningJobRequest   {
     this.seed = seed;
   }
 
+  public CreateFineTuningJobRequest method(FineTuneMethod method) {
+    this.method = method;
+    return this;
+  }
+
+   /**
+   * Get method
+   * @return method
+  **/
+  public FineTuneMethod getMethod() {
+    return method;
+  }
+
+  public void setMethod(FineTuneMethod method) {
+    this.method = method;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -200,12 +223,13 @@ public class CreateFineTuningJobRequest   {
         Objects.equals(suffix, createFineTuningJobRequest.suffix) &&
         Objects.equals(validationFile, createFineTuningJobRequest.validationFile) &&
         Objects.equals(integrations, createFineTuningJobRequest.integrations) &&
-        Objects.equals(seed, createFineTuningJobRequest.seed);
+        Objects.equals(seed, createFineTuningJobRequest.seed) &&
+        Objects.equals(method, createFineTuningJobRequest.method);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, trainingFile, hyperparameters, suffix, validationFile, integrations, seed);
+    return Objects.hash(model, trainingFile, hyperparameters, suffix, validationFile, integrations, seed, method);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -221,6 +245,7 @@ public class CreateFineTuningJobRequest   {
     sb.append("    validationFile: ").append(toIndentedString(validationFile)).append("\n");
     sb.append("    integrations: ").append(toIndentedString(integrations)).append("\n");
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("}");
     return sb.toString();
   }

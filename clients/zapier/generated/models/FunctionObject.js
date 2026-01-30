@@ -18,8 +18,13 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}parameters`,
-                label: `The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list. - [${labelPrefix}parameters]`,
+                label: `The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list. - [${labelPrefix}parameters]`,
                 dict: true,
+            },
+            {
+                key: `${keyPrefix}strict`,
+                label: `Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling). - [${labelPrefix}strict]`,
+                type: 'boolean',
             },
         ]
     },
@@ -29,6 +34,7 @@ module.exports = {
             'description': bundle.inputData?.[`${keyPrefix}description`],
             'name': bundle.inputData?.[`${keyPrefix}name`],
             'parameters': bundle.inputData?.[`${keyPrefix}parameters`],
+            'strict': bundle.inputData?.[`${keyPrefix}strict`],
         }
     },
 }

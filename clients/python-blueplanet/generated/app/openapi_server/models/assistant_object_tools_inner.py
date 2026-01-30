@@ -7,8 +7,9 @@ from typing import List, Dict  # noqa: F401
 
 from app.openapi_server.models.base_model import Model
 from app.openapi_server.models.assistant_tools_code import AssistantToolsCode  # noqa: F401,E501
+from app.openapi_server.models.assistant_tools_file_search import AssistantToolsFileSearch  # noqa: F401,E501
+from app.openapi_server.models.assistant_tools_file_search_file_search import AssistantToolsFileSearchFileSearch  # noqa: F401,E501
 from app.openapi_server.models.assistant_tools_function import AssistantToolsFunction  # noqa: F401,E501
-from app.openapi_server.models.assistant_tools_retrieval import AssistantToolsRetrieval  # noqa: F401,E501
 from app.openapi_server.models.function_object import FunctionObject  # noqa: F401,E501
 from openapi_server import util
 
@@ -19,25 +20,30 @@ class AssistantObjectToolsInner(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, type: str=None, function: FunctionObject=None):  # noqa: E501
+    def __init__(self, type: str=None, file_search: AssistantToolsFileSearchFileSearch=None, function: FunctionObject=None):  # noqa: E501
         """AssistantObjectToolsInner - a model defined in Swagger
 
         :param type: The type of this AssistantObjectToolsInner.  # noqa: E501
         :type type: str
+        :param file_search: The file_search of this AssistantObjectToolsInner.  # noqa: E501
+        :type file_search: AssistantToolsFileSearchFileSearch
         :param function: The function of this AssistantObjectToolsInner.  # noqa: E501
         :type function: FunctionObject
         """
         self.swagger_types = {
             'type': str,
+            'file_search': AssistantToolsFileSearchFileSearch,
             'function': FunctionObject
         }
 
         self.attribute_map = {
             'type': 'type',
+            'file_search': 'file_search',
             'function': 'function'
         }
 
         self._type = type
+        self._file_search = file_search
         self._function = function
 
     @classmethod
@@ -71,7 +77,7 @@ class AssistantObjectToolsInner(Model):
         :param type: The type of this AssistantObjectToolsInner.
         :type type: str
         """
-        allowed_values = ["code_interpreter", "retrieval", "function"]  # noqa: E501
+        allowed_values = ["code_interpreter", "file_search", "function"]  # noqa: E501
         if type not in allowed_values:
             raise ValueError(
                 "Invalid value for `type` ({0}), must be one of {1}"
@@ -79,6 +85,27 @@ class AssistantObjectToolsInner(Model):
             )
 
         self._type = type
+
+    @property
+    def file_search(self) -> AssistantToolsFileSearchFileSearch:
+        """Gets the file_search of this AssistantObjectToolsInner.
+
+
+        :return: The file_search of this AssistantObjectToolsInner.
+        :rtype: AssistantToolsFileSearchFileSearch
+        """
+        return self._file_search
+
+    @file_search.setter
+    def file_search(self, file_search: AssistantToolsFileSearchFileSearch):
+        """Sets the file_search of this AssistantObjectToolsInner.
+
+
+        :param file_search: The file_search of this AssistantObjectToolsInner.
+        :type file_search: AssistantToolsFileSearchFileSearch
+        """
+
+        self._file_search = file_search
 
     @property
     def function(self) -> FunctionObject:

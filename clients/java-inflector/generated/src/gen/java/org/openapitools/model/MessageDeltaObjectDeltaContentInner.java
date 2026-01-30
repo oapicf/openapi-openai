@@ -9,6 +9,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.MessageDeltaContentImageFileObject;
 import org.openapitools.model.MessageDeltaContentImageFileObjectImageFile;
+import org.openapitools.model.MessageDeltaContentImageUrlObject;
+import org.openapitools.model.MessageDeltaContentImageUrlObjectImageUrl;
+import org.openapitools.model.MessageDeltaContentRefusalObject;
 import org.openapitools.model.MessageDeltaContentTextObject;
 import org.openapitools.model.MessageDeltaContentTextObjectText;
 
@@ -16,7 +19,7 @@ import org.openapitools.model.MessageDeltaContentTextObjectText;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageDeltaObjectDeltaContentInner   {
   @JsonProperty("index")
   private Integer index;
@@ -27,7 +30,11 @@ public class MessageDeltaObjectDeltaContentInner   {
   public enum TypeEnum {
     IMAGE_FILE("image_file"),
     
-    TEXT("text");
+    TEXT("text"),
+    
+    REFUSAL("refusal"),
+    
+    IMAGE_URL("image_url");
 
     private String value;
 
@@ -60,6 +67,12 @@ public class MessageDeltaObjectDeltaContentInner   {
 
   @JsonProperty("text")
   private MessageDeltaContentTextObjectText text;
+
+  @JsonProperty("refusal")
+  private String refusal;
+
+  @JsonProperty("image_url")
+  private MessageDeltaContentImageUrlObjectImageUrl imageUrl;
 
   /**
    * The index of the content part in the message.
@@ -131,6 +144,40 @@ public class MessageDeltaObjectDeltaContentInner   {
     this.text = text;
   }
 
+  /**
+   **/
+  public MessageDeltaObjectDeltaContentInner refusal(String refusal) {
+    this.refusal = refusal;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("refusal")
+  public String getRefusal() {
+    return refusal;
+  }
+  public void setRefusal(String refusal) {
+    this.refusal = refusal;
+  }
+
+  /**
+   **/
+  public MessageDeltaObjectDeltaContentInner imageUrl(MessageDeltaContentImageUrlObjectImageUrl imageUrl) {
+    this.imageUrl = imageUrl;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("image_url")
+  public MessageDeltaContentImageUrlObjectImageUrl getImageUrl() {
+    return imageUrl;
+  }
+  public void setImageUrl(MessageDeltaContentImageUrlObjectImageUrl imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -144,12 +191,14 @@ public class MessageDeltaObjectDeltaContentInner   {
     return Objects.equals(index, messageDeltaObjectDeltaContentInner.index) &&
         Objects.equals(type, messageDeltaObjectDeltaContentInner.type) &&
         Objects.equals(imageFile, messageDeltaObjectDeltaContentInner.imageFile) &&
-        Objects.equals(text, messageDeltaObjectDeltaContentInner.text);
+        Objects.equals(text, messageDeltaObjectDeltaContentInner.text) &&
+        Objects.equals(refusal, messageDeltaObjectDeltaContentInner.refusal) &&
+        Objects.equals(imageUrl, messageDeltaObjectDeltaContentInner.imageUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(index, type, imageFile, text);
+    return Objects.hash(index, type, imageFile, text, refusal, imageUrl);
   }
 
   @Override
@@ -161,6 +210,8 @@ public class MessageDeltaObjectDeltaContentInner   {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    imageFile: ").append(toIndentedString(imageFile)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
+    sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

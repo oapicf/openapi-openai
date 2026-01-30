@@ -32,7 +32,7 @@ class RunStepDeltaStepDetailsToolCallsObjectTest : ShouldSpec() {
             //modelInstance.type shouldBe ("TODO")
         }
 
-        // to test the property `toolCalls` - An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+        // to test the property `toolCalls` - An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
         should("test toolCalls") {
             // uncomment below to test the property
             //modelInstance.toolCalls shouldBe ("TODO")

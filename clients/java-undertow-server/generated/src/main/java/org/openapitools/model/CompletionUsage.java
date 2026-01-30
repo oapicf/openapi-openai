@@ -3,7 +3,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * OpenAPI document version: 2.0.0
+ * OpenAPI document version: 2.3.0
  * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -15,6 +15,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.model.CompletionUsageCompletionTokensDetails;
+import org.openapitools.model.CompletionUsagePromptTokensDetails;
 
 
 
@@ -23,12 +25,14 @@ import io.swagger.annotations.ApiModelProperty;
  */
 
 @ApiModel(description = "Usage statistics for the completion request.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T10:45:08.090000084Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CompletionUsage   {
   
   private Integer completionTokens;
   private Integer promptTokens;
   private Integer totalTokens;
+  private CompletionUsageCompletionTokensDetails completionTokensDetails;
+  private CompletionUsagePromptTokensDetails promptTokensDetails;
 
   /**
    * Number of tokens in the generated completion.
@@ -84,6 +88,40 @@ public class CompletionUsage   {
     this.totalTokens = totalTokens;
   }
 
+  /**
+   */
+  public CompletionUsage completionTokensDetails(CompletionUsageCompletionTokensDetails completionTokensDetails) {
+    this.completionTokensDetails = completionTokensDetails;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("completion_tokens_details")
+  public CompletionUsageCompletionTokensDetails getCompletionTokensDetails() {
+    return completionTokensDetails;
+  }
+  public void setCompletionTokensDetails(CompletionUsageCompletionTokensDetails completionTokensDetails) {
+    this.completionTokensDetails = completionTokensDetails;
+  }
+
+  /**
+   */
+  public CompletionUsage promptTokensDetails(CompletionUsagePromptTokensDetails promptTokensDetails) {
+    this.promptTokensDetails = promptTokensDetails;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("prompt_tokens_details")
+  public CompletionUsagePromptTokensDetails getPromptTokensDetails() {
+    return promptTokensDetails;
+  }
+  public void setPromptTokensDetails(CompletionUsagePromptTokensDetails promptTokensDetails) {
+    this.promptTokensDetails = promptTokensDetails;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -96,12 +134,14 @@ public class CompletionUsage   {
     CompletionUsage completionUsage = (CompletionUsage) o;
     return Objects.equals(completionTokens, completionUsage.completionTokens) &&
         Objects.equals(promptTokens, completionUsage.promptTokens) &&
-        Objects.equals(totalTokens, completionUsage.totalTokens);
+        Objects.equals(totalTokens, completionUsage.totalTokens) &&
+        Objects.equals(completionTokensDetails, completionUsage.completionTokensDetails) &&
+        Objects.equals(promptTokensDetails, completionUsage.promptTokensDetails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(completionTokens, promptTokens, totalTokens);
+    return Objects.hash(completionTokens, promptTokens, totalTokens, completionTokensDetails, promptTokensDetails);
   }
 
   @Override
@@ -112,6 +152,8 @@ public class CompletionUsage   {
     sb.append("    completionTokens: ").append(toIndentedString(completionTokens)).append("\n");
     sb.append("    promptTokens: ").append(toIndentedString(promptTokens)).append("\n");
     sb.append("    totalTokens: ").append(toIndentedString(totalTokens)).append("\n");
+    sb.append("    completionTokensDetails: ").append(toIndentedString(completionTokensDetails)).append("\n");
+    sb.append("    promptTokensDetails: ").append(toIndentedString(promptTokensDetails)).append("\n");
     sb.append("}");
     return sb.toString();
   }

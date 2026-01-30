@@ -9,8 +9,11 @@
 -export_type([openapi_list_files_response/0]).
 
 -type openapi_list_files_response() ::
-  [ {'data', list(openapi_open_ai_file:openapi_open_ai_file()) }
-  | {'object', binary() }
+  [ {'object', binary() }
+  | {'data', list(openapi_open_ai_file:openapi_open_ai_file()) }
+  | {'first_id', binary() }
+  | {'last_id', binary() }
+  | {'has_more', boolean() }
   ].
 
 
@@ -18,8 +21,11 @@ openapi_list_files_response() ->
     openapi_list_files_response([]).
 
 openapi_list_files_response(Fields) ->
-  Default = [ {'data', list(openapi_open_ai_file:openapi_open_ai_file()) }
-            , {'object', elements([<<"list">>]) }
+  Default = [ {'object', binary() }
+            , {'data', list(openapi_open_ai_file:openapi_open_ai_file()) }
+            , {'first_id', binary() }
+            , {'last_id', binary() }
+            , {'has_more', boolean() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

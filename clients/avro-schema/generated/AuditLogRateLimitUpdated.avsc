@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The details for events with this `type`.",
+  "name": "AuditLogRateLimitUpdated",
+  "fields": [
+    {
+      "name": "id",
+      "type": ["null", "string"],
+      "doc": "The rate limit ID",
+      "default": null
+    },
+    {
+      "name": "changes_requested",
+      "type": ["null", "model.AuditLogRateLimitUpdatedChangesRequested"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

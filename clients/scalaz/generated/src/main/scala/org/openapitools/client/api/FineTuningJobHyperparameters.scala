@@ -12,7 +12,9 @@ import org.joda.time.DateTime
 import FineTuningJobHyperparameters._
 
 case class FineTuningJobHyperparameters (
-  nEpochs: FineTuningJobHyperparametersNEpochs)
+  batchSize: Option[CreateFineTuningJobRequestHyperparametersBatchSize],
+learningRateMultiplier: Option[CreateFineTuningJobRequestHyperparametersLearningRateMultiplier],
+nEpochs: Option[CreateFineTuningJobRequestHyperparametersNEpochs])
 
 object FineTuningJobHyperparameters {
   import DateTimeCodecs._

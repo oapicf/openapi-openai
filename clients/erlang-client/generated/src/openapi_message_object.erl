@@ -17,7 +17,7 @@
        'content' := list(),
        'assistant_id' := binary(),
        'run_id' := binary(),
-       'file_ids' := list(),
+       'attachments' := list(),
        'metadata' := maps:map()
      }.
 
@@ -33,7 +33,7 @@ encode(#{ 'id' := Id,
           'content' := Content,
           'assistant_id' := AssistantId,
           'run_id' := RunId,
-          'file_ids' := FileIds,
+          'attachments' := Attachments,
           'metadata' := Metadata
         }) ->
     #{ 'id' => Id,
@@ -48,6 +48,6 @@ encode(#{ 'id' := Id,
        'content' => Content,
        'assistant_id' => AssistantId,
        'run_id' => RunId,
-       'file_ids' => FileIds,
+       'attachments' => Attachments,
        'metadata' => Metadata
      }.

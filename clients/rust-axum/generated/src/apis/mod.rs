@@ -1,13 +1,23 @@
 pub mod assistants;
 pub mod audio;
+pub mod audit_logs;
+pub mod batch;
 pub mod chat;
 pub mod completions;
+pub mod default;
 pub mod embeddings;
 pub mod files;
 pub mod fine_tuning;
 pub mod images;
+pub mod invites;
 pub mod models;
 pub mod moderations;
+pub mod projects;
+pub mod realtime;
+pub mod uploads;
+pub mod usage;
+pub mod users;
+pub mod vector_stores;
 
 
 

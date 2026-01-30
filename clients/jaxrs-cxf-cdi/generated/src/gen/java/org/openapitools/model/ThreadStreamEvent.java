@@ -19,6 +19,8 @@ import java.util.Objects;
 @ApiModel(description = "Occurs when a new [thread](/docs/api-reference/threads/object) is created.")
 public class ThreadStreamEvent   {
   
+  private Boolean enabled;
+
 
 public enum EventEnum {
 
@@ -53,6 +55,25 @@ public enum EventEnum {
   private EventEnum event;
 
   private ThreadObject data;
+
+  /**
+   * Whether to enable input audio transcription.
+   **/
+  public ThreadStreamEvent enabled(Boolean enabled) {
+    this.enabled = enabled;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "Whether to enable input audio transcription.")
+  @JsonProperty("enabled")
+  public Boolean getEnabled() {
+    return enabled;
+  }
+  public void setEnabled(Boolean enabled) {
+    this.enabled = enabled;
+  }
+
 
   /**
    **/
@@ -102,13 +123,14 @@ public enum EventEnum {
       return false;
     }
     ThreadStreamEvent threadStreamEvent = (ThreadStreamEvent) o;
-    return Objects.equals(this.event, threadStreamEvent.event) &&
+    return Objects.equals(this.enabled, threadStreamEvent.enabled) &&
+        Objects.equals(this.event, threadStreamEvent.event) &&
         Objects.equals(this.data, threadStreamEvent.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(event, data);
+    return Objects.hash(enabled, event, data);
   }
 
   @Override
@@ -116,6 +138,7 @@ public enum EventEnum {
     StringBuilder sb = new StringBuilder();
     sb.append("class ThreadStreamEvent {\n");
     
+    sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
     sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");

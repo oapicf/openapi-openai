@@ -7,6 +7,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { CreateModerationResponseResultsInnerCategoryAppliedInputTypes } from './createModerationResponseResultsInnerCategoryAppliedInputTypes';
 import { CreateModerationResponseResultsInnerCategoryScores } from './createModerationResponseResultsInnerCategoryScores';
 import { CreateModerationResponseResultsInnerCategories } from './createModerationResponseResultsInnerCategories';
 
@@ -18,5 +19,6 @@ export interface CreateModerationResponseResultsInner {
     flagged: boolean;
     categories: CreateModerationResponseResultsInnerCategories;
     category_scores: CreateModerationResponseResultsInnerCategoryScores;
+    category_applied_input_types: CreateModerationResponseResultsInnerCategoryAppliedInputTypes;
 }
 

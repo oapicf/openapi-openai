@@ -1,5 +1,6 @@
 package org.openapitools.server.api.verticle
 
+import org.openapitools.server.api.model.AudioResponseFormat
 import org.openapitools.server.api.model.CreateSpeechRequest
 import org.openapitools.server.api.model.CreateTranscription200Response
 import org.openapitools.server.api.model.CreateTranscriptionRequestModel
@@ -25,10 +26,10 @@ interface AudioApi  {
     suspend fun createSpeech(createSpeechRequest:CreateSpeechRequest?,context:OperationRequest):Response<java.io.File>
     /* createTranscription
      * Transcribes audio into the input language. */
-    suspend fun createTranscription(file:kotlin.collections.List<java.io.File>?,model:CreateTranscriptionRequestModel?,language:kotlin.String?,prompt:kotlin.String?,responseFormat:kotlin.String?,temperature:java.math.BigDecimal?,timestampGranularities:kotlin.Array<kotlin.String>?,context:OperationRequest):Response<CreateTranscription200Response>
+    suspend fun createTranscription(file:kotlin.collections.List<java.io.File>?,model:CreateTranscriptionRequestModel?,language:kotlin.String?,prompt:kotlin.String?,responseFormat:AudioResponseFormat?,temperature:java.math.BigDecimal?,timestampGranularities:kotlin.Array<kotlin.String>?,context:OperationRequest):Response<CreateTranscription200Response>
     /* createTranslation
      * Translates audio into English. */
-    suspend fun createTranslation(file:kotlin.collections.List<java.io.File>?,model:CreateTranscriptionRequestModel?,prompt:kotlin.String?,responseFormat:kotlin.String?,temperature:java.math.BigDecimal?,context:OperationRequest):Response<CreateTranslation200Response>
+    suspend fun createTranslation(file:kotlin.collections.List<java.io.File>?,model:CreateTranscriptionRequestModel?,prompt:kotlin.String?,responseFormat:AudioResponseFormat?,temperature:java.math.BigDecimal?,context:OperationRequest):Response<CreateTranslation200Response>
     companion object {
         const val address = "AudioApi-service"
         suspend fun createRouterFactory(vertx: Vertx,path:String): io.vertx.ext.web.api.contract.openapi3.OpenAPI3RouterFactory {

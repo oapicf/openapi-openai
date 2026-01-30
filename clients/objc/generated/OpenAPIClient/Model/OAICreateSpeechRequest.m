@@ -7,7 +7,7 @@
   if (self) {
     // initialize property's default value, if any
     self.responseFormat = @"mp3";
-    self.speed = @1.0;
+    self.speed = @1;
     
   }
   return self;

@@ -1,0 +1,46 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeClientEventConversationItemDelete"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeClientEventConversationItemDelete"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeClientEventConversationItemDelete {
+    title = RealtimeClientEventConversationItemDelete
+    description = RealtimeClientEventConversationItemDelete
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "Optional client-generated ID used to identify this event."
+          optional = false
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;conversation.item.delete&#x60;."
+          enum = ["conversation.item.delete"]
+          optional = true
+        }
+        item_id {
+          type =  string
+          description = "The ID of the item to delete."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeClientEventConversationItemDelete {
+    title = RealtimeClientEventConversationItemDelete
+    description = RealtimeClientEventConversationItemDelete
+    implements = openapi_server.resourceTypes.RealtimeClientEventConversationItemDelete
+
+  }
+}

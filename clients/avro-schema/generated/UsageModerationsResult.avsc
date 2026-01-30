@@ -1,0 +1,54 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The aggregated moderations usage details of the specific time bucket.",
+  "name": "UsageModerationsResult",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "UsageModerationsResult_object",
+        "symbols": [
+          "organization_usage_moderations_result"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "input_tokens",
+      "type": "int",
+      "doc": "The aggregated number of input tokens used."
+    },
+    {
+      "name": "num_model_requests",
+      "type": "int",
+      "doc": "The count of requests made to the model."
+    },
+    {
+      "name": "project_id",
+      "type": ["null", "string"],
+      "doc": "When `group_by=project_id`, this field provides the project ID of the grouped usage result.",
+      "default": null
+    },
+    {
+      "name": "user_id",
+      "type": ["null", "string"],
+      "doc": "When `group_by=user_id`, this field provides the user ID of the grouped usage result.",
+      "default": null
+    },
+    {
+      "name": "api_key_id",
+      "type": ["null", "string"],
+      "doc": "When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.",
+      "default": null
+    },
+    {
+      "name": "model",
+      "type": ["null", "string"],
+      "doc": "When `group_by=model`, this field provides the model name of the grouped usage result.",
+      "default": null
+    }
+  ]
+
+}

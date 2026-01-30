@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "RunStepDetailsToolCallsCodeOutputLogsObject", description = "Text output from the Code Interpreter tool call as part of a run step.")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStepDetailsToolCallsCodeOutputLogsObject implements RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
 
   /**

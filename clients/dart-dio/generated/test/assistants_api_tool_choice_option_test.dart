@@ -13,7 +13,7 @@ void main() {
       // TODO
     });
 
-    // ChatCompletionNamedToolChoiceFunction function_
+    // AssistantsNamedToolChoiceFunction function_
     test('to test the property `function_`', () async {
       // TODO
     });

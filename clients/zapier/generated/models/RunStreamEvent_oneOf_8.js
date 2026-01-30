@@ -11,7 +11,7 @@ module.exports = {
                 required: true,
                 type: 'string',
                 choices: [
-                    'thread.run.expired',
+                    'thread.run.cancelled',
                 ],
             },
             ...RunObject.fields(`${keyPrefix}data`, isInput),

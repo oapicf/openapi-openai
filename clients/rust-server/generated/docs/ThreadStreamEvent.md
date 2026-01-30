@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enabled** | **bool** | Whether to enable input audio transcription. | [optional] [default to None]
 **event** | [***models::ThreadStreamEventEvent**](ThreadStreamEvent_event.md) |  | 
 **data** | [***models::ThreadObject**](ThreadObject.md) |  | 
 

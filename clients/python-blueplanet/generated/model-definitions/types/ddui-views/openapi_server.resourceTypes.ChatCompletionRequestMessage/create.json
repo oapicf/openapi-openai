@@ -14,6 +14,8 @@
       {"model": "content" },
       {"model": "role" },
       {"model": "name" },
+      {"model": "refusal" },
+      {"model": "audio" },
       {"model": "tool_calls" },
       {"model": "function_call" },
       {"model": "tool_call_id" },

@@ -1,0 +1,16 @@
+package models
+
+type ListAuditLogsEffectiveAtParameter struct {
+
+	// Return only events whose `effective_at` (Unix seconds) is greater than this value.
+	Gt int32 `json:"gt,omitempty"`
+
+	// Return only events whose `effective_at` (Unix seconds) is greater than or equal to this value.
+	Gte int32 `json:"gte,omitempty"`
+
+	// Return only events whose `effective_at` (Unix seconds) is less than this value.
+	Lt int32 `json:"lt,omitempty"`
+
+	// Return only events whose `effective_at` (Unix seconds) is less than or equal to this value.
+	Lte int32 `json:"lte,omitempty"`
+}

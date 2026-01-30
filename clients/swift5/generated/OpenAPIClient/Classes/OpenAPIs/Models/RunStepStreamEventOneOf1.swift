@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Occurs when a [run step](/docs/api-reference/runs/step-object) moves to an &#x60;in_progress&#x60; state. */
+/** Occurs when a [run step](/docs/api-reference/run-steps/step-object) moves to an &#x60;in_progress&#x60; state. */
 public struct RunStepStreamEventOneOf1: Codable, JSONEncodable, Hashable {
 
     public enum Event: String, Codable, CaseIterable {

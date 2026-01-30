@@ -23,7 +23,7 @@ openai_api_chat_completion_request_system_message_ROLE_e chat_completion_request
 }
 
 static chat_completion_request_system_message_t *chat_completion_request_system_message_create_internal(
-    char *content,
+    chat_completion_request_system_message_content_t *content,
     openai_api_chat_completion_request_system_message_ROLE_e role,
     char *name
     ) {
@@ -40,7 +40,7 @@ static chat_completion_request_system_message_t *chat_completion_request_system_
 }
 
 __attribute__((deprecated)) chat_completion_request_system_message_t *chat_completion_request_system_message_create(
-    char *content,
+    chat_completion_request_system_message_content_t *content,
     openai_api_chat_completion_request_system_message_ROLE_e role,
     char *name
     ) {
@@ -61,7 +61,7 @@ void chat_completion_request_system_message_free(chat_completion_request_system_
     }
     listEntry_t *listEntry;
     if (chat_completion_request_system_message->content) {
-        free(chat_completion_request_system_message->content);
+        chat_completion_request_system_message_content_free(chat_completion_request_system_message->content);
         chat_completion_request_system_message->content = NULL;
     }
     if (chat_completion_request_system_message->name) {
@@ -78,8 +78,13 @@ cJSON *chat_completion_request_system_message_convertToJSON(chat_completion_requ
     if (!chat_completion_request_system_message->content) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "content", chat_completion_request_system_message->content) == NULL) {
-    goto fail; //String
+    cJSON *content_local_JSON = chat_completion_request_system_message_content_convertToJSON(chat_completion_request_system_message->content);
+    if(content_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "content", content_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
     }
 
 
@@ -112,6 +117,9 @@ chat_completion_request_system_message_t *chat_completion_request_system_message
 
     chat_completion_request_system_message_t *chat_completion_request_system_message_local_var = NULL;
 
+    // define the local variable for chat_completion_request_system_message->content
+    chat_completion_request_system_message_content_t *content_local_nonprim = NULL;
+
     // chat_completion_request_system_message->content
     cJSON *content = cJSON_GetObjectItemCaseSensitive(chat_completion_request_system_messageJSON, "content");
     if (cJSON_IsNull(content)) {
@@ -122,10 +130,7 @@ chat_completion_request_system_message_t *chat_completion_request_system_message
     }
 
     
-    if(!cJSON_IsString(content))
-    {
-    goto end; //String
-    }
+    content_local_nonprim = chat_completion_request_system_message_content_parseFromJSON(content); //nonprimitive
 
     // chat_completion_request_system_message->role
     cJSON *role = cJSON_GetObjectItemCaseSensitive(chat_completion_request_system_messageJSON, "role");
@@ -158,13 +163,17 @@ chat_completion_request_system_message_t *chat_completion_request_system_message
 
 
     chat_completion_request_system_message_local_var = chat_completion_request_system_message_create_internal (
-        strdup(content->valuestring),
+        content_local_nonprim,
         roleVariable,
         name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL
         );
 
     return chat_completion_request_system_message_local_var;
 end:
+    if (content_local_nonprim) {
+        chat_completion_request_system_message_content_free(content_local_nonprim);
+        content_local_nonprim = NULL;
+    }
     return NULL;
 
 }

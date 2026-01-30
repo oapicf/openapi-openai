@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -16,16 +16,28 @@ package openapi
 
 type ModifyThreadRequest struct {
 
-	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	ToolResources *ModifyThreadRequestToolResources `json:"tool_resources,omitempty"`
+
+	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 }
 
 // AssertModifyThreadRequestRequired checks if the required fields are not zero-ed
 func AssertModifyThreadRequestRequired(obj ModifyThreadRequest) error {
+	if obj.ToolResources != nil {
+		if err := AssertModifyThreadRequestToolResourcesRequired(*obj.ToolResources); err != nil {
+			return err
+		}
+	}
 	return nil
 }
 
 // AssertModifyThreadRequestConstraints checks if the values respects the defined constraints
 func AssertModifyThreadRequestConstraints(obj ModifyThreadRequest) error {
+    if obj.ToolResources != nil {
+     	if err := AssertModifyThreadRequestToolResourcesConstraints(*obj.ToolResources); err != nil {
+     		return err
+     	}
+    }
 	return nil
 }

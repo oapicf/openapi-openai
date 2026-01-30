@@ -1,0 +1,35 @@
+
+<h2>RealtimeConversationItemContentInner</h2>
+<ul class="parameter">
+  <li class="param-required-false">type : String
+    <br/>The content type (&#x60;input_text&#x60;, &#x60;input_audio&#x60;, &#x60;item_reference&#x60;, &#x60;text&#x60;). 
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>input_audio</dd>
+            <dd>input_text</dd>
+            <dd>item_reference</dd>
+            <dd>text</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">text : String
+    <br/>The text content, used for &#x60;input_text&#x60; and &#x60;text&#x60; content types. 
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">id : String
+    <br/>ID of a previous conversation item to reference (for &#x60;item_reference&#x60; content types in &#x60;response.create&#x60; events). These can reference both client and server created items. 
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">audio : String
+    <br/>Base64-encoded audio bytes, used for &#x60;input_audio&#x60; content type. 
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">transcript : String
+    <br/>The transcript of the audio, used for &#x60;input_audio&#x60; content type. 
+  </li>
+</ul>

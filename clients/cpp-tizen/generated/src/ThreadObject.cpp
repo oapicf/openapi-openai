@@ -26,6 +26,7 @@ ThreadObject::__init()
 	//id = std::string();
 	//object = std::string();
 	//created_at = int(0);
+	//tool_resources = new ModifyThreadRequest_tool_resources();
 	//metadata = null;
 }
 
@@ -46,6 +47,11 @@ ThreadObject::__cleanup()
 	//
 	//delete created_at;
 	//created_at = NULL;
+	//}
+	//if(tool_resources != NULL) {
+	//
+	//delete tool_resources;
+	//tool_resources = NULL;
 	//}
 	//if(metadata != NULL) {
 	//
@@ -90,6 +96,20 @@ ThreadObject::fromJson(char* jsonStr)
 		if (isprimitive("int")) {
 			jsonToValue(&created_at, node, "int", "");
 		} else {
+			
+		}
+	}
+	const gchar *tool_resourcesKey = "tool_resources";
+	node = json_object_get_member(pJsonObject, tool_resourcesKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("ModifyThreadRequest_tool_resources")) {
+			jsonToValue(&tool_resources, node, "ModifyThreadRequest_tool_resources", "ModifyThreadRequest_tool_resources");
+		} else {
+			
+			ModifyThreadRequest_tool_resources* obj = static_cast<ModifyThreadRequest_tool_resources*> (&tool_resources);
+			obj->fromJson(json_to_string(node, false));
 			
 		}
 	}
@@ -146,6 +166,20 @@ ThreadObject::toJson()
 	}
 	const gchar *created_atKey = "created_at";
 	json_object_set_member(pJsonObject, created_atKey, node);
+	if (isprimitive("ModifyThreadRequest_tool_resources")) {
+		ModifyThreadRequest_tool_resources obj = getToolResources();
+		node = converttoJson(&obj, "ModifyThreadRequest_tool_resources", "");
+	}
+	else {
+		
+		ModifyThreadRequest_tool_resources obj = static_cast<ModifyThreadRequest_tool_resources> (getToolResources());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *tool_resourcesKey = "tool_resources";
+	json_object_set_member(pJsonObject, tool_resourcesKey, node);
 	if (isprimitive("std::string")) {
 		std::string obj = getMetadata();
 		node = converttoJson(&obj, "std::string", "");
@@ -202,6 +236,18 @@ void
 ThreadObject::setCreatedAt(int  created_at)
 {
 	this->created_at = created_at;
+}
+
+ModifyThreadRequest_tool_resources
+ThreadObject::getToolResources()
+{
+	return tool_resources;
+}
+
+void
+ThreadObject::setToolResources(ModifyThreadRequest_tool_resources  tool_resources)
+{
+	this->tool_resources = tool_resources;
 }
 
 std::string

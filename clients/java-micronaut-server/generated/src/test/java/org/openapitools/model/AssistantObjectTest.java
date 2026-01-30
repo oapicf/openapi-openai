@@ -1,9 +1,13 @@
 package org.openapitools.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.AssistantObjectToolResources;
 import org.openapitools.model.AssistantObjectToolsInner;
+import org.openapitools.model.AssistantsApiResponseFormatOption;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -88,11 +92,11 @@ public class AssistantObjectTest {
     }
 
     /**
-     * Test the property 'fileIds'
+     * Test the property 'toolResources'
      */
     @Test
-    public void fileIdsTest() {
-        // TODO: test fileIds
+    public void toolResourcesTest() {
+        // TODO: test toolResources
     }
 
     /**
@@ -101,6 +105,30 @@ public class AssistantObjectTest {
     @Test
     public void metadataTest() {
         // TODO: test metadata
+    }
+
+    /**
+     * Test the property 'temperature'
+     */
+    @Test
+    public void temperatureTest() {
+        // TODO: test temperature
+    }
+
+    /**
+     * Test the property 'topP'
+     */
+    @Test
+    public void topPTest() {
+        // TODO: test topP
+    }
+
+    /**
+     * Test the property 'responseFormat'
+     */
+    @Test
+    public void responseFormatTest() {
+        // TODO: test responseFormat
     }
 
 }

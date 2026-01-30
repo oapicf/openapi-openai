@@ -17,7 +17,7 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.
+ * Occurs when a [run](/docs/api-reference/runs/object) fails.
  * @param event 
  * @param &#x60;data&#x60; 
  */
@@ -33,11 +33,11 @@ data class RunStreamEventOneOf6(
 
     /**
     * 
-    * Values: threadPeriodRunPeriodCancelling
+    * Values: threadPeriodRunPeriodFailed
     */
     enum class Event(@get:JsonValue val value: kotlin.String) {
 
-        threadPeriodRunPeriodCancelling("thread.run.cancelling");
+        threadPeriodRunPeriodFailed("thread.run.failed");
 
         companion object {
             @JvmStatic

@@ -1,7 +1,7 @@
 /*
  * chat_completion_request_message_content_part_text.h
  *
- * 
+ * Learn about [text inputs](/docs/guides/text-generation). 
  */
 
 #ifndef _chat_completion_request_message_content_part_text_H_

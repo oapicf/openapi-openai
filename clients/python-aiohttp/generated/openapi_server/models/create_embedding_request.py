@@ -160,7 +160,7 @@ class CreateEmbeddingRequest(Model):
     def user(self):
         """Gets the user of this CreateEmbeddingRequest.
 
-        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 
         :return: The user of this CreateEmbeddingRequest.
         :rtype: str
@@ -171,7 +171,7 @@ class CreateEmbeddingRequest(Model):
     def user(self, user):
         """Sets the user of this CreateEmbeddingRequest.
 
-        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 
         :param user: The user of this CreateEmbeddingRequest.
         :type user: str

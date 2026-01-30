@@ -1,0 +1,104 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "A new Realtime session configuration, with an ephermeral key. Default TTL for keys is one minute. ",
+  "name": "RealtimeSessionCreateResponse",
+  "fields": [
+    {
+      "name": "client_secret",
+      "type": ["null", "model.RealtimeSessionCreateResponseClientSecret"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "modalities",
+      "type": ["null", {
+        "type": "enum",
+        "name": "RealtimeSessionCreateResponse_modalities",
+        "symbols": [
+          "text",
+          "audio"
+        ]
+      }],
+      "doc": "The set of modalities the model can respond with. To disable audio, set this to [\"text\"]. ",
+      "default": null
+    },
+    {
+      "name": "instructions",
+      "type": ["null", "string"],
+      "doc": "The default system instructions (i.e. system message) prepended to model  calls. This field allows the client to guide the model on desired  responses. The model can be instructed on response content and format,  (e.g. \"be extremely succinct\", \"act friendly\", \"here are examples of good  responses\") and on audio behavior (e.g. \"talk quickly\", \"inject emotion  into your voice\", \"laugh frequently\"). The instructions are not guaranteed  to be followed by the model, but they provide guidance to the model on the  desired behavior.  Note that the server sets default instructions which will be used if this  field is not set and are visible in the `session.created` event at the  start of the session. ",
+      "default": null
+    },
+    {
+      "name": "voice",
+      "type": ["null", {
+        "type": "enum",
+        "name": "RealtimeSessionCreateResponse_voice",
+        "symbols": [
+          "alloy",
+          "ash",
+          "ballad",
+          "coral",
+          "echo",
+          "sage",
+          "shimmer",
+          "verse"
+        ]
+      }],
+      "doc": "The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. ",
+      "default": null
+    },
+    {
+      "name": "input_audio_format",
+      "type": ["null", "string"],
+      "doc": "The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. ",
+      "default": null
+    },
+    {
+      "name": "output_audio_format",
+      "type": ["null", "string"],
+      "doc": "The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. ",
+      "default": null
+    },
+    {
+      "name": "input_audio_transcription",
+      "type": ["null", "model.RealtimeSessionInputAudioTranscription"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "turn_detection",
+      "type": ["null", "model.RealtimeSessionCreateResponseTurnDetection"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "tools",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.RealtimeResponseCreateParamsToolsInner"
+      }],
+      "doc": "Tools (functions) available to the model.",
+      "default": null
+    },
+    {
+      "name": "tool_choice",
+      "type": ["null", "string"],
+      "doc": "How the model chooses tools. Options are `auto`, `none`, `required`, or  specify a function. ",
+      "default": null
+    },
+    {
+      "name": "temperature",
+      "type": ["null", "double"],
+      "doc": "Sampling temperature for the model, limited to [0.6, 1.2]. Defaults to 0.8. ",
+      "default": null
+    },
+    {
+      "name": "max_response_output_tokens",
+      "type": ["null", "model.RealtimeResponseCreateParamsMaxResponseOutputTokens"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

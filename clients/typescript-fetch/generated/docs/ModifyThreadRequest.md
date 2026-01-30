@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`toolResources` | [ModifyThreadRequestToolResources](ModifyThreadRequestToolResources.md)
 `metadata` | object
 
 ## Example
@@ -15,6 +16,7 @@ import type { ModifyThreadRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
+  "toolResources": null,
   "metadata": null,
 } satisfies ModifyThreadRequest
 

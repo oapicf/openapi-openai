@@ -21,6 +21,11 @@ resourceTypes {
     description = AssistantStreamEvent
     derivedFrom = Root
     properties {
+        enabled {
+          type =  boolean
+          description = "Whether to enable input audio transcription."
+          optional = false
+        }
         event {
           type =  string
           description = ""

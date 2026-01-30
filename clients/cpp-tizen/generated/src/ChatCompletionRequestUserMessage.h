@@ -1,7 +1,7 @@
 /*
  * ChatCompletionRequestUserMessage.h
  *
- * 
+ * Messages sent by an end user, containing prompts or additional context information. 
  */
 
 #ifndef _ChatCompletionRequestUserMessage_H_
@@ -21,7 +21,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief 
+/*! \brief Messages sent by an end user, containing prompts or additional context information. 
  *
  *  \ingroup Models
  *

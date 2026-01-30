@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -70,12 +70,6 @@ func (c *FineTuningAPIController) Routes() Routes {
 			"/v1/fine_tuning/jobs/{fine_tuning_job_id}",
 			c.RetrieveFineTuningJob,
 		},
-		"ListFineTuningEvents": Route{
-			"ListFineTuningEvents",
-			strings.ToUpper("Get"),
-			"/v1/fine_tuning/jobs/{fine_tuning_job_id}/events",
-			c.ListFineTuningEvents,
-		},
 		"CancelFineTuningJob": Route{
 			"CancelFineTuningJob",
 			strings.ToUpper("Post"),
@@ -87,6 +81,12 @@ func (c *FineTuningAPIController) Routes() Routes {
 			strings.ToUpper("Get"),
 			"/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints",
 			c.ListFineTuningJobCheckpoints,
+		},
+		"ListFineTuningEvents": Route{
+			"ListFineTuningEvents",
+			strings.ToUpper("Get"),
+			"/v1/fine_tuning/jobs/{fine_tuning_job_id}/events",
+			c.ListFineTuningEvents,
 		},
 	}
 }
@@ -113,12 +113,6 @@ func (c *FineTuningAPIController) OrderedRoutes() []Route {
 			c.RetrieveFineTuningJob,
 		},
 		Route{
-			"ListFineTuningEvents",
-			strings.ToUpper("Get"),
-			"/v1/fine_tuning/jobs/{fine_tuning_job_id}/events",
-			c.ListFineTuningEvents,
-		},
-		Route{
 			"CancelFineTuningJob",
 			strings.ToUpper("Post"),
 			"/v1/fine_tuning/jobs/{fine_tuning_job_id}/cancel",
@@ -129,6 +123,12 @@ func (c *FineTuningAPIController) OrderedRoutes() []Route {
 			strings.ToUpper("Get"),
 			"/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints",
 			c.ListFineTuningJobCheckpoints,
+		},
+		Route{
+			"ListFineTuningEvents",
+			strings.ToUpper("Get"),
+			"/v1/fine_tuning/jobs/{fine_tuning_job_id}/events",
+			c.ListFineTuningEvents,
 		},
 	}
 }
@@ -220,52 +220,6 @@ func (c *FineTuningAPIController) RetrieveFineTuningJob(w http.ResponseWriter, r
 	_ = EncodeJSONResponse(result.Body, &result.Code, w)
 }
 
-// ListFineTuningEvents - Get status updates for a fine-tuning job. 
-func (c *FineTuningAPIController) ListFineTuningEvents(w http.ResponseWriter, r *http.Request) {
-	params := mux.Vars(r)
-	query, err := parseQuery(r.URL.RawQuery)
-	if err != nil {
-		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
-		return
-	}
-	fineTuningJobIdParam := params["fine_tuning_job_id"]
-	if fineTuningJobIdParam == "" {
-		c.errorHandler(w, r, &RequiredError{"fine_tuning_job_id"}, nil)
-		return
-	}
-	var afterParam string
-	if query.Has("after") {
-		param := query.Get("after")
-
-		afterParam = param
-	} else {
-	}
-	var limitParam int32
-	if query.Has("limit") {
-		param, err := parseNumericParameter[int32](
-			query.Get("limit"),
-			WithParse[int32](parseInt32),
-		)
-		if err != nil {
-			c.errorHandler(w, r, &ParsingError{Param: "limit", Err: err}, nil)
-			return
-		}
-
-		limitParam = param
-	} else {
-		var param int32 = 20
-		limitParam = param
-	}
-	result, err := c.service.ListFineTuningEvents(r.Context(), fineTuningJobIdParam, afterParam, limitParam)
-	// If an error occurred, encode the error with the status code
-	if err != nil {
-		c.errorHandler(w, r, err, &result)
-		return
-	}
-	// If no error, encode the body and the result code
-	_ = EncodeJSONResponse(result.Body, &result.Code, w)
-}
-
 // CancelFineTuningJob - Immediately cancel a fine-tune job. 
 func (c *FineTuningAPIController) CancelFineTuningJob(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
@@ -321,6 +275,52 @@ func (c *FineTuningAPIController) ListFineTuningJobCheckpoints(w http.ResponseWr
 		limitParam = param
 	}
 	result, err := c.service.ListFineTuningJobCheckpoints(r.Context(), fineTuningJobIdParam, afterParam, limitParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	_ = EncodeJSONResponse(result.Body, &result.Code, w)
+}
+
+// ListFineTuningEvents - Get status updates for a fine-tuning job. 
+func (c *FineTuningAPIController) ListFineTuningEvents(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	query, err := parseQuery(r.URL.RawQuery)
+	if err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	fineTuningJobIdParam := params["fine_tuning_job_id"]
+	if fineTuningJobIdParam == "" {
+		c.errorHandler(w, r, &RequiredError{"fine_tuning_job_id"}, nil)
+		return
+	}
+	var afterParam string
+	if query.Has("after") {
+		param := query.Get("after")
+
+		afterParam = param
+	} else {
+	}
+	var limitParam int32
+	if query.Has("limit") {
+		param, err := parseNumericParameter[int32](
+			query.Get("limit"),
+			WithParse[int32](parseInt32),
+		)
+		if err != nil {
+			c.errorHandler(w, r, &ParsingError{Param: "limit", Err: err}, nil)
+			return
+		}
+
+		limitParam = param
+	} else {
+		var param int32 = 20
+		limitParam = param
+	}
+	result, err := c.service.ListFineTuningEvents(r.Context(), fineTuningJobIdParam, afterParam, limitParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)

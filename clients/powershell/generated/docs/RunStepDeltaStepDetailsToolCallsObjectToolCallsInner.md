@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **String** | The ID of the tool call object. | [optional] 
 **Type** | **String** | The type of tool call. This is always going to be &#x60;code_interpreter&#x60; for this type of tool call. | 
 **CodeInterpreter** | [**RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter**](RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.md) |  | [optional] 
-**Retrieval** | [**SystemCollectionsHashtable**](.md) | For now, this is always going to be an empty object. | [optional] 
+**FileSearch** | [**SystemCollectionsHashtable**](.md) | For now, this is always going to be an empty object. | 
 **VarFunction** | [**RunStepDeltaStepDetailsToolCallsFunctionObjectFunction**](RunStepDeltaStepDetailsToolCallsFunctionObjectFunction.md) |  | [optional] 
 
 ## Examples
@@ -18,7 +18,7 @@ $RunStepDeltaStepDetailsToolCallsObjectToolCallsInner = Initialize-PSOpenAPITool
  -Id null `
  -Type null `
  -CodeInterpreter null `
- -Retrieval null `
+ -FileSearch null `
  -VarFunction null
 ```
 

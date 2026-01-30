@@ -6,24 +6,19 @@ All URIs are relative to *https://api.openai.com/v1*
 |------------- | ------------- | -------------|
 | [**cancelRun**](AssistantsApi.md#cancelRun) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is &#x60;in_progress&#x60;. |
 | [**createAssistant**](AssistantsApi.md#createAssistant) | **POST** /assistants | Create an assistant with a model and instructions. |
-| [**createAssistantFile**](AssistantsApi.md#createAssistantFile) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants). |
 | [**createMessage**](AssistantsApi.md#createMessage) | **POST** /threads/{thread_id}/messages | Create a message. |
 | [**createRun**](AssistantsApi.md#createRun) | **POST** /threads/{thread_id}/runs | Create a run. |
 | [**createThread**](AssistantsApi.md#createThread) | **POST** /threads | Create a thread. |
 | [**createThreadAndRun**](AssistantsApi.md#createThreadAndRun) | **POST** /threads/runs | Create a thread and run it in one request. |
 | [**deleteAssistant**](AssistantsApi.md#deleteAssistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant. |
-| [**deleteAssistantFile**](AssistantsApi.md#deleteAssistantFile) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file. |
+| [**deleteMessage**](AssistantsApi.md#deleteMessage) | **DELETE** /threads/{thread_id}/messages/{message_id} | Deletes a message. |
 | [**deleteThread**](AssistantsApi.md#deleteThread) | **DELETE** /threads/{thread_id} | Delete a thread. |
 | [**getAssistant**](AssistantsApi.md#getAssistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant. |
-| [**getAssistantFile**](AssistantsApi.md#getAssistantFile) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile. |
 | [**getMessage**](AssistantsApi.md#getMessage) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message. |
-| [**getMessageFile**](AssistantsApi.md#getMessageFile) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file. |
 | [**getRun**](AssistantsApi.md#getRun) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run. |
 | [**getRunStep**](AssistantsApi.md#getRunStep) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step. |
 | [**getThread**](AssistantsApi.md#getThread) | **GET** /threads/{thread_id} | Retrieves a thread. |
-| [**listAssistantFiles**](AssistantsApi.md#listAssistantFiles) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files. |
 | [**listAssistants**](AssistantsApi.md#listAssistants) | **GET** /assistants | Returns a list of assistants. |
-| [**listMessageFiles**](AssistantsApi.md#listMessageFiles) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files. |
 | [**listMessages**](AssistantsApi.md#listMessages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread. |
 | [**listRunSteps**](AssistantsApi.md#listRunSteps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run. |
 | [**listRuns**](AssistantsApi.md#listRuns) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread. |
@@ -111,31 +106,6 @@ Create an assistant with a model and instructions.
  - **Content-Type**: `application/json`
  - **Accept**: `application/json`
 
-<a id="createAssistantFile"></a>
-# **createAssistantFile**
-```java
-Mono<AssistantFileObject> AssistantsApi.createAssistantFile(assistantIdcreateAssistantFileRequest)
-```
-
-Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
-### Parameters
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **assistantId** | `String`| The ID of the assistant for which to create a File.  | |
-| **createAssistantFileRequest** | [**CreateAssistantFileRequest**](CreateAssistantFileRequest.md)|  | |
-
-
-### Return type
-[**AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-* **[ApiKeyAuth](auth.md#ApiKeyAuth)**
-
-### HTTP request headers
- - **Content-Type**: `application/json`
- - **Accept**: `application/json`
-
 <a id="createMessage"></a>
 # **createMessage**
 ```java
@@ -164,7 +134,7 @@ Create a message.
 <a id="createRun"></a>
 # **createRun**
 ```java
-Mono<RunObject> AssistantsApi.createRun(threadIdcreateRunRequest)
+Mono<RunObject> AssistantsApi.createRun(threadIdcreateRunRequestinclude)
 ```
 
 Create a run.
@@ -174,6 +144,7 @@ Create a run.
 |------------- | ------------- | ------------- | -------------|
 | **threadId** | `String`| The ID of the thread to run. | |
 | **createRunRequest** | [**CreateRunRequest**](CreateRunRequest.md)|  | |
+| **include** | [**List&lt;String&gt;**](String.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional parameter] [enum: `step_details.tool_calls[*].file_search.results[*].content`] |
 
 
 ### Return type
@@ -258,23 +229,23 @@ Delete an assistant.
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a id="deleteAssistantFile"></a>
-# **deleteAssistantFile**
+<a id="deleteMessage"></a>
+# **deleteMessage**
 ```java
-Mono<DeleteAssistantFileResponse> AssistantsApi.deleteAssistantFile(assistantIdfileId)
+Mono<DeleteMessageResponse> AssistantsApi.deleteMessage(threadIdmessageId)
 ```
 
-Delete an assistant file.
+Deletes a message.
 
 ### Parameters
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **assistantId** | `String`| The ID of the assistant that the file belongs to. | |
-| **fileId** | `String`| The ID of the file to delete. | |
+| **threadId** | `String`| The ID of the thread to which this message belongs. | |
+| **messageId** | `String`| The ID of the message to delete. | |
 
 
 ### Return type
-[**DeleteAssistantFileResponse**](DeleteAssistantFileResponse.md)
+[**DeleteMessageResponse**](DeleteMessageResponse.md)
 
 ### Authorization
 * **[ApiKeyAuth](auth.md#ApiKeyAuth)**
@@ -331,31 +302,6 @@ Retrieves an assistant.
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a id="getAssistantFile"></a>
-# **getAssistantFile**
-```java
-Mono<AssistantFileObject> AssistantsApi.getAssistantFile(assistantIdfileId)
-```
-
-Retrieves an AssistantFile.
-
-### Parameters
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **assistantId** | `String`| The ID of the assistant who the file belongs to. | |
-| **fileId** | `String`| The ID of the file we&#39;re getting. | |
-
-
-### Return type
-[**AssistantFileObject**](AssistantFileObject.md)
-
-### Authorization
-* **[ApiKeyAuth](auth.md#ApiKeyAuth)**
-
-### HTTP request headers
- - **Content-Type**: Not defined
- - **Accept**: `application/json`
-
 <a id="getMessage"></a>
 # **getMessage**
 ```java
@@ -373,32 +319,6 @@ Retrieve a message.
 
 ### Return type
 [**MessageObject**](MessageObject.md)
-
-### Authorization
-* **[ApiKeyAuth](auth.md#ApiKeyAuth)**
-
-### HTTP request headers
- - **Content-Type**: Not defined
- - **Accept**: `application/json`
-
-<a id="getMessageFile"></a>
-# **getMessageFile**
-```java
-Mono<MessageFileObject> AssistantsApi.getMessageFile(threadIdmessageIdfileId)
-```
-
-Retrieves a message file.
-
-### Parameters
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **threadId** | `String`| The ID of the thread to which the message and File belong. | |
-| **messageId** | `String`| The ID of the message the file belongs to. | |
-| **fileId** | `String`| The ID of the file being retrieved. | |
-
-
-### Return type
-[**MessageFileObject**](MessageFileObject.md)
 
 ### Authorization
 * **[ApiKeyAuth](auth.md#ApiKeyAuth)**
@@ -435,7 +355,7 @@ Retrieves a run.
 <a id="getRunStep"></a>
 # **getRunStep**
 ```java
-Mono<RunStepObject> AssistantsApi.getRunStep(threadIdrunIdstepId)
+Mono<RunStepObject> AssistantsApi.getRunStep(threadIdrunIdstepIdinclude)
 ```
 
 Retrieves a run step.
@@ -446,6 +366,7 @@ Retrieves a run step.
 | **threadId** | `String`| The ID of the thread to which the run and run step belongs. | |
 | **runId** | `String`| The ID of the run to which the run step belongs. | |
 | **stepId** | `String`| The ID of the run step to retrieve. | |
+| **include** | [**List&lt;String&gt;**](String.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional parameter] [enum: `step_details.tool_calls[*].file_search.results[*].content`] |
 
 
 ### Return type
@@ -482,34 +403,6 @@ Retrieves a thread.
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a id="listAssistantFiles"></a>
-# **listAssistantFiles**
-```java
-Mono<ListAssistantFilesResponse> AssistantsApi.listAssistantFiles(assistantIdlimitorderafterbefore)
-```
-
-Returns a list of assistant files.
-
-### Parameters
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **assistantId** | `String`| The ID of the assistant the file belongs to. | |
-| **limit** | `Integer`| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional parameter] [default to `20`] |
-| **order** | `String`| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional parameter] [default to `desc`] [enum: `asc`, `desc`] |
-| **after** | `String`| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional parameter] |
-| **before** | `String`| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional parameter] |
-
-
-### Return type
-[**ListAssistantFilesResponse**](ListAssistantFilesResponse.md)
-
-### Authorization
-* **[ApiKeyAuth](auth.md#ApiKeyAuth)**
-
-### HTTP request headers
- - **Content-Type**: Not defined
- - **Accept**: `application/json`
-
 <a id="listAssistants"></a>
 # **listAssistants**
 ```java
@@ -524,40 +417,11 @@ Returns a list of assistants.
 | **limit** | `Integer`| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional parameter] [default to `20`] |
 | **order** | `String`| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional parameter] [default to `desc`] [enum: `asc`, `desc`] |
 | **after** | `String`| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional parameter] |
-| **before** | `String`| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional parameter] |
+| **before** | `String`| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional parameter] |
 
 
 ### Return type
 [**ListAssistantsResponse**](ListAssistantsResponse.md)
-
-### Authorization
-* **[ApiKeyAuth](auth.md#ApiKeyAuth)**
-
-### HTTP request headers
- - **Content-Type**: Not defined
- - **Accept**: `application/json`
-
-<a id="listMessageFiles"></a>
-# **listMessageFiles**
-```java
-Mono<ListMessageFilesResponse> AssistantsApi.listMessageFiles(threadIdmessageIdlimitorderafterbefore)
-```
-
-Returns a list of message files.
-
-### Parameters
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **threadId** | `String`| The ID of the thread that the message and files belong to. | |
-| **messageId** | `String`| The ID of the message that the files belongs to. | |
-| **limit** | `Integer`| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional parameter] [default to `20`] |
-| **order** | `String`| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional parameter] [default to `desc`] [enum: `asc`, `desc`] |
-| **after** | `String`| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional parameter] |
-| **before** | `String`| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional parameter] |
-
-
-### Return type
-[**ListMessageFilesResponse**](ListMessageFilesResponse.md)
 
 ### Authorization
 * **[ApiKeyAuth](auth.md#ApiKeyAuth)**
@@ -581,7 +445,7 @@ Returns a list of messages for a given thread.
 | **limit** | `Integer`| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional parameter] [default to `20`] |
 | **order** | `String`| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional parameter] [default to `desc`] [enum: `asc`, `desc`] |
 | **after** | `String`| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional parameter] |
-| **before** | `String`| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional parameter] |
+| **before** | `String`| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional parameter] |
 | **runId** | `String`| Filter messages by the run ID that generated them.  | [optional parameter] |
 
 
@@ -598,7 +462,7 @@ Returns a list of messages for a given thread.
 <a id="listRunSteps"></a>
 # **listRunSteps**
 ```java
-Mono<ListRunStepsResponse> AssistantsApi.listRunSteps(threadIdrunIdlimitorderafterbefore)
+Mono<ListRunStepsResponse> AssistantsApi.listRunSteps(threadIdrunIdlimitorderafterbeforeinclude)
 ```
 
 Returns a list of run steps belonging to a run.
@@ -611,7 +475,8 @@ Returns a list of run steps belonging to a run.
 | **limit** | `Integer`| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional parameter] [default to `20`] |
 | **order** | `String`| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional parameter] [default to `desc`] [enum: `asc`, `desc`] |
 | **after** | `String`| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional parameter] |
-| **before** | `String`| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional parameter] |
+| **before** | `String`| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional parameter] |
+| **include** | [**List&lt;String&gt;**](String.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional parameter] [enum: `step_details.tool_calls[*].file_search.results[*].content`] |
 
 
 ### Return type
@@ -639,7 +504,7 @@ Returns a list of runs belonging to a thread.
 | **limit** | `Integer`| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional parameter] [default to `20`] |
 | **order** | `String`| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional parameter] [default to `desc`] [enum: `asc`, `desc`] |
 | **after** | `String`| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional parameter] |
-| **before** | `String`| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional parameter] |
+| **before** | `String`| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional parameter] |
 
 
 ### Return type

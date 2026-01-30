@@ -90,7 +90,7 @@ class FilesApi {
 
     }
 
-    def listFiles ( String purpose, Closure onSuccess, Closure onFailure)  {
+    def listFiles ( String purpose, Integer limit, String order, String after, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/files"
 
         // params
@@ -102,6 +102,15 @@ class FilesApi {
 
         if (purpose != null) {
             queryParams.put("purpose", purpose)
+        }
+        if (limit != null) {
+            queryParams.put("limit", limit)
+        }
+        if (order != null) {
+            queryParams.put("order", order)
+        }
+        if (after != null) {
+            queryParams.put("after", after)
         }
 
 

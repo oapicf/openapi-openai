@@ -9,7 +9,8 @@
 #' @format An \code{R6Class} generator object
 #' @field description A description of what the function does, used by the model to choose when and how to call the function. character [optional]
 #' @field name The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. character
-#' @field parameters The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list. named list(\link{AnyType}) [optional]
+#' @field parameters The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list. named list(\link{AnyType}) [optional]
+#' @field strict Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling). character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -19,15 +20,17 @@ FunctionObject <- R6::R6Class(
     `description` = NULL,
     `name` = NULL,
     `parameters` = NULL,
+    `strict` = NULL,
 
     #' @description
     #' Initialize a new FunctionObject class.
     #'
     #' @param name The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
     #' @param description A description of what the function does, used by the model to choose when and how to call the function.
-    #' @param parameters The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
+    #' @param parameters The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
+    #' @param strict Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).. Default to FALSE.
     #' @param ... Other optional arguments.
-    initialize = function(`name`, `description` = NULL, `parameters` = NULL, ...) {
+    initialize = function(`name`, `description` = NULL, `parameters` = NULL, `strict` = FALSE, ...) {
       if (!missing(`name`)) {
         if (!(is.character(`name`) && length(`name`) == 1)) {
           stop(paste("Error! Invalid data for `name`. Must be a string:", `name`))
@@ -44,6 +47,12 @@ FunctionObject <- R6::R6Class(
         stopifnot(is.vector(`parameters`), length(`parameters`) != 0)
         sapply(`parameters`, function(x) stopifnot(R6::is.R6(x)))
         self$`parameters` <- `parameters`
+      }
+      if (!is.null(`strict`)) {
+        if (!(is.logical(`strict`) && length(`strict`) == 1)) {
+          stop(paste("Error! Invalid data for `strict`. Must be a boolean:", `strict`))
+        }
+        self$`strict` <- `strict`
       }
     },
 
@@ -90,6 +99,10 @@ FunctionObject <- R6::R6Class(
         FunctionObjectObject[["parameters"]] <-
           lapply(self$`parameters`, function(x) x$toSimpleType())
       }
+      if (!is.null(self$`strict`)) {
+        FunctionObjectObject[["strict"]] <-
+          self$`strict`
+      }
       return(FunctionObjectObject)
     },
 
@@ -108,6 +121,9 @@ FunctionObject <- R6::R6Class(
       }
       if (!is.null(this_object$`parameters`)) {
         self$`parameters` <- ApiClient$new()$deserializeObj(this_object$`parameters`, "map(AnyType)", loadNamespace("openapi"))
+      }
+      if (!is.null(this_object$`strict`)) {
+        self$`strict` <- this_object$`strict`
       }
       self
     },
@@ -133,6 +149,7 @@ FunctionObject <- R6::R6Class(
       self$`description` <- this_object$`description`
       self$`name` <- this_object$`name`
       self$`parameters` <- ApiClient$new()$deserializeObj(this_object$`parameters`, "map(AnyType)", loadNamespace("openapi"))
+      self$`strict` <- this_object$`strict`
       self
     },
 

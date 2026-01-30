@@ -13,8 +13,7 @@ void main() {
       // TODO
     });
 
-    // The contents of the tool message.
-    // String content
+    // ChatCompletionRequestToolMessageContent content
     test('to test the property `content`', () async {
       // TODO
     });

@@ -10,7 +10,7 @@ module.exports = {
         key: 'createFile',
         noun: 'Files',
         display: {
-            label: 'Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports &#x60;.jsonl&#x60; files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. ',
+            label: 'Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports &#x60;.jsonl&#x60; files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports &#x60;.jsonl&#x60; files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. ',
             description: '',
             hidden: false,
         },
@@ -24,12 +24,14 @@ module.exports = {
                 },
                 {
                     key: 'purpose',
-                    label: 'The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. ',
+                    label: 'The intended purpose of the uploaded file.  Use \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\&quot;vision\\\&quot; for Assistants image file inputs, \\\&quot;batch\\\&quot; for [Batch API](/docs/guides/batch), and \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning). ',
                     type: 'string',
                     required: true,
                     choices: [
-                        'fine-tune',
                         'assistants',
+                        'batch',
+                        'fine-tune',
+                        'vision',
                     ],
                 },
             ],
@@ -151,7 +153,7 @@ module.exports = {
         key: 'listFiles',
         noun: 'Files',
         display: {
-            label: 'Returns a list of files that belong to the user&#39;s organization.',
+            label: 'Returns a list of files.',
             description: '',
             hidden: false,
         },
@@ -160,6 +162,25 @@ module.exports = {
                 {
                     key: 'purpose',
                     label: 'Only return files with the given purpose.',
+                    type: 'string',
+                },
+                {
+                    key: 'limit',
+                    label: 'A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. ',
+                    type: 'integer',
+                },
+                {
+                    key: 'order',
+                    label: 'Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ',
+                    type: 'string',
+                    choices: [
+                        'asc',
+                        'desc',
+                    ],
+                },
+                {
+                    key: 'after',
+                    label: 'A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ',
                     type: 'string',
                 },
             ],
@@ -177,6 +198,9 @@ module.exports = {
                     },
                     params: {
                         'purpose': bundle.inputData?.['purpose'],
+                        'limit': bundle.inputData?.['limit'],
+                        'order': bundle.inputData?.['order'],
+                        'after': bundle.inputData?.['after'],
                     },
                     body: {
                     },

@@ -12,7 +12,7 @@ import org.openapitools.models.CreateSpeechRequestModel
  * 
  * @param model 
  * @param input The text to generate audio for. The maximum length is 4096 characters.
- * @param voice The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options).
+ * @param voice The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
  * @param responseUnderscoreformat The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
  * @param speed The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.
  */

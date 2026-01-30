@@ -13,7 +13,7 @@ Protected Class RunStreamEventOneOf7
 
     #tag Enum, Name = EscapedeventEnum, Type = Integer, Flags = &h0
         
-        ThreadPeriodRunPeriodCancelled
+        ThreadPeriodRunPeriodCancelling
         
     #tag EndEnum
 
@@ -22,8 +22,8 @@ Protected Class RunStreamEventOneOf7
 		Shared Function EscapedeventEnumToString(value As EscapedeventEnum) As String
 		  Select Case value
 		    
-		    Case EscapedeventEnum.ThreadPeriodRunPeriodCancelled
-		      Return "thread.run.cancelled"
+		    Case EscapedeventEnum.ThreadPeriodRunPeriodCancelling
+		      Return "thread.run.cancelling"
 		    
 		  End Select
 		  Return ""

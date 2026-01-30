@@ -10,6 +10,7 @@
 
 #include <string>
 #include "CreateMessageRequest.h"
+#include "CreateThreadRequest_tool_resources.h"
 #include <list>
 #include "Object.h"
 
@@ -54,16 +55,24 @@ public:
 	/*! \brief Set A list of [messages](/docs/api-reference/messages) to start the thread with.
 	 */
 	void setMessages(std::list <CreateMessageRequest> messages);
-	/*! \brief Get Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	/*! \brief Get 
+	 */
+	CreateThreadRequest_tool_resources getToolResources();
+
+	/*! \brief Set 
+	 */
+	void setToolResources(CreateThreadRequest_tool_resources  tool_resources);
+	/*! \brief Get Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	 */
 	std::string getMetadata();
 
-	/*! \brief Set Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	/*! \brief Set Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	 */
 	void setMetadata(std::string  metadata);
 
 private:
 	std::list <CreateMessageRequest>messages;
+	CreateThreadRequest_tool_resources tool_resources;
 	std::string metadata;
 	void __init();
 	void __cleanup();

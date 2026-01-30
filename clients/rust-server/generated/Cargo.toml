@@ -1,6 +1,6 @@
 [package]
 name = "openapi_client"
-version = "2.0.0"
+version = "2.3.0"
 authors = ["blah+oapicf@cliffano.com"]
 description = "The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details."
 license = "MIT"

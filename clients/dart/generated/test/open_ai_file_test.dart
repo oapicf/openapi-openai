@@ -46,7 +46,7 @@ void main() {
       // TODO
     });
 
-    // The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+    // The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
     // String purpose
     test('to test the property `purpose`', () async {
       // TODO

@@ -10,14 +10,14 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) moves to an &#x60;in_progress&#x60; state.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) moves to an &#x60;in_progress&#x60; state.
  **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-@ApiModel(description = "Occurs when a [run step](/docs/api-reference/runs/step-object) moves to an `in_progress` state.")
+@ApiModel(description = "Occurs when a [run step](/docs/api-reference/run-steps/step-object) moves to an `in_progress` state.")
 public class RunStepStreamEventOneOf1   {
   
 

@@ -25,11 +25,14 @@ import javax.annotation.Generated;
 
 @Schema(name = "CreateChatCompletionResponse_choices_inner_logprobs", description = "Log probability information for the choice.")
 @JsonTypeName("CreateChatCompletionResponse_choices_inner_logprobs")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateChatCompletionResponseChoicesInnerLogprobs {
 
   @Valid
   private JsonNullable<List<@Valid ChatCompletionTokenLogprob>> content = JsonNullable.<List<@Valid ChatCompletionTokenLogprob>>undefined();
+
+  @Valid
+  private JsonNullable<List<@Valid ChatCompletionTokenLogprob>> refusal = JsonNullable.<List<@Valid ChatCompletionTokenLogprob>>undefined();
 
   public CreateChatCompletionResponseChoicesInnerLogprobs() {
     super();
@@ -38,8 +41,9 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs {
   /**
    * Constructor with only required parameters
    */
-  public CreateChatCompletionResponseChoicesInnerLogprobs(List<@Valid ChatCompletionTokenLogprob> content) {
+  public CreateChatCompletionResponseChoicesInnerLogprobs(List<@Valid ChatCompletionTokenLogprob> content, List<@Valid ChatCompletionTokenLogprob> refusal) {
     this.content = JsonNullable.of(content);
+    this.refusal = JsonNullable.of(refusal);
   }
 
   public CreateChatCompletionResponseChoicesInnerLogprobs content(List<@Valid ChatCompletionTokenLogprob> content) {
@@ -70,6 +74,34 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs {
     this.content = content;
   }
 
+  public CreateChatCompletionResponseChoicesInnerLogprobs refusal(List<@Valid ChatCompletionTokenLogprob> refusal) {
+    this.refusal = JsonNullable.of(refusal);
+    return this;
+  }
+
+  public CreateChatCompletionResponseChoicesInnerLogprobs addRefusalItem(ChatCompletionTokenLogprob refusalItem) {
+    if (this.refusal == null || !this.refusal.isPresent()) {
+      this.refusal = JsonNullable.of(new ArrayList<>());
+    }
+    this.refusal.get().add(refusalItem);
+    return this;
+  }
+
+  /**
+   * A list of message refusal tokens with log probability information.
+   * @return refusal
+   */
+  @NotNull @Valid 
+  @Schema(name = "refusal", description = "A list of message refusal tokens with log probability information.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("refusal")
+  public JsonNullable<List<@Valid ChatCompletionTokenLogprob>> getRefusal() {
+    return refusal;
+  }
+
+  public void setRefusal(JsonNullable<List<@Valid ChatCompletionTokenLogprob>> refusal) {
+    this.refusal = refusal;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -79,12 +111,13 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs {
       return false;
     }
     CreateChatCompletionResponseChoicesInnerLogprobs createChatCompletionResponseChoicesInnerLogprobs = (CreateChatCompletionResponseChoicesInnerLogprobs) o;
-    return Objects.equals(this.content, createChatCompletionResponseChoicesInnerLogprobs.content);
+    return Objects.equals(this.content, createChatCompletionResponseChoicesInnerLogprobs.content) &&
+        Objects.equals(this.refusal, createChatCompletionResponseChoicesInnerLogprobs.refusal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(content);
+    return Objects.hash(content, refusal);
   }
 
   @Override
@@ -92,6 +125,7 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateChatCompletionResponseChoicesInnerLogprobs {\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
     sb.append("}");
     return sb.toString();
   }

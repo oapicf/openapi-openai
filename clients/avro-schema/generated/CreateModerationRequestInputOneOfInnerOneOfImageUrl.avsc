@@ -1,0 +1,14 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Contains either an image URL or a data URL for a base64 encoded image.",
+  "name": "CreateModerationRequestInputOneOfInnerOneOfImageUrl",
+  "fields": [
+    {
+      "name": "url",
+      "type": "model.URI",
+      "doc": "Either a URL of the image or the base64 encoded image data."
+    }
+  ]
+
+}

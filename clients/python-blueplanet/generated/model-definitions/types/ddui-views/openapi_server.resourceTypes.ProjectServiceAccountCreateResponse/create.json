@@ -1,0 +1,22 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "object" },
+      {"model": "id" },
+      {"model": "name" },
+      {"model": "role" },
+      {"model": "created_at" },
+      {"model": "api_key" },
+    ]
+  }]
+}

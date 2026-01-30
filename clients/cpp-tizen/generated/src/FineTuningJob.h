@@ -9,6 +9,7 @@
 
 
 #include <string>
+#include "FineTuneMethod.h"
 #include "FineTuningJob_error.h"
 #include "FineTuningJob_hyperparameters.h"
 #include "FineTuningJob_integrations_inner.h"
@@ -161,6 +162,20 @@ public:
 	/*! \brief Set The seed used for the fine-tuning job.
 	 */
 	void setSeed(int  seed);
+	/*! \brief Get The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+	 */
+	int getEstimatedFinish();
+
+	/*! \brief Set The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+	 */
+	void setEstimatedFinish(int  estimated_finish);
+	/*! \brief Get 
+	 */
+	FineTuneMethod getMethod();
+
+	/*! \brief Set 
+	 */
+	void setMethod(FineTuneMethod  method);
 
 private:
 	std::string id;
@@ -179,6 +194,8 @@ private:
 	std::string validation_file;
 	std::list <FineTuningJob_integrations_inner>integrations;
 	int seed;
+	int estimated_finish;
+	FineTuneMethod method;
 	void __init();
 	void __cleanup();
 

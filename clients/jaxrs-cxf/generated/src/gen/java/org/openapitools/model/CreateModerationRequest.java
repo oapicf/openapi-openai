@@ -22,7 +22,7 @@ public class CreateModerationRequest  {
 
   @Valid
 
-  private CreateModerationRequestModel model = text-moderation-latest;
+  private CreateModerationRequestModel model = omni-moderation-latest;
  /**
    * Get input
    * @return input

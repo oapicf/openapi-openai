@@ -17,6 +17,6 @@ public interface FilesApi  {
     Future<ApiResponse<OpenAIFile>> createFile(FileUpload _file);
     Future<ApiResponse<DeleteFileResponse>> deleteFile(String fileId);
     Future<ApiResponse<String>> downloadFile(String fileId);
-    Future<ApiResponse<ListFilesResponse>> listFiles(String purpose);
+    Future<ApiResponse<ListFilesResponse>> listFiles(String purpose, Integer limit, String order, String after);
     Future<ApiResponse<OpenAIFile>> retrieveFile(String fileId);
 }

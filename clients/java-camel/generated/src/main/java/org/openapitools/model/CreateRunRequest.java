@@ -30,7 +30,7 @@ import javax.annotation.Generated;
  * CreateRunRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateRunRequest {
 
   private String assistantId;
@@ -51,6 +51,8 @@ public class CreateRunRequest {
 
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
 
+  private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
+
   private JsonNullable<Boolean> stream = JsonNullable.<Boolean>undefined();
 
   private JsonNullable<@Min(value = 256) Integer> maxPromptTokens = JsonNullable.<Integer>undefined();
@@ -60,6 +62,8 @@ public class CreateRunRequest {
   private TruncationObject truncationStrategy;
 
   private AssistantsApiToolChoiceOption toolChoice;
+
+  private Boolean parallelToolCalls = true;
 
   private AssistantsApiResponseFormatOption responseFormat;
 
@@ -216,11 +220,11 @@ public class CreateRunRequest {
   }
 
   /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
   
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;
@@ -252,6 +256,28 @@ public class CreateRunRequest {
     this.temperature = temperature;
   }
 
+  public CreateRunRequest topP(BigDecimal topP) {
+    this.topP = JsonNullable.of(topP);
+    return this;
+  }
+
+  /**
+   * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+   * minimum: 0
+   * maximum: 1
+   * @return topP
+   */
+  @Valid @DecimalMin(value = "0") @DecimalMax(value = "1") 
+  @Schema(name = "top_p", example = "1", description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("top_p")
+  public JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> getTopP() {
+    return topP;
+  }
+
+  public void setTopP(JsonNullable<BigDecimal> topP) {
+    this.topP = topP;
+  }
+
   public CreateRunRequest stream(Boolean stream) {
     this.stream = JsonNullable.of(stream);
     return this;
@@ -278,12 +304,12 @@ public class CreateRunRequest {
   }
 
   /**
-   * The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+   * The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
    * minimum: 256
    * @return maxPromptTokens
    */
   @Min(value = 256) 
-  @Schema(name = "max_prompt_tokens", description = "The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "max_prompt_tokens", description = "The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("max_prompt_tokens")
   public JsonNullable<@Min(value = 256) Integer> getMaxPromptTokens() {
     return maxPromptTokens;
@@ -299,12 +325,12 @@ public class CreateRunRequest {
   }
 
   /**
-   * The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+   * The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
    * minimum: 256
    * @return maxCompletionTokens
    */
   @Min(value = 256) 
-  @Schema(name = "max_completion_tokens", description = "The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "max_completion_tokens", description = "The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("max_completion_tokens")
   public JsonNullable<@Min(value = 256) Integer> getMaxCompletionTokens() {
     return maxCompletionTokens;
@@ -354,6 +380,26 @@ public class CreateRunRequest {
     this.toolChoice = toolChoice;
   }
 
+  public CreateRunRequest parallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+    return this;
+  }
+
+  /**
+   * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+   * @return parallelToolCalls
+   */
+  
+  @Schema(name = "parallel_tool_calls", description = "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("parallel_tool_calls")
+  public Boolean getParallelToolCalls() {
+    return parallelToolCalls;
+  }
+
+  public void setParallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+  }
+
   public CreateRunRequest responseFormat(AssistantsApiResponseFormatOption responseFormat) {
     this.responseFormat = responseFormat;
     return this;
@@ -391,11 +437,13 @@ public class CreateRunRequest {
         equalsNullable(this.tools, createRunRequest.tools) &&
         equalsNullable(this.metadata, createRunRequest.metadata) &&
         equalsNullable(this.temperature, createRunRequest.temperature) &&
+        equalsNullable(this.topP, createRunRequest.topP) &&
         equalsNullable(this.stream, createRunRequest.stream) &&
         equalsNullable(this.maxPromptTokens, createRunRequest.maxPromptTokens) &&
         equalsNullable(this.maxCompletionTokens, createRunRequest.maxCompletionTokens) &&
         Objects.equals(this.truncationStrategy, createRunRequest.truncationStrategy) &&
         Objects.equals(this.toolChoice, createRunRequest.toolChoice) &&
+        Objects.equals(this.parallelToolCalls, createRunRequest.parallelToolCalls) &&
         Objects.equals(this.responseFormat, createRunRequest.responseFormat);
   }
 
@@ -405,7 +453,7 @@ public class CreateRunRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(assistantId, hashCodeNullable(model), hashCodeNullable(instructions), hashCodeNullable(additionalInstructions), hashCodeNullable(additionalMessages), hashCodeNullable(tools), hashCodeNullable(metadata), hashCodeNullable(temperature), hashCodeNullable(stream), hashCodeNullable(maxPromptTokens), hashCodeNullable(maxCompletionTokens), truncationStrategy, toolChoice, responseFormat);
+    return Objects.hash(assistantId, hashCodeNullable(model), hashCodeNullable(instructions), hashCodeNullable(additionalInstructions), hashCodeNullable(additionalMessages), hashCodeNullable(tools), hashCodeNullable(metadata), hashCodeNullable(temperature), hashCodeNullable(topP), hashCodeNullable(stream), hashCodeNullable(maxPromptTokens), hashCodeNullable(maxCompletionTokens), truncationStrategy, toolChoice, parallelToolCalls, responseFormat);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -427,11 +475,13 @@ public class CreateRunRequest {
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
     sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
     sb.append("    maxPromptTokens: ").append(toIndentedString(maxPromptTokens)).append("\n");
     sb.append("    maxCompletionTokens: ").append(toIndentedString(maxCompletionTokens)).append("\n");
     sb.append("    truncationStrategy: ").append(toIndentedString(truncationStrategy)).append("\n");
     sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
+    sb.append("    parallelToolCalls: ").append(toIndentedString(parallelToolCalls)).append("\n");
     sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();

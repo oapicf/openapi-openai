@@ -4,10 +4,14 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.vertxweb.server.model.AssistantObjectToolResources;
 import org.openapitools.vertxweb.server.model.AssistantObjectToolsInner;
+import org.openapitools.vertxweb.server.model.AssistantsApiResponseFormatOption;
 
 /**
  * Represents an &#x60;assistant&#x60; that can call the model and use tools.
@@ -41,14 +45,17 @@ public class AssistantObject   {
   private String model;
   private String instructions;
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
-  private List<String> fileIds = new ArrayList<>();
+  private AssistantObjectToolResources toolResources;
   private Object metadata;
+  private BigDecimal temperature = new BigDecimal("1");
+  private BigDecimal topP = new BigDecimal("1");
+  private AssistantsApiResponseFormatOption responseFormat;
 
   public AssistantObject () {
 
   }
 
-  public AssistantObject (String id, ObjectEnum _object, Integer createdAt, String name, String description, String model, String instructions, List<AssistantObjectToolsInner> tools, List<String> fileIds, Object metadata) {
+  public AssistantObject (String id, ObjectEnum _object, Integer createdAt, String name, String description, String model, String instructions, List<AssistantObjectToolsInner> tools, AssistantObjectToolResources toolResources, Object metadata, BigDecimal temperature, BigDecimal topP, AssistantsApiResponseFormatOption responseFormat) {
     this.id = id;
     this._object = _object;
     this.createdAt = createdAt;
@@ -57,8 +64,11 @@ public class AssistantObject   {
     this.model = model;
     this.instructions = instructions;
     this.tools = tools;
-    this.fileIds = fileIds;
+    this.toolResources = toolResources;
     this.metadata = metadata;
+    this.temperature = temperature;
+    this.topP = topP;
+    this.responseFormat = responseFormat;
   }
 
     
@@ -134,12 +144,12 @@ public class AssistantObject   {
   }
 
     
-  @JsonProperty("file_ids")
-  public List<String> getFileIds() {
-    return fileIds;
+  @JsonProperty("tool_resources")
+  public AssistantObjectToolResources getToolResources() {
+    return toolResources;
   }
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public void setToolResources(AssistantObjectToolResources toolResources) {
+    this.toolResources = toolResources;
   }
 
     
@@ -149,6 +159,33 @@ public class AssistantObject   {
   }
   public void setMetadata(Object metadata) {
     this.metadata = metadata;
+  }
+
+    
+  @JsonProperty("temperature")
+  public BigDecimal getTemperature() {
+    return temperature;
+  }
+  public void setTemperature(BigDecimal temperature) {
+    this.temperature = temperature;
+  }
+
+    
+  @JsonProperty("top_p")
+  public BigDecimal getTopP() {
+    return topP;
+  }
+  public void setTopP(BigDecimal topP) {
+    this.topP = topP;
+  }
+
+    
+  @JsonProperty("response_format")
+  public AssistantsApiResponseFormatOption getResponseFormat() {
+    return responseFormat;
+  }
+  public void setResponseFormat(AssistantsApiResponseFormatOption responseFormat) {
+    this.responseFormat = responseFormat;
   }
 
 
@@ -169,13 +206,16 @@ public class AssistantObject   {
         Objects.equals(model, assistantObject.model) &&
         Objects.equals(instructions, assistantObject.instructions) &&
         Objects.equals(tools, assistantObject.tools) &&
-        Objects.equals(fileIds, assistantObject.fileIds) &&
-        Objects.equals(metadata, assistantObject.metadata);
+        Objects.equals(toolResources, assistantObject.toolResources) &&
+        Objects.equals(metadata, assistantObject.metadata) &&
+        Objects.equals(temperature, assistantObject.temperature) &&
+        Objects.equals(topP, assistantObject.topP) &&
+        Objects.equals(responseFormat, assistantObject.responseFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, name, description, model, instructions, tools, fileIds, metadata);
+    return Objects.hash(id, _object, createdAt, name, description, model, instructions, tools, toolResources, metadata, temperature, topP, responseFormat);
   }
 
   @Override
@@ -191,8 +231,11 @@ public class AssistantObject   {
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    toolResources: ").append(toIndentedString(toolResources)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
+    sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -104,7 +104,7 @@ class ChatCompletionFunctions(Model):
     def parameters(self) -> Dict[str, object]:
         """Gets the parameters of this ChatCompletionFunctions.
 
-        The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.  # noqa: E501
+        The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.  # noqa: E501
 
         :return: The parameters of this ChatCompletionFunctions.
         :rtype: Dict[str, object]
@@ -115,7 +115,7 @@ class ChatCompletionFunctions(Model):
     def parameters(self, parameters: Dict[str, object]):
         """Sets the parameters of this ChatCompletionFunctions.
 
-        The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.  # noqa: E501
+        The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.  # noqa: E501
 
         :param parameters: The parameters of this ChatCompletionFunctions.
         :type parameters: Dict[str, object]

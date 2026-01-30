@@ -4,7 +4,7 @@
 
 -define(BASE_URL, <<"/v1">>).
 
-%% @doc Classifies if text is potentially harmful.
+%% @doc Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 %% 
 -spec create_moderation(ctx:ctx(), openapi_create_moderation_request:openapi_create_moderation_request()) -> {ok, openapi_create_moderation_response:openapi_create_moderation_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 create_moderation(Ctx, OpenapiCreateModerationRequest) ->

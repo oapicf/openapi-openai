@@ -19,6 +19,7 @@
 #include "RunStreamEvent_oneOf_6.h"
 #include "RunStreamEvent_oneOf_7.h"
 #include "RunStreamEvent_oneOf_8.h"
+#include "RunStreamEvent_oneOf_9.h"
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API

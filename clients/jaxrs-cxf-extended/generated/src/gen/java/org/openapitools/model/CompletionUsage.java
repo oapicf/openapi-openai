@@ -1,5 +1,7 @@
 package org.openapitools.model;
 
+import org.openapitools.model.CompletionUsageCompletionTokensDetails;
+import org.openapitools.model.CompletionUsagePromptTokensDetails;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -32,6 +34,14 @@ public class CompletionUsage  {
   */
   @ApiModelProperty(required = true, value = "Total number of tokens used in the request (prompt + completion).")
   private Integer totalTokens;
+
+  @ApiModelProperty(value = "")
+  @Valid
+  private CompletionUsageCompletionTokensDetails completionTokensDetails;
+
+  @ApiModelProperty(value = "")
+  @Valid
+  private CompletionUsagePromptTokensDetails promptTokensDetails;
  /**
   * Number of tokens in the generated completion.
   * @return completionTokens
@@ -107,6 +117,54 @@ public class CompletionUsage  {
     return this;
   }
 
+ /**
+  * Get completionTokensDetails
+  * @return completionTokensDetails
+  */
+  @JsonProperty("completion_tokens_details")
+  public CompletionUsageCompletionTokensDetails getCompletionTokensDetails() {
+    return completionTokensDetails;
+  }
+
+  /**
+   * Sets the <code>completionTokensDetails</code> property.
+   */
+ public void setCompletionTokensDetails(CompletionUsageCompletionTokensDetails completionTokensDetails) {
+    this.completionTokensDetails = completionTokensDetails;
+  }
+
+  /**
+   * Sets the <code>completionTokensDetails</code> property.
+   */
+  public CompletionUsage completionTokensDetails(CompletionUsageCompletionTokensDetails completionTokensDetails) {
+    this.completionTokensDetails = completionTokensDetails;
+    return this;
+  }
+
+ /**
+  * Get promptTokensDetails
+  * @return promptTokensDetails
+  */
+  @JsonProperty("prompt_tokens_details")
+  public CompletionUsagePromptTokensDetails getPromptTokensDetails() {
+    return promptTokensDetails;
+  }
+
+  /**
+   * Sets the <code>promptTokensDetails</code> property.
+   */
+ public void setPromptTokensDetails(CompletionUsagePromptTokensDetails promptTokensDetails) {
+    this.promptTokensDetails = promptTokensDetails;
+  }
+
+  /**
+   * Sets the <code>promptTokensDetails</code> property.
+   */
+  public CompletionUsage promptTokensDetails(CompletionUsagePromptTokensDetails promptTokensDetails) {
+    this.promptTokensDetails = promptTokensDetails;
+    return this;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -119,12 +177,14 @@ public class CompletionUsage  {
     CompletionUsage completionUsage = (CompletionUsage) o;
     return Objects.equals(this.completionTokens, completionUsage.completionTokens) &&
         Objects.equals(this.promptTokens, completionUsage.promptTokens) &&
-        Objects.equals(this.totalTokens, completionUsage.totalTokens);
+        Objects.equals(this.totalTokens, completionUsage.totalTokens) &&
+        Objects.equals(this.completionTokensDetails, completionUsage.completionTokensDetails) &&
+        Objects.equals(this.promptTokensDetails, completionUsage.promptTokensDetails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(completionTokens, promptTokens, totalTokens);
+    return Objects.hash(completionTokens, promptTokens, totalTokens, completionTokensDetails, promptTokensDetails);
   }
 
   @Override
@@ -135,6 +195,8 @@ public class CompletionUsage  {
     sb.append("    completionTokens: ").append(toIndentedString(completionTokens)).append("\n");
     sb.append("    promptTokens: ").append(toIndentedString(promptTokens)).append("\n");
     sb.append("    totalTokens: ").append(toIndentedString(totalTokens)).append("\n");
+    sb.append("    completionTokensDetails: ").append(toIndentedString(completionTokensDetails)).append("\n");
+    sb.append("    promptTokensDetails: ").append(toIndentedString(promptTokensDetails)).append("\n");
     sb.append("}");
     return sb.toString();
   }

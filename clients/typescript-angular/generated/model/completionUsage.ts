@@ -7,6 +7,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { CompletionUsagePromptTokensDetails } from './completionUsagePromptTokensDetails';
+import { CompletionUsageCompletionTokensDetails } from './completionUsageCompletionTokensDetails';
 
 
 /**
@@ -25,5 +27,7 @@ export interface CompletionUsage {
      * Total number of tokens used in the request (prompt + completion).
      */
     total_tokens: number;
+    completion_tokens_details?: CompletionUsageCompletionTokensDetails;
+    prompt_tokens_details?: CompletionUsagePromptTokensDetails;
 }
 

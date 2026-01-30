@@ -2,8 +2,8 @@ namespace OpenAPI.Model
 
 open System
 open System.Collections.Generic
+open OpenAPI.Model.AssistantsNamedToolChoiceFunction
 open OpenAPI.Model.ChatCompletionNamedToolChoice
-open OpenAPI.Model.ChatCompletionNamedToolChoiceFunction
 
 module ChatCompletionToolChoiceOption =
 
@@ -15,6 +15,6 @@ module ChatCompletionToolChoiceOption =
 
   type ChatCompletionToolChoiceOption = {
     Type : TypeEnum;
-    Function : ChatCompletionNamedToolChoiceFunction;
+    Function : AssistantsNamedToolChoiceFunction;
   }
   //#endregion

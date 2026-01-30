@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Enum: EventEnum
 
 
-* `thread.run.cancelling` (value: `"thread.run.cancelling"`)
+* `thread.run.failed` (value: `"thread.run.failed"`)
 
 
 

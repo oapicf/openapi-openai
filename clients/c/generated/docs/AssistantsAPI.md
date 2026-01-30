@@ -6,24 +6,19 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AssistantsAPI_cancelRun**](AssistantsAPI.md#AssistantsAPI_cancelRun) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is &#x60;in_progress&#x60;.
 [**AssistantsAPI_createAssistant**](AssistantsAPI.md#AssistantsAPI_createAssistant) | **POST** /assistants | Create an assistant with a model and instructions.
-[**AssistantsAPI_createAssistantFile**](AssistantsAPI.md#AssistantsAPI_createAssistantFile) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
 [**AssistantsAPI_createMessage**](AssistantsAPI.md#AssistantsAPI_createMessage) | **POST** /threads/{thread_id}/messages | Create a message.
 [**AssistantsAPI_createRun**](AssistantsAPI.md#AssistantsAPI_createRun) | **POST** /threads/{thread_id}/runs | Create a run.
 [**AssistantsAPI_createThread**](AssistantsAPI.md#AssistantsAPI_createThread) | **POST** /threads | Create a thread.
 [**AssistantsAPI_createThreadAndRun**](AssistantsAPI.md#AssistantsAPI_createThreadAndRun) | **POST** /threads/runs | Create a thread and run it in one request.
 [**AssistantsAPI_deleteAssistant**](AssistantsAPI.md#AssistantsAPI_deleteAssistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant.
-[**AssistantsAPI_deleteAssistantFile**](AssistantsAPI.md#AssistantsAPI_deleteAssistantFile) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+[**AssistantsAPI_deleteMessage**](AssistantsAPI.md#AssistantsAPI_deleteMessage) | **DELETE** /threads/{thread_id}/messages/{message_id} | Deletes a message.
 [**AssistantsAPI_deleteThread**](AssistantsAPI.md#AssistantsAPI_deleteThread) | **DELETE** /threads/{thread_id} | Delete a thread.
 [**AssistantsAPI_getAssistant**](AssistantsAPI.md#AssistantsAPI_getAssistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant.
-[**AssistantsAPI_getAssistantFile**](AssistantsAPI.md#AssistantsAPI_getAssistantFile) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
 [**AssistantsAPI_getMessage**](AssistantsAPI.md#AssistantsAPI_getMessage) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
-[**AssistantsAPI_getMessageFile**](AssistantsAPI.md#AssistantsAPI_getMessageFile) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
 [**AssistantsAPI_getRun**](AssistantsAPI.md#AssistantsAPI_getRun) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
 [**AssistantsAPI_getRunStep**](AssistantsAPI.md#AssistantsAPI_getRunStep) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
 [**AssistantsAPI_getThread**](AssistantsAPI.md#AssistantsAPI_getThread) | **GET** /threads/{thread_id} | Retrieves a thread.
-[**AssistantsAPI_listAssistantFiles**](AssistantsAPI.md#AssistantsAPI_listAssistantFiles) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
 [**AssistantsAPI_listAssistants**](AssistantsAPI.md#AssistantsAPI_listAssistants) | **GET** /assistants | Returns a list of assistants.
-[**AssistantsAPI_listMessageFiles**](AssistantsAPI.md#AssistantsAPI_listMessageFiles) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
 [**AssistantsAPI_listMessages**](AssistantsAPI.md#AssistantsAPI_listMessages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
 [**AssistantsAPI_listRunSteps**](AssistantsAPI.md#AssistantsAPI_listRunSteps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
 [**AssistantsAPI_listRuns**](AssistantsAPI.md#AssistantsAPI_listRuns) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
@@ -93,36 +88,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **AssistantsAPI_createAssistantFile**
-```c
-// Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-//
-assistant_file_object_t* AssistantsAPI_createAssistantFile(apiClient_t *apiClient, char *assistant_id, create_assistant_file_request_t *create_assistant_file_request);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**assistant_id** | **char \*** | The ID of the assistant for which to create a File.  | 
-**create_assistant_file_request** | **[create_assistant_file_request_t](create_assistant_file_request.md) \*** |  | 
-
-### Return type
-
-[assistant_file_object_t](assistant_file_object.md) *
-
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **AssistantsAPI_createMessage**
 ```c
 // Create a message.
@@ -157,7 +122,7 @@ Name | Type | Description  | Notes
 ```c
 // Create a run.
 //
-run_object_t* AssistantsAPI_createRun(apiClient_t *apiClient, char *thread_id, create_run_request_t *create_run_request);
+run_object_t* AssistantsAPI_createRun(apiClient_t *apiClient, char *thread_id, create_run_request_t *create_run_request, list_t *include[]);
 ```
 
 ### Parameters
@@ -166,6 +131,7 @@ Name | Type | Description  | Notes
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **thread_id** | **char \*** | The ID of the thread to run. | 
 **create_run_request** | **[create_run_request_t](create_run_request.md) \*** |  | 
+**include[]** | **[list_t](char.md) \*** | A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -270,23 +236,23 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **AssistantsAPI_deleteAssistantFile**
+# **AssistantsAPI_deleteMessage**
 ```c
-// Delete an assistant file.
+// Deletes a message.
 //
-delete_assistant_file_response_t* AssistantsAPI_deleteAssistantFile(apiClient_t *apiClient, char *assistant_id, char *file_id);
+delete_message_response_t* AssistantsAPI_deleteMessage(apiClient_t *apiClient, char *thread_id, char *message_id);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**assistant_id** | **char \*** | The ID of the assistant that the file belongs to. | 
-**file_id** | **char \*** | The ID of the file to delete. | 
+**thread_id** | **char \*** | The ID of the thread to which this message belongs. | 
+**message_id** | **char \*** | The ID of the message to delete. | 
 
 ### Return type
 
-[delete_assistant_file_response_t](delete_assistant_file_response.md) *
+[delete_message_response_t](delete_message_response.md) *
 
 
 ### Authorization
@@ -358,36 +324,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **AssistantsAPI_getAssistantFile**
-```c
-// Retrieves an AssistantFile.
-//
-assistant_file_object_t* AssistantsAPI_getAssistantFile(apiClient_t *apiClient, char *assistant_id, char *file_id);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**assistant_id** | **char \*** | The ID of the assistant who the file belongs to. | 
-**file_id** | **char \*** | The ID of the file we&#39;re getting. | 
-
-### Return type
-
-[assistant_file_object_t](assistant_file_object.md) *
-
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **AssistantsAPI_getMessage**
 ```c
 // Retrieve a message.
@@ -405,37 +341,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [message_object_t](message_object.md) *
-
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **AssistantsAPI_getMessageFile**
-```c
-// Retrieves a message file.
-//
-message_file_object_t* AssistantsAPI_getMessageFile(apiClient_t *apiClient, char *thread_id, char *message_id, char *file_id);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**thread_id** | **char \*** | The ID of the thread to which the message and File belong. | 
-**message_id** | **char \*** | The ID of the message the file belongs to. | 
-**file_id** | **char \*** | The ID of the file being retrieved. | 
-
-### Return type
-
-[message_file_object_t](message_file_object.md) *
 
 
 ### Authorization
@@ -483,7 +388,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieves a run step.
 //
-run_step_object_t* AssistantsAPI_getRunStep(apiClient_t *apiClient, char *thread_id, char *run_id, char *step_id);
+run_step_object_t* AssistantsAPI_getRunStep(apiClient_t *apiClient, char *thread_id, char *run_id, char *step_id, list_t *include[]);
 ```
 
 ### Parameters
@@ -493,6 +398,7 @@ Name | Type | Description  | Notes
 **thread_id** | **char \*** | The ID of the thread to which the run and run step belongs. | 
 **run_id** | **char \*** | The ID of the run to which the run step belongs. | 
 **step_id** | **char \*** | The ID of the run step to retrieve. | 
+**include[]** | **[list_t](char.md) \*** | A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -539,39 +445,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **AssistantsAPI_listAssistantFiles**
-```c
-// Returns a list of assistant files.
-//
-list_assistant_files_response_t* AssistantsAPI_listAssistantFiles(apiClient_t *apiClient, char *assistant_id, int *limit, openai_api_listAssistantFiles_order_e order, char *after, char *before);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**assistant_id** | **char \*** | The ID of the assistant the file belongs to. | 
-**limit** | **int \*** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
-**order** | **openai_api_listAssistantFiles_order_e** | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &#39;desc&#39;]
-**after** | **char \*** | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
-**before** | **char \*** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
-
-### Return type
-
-[list_assistant_files_response_t](list_assistant_files_response.md) *
-
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **AssistantsAPI_listAssistants**
 ```c
 // Returns a list of assistants.
@@ -586,45 +459,11 @@ Name | Type | Description  | Notes
 **limit** | **int \*** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
 **order** | **openai_api_listAssistants_order_e** | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &#39;desc&#39;]
 **after** | **char \*** | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
-**before** | **char \*** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+**before** | **char \*** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
 
 ### Return type
 
 [list_assistants_response_t](list_assistants_response.md) *
-
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **AssistantsAPI_listMessageFiles**
-```c
-// Returns a list of message files.
-//
-list_message_files_response_t* AssistantsAPI_listMessageFiles(apiClient_t *apiClient, char *thread_id, char *message_id, int *limit, openai_api_listMessageFiles_order_e order, char *after, char *before);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**thread_id** | **char \*** | The ID of the thread that the message and files belong to. | 
-**message_id** | **char \*** | The ID of the message that the files belongs to. | 
-**limit** | **int \*** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
-**order** | **openai_api_listMessageFiles_order_e** | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &#39;desc&#39;]
-**after** | **char \*** | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
-**before** | **char \*** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
-
-### Return type
-
-[list_message_files_response_t](list_message_files_response.md) *
 
 
 ### Authorization
@@ -653,7 +492,7 @@ Name | Type | Description  | Notes
 **limit** | **int \*** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
 **order** | **openai_api_listMessages_order_e** | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &#39;desc&#39;]
 **after** | **char \*** | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
-**before** | **char \*** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+**before** | **char \*** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
 **run_id** | **char \*** | Filter messages by the run ID that generated them.  | [optional] 
 
 ### Return type
@@ -676,7 +515,7 @@ Name | Type | Description  | Notes
 ```c
 // Returns a list of run steps belonging to a run.
 //
-list_run_steps_response_t* AssistantsAPI_listRunSteps(apiClient_t *apiClient, char *thread_id, char *run_id, int *limit, openai_api_listRunSteps_order_e order, char *after, char *before);
+list_run_steps_response_t* AssistantsAPI_listRunSteps(apiClient_t *apiClient, char *thread_id, char *run_id, int *limit, openai_api_listRunSteps_order_e order, char *after, char *before, list_t *include[]);
 ```
 
 ### Parameters
@@ -688,7 +527,8 @@ Name | Type | Description  | Notes
 **limit** | **int \*** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
 **order** | **openai_api_listRunSteps_order_e** | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &#39;desc&#39;]
 **after** | **char \*** | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
-**before** | **char \*** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+**before** | **char \*** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+**include[]** | **[list_t](char.md) \*** | A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -721,7 +561,7 @@ Name | Type | Description  | Notes
 **limit** | **int \*** | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20]
 **order** | **openai_api_listRuns_order_e** | Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to &#39;desc&#39;]
 **after** | **char \*** | A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
-**before** | **char \*** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+**before** | **char \*** | A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
 
 ### Return type
 

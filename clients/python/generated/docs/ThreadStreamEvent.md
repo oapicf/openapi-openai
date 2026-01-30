@@ -6,6 +6,7 @@ Occurs when a new [thread](/docs/api-reference/threads/object) is created.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enabled** | **bool** | Whether to enable input audio transcription. | [optional] 
 **event** | **str** |  | 
 **data** | [**ThreadObject**](ThreadObject.md) |  | 
 

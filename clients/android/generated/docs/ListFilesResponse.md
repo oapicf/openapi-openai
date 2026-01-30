@@ -6,14 +6,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**_object** | **String** |  | 
 **data** | [**List&lt;OpenAIFile&gt;**](OpenAIFile.md) |  | 
-**_object** | [**_objectEnum**](#_objectEnum) |  | 
-
-
-## Enum: _objectEnum
-
-Name | Value
----- | -----
+**firstId** | **String** |  | 
+**lastId** | **String** |  | 
+**hasMore** | **Boolean** |  | 
 
 
 

@@ -5,9 +5,10 @@ import io.finch.circe._
 import io.circe.generic.semiauto._
 import io.circe.java8.time._
 import org.openapitools._
+import org.openapitools.models.CreateModerationRequestInputOneOfInner
 
 /**
- * The input text to classify
+ * Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models. 
  */
 case class CreateModerationRequestInput()
 

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.CreateMessageRequestAttachmentsInner;
+import org.openapitools.model.CreateMessageRequestContent;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -40,11 +42,11 @@ public class CreateMessageRequestTest {
     }
 
     /**
-     * Test the property 'fileIds'
+     * Test the property 'attachments'
      */
     @Test
-    public void fileIdsTest() {
-        // TODO: test fileIds
+    public void attachmentsTest() {
+        // TODO: test attachments
     }
 
     /**

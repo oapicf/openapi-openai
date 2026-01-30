@@ -22,13 +22,19 @@ list_files_response_t* instantiate_list_files_response(int include_optional) {
   list_files_response_t* list_files_response = NULL;
   if (include_optional) {
     list_files_response = list_files_response_create(
+      "list",
       list_createList(),
-      openai_api_list_files_response_OBJECT_list
+      "file-abc123",
+      "file-abc456",
+      false
     );
   } else {
     list_files_response = list_files_response_create(
+      "list",
       list_createList(),
-      openai_api_list_files_response_OBJECT_list
+      "file-abc123",
+      "file-abc456",
+      false
     );
   }
 

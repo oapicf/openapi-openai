@@ -10,6 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
+/** Learn about [image inputs](/docs/guides/vision).  */
 public struct ChatCompletionRequestMessageContentPartImage: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {

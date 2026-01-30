@@ -19,6 +19,7 @@ create_completion_request_t* instantiate_create_completion_request(int include_o
 #include "test_create_completion_request_model.c"
 #include "test_create_completion_request_prompt.c"
 #include "test_create_completion_request_stop.c"
+#include "test_chat_completion_stream_options.c"
 
 
 create_completion_request_t* instantiate_create_completion_request(int include_optional) {
@@ -35,9 +36,11 @@ create_completion_request_t* instantiate_create_completion_request(int include_o
       16,
       1,
       -2,
-      -9223372036854775808,
+      -9223372036854776000,
       null,
       1,
+       // false, not to have infinite recursion
+      instantiate_chat_completion_stream_options(0),
       "test.",
       1,
       1,
@@ -55,9 +58,10 @@ create_completion_request_t* instantiate_create_completion_request(int include_o
       16,
       1,
       -2,
-      -9223372036854775808,
+      -9223372036854776000,
       null,
       1,
+      NULL,
       "test.",
       1,
       1,

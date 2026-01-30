@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -14,9 +14,13 @@ package openapi
 import (
 	"context"
 	"net/http"
+	"reflect"
+	"os"
+	"reflect"
 	"os"
 	"os"
 	"os"
+	"reflect"
 )
 
 
@@ -31,6 +35,7 @@ type AssistantsAPIRouter interface {
 	ModifyAssistant(http.ResponseWriter, *http.Request)
 	DeleteAssistant(http.ResponseWriter, *http.Request)
 	CreateThread(http.ResponseWriter, *http.Request)
+	CreateThreadAndRun(http.ResponseWriter, *http.Request)
 	GetThread(http.ResponseWriter, *http.Request)
 	ModifyThread(http.ResponseWriter, *http.Request)
 	DeleteThread(http.ResponseWriter, *http.Request)
@@ -38,21 +43,15 @@ type AssistantsAPIRouter interface {
 	CreateMessage(http.ResponseWriter, *http.Request)
 	GetMessage(http.ResponseWriter, *http.Request)
 	ModifyMessage(http.ResponseWriter, *http.Request)
-	CreateThreadAndRun(http.ResponseWriter, *http.Request)
+	DeleteMessage(http.ResponseWriter, *http.Request)
 	ListRuns(http.ResponseWriter, *http.Request)
 	CreateRun(http.ResponseWriter, *http.Request)
 	GetRun(http.ResponseWriter, *http.Request)
 	ModifyRun(http.ResponseWriter, *http.Request)
-	SubmitToolOuputsToRun(http.ResponseWriter, *http.Request)
 	CancelRun(http.ResponseWriter, *http.Request)
 	ListRunSteps(http.ResponseWriter, *http.Request)
 	GetRunStep(http.ResponseWriter, *http.Request)
-	ListAssistantFiles(http.ResponseWriter, *http.Request)
-	CreateAssistantFile(http.ResponseWriter, *http.Request)
-	GetAssistantFile(http.ResponseWriter, *http.Request)
-	DeleteAssistantFile(http.ResponseWriter, *http.Request)
-	ListMessageFiles(http.ResponseWriter, *http.Request)
-	GetMessageFile(http.ResponseWriter, *http.Request)
+	SubmitToolOuputsToRun(http.ResponseWriter, *http.Request)
 }
 // AudioAPIRouter defines the required methods for binding the api requests to a responses for the AudioAPI
 // The AudioAPIRouter implementation should parse necessary information from the http request,
@@ -61,6 +60,21 @@ type AudioAPIRouter interface {
 	CreateSpeech(http.ResponseWriter, *http.Request)
 	CreateTranscription(http.ResponseWriter, *http.Request)
 	CreateTranslation(http.ResponseWriter, *http.Request)
+}
+// AuditLogsAPIRouter defines the required methods for binding the api requests to a responses for the AuditLogsAPI
+// The AuditLogsAPIRouter implementation should parse necessary information from the http request,
+// pass the data to a AuditLogsAPIServicer to perform the required actions, then write the service results to the http response.
+type AuditLogsAPIRouter interface { 
+	ListAuditLogs(http.ResponseWriter, *http.Request)
+}
+// BatchAPIRouter defines the required methods for binding the api requests to a responses for the BatchAPI
+// The BatchAPIRouter implementation should parse necessary information from the http request,
+// pass the data to a BatchAPIServicer to perform the required actions, then write the service results to the http response.
+type BatchAPIRouter interface { 
+	ListBatches(http.ResponseWriter, *http.Request)
+	CreateBatch(http.ResponseWriter, *http.Request)
+	RetrieveBatch(http.ResponseWriter, *http.Request)
+	CancelBatch(http.ResponseWriter, *http.Request)
 }
 // ChatAPIRouter defines the required methods for binding the api requests to a responses for the ChatAPI
 // The ChatAPIRouter implementation should parse necessary information from the http request,
@@ -73,6 +87,15 @@ type ChatAPIRouter interface {
 // pass the data to a CompletionsAPIServicer to perform the required actions, then write the service results to the http response.
 type CompletionsAPIRouter interface { 
 	CreateCompletion(http.ResponseWriter, *http.Request)
+}
+// DefaultAPIRouter defines the required methods for binding the api requests to a responses for the DefaultAPI
+// The DefaultAPIRouter implementation should parse necessary information from the http request,
+// pass the data to a DefaultAPIServicer to perform the required actions, then write the service results to the http response.
+type DefaultAPIRouter interface { 
+	AdminApiKeysList(http.ResponseWriter, *http.Request)
+	AdminApiKeysCreate(http.ResponseWriter, *http.Request)
+	AdminApiKeysGet(http.ResponseWriter, *http.Request)
+	AdminApiKeysDelete(http.ResponseWriter, *http.Request)
 }
 // EmbeddingsAPIRouter defines the required methods for binding the api requests to a responses for the EmbeddingsAPI
 // The EmbeddingsAPIRouter implementation should parse necessary information from the http request,
@@ -97,17 +120,26 @@ type FineTuningAPIRouter interface {
 	ListPaginatedFineTuningJobs(http.ResponseWriter, *http.Request)
 	CreateFineTuningJob(http.ResponseWriter, *http.Request)
 	RetrieveFineTuningJob(http.ResponseWriter, *http.Request)
-	ListFineTuningEvents(http.ResponseWriter, *http.Request)
 	CancelFineTuningJob(http.ResponseWriter, *http.Request)
 	ListFineTuningJobCheckpoints(http.ResponseWriter, *http.Request)
+	ListFineTuningEvents(http.ResponseWriter, *http.Request)
 }
 // ImagesAPIRouter defines the required methods for binding the api requests to a responses for the ImagesAPI
 // The ImagesAPIRouter implementation should parse necessary information from the http request,
 // pass the data to a ImagesAPIServicer to perform the required actions, then write the service results to the http response.
 type ImagesAPIRouter interface { 
-	CreateImage(http.ResponseWriter, *http.Request)
 	CreateImageEdit(http.ResponseWriter, *http.Request)
+	CreateImage(http.ResponseWriter, *http.Request)
 	CreateImageVariation(http.ResponseWriter, *http.Request)
+}
+// InvitesAPIRouter defines the required methods for binding the api requests to a responses for the InvitesAPI
+// The InvitesAPIRouter implementation should parse necessary information from the http request,
+// pass the data to a InvitesAPIServicer to perform the required actions, then write the service results to the http response.
+type InvitesAPIRouter interface { 
+	ListInvites(http.ResponseWriter, *http.Request)
+	InviteUser(http.ResponseWriter, *http.Request)
+	RetrieveInvite(http.ResponseWriter, *http.Request)
+	DeleteInvite(http.ResponseWriter, *http.Request)
 }
 // ModelsAPIRouter defines the required methods for binding the api requests to a responses for the ModelsAPI
 // The ModelsAPIRouter implementation should parse necessary information from the http request,
@@ -123,6 +155,86 @@ type ModelsAPIRouter interface {
 type ModerationsAPIRouter interface { 
 	CreateModeration(http.ResponseWriter, *http.Request)
 }
+// ProjectsAPIRouter defines the required methods for binding the api requests to a responses for the ProjectsAPI
+// The ProjectsAPIRouter implementation should parse necessary information from the http request,
+// pass the data to a ProjectsAPIServicer to perform the required actions, then write the service results to the http response.
+type ProjectsAPIRouter interface { 
+	ListProjects(http.ResponseWriter, *http.Request)
+	CreateProject(http.ResponseWriter, *http.Request)
+	RetrieveProject(http.ResponseWriter, *http.Request)
+	ModifyProject(http.ResponseWriter, *http.Request)
+	ListProjectApiKeys(http.ResponseWriter, *http.Request)
+	RetrieveProjectApiKey(http.ResponseWriter, *http.Request)
+	DeleteProjectApiKey(http.ResponseWriter, *http.Request)
+	ArchiveProject(http.ResponseWriter, *http.Request)
+	ListProjectRateLimits(http.ResponseWriter, *http.Request)
+	UpdateProjectRateLimits(http.ResponseWriter, *http.Request)
+	ListProjectServiceAccounts(http.ResponseWriter, *http.Request)
+	CreateProjectServiceAccount(http.ResponseWriter, *http.Request)
+	RetrieveProjectServiceAccount(http.ResponseWriter, *http.Request)
+	DeleteProjectServiceAccount(http.ResponseWriter, *http.Request)
+	ListProjectUsers(http.ResponseWriter, *http.Request)
+	CreateProjectUser(http.ResponseWriter, *http.Request)
+	RetrieveProjectUser(http.ResponseWriter, *http.Request)
+	ModifyProjectUser(http.ResponseWriter, *http.Request)
+	DeleteProjectUser(http.ResponseWriter, *http.Request)
+}
+// RealtimeAPIRouter defines the required methods for binding the api requests to a responses for the RealtimeAPI
+// The RealtimeAPIRouter implementation should parse necessary information from the http request,
+// pass the data to a RealtimeAPIServicer to perform the required actions, then write the service results to the http response.
+type RealtimeAPIRouter interface { 
+	CreateRealtimeSession(http.ResponseWriter, *http.Request)
+}
+// UploadsAPIRouter defines the required methods for binding the api requests to a responses for the UploadsAPI
+// The UploadsAPIRouter implementation should parse necessary information from the http request,
+// pass the data to a UploadsAPIServicer to perform the required actions, then write the service results to the http response.
+type UploadsAPIRouter interface { 
+	CreateUpload(http.ResponseWriter, *http.Request)
+	CancelUpload(http.ResponseWriter, *http.Request)
+	CompleteUpload(http.ResponseWriter, *http.Request)
+	AddUploadPart(http.ResponseWriter, *http.Request)
+}
+// UsageAPIRouter defines the required methods for binding the api requests to a responses for the UsageAPI
+// The UsageAPIRouter implementation should parse necessary information from the http request,
+// pass the data to a UsageAPIServicer to perform the required actions, then write the service results to the http response.
+type UsageAPIRouter interface { 
+	UsageCosts(http.ResponseWriter, *http.Request)
+	UsageAudioSpeeches(http.ResponseWriter, *http.Request)
+	UsageAudioTranscriptions(http.ResponseWriter, *http.Request)
+	UsageCodeInterpreterSessions(http.ResponseWriter, *http.Request)
+	UsageCompletions(http.ResponseWriter, *http.Request)
+	UsageEmbeddings(http.ResponseWriter, *http.Request)
+	UsageImages(http.ResponseWriter, *http.Request)
+	UsageModerations(http.ResponseWriter, *http.Request)
+	UsageVectorStores(http.ResponseWriter, *http.Request)
+}
+// UsersAPIRouter defines the required methods for binding the api requests to a responses for the UsersAPI
+// The UsersAPIRouter implementation should parse necessary information from the http request,
+// pass the data to a UsersAPIServicer to perform the required actions, then write the service results to the http response.
+type UsersAPIRouter interface { 
+	ListUsers(http.ResponseWriter, *http.Request)
+	RetrieveUser(http.ResponseWriter, *http.Request)
+	ModifyUser(http.ResponseWriter, *http.Request)
+	DeleteUser(http.ResponseWriter, *http.Request)
+}
+// VectorStoresAPIRouter defines the required methods for binding the api requests to a responses for the VectorStoresAPI
+// The VectorStoresAPIRouter implementation should parse necessary information from the http request,
+// pass the data to a VectorStoresAPIServicer to perform the required actions, then write the service results to the http response.
+type VectorStoresAPIRouter interface { 
+	ListVectorStores(http.ResponseWriter, *http.Request)
+	CreateVectorStore(http.ResponseWriter, *http.Request)
+	GetVectorStore(http.ResponseWriter, *http.Request)
+	ModifyVectorStore(http.ResponseWriter, *http.Request)
+	DeleteVectorStore(http.ResponseWriter, *http.Request)
+	CreateVectorStoreFileBatch(http.ResponseWriter, *http.Request)
+	GetVectorStoreFileBatch(http.ResponseWriter, *http.Request)
+	CancelVectorStoreFileBatch(http.ResponseWriter, *http.Request)
+	ListFilesInVectorStoreBatch(http.ResponseWriter, *http.Request)
+	ListVectorStoreFiles(http.ResponseWriter, *http.Request)
+	CreateVectorStoreFile(http.ResponseWriter, *http.Request)
+	GetVectorStoreFile(http.ResponseWriter, *http.Request)
+	DeleteVectorStoreFile(http.ResponseWriter, *http.Request)
+}
 
 
 // AssistantsAPIServicer defines the api actions for the AssistantsAPI service
@@ -136,6 +248,7 @@ type AssistantsAPIServicer interface {
 	ModifyAssistant(context.Context, string, ModifyAssistantRequest) (ImplResponse, error)
 	DeleteAssistant(context.Context, string) (ImplResponse, error)
 	CreateThread(context.Context, CreateThreadRequest) (ImplResponse, error)
+	CreateThreadAndRun(context.Context, CreateThreadAndRunRequest) (ImplResponse, error)
 	GetThread(context.Context, string) (ImplResponse, error)
 	ModifyThread(context.Context, string, ModifyThreadRequest) (ImplResponse, error)
 	DeleteThread(context.Context, string) (ImplResponse, error)
@@ -143,21 +256,15 @@ type AssistantsAPIServicer interface {
 	CreateMessage(context.Context, string, CreateMessageRequest) (ImplResponse, error)
 	GetMessage(context.Context, string, string) (ImplResponse, error)
 	ModifyMessage(context.Context, string, string, ModifyMessageRequest) (ImplResponse, error)
-	CreateThreadAndRun(context.Context, CreateThreadAndRunRequest) (ImplResponse, error)
+	DeleteMessage(context.Context, string, string) (ImplResponse, error)
 	ListRuns(context.Context, string, int32, string, string, string) (ImplResponse, error)
-	CreateRun(context.Context, string, CreateRunRequest) (ImplResponse, error)
+	CreateRun(context.Context, string, CreateRunRequest, []string) (ImplResponse, error)
 	GetRun(context.Context, string, string) (ImplResponse, error)
 	ModifyRun(context.Context, string, string, ModifyRunRequest) (ImplResponse, error)
-	SubmitToolOuputsToRun(context.Context, string, string, SubmitToolOutputsRunRequest) (ImplResponse, error)
 	CancelRun(context.Context, string, string) (ImplResponse, error)
-	ListRunSteps(context.Context, string, string, int32, string, string, string) (ImplResponse, error)
-	GetRunStep(context.Context, string, string, string) (ImplResponse, error)
-	ListAssistantFiles(context.Context, string, int32, string, string, string) (ImplResponse, error)
-	CreateAssistantFile(context.Context, string, CreateAssistantFileRequest) (ImplResponse, error)
-	GetAssistantFile(context.Context, string, string) (ImplResponse, error)
-	DeleteAssistantFile(context.Context, string, string) (ImplResponse, error)
-	ListMessageFiles(context.Context, string, string, int32, string, string, string) (ImplResponse, error)
-	GetMessageFile(context.Context, string, string, string) (ImplResponse, error)
+	ListRunSteps(context.Context, string, string, int32, string, string, string, []string) (ImplResponse, error)
+	GetRunStep(context.Context, string, string, string, []string) (ImplResponse, error)
+	SubmitToolOuputsToRun(context.Context, string, string, SubmitToolOutputsRunRequest) (ImplResponse, error)
 }
 
 
@@ -167,8 +274,29 @@ type AssistantsAPIServicer interface {
 // and updated with the logic required for the API.
 type AudioAPIServicer interface { 
 	CreateSpeech(context.Context, CreateSpeechRequest) (ImplResponse, error)
-	CreateTranscription(context.Context, *os.File, CreateTranscriptionRequestModel, string, string, string, float32, []string) (ImplResponse, error)
-	CreateTranslation(context.Context, *os.File, CreateTranscriptionRequestModel, string, string, float32) (ImplResponse, error)
+	CreateTranscription(context.Context, *os.File, CreateTranscriptionRequestModel, string, string, AudioResponseFormat, float32, []string) (ImplResponse, error)
+	CreateTranslation(context.Context, *os.File, CreateTranscriptionRequestModel, string, AudioResponseFormat, float32) (ImplResponse, error)
+}
+
+
+// AuditLogsAPIServicer defines the api actions for the AuditLogsAPI service
+// This interface intended to stay up to date with the openapi yaml used to generate it,
+// while the service implementation can be ignored with the .openapi-generator-ignore file
+// and updated with the logic required for the API.
+type AuditLogsAPIServicer interface { 
+	ListAuditLogs(context.Context, ListAuditLogsEffectiveAtParameter, []string, []AuditLogEventType, []string, []string, []string, int32, string, string) (ImplResponse, error)
+}
+
+
+// BatchAPIServicer defines the api actions for the BatchAPI service
+// This interface intended to stay up to date with the openapi yaml used to generate it,
+// while the service implementation can be ignored with the .openapi-generator-ignore file
+// and updated with the logic required for the API.
+type BatchAPIServicer interface { 
+	ListBatches(context.Context, string, int32) (ImplResponse, error)
+	CreateBatch(context.Context, CreateBatchRequest) (ImplResponse, error)
+	RetrieveBatch(context.Context, string) (ImplResponse, error)
+	CancelBatch(context.Context, string) (ImplResponse, error)
 }
 
 
@@ -190,6 +318,18 @@ type CompletionsAPIServicer interface {
 }
 
 
+// DefaultAPIServicer defines the api actions for the DefaultAPI service
+// This interface intended to stay up to date with the openapi yaml used to generate it,
+// while the service implementation can be ignored with the .openapi-generator-ignore file
+// and updated with the logic required for the API.
+type DefaultAPIServicer interface { 
+	AdminApiKeysList(context.Context, *string, string, int32) (ImplResponse, error)
+	AdminApiKeysCreate(context.Context, AdminApiKeysCreateRequest) (ImplResponse, error)
+	AdminApiKeysGet(context.Context, string) (ImplResponse, error)
+	AdminApiKeysDelete(context.Context, string) (ImplResponse, error)
+}
+
+
 // EmbeddingsAPIServicer defines the api actions for the EmbeddingsAPI service
 // This interface intended to stay up to date with the openapi yaml used to generate it,
 // while the service implementation can be ignored with the .openapi-generator-ignore file
@@ -204,7 +344,7 @@ type EmbeddingsAPIServicer interface {
 // while the service implementation can be ignored with the .openapi-generator-ignore file
 // and updated with the logic required for the API.
 type FilesAPIServicer interface { 
-	ListFiles(context.Context, string) (ImplResponse, error)
+	ListFiles(context.Context, string, int32, string, string) (ImplResponse, error)
 	CreateFile(context.Context, *os.File, string) (ImplResponse, error)
 	RetrieveFile(context.Context, string) (ImplResponse, error)
 	DeleteFile(context.Context, string) (ImplResponse, error)
@@ -220,9 +360,9 @@ type FineTuningAPIServicer interface {
 	ListPaginatedFineTuningJobs(context.Context, string, int32) (ImplResponse, error)
 	CreateFineTuningJob(context.Context, CreateFineTuningJobRequest) (ImplResponse, error)
 	RetrieveFineTuningJob(context.Context, string) (ImplResponse, error)
-	ListFineTuningEvents(context.Context, string, string, int32) (ImplResponse, error)
 	CancelFineTuningJob(context.Context, string) (ImplResponse, error)
 	ListFineTuningJobCheckpoints(context.Context, string, string, int32) (ImplResponse, error)
+	ListFineTuningEvents(context.Context, string, string, int32) (ImplResponse, error)
 }
 
 
@@ -231,9 +371,21 @@ type FineTuningAPIServicer interface {
 // while the service implementation can be ignored with the .openapi-generator-ignore file
 // and updated with the logic required for the API.
 type ImagesAPIServicer interface { 
-	CreateImage(context.Context, CreateImageRequest) (ImplResponse, error)
 	CreateImageEdit(context.Context, *os.File, string, *os.File, *CreateImageEditRequestModel, *int32, *string, *string, string) (ImplResponse, error)
+	CreateImage(context.Context, CreateImageRequest) (ImplResponse, error)
 	CreateImageVariation(context.Context, *os.File, *CreateImageEditRequestModel, *int32, *string, *string, string) (ImplResponse, error)
+}
+
+
+// InvitesAPIServicer defines the api actions for the InvitesAPI service
+// This interface intended to stay up to date with the openapi yaml used to generate it,
+// while the service implementation can be ignored with the .openapi-generator-ignore file
+// and updated with the logic required for the API.
+type InvitesAPIServicer interface { 
+	ListInvites(context.Context, int32, string) (ImplResponse, error)
+	InviteUser(context.Context, InviteRequest) (ImplResponse, error)
+	RetrieveInvite(context.Context, string) (ImplResponse, error)
+	DeleteInvite(context.Context, string) (ImplResponse, error)
 }
 
 
@@ -254,4 +406,102 @@ type ModelsAPIServicer interface {
 // and updated with the logic required for the API.
 type ModerationsAPIServicer interface { 
 	CreateModeration(context.Context, CreateModerationRequest) (ImplResponse, error)
+}
+
+
+// ProjectsAPIServicer defines the api actions for the ProjectsAPI service
+// This interface intended to stay up to date with the openapi yaml used to generate it,
+// while the service implementation can be ignored with the .openapi-generator-ignore file
+// and updated with the logic required for the API.
+type ProjectsAPIServicer interface { 
+	ListProjects(context.Context, int32, string, bool) (ImplResponse, error)
+	CreateProject(context.Context, ProjectCreateRequest) (ImplResponse, error)
+	RetrieveProject(context.Context, string) (ImplResponse, error)
+	ModifyProject(context.Context, string, ProjectUpdateRequest) (ImplResponse, error)
+	ListProjectApiKeys(context.Context, string, int32, string) (ImplResponse, error)
+	RetrieveProjectApiKey(context.Context, string, string) (ImplResponse, error)
+	DeleteProjectApiKey(context.Context, string, string) (ImplResponse, error)
+	ArchiveProject(context.Context, string) (ImplResponse, error)
+	ListProjectRateLimits(context.Context, string, int32, string, string) (ImplResponse, error)
+	UpdateProjectRateLimits(context.Context, string, string, ProjectRateLimitUpdateRequest) (ImplResponse, error)
+	ListProjectServiceAccounts(context.Context, string, int32, string) (ImplResponse, error)
+	CreateProjectServiceAccount(context.Context, string, ProjectServiceAccountCreateRequest) (ImplResponse, error)
+	RetrieveProjectServiceAccount(context.Context, string, string) (ImplResponse, error)
+	DeleteProjectServiceAccount(context.Context, string, string) (ImplResponse, error)
+	ListProjectUsers(context.Context, string, int32, string) (ImplResponse, error)
+	CreateProjectUser(context.Context, string, ProjectUserCreateRequest) (ImplResponse, error)
+	RetrieveProjectUser(context.Context, string, string) (ImplResponse, error)
+	ModifyProjectUser(context.Context, string, string, ProjectUserUpdateRequest) (ImplResponse, error)
+	DeleteProjectUser(context.Context, string, string) (ImplResponse, error)
+}
+
+
+// RealtimeAPIServicer defines the api actions for the RealtimeAPI service
+// This interface intended to stay up to date with the openapi yaml used to generate it,
+// while the service implementation can be ignored with the .openapi-generator-ignore file
+// and updated with the logic required for the API.
+type RealtimeAPIServicer interface { 
+	CreateRealtimeSession(context.Context, RealtimeSessionCreateRequest) (ImplResponse, error)
+}
+
+
+// UploadsAPIServicer defines the api actions for the UploadsAPI service
+// This interface intended to stay up to date with the openapi yaml used to generate it,
+// while the service implementation can be ignored with the .openapi-generator-ignore file
+// and updated with the logic required for the API.
+type UploadsAPIServicer interface { 
+	CreateUpload(context.Context, CreateUploadRequest) (ImplResponse, error)
+	CancelUpload(context.Context, string) (ImplResponse, error)
+	CompleteUpload(context.Context, string, CompleteUploadRequest) (ImplResponse, error)
+	AddUploadPart(context.Context, string, *os.File) (ImplResponse, error)
+}
+
+
+// UsageAPIServicer defines the api actions for the UsageAPI service
+// This interface intended to stay up to date with the openapi yaml used to generate it,
+// while the service implementation can be ignored with the .openapi-generator-ignore file
+// and updated with the logic required for the API.
+type UsageAPIServicer interface { 
+	UsageCosts(context.Context, int32, int32, string, []string, []string, int32, string) (ImplResponse, error)
+	UsageAudioSpeeches(context.Context, int32, int32, string, []string, []string, []string, []string, []string, int32, string) (ImplResponse, error)
+	UsageAudioTranscriptions(context.Context, int32, int32, string, []string, []string, []string, []string, []string, int32, string) (ImplResponse, error)
+	UsageCodeInterpreterSessions(context.Context, int32, int32, string, []string, []string, int32, string) (ImplResponse, error)
+	UsageCompletions(context.Context, int32, int32, string, []string, []string, []string, []string, bool, []string, int32, string) (ImplResponse, error)
+	UsageEmbeddings(context.Context, int32, int32, string, []string, []string, []string, []string, []string, int32, string) (ImplResponse, error)
+	UsageImages(context.Context, int32, int32, string, []string, []string, []string, []string, []string, []string, []string, int32, string) (ImplResponse, error)
+	UsageModerations(context.Context, int32, int32, string, []string, []string, []string, []string, []string, int32, string) (ImplResponse, error)
+	UsageVectorStores(context.Context, int32, int32, string, []string, []string, int32, string) (ImplResponse, error)
+}
+
+
+// UsersAPIServicer defines the api actions for the UsersAPI service
+// This interface intended to stay up to date with the openapi yaml used to generate it,
+// while the service implementation can be ignored with the .openapi-generator-ignore file
+// and updated with the logic required for the API.
+type UsersAPIServicer interface { 
+	ListUsers(context.Context, int32, string) (ImplResponse, error)
+	RetrieveUser(context.Context, string) (ImplResponse, error)
+	ModifyUser(context.Context, string, UserRoleUpdateRequest) (ImplResponse, error)
+	DeleteUser(context.Context, string) (ImplResponse, error)
+}
+
+
+// VectorStoresAPIServicer defines the api actions for the VectorStoresAPI service
+// This interface intended to stay up to date with the openapi yaml used to generate it,
+// while the service implementation can be ignored with the .openapi-generator-ignore file
+// and updated with the logic required for the API.
+type VectorStoresAPIServicer interface { 
+	ListVectorStores(context.Context, int32, string, string, string) (ImplResponse, error)
+	CreateVectorStore(context.Context, CreateVectorStoreRequest) (ImplResponse, error)
+	GetVectorStore(context.Context, string) (ImplResponse, error)
+	ModifyVectorStore(context.Context, string, UpdateVectorStoreRequest) (ImplResponse, error)
+	DeleteVectorStore(context.Context, string) (ImplResponse, error)
+	CreateVectorStoreFileBatch(context.Context, string, CreateVectorStoreFileBatchRequest) (ImplResponse, error)
+	GetVectorStoreFileBatch(context.Context, string, string) (ImplResponse, error)
+	CancelVectorStoreFileBatch(context.Context, string, string) (ImplResponse, error)
+	ListFilesInVectorStoreBatch(context.Context, string, string, int32, string, string, string, string) (ImplResponse, error)
+	ListVectorStoreFiles(context.Context, string, int32, string, string, string, string) (ImplResponse, error)
+	CreateVectorStoreFile(context.Context, string, CreateVectorStoreFileRequest) (ImplResponse, error)
+	GetVectorStoreFile(context.Context, string, string) (ImplResponse, error)
+	DeleteVectorStoreFile(context.Context, string, string) (ImplResponse, error)
 }

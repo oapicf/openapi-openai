@@ -6,11 +6,18 @@ context("Test ChatCompletionRequestAssistantMessage")
 model_instance <- ChatCompletionRequestAssistantMessage$new()
 
 test_that("content", {
-  # tests for the property `content` (character)
-  # The contents of the assistant message. Required unless &#x60;tool_calls&#x60; or &#x60;function_call&#x60; is specified. 
+  # tests for the property `content` (ChatCompletionRequestAssistantMessageContent)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`content`, "EXPECTED_RESULT")
+})
+
+test_that("refusal", {
+  # tests for the property `refusal` (character)
+  # The refusal message by the assistant.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`refusal`, "EXPECTED_RESULT")
 })
 
 test_that("role", {
@@ -27,6 +34,13 @@ test_that("name", {
 
   # uncomment below to test the property
   #expect_equal(model.instance$`name`, "EXPECTED_RESULT")
+})
+
+test_that("audio", {
+  # tests for the property `audio` (ChatCompletionRequestAssistantMessageAudio)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`audio`, "EXPECTED_RESULT")
 })
 
 test_that("tool_calls", {

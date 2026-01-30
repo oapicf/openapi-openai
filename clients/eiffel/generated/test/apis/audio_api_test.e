@@ -38,7 +38,7 @@ feature -- Test routines
             l_model: CREATE_TRANSCRIPTION_REQUEST_MODEL
             l_language: STRING_32
             l_prompt: STRING_32
-            l_response_format: STRING_32
+            l_response_format: AUDIO_RESPONSE_FORMAT
             l_temperature: REAL_32
             l_timestamp_granularities: LIST [STRING_32]
         do
@@ -59,7 +59,7 @@ feature -- Test routines
             l_file: FILE
             l_model: CREATE_TRANSCRIPTION_REQUEST_MODEL
             l_prompt: STRING_32
-            l_response_format: STRING_32
+            l_response_format: AUDIO_RESPONSE_FORMAT
             l_temperature: REAL_32
         do
             -- TODO: Initialize required params.

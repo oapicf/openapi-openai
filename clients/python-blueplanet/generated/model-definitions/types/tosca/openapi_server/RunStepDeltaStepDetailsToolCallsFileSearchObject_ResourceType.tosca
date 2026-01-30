@@ -1,0 +1,51 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RunStepDeltaStepDetailsToolCallsFileSearchObject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RunStepDeltaStepDetailsToolCallsFileSearchObject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RunStepDeltaStepDetailsToolCallsFileSearchObject {
+    title = RunStepDeltaStepDetailsToolCallsFileSearchObject
+    description = RunStepDeltaStepDetailsToolCallsFileSearchObject
+    derivedFrom = Root
+    properties {
+        index {
+          type =  integer
+          description = "The index of the tool call in the tool calls array."
+          optional = true
+        }
+        id {
+          type =  string
+          description = "The ID of the tool call object."
+          optional = false
+        }
+        type {
+          type =  string
+          description = "The type of tool call. This is always going to be &#x60;file_search&#x60; for this type of tool call."
+          enum = ["file_search"]
+          optional = true
+        }
+        file_search {
+          type =  
+          description = "For now, this is always going to be an empty object."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RunStepDeltaStepDetailsToolCallsFileSearchObject {
+    title = RunStepDeltaStepDetailsToolCallsFileSearchObject
+    description = RunStepDeltaStepDetailsToolCallsFileSearchObject
+    implements = openapi_server.resourceTypes.RunStepDeltaStepDetailsToolCallsFileSearchObject
+
+  }
+}

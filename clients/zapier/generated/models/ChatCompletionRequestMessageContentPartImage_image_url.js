@@ -12,7 +12,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}detail`,
-                label: `Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding). - [${labelPrefix}detail]`,
+                label: `Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding). - [${labelPrefix}detail]`,
                 type: 'string',
                 choices: [
                     'auto',

@@ -1,0 +1,34 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The actor who performed the audit logged action.",
+  "name": "AuditLogActor",
+  "fields": [
+    {
+      "name": "type",
+      "type": ["null", {
+        "type": "enum",
+        "name": "AuditLogActor_type",
+        "symbols": [
+          "session",
+          "api_key"
+        ]
+      }],
+      "doc": "The type of actor. Is either `session` or `api_key`.",
+      "default": null
+    },
+    {
+      "name": "session",
+      "type": ["null", "model.AuditLogActorSession"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "api_key",
+      "type": ["null", "model.AuditLogActorApiKey"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

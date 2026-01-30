@@ -1,6 +1,7 @@
 goog.provide('API.Client.ChatCompletionRequestUserMessage');
 
 /**
+ * Messages sent by an end user, containing prompts or additional context information. 
  * @record
  */
 API.Client.ChatCompletionRequestUserMessage = function() {}

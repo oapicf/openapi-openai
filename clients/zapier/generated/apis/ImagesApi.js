@@ -100,7 +100,7 @@ module.exports = {
                 },
                 {
                     key: 'user',
-                    label: 'A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ',
+                    label: 'A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ',
                     type: 'string',
                 },
             ],
@@ -183,7 +183,7 @@ module.exports = {
                 },
                 {
                     key: 'user',
-                    label: 'A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ',
+                    label: 'A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ',
                     type: 'string',
                 },
             ],

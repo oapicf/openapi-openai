@@ -32,7 +32,7 @@ API.Client.CreateEmbeddingRequest.prototype.encodingFormat;
 API.Client.CreateEmbeddingRequest.prototype.dimensions;
 
 /**
- * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+ * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
  * @type {!string}
  * @export
  */

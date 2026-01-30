@@ -19,19 +19,19 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) moves to a &#x60;cancelling&#x60; status.
+ * Occurs when a [run](/docs/api-reference/runs/object) fails.
  */
 
-@Schema(name = "RunStreamEvent_oneOf_6", description = "Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.")
+@Schema(name = "RunStreamEvent_oneOf_6", description = "Occurs when a [run](/docs/api-reference/runs/object) fails.")
 @JsonTypeName("RunStreamEvent_oneOf_6")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStreamEventOneOf6 implements RunStreamEvent {
 
   /**
    * Gets or Sets event
    */
   public enum EventEnum {
-    THREAD_RUN_CANCELLING("thread.run.cancelling");
+    THREAD_RUN_FAILED("thread.run.failed");
 
     private final String value;
 

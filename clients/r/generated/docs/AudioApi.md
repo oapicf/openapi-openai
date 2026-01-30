@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 | **200** | OK |  * Transfer-Encoding - chunked <br>  |
 
 # **CreateTranscription**
-> CreateTranscription200Response CreateTranscription(file, model, language = var.language, prompt = var.prompt, response_format = "json", temperature = 0, timestamp_granularities = var.timestamp_granularities)
+> CreateTranscription200Response CreateTranscription(file, model, language = var.language, prompt = var.prompt, response_format = var.response_format, temperature = 0, timestamp_granularities = var.timestamp_granularities)
 
 Transcribes audio into the input language.
 
@@ -71,8 +71,8 @@ library(openapi)
 var_file <- File.new('/path/to/file') # data.frame | The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
 var_model <- CreateTranscriptionRequest_model$new() # CreateTranscriptionRequestModel | 
 var_language <- "language_example" # character | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.  (Optional)
-var_prompt <- "prompt_example" # character | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.  (Optional)
-var_response_format <- "json" # character | The format of the transcript output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`.  (Optional)
+var_prompt <- "prompt_example" # character | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language.  (Optional)
+var_response_format <- AudioResponseFormat$new() # AudioResponseFormat |  (Optional)
 var_temperature <- 0 # numeric | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (Optional)
 var_timestamp_granularities <- c("word") # array[character] | The timestamp granularities to populate for this transcription. `response_format` must be set `verbose_json` to use timestamp granularities. Either or both of these options are supported: `word`, or `segment`. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.  (Optional)
 
@@ -92,8 +92,8 @@ Name | Type | Description  | Notes
  **file** | **data.frame**| The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  | 
  **model** | [**CreateTranscriptionRequestModel**](CreateTranscriptionRequest_model.md)|  | 
  **language** | **character**| The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.  | [optional] 
- **prompt** | **character**| An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.  | [optional] 
- **response_format** | Enum [json, text, srt, verbose_json, vtt] | The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  | [optional] [default to &quot;json&quot;]
+ **prompt** | **character**| An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language.  | [optional] 
+ **response_format** | [**AudioResponseFormat**](AudioResponseFormat.md)|  | [optional] 
  **temperature** | **numeric**| The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  | [optional] [default to 0]
  **timestamp_granularities** | Enum [word, segment] | The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.  | [optional] 
 
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 | **200** | OK |  -  |
 
 # **CreateTranslation**
-> CreateTranslation200Response CreateTranslation(file, model, prompt = var.prompt, response_format = "json", temperature = 0)
+> CreateTranslation200Response CreateTranslation(file, model, prompt = var.prompt, response_format = var.response_format, temperature = 0)
 
 Translates audio into English.
 
@@ -129,8 +129,8 @@ library(openapi)
 # prepare function argument(s)
 var_file <- File.new('/path/to/file') # data.frame | The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
 var_model <- CreateTranscriptionRequest_model$new() # CreateTranscriptionRequestModel | 
-var_prompt <- "prompt_example" # character | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.  (Optional)
-var_response_format <- "json" # character | The format of the transcript output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`.  (Optional)
+var_prompt <- "prompt_example" # character | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English.  (Optional)
+var_response_format <- AudioResponseFormat$new() # AudioResponseFormat |  (Optional)
 var_temperature <- 0 # numeric | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (Optional)
 
 api_instance <- AudioApi$new()
@@ -148,8 +148,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file** | **data.frame**| The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  | 
  **model** | [**CreateTranscriptionRequestModel**](CreateTranscriptionRequest_model.md)|  | 
- **prompt** | **character**| An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.  | [optional] 
- **response_format** | **character**| The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  | [optional] [default to &quot;json&quot;]
+ **prompt** | **character**| An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English.  | [optional] 
+ **response_format** | [**AudioResponseFormat**](AudioResponseFormat.md)|  | [optional] 
  **temperature** | **numeric**| The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  | [optional] [default to 0]
 
 ### Return type

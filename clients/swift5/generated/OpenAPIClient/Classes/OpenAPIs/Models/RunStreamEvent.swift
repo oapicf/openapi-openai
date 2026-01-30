@@ -20,6 +20,7 @@ public enum RunStreamEvent: Codable, JSONEncodable, Hashable {
     case typeRunStreamEventOneOf6(RunStreamEventOneOf6)
     case typeRunStreamEventOneOf7(RunStreamEventOneOf7)
     case typeRunStreamEventOneOf8(RunStreamEventOneOf8)
+    case typeRunStreamEventOneOf9(RunStreamEventOneOf9)
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
@@ -41,6 +42,8 @@ public enum RunStreamEvent: Codable, JSONEncodable, Hashable {
         case .typeRunStreamEventOneOf7(let value):
             try container.encode(value)
         case .typeRunStreamEventOneOf8(let value):
+            try container.encode(value)
+        case .typeRunStreamEventOneOf9(let value):
             try container.encode(value)
         }
     }
@@ -65,6 +68,8 @@ public enum RunStreamEvent: Codable, JSONEncodable, Hashable {
             self = .typeRunStreamEventOneOf7(value)
         } else if let value = try? container.decode(RunStreamEventOneOf8.self) {
             self = .typeRunStreamEventOneOf8(value)
+        } else if let value = try? container.decode(RunStreamEventOneOf9.self) {
+            self = .typeRunStreamEventOneOf9(value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of RunStreamEvent"))
         }

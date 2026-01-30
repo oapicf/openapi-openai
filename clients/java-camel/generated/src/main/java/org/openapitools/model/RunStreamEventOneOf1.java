@@ -23,7 +23,7 @@ import javax.annotation.Generated;
 
 @Schema(name = "RunStreamEvent_oneOf_1", description = "Occurs when a [run](/docs/api-reference/runs/object) moves to a `queued` status.")
 @JsonTypeName("RunStreamEvent_oneOf_1")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStreamEventOneOf1 implements RunStreamEvent {
 
   /**

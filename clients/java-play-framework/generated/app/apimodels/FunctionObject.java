@@ -2,6 +2,7 @@ package apimodels;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
@@ -11,7 +12,7 @@ import javax.validation.Valid;
 /**
  * FunctionObject
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class FunctionObject   {
   @JsonProperty("description")
@@ -26,6 +27,10 @@ public class FunctionObject   {
   @JsonProperty("parameters")
   
   private Map<String, Object> parameters = null;
+
+  @JsonProperty("strict")
+  
+  private Boolean strict = false;
 
   public FunctionObject description(String description) {
     this.description = description;
@@ -75,7 +80,7 @@ public class FunctionObject   {
   }
 
    /**
-   * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
+   * The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
    * @return parameters
   **/
   public Map<String, Object> getParameters() {
@@ -84,6 +89,23 @@ public class FunctionObject   {
 
   public void setParameters(Map<String, Object> parameters) {
     this.parameters = parameters;
+  }
+
+  public FunctionObject strict(Boolean strict) {
+    this.strict = strict;
+    return this;
+  }
+
+   /**
+   * Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).
+   * @return strict
+  **/
+  public Boolean getStrict() {
+    return strict;
+  }
+
+  public void setStrict(Boolean strict) {
+    this.strict = strict;
   }
 
 
@@ -98,12 +120,13 @@ public class FunctionObject   {
     FunctionObject functionObject = (FunctionObject) o;
     return Objects.equals(description, functionObject.description) &&
         Objects.equals(name, functionObject.name) &&
-        Objects.equals(parameters, functionObject.parameters);
+        Objects.equals(parameters, functionObject.parameters) &&
+        Objects.equals(strict, functionObject.strict);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, name, parameters);
+    return Objects.hash(description, name, parameters, strict);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -115,6 +138,7 @@ public class FunctionObject   {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
+    sb.append("    strict: ").append(toIndentedString(strict)).append("\n");
     sb.append("}");
     return sb.toString();
   }

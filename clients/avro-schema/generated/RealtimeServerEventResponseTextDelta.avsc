@@ -1,0 +1,50 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when the text value of a \"text\" content part is updated.",
+  "name": "RealtimeServerEventResponseTextDelta",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventResponseTextDelta_type",
+        "symbols": [
+          "response_text_delta"
+        ]
+      },
+      "doc": "The event type, must be `response.text.delta`."
+    },
+    {
+      "name": "response_id",
+      "type": "string",
+      "doc": "The ID of the response."
+    },
+    {
+      "name": "item_id",
+      "type": "string",
+      "doc": "The ID of the item."
+    },
+    {
+      "name": "output_index",
+      "type": "int",
+      "doc": "The index of the output item in the response."
+    },
+    {
+      "name": "content_index",
+      "type": "int",
+      "doc": "The index of the content part in the item's content array."
+    },
+    {
+      "name": "delta",
+      "type": "string",
+      "doc": "The text delta."
+    }
+  ]
+
+}

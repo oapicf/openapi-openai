@@ -18,9 +18,9 @@ public struct ChatCompletionNamedToolChoice: Codable, JSONEncodable, Hashable {
     }
     /** The type of the tool. Currently, only `function` is supported. */
     public var type: ModelType
-    public var function: ChatCompletionNamedToolChoiceFunction
+    public var function: AssistantsNamedToolChoiceFunction
 
-    public init(type: ModelType, function: ChatCompletionNamedToolChoiceFunction) {
+    public init(type: ModelType, function: AssistantsNamedToolChoiceFunction) {
         self.type = type
         self.function = function
     }

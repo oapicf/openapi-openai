@@ -29,7 +29,7 @@ public class FilesApiImpl implements FilesApi {
         return Future.failedFuture(new HttpException(501));
     }
 
-    public Future<ApiResponse<ListFilesResponse>> listFiles(String purpose) {
+    public Future<ApiResponse<ListFilesResponse>> listFiles(String purpose, Integer limit, String order, String after) {
         return Future.failedFuture(new HttpException(501));
     }
 

@@ -8,7 +8,7 @@
 #' @description ChatCompletionRequestMessageContentPartImageImageUrl Class
 #' @format An \code{R6Class} generator object
 #' @field url Either a URL of the image or the base64 encoded image data. character
-#' @field detail Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding). character [optional]
+#' @field detail Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding). character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -22,7 +22,7 @@ ChatCompletionRequestMessageContentPartImageImageUrl <- R6::R6Class(
     #' Initialize a new ChatCompletionRequestMessageContentPartImageImageUrl class.
     #'
     #' @param url Either a URL of the image or the base64 encoded image data.
-    #' @param detail Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).. Default to "auto".
+    #' @param detail Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).. Default to "auto".
     #' @param ... Other optional arguments.
     initialize = function(`url`, `detail` = "auto", ...) {
       if (!missing(`url`)) {

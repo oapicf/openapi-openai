@@ -17,14 +17,6 @@ Protected Class MessageDeltaObjectDelta
 	#tag EndProperty
 
 
-	#tag Property, Flags = &h0
-		#tag Note
-			A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-		#tag EndNote
-		file_ids() As String
-	#tag EndProperty
-
-
     #tag Enum, Name = RoleEnum, Type = Integer, Flags = &h0
         
         User
@@ -87,14 +79,6 @@ Protected Class MessageDeltaObjectDelta
 			Group="Behavior"
 			InitialValue=""
 			Type="MessageDeltaObjectDeltaContentInner"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="file_ids"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

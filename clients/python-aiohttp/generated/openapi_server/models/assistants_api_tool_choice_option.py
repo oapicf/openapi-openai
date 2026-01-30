@@ -5,8 +5,8 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
-from openapi_server.models.assistants_api_named_tool_choice import AssistantsApiNamedToolChoice
-from openapi_server.models.chat_completion_named_tool_choice_function import ChatCompletionNamedToolChoiceFunction
+from openapi_server.models.assistants_named_tool_choice import AssistantsNamedToolChoice
+from openapi_server.models.assistants_named_tool_choice_function import AssistantsNamedToolChoiceFunction
 from openapi_server import util
 
 
@@ -16,7 +16,7 @@ class AssistantsApiToolChoiceOption(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, type: str=None, function: ChatCompletionNamedToolChoiceFunction=None):
+    def __init__(self, type: str=None, function: AssistantsNamedToolChoiceFunction=None):
         """AssistantsApiToolChoiceOption - a model defined in OpenAPI
 
         :param type: The type of this AssistantsApiToolChoiceOption.
@@ -24,7 +24,7 @@ class AssistantsApiToolChoiceOption(Model):
         """
         self.openapi_types = {
             'type': str,
-            'function': ChatCompletionNamedToolChoiceFunction
+            'function': AssistantsNamedToolChoiceFunction
         }
 
         self.attribute_map = {
@@ -64,7 +64,7 @@ class AssistantsApiToolChoiceOption(Model):
         :param type: The type of this AssistantsApiToolChoiceOption.
         :type type: str
         """
-        allowed_values = ["function", "code_interpreter", "retrieval"]  # noqa: E501
+        allowed_values = ["function", "code_interpreter", "file_search"]  # noqa: E501
         if type not in allowed_values:
             raise ValueError(
                 "Invalid value for `type` ({0}), must be one of {1}"
@@ -79,7 +79,7 @@ class AssistantsApiToolChoiceOption(Model):
 
 
         :return: The function of this AssistantsApiToolChoiceOption.
-        :rtype: ChatCompletionNamedToolChoiceFunction
+        :rtype: AssistantsNamedToolChoiceFunction
         """
         return self._function
 
@@ -89,7 +89,7 @@ class AssistantsApiToolChoiceOption(Model):
 
 
         :param function: The function of this AssistantsApiToolChoiceOption.
-        :type function: ChatCompletionNamedToolChoiceFunction
+        :type function: AssistantsNamedToolChoiceFunction
         """
 
         self._function = function

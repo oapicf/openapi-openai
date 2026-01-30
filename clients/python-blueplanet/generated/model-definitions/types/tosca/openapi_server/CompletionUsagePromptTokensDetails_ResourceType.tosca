@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CompletionUsagePromptTokensDetails"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CompletionUsagePromptTokensDetails"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  CompletionUsagePromptTokensDetails {
+    title = CompletionUsagePromptTokensDetails
+    description = CompletionUsagePromptTokensDetails
+    derivedFrom = Root
+    properties {
+        audio_tokens {
+          type =  integer
+          description = "Audio input tokens present in the prompt."
+          optional = false
+        }
+        cached_tokens {
+          type =  integer
+          description = "Cached tokens present in the prompt."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CompletionUsagePromptTokensDetails {
+    title = CompletionUsagePromptTokensDetails
+    description = CompletionUsagePromptTokensDetails
+    implements = openapi_server.resourceTypes.CompletionUsagePromptTokensDetails
+
+  }
+}

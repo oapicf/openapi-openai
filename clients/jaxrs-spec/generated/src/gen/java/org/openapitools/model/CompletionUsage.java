@@ -2,6 +2,8 @@ package org.openapitools.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.model.CompletionUsageCompletionTokensDetails;
+import org.openapitools.model.CompletionUsagePromptTokensDetails;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -18,11 +20,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Usage statistics for the completion request.")
 @JsonTypeName("CompletionUsage")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CompletionUsage   {
   private Integer completionTokens;
   private Integer promptTokens;
   private Integer totalTokens;
+  private CompletionUsageCompletionTokensDetails completionTokensDetails;
+  private CompletionUsagePromptTokensDetails promptTokensDetails;
 
   public CompletionUsage() {
   }
@@ -98,6 +102,44 @@ public class CompletionUsage   {
     this.totalTokens = totalTokens;
   }
 
+  /**
+   **/
+  public CompletionUsage completionTokensDetails(CompletionUsageCompletionTokensDetails completionTokensDetails) {
+    this.completionTokensDetails = completionTokensDetails;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("completion_tokens_details")
+  @Valid public CompletionUsageCompletionTokensDetails getCompletionTokensDetails() {
+    return completionTokensDetails;
+  }
+
+  @JsonProperty("completion_tokens_details")
+  public void setCompletionTokensDetails(CompletionUsageCompletionTokensDetails completionTokensDetails) {
+    this.completionTokensDetails = completionTokensDetails;
+  }
+
+  /**
+   **/
+  public CompletionUsage promptTokensDetails(CompletionUsagePromptTokensDetails promptTokensDetails) {
+    this.promptTokensDetails = promptTokensDetails;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("prompt_tokens_details")
+  @Valid public CompletionUsagePromptTokensDetails getPromptTokensDetails() {
+    return promptTokensDetails;
+  }
+
+  @JsonProperty("prompt_tokens_details")
+  public void setPromptTokensDetails(CompletionUsagePromptTokensDetails promptTokensDetails) {
+    this.promptTokensDetails = promptTokensDetails;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -110,12 +152,14 @@ public class CompletionUsage   {
     CompletionUsage completionUsage = (CompletionUsage) o;
     return Objects.equals(this.completionTokens, completionUsage.completionTokens) &&
         Objects.equals(this.promptTokens, completionUsage.promptTokens) &&
-        Objects.equals(this.totalTokens, completionUsage.totalTokens);
+        Objects.equals(this.totalTokens, completionUsage.totalTokens) &&
+        Objects.equals(this.completionTokensDetails, completionUsage.completionTokensDetails) &&
+        Objects.equals(this.promptTokensDetails, completionUsage.promptTokensDetails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(completionTokens, promptTokens, totalTokens);
+    return Objects.hash(completionTokens, promptTokens, totalTokens, completionTokensDetails, promptTokensDetails);
   }
 
   @Override
@@ -126,6 +170,8 @@ public class CompletionUsage   {
     sb.append("    completionTokens: ").append(toIndentedString(completionTokens)).append("\n");
     sb.append("    promptTokens: ").append(toIndentedString(promptTokens)).append("\n");
     sb.append("    totalTokens: ").append(toIndentedString(totalTokens)).append("\n");
+    sb.append("    completionTokensDetails: ").append(toIndentedString(completionTokensDetails)).append("\n");
+    sb.append("    promptTokensDetails: ").append(toIndentedString(promptTokensDetails)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -7,21 +7,28 @@
 #' @title ModifyThreadRequest
 #' @description ModifyThreadRequest Class
 #' @format An \code{R6Class} generator object
-#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. object [optional]
+#' @field tool_resources  \link{ModifyThreadRequestToolResources} [optional]
+#' @field metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. object [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
 ModifyThreadRequest <- R6::R6Class(
   "ModifyThreadRequest",
   public = list(
+    `tool_resources` = NULL,
     `metadata` = NULL,
 
     #' @description
     #' Initialize a new ModifyThreadRequest class.
     #'
-    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
+    #' @param tool_resources tool_resources
+    #' @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
     #' @param ... Other optional arguments.
-    initialize = function(`metadata` = NULL, ...) {
+    initialize = function(`tool_resources` = NULL, `metadata` = NULL, ...) {
+      if (!is.null(`tool_resources`)) {
+        stopifnot(R6::is.R6(`tool_resources`))
+        self$`tool_resources` <- `tool_resources`
+      }
       if (!is.null(`metadata`)) {
         self$`metadata` <- `metadata`
       }
@@ -58,6 +65,10 @@ ModifyThreadRequest <- R6::R6Class(
     #' @return A base R type, e.g. a list or numeric/character array.
     toSimpleType = function() {
       ModifyThreadRequestObject <- list()
+      if (!is.null(self$`tool_resources`)) {
+        ModifyThreadRequestObject[["tool_resources"]] <-
+          self$`tool_resources`$toSimpleType()
+      }
       if (!is.null(self$`metadata`)) {
         ModifyThreadRequestObject[["metadata"]] <-
           self$`metadata`
@@ -72,6 +83,11 @@ ModifyThreadRequest <- R6::R6Class(
     #' @return the instance of ModifyThreadRequest
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
+      if (!is.null(this_object$`tool_resources`)) {
+        `tool_resources_object` <- ModifyThreadRequestToolResources$new()
+        `tool_resources_object`$fromJSON(jsonlite::toJSON(this_object$`tool_resources`, auto_unbox = TRUE, digits = NA))
+        self$`tool_resources` <- `tool_resources_object`
+      }
       if (!is.null(this_object$`metadata`)) {
         self$`metadata` <- this_object$`metadata`
       }
@@ -96,6 +112,7 @@ ModifyThreadRequest <- R6::R6Class(
     #' @return the instance of ModifyThreadRequest
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
+      self$`tool_resources` <- ModifyThreadRequestToolResources$new()$fromJSON(jsonlite::toJSON(this_object$`tool_resources`, auto_unbox = TRUE, digits = NA))
       self$`metadata` <- this_object$`metadata`
       self
     },

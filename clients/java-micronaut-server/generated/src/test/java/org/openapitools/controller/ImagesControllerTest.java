@@ -82,7 +82,7 @@ public class ImagesControllerTest {
         CreateImageRequest body = new CreateImageRequest("A cute baby sea otter");
         String uri = UriTemplate.of("/images/generations").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@451f3f66");
+            .accept("[Ljava.lang.String;@44c74781");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, ImagesResponse.class);
@@ -141,7 +141,7 @@ public class ImagesControllerTest {
         }};
         String uri = UriTemplate.of("/images/edits").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, form)
-            .accept("[Ljava.lang.String;@5d1eb214");
+            .accept("[Ljava.lang.String;@39415641");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, ImagesResponse.class);
@@ -196,7 +196,7 @@ public class ImagesControllerTest {
         }};
         String uri = UriTemplate.of("/images/variations").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, form)
-            .accept("[Ljava.lang.String;@2784145d");
+            .accept("[Ljava.lang.String;@7e26e452");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, ImagesResponse.class);

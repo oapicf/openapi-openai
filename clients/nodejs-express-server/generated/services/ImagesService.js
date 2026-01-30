@@ -31,7 +31,7 @@ const createImage = ({ createImageRequest }) => new Promise(
 * n Integer The number of images to generate. Must be between 1 and 10. (optional)
 * size String The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. (optional)
 * responseUnderscoreformat String The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. (optional)
-* user String A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (optional)
+* user String A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)
 * returns ImagesResponse
 * */
 const createImageEdit = ({ image, prompt, mask, model, n, size, responseUnderscoreformat, user }) => new Promise(
@@ -63,7 +63,7 @@ const createImageEdit = ({ image, prompt, mask, model, n, size, responseUndersco
 * n Integer The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. (optional)
 * responseUnderscoreformat String The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. (optional)
 * size String The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. (optional)
-* user String A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (optional)
+* user String A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)
 * returns ImagesResponse
 * */
 const createImageVariation = ({ image, model, n, responseUnderscoreformat, size, user }) => new Promise(

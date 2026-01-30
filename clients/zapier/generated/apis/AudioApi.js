@@ -1,4 +1,5 @@
 const samples = require('../samples/AudioApi');
+const AudioResponseFormat = require('../models/AudioResponseFormat');
 const CreateSpeechRequest = require('../models/CreateSpeechRequest');
 const CreateTranscriptionRequest_model = require('../models/CreateTranscriptionRequest_model');
 const createTranscription_200_response = require('../models/createTranscription_200_response');
@@ -70,21 +71,10 @@ module.exports = {
                 },
                 {
                     key: 'prompt',
-                    label: 'An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. ',
+                    label: 'An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language. ',
                     type: 'string',
                 },
-                {
-                    key: 'response_format',
-                    label: 'The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. ',
-                    type: 'string',
-                    choices: [
-                        'json',
-                        'text',
-                        'srt',
-                        'verbose_json',
-                        'vtt',
-                    ],
-                },
+                ...AudioResponseFormat.fields(),
                 {
                     key: 'temperature',
                     label: 'The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. ',
@@ -149,14 +139,10 @@ module.exports = {
                 ...CreateTranscriptionRequest_model.fields(),
                 {
                     key: 'prompt',
-                    label: 'An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. ',
+                    label: 'An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. ',
                     type: 'string',
                 },
-                {
-                    key: 'response_format',
-                    label: 'The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;. ',
-                    type: 'string',
-                },
+                ...AudioResponseFormat.fields(),
                 {
                     key: 'temperature',
                     label: 'The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. ',

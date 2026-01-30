@@ -7,7 +7,7 @@
 Name | Type
 ------------ | -------------
 `role` | string
-`content` | string
+`content` | [ChatCompletionRequestToolMessageContent](ChatCompletionRequestToolMessageContent.md)
 `toolCallId` | string
 
 ## Example

@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.openapitools.vertxweb.server.model.ChatCompletionRequestToolMessageContent;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ChatCompletionRequestToolMessage   {
@@ -27,14 +28,14 @@ public class ChatCompletionRequestToolMessage   {
   }
 
   private RoleEnum role;
-  private String content;
+  private ChatCompletionRequestToolMessageContent content;
   private String toolCallId;
 
   public ChatCompletionRequestToolMessage () {
 
   }
 
-  public ChatCompletionRequestToolMessage (RoleEnum role, String content, String toolCallId) {
+  public ChatCompletionRequestToolMessage (RoleEnum role, ChatCompletionRequestToolMessageContent content, String toolCallId) {
     this.role = role;
     this.content = content;
     this.toolCallId = toolCallId;
@@ -51,10 +52,10 @@ public class ChatCompletionRequestToolMessage   {
 
     
   @JsonProperty("content")
-  public String getContent() {
+  public ChatCompletionRequestToolMessageContent getContent() {
     return content;
   }
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestToolMessageContent content) {
     this.content = content;
   }
 

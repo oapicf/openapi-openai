@@ -32,13 +32,16 @@ case class FineTuningJob (
     /* A list of integrations to enable for this fine-tuning job. */
     _integrations: Option[List[FineTuningJobIntegrationsInner]],
     /* The seed used for the fine-tuning job. */
-    _seed: Integer
+    _seed: Integer,
+    /* The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running. */
+    _estimatedFinish: Option[Integer],
+    _method: Option[FineTuneMethod]
 )
 object FineTuningJob {
-    def toStringBody(var_id: Object, var_createdAt: Object, var_error: Object, var_fineTunedModel: Object, var_finishedAt: Object, var_hyperparameters: Object, var_model: Object, var_object: Object, var_organizationId: Object, var_resultFiles: Object, var_status: Object, var_trainedTokens: Object, var_trainingFile: Object, var_validationFile: Object, var_integrations: Object, var_seed: Object) =
+    def toStringBody(var_id: Object, var_createdAt: Object, var_error: Object, var_fineTunedModel: Object, var_finishedAt: Object, var_hyperparameters: Object, var_model: Object, var_object: Object, var_organizationId: Object, var_resultFiles: Object, var_status: Object, var_trainedTokens: Object, var_trainingFile: Object, var_validationFile: Object, var_integrations: Object, var_seed: Object, var_estimatedFinish: Object, var_method: Object) =
         s"""
         | {
-        | "id":$var_id,"createdAt":$var_createdAt,"error":$var_error,"fineTunedModel":$var_fineTunedModel,"finishedAt":$var_finishedAt,"hyperparameters":$var_hyperparameters,"model":$var_model,"object":$var_object,"organizationId":$var_organizationId,"resultFiles":$var_resultFiles,"status":$var_status,"trainedTokens":$var_trainedTokens,"trainingFile":$var_trainingFile,"validationFile":$var_validationFile,"integrations":$var_integrations,"seed":$var_seed
+        | "id":$var_id,"createdAt":$var_createdAt,"error":$var_error,"fineTunedModel":$var_fineTunedModel,"finishedAt":$var_finishedAt,"hyperparameters":$var_hyperparameters,"model":$var_model,"object":$var_object,"organizationId":$var_organizationId,"resultFiles":$var_resultFiles,"status":$var_status,"trainedTokens":$var_trainedTokens,"trainingFile":$var_trainingFile,"validationFile":$var_validationFile,"integrations":$var_integrations,"seed":$var_seed,"estimatedFinish":$var_estimatedFinish,"method":$var_method
         | }
         """.stripMargin
 }

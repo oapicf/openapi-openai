@@ -5,12 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Content** | [**[]ChatCompletionTokenLogprob**](ChatCompletionTokenLogprob.md) | A list of message content tokens with log probability information. | 
+**Refusal** | [**[]ChatCompletionTokenLogprob**](ChatCompletionTokenLogprob.md) | A list of message refusal tokens with log probability information. | 
 
 ## Methods
 
 ### NewCreateChatCompletionResponseChoicesInnerLogprobs
 
-`func NewCreateChatCompletionResponseChoicesInnerLogprobs(content []ChatCompletionTokenLogprob, ) *CreateChatCompletionResponseChoicesInnerLogprobs`
+`func NewCreateChatCompletionResponseChoicesInnerLogprobs(content []ChatCompletionTokenLogprob, refusal []ChatCompletionTokenLogprob, ) *CreateChatCompletionResponseChoicesInnerLogprobs`
 
 NewCreateChatCompletionResponseChoicesInnerLogprobs instantiates a new CreateChatCompletionResponseChoicesInnerLogprobs object
 This constructor will assign default values to properties that have it defined,
@@ -55,6 +56,36 @@ SetContent sets Content field to given value.
 `func (o *CreateChatCompletionResponseChoicesInnerLogprobs) UnsetContent()`
 
 UnsetContent ensures that no value is present for Content, not even an explicit nil
+### GetRefusal
+
+`func (o *CreateChatCompletionResponseChoicesInnerLogprobs) GetRefusal() []ChatCompletionTokenLogprob`
+
+GetRefusal returns the Refusal field if non-nil, zero value otherwise.
+
+### GetRefusalOk
+
+`func (o *CreateChatCompletionResponseChoicesInnerLogprobs) GetRefusalOk() (*[]ChatCompletionTokenLogprob, bool)`
+
+GetRefusalOk returns a tuple with the Refusal field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRefusal
+
+`func (o *CreateChatCompletionResponseChoicesInnerLogprobs) SetRefusal(v []ChatCompletionTokenLogprob)`
+
+SetRefusal sets Refusal field to given value.
+
+
+### SetRefusalNil
+
+`func (o *CreateChatCompletionResponseChoicesInnerLogprobs) SetRefusalNil(b bool)`
+
+ SetRefusalNil sets the value for Refusal to be an explicit nil
+
+### UnsetRefusal
+`func (o *CreateChatCompletionResponseChoicesInnerLogprobs) UnsetRefusal()`
+
+UnsetRefusal ensures that no value is present for Refusal, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

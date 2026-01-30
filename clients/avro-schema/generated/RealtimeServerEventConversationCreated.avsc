@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when a conversation is created. Emitted right after session creation. ",
+  "name": "RealtimeServerEventConversationCreated",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventConversationCreated_type",
+        "symbols": [
+          "conversation_created"
+        ]
+      },
+      "doc": "The event type, must be `conversation.created`."
+    },
+    {
+      "name": "conversation",
+      "type": "model.RealtimeServerEventConversationCreatedConversation",
+      "doc": ""
+    }
+  ]
+
+}

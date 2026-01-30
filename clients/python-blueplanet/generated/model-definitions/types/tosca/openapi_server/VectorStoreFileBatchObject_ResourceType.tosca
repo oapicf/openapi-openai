@@ -1,0 +1,63 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server VectorStoreFileBatchObject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a VectorStoreFileBatchObject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  VectorStoreFileBatchObjectFileCounts = openapi_server.resourceTypes.VectorStoreFileBatchObjectFileCounts
+}
+resourceTypes {
+
+  VectorStoreFileBatchObject {
+    title = VectorStoreFileBatchObject
+    description = VectorStoreFileBatchObject
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The identifier, which can be referenced in API endpoints."
+          optional = true
+        }
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;vector_store.file_batch&#x60;."
+          enum = ["vector_store.files_batch"]
+          optional = true
+        }
+        created_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the vector store files batch was created."
+          optional = true
+        }
+        vector_store_id {
+          type =  string
+          description = "The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to."
+          optional = true
+        }
+        status {
+          type =  string
+          description = "The status of the vector store files batch, which can be either &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;cancelled&#x60; or &#x60;failed&#x60;."
+          enum = ["in_progress", "completed", "cancelled", "failed"]
+          optional = true
+        }
+        file_counts {
+          type = VectorStoreFileBatchObjectFileCounts
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  VectorStoreFileBatchObject {
+    title = VectorStoreFileBatchObject
+    description = VectorStoreFileBatchObject
+    implements = openapi_server.resourceTypes.VectorStoreFileBatchObject
+
+  }
+}

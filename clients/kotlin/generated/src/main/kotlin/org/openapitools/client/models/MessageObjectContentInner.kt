@@ -17,6 +17,9 @@ package org.openapitools.client.models
 
 import org.openapitools.client.models.MessageContentImageFileObject
 import org.openapitools.client.models.MessageContentImageFileObjectImageFile
+import org.openapitools.client.models.MessageContentImageUrlObject
+import org.openapitools.client.models.MessageContentImageUrlObjectImageUrl
+import org.openapitools.client.models.MessageContentRefusalObject
 import org.openapitools.client.models.MessageContentTextObject
 import org.openapitools.client.models.MessageContentTextObjectText
 
@@ -28,7 +31,9 @@ import com.squareup.moshi.JsonClass
  *
  * @param type Always `image_file`.
  * @param imageFile 
+ * @param imageUrl 
  * @param text 
+ * @param refusal 
  */
 
 
@@ -41,20 +46,28 @@ data class MessageObjectContentInner (
     @Json(name = "image_file")
     val imageFile: MessageContentImageFileObjectImageFile,
 
+    @Json(name = "image_url")
+    val imageUrl: MessageContentImageUrlObjectImageUrl,
+
     @Json(name = "text")
-    val text: MessageContentTextObjectText
+    val text: MessageContentTextObjectText,
+
+    @Json(name = "refusal")
+    val refusal: kotlin.String
 
 ) {
 
     /**
      * Always `image_file`.
      *
-     * Values: image_file,text
+     * Values: image_file,image_url,text,refusal
      */
     @JsonClass(generateAdapter = false)
     enum class Type(val value: kotlin.String) {
         @Json(name = "image_file") image_file("image_file"),
-        @Json(name = "text") text("text");
+        @Json(name = "image_url") image_url("image_url"),
+        @Json(name = "text") text("text"),
+        @Json(name = "refusal") refusal("refusal");
     }
 
 }

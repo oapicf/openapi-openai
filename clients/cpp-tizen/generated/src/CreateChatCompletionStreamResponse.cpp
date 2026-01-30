@@ -27,8 +27,10 @@ CreateChatCompletionStreamResponse::__init()
 	//new std::list()std::list> choices;
 	//created = int(0);
 	//model = std::string();
+	//service_tier = std::string();
 	//system_fingerprint = std::string();
 	//object = std::string();
+	//usage = new CreateChatCompletionStreamResponse_usage();
 }
 
 void
@@ -54,6 +56,11 @@ CreateChatCompletionStreamResponse::__cleanup()
 	//delete model;
 	//model = NULL;
 	//}
+	//if(service_tier != NULL) {
+	//
+	//delete service_tier;
+	//service_tier = NULL;
+	//}
 	//if(system_fingerprint != NULL) {
 	//
 	//delete system_fingerprint;
@@ -63,6 +70,11 @@ CreateChatCompletionStreamResponse::__cleanup()
 	//
 	//delete object;
 	//object = NULL;
+	//}
+	//if(usage != NULL) {
+	//
+	//delete usage;
+	//usage = NULL;
 	//}
 	//
 }
@@ -129,6 +141,17 @@ CreateChatCompletionStreamResponse::fromJson(char* jsonStr)
 			
 		}
 	}
+	const gchar *service_tierKey = "service_tier";
+	node = json_object_get_member(pJsonObject, service_tierKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&service_tier, node, "std::string", "");
+		} else {
+			
+		}
+	}
 	const gchar *system_fingerprintKey = "system_fingerprint";
 	node = json_object_get_member(pJsonObject, system_fingerprintKey);
 	if (node !=NULL) {
@@ -148,6 +171,20 @@ CreateChatCompletionStreamResponse::fromJson(char* jsonStr)
 		if (isprimitive("std::string")) {
 			jsonToValue(&object, node, "std::string", "");
 		} else {
+			
+		}
+	}
+	const gchar *usageKey = "usage";
+	node = json_object_get_member(pJsonObject, usageKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("CreateChatCompletionStreamResponse_usage")) {
+			jsonToValue(&usage, node, "CreateChatCompletionStreamResponse_usage", "CreateChatCompletionStreamResponse_usage");
+		} else {
+			
+			CreateChatCompletionStreamResponse_usage* obj = static_cast<CreateChatCompletionStreamResponse_usage*> (&usage);
+			obj->fromJson(json_to_string(node, false));
 			
 		}
 	}
@@ -216,6 +253,15 @@ CreateChatCompletionStreamResponse::toJson()
 	const gchar *modelKey = "model";
 	json_object_set_member(pJsonObject, modelKey, node);
 	if (isprimitive("std::string")) {
+		std::string obj = getServiceTier();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *service_tierKey = "service_tier";
+	json_object_set_member(pJsonObject, service_tierKey, node);
+	if (isprimitive("std::string")) {
 		std::string obj = getSystemFingerprint();
 		node = converttoJson(&obj, "std::string", "");
 	}
@@ -233,6 +279,20 @@ CreateChatCompletionStreamResponse::toJson()
 	}
 	const gchar *objectKey = "object";
 	json_object_set_member(pJsonObject, objectKey, node);
+	if (isprimitive("CreateChatCompletionStreamResponse_usage")) {
+		CreateChatCompletionStreamResponse_usage obj = getUsage();
+		node = converttoJson(&obj, "CreateChatCompletionStreamResponse_usage", "");
+	}
+	else {
+		
+		CreateChatCompletionStreamResponse_usage obj = static_cast<CreateChatCompletionStreamResponse_usage> (getUsage());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *usageKey = "usage";
+	json_object_set_member(pJsonObject, usageKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -290,6 +350,18 @@ CreateChatCompletionStreamResponse::setModel(std::string  model)
 }
 
 std::string
+CreateChatCompletionStreamResponse::getServiceTier()
+{
+	return service_tier;
+}
+
+void
+CreateChatCompletionStreamResponse::setServiceTier(std::string  service_tier)
+{
+	this->service_tier = service_tier;
+}
+
+std::string
 CreateChatCompletionStreamResponse::getSystemFingerprint()
 {
 	return system_fingerprint;
@@ -311,6 +383,18 @@ void
 CreateChatCompletionStreamResponse::setObject(std::string  object)
 {
 	this->object = object;
+}
+
+CreateChatCompletionStreamResponse_usage
+CreateChatCompletionStreamResponse::getUsage()
+{
+	return usage;
+}
+
+void
+CreateChatCompletionStreamResponse::setUsage(CreateChatCompletionStreamResponse_usage  usage)
+{
+	this->usage = usage;
 }
 
 

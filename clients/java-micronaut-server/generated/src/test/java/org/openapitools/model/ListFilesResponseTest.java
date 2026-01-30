@@ -24,6 +24,14 @@ public class ListFilesResponseTest {
     }
 
     /**
+     * Test the property '_object'
+     */
+    @Test
+    public void _objectTest() {
+        // TODO: test _object
+    }
+
+    /**
      * Test the property 'data'
      */
     @Test
@@ -32,11 +40,27 @@ public class ListFilesResponseTest {
     }
 
     /**
-     * Test the property '_object'
+     * Test the property 'firstId'
      */
     @Test
-    public void _objectTest() {
-        // TODO: test _object
+    public void firstIdTest() {
+        // TODO: test firstId
+    }
+
+    /**
+     * Test the property 'lastId'
+     */
+    @Test
+    public void lastIdTest() {
+        // TODO: test lastId
+    }
+
+    /**
+     * Test the property 'hasMore'
+     */
+    @Test
+    public void hasMoreTest() {
+        // TODO: test hasMore
     }
 
 }

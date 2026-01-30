@@ -1,0 +1,18 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The payload used to update the API key.",
+  "name": "AuditLogApiKeyUpdatedChangesRequested",
+  "fields": [
+    {
+      "name": "scopes",
+      "type": ["null", {
+        "type": "array",
+        "items": "string"
+      }],
+      "doc": "A list of scopes allowed for the API key, e.g. `[\"api.model.request\"]`",
+      "default": null
+    }
+  ]
+
+}

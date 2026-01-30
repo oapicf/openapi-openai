@@ -1,0 +1,62 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server Project"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a Project"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  Project {
+    title = Project
+    description = Project
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = "The identifier, which can be referenced in API endpoints"
+          optional = true
+        }
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;organization.project&#x60;"
+          enum = ["organization.project"]
+          optional = true
+        }
+        name {
+          type =  string
+          description = "The name of the project. This appears in reporting."
+          optional = true
+        }
+        created_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) of when the project was created."
+          optional = true
+        }
+        archived_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) of when the project was archived or &#x60;null&#x60;."
+          optional = false
+        }
+        status {
+          type =  string
+          description = "&#x60;active&#x60; or &#x60;archived&#x60;"
+          enum = ["active", "archived"]
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  Project {
+    title = Project
+    description = Project
+    implements = openapi_server.resourceTypes.Project
+
+  }
+}

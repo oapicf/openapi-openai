@@ -20,22 +20,26 @@ class AssistantStreamEvent(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, event: str=None, data: str=None):
+    def __init__(self, enabled: bool=None, event: str=None, data: str=None):
         """AssistantStreamEvent - a model defined in OpenAPI
 
+        :param enabled: The enabled of this AssistantStreamEvent.
         :param event: The event of this AssistantStreamEvent.
         :param data: The data of this AssistantStreamEvent.
         """
         self.openapi_types = {
+            'enabled': bool,
             'event': str,
             'data': str
         }
 
         self.attribute_map = {
+            'enabled': 'enabled',
             'event': 'event',
             'data': 'data'
         }
 
+        self._enabled = enabled
         self._event = event
         self._data = data
 
@@ -47,6 +51,29 @@ class AssistantStreamEvent(Model):
         :return: The AssistantStreamEvent of this AssistantStreamEvent.
         """
         return util.deserialize_model(dikt, cls)
+
+    @property
+    def enabled(self):
+        """Gets the enabled of this AssistantStreamEvent.
+
+        Whether to enable input audio transcription.
+
+        :return: The enabled of this AssistantStreamEvent.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """Sets the enabled of this AssistantStreamEvent.
+
+        Whether to enable input audio transcription.
+
+        :param enabled: The enabled of this AssistantStreamEvent.
+        :type enabled: bool
+        """
+
+        self._enabled = enabled
 
     @property
     def event(self):

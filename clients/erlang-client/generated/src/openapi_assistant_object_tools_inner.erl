@@ -6,12 +6,15 @@
 
 -type openapi_assistant_object_tools_inner() ::
     #{ 'type' := binary(),
+       'file_search' => openapi_assistant_tools_file_search_file_search:openapi_assistant_tools_file_search_file_search(),
        'function' := openapi_function_object:openapi_function_object()
      }.
 
 encode(#{ 'type' := Type,
+          'file_search' := FileSearch,
           'function' := Function
         }) ->
     #{ 'type' => Type,
+       'file_search' => FileSearch,
        'function' => Function
      }.

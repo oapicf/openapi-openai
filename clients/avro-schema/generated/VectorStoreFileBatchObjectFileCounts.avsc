@@ -1,0 +1,34 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "VectorStoreFileBatchObjectFileCounts",
+  "fields": [
+    {
+      "name": "in_progress",
+      "type": "int",
+      "doc": "The number of files that are currently being processed."
+    },
+    {
+      "name": "completed",
+      "type": "int",
+      "doc": "The number of files that have been processed."
+    },
+    {
+      "name": "failed",
+      "type": "int",
+      "doc": "The number of files that have failed to process."
+    },
+    {
+      "name": "cancelled",
+      "type": "int",
+      "doc": "The number of files that where cancelled."
+    },
+    {
+      "name": "total",
+      "type": "int",
+      "doc": "The total number of files."
+    }
+  ]
+
+}

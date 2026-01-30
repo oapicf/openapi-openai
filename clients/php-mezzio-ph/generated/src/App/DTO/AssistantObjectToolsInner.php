@@ -18,6 +18,14 @@ class AssistantObjectToolsInner
     public $type;
 
     /**
+     * @DTA\Data(field="file_search", nullable=true)
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\AssistantToolsFileSearchFileSearch::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\AssistantToolsFileSearchFileSearch::class})
+     * @var \App\DTO\AssistantToolsFileSearchFileSearch|null
+     */
+    public $file_search;
+
+    /**
      * @DTA\Data(field="function")
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\FunctionObject::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\FunctionObject::class})

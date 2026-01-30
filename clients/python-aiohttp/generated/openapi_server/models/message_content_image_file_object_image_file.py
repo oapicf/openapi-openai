@@ -14,20 +14,24 @@ class MessageContentImageFileObjectImageFile(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, file_id: str=None):
+    def __init__(self, file_id: str=None, detail: str='auto'):
         """MessageContentImageFileObjectImageFile - a model defined in OpenAPI
 
         :param file_id: The file_id of this MessageContentImageFileObjectImageFile.
+        :param detail: The detail of this MessageContentImageFileObjectImageFile.
         """
         self.openapi_types = {
-            'file_id': str
+            'file_id': str,
+            'detail': str
         }
 
         self.attribute_map = {
-            'file_id': 'file_id'
+            'file_id': 'file_id',
+            'detail': 'detail'
         }
 
         self._file_id = file_id
+        self._detail = detail
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'MessageContentImageFileObjectImageFile':
@@ -42,7 +46,7 @@ class MessageContentImageFileObjectImageFile(Model):
     def file_id(self):
         """Gets the file_id of this MessageContentImageFileObjectImageFile.
 
-        The [File](/docs/api-reference/files) ID of the image in the message content.
+        The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content.
 
         :return: The file_id of this MessageContentImageFileObjectImageFile.
         :rtype: str
@@ -53,7 +57,7 @@ class MessageContentImageFileObjectImageFile(Model):
     def file_id(self, file_id):
         """Sets the file_id of this MessageContentImageFileObjectImageFile.
 
-        The [File](/docs/api-reference/files) ID of the image in the message content.
+        The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content.
 
         :param file_id: The file_id of this MessageContentImageFileObjectImageFile.
         :type file_id: str
@@ -62,3 +66,32 @@ class MessageContentImageFileObjectImageFile(Model):
             raise ValueError("Invalid value for `file_id`, must not be `None`")
 
         self._file_id = file_id
+
+    @property
+    def detail(self):
+        """Gets the detail of this MessageContentImageFileObjectImageFile.
+
+        Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
+
+        :return: The detail of this MessageContentImageFileObjectImageFile.
+        :rtype: str
+        """
+        return self._detail
+
+    @detail.setter
+    def detail(self, detail):
+        """Sets the detail of this MessageContentImageFileObjectImageFile.
+
+        Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
+
+        :param detail: The detail of this MessageContentImageFileObjectImageFile.
+        :type detail: str
+        """
+        allowed_values = ["auto", "low", "high"]  # noqa: E501
+        if detail not in allowed_values:
+            raise ValueError(
+                "Invalid value for `detail` ({0}), must be one of {1}"
+                .format(detail, allowed_values)
+            )
+
+        self._detail = detail

@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "RunStepDetailsToolCallsFileSearchObject",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The ID of the tool call object."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RunStepDetailsToolCallsFileSearchObject_type",
+        "symbols": [
+          "file_search"
+        ]
+      },
+      "doc": "The type of tool call. This is always going to be `file_search` for this type of tool call."
+    },
+    {
+      "name": "file_search",
+      "type": "model.RunStepDetailsToolCallsFileSearchObjectFileSearch",
+      "doc": ""
+    }
+  ]
+
+}

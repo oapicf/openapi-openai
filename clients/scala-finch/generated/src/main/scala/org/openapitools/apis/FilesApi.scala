@@ -101,8 +101,8 @@ object FilesApi {
         * @return An endpoint representing a ListFilesResponse
         */
         private def listFiles(da: DataAccessor): Endpoint[ListFilesResponse] =
-        get("files" :: paramOption("purpose")) { (purpose: Option[String]) =>
-          da.Files_listFiles(purpose) match {
+        get("files" :: paramOption("purpose") :: paramOption("limit").map(_.map(_.toInt)) :: paramOption("order") :: paramOption("after")) { (purpose: Option[String], limit: Option[Int], order: Option[String], after: Option[String]) =>
+          da.Files_listFiles(purpose, limit, order, after) match {
             case Left(error) => checkError(error)
             case Right(data) => Ok(data)
           }

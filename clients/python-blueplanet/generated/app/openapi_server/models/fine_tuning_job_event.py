@@ -15,9 +15,11 @@ class FineTuningJobEvent(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, created_at: int=None, level: str=None, message: str=None, object: str=None):  # noqa: E501
+    def __init__(self, object: str=None, id: str=None, created_at: int=None, level: str=None, message: str=None, type: str=None, data: object=None):  # noqa: E501
         """FineTuningJobEvent - a model defined in Swagger
 
+        :param object: The object of this FineTuningJobEvent.  # noqa: E501
+        :type object: str
         :param id: The id of this FineTuningJobEvent.  # noqa: E501
         :type id: str
         :param created_at: The created_at of this FineTuningJobEvent.  # noqa: E501
@@ -26,30 +28,38 @@ class FineTuningJobEvent(Model):
         :type level: str
         :param message: The message of this FineTuningJobEvent.  # noqa: E501
         :type message: str
-        :param object: The object of this FineTuningJobEvent.  # noqa: E501
-        :type object: str
+        :param type: The type of this FineTuningJobEvent.  # noqa: E501
+        :type type: str
+        :param data: The data of this FineTuningJobEvent.  # noqa: E501
+        :type data: object
         """
         self.swagger_types = {
+            'object': str,
             'id': str,
             'created_at': int,
             'level': str,
             'message': str,
-            'object': str
+            'type': str,
+            'data': object
         }
 
         self.attribute_map = {
+            'object': 'object',
             'id': 'id',
             'created_at': 'created_at',
             'level': 'level',
             'message': 'message',
-            'object': 'object'
+            'type': 'type',
+            'data': 'data'
         }
 
+        self._object = object
         self._id = id
         self._created_at = created_at
         self._level = level
         self._message = message
-        self._object = object
+        self._type = type
+        self._data = data
 
     @classmethod
     def from_dict(cls, dikt) -> 'FineTuningJobEvent':
@@ -63,9 +73,39 @@ class FineTuningJobEvent(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
+    def object(self) -> str:
+        """Gets the object of this FineTuningJobEvent.
+
+        The object type, which is always \"fine_tuning.job.event\".  # noqa: E501
+
+        :return: The object of this FineTuningJobEvent.
+        :rtype: str
+        """
+        return self._object
+
+    @object.setter
+    def object(self, object: str):
+        """Sets the object of this FineTuningJobEvent.
+
+        The object type, which is always \"fine_tuning.job.event\".  # noqa: E501
+
+        :param object: The object of this FineTuningJobEvent.
+        :type object: str
+        """
+        allowed_values = ["fine_tuning.job.event"]  # noqa: E501
+        if object not in allowed_values:
+            raise ValueError(
+                "Invalid value for `object` ({0}), must be one of {1}"
+                .format(object, allowed_values)
+            )
+
+        self._object = object
+
+    @property
     def id(self) -> str:
         """Gets the id of this FineTuningJobEvent.
 
+        The object identifier.  # noqa: E501
 
         :return: The id of this FineTuningJobEvent.
         :rtype: str
@@ -76,6 +116,7 @@ class FineTuningJobEvent(Model):
     def id(self, id: str):
         """Sets the id of this FineTuningJobEvent.
 
+        The object identifier.  # noqa: E501
 
         :param id: The id of this FineTuningJobEvent.
         :type id: str
@@ -89,6 +130,7 @@ class FineTuningJobEvent(Model):
     def created_at(self) -> int:
         """Gets the created_at of this FineTuningJobEvent.
 
+        The Unix timestamp (in seconds) for when the fine-tuning job was created.  # noqa: E501
 
         :return: The created_at of this FineTuningJobEvent.
         :rtype: int
@@ -99,6 +141,7 @@ class FineTuningJobEvent(Model):
     def created_at(self, created_at: int):
         """Sets the created_at of this FineTuningJobEvent.
 
+        The Unix timestamp (in seconds) for when the fine-tuning job was created.  # noqa: E501
 
         :param created_at: The created_at of this FineTuningJobEvent.
         :type created_at: int
@@ -112,6 +155,7 @@ class FineTuningJobEvent(Model):
     def level(self) -> str:
         """Gets the level of this FineTuningJobEvent.
 
+        The log level of the event.  # noqa: E501
 
         :return: The level of this FineTuningJobEvent.
         :rtype: str
@@ -122,6 +166,7 @@ class FineTuningJobEvent(Model):
     def level(self, level: str):
         """Sets the level of this FineTuningJobEvent.
 
+        The log level of the event.  # noqa: E501
 
         :param level: The level of this FineTuningJobEvent.
         :type level: str
@@ -139,6 +184,7 @@ class FineTuningJobEvent(Model):
     def message(self) -> str:
         """Gets the message of this FineTuningJobEvent.
 
+        The message of the event.  # noqa: E501
 
         :return: The message of this FineTuningJobEvent.
         :rtype: str
@@ -149,6 +195,7 @@ class FineTuningJobEvent(Model):
     def message(self, message: str):
         """Sets the message of this FineTuningJobEvent.
 
+        The message of the event.  # noqa: E501
 
         :param message: The message of this FineTuningJobEvent.
         :type message: str
@@ -159,28 +206,53 @@ class FineTuningJobEvent(Model):
         self._message = message
 
     @property
-    def object(self) -> str:
-        """Gets the object of this FineTuningJobEvent.
+    def type(self) -> str:
+        """Gets the type of this FineTuningJobEvent.
 
+        The type of event.  # noqa: E501
 
-        :return: The object of this FineTuningJobEvent.
+        :return: The type of this FineTuningJobEvent.
         :rtype: str
         """
-        return self._object
+        return self._type
 
-    @object.setter
-    def object(self, object: str):
-        """Sets the object of this FineTuningJobEvent.
+    @type.setter
+    def type(self, type: str):
+        """Sets the type of this FineTuningJobEvent.
 
+        The type of event.  # noqa: E501
 
-        :param object: The object of this FineTuningJobEvent.
-        :type object: str
+        :param type: The type of this FineTuningJobEvent.
+        :type type: str
         """
-        allowed_values = ["fine_tuning.job.event"]  # noqa: E501
-        if object not in allowed_values:
+        allowed_values = ["message", "metrics"]  # noqa: E501
+        if type not in allowed_values:
             raise ValueError(
-                "Invalid value for `object` ({0}), must be one of {1}"
-                .format(object, allowed_values)
+                "Invalid value for `type` ({0}), must be one of {1}"
+                .format(type, allowed_values)
             )
 
-        self._object = object
+        self._type = type
+
+    @property
+    def data(self) -> object:
+        """Gets the data of this FineTuningJobEvent.
+
+        The data associated with the event.  # noqa: E501
+
+        :return: The data of this FineTuningJobEvent.
+        :rtype: object
+        """
+        return self._data
+
+    @data.setter
+    def data(self, data: object):
+        """Sets the data of this FineTuningJobEvent.
+
+        The data associated with the event.  # noqa: E501
+
+        :param data: The data of this FineTuningJobEvent.
+        :type data: object
+        """
+
+        self._data = data

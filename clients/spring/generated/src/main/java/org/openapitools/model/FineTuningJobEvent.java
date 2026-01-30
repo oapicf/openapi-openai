@@ -21,15 +21,50 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "FineTuningJobEvent", description = "Fine-tuning job event object")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FineTuningJobEvent {
+
+  /**
+   * The object type, which is always \"fine_tuning.job.event\".
+   */
+  public enum ObjectEnum {
+    FINE_TUNING_JOB_EVENT("fine_tuning.job.event");
+
+    private final String value;
+
+    ObjectEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ObjectEnum fromValue(String value) {
+      for (ObjectEnum b : ObjectEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  private ObjectEnum _object;
 
   private String id;
 
   private Integer createdAt;
 
   /**
-   * Gets or Sets level
+   * The log level of the event.
    */
   public enum LevelEnum {
     INFO("info"),
@@ -70,14 +105,16 @@ public class FineTuningJobEvent {
   private String message;
 
   /**
-   * Gets or Sets _object
+   * The type of event.
    */
-  public enum ObjectEnum {
-    FINE_TUNING_JOB_EVENT("fine_tuning.job.event");
+  public enum TypeEnum {
+    MESSAGE("message"),
+    
+    METRICS("metrics");
 
     private final String value;
 
-    ObjectEnum(String value) {
+    TypeEnum(String value) {
       this.value = value;
     }
 
@@ -92,8 +129,8 @@ public class FineTuningJobEvent {
     }
 
     @JsonCreator
-    public static ObjectEnum fromValue(String value) {
-      for (ObjectEnum b : ObjectEnum.values()) {
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -102,7 +139,9 @@ public class FineTuningJobEvent {
     }
   }
 
-  private ObjectEnum _object;
+  private @Nullable TypeEnum type;
+
+  private @Nullable Object data;
 
   public FineTuningJobEvent() {
     super();
@@ -111,11 +150,31 @@ public class FineTuningJobEvent {
   /**
    * Constructor with only required parameters
    */
-  public FineTuningJobEvent(String id, Integer createdAt, LevelEnum level, String message, ObjectEnum _object) {
+  public FineTuningJobEvent(ObjectEnum _object, String id, Integer createdAt, LevelEnum level, String message) {
+    this._object = _object;
     this.id = id;
     this.createdAt = createdAt;
     this.level = level;
     this.message = message;
+  }
+
+  public FineTuningJobEvent _object(ObjectEnum _object) {
+    this._object = _object;
+    return this;
+  }
+
+  /**
+   * The object type, which is always \"fine_tuning.job.event\".
+   * @return _object
+   */
+  @NotNull 
+  @Schema(name = "object", description = "The object type, which is always \"fine_tuning.job.event\".", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("object")
+  public ObjectEnum getObject() {
+    return _object;
+  }
+
+  public void setObject(ObjectEnum _object) {
     this._object = _object;
   }
 
@@ -125,11 +184,11 @@ public class FineTuningJobEvent {
   }
 
   /**
-   * Get id
+   * The object identifier.
    * @return id
    */
   @NotNull 
-  @Schema(name = "id", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "id", description = "The object identifier.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("id")
   public String getId() {
     return id;
@@ -145,11 +204,11 @@ public class FineTuningJobEvent {
   }
 
   /**
-   * Get createdAt
+   * The Unix timestamp (in seconds) for when the fine-tuning job was created.
    * @return createdAt
    */
   @NotNull 
-  @Schema(name = "created_at", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "created_at", description = "The Unix timestamp (in seconds) for when the fine-tuning job was created.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("created_at")
   public Integer getCreatedAt() {
     return createdAt;
@@ -165,11 +224,11 @@ public class FineTuningJobEvent {
   }
 
   /**
-   * Get level
+   * The log level of the event.
    * @return level
    */
   @NotNull 
-  @Schema(name = "level", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "level", description = "The log level of the event.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("level")
   public LevelEnum getLevel() {
     return level;
@@ -185,11 +244,11 @@ public class FineTuningJobEvent {
   }
 
   /**
-   * Get message
+   * The message of the event.
    * @return message
    */
   @NotNull 
-  @Schema(name = "message", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "message", description = "The message of the event.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("message")
   public String getMessage() {
     return message;
@@ -199,24 +258,44 @@ public class FineTuningJobEvent {
     this.message = message;
   }
 
-  public FineTuningJobEvent _object(ObjectEnum _object) {
-    this._object = _object;
+  public FineTuningJobEvent type(@Nullable TypeEnum type) {
+    this.type = type;
     return this;
   }
 
   /**
-   * Get _object
-   * @return _object
+   * The type of event.
+   * @return type
    */
-  @NotNull 
-  @Schema(name = "object", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("object")
-  public ObjectEnum getObject() {
-    return _object;
+  
+  @Schema(name = "type", description = "The type of event.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("type")
+  public @Nullable TypeEnum getType() {
+    return type;
   }
 
-  public void setObject(ObjectEnum _object) {
-    this._object = _object;
+  public void setType(@Nullable TypeEnum type) {
+    this.type = type;
+  }
+
+  public FineTuningJobEvent data(@Nullable Object data) {
+    this.data = data;
+    return this;
+  }
+
+  /**
+   * The data associated with the event.
+   * @return data
+   */
+  
+  @Schema(name = "data", description = "The data associated with the event.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("data")
+  public @Nullable Object getData() {
+    return data;
+  }
+
+  public void setData(@Nullable Object data) {
+    this.data = data;
   }
 
   @Override
@@ -228,27 +307,31 @@ public class FineTuningJobEvent {
       return false;
     }
     FineTuningJobEvent fineTuningJobEvent = (FineTuningJobEvent) o;
-    return Objects.equals(this.id, fineTuningJobEvent.id) &&
+    return Objects.equals(this._object, fineTuningJobEvent._object) &&
+        Objects.equals(this.id, fineTuningJobEvent.id) &&
         Objects.equals(this.createdAt, fineTuningJobEvent.createdAt) &&
         Objects.equals(this.level, fineTuningJobEvent.level) &&
         Objects.equals(this.message, fineTuningJobEvent.message) &&
-        Objects.equals(this._object, fineTuningJobEvent._object);
+        Objects.equals(this.type, fineTuningJobEvent.type) &&
+        Objects.equals(this.data, fineTuningJobEvent.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, createdAt, level, message, _object);
+    return Objects.hash(_object, id, createdAt, level, message, type, data);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FineTuningJobEvent {\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    level: ").append(toIndentedString(level)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

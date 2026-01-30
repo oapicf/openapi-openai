@@ -32,7 +32,7 @@ public class ModelsApiTest {
     @Disabled("Not Implemented")
     public void deleteModelTest() {
         // given
-        String model = "ft:gpt-3.5-turbo:acemeco:suffix:abc123";
+        String model = "ft:gpt-4o-mini:acemeco:suffix:abc123";
 
         // when
         DeleteModelResponse body = api.deleteModel(model).block();
@@ -65,7 +65,7 @@ public class ModelsApiTest {
     @Disabled("Not Implemented")
     public void retrieveModelTest() {
         // given
-        String model = "gpt-3.5-turbo";
+        String model = "gpt-4o-mini";
 
         // when
         Model body = api.retrieveModel(model).block();

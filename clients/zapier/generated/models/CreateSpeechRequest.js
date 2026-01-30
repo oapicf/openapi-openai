@@ -14,7 +14,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}voice`,
-                label: `The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options). - [${labelPrefix}voice]`,
+                label: `The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options). - [${labelPrefix}voice]`,
                 required: true,
                 type: 'string',
                 choices: [

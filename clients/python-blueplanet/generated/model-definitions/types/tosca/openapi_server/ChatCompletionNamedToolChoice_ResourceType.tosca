@@ -7,7 +7,7 @@ authors     = ["F. Bar (foo@bar.baz)"]
 
 imports {
   Root = tosca.resourceTypes.Root
-  ChatCompletionNamedToolChoiceFunction = openapi_server.resourceTypes.ChatCompletionNamedToolChoiceFunction
+  AssistantsNamedToolChoiceFunction = openapi_server.resourceTypes.AssistantsNamedToolChoiceFunction
 }
 resourceTypes {
 
@@ -23,7 +23,7 @@ resourceTypes {
           optional = true
         }
         function {
-          type = ChatCompletionNamedToolChoiceFunction
+          type = AssistantsNamedToolChoiceFunction
           description = ""
           optional = true
         }

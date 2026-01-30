@@ -1,4 +1,5 @@
 const utils = require('../utils/utils');
+const CreateMessageRequest_attachments_inner = require('../models/CreateMessageRequest_attachments_inner');
 const MessageObject_content_inner = require('../models/MessageObject_content_inner');
 const MessageObject_incomplete_details = require('../models/MessageObject_incomplete_details');
 
@@ -85,15 +86,13 @@ module.exports = {
                 type: 'string',
             },
             {
-                key: `${keyPrefix}file_ids`,
-                label: `A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message. - [${labelPrefix}file_ids]`,
-                required: true,
-                list: true,
-                type: 'string',
+                key: `${keyPrefix}attachments`,
+                label: `[${labelPrefix}attachments]`,
+                children: CreateMessageRequest_attachments_inner.fields(`${keyPrefix}attachments${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}metadata`,
-                label: `Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  - [${labelPrefix}metadata]`,
+                label: `Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  - [${labelPrefix}metadata]`,
                 required: true,
                 dict: true,
             },
@@ -114,7 +113,7 @@ module.exports = {
             'content': utils.childMapping(bundle.inputData?.[`${keyPrefix}content`], `${keyPrefix}content`, MessageObject_content_inner),
             'assistant_id': bundle.inputData?.[`${keyPrefix}assistant_id`],
             'run_id': bundle.inputData?.[`${keyPrefix}run_id`],
-            'file_ids': bundle.inputData?.[`${keyPrefix}file_ids`],
+            'attachments': utils.childMapping(bundle.inputData?.[`${keyPrefix}attachments`], `${keyPrefix}attachments`, CreateMessageRequest_attachments_inner),
             'metadata': bundle.inputData?.[`${keyPrefix}metadata`],
         }
     },

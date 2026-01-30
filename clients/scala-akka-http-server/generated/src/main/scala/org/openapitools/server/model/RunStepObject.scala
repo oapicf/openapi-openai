@@ -20,7 +20,7 @@ package org.openapitools.server.model
  * @param cancelledAt The Unix timestamp (in seconds) for when the run step was cancelled. for example: ''null''
  * @param failedAt The Unix timestamp (in seconds) for when the run step failed. for example: ''null''
  * @param completedAt The Unix timestamp (in seconds) for when the run step completed. for example: ''null''
- * @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  for example: ''null''
+ * @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  for example: ''null''
  * @param usage  for example: ''null''
 */
 final case class RunStepObject (

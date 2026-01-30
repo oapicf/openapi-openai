@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeResponseStatusDetailsError"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeResponseStatusDetailsError"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeResponseStatusDetailsError {
+    title = RealtimeResponseStatusDetailsError
+    description = RealtimeResponseStatusDetailsError
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "The type of error."
+          optional = false
+        }
+        code {
+          type =  string
+          description = "Error code, if any."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeResponseStatusDetailsError {
+    title = RealtimeResponseStatusDetailsError
+    description = RealtimeResponseStatusDetailsError
+    implements = openapi_server.resourceTypes.RealtimeResponseStatusDetailsError
+
+  }
+}

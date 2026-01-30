@@ -1,0 +1,40 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when input audio transcription is configured, and a transcription  request for a user message failed. These events are separate from other  `error` events so that the client can identify the related Item. ",
+  "name": "RealtimeServerEventConversationItemInputAudioTranscriptionFailed",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventConversationItemInputAudioTranscriptionFailed_type",
+        "symbols": [
+          "conversation_item_input_audio_transcription_failed"
+        ]
+      },
+      "doc": "The event type, must be `conversation.item.input_audio_transcription.failed`. "
+    },
+    {
+      "name": "item_id",
+      "type": "string",
+      "doc": "The ID of the user message item."
+    },
+    {
+      "name": "content_index",
+      "type": "int",
+      "doc": "The index of the content part containing the audio."
+    },
+    {
+      "name": "error",
+      "type": "model.RealtimeServerEventConversationItemInputAudioTranscriptionFailedError",
+      "doc": ""
+    }
+  ]
+
+}

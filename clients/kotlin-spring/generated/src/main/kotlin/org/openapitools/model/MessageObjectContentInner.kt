@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
 import org.openapitools.model.MessageContentImageFileObject
 import org.openapitools.model.MessageContentImageFileObjectImageFile
+import org.openapitools.model.MessageContentImageUrlObject
+import org.openapitools.model.MessageContentImageUrlObjectImageUrl
+import org.openapitools.model.MessageContentRefusalObject
 import org.openapitools.model.MessageContentTextObject
 import org.openapitools.model.MessageContentTextObjectText
 import javax.validation.constraints.DecimalMax
@@ -23,7 +26,9 @@ import io.swagger.v3.oas.annotations.media.Schema
  * 
  * @param type Always `image_file`.
  * @param imageFile 
+ * @param imageUrl 
  * @param text 
+ * @param refusal 
  */
 data class MessageObjectContentInner(
 
@@ -36,17 +41,26 @@ data class MessageObjectContentInner(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("text", required = true) val text: MessageContentTextObjectText
+    @get:JsonProperty("image_url", required = true) val imageUrl: MessageContentImageUrlObjectImageUrl,
+
+    @field:Valid
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("text", required = true) val text: MessageContentTextObjectText,
+
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("refusal", required = true) val refusal: kotlin.String
 ) {
 
     /**
     * Always `image_file`.
-    * Values: image_file,text
+    * Values: image_file,image_url,text,refusal
     */
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         image_file("image_file"),
-        text("text");
+        image_url("image_url"),
+        text("text"),
+        refusal("refusal");
 
         companion object {
             @JvmStatic

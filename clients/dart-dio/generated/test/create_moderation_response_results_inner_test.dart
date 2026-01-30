@@ -23,5 +23,10 @@ void main() {
       // TODO
     });
 
+    // CreateModerationResponseResultsInnerCategoryAppliedInputTypes categoryAppliedInputTypes
+    test('to test the property `categoryAppliedInputTypes`', () async {
+      // TODO
+    });
+
   });
 }

@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -38,7 +38,7 @@ func (r ApiCreateFileRequest) File(file *os.File) ApiCreateFileRequest {
 	return r
 }
 
-// The intended purpose of the uploaded file.  Use \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning) and \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Messages](/docs/api-reference/messages). This allows us to validate the format of the uploaded file is correct for fine-tuning. 
+// The intended purpose of the uploaded file.  Use \\\&quot;assistants\\\&quot; for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\&quot;vision\\\&quot; for Assistants image file inputs, \\\&quot;batch\\\&quot; for [Batch API](/docs/guides/batch), and \\\&quot;fine-tune\\\&quot; for [Fine-tuning](/docs/api-reference/fine-tuning). 
 func (r ApiCreateFileRequest) Purpose(purpose string) ApiCreateFileRequest {
 	r.purpose = &purpose
 	return r
@@ -49,7 +49,7 @@ func (r ApiCreateFileRequest) Execute() (*OpenAIFile, *http.Response, error) {
 }
 
 /*
-CreateFile Upload a file that can be used across various endpoints. The size of all the files uploaded by one organization can be up to 100 GB.  The size of individual files can be a maximum of 512 MB or 2 million tokens for Assistants. See the [Assistants Tools guide](/docs/assistants/tools) to learn more about the types of files supported. The Fine-tuning API only supports `.jsonl` files.  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
+CreateFile Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateFileRequest
@@ -364,6 +364,9 @@ type ApiListFilesRequest struct {
 	ctx context.Context
 	ApiService *FilesAPIService
 	purpose *string
+	limit *int32
+	order *string
+	after *string
 }
 
 // Only return files with the given purpose.
@@ -372,12 +375,30 @@ func (r ApiListFilesRequest) Purpose(purpose string) ApiListFilesRequest {
 	return r
 }
 
+// A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. 
+func (r ApiListFilesRequest) Limit(limit int32) ApiListFilesRequest {
+	r.limit = &limit
+	return r
+}
+
+// Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
+func (r ApiListFilesRequest) Order(order string) ApiListFilesRequest {
+	r.order = &order
+	return r
+}
+
+// A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
+func (r ApiListFilesRequest) After(after string) ApiListFilesRequest {
+	r.after = &after
+	return r
+}
+
 func (r ApiListFilesRequest) Execute() (*ListFilesResponse, *http.Response, error) {
 	return r.ApiService.ListFilesExecute(r)
 }
 
 /*
-ListFiles Returns a list of files that belong to the user's organization.
+ListFiles Returns a list of files.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListFilesRequest
@@ -412,6 +433,23 @@ func (a *FilesAPIService) ListFilesExecute(r ApiListFilesRequest) (*ListFilesRes
 
 	if r.purpose != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "purpose", r.purpose, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+        var defaultValue int32 = 10000
+        parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+        r.limit = &defaultValue
+	}
+	if r.order != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "order", r.order, "form", "")
+	} else {
+        var defaultValue string = "desc"
+        parameterAddToHeaderOrQuery(localVarQueryParams, "order", defaultValue, "form", "")
+        r.order = &defaultValue
+	}
+	if r.after != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

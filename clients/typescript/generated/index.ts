@@ -9,5 +9,5 @@ export { RequiredError } from "./apis/baseapi";
 
 export type { PromiseMiddleware as Middleware, Middleware as ObservableMiddleware } from './middleware';
 export { Observable } from './rxjsStub';
-export { PromiseAssistantsApi as AssistantsApi,  PromiseAudioApi as AudioApi,  PromiseChatApi as ChatApi,  PromiseCompletionsApi as CompletionsApi,  PromiseEmbeddingsApi as EmbeddingsApi,  PromiseFilesApi as FilesApi,  PromiseFineTuningApi as FineTuningApi,  PromiseImagesApi as ImagesApi,  PromiseModelsApi as ModelsApi,  PromiseModerationsApi as ModerationsApi } from './types/PromiseAPI';
+export { PromiseAssistantsApi as AssistantsApi,  PromiseAudioApi as AudioApi,  PromiseAuditLogsApi as AuditLogsApi,  PromiseBatchApi as BatchApi,  PromiseChatApi as ChatApi,  PromiseCompletionsApi as CompletionsApi,  PromiseDefaultApi as DefaultApi,  PromiseEmbeddingsApi as EmbeddingsApi,  PromiseFilesApi as FilesApi,  PromiseFineTuningApi as FineTuningApi,  PromiseImagesApi as ImagesApi,  PromiseInvitesApi as InvitesApi,  PromiseModelsApi as ModelsApi,  PromiseModerationsApi as ModerationsApi,  PromiseProjectsApi as ProjectsApi,  PromiseRealtimeApi as RealtimeApi,  PromiseUploadsApi as UploadsApi,  PromiseUsageApi as UsageApi,  PromiseUsersApi as UsersApi,  PromiseVectorStoresApi as VectorStoresApi } from './types/PromiseAPI';
 

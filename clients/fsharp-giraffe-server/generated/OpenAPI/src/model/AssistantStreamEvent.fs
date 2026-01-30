@@ -21,6 +21,7 @@ module AssistantStreamEvent =
   //#endregion
 
   type AssistantStreamEvent = {
+    Enabled : bool;
     Event : EventEnum;
     Data : DataEnum;
   }

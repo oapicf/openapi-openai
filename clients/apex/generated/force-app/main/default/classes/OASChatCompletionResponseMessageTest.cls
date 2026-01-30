@@ -82,7 +82,9 @@ private class OASChatCompletionResponseMessageTest {
         OASChatCompletionResponseMessage chatCompletionResponseMessage = new OASChatCompletionResponseMessage();
         System.assertEquals(new List<OASChatCompletionMessageToolCall>(), chatCompletionResponseMessage.toolCalls);
         System.assertEquals(null, chatCompletionResponseMessage.content);
+        System.assertEquals(null, chatCompletionResponseMessage.refusal);
         System.assertEquals(null, chatCompletionResponseMessage.role);
         System.assertEquals(null, chatCompletionResponseMessage.functionCall);
+        System.assertEquals(null, chatCompletionResponseMessage.audio);
     }
 }

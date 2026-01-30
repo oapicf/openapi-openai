@@ -20,7 +20,6 @@ import io.swagger.v3.oas.annotations.media.Schema
  * The delta containing the fields that have changed on the Message.
  * @param role The entity that produced the message. One of `user` or `assistant`.
  * @param content The content of the message in array of text and/or images.
- * @param fileIds A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
  */
 data class MessageDeltaObjectDelta(
 
@@ -29,11 +28,7 @@ data class MessageDeltaObjectDelta(
 
     @field:Valid
     @Schema(example = "null", description = "The content of the message in array of text and/or images.")
-    @get:JsonProperty("content") val content: kotlin.collections.List<MessageDeltaObjectDeltaContentInner>? = null,
-
-    @get:Size(max=10)
-    @Schema(example = "null", description = "A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.")
-    @get:JsonProperty("file_ids") val fileIds: kotlin.collections.List<kotlin.String>? = arrayListOf()
+    @get:JsonProperty("content") val content: kotlin.collections.List<MessageDeltaObjectDeltaContentInner>? = null
 ) {
 
     /**

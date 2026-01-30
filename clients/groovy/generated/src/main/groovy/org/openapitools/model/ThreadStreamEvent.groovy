@@ -7,6 +7,8 @@ import org.openapitools.model.ThreadObject;
 
 @Canonical
 class ThreadStreamEvent {
+    /* Whether to enable input audio transcription. */
+    Boolean enabled
 
     enum EventEnum {
     

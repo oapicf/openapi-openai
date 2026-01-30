@@ -2,7 +2,7 @@ package org.openapitools.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.model.ChatCompletionNamedToolChoiceFunction;
+import org.openapitools.model.AssistantsNamedToolChoiceFunction;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -19,7 +19,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Specifies a tool the model should use. Use to force the model to call a specific function.")
 @JsonTypeName("ChatCompletionNamedToolChoice")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionNamedToolChoice   {
   public enum TypeEnum {
 
@@ -69,7 +69,7 @@ public class ChatCompletionNamedToolChoice   {
 }
 
   private TypeEnum type;
-  private ChatCompletionNamedToolChoiceFunction function;
+  private AssistantsNamedToolChoiceFunction function;
 
   public ChatCompletionNamedToolChoice() {
   }
@@ -77,7 +77,7 @@ public class ChatCompletionNamedToolChoice   {
   @JsonCreator
   public ChatCompletionNamedToolChoice(
     @JsonProperty(required = true, value = "type") TypeEnum type,
-    @JsonProperty(required = true, value = "function") ChatCompletionNamedToolChoiceFunction function
+    @JsonProperty(required = true, value = "function") AssistantsNamedToolChoiceFunction function
   ) {
     this.type = type;
     this.function = function;
@@ -105,7 +105,7 @@ public class ChatCompletionNamedToolChoice   {
 
   /**
    **/
-  public ChatCompletionNamedToolChoice function(ChatCompletionNamedToolChoiceFunction function) {
+  public ChatCompletionNamedToolChoice function(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
     return this;
   }
@@ -113,12 +113,12 @@ public class ChatCompletionNamedToolChoice   {
   
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(required = true, value = "function")
-  @NotNull @Valid public ChatCompletionNamedToolChoiceFunction getFunction() {
+  @NotNull @Valid public AssistantsNamedToolChoiceFunction getFunction() {
     return function;
   }
 
   @JsonProperty(required = true, value = "function")
-  public void setFunction(ChatCompletionNamedToolChoiceFunction function) {
+  public void setFunction(AssistantsNamedToolChoiceFunction function) {
     this.function = function;
   }
 

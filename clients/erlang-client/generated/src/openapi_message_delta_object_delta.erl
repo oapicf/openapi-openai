@@ -6,15 +6,12 @@
 
 -type openapi_message_delta_object_delta() ::
     #{ 'role' => binary(),
-       'content' => list(),
-       'file_ids' => list()
+       'content' => list()
      }.
 
 encode(#{ 'role' := Role,
-          'content' := Content,
-          'file_ids' := FileIds
+          'content' := Content
         }) ->
     #{ 'role' => Role,
-       'content' => Content,
-       'file_ids' => FileIds
+       'content' => Content
      }.

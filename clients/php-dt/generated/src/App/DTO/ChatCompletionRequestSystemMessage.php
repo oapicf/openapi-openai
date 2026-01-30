@@ -5,14 +5,17 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
+/**
+ * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use &#x60;developer&#x60; messages for this purpose instead.
+ */
 class ChatCompletionRequestSystemMessage
 {
     /**
-     * The contents of the system message.
      * @DTA\Data(field="content")
-     * @DTA\Validator(name="Scalar", options={"type":"string"})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\ChatCompletionRequestSystemMessageContent::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\ChatCompletionRequestSystemMessageContent::class})
      */
-    public ?string $content = null;
+    public ?\App\DTO\ChatCompletionRequestSystemMessageContent $content = null;
 
     /**
      * The role of the messages author, in this case &#x60;system&#x60;.

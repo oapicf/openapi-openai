@@ -7,6 +7,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.CreateFineTuningJobRequestHyperparameters;
 import org.openapitools.model.CreateFineTuningJobRequestIntegrationsInner;
 import org.openapitools.model.CreateFineTuningJobRequestModel;
+import org.openapitools.model.FineTuneMethod;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -80,6 +81,14 @@ public class CreateFineTuningJobRequestTest {
     @Test
     public void seedTest() {
         // TODO: test seed
+    }
+
+    /**
+     * Test the property 'method'
+     */
+    @Test
+    public void methodTest() {
+        // TODO: test method
     }
 
 }

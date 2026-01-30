@@ -27,7 +27,7 @@ import com.squareup.moshi.JsonClass
  * @param createdAt The Unix timestamp (in seconds) for when the file was created.
  * @param filename The name of the file.
  * @param `object` The object type, which is always `file`.
- * @param purpose The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+ * @param purpose The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
  * @param status Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
  * @param statusDetails Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
  */
@@ -55,7 +55,7 @@ data class OpenAIFile (
     @Json(name = "object")
     val `object`: OpenAIFile.`Object`,
 
-    /* The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`. */
+    /* The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`. */
     @Json(name = "purpose")
     val purpose: OpenAIFile.Purpose,
 
@@ -81,16 +81,19 @@ data class OpenAIFile (
         @Json(name = "file") file("file");
     }
     /**
-     * The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`.
+     * The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
      *
-     * Values: fineMinusTune,fineMinusTuneMinusResults,assistants,assistants_output
+     * Values: assistants,assistants_output,batch,batch_output,fineMinusTune,fineMinusTuneMinusResults,vision
      */
     @JsonClass(generateAdapter = false)
     enum class Purpose(val value: kotlin.String) {
+        @Json(name = "assistants") assistants("assistants"),
+        @Json(name = "assistants_output") assistants_output("assistants_output"),
+        @Json(name = "batch") batch("batch"),
+        @Json(name = "batch_output") batch_output("batch_output"),
         @Json(name = "fine-tune") fineMinusTune("fine-tune"),
         @Json(name = "fine-tune-results") fineMinusTuneMinusResults("fine-tune-results"),
-        @Json(name = "assistants") assistants("assistants"),
-        @Json(name = "assistants_output") assistants_output("assistants_output");
+        @Json(name = "vision") vision("vision");
     }
     /**
      * Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.

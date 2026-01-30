@@ -1,0 +1,36 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ModifyAssistantRequestToolResourcesFileSearch"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ModifyAssistantRequestToolResourcesFileSearch"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ModifyAssistantRequestToolResourcesFileSearch {
+    title = ModifyAssistantRequestToolResourcesFileSearch
+    description = ModifyAssistantRequestToolResourcesFileSearch
+    derivedFrom = Root
+    properties {
+        vector_store_ids {
+          type = array
+          items.type =  string
+          description = "Overrides the [vector store](/docs/api-reference/vector-stores/object) attached to this assistant. There can be a maximum of 1 vector store attached to the assistant. "
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ModifyAssistantRequestToolResourcesFileSearch {
+    title = ModifyAssistantRequestToolResourcesFileSearch
+    description = ModifyAssistantRequestToolResourcesFileSearch
+    implements = openapi_server.resourceTypes.ModifyAssistantRequestToolResourcesFileSearch
+
+  }
+}

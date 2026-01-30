@@ -10,14 +10,14 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is cancelled.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is cancelled.
  **/
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
 
-@ApiModel(description = "Occurs when a [run step](/docs/api-reference/runs/step-object) is cancelled.")
+@ApiModel(description = "Occurs when a [run step](/docs/api-reference/run-steps/step-object) is cancelled.")
 public class RunStepStreamEventOneOf5   {
   
 

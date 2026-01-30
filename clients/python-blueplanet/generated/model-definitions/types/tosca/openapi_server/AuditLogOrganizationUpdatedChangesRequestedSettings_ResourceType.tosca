@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AuditLogOrganizationUpdatedChangesRequestedSettings"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AuditLogOrganizationUpdatedChangesRequestedSettings"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  AuditLogOrganizationUpdatedChangesRequestedSettings {
+    title = AuditLogOrganizationUpdatedChangesRequestedSettings
+    description = AuditLogOrganizationUpdatedChangesRequestedSettings
+    derivedFrom = Root
+    properties {
+        threads_ui_visibility {
+          type =  string
+          description = "Visibility of the threads page which shows messages created with the Assistants API and Playground. One of &#x60;ANY_ROLE&#x60;, &#x60;OWNERS&#x60;, or &#x60;NONE&#x60;."
+          optional = false
+        }
+        usage_dashboard_visibility {
+          type =  string
+          description = "Visibility of the usage dashboard which shows activity and costs for your organization. One of &#x60;ANY_ROLE&#x60; or &#x60;OWNERS&#x60;."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AuditLogOrganizationUpdatedChangesRequestedSettings {
+    title = AuditLogOrganizationUpdatedChangesRequestedSettings
+    description = AuditLogOrganizationUpdatedChangesRequestedSettings
+    implements = openapi_server.resourceTypes.AuditLogOrganizationUpdatedChangesRequestedSettings
+
+  }
+}

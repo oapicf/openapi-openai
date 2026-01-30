@@ -26,11 +26,10 @@ API.Client.RunStepDetailsToolCallsObjectToolCallsInner.prototype.type;
 API.Client.RunStepDetailsToolCallsObjectToolCallsInner.prototype.codeInterpreter;
 
 /**
- * For now, this is always going to be an empty object.
- * @type {!API.Client.Object}
+ * @type {!API.Client.RunStepDetailsToolCallsFileSearchObject_file_search}
  * @export
  */
-API.Client.RunStepDetailsToolCallsObjectToolCallsInner.prototype.retrieval;
+API.Client.RunStepDetailsToolCallsObjectToolCallsInner.prototype.fileSearch;
 
 /**
  * @type {!API.Client.RunStepDetailsToolCallsFunctionObject_function}
@@ -41,6 +40,6 @@ API.Client.RunStepDetailsToolCallsObjectToolCallsInner.prototype.function;
 /** @enum {string} */
 API.Client.RunStepDetailsToolCallsObjectToolCallsInner.TypeEnum = { 
   code_interpreter: 'code_interpreter',
-  retrieval: 'retrieval',
+  file_search: 'file_search',
   function: 'function',
 }

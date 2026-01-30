@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The details for events with this `type`.",
+  "name": "AuditLogLoginFailed",
+  "fields": [
+    {
+      "name": "error_code",
+      "type": ["null", "string"],
+      "doc": "The error code of the failure.",
+      "default": null
+    },
+    {
+      "name": "error_message",
+      "type": ["null", "string"],
+      "doc": "The error message of the failure.",
+      "default": null
+    }
+  ]
+
+}

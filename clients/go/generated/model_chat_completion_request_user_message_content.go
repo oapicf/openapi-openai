@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -19,14 +19,14 @@ import (
 
 // ChatCompletionRequestUserMessageContent - The contents of the user message. 
 type ChatCompletionRequestUserMessageContent struct {
-	ArrayOfChatCompletionRequestMessageContentPart *[]ChatCompletionRequestMessageContentPart
+	ArrayOfChatCompletionRequestUserMessageContentPart *[]ChatCompletionRequestUserMessageContentPart
 	String *string
 }
 
-// []ChatCompletionRequestMessageContentPartAsChatCompletionRequestUserMessageContent is a convenience function that returns []ChatCompletionRequestMessageContentPart wrapped in ChatCompletionRequestUserMessageContent
-func ArrayOfChatCompletionRequestMessageContentPartAsChatCompletionRequestUserMessageContent(v *[]ChatCompletionRequestMessageContentPart) ChatCompletionRequestUserMessageContent {
+// []ChatCompletionRequestUserMessageContentPartAsChatCompletionRequestUserMessageContent is a convenience function that returns []ChatCompletionRequestUserMessageContentPart wrapped in ChatCompletionRequestUserMessageContent
+func ArrayOfChatCompletionRequestUserMessageContentPartAsChatCompletionRequestUserMessageContent(v *[]ChatCompletionRequestUserMessageContentPart) ChatCompletionRequestUserMessageContent {
 	return ChatCompletionRequestUserMessageContent{
-		ArrayOfChatCompletionRequestMessageContentPart: v,
+		ArrayOfChatCompletionRequestUserMessageContentPart: v,
 	}
 }
 
@@ -42,21 +42,21 @@ func StringAsChatCompletionRequestUserMessageContent(v *string) ChatCompletionRe
 func (dst *ChatCompletionRequestUserMessageContent) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into ArrayOfChatCompletionRequestMessageContentPart
-	err = newStrictDecoder(data).Decode(&dst.ArrayOfChatCompletionRequestMessageContentPart)
+	// try to unmarshal data into ArrayOfChatCompletionRequestUserMessageContentPart
+	err = newStrictDecoder(data).Decode(&dst.ArrayOfChatCompletionRequestUserMessageContentPart)
 	if err == nil {
-		jsonArrayOfChatCompletionRequestMessageContentPart, _ := json.Marshal(dst.ArrayOfChatCompletionRequestMessageContentPart)
-		if string(jsonArrayOfChatCompletionRequestMessageContentPart) == "{}" { // empty struct
-			dst.ArrayOfChatCompletionRequestMessageContentPart = nil
+		jsonArrayOfChatCompletionRequestUserMessageContentPart, _ := json.Marshal(dst.ArrayOfChatCompletionRequestUserMessageContentPart)
+		if string(jsonArrayOfChatCompletionRequestUserMessageContentPart) == "{}" { // empty struct
+			dst.ArrayOfChatCompletionRequestUserMessageContentPart = nil
 		} else {
-			if err = validator.Validate(dst.ArrayOfChatCompletionRequestMessageContentPart); err != nil {
-				dst.ArrayOfChatCompletionRequestMessageContentPart = nil
+			if err = validator.Validate(dst.ArrayOfChatCompletionRequestUserMessageContentPart); err != nil {
+				dst.ArrayOfChatCompletionRequestUserMessageContentPart = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ArrayOfChatCompletionRequestMessageContentPart = nil
+		dst.ArrayOfChatCompletionRequestUserMessageContentPart = nil
 	}
 
 	// try to unmarshal data into String
@@ -78,7 +78,7 @@ func (dst *ChatCompletionRequestUserMessageContent) UnmarshalJSON(data []byte) e
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.ArrayOfChatCompletionRequestMessageContentPart = nil
+		dst.ArrayOfChatCompletionRequestUserMessageContentPart = nil
 		dst.String = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(ChatCompletionRequestUserMessageContent)")
@@ -91,8 +91,8 @@ func (dst *ChatCompletionRequestUserMessageContent) UnmarshalJSON(data []byte) e
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src ChatCompletionRequestUserMessageContent) MarshalJSON() ([]byte, error) {
-	if src.ArrayOfChatCompletionRequestMessageContentPart != nil {
-		return json.Marshal(&src.ArrayOfChatCompletionRequestMessageContentPart)
+	if src.ArrayOfChatCompletionRequestUserMessageContentPart != nil {
+		return json.Marshal(&src.ArrayOfChatCompletionRequestUserMessageContentPart)
 	}
 
 	if src.String != nil {
@@ -107,8 +107,8 @@ func (obj *ChatCompletionRequestUserMessageContent) GetActualInstance() (interfa
 	if obj == nil {
 		return nil
 	}
-	if obj.ArrayOfChatCompletionRequestMessageContentPart != nil {
-		return obj.ArrayOfChatCompletionRequestMessageContentPart
+	if obj.ArrayOfChatCompletionRequestUserMessageContentPart != nil {
+		return obj.ArrayOfChatCompletionRequestUserMessageContentPart
 	}
 
 	if obj.String != nil {
@@ -121,8 +121,8 @@ func (obj *ChatCompletionRequestUserMessageContent) GetActualInstance() (interfa
 
 // Get the actual instance value
 func (obj ChatCompletionRequestUserMessageContent) GetActualInstanceValue() (interface{}) {
-	if obj.ArrayOfChatCompletionRequestMessageContentPart != nil {
-		return *obj.ArrayOfChatCompletionRequestMessageContentPart
+	if obj.ArrayOfChatCompletionRequestUserMessageContentPart != nil {
+		return *obj.ArrayOfChatCompletionRequestUserMessageContentPart
 	}
 
 	if obj.String != nil {

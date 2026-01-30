@@ -8,17 +8,21 @@ import org.openapitools._
 
 /**
  * Fine-tuning job event object
- * @param id 
- * @param createdUnderscoreat 
- * @param level 
- * @param message 
- * @param _object 
+ * @param _object The object type, which is always \"fine_tuning.job.event\".
+ * @param id The object identifier.
+ * @param createdUnderscoreat The Unix timestamp (in seconds) for when the fine-tuning job was created.
+ * @param level The log level of the event.
+ * @param message The message of the event.
+ * @param _type The type of event.
+ * @param data The data associated with the event.
  */
-case class FineTuningJobEvent(id: String,
+case class FineTuningJobEvent(_object: String,
+                id: String,
                 createdUnderscoreat: Int,
                 level: String,
                 message: String,
-                _object: String
+                _type: Option[String],
+                data: Option[Object]
                 )
 
 object FineTuningJobEvent {

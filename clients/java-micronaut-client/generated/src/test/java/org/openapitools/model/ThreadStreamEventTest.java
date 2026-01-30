@@ -21,6 +21,14 @@ public class ThreadStreamEventTest {
     }
 
     /**
+     * Test the property 'enabled'
+     */
+    @Test
+    public void enabledTest() {
+        // TODO: test enabled
+    }
+
+    /**
      * Test the property 'event'
      */
     @Test

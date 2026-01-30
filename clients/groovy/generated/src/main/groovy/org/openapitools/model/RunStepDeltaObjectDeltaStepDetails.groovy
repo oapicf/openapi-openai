@@ -39,6 +39,6 @@ class RunStepDeltaObjectDeltaStepDetails {
     TypeEnum type
     
     RunStepDeltaStepDetailsMessageCreationObjectMessageCreation messageCreation
-    /* An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`.  */
+    /* An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.  */
     List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls = new ArrayList<>()
 }

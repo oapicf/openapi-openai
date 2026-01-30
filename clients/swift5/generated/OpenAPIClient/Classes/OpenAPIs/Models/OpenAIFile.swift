@@ -17,10 +17,13 @@ public struct OpenAIFile: Codable, JSONEncodable, Hashable {
         case file = "file"
     }
     public enum Purpose: String, Codable, CaseIterable {
-        case fineTune = "fine-tune"
-        case fineTuneResults = "fine-tune-results"
         case assistants = "assistants"
         case assistantsOutput = "assistants_output"
+        case batch = "batch"
+        case batchOutput = "batch_output"
+        case fineTune = "fine-tune"
+        case fineTuneResults = "fine-tune-results"
+        case vision = "vision"
     }
     public enum Status: String, Codable, CaseIterable {
         case uploaded = "uploaded"
@@ -37,7 +40,7 @@ public struct OpenAIFile: Codable, JSONEncodable, Hashable {
     public var filename: String
     /** The object type, which is always `file`. */
     public var object: Object
-    /** The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`. */
+    /** The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`. */
     public var purpose: Purpose
     /** Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`. */
     @available(*, deprecated, message: "This property is deprecated.")

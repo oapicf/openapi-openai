@@ -13,7 +13,7 @@ case class OpenAIFile (
     _filename: String,
     /* The object type, which is always `file`. */
     _object: String,
-    /* The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`. */
+    /* The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`. */
     _purpose: String,
     /* Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`. */
     _status: String,

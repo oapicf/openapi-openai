@@ -16,7 +16,9 @@
         "name": "MessageDeltaObjectDeltaContentInner_type",
         "symbols": [
           "image_file",
-          "text"
+          "text",
+          "refusal",
+          "image_url"
         ]
       },
       "doc": "Always `image_file`."
@@ -30,6 +32,18 @@
     {
       "name": "text",
       "type": ["null", "model.MessageDeltaContentTextObjectText"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "refusal",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "image_url",
+      "type": ["null", "model.MessageDeltaContentImageUrlObjectImageUrl"],
       "doc": "",
       "default": null
     }

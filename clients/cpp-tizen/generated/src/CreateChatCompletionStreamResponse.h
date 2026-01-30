@@ -10,6 +10,7 @@
 
 #include <string>
 #include "CreateChatCompletionStreamResponse_choices_inner.h"
+#include "CreateChatCompletionStreamResponse_usage.h"
 #include <list>
 #include "Object.h"
 
@@ -54,11 +55,11 @@ public:
 	/*! \brief Set A unique identifier for the chat completion. Each chunk has the same ID.
 	 */
 	void setId(std::string  id);
-	/*! \brief Get A list of chat completion choices. Can be more than one if `n` is greater than 1.
+	/*! \brief Get A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. 
 	 */
 	std::list<CreateChatCompletionStreamResponse_choices_inner> getChoices();
 
-	/*! \brief Set A list of chat completion choices. Can be more than one if `n` is greater than 1.
+	/*! \brief Set A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. 
 	 */
 	void setChoices(std::list <CreateChatCompletionStreamResponse_choices_inner> choices);
 	/*! \brief Get The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
@@ -75,6 +76,13 @@ public:
 	/*! \brief Set The model to generate the completion.
 	 */
 	void setModel(std::string  model);
+	/*! \brief Get The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+	 */
+	std::string getServiceTier();
+
+	/*! \brief Set The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+	 */
+	void setServiceTier(std::string  service_tier);
 	/*! \brief Get This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
 	 */
 	std::string getSystemFingerprint();
@@ -89,14 +97,23 @@ public:
 	/*! \brief Set The object type, which is always `chat.completion.chunk`.
 	 */
 	void setObject(std::string  object);
+	/*! \brief Get 
+	 */
+	CreateChatCompletionStreamResponse_usage getUsage();
+
+	/*! \brief Set 
+	 */
+	void setUsage(CreateChatCompletionStreamResponse_usage  usage);
 
 private:
 	std::string id;
 	std::list <CreateChatCompletionStreamResponse_choices_inner>choices;
 	int created;
 	std::string model;
+	std::string service_tier;
 	std::string system_fingerprint;
 	std::string object;
+	CreateChatCompletionStreamResponse_usage usage;
 	void __init();
 	void __cleanup();
 

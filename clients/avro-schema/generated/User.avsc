@@ -1,0 +1,52 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Represents an individual `user` within an organization.",
+  "name": "User",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "User_object",
+        "symbols": [
+          "organization_user"
+        ]
+      },
+      "doc": "The object type, which is always `organization.user`"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The identifier, which can be referenced in API endpoints"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "doc": "The name of the user"
+    },
+    {
+      "name": "email",
+      "type": "string",
+      "doc": "The email address of the user"
+    },
+    {
+      "name": "role",
+      "type": {
+        "type": "enum",
+        "name": "User_role",
+        "symbols": [
+          "owner",
+          "reader"
+        ]
+      },
+      "doc": "`owner` or `reader`"
+    },
+    {
+      "name": "added_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) of when the user was added."
+    }
+  ]
+
+}

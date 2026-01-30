@@ -1,11 +1,11 @@
 # openapi::RunStreamEventOneOf6
 
-Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.
+Occurs when a [run](/docs/api-reference/runs/object) fails.
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**event** | **character** |  | [Enum: [thread.run.cancelling]] 
+**event** | **character** |  | [Enum: [thread.run.failed]] 
 **data** | [**RunObject**](RunObject.md) |  | 
 
 

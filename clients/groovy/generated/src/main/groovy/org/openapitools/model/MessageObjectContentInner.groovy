@@ -5,6 +5,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.MessageContentImageFileObject;
 import org.openapitools.model.MessageContentImageFileObjectImageFile;
+import org.openapitools.model.MessageContentImageUrlObject;
+import org.openapitools.model.MessageContentImageUrlObjectImageUrl;
+import org.openapitools.model.MessageContentRefusalObject;
 import org.openapitools.model.MessageContentTextObject;
 import org.openapitools.model.MessageContentTextObjectText;
 
@@ -15,7 +18,11 @@ class MessageObjectContentInner {
     
         IMAGE_FILE("image_file"),
         
-        TEXT("text")
+        IMAGE_URL("image_url"),
+        
+        TEXT("text"),
+        
+        REFUSAL("refusal")
     
         private final String value
     
@@ -38,5 +45,9 @@ class MessageObjectContentInner {
     
     MessageContentImageFileObjectImageFile imageFile
     
+    MessageContentImageUrlObjectImageUrl imageUrl
+    
     MessageContentTextObjectText text
+    
+    String refusal
 }

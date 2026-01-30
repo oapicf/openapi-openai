@@ -16,17 +16,23 @@
 #include "../model/fine_tuning_job_hyperparameters.h"
 fine_tuning_job_hyperparameters_t* instantiate_fine_tuning_job_hyperparameters(int include_optional);
 
-#include "test_fine_tuning_job_hyperparameters_n_epochs.c"
+#include "test_create_fine_tuning_job_request_hyperparameters_batch_size.c"
+#include "test_create_fine_tuning_job_request_hyperparameters_learning_rate_multiplier.c"
+#include "test_create_fine_tuning_job_request_hyperparameters_n_epochs.c"
 
 
 fine_tuning_job_hyperparameters_t* instantiate_fine_tuning_job_hyperparameters(int include_optional) {
   fine_tuning_job_hyperparameters_t* fine_tuning_job_hyperparameters = NULL;
   if (include_optional) {
     fine_tuning_job_hyperparameters = fine_tuning_job_hyperparameters_create(
+      null,
+      null,
       null
     );
   } else {
     fine_tuning_job_hyperparameters = fine_tuning_job_hyperparameters_create(
+      null,
+      null,
       null
     );
   }

@@ -2,7 +2,7 @@
 
 # RunStreamEventOneOf8
 
-Occurs when a [run](/docs/api-reference/runs/object) expires.
+Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
 
 ## Properties
 
@@ -17,7 +17,7 @@ Occurs when a [run](/docs/api-reference/runs/object) expires.
 
 | Name | Value |
 |---- | -----|
-| THREAD_RUN_EXPIRED | &quot;thread.run.expired&quot; |
+| THREAD_RUN_CANCELLED | &quot;thread.run.cancelled&quot; |
 
 
 

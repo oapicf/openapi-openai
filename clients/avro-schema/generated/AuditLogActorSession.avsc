@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The session in which the audit logged action was performed.",
+  "name": "AuditLogActorSession",
+  "fields": [
+    {
+      "name": "user",
+      "type": ["null", "model.AuditLogActorUser"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "ip_address",
+      "type": ["null", "string"],
+      "doc": "The IP address from which the action was performed.",
+      "default": null
+    }
+  ]
+
+}

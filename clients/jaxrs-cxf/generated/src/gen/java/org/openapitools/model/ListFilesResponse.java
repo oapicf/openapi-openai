@@ -1,7 +1,5 @@
 package org.openapitools.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,47 +14,46 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ListFilesResponse  {
   
+  @ApiModelProperty(example = "list", required = true, value = "")
+
+  private String _object;
+
   @ApiModelProperty(required = true, value = "")
 
   @Valid
 
   private List<@Valid OpenAIFile> data = new ArrayList<>();
 
-public enum ObjectEnum {
+  @ApiModelProperty(example = "file-abc123", required = true, value = "")
 
-LIST(String.valueOf("list"));
+  private String firstId;
 
+  @ApiModelProperty(example = "file-abc456", required = true, value = "")
 
-    private String value;
+  private String lastId;
 
-    ObjectEnum (String v) {
-        value = v;
-    }
+  @ApiModelProperty(example = "false", required = true, value = "")
 
-    public String value() {
-        return value;
-    }
+  private Boolean hasMore;
+ /**
+   * Get _object
+   * @return _object
+  **/
+  @JsonProperty("object")
+  @NotNull
+  public String getObject() {
+    return _object;
+  }
 
-    @Override
-    @JsonValue
-    public String toString() {
-        return String.valueOf(value);
-    }
+  public void setObject(String _object) {
+    this._object = _object;
+  }
 
-    @JsonCreator
-    public static ObjectEnum fromValue(String value) {
-        for (ObjectEnum b : ObjectEnum.values()) {
-            if (b.value.equals(value)) {
-                return b;
-            }
-        }
-        throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-}
+  public ListFilesResponse _object(String _object) {
+    this._object = _object;
+    return this;
+  }
 
-  @ApiModelProperty(required = true, value = "")
-
-  private ObjectEnum _object;
  /**
    * Get data
    * @return data
@@ -82,24 +79,59 @@ LIST(String.valueOf("list"));
   }
 
  /**
-   * Get _object
-   * @return _object
+   * Get firstId
+   * @return firstId
   **/
-  @JsonProperty("object")
+  @JsonProperty("first_id")
   @NotNull
-  public String getObject() {
-    if (_object == null) {
-      return null;
-    }
-    return _object.value();
+  public String getFirstId() {
+    return firstId;
   }
 
-  public void setObject(ObjectEnum _object) {
-    this._object = _object;
+  public void setFirstId(String firstId) {
+    this.firstId = firstId;
   }
 
-  public ListFilesResponse _object(ObjectEnum _object) {
-    this._object = _object;
+  public ListFilesResponse firstId(String firstId) {
+    this.firstId = firstId;
+    return this;
+  }
+
+ /**
+   * Get lastId
+   * @return lastId
+  **/
+  @JsonProperty("last_id")
+  @NotNull
+  public String getLastId() {
+    return lastId;
+  }
+
+  public void setLastId(String lastId) {
+    this.lastId = lastId;
+  }
+
+  public ListFilesResponse lastId(String lastId) {
+    this.lastId = lastId;
+    return this;
+  }
+
+ /**
+   * Get hasMore
+   * @return hasMore
+  **/
+  @JsonProperty("has_more")
+  @NotNull
+  public Boolean getHasMore() {
+    return hasMore;
+  }
+
+  public void setHasMore(Boolean hasMore) {
+    this.hasMore = hasMore;
+  }
+
+  public ListFilesResponse hasMore(Boolean hasMore) {
+    this.hasMore = hasMore;
     return this;
   }
 
@@ -112,13 +144,16 @@ LIST(String.valueOf("list"));
       return false;
     }
     ListFilesResponse listFilesResponse = (ListFilesResponse) o;
-    return Objects.equals(this.data, listFilesResponse.data) &&
-        Objects.equals(this._object, listFilesResponse._object);
+    return Objects.equals(this._object, listFilesResponse._object) &&
+        Objects.equals(this.data, listFilesResponse.data) &&
+        Objects.equals(this.firstId, listFilesResponse.firstId) &&
+        Objects.equals(this.lastId, listFilesResponse.lastId) &&
+        Objects.equals(this.hasMore, listFilesResponse.hasMore);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, _object);
+    return Objects.hash(_object, data, firstId, lastId, hasMore);
   }
 
   @Override
@@ -126,8 +161,11 @@ LIST(String.valueOf("list"));
     StringBuilder sb = new StringBuilder();
     sb.append("class ListFilesResponse {\n");
     
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    firstId: ").append(toIndentedString(firstId)).append("\n");
+    sb.append("    lastId: ").append(toIndentedString(lastId)).append("\n");
+    sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
     sb.append("}");
     return sb.toString();
   }

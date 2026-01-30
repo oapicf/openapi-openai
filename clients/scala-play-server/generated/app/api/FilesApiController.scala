@@ -9,7 +9,7 @@ import model.ListFilesResponse
 import model.OpenAIFile
 import play.api.libs.Files.TemporaryFile
 
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T10:48:27.489746113Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @Singleton
 class FilesApiController @Inject()(cc: ControllerComponents, api: FilesApi) extends AbstractController(cc) {
   /**
@@ -66,13 +66,20 @@ class FilesApiController @Inject()(cc: ControllerComponents, api: FilesApi) exte
   }
 
   /**
-    * GET /v1/files?purpose=[value]
+    * GET /v1/files?purpose=[value]&limit=[value]&order=[value]&after=[value]
     */
   def listFiles(): Action[AnyContent] = Action { request =>
     def executeApi(): ListFilesResponse = {
       val purpose = request.getQueryString("purpose")
         
-      api.listFiles(purpose)
+      val limit = request.getQueryString("limit")
+        .map(value => value.toInt)
+        
+      val order = request.getQueryString("order")
+        
+      val after = request.getQueryString("after")
+        
+      api.listFiles(purpose, limit, order, after)
     }
 
     val result = executeApi()

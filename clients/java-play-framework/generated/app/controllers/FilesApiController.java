@@ -27,7 +27,7 @@ import com.typesafe.config.Config;
 
 import openapitools.OpenAPIUtils.ApiAction;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FilesApiController extends Controller {
     private final FilesApiControllerImpInterface imp;
     private final ObjectMapper mapper;
@@ -76,7 +76,28 @@ public class FilesApiController extends Controller {
         } else {
             purpose = null;
         }
-        return imp.listFilesHttp(request, purpose);
+        String valuelimit = request.getQueryString("limit");
+        Integer limit;
+        if (valuelimit != null) {
+            limit = Integer.parseInt(valuelimit);
+        } else {
+            limit = 10000;
+        }
+        String valueorder = request.getQueryString("order");
+        String order;
+        if (valueorder != null) {
+            order = valueorder;
+        } else {
+            order = "desc";
+        }
+        String valueafter = request.getQueryString("after");
+        String after;
+        if (valueafter != null) {
+            after = valueafter;
+        } else {
+            after = null;
+        }
+        return imp.listFilesHttp(request, purpose, limit, order, after);
     }
 
     @ApiAction

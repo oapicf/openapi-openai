@@ -29,7 +29,7 @@ openapi_open_ai_file(Fields) ->
             , {'created_at', integer() }
             , {'filename', binary() }
             , {'object', elements([<<"file">>]) }
-            , {'purpose', elements([<<"fine-tune">>, <<"fine-tune-results">>, <<"assistants">>, <<"assistants_output">>]) }
+            , {'purpose', elements([<<"assistants">>, <<"assistants_output">>, <<"batch">>, <<"batch_output">>, <<"fine-tune">>, <<"fine-tune-results">>, <<"vision">>]) }
             , {'status', elements([<<"uploaded">>, <<"processed">>, <<"error">>]) }
             , {'status_details', binary() }
             ],

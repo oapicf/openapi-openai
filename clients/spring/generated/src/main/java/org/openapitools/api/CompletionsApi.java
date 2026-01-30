@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @Validated
 @Tag(name = "Completions", description = "Given a prompt, the model will return one or more predicted completions, and can also return the probabilities of alternative tokens at each position.")
 public interface CompletionsApi {
@@ -75,7 +75,7 @@ public interface CompletionsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"created\" : 5, \"usage\" : { \"completion_tokens\" : 7, \"prompt_tokens\" : 9, \"total_tokens\" : 3 }, \"model\" : \"model\", \"id\" : \"id\", \"choices\" : [ { \"finish_reason\" : \"stop\", \"index\" : 0, \"text\" : \"text\", \"logprobs\" : { \"top_logprobs\" : [ { \"key\" : 5.962133916683182 }, { \"key\" : 5.962133916683182 } ], \"token_logprobs\" : [ 1.4658129805029452, 1.4658129805029452 ], \"tokens\" : [ \"tokens\", \"tokens\" ], \"text_offset\" : [ 6, 6 ] } }, { \"finish_reason\" : \"stop\", \"index\" : 0, \"text\" : \"text\", \"logprobs\" : { \"top_logprobs\" : [ { \"key\" : 5.962133916683182 }, { \"key\" : 5.962133916683182 } ], \"token_logprobs\" : [ 1.4658129805029452, 1.4658129805029452 ], \"tokens\" : [ \"tokens\", \"tokens\" ], \"text_offset\" : [ 6, 6 ] } } ], \"system_fingerprint\" : \"system_fingerprint\", \"object\" : \"text_completion\" }";
+                    String exampleString = "{ \"created\" : 5, \"usage\" : { \"completion_tokens\" : 9, \"prompt_tokens\" : 3, \"completion_tokens_details\" : { \"accepted_prediction_tokens\" : 4, \"audio_tokens\" : 7, \"reasoning_tokens\" : 1, \"rejected_prediction_tokens\" : 1 }, \"prompt_tokens_details\" : { \"audio_tokens\" : 1, \"cached_tokens\" : 6 }, \"total_tokens\" : 2 }, \"model\" : \"model\", \"id\" : \"id\", \"choices\" : [ { \"finish_reason\" : \"stop\", \"index\" : 0, \"text\" : \"text\", \"logprobs\" : { \"top_logprobs\" : [ { \"key\" : 5.962133916683182 }, { \"key\" : 5.962133916683182 } ], \"token_logprobs\" : [ 1.4658129805029452, 1.4658129805029452 ], \"tokens\" : [ \"tokens\", \"tokens\" ], \"text_offset\" : [ 6, 6 ] } }, { \"finish_reason\" : \"stop\", \"index\" : 0, \"text\" : \"text\", \"logprobs\" : { \"top_logprobs\" : [ { \"key\" : 5.962133916683182 }, { \"key\" : 5.962133916683182 } ], \"token_logprobs\" : [ 1.4658129805029452, 1.4658129805029452 ], \"tokens\" : [ \"tokens\", \"tokens\" ], \"text_offset\" : [ 6, 6 ] } } ], \"system_fingerprint\" : \"system_fingerprint\", \"object\" : \"text_completion\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

@@ -19,6 +19,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.ChatCompletionRequestToolMessage
+import org.openapitools.client.models.ChatCompletionRequestToolMessageContent
 
 class ChatCompletionRequestToolMessageTest : ShouldSpec() {
     init {
@@ -31,7 +32,7 @@ class ChatCompletionRequestToolMessageTest : ShouldSpec() {
             //modelInstance.role shouldBe ("TODO")
         }
 
-        // to test the property `content` - The contents of the tool message.
+        // to test the property `content`
         should("test content") {
             // uncomment below to test the property
             //modelInstance.content shouldBe ("TODO")

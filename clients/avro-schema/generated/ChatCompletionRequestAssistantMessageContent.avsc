@@ -1,0 +1,9 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The contents of the assistant message. Required unless `tool_calls` or `function_call` is specified. ",
+  "name": "ChatCompletionRequestAssistantMessageContent",
+  "fields": [
+  ]
+
+}

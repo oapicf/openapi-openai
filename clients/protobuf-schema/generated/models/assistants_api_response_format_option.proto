@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -14,14 +14,19 @@ syntax = "proto3";
 
 package openapitools;
 
-import public "models/assistants_api_response_format.proto";
+import public "models/response_format_json_object.proto";
+import public "models/response_format_json_schema.proto";
+import public "models/response_format_json_schema_json_schema.proto";
+import public "models/response_format_text.proto";
 
 message AssistantsApiResponseFormatOption {
 
     oneof assistants_api_response_format_option {
         // `auto` is the default value 
         string string = 355114992;
-        AssistantsApiResponseFormat assistants_api_response_format = 111895642;
+        ResponseFormatText response_format_text = 249201015;
+        ResponseFormatJsonObject response_format_json_object = 319101679;
+        ResponseFormatJsonSchema response_format_json_schema = 434482513;
     }
 }
 

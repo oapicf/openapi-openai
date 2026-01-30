@@ -25,7 +25,6 @@ public struct MessageObject: Codable, JSONEncodable, Hashable {
         case user = "user"
         case assistant = "assistant"
     }
-    public static let fileIdsRule = ArrayRule(minItems: nil, maxItems: 10, uniqueItems: false)
     /** The identifier, which can be referenced in API endpoints. */
     public var id: String
     /** The object type, which is always `thread.message`. */
@@ -49,12 +48,12 @@ public struct MessageObject: Codable, JSONEncodable, Hashable {
     public var assistantId: String?
     /** The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints. */
     public var runId: String?
-    /** A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message. */
-    public var fileIds: [String]
-    /** Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.  */
+    /** A list of files attached to the message, and the tools they were added to. */
+    public var attachments: [CreateMessageRequestAttachmentsInner]?
+    /** Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.  */
     public var metadata: AnyCodable?
 
-    public init(id: String, object: Object, createdAt: Int, threadId: String, status: Status, incompleteDetails: MessageObjectIncompleteDetails?, completedAt: Int?, incompleteAt: Int?, role: Role, content: [MessageObjectContentInner], assistantId: String?, runId: String?, fileIds: [String], metadata: AnyCodable?) {
+    public init(id: String, object: Object, createdAt: Int, threadId: String, status: Status, incompleteDetails: MessageObjectIncompleteDetails?, completedAt: Int?, incompleteAt: Int?, role: Role, content: [MessageObjectContentInner], assistantId: String?, runId: String?, attachments: [CreateMessageRequestAttachmentsInner]?, metadata: AnyCodable?) {
         self.id = id
         self.object = object
         self.createdAt = createdAt
@@ -67,7 +66,7 @@ public struct MessageObject: Codable, JSONEncodable, Hashable {
         self.content = content
         self.assistantId = assistantId
         self.runId = runId
-        self.fileIds = fileIds
+        self.attachments = attachments
         self.metadata = metadata
     }
 
@@ -84,7 +83,7 @@ public struct MessageObject: Codable, JSONEncodable, Hashable {
         case content
         case assistantId = "assistant_id"
         case runId = "run_id"
-        case fileIds = "file_ids"
+        case attachments
         case metadata
     }
 
@@ -104,7 +103,7 @@ public struct MessageObject: Codable, JSONEncodable, Hashable {
         try container.encode(content, forKey: .content)
         try container.encode(assistantId, forKey: .assistantId)
         try container.encode(runId, forKey: .runId)
-        try container.encode(fileIds, forKey: .fileIds)
+        try container.encode(attachments, forKey: .attachments)
         try container.encode(metadata, forKey: .metadata)
     }
 }

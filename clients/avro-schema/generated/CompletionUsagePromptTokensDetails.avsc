@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Breakdown of tokens used in the prompt.",
+  "name": "CompletionUsagePromptTokensDetails",
+  "fields": [
+    {
+      "name": "audio_tokens",
+      "type": ["null", "int"],
+      "doc": "Audio input tokens present in the prompt.",
+      "default": null
+    },
+    {
+      "name": "cached_tokens",
+      "type": ["null", "int"],
+      "doc": "Cached tokens present in the prompt.",
+      "default": null
+    }
+  ]
+
+}

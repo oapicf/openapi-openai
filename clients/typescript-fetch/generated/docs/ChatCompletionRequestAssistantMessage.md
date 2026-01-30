@@ -1,14 +1,17 @@
 
 # ChatCompletionRequestAssistantMessage
 
+Messages sent by the model in response to user messages. 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`content` | string
+`content` | [ChatCompletionRequestAssistantMessageContent](ChatCompletionRequestAssistantMessageContent.md)
+`refusal` | string
 `role` | string
 `name` | string
+`audio` | [ChatCompletionRequestAssistantMessageAudio](ChatCompletionRequestAssistantMessageAudio.md)
 `toolCalls` | [Array&lt;ChatCompletionMessageToolCall&gt;](ChatCompletionMessageToolCall.md)
 `functionCall` | [ChatCompletionRequestAssistantMessageFunctionCall](ChatCompletionRequestAssistantMessageFunctionCall.md)
 
@@ -20,8 +23,10 @@ import type { ChatCompletionRequestAssistantMessage } from ''
 // TODO: Update the object below with actual values
 const example = {
   "content": null,
+  "refusal": null,
   "role": null,
   "name": null,
+  "audio": null,
   "toolCalls": null,
   "functionCall": null,
 } satisfies ChatCompletionRequestAssistantMessage

@@ -13,6 +13,12 @@ API.Client.CreateThreadAndRunRequestToolsInner = function() {}
 API.Client.CreateThreadAndRunRequestToolsInner.prototype.type;
 
 /**
+ * @type {!API.Client.AssistantToolsFileSearch_file_search}
+ * @export
+ */
+API.Client.CreateThreadAndRunRequestToolsInner.prototype.fileSearch;
+
+/**
  * @type {!API.Client.FunctionObject}
  * @export
  */
@@ -21,6 +27,6 @@ API.Client.CreateThreadAndRunRequestToolsInner.prototype.function;
 /** @enum {string} */
 API.Client.CreateThreadAndRunRequestToolsInner.TypeEnum = { 
   code_interpreter: 'code_interpreter',
-  retrieval: 'retrieval',
+  file_search: 'file_search',
   function: 'function',
 }

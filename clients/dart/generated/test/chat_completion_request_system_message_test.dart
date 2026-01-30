@@ -16,8 +16,7 @@ void main() {
   // final instance = ChatCompletionRequestSystemMessage();
 
   group('test ChatCompletionRequestSystemMessage', () {
-    // The contents of the system message.
-    // String content
+    // ChatCompletionRequestSystemMessageContent content
     test('to test the property `content`', () async {
       // TODO
     });

@@ -1,0 +1,26 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy. Only applicable if `file_ids` is non-empty.",
+  "name": "CreateVectorStoreRequestChunkingStrategy",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "CreateVectorStoreRequestChunkingStrategy_type",
+        "symbols": [
+          "auto",
+          "static"
+        ]
+      },
+      "doc": "Always `auto`."
+    },
+    {
+      "name": "static",
+      "type": "model.StaticChunkingStrategy",
+      "doc": ""
+    }
+  ]
+
+}

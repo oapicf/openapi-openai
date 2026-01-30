@@ -1,7 +1,7 @@
 goog.provide('API.Client.ChatCompletionToolChoiceOption');
 
 /**
- * Controls which (if any) function is called by the model. `none` means the model will not call a function and instead generates a message. `auto` means the model can pick between generating a message or calling a function. Specifying a particular function via `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that function.  `none` is the default when no functions are present. `auto` is the default if functions are present. 
+ * Controls which (if any) tool is called by the model. `none` means the model will not call any tool and instead generates a message. `auto` means the model can pick between generating a message or calling one or more tools. `required` means the model must call one or more tools. Specifying a particular tool via `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool.  `none` is the default when no tools are present. `auto` is the default if tools are present. 
  * @record
  */
 API.Client.ChatCompletionToolChoiceOption = function() {}
@@ -14,7 +14,7 @@ API.Client.ChatCompletionToolChoiceOption = function() {}
 API.Client.ChatCompletionToolChoiceOption.prototype.type;
 
 /**
- * @type {!API.Client.ChatCompletionNamedToolChoice_function}
+ * @type {!API.Client.AssistantsNamedToolChoice_function}
  * @export
  */
 API.Client.ChatCompletionToolChoiceOption.prototype.function;

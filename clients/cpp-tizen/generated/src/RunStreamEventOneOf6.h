@@ -1,7 +1,7 @@
 /*
  * RunStreamEvent_oneOf_6.h
  *
- * Occurs when a [run](/docs/api-reference/runs/object) moves to a &#x60;cancelling&#x60; status.
+ * Occurs when a [run](/docs/api-reference/runs/object) fails.
  */
 
 #ifndef _RunStreamEvent_oneOf_6_H_
@@ -21,7 +21,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.
+/*! \brief Occurs when a [run](/docs/api-reference/runs/object) fails.
  *
  *  \ingroup Models
  *

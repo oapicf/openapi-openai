@@ -260,7 +260,7 @@ class CreateImageRequest(Model):
     def user(self):
         """Gets the user of this CreateImageRequest.
 
-        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 
         :return: The user of this CreateImageRequest.
         :rtype: str
@@ -271,7 +271,7 @@ class CreateImageRequest(Model):
     def user(self, user):
         """Sets the user of this CreateImageRequest.
 
-        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 
         :param user: The user of this CreateImageRequest.
         :type user: str

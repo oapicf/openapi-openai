@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **CompletionTokens** | **int32** | Number of tokens in the generated completion. | 
 **PromptTokens** | **int32** | Number of tokens in the prompt. | 
 **TotalTokens** | **int32** | Total number of tokens used in the request (prompt + completion). | 
+**CompletionTokensDetails** | Pointer to [**CompletionUsageCompletionTokensDetails**](CompletionUsageCompletionTokensDetails.md) |  | [optional] 
+**PromptTokensDetails** | Pointer to [**CompletionUsagePromptTokensDetails**](CompletionUsagePromptTokensDetails.md) |  | [optional] 
 
 ## Methods
 
@@ -86,6 +88,56 @@ and a boolean to check if the value has been set.
 
 SetTotalTokens sets TotalTokens field to given value.
 
+
+### GetCompletionTokensDetails
+
+`func (o *CompletionUsage) GetCompletionTokensDetails() CompletionUsageCompletionTokensDetails`
+
+GetCompletionTokensDetails returns the CompletionTokensDetails field if non-nil, zero value otherwise.
+
+### GetCompletionTokensDetailsOk
+
+`func (o *CompletionUsage) GetCompletionTokensDetailsOk() (*CompletionUsageCompletionTokensDetails, bool)`
+
+GetCompletionTokensDetailsOk returns a tuple with the CompletionTokensDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCompletionTokensDetails
+
+`func (o *CompletionUsage) SetCompletionTokensDetails(v CompletionUsageCompletionTokensDetails)`
+
+SetCompletionTokensDetails sets CompletionTokensDetails field to given value.
+
+### HasCompletionTokensDetails
+
+`func (o *CompletionUsage) HasCompletionTokensDetails() bool`
+
+HasCompletionTokensDetails returns a boolean if a field has been set.
+
+### GetPromptTokensDetails
+
+`func (o *CompletionUsage) GetPromptTokensDetails() CompletionUsagePromptTokensDetails`
+
+GetPromptTokensDetails returns the PromptTokensDetails field if non-nil, zero value otherwise.
+
+### GetPromptTokensDetailsOk
+
+`func (o *CompletionUsage) GetPromptTokensDetailsOk() (*CompletionUsagePromptTokensDetails, bool)`
+
+GetPromptTokensDetailsOk returns a tuple with the PromptTokensDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPromptTokensDetails
+
+`func (o *CompletionUsage) SetPromptTokensDetails(v CompletionUsagePromptTokensDetails)`
+
+SetPromptTokensDetails sets PromptTokensDetails field to given value.
+
+### HasPromptTokensDetails
+
+`func (o *CompletionUsage) HasPromptTokensDetails() bool`
+
+HasPromptTokensDetails returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,0 +1,104 @@
+/*
+ * realtime_session_create_request.h
+ *
+ * Realtime session object configuration.
+ */
+
+#ifndef _realtime_session_create_request_H_
+#define _realtime_session_create_request_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct realtime_session_create_request_t realtime_session_create_request_t;
+
+#include "realtime_response_create_params_max_response_output_tokens.h"
+#include "realtime_response_create_params_tools_inner.h"
+#include "realtime_session_create_request_turn_detection.h"
+#include "realtime_session_input_audio_transcription.h"
+
+// Enum MODALITIES for realtime_session_create_request
+
+typedef enum  { openai_api_realtime_session_create_request_MODALITIES_NULL = 0, openai_api_realtime_session_create_request_MODALITIES_text, openai_api_realtime_session_create_request_MODALITIES_audio } openai_api_realtime_session_create_request_MODALITIES_e;
+
+char* realtime_session_create_request_modalities_ToString(openai_api_realtime_session_create_request_MODALITIES_e modalities);
+
+openai_api_realtime_session_create_request_MODALITIES_e realtime_session_create_request_modalities_FromString(char* modalities);
+
+// Enum MODEL for realtime_session_create_request
+
+typedef enum  { openai_api_realtime_session_create_request_MODEL_NULL = 0, openai_api_realtime_session_create_request_MODEL_gpt_4o_realtime_preview, openai_api_realtime_session_create_request_MODEL_gpt_4o_realtime_preview_2024_10_01, openai_api_realtime_session_create_request_MODEL_gpt_4o_realtime_preview_2024_12_17, openai_api_realtime_session_create_request_MODEL_gpt_4o_mini_realtime_preview, openai_api_realtime_session_create_request_MODEL_gpt_4o_mini_realtime_preview_2024_12_17 } openai_api_realtime_session_create_request_MODEL_e;
+
+char* realtime_session_create_request_model_ToString(openai_api_realtime_session_create_request_MODEL_e model);
+
+openai_api_realtime_session_create_request_MODEL_e realtime_session_create_request_model_FromString(char* model);
+
+// Enum VOICE for realtime_session_create_request
+
+typedef enum  { openai_api_realtime_session_create_request_VOICE_NULL = 0, openai_api_realtime_session_create_request_VOICE_alloy, openai_api_realtime_session_create_request_VOICE_ash, openai_api_realtime_session_create_request_VOICE_ballad, openai_api_realtime_session_create_request_VOICE_coral, openai_api_realtime_session_create_request_VOICE_echo, openai_api_realtime_session_create_request_VOICE_sage, openai_api_realtime_session_create_request_VOICE_shimmer, openai_api_realtime_session_create_request_VOICE_verse } openai_api_realtime_session_create_request_VOICE_e;
+
+char* realtime_session_create_request_voice_ToString(openai_api_realtime_session_create_request_VOICE_e voice);
+
+openai_api_realtime_session_create_request_VOICE_e realtime_session_create_request_voice_FromString(char* voice);
+
+// Enum INPUTAUDIOFORMAT for realtime_session_create_request
+
+typedef enum  { openai_api_realtime_session_create_request_INPUTAUDIOFORMAT_NULL = 0, openai_api_realtime_session_create_request_INPUTAUDIOFORMAT_pcm16, openai_api_realtime_session_create_request_INPUTAUDIOFORMAT_g711_ulaw, openai_api_realtime_session_create_request_INPUTAUDIOFORMAT_g711_alaw } openai_api_realtime_session_create_request_INPUTAUDIOFORMAT_e;
+
+char* realtime_session_create_request_input_audio_format_ToString(openai_api_realtime_session_create_request_INPUTAUDIOFORMAT_e input_audio_format);
+
+openai_api_realtime_session_create_request_INPUTAUDIOFORMAT_e realtime_session_create_request_input_audio_format_FromString(char* input_audio_format);
+
+// Enum OUTPUTAUDIOFORMAT for realtime_session_create_request
+
+typedef enum  { openai_api_realtime_session_create_request_OUTPUTAUDIOFORMAT_NULL = 0, openai_api_realtime_session_create_request_OUTPUTAUDIOFORMAT_pcm16, openai_api_realtime_session_create_request_OUTPUTAUDIOFORMAT_g711_ulaw, openai_api_realtime_session_create_request_OUTPUTAUDIOFORMAT_g711_alaw } openai_api_realtime_session_create_request_OUTPUTAUDIOFORMAT_e;
+
+char* realtime_session_create_request_output_audio_format_ToString(openai_api_realtime_session_create_request_OUTPUTAUDIOFORMAT_e output_audio_format);
+
+openai_api_realtime_session_create_request_OUTPUTAUDIOFORMAT_e realtime_session_create_request_output_audio_format_FromString(char* output_audio_format);
+
+
+
+typedef struct realtime_session_create_request_t {
+    list_t *modalities; //primitive container
+    openai_api_realtime_session_create_request_MODEL_e model; //enum
+    char *instructions; // string
+    openai_api_realtime_session_create_request_VOICE_e voice; //enum
+    openai_api_realtime_session_create_request_INPUTAUDIOFORMAT_e input_audio_format; //enum
+    openai_api_realtime_session_create_request_OUTPUTAUDIOFORMAT_e output_audio_format; //enum
+    struct realtime_session_input_audio_transcription_t *input_audio_transcription; //model
+    struct realtime_session_create_request_turn_detection_t *turn_detection; //model
+    list_t *tools; //nonprimitive container
+    char *tool_choice; // string
+    double temperature; //numeric
+    struct realtime_response_create_params_max_response_output_tokens_t *max_response_output_tokens; //model
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} realtime_session_create_request_t;
+
+__attribute__((deprecated)) realtime_session_create_request_t *realtime_session_create_request_create(
+    list_t *modalities,
+    openai_api_realtime_session_create_request_MODEL_e model,
+    char *instructions,
+    openai_api_realtime_session_create_request_VOICE_e voice,
+    openai_api_realtime_session_create_request_INPUTAUDIOFORMAT_e input_audio_format,
+    openai_api_realtime_session_create_request_OUTPUTAUDIOFORMAT_e output_audio_format,
+    realtime_session_input_audio_transcription_t *input_audio_transcription,
+    realtime_session_create_request_turn_detection_t *turn_detection,
+    list_t *tools,
+    char *tool_choice,
+    double temperature,
+    realtime_response_create_params_max_response_output_tokens_t *max_response_output_tokens
+);
+
+void realtime_session_create_request_free(realtime_session_create_request_t *realtime_session_create_request);
+
+realtime_session_create_request_t *realtime_session_create_request_parseFromJSON(cJSON *realtime_session_create_requestJSON);
+
+cJSON *realtime_session_create_request_convertToJSON(realtime_session_create_request_t *realtime_session_create_request);
+
+#endif /* _realtime_session_create_request_H_ */
+

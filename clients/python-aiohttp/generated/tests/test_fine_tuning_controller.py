@@ -37,7 +37,7 @@ async def test_create_fine_tuning_job(client):
 
     Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
     """
-    body = {"training_file":"file-abc123","seed":42,"validation_file":"file-abc123","hyperparameters":{"batch_size":"auto","n_epochs":"auto","learning_rate_multiplier":"auto"},"model":"gpt-3.5-turbo","suffix":"suffix","integrations":[{"wandb":{"name":"name","project":"my-wandb-project","entity":"entity","tags":["custom-tag","custom-tag"]},"type":"wandb"},{"wandb":{"name":"name","project":"my-wandb-project","entity":"entity","tags":["custom-tag","custom-tag"]},"type":"wandb"}]}
+    body = {"training_file":"file-abc123","seed":42,"method":{"supervised":{"hyperparameters":{"batch_size":"auto","n_epochs":"auto","learning_rate_multiplier":"auto"}},"dpo":{"hyperparameters":{"beta":"auto"}},"type":"supervised"},"validation_file":"file-abc123","hyperparameters":{"batch_size":"auto","n_epochs":"auto","learning_rate_multiplier":"auto"},"model":"gpt-4o-mini","suffix":"suffix","integrations":[{"wandb":{"name":"name","project":"my-wandb-project","entity":"entity","tags":["custom-tag","custom-tag"]},"type":"wandb"},{"wandb":{"name":"name","project":"my-wandb-project","entity":"entity","tags":["custom-tag","custom-tag"]},"type":"wandb"}]}
     headers = { 
         'Accept': 'application/json',
         'Content-Type': 'application/json',

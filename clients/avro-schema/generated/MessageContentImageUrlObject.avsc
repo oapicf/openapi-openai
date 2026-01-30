@@ -1,0 +1,25 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "References an image URL in the content of a message.",
+  "name": "MessageContentImageUrlObject",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "MessageContentImageUrlObject_type",
+        "symbols": [
+          "image_url"
+        ]
+      },
+      "doc": "The type of the content part."
+    },
+    {
+      "name": "image_url",
+      "type": "model.MessageContentImageUrlObjectImageUrl",
+      "doc": ""
+    }
+  ]
+
+}

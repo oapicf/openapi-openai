@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **content** | [**array[MessageObjectContentInner]**](MessageObjectContentInner.md) |  | [default to null]
 **assistantUnderscoreid** | **string** |  | [default to null]
 **runUnderscoreid** | **string** |  | [default to null]
-**fileUnderscoreids** | **array[string]** |  | [default to []]
+**attachments** | [**array[CreateMessageRequestAttachmentsInner]**](CreateMessageRequestAttachmentsInner.md) |  | [default to null]
 **metadata** | **map** |  | [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

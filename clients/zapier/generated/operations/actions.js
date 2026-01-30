@@ -1,36 +1,41 @@
 const AssistantsApi = require('../apis/AssistantsApi');
 const AudioApi = require('../apis/AudioApi');
+const AuditLogsApi = require('../apis/AuditLogsApi');
+const BatchApi = require('../apis/BatchApi');
 const ChatApi = require('../apis/ChatApi');
 const CompletionsApi = require('../apis/CompletionsApi');
+const DefaultApi = require('../apis/DefaultApi');
 const EmbeddingsApi = require('../apis/EmbeddingsApi');
 const FilesApi = require('../apis/FilesApi');
 const FineTuningApi = require('../apis/FineTuningApi');
 const ImagesApi = require('../apis/ImagesApi');
+const InvitesApi = require('../apis/InvitesApi');
 const ModelsApi = require('../apis/ModelsApi');
 const ModerationsApi = require('../apis/ModerationsApi');
+const ProjectsApi = require('../apis/ProjectsApi');
+const RealtimeApi = require('../apis/RealtimeApi');
+const UploadsApi = require('../apis/UploadsApi');
+const UsageApi = require('../apis/UsageApi');
+const UsersApi = require('../apis/UsersApi');
+const VectorStoresApi = require('../apis/VectorStoresApi');
 const { triggerMiddleware, isTrigger, searchMiddleware, hasSearchRequisites, isSearchAction, isCreateAction, createMiddleware } = require('../utils/utils');
 
 const actions = {
     [AssistantsApi.cancelRun.key]: AssistantsApi.cancelRun,
     [AssistantsApi.createAssistant.key]: AssistantsApi.createAssistant,
-    [AssistantsApi.createAssistantFile.key]: AssistantsApi.createAssistantFile,
     [AssistantsApi.createMessage.key]: AssistantsApi.createMessage,
     [AssistantsApi.createRun.key]: AssistantsApi.createRun,
     [AssistantsApi.createThread.key]: AssistantsApi.createThread,
     [AssistantsApi.createThreadAndRun.key]: AssistantsApi.createThreadAndRun,
     [AssistantsApi.deleteAssistant.key]: AssistantsApi.deleteAssistant,
-    [AssistantsApi.deleteAssistantFile.key]: AssistantsApi.deleteAssistantFile,
+    [AssistantsApi.deleteMessage.key]: AssistantsApi.deleteMessage,
     [AssistantsApi.deleteThread.key]: AssistantsApi.deleteThread,
     [AssistantsApi.getAssistant.key]: AssistantsApi.getAssistant,
-    [AssistantsApi.getAssistantFile.key]: AssistantsApi.getAssistantFile,
     [AssistantsApi.getMessage.key]: AssistantsApi.getMessage,
-    [AssistantsApi.getMessageFile.key]: AssistantsApi.getMessageFile,
     [AssistantsApi.getRun.key]: AssistantsApi.getRun,
     [AssistantsApi.getRunStep.key]: AssistantsApi.getRunStep,
     [AssistantsApi.getThread.key]: AssistantsApi.getThread,
-    [AssistantsApi.listAssistantFiles.key]: AssistantsApi.listAssistantFiles,
     [AssistantsApi.listAssistants.key]: AssistantsApi.listAssistants,
-    [AssistantsApi.listMessageFiles.key]: AssistantsApi.listMessageFiles,
     [AssistantsApi.listMessages.key]: AssistantsApi.listMessages,
     [AssistantsApi.listRunSteps.key]: AssistantsApi.listRunSteps,
     [AssistantsApi.listRuns.key]: AssistantsApi.listRuns,
@@ -42,8 +47,17 @@ const actions = {
     [AudioApi.createSpeech.key]: AudioApi.createSpeech,
     [AudioApi.createTranscription.key]: AudioApi.createTranscription,
     [AudioApi.createTranslation.key]: AudioApi.createTranslation,
+    [AuditLogsApi.listAuditLogs.key]: AuditLogsApi.listAuditLogs,
+    [BatchApi.cancelBatch.key]: BatchApi.cancelBatch,
+    [BatchApi.createBatch.key]: BatchApi.createBatch,
+    [BatchApi.listBatches.key]: BatchApi.listBatches,
+    [BatchApi.retrieveBatch.key]: BatchApi.retrieveBatch,
     [ChatApi.createChatCompletion.key]: ChatApi.createChatCompletion,
     [CompletionsApi.createCompletion.key]: CompletionsApi.createCompletion,
+    [DefaultApi.adminApiKeysCreate.key]: DefaultApi.adminApiKeysCreate,
+    [DefaultApi.adminApiKeysDelete.key]: DefaultApi.adminApiKeysDelete,
+    [DefaultApi.adminApiKeysGet.key]: DefaultApi.adminApiKeysGet,
+    [DefaultApi.adminApiKeysList.key]: DefaultApi.adminApiKeysList,
     [EmbeddingsApi.createEmbedding.key]: EmbeddingsApi.createEmbedding,
     [FilesApi.createFile.key]: FilesApi.createFile,
     [FilesApi.deleteFile.key]: FilesApi.deleteFile,
@@ -59,10 +73,64 @@ const actions = {
     [ImagesApi.createImage.key]: ImagesApi.createImage,
     [ImagesApi.createImageEdit.key]: ImagesApi.createImageEdit,
     [ImagesApi.createImageVariation.key]: ImagesApi.createImageVariation,
+    [InvitesApi.deleteInvite.key]: InvitesApi.deleteInvite,
+    [InvitesApi.inviteUser.key]: InvitesApi.inviteUser,
+    [InvitesApi.listInvites.key]: InvitesApi.listInvites,
+    [InvitesApi.retrieveInvite.key]: InvitesApi.retrieveInvite,
     [ModelsApi.deleteModel.key]: ModelsApi.deleteModel,
     [ModelsApi.listModels.key]: ModelsApi.listModels,
     [ModelsApi.retrieveModel.key]: ModelsApi.retrieveModel,
     [ModerationsApi.createModeration.key]: ModerationsApi.createModeration,
+    [ProjectsApi.archiveProject.key]: ProjectsApi.archiveProject,
+    [ProjectsApi.createProject.key]: ProjectsApi.createProject,
+    [ProjectsApi.createProjectServiceAccount.key]: ProjectsApi.createProjectServiceAccount,
+    [ProjectsApi.createProjectUser.key]: ProjectsApi.createProjectUser,
+    [ProjectsApi.deleteProjectApiKey.key]: ProjectsApi.deleteProjectApiKey,
+    [ProjectsApi.deleteProjectServiceAccount.key]: ProjectsApi.deleteProjectServiceAccount,
+    [ProjectsApi.deleteProjectUser.key]: ProjectsApi.deleteProjectUser,
+    [ProjectsApi.listProjectApiKeys.key]: ProjectsApi.listProjectApiKeys,
+    [ProjectsApi.listProjectRateLimits.key]: ProjectsApi.listProjectRateLimits,
+    [ProjectsApi.listProjectServiceAccounts.key]: ProjectsApi.listProjectServiceAccounts,
+    [ProjectsApi.listProjectUsers.key]: ProjectsApi.listProjectUsers,
+    [ProjectsApi.listProjects.key]: ProjectsApi.listProjects,
+    [ProjectsApi.modifyProject.key]: ProjectsApi.modifyProject,
+    [ProjectsApi.modifyProjectUser.key]: ProjectsApi.modifyProjectUser,
+    [ProjectsApi.retrieveProject.key]: ProjectsApi.retrieveProject,
+    [ProjectsApi.retrieveProjectApiKey.key]: ProjectsApi.retrieveProjectApiKey,
+    [ProjectsApi.retrieveProjectServiceAccount.key]: ProjectsApi.retrieveProjectServiceAccount,
+    [ProjectsApi.retrieveProjectUser.key]: ProjectsApi.retrieveProjectUser,
+    [ProjectsApi.updateProjectRateLimits.key]: ProjectsApi.updateProjectRateLimits,
+    [RealtimeApi.createRealtimeSession.key]: RealtimeApi.createRealtimeSession,
+    [UploadsApi.addUploadPart.key]: UploadsApi.addUploadPart,
+    [UploadsApi.cancelUpload.key]: UploadsApi.cancelUpload,
+    [UploadsApi.completeUpload.key]: UploadsApi.completeUpload,
+    [UploadsApi.createUpload.key]: UploadsApi.createUpload,
+    [UsageApi.usageAudioSpeeches.key]: UsageApi.usageAudioSpeeches,
+    [UsageApi.usageAudioTranscriptions.key]: UsageApi.usageAudioTranscriptions,
+    [UsageApi.usageCodeInterpreterSessions.key]: UsageApi.usageCodeInterpreterSessions,
+    [UsageApi.usageCompletions.key]: UsageApi.usageCompletions,
+    [UsageApi.usageCosts.key]: UsageApi.usageCosts,
+    [UsageApi.usageEmbeddings.key]: UsageApi.usageEmbeddings,
+    [UsageApi.usageImages.key]: UsageApi.usageImages,
+    [UsageApi.usageModerations.key]: UsageApi.usageModerations,
+    [UsageApi.usageVectorStores.key]: UsageApi.usageVectorStores,
+    [UsersApi.deleteUser.key]: UsersApi.deleteUser,
+    [UsersApi.listUsers.key]: UsersApi.listUsers,
+    [UsersApi.modifyUser.key]: UsersApi.modifyUser,
+    [UsersApi.retrieveUser.key]: UsersApi.retrieveUser,
+    [VectorStoresApi.cancelVectorStoreFileBatch.key]: VectorStoresApi.cancelVectorStoreFileBatch,
+    [VectorStoresApi.createVectorStore.key]: VectorStoresApi.createVectorStore,
+    [VectorStoresApi.createVectorStoreFile.key]: VectorStoresApi.createVectorStoreFile,
+    [VectorStoresApi.createVectorStoreFileBatch.key]: VectorStoresApi.createVectorStoreFileBatch,
+    [VectorStoresApi.deleteVectorStore.key]: VectorStoresApi.deleteVectorStore,
+    [VectorStoresApi.deleteVectorStoreFile.key]: VectorStoresApi.deleteVectorStoreFile,
+    [VectorStoresApi.getVectorStore.key]: VectorStoresApi.getVectorStore,
+    [VectorStoresApi.getVectorStoreFile.key]: VectorStoresApi.getVectorStoreFile,
+    [VectorStoresApi.getVectorStoreFileBatch.key]: VectorStoresApi.getVectorStoreFileBatch,
+    [VectorStoresApi.listFilesInVectorStoreBatch.key]: VectorStoresApi.listFilesInVectorStoreBatch,
+    [VectorStoresApi.listVectorStoreFiles.key]: VectorStoresApi.listVectorStoreFiles,
+    [VectorStoresApi.listVectorStores.key]: VectorStoresApi.listVectorStores,
+    [VectorStoresApi.modifyVectorStore.key]: VectorStoresApi.modifyVectorStore,
 }
 
 module.exports = {

@@ -20,9 +20,23 @@ test_that("image_file", {
   #expect_equal(model.instance$`image_file`, "EXPECTED_RESULT")
 })
 
+test_that("image_url", {
+  # tests for the property `image_url` (MessageContentImageUrlObjectImageUrl)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`image_url`, "EXPECTED_RESULT")
+})
+
 test_that("text", {
   # tests for the property `text` (MessageContentTextObjectText)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`text`, "EXPECTED_RESULT")
+})
+
+test_that("refusal", {
+  # tests for the property `refusal` (character)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`refusal`, "EXPECTED_RESULT")
 })

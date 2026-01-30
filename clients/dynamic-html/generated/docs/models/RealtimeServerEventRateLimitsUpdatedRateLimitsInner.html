@@ -1,0 +1,28 @@
+
+<h2>RealtimeServerEventRateLimitsUpdatedRateLimitsInner</h2>
+<ul class="parameter">
+  <li class="param-required-false">name : String
+    <br/>The name of the rate limit (&#x60;requests&#x60;, &#x60;tokens&#x60;). 
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>requests</dd>
+            <dd>tokens</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">limit : Integer
+    <br/>The maximum allowed value for the rate limit.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">remaining : Integer
+    <br/>The remaining value before the limit is reached.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">resetUnderscoreseconds : BigDecimal
+    <br/>Seconds until the rate limit resets.
+  </li>
+</ul>

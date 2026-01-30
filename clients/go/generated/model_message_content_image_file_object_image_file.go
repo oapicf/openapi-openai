@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -22,8 +22,10 @@ var _ MappedNullable = &MessageContentImageFileObjectImageFile{}
 
 // MessageContentImageFileObjectImageFile struct for MessageContentImageFileObjectImageFile
 type MessageContentImageFileObjectImageFile struct {
-	// The [File](/docs/api-reference/files) ID of the image in the message content.
+	// The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content.
 	FileId string `json:"file_id"`
+	// Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
+	Detail *string `json:"detail,omitempty"`
 }
 
 type _MessageContentImageFileObjectImageFile MessageContentImageFileObjectImageFile
@@ -35,6 +37,8 @@ type _MessageContentImageFileObjectImageFile MessageContentImageFileObjectImageF
 func NewMessageContentImageFileObjectImageFile(fileId string) *MessageContentImageFileObjectImageFile {
 	this := MessageContentImageFileObjectImageFile{}
 	this.FileId = fileId
+	var detail string = "auto"
+	this.Detail = &detail
 	return &this
 }
 
@@ -43,6 +47,8 @@ func NewMessageContentImageFileObjectImageFile(fileId string) *MessageContentIma
 // but it doesn't guarantee that properties required by API are set
 func NewMessageContentImageFileObjectImageFileWithDefaults() *MessageContentImageFileObjectImageFile {
 	this := MessageContentImageFileObjectImageFile{}
+	var detail string = "auto"
+	this.Detail = &detail
 	return &this
 }
 
@@ -70,6 +76,38 @@ func (o *MessageContentImageFileObjectImageFile) SetFileId(v string) {
 	o.FileId = v
 }
 
+// GetDetail returns the Detail field value if set, zero value otherwise.
+func (o *MessageContentImageFileObjectImageFile) GetDetail() string {
+	if o == nil || IsNil(o.Detail) {
+		var ret string
+		return ret
+	}
+	return *o.Detail
+}
+
+// GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MessageContentImageFileObjectImageFile) GetDetailOk() (*string, bool) {
+	if o == nil || IsNil(o.Detail) {
+		return nil, false
+	}
+	return o.Detail, true
+}
+
+// HasDetail returns a boolean if a field has been set.
+func (o *MessageContentImageFileObjectImageFile) HasDetail() bool {
+	if o != nil && !IsNil(o.Detail) {
+		return true
+	}
+
+	return false
+}
+
+// SetDetail gets a reference to the given string and assigns it to the Detail field.
+func (o *MessageContentImageFileObjectImageFile) SetDetail(v string) {
+	o.Detail = &v
+}
+
 func (o MessageContentImageFileObjectImageFile) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -81,6 +119,9 @@ func (o MessageContentImageFileObjectImageFile) MarshalJSON() ([]byte, error) {
 func (o MessageContentImageFileObjectImageFile) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["file_id"] = o.FileId
+	if !IsNil(o.Detail) {
+		toSerialize["detail"] = o.Detail
+	}
 	return toSerialize, nil
 }
 

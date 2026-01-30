@@ -10,7 +10,7 @@ Name | Type
 `id` | string
 `type` | string
 `codeInterpreter` | [RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter](RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.md)
-`retrieval` | object
+`fileSearch` | object
 `_function` | [RunStepDeltaStepDetailsToolCallsFunctionObjectFunction](RunStepDeltaStepDetailsToolCallsFunctionObjectFunction.md)
 
 ## Example
@@ -24,7 +24,7 @@ const example = {
   "id": null,
   "type": null,
   "codeInterpreter": null,
-  "retrieval": null,
+  "fileSearch": null,
   "_function": null,
 } satisfies RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
 

@@ -39,6 +39,20 @@ class CreateModerationResponseResultsInnerCategories
     public ?bool $harassment_threatening = null;
 
     /**
+     * Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \&quot;how to shoplift\&quot; would fit this category.
+     * @DTA\Data(field="illicit")
+     * @DTA\Validator(name="Scalar", options={"type":"bool"})
+     */
+    public ?bool $illicit = null;
+
+    /**
+     * Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+     * @DTA\Data(field="illicit/violent")
+     * @DTA\Validator(name="Scalar", options={"type":"bool"})
+     */
+    public ?bool $illicit_violent = null;
+
+    /**
      * Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
      * @DTA\Data(field="self-harm")
      * @DTA\Validator(name="Scalar", options={"type":"bool"})

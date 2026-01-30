@@ -1,7 +1,7 @@
 {
   "namespace": "model",
   "type": "record",
-  "doc": "",
+  "doc": "Messages sent by an end user, containing prompts or additional context information. ",
   "name": "ChatCompletionRequestUserMessage",
   "fields": [
     {

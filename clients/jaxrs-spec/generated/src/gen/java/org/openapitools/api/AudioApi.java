@@ -1,5 +1,6 @@
 package org.openapitools.api;
 
+import org.openapitools.model.AudioResponseFormat;
 import java.math.BigDecimal;
 import org.openapitools.model.CreateSpeechRequest;
 import org.openapitools.model.CreateTranscription200Response;
@@ -23,7 +24,7 @@ import javax.validation.Valid;
 */
 @Path("/audio")
 @Api(description = "the audio API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class AudioApi {
 
     @POST
@@ -52,7 +53,7 @@ public class AudioApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = CreateTranscription200Response.class)
     })
-    public Response createTranscription( @FormParam(value = "file") InputStream _fileInputStream,@FormParam(value = "model")  CreateTranscriptionRequestModel model,@FormParam(value = "language")  String language,@FormParam(value = "prompt")  String prompt,@FormParam(value = "response_format")  String responseFormat,@FormParam(value = "temperature")  BigDecimal temperature,@FormParam(value = "timestamp_granularities[]")  List<String> timestampGranularities) {
+    public Response createTranscription( @FormParam(value = "file") InputStream _fileInputStream,@FormParam(value = "model")  CreateTranscriptionRequestModel model,@FormParam(value = "language")  String language,@FormParam(value = "prompt")  String prompt,@FormParam(value = "response_format")  AudioResponseFormat responseFormat,@FormParam(value = "temperature")  BigDecimal temperature,@FormParam(value = "timestamp_granularities[]")  List<String> timestampGranularities) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -67,7 +68,7 @@ public class AudioApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = CreateTranslation200Response.class)
     })
-    public Response createTranslation( @FormParam(value = "file") InputStream _fileInputStream,@FormParam(value = "model")  CreateTranscriptionRequestModel model,@FormParam(value = "prompt")  String prompt,@FormParam(value = "response_format")  String responseFormat,@FormParam(value = "temperature")  BigDecimal temperature) {
+    public Response createTranslation( @FormParam(value = "file") InputStream _fileInputStream,@FormParam(value = "model")  CreateTranscriptionRequestModel model,@FormParam(value = "prompt")  String prompt,@FormParam(value = "response_format")  AudioResponseFormat responseFormat,@FormParam(value = "temperature")  BigDecimal temperature) {
         return Response.ok().entity("magic!").build();
     }
 }

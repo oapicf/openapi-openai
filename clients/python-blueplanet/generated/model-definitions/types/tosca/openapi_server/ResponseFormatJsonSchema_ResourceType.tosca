@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ResponseFormatJsonSchema"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ResponseFormatJsonSchema"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ResponseFormatJsonSchemaJsonSchema = openapi_server.resourceTypes.ResponseFormatJsonSchemaJsonSchema
+}
+resourceTypes {
+
+  ResponseFormatJsonSchema {
+    title = ResponseFormatJsonSchema
+    description = ResponseFormatJsonSchema
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "The type of response format being defined: &#x60;json_schema&#x60;"
+          enum = ["json_schema"]
+          optional = true
+        }
+        json_schema {
+          type = ResponseFormatJsonSchemaJsonSchema
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ResponseFormatJsonSchema {
+    title = ResponseFormatJsonSchema
+    description = ResponseFormatJsonSchema
+    implements = openapi_server.resourceTypes.ResponseFormatJsonSchema
+
+  }
+}

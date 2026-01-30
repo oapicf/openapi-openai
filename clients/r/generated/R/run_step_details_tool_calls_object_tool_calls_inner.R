@@ -16,26 +16,26 @@ RunStepDetailsToolCallsObjectToolCallsInner <- R6::R6Class(
     #' @field actual_type the type of the object stored in this instance.
     actual_type = NULL,
     #' @field one_of  a list of types defined in the oneOf schema.
-    one_of = list("RunStepDetailsToolCallsCodeObject", "RunStepDetailsToolCallsFunctionObject", "RunStepDetailsToolCallsRetrievalObject"),
+    one_of = list("RunStepDetailsToolCallsCodeObject", "RunStepDetailsToolCallsFileSearchObject", "RunStepDetailsToolCallsFunctionObject"),
 
     #' @description
     #' Initialize a new RunStepDetailsToolCallsObjectToolCallsInner.
     #'
-    #' @param instance an instance of the object defined in the oneOf schemas: "RunStepDetailsToolCallsCodeObject", "RunStepDetailsToolCallsFunctionObject", "RunStepDetailsToolCallsRetrievalObject"
+    #' @param instance an instance of the object defined in the oneOf schemas: "RunStepDetailsToolCallsCodeObject", "RunStepDetailsToolCallsFileSearchObject", "RunStepDetailsToolCallsFunctionObject"
     initialize = function(instance = NULL) {
       if (is.null(instance)) {
         # do nothing
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "RunStepDetailsToolCallsCodeObject") {
         self$actual_instance <- instance
         self$actual_type <- "RunStepDetailsToolCallsCodeObject"
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "RunStepDetailsToolCallsFileSearchObject") {
+        self$actual_instance <- instance
+        self$actual_type <- "RunStepDetailsToolCallsFileSearchObject"
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "RunStepDetailsToolCallsFunctionObject") {
         self$actual_instance <- instance
         self$actual_type <- "RunStepDetailsToolCallsFunctionObject"
-      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "RunStepDetailsToolCallsRetrievalObject") {
-        self$actual_instance <- instance
-        self$actual_type <- "RunStepDetailsToolCallsRetrievalObject"
       } else {
-        stop(paste("Failed to initialize RunStepDetailsToolCallsObjectToolCallsInner with oneOf schemas RunStepDetailsToolCallsCodeObject, RunStepDetailsToolCallsFunctionObject, RunStepDetailsToolCallsRetrievalObject. Provided class name: ",
+        stop(paste("Failed to initialize RunStepDetailsToolCallsObjectToolCallsInner with oneOf schemas RunStepDetailsToolCallsCodeObject, RunStepDetailsToolCallsFileSearchObject, RunStepDetailsToolCallsFunctionObject. Provided class name: ",
                    get(class(instance)[[1]], pos = -1)$classname))
       }
     },
@@ -78,19 +78,19 @@ RunStepDetailsToolCallsObjectToolCallsInner <- R6::R6Class(
         error_messages <- append(error_messages, `RunStepDetailsToolCallsCodeObject_result`["message"])
       }
 
-      `RunStepDetailsToolCallsRetrievalObject_result` <- tryCatch({
-          `RunStepDetailsToolCallsRetrievalObject`$public_methods$validateJSON(input)
-          `RunStepDetailsToolCallsRetrievalObject_instance` <- `RunStepDetailsToolCallsRetrievalObject`$new()
-          instance <- `RunStepDetailsToolCallsRetrievalObject_instance`$fromJSON(input)
-          instance_type <- "RunStepDetailsToolCallsRetrievalObject"
-          matched_schemas <- append(matched_schemas, "RunStepDetailsToolCallsRetrievalObject")
+      `RunStepDetailsToolCallsFileSearchObject_result` <- tryCatch({
+          `RunStepDetailsToolCallsFileSearchObject`$public_methods$validateJSON(input)
+          `RunStepDetailsToolCallsFileSearchObject_instance` <- `RunStepDetailsToolCallsFileSearchObject`$new()
+          instance <- `RunStepDetailsToolCallsFileSearchObject_instance`$fromJSON(input)
+          instance_type <- "RunStepDetailsToolCallsFileSearchObject"
+          matched_schemas <- append(matched_schemas, "RunStepDetailsToolCallsFileSearchObject")
           matched <- matched + 1
         },
         error = function(err) err
       )
 
-      if (!is.null(`RunStepDetailsToolCallsRetrievalObject_result`["error"])) {
-        error_messages <- append(error_messages, `RunStepDetailsToolCallsRetrievalObject_result`["message"])
+      if (!is.null(`RunStepDetailsToolCallsFileSearchObject_result`["error"])) {
+        error_messages <- append(error_messages, `RunStepDetailsToolCallsFileSearchObject_result`["message"])
       }
 
       `RunStepDetailsToolCallsFunctionObject_result` <- tryCatch({
@@ -114,11 +114,11 @@ RunStepDetailsToolCallsObjectToolCallsInner <- R6::R6Class(
         self$actual_type <- instance_type
       } else if (matched > 1) {
         # more than 1 match
-        stop(paste("Multiple matches found when deserializing the input into RunStepDetailsToolCallsObjectToolCallsInner with oneOf schemas RunStepDetailsToolCallsCodeObject, RunStepDetailsToolCallsFunctionObject, RunStepDetailsToolCallsRetrievalObject. Matched schemas: ",
+        stop(paste("Multiple matches found when deserializing the input into RunStepDetailsToolCallsObjectToolCallsInner with oneOf schemas RunStepDetailsToolCallsCodeObject, RunStepDetailsToolCallsFileSearchObject, RunStepDetailsToolCallsFunctionObject. Matched schemas: ",
                    paste(matched_schemas, collapse = ", ")))
       } else {
         # no match
-        stop(paste("No match found when deserializing the input into RunStepDetailsToolCallsObjectToolCallsInner with oneOf schemas RunStepDetailsToolCallsCodeObject, RunStepDetailsToolCallsFunctionObject, RunStepDetailsToolCallsRetrievalObject. Details: >>",
+        stop(paste("No match found when deserializing the input into RunStepDetailsToolCallsObjectToolCallsInner with oneOf schemas RunStepDetailsToolCallsCodeObject, RunStepDetailsToolCallsFileSearchObject, RunStepDetailsToolCallsFunctionObject. Details: >>",
                    paste(error_messages, collapse = " >> ")))
       }
 

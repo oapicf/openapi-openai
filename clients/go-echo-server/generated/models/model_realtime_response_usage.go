@@ -1,0 +1,18 @@
+package models
+
+// RealtimeResponseUsage - Usage statistics for the Response, this will correspond to billing. A  Realtime API session will maintain a conversation context and append new  Items to the Conversation, thus output from previous turns (text and  audio tokens) will become the input for later turns. 
+type RealtimeResponseUsage struct {
+
+	// The total number of tokens in the Response including input and output  text and audio tokens. 
+	TotalTokens int32 `json:"total_tokens,omitempty"`
+
+	// The number of input tokens used in the Response, including text and  audio tokens. 
+	InputTokens int32 `json:"input_tokens,omitempty"`
+
+	// The number of output tokens sent in the Response, including text and  audio tokens. 
+	OutputTokens int32 `json:"output_tokens,omitempty"`
+
+	InputTokenDetails RealtimeResponseUsageInputTokenDetails `json:"input_token_details,omitempty"`
+
+	OutputTokenDetails RealtimeResponseUsageOutputTokenDetails `json:"output_token_details,omitempty"`
+}

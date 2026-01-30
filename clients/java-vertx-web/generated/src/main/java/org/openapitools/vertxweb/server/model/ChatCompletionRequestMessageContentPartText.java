@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
+/**
+ * Learn about [text inputs](/docs/guides/text-generation). 
+ **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ChatCompletionRequestMessageContentPartText   {
   

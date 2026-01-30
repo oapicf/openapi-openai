@@ -22,7 +22,7 @@ import javax.validation.Valid;
 /**
  * Represents an execution run on a [thread](/docs/api-reference/threads).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class RunObject   {
   @JsonProperty("id")
@@ -80,7 +80,7 @@ public class RunObject   {
   private String assistantId;
 
   /**
-   * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+   * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
    */
   public enum StatusEnum {
     QUEUED("queued"),
@@ -96,6 +96,8 @@ public class RunObject   {
     FAILED("failed"),
     
     COMPLETED("completed"),
+    
+    INCOMPLETE("incomplete"),
     
     EXPIRED("expired");
 
@@ -187,11 +189,6 @@ public class RunObject   {
 
   private List<AssistantObjectToolsInner> tools = new ArrayList<>();
 
-  @JsonProperty("file_ids")
-  @NotNull
-
-  private List<String> fileIds = new ArrayList<>();
-
   @JsonProperty("metadata")
   @NotNull
 
@@ -207,6 +204,11 @@ public class RunObject   {
   @Valid
 
   private BigDecimal temperature;
+
+  @JsonProperty("top_p")
+  @Valid
+
+  private BigDecimal topP;
 
   @JsonProperty("max_prompt_tokens")
   @NotNull
@@ -231,6 +233,11 @@ public class RunObject   {
 @Valid
 
   private AssistantsApiToolChoiceOption toolChoice;
+
+  @JsonProperty("parallel_tool_calls")
+  @NotNull
+
+  private Boolean parallelToolCalls = true;
 
   @JsonProperty("response_format")
   @NotNull
@@ -329,7 +336,7 @@ public class RunObject   {
   }
 
    /**
-   * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+   * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
    * @return status
   **/
   public StatusEnum getStatus() {
@@ -535,38 +542,13 @@ public class RunObject   {
     this.tools = tools;
   }
 
-  public RunObject fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-    return this;
-  }
-
-  public RunObject addFileIdsItem(String fileIdsItem) {
-    if (this.fileIds == null) {
-      this.fileIds = new ArrayList<>();
-    }
-    this.fileIds.add(fileIdsItem);
-    return this;
-  }
-
-   /**
-   * The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
-   * @return fileIds
-  **/
-  public List<String> getFileIds() {
-    return fileIds;
-  }
-
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
-  }
-
   public RunObject metadata(Object metadata) {
     this.metadata = metadata;
     return this;
   }
 
    /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
   **/
   public Object getMetadata() {
@@ -609,6 +591,23 @@ public class RunObject   {
 
   public void setTemperature(BigDecimal temperature) {
     this.temperature = temperature;
+  }
+
+  public RunObject topP(BigDecimal topP) {
+    this.topP = topP;
+    return this;
+  }
+
+   /**
+   * The nucleus sampling value used for this run. If not set, defaults to 1.
+   * @return topP
+  **/
+  public BigDecimal getTopP() {
+    return topP;
+  }
+
+  public void setTopP(BigDecimal topP) {
+    this.topP = topP;
   }
 
   public RunObject maxPromptTokens(Integer maxPromptTokens) {
@@ -681,6 +680,23 @@ public class RunObject   {
     this.toolChoice = toolChoice;
   }
 
+  public RunObject parallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+    return this;
+  }
+
+   /**
+   * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+   * @return parallelToolCalls
+  **/
+  public Boolean getParallelToolCalls() {
+    return parallelToolCalls;
+  }
+
+  public void setParallelToolCalls(Boolean parallelToolCalls) {
+    this.parallelToolCalls = parallelToolCalls;
+  }
+
   public RunObject responseFormat(AssistantsApiResponseFormatOption responseFormat) {
     this.responseFormat = responseFormat;
     return this;
@@ -725,20 +741,21 @@ public class RunObject   {
         Objects.equals(model, runObject.model) &&
         Objects.equals(instructions, runObject.instructions) &&
         Objects.equals(tools, runObject.tools) &&
-        Objects.equals(fileIds, runObject.fileIds) &&
         Objects.equals(metadata, runObject.metadata) &&
         Objects.equals(usage, runObject.usage) &&
         Objects.equals(temperature, runObject.temperature) &&
+        Objects.equals(topP, runObject.topP) &&
         Objects.equals(maxPromptTokens, runObject.maxPromptTokens) &&
         Objects.equals(maxCompletionTokens, runObject.maxCompletionTokens) &&
         Objects.equals(truncationStrategy, runObject.truncationStrategy) &&
         Objects.equals(toolChoice, runObject.toolChoice) &&
+        Objects.equals(parallelToolCalls, runObject.parallelToolCalls) &&
         Objects.equals(responseFormat, runObject.responseFormat);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, threadId, assistantId, status, requiredAction, lastError, expiresAt, startedAt, cancelledAt, failedAt, completedAt, incompleteDetails, model, instructions, tools, fileIds, metadata, usage, temperature, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, responseFormat);
+    return Objects.hash(id, _object, createdAt, threadId, assistantId, status, requiredAction, lastError, expiresAt, startedAt, cancelledAt, failedAt, completedAt, incompleteDetails, model, instructions, tools, metadata, usage, temperature, topP, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, parallelToolCalls, responseFormat);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -764,14 +781,15 @@ public class RunObject   {
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("    tools: ").append(toIndentedString(tools)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
+    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
     sb.append("    maxPromptTokens: ").append(toIndentedString(maxPromptTokens)).append("\n");
     sb.append("    maxCompletionTokens: ").append(toIndentedString(maxCompletionTokens)).append("\n");
     sb.append("    truncationStrategy: ").append(toIndentedString(truncationStrategy)).append("\n");
     sb.append("    toolChoice: ").append(toIndentedString(toolChoice)).append("\n");
+    sb.append("    parallelToolCalls: ").append(toIndentedString(parallelToolCalls)).append("\n");
     sb.append("    responseFormat: ").append(toIndentedString(responseFormat)).append("\n");
     sb.append("}");
     return sb.toString();

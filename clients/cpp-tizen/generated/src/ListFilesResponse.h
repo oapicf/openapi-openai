@@ -49,6 +49,13 @@ public:
 
 	/*! \brief Get 
 	 */
+	std::string getObject();
+
+	/*! \brief Set 
+	 */
+	void setObject(std::string  object);
+	/*! \brief Get 
+	 */
 	std::list<OpenAIFile> getData();
 
 	/*! \brief Set 
@@ -56,15 +63,32 @@ public:
 	void setData(std::list <OpenAIFile> data);
 	/*! \brief Get 
 	 */
-	std::string getObject();
+	std::string getFirstId();
 
 	/*! \brief Set 
 	 */
-	void setObject(std::string  object);
+	void setFirstId(std::string  first_id);
+	/*! \brief Get 
+	 */
+	std::string getLastId();
+
+	/*! \brief Set 
+	 */
+	void setLastId(std::string  last_id);
+	/*! \brief Get 
+	 */
+	bool getHasMore();
+
+	/*! \brief Set 
+	 */
+	void setHasMore(bool  has_more);
 
 private:
-	std::list <OpenAIFile>data;
 	std::string object;
+	std::list <OpenAIFile>data;
+	std::string first_id;
+	std::string last_id;
+	bool has_more;
 	void __init();
 	void __cleanup();
 

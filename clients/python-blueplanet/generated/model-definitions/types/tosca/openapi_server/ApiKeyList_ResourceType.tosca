@@ -1,0 +1,57 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ApiKeyList"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ApiKeyList"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AdminApiKey = openapi_server.resourceTypes.AdminApiKey
+}
+resourceTypes {
+
+  ApiKeyList {
+    title = ApiKeyList
+    description = ApiKeyList
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          optional = false
+        }
+        data {
+          type = array
+          items.type = AdminApiKey
+          description = ""
+          optional = false
+        }
+        has_more {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        first_id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        last_id {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ApiKeyList {
+    title = ApiKeyList
+    description = ApiKeyList
+    implements = openapi_server.resourceTypes.ApiKeyList
+
+  }
+}

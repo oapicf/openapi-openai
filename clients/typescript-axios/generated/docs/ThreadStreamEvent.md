@@ -6,6 +6,7 @@ Occurs when a new [thread](/docs/api-reference/threads/object) is created.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enabled** | **boolean** | Whether to enable input audio transcription. | [optional] [default to undefined]
 **event** | **string** |  | [default to undefined]
 **data** | [**ThreadObject**](ThreadObject.md) |  | [default to undefined]
 
@@ -15,6 +16,7 @@ Name | Type | Description | Notes
 import { ThreadStreamEvent } from './api';
 
 const instance: ThreadStreamEvent = {
+    enabled,
     event,
     data,
 };

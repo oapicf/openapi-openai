@@ -5,6 +5,7 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
+from openapi_server.models.modify_thread_request_tool_resources import ModifyThreadRequestToolResources
 from openapi_server import util
 
 
@@ -14,19 +15,23 @@ class ModifyThreadRequest(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, metadata: object=None):
+    def __init__(self, tool_resources: ModifyThreadRequestToolResources=None, metadata: object=None):
         """ModifyThreadRequest - a model defined in OpenAPI
 
+        :param tool_resources: The tool_resources of this ModifyThreadRequest.
         :param metadata: The metadata of this ModifyThreadRequest.
         """
         self.openapi_types = {
+            'tool_resources': ModifyThreadRequestToolResources,
             'metadata': object
         }
 
         self.attribute_map = {
+            'tool_resources': 'tool_resources',
             'metadata': 'metadata'
         }
 
+        self._tool_resources = tool_resources
         self._metadata = metadata
 
     @classmethod
@@ -39,10 +44,31 @@ class ModifyThreadRequest(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
+    def tool_resources(self):
+        """Gets the tool_resources of this ModifyThreadRequest.
+
+
+        :return: The tool_resources of this ModifyThreadRequest.
+        :rtype: ModifyThreadRequestToolResources
+        """
+        return self._tool_resources
+
+    @tool_resources.setter
+    def tool_resources(self, tool_resources):
+        """Sets the tool_resources of this ModifyThreadRequest.
+
+
+        :param tool_resources: The tool_resources of this ModifyThreadRequest.
+        :type tool_resources: ModifyThreadRequestToolResources
+        """
+
+        self._tool_resources = tool_resources
+
+    @property
     def metadata(self):
         """Gets the metadata of this ModifyThreadRequest.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
         :return: The metadata of this ModifyThreadRequest.
         :rtype: object
@@ -53,7 +79,7 @@ class ModifyThreadRequest(Model):
     def metadata(self, metadata):
         """Sets the metadata of this ModifyThreadRequest.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
         :param metadata: The metadata of this ModifyThreadRequest.
         :type metadata: object

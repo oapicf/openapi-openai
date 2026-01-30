@@ -28,18 +28,6 @@ test_that("CreateAssistant", {
   #expect_equal(result, "EXPECTED_RESULT")
 })
 
-test_that("CreateAssistantFile", {
-  # tests for CreateAssistantFile
-  # base path: https://api.openai.com/v1
-  # Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-  # @param assistant_id character The ID of the assistant for which to create a File. 
-  # @param create_assistant_file_request CreateAssistantFileRequest 
-  # @return [AssistantFileObject]
-
-  # uncomment below to test the operation
-  #expect_equal(result, "EXPECTED_RESULT")
-})
-
 test_that("CreateMessage", {
   # tests for CreateMessage
   # base path: https://api.openai.com/v1
@@ -58,6 +46,7 @@ test_that("CreateRun", {
   # Create a run.
   # @param thread_id character The ID of the thread to run.
   # @param create_run_request CreateRunRequest 
+  # @param include array[character] A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
   # @return [RunObject]
 
   # uncomment below to test the operation
@@ -97,13 +86,13 @@ test_that("DeleteAssistant", {
   #expect_equal(result, "EXPECTED_RESULT")
 })
 
-test_that("DeleteAssistantFile", {
-  # tests for DeleteAssistantFile
+test_that("DeleteMessage", {
+  # tests for DeleteMessage
   # base path: https://api.openai.com/v1
-  # Delete an assistant file.
-  # @param assistant_id character The ID of the assistant that the file belongs to.
-  # @param file_id character The ID of the file to delete.
-  # @return [DeleteAssistantFileResponse]
+  # Deletes a message.
+  # @param thread_id character The ID of the thread to which this message belongs.
+  # @param message_id character The ID of the message to delete.
+  # @return [DeleteMessageResponse]
 
   # uncomment below to test the operation
   #expect_equal(result, "EXPECTED_RESULT")
@@ -131,18 +120,6 @@ test_that("GetAssistant", {
   #expect_equal(result, "EXPECTED_RESULT")
 })
 
-test_that("GetAssistantFile", {
-  # tests for GetAssistantFile
-  # base path: https://api.openai.com/v1
-  # Retrieves an AssistantFile.
-  # @param assistant_id character The ID of the assistant who the file belongs to.
-  # @param file_id character The ID of the file we're getting.
-  # @return [AssistantFileObject]
-
-  # uncomment below to test the operation
-  #expect_equal(result, "EXPECTED_RESULT")
-})
-
 test_that("GetMessage", {
   # tests for GetMessage
   # base path: https://api.openai.com/v1
@@ -150,19 +127,6 @@ test_that("GetMessage", {
   # @param thread_id character The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
   # @param message_id character The ID of the message to retrieve.
   # @return [MessageObject]
-
-  # uncomment below to test the operation
-  #expect_equal(result, "EXPECTED_RESULT")
-})
-
-test_that("GetMessageFile", {
-  # tests for GetMessageFile
-  # base path: https://api.openai.com/v1
-  # Retrieves a message file.
-  # @param thread_id character The ID of the thread to which the message and File belong.
-  # @param message_id character The ID of the message the file belongs to.
-  # @param file_id character The ID of the file being retrieved.
-  # @return [MessageFileObject]
 
   # uncomment below to test the operation
   #expect_equal(result, "EXPECTED_RESULT")
@@ -187,6 +151,7 @@ test_that("GetRunStep", {
   # @param thread_id character The ID of the thread to which the run and run step belongs.
   # @param run_id character The ID of the run to which the run step belongs.
   # @param step_id character The ID of the run step to retrieve.
+  # @param include array[character] A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
   # @return [RunStepObject]
 
   # uncomment below to test the operation
@@ -204,21 +169,6 @@ test_that("GetThread", {
   #expect_equal(result, "EXPECTED_RESULT")
 })
 
-test_that("ListAssistantFiles", {
-  # tests for ListAssistantFiles
-  # base path: https://api.openai.com/v1
-  # Returns a list of assistant files.
-  # @param assistant_id character The ID of the assistant the file belongs to.
-  # @param limit integer A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional)
-  # @param order character Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional)
-  # @param after character A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-  # @param before character A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-  # @return [ListAssistantFilesResponse]
-
-  # uncomment below to test the operation
-  #expect_equal(result, "EXPECTED_RESULT")
-})
-
 test_that("ListAssistants", {
   # tests for ListAssistants
   # base path: https://api.openai.com/v1
@@ -226,24 +176,8 @@ test_that("ListAssistants", {
   # @param limit integer A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional)
   # @param order character Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional)
   # @param after character A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-  # @param before character A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+  # @param before character A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
   # @return [ListAssistantsResponse]
-
-  # uncomment below to test the operation
-  #expect_equal(result, "EXPECTED_RESULT")
-})
-
-test_that("ListMessageFiles", {
-  # tests for ListMessageFiles
-  # base path: https://api.openai.com/v1
-  # Returns a list of message files.
-  # @param thread_id character The ID of the thread that the message and files belong to.
-  # @param message_id character The ID of the message that the files belongs to.
-  # @param limit integer A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional)
-  # @param order character Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional)
-  # @param after character A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-  # @param before character A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-  # @return [ListMessageFilesResponse]
 
   # uncomment below to test the operation
   #expect_equal(result, "EXPECTED_RESULT")
@@ -257,7 +191,7 @@ test_that("ListMessages", {
   # @param limit integer A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional)
   # @param order character Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional)
   # @param after character A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-  # @param before character A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+  # @param before character A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
   # @param run_id character Filter messages by the run ID that generated them.  (optional)
   # @return [ListMessagesResponse]
 
@@ -274,7 +208,8 @@ test_that("ListRunSteps", {
   # @param limit integer A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional)
   # @param order character Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional)
   # @param after character A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-  # @param before character A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+  # @param before character A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+  # @param include array[character] A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
   # @return [ListRunStepsResponse]
 
   # uncomment below to test the operation
@@ -289,7 +224,7 @@ test_that("ListRuns", {
   # @param limit integer A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional)
   # @param order character Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional)
   # @param after character A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-  # @param before character A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+  # @param before character A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
   # @return [ListRunsResponse]
 
   # uncomment below to test the operation

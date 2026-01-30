@@ -65,8 +65,11 @@ class FilesApiTest {
     @Test
     fun listFilesTest() {
         val purpose: kotlin.String? = TODO()
+        val limit: kotlin.Int = TODO()
+        val order: kotlin.String = TODO()
+        val after: kotlin.String? = TODO()
         
-        val response: ResponseEntity<ListFilesResponse> = api.listFiles(purpose)
+        val response: ResponseEntity<ListFilesResponse> = api.listFiles(purpose, limit, order, after)
 
         // TODO: test validations
     }

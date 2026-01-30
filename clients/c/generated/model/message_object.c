@@ -69,7 +69,7 @@ static message_object_t *message_object_create_internal(
     list_t *content,
     char *assistant_id,
     char *run_id,
-    list_t *file_ids,
+    list_t *attachments,
     object_t *metadata
     ) {
     message_object_t *message_object_local_var = malloc(sizeof(message_object_t));
@@ -88,7 +88,7 @@ static message_object_t *message_object_create_internal(
     message_object_local_var->content = content;
     message_object_local_var->assistant_id = assistant_id;
     message_object_local_var->run_id = run_id;
-    message_object_local_var->file_ids = file_ids;
+    message_object_local_var->attachments = attachments;
     message_object_local_var->metadata = metadata;
 
     message_object_local_var->_library_owned = 1;
@@ -108,7 +108,7 @@ __attribute__((deprecated)) message_object_t *message_object_create(
     list_t *content,
     char *assistant_id,
     char *run_id,
-    list_t *file_ids,
+    list_t *attachments,
     object_t *metadata
     ) {
     return message_object_create_internal (
@@ -124,7 +124,7 @@ __attribute__((deprecated)) message_object_t *message_object_create(
         content,
         assistant_id,
         run_id,
-        file_ids,
+        attachments,
         metadata
         );
 }
@@ -165,12 +165,12 @@ void message_object_free(message_object_t *message_object) {
         free(message_object->run_id);
         message_object->run_id = NULL;
     }
-    if (message_object->file_ids) {
-        list_ForEach(listEntry, message_object->file_ids) {
-            free(listEntry->data);
+    if (message_object->attachments) {
+        list_ForEach(listEntry, message_object->attachments) {
+            create_message_request_attachments_inner_free(listEntry->data);
         }
-        list_freeList(message_object->file_ids);
-        message_object->file_ids = NULL;
+        list_freeList(message_object->attachments);
+        message_object->attachments = NULL;
     }
     if (message_object->metadata) {
         object_free(message_object->metadata);
@@ -310,20 +310,23 @@ cJSON *message_object_convertToJSON(message_object_t *message_object) {
     }
 
 
-    // message_object->file_ids
-    if (!message_object->file_ids) {
+    // message_object->attachments
+    if (!message_object->attachments) {
         goto fail;
     }
-    cJSON *file_ids = cJSON_AddArrayToObject(item, "file_ids");
-    if(file_ids == NULL) {
-        goto fail; //primitive container
+    cJSON *attachments = cJSON_AddArrayToObject(item, "attachments");
+    if(attachments == NULL) {
+    goto fail; //nonprimitive container
     }
 
-    listEntry_t *file_idsListEntry;
-    list_ForEach(file_idsListEntry, message_object->file_ids) {
-    if(cJSON_AddStringToObject(file_ids, "", file_idsListEntry->data) == NULL)
-    {
-        goto fail;
+    listEntry_t *attachmentsListEntry;
+    if (message_object->attachments) {
+    list_ForEach(attachmentsListEntry, message_object->attachments) {
+    cJSON *itemLocal = create_message_request_attachments_inner_convertToJSON(attachmentsListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(attachments, itemLocal);
     }
     }
 
@@ -359,8 +362,8 @@ message_object_t *message_object_parseFromJSON(cJSON *message_objectJSON){
     // define the local list for message_object->content
     list_t *contentList = NULL;
 
-    // define the local list for message_object->file_ids
-    list_t *file_idsList = NULL;
+    // define the local list for message_object->attachments
+    list_t *attachmentsList = NULL;
 
     // message_object->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(message_objectJSON, "id");
@@ -557,29 +560,31 @@ message_object_t *message_object_parseFromJSON(cJSON *message_objectJSON){
     goto end; //String
     }
 
-    // message_object->file_ids
-    cJSON *file_ids = cJSON_GetObjectItemCaseSensitive(message_objectJSON, "file_ids");
-    if (cJSON_IsNull(file_ids)) {
-        file_ids = NULL;
+    // message_object->attachments
+    cJSON *attachments = cJSON_GetObjectItemCaseSensitive(message_objectJSON, "attachments");
+    if (cJSON_IsNull(attachments)) {
+        attachments = NULL;
     }
-    if (!file_ids) {
+    if (!attachments) {
         goto end;
     }
 
     
-    cJSON *file_ids_local = NULL;
-    if(!cJSON_IsArray(file_ids)) {
-        goto end;//primitive container
+    cJSON *attachments_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(attachments)){
+        goto end; //nonprimitive container
     }
-    file_idsList = list_createList();
 
-    cJSON_ArrayForEach(file_ids_local, file_ids)
+    attachmentsList = list_createList();
+
+    cJSON_ArrayForEach(attachments_local_nonprimitive,attachments )
     {
-        if(!cJSON_IsString(file_ids_local))
-        {
+        if(!cJSON_IsObject(attachments_local_nonprimitive)){
             goto end;
         }
-        list_addElement(file_idsList , strdup(file_ids_local->valuestring));
+        create_message_request_attachments_inner_t *attachmentsItem = create_message_request_attachments_inner_parseFromJSON(attachments_local_nonprimitive);
+
+        list_addElement(attachmentsList, attachmentsItem);
     }
 
     // message_object->metadata
@@ -609,7 +614,7 @@ message_object_t *message_object_parseFromJSON(cJSON *message_objectJSON){
         contentList,
         strdup(assistant_id->valuestring),
         strdup(run_id->valuestring),
-        file_idsList,
+        attachmentsList,
         metadata_local_object
         );
 
@@ -628,14 +633,14 @@ end:
         list_freeList(contentList);
         contentList = NULL;
     }
-    if (file_idsList) {
+    if (attachmentsList) {
         listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, file_idsList) {
-            free(listEntry->data);
+        list_ForEach(listEntry, attachmentsList) {
+            create_message_request_attachments_inner_free(listEntry->data);
             listEntry->data = NULL;
         }
-        list_freeList(file_idsList);
-        file_idsList = NULL;
+        list_freeList(attachmentsList);
+        attachmentsList = NULL;
     }
     return NULL;
 

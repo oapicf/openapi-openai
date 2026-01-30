@@ -1,7 +1,7 @@
 /*
  * chat_completion_request_system_message.h
  *
- * 
+ * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use &#x60;developer&#x60; messages for this purpose instead. 
  */
 
 #ifndef _chat_completion_request_system_message_H_
@@ -15,6 +15,7 @@
 
 typedef struct chat_completion_request_system_message_t chat_completion_request_system_message_t;
 
+#include "chat_completion_request_system_message_content.h"
 
 // Enum ROLE for chat_completion_request_system_message
 
@@ -27,7 +28,7 @@ openai_api_chat_completion_request_system_message_ROLE_e chat_completion_request
 
 
 typedef struct chat_completion_request_system_message_t {
-    char *content; // string
+    struct chat_completion_request_system_message_content_t *content; //model
     openai_api_chat_completion_request_system_message_ROLE_e role; //enum
     char *name; // string
 
@@ -35,7 +36,7 @@ typedef struct chat_completion_request_system_message_t {
 } chat_completion_request_system_message_t;
 
 __attribute__((deprecated)) chat_completion_request_system_message_t *chat_completion_request_system_message_create(
-    char *content,
+    chat_completion_request_system_message_content_t *content,
     openai_api_chat_completion_request_system_message_ROLE_e role,
     char *name
 );

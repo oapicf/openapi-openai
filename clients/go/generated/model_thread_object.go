@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -28,7 +28,8 @@ type ThreadObject struct {
 	Object string `json:"object"`
 	// The Unix timestamp (in seconds) for when the thread was created.
 	CreatedAt int32 `json:"created_at"`
-	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	ToolResources NullableModifyThreadRequestToolResources `json:"tool_resources"`
+	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	Metadata map[string]interface{} `json:"metadata"`
 }
 
@@ -38,11 +39,12 @@ type _ThreadObject ThreadObject
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewThreadObject(id string, object string, createdAt int32, metadata map[string]interface{}) *ThreadObject {
+func NewThreadObject(id string, object string, createdAt int32, toolResources NullableModifyThreadRequestToolResources, metadata map[string]interface{}) *ThreadObject {
 	this := ThreadObject{}
 	this.Id = id
 	this.Object = object
 	this.CreatedAt = createdAt
+	this.ToolResources = toolResources
 	this.Metadata = metadata
 	return &this
 }
@@ -127,6 +129,32 @@ func (o *ThreadObject) SetCreatedAt(v int32) {
 	o.CreatedAt = v
 }
 
+// GetToolResources returns the ToolResources field value
+// If the value is explicit nil, the zero value for ModifyThreadRequestToolResources will be returned
+func (o *ThreadObject) GetToolResources() ModifyThreadRequestToolResources {
+	if o == nil || o.ToolResources.Get() == nil {
+		var ret ModifyThreadRequestToolResources
+		return ret
+	}
+
+	return *o.ToolResources.Get()
+}
+
+// GetToolResourcesOk returns a tuple with the ToolResources field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ThreadObject) GetToolResourcesOk() (*ModifyThreadRequestToolResources, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ToolResources.Get(), o.ToolResources.IsSet()
+}
+
+// SetToolResources sets field value
+func (o *ThreadObject) SetToolResources(v ModifyThreadRequestToolResources) {
+	o.ToolResources.Set(&v)
+}
+
 // GetMetadata returns the Metadata field value
 // If the value is explicit nil, the zero value for map[string]interface{} will be returned
 func (o *ThreadObject) GetMetadata() map[string]interface{} {
@@ -166,6 +194,7 @@ func (o ThreadObject) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["object"] = o.Object
 	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["tool_resources"] = o.ToolResources.Get()
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
@@ -180,6 +209,7 @@ func (o *ThreadObject) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"object",
 		"created_at",
+		"tool_resources",
 		"metadata",
 	}
 

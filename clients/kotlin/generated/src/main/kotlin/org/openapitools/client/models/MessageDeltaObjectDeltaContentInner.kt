@@ -17,6 +17,9 @@ package org.openapitools.client.models
 
 import org.openapitools.client.models.MessageDeltaContentImageFileObject
 import org.openapitools.client.models.MessageDeltaContentImageFileObjectImageFile
+import org.openapitools.client.models.MessageDeltaContentImageUrlObject
+import org.openapitools.client.models.MessageDeltaContentImageUrlObjectImageUrl
+import org.openapitools.client.models.MessageDeltaContentRefusalObject
 import org.openapitools.client.models.MessageDeltaContentTextObject
 import org.openapitools.client.models.MessageDeltaContentTextObjectText
 
@@ -30,6 +33,8 @@ import com.squareup.moshi.JsonClass
  * @param type Always `image_file`.
  * @param imageFile 
  * @param text 
+ * @param refusal 
+ * @param imageUrl 
  */
 
 
@@ -47,19 +52,27 @@ data class MessageDeltaObjectDeltaContentInner (
     val imageFile: MessageDeltaContentImageFileObjectImageFile? = null,
 
     @Json(name = "text")
-    val text: MessageDeltaContentTextObjectText? = null
+    val text: MessageDeltaContentTextObjectText? = null,
+
+    @Json(name = "refusal")
+    val refusal: kotlin.String? = null,
+
+    @Json(name = "image_url")
+    val imageUrl: MessageDeltaContentImageUrlObjectImageUrl? = null
 
 ) {
 
     /**
      * Always `image_file`.
      *
-     * Values: image_file,text
+     * Values: image_file,text,refusal,image_url
      */
     @JsonClass(generateAdapter = false)
     enum class Type(val value: kotlin.String) {
         @Json(name = "image_file") image_file("image_file"),
-        @Json(name = "text") text("text");
+        @Json(name = "text") text("text"),
+        @Json(name = "refusal") refusal("refusal"),
+        @Json(name = "image_url") image_url("image_url");
     }
 
 }

@@ -1,0 +1,37 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ListVectorStoreFilesResponse",
+  "fields": [
+    {
+      "name": "object",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": {
+        "type": "array",
+        "items": "model.VectorStoreFileObject"
+      },
+      "doc": ""
+    },
+    {
+      "name": "first_id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "last_id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "has_more",
+      "type": "boolean",
+      "doc": ""
+    }
+  ]
+
+}

@@ -13,5 +13,11 @@ void main() {
       // TODO
     });
 
+    // A list of message refusal tokens with log probability information.
+    // BuiltList<ChatCompletionTokenLogprob> refusal
+    test('to test the property `refusal`', () async {
+      // TODO
+    });
+
   });
 }

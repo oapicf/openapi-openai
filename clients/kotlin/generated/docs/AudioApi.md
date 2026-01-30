@@ -71,8 +71,8 @@ val apiInstance = AudioApi()
 val file : java.io.File = BINARY_DATA_HERE // java.io.File | The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
 val model : CreateTranscriptionRequestModel =  // CreateTranscriptionRequestModel | 
 val language : kotlin.String = language_example // kotlin.String | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
-val prompt : kotlin.String = prompt_example // kotlin.String | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language. 
-val responseFormat : kotlin.String = responseFormat_example // kotlin.String | The format of the transcript output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. 
+val prompt : kotlin.String = prompt_example // kotlin.String | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language. 
+val responseFormat : AudioResponseFormat =  // AudioResponseFormat | 
 val temperature : java.math.BigDecimal = 8.14 // java.math.BigDecimal | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
 val timestampGranularities : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | The timestamp granularities to populate for this transcription. `response_format` must be set `verbose_json` to use timestamp granularities. Either or both of these options are supported: `word`, or `segment`. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. 
 try {
@@ -91,8 +91,8 @@ try {
 | **file** | **java.io.File**| The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  | |
 | **model** | [**CreateTranscriptionRequestModel**](CreateTranscriptionRequestModel.md)|  | |
 | **language** | **kotlin.String**| The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.  | [optional] |
-| **prompt** | **kotlin.String**| An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should match the audio language.  | [optional] |
-| **responseFormat** | **kotlin.String**| The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  | [optional] [default to ResponseFormat.json] [enum: json, text, srt, verbose_json, vtt] |
+| **prompt** | **kotlin.String**| An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language.  | [optional] |
+| **responseFormat** | [**AudioResponseFormat**](AudioResponseFormat.md)|  | [optional] [default to AudioResponseFormat.json] [enum: json, text, srt, verbose_json, vtt] |
 | **temperature** | **java.math.BigDecimal**| The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  | [optional] [default to 0] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
@@ -128,8 +128,8 @@ Translates audio into English.
 val apiInstance = AudioApi()
 val file : java.io.File = BINARY_DATA_HERE // java.io.File | The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
 val model : CreateTranscriptionRequestModel =  // CreateTranscriptionRequestModel | 
-val prompt : kotlin.String = prompt_example // kotlin.String | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English. 
-val responseFormat : kotlin.String = responseFormat_example // kotlin.String | The format of the transcript output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. 
+val prompt : kotlin.String = prompt_example // kotlin.String | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. 
+val responseFormat : AudioResponseFormat =  // AudioResponseFormat | 
 val temperature : java.math.BigDecimal = 8.14 // java.math.BigDecimal | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
 try {
     val result : CreateTranslation200Response = apiInstance.createTranslation(file, model, prompt, responseFormat, temperature)
@@ -146,8 +146,8 @@ try {
 ### Parameters
 | **file** | **java.io.File**| The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  | |
 | **model** | [**CreateTranscriptionRequestModel**](CreateTranscriptionRequestModel.md)|  | |
-| **prompt** | **kotlin.String**| An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text/prompting) should be in English.  | [optional] |
-| **responseFormat** | **kotlin.String**| The format of the transcript output, in one of these options: &#x60;json&#x60;, &#x60;text&#x60;, &#x60;srt&#x60;, &#x60;verbose_json&#x60;, or &#x60;vtt&#x60;.  | [optional] [default to &quot;json&quot;] |
+| **prompt** | **kotlin.String**| An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English.  | [optional] |
+| **responseFormat** | [**AudioResponseFormat**](AudioResponseFormat.md)|  | [optional] [default to AudioResponseFormat.json] [enum: json, text, srt, verbose_json, vtt] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **temperature** | **java.math.BigDecimal**| The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  | [optional] [default to 0] |

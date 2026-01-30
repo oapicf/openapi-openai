@@ -6,7 +6,7 @@ The controller class is defined in **[ModerationsController.java](../../src/main
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createModeration**](#createModeration) | **POST** /moderations | Classifies if text is potentially harmful.
+[**createModeration**](#createModeration) | **POST** /moderations | Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 <a id="createModeration"></a>
 # **createModeration**
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 Mono<CreateModerationResponse> ModerationsController.createModeration(createModerationRequest)
 ```
 
-Classifies if text is potentially harmful.
+Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 ### Parameters
 Name | Type | Description  | Notes

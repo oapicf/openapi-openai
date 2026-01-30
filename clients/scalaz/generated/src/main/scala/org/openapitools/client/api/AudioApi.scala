@@ -21,6 +21,7 @@ import scalaz.concurrent.Task
 
 import HelperCodecs._
 
+import org.openapitools.client.api.AudioResponseFormat
 import org.openapitools.client.api.BigDecimal
 import org.openapitools.client.api.CreateSpeechRequest
 import org.openapitools.client.api.CreateTranscription200Response
@@ -55,7 +56,7 @@ object AudioApi {
     } yield resp
   }
 
-  def createTranscription(host: String, file: File, model: CreateTranscriptionRequestModel, language: String, prompt: String, responseFormat: String = json, temperature: BigDecimal = 0, timestampGranularities: List[String]): Task[CreateTranscription200Response] = {
+  def createTranscription(host: String, file: File, model: CreateTranscriptionRequestModel, language: String, prompt: String, responseFormat: AudioResponseFormat, temperature: BigDecimal = 0, timestampGranularities: List[String]): Task[CreateTranscription200Response] = {
     implicit val returnTypeDecoder: EntityDecoder[CreateTranscription200Response] = jsonOf[CreateTranscription200Response]
 
     val path = "/audio/transcriptions"
@@ -76,7 +77,7 @@ object AudioApi {
     } yield resp
   }
 
-  def createTranslation(host: String, file: File, model: CreateTranscriptionRequestModel, prompt: String, responseFormat: String = json, temperature: BigDecimal = 0): Task[CreateTranslation200Response] = {
+  def createTranslation(host: String, file: File, model: CreateTranscriptionRequestModel, prompt: String, responseFormat: AudioResponseFormat, temperature: BigDecimal = 0): Task[CreateTranslation200Response] = {
     implicit val returnTypeDecoder: EntityDecoder[CreateTranslation200Response] = jsonOf[CreateTranslation200Response]
 
     val path = "/audio/translations"
@@ -125,7 +126,7 @@ class HttpServiceAudioApi(service: HttpService) {
     } yield resp
   }
 
-  def createTranscription(file: File, model: CreateTranscriptionRequestModel, language: String, prompt: String, responseFormat: String = json, temperature: BigDecimal = 0, timestampGranularities: List[String]): Task[CreateTranscription200Response] = {
+  def createTranscription(file: File, model: CreateTranscriptionRequestModel, language: String, prompt: String, responseFormat: AudioResponseFormat, temperature: BigDecimal = 0, timestampGranularities: List[String]): Task[CreateTranscription200Response] = {
     implicit val returnTypeDecoder: EntityDecoder[CreateTranscription200Response] = jsonOf[CreateTranscription200Response]
 
     val path = "/audio/transcriptions"
@@ -146,7 +147,7 @@ class HttpServiceAudioApi(service: HttpService) {
     } yield resp
   }
 
-  def createTranslation(file: File, model: CreateTranscriptionRequestModel, prompt: String, responseFormat: String = json, temperature: BigDecimal = 0): Task[CreateTranslation200Response] = {
+  def createTranslation(file: File, model: CreateTranscriptionRequestModel, prompt: String, responseFormat: AudioResponseFormat, temperature: BigDecimal = 0): Task[CreateTranslation200Response] = {
     implicit val returnTypeDecoder: EntityDecoder[CreateTranslation200Response] = jsonOf[CreateTranslation200Response]
 
     val path = "/audio/translations"

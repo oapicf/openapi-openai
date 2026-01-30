@@ -38,6 +38,16 @@ void main() {
       // TODO
     });
 
+    // String refusal
+    test('to test the property `refusal`', () async {
+      // TODO
+    });
+
+    // MessageDeltaContentImageUrlObjectImageUrl imageUrl
+    test('to test the property `imageUrl`', () async {
+      // TODO
+    });
+
 
   });
 

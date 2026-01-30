@@ -14,7 +14,7 @@ API.Client.RunStepDeltaStepDetailsToolCallsObject = function() {}
 API.Client.RunStepDeltaStepDetailsToolCallsObject.prototype.type;
 
 /**
- * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `retrieval`, or `function`. 
+ * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
  * @type {!Array<!API.Client.RunStepDeltaStepDetailsToolCallsObject_tool_calls_inner>}
  * @export
  */

@@ -1,0 +1,43 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ProjectRateLimitListResponse",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "ProjectRateLimitListResponse_object",
+        "symbols": [
+          "list"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": {
+        "type": "array",
+        "items": "model.ProjectRateLimit"
+      },
+      "doc": ""
+    },
+    {
+      "name": "first_id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "last_id",
+      "type": "string",
+      "doc": ""
+    },
+    {
+      "name": "has_more",
+      "type": "boolean",
+      "doc": ""
+    }
+  ]
+
+}

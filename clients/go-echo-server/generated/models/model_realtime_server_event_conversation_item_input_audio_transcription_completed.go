@@ -1,0 +1,20 @@
+package models
+
+// RealtimeServerEventConversationItemInputAudioTranscriptionCompleted - This event is the output of audio transcription for user audio written to the  user audio buffer. Transcription begins when the input audio buffer is  committed by the client or server (in `server_vad` mode). Transcription runs  asynchronously with Response creation, so this event may come before or after  the Response events.  Realtime API models accept audio natively, and thus input transcription is a  separate process run on a separate ASR (Automatic Speech Recognition) model,  currently always `whisper-1`. Thus the transcript may diverge somewhat from  the model's interpretation, and should be treated as a rough guide. 
+type RealtimeServerEventConversationItemInputAudioTranscriptionCompleted struct {
+
+	// The unique ID of the server event.
+	EventId string `json:"event_id"`
+
+	// The event type, must be `conversation.item.input_audio_transcription.completed`. 
+	Type string `json:"type"`
+
+	// The ID of the user message item containing the audio.
+	ItemId string `json:"item_id"`
+
+	// The index of the content part containing the audio.
+	ContentIndex int32 `json:"content_index"`
+
+	// The transcribed text.
+	Transcript string `json:"transcript"`
+}

@@ -1,22 +1,17 @@
 const samples = require('../samples/AssistantsApi');
-const AssistantFileObject = require('../models/AssistantFileObject');
 const AssistantObject = require('../models/AssistantObject');
-const CreateAssistantFileRequest = require('../models/CreateAssistantFileRequest');
 const CreateAssistantRequest = require('../models/CreateAssistantRequest');
 const CreateMessageRequest = require('../models/CreateMessageRequest');
 const CreateRunRequest = require('../models/CreateRunRequest');
 const CreateThreadAndRunRequest = require('../models/CreateThreadAndRunRequest');
 const CreateThreadRequest = require('../models/CreateThreadRequest');
-const DeleteAssistantFileResponse = require('../models/DeleteAssistantFileResponse');
 const DeleteAssistantResponse = require('../models/DeleteAssistantResponse');
+const DeleteMessageResponse = require('../models/DeleteMessageResponse');
 const DeleteThreadResponse = require('../models/DeleteThreadResponse');
-const ListAssistantFilesResponse = require('../models/ListAssistantFilesResponse');
 const ListAssistantsResponse = require('../models/ListAssistantsResponse');
-const ListMessageFilesResponse = require('../models/ListMessageFilesResponse');
 const ListMessagesResponse = require('../models/ListMessagesResponse');
 const ListRunStepsResponse = require('../models/ListRunStepsResponse');
 const ListRunsResponse = require('../models/ListRunsResponse');
-const MessageFileObject = require('../models/MessageFileObject');
 const MessageObject = require('../models/MessageObject');
 const ModifyAssistantRequest = require('../models/ModifyAssistantRequest');
 const ModifyMessageRequest = require('../models/ModifyMessageRequest');
@@ -117,51 +112,6 @@ module.exports = {
             sample: samples['AssistantObjectSample']
         }
     },
-    createAssistantFile: {
-        key: 'createAssistantFile',
-        noun: 'Assistants',
-        display: {
-            label: 'Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).',
-            description: '',
-            hidden: false,
-        },
-        operation: {
-            inputFields: [
-                {
-                    key: 'assistant_id',
-                    label: 'The ID of the assistant for which to create a File. ',
-                    type: 'string',
-                    required: true,
-                },
-                ...CreateAssistantFileRequest.fields(),
-            ],
-            outputFields: [
-                ...AssistantFileObject.fields('', false),
-            ],
-            perform: async (z, bundle) => {
-                const options = {
-                    url: utils.replacePathParameters('https://api.openai.com/v1/assistants/{assistant_id}/files'),
-                    method: 'POST',
-                    removeMissingValuesFrom: { params: true, body: true },
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                    },
-                    params: {
-                    },
-                    body: {
-                        ...CreateAssistantFileRequest.mapping(bundle),
-                    },
-                }
-                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-                    response.throwForStatus();
-                    const results = utils.responseOptionsMiddleware(z, bundle, 'createAssistantFile', response.json);
-                    return results;
-                })
-            },
-            sample: samples['AssistantFileObjectSample']
-        }
-    },
     createMessage: {
         key: 'createMessage',
         noun: 'Assistants',
@@ -224,6 +174,11 @@ module.exports = {
                     required: true,
                 },
                 ...CreateRunRequest.fields(),
+                {
+                    key: 'include[]',
+                    label: 'A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ',
+                    type: 'string',
+                }
             ],
             outputFields: [
                 ...RunObject.fields('', false),
@@ -238,6 +193,7 @@ module.exports = {
                         'Accept': 'application/json',
                     },
                     params: {
+                        'include[]': bundle.inputData?.['include[]'],
                     },
                     body: {
                         ...CreateRunRequest.mapping(bundle),
@@ -373,35 +329,35 @@ module.exports = {
             sample: samples['DeleteAssistantResponseSample']
         }
     },
-    deleteAssistantFile: {
-        key: 'deleteAssistantFile',
+    deleteMessage: {
+        key: 'deleteMessage',
         noun: 'Assistants',
         display: {
-            label: 'Delete an assistant file.',
+            label: 'Deletes a message.',
             description: '',
             hidden: false,
         },
         operation: {
             inputFields: [
                 {
-                    key: 'assistant_id',
-                    label: 'The ID of the assistant that the file belongs to.',
+                    key: 'thread_id',
+                    label: 'The ID of the thread to which this message belongs.',
                     type: 'string',
                     required: true,
                 },
                 {
-                    key: 'file_id',
-                    label: 'The ID of the file to delete.',
+                    key: 'message_id',
+                    label: 'The ID of the message to delete.',
                     type: 'string',
                     required: true,
                 },
             ],
             outputFields: [
-                ...DeleteAssistantFileResponse.fields('', false),
+                ...DeleteMessageResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api.openai.com/v1/assistants/{assistant_id}/files/{file_id}'),
+                    url: utils.replacePathParameters('https://api.openai.com/v1/threads/{thread_id}/messages/{message_id}'),
                     method: 'DELETE',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -415,11 +371,11 @@ module.exports = {
                 }
                 return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
-                    const results = utils.responseOptionsMiddleware(z, bundle, 'deleteAssistantFile', response.json);
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'deleteMessage', response.json);
                     return results;
                 })
             },
-            sample: samples['DeleteAssistantFileResponseSample']
+            sample: samples['DeleteMessageResponseSample']
         }
     },
     deleteThread: {
@@ -508,55 +464,6 @@ module.exports = {
             sample: samples['AssistantObjectSample']
         }
     },
-    getAssistantFile: {
-        key: 'getAssistantFile',
-        noun: 'Assistants',
-        display: {
-            label: 'Retrieves an AssistantFile.',
-            description: '',
-            hidden: false,
-        },
-        operation: {
-            inputFields: [
-                {
-                    key: 'assistant_id',
-                    label: 'The ID of the assistant who the file belongs to.',
-                    type: 'string',
-                    required: true,
-                },
-                {
-                    key: 'file_id',
-                    label: 'The ID of the file we&#39;re getting.',
-                    type: 'string',
-                    required: true,
-                },
-            ],
-            outputFields: [
-                ...AssistantFileObject.fields('', false),
-            ],
-            perform: async (z, bundle) => {
-                const options = {
-                    url: utils.replacePathParameters('https://api.openai.com/v1/assistants/{assistant_id}/files/{file_id}'),
-                    method: 'GET',
-                    removeMissingValuesFrom: { params: true, body: true },
-                    headers: {
-                        'Content-Type': '',
-                        'Accept': 'application/json',
-                    },
-                    params: {
-                    },
-                    body: {
-                    },
-                }
-                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-                    response.throwForStatus();
-                    const results = utils.responseOptionsMiddleware(z, bundle, 'getAssistantFile', response.json);
-                    return results;
-                })
-            },
-            sample: samples['AssistantFileObjectSample']
-        }
-    },
     getMessage: {
         key: 'getMessage',
         noun: 'Assistants',
@@ -604,61 +511,6 @@ module.exports = {
                 })
             },
             sample: samples['MessageObjectSample']
-        }
-    },
-    getMessageFile: {
-        key: 'getMessageFile',
-        noun: 'Assistants',
-        display: {
-            label: 'Retrieves a message file.',
-            description: '',
-            hidden: false,
-        },
-        operation: {
-            inputFields: [
-                {
-                    key: 'thread_id',
-                    label: 'The ID of the thread to which the message and File belong.',
-                    type: 'string',
-                    required: true,
-                },
-                {
-                    key: 'message_id',
-                    label: 'The ID of the message the file belongs to.',
-                    type: 'string',
-                    required: true,
-                },
-                {
-                    key: 'file_id',
-                    label: 'The ID of the file being retrieved.',
-                    type: 'string',
-                    required: true,
-                },
-            ],
-            outputFields: [
-                ...MessageFileObject.fields('', false),
-            ],
-            perform: async (z, bundle) => {
-                const options = {
-                    url: utils.replacePathParameters('https://api.openai.com/v1/threads/{thread_id}/messages/{message_id}/files/{file_id}'),
-                    method: 'GET',
-                    removeMissingValuesFrom: { params: true, body: true },
-                    headers: {
-                        'Content-Type': '',
-                        'Accept': 'application/json',
-                    },
-                    params: {
-                    },
-                    body: {
-                    },
-                }
-                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-                    response.throwForStatus();
-                    const results = utils.responseOptionsMiddleware(z, bundle, 'getMessageFile', response.json);
-                    return results;
-                })
-            },
-            sample: samples['MessageFileObjectSample']
         }
     },
     getRun: {
@@ -738,6 +590,11 @@ module.exports = {
                     type: 'string',
                     required: true,
                 },
+                {
+                    key: 'include[]',
+                    label: 'A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ',
+                    type: 'string',
+                }
             ],
             outputFields: [
                 ...RunStepObject.fields('', false),
@@ -752,6 +609,7 @@ module.exports = {
                         'Accept': 'application/json',
                     },
                     params: {
+                        'include[]': bundle.inputData?.['include[]'],
                     },
                     body: {
                     },
@@ -808,77 +666,6 @@ module.exports = {
             sample: samples['ThreadObjectSample']
         }
     },
-    listAssistantFiles: {
-        key: 'listAssistantFiles',
-        noun: 'Assistants',
-        display: {
-            label: 'Returns a list of assistant files.',
-            description: '',
-            hidden: false,
-        },
-        operation: {
-            inputFields: [
-                {
-                    key: 'assistant_id',
-                    label: 'The ID of the assistant the file belongs to.',
-                    type: 'string',
-                    required: true,
-                },
-                {
-                    key: 'limit',
-                    label: 'A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ',
-                    type: 'integer',
-                },
-                {
-                    key: 'order',
-                    label: 'Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ',
-                    type: 'string',
-                    choices: [
-                        'asc',
-                        'desc',
-                    ],
-                },
-                {
-                    key: 'after',
-                    label: 'A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ',
-                    type: 'string',
-                },
-                {
-                    key: 'before',
-                    label: 'A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ',
-                    type: 'string',
-                },
-            ],
-            outputFields: [
-                ...ListAssistantFilesResponse.fields('', false),
-            ],
-            perform: async (z, bundle) => {
-                const options = {
-                    url: utils.replacePathParameters('https://api.openai.com/v1/assistants/{assistant_id}/files'),
-                    method: 'GET',
-                    removeMissingValuesFrom: { params: true, body: true },
-                    headers: {
-                        'Content-Type': '',
-                        'Accept': 'application/json',
-                    },
-                    params: {
-                        'limit': bundle.inputData?.['limit'],
-                        'order': bundle.inputData?.['order'],
-                        'after': bundle.inputData?.['after'],
-                        'before': bundle.inputData?.['before'],
-                    },
-                    body: {
-                    },
-                }
-                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-                    response.throwForStatus();
-                    const results = utils.responseOptionsMiddleware(z, bundle, 'listAssistantFiles', response.json);
-                    return results;
-                })
-            },
-            sample: samples['ListAssistantFilesResponseSample']
-        }
-    },
     listAssistants: {
         key: 'listAssistants',
         noun: 'Assistants',
@@ -910,7 +697,7 @@ module.exports = {
                 },
                 {
                     key: 'before',
-                    label: 'A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ',
+                    label: 'A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ',
                     type: 'string',
                 },
             ],
@@ -942,83 +729,6 @@ module.exports = {
                 })
             },
             sample: samples['ListAssistantsResponseSample']
-        }
-    },
-    listMessageFiles: {
-        key: 'listMessageFiles',
-        noun: 'Assistants',
-        display: {
-            label: 'Returns a list of message files.',
-            description: '',
-            hidden: false,
-        },
-        operation: {
-            inputFields: [
-                {
-                    key: 'thread_id',
-                    label: 'The ID of the thread that the message and files belong to.',
-                    type: 'string',
-                    required: true,
-                },
-                {
-                    key: 'message_id',
-                    label: 'The ID of the message that the files belongs to.',
-                    type: 'string',
-                    required: true,
-                },
-                {
-                    key: 'limit',
-                    label: 'A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ',
-                    type: 'integer',
-                },
-                {
-                    key: 'order',
-                    label: 'Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ',
-                    type: 'string',
-                    choices: [
-                        'asc',
-                        'desc',
-                    ],
-                },
-                {
-                    key: 'after',
-                    label: 'A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ',
-                    type: 'string',
-                },
-                {
-                    key: 'before',
-                    label: 'A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ',
-                    type: 'string',
-                },
-            ],
-            outputFields: [
-                ...ListMessageFilesResponse.fields('', false),
-            ],
-            perform: async (z, bundle) => {
-                const options = {
-                    url: utils.replacePathParameters('https://api.openai.com/v1/threads/{thread_id}/messages/{message_id}/files'),
-                    method: 'GET',
-                    removeMissingValuesFrom: { params: true, body: true },
-                    headers: {
-                        'Content-Type': '',
-                        'Accept': 'application/json',
-                    },
-                    params: {
-                        'limit': bundle.inputData?.['limit'],
-                        'order': bundle.inputData?.['order'],
-                        'after': bundle.inputData?.['after'],
-                        'before': bundle.inputData?.['before'],
-                    },
-                    body: {
-                    },
-                }
-                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-                    response.throwForStatus();
-                    const results = utils.responseOptionsMiddleware(z, bundle, 'listMessageFiles', response.json);
-                    return results;
-                })
-            },
-            sample: samples['ListMessageFilesResponseSample']
         }
     },
     listMessages: {
@@ -1058,7 +768,7 @@ module.exports = {
                 },
                 {
                     key: 'before',
-                    label: 'A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ',
+                    label: 'A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ',
                     type: 'string',
                 },
                 {
@@ -1141,9 +851,14 @@ module.exports = {
                 },
                 {
                     key: 'before',
-                    label: 'A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ',
+                    label: 'A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ',
                     type: 'string',
                 },
+                {
+                    key: 'include[]',
+                    label: 'A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ',
+                    type: 'string',
+                }
             ],
             outputFields: [
                 ...ListRunStepsResponse.fields('', false),
@@ -1162,6 +877,7 @@ module.exports = {
                         'order': bundle.inputData?.['order'],
                         'after': bundle.inputData?.['after'],
                         'before': bundle.inputData?.['before'],
+                        'include[]': bundle.inputData?.['include[]'],
                     },
                     body: {
                     },
@@ -1212,7 +928,7 @@ module.exports = {
                 },
                 {
                     key: 'before',
-                    label: 'A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ',
+                    label: 'A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ',
                     type: 'string',
                 },
             ],

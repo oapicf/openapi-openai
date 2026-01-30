@@ -37,6 +37,22 @@ test_that("harassment/threatening", {
   #expect_equal(model.instance$`harassment/threatening`, "EXPECTED_RESULT")
 })
 
+test_that("illicit", {
+  # tests for the property `illicit` (character)
+  # Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \&quot;how to shoplift\&quot; would fit this category.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`illicit`, "EXPECTED_RESULT")
+})
+
+test_that("illicit/violent", {
+  # tests for the property `illicit/violent` (character)
+  # Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`illicit/violent`, "EXPECTED_RESULT")
+})
+
 test_that("self-harm", {
   # tests for the property `self-harm` (character)
   # Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.

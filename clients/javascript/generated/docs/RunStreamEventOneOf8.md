@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Enum: EventEnum
 
 
-* `thread.run.expired` (value: `"thread.run.expired"`)
+* `thread.run.cancelled` (value: `"thread.run.cancelled"`)
 
 
 

@@ -1,0 +1,56 @@
+#ifndef fine_tune_dpo_method_hyperparameters_batch_size_TEST
+#define fine_tune_dpo_method_hyperparameters_batch_size_TEST
+
+// the following is to include only the main from the first c file
+#ifndef TEST_MAIN
+#define TEST_MAIN
+#define fine_tune_dpo_method_hyperparameters_batch_size_MAIN
+#endif // TEST_MAIN
+
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include "../external/cJSON.h"
+
+#include "../model/fine_tune_dpo_method_hyperparameters_batch_size.h"
+fine_tune_dpo_method_hyperparameters_batch_size_t* instantiate_fine_tune_dpo_method_hyperparameters_batch_size(int include_optional);
+
+
+
+fine_tune_dpo_method_hyperparameters_batch_size_t* instantiate_fine_tune_dpo_method_hyperparameters_batch_size(int include_optional) {
+  fine_tune_dpo_method_hyperparameters_batch_size_t* fine_tune_dpo_method_hyperparameters_batch_size = NULL;
+  if (include_optional) {
+    fine_tune_dpo_method_hyperparameters_batch_size = fine_tune_dpo_method_hyperparameters_batch_size_create(
+    );
+  } else {
+    fine_tune_dpo_method_hyperparameters_batch_size = fine_tune_dpo_method_hyperparameters_batch_size_create(
+    );
+  }
+
+  return fine_tune_dpo_method_hyperparameters_batch_size;
+}
+
+
+#ifdef fine_tune_dpo_method_hyperparameters_batch_size_MAIN
+
+void test_fine_tune_dpo_method_hyperparameters_batch_size(int include_optional) {
+    fine_tune_dpo_method_hyperparameters_batch_size_t* fine_tune_dpo_method_hyperparameters_batch_size_1 = instantiate_fine_tune_dpo_method_hyperparameters_batch_size(include_optional);
+
+	cJSON* jsonfine_tune_dpo_method_hyperparameters_batch_size_1 = fine_tune_dpo_method_hyperparameters_batch_size_convertToJSON(fine_tune_dpo_method_hyperparameters_batch_size_1);
+	printf("fine_tune_dpo_method_hyperparameters_batch_size :\n%s\n", cJSON_Print(jsonfine_tune_dpo_method_hyperparameters_batch_size_1));
+	fine_tune_dpo_method_hyperparameters_batch_size_t* fine_tune_dpo_method_hyperparameters_batch_size_2 = fine_tune_dpo_method_hyperparameters_batch_size_parseFromJSON(jsonfine_tune_dpo_method_hyperparameters_batch_size_1);
+	cJSON* jsonfine_tune_dpo_method_hyperparameters_batch_size_2 = fine_tune_dpo_method_hyperparameters_batch_size_convertToJSON(fine_tune_dpo_method_hyperparameters_batch_size_2);
+	printf("repeating fine_tune_dpo_method_hyperparameters_batch_size:\n%s\n", cJSON_Print(jsonfine_tune_dpo_method_hyperparameters_batch_size_2));
+}
+
+int main() {
+  test_fine_tune_dpo_method_hyperparameters_batch_size(1);
+  test_fine_tune_dpo_method_hyperparameters_batch_size(0);
+
+  printf("Hello world \n");
+  return 0;
+}
+
+#endif // fine_tune_dpo_method_hyperparameters_batch_size_MAIN
+#endif // fine_tune_dpo_method_hyperparameters_batch_size_TEST

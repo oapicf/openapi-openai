@@ -1,6 +1,7 @@
 (ns open-ai-api.specs.thread-object
   (:require [clojure.spec.alpha :as s]
             [spec-tools.data-spec :as ds]
+            [open-ai-api.specs.modify-thread-request-tool-resources :refer :all]
             [open-ai-api.specs. :refer :all]
             )
   (:import (java.io File)))
@@ -11,6 +12,7 @@
    (ds/req :id) string?
    (ds/req :object) string?
    (ds/req :created_at) int?
+   (ds/req :tool_resources) modify-thread-request-tool-resources-spec
    (ds/req :metadata) any?
    })
 

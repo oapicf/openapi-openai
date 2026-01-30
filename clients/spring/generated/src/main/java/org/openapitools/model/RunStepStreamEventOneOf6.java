@@ -19,12 +19,12 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) expires.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires.
  */
 
-@Schema(name = "RunStepStreamEvent_oneOf_6", description = "Occurs when a [run step](/docs/api-reference/runs/step-object) expires.")
+@Schema(name = "RunStepStreamEvent_oneOf_6", description = "Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires.")
 @JsonTypeName("RunStepStreamEvent_oneOf_6")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStepStreamEventOneOf6 implements RunStepStreamEvent {
 
   /**

@@ -12,11 +12,3 @@ test_that("file_id", {
   # uncomment below to test the property
   #expect_equal(model.instance$`file_id`, "EXPECTED_RESULT")
 })
-
-test_that("quote", {
-  # tests for the property `quote` (character)
-  # The specific quote in the file.
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`quote`, "EXPECTED_RESULT")
-})

@@ -18,7 +18,7 @@ class ChatCompletionRequestMessageContentPartImageImageUrl
     public $url;
 
     /**
-     * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+     * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
      * @DTA\Data(field="detail", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      * @var string|null

@@ -18,6 +18,10 @@ module CreateModerationResponseResultsInnerCategories =
     Harassment : bool;
     [<JsonProperty(PropertyName = "harassment/threatening")>]
     HarassmentThreatening : bool;
+    [<JsonProperty(PropertyName = "illicit")>]
+    Illicit : bool;
+    [<JsonProperty(PropertyName = "illicit/violent")>]
+    IllicitViolent : bool;
     [<JsonProperty(PropertyName = "self-harm")>]
     SelfHarm : bool;
     [<JsonProperty(PropertyName = "self-harm/intent")>]

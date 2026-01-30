@@ -56,8 +56,8 @@ class FilesApi(
     } ~
     path("files") { 
       get { 
-        parameters("purpose".as[String].?) { (purpose) => 
-            filesService.listFiles(purpose = purpose)
+        parameters("purpose".as[String].?, "limit".as[Int].?(10000), "order".as[String].?("desc"), "after".as[String].?) { (purpose, limit, order, after) => 
+            filesService.listFiles(purpose = purpose, limit = limit, order = order, after = after)
         }
       }
     } ~
@@ -99,7 +99,7 @@ trait FilesApiService {
   /**
    * Code: 200, Message: OK, DataType: ListFilesResponse
    */
-  def listFiles(purpose: Option[String])
+  def listFiles(purpose: Option[String], limit: Int, order: String, after: Option[String])
       (implicit toEntityMarshallerListFilesResponse: ToEntityMarshaller[ListFilesResponse]): Route
 
   def retrieveFile200(responseOpenAIFile: OpenAIFile)(implicit toEntityMarshallerOpenAIFile: ToEntityMarshaller[OpenAIFile]): Route =

@@ -12,6 +12,7 @@
     "model": "properties",
     "children": [
       {"model": "type" },
+      {"model": "json_schema" },
     ]
   }]
 }

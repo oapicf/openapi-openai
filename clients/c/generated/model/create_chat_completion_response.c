@@ -4,6 +4,23 @@
 #include "create_chat_completion_response.h"
 
 
+char* create_chat_completion_response_service_tier_ToString(openai_api_create_chat_completion_response_SERVICETIER_e service_tier) {
+    char* service_tierArray[] =  { "NULL", "scale", "default" };
+    return service_tierArray[service_tier];
+}
+
+openai_api_create_chat_completion_response_SERVICETIER_e create_chat_completion_response_service_tier_FromString(char* service_tier){
+    int stringToReturn = 0;
+    char *service_tierArray[] =  { "NULL", "scale", "default" };
+    size_t sizeofArray = sizeof(service_tierArray) / sizeof(service_tierArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(service_tier, service_tierArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 char* create_chat_completion_response_object_ToString(openai_api_create_chat_completion_response_OBJECT_e object) {
     char* objectArray[] =  { "NULL", "chat.completion" };
     return objectArray[object];
@@ -27,6 +44,7 @@ static create_chat_completion_response_t *create_chat_completion_response_create
     list_t *choices,
     int created,
     char *model,
+    openai_api_create_chat_completion_response_SERVICETIER_e service_tier,
     char *system_fingerprint,
     openai_api_create_chat_completion_response_OBJECT_e object,
     completion_usage_t *usage
@@ -39,6 +57,7 @@ static create_chat_completion_response_t *create_chat_completion_response_create
     create_chat_completion_response_local_var->choices = choices;
     create_chat_completion_response_local_var->created = created;
     create_chat_completion_response_local_var->model = model;
+    create_chat_completion_response_local_var->service_tier = service_tier;
     create_chat_completion_response_local_var->system_fingerprint = system_fingerprint;
     create_chat_completion_response_local_var->object = object;
     create_chat_completion_response_local_var->usage = usage;
@@ -52,6 +71,7 @@ __attribute__((deprecated)) create_chat_completion_response_t *create_chat_compl
     list_t *choices,
     int created,
     char *model,
+    openai_api_create_chat_completion_response_SERVICETIER_e service_tier,
     char *system_fingerprint,
     openai_api_create_chat_completion_response_OBJECT_e object,
     completion_usage_t *usage
@@ -61,6 +81,7 @@ __attribute__((deprecated)) create_chat_completion_response_t *create_chat_compl
         choices,
         created,
         model,
+        service_tier,
         system_fingerprint,
         object,
         usage
@@ -150,6 +171,15 @@ cJSON *create_chat_completion_response_convertToJSON(create_chat_completion_resp
     }
     if(cJSON_AddStringToObject(item, "model", create_chat_completion_response->model) == NULL) {
     goto fail; //String
+    }
+
+
+    // create_chat_completion_response->service_tier
+    if(create_chat_completion_response->service_tier != openai_api_create_chat_completion_response_SERVICETIER_NULL) {
+    if(cJSON_AddStringToObject(item, "service_tier", create_chat_completion_response_service_tier_ToString(create_chat_completion_response->service_tier)) == NULL)
+    {
+    goto fail; //Enum
+    }
     }
 
 
@@ -273,6 +303,20 @@ create_chat_completion_response_t *create_chat_completion_response_parseFromJSON
     goto end; //String
     }
 
+    // create_chat_completion_response->service_tier
+    cJSON *service_tier = cJSON_GetObjectItemCaseSensitive(create_chat_completion_responseJSON, "service_tier");
+    if (cJSON_IsNull(service_tier)) {
+        service_tier = NULL;
+    }
+    openai_api_create_chat_completion_response_SERVICETIER_e service_tierVariable;
+    if (service_tier) { 
+    if(!cJSON_IsString(service_tier))
+    {
+    goto end; //Enum
+    }
+    service_tierVariable = create_chat_completion_response_service_tier_FromString(service_tier->valuestring);
+    }
+
     // create_chat_completion_response->system_fingerprint
     cJSON *system_fingerprint = cJSON_GetObjectItemCaseSensitive(create_chat_completion_responseJSON, "system_fingerprint");
     if (cJSON_IsNull(system_fingerprint)) {
@@ -317,6 +361,7 @@ create_chat_completion_response_t *create_chat_completion_response_parseFromJSON
         choicesList,
         created->valuedouble,
         strdup(model->valuestring),
+        service_tier ? service_tierVariable : openai_api_create_chat_completion_response_SERVICETIER_NULL,
         system_fingerprint && !cJSON_IsNull(system_fingerprint) ? strdup(system_fingerprint->valuestring) : NULL,
         objectVariable,
         usage ? usage_local_nonprim : NULL

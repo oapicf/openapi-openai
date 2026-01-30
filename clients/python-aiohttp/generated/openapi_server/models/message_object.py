@@ -5,6 +5,7 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
+from openapi_server.models.create_message_request_attachments_inner import CreateMessageRequestAttachmentsInner
 from openapi_server.models.message_object_content_inner import MessageObjectContentInner
 from openapi_server.models.message_object_incomplete_details import MessageObjectIncompleteDetails
 from openapi_server import util
@@ -16,7 +17,7 @@ class MessageObject(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, object: str=None, created_at: int=None, thread_id: str=None, status: str=None, incomplete_details: MessageObjectIncompleteDetails=None, completed_at: int=None, incomplete_at: int=None, role: str=None, content: List[MessageObjectContentInner]=None, assistant_id: str=None, run_id: str=None, file_ids: List[str]=[], metadata: object=None):
+    def __init__(self, id: str=None, object: str=None, created_at: int=None, thread_id: str=None, status: str=None, incomplete_details: MessageObjectIncompleteDetails=None, completed_at: int=None, incomplete_at: int=None, role: str=None, content: List[MessageObjectContentInner]=None, assistant_id: str=None, run_id: str=None, attachments: List[CreateMessageRequestAttachmentsInner]=None, metadata: object=None):
         """MessageObject - a model defined in OpenAPI
 
         :param id: The id of this MessageObject.
@@ -31,7 +32,7 @@ class MessageObject(Model):
         :param content: The content of this MessageObject.
         :param assistant_id: The assistant_id of this MessageObject.
         :param run_id: The run_id of this MessageObject.
-        :param file_ids: The file_ids of this MessageObject.
+        :param attachments: The attachments of this MessageObject.
         :param metadata: The metadata of this MessageObject.
         """
         self.openapi_types = {
@@ -47,7 +48,7 @@ class MessageObject(Model):
             'content': List[MessageObjectContentInner],
             'assistant_id': str,
             'run_id': str,
-            'file_ids': List[str],
+            'attachments': List[CreateMessageRequestAttachmentsInner],
             'metadata': object
         }
 
@@ -64,7 +65,7 @@ class MessageObject(Model):
             'content': 'content',
             'assistant_id': 'assistant_id',
             'run_id': 'run_id',
-            'file_ids': 'file_ids',
+            'attachments': 'attachments',
             'metadata': 'metadata'
         }
 
@@ -80,7 +81,7 @@ class MessageObject(Model):
         self._content = content
         self._assistant_id = assistant_id
         self._run_id = run_id
-        self._file_ids = file_ids
+        self._attachments = attachments
         self._metadata = metadata
 
     @classmethod
@@ -403,37 +404,35 @@ class MessageObject(Model):
         self._run_id = run_id
 
     @property
-    def file_ids(self):
-        """Gets the file_ids of this MessageObject.
+    def attachments(self):
+        """Gets the attachments of this MessageObject.
 
-        A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
+        A list of files attached to the message, and the tools they were added to.
 
-        :return: The file_ids of this MessageObject.
-        :rtype: List[str]
+        :return: The attachments of this MessageObject.
+        :rtype: List[CreateMessageRequestAttachmentsInner]
         """
-        return self._file_ids
+        return self._attachments
 
-    @file_ids.setter
-    def file_ids(self, file_ids):
-        """Sets the file_ids of this MessageObject.
+    @attachments.setter
+    def attachments(self, attachments):
+        """Sets the attachments of this MessageObject.
 
-        A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
+        A list of files attached to the message, and the tools they were added to.
 
-        :param file_ids: The file_ids of this MessageObject.
-        :type file_ids: List[str]
+        :param attachments: The attachments of this MessageObject.
+        :type attachments: List[CreateMessageRequestAttachmentsInner]
         """
-        if file_ids is None:
-            raise ValueError("Invalid value for `file_ids`, must not be `None`")
-        if file_ids is not None and len(file_ids) > 10:
-            raise ValueError("Invalid value for `file_ids`, number of items must be less than or equal to `10`")
+        if attachments is None:
+            raise ValueError("Invalid value for `attachments`, must not be `None`")
 
-        self._file_ids = file_ids
+        self._attachments = attachments
 
     @property
     def metadata(self):
         """Gets the metadata of this MessageObject.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
         :return: The metadata of this MessageObject.
         :rtype: object
@@ -444,7 +443,7 @@ class MessageObject(Model):
     def metadata(self, metadata):
         """Sets the metadata of this MessageObject.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
         :param metadata: The metadata of this MessageObject.
         :type metadata: object

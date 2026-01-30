@@ -40,6 +40,18 @@ void main() {
       // TODO
     });
 
+    // The score for the category 'illicit'.
+    // num illicit
+    test('to test the property `illicit`', () async {
+      // TODO
+    });
+
+    // The score for the category 'illicit/violent'.
+    // num illicitSlashViolent
+    test('to test the property `illicitSlashViolent`', () async {
+      // TODO
+    });
+
     // The score for the category 'self-harm'.
     // num selfHarm
     test('to test the property `selfHarm`', () async {

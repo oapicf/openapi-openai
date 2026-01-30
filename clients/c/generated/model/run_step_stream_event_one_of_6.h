@@ -1,7 +1,7 @@
 /*
  * run_step_stream_event_one_of_6.h
  *
- * Occurs when a [run step](/docs/api-reference/runs/step-object) expires.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) expires.
  */
 
 #ifndef _run_step_stream_event_one_of_6_H_

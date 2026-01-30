@@ -27,6 +27,7 @@ CreateChatCompletionResponse::__init()
 	//new std::list()std::list> choices;
 	//created = int(0);
 	//model = std::string();
+	//service_tier = std::string();
 	//system_fingerprint = std::string();
 	//object = std::string();
 	//usage = new CompletionUsage();
@@ -54,6 +55,11 @@ CreateChatCompletionResponse::__cleanup()
 	//
 	//delete model;
 	//model = NULL;
+	//}
+	//if(service_tier != NULL) {
+	//
+	//delete service_tier;
+	//service_tier = NULL;
 	//}
 	//if(system_fingerprint != NULL) {
 	//
@@ -131,6 +137,17 @@ CreateChatCompletionResponse::fromJson(char* jsonStr)
 
 		if (isprimitive("std::string")) {
 			jsonToValue(&model, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *service_tierKey = "service_tier";
+	node = json_object_get_member(pJsonObject, service_tierKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&service_tier, node, "std::string", "");
 		} else {
 			
 		}
@@ -236,6 +253,15 @@ CreateChatCompletionResponse::toJson()
 	const gchar *modelKey = "model";
 	json_object_set_member(pJsonObject, modelKey, node);
 	if (isprimitive("std::string")) {
+		std::string obj = getServiceTier();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *service_tierKey = "service_tier";
+	json_object_set_member(pJsonObject, service_tierKey, node);
+	if (isprimitive("std::string")) {
 		std::string obj = getSystemFingerprint();
 		node = converttoJson(&obj, "std::string", "");
 	}
@@ -321,6 +347,18 @@ void
 CreateChatCompletionResponse::setModel(std::string  model)
 {
 	this->model = model;
+}
+
+std::string
+CreateChatCompletionResponse::getServiceTier()
+{
+	return service_tier;
+}
+
+void
+CreateChatCompletionResponse::setServiceTier(std::string  service_tier)
+{
+	this->service_tier = service_tier;
 }
 
 std::string

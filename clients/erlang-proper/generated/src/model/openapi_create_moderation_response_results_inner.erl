@@ -12,6 +12,7 @@
   [ {'flagged', boolean() }
   | {'categories', openapi_create_moderation_response_results_inner_categories:openapi_create_moderation_response_results_inner_categories() }
   | {'category_scores', openapi_create_moderation_response_results_inner_category_scores:openapi_create_moderation_response_results_inner_category_scores() }
+  | {'category_applied_input_types', openapi_create_moderation_response_results_inner_category_applied_input_types:openapi_create_moderation_response_results_inner_category_applied_input_types() }
   ].
 
 
@@ -22,6 +23,7 @@ openapi_create_moderation_response_results_inner(Fields) ->
   Default = [ {'flagged', boolean() }
             , {'categories', openapi_create_moderation_response_results_inner_categories:openapi_create_moderation_response_results_inner_categories() }
             , {'category_scores', openapi_create_moderation_response_results_inner_category_scores:openapi_create_moderation_response_results_inner_category_scores() }
+            , {'category_applied_input_types', openapi_create_moderation_response_results_inner_category_applied_input_types:openapi_create_moderation_response_results_inner_category_applied_input_types() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

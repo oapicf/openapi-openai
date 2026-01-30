@@ -11,6 +11,14 @@ use Articus\DataTransfer\Annotation as DTA;
 class AssistantStreamEvent
 {
     /**
+     * Whether to enable input audio transcription.
+     * @DTA\Data(field="enabled", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"bool"})
+     * @var bool|null
+     */
+    public $enabled;
+
+    /**
      * @DTA\Data(field="event")
      * @DTA\Validator(name="Scalar", options={"type":"string"})
      * @var string|null

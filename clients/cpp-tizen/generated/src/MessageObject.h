@@ -9,6 +9,7 @@
 
 
 #include <string>
+#include "CreateMessageRequest_attachments_inner.h"
 #include "MessageObject_content_inner.h"
 #include "MessageObject_incomplete_details.h"
 #include <list>
@@ -132,18 +133,18 @@ public:
 	/*! \brief Set The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.
 	 */
 	void setRunId(std::string  run_id);
-	/*! \brief Get A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
+	/*! \brief Get A list of files attached to the message, and the tools they were added to.
 	 */
-	std::list<std::string> getFileIds();
+	std::list<CreateMessageRequest_attachments_inner> getAttachments();
 
-	/*! \brief Set A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
+	/*! \brief Set A list of files attached to the message, and the tools they were added to.
 	 */
-	void setFileIds(std::list <std::string> file_ids);
-	/*! \brief Get Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	void setAttachments(std::list <CreateMessageRequest_attachments_inner> attachments);
+	/*! \brief Get Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	 */
 	std::string getMetadata();
 
-	/*! \brief Set Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	/*! \brief Set Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	 */
 	void setMetadata(std::string  metadata);
 
@@ -160,7 +161,7 @@ private:
 	std::list <MessageObject_content_inner>content;
 	std::string assistant_id;
 	std::string run_id;
-	std::list <std::string>file_ids;
+	std::list <CreateMessageRequest_attachments_inner>attachments;
 	std::string metadata;
 	void __init();
 	void __cleanup();

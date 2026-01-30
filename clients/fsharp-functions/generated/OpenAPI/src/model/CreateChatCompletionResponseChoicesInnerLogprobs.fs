@@ -13,6 +13,8 @@ module CreateChatCompletionResponseChoicesInnerLogprobs =
   type CreateChatCompletionResponseChoicesInnerLogprobs = {
     [<JsonProperty(PropertyName = "content")>]
     Content : ChatCompletionTokenLogprob[];
+    [<JsonProperty(PropertyName = "refusal")>]
+    Refusal : ChatCompletionTokenLogprob[];
   }
 
   //#endregion

@@ -9,13 +9,13 @@ All URIs are relative to *https://api.openai.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_moderation**](ModerationsApi.md#create_moderation) | **POST** /moderations | Classifies if text is potentially harmful.
+[**create_moderation**](ModerationsApi.md#create_moderation) | **POST** /moderations | Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 
 # **create_moderation**
 > CreateModerationResponse create_moderation(create_moderation_request => $create_moderation_request)
 
-Classifies if text is potentially harmful.
+Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 ### Example
 ```perl

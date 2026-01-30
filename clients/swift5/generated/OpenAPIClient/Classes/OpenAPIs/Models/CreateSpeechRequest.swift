@@ -29,18 +29,18 @@ public struct CreateSpeechRequest: Codable, JSONEncodable, Hashable {
         case pcm = "pcm"
     }
     public static let inputRule = StringRule(minLength: nil, maxLength: 4096, pattern: nil)
-    public static let speedRule = NumericRule<Double>(minimum: 0.25, exclusiveMinimum: false, maximum: 4.0, exclusiveMaximum: false, multipleOf: nil)
+    public static let speedRule = NumericRule<Double>(minimum: 0.25, exclusiveMinimum: false, maximum: 4, exclusiveMaximum: false, multipleOf: nil)
     public var model: CreateSpeechRequestModel
     /** The text to generate audio for. The maximum length is 4096 characters. */
     public var input: String
-    /** The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech/voice-options). */
+    /** The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options). */
     public var voice: Voice
     /** The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`. */
     public var responseFormat: ResponseFormat? = .mp3
     /** The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default. */
-    public var speed: Double? = 1.0
+    public var speed: Double? = 1
 
-    public init(model: CreateSpeechRequestModel, input: String, voice: Voice, responseFormat: ResponseFormat? = .mp3, speed: Double? = 1.0) {
+    public init(model: CreateSpeechRequestModel, input: String, voice: Voice, responseFormat: ResponseFormat? = .mp3, speed: Double? = 1) {
         self.model = model
         self.input = input
         self.voice = voice

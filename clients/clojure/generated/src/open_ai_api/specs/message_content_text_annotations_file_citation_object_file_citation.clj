@@ -8,7 +8,6 @@
 (def message-content-text-annotations-file-citation-object-file-citation-data
   {
    (ds/req :file_id) string?
-   (ds/req :quote) string?
    })
 
 (def message-content-text-annotations-file-citation-object-file-citation-spec

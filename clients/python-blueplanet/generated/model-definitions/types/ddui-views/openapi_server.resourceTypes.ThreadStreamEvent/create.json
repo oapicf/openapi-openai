@@ -11,6 +11,7 @@
     "label": "Details",
     "model": "properties",
     "children": [
+      {"model": "enabled" },
       {"model": "event" },
       {"model": "data" },
     ]

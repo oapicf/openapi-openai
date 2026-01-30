@@ -2,22 +2,27 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.openapitools.model.ChatCompletionRequestSystemMessageContent;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. 
+ */
+@ApiModel(description="Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. ")
 
 public class ChatCompletionRequestSystemMessage  {
   
- /**
-  * The contents of the system message.
-  */
-  @ApiModelProperty(required = true, value = "The contents of the system message.")
+  @ApiModelProperty(required = true, value = "")
 
-  private String content;
+  @Valid
+
+  private ChatCompletionRequestSystemMessageContent content;
 
 public enum RoleEnum {
 
@@ -65,20 +70,20 @@ SYSTEM(String.valueOf("system"));
 
   private String name;
  /**
-   * The contents of the system message.
+   * Get content
    * @return content
   **/
   @JsonProperty("content")
   @NotNull
-  public String getContent() {
+  public ChatCompletionRequestSystemMessageContent getContent() {
     return content;
   }
 
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestSystemMessageContent content) {
     this.content = content;
   }
 
-  public ChatCompletionRequestSystemMessage content(String content) {
+  public ChatCompletionRequestSystemMessage content(ChatCompletionRequestSystemMessageContent content) {
     this.content = content;
     return this;
   }

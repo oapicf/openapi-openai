@@ -16,16 +16,30 @@ resourceTypes {
     description = ListFilesResponse
     derivedFrom = Root
     properties {
+        object {
+          type =  string
+          description = ""
+          optional = true
+        }
         data {
           type = array
           items.type = OpenAIFile
           description = ""
           optional = true
         }
-        object {
+        first_id {
           type =  string
           description = ""
-          enum = ["list"]
+          optional = true
+        }
+        last_id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        has_more {
+          type =  boolean
+          description = ""
           optional = true
         }
     }

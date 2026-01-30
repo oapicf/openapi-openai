@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.openapitools.model.CreateModerationResponseResultsInnerCategories;
+import org.openapitools.model.CreateModerationResponseResultsInnerCategoryAppliedInputTypes;
 import org.openapitools.model.CreateModerationResponseResultsInnerCategoryScores;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
@@ -44,6 +45,14 @@ public class CreateModerationResponseResultsInnerTest {
     @Test
     public void categoryScoresTest() {
         // TODO: test categoryScores
+    }
+
+    /**
+     * Test the property 'categoryAppliedInputTypes'
+     */
+    @Test
+    public void categoryAppliedInputTypesTest() {
+        // TODO: test categoryAppliedInputTypes
     }
 
 }

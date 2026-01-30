@@ -1,0 +1,48 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "RealtimeConversationItemContentInner",
+  "fields": [
+    {
+      "name": "type",
+      "type": ["null", {
+        "type": "enum",
+        "name": "RealtimeConversationItemContentInner_type",
+        "symbols": [
+          "input_audio",
+          "input_text",
+          "item_reference",
+          "text"
+        ]
+      }],
+      "doc": "The content type (`input_text`, `input_audio`, `item_reference`, `text`). ",
+      "default": null
+    },
+    {
+      "name": "text",
+      "type": ["null", "string"],
+      "doc": "The text content, used for `input_text` and `text` content types. ",
+      "default": null
+    },
+    {
+      "name": "id",
+      "type": ["null", "string"],
+      "doc": "ID of a previous conversation item to reference (for `item_reference` content types in `response.create` events). These can reference both client and server created items. ",
+      "default": null
+    },
+    {
+      "name": "audio",
+      "type": ["null", "string"],
+      "doc": "Base64-encoded audio bytes, used for `input_audio` content type. ",
+      "default": null
+    },
+    {
+      "name": "transcript",
+      "type": ["null", "string"],
+      "doc": "The transcript of the audio, used for `input_audio` content type. ",
+      "default": null
+    }
+  ]
+
+}

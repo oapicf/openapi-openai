@@ -21,24 +21,19 @@ import scalaz.concurrent.Task
 
 import HelperCodecs._
 
-import org.openapitools.client.api.AssistantFileObject
 import org.openapitools.client.api.AssistantObject
-import org.openapitools.client.api.CreateAssistantFileRequest
 import org.openapitools.client.api.CreateAssistantRequest
 import org.openapitools.client.api.CreateMessageRequest
 import org.openapitools.client.api.CreateRunRequest
 import org.openapitools.client.api.CreateThreadAndRunRequest
 import org.openapitools.client.api.CreateThreadRequest
-import org.openapitools.client.api.DeleteAssistantFileResponse
 import org.openapitools.client.api.DeleteAssistantResponse
+import org.openapitools.client.api.DeleteMessageResponse
 import org.openapitools.client.api.DeleteThreadResponse
-import org.openapitools.client.api.ListAssistantFilesResponse
 import org.openapitools.client.api.ListAssistantsResponse
-import org.openapitools.client.api.ListMessageFilesResponse
 import org.openapitools.client.api.ListMessagesResponse
 import org.openapitools.client.api.ListRunStepsResponse
 import org.openapitools.client.api.ListRunsResponse
-import org.openapitools.client.api.MessageFileObject
 import org.openapitools.client.api.MessageObject
 import org.openapitools.client.api.ModifyAssistantRequest
 import org.openapitools.client.api.ModifyMessageRequest
@@ -97,27 +92,6 @@ object AssistantsApi {
     } yield resp
   }
 
-  def createAssistantFile(host: String, assistantId: String, createAssistantFileRequest: CreateAssistantFileRequest): Task[AssistantFileObject] = {
-    implicit val returnTypeDecoder: EntityDecoder[AssistantFileObject] = jsonOf[AssistantFileObject]
-
-    val path = "/assistants/{assistant_id}/files".replaceAll("\\{" + "assistant_id" + "\\}",escape(assistantId.toString))
-
-    val httpMethod = Method.POST
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      )
-
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(host + path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(createAssistantFileRequest)
-      resp          <- client.expect[AssistantFileObject](req)
-
-    } yield resp
-  }
-
   def createMessage(host: String, threadId: String, createMessageRequest: CreateMessageRequest): Task[MessageObject] = {
     implicit val returnTypeDecoder: EntityDecoder[MessageObject] = jsonOf[MessageObject]
 
@@ -139,7 +113,7 @@ object AssistantsApi {
     } yield resp
   }
 
-  def createRun(host: String, threadId: String, createRunRequest: CreateRunRequest): Task[RunObject] = {
+  def createRun(host: String, threadId: String, createRunRequest: CreateRunRequest, include: List[String] = List.empty[String] )(implicit includeQuery: QueryParam[List[String]]): Task[RunObject] = {
     implicit val returnTypeDecoder: EntityDecoder[RunObject] = jsonOf[RunObject]
 
     val path = "/threads/{thread_id}/runs".replaceAll("\\{" + "thread_id" + "\\}",escape(threadId.toString))
@@ -149,7 +123,7 @@ object AssistantsApi {
     val headers = Headers(
       )
     val queryParams = Query(
-      )
+      ("include", Some(include[]Query.toParamString(include[]))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
@@ -223,10 +197,10 @@ object AssistantsApi {
     } yield resp
   }
 
-  def deleteAssistantFile(host: String, assistantId: String, fileId: String): Task[DeleteAssistantFileResponse] = {
-    implicit val returnTypeDecoder: EntityDecoder[DeleteAssistantFileResponse] = jsonOf[DeleteAssistantFileResponse]
+  def deleteMessage(host: String, threadId: String, messageId: String): Task[DeleteMessageResponse] = {
+    implicit val returnTypeDecoder: EntityDecoder[DeleteMessageResponse] = jsonOf[DeleteMessageResponse]
 
-    val path = "/assistants/{assistant_id}/files/{file_id}".replaceAll("\\{" + "assistant_id" + "\\}",escape(assistantId.toString)).replaceAll("\\{" + "file_id" + "\\}",escape(fileId.toString))
+    val path = "/threads/{thread_id}/messages/{message_id}".replaceAll("\\{" + "thread_id" + "\\}",escape(threadId.toString)).replaceAll("\\{" + "message_id" + "\\}",escape(messageId.toString))
 
     val httpMethod = Method.DELETE
     val contentType = `Content-Type`(MediaType.`application/json`)
@@ -239,7 +213,7 @@ object AssistantsApi {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
       uriWithParams =  uri.copy(query = queryParams)
       req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[DeleteAssistantFileResponse](req)
+      resp          <- client.expect[DeleteMessageResponse](req)
 
     } yield resp
   }
@@ -286,27 +260,6 @@ object AssistantsApi {
     } yield resp
   }
 
-  def getAssistantFile(host: String, assistantId: String, fileId: String): Task[AssistantFileObject] = {
-    implicit val returnTypeDecoder: EntityDecoder[AssistantFileObject] = jsonOf[AssistantFileObject]
-
-    val path = "/assistants/{assistant_id}/files/{file_id}".replaceAll("\\{" + "assistant_id" + "\\}",escape(assistantId.toString)).replaceAll("\\{" + "file_id" + "\\}",escape(fileId.toString))
-
-    val httpMethod = Method.GET
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      )
-
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(host + path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[AssistantFileObject](req)
-
-    } yield resp
-  }
-
   def getMessage(host: String, threadId: String, messageId: String): Task[MessageObject] = {
     implicit val returnTypeDecoder: EntityDecoder[MessageObject] = jsonOf[MessageObject]
 
@@ -324,27 +277,6 @@ object AssistantsApi {
       uriWithParams =  uri.copy(query = queryParams)
       req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
       resp          <- client.expect[MessageObject](req)
-
-    } yield resp
-  }
-
-  def getMessageFile(host: String, threadId: String, messageId: String, fileId: String): Task[MessageFileObject] = {
-    implicit val returnTypeDecoder: EntityDecoder[MessageFileObject] = jsonOf[MessageFileObject]
-
-    val path = "/threads/{thread_id}/messages/{message_id}/files/{file_id}".replaceAll("\\{" + "thread_id" + "\\}",escape(threadId.toString)).replaceAll("\\{" + "message_id" + "\\}",escape(messageId.toString)).replaceAll("\\{" + "file_id" + "\\}",escape(fileId.toString))
-
-    val httpMethod = Method.GET
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      )
-
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(host + path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[MessageFileObject](req)
 
     } yield resp
   }
@@ -370,7 +302,7 @@ object AssistantsApi {
     } yield resp
   }
 
-  def getRunStep(host: String, threadId: String, runId: String, stepId: String): Task[RunStepObject] = {
+  def getRunStep(host: String, threadId: String, runId: String, stepId: String, include: List[String] = List.empty[String] )(implicit includeQuery: QueryParam[List[String]]): Task[RunStepObject] = {
     implicit val returnTypeDecoder: EntityDecoder[RunStepObject] = jsonOf[RunStepObject]
 
     val path = "/threads/{thread_id}/runs/{run_id}/steps/{step_id}".replaceAll("\\{" + "thread_id" + "\\}",escape(threadId.toString)).replaceAll("\\{" + "run_id" + "\\}",escape(runId.toString)).replaceAll("\\{" + "step_id" + "\\}",escape(stepId.toString))
@@ -380,7 +312,7 @@ object AssistantsApi {
     val headers = Headers(
       )
     val queryParams = Query(
-      )
+      ("include", Some(include[]Query.toParamString(include[]))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
@@ -412,27 +344,6 @@ object AssistantsApi {
     } yield resp
   }
 
-  def listAssistantFiles(host: String, assistantId: String, limit: Integer = 20, order: String = desc, after: String, before: String)(implicit limitQuery: QueryParam[Integer], orderQuery: QueryParam[String], afterQuery: QueryParam[String], beforeQuery: QueryParam[String]): Task[ListAssistantFilesResponse] = {
-    implicit val returnTypeDecoder: EntityDecoder[ListAssistantFilesResponse] = jsonOf[ListAssistantFilesResponse]
-
-    val path = "/assistants/{assistant_id}/files".replaceAll("\\{" + "assistant_id" + "\\}",escape(assistantId.toString))
-
-    val httpMethod = Method.GET
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      ("limit", Some(limitQuery.toParamString(limit))), ("order", Some(orderQuery.toParamString(order))), ("after", Some(afterQuery.toParamString(after))), ("before", Some(beforeQuery.toParamString(before))))
-
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(host + path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[ListAssistantFilesResponse](req)
-
-    } yield resp
-  }
-
   def listAssistants(host: String, limit: Integer = 20, order: String = desc, after: String, before: String)(implicit limitQuery: QueryParam[Integer], orderQuery: QueryParam[String], afterQuery: QueryParam[String], beforeQuery: QueryParam[String]): Task[ListAssistantsResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[ListAssistantsResponse] = jsonOf[ListAssistantsResponse]
 
@@ -450,27 +361,6 @@ object AssistantsApi {
       uriWithParams =  uri.copy(query = queryParams)
       req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
       resp          <- client.expect[ListAssistantsResponse](req)
-
-    } yield resp
-  }
-
-  def listMessageFiles(host: String, threadId: String, messageId: String, limit: Integer = 20, order: String = desc, after: String, before: String)(implicit limitQuery: QueryParam[Integer], orderQuery: QueryParam[String], afterQuery: QueryParam[String], beforeQuery: QueryParam[String]): Task[ListMessageFilesResponse] = {
-    implicit val returnTypeDecoder: EntityDecoder[ListMessageFilesResponse] = jsonOf[ListMessageFilesResponse]
-
-    val path = "/threads/{thread_id}/messages/{message_id}/files".replaceAll("\\{" + "thread_id" + "\\}",escape(threadId.toString)).replaceAll("\\{" + "message_id" + "\\}",escape(messageId.toString))
-
-    val httpMethod = Method.GET
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      ("limit", Some(limitQuery.toParamString(limit))), ("order", Some(orderQuery.toParamString(order))), ("after", Some(afterQuery.toParamString(after))), ("before", Some(beforeQuery.toParamString(before))))
-
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(host + path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[ListMessageFilesResponse](req)
 
     } yield resp
   }
@@ -496,7 +386,7 @@ object AssistantsApi {
     } yield resp
   }
 
-  def listRunSteps(host: String, threadId: String, runId: String, limit: Integer = 20, order: String = desc, after: String, before: String)(implicit limitQuery: QueryParam[Integer], orderQuery: QueryParam[String], afterQuery: QueryParam[String], beforeQuery: QueryParam[String]): Task[ListRunStepsResponse] = {
+  def listRunSteps(host: String, threadId: String, runId: String, limit: Integer = 20, order: String = desc, after: String, before: String, include: List[String] = List.empty[String] )(implicit limitQuery: QueryParam[Integer], orderQuery: QueryParam[String], afterQuery: QueryParam[String], beforeQuery: QueryParam[String], includeQuery: QueryParam[List[String]]): Task[ListRunStepsResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[ListRunStepsResponse] = jsonOf[ListRunStepsResponse]
 
     val path = "/threads/{thread_id}/runs/{run_id}/steps".replaceAll("\\{" + "thread_id" + "\\}",escape(threadId.toString)).replaceAll("\\{" + "run_id" + "\\}",escape(runId.toString))
@@ -506,7 +396,7 @@ object AssistantsApi {
     val headers = Headers(
       )
     val queryParams = Query(
-      ("limit", Some(limitQuery.toParamString(limit))), ("order", Some(orderQuery.toParamString(order))), ("after", Some(afterQuery.toParamString(after))), ("before", Some(beforeQuery.toParamString(before))))
+      ("limit", Some(limitQuery.toParamString(limit))), ("order", Some(orderQuery.toParamString(order))), ("after", Some(afterQuery.toParamString(after))), ("before", Some(beforeQuery.toParamString(before))), ("include", Some(include[]Query.toParamString(include[]))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
@@ -692,27 +582,6 @@ class HttpServiceAssistantsApi(service: HttpService) {
     } yield resp
   }
 
-  def createAssistantFile(assistantId: String, createAssistantFileRequest: CreateAssistantFileRequest): Task[AssistantFileObject] = {
-    implicit val returnTypeDecoder: EntityDecoder[AssistantFileObject] = jsonOf[AssistantFileObject]
-
-    val path = "/assistants/{assistant_id}/files".replaceAll("\\{" + "assistant_id" + "\\}",escape(assistantId.toString))
-
-    val httpMethod = Method.POST
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      )
-
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(createAssistantFileRequest)
-      resp          <- client.expect[AssistantFileObject](req)
-
-    } yield resp
-  }
-
   def createMessage(threadId: String, createMessageRequest: CreateMessageRequest): Task[MessageObject] = {
     implicit val returnTypeDecoder: EntityDecoder[MessageObject] = jsonOf[MessageObject]
 
@@ -734,7 +603,7 @@ class HttpServiceAssistantsApi(service: HttpService) {
     } yield resp
   }
 
-  def createRun(threadId: String, createRunRequest: CreateRunRequest): Task[RunObject] = {
+  def createRun(threadId: String, createRunRequest: CreateRunRequest, include: List[String] = List.empty[String] )(implicit includeQuery: QueryParam[List[String]]): Task[RunObject] = {
     implicit val returnTypeDecoder: EntityDecoder[RunObject] = jsonOf[RunObject]
 
     val path = "/threads/{thread_id}/runs".replaceAll("\\{" + "thread_id" + "\\}",escape(threadId.toString))
@@ -744,7 +613,7 @@ class HttpServiceAssistantsApi(service: HttpService) {
     val headers = Headers(
       )
     val queryParams = Query(
-      )
+      ("include", Some(include[]Query.toParamString(include[]))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))
@@ -818,10 +687,10 @@ class HttpServiceAssistantsApi(service: HttpService) {
     } yield resp
   }
 
-  def deleteAssistantFile(assistantId: String, fileId: String): Task[DeleteAssistantFileResponse] = {
-    implicit val returnTypeDecoder: EntityDecoder[DeleteAssistantFileResponse] = jsonOf[DeleteAssistantFileResponse]
+  def deleteMessage(threadId: String, messageId: String): Task[DeleteMessageResponse] = {
+    implicit val returnTypeDecoder: EntityDecoder[DeleteMessageResponse] = jsonOf[DeleteMessageResponse]
 
-    val path = "/assistants/{assistant_id}/files/{file_id}".replaceAll("\\{" + "assistant_id" + "\\}",escape(assistantId.toString)).replaceAll("\\{" + "file_id" + "\\}",escape(fileId.toString))
+    val path = "/threads/{thread_id}/messages/{message_id}".replaceAll("\\{" + "thread_id" + "\\}",escape(threadId.toString)).replaceAll("\\{" + "message_id" + "\\}",escape(messageId.toString))
 
     val httpMethod = Method.DELETE
     val contentType = `Content-Type`(MediaType.`application/json`)
@@ -834,7 +703,7 @@ class HttpServiceAssistantsApi(service: HttpService) {
       uri           <- Task.fromDisjunction(Uri.fromString(path))
       uriWithParams =  uri.copy(query = queryParams)
       req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[DeleteAssistantFileResponse](req)
+      resp          <- client.expect[DeleteMessageResponse](req)
 
     } yield resp
   }
@@ -881,27 +750,6 @@ class HttpServiceAssistantsApi(service: HttpService) {
     } yield resp
   }
 
-  def getAssistantFile(assistantId: String, fileId: String): Task[AssistantFileObject] = {
-    implicit val returnTypeDecoder: EntityDecoder[AssistantFileObject] = jsonOf[AssistantFileObject]
-
-    val path = "/assistants/{assistant_id}/files/{file_id}".replaceAll("\\{" + "assistant_id" + "\\}",escape(assistantId.toString)).replaceAll("\\{" + "file_id" + "\\}",escape(fileId.toString))
-
-    val httpMethod = Method.GET
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      )
-
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[AssistantFileObject](req)
-
-    } yield resp
-  }
-
   def getMessage(threadId: String, messageId: String): Task[MessageObject] = {
     implicit val returnTypeDecoder: EntityDecoder[MessageObject] = jsonOf[MessageObject]
 
@@ -919,27 +767,6 @@ class HttpServiceAssistantsApi(service: HttpService) {
       uriWithParams =  uri.copy(query = queryParams)
       req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
       resp          <- client.expect[MessageObject](req)
-
-    } yield resp
-  }
-
-  def getMessageFile(threadId: String, messageId: String, fileId: String): Task[MessageFileObject] = {
-    implicit val returnTypeDecoder: EntityDecoder[MessageFileObject] = jsonOf[MessageFileObject]
-
-    val path = "/threads/{thread_id}/messages/{message_id}/files/{file_id}".replaceAll("\\{" + "thread_id" + "\\}",escape(threadId.toString)).replaceAll("\\{" + "message_id" + "\\}",escape(messageId.toString)).replaceAll("\\{" + "file_id" + "\\}",escape(fileId.toString))
-
-    val httpMethod = Method.GET
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      )
-
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[MessageFileObject](req)
 
     } yield resp
   }
@@ -965,7 +792,7 @@ class HttpServiceAssistantsApi(service: HttpService) {
     } yield resp
   }
 
-  def getRunStep(threadId: String, runId: String, stepId: String): Task[RunStepObject] = {
+  def getRunStep(threadId: String, runId: String, stepId: String, include: List[String] = List.empty[String] )(implicit includeQuery: QueryParam[List[String]]): Task[RunStepObject] = {
     implicit val returnTypeDecoder: EntityDecoder[RunStepObject] = jsonOf[RunStepObject]
 
     val path = "/threads/{thread_id}/runs/{run_id}/steps/{step_id}".replaceAll("\\{" + "thread_id" + "\\}",escape(threadId.toString)).replaceAll("\\{" + "run_id" + "\\}",escape(runId.toString)).replaceAll("\\{" + "step_id" + "\\}",escape(stepId.toString))
@@ -975,7 +802,7 @@ class HttpServiceAssistantsApi(service: HttpService) {
     val headers = Headers(
       )
     val queryParams = Query(
-      )
+      ("include", Some(include[]Query.toParamString(include[]))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))
@@ -1007,27 +834,6 @@ class HttpServiceAssistantsApi(service: HttpService) {
     } yield resp
   }
 
-  def listAssistantFiles(assistantId: String, limit: Integer = 20, order: String = desc, after: String, before: String)(implicit limitQuery: QueryParam[Integer], orderQuery: QueryParam[String], afterQuery: QueryParam[String], beforeQuery: QueryParam[String]): Task[ListAssistantFilesResponse] = {
-    implicit val returnTypeDecoder: EntityDecoder[ListAssistantFilesResponse] = jsonOf[ListAssistantFilesResponse]
-
-    val path = "/assistants/{assistant_id}/files".replaceAll("\\{" + "assistant_id" + "\\}",escape(assistantId.toString))
-
-    val httpMethod = Method.GET
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      ("limit", Some(limitQuery.toParamString(limit))), ("order", Some(orderQuery.toParamString(order))), ("after", Some(afterQuery.toParamString(after))), ("before", Some(beforeQuery.toParamString(before))))
-
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[ListAssistantFilesResponse](req)
-
-    } yield resp
-  }
-
   def listAssistants(limit: Integer = 20, order: String = desc, after: String, before: String)(implicit limitQuery: QueryParam[Integer], orderQuery: QueryParam[String], afterQuery: QueryParam[String], beforeQuery: QueryParam[String]): Task[ListAssistantsResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[ListAssistantsResponse] = jsonOf[ListAssistantsResponse]
 
@@ -1045,27 +851,6 @@ class HttpServiceAssistantsApi(service: HttpService) {
       uriWithParams =  uri.copy(query = queryParams)
       req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
       resp          <- client.expect[ListAssistantsResponse](req)
-
-    } yield resp
-  }
-
-  def listMessageFiles(threadId: String, messageId: String, limit: Integer = 20, order: String = desc, after: String, before: String)(implicit limitQuery: QueryParam[Integer], orderQuery: QueryParam[String], afterQuery: QueryParam[String], beforeQuery: QueryParam[String]): Task[ListMessageFilesResponse] = {
-    implicit val returnTypeDecoder: EntityDecoder[ListMessageFilesResponse] = jsonOf[ListMessageFilesResponse]
-
-    val path = "/threads/{thread_id}/messages/{message_id}/files".replaceAll("\\{" + "thread_id" + "\\}",escape(threadId.toString)).replaceAll("\\{" + "message_id" + "\\}",escape(messageId.toString))
-
-    val httpMethod = Method.GET
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      ("limit", Some(limitQuery.toParamString(limit))), ("order", Some(orderQuery.toParamString(order))), ("after", Some(afterQuery.toParamString(after))), ("before", Some(beforeQuery.toParamString(before))))
-
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[ListMessageFilesResponse](req)
 
     } yield resp
   }
@@ -1091,7 +876,7 @@ class HttpServiceAssistantsApi(service: HttpService) {
     } yield resp
   }
 
-  def listRunSteps(threadId: String, runId: String, limit: Integer = 20, order: String = desc, after: String, before: String)(implicit limitQuery: QueryParam[Integer], orderQuery: QueryParam[String], afterQuery: QueryParam[String], beforeQuery: QueryParam[String]): Task[ListRunStepsResponse] = {
+  def listRunSteps(threadId: String, runId: String, limit: Integer = 20, order: String = desc, after: String, before: String, include: List[String] = List.empty[String] )(implicit limitQuery: QueryParam[Integer], orderQuery: QueryParam[String], afterQuery: QueryParam[String], beforeQuery: QueryParam[String], includeQuery: QueryParam[List[String]]): Task[ListRunStepsResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[ListRunStepsResponse] = jsonOf[ListRunStepsResponse]
 
     val path = "/threads/{thread_id}/runs/{run_id}/steps".replaceAll("\\{" + "thread_id" + "\\}",escape(threadId.toString)).replaceAll("\\{" + "run_id" + "\\}",escape(runId.toString))
@@ -1101,7 +886,7 @@ class HttpServiceAssistantsApi(service: HttpService) {
     val headers = Headers(
       )
     val queryParams = Query(
-      ("limit", Some(limitQuery.toParamString(limit))), ("order", Some(orderQuery.toParamString(order))), ("after", Some(afterQuery.toParamString(after))), ("before", Some(beforeQuery.toParamString(before))))
+      ("limit", Some(limitQuery.toParamString(limit))), ("order", Some(orderQuery.toParamString(order))), ("after", Some(afterQuery.toParamString(after))), ("before", Some(beforeQuery.toParamString(before))), ("include", Some(include[]Query.toParamString(include[]))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))

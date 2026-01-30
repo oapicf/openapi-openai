@@ -13,14 +13,14 @@ import AnyCodable
 /** The contents of the user message.  */
 public enum ChatCompletionRequestUserMessageContent: Codable, JSONEncodable, Hashable {
     case typeString(String)
-    case type[ChatCompletionRequestMessageContentPart]([ChatCompletionRequestMessageContentPart])
+    case type[ChatCompletionRequestUserMessageContentPart]([ChatCompletionRequestUserMessageContentPart])
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .typeString(let value):
             try container.encode(value)
-        case .type[ChatCompletionRequestMessageContentPart](let value):
+        case .type[ChatCompletionRequestUserMessageContentPart](let value):
             try container.encode(value)
         }
     }
@@ -29,8 +29,8 @@ public enum ChatCompletionRequestUserMessageContent: Codable, JSONEncodable, Has
         let container = try decoder.singleValueContainer()
         if let value = try? container.decode(String.self) {
             self = .typeString(value)
-        } else if let value = try? container.decode([ChatCompletionRequestMessageContentPart].self) {
-            self = .type[ChatCompletionRequestMessageContentPart](value)
+        } else if let value = try? container.decode([ChatCompletionRequestUserMessageContentPart].self) {
+            self = .type[ChatCompletionRequestUserMessageContentPart](value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of ChatCompletionRequestUserMessageContent"))
         }

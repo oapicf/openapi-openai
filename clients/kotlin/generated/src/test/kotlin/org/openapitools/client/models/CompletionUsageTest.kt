@@ -19,6 +19,8 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.CompletionUsage
+import org.openapitools.client.models.CompletionUsageCompletionTokensDetails
+import org.openapitools.client.models.CompletionUsagePromptTokensDetails
 
 class CompletionUsageTest : ShouldSpec() {
     init {
@@ -41,6 +43,18 @@ class CompletionUsageTest : ShouldSpec() {
         should("test totalTokens") {
             // uncomment below to test the property
             //modelInstance.totalTokens shouldBe ("TODO")
+        }
+
+        // to test the property `completionTokensDetails`
+        should("test completionTokensDetails") {
+            // uncomment below to test the property
+            //modelInstance.completionTokensDetails shouldBe ("TODO")
+        }
+
+        // to test the property `promptTokensDetails`
+        should("test promptTokensDetails") {
+            // uncomment below to test the property
+            //modelInstance.promptTokensDetails shouldBe ("TODO")
         }
 
     }

@@ -7,6 +7,7 @@
 Name | Type
 ------------ | -------------
 `fileId` | string
+`detail` | string
 
 ## Example
 
@@ -16,6 +17,7 @@ import type { MessageDeltaContentImageFileObjectImageFile } from ''
 // TODO: Update the object below with actual values
 const example = {
   "fileId": null,
+  "detail": null,
 } satisfies MessageDeltaContentImageFileObjectImageFile
 
 console.log(example)

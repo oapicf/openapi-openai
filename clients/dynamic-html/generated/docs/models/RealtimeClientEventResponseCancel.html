@@ -1,0 +1,22 @@
+
+<h2>RealtimeClientEventResponseCancel</h2>
+<ul class="parameter">
+  <li class="param-required-false">eventUnderscoreid : String
+    <br/>Optional client-generated ID used to identify this event.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">type : String
+    <br/>The event type, must be &#x60;response.cancel&#x60;.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>response.cancel</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">responseUnderscoreid : String
+    <br/>A specific response ID to cancel - if not provided, will cancel an  in-progress response in the default conversation. 
+  </li>
+</ul>

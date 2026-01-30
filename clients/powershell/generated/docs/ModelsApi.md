@@ -21,7 +21,7 @@ Delete a fine-tuned model. You must have the Owner role in your organization to 
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $Configuration = Get-Configuration
 
-$Model = "ft:gpt-3.5-turbo:acemeco:suffix:abc123" # String | The model to delete
+$Model = "ft:gpt-4o-mini:acemeco:suffix:abc123" # String | The model to delete
 
 # Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
 try {
@@ -104,7 +104,7 @@ Retrieves a model instance, providing basic information about the model such as 
 # general setting of the PowerShell module, e.g. base URL, authentication, etc
 $Configuration = Get-Configuration
 
-$Model = "gpt-3.5-turbo" # String | The ID of the model to use for this request
+$Model = "gpt-4o-mini" # String | The ID of the model to use for this request
 
 # Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
 try {

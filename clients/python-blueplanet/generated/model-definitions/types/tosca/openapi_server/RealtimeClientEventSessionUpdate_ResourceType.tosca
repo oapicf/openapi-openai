@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeClientEventSessionUpdate"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeClientEventSessionUpdate"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RealtimeSessionCreateRequest = openapi_server.resourceTypes.RealtimeSessionCreateRequest
+}
+resourceTypes {
+
+  RealtimeClientEventSessionUpdate {
+    title = RealtimeClientEventSessionUpdate
+    description = RealtimeClientEventSessionUpdate
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "Optional client-generated ID used to identify this event."
+          optional = false
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;session.update&#x60;."
+          enum = ["session.update"]
+          optional = true
+        }
+        session {
+          type = RealtimeSessionCreateRequest
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeClientEventSessionUpdate {
+    title = RealtimeClientEventSessionUpdate
+    description = RealtimeClientEventSessionUpdate
+    implements = openapi_server.resourceTypes.RealtimeClientEventSessionUpdate
+
+  }
+}

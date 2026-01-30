@@ -34,6 +34,16 @@ void main() {
       // TODO
     });
 
+    // CompletionUsageCompletionTokensDetails completionTokensDetails
+    test('to test the property `completionTokensDetails`', () async {
+      // TODO
+    });
+
+    // CompletionUsagePromptTokensDetails promptTokensDetails
+    test('to test the property `promptTokensDetails`', () async {
+      // TODO
+    });
+
 
   });
 

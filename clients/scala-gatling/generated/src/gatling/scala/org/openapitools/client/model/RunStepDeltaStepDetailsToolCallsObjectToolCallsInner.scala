@@ -11,14 +11,14 @@ case class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner (
     _type: String,
     _codeInterpreter: Option[RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter],
     /* For now, this is always going to be an empty object. */
-    _retrieval: Option[Any],
+    _fileSearch: Any,
     _function: Option[RunStepDeltaStepDetailsToolCallsFunctionObjectFunction]
 )
 object RunStepDeltaStepDetailsToolCallsObjectToolCallsInner {
-    def toStringBody(var_index: Object, var_id: Object, var_type: Object, var_codeInterpreter: Object, var_retrieval: Object, var_function: Object) =
+    def toStringBody(var_index: Object, var_id: Object, var_type: Object, var_codeInterpreter: Object, var_fileSearch: Object, var_function: Object) =
         s"""
         | {
-        | "index":$var_index,"id":$var_id,"type":$var_type,"codeInterpreter":$var_codeInterpreter,"retrieval":$var_retrieval,"function":$var_function
+        | "index":$var_index,"id":$var_id,"type":$var_type,"codeInterpreter":$var_codeInterpreter,"fileSearch":$var_fileSearch,"function":$var_function
         | }
         """.stripMargin
 }

@@ -23,7 +23,7 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param url Either a URL of the image or the base64 encoded image data.
- * @param detail Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+ * @param detail Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
  */
 
 
@@ -33,14 +33,14 @@ data class ChatCompletionRequestMessageContentPartImageImageUrl (
     @Json(name = "url")
     val url: java.net.URI,
 
-    /* Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding). */
+    /* Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding). */
     @Json(name = "detail")
     val detail: ChatCompletionRequestMessageContentPartImageImageUrl.Detail? = Detail.auto
 
 ) {
 
     /**
-     * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+     * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
      *
      * Values: auto,low,high
      */

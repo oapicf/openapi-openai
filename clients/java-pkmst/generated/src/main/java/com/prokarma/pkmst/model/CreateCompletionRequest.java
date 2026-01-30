@@ -3,6 +3,7 @@ package com.prokarma.pkmst.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.prokarma.pkmst.model.ChatCompletionStreamOptions;
 import com.prokarma.pkmst.model.CreateCompletionRequestModel;
 import com.prokarma.pkmst.model.CreateCompletionRequestPrompt;
 import com.prokarma.pkmst.model.CreateCompletionRequestStop;
@@ -21,7 +22,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * CreateCompletionRequest
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T10:45:02.588292416Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-01-29T14:08:20.194647079Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateCompletionRequest   {
   @JsonProperty("model")
   private CreateCompletionRequestModel model;
@@ -62,6 +63,9 @@ public class CreateCompletionRequest   {
 
   @JsonProperty("stream")
   private Boolean stream = false;
+
+  @JsonProperty("stream_options")
+  private ChatCompletionStreamOptions streamOptions;
 
   @JsonProperty("suffix")
   private String suffix;
@@ -155,12 +159,12 @@ public class CreateCompletionRequest   {
   }
 
   /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
    * minimum: -2
    * maximum: 2
    * @return frequencyPenalty
    */
-  @ApiModelProperty(value = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ")
+  @ApiModelProperty(value = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) ")
   public BigDecimal getFrequencyPenalty() {
     return frequencyPenalty;
   }
@@ -260,12 +264,12 @@ public class CreateCompletionRequest   {
   }
 
   /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
    * minimum: -2
    * maximum: 2
    * @return presencePenalty
    */
-  @ApiModelProperty(value = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) ")
+  @ApiModelProperty(value = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) ")
   public BigDecimal getPresencePenalty() {
     return presencePenalty;
   }
@@ -281,8 +285,8 @@ public class CreateCompletionRequest   {
 
   /**
    * If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.  Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. 
-   * minimum: -9223372036854775808
-   * maximum: 9223372036854775807
+   * minimum: -9223372036854776000
+   * maximum: 9223372036854776000
    * @return seed
    */
   @ApiModelProperty(value = "If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.  Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. ")
@@ -328,6 +332,24 @@ public class CreateCompletionRequest   {
 
   public void setStream(Boolean stream) {
     this.stream = stream;
+  }
+
+  public CreateCompletionRequest streamOptions(ChatCompletionStreamOptions streamOptions) {
+    this.streamOptions = streamOptions;
+    return this;
+  }
+
+  /**
+   * Get streamOptions
+   * @return streamOptions
+   */
+  @ApiModelProperty(value = "")
+  public ChatCompletionStreamOptions getStreamOptions() {
+    return streamOptions;
+  }
+
+  public void setStreamOptions(ChatCompletionStreamOptions streamOptions) {
+    this.streamOptions = streamOptions;
   }
 
   public CreateCompletionRequest suffix(String suffix) {
@@ -394,10 +416,10 @@ public class CreateCompletionRequest   {
   }
 
   /**
-   * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+   * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
    * @return user
    */
-  @ApiModelProperty(example = "user-1234", value = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). ")
+  @ApiModelProperty(example = "user-1234", value = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ")
   public String getUser() {
     return user;
   }
@@ -429,6 +451,7 @@ public class CreateCompletionRequest   {
         Objects.equals(this.seed, createCompletionRequest.seed) &&
         Objects.equals(this.stop, createCompletionRequest.stop) &&
         Objects.equals(this.stream, createCompletionRequest.stream) &&
+        Objects.equals(this.streamOptions, createCompletionRequest.streamOptions) &&
         Objects.equals(this.suffix, createCompletionRequest.suffix) &&
         Objects.equals(this.temperature, createCompletionRequest.temperature) &&
         Objects.equals(this.topP, createCompletionRequest.topP) &&
@@ -437,7 +460,7 @@ public class CreateCompletionRequest   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, prompt, bestOf, echo, frequencyPenalty, logitBias, logprobs, maxTokens, n, presencePenalty, seed, stop, stream, suffix, temperature, topP, user);
+    return Objects.hash(model, prompt, bestOf, echo, frequencyPenalty, logitBias, logprobs, maxTokens, n, presencePenalty, seed, stop, stream, streamOptions, suffix, temperature, topP, user);
   }
 
   @Override
@@ -458,6 +481,7 @@ public class CreateCompletionRequest   {
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
     sb.append("    stop: ").append(toIndentedString(stop)).append("\n");
     sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
+    sb.append("    streamOptions: ").append(toIndentedString(streamOptions)).append("\n");
     sb.append("    suffix: ").append(toIndentedString(suffix)).append("\n");
     sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
     sb.append("    topP: ").append(toIndentedString(topP)).append("\n");

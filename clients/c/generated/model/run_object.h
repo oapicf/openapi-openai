@@ -35,7 +35,7 @@ openai_api_run_object_OBJECT_e run_object_object_FromString(char* object);
 
 // Enum STATUS for run_object
 
-typedef enum  { openai_api_run_object_STATUS_NULL = 0, openai_api_run_object_STATUS_queued, openai_api_run_object_STATUS_in_progress, openai_api_run_object_STATUS_requires_action, openai_api_run_object_STATUS_cancelling, openai_api_run_object_STATUS_cancelled, openai_api_run_object_STATUS_failed, openai_api_run_object_STATUS_completed, openai_api_run_object_STATUS_expired } openai_api_run_object_STATUS_e;
+typedef enum  { openai_api_run_object_STATUS_NULL = 0, openai_api_run_object_STATUS_queued, openai_api_run_object_STATUS_in_progress, openai_api_run_object_STATUS_requires_action, openai_api_run_object_STATUS_cancelling, openai_api_run_object_STATUS_cancelled, openai_api_run_object_STATUS_failed, openai_api_run_object_STATUS_completed, openai_api_run_object_STATUS_incomplete, openai_api_run_object_STATUS_expired } openai_api_run_object_STATUS_e;
 
 char* run_object_status_ToString(openai_api_run_object_STATUS_e status);
 
@@ -61,14 +61,15 @@ typedef struct run_object_t {
     char *model; // string
     char *instructions; // string
     list_t *tools; //nonprimitive container
-    list_t *file_ids; //primitive container
     object_t *metadata; //object
     struct run_completion_usage_t *usage; //model
     double temperature; //numeric
+    double top_p; //numeric
     int max_prompt_tokens; //numeric
     int max_completion_tokens; //numeric
     struct truncation_object_t *truncation_strategy; //model
     struct assistants_api_tool_choice_option_t *tool_choice; //model
+    int parallel_tool_calls; //boolean
     struct assistants_api_response_format_option_t *response_format; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -92,14 +93,15 @@ __attribute__((deprecated)) run_object_t *run_object_create(
     char *model,
     char *instructions,
     list_t *tools,
-    list_t *file_ids,
     object_t *metadata,
     run_completion_usage_t *usage,
     double temperature,
+    double top_p,
     int max_prompt_tokens,
     int max_completion_tokens,
     truncation_object_t *truncation_strategy,
     assistants_api_tool_choice_option_t *tool_choice,
+    int parallel_tool_calls,
     assistants_api_response_format_option_t *response_format
 );
 

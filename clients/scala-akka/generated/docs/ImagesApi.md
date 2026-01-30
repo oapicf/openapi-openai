@@ -140,7 +140,7 @@ object Example extends App {
 
     val responseFormat: String = responseFormat_example // String | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
 
-    val user: String = user_example // String | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+    val user: String = user_example // String | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
     
     val request = apiInstance.createImageEdit(image, prompt, mask, model, `n`, size, responseFormat, user)
     val response = apiInvoker.execute(request)
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
  **`n`** | **Int**| The number of images to generate. Must be between 1 and 10. | [optional]
  **size** | **String**| The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | [optional] [enum: 256x256, 512x512, 1024x1024]
  **responseFormat** | **String**| The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | [optional] [enum: url, b64_json]
- **user** | **String**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  | [optional]
+ **user** | **String**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  | [optional]
 
 ### Return type
 
@@ -240,7 +240,7 @@ object Example extends App {
 
     val size: String = size_example // String | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
 
-    val user: String = user_example // String | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+    val user: String = user_example // String | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
     
     val request = apiInstance.createImageVariation(image, model, `n`, responseFormat, size, user)
     val response = apiInvoker.execute(request)
@@ -275,7 +275,7 @@ Name | Type | Description  | Notes
  **`n`** | **Int**| The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported. | [optional]
  **responseFormat** | **String**| The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | [optional] [enum: url, b64_json]
  **size** | **String**| The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | [optional] [enum: 256x256, 512x512, 1024x1024]
- **user** | **String**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  | [optional]
+ **user** | **String**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  | [optional]
 
 ### Return type
 

@@ -45,29 +45,56 @@ class CreateAssistantRequest
     public $instructions;
 
     /**
-     * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;retrieval&#x60;, or &#x60;function&#x60;.
+     * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;file_search&#x60;, or &#x60;function&#x60;.
      * @DTA\Data(field="tools", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection35::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection35::class})
-     * @var \App\DTO\Collection35|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection4::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection4::class})
+     * @var \App\DTO\Collection4|null
      */
     public $tools;
 
     /**
-     * A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order.
-     * @DTA\Data(field="file_ids", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection36::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection36::class})
-     * @var \App\DTO\Collection36|null
+     * @DTA\Data(field="tool_resources", nullable=true)
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\CreateAssistantRequestToolResources::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\CreateAssistantRequestToolResources::class})
+     * @var \App\DTO\CreateAssistantRequestToolResources|null
      */
-    public $file_ids;
+    public $tool_resources;
 
     /**
-     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
      * @DTA\Data(field="metadata", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"object"})
      * @var object|null
      */
     public $metadata;
+
+    /**
+     * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+     * @DTA\Data(field="temperature", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"float"})
+     * @DTA\Validator(name="GreaterThan", options={"min":0, "inclusive":true})
+     * @DTA\Validator(name="LessThan", options={"max":2, "inclusive":true})
+     * @var float|null
+     */
+    public $temperature;
+
+    /**
+     * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both.
+     * @DTA\Data(field="top_p", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"float"})
+     * @DTA\Validator(name="GreaterThan", options={"min":0, "inclusive":true})
+     * @DTA\Validator(name="LessThan", options={"max":1, "inclusive":true})
+     * @var float|null
+     */
+    public $top_p;
+
+    /**
+     * @DTA\Data(field="response_format", nullable=true)
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\AssistantsApiResponseFormatOption::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\AssistantsApiResponseFormatOption::class})
+     * @var \App\DTO\AssistantsApiResponseFormatOption|null
+     */
+    public $response_format;
 
 }

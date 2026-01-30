@@ -6,24 +6,19 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancelRun**](OAIAssistantsApi.md#cancelrun) | **POST** /threads/{thread_id}/runs/{run_id}/cancel | Cancels a run that is &#x60;in_progress&#x60;.
 [**createAssistant**](OAIAssistantsApi.md#createassistant) | **POST** /assistants | Create an assistant with a model and instructions.
-[**createAssistantFile**](OAIAssistantsApi.md#createassistantfile) | **POST** /assistants/{assistant_id}/files | Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
 [**createMessage**](OAIAssistantsApi.md#createmessage) | **POST** /threads/{thread_id}/messages | Create a message.
 [**createRun**](OAIAssistantsApi.md#createrun) | **POST** /threads/{thread_id}/runs | Create a run.
 [**createThread**](OAIAssistantsApi.md#createthread) | **POST** /threads | Create a thread.
 [**createThreadAndRun**](OAIAssistantsApi.md#createthreadandrun) | **POST** /threads/runs | Create a thread and run it in one request.
 [**deleteAssistant**](OAIAssistantsApi.md#deleteassistant) | **DELETE** /assistants/{assistant_id} | Delete an assistant.
-[**deleteAssistantFile**](OAIAssistantsApi.md#deleteassistantfile) | **DELETE** /assistants/{assistant_id}/files/{file_id} | Delete an assistant file.
+[**deleteMessage**](OAIAssistantsApi.md#deletemessage) | **DELETE** /threads/{thread_id}/messages/{message_id} | Deletes a message.
 [**deleteThread**](OAIAssistantsApi.md#deletethread) | **DELETE** /threads/{thread_id} | Delete a thread.
 [**getAssistant**](OAIAssistantsApi.md#getassistant) | **GET** /assistants/{assistant_id} | Retrieves an assistant.
-[**getAssistantFile**](OAIAssistantsApi.md#getassistantfile) | **GET** /assistants/{assistant_id}/files/{file_id} | Retrieves an AssistantFile.
 [**getMessage**](OAIAssistantsApi.md#getmessage) | **GET** /threads/{thread_id}/messages/{message_id} | Retrieve a message.
-[**getMessageFile**](OAIAssistantsApi.md#getmessagefile) | **GET** /threads/{thread_id}/messages/{message_id}/files/{file_id} | Retrieves a message file.
 [**getRun**](OAIAssistantsApi.md#getrun) | **GET** /threads/{thread_id}/runs/{run_id} | Retrieves a run.
 [**getRunStep**](OAIAssistantsApi.md#getrunstep) | **GET** /threads/{thread_id}/runs/{run_id}/steps/{step_id} | Retrieves a run step.
 [**getThread**](OAIAssistantsApi.md#getthread) | **GET** /threads/{thread_id} | Retrieves a thread.
-[**listAssistantFiles**](OAIAssistantsApi.md#listassistantfiles) | **GET** /assistants/{assistant_id}/files | Returns a list of assistant files.
 [**listAssistants**](OAIAssistantsApi.md#listassistants) | **GET** /assistants | Returns a list of assistants.
-[**listMessageFiles**](OAIAssistantsApi.md#listmessagefiles) | **GET** /threads/{thread_id}/messages/{message_id}/files | Returns a list of message files.
 [**listMessages**](OAIAssistantsApi.md#listmessages) | **GET** /threads/{thread_id}/messages | Returns a list of messages for a given thread.
 [**listRunSteps**](OAIAssistantsApi.md#listrunsteps) | **GET** /threads/{thread_id}/runs/{run_id}/steps | Returns a list of run steps belonging to a run.
 [**listRuns**](OAIAssistantsApi.md#listruns) | **GET** /threads/{thread_id}/runs | Returns a list of runs belonging to a thread.
@@ -138,60 +133,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **createAssistantFile**
-```objc
--(NSURLSessionTask*) createAssistantFileWithAssistantId: (NSString*) assistantId
-    createAssistantFileRequest: (OAICreateAssistantFileRequest*) createAssistantFileRequest
-        completionHandler: (void (^)(OAIAssistantFileObject* output, NSError* error)) handler;
-```
-
-Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-
-### Example
-```objc
-OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
-
-
-NSString* assistantId = file-abc123; // The ID of the assistant for which to create a File. 
-OAICreateAssistantFileRequest* createAssistantFileRequest = [[OAICreateAssistantFileRequest alloc] init]; // 
-
-OAIAssistantsApi*apiInstance = [[OAIAssistantsApi alloc] init];
-
-// Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-[apiInstance createAssistantFileWithAssistantId:assistantId
-              createAssistantFileRequest:createAssistantFileRequest
-          completionHandler: ^(OAIAssistantFileObject* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling OAIAssistantsApi->createAssistantFile: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistantId** | **NSString***| The ID of the assistant for which to create a File.  | 
- **createAssistantFileRequest** | [**OAICreateAssistantFileRequest***](OAICreateAssistantFileRequest.md)|  | 
-
-### Return type
-
-[**OAIAssistantFileObject***](OAIAssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **createMessage**
 ```objc
 -(NSURLSessionTask*) createMessageWithThreadId: (NSString*) threadId
@@ -250,6 +191,7 @@ Name | Type | Description  | Notes
 ```objc
 -(NSURLSessionTask*) createRunWithThreadId: (NSString*) threadId
     createRunRequest: (OAICreateRunRequest*) createRunRequest
+    include: (NSArray<NSString*>*) include
         completionHandler: (void (^)(OAIRunObject* output, NSError* error)) handler;
 ```
 
@@ -262,12 +204,14 @@ OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 
 NSString* threadId = @"threadId_example"; // The ID of the thread to run.
 OAICreateRunRequest* createRunRequest = [[OAICreateRunRequest alloc] init]; // 
+NSArray<NSString*>* include = @[@"include_example"]; // A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 
 OAIAssistantsApi*apiInstance = [[OAIAssistantsApi alloc] init];
 
 // Create a run.
 [apiInstance createRunWithThreadId:threadId
               createRunRequest:createRunRequest
+              include:include
           completionHandler: ^(OAIRunObject* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -284,6 +228,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **threadId** | **NSString***| The ID of the thread to run. | 
  **createRunRequest** | [**OAICreateRunRequest***](OAICreateRunRequest.md)|  | 
+ **include** | [**NSArray&lt;NSString*&gt;***](NSString*.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -450,34 +395,34 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **deleteAssistantFile**
+# **deleteMessage**
 ```objc
--(NSURLSessionTask*) deleteAssistantFileWithAssistantId: (NSString*) assistantId
-    fileId: (NSString*) fileId
-        completionHandler: (void (^)(OAIDeleteAssistantFileResponse* output, NSError* error)) handler;
+-(NSURLSessionTask*) deleteMessageWithThreadId: (NSString*) threadId
+    messageId: (NSString*) messageId
+        completionHandler: (void (^)(OAIDeleteMessageResponse* output, NSError* error)) handler;
 ```
 
-Delete an assistant file.
+Deletes a message.
 
 ### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 
 
-NSString* assistantId = @"assistantId_example"; // The ID of the assistant that the file belongs to.
-NSString* fileId = @"fileId_example"; // The ID of the file to delete.
+NSString* threadId = @"threadId_example"; // The ID of the thread to which this message belongs.
+NSString* messageId = @"messageId_example"; // The ID of the message to delete.
 
 OAIAssistantsApi*apiInstance = [[OAIAssistantsApi alloc] init];
 
-// Delete an assistant file.
-[apiInstance deleteAssistantFileWithAssistantId:assistantId
-              fileId:fileId
-          completionHandler: ^(OAIDeleteAssistantFileResponse* output, NSError* error) {
+// Deletes a message.
+[apiInstance deleteMessageWithThreadId:threadId
+              messageId:messageId
+          completionHandler: ^(OAIDeleteMessageResponse* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
                         if (error) {
-                            NSLog(@"Error calling OAIAssistantsApi->deleteAssistantFile: %@", error);
+                            NSLog(@"Error calling OAIAssistantsApi->deleteMessage: %@", error);
                         }
                     }];
 ```
@@ -486,12 +431,12 @@ OAIAssistantsApi*apiInstance = [[OAIAssistantsApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **assistantId** | **NSString***| The ID of the assistant that the file belongs to. | 
- **fileId** | **NSString***| The ID of the file to delete. | 
+ **threadId** | **NSString***| The ID of the thread to which this message belongs. | 
+ **messageId** | **NSString***| The ID of the message to delete. | 
 
 ### Return type
 
-[**OAIDeleteAssistantFileResponse***](OAIDeleteAssistantFileResponse.md)
+[**OAIDeleteMessageResponse***](OAIDeleteMessageResponse.md)
 
 ### Authorization
 
@@ -604,60 +549,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getAssistantFile**
-```objc
--(NSURLSessionTask*) getAssistantFileWithAssistantId: (NSString*) assistantId
-    fileId: (NSString*) fileId
-        completionHandler: (void (^)(OAIAssistantFileObject* output, NSError* error)) handler;
-```
-
-Retrieves an AssistantFile.
-
-### Example
-```objc
-OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
-
-
-NSString* assistantId = @"assistantId_example"; // The ID of the assistant who the file belongs to.
-NSString* fileId = @"fileId_example"; // The ID of the file we're getting.
-
-OAIAssistantsApi*apiInstance = [[OAIAssistantsApi alloc] init];
-
-// Retrieves an AssistantFile.
-[apiInstance getAssistantFileWithAssistantId:assistantId
-              fileId:fileId
-          completionHandler: ^(OAIAssistantFileObject* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling OAIAssistantsApi->getAssistantFile: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistantId** | **NSString***| The ID of the assistant who the file belongs to. | 
- **fileId** | **NSString***| The ID of the file we&#39;re getting. | 
-
-### Return type
-
-[**OAIAssistantFileObject***](OAIAssistantFileObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **getMessage**
 ```objc
 -(NSURLSessionTask*) getMessageWithThreadId: (NSString*) threadId
@@ -700,64 +591,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**OAIMessageObject***](OAIMessageObject.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getMessageFile**
-```objc
--(NSURLSessionTask*) getMessageFileWithThreadId: (NSString*) threadId
-    messageId: (NSString*) messageId
-    fileId: (NSString*) fileId
-        completionHandler: (void (^)(OAIMessageFileObject* output, NSError* error)) handler;
-```
-
-Retrieves a message file.
-
-### Example
-```objc
-OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
-
-
-NSString* threadId = thread_abc123; // The ID of the thread to which the message and File belong.
-NSString* messageId = msg_abc123; // The ID of the message the file belongs to.
-NSString* fileId = file-abc123; // The ID of the file being retrieved.
-
-OAIAssistantsApi*apiInstance = [[OAIAssistantsApi alloc] init];
-
-// Retrieves a message file.
-[apiInstance getMessageFileWithThreadId:threadId
-              messageId:messageId
-              fileId:fileId
-          completionHandler: ^(OAIMessageFileObject* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling OAIAssistantsApi->getMessageFile: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **threadId** | **NSString***| The ID of the thread to which the message and File belong. | 
- **messageId** | **NSString***| The ID of the message the file belongs to. | 
- **fileId** | **NSString***| The ID of the file being retrieved. | 
-
-### Return type
-
-[**OAIMessageFileObject***](OAIMessageFileObject.md)
 
 ### Authorization
 
@@ -829,6 +662,7 @@ Name | Type | Description  | Notes
 -(NSURLSessionTask*) getRunStepWithThreadId: (NSString*) threadId
     runId: (NSString*) runId
     stepId: (NSString*) stepId
+    include: (NSArray<NSString*>*) include
         completionHandler: (void (^)(OAIRunStepObject* output, NSError* error)) handler;
 ```
 
@@ -842,6 +676,7 @@ OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 NSString* threadId = @"threadId_example"; // The ID of the thread to which the run and run step belongs.
 NSString* runId = @"runId_example"; // The ID of the run to which the run step belongs.
 NSString* stepId = @"stepId_example"; // The ID of the run step to retrieve.
+NSArray<NSString*>* include = @[@"include_example"]; // A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 
 OAIAssistantsApi*apiInstance = [[OAIAssistantsApi alloc] init];
 
@@ -849,6 +684,7 @@ OAIAssistantsApi*apiInstance = [[OAIAssistantsApi alloc] init];
 [apiInstance getRunStepWithThreadId:threadId
               runId:runId
               stepId:stepId
+              include:include
           completionHandler: ^(OAIRunStepObject* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -866,6 +702,7 @@ Name | Type | Description  | Notes
  **threadId** | **NSString***| The ID of the thread to which the run and run step belongs. | 
  **runId** | **NSString***| The ID of the run to which the run step belongs. | 
  **stepId** | **NSString***| The ID of the run step to retrieve. | 
+ **include** | [**NSArray&lt;NSString*&gt;***](NSString*.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -932,72 +769,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **listAssistantFiles**
-```objc
--(NSURLSessionTask*) listAssistantFilesWithAssistantId: (NSString*) assistantId
-    limit: (NSNumber*) limit
-    order: (NSString*) order
-    after: (NSString*) after
-    before: (NSString*) before
-        completionHandler: (void (^)(OAIListAssistantFilesResponse* output, NSError* error)) handler;
-```
-
-Returns a list of assistant files.
-
-### Example
-```objc
-OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
-
-
-NSString* assistantId = @"assistantId_example"; // The ID of the assistant the file belongs to.
-NSNumber* limit = @20; // A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to @20)
-NSString* order = @"desc"; // Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to @"desc")
-NSString* after = @"after_example"; // A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-NSString* before = @"before_example"; // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-
-OAIAssistantsApi*apiInstance = [[OAIAssistantsApi alloc] init];
-
-// Returns a list of assistant files.
-[apiInstance listAssistantFilesWithAssistantId:assistantId
-              limit:limit
-              order:order
-              after:after
-              before:before
-          completionHandler: ^(OAIListAssistantFilesResponse* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling OAIAssistantsApi->listAssistantFiles: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assistantId** | **NSString***| The ID of the assistant the file belongs to. | 
- **limit** | **NSNumber***| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to @20]
- **order** | **NSString***| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to @&quot;desc&quot;]
- **after** | **NSString***| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **NSString***| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
-
-### Return type
-
-[**OAIListAssistantFilesResponse***](OAIListAssistantFilesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **listAssistants**
 ```objc
 -(NSURLSessionTask*) listAssistantsWithLimit: (NSNumber*) limit
@@ -1017,7 +788,7 @@ OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 NSNumber* limit = @20; // A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to @20)
 NSString* order = @"desc"; // Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to @"desc")
 NSString* after = @"after_example"; // A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-NSString* before = @"before_example"; // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+NSString* before = @"before_example"; // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 
 OAIAssistantsApi*apiInstance = [[OAIAssistantsApi alloc] init];
 
@@ -1043,81 +814,11 @@ Name | Type | Description  | Notes
  **limit** | **NSNumber***| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to @20]
  **order** | **NSString***| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to @&quot;desc&quot;]
  **after** | **NSString***| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **NSString***| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **NSString***| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
 
 ### Return type
 
 [**OAIListAssistantsResponse***](OAIListAssistantsResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **listMessageFiles**
-```objc
--(NSURLSessionTask*) listMessageFilesWithThreadId: (NSString*) threadId
-    messageId: (NSString*) messageId
-    limit: (NSNumber*) limit
-    order: (NSString*) order
-    after: (NSString*) after
-    before: (NSString*) before
-        completionHandler: (void (^)(OAIListMessageFilesResponse* output, NSError* error)) handler;
-```
-
-Returns a list of message files.
-
-### Example
-```objc
-OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
-
-
-NSString* threadId = @"threadId_example"; // The ID of the thread that the message and files belong to.
-NSString* messageId = @"messageId_example"; // The ID of the message that the files belongs to.
-NSNumber* limit = @20; // A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to @20)
-NSString* order = @"desc"; // Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to @"desc")
-NSString* after = @"after_example"; // A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-NSString* before = @"before_example"; // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
-
-OAIAssistantsApi*apiInstance = [[OAIAssistantsApi alloc] init];
-
-// Returns a list of message files.
-[apiInstance listMessageFilesWithThreadId:threadId
-              messageId:messageId
-              limit:limit
-              order:order
-              after:after
-              before:before
-          completionHandler: ^(OAIListMessageFilesResponse* output, NSError* error) {
-                        if (output) {
-                            NSLog(@"%@", output);
-                        }
-                        if (error) {
-                            NSLog(@"Error calling OAIAssistantsApi->listMessageFiles: %@", error);
-                        }
-                    }];
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **threadId** | **NSString***| The ID of the thread that the message and files belong to. | 
- **messageId** | **NSString***| The ID of the message that the files belongs to. | 
- **limit** | **NSNumber***| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to @20]
- **order** | **NSString***| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to @&quot;desc&quot;]
- **after** | **NSString***| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **NSString***| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
-
-### Return type
-
-[**OAIListMessageFilesResponse***](OAIListMessageFilesResponse.md)
 
 ### Authorization
 
@@ -1152,7 +853,7 @@ NSString* threadId = @"threadId_example"; // The ID of the [thread](/docs/api-re
 NSNumber* limit = @20; // A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to @20)
 NSString* order = @"desc"; // Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to @"desc")
 NSString* after = @"after_example"; // A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-NSString* before = @"before_example"; // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+NSString* before = @"before_example"; // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 NSString* runId = @"runId_example"; // Filter messages by the run ID that generated them.  (optional)
 
 OAIAssistantsApi*apiInstance = [[OAIAssistantsApi alloc] init];
@@ -1182,7 +883,7 @@ Name | Type | Description  | Notes
  **limit** | **NSNumber***| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to @20]
  **order** | **NSString***| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to @&quot;desc&quot;]
  **after** | **NSString***| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **NSString***| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **NSString***| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
  **runId** | **NSString***| Filter messages by the run ID that generated them.  | [optional] 
 
 ### Return type
@@ -1208,6 +909,7 @@ Name | Type | Description  | Notes
     order: (NSString*) order
     after: (NSString*) after
     before: (NSString*) before
+    include: (NSArray<NSString*>*) include
         completionHandler: (void (^)(OAIListRunStepsResponse* output, NSError* error)) handler;
 ```
 
@@ -1223,7 +925,8 @@ NSString* runId = @"runId_example"; // The ID of the run the run steps belong to
 NSNumber* limit = @20; // A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to @20)
 NSString* order = @"desc"; // Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to @"desc")
 NSString* after = @"after_example"; // A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-NSString* before = @"before_example"; // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+NSString* before = @"before_example"; // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+NSArray<NSString*>* include = @[@"include_example"]; // A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 
 OAIAssistantsApi*apiInstance = [[OAIAssistantsApi alloc] init];
 
@@ -1234,6 +937,7 @@ OAIAssistantsApi*apiInstance = [[OAIAssistantsApi alloc] init];
               order:order
               after:after
               before:before
+              include:include
           completionHandler: ^(OAIListRunStepsResponse* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -1253,7 +957,8 @@ Name | Type | Description  | Notes
  **limit** | **NSNumber***| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to @20]
  **order** | **NSString***| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to @&quot;desc&quot;]
  **after** | **NSString***| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **NSString***| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **NSString***| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **include** | [**NSArray&lt;NSString*&gt;***](NSString*.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] 
 
 ### Return type
 
@@ -1291,7 +996,7 @@ NSString* threadId = @"threadId_example"; // The ID of the thread the run belong
 NSNumber* limit = @20; // A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to @20)
 NSString* order = @"desc"; // Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.  (optional) (default to @"desc")
 NSString* after = @"after_example"; // A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
-NSString* before = @"before_example"; // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
+NSString* before = @"before_example"; // A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 
 OAIAssistantsApi*apiInstance = [[OAIAssistantsApi alloc] init];
 
@@ -1319,7 +1024,7 @@ Name | Type | Description  | Notes
  **limit** | **NSNumber***| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to @20]
  **order** | **NSString***| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to @&quot;desc&quot;]
  **after** | **NSString***| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] 
- **before** | **NSString***| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
+ **before** | **NSString***| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] 
 
 ### Return type
 

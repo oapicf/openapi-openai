@@ -1,0 +1,38 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "UsageResponse",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "UsageResponse_object",
+        "symbols": [
+          "page"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "data",
+      "type": {
+        "type": "array",
+        "items": "model.UsageTimeBucket"
+      },
+      "doc": ""
+    },
+    {
+      "name": "has_more",
+      "type": "boolean",
+      "doc": ""
+    },
+    {
+      "name": "next_page",
+      "type": "string",
+      "doc": ""
+    }
+  ]
+
+}

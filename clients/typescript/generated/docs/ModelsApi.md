@@ -25,7 +25,7 @@ const apiInstance = new ModelsApi(configuration);
 
 const request: ModelsApiDeleteModelRequest = {
     // The model to delete
-  model: "ft:gpt-3.5-turbo:acemeco:suffix:abc123",
+  model: "ft:gpt-4o-mini:acemeco:suffix:abc123",
 };
 
 const data = await apiInstance.deleteModel(request);
@@ -122,7 +122,7 @@ const apiInstance = new ModelsApi(configuration);
 
 const request: ModelsApiRetrieveModelRequest = {
     // The ID of the model to use for this request
-  model: "gpt-3.5-turbo",
+  model: "gpt-4o-mini",
 };
 
 const data = await apiInstance.retrieveModel(request);

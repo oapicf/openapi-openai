@@ -40,14 +40,24 @@ object endpoint {
   def makeService(da: DataAccessor): Service[Request, Response] = (
           AssistantsApi.endpoints(da)  :+:
           AudioApi.endpoints(da)  :+:
+          AuditLogsApi.endpoints(da)  :+:
+          BatchApi.endpoints(da)  :+:
           ChatApi.endpoints(da)  :+:
           CompletionsApi.endpoints(da)  :+:
+          DefaultApi.endpoints(da)  :+:
           EmbeddingsApi.endpoints(da)  :+:
           FilesApi.endpoints(da)  :+:
           FineTuningApi.endpoints(da)  :+:
           ImagesApi.endpoints(da)  :+:
+          InvitesApi.endpoints(da)  :+:
           ModelsApi.endpoints(da)  :+:
-          ModerationsApi.endpoints(da) 
+          ModerationsApi.endpoints(da)  :+:
+          ProjectsApi.endpoints(da)  :+:
+          RealtimeApi.endpoints(da)  :+:
+          UploadsApi.endpoints(da)  :+:
+          UsageApi.endpoints(da)  :+:
+          UsersApi.endpoints(da)  :+:
+          VectorStoresApi.endpoints(da) 
   ).handle({
       case e: CommonError => NotFound(e)
   }).toService

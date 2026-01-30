@@ -2,7 +2,17 @@
 Protected Class FineTuningJobHyperparameters
 
 	#tag Property, Flags = &h0
-		n_epochs As OpenAPIClient.Models.FineTuningJobHyperparametersNEpochs
+		batch_size As OpenAPIClient.Models.CreateFineTuningJobRequestHyperparametersBatchSize
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		learning_rate_multiplier As OpenAPIClient.Models.CreateFineTuningJobRequestHyperparametersLearningRateMultiplier
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		n_epochs As OpenAPIClient.Models.CreateFineTuningJobRequestHyperparametersNEpochs
 	#tag EndProperty
 
 
@@ -43,11 +53,27 @@ Protected Class FineTuningJobHyperparameters
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="batch_size"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="CreateFineTuningJobRequestHyperparametersBatchSize"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="learning_rate_multiplier"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="CreateFineTuningJobRequestHyperparametersLearningRateMultiplier"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="n_epochs"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="FineTuningJobHyperparametersNEpochs"
+			Type="CreateFineTuningJobRequestHyperparametersNEpochs"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

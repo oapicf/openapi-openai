@@ -6,7 +6,9 @@ from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
 from openapi_server.models.assistant_object_tools_inner import AssistantObjectToolsInner
+from openapi_server.models.assistants_api_response_format_option import AssistantsApiResponseFormatOption
 from openapi_server.models.create_assistant_request_model import CreateAssistantRequestModel
+from openapi_server.models.create_assistant_request_tool_resources import CreateAssistantRequestToolResources
 from openapi_server import util
 
 
@@ -16,7 +18,7 @@ class CreateAssistantRequest(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, model: CreateAssistantRequestModel=None, name: str=None, description: str=None, instructions: str=None, tools: List[AssistantObjectToolsInner]=[], file_ids: List[str]=[], metadata: object=None):
+    def __init__(self, model: CreateAssistantRequestModel=None, name: str=None, description: str=None, instructions: str=None, tools: List[AssistantObjectToolsInner]=[], tool_resources: CreateAssistantRequestToolResources=None, metadata: object=None, temperature: float=1, top_p: float=1, response_format: AssistantsApiResponseFormatOption=None):
         """CreateAssistantRequest - a model defined in OpenAPI
 
         :param model: The model of this CreateAssistantRequest.
@@ -24,8 +26,11 @@ class CreateAssistantRequest(Model):
         :param description: The description of this CreateAssistantRequest.
         :param instructions: The instructions of this CreateAssistantRequest.
         :param tools: The tools of this CreateAssistantRequest.
-        :param file_ids: The file_ids of this CreateAssistantRequest.
+        :param tool_resources: The tool_resources of this CreateAssistantRequest.
         :param metadata: The metadata of this CreateAssistantRequest.
+        :param temperature: The temperature of this CreateAssistantRequest.
+        :param top_p: The top_p of this CreateAssistantRequest.
+        :param response_format: The response_format of this CreateAssistantRequest.
         """
         self.openapi_types = {
             'model': CreateAssistantRequestModel,
@@ -33,8 +38,11 @@ class CreateAssistantRequest(Model):
             'description': str,
             'instructions': str,
             'tools': List[AssistantObjectToolsInner],
-            'file_ids': List[str],
-            'metadata': object
+            'tool_resources': CreateAssistantRequestToolResources,
+            'metadata': object,
+            'temperature': float,
+            'top_p': float,
+            'response_format': AssistantsApiResponseFormatOption
         }
 
         self.attribute_map = {
@@ -43,8 +51,11 @@ class CreateAssistantRequest(Model):
             'description': 'description',
             'instructions': 'instructions',
             'tools': 'tools',
-            'file_ids': 'file_ids',
-            'metadata': 'metadata'
+            'tool_resources': 'tool_resources',
+            'metadata': 'metadata',
+            'temperature': 'temperature',
+            'top_p': 'top_p',
+            'response_format': 'response_format'
         }
 
         self._model = model
@@ -52,8 +63,11 @@ class CreateAssistantRequest(Model):
         self._description = description
         self._instructions = instructions
         self._tools = tools
-        self._file_ids = file_ids
+        self._tool_resources = tool_resources
         self._metadata = metadata
+        self._temperature = temperature
+        self._top_p = top_p
+        self._response_format = response_format
 
     @classmethod
     def from_dict(cls, dikt: dict) -> 'CreateAssistantRequest':
@@ -166,7 +180,7 @@ class CreateAssistantRequest(Model):
     def tools(self):
         """Gets the tools of this CreateAssistantRequest.
 
-        A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. 
+        A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
 
         :return: The tools of this CreateAssistantRequest.
         :rtype: List[AssistantObjectToolsInner]
@@ -177,7 +191,7 @@ class CreateAssistantRequest(Model):
     def tools(self, tools):
         """Sets the tools of this CreateAssistantRequest.
 
-        A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `retrieval`, or `function`. 
+        A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
 
         :param tools: The tools of this CreateAssistantRequest.
         :type tools: List[AssistantObjectToolsInner]
@@ -188,35 +202,31 @@ class CreateAssistantRequest(Model):
         self._tools = tools
 
     @property
-    def file_ids(self):
-        """Gets the file_ids of this CreateAssistantRequest.
+    def tool_resources(self):
+        """Gets the tool_resources of this CreateAssistantRequest.
 
-        A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. 
 
-        :return: The file_ids of this CreateAssistantRequest.
-        :rtype: List[str]
+        :return: The tool_resources of this CreateAssistantRequest.
+        :rtype: CreateAssistantRequestToolResources
         """
-        return self._file_ids
+        return self._tool_resources
 
-    @file_ids.setter
-    def file_ids(self, file_ids):
-        """Sets the file_ids of this CreateAssistantRequest.
+    @tool_resources.setter
+    def tool_resources(self, tool_resources):
+        """Sets the tool_resources of this CreateAssistantRequest.
 
-        A list of [file](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. 
 
-        :param file_ids: The file_ids of this CreateAssistantRequest.
-        :type file_ids: List[str]
+        :param tool_resources: The tool_resources of this CreateAssistantRequest.
+        :type tool_resources: CreateAssistantRequestToolResources
         """
-        if file_ids is not None and len(file_ids) > 20:
-            raise ValueError("Invalid value for `file_ids`, number of items must be less than or equal to `20`")
 
-        self._file_ids = file_ids
+        self._tool_resources = tool_resources
 
     @property
     def metadata(self):
         """Gets the metadata of this CreateAssistantRequest.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
         :return: The metadata of this CreateAssistantRequest.
         :rtype: object
@@ -227,10 +237,85 @@ class CreateAssistantRequest(Model):
     def metadata(self, metadata):
         """Sets the metadata of this CreateAssistantRequest.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
         :param metadata: The metadata of this CreateAssistantRequest.
         :type metadata: object
         """
 
         self._metadata = metadata
+
+    @property
+    def temperature(self):
+        """Gets the temperature of this CreateAssistantRequest.
+
+        What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+
+        :return: The temperature of this CreateAssistantRequest.
+        :rtype: float
+        """
+        return self._temperature
+
+    @temperature.setter
+    def temperature(self, temperature):
+        """Sets the temperature of this CreateAssistantRequest.
+
+        What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+
+        :param temperature: The temperature of this CreateAssistantRequest.
+        :type temperature: float
+        """
+        if temperature is not None and temperature > 2:
+            raise ValueError("Invalid value for `temperature`, must be a value less than or equal to `2`")
+        if temperature is not None and temperature < 0:
+            raise ValueError("Invalid value for `temperature`, must be a value greater than or equal to `0`")
+
+        self._temperature = temperature
+
+    @property
+    def top_p(self):
+        """Gets the top_p of this CreateAssistantRequest.
+
+        An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+
+        :return: The top_p of this CreateAssistantRequest.
+        :rtype: float
+        """
+        return self._top_p
+
+    @top_p.setter
+    def top_p(self, top_p):
+        """Sets the top_p of this CreateAssistantRequest.
+
+        An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+
+        :param top_p: The top_p of this CreateAssistantRequest.
+        :type top_p: float
+        """
+        if top_p is not None and top_p > 1:
+            raise ValueError("Invalid value for `top_p`, must be a value less than or equal to `1`")
+        if top_p is not None and top_p < 0:
+            raise ValueError("Invalid value for `top_p`, must be a value greater than or equal to `0`")
+
+        self._top_p = top_p
+
+    @property
+    def response_format(self):
+        """Gets the response_format of this CreateAssistantRequest.
+
+
+        :return: The response_format of this CreateAssistantRequest.
+        :rtype: AssistantsApiResponseFormatOption
+        """
+        return self._response_format
+
+    @response_format.setter
+    def response_format(self, response_format):
+        """Sets the response_format of this CreateAssistantRequest.
+
+
+        :param response_format: The response_format of this CreateAssistantRequest.
+        :type response_format: AssistantsApiResponseFormatOption
+        """
+
+        self._response_format = response_format

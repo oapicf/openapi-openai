@@ -11,7 +11,7 @@ module.exports = {
                 required: true,
                 type: 'string',
                 choices: [
-                    'thread.run.failed',
+                    'thread.run.incomplete',
                 ],
             },
             ...RunObject.fields(`${keyPrefix}data`, isInput),

@@ -15,26 +15,21 @@ class MessageContentTextAnnotationsFileCitationObjectFileCitation(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, file_id: str=None, quote: str=None):  # noqa: E501
+    def __init__(self, file_id: str=None):  # noqa: E501
         """MessageContentTextAnnotationsFileCitationObjectFileCitation - a model defined in Swagger
 
         :param file_id: The file_id of this MessageContentTextAnnotationsFileCitationObjectFileCitation.  # noqa: E501
         :type file_id: str
-        :param quote: The quote of this MessageContentTextAnnotationsFileCitationObjectFileCitation.  # noqa: E501
-        :type quote: str
         """
         self.swagger_types = {
-            'file_id': str,
-            'quote': str
+            'file_id': str
         }
 
         self.attribute_map = {
-            'file_id': 'file_id',
-            'quote': 'quote'
+            'file_id': 'file_id'
         }
 
         self._file_id = file_id
-        self._quote = quote
 
     @classmethod
     def from_dict(cls, dikt) -> 'MessageContentTextAnnotationsFileCitationObjectFileCitation':
@@ -71,28 +66,3 @@ class MessageContentTextAnnotationsFileCitationObjectFileCitation(Model):
             raise ValueError("Invalid value for `file_id`, must not be `None`")  # noqa: E501
 
         self._file_id = file_id
-
-    @property
-    def quote(self) -> str:
-        """Gets the quote of this MessageContentTextAnnotationsFileCitationObjectFileCitation.
-
-        The specific quote in the file.  # noqa: E501
-
-        :return: The quote of this MessageContentTextAnnotationsFileCitationObjectFileCitation.
-        :rtype: str
-        """
-        return self._quote
-
-    @quote.setter
-    def quote(self, quote: str):
-        """Sets the quote of this MessageContentTextAnnotationsFileCitationObjectFileCitation.
-
-        The specific quote in the file.  # noqa: E501
-
-        :param quote: The quote of this MessageContentTextAnnotationsFileCitationObjectFileCitation.
-        :type quote: str
-        """
-        if quote is None:
-            raise ValueError("Invalid value for `quote`, must not be `None`")  # noqa: E501
-
-        self._quote = quote

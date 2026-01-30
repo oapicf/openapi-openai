@@ -7,7 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **str** | Always &#x60;image_file&#x60;. | 
 **image_file** | [**MessageContentImageFileObjectImageFile**](MessageContentImageFileObjectImageFile.md) |  | 
+**image_url** | [**MessageContentImageUrlObjectImageUrl**](MessageContentImageUrlObjectImageUrl.md) |  | 
 **text** | [**MessageContentTextObjectText**](MessageContentTextObjectText.md) |  | 
+**refusal** | **str** |  | 
 
 ## Example
 

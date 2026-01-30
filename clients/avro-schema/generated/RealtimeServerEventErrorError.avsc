@@ -1,0 +1,37 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Details of the error.",
+  "name": "RealtimeServerEventErrorError",
+  "fields": [
+    {
+      "name": "type",
+      "type": "string",
+      "doc": "The type of error (e.g., \"invalid_request_error\", \"server_error\"). "
+    },
+    {
+      "name": "code",
+      "type": ["null", "string"],
+      "doc": "Error code, if any.",
+      "default": null
+    },
+    {
+      "name": "message",
+      "type": "string",
+      "doc": "A human-readable error message."
+    },
+    {
+      "name": "param",
+      "type": ["null", "string"],
+      "doc": "Parameter related to the error, if any.",
+      "default": null
+    },
+    {
+      "name": "event_id",
+      "type": ["null", "string"],
+      "doc": "The event_id of the client event that caused the error, if applicable. ",
+      "default": null
+    }
+  ]
+
+}

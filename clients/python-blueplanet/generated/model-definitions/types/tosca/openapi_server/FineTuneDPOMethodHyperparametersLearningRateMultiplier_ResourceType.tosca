@@ -1,0 +1,30 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FineTuneDPOMethodHyperparametersLearningRateMultiplier"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FineTuneDPOMethodHyperparametersLearningRateMultiplier"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  FineTuneDPOMethodHyperparametersLearningRateMultiplier {
+    title = FineTuneDPOMethodHyperparametersLearningRateMultiplier
+    description = FineTuneDPOMethodHyperparametersLearningRateMultiplier
+    derivedFrom = Root
+    properties {
+    }
+  }
+}
+
+serviceTemplates {
+
+  FineTuneDPOMethodHyperparametersLearningRateMultiplier {
+    title = FineTuneDPOMethodHyperparametersLearningRateMultiplier
+    description = FineTuneDPOMethodHyperparametersLearningRateMultiplier
+    implements = openapi_server.resourceTypes.FineTuneDPOMethodHyperparametersLearningRateMultiplier
+
+  }
+}

@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -24,8 +24,7 @@ type RunStepDetailsToolCallsObjectToolCallsInner struct {
 
 	CodeInterpreter RunStepDetailsToolCallsCodeObjectCodeInterpreter `json:"code_interpreter"`
 
-	// For now, this is always going to be an empty object.
-	Retrieval map[string]interface{} `json:"retrieval"`
+	FileSearch RunStepDetailsToolCallsFileSearchObjectFileSearch `json:"file_search"`
 
 	Function RunStepDetailsToolCallsFunctionObjectFunction `json:"function"`
 }
@@ -36,7 +35,7 @@ func AssertRunStepDetailsToolCallsObjectToolCallsInnerRequired(obj RunStepDetail
 		"id": obj.Id,
 		"type": obj.Type,
 		"code_interpreter": obj.CodeInterpreter,
-		"retrieval": obj.Retrieval,
+		"file_search": obj.FileSearch,
 		"function": obj.Function,
 	}
 	for name, el := range elements {
@@ -48,6 +47,9 @@ func AssertRunStepDetailsToolCallsObjectToolCallsInnerRequired(obj RunStepDetail
 	if err := AssertRunStepDetailsToolCallsCodeObjectCodeInterpreterRequired(obj.CodeInterpreter); err != nil {
 		return err
 	}
+	if err := AssertRunStepDetailsToolCallsFileSearchObjectFileSearchRequired(obj.FileSearch); err != nil {
+		return err
+	}
 	if err := AssertRunStepDetailsToolCallsFunctionObjectFunctionRequired(obj.Function); err != nil {
 		return err
 	}
@@ -57,6 +59,9 @@ func AssertRunStepDetailsToolCallsObjectToolCallsInnerRequired(obj RunStepDetail
 // AssertRunStepDetailsToolCallsObjectToolCallsInnerConstraints checks if the values respects the defined constraints
 func AssertRunStepDetailsToolCallsObjectToolCallsInnerConstraints(obj RunStepDetailsToolCallsObjectToolCallsInner) error {
 	if err := AssertRunStepDetailsToolCallsCodeObjectCodeInterpreterConstraints(obj.CodeInterpreter); err != nil {
+		return err
+	}
+	if err := AssertRunStepDetailsToolCallsFileSearchObjectFileSearchConstraints(obj.FileSearch); err != nil {
 		return err
 	}
 	if err := AssertRunStepDetailsToolCallsFunctionObjectFunctionConstraints(obj.Function); err != nil {

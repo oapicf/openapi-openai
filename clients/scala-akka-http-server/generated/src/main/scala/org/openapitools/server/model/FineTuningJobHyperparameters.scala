@@ -2,11 +2,15 @@ package org.openapitools.server.model
 
 
 /**
- * The hyperparameters used for the fine-tuning job. See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
+ * The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.
  *
+ * @param batchSize  for example: ''null''
+ * @param learningRateMultiplier  for example: ''null''
  * @param nEpochs  for example: ''null''
 */
 final case class FineTuningJobHyperparameters (
-  nEpochs: FineTuningJobHyperparametersNEpochs
+  batchSize: Option[CreateFineTuningJobRequestHyperparametersBatchSize] = None,
+  learningRateMultiplier: Option[CreateFineTuningJobRequestHyperparametersLearningRateMultiplier] = None,
+  nEpochs: Option[CreateFineTuningJobRequestHyperparametersNEpochs] = None
 )
 

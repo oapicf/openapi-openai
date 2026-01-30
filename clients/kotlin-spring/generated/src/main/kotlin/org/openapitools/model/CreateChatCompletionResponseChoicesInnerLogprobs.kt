@@ -17,12 +17,17 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * Log probability information for the choice.
  * @param content A list of message content tokens with log probability information.
+ * @param refusal A list of message refusal tokens with log probability information.
  */
 data class CreateChatCompletionResponseChoicesInnerLogprobs(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "A list of message content tokens with log probability information.")
-    @get:JsonProperty("content", required = true) val content: kotlin.collections.List<ChatCompletionTokenLogprob>?
+    @get:JsonProperty("content", required = true) val content: kotlin.collections.List<ChatCompletionTokenLogprob>?,
+
+    @field:Valid
+    @Schema(example = "null", required = true, description = "A list of message refusal tokens with log probability information.")
+    @get:JsonProperty("refusal", required = true) val refusal: kotlin.collections.List<ChatCompletionTokenLogprob>?
 ) {
 
 }

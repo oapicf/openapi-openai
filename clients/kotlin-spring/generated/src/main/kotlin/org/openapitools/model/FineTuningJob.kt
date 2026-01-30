@@ -4,6 +4,7 @@ import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
+import org.openapitools.model.FineTuneMethod
 import org.openapitools.model.FineTuningJobError
 import org.openapitools.model.FineTuningJobHyperparameters
 import org.openapitools.model.FineTuningJobIntegrationsInner
@@ -36,6 +37,8 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param validationFile The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents).
  * @param seed The seed used for the fine-tuning job.
  * @param integrations A list of integrations to enable for this fine-tuning job.
+ * @param estimatedFinish The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+ * @param method 
  */
 data class FineTuningJob(
 
@@ -89,7 +92,14 @@ data class FineTuningJob(
     @field:Valid
     @get:Size(max=5)
     @Schema(example = "null", description = "A list of integrations to enable for this fine-tuning job.")
-    @get:JsonProperty("integrations") val integrations: kotlin.collections.List<FineTuningJobIntegrationsInner>? = null
+    @get:JsonProperty("integrations") val integrations: kotlin.collections.List<FineTuningJobIntegrationsInner>? = null,
+
+    @Schema(example = "null", description = "The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.")
+    @get:JsonProperty("estimated_finish") val estimatedFinish: kotlin.Int? = null,
+
+    @field:Valid
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("method") val method: FineTuneMethod? = null
 ) {
 
     /**

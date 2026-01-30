@@ -82,6 +82,7 @@ private class OASFineTuningJobTest {
         System.assertEquals('trainedTokens', x-property-mappings.get('trained_tokens'));
         System.assertEquals('trainingFile', x-property-mappings.get('training_file'));
         System.assertEquals('validationFile', x-property-mappings.get('validation_file'));
+        System.assertEquals('estimatedFinish', x-property-mappings.get('estimated_finish'));
     }
 
     @isTest
@@ -103,5 +104,7 @@ private class OASFineTuningJobTest {
         System.assertEquals(null, fineTuningJob.trainingFile);
         System.assertEquals(null, fineTuningJob.validationFile);
         System.assertEquals(null, fineTuningJob.seed);
+        System.assertEquals(null, fineTuningJob.estimatedFinish);
+        System.assertEquals(null, fineTuningJob.method);
     }
 }

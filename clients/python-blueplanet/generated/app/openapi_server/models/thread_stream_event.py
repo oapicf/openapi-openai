@@ -16,24 +16,29 @@ class ThreadStreamEvent(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, event: str=None, data: ThreadObject=None):  # noqa: E501
+    def __init__(self, enabled: bool=None, event: str=None, data: ThreadObject=None):  # noqa: E501
         """ThreadStreamEvent - a model defined in Swagger
 
+        :param enabled: The enabled of this ThreadStreamEvent.  # noqa: E501
+        :type enabled: bool
         :param event: The event of this ThreadStreamEvent.  # noqa: E501
         :type event: str
         :param data: The data of this ThreadStreamEvent.  # noqa: E501
         :type data: ThreadObject
         """
         self.swagger_types = {
+            'enabled': bool,
             'event': str,
             'data': ThreadObject
         }
 
         self.attribute_map = {
+            'enabled': 'enabled',
             'event': 'event',
             'data': 'data'
         }
 
+        self._enabled = enabled
         self._event = event
         self._data = data
 
@@ -47,6 +52,29 @@ class ThreadStreamEvent(Model):
         :rtype: ThreadStreamEvent
         """
         return util.deserialize_model(dikt, cls)
+
+    @property
+    def enabled(self) -> bool:
+        """Gets the enabled of this ThreadStreamEvent.
+
+        Whether to enable input audio transcription.  # noqa: E501
+
+        :return: The enabled of this ThreadStreamEvent.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled: bool):
+        """Sets the enabled of this ThreadStreamEvent.
+
+        Whether to enable input audio transcription.  # noqa: E501
+
+        :param enabled: The enabled of this ThreadStreamEvent.
+        :type enabled: bool
+        """
+
+        self._enabled = enabled
 
     @property
     def event(self) -> str:

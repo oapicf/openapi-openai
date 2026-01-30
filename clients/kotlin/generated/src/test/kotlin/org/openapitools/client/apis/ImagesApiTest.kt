@@ -46,7 +46,7 @@ class ImagesApiTest : ShouldSpec() {
             //val n : kotlin.Int = 56 // kotlin.Int | The number of images to generate. Must be between 1 and 10.
             //val size : kotlin.String = size_example // kotlin.String | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
             //val responseFormat : kotlin.String = responseFormat_example // kotlin.String | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
-            //val user : kotlin.String = user_example // kotlin.String | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+            //val user : kotlin.String = user_example // kotlin.String | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
             //val result : ImagesResponse = apiInstance.createImageEdit(image, prompt, mask, model, n, size, responseFormat, user)
             //result shouldBe ("TODO")
         }
@@ -59,7 +59,7 @@ class ImagesApiTest : ShouldSpec() {
             //val n : kotlin.Int = 56 // kotlin.Int | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
             //val responseFormat : kotlin.String = responseFormat_example // kotlin.String | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
             //val size : kotlin.String = size_example // kotlin.String | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
-            //val user : kotlin.String = user_example // kotlin.String | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+            //val user : kotlin.String = user_example // kotlin.String | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
             //val result : ImagesResponse = apiInstance.createImageVariation(image, model, n, responseFormat, size, user)
             //result shouldBe ("TODO")
         }

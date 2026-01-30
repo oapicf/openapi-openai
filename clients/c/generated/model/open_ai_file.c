@@ -22,13 +22,13 @@ openai_api_open_ai_file_OBJECT_e open_ai_file_object_FromString(char* object){
     return 0;
 }
 char* open_ai_file_purpose_ToString(openai_api_open_ai_file_PURPOSE_e purpose) {
-    char* purposeArray[] =  { "NULL", "fine-tune", "fine-tune-results", "assistants", "assistants_output" };
+    char* purposeArray[] =  { "NULL", "assistants", "assistants_output", "batch", "batch_output", "fine-tune", "fine-tune-results", "vision" };
     return purposeArray[purpose];
 }
 
 openai_api_open_ai_file_PURPOSE_e open_ai_file_purpose_FromString(char* purpose){
     int stringToReturn = 0;
-    char *purposeArray[] =  { "NULL", "fine-tune", "fine-tune-results", "assistants", "assistants_output" };
+    char *purposeArray[] =  { "NULL", "assistants", "assistants_output", "batch", "batch_output", "fine-tune", "fine-tune-results", "vision" };
     size_t sizeofArray = sizeof(purposeArray) / sizeof(purposeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(purpose, purposeArray[stringToReturn]) == 0) {

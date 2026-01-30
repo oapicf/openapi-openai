@@ -101,7 +101,7 @@ $model = new \OpenAPI\Client\Model\CreateImageEditRequestModel(); // \OpenAPI\Cl
 $n = 1; // int | The number of images to generate. Must be between 1 and 10.
 $size = '1024x1024'; // string | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
 $response_format = 'url'; // string | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
-$user = 'user_example'; // string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).
+$user = 'user_example'; // string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).
 
 try {
     $result = $apiInstance->createImageEdit($image, $prompt, $mask, $model, $n, $size, $response_format, $user);
@@ -122,7 +122,7 @@ try {
 | **n** | **int**| The number of images to generate. Must be between 1 and 10. | [optional] [default to 1] |
 | **size** | **string**| The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | [optional] [default to &#39;1024x1024&#39;] |
 | **response_format** | **string**| The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | [optional] [default to &#39;url&#39;] |
-| **user** | **string**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). | [optional] |
+| **user** | **string**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). | [optional] |
 
 ### Return type
 
@@ -171,7 +171,7 @@ $model = new \OpenAPI\Client\Model\CreateImageEditRequestModel(); // \OpenAPI\Cl
 $n = 1; // int | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
 $response_format = 'url'; // string | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
 $size = '1024x1024'; // string | The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
-$user = 'user_example'; // string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).
+$user = 'user_example'; // string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).
 
 try {
     $result = $apiInstance->createImageVariation($image, $model, $n, $response_format, $size, $user);
@@ -190,7 +190,7 @@ try {
 | **n** | **int**| The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported. | [optional] [default to 1] |
 | **response_format** | **string**| The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | [optional] [default to &#39;url&#39;] |
 | **size** | **string**| The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | [optional] [default to &#39;1024x1024&#39;] |
-| **user** | **string**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). | [optional] |
+| **user** | **string**| A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). | [optional] |
 
 ### Return type
 

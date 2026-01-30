@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.model.CreateMessageRequestAttachmentsInner;
 import org.openapitools.model.MessageObjectContentInner;
 import org.openapitools.model.MessageObjectIncompleteDetails;
 import javax.validation.constraints.*;
@@ -23,7 +24,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Represents a message within a [thread](/docs/api-reference/threads).")
 @JsonTypeName("MessageObject")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageObject   {
   private String id;
   public enum ObjectEnum {
@@ -178,7 +179,7 @@ public class MessageObject   {
   private @Valid List<MessageObjectContentInner> content = new ArrayList<>();
   private String assistantId;
   private String runId;
-  private @Valid List<String> fileIds = new ArrayList<>();
+  private @Valid List<@Valid CreateMessageRequestAttachmentsInner> attachments;
   private Object metadata;
 
   public MessageObject() {
@@ -198,7 +199,7 @@ public class MessageObject   {
     @JsonProperty(required = true, value = "content") List<@Valid MessageObjectContentInner> content,
     @JsonProperty(required = true, value = "assistant_id") String assistantId,
     @JsonProperty(required = true, value = "run_id") String runId,
-    @JsonProperty(required = true, value = "file_ids") List<String> fileIds,
+    @JsonProperty(required = true, value = "attachments") List<@Valid CreateMessageRequestAttachmentsInner> attachments,
     @JsonProperty(required = true, value = "metadata") Object metadata
   ) {
     this.id = id;
@@ -213,7 +214,7 @@ public class MessageObject   {
     this.content = content;
     this.assistantId = assistantId;
     this.runId = runId;
-    this.fileIds = fileIds;
+    this.attachments = attachments;
     this.metadata = metadata;
   }
 
@@ -473,43 +474,43 @@ public class MessageObject   {
   }
 
   /**
-   * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
+   * A list of files attached to the message, and the tools they were added to.
    **/
-  public MessageObject fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public MessageObject attachments(List<@Valid CreateMessageRequestAttachmentsInner> attachments) {
+    this.attachments = attachments;
     return this;
   }
 
   
-  @ApiModelProperty(required = true, value = "A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.")
-  @JsonProperty(required = true, value = "file_ids")
-  @NotNull  @Size(max=10)public List<String> getFileIds() {
-    return fileIds;
+  @ApiModelProperty(required = true, value = "A list of files attached to the message, and the tools they were added to.")
+  @JsonProperty(required = true, value = "attachments")
+  @NotNull @Valid public List<@Valid CreateMessageRequestAttachmentsInner> getAttachments() {
+    return attachments;
   }
 
-  @JsonProperty(required = true, value = "file_ids")
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  @JsonProperty(required = true, value = "attachments")
+  public void setAttachments(List<@Valid CreateMessageRequestAttachmentsInner> attachments) {
+    this.attachments = attachments;
   }
 
-  public MessageObject addFileIdsItem(String fileIdsItem) {
-    if (this.fileIds == null) {
-      this.fileIds = new ArrayList<>();
+  public MessageObject addAttachmentsItem(CreateMessageRequestAttachmentsInner attachmentsItem) {
+    if (this.attachments == null) {
+      this.attachments = new ArrayList<>();
     }
 
-    this.fileIds.add(fileIdsItem);
+    this.attachments.add(attachmentsItem);
     return this;
   }
 
-  public MessageObject removeFileIdsItem(String fileIdsItem) {
-    if (fileIdsItem != null && this.fileIds != null) {
-      this.fileIds.remove(fileIdsItem);
+  public MessageObject removeAttachmentsItem(CreateMessageRequestAttachmentsInner attachmentsItem) {
+    if (attachmentsItem != null && this.attachments != null) {
+      this.attachments.remove(attachmentsItem);
     }
 
     return this;
   }
   /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    **/
   public MessageObject metadata(Object metadata) {
     this.metadata = metadata;
@@ -517,7 +518,7 @@ public class MessageObject   {
   }
 
   
-  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+  @ApiModelProperty(required = true, value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
   @JsonProperty(required = true, value = "metadata")
   @NotNull public Object getMetadata() {
     return metadata;
@@ -550,13 +551,13 @@ public class MessageObject   {
         Objects.equals(this.content, messageObject.content) &&
         Objects.equals(this.assistantId, messageObject.assistantId) &&
         Objects.equals(this.runId, messageObject.runId) &&
-        Objects.equals(this.fileIds, messageObject.fileIds) &&
+        Objects.equals(this.attachments, messageObject.attachments) &&
         Objects.equals(this.metadata, messageObject.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, threadId, status, incompleteDetails, completedAt, incompleteAt, role, content, assistantId, runId, fileIds, metadata);
+    return Objects.hash(id, _object, createdAt, threadId, status, incompleteDetails, completedAt, incompleteAt, role, content, assistantId, runId, attachments, metadata);
   }
 
   @Override
@@ -576,7 +577,7 @@ public class MessageObject   {
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    assistantId: ").append(toIndentedString(assistantId)).append("\n");
     sb.append("    runId: ").append(toIndentedString(runId)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

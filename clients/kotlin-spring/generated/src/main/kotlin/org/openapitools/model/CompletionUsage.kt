@@ -2,6 +2,8 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
+import org.openapitools.model.CompletionUsageCompletionTokensDetails
+import org.openapitools.model.CompletionUsagePromptTokensDetails
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -18,6 +20,8 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param completionTokens Number of tokens in the generated completion.
  * @param promptTokens Number of tokens in the prompt.
  * @param totalTokens Total number of tokens used in the request (prompt + completion).
+ * @param completionTokensDetails 
+ * @param promptTokensDetails 
  */
 data class CompletionUsage(
 
@@ -28,7 +32,15 @@ data class CompletionUsage(
     @get:JsonProperty("prompt_tokens", required = true) val promptTokens: kotlin.Int,
 
     @Schema(example = "null", required = true, description = "Total number of tokens used in the request (prompt + completion).")
-    @get:JsonProperty("total_tokens", required = true) val totalTokens: kotlin.Int
+    @get:JsonProperty("total_tokens", required = true) val totalTokens: kotlin.Int,
+
+    @field:Valid
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("completion_tokens_details") val completionTokensDetails: CompletionUsageCompletionTokensDetails? = null,
+
+    @field:Valid
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("prompt_tokens_details") val promptTokensDetails: CompletionUsagePromptTokensDetails? = null
 ) {
 
 }

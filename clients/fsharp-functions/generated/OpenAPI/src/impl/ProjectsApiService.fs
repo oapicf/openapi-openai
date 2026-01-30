@@ -1,0 +1,148 @@
+namespace OpenAPI
+open OpenAPI.Model.ErrorResponse
+open OpenAPI.Model.Project
+open OpenAPI.Model.ProjectApiKey
+open OpenAPI.Model.ProjectApiKeyDeleteResponse
+open OpenAPI.Model.ProjectApiKeyListResponse
+open OpenAPI.Model.ProjectCreateRequest
+open OpenAPI.Model.ProjectListResponse
+open OpenAPI.Model.ProjectRateLimit
+open OpenAPI.Model.ProjectRateLimitListResponse
+open OpenAPI.Model.ProjectRateLimitUpdateRequest
+open OpenAPI.Model.ProjectServiceAccount
+open OpenAPI.Model.ProjectServiceAccountCreateRequest
+open OpenAPI.Model.ProjectServiceAccountCreateResponse
+open OpenAPI.Model.ProjectServiceAccountDeleteResponse
+open OpenAPI.Model.ProjectServiceAccountListResponse
+open OpenAPI.Model.ProjectUpdateRequest
+open OpenAPI.Model.ProjectUser
+open OpenAPI.Model.ProjectUserCreateRequest
+open OpenAPI.Model.ProjectUserDeleteResponse
+open OpenAPI.Model.ProjectUserListResponse
+open OpenAPI.Model.ProjectUserUpdateRequest
+open ProjectsApiHandlerParams
+open ProjectsApiServiceInterface
+open System.Collections.Generic
+open System
+
+module ProjectsApiServiceImplementation =
+
+    //#region Service implementation
+    type ProjectsApiServiceImpl() =
+      interface IProjectsApiService with
+
+        member this.ArchiveProject () =
+            let content = "Project archived successfully." :> obj :?> Project // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            ArchiveProjectStatusCode200 { content = content }
+
+        member this.CreateProject (parameters:CreateProjectBodyParams) =
+            let content = "Project created successfully." :> obj :?> Project // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            CreateProjectStatusCode200 { content = content }
+
+        member this.CreateProjectServiceAccount (parameters:CreateProjectServiceAccountBodyParams) =
+          if true then
+            let content = "Project service account created successfully." :> obj :?> ProjectServiceAccountCreateResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            CreateProjectServiceAccountStatusCode200 { content = content }
+          else
+            let content = "Error response when project is archived." :> obj :?> ErrorResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            CreateProjectServiceAccountStatusCode400 { content = content }
+
+        member this.CreateProjectUser (parameters:CreateProjectUserBodyParams) =
+          if true then
+            let content = "User added to project successfully." :> obj :?> ProjectUser // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            CreateProjectUserStatusCode200 { content = content }
+          else
+            let content = "Error response for various conditions." :> obj :?> ErrorResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            CreateProjectUserStatusCode400 { content = content }
+
+        member this.DeleteProjectApiKey () =
+          if true then
+            let content = "Project API key deleted successfully." :> obj :?> ProjectApiKeyDeleteResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            DeleteProjectApiKeyStatusCode200 { content = content }
+          else
+            let content = "Error response for various conditions." :> obj :?> ErrorResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            DeleteProjectApiKeyStatusCode400 { content = content }
+
+        member this.DeleteProjectServiceAccount () =
+            let content = "Project service account deleted successfully." :> obj :?> ProjectServiceAccountDeleteResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            DeleteProjectServiceAccountStatusCode200 { content = content }
+
+        member this.DeleteProjectUser () =
+          if true then
+            let content = "Project user deleted successfully." :> obj :?> ProjectUserDeleteResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            DeleteProjectUserStatusCode200 { content = content }
+          else
+            let content = "Error response for various conditions." :> obj :?> ErrorResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            DeleteProjectUserStatusCode400 { content = content }
+
+        member this.ListProjectApiKeys () =
+            let content = "Project API keys listed successfully." :> obj :?> ProjectApiKeyListResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            ListProjectApiKeysStatusCode200 { content = content }
+
+        member this.ListProjectRateLimits () =
+            let content = "Project rate limits listed successfully." :> obj :?> ProjectRateLimitListResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            ListProjectRateLimitsStatusCode200 { content = content }
+
+        member this.ListProjectServiceAccounts () =
+          if true then
+            let content = "Project service accounts listed successfully." :> obj :?> ProjectServiceAccountListResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            ListProjectServiceAccountsStatusCode200 { content = content }
+          else
+            let content = "Error response when project is archived." :> obj :?> ErrorResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            ListProjectServiceAccountsStatusCode400 { content = content }
+
+        member this.ListProjectUsers () =
+          if true then
+            let content = "Project users listed successfully." :> obj :?> ProjectUserListResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            ListProjectUsersStatusCode200 { content = content }
+          else
+            let content = "Error response when project is archived." :> obj :?> ErrorResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            ListProjectUsersStatusCode400 { content = content }
+
+        member this.ListProjects () =
+            let content = "Projects listed successfully." :> obj :?> ProjectListResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            ListProjectsStatusCode200 { content = content }
+
+        member this.ModifyProject (parameters:ModifyProjectBodyParams) =
+          if true then
+            let content = "Project updated successfully." :> obj :?> Project // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            ModifyProjectStatusCode200 { content = content }
+          else
+            let content = "Error response when updating the default project." :> obj :?> ErrorResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            ModifyProjectStatusCode400 { content = content }
+
+        member this.ModifyProjectUser (parameters:ModifyProjectUserBodyParams) =
+          if true then
+            let content = "Project user&#39;s role updated successfully." :> obj :?> ProjectUser // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            ModifyProjectUserStatusCode200 { content = content }
+          else
+            let content = "Error response for various conditions." :> obj :?> ErrorResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            ModifyProjectUserStatusCode400 { content = content }
+
+        member this.RetrieveProject () =
+            let content = "Project retrieved successfully." :> obj :?> Project // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            RetrieveProjectStatusCode200 { content = content }
+
+        member this.RetrieveProjectApiKey () =
+            let content = "Project API key retrieved successfully." :> obj :?> ProjectApiKey // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            RetrieveProjectApiKeyStatusCode200 { content = content }
+
+        member this.RetrieveProjectServiceAccount () =
+            let content = "Project service account retrieved successfully." :> obj :?> ProjectServiceAccount // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            RetrieveProjectServiceAccountStatusCode200 { content = content }
+
+        member this.RetrieveProjectUser () =
+            let content = "Project user retrieved successfully." :> obj :?> ProjectUser // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            RetrieveProjectUserStatusCode200 { content = content }
+
+        member this.UpdateProjectRateLimits (parameters:UpdateProjectRateLimitsBodyParams) =
+          if true then
+            let content = "Project rate limit updated successfully." :> obj :?> ProjectRateLimit // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            UpdateProjectRateLimitsStatusCode200 { content = content }
+          else
+            let content = "Error response for various conditions." :> obj :?> ErrorResponse // this cast is obviously wrong, and is only intended to allow generated project to compile   
+            UpdateProjectRateLimitsStatusCode400 { content = content }
+
+      //#endregion
+
+    let ProjectsApiService = ProjectsApiServiceImpl() :> IProjectsApiService

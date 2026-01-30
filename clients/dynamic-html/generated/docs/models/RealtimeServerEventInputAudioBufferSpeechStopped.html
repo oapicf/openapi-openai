@@ -1,0 +1,27 @@
+
+<h2>RealtimeServerEventInputAudioBufferSpeechStopped</h2>
+<ul class="parameter">
+  <li class="param-required-true">eventUnderscoreid : String
+    <br/>The unique ID of the server event.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">type : String
+    <br/>The event type, must be &#x60;input_audio_buffer.speech_stopped&#x60;.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>input_audio_buffer.speech_stopped</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">audioUnderscoreendUnderscorems : Integer
+    <br/>Milliseconds since the session started when speech stopped. This will  correspond to the end of audio sent to the model, and thus includes the  &#x60;min_silence_duration_ms&#x60; configured in the Session. 
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">itemUnderscoreid : String
+    <br/>The ID of the user message item that will be created.
+  </li>
+</ul>

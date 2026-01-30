@@ -30,6 +30,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param event 
  * @param `data` 
+ * @param enabled Whether to enable input audio transcription.
  */
 
 
@@ -39,7 +40,11 @@ data class AssistantStreamEvent (
     val event: AssistantStreamEvent.Event,
 
     @Json(name = "data")
-    val `data`: AssistantStreamEvent.`Data`
+    val `data`: AssistantStreamEvent.`Data`,
+
+    /* Whether to enable input audio transcription. */
+    @Json(name = "enabled")
+    val enabled: kotlin.Boolean? = null
 
 ) {
 

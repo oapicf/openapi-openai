@@ -13,23 +13,51 @@
  * Fine-tuning job event object
  */
 export interface FineTuningJobEvent { 
-    id: string;
-    created_at: number;
-    level: FineTuningJobEvent.LevelEnum;
-    message: string;
+    /**
+     * The object type, which is always \"fine_tuning.job.event\".
+     */
     object: FineTuningJobEvent.ObjectEnum;
+    /**
+     * The object identifier.
+     */
+    id: string;
+    /**
+     * The Unix timestamp (in seconds) for when the fine-tuning job was created.
+     */
+    created_at: number;
+    /**
+     * The log level of the event.
+     */
+    level: FineTuningJobEvent.LevelEnum;
+    /**
+     * The message of the event.
+     */
+    message: string;
+    /**
+     * The type of event.
+     */
+    type?: FineTuningJobEvent.TypeEnum;
+    /**
+     * The data associated with the event.
+     */
+    data?: object;
 }
 export namespace FineTuningJobEvent {
+    export const ObjectEnum = {
+        FineTuningJobEvent: 'fine_tuning.job.event'
+    } as const;
+    export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
     export const LevelEnum = {
         Info: 'info',
         Warn: 'warn',
         Error: 'error'
     } as const;
     export type LevelEnum = typeof LevelEnum[keyof typeof LevelEnum];
-    export const ObjectEnum = {
-        FineTuningJobEvent: 'fine_tuning.job.event'
+    export const TypeEnum = {
+        Message: 'message',
+        Metrics: 'metrics'
     } as const;
-    export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
+    export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }
 
 

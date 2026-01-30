@@ -1,0 +1,17 @@
+
+<h2>VectorStoreExpirationAfter</h2>
+<ul class="parameter">
+  <li class="param-required-true">anchor : String
+    <br/>Anchor timestamp after which the expiration policy applies. Supported anchors: &#x60;last_active_at&#x60;.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>last_active_at</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">days : Integer
+    <br/>The number of days after the anchor time that the vector store will expire.
+  </li>
+</ul>

@@ -31,11 +31,5 @@ class MessageContentTextAnnotationsFileCitationObjectFileCitationTest : ShouldSp
             //modelInstance.fileId shouldBe ("TODO")
         }
 
-        // to test the property `quote` - The specific quote in the file.
-        should("test quote") {
-            // uncomment below to test the property
-            //modelInstance.quote shouldBe ("TODO")
-        }
-
     }
 }

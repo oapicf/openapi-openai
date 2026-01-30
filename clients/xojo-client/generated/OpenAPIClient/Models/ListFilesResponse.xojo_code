@@ -2,33 +2,31 @@
 Protected Class ListFilesResponse
 
 	#tag Property, Flags = &h0
+		object As String
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
 		data() As OpenAPIClient.Models.OpenAIFile
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		object As String
+		first_id As String
 	#tag EndProperty
 
 
-    #tag Enum, Name = ObjectEnum, Type = Integer, Flags = &h0
-        
-        List
-        
-    #tag EndEnum
+	#tag Property, Flags = &h0
+		last_id As String
+	#tag EndProperty
 
 
-	#tag Method, Flags = &h0
-		Shared Function ObjectEnumToString(value As ObjectEnum) As String
-		  Select Case value
-		    
-		    Case ObjectEnum.List
-		      Return "list"
-		    
-		  End Select
-		  Return ""
-		End Function
-	#tag EndMethod
+	#tag Property, Flags = &h0
+		has_more As Boolean
+	#tag EndProperty
+
+
+
 
 
 	#tag ViewBehavior
@@ -65,11 +63,43 @@ Protected Class ListFilesResponse
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="object"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="data"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
 			Type="OpenAIFile"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="first_id"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="last_id"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="has_more"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

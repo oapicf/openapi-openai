@@ -1,0 +1,49 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CreateModerationRequestInputOneOfInner"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CreateModerationRequestInputOneOfInner"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  CreateModerationRequestInputOneOfInnerOneOf = openapi_server.resourceTypes.CreateModerationRequestInputOneOfInnerOneOf
+  CreateModerationRequestInputOneOfInnerOneOf1 = openapi_server.resourceTypes.CreateModerationRequestInputOneOfInnerOneOf1
+  CreateModerationRequestInputOneOfInnerOneOfImageUrl = openapi_server.resourceTypes.CreateModerationRequestInputOneOfInnerOneOfImageUrl
+}
+resourceTypes {
+
+  CreateModerationRequestInputOneOfInner {
+    title = CreateModerationRequestInputOneOfInner
+    description = CreateModerationRequestInputOneOfInner
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "Always &#x60;image_url&#x60;."
+          enum = ["image_url", "text"]
+          optional = true
+        }
+        image_url {
+          type = CreateModerationRequestInputOneOfInnerOneOfImageUrl
+          description = ""
+          optional = true
+        }
+        text {
+          type =  string
+          description = "A string of text to classify."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CreateModerationRequestInputOneOfInner {
+    title = CreateModerationRequestInputOneOfInner
+    description = CreateModerationRequestInputOneOfInner
+    implements = openapi_server.resourceTypes.CreateModerationRequestInputOneOfInner
+
+  }
+}

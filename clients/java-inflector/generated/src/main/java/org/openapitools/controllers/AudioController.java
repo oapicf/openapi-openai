@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.openapitools.model.*;
 
+import org.openapitools.model.AudioResponseFormat;
 import java.math.BigDecimal;
 import org.openapitools.model.CreateSpeechRequest;
 import org.openapitools.model.CreateTranscription200Response;
@@ -17,7 +18,7 @@ import org.openapitools.model.CreateTranscriptionRequestModel;
 import org.openapitools.model.CreateTranslation200Response;
 import java.io.File;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class AudioController  {
   /**
    * Uncomment and implement as you see fit.  These operations will map
@@ -32,13 +33,13 @@ public class AudioController  {
   */
 
   /*
-    public ResponseContext createTranscription(RequestContext request , FormDataContentDisposition fileDetail, CreateTranscriptionRequestModel model, String language, String prompt, String responseFormat, BigDecimal temperature, List<String> timestampGranularities) {
+    public ResponseContext createTranscription(RequestContext request , FormDataContentDisposition fileDetail, CreateTranscriptionRequestModel model, String language, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature, List<String> timestampGranularities) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */
 
   /*
-    public ResponseContext createTranslation(RequestContext request , FormDataContentDisposition fileDetail, CreateTranscriptionRequestModel model, String prompt, String responseFormat, BigDecimal temperature) {
+    public ResponseContext createTranslation(RequestContext request , FormDataContentDisposition fileDetail, CreateTranscriptionRequestModel model, String prompt, AudioResponseFormat responseFormat, BigDecimal temperature) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */

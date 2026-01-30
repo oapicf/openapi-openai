@@ -8,7 +8,9 @@ Name | Type
 ------------ | -------------
 `type` | string
 `imageFile` | [MessageContentImageFileObjectImageFile](MessageContentImageFileObjectImageFile.md)
+`imageUrl` | [MessageContentImageUrlObjectImageUrl](MessageContentImageUrlObjectImageUrl.md)
 `text` | [MessageContentTextObjectText](MessageContentTextObjectText.md)
+`refusal` | string
 
 ## Example
 
@@ -19,7 +21,9 @@ import type { MessageObjectContentInner } from ''
 const example = {
   "type": null,
   "imageFile": null,
+  "imageUrl": null,
   "text": null,
+  "refusal": null,
 } satisfies MessageObjectContentInner
 
 console.log(example)

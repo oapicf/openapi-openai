@@ -7,6 +7,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ChatCompletionStreamOptions } from './chatCompletionStreamOptions';
 import { CreateCompletionRequestPrompt } from './createCompletionRequestPrompt';
 import { CreateCompletionRequestModel } from './createCompletionRequestModel';
 import { CreateCompletionRequestStop } from './createCompletionRequestStop';
@@ -24,7 +25,7 @@ export interface CreateCompletionRequest {
      */
     echo?: boolean | null;
     /**
-     * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model\'s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+     * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model\'s likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
      */
     frequency_penalty?: number | null;
     /**
@@ -44,7 +45,7 @@ export interface CreateCompletionRequest {
      */
     n?: number | null;
     /**
-     * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model\'s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+     * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model\'s likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) 
      */
     presence_penalty?: number | null;
     /**
@@ -56,6 +57,7 @@ export interface CreateCompletionRequest {
      * Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). 
      */
     stream?: boolean | null;
+    stream_options?: ChatCompletionStreamOptions | null;
     /**
      * The suffix that comes after a completion of inserted text.  This parameter is only supported for `gpt-3.5-turbo-instruct`. 
      */
@@ -69,7 +71,7 @@ export interface CreateCompletionRequest {
      */
     top_p?: number | null;
     /**
-     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
      */
     user?: string;
 }

@@ -5,8 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Array&lt;OpenAIFile&gt;**](OpenAIFile.md) |  | [default to undefined]
 **object** | **string** |  | [default to undefined]
+**data** | [**Array&lt;OpenAIFile&gt;**](OpenAIFile.md) |  | [default to undefined]
+**first_id** | **string** |  | [default to undefined]
+**last_id** | **string** |  | [default to undefined]
+**has_more** | **boolean** |  | [default to undefined]
 
 ## Example
 
@@ -14,8 +17,11 @@ Name | Type | Description | Notes
 import { ListFilesResponse } from './api';
 
 const instance: ListFilesResponse = {
-    data,
     object,
+    data,
+    first_id,
+    last_id,
+    has_more,
 };
 ```
 

@@ -40,12 +40,4 @@ public class MessageDeltaObjectDeltaTest {
         // TODO: test content
     }
 
-    /**
-     * Test the property 'fileIds'
-     */
-    @Test
-    public void fileIdsTest() {
-        // TODO: test fileIds
-    }
-
 }

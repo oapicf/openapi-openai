@@ -13,15 +13,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) fails.
+ * Occurs when a [run](/docs/api-reference/runs/object) ends with status `incomplete`.
  */
-@ApiModel(description="Occurs when a [run](/docs/api-reference/runs/object) fails.")
+@ApiModel(description="Occurs when a [run](/docs/api-reference/runs/object) ends with status `incomplete`.")
 
 public class RunStreamEventOneOf5  {
   
 public enum EventEnum {
 
-    @JsonProperty("thread.run.failed") THREAD_RUN_FAILED(String.valueOf("thread.run.failed"));
+    @JsonProperty("thread.run.incomplete") THREAD_RUN_INCOMPLETE(String.valueOf("thread.run.incomplete"));
 
     private String value;
 

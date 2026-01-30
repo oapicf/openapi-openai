@@ -24,8 +24,8 @@ openai_api_create_message_request_ROLE_e create_message_request_role_FromString(
 
 static create_message_request_t *create_message_request_create_internal(
     openai_api_create_message_request_ROLE_e role,
-    char *content,
-    list_t *file_ids,
+    create_message_request_content_t *content,
+    list_t *attachments,
     object_t *metadata
     ) {
     create_message_request_t *create_message_request_local_var = malloc(sizeof(create_message_request_t));
@@ -34,7 +34,7 @@ static create_message_request_t *create_message_request_create_internal(
     }
     create_message_request_local_var->role = role;
     create_message_request_local_var->content = content;
-    create_message_request_local_var->file_ids = file_ids;
+    create_message_request_local_var->attachments = attachments;
     create_message_request_local_var->metadata = metadata;
 
     create_message_request_local_var->_library_owned = 1;
@@ -43,14 +43,14 @@ static create_message_request_t *create_message_request_create_internal(
 
 __attribute__((deprecated)) create_message_request_t *create_message_request_create(
     openai_api_create_message_request_ROLE_e role,
-    char *content,
-    list_t *file_ids,
+    create_message_request_content_t *content,
+    list_t *attachments,
     object_t *metadata
     ) {
     return create_message_request_create_internal (
         role,
         content,
-        file_ids,
+        attachments,
         metadata
         );
 }
@@ -65,15 +65,15 @@ void create_message_request_free(create_message_request_t *create_message_reques
     }
     listEntry_t *listEntry;
     if (create_message_request->content) {
-        free(create_message_request->content);
+        create_message_request_content_free(create_message_request->content);
         create_message_request->content = NULL;
     }
-    if (create_message_request->file_ids) {
-        list_ForEach(listEntry, create_message_request->file_ids) {
-            free(listEntry->data);
+    if (create_message_request->attachments) {
+        list_ForEach(listEntry, create_message_request->attachments) {
+            create_message_request_attachments_inner_free(listEntry->data);
         }
-        list_freeList(create_message_request->file_ids);
-        create_message_request->file_ids = NULL;
+        list_freeList(create_message_request->attachments);
+        create_message_request->attachments = NULL;
     }
     if (create_message_request->metadata) {
         object_free(create_message_request->metadata);
@@ -99,23 +99,31 @@ cJSON *create_message_request_convertToJSON(create_message_request_t *create_mes
     if (!create_message_request->content) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "content", create_message_request->content) == NULL) {
-    goto fail; //String
+    cJSON *content_local_JSON = create_message_request_content_convertToJSON(create_message_request->content);
+    if(content_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "content", content_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
     }
 
 
-    // create_message_request->file_ids
-    if(create_message_request->file_ids) {
-    cJSON *file_ids = cJSON_AddArrayToObject(item, "file_ids");
-    if(file_ids == NULL) {
-        goto fail; //primitive container
+    // create_message_request->attachments
+    if(create_message_request->attachments) {
+    cJSON *attachments = cJSON_AddArrayToObject(item, "attachments");
+    if(attachments == NULL) {
+    goto fail; //nonprimitive container
     }
 
-    listEntry_t *file_idsListEntry;
-    list_ForEach(file_idsListEntry, create_message_request->file_ids) {
-    if(cJSON_AddStringToObject(file_ids, "", file_idsListEntry->data) == NULL)
-    {
-        goto fail;
+    listEntry_t *attachmentsListEntry;
+    if (create_message_request->attachments) {
+    list_ForEach(attachmentsListEntry, create_message_request->attachments) {
+    cJSON *itemLocal = create_message_request_attachments_inner_convertToJSON(attachmentsListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(attachments, itemLocal);
     }
     }
     }
@@ -145,8 +153,11 @@ create_message_request_t *create_message_request_parseFromJSON(cJSON *create_mes
 
     create_message_request_t *create_message_request_local_var = NULL;
 
-    // define the local list for create_message_request->file_ids
-    list_t *file_idsList = NULL;
+    // define the local variable for create_message_request->content
+    create_message_request_content_t *content_local_nonprim = NULL;
+
+    // define the local list for create_message_request->attachments
+    list_t *attachmentsList = NULL;
 
     // create_message_request->role
     cJSON *role = cJSON_GetObjectItemCaseSensitive(create_message_requestJSON, "role");
@@ -175,30 +186,29 @@ create_message_request_t *create_message_request_parseFromJSON(cJSON *create_mes
     }
 
     
-    if(!cJSON_IsString(content))
-    {
-    goto end; //String
+    content_local_nonprim = create_message_request_content_parseFromJSON(content); //nonprimitive
+
+    // create_message_request->attachments
+    cJSON *attachments = cJSON_GetObjectItemCaseSensitive(create_message_requestJSON, "attachments");
+    if (cJSON_IsNull(attachments)) {
+        attachments = NULL;
+    }
+    if (attachments) { 
+    cJSON *attachments_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(attachments)){
+        goto end; //nonprimitive container
     }
 
-    // create_message_request->file_ids
-    cJSON *file_ids = cJSON_GetObjectItemCaseSensitive(create_message_requestJSON, "file_ids");
-    if (cJSON_IsNull(file_ids)) {
-        file_ids = NULL;
-    }
-    if (file_ids) { 
-    cJSON *file_ids_local = NULL;
-    if(!cJSON_IsArray(file_ids)) {
-        goto end;//primitive container
-    }
-    file_idsList = list_createList();
+    attachmentsList = list_createList();
 
-    cJSON_ArrayForEach(file_ids_local, file_ids)
+    cJSON_ArrayForEach(attachments_local_nonprimitive,attachments )
     {
-        if(!cJSON_IsString(file_ids_local))
-        {
+        if(!cJSON_IsObject(attachments_local_nonprimitive)){
             goto end;
         }
-        list_addElement(file_idsList , strdup(file_ids_local->valuestring));
+        create_message_request_attachments_inner_t *attachmentsItem = create_message_request_attachments_inner_parseFromJSON(attachments_local_nonprimitive);
+
+        list_addElement(attachmentsList, attachmentsItem);
     }
     }
 
@@ -215,21 +225,25 @@ create_message_request_t *create_message_request_parseFromJSON(cJSON *create_mes
 
     create_message_request_local_var = create_message_request_create_internal (
         roleVariable,
-        strdup(content->valuestring),
-        file_ids ? file_idsList : NULL,
+        content_local_nonprim,
+        attachments ? attachmentsList : NULL,
         metadata ? metadata_local_object : NULL
         );
 
     return create_message_request_local_var;
 end:
-    if (file_idsList) {
+    if (content_local_nonprim) {
+        create_message_request_content_free(content_local_nonprim);
+        content_local_nonprim = NULL;
+    }
+    if (attachmentsList) {
         listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, file_idsList) {
-            free(listEntry->data);
+        list_ForEach(listEntry, attachmentsList) {
+            create_message_request_attachments_inner_free(listEntry->data);
             listEntry->data = NULL;
         }
-        list_freeList(file_idsList);
-        file_idsList = NULL;
+        list_freeList(attachmentsList);
+        attachmentsList = NULL;
     }
     return NULL;
 

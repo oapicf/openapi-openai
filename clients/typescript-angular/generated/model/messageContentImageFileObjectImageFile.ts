@@ -11,8 +11,21 @@
 
 export interface MessageContentImageFileObjectImageFile { 
     /**
-     * The [File](/docs/api-reference/files) ID of the image in the message content.
+     * The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content.
      */
     file_id: string;
+    /**
+     * Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
+     */
+    detail?: MessageContentImageFileObjectImageFile.DetailEnum;
 }
+export namespace MessageContentImageFileObjectImageFile {
+    export const DetailEnum = {
+        Auto: 'auto',
+        Low: 'low',
+        High: 'high'
+    } as const;
+    export type DetailEnum = typeof DetailEnum[keyof typeof DetailEnum];
+}
+
 

@@ -10,6 +10,8 @@
 #' @field completion_tokens Number of tokens in the generated completion. integer
 #' @field prompt_tokens Number of tokens in the prompt. integer
 #' @field total_tokens Total number of tokens used in the request (prompt + completion). integer
+#' @field completion_tokens_details  \link{CompletionUsageCompletionTokensDetails} [optional]
+#' @field prompt_tokens_details  \link{CompletionUsagePromptTokensDetails} [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -19,6 +21,8 @@ CompletionUsage <- R6::R6Class(
     `completion_tokens` = NULL,
     `prompt_tokens` = NULL,
     `total_tokens` = NULL,
+    `completion_tokens_details` = NULL,
+    `prompt_tokens_details` = NULL,
 
     #' @description
     #' Initialize a new CompletionUsage class.
@@ -26,8 +30,10 @@ CompletionUsage <- R6::R6Class(
     #' @param completion_tokens Number of tokens in the generated completion.
     #' @param prompt_tokens Number of tokens in the prompt.
     #' @param total_tokens Total number of tokens used in the request (prompt + completion).
+    #' @param completion_tokens_details completion_tokens_details
+    #' @param prompt_tokens_details prompt_tokens_details
     #' @param ... Other optional arguments.
-    initialize = function(`completion_tokens`, `prompt_tokens`, `total_tokens`, ...) {
+    initialize = function(`completion_tokens`, `prompt_tokens`, `total_tokens`, `completion_tokens_details` = NULL, `prompt_tokens_details` = NULL, ...) {
       if (!missing(`completion_tokens`)) {
         if (!(is.numeric(`completion_tokens`) && length(`completion_tokens`) == 1)) {
           stop(paste("Error! Invalid data for `completion_tokens`. Must be an integer:", `completion_tokens`))
@@ -45,6 +51,14 @@ CompletionUsage <- R6::R6Class(
           stop(paste("Error! Invalid data for `total_tokens`. Must be an integer:", `total_tokens`))
         }
         self$`total_tokens` <- `total_tokens`
+      }
+      if (!is.null(`completion_tokens_details`)) {
+        stopifnot(R6::is.R6(`completion_tokens_details`))
+        self$`completion_tokens_details` <- `completion_tokens_details`
+      }
+      if (!is.null(`prompt_tokens_details`)) {
+        stopifnot(R6::is.R6(`prompt_tokens_details`))
+        self$`prompt_tokens_details` <- `prompt_tokens_details`
       }
     },
 
@@ -91,6 +105,14 @@ CompletionUsage <- R6::R6Class(
         CompletionUsageObject[["total_tokens"]] <-
           self$`total_tokens`
       }
+      if (!is.null(self$`completion_tokens_details`)) {
+        CompletionUsageObject[["completion_tokens_details"]] <-
+          self$`completion_tokens_details`$toSimpleType()
+      }
+      if (!is.null(self$`prompt_tokens_details`)) {
+        CompletionUsageObject[["prompt_tokens_details"]] <-
+          self$`prompt_tokens_details`$toSimpleType()
+      }
       return(CompletionUsageObject)
     },
 
@@ -109,6 +131,16 @@ CompletionUsage <- R6::R6Class(
       }
       if (!is.null(this_object$`total_tokens`)) {
         self$`total_tokens` <- this_object$`total_tokens`
+      }
+      if (!is.null(this_object$`completion_tokens_details`)) {
+        `completion_tokens_details_object` <- CompletionUsageCompletionTokensDetails$new()
+        `completion_tokens_details_object`$fromJSON(jsonlite::toJSON(this_object$`completion_tokens_details`, auto_unbox = TRUE, digits = NA))
+        self$`completion_tokens_details` <- `completion_tokens_details_object`
+      }
+      if (!is.null(this_object$`prompt_tokens_details`)) {
+        `prompt_tokens_details_object` <- CompletionUsagePromptTokensDetails$new()
+        `prompt_tokens_details_object`$fromJSON(jsonlite::toJSON(this_object$`prompt_tokens_details`, auto_unbox = TRUE, digits = NA))
+        self$`prompt_tokens_details` <- `prompt_tokens_details_object`
       }
       self
     },
@@ -134,6 +166,8 @@ CompletionUsage <- R6::R6Class(
       self$`completion_tokens` <- this_object$`completion_tokens`
       self$`prompt_tokens` <- this_object$`prompt_tokens`
       self$`total_tokens` <- this_object$`total_tokens`
+      self$`completion_tokens_details` <- CompletionUsageCompletionTokensDetails$new()$fromJSON(jsonlite::toJSON(this_object$`completion_tokens_details`, auto_unbox = TRUE, digits = NA))
+      self$`prompt_tokens_details` <- CompletionUsagePromptTokensDetails$new()$fromJSON(jsonlite::toJSON(this_object$`prompt_tokens_details`, auto_unbox = TRUE, digits = NA))
       self
     },
 

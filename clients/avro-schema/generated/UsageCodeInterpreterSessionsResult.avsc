@@ -1,0 +1,31 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The aggregated code interpreter sessions usage details of the specific time bucket.",
+  "name": "UsageCodeInterpreterSessionsResult",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "UsageCodeInterpreterSessionsResult_object",
+        "symbols": [
+          "organization_usage_code_interpreter_sessions_result"
+        ]
+      },
+      "doc": ""
+    },
+    {
+      "name": "sessions",
+      "type": "int",
+      "doc": "The number of code interpreter sessions."
+    },
+    {
+      "name": "project_id",
+      "type": ["null", "string"],
+      "doc": "When `group_by=project_id`, this field provides the project ID of the grouped usage result.",
+      "default": null
+    }
+  ]
+
+}

@@ -3,7 +3,7 @@ package org.openapitools.model;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.swagger.annotations.ApiModel;
 import java.util.List;
-import org.openapitools.model.ChatCompletionRequestMessageContentPart;
+import org.openapitools.model.ChatCompletionRequestUserMessageContentPart;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -20,7 +20,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "The contents of the user message. ")
 @JsonTypeName("ChatCompletionRequestUserMessage_content")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestUserMessageContent   {
 
   public ChatCompletionRequestUserMessageContent() {

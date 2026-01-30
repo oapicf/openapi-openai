@@ -19,7 +19,7 @@ class CreateChatCompletionStreamResponse
     public $id;
 
     /**
-     * A list of chat completion choices. Can be more than one if &#x60;n&#x60; is greater than 1.
+     * A list of chat completion choices. Can contain more than one elements if &#x60;n&#x60; is greater than 1. Can also be empty for the last chunk if you set &#x60;stream_options: {\&quot;include_usage\&quot;: true}&#x60;.
      * @DTA\Data(field="choices")
      * @DTA\Strategy(name="Object", options={"type":::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":::class})
@@ -44,6 +44,14 @@ class CreateChatCompletionStreamResponse
     public $model;
 
     /**
+     * The service tier used for processing the request. This field is only included if the &#x60;service_tier&#x60; parameter is specified in the request.
+     * @DTA\Data(field="service_tier", nullable=true)
+     * @DTA\Validator(name="Scalar", options={"type":"string"})
+     * @var string|null
+     */
+    public $service_tier;
+
+    /**
      * This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the &#x60;seed&#x60; request parameter to understand when backend changes have been made that might impact determinism.
      * @DTA\Data(field="system_fingerprint", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
@@ -58,5 +66,13 @@ class CreateChatCompletionStreamResponse
      * @var string|null
      */
     public $object;
+
+    /**
+     * @DTA\Data(field="usage", nullable=true)
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\CreateChatCompletionStreamResponseUsage::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\CreateChatCompletionStreamResponseUsage::class})
+     * @var \App\DTO\CreateChatCompletionStreamResponseUsage|null
+     */
+    public $usage;
 
 }

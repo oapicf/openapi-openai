@@ -10,9 +10,11 @@
 
 -type openapi_chat_completion_response_message() ::
   [ {'content', binary() }
+  | {'refusal', binary() }
   | {'tool_calls', list(openapi_chat_completion_message_tool_call:openapi_chat_completion_message_tool_call()) }
   | {'role', binary() }
-  | {'function_call', openapi_chat_completion_request_assistant_message_function_call:openapi_chat_completion_request_assistant_message_function_call() }
+  | {'function_call', openapi_chat_completion_response_message_function_call:openapi_chat_completion_response_message_function_call() }
+  | {'audio', openapi_chat_completion_response_message_audio:openapi_chat_completion_response_message_audio() }
   ].
 
 
@@ -21,9 +23,11 @@ openapi_chat_completion_response_message() ->
 
 openapi_chat_completion_response_message(Fields) ->
   Default = [ {'content', binary() }
+            , {'refusal', binary() }
             , {'tool_calls', list(openapi_chat_completion_message_tool_call:openapi_chat_completion_message_tool_call()) }
             , {'role', elements([<<"assistant">>]) }
-            , {'function_call', openapi_chat_completion_request_assistant_message_function_call:openapi_chat_completion_request_assistant_message_function_call() }
+            , {'function_call', openapi_chat_completion_response_message_function_call:openapi_chat_completion_response_message_function_call() }
+            , {'audio', openapi_chat_completion_response_message_audio:openapi_chat_completion_response_message_audio() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

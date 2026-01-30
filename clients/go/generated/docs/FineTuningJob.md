@@ -20,6 +20,8 @@ Name | Type | Description | Notes
 **ValidationFile** | **NullableString** | The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents). | 
 **Integrations** | Pointer to [**[]FineTuningJobIntegrationsInner**](FineTuningJobIntegrationsInner.md) | A list of integrations to enable for this fine-tuning job. | [optional] 
 **Seed** | **int32** | The seed used for the fine-tuning job. | 
+**EstimatedFinish** | Pointer to **NullableInt32** | The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running. | [optional] 
+**Method** | Pointer to [**FineTuneMethod**](FineTuneMethod.md) |  | [optional] 
 
 ## Methods
 
@@ -424,6 +426,66 @@ and a boolean to check if the value has been set.
 
 SetSeed sets Seed field to given value.
 
+
+### GetEstimatedFinish
+
+`func (o *FineTuningJob) GetEstimatedFinish() int32`
+
+GetEstimatedFinish returns the EstimatedFinish field if non-nil, zero value otherwise.
+
+### GetEstimatedFinishOk
+
+`func (o *FineTuningJob) GetEstimatedFinishOk() (*int32, bool)`
+
+GetEstimatedFinishOk returns a tuple with the EstimatedFinish field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEstimatedFinish
+
+`func (o *FineTuningJob) SetEstimatedFinish(v int32)`
+
+SetEstimatedFinish sets EstimatedFinish field to given value.
+
+### HasEstimatedFinish
+
+`func (o *FineTuningJob) HasEstimatedFinish() bool`
+
+HasEstimatedFinish returns a boolean if a field has been set.
+
+### SetEstimatedFinishNil
+
+`func (o *FineTuningJob) SetEstimatedFinishNil(b bool)`
+
+ SetEstimatedFinishNil sets the value for EstimatedFinish to be an explicit nil
+
+### UnsetEstimatedFinish
+`func (o *FineTuningJob) UnsetEstimatedFinish()`
+
+UnsetEstimatedFinish ensures that no value is present for EstimatedFinish, not even an explicit nil
+### GetMethod
+
+`func (o *FineTuningJob) GetMethod() FineTuneMethod`
+
+GetMethod returns the Method field if non-nil, zero value otherwise.
+
+### GetMethodOk
+
+`func (o *FineTuningJob) GetMethodOk() (*FineTuneMethod, bool)`
+
+GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMethod
+
+`func (o *FineTuningJob) SetMethod(v FineTuneMethod)`
+
+SetMethod sets Method field to given value.
+
+### HasMethod
+
+`func (o *FineTuningJob) HasMethod() bool`
+
+HasMethod returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

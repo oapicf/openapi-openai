@@ -7,6 +7,13 @@ goog.provide('API.Client.ThreadStreamEvent');
 API.Client.ThreadStreamEvent = function() {}
 
 /**
+ * Whether to enable input audio transcription.
+ * @type {!boolean}
+ * @export
+ */
+API.Client.ThreadStreamEvent.prototype.enabled;
+
+/**
  * @type {!string}
  * @export
  */

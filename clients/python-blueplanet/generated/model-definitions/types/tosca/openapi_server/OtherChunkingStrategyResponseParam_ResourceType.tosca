@@ -1,0 +1,36 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server OtherChunkingStrategyResponseParam"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a OtherChunkingStrategyResponseParam"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  OtherChunkingStrategyResponseParam {
+    title = OtherChunkingStrategyResponseParam
+    description = OtherChunkingStrategyResponseParam
+    derivedFrom = Root
+    properties {
+        type {
+          type =  string
+          description = "Always &#x60;other&#x60;."
+          enum = ["other"]
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  OtherChunkingStrategyResponseParam {
+    title = OtherChunkingStrategyResponseParam
+    description = OtherChunkingStrategyResponseParam
+    implements = openapi_server.resourceTypes.OtherChunkingStrategyResponseParam
+
+  }
+}

@@ -8,24 +8,19 @@ import {canConsumeForm, isCodeInRange} from '../util';
 import {SecurityAuthentication} from '../auth/auth';
 
 
-import { AssistantFileObject } from '../models/AssistantFileObject';
 import { AssistantObject } from '../models/AssistantObject';
-import { CreateAssistantFileRequest } from '../models/CreateAssistantFileRequest';
 import { CreateAssistantRequest } from '../models/CreateAssistantRequest';
 import { CreateMessageRequest } from '../models/CreateMessageRequest';
 import { CreateRunRequest } from '../models/CreateRunRequest';
 import { CreateThreadAndRunRequest } from '../models/CreateThreadAndRunRequest';
 import { CreateThreadRequest } from '../models/CreateThreadRequest';
-import { DeleteAssistantFileResponse } from '../models/DeleteAssistantFileResponse';
 import { DeleteAssistantResponse } from '../models/DeleteAssistantResponse';
+import { DeleteMessageResponse } from '../models/DeleteMessageResponse';
 import { DeleteThreadResponse } from '../models/DeleteThreadResponse';
-import { ListAssistantFilesResponse } from '../models/ListAssistantFilesResponse';
 import { ListAssistantsResponse } from '../models/ListAssistantsResponse';
-import { ListMessageFilesResponse } from '../models/ListMessageFilesResponse';
 import { ListMessagesResponse } from '../models/ListMessagesResponse';
 import { ListRunStepsResponse } from '../models/ListRunStepsResponse';
 import { ListRunsResponse } from '../models/ListRunsResponse';
-import { MessageFileObject } from '../models/MessageFileObject';
 import { MessageObject } from '../models/MessageObject';
 import { ModifyAssistantRequest } from '../models/ModifyAssistantRequest';
 import { ModifyMessageRequest } from '../models/ModifyMessageRequest';
@@ -134,61 +129,6 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     * @param assistantId The ID of the assistant for which to create a File. 
-     * @param createAssistantFileRequest 
-     */
-    public async createAssistantFile(assistantId: string, createAssistantFileRequest: CreateAssistantFileRequest, _options?: Configuration): Promise<RequestContext> {
-        let _config = _options || this.configuration;
-
-        // verify required parameter 'assistantId' is not null or undefined
-        if (assistantId === null || assistantId === undefined) {
-            throw new RequiredError("AssistantsApi", "createAssistantFile", "assistantId");
-        }
-
-
-        // verify required parameter 'createAssistantFileRequest' is not null or undefined
-        if (createAssistantFileRequest === null || createAssistantFileRequest === undefined) {
-            throw new RequiredError("AssistantsApi", "createAssistantFile", "createAssistantFileRequest");
-        }
-
-
-        // Path Params
-        const localVarPath = '/assistants/{assistant_id}/files'
-            .replace('{' + 'assistant_id' + '}', encodeURIComponent(String(assistantId)));
-
-        // Make Request Context
-        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
-
-
-        // Body Params
-        const contentType = ObjectSerializer.getPreferredMediaType([
-            "application/json"
-        ]);
-        requestContext.setHeaderParam("Content-Type", contentType);
-        const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(createAssistantFileRequest, "CreateAssistantFileRequest", ""),
-            contentType
-        );
-        requestContext.setBody(serializedBody);
-
-        let authMethod: SecurityAuthentication | undefined;
-        // Apply auth methods
-        authMethod = _config.authMethods["ApiKeyAuth"]
-        if (authMethod?.applySecurityAuthentication) {
-            await authMethod?.applySecurityAuthentication(requestContext);
-        }
-        
-        const defaultAuth: SecurityAuthentication | undefined = _config?.authMethods?.default
-        if (defaultAuth?.applySecurityAuthentication) {
-            await defaultAuth?.applySecurityAuthentication(requestContext);
-        }
-
-        return requestContext;
-    }
-
-    /**
      * Create a message.
      * @param threadId The ID of the [thread](/docs/api-reference/threads) to create a message for.
      * @param createMessageRequest 
@@ -247,8 +187,9 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
      * Create a run.
      * @param threadId The ID of the thread to run.
      * @param createRunRequest 
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
      */
-    public async createRun(threadId: string, createRunRequest: CreateRunRequest, _options?: Configuration): Promise<RequestContext> {
+    public async createRun(threadId: string, createRunRequest: CreateRunRequest, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'threadId' is not null or undefined
@@ -263,6 +204,7 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
+
         // Path Params
         const localVarPath = '/threads/{thread_id}/runs'
             .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)));
@@ -270,6 +212,14 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+        if (include !== undefined) {
+            const serializedParams = ObjectSerializer.serialize(include, "Array<'step_details.tool_calls[*].file_search.results[*].content'>", "");
+            for (const serializedParam of serializedParams) {
+                requestContext.appendQueryParam("include[]", serializedParam);
+            }
+        }
 
 
         // Body Params
@@ -425,29 +375,29 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Delete an assistant file.
-     * @param assistantId The ID of the assistant that the file belongs to.
-     * @param fileId The ID of the file to delete.
+     * Deletes a message.
+     * @param threadId The ID of the thread to which this message belongs.
+     * @param messageId The ID of the message to delete.
      */
-    public async deleteAssistantFile(assistantId: string, fileId: string, _options?: Configuration): Promise<RequestContext> {
+    public async deleteMessage(threadId: string, messageId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'assistantId' is not null or undefined
-        if (assistantId === null || assistantId === undefined) {
-            throw new RequiredError("AssistantsApi", "deleteAssistantFile", "assistantId");
+        // verify required parameter 'threadId' is not null or undefined
+        if (threadId === null || threadId === undefined) {
+            throw new RequiredError("AssistantsApi", "deleteMessage", "threadId");
         }
 
 
-        // verify required parameter 'fileId' is not null or undefined
-        if (fileId === null || fileId === undefined) {
-            throw new RequiredError("AssistantsApi", "deleteAssistantFile", "fileId");
+        // verify required parameter 'messageId' is not null or undefined
+        if (messageId === null || messageId === undefined) {
+            throw new RequiredError("AssistantsApi", "deleteMessage", "messageId");
         }
 
 
         // Path Params
-        const localVarPath = '/assistants/{assistant_id}/files/{file_id}'
-            .replace('{' + 'assistant_id' + '}', encodeURIComponent(String(assistantId)))
-            .replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
+        const localVarPath = '/threads/{thread_id}/messages/{message_id}'
+            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
+            .replace('{' + 'message_id' + '}', encodeURIComponent(String(messageId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -544,51 +494,6 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Retrieves an AssistantFile.
-     * @param assistantId The ID of the assistant who the file belongs to.
-     * @param fileId The ID of the file we\&#39;re getting.
-     */
-    public async getAssistantFile(assistantId: string, fileId: string, _options?: Configuration): Promise<RequestContext> {
-        let _config = _options || this.configuration;
-
-        // verify required parameter 'assistantId' is not null or undefined
-        if (assistantId === null || assistantId === undefined) {
-            throw new RequiredError("AssistantsApi", "getAssistantFile", "assistantId");
-        }
-
-
-        // verify required parameter 'fileId' is not null or undefined
-        if (fileId === null || fileId === undefined) {
-            throw new RequiredError("AssistantsApi", "getAssistantFile", "fileId");
-        }
-
-
-        // Path Params
-        const localVarPath = '/assistants/{assistant_id}/files/{file_id}'
-            .replace('{' + 'assistant_id' + '}', encodeURIComponent(String(assistantId)))
-            .replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
-
-        // Make Request Context
-        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
-
-
-        let authMethod: SecurityAuthentication | undefined;
-        // Apply auth methods
-        authMethod = _config.authMethods["ApiKeyAuth"]
-        if (authMethod?.applySecurityAuthentication) {
-            await authMethod?.applySecurityAuthentication(requestContext);
-        }
-        
-        const defaultAuth: SecurityAuthentication | undefined = _config?.authMethods?.default
-        if (defaultAuth?.applySecurityAuthentication) {
-            await defaultAuth?.applySecurityAuthentication(requestContext);
-        }
-
-        return requestContext;
-    }
-
-    /**
      * Retrieve a message.
      * @param threadId The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
      * @param messageId The ID of the message to retrieve.
@@ -612,59 +517,6 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
         const localVarPath = '/threads/{thread_id}/messages/{message_id}'
             .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
             .replace('{' + 'message_id' + '}', encodeURIComponent(String(messageId)));
-
-        // Make Request Context
-        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
-
-
-        let authMethod: SecurityAuthentication | undefined;
-        // Apply auth methods
-        authMethod = _config.authMethods["ApiKeyAuth"]
-        if (authMethod?.applySecurityAuthentication) {
-            await authMethod?.applySecurityAuthentication(requestContext);
-        }
-        
-        const defaultAuth: SecurityAuthentication | undefined = _config?.authMethods?.default
-        if (defaultAuth?.applySecurityAuthentication) {
-            await defaultAuth?.applySecurityAuthentication(requestContext);
-        }
-
-        return requestContext;
-    }
-
-    /**
-     * Retrieves a message file.
-     * @param threadId The ID of the thread to which the message and File belong.
-     * @param messageId The ID of the message the file belongs to.
-     * @param fileId The ID of the file being retrieved.
-     */
-    public async getMessageFile(threadId: string, messageId: string, fileId: string, _options?: Configuration): Promise<RequestContext> {
-        let _config = _options || this.configuration;
-
-        // verify required parameter 'threadId' is not null or undefined
-        if (threadId === null || threadId === undefined) {
-            throw new RequiredError("AssistantsApi", "getMessageFile", "threadId");
-        }
-
-
-        // verify required parameter 'messageId' is not null or undefined
-        if (messageId === null || messageId === undefined) {
-            throw new RequiredError("AssistantsApi", "getMessageFile", "messageId");
-        }
-
-
-        // verify required parameter 'fileId' is not null or undefined
-        if (fileId === null || fileId === undefined) {
-            throw new RequiredError("AssistantsApi", "getMessageFile", "fileId");
-        }
-
-
-        // Path Params
-        const localVarPath = '/threads/{thread_id}/messages/{message_id}/files/{file_id}'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'message_id' + '}', encodeURIComponent(String(messageId)))
-            .replace('{' + 'file_id' + '}', encodeURIComponent(String(fileId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -736,8 +588,9 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
      * @param threadId The ID of the thread to which the run and run step belongs.
      * @param runId The ID of the run to which the run step belongs.
      * @param stepId The ID of the run step to retrieve.
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
      */
-    public async getRunStep(threadId: string, runId: string, stepId: string, _options?: Configuration): Promise<RequestContext> {
+    public async getRunStep(threadId: string, runId: string, stepId: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'threadId' is not null or undefined
@@ -758,6 +611,7 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
+
         // Path Params
         const localVarPath = '/threads/{thread_id}/runs/{run_id}/steps/{step_id}'
             .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
@@ -767,6 +621,14 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+        if (include !== undefined) {
+            const serializedParams = ObjectSerializer.serialize(include, "Array<'step_details.tool_calls[*].file_search.results[*].content'>", "");
+            for (const serializedParam of serializedParams) {
+                requestContext.appendQueryParam("include[]", serializedParam);
+            }
+        }
 
 
         let authMethod: SecurityAuthentication | undefined;
@@ -822,76 +684,11 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns a list of assistant files.
-     * @param assistantId The ID of the assistant the file belongs to.
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-     */
-    public async listAssistantFiles(assistantId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: Configuration): Promise<RequestContext> {
-        let _config = _options || this.configuration;
-
-        // verify required parameter 'assistantId' is not null or undefined
-        if (assistantId === null || assistantId === undefined) {
-            throw new RequiredError("AssistantsApi", "listAssistantFiles", "assistantId");
-        }
-
-
-
-
-
-
-        // Path Params
-        const localVarPath = '/assistants/{assistant_id}/files'
-            .replace('{' + 'assistant_id' + '}', encodeURIComponent(String(assistantId)));
-
-        // Make Request Context
-        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
-
-        // Query Params
-        if (limit !== undefined) {
-            requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", ""));
-        }
-
-        // Query Params
-        if (order !== undefined) {
-            requestContext.setQueryParam("order", ObjectSerializer.serialize(order, "'asc' | 'desc'", ""));
-        }
-
-        // Query Params
-        if (after !== undefined) {
-            requestContext.setQueryParam("after", ObjectSerializer.serialize(after, "string", ""));
-        }
-
-        // Query Params
-        if (before !== undefined) {
-            requestContext.setQueryParam("before", ObjectSerializer.serialize(before, "string", ""));
-        }
-
-
-        let authMethod: SecurityAuthentication | undefined;
-        // Apply auth methods
-        authMethod = _config.authMethods["ApiKeyAuth"]
-        if (authMethod?.applySecurityAuthentication) {
-            await authMethod?.applySecurityAuthentication(requestContext);
-        }
-        
-        const defaultAuth: SecurityAuthentication | undefined = _config?.authMethods?.default
-        if (defaultAuth?.applySecurityAuthentication) {
-            await defaultAuth?.applySecurityAuthentication(requestContext);
-        }
-
-        return requestContext;
-    }
-
-    /**
      * Returns a list of assistants.
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      */
     public async listAssistants(limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
@@ -944,85 +741,12 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Returns a list of message files.
-     * @param threadId The ID of the thread that the message and files belong to.
-     * @param messageId The ID of the message that the files belongs to.
-     * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
-     * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
-     * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
-     */
-    public async listMessageFiles(threadId: string, messageId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: Configuration): Promise<RequestContext> {
-        let _config = _options || this.configuration;
-
-        // verify required parameter 'threadId' is not null or undefined
-        if (threadId === null || threadId === undefined) {
-            throw new RequiredError("AssistantsApi", "listMessageFiles", "threadId");
-        }
-
-
-        // verify required parameter 'messageId' is not null or undefined
-        if (messageId === null || messageId === undefined) {
-            throw new RequiredError("AssistantsApi", "listMessageFiles", "messageId");
-        }
-
-
-
-
-
-
-        // Path Params
-        const localVarPath = '/threads/{thread_id}/messages/{message_id}/files'
-            .replace('{' + 'thread_id' + '}', encodeURIComponent(String(threadId)))
-            .replace('{' + 'message_id' + '}', encodeURIComponent(String(messageId)));
-
-        // Make Request Context
-        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
-
-        // Query Params
-        if (limit !== undefined) {
-            requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", ""));
-        }
-
-        // Query Params
-        if (order !== undefined) {
-            requestContext.setQueryParam("order", ObjectSerializer.serialize(order, "'asc' | 'desc'", ""));
-        }
-
-        // Query Params
-        if (after !== undefined) {
-            requestContext.setQueryParam("after", ObjectSerializer.serialize(after, "string", ""));
-        }
-
-        // Query Params
-        if (before !== undefined) {
-            requestContext.setQueryParam("before", ObjectSerializer.serialize(before, "string", ""));
-        }
-
-
-        let authMethod: SecurityAuthentication | undefined;
-        // Apply auth methods
-        authMethod = _config.authMethods["ApiKeyAuth"]
-        if (authMethod?.applySecurityAuthentication) {
-            await authMethod?.applySecurityAuthentication(requestContext);
-        }
-        
-        const defaultAuth: SecurityAuthentication | undefined = _config?.authMethods?.default
-        if (defaultAuth?.applySecurityAuthentication) {
-            await defaultAuth?.applySecurityAuthentication(requestContext);
-        }
-
-        return requestContext;
-    }
-
-    /**
      * Returns a list of messages for a given thread.
      * @param threadId The ID of the [thread](/docs/api-reference/threads) the messages belong to.
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      * @param runId Filter messages by the run ID that generated them. 
      */
     public async listMessages(threadId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, runId?: string, _options?: Configuration): Promise<RequestContext> {
@@ -1095,9 +819,10 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param include A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
      */
-    public async listRunSteps(threadId: string, runId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: Configuration): Promise<RequestContext> {
+    public async listRunSteps(threadId: string, runId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, include?: Array<'step_details.tool_calls[*].file_search.results[*].content'>, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'threadId' is not null or undefined
@@ -1110,6 +835,7 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
         if (runId === null || runId === undefined) {
             throw new RequiredError("AssistantsApi", "listRunSteps", "runId");
         }
+
 
 
 
@@ -1145,6 +871,14 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
             requestContext.setQueryParam("before", ObjectSerializer.serialize(before, "string", ""));
         }
 
+        // Query Params
+        if (include !== undefined) {
+            const serializedParams = ObjectSerializer.serialize(include, "Array<'step_details.tool_calls[*].file_search.results[*].content'>", "");
+            for (const serializedParam of serializedParams) {
+                requestContext.appendQueryParam("include[]", serializedParam);
+            }
+        }
+
 
         let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
@@ -1167,7 +901,7 @@ export class AssistantsApiRequestFactory extends BaseAPIRequestFactory {
      * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
      * @param order Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. 
      * @param after A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. 
-     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
+     * @param before A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. 
      */
     public async listRuns(threadId: string, limit?: number, order?: 'asc' | 'desc', after?: string, before?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
@@ -1591,35 +1325,6 @@ export class AssistantsApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to createAssistantFile
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-     public async createAssistantFileWithHttpInfo(response: ResponseContext): Promise<HttpInfo<AssistantFileObject >> {
-        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
-        if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: AssistantFileObject = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "AssistantFileObject", ""
-            ) as AssistantFileObject;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-
-        // Work around for missing responses in specification, e.g. for petstore.yaml
-        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: AssistantFileObject = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "AssistantFileObject", ""
-            ) as AssistantFileObject;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-
-        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
-    }
-
-    /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to createMessage
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -1765,25 +1470,25 @@ export class AssistantsApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to deleteAssistantFile
+     * @params response Response returned by the server for a request to deleteMessage
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteAssistantFileWithHttpInfo(response: ResponseContext): Promise<HttpInfo<DeleteAssistantFileResponse >> {
+     public async deleteMessageWithHttpInfo(response: ResponseContext): Promise<HttpInfo<DeleteMessageResponse >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: DeleteAssistantFileResponse = ObjectSerializer.deserialize(
+            const body: DeleteMessageResponse = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "DeleteAssistantFileResponse", ""
-            ) as DeleteAssistantFileResponse;
+                "DeleteMessageResponse", ""
+            ) as DeleteMessageResponse;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: DeleteAssistantFileResponse = ObjectSerializer.deserialize(
+            const body: DeleteMessageResponse = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "DeleteAssistantFileResponse", ""
-            ) as DeleteAssistantFileResponse;
+                "DeleteMessageResponse", ""
+            ) as DeleteMessageResponse;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
@@ -1852,35 +1557,6 @@ export class AssistantsApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to getAssistantFile
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-     public async getAssistantFileWithHttpInfo(response: ResponseContext): Promise<HttpInfo<AssistantFileObject >> {
-        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
-        if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: AssistantFileObject = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "AssistantFileObject", ""
-            ) as AssistantFileObject;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-
-        // Work around for missing responses in specification, e.g. for petstore.yaml
-        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: AssistantFileObject = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "AssistantFileObject", ""
-            ) as AssistantFileObject;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-
-        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
-    }
-
-    /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to getMessage
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -1900,35 +1576,6 @@ export class AssistantsApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "MessageObject", ""
             ) as MessageObject;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-
-        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
-    }
-
-    /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to getMessageFile
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-     public async getMessageFileWithHttpInfo(response: ResponseContext): Promise<HttpInfo<MessageFileObject >> {
-        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
-        if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: MessageFileObject = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "MessageFileObject", ""
-            ) as MessageFileObject;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-
-        // Work around for missing responses in specification, e.g. for petstore.yaml
-        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: MessageFileObject = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "MessageFileObject", ""
-            ) as MessageFileObject;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
@@ -2026,35 +1673,6 @@ export class AssistantsApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to listAssistantFiles
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-     public async listAssistantFilesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<ListAssistantFilesResponse >> {
-        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
-        if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: ListAssistantFilesResponse = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "ListAssistantFilesResponse", ""
-            ) as ListAssistantFilesResponse;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-
-        // Work around for missing responses in specification, e.g. for petstore.yaml
-        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: ListAssistantFilesResponse = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "ListAssistantFilesResponse", ""
-            ) as ListAssistantFilesResponse;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-
-        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
-    }
-
-    /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to listAssistants
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -2074,35 +1692,6 @@ export class AssistantsApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ListAssistantsResponse", ""
             ) as ListAssistantsResponse;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-
-        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
-    }
-
-    /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to listMessageFiles
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-     public async listMessageFilesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<ListMessageFilesResponse >> {
-        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
-        if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: ListMessageFilesResponse = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "ListMessageFilesResponse", ""
-            ) as ListMessageFilesResponse;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-
-        // Work around for missing responses in specification, e.g. for petstore.yaml
-        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: ListMessageFilesResponse = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "ListMessageFilesResponse", ""
-            ) as ListMessageFilesResponse;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

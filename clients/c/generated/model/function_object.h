@@ -23,6 +23,7 @@ typedef struct function_object_t {
     char *description; // string
     char *name; // string
     list_t* parameters; //map
+    int strict; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } function_object_t;
@@ -30,7 +31,8 @@ typedef struct function_object_t {
 __attribute__((deprecated)) function_object_t *function_object_create(
     char *description,
     char *name,
-    list_t* parameters
+    list_t* parameters,
+    int strict
 );
 
 void function_object_free(function_object_t *function_object);

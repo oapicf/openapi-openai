@@ -10,6 +10,8 @@ module FineTuningJobEvent =
 
   [<CLIMutable>]
   type FineTuningJobEvent = {
+    [<JsonProperty(PropertyName = "object")>]
+    Object : string;
     [<JsonProperty(PropertyName = "id")>]
     Id : string;
     [<JsonProperty(PropertyName = "created_at")>]
@@ -18,8 +20,10 @@ module FineTuningJobEvent =
     Level : string;
     [<JsonProperty(PropertyName = "message")>]
     Message : string;
-    [<JsonProperty(PropertyName = "object")>]
-    Object : string;
+    [<JsonProperty(PropertyName = "type")>]
+    Type : string;
+    [<JsonProperty(PropertyName = "data")>]
+    Data : obj;
   }
 
   //#endregion

@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -14,6 +14,7 @@ package openapi
 
 
 
+// ChatCompletionRequestMessageContentPartImage - Learn about [image inputs](/docs/guides/vision). 
 type ChatCompletionRequestMessageContentPartImage struct {
 
 	// The type of the content part.

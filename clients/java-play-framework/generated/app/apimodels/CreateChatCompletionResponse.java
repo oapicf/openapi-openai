@@ -5,6 +5,7 @@ import apimodels.CreateChatCompletionResponseChoicesInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
@@ -14,7 +15,7 @@ import javax.validation.Valid;
 /**
  * Represents a chat completion response returned by model, based on the provided input.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateChatCompletionResponse   {
   @JsonProperty("id")
@@ -37,6 +38,41 @@ public class CreateChatCompletionResponse   {
   @NotNull
 
   private String model;
+
+  /**
+   * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+   */
+  public enum ServiceTierEnum {
+    SCALE("scale"),
+    
+    DEFAULT("default");
+
+    private final String value;
+
+    ServiceTierEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ServiceTierEnum fromValue(String value) {
+      for (ServiceTierEnum b : ServiceTierEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  @JsonProperty("service_tier")
+  
+  private ServiceTierEnum serviceTier;
 
   @JsonProperty("system_fingerprint")
   
@@ -157,6 +193,23 @@ public class CreateChatCompletionResponse   {
     this.model = model;
   }
 
+  public CreateChatCompletionResponse serviceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
+    return this;
+  }
+
+   /**
+   * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+   * @return serviceTier
+  **/
+  public ServiceTierEnum getServiceTier() {
+    return serviceTier;
+  }
+
+  public void setServiceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
+  }
+
   public CreateChatCompletionResponse systemFingerprint(String systemFingerprint) {
     this.systemFingerprint = systemFingerprint;
     return this;
@@ -222,6 +275,7 @@ public class CreateChatCompletionResponse   {
         Objects.equals(choices, createChatCompletionResponse.choices) &&
         Objects.equals(created, createChatCompletionResponse.created) &&
         Objects.equals(model, createChatCompletionResponse.model) &&
+        Objects.equals(serviceTier, createChatCompletionResponse.serviceTier) &&
         Objects.equals(systemFingerprint, createChatCompletionResponse.systemFingerprint) &&
         Objects.equals(_object, createChatCompletionResponse._object) &&
         Objects.equals(usage, createChatCompletionResponse.usage);
@@ -229,7 +283,7 @@ public class CreateChatCompletionResponse   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, choices, created, model, systemFingerprint, _object, usage);
+    return Objects.hash(id, choices, created, model, serviceTier, systemFingerprint, _object, usage);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -242,6 +296,7 @@ public class CreateChatCompletionResponse   {
     sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    serviceTier: ").append(toIndentedString(serviceTier)).append("\n");
     sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");

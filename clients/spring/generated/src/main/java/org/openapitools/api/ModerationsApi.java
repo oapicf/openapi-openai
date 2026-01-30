@@ -34,9 +34,9 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T10:48:36.973220935Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-01-29T14:17:25.623752677Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @Validated
-@Tag(name = "Moderations", description = "Given a input text, outputs if the model classifies it as potentially harmful.")
+@Tag(name = "Moderations", description = "Given text and/or image inputs, classifies if those inputs are potentially harmful.")
 public interface ModerationsApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -45,14 +45,14 @@ public interface ModerationsApi {
 
     String PATH_CREATE_MODERATION = "/moderations";
     /**
-     * POST /moderations : Classifies if text is potentially harmful.
+     * POST /moderations : Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
      *
      * @param createModerationRequest  (required)
      * @return OK (status code 200)
      */
     @Operation(
         operationId = "createModeration",
-        summary = "Classifies if text is potentially harmful.",
+        summary = "Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). ",
         tags = { "Moderations" },
         responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = {
@@ -75,7 +75,7 @@ public interface ModerationsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"model\" : \"model\", \"id\" : \"id\", \"results\" : [ { \"category_scores\" : { \"self-harm/intent\" : 2.3021358869347655, \"hate/threatening\" : 6.027456183070403, \"self-harm/instructions\" : 7.061401241503109, \"sexual/minors\" : 3.616076749251911, \"harassment/threatening\" : 5.962133916683182, \"hate\" : 0.8008281904610115, \"self-harm\" : 5.637376656633329, \"harassment\" : 1.4658129805029452, \"sexual\" : 9.301444243932576, \"violence/graphic\" : 4.145608029883936, \"violence\" : 2.027123023002322 }, \"flagged\" : true, \"categories\" : { \"self-harm/intent\" : true, \"hate/threatening\" : true, \"self-harm/instructions\" : true, \"sexual/minors\" : true, \"harassment/threatening\" : true, \"hate\" : true, \"self-harm\" : true, \"harassment\" : true, \"sexual\" : true, \"violence/graphic\" : true, \"violence\" : true } }, { \"category_scores\" : { \"self-harm/intent\" : 2.3021358869347655, \"hate/threatening\" : 6.027456183070403, \"self-harm/instructions\" : 7.061401241503109, \"sexual/minors\" : 3.616076749251911, \"harassment/threatening\" : 5.962133916683182, \"hate\" : 0.8008281904610115, \"self-harm\" : 5.637376656633329, \"harassment\" : 1.4658129805029452, \"sexual\" : 9.301444243932576, \"violence/graphic\" : 4.145608029883936, \"violence\" : 2.027123023002322 }, \"flagged\" : true, \"categories\" : { \"self-harm/intent\" : true, \"hate/threatening\" : true, \"self-harm/instructions\" : true, \"sexual/minors\" : true, \"harassment/threatening\" : true, \"hate\" : true, \"self-harm\" : true, \"harassment\" : true, \"sexual\" : true, \"violence/graphic\" : true, \"violence\" : true } } ] }";
+                    String exampleString = "{ \"model\" : \"model\", \"id\" : \"id\", \"results\" : [ { \"category_scores\" : { \"illicit/violent\" : 2.3021358869347655, \"self-harm/instructions\" : 3.616076749251911, \"harassment\" : 1.4658129805029452, \"violence/graphic\" : 1.2315135367772556, \"illicit\" : 5.637376656633329, \"self-harm/intent\" : 9.301444243932576, \"hate/threatening\" : 6.027456183070403, \"sexual/minors\" : 4.145608029883936, \"harassment/threatening\" : 5.962133916683182, \"hate\" : 0.8008281904610115, \"self-harm\" : 7.061401241503109, \"sexual\" : 2.027123023002322, \"violence\" : 7.386281948385884 }, \"flagged\" : true, \"category_applied_input_types\" : { \"illicit/violent\" : [ \"text\", \"text\" ], \"self-harm/instructions\" : [ \"text\", \"text\" ], \"harassment\" : [ \"text\", \"text\" ], \"violence/graphic\" : [ \"text\", \"text\" ], \"illicit\" : [ \"text\", \"text\" ], \"self-harm/intent\" : [ \"text\", \"text\" ], \"hate/threatening\" : [ \"text\", \"text\" ], \"sexual/minors\" : [ \"text\", \"text\" ], \"harassment/threatening\" : [ \"text\", \"text\" ], \"hate\" : [ \"text\", \"text\" ], \"self-harm\" : [ \"text\", \"text\" ], \"sexual\" : [ \"text\", \"text\" ], \"violence\" : [ \"text\", \"text\" ] }, \"categories\" : { \"illicit/violent\" : true, \"self-harm/instructions\" : true, \"harassment\" : true, \"violence/graphic\" : true, \"illicit\" : true, \"self-harm/intent\" : true, \"hate/threatening\" : true, \"sexual/minors\" : true, \"harassment/threatening\" : true, \"hate\" : true, \"self-harm\" : true, \"sexual\" : true, \"violence\" : true } }, { \"category_scores\" : { \"illicit/violent\" : 2.3021358869347655, \"self-harm/instructions\" : 3.616076749251911, \"harassment\" : 1.4658129805029452, \"violence/graphic\" : 1.2315135367772556, \"illicit\" : 5.637376656633329, \"self-harm/intent\" : 9.301444243932576, \"hate/threatening\" : 6.027456183070403, \"sexual/minors\" : 4.145608029883936, \"harassment/threatening\" : 5.962133916683182, \"hate\" : 0.8008281904610115, \"self-harm\" : 7.061401241503109, \"sexual\" : 2.027123023002322, \"violence\" : 7.386281948385884 }, \"flagged\" : true, \"category_applied_input_types\" : { \"illicit/violent\" : [ \"text\", \"text\" ], \"self-harm/instructions\" : [ \"text\", \"text\" ], \"harassment\" : [ \"text\", \"text\" ], \"violence/graphic\" : [ \"text\", \"text\" ], \"illicit\" : [ \"text\", \"text\" ], \"self-harm/intent\" : [ \"text\", \"text\" ], \"hate/threatening\" : [ \"text\", \"text\" ], \"sexual/minors\" : [ \"text\", \"text\" ], \"harassment/threatening\" : [ \"text\", \"text\" ], \"hate\" : [ \"text\", \"text\" ], \"self-harm\" : [ \"text\", \"text\" ], \"sexual\" : [ \"text\", \"text\" ], \"violence\" : [ \"text\", \"text\" ] }, \"categories\" : { \"illicit/violent\" : true, \"self-harm/instructions\" : true, \"harassment\" : true, \"violence/graphic\" : true, \"illicit\" : true, \"self-harm/intent\" : true, \"hate/threatening\" : true, \"sexual/minors\" : true, \"harassment/threatening\" : true, \"hate\" : true, \"self-harm\" : true, \"sexual\" : true, \"violence\" : true } } ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

@@ -2,6 +2,7 @@ namespace OpenAPI.Model
 
 open System
 open System.Collections.Generic
+open OpenAPI.Model.ChatCompletionRequestSystemMessageContent
 
 module ChatCompletionRequestSystemMessage =
 
@@ -12,7 +13,7 @@ module ChatCompletionRequestSystemMessage =
   //#endregion
 
   type ChatCompletionRequestSystemMessage = {
-    Content : string;
+    Content : ChatCompletionRequestSystemMessageContent;
     Role : RoleEnum;
     Name : string;
   }

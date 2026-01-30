@@ -28,6 +28,7 @@ openai_api_thread_stream_event_EVENT_e thread_stream_event_event_FromString(char
 
 
 typedef struct thread_stream_event_t {
+    int enabled; //boolean
     openai_api_thread_stream_event_EVENT_e event; //enum
     struct thread_object_t *data; //model
 
@@ -35,6 +36,7 @@ typedef struct thread_stream_event_t {
 } thread_stream_event_t;
 
 __attribute__((deprecated)) thread_stream_event_t *thread_stream_event_create(
+    int enabled,
     openai_api_thread_stream_event_EVENT_e event,
     thread_object_t *data
 );

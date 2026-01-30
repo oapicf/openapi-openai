@@ -1,0 +1,46 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "InviteListResponse",
+  "fields": [
+    {
+      "name": "object",
+      "type": {
+        "type": "enum",
+        "name": "InviteListResponse_object",
+        "symbols": [
+          "list"
+        ]
+      },
+      "doc": "The object type, which is always `list`"
+    },
+    {
+      "name": "data",
+      "type": {
+        "type": "array",
+        "items": "model.Invite"
+      },
+      "doc": ""
+    },
+    {
+      "name": "first_id",
+      "type": ["null", "string"],
+      "doc": "The first `invite_id` in the retrieved `list`",
+      "default": null
+    },
+    {
+      "name": "last_id",
+      "type": ["null", "string"],
+      "doc": "The last `invite_id` in the retrieved `list`",
+      "default": null
+    },
+    {
+      "name": "has_more",
+      "type": ["null", "boolean"],
+      "doc": "The `has_more` property is used for pagination to indicate there are additional results.",
+      "default": null
+    }
+  ]
+
+}

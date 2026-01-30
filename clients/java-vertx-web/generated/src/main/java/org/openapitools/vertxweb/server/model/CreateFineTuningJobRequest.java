@@ -10,6 +10,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.vertxweb.server.model.CreateFineTuningJobRequestHyperparameters;
 import org.openapitools.vertxweb.server.model.CreateFineTuningJobRequestIntegrationsInner;
 import org.openapitools.vertxweb.server.model.CreateFineTuningJobRequestModel;
+import org.openapitools.vertxweb.server.model.FineTuneMethod;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateFineTuningJobRequest   {
@@ -21,12 +22,13 @@ public class CreateFineTuningJobRequest   {
   private String validationFile;
   private List<CreateFineTuningJobRequestIntegrationsInner> integrations;
   private Integer seed;
+  private FineTuneMethod method;
 
   public CreateFineTuningJobRequest () {
 
   }
 
-  public CreateFineTuningJobRequest (CreateFineTuningJobRequestModel model, String trainingFile, CreateFineTuningJobRequestHyperparameters hyperparameters, String suffix, String validationFile, List<CreateFineTuningJobRequestIntegrationsInner> integrations, Integer seed) {
+  public CreateFineTuningJobRequest (CreateFineTuningJobRequestModel model, String trainingFile, CreateFineTuningJobRequestHyperparameters hyperparameters, String suffix, String validationFile, List<CreateFineTuningJobRequestIntegrationsInner> integrations, Integer seed, FineTuneMethod method) {
     this.model = model;
     this.trainingFile = trainingFile;
     this.hyperparameters = hyperparameters;
@@ -34,6 +36,7 @@ public class CreateFineTuningJobRequest   {
     this.validationFile = validationFile;
     this.integrations = integrations;
     this.seed = seed;
+    this.method = method;
   }
 
     
@@ -99,6 +102,15 @@ public class CreateFineTuningJobRequest   {
     this.seed = seed;
   }
 
+    
+  @JsonProperty("method")
+  public FineTuneMethod getMethod() {
+    return method;
+  }
+  public void setMethod(FineTuneMethod method) {
+    this.method = method;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -115,12 +127,13 @@ public class CreateFineTuningJobRequest   {
         Objects.equals(suffix, createFineTuningJobRequest.suffix) &&
         Objects.equals(validationFile, createFineTuningJobRequest.validationFile) &&
         Objects.equals(integrations, createFineTuningJobRequest.integrations) &&
-        Objects.equals(seed, createFineTuningJobRequest.seed);
+        Objects.equals(seed, createFineTuningJobRequest.seed) &&
+        Objects.equals(method, createFineTuningJobRequest.method);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(model, trainingFile, hyperparameters, suffix, validationFile, integrations, seed);
+    return Objects.hash(model, trainingFile, hyperparameters, suffix, validationFile, integrations, seed, method);
   }
 
   @Override
@@ -135,6 +148,7 @@ public class CreateFineTuningJobRequest   {
     sb.append("    validationFile: ").append(toIndentedString(validationFile)).append("\n");
     sb.append("    integrations: ").append(toIndentedString(integrations)).append("\n");
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,0 +1,19 @@
+package models
+
+type RealtimeConversationItemContentInner struct {
+
+	// The content type (`input_text`, `input_audio`, `item_reference`, `text`). 
+	Type string `json:"type,omitempty"`
+
+	// The text content, used for `input_text` and `text` content types. 
+	Text string `json:"text,omitempty"`
+
+	// ID of a previous conversation item to reference (for `item_reference` content types in `response.create` events). These can reference both client and server created items. 
+	Id string `json:"id,omitempty"`
+
+	// Base64-encoded audio bytes, used for `input_audio` content type. 
+	Audio string `json:"audio,omitempty"`
+
+	// The transcript of the audio, used for `input_audio` content type. 
+	Transcript string `json:"transcript,omitempty"`
+}

@@ -1,0 +1,71 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The Upload object can accept byte chunks in the form of Parts. ",
+  "name": "Upload",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The Upload unique identifier, which can be referenced in API endpoints."
+    },
+    {
+      "name": "created_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the Upload was created."
+    },
+    {
+      "name": "filename",
+      "type": "string",
+      "doc": "The name of the file to be uploaded."
+    },
+    {
+      "name": "bytes",
+      "type": "int",
+      "doc": "The intended number of bytes to be uploaded."
+    },
+    {
+      "name": "purpose",
+      "type": "string",
+      "doc": "The intended purpose of the file. [Please refer here](/docs/api-reference/files/object#files/object-purpose) for acceptable values."
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "Upload_status",
+        "symbols": [
+          "pending",
+          "completed",
+          "cancelled",
+          "expired"
+        ]
+      },
+      "doc": "The status of the Upload."
+    },
+    {
+      "name": "expires_at",
+      "type": "int",
+      "doc": "The Unix timestamp (in seconds) for when the Upload was created."
+    },
+    {
+      "name": "object",
+      "type": ["null", {
+        "type": "enum",
+        "name": "Upload_object",
+        "symbols": [
+          "upload"
+        ]
+      }],
+      "doc": "The object type, which is always \"upload\".",
+      "default": null
+    },
+    {
+      "name": "file",
+      "type": ["null", "model.OpenAIFile"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

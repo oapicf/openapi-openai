@@ -26,7 +26,7 @@ openai_api_open_ai_file_OBJECT_e open_ai_file_object_FromString(char* object);
 
 // Enum PURPOSE for open_ai_file
 
-typedef enum  { openai_api_open_ai_file_PURPOSE_NULL = 0, openai_api_open_ai_file_PURPOSE_fine_tune, openai_api_open_ai_file_PURPOSE_fine_tune_results, openai_api_open_ai_file_PURPOSE_assistants, openai_api_open_ai_file_PURPOSE_assistants_output } openai_api_open_ai_file_PURPOSE_e;
+typedef enum  { openai_api_open_ai_file_PURPOSE_NULL = 0, openai_api_open_ai_file_PURPOSE_assistants, openai_api_open_ai_file_PURPOSE_assistants_output, openai_api_open_ai_file_PURPOSE_batch, openai_api_open_ai_file_PURPOSE_batch_output, openai_api_open_ai_file_PURPOSE_fine_tune, openai_api_open_ai_file_PURPOSE_fine_tune_results, openai_api_open_ai_file_PURPOSE_vision } openai_api_open_ai_file_PURPOSE_e;
 
 char* open_ai_file_purpose_ToString(openai_api_open_ai_file_PURPOSE_e purpose);
 

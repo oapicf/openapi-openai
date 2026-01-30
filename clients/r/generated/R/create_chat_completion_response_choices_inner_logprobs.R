@@ -8,6 +8,7 @@
 #' @description CreateChatCompletionResponseChoicesInnerLogprobs Class
 #' @format An \code{R6Class} generator object
 #' @field content A list of message content tokens with log probability information. list(\link{ChatCompletionTokenLogprob})
+#' @field refusal A list of message refusal tokens with log probability information. list(\link{ChatCompletionTokenLogprob})
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -15,17 +16,24 @@ CreateChatCompletionResponseChoicesInnerLogprobs <- R6::R6Class(
   "CreateChatCompletionResponseChoicesInnerLogprobs",
   public = list(
     `content` = NULL,
+    `refusal` = NULL,
 
     #' @description
     #' Initialize a new CreateChatCompletionResponseChoicesInnerLogprobs class.
     #'
     #' @param content A list of message content tokens with log probability information.
+    #' @param refusal A list of message refusal tokens with log probability information.
     #' @param ... Other optional arguments.
-    initialize = function(`content`, ...) {
+    initialize = function(`content`, `refusal`, ...) {
       if (!missing(`content`)) {
         stopifnot(is.vector(`content`), length(`content`) != 0)
         sapply(`content`, function(x) stopifnot(R6::is.R6(x)))
         self$`content` <- `content`
+      }
+      if (!missing(`refusal`)) {
+        stopifnot(is.vector(`refusal`), length(`refusal`) != 0)
+        sapply(`refusal`, function(x) stopifnot(R6::is.R6(x)))
+        self$`refusal` <- `refusal`
       }
     },
 
@@ -64,6 +72,10 @@ CreateChatCompletionResponseChoicesInnerLogprobs <- R6::R6Class(
         CreateChatCompletionResponseChoicesInnerLogprobsObject[["content"]] <-
           lapply(self$`content`, function(x) x$toSimpleType())
       }
+      if (!is.null(self$`refusal`)) {
+        CreateChatCompletionResponseChoicesInnerLogprobsObject[["refusal"]] <-
+          lapply(self$`refusal`, function(x) x$toSimpleType())
+      }
       return(CreateChatCompletionResponseChoicesInnerLogprobsObject)
     },
 
@@ -76,6 +88,9 @@ CreateChatCompletionResponseChoicesInnerLogprobs <- R6::R6Class(
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`content`)) {
         self$`content` <- ApiClient$new()$deserializeObj(this_object$`content`, "array[ChatCompletionTokenLogprob]", loadNamespace("openapi"))
+      }
+      if (!is.null(this_object$`refusal`)) {
+        self$`refusal` <- ApiClient$new()$deserializeObj(this_object$`refusal`, "array[ChatCompletionTokenLogprob]", loadNamespace("openapi"))
       }
       self
     },
@@ -99,6 +114,7 @@ CreateChatCompletionResponseChoicesInnerLogprobs <- R6::R6Class(
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`content` <- ApiClient$new()$deserializeObj(this_object$`content`, "array[ChatCompletionTokenLogprob]", loadNamespace("openapi"))
+      self$`refusal` <- ApiClient$new()$deserializeObj(this_object$`refusal`, "array[ChatCompletionTokenLogprob]", loadNamespace("openapi"))
       self
     },
 
@@ -114,6 +130,13 @@ CreateChatCompletionResponseChoicesInnerLogprobs <- R6::R6Class(
         tmp <- sapply(input_json$`content`, function(x) stopifnot(R6::is.R6(x)))
       } else {
         stop(paste("The JSON input `", input, "` is invalid for CreateChatCompletionResponseChoicesInnerLogprobs: the required field `content` is missing."))
+      }
+      # check the required field `refusal`
+      if (!is.null(input_json$`refusal`)) {
+        stopifnot(is.vector(input_json$`refusal`), length(input_json$`refusal`) != 0)
+        tmp <- sapply(input_json$`refusal`, function(x) stopifnot(R6::is.R6(x)))
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for CreateChatCompletionResponseChoicesInnerLogprobs: the required field `refusal` is missing."))
       }
     },
 

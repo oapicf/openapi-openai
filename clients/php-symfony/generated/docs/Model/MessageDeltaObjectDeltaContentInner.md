@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **type** | **string** | Always &#x60;image_file&#x60;. | 
 **imageFile** | [**OpenAPI\Server\Model\MessageDeltaContentImageFileObjectImageFile**](MessageDeltaContentImageFileObjectImageFile.md) |  | [optional] 
 **text** | [**OpenAPI\Server\Model\MessageDeltaContentTextObjectText**](MessageDeltaContentTextObjectText.md) |  | [optional] 
+**refusal** | **string** |  | [optional] 
+**imageUrl** | [**OpenAPI\Server\Model\MessageDeltaContentImageUrlObjectImageUrl**](MessageDeltaContentImageUrlObjectImageUrl.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

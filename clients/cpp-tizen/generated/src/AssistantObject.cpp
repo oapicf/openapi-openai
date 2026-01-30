@@ -31,8 +31,11 @@ AssistantObject::__init()
 	//model = std::string();
 	//instructions = std::string();
 	//new std::list()std::list> tools;
-	//new std::list()std::list> file_ids;
+	//tool_resources = new AssistantObject_tool_resources();
 	//metadata = null;
+	//temperature = double(0);
+	//top_p = double(0);
+	//response_format = new AssistantsApiResponseFormatOption();
 }
 
 void
@@ -78,15 +81,30 @@ AssistantObject::__cleanup()
 	//delete tools;
 	//tools = NULL;
 	//}
-	//if(file_ids != NULL) {
-	//file_ids.RemoveAll(true);
-	//delete file_ids;
-	//file_ids = NULL;
+	//if(tool_resources != NULL) {
+	//
+	//delete tool_resources;
+	//tool_resources = NULL;
 	//}
 	//if(metadata != NULL) {
 	//
 	//delete metadata;
 	//metadata = NULL;
+	//}
+	//if(temperature != NULL) {
+	//
+	//delete temperature;
+	//temperature = NULL;
+	//}
+	//if(top_p != NULL) {
+	//
+	//delete top_p;
+	//top_p = NULL;
+	//}
+	//if(response_format != NULL) {
+	//
+	//delete response_format;
+	//response_format = NULL;
 	//}
 	//
 }
@@ -197,27 +215,19 @@ AssistantObject::fromJson(char* jsonStr)
 		}
 		
 	}
-	const gchar *file_idsKey = "file_ids";
-	node = json_object_get_member(pJsonObject, file_idsKey);
+	const gchar *tool_resourcesKey = "tool_resources";
+	node = json_object_get_member(pJsonObject, tool_resourcesKey);
 	if (node !=NULL) {
 	
-		{
-			JsonArray* arr = json_node_get_array(node);
-			JsonNode*  temp_json;
-			list<std::string> new_list;
-			std::string inst;
-			for (guint i=0;i<json_array_get_length(arr);i++) {
-				temp_json = json_array_get_element(arr,i);
-				if (isprimitive("std::string")) {
-					jsonToValue(&inst, temp_json, "std::string", "");
-				} else {
-					
-				}
-				new_list.push_back(inst);
-			}
-			file_ids = new_list;
+
+		if (isprimitive("AssistantObject_tool_resources")) {
+			jsonToValue(&tool_resources, node, "AssistantObject_tool_resources", "AssistantObject_tool_resources");
+		} else {
+			
+			AssistantObject_tool_resources* obj = static_cast<AssistantObject_tool_resources*> (&tool_resources);
+			obj->fromJson(json_to_string(node, false));
+			
 		}
-		
 	}
 	const gchar *metadataKey = "metadata";
 	node = json_object_get_member(pJsonObject, metadataKey);
@@ -229,6 +239,48 @@ AssistantObject::fromJson(char* jsonStr)
 		} else {
 			
 			std::string* obj = static_cast<std::string*> (&metadata);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *temperatureKey = "temperature";
+	node = json_object_get_member(pJsonObject, temperatureKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("long long")) {
+			jsonToValue(&temperature, node, "long long", "");
+		} else {
+			
+			long long* obj = static_cast<long long*> (&temperature);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *top_pKey = "top_p";
+	node = json_object_get_member(pJsonObject, top_pKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("long long")) {
+			jsonToValue(&top_p, node, "long long", "");
+		} else {
+			
+			long long* obj = static_cast<long long*> (&top_p);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *response_formatKey = "response_format";
+	node = json_object_get_member(pJsonObject, response_formatKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("AssistantsApiResponseFormatOption")) {
+			jsonToValue(&response_format, node, "AssistantsApiResponseFormatOption", "AssistantsApiResponseFormatOption");
+		} else {
+			
+			AssistantsApiResponseFormatOption* obj = static_cast<AssistantsApiResponseFormatOption*> (&response_format);
 			obj->fromJson(json_to_string(node, false));
 			
 		}
@@ -333,21 +385,20 @@ AssistantObject::toJson()
 	
 	const gchar *toolsKey = "tools";
 	json_object_set_member(pJsonObject, toolsKey, node);
-	if (isprimitive("std::string")) {
-		list<std::string> new_list = static_cast<list <std::string> > (getFileIds());
-		node = converttoJson(&new_list, "std::string", "array");
-	} else {
-		node = json_node_alloc();
-		list<std::string> new_list = static_cast<list <std::string> > (getFileIds());
-		JsonArray* json_array = json_array_new();
+	if (isprimitive("AssistantObject_tool_resources")) {
+		AssistantObject_tool_resources obj = getToolResources();
+		node = converttoJson(&obj, "AssistantObject_tool_resources", "");
+	}
+	else {
+		
+		AssistantObject_tool_resources obj = static_cast<AssistantObject_tool_resources> (getToolResources());
 		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
 		
 	}
-
-
-	
-	const gchar *file_idsKey = "file_ids";
-	json_object_set_member(pJsonObject, file_idsKey, node);
+	const gchar *tool_resourcesKey = "tool_resources";
+	json_object_set_member(pJsonObject, tool_resourcesKey, node);
 	if (isprimitive("std::string")) {
 		std::string obj = getMetadata();
 		node = converttoJson(&obj, "std::string", "");
@@ -362,6 +413,48 @@ AssistantObject::toJson()
 	}
 	const gchar *metadataKey = "metadata";
 	json_object_set_member(pJsonObject, metadataKey, node);
+	if (isprimitive("long long")) {
+		long long obj = getTemperature();
+		node = converttoJson(&obj, "long long", "");
+	}
+	else {
+		
+		long long obj = static_cast<long long> (getTemperature());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *temperatureKey = "temperature";
+	json_object_set_member(pJsonObject, temperatureKey, node);
+	if (isprimitive("long long")) {
+		long long obj = getTopP();
+		node = converttoJson(&obj, "long long", "");
+	}
+	else {
+		
+		long long obj = static_cast<long long> (getTopP());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *top_pKey = "top_p";
+	json_object_set_member(pJsonObject, top_pKey, node);
+	if (isprimitive("AssistantsApiResponseFormatOption")) {
+		AssistantsApiResponseFormatOption obj = getResponseFormat();
+		node = converttoJson(&obj, "AssistantsApiResponseFormatOption", "");
+	}
+	else {
+		
+		AssistantsApiResponseFormatOption obj = static_cast<AssistantsApiResponseFormatOption> (getResponseFormat());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *response_formatKey = "response_format";
+	json_object_set_member(pJsonObject, response_formatKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -466,16 +559,16 @@ AssistantObject::setTools(std::list <AssistantObject_tools_inner> tools)
 	this->tools = tools;
 }
 
-std::list<std::string>
-AssistantObject::getFileIds()
+AssistantObject_tool_resources
+AssistantObject::getToolResources()
 {
-	return file_ids;
+	return tool_resources;
 }
 
 void
-AssistantObject::setFileIds(std::list <std::string> file_ids)
+AssistantObject::setToolResources(AssistantObject_tool_resources  tool_resources)
 {
-	this->file_ids = file_ids;
+	this->tool_resources = tool_resources;
 }
 
 std::string
@@ -488,6 +581,42 @@ void
 AssistantObject::setMetadata(std::string  metadata)
 {
 	this->metadata = metadata;
+}
+
+long long
+AssistantObject::getTemperature()
+{
+	return temperature;
+}
+
+void
+AssistantObject::setTemperature(long long  temperature)
+{
+	this->temperature = temperature;
+}
+
+long long
+AssistantObject::getTopP()
+{
+	return top_p;
+}
+
+void
+AssistantObject::setTopP(long long  top_p)
+{
+	this->top_p = top_p;
+}
+
+AssistantsApiResponseFormatOption
+AssistantObject::getResponseFormat()
+{
+	return response_format;
+}
+
+void
+AssistantObject::setResponseFormat(AssistantsApiResponseFormatOption  response_format)
+{
+	this->response_format = response_format;
 }
 
 

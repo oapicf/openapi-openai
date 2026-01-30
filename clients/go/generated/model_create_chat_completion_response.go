@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -30,6 +30,8 @@ type CreateChatCompletionResponse struct {
 	Created int32 `json:"created"`
 	// The model used for the chat completion.
 	Model string `json:"model"`
+	// The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+	ServiceTier NullableString `json:"service_tier,omitempty"`
 	// This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
 	SystemFingerprint *string `json:"system_fingerprint,omitempty"`
 	// The object type, which is always `chat.completion`.
@@ -157,6 +159,48 @@ func (o *CreateChatCompletionResponse) SetModel(v string) {
 	o.Model = v
 }
 
+// GetServiceTier returns the ServiceTier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateChatCompletionResponse) GetServiceTier() string {
+	if o == nil || IsNil(o.ServiceTier.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ServiceTier.Get()
+}
+
+// GetServiceTierOk returns a tuple with the ServiceTier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateChatCompletionResponse) GetServiceTierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ServiceTier.Get(), o.ServiceTier.IsSet()
+}
+
+// HasServiceTier returns a boolean if a field has been set.
+func (o *CreateChatCompletionResponse) HasServiceTier() bool {
+	if o != nil && o.ServiceTier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceTier gets a reference to the given NullableString and assigns it to the ServiceTier field.
+func (o *CreateChatCompletionResponse) SetServiceTier(v string) {
+	o.ServiceTier.Set(&v)
+}
+// SetServiceTierNil sets the value for ServiceTier to be an explicit nil
+func (o *CreateChatCompletionResponse) SetServiceTierNil() {
+	o.ServiceTier.Set(nil)
+}
+
+// UnsetServiceTier ensures that no value is present for ServiceTier, not even an explicit nil
+func (o *CreateChatCompletionResponse) UnsetServiceTier() {
+	o.ServiceTier.Unset()
+}
+
 // GetSystemFingerprint returns the SystemFingerprint field value if set, zero value otherwise.
 func (o *CreateChatCompletionResponse) GetSystemFingerprint() string {
 	if o == nil || IsNil(o.SystemFingerprint) {
@@ -259,6 +303,9 @@ func (o CreateChatCompletionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["choices"] = o.Choices
 	toSerialize["created"] = o.Created
 	toSerialize["model"] = o.Model
+	if o.ServiceTier.IsSet() {
+		toSerialize["service_tier"] = o.ServiceTier.Get()
+	}
 	if !IsNil(o.SystemFingerprint) {
 		toSerialize["system_fingerprint"] = o.SystemFingerprint
 	}

@@ -1,0 +1,18 @@
+# WWW::OpenAPIClient::Object::BatchErrorsDataInner
+
+## Load the model package
+```perl
+use WWW::OpenAPIClient::Object::BatchErrorsDataInner;
+```
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**code** | **string** | An error code identifying the error type. | [optional] 
+**message** | **string** | A human-readable message providing more details about the error. | [optional] 
+**param** | **string** | The name of the parameter that caused the error, if applicable. | [optional] 
+**line** | **int** | The line number of the input file where the error occurred, if applicable. | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

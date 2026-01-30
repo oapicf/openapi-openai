@@ -1,0 +1,66 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventResponseAudioTranscriptDone"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventResponseAudioTranscriptDone"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeServerEventResponseAudioTranscriptDone {
+    title = RealtimeServerEventResponseAudioTranscriptDone
+    description = RealtimeServerEventResponseAudioTranscriptDone
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "The unique ID of the server event."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;response.audio_transcript.done&#x60;."
+          enum = ["response.audio_transcript.done"]
+          optional = true
+        }
+        response_id {
+          type =  string
+          description = "The ID of the response."
+          optional = true
+        }
+        item_id {
+          type =  string
+          description = "The ID of the item."
+          optional = true
+        }
+        output_index {
+          type =  integer
+          description = "The index of the output item in the response."
+          optional = true
+        }
+        content_index {
+          type =  integer
+          description = "The index of the content part in the item&#39;s content array."
+          optional = true
+        }
+        transcript {
+          type =  string
+          description = "The final transcript of the audio."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventResponseAudioTranscriptDone {
+    title = RealtimeServerEventResponseAudioTranscriptDone
+    description = RealtimeServerEventResponseAudioTranscriptDone
+    implements = openapi_server.resourceTypes.RealtimeServerEventResponseAudioTranscriptDone
+
+  }
+}

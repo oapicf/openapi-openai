@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when a Session is created. Emitted automatically when a new  connection is established as the first server event. This event will contain  the default Session configuration. ",
+  "name": "RealtimeServerEventSessionCreated",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventSessionCreated_type",
+        "symbols": [
+          "session_created"
+        ]
+      },
+      "doc": "The event type, must be `session.created`."
+    },
+    {
+      "name": "session",
+      "type": "model.RealtimeSession",
+      "doc": ""
+    }
+  ]
+
+}

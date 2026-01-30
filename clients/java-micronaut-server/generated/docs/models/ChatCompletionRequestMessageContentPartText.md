@@ -2,6 +2,8 @@
 
 # ChatCompletionRequestMessageContentPartText
 
+Learn about [text inputs](/docs/guides/text-generation). 
+
 The class is defined in **[ChatCompletionRequestMessageContentPartText.java](../../src/main/java/org/openapitools/model/ChatCompletionRequestMessageContentPartText.java)**
 
 ## Properties

@@ -15,13 +15,15 @@ import org.openapitools.vertxweb.server.model.ChatCompletionTokenLogprob;
 public class CreateChatCompletionResponseChoicesInnerLogprobs   {
   
   private List<ChatCompletionTokenLogprob> content;
+  private List<ChatCompletionTokenLogprob> refusal;
 
   public CreateChatCompletionResponseChoicesInnerLogprobs () {
 
   }
 
-  public CreateChatCompletionResponseChoicesInnerLogprobs (List<ChatCompletionTokenLogprob> content) {
+  public CreateChatCompletionResponseChoicesInnerLogprobs (List<ChatCompletionTokenLogprob> content, List<ChatCompletionTokenLogprob> refusal) {
     this.content = content;
+    this.refusal = refusal;
   }
 
     
@@ -31,6 +33,15 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
   }
   public void setContent(List<ChatCompletionTokenLogprob> content) {
     this.content = content;
+  }
+
+    
+  @JsonProperty("refusal")
+  public List<ChatCompletionTokenLogprob> getRefusal() {
+    return refusal;
+  }
+  public void setRefusal(List<ChatCompletionTokenLogprob> refusal) {
+    this.refusal = refusal;
   }
 
 
@@ -43,12 +54,13 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
       return false;
     }
     CreateChatCompletionResponseChoicesInnerLogprobs createChatCompletionResponseChoicesInnerLogprobs = (CreateChatCompletionResponseChoicesInnerLogprobs) o;
-    return Objects.equals(content, createChatCompletionResponseChoicesInnerLogprobs.content);
+    return Objects.equals(content, createChatCompletionResponseChoicesInnerLogprobs.content) &&
+        Objects.equals(refusal, createChatCompletionResponseChoicesInnerLogprobs.refusal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(content);
+    return Objects.hash(content, refusal);
   }
 
   @Override
@@ -57,6 +69,7 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
     sb.append("class CreateChatCompletionResponseChoicesInnerLogprobs {\n");
     
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
     sb.append("}");
     return sb.toString();
   }

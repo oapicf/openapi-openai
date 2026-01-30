@@ -1,0 +1,30 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AudioResponseFormat"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AudioResponseFormat"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  AudioResponseFormat {
+    title = AudioResponseFormat
+    description = AudioResponseFormat
+    derivedFrom = Root
+    properties {
+    }
+  }
+}
+
+serviceTemplates {
+
+  AudioResponseFormat {
+    title = AudioResponseFormat
+    description = AudioResponseFormat
+    implements = openapi_server.resourceTypes.AudioResponseFormat
+
+  }
+}

@@ -19,6 +19,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.FineTuningJob
+import org.openapitools.client.models.FineTuneMethod
 import org.openapitools.client.models.FineTuningJobError
 import org.openapitools.client.models.FineTuningJobHyperparameters
 import org.openapitools.client.models.FineTuningJobIntegrationsInner
@@ -122,6 +123,18 @@ class FineTuningJobTest : ShouldSpec() {
         should("test integrations") {
             // uncomment below to test the property
             //modelInstance.integrations shouldBe ("TODO")
+        }
+
+        // to test the property `estimatedFinish` - The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+        should("test estimatedFinish") {
+            // uncomment below to test the property
+            //modelInstance.estimatedFinish shouldBe ("TODO")
+        }
+
+        // to test the property `method`
+        should("test method") {
+            // uncomment below to test the property
+            //modelInstance.method shouldBe ("TODO")
         }
 
     }

@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -30,18 +30,23 @@ type CreateThreadAndRunRequest struct {
 	Instructions NullableString `json:"instructions,omitempty"`
 	// Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
 	Tools []CreateThreadAndRunRequestToolsInner `json:"tools,omitempty"`
-	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+	ToolResources NullableCreateThreadAndRunRequestToolResources `json:"tool_resources,omitempty"`
+	// Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
 	Temperature NullableFloat32 `json:"temperature,omitempty"`
+	// An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+	TopP NullableFloat32 `json:"top_p,omitempty"`
 	// If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. 
 	Stream NullableBool `json:"stream,omitempty"`
-	// The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `complete`. See `incomplete_details` for more info. 
+	// The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
 	MaxPromptTokens NullableInt32 `json:"max_prompt_tokens,omitempty"`
 	// The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
 	MaxCompletionTokens NullableInt32 `json:"max_completion_tokens,omitempty"`
 	TruncationStrategy *TruncationObject `json:"truncation_strategy,omitempty"`
 	ToolChoice *AssistantsApiToolChoiceOption `json:"tool_choice,omitempty"`
+	// Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+	ParallelToolCalls *bool `json:"parallel_tool_calls,omitempty"`
 	ResponseFormat *AssistantsApiResponseFormatOption `json:"response_format,omitempty"`
 }
 
@@ -56,6 +61,10 @@ func NewCreateThreadAndRunRequest(assistantId string) *CreateThreadAndRunRequest
 	this.AssistantId = assistantId
 	var temperature float32 = 1
 	this.Temperature = *NewNullableFloat32(&temperature)
+	var topP float32 = 1
+	this.TopP = *NewNullableFloat32(&topP)
+	var parallelToolCalls bool = true
+	this.ParallelToolCalls = &parallelToolCalls
 	return &this
 }
 
@@ -66,6 +75,10 @@ func NewCreateThreadAndRunRequestWithDefaults() *CreateThreadAndRunRequest {
 	this := CreateThreadAndRunRequest{}
 	var temperature float32 = 1
 	this.Temperature = *NewNullableFloat32(&temperature)
+	var topP float32 = 1
+	this.TopP = *NewNullableFloat32(&topP)
+	var parallelToolCalls bool = true
+	this.ParallelToolCalls = &parallelToolCalls
 	return &this
 }
 
@@ -242,6 +255,48 @@ func (o *CreateThreadAndRunRequest) SetTools(v []CreateThreadAndRunRequestToolsI
 	o.Tools = v
 }
 
+// GetToolResources returns the ToolResources field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateThreadAndRunRequest) GetToolResources() CreateThreadAndRunRequestToolResources {
+	if o == nil || IsNil(o.ToolResources.Get()) {
+		var ret CreateThreadAndRunRequestToolResources
+		return ret
+	}
+	return *o.ToolResources.Get()
+}
+
+// GetToolResourcesOk returns a tuple with the ToolResources field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateThreadAndRunRequest) GetToolResourcesOk() (*CreateThreadAndRunRequestToolResources, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ToolResources.Get(), o.ToolResources.IsSet()
+}
+
+// HasToolResources returns a boolean if a field has been set.
+func (o *CreateThreadAndRunRequest) HasToolResources() bool {
+	if o != nil && o.ToolResources.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetToolResources gets a reference to the given NullableCreateThreadAndRunRequestToolResources and assigns it to the ToolResources field.
+func (o *CreateThreadAndRunRequest) SetToolResources(v CreateThreadAndRunRequestToolResources) {
+	o.ToolResources.Set(&v)
+}
+// SetToolResourcesNil sets the value for ToolResources to be an explicit nil
+func (o *CreateThreadAndRunRequest) SetToolResourcesNil() {
+	o.ToolResources.Set(nil)
+}
+
+// UnsetToolResources ensures that no value is present for ToolResources, not even an explicit nil
+func (o *CreateThreadAndRunRequest) UnsetToolResources() {
+	o.ToolResources.Unset()
+}
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateThreadAndRunRequest) GetMetadata() map[string]interface{} {
 	if o == nil {
@@ -315,6 +370,48 @@ func (o *CreateThreadAndRunRequest) SetTemperatureNil() {
 // UnsetTemperature ensures that no value is present for Temperature, not even an explicit nil
 func (o *CreateThreadAndRunRequest) UnsetTemperature() {
 	o.Temperature.Unset()
+}
+
+// GetTopP returns the TopP field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateThreadAndRunRequest) GetTopP() float32 {
+	if o == nil || IsNil(o.TopP.Get()) {
+		var ret float32
+		return ret
+	}
+	return *o.TopP.Get()
+}
+
+// GetTopPOk returns a tuple with the TopP field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateThreadAndRunRequest) GetTopPOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TopP.Get(), o.TopP.IsSet()
+}
+
+// HasTopP returns a boolean if a field has been set.
+func (o *CreateThreadAndRunRequest) HasTopP() bool {
+	if o != nil && o.TopP.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTopP gets a reference to the given NullableFloat32 and assigns it to the TopP field.
+func (o *CreateThreadAndRunRequest) SetTopP(v float32) {
+	o.TopP.Set(&v)
+}
+// SetTopPNil sets the value for TopP to be an explicit nil
+func (o *CreateThreadAndRunRequest) SetTopPNil() {
+	o.TopP.Set(nil)
+}
+
+// UnsetTopP ensures that no value is present for TopP, not even an explicit nil
+func (o *CreateThreadAndRunRequest) UnsetTopP() {
+	o.TopP.Unset()
 }
 
 // GetStream returns the Stream field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -507,6 +604,38 @@ func (o *CreateThreadAndRunRequest) SetToolChoice(v AssistantsApiToolChoiceOptio
 	o.ToolChoice = &v
 }
 
+// GetParallelToolCalls returns the ParallelToolCalls field value if set, zero value otherwise.
+func (o *CreateThreadAndRunRequest) GetParallelToolCalls() bool {
+	if o == nil || IsNil(o.ParallelToolCalls) {
+		var ret bool
+		return ret
+	}
+	return *o.ParallelToolCalls
+}
+
+// GetParallelToolCallsOk returns a tuple with the ParallelToolCalls field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateThreadAndRunRequest) GetParallelToolCallsOk() (*bool, bool) {
+	if o == nil || IsNil(o.ParallelToolCalls) {
+		return nil, false
+	}
+	return o.ParallelToolCalls, true
+}
+
+// HasParallelToolCalls returns a boolean if a field has been set.
+func (o *CreateThreadAndRunRequest) HasParallelToolCalls() bool {
+	if o != nil && !IsNil(o.ParallelToolCalls) {
+		return true
+	}
+
+	return false
+}
+
+// SetParallelToolCalls gets a reference to the given bool and assigns it to the ParallelToolCalls field.
+func (o *CreateThreadAndRunRequest) SetParallelToolCalls(v bool) {
+	o.ParallelToolCalls = &v
+}
+
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
 func (o *CreateThreadAndRunRequest) GetResponseFormat() AssistantsApiResponseFormatOption {
 	if o == nil || IsNil(o.ResponseFormat) {
@@ -562,11 +691,17 @@ func (o CreateThreadAndRunRequest) ToMap() (map[string]interface{}, error) {
 	if o.Tools != nil {
 		toSerialize["tools"] = o.Tools
 	}
+	if o.ToolResources.IsSet() {
+		toSerialize["tool_resources"] = o.ToolResources.Get()
+	}
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
 	if o.Temperature.IsSet() {
 		toSerialize["temperature"] = o.Temperature.Get()
+	}
+	if o.TopP.IsSet() {
+		toSerialize["top_p"] = o.TopP.Get()
 	}
 	if o.Stream.IsSet() {
 		toSerialize["stream"] = o.Stream.Get()
@@ -582,6 +717,9 @@ func (o CreateThreadAndRunRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ToolChoice) {
 		toSerialize["tool_choice"] = o.ToolChoice
+	}
+	if !IsNil(o.ParallelToolCalls) {
+		toSerialize["parallel_tool_calls"] = o.ParallelToolCalls
 	}
 	if !IsNil(o.ResponseFormat) {
 		toSerialize["response_format"] = o.ResponseFormat

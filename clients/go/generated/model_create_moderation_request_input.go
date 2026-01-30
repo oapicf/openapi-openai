@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -17,10 +17,18 @@ import (
 	"gopkg.in/validator.v2"
 )
 
-// CreateModerationRequestInput - The input text to classify
+// CreateModerationRequestInput - Input (or inputs) to classify. Can be a single string, an array of strings, or an array of multi-modal input objects similar to other models. 
 type CreateModerationRequestInput struct {
+	ArrayOfCreateModerationRequestInputOneOfInner *[]CreateModerationRequestInputOneOfInner
 	ArrayOfString *[]string
 	String *string
+}
+
+// []CreateModerationRequestInputOneOfInnerAsCreateModerationRequestInput is a convenience function that returns []CreateModerationRequestInputOneOfInner wrapped in CreateModerationRequestInput
+func ArrayOfCreateModerationRequestInputOneOfInnerAsCreateModerationRequestInput(v *[]CreateModerationRequestInputOneOfInner) CreateModerationRequestInput {
+	return CreateModerationRequestInput{
+		ArrayOfCreateModerationRequestInputOneOfInner: v,
+	}
 }
 
 // []stringAsCreateModerationRequestInput is a convenience function that returns []string wrapped in CreateModerationRequestInput
@@ -42,6 +50,23 @@ func StringAsCreateModerationRequestInput(v *string) CreateModerationRequestInpu
 func (dst *CreateModerationRequestInput) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// try to unmarshal data into ArrayOfCreateModerationRequestInputOneOfInner
+	err = newStrictDecoder(data).Decode(&dst.ArrayOfCreateModerationRequestInputOneOfInner)
+	if err == nil {
+		jsonArrayOfCreateModerationRequestInputOneOfInner, _ := json.Marshal(dst.ArrayOfCreateModerationRequestInputOneOfInner)
+		if string(jsonArrayOfCreateModerationRequestInputOneOfInner) == "{}" { // empty struct
+			dst.ArrayOfCreateModerationRequestInputOneOfInner = nil
+		} else {
+			if err = validator.Validate(dst.ArrayOfCreateModerationRequestInputOneOfInner); err != nil {
+				dst.ArrayOfCreateModerationRequestInputOneOfInner = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.ArrayOfCreateModerationRequestInputOneOfInner = nil
+	}
+
 	// try to unmarshal data into ArrayOfString
 	err = newStrictDecoder(data).Decode(&dst.ArrayOfString)
 	if err == nil {
@@ -78,6 +103,7 @@ func (dst *CreateModerationRequestInput) UnmarshalJSON(data []byte) error {
 
 	if match > 1 { // more than 1 match
 		// reset to nil
+		dst.ArrayOfCreateModerationRequestInputOneOfInner = nil
 		dst.ArrayOfString = nil
 		dst.String = nil
 
@@ -91,6 +117,10 @@ func (dst *CreateModerationRequestInput) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src CreateModerationRequestInput) MarshalJSON() ([]byte, error) {
+	if src.ArrayOfCreateModerationRequestInputOneOfInner != nil {
+		return json.Marshal(&src.ArrayOfCreateModerationRequestInputOneOfInner)
+	}
+
 	if src.ArrayOfString != nil {
 		return json.Marshal(&src.ArrayOfString)
 	}
@@ -107,6 +137,10 @@ func (obj *CreateModerationRequestInput) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
+	if obj.ArrayOfCreateModerationRequestInputOneOfInner != nil {
+		return obj.ArrayOfCreateModerationRequestInputOneOfInner
+	}
+
 	if obj.ArrayOfString != nil {
 		return obj.ArrayOfString
 	}
@@ -121,6 +155,10 @@ func (obj *CreateModerationRequestInput) GetActualInstance() (interface{}) {
 
 // Get the actual instance value
 func (obj CreateModerationRequestInput) GetActualInstanceValue() (interface{}) {
+	if obj.ArrayOfCreateModerationRequestInputOneOfInner != nil {
+		return *obj.ArrayOfCreateModerationRequestInputOneOfInner
+	}
+
 	if obj.ArrayOfString != nil {
 		return *obj.ArrayOfString
 	}

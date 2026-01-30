@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -29,17 +29,6 @@ func NewImagesAPIService() *ImagesAPIService {
 	return &ImagesAPIService{}
 }
 
-// CreateImage - Creates an image given a prompt.
-func (s *ImagesAPIService) CreateImage(ctx context.Context, createImageRequest CreateImageRequest) (ImplResponse, error) {
-	// TODO - update CreateImage with the required logic for this service method.
-	// Add api_images_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
-
-	// TODO: Uncomment the next line to return response Response(200, ImagesResponse{}) or use other options such as http.Ok ...
-	// return Response(200, ImagesResponse{}), nil
-
-	return Response(http.StatusNotImplemented, nil), errors.New("CreateImage method not implemented")
-}
-
 // CreateImageEdit - Creates an edited or extended image given an original image and a prompt.
 func (s *ImagesAPIService) CreateImageEdit(ctx context.Context, image *os.File, prompt string, mask *os.File, model *CreateImageEditRequestModel, n *int32, size *string, responseFormat *string, user string) (ImplResponse, error) {
 	// TODO - update CreateImageEdit with the required logic for this service method.
@@ -49,6 +38,17 @@ func (s *ImagesAPIService) CreateImageEdit(ctx context.Context, image *os.File, 
 	// return Response(200, ImagesResponse{}), nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("CreateImageEdit method not implemented")
+}
+
+// CreateImage - Creates an image given a prompt.
+func (s *ImagesAPIService) CreateImage(ctx context.Context, createImageRequest CreateImageRequest) (ImplResponse, error) {
+	// TODO - update CreateImage with the required logic for this service method.
+	// Add api_images_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	// TODO: Uncomment the next line to return response Response(200, ImagesResponse{}) or use other options such as http.Ok ...
+	// return Response(200, ImagesResponse{}), nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("CreateImage method not implemented")
 }
 
 // CreateImageVariation - Creates a variation of a given image.

@@ -14,11 +14,13 @@ Name | Type
 `tools` | [Array&lt;AssistantObjectToolsInner&gt;](AssistantObjectToolsInner.md)
 `metadata` | object
 `temperature` | number
+`topP` | number
 `stream` | boolean
 `maxPromptTokens` | number
 `maxCompletionTokens` | number
 `truncationStrategy` | [TruncationObject](TruncationObject.md)
 `toolChoice` | [AssistantsApiToolChoiceOption](AssistantsApiToolChoiceOption.md)
+`parallelToolCalls` | boolean
 `responseFormat` | [AssistantsApiResponseFormatOption](AssistantsApiResponseFormatOption.md)
 
 ## Example
@@ -36,11 +38,13 @@ const example = {
   "tools": null,
   "metadata": null,
   "temperature": 1,
+  "topP": 1,
   "stream": null,
   "maxPromptTokens": null,
   "maxCompletionTokens": null,
   "truncationStrategy": null,
   "toolChoice": null,
+  "parallelToolCalls": null,
   "responseFormat": null,
 } satisfies CreateRunRequest
 

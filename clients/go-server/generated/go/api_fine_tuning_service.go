@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -61,17 +61,6 @@ func (s *FineTuningAPIService) RetrieveFineTuningJob(ctx context.Context, fineTu
 	return Response(http.StatusNotImplemented, nil), errors.New("RetrieveFineTuningJob method not implemented")
 }
 
-// ListFineTuningEvents - Get status updates for a fine-tuning job. 
-func (s *FineTuningAPIService) ListFineTuningEvents(ctx context.Context, fineTuningJobId string, after string, limit int32) (ImplResponse, error) {
-	// TODO - update ListFineTuningEvents with the required logic for this service method.
-	// Add api_fine_tuning_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
-
-	// TODO: Uncomment the next line to return response Response(200, ListFineTuningJobEventsResponse{}) or use other options such as http.Ok ...
-	// return Response(200, ListFineTuningJobEventsResponse{}), nil
-
-	return Response(http.StatusNotImplemented, nil), errors.New("ListFineTuningEvents method not implemented")
-}
-
 // CancelFineTuningJob - Immediately cancel a fine-tune job. 
 func (s *FineTuningAPIService) CancelFineTuningJob(ctx context.Context, fineTuningJobId string) (ImplResponse, error) {
 	// TODO - update CancelFineTuningJob with the required logic for this service method.
@@ -92,4 +81,15 @@ func (s *FineTuningAPIService) ListFineTuningJobCheckpoints(ctx context.Context,
 	// return Response(200, ListFineTuningJobCheckpointsResponse{}), nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("ListFineTuningJobCheckpoints method not implemented")
+}
+
+// ListFineTuningEvents - Get status updates for a fine-tuning job. 
+func (s *FineTuningAPIService) ListFineTuningEvents(ctx context.Context, fineTuningJobId string, after string, limit int32) (ImplResponse, error) {
+	// TODO - update ListFineTuningEvents with the required logic for this service method.
+	// Add api_fine_tuning_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	// TODO: Uncomment the next line to return response Response(200, ListFineTuningJobEventsResponse{}) or use other options such as http.Ok ...
+	// return Response(200, ListFineTuningJobEventsResponse{}), nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("ListFineTuningEvents method not implemented")
 }

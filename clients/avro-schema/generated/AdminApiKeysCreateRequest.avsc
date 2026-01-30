@@ -1,0 +1,14 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "AdminApiKeysCreateRequest",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string",
+      "doc": ""
+    }
+  ]
+
+}

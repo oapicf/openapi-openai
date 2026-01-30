@@ -15,7 +15,7 @@
         "type": "array",
         "items": "model.CreateChatCompletionStreamResponseChoicesInner"
       },
-      "doc": "A list of chat completion choices. Can be more than one if `n` is greater than 1."
+      "doc": "A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. "
     },
     {
       "name": "created",
@@ -26,6 +26,19 @@
       "name": "model",
       "type": "string",
       "doc": "The model to generate the completion."
+    },
+    {
+      "name": "service_tier",
+      "type": ["null", {
+        "type": "enum",
+        "name": "CreateChatCompletionStreamResponse_serviceUnderscoretier",
+        "symbols": [
+          "scale",
+          "default"
+        ]
+      }],
+      "doc": "The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.",
+      "default": null
     },
     {
       "name": "system_fingerprint",
@@ -43,6 +56,12 @@
         ]
       },
       "doc": "The object type, which is always `chat.completion.chunk`."
+    },
+    {
+      "name": "usage",
+      "type": ["null", "model.CreateChatCompletionStreamResponseUsage"],
+      "doc": "",
+      "default": null
     }
   ]
 

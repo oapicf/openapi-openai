@@ -1,0 +1,51 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventInputAudioBufferCommitted"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventInputAudioBufferCommitted"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeServerEventInputAudioBufferCommitted {
+    title = RealtimeServerEventInputAudioBufferCommitted
+    description = RealtimeServerEventInputAudioBufferCommitted
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "The unique ID of the server event."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;input_audio_buffer.committed&#x60;."
+          enum = ["input_audio_buffer.committed"]
+          optional = true
+        }
+        previous_item_id {
+          type =  string
+          description = "The ID of the preceding item after which the new item will be inserted. "
+          optional = true
+        }
+        item_id {
+          type =  string
+          description = "The ID of the user message item that will be created."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventInputAudioBufferCommitted {
+    title = RealtimeServerEventInputAudioBufferCommitted
+    description = RealtimeServerEventInputAudioBufferCommitted
+    implements = openapi_server.resourceTypes.RealtimeServerEventInputAudioBufferCommitted
+
+  }
+}

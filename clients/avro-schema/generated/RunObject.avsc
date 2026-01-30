@@ -48,10 +48,11 @@
           "cancelled",
           "failed",
           "completed",
+          "incomplete",
           "expired"
         ]
       },
-      "doc": "The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`."
+      "doc": "The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`."
     },
     {
       "name": "required_action",
@@ -113,18 +114,9 @@
       "default": []
     },
     {
-      "name": "file_ids",
-      "type": {
-        "type": "array",
-        "items": "string"
-      },
-      "doc": "The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.",
-      "default": []
-    },
-    {
       "name": "metadata",
       "type": "model.object",
-      "doc": "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. "
+      "doc": "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. "
     },
     {
       "name": "usage",
@@ -135,6 +127,12 @@
       "name": "temperature",
       "type": ["null", "double"],
       "doc": "The sampling temperature used for this run. If not set, defaults to 1.",
+      "default": null
+    },
+    {
+      "name": "top_p",
+      "type": ["null", "double"],
+      "doc": "The nucleus sampling value used for this run. If not set, defaults to 1.",
       "default": null
     },
     {
@@ -156,6 +154,12 @@
       "name": "tool_choice",
       "type": "model.AssistantsApiToolChoiceOption",
       "doc": ""
+    },
+    {
+      "name": "parallel_tool_calls",
+      "type": "boolean",
+      "doc": "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.",
+      "default": true
     },
     {
       "name": "response_format",

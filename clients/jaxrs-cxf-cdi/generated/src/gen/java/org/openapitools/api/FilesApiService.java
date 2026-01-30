@@ -20,11 +20,11 @@ import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-01-29T10:45:22.438122430Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-01-29T14:09:03.843054404Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public interface FilesApiService {
       public Response createFile(Attachment _fileDetail, String purpose, SecurityContext securityContext);
       public Response deleteFile(String fileId, SecurityContext securityContext);
       public Response downloadFile(String fileId, SecurityContext securityContext);
-      public Response listFiles(String purpose, SecurityContext securityContext);
+      public Response listFiles(String purpose, Integer limit, String order, String after, SecurityContext securityContext);
       public Response retrieveFile(String fileId, SecurityContext securityContext);
 }

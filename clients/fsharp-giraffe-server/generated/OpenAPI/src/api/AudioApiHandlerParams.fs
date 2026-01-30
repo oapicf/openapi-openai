@@ -1,5 +1,6 @@
 namespace OpenAPI
 
+open OpenAPI.Model.AudioResponseFormat
 open OpenAPI.Model.CreateSpeechRequest
 open OpenAPI.Model.CreateTranscription200Response
 open OpenAPI.Model.CreateTranscriptionRequestModel
@@ -45,7 +46,7 @@ module AudioApiHandlerParams =
     //#endregion
 
     //#region Form parameters
-      responseFormat : string option;
+      responseFormat : AudioResponseFormat option;
     //#endregion
 
     //#region Form parameters
@@ -83,7 +84,7 @@ module AudioApiHandlerParams =
     //#endregion
 
     //#region Form parameters
-      responseFormat : string option;
+      responseFormat : AudioResponseFormat option;
     //#endregion
 
     //#region Form parameters

@@ -11,8 +11,8 @@ server, you can easily generate a server stub.
 
 To see how to make this your own, look here: [README]((https://openapi-generator.tech))
 
-- API version: 2.0.0
-- Build date: 2026-01-29T10:47:52.272014809Z[Etc/UTC]
+- API version: 2.3.0
+- Build date: 2026-01-29T14:15:03.570229934Z[Etc/UTC]
 - Generator version: 7.18.0
 
 For more information, please visit [https://github.com/oapicf/openapi-openai](https://github.com/oapicf/openapi-openai)

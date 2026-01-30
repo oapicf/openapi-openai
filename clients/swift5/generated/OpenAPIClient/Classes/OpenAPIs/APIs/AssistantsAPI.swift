@@ -113,57 +113,6 @@ open class AssistantsAPI {
     }
 
     /**
-     Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     
-     - parameter assistantId: (path) The ID of the assistant for which to create a File.  
-     - parameter createAssistantFileRequest: (body)  
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    @discardableResult
-    open class func createAssistantFile(assistantId: String, createAssistantFileRequest: CreateAssistantFileRequest, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: AssistantFileObject?, _ error: Error?) -> Void)) -> RequestTask {
-        return createAssistantFileWithRequestBuilder(assistantId: assistantId, createAssistantFileRequest: createAssistantFileRequest).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-     - POST /assistants/{assistant_id}/files
-     - Bearer Token:
-       - type: http
-       - name: ApiKeyAuth
-     - parameter assistantId: (path) The ID of the assistant for which to create a File.  
-     - parameter createAssistantFileRequest: (body)  
-     - returns: RequestBuilder<AssistantFileObject> 
-     */
-    open class func createAssistantFileWithRequestBuilder(assistantId: String, createAssistantFileRequest: CreateAssistantFileRequest) -> RequestBuilder<AssistantFileObject> {
-        var localVariablePath = "/assistants/{assistant_id}/files"
-        let assistantIdPreEscape = "\(APIHelper.mapValueToPathItem(assistantId))"
-        let assistantIdPostEscape = assistantIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{assistant_id}", with: assistantIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createAssistantFileRequest)
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            "Content-Type": "application/json",
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AssistantFileObject>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
      Create a message.
      
      - parameter threadId: (path) The ID of the [thread](/docs/api-reference/threads) to create a message for. 
@@ -215,16 +164,24 @@ open class AssistantsAPI {
     }
 
     /**
+     * enum for parameter include
+     */
+    public enum Include_createRun: String, CaseIterable {
+        case stepDetailsPeriodToolCallsLeftSquareBracketStarRightSquareBracketPeriodFileSearchPeriodResultsLeftSquareBracketStarRightSquareBracketPeriodContent = "step_details.tool_calls[*].file_search.results[*].content"
+    }
+
+    /**
      Create a run.
      
      - parameter threadId: (path) The ID of the thread to run. 
      - parameter createRunRequest: (body)  
+     - parameter include: (query) A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createRun(threadId: String, createRunRequest: CreateRunRequest, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: RunObject?, _ error: Error?) -> Void)) -> RequestTask {
-        return createRunWithRequestBuilder(threadId: threadId, createRunRequest: createRunRequest).execute(apiResponseQueue) { result in
+    open class func createRun(threadId: String, createRunRequest: CreateRunRequest, include: [Include_createRun]? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: RunObject?, _ error: Error?) -> Void)) -> RequestTask {
+        return createRunWithRequestBuilder(threadId: threadId, createRunRequest: createRunRequest, include: include).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -242,9 +199,10 @@ open class AssistantsAPI {
        - name: ApiKeyAuth
      - parameter threadId: (path) The ID of the thread to run. 
      - parameter createRunRequest: (body)  
+     - parameter include: (query) A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      - returns: RequestBuilder<RunObject> 
      */
-    open class func createRunWithRequestBuilder(threadId: String, createRunRequest: CreateRunRequest) -> RequestBuilder<RunObject> {
+    open class func createRunWithRequestBuilder(threadId: String, createRunRequest: CreateRunRequest, include: [Include_createRun]? = nil) -> RequestBuilder<RunObject> {
         var localVariablePath = "/threads/{thread_id}/runs"
         let threadIdPreEscape = "\(APIHelper.mapValueToPathItem(threadId))"
         let threadIdPostEscape = threadIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -252,7 +210,10 @@ open class AssistantsAPI {
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createRunRequest)
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "include[]": (wrappedValue: include?.encodeToJSON(), isExplode: true),
+        ])
 
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
@@ -407,16 +368,16 @@ open class AssistantsAPI {
     }
 
     /**
-     Delete an assistant file.
+     Deletes a message.
      
-     - parameter assistantId: (path) The ID of the assistant that the file belongs to. 
-     - parameter fileId: (path) The ID of the file to delete. 
+     - parameter threadId: (path) The ID of the thread to which this message belongs. 
+     - parameter messageId: (path) The ID of the message to delete. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func deleteAssistantFile(assistantId: String, fileId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: DeleteAssistantFileResponse?, _ error: Error?) -> Void)) -> RequestTask {
-        return deleteAssistantFileWithRequestBuilder(assistantId: assistantId, fileId: fileId).execute(apiResponseQueue) { result in
+    open class func deleteMessage(threadId: String, messageId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: DeleteMessageResponse?, _ error: Error?) -> Void)) -> RequestTask {
+        return deleteMessageWithRequestBuilder(threadId: threadId, messageId: messageId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -427,23 +388,23 @@ open class AssistantsAPI {
     }
 
     /**
-     Delete an assistant file.
-     - DELETE /assistants/{assistant_id}/files/{file_id}
+     Deletes a message.
+     - DELETE /threads/{thread_id}/messages/{message_id}
      - Bearer Token:
        - type: http
        - name: ApiKeyAuth
-     - parameter assistantId: (path) The ID of the assistant that the file belongs to. 
-     - parameter fileId: (path) The ID of the file to delete. 
-     - returns: RequestBuilder<DeleteAssistantFileResponse> 
+     - parameter threadId: (path) The ID of the thread to which this message belongs. 
+     - parameter messageId: (path) The ID of the message to delete. 
+     - returns: RequestBuilder<DeleteMessageResponse> 
      */
-    open class func deleteAssistantFileWithRequestBuilder(assistantId: String, fileId: String) -> RequestBuilder<DeleteAssistantFileResponse> {
-        var localVariablePath = "/assistants/{assistant_id}/files/{file_id}"
-        let assistantIdPreEscape = "\(APIHelper.mapValueToPathItem(assistantId))"
-        let assistantIdPostEscape = assistantIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{assistant_id}", with: assistantIdPostEscape, options: .literal, range: nil)
-        let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
-        let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{file_id}", with: fileIdPostEscape, options: .literal, range: nil)
+    open class func deleteMessageWithRequestBuilder(threadId: String, messageId: String) -> RequestBuilder<DeleteMessageResponse> {
+        var localVariablePath = "/threads/{thread_id}/messages/{message_id}"
+        let threadIdPreEscape = "\(APIHelper.mapValueToPathItem(threadId))"
+        let threadIdPostEscape = threadIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{thread_id}", with: threadIdPostEscape, options: .literal, range: nil)
+        let messageIdPreEscape = "\(APIHelper.mapValueToPathItem(messageId))"
+        let messageIdPostEscape = messageIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{message_id}", with: messageIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
@@ -455,7 +416,7 @@ open class AssistantsAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DeleteAssistantFileResponse>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DeleteMessageResponse>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
@@ -559,60 +520,6 @@ open class AssistantsAPI {
     }
 
     /**
-     Retrieves an AssistantFile.
-     
-     - parameter assistantId: (path) The ID of the assistant who the file belongs to. 
-     - parameter fileId: (path) The ID of the file we&#39;re getting. 
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    @discardableResult
-    open class func getAssistantFile(assistantId: String, fileId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: AssistantFileObject?, _ error: Error?) -> Void)) -> RequestTask {
-        return getAssistantFileWithRequestBuilder(assistantId: assistantId, fileId: fileId).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     Retrieves an AssistantFile.
-     - GET /assistants/{assistant_id}/files/{file_id}
-     - Bearer Token:
-       - type: http
-       - name: ApiKeyAuth
-     - parameter assistantId: (path) The ID of the assistant who the file belongs to. 
-     - parameter fileId: (path) The ID of the file we&#39;re getting. 
-     - returns: RequestBuilder<AssistantFileObject> 
-     */
-    open class func getAssistantFileWithRequestBuilder(assistantId: String, fileId: String) -> RequestBuilder<AssistantFileObject> {
-        var localVariablePath = "/assistants/{assistant_id}/files/{file_id}"
-        let assistantIdPreEscape = "\(APIHelper.mapValueToPathItem(assistantId))"
-        let assistantIdPostEscape = assistantIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{assistant_id}", with: assistantIdPostEscape, options: .literal, range: nil)
-        let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
-        let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{file_id}", with: fileIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<AssistantFileObject>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
      Retrieve a message.
      
      - parameter threadId: (path) The ID of the [thread](/docs/api-reference/threads) to which this message belongs. 
@@ -662,65 +569,6 @@ open class AssistantsAPI {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<MessageObject>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     Retrieves a message file.
-     
-     - parameter threadId: (path) The ID of the thread to which the message and File belong. 
-     - parameter messageId: (path) The ID of the message the file belongs to. 
-     - parameter fileId: (path) The ID of the file being retrieved. 
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    @discardableResult
-    open class func getMessageFile(threadId: String, messageId: String, fileId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: MessageFileObject?, _ error: Error?) -> Void)) -> RequestTask {
-        return getMessageFileWithRequestBuilder(threadId: threadId, messageId: messageId, fileId: fileId).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     Retrieves a message file.
-     - GET /threads/{thread_id}/messages/{message_id}/files/{file_id}
-     - Bearer Token:
-       - type: http
-       - name: ApiKeyAuth
-     - parameter threadId: (path) The ID of the thread to which the message and File belong. 
-     - parameter messageId: (path) The ID of the message the file belongs to. 
-     - parameter fileId: (path) The ID of the file being retrieved. 
-     - returns: RequestBuilder<MessageFileObject> 
-     */
-    open class func getMessageFileWithRequestBuilder(threadId: String, messageId: String, fileId: String) -> RequestBuilder<MessageFileObject> {
-        var localVariablePath = "/threads/{thread_id}/messages/{message_id}/files/{file_id}"
-        let threadIdPreEscape = "\(APIHelper.mapValueToPathItem(threadId))"
-        let threadIdPostEscape = threadIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{thread_id}", with: threadIdPostEscape, options: .literal, range: nil)
-        let messageIdPreEscape = "\(APIHelper.mapValueToPathItem(messageId))"
-        let messageIdPostEscape = messageIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{message_id}", with: messageIdPostEscape, options: .literal, range: nil)
-        let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
-        let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{file_id}", with: fileIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<MessageFileObject>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
@@ -780,17 +628,25 @@ open class AssistantsAPI {
     }
 
     /**
+     * enum for parameter include
+     */
+    public enum Include_getRunStep: String, CaseIterable {
+        case stepDetailsPeriodToolCallsLeftSquareBracketStarRightSquareBracketPeriodFileSearchPeriodResultsLeftSquareBracketStarRightSquareBracketPeriodContent = "step_details.tool_calls[*].file_search.results[*].content"
+    }
+
+    /**
      Retrieves a run step.
      
      - parameter threadId: (path) The ID of the thread to which the run and run step belongs. 
      - parameter runId: (path) The ID of the run to which the run step belongs. 
      - parameter stepId: (path) The ID of the run step to retrieve. 
+     - parameter include: (query) A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getRunStep(threadId: String, runId: String, stepId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: RunStepObject?, _ error: Error?) -> Void)) -> RequestTask {
-        return getRunStepWithRequestBuilder(threadId: threadId, runId: runId, stepId: stepId).execute(apiResponseQueue) { result in
+    open class func getRunStep(threadId: String, runId: String, stepId: String, include: [Include_getRunStep]? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: RunStepObject?, _ error: Error?) -> Void)) -> RequestTask {
+        return getRunStepWithRequestBuilder(threadId: threadId, runId: runId, stepId: stepId, include: include).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -809,9 +665,10 @@ open class AssistantsAPI {
      - parameter threadId: (path) The ID of the thread to which the run and run step belongs. 
      - parameter runId: (path) The ID of the run to which the run step belongs. 
      - parameter stepId: (path) The ID of the run step to retrieve. 
+     - parameter include: (query) A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      - returns: RequestBuilder<RunStepObject> 
      */
-    open class func getRunStepWithRequestBuilder(threadId: String, runId: String, stepId: String) -> RequestBuilder<RunStepObject> {
+    open class func getRunStepWithRequestBuilder(threadId: String, runId: String, stepId: String, include: [Include_getRunStep]? = nil) -> RequestBuilder<RunStepObject> {
         var localVariablePath = "/threads/{thread_id}/runs/{run_id}/steps/{step_id}"
         let threadIdPreEscape = "\(APIHelper.mapValueToPathItem(threadId))"
         let threadIdPostEscape = threadIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -825,7 +682,10 @@ open class AssistantsAPI {
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "include[]": (wrappedValue: include?.encodeToJSON(), isExplode: true),
+        ])
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
@@ -890,77 +750,6 @@ open class AssistantsAPI {
     /**
      * enum for parameter order
      */
-    public enum Order_listAssistantFiles: String, CaseIterable {
-        case asc = "asc"
-        case desc = "desc"
-    }
-
-    /**
-     Returns a list of assistant files.
-     
-     - parameter assistantId: (path) The ID of the assistant the file belongs to. 
-     - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to .desc)
-     - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    @discardableResult
-    open class func listAssistantFiles(assistantId: String, limit: Int? = nil, order: Order_listAssistantFiles? = nil, after: String? = nil, before: String? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: ListAssistantFilesResponse?, _ error: Error?) -> Void)) -> RequestTask {
-        return listAssistantFilesWithRequestBuilder(assistantId: assistantId, limit: limit, order: order, after: after, before: before).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     Returns a list of assistant files.
-     - GET /assistants/{assistant_id}/files
-     - Bearer Token:
-       - type: http
-       - name: ApiKeyAuth
-     - parameter assistantId: (path) The ID of the assistant the file belongs to. 
-     - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to .desc)
-     - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     - returns: RequestBuilder<ListAssistantFilesResponse> 
-     */
-    open class func listAssistantFilesWithRequestBuilder(assistantId: String, limit: Int? = nil, order: Order_listAssistantFiles? = nil, after: String? = nil, before: String? = nil) -> RequestBuilder<ListAssistantFilesResponse> {
-        var localVariablePath = "/assistants/{assistant_id}/files"
-        let assistantIdPreEscape = "\(APIHelper.mapValueToPathItem(assistantId))"
-        let assistantIdPostEscape = assistantIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{assistant_id}", with: assistantIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "order": (wrappedValue: order?.encodeToJSON(), isExplode: true),
-            "after": (wrappedValue: after?.encodeToJSON(), isExplode: true),
-            "before": (wrappedValue: before?.encodeToJSON(), isExplode: true),
-        ])
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<ListAssistantFilesResponse>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     * enum for parameter order
-     */
     public enum Order_listAssistants: String, CaseIterable {
         case asc = "asc"
         case desc = "desc"
@@ -972,7 +761,7 @@ open class AssistantsAPI {
      - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to .desc)
      - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -997,7 +786,7 @@ open class AssistantsAPI {
      - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to .desc)
      - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      - returns: RequestBuilder<ListAssistantsResponse> 
      */
     open class func listAssistantsWithRequestBuilder(limit: Int? = nil, order: Order_listAssistants? = nil, after: String? = nil, before: String? = nil) -> RequestBuilder<ListAssistantsResponse> {
@@ -1027,82 +816,6 @@ open class AssistantsAPI {
     /**
      * enum for parameter order
      */
-    public enum Order_listMessageFiles: String, CaseIterable {
-        case asc = "asc"
-        case desc = "desc"
-    }
-
-    /**
-     Returns a list of message files.
-     
-     - parameter threadId: (path) The ID of the thread that the message and files belong to. 
-     - parameter messageId: (path) The ID of the message that the files belongs to. 
-     - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to .desc)
-     - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    @discardableResult
-    open class func listMessageFiles(threadId: String, messageId: String, limit: Int? = nil, order: Order_listMessageFiles? = nil, after: String? = nil, before: String? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: ListMessageFilesResponse?, _ error: Error?) -> Void)) -> RequestTask {
-        return listMessageFilesWithRequestBuilder(threadId: threadId, messageId: messageId, limit: limit, order: order, after: after, before: before).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     Returns a list of message files.
-     - GET /threads/{thread_id}/messages/{message_id}/files
-     - Bearer Token:
-       - type: http
-       - name: ApiKeyAuth
-     - parameter threadId: (path) The ID of the thread that the message and files belong to. 
-     - parameter messageId: (path) The ID of the message that the files belongs to. 
-     - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
-     - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to .desc)
-     - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
-     - returns: RequestBuilder<ListMessageFilesResponse> 
-     */
-    open class func listMessageFilesWithRequestBuilder(threadId: String, messageId: String, limit: Int? = nil, order: Order_listMessageFiles? = nil, after: String? = nil, before: String? = nil) -> RequestBuilder<ListMessageFilesResponse> {
-        var localVariablePath = "/threads/{thread_id}/messages/{message_id}/files"
-        let threadIdPreEscape = "\(APIHelper.mapValueToPathItem(threadId))"
-        let threadIdPostEscape = threadIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{thread_id}", with: threadIdPostEscape, options: .literal, range: nil)
-        let messageIdPreEscape = "\(APIHelper.mapValueToPathItem(messageId))"
-        let messageIdPostEscape = messageIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{message_id}", with: messageIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
-            "order": (wrappedValue: order?.encodeToJSON(), isExplode: true),
-            "after": (wrappedValue: after?.encodeToJSON(), isExplode: true),
-            "before": (wrappedValue: before?.encodeToJSON(), isExplode: true),
-        ])
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<ListMessageFilesResponse>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     * enum for parameter order
-     */
     public enum Order_listMessages: String, CaseIterable {
         case asc = "asc"
         case desc = "desc"
@@ -1115,7 +828,7 @@ open class AssistantsAPI {
      - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to .desc)
      - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      - parameter runId: (query) Filter messages by the run ID that generated them.  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
@@ -1142,7 +855,7 @@ open class AssistantsAPI {
      - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to .desc)
      - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      - parameter runId: (query) Filter messages by the run ID that generated them.  (optional)
      - returns: RequestBuilder<ListMessagesResponse> 
      */
@@ -1183,6 +896,13 @@ open class AssistantsAPI {
     }
 
     /**
+     * enum for parameter include
+     */
+    public enum Include_listRunSteps: String, CaseIterable {
+        case stepDetailsPeriodToolCallsLeftSquareBracketStarRightSquareBracketPeriodFileSearchPeriodResultsLeftSquareBracketStarRightSquareBracketPeriodContent = "step_details.tool_calls[*].file_search.results[*].content"
+    }
+
+    /**
      Returns a list of run steps belonging to a run.
      
      - parameter threadId: (path) The ID of the thread the run and run steps belong to. 
@@ -1190,13 +910,14 @@ open class AssistantsAPI {
      - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to .desc)
      - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     - parameter include: (query) A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listRunSteps(threadId: String, runId: String, limit: Int? = nil, order: Order_listRunSteps? = nil, after: String? = nil, before: String? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: ListRunStepsResponse?, _ error: Error?) -> Void)) -> RequestTask {
-        return listRunStepsWithRequestBuilder(threadId: threadId, runId: runId, limit: limit, order: order, after: after, before: before).execute(apiResponseQueue) { result in
+    open class func listRunSteps(threadId: String, runId: String, limit: Int? = nil, order: Order_listRunSteps? = nil, after: String? = nil, before: String? = nil, include: [Include_listRunSteps]? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: ListRunStepsResponse?, _ error: Error?) -> Void)) -> RequestTask {
+        return listRunStepsWithRequestBuilder(threadId: threadId, runId: runId, limit: limit, order: order, after: after, before: before, include: include).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -1217,10 +938,11 @@ open class AssistantsAPI {
      - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to .desc)
      - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     - parameter include: (query) A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
      - returns: RequestBuilder<ListRunStepsResponse> 
      */
-    open class func listRunStepsWithRequestBuilder(threadId: String, runId: String, limit: Int? = nil, order: Order_listRunSteps? = nil, after: String? = nil, before: String? = nil) -> RequestBuilder<ListRunStepsResponse> {
+    open class func listRunStepsWithRequestBuilder(threadId: String, runId: String, limit: Int? = nil, order: Order_listRunSteps? = nil, after: String? = nil, before: String? = nil, include: [Include_listRunSteps]? = nil) -> RequestBuilder<ListRunStepsResponse> {
         var localVariablePath = "/threads/{thread_id}/runs/{run_id}/steps"
         let threadIdPreEscape = "\(APIHelper.mapValueToPathItem(threadId))"
         let threadIdPostEscape = threadIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1237,6 +959,7 @@ open class AssistantsAPI {
             "order": (wrappedValue: order?.encodeToJSON(), isExplode: true),
             "after": (wrappedValue: after?.encodeToJSON(), isExplode: true),
             "before": (wrappedValue: before?.encodeToJSON(), isExplode: true),
+            "include[]": (wrappedValue: include?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -1265,7 +988,7 @@ open class AssistantsAPI {
      - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to .desc)
      - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -1291,7 +1014,7 @@ open class AssistantsAPI {
      - parameter limit: (query) A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional, default to 20)
      - parameter order: (query) Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  (optional, default to .desc)
      - parameter after: (query) A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  (optional)
-     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
+     - parameter before: (query) A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  (optional)
      - returns: RequestBuilder<ListRunsResponse> 
      */
     open class func listRunsWithRequestBuilder(threadId: String, limit: Int? = nil, order: Order_listRuns? = nil, after: String? = nil, before: String? = nil) -> RequestBuilder<ListRunsResponse> {

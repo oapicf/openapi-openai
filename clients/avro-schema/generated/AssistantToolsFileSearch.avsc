@@ -1,0 +1,26 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "AssistantToolsFileSearch",
+  "fields": [
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "AssistantToolsFileSearch_type",
+        "symbols": [
+          "file_search"
+        ]
+      },
+      "doc": "The type of tool being defined: `file_search`"
+    },
+    {
+      "name": "file_search",
+      "type": ["null", "model.AssistantToolsFileSearchFileSearch"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

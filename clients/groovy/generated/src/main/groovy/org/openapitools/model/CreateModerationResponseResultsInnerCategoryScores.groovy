@@ -15,6 +15,10 @@ class CreateModerationResponseResultsInnerCategoryScores {
     BigDecimal harassment
     /* The score for the category 'harassment/threatening'. */
     BigDecimal harassmentThreatening
+    /* The score for the category 'illicit'. */
+    BigDecimal illicit
+    /* The score for the category 'illicit/violent'. */
+    BigDecimal illicitViolent
     /* The score for the category 'self-harm'. */
     BigDecimal selfHarm
     /* The score for the category 'self-harm/intent'. */

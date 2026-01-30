@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when a session is updated with a `session.update` event, unless  there is an error. ",
+  "name": "RealtimeServerEventSessionUpdated",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventSessionUpdated_type",
+        "symbols": [
+          "session_updated"
+        ]
+      },
+      "doc": "The event type, must be `session.updated`."
+    },
+    {
+      "name": "session",
+      "type": "model.RealtimeSession",
+      "doc": ""
+    }
+  ]
+
+}

@@ -17,7 +17,7 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) fails.
+ * Occurs when a [run](/docs/api-reference/runs/object) ends with status `incomplete`.
  * @param event 
  * @param &#x60;data&#x60; 
  */
@@ -33,11 +33,11 @@ data class RunStreamEventOneOf5(
 
     /**
     * 
-    * Values: threadPeriodRunPeriodFailed
+    * Values: threadPeriodRunPeriodIncomplete
     */
     enum class Event(@get:JsonValue val value: kotlin.String) {
 
-        threadPeriodRunPeriodFailed("thread.run.failed");
+        threadPeriodRunPeriodIncomplete("thread.run.incomplete");
 
         companion object {
             @JvmStatic

@@ -18,16 +18,16 @@ data: RunObject)
 object RunStreamEventOneOf6 {
   import DateTimeCodecs._
   sealed trait Event
-  case object ThreadRunCancelling extends Event
+  case object ThreadRunFailed extends Event
 
   object Event {
     def toEvent(s: String): Option[Event] = s match {
-      case "ThreadRunCancelling" => Some(ThreadRunCancelling)
+      case "ThreadRunFailed" => Some(ThreadRunFailed)
       case _ => None
     }
 
     def fromEvent(x: Event): String = x match {
-      case ThreadRunCancelling => "ThreadRunCancelling"
+      case ThreadRunFailed => "ThreadRunFailed"
     }
   }
 

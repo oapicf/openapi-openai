@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.vertxweb.server.model.MessageContentTextAnnotationsFileCitationObjectFileCitation;
 
 /**
- * A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \&quot;retrieval\&quot; tool to search files.
+ * A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \&quot;file_search\&quot; tool to search files.
  **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MessageContentTextAnnotationsFileCitationObject   {

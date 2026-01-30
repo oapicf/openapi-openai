@@ -27,6 +27,8 @@
       {"model": "validation_file" },
       {"model": "integrations" },
       {"model": "seed" },
+      {"model": "estimated_finish" },
+      {"model": "method" },
     ]
   }]
 }

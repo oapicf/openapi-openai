@@ -9,10 +9,8 @@ import org.openapitools._
 /**
  * 
  * @param fileUnderscoreid The ID of the specific File the citation is from.
- * @param quote The specific quote in the file.
  */
-case class MessageContentTextAnnotationsFileCitationObjectFileCitation(fileUnderscoreid: String,
-                quote: String
+case class MessageContentTextAnnotationsFileCitationObjectFileCitation(fileUnderscoreid: String
                 )
 
 object MessageContentTextAnnotationsFileCitationObjectFileCitation {

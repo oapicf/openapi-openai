@@ -14,7 +14,7 @@ require 'openapi_openai'
 OpenApiOpenAIClient::ChatCompletionRequestUserMessageContent.openapi_one_of
 # =>
 # [
-#   :'Array<ChatCompletionRequestMessageContentPart>',
+#   :'Array<ChatCompletionRequestUserMessageContentPart>',
 #   :'String'
 # ]
 ```
@@ -29,7 +29,7 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 require 'openapi_openai'
 
 OpenApiOpenAIClient::ChatCompletionRequestUserMessageContent.build(data)
-# => #<Array<ChatCompletionRequestMessageContentPart>:0x00007fdd4aab02a0>
+# => #<Array<ChatCompletionRequestUserMessageContentPart>:0x00007fdd4aab02a0>
 
 OpenApiOpenAIClient::ChatCompletionRequestUserMessageContent.build(data_that_doesnt_match)
 # => nil
@@ -43,7 +43,7 @@ OpenApiOpenAIClient::ChatCompletionRequestUserMessageContent.build(data_that_doe
 
 #### Return type
 
-- `Array<ChatCompletionRequestMessageContentPart>`
+- `Array<ChatCompletionRequestUserMessageContentPart>`
 - `String`
 - `nil` (if no type matches)
 

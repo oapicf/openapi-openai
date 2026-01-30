@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -20,7 +20,7 @@ import (
 // checks if the RunStepStreamEventOneOf3 type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RunStepStreamEventOneOf3{}
 
-// RunStepStreamEventOneOf3 Occurs when a [run step](/docs/api-reference/runs/step-object) is completed.
+// RunStepStreamEventOneOf3 Occurs when a [run step](/docs/api-reference/run-steps/step-object) is completed.
 type RunStepStreamEventOneOf3 struct {
 	Event string `json:"event"`
 	Data RunStepObject `json:"data"`

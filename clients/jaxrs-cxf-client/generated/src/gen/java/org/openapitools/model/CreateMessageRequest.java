@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.CreateMessageRequestAttachmentsInner;
+import org.openapitools.model.CreateMessageRequestContent;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
@@ -49,24 +51,21 @@ USER(String.valueOf("user")), ASSISTANT(String.valueOf("assistant"));
 
   private RoleEnum role;
 
- /**
-  * The content of the message.
-  */
-  @ApiModelProperty(required = true, value = "The content of the message.")
+  @ApiModelProperty(required = true, value = "")
 
-  private String content;
+  private CreateMessageRequestContent content;
 
  /**
-  * A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like `retrieval` and `code_interpreter` that can access and use files.
+  * A list of files attached to the message, and the tools they should be added to.
   */
-  @ApiModelProperty(value = "A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like `retrieval` and `code_interpreter` that can access and use files.")
+  @ApiModelProperty(value = "A list of files attached to the message, and the tools they should be added to.")
 
-  private List<String> fileIds = new ArrayList<>();
+  private List<CreateMessageRequestAttachmentsInner> attachments;
 
  /**
-  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
   */
-  @ApiModelProperty(value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. ")
+  @ApiModelProperty(value = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
 
   private Object metadata;
  /**
@@ -91,48 +90,48 @@ USER(String.valueOf("user")), ASSISTANT(String.valueOf("assistant"));
   }
 
  /**
-   * The content of the message.
+   * Get content
    * @return content
   **/
   @JsonProperty("content")
-  public String getContent() {
+  public CreateMessageRequestContent getContent() {
     return content;
   }
 
-  public void setContent(String content) {
+  public void setContent(CreateMessageRequestContent content) {
     this.content = content;
   }
 
-  public CreateMessageRequest content(String content) {
+  public CreateMessageRequest content(CreateMessageRequestContent content) {
     this.content = content;
     return this;
   }
 
  /**
-   * A list of [File](/docs/api-reference/files) IDs that the message should use. There can be a maximum of 10 files attached to a message. Useful for tools like &#x60;retrieval&#x60; and &#x60;code_interpreter&#x60; that can access and use files.
-   * @return fileIds
+   * A list of files attached to the message, and the tools they should be added to.
+   * @return attachments
   **/
-  @JsonProperty("file_ids")
-  public List<String> getFileIds() {
-    return fileIds;
+  @JsonProperty("attachments")
+  public List<CreateMessageRequestAttachmentsInner> getAttachments() {
+    return attachments;
   }
 
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public void setAttachments(List<CreateMessageRequestAttachmentsInner> attachments) {
+    this.attachments = attachments;
   }
 
-  public CreateMessageRequest fileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public CreateMessageRequest attachments(List<CreateMessageRequestAttachmentsInner> attachments) {
+    this.attachments = attachments;
     return this;
   }
 
-  public CreateMessageRequest addFileIdsItem(String fileIdsItem) {
-    this.fileIds.add(fileIdsItem);
+  public CreateMessageRequest addAttachmentsItem(CreateMessageRequestAttachmentsInner attachmentsItem) {
+    this.attachments.add(attachmentsItem);
     return this;
   }
 
  /**
-   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
   **/
   @JsonProperty("metadata")
@@ -160,13 +159,13 @@ USER(String.valueOf("user")), ASSISTANT(String.valueOf("assistant"));
     CreateMessageRequest createMessageRequest = (CreateMessageRequest) o;
     return Objects.equals(this.role, createMessageRequest.role) &&
         Objects.equals(this.content, createMessageRequest.content) &&
-        Objects.equals(this.fileIds, createMessageRequest.fileIds) &&
+        Objects.equals(this.attachments, createMessageRequest.attachments) &&
         Objects.equals(this.metadata, createMessageRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, content, fileIds, metadata);
+    return Objects.hash(role, content, attachments, metadata);
   }
 
   @Override
@@ -176,7 +175,7 @@ USER(String.valueOf("user")), ASSISTANT(String.valueOf("assistant"));
     
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

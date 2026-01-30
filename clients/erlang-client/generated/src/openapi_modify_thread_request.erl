@@ -5,10 +5,13 @@
 -export_type([openapi_modify_thread_request/0]).
 
 -type openapi_modify_thread_request() ::
-    #{ 'metadata' => maps:map()
+    #{ 'tool_resources' => openapi_modify_thread_request_tool_resources:openapi_modify_thread_request_tool_resources(),
+       'metadata' => maps:map()
      }.
 
-encode(#{ 'metadata' := Metadata
+encode(#{ 'tool_resources' := ToolResources,
+          'metadata' := Metadata
         }) ->
-    #{ 'metadata' => Metadata
+    #{ 'tool_resources' => ToolResources,
+       'metadata' => Metadata
      }.

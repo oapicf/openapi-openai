@@ -8,15 +8,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
   
   private String fileId;
-  private String quote;
 
   public MessageContentTextAnnotationsFileCitationObjectFileCitation () {
 
   }
 
-  public MessageContentTextAnnotationsFileCitationObjectFileCitation (String fileId, String quote) {
+  public MessageContentTextAnnotationsFileCitationObjectFileCitation (String fileId) {
     this.fileId = fileId;
-    this.quote = quote;
   }
 
     
@@ -26,15 +24,6 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
   }
   public void setFileId(String fileId) {
     this.fileId = fileId;
-  }
-
-    
-  @JsonProperty("quote")
-  public String getQuote() {
-    return quote;
-  }
-  public void setQuote(String quote) {
-    this.quote = quote;
   }
 
 
@@ -47,13 +36,12 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
       return false;
     }
     MessageContentTextAnnotationsFileCitationObjectFileCitation messageContentTextAnnotationsFileCitationObjectFileCitation = (MessageContentTextAnnotationsFileCitationObjectFileCitation) o;
-    return Objects.equals(fileId, messageContentTextAnnotationsFileCitationObjectFileCitation.fileId) &&
-        Objects.equals(quote, messageContentTextAnnotationsFileCitationObjectFileCitation.quote);
+    return Objects.equals(fileId, messageContentTextAnnotationsFileCitationObjectFileCitation.fileId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileId, quote);
+    return Objects.hash(fileId);
   }
 
   @Override
@@ -62,7 +50,6 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
     sb.append("class MessageContentTextAnnotationsFileCitationObjectFileCitation {\n");
     
     sb.append("    fileId: ").append(toIndentedString(fileId)).append("\n");
-    sb.append("    quote: ").append(toIndentedString(quote)).append("\n");
     sb.append("}");
     return sb.toString();
   }

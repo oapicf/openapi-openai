@@ -5,7 +5,7 @@ from datetime import date, datetime
 from typing import List, Dict, Type
 
 from openapi_server.models.base_model import Model
-from openapi_server.models.chat_completion_request_message_content_part import ChatCompletionRequestMessageContentPart
+from openapi_server.models.chat_completion_request_user_message_content_part import ChatCompletionRequestUserMessageContentPart
 from openapi_server import util
 
 

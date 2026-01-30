@@ -10,8 +10,7 @@ type RunStepDetailsToolCallsObjectToolCallsInner struct {
 
 	CodeInterpreter RunStepDetailsToolCallsCodeObjectCodeInterpreter `json:"code_interpreter"`
 
-	// For now, this is always going to be an empty object.
-	Retrieval map[string]interface{} `json:"retrieval"`
+	FileSearch RunStepDetailsToolCallsFileSearchObjectFileSearch `json:"file_search"`
 
 	Function RunStepDetailsToolCallsFunctionObjectFunction `json:"function"`
 }

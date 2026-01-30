@@ -2,7 +2,7 @@
 
 # RunStreamEventOneOf5
 
-Occurs when a [run](/docs/api-reference/runs/object) fails.
+Occurs when a [run](/docs/api-reference/runs/object) ends with status `incomplete`.
 
 The class is defined in **[RunStreamEventOneOf5.java](../../src/main/java/org/openapitools/model/RunStreamEventOneOf5.java)**
 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 Name | Value
 ---- | -----
-THREAD_RUN_FAILED | `"thread.run.failed"`
+THREAD_RUN_INCOMPLETE | `"thread.run.incomplete"`
 
 
 

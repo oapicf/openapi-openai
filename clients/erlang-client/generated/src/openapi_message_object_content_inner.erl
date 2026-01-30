@@ -7,14 +7,20 @@
 -type openapi_message_object_content_inner() ::
     #{ 'type' := binary(),
        'image_file' := openapi_message_content_image_file_object_image_file:openapi_message_content_image_file_object_image_file(),
-       'text' := openapi_message_content_text_object_text:openapi_message_content_text_object_text()
+       'image_url' := openapi_message_content_image_url_object_image_url:openapi_message_content_image_url_object_image_url(),
+       'text' := openapi_message_content_text_object_text:openapi_message_content_text_object_text(),
+       'refusal' := binary()
      }.
 
 encode(#{ 'type' := Type,
           'image_file' := ImageFile,
-          'text' := Text
+          'image_url' := ImageUrl,
+          'text' := Text,
+          'refusal' := Refusal
         }) ->
     #{ 'type' => Type,
        'image_file' => ImageFile,
-       'text' => Text
+       'image_url' => ImageUrl,
+       'text' => Text,
+       'refusal' => Refusal
      }.

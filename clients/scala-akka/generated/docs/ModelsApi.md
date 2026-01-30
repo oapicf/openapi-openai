@@ -42,7 +42,7 @@ object Example extends App {
 
     val apiInvoker = ApiInvoker()
     val apiInstance = ModelsApi("https://api.openai.com/v1")
-    val model: String = ft:gpt-3.5-turbo:acemeco:suffix:abc123 // String | The model to delete
+    val model: String = ft:gpt-4o-mini:acemeco:suffix:abc123 // String | The model to delete
     
     val request = apiInstance.deleteModel(model)
     val response = apiInvoker.execute(request)
@@ -199,7 +199,7 @@ object Example extends App {
 
     val apiInvoker = ApiInvoker()
     val apiInstance = ModelsApi("https://api.openai.com/v1")
-    val model: String = gpt-3.5-turbo // String | The ID of the model to use for this request
+    val model: String = gpt-4o-mini // String | The ID of the model to use for this request
     
     val request = apiInstance.retrieveModel(model)
     val response = apiInvoker.execute(request)

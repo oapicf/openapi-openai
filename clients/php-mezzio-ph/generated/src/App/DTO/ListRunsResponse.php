@@ -18,9 +18,9 @@ class ListRunsResponse
 
     /**
      * @DTA\Data(field="data")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection48::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection48::class})
-     * @var \App\DTO\Collection48|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection138::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection138::class})
+     * @var \App\DTO\Collection138|null
      */
     public $data;
 

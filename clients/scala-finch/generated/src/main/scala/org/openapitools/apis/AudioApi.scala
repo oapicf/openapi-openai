@@ -3,6 +3,7 @@ package org.openapitools.apis
 import java.io._
 import org.openapitools._
 import org.openapitools.models._
+import org.openapitools.models.AudioResponseFormat
 import org.openapitools.models.BigDecimal
 import org.openapitools.models.CreateSpeechRequest
 import org.openapitools.models.CreateTranscription200Response
@@ -73,7 +74,7 @@ object AudioApi {
         * @return An endpoint representing a CreateTranscription200Response
         */
         private def createTranscription(da: DataAccessor): Endpoint[CreateTranscription200Response] =
-        post("audio" :: "transcriptions" :: fileUpload("file") :: paramOption("language") :: paramOption("prompt") :: paramOption("response_format") :: paramOption("temperature").map(_.map(_.toBigDecimal)) :: params("timestamp_granularities[]")) { (file: FileUpload, model: CreateTranscriptionRequestModel, language: Option[String], prompt: Option[String], responseFormat: Option[String], temperature: Option[BigDecimal], timestampGranularitiesLeft_Square_BracketRight_Square_Bracket: Seq[String]) =>
+        post("audio" :: "transcriptions" :: fileUpload("file") :: paramOption("language") :: paramOption("prompt") :: paramOption("temperature").map(_.map(_.toBigDecimal)) :: params("timestamp_granularities[]")) { (file: FileUpload, model: CreateTranscriptionRequestModel, language: Option[String], prompt: Option[String], responseFormat: AudioResponseFormat, temperature: Option[BigDecimal], timestampGranularitiesLeft_Square_BracketRight_Square_Bracket: Seq[String]) =>
           da.Audio_createTranscription(file, model, language, prompt, responseFormat, temperature, timestampGranularitiesLeft_Square_BracketRight_Square_Bracket) match {
             case Left(error) => checkError(error)
             case Right(data) => Ok(data)
@@ -87,7 +88,7 @@ object AudioApi {
         * @return An endpoint representing a CreateTranslation200Response
         */
         private def createTranslation(da: DataAccessor): Endpoint[CreateTranslation200Response] =
-        post("audio" :: "translations" :: fileUpload("file") :: paramOption("prompt") :: paramOption("response_format") :: paramOption("temperature").map(_.map(_.toBigDecimal))) { (file: FileUpload, model: CreateTranscriptionRequestModel, prompt: Option[String], responseFormat: Option[String], temperature: Option[BigDecimal]) =>
+        post("audio" :: "translations" :: fileUpload("file") :: paramOption("prompt") :: paramOption("temperature").map(_.map(_.toBigDecimal))) { (file: FileUpload, model: CreateTranscriptionRequestModel, prompt: Option[String], responseFormat: AudioResponseFormat, temperature: Option[BigDecimal]) =>
           da.Audio_createTranslation(file, model, prompt, responseFormat, temperature) match {
             case Left(error) => checkError(error)
             case Right(data) => Ok(data)

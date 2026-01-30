@@ -16,26 +16,26 @@ AssistantObjectToolsInner <- R6::R6Class(
     #' @field actual_type the type of the object stored in this instance.
     actual_type = NULL,
     #' @field one_of  a list of types defined in the oneOf schema.
-    one_of = list("AssistantToolsCode", "AssistantToolsFunction", "AssistantToolsRetrieval"),
+    one_of = list("AssistantToolsCode", "AssistantToolsFileSearch", "AssistantToolsFunction"),
 
     #' @description
     #' Initialize a new AssistantObjectToolsInner.
     #'
-    #' @param instance an instance of the object defined in the oneOf schemas: "AssistantToolsCode", "AssistantToolsFunction", "AssistantToolsRetrieval"
+    #' @param instance an instance of the object defined in the oneOf schemas: "AssistantToolsCode", "AssistantToolsFileSearch", "AssistantToolsFunction"
     initialize = function(instance = NULL) {
       if (is.null(instance)) {
         # do nothing
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "AssistantToolsCode") {
         self$actual_instance <- instance
         self$actual_type <- "AssistantToolsCode"
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "AssistantToolsFileSearch") {
+        self$actual_instance <- instance
+        self$actual_type <- "AssistantToolsFileSearch"
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "AssistantToolsFunction") {
         self$actual_instance <- instance
         self$actual_type <- "AssistantToolsFunction"
-      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "AssistantToolsRetrieval") {
-        self$actual_instance <- instance
-        self$actual_type <- "AssistantToolsRetrieval"
       } else {
-        stop(paste("Failed to initialize AssistantObjectToolsInner with oneOf schemas AssistantToolsCode, AssistantToolsFunction, AssistantToolsRetrieval. Provided class name: ",
+        stop(paste("Failed to initialize AssistantObjectToolsInner with oneOf schemas AssistantToolsCode, AssistantToolsFileSearch, AssistantToolsFunction. Provided class name: ",
                    get(class(instance)[[1]], pos = -1)$classname))
       }
     },
@@ -78,19 +78,19 @@ AssistantObjectToolsInner <- R6::R6Class(
         error_messages <- append(error_messages, `AssistantToolsCode_result`["message"])
       }
 
-      `AssistantToolsRetrieval_result` <- tryCatch({
-          `AssistantToolsRetrieval`$public_methods$validateJSON(input)
-          `AssistantToolsRetrieval_instance` <- `AssistantToolsRetrieval`$new()
-          instance <- `AssistantToolsRetrieval_instance`$fromJSON(input)
-          instance_type <- "AssistantToolsRetrieval"
-          matched_schemas <- append(matched_schemas, "AssistantToolsRetrieval")
+      `AssistantToolsFileSearch_result` <- tryCatch({
+          `AssistantToolsFileSearch`$public_methods$validateJSON(input)
+          `AssistantToolsFileSearch_instance` <- `AssistantToolsFileSearch`$new()
+          instance <- `AssistantToolsFileSearch_instance`$fromJSON(input)
+          instance_type <- "AssistantToolsFileSearch"
+          matched_schemas <- append(matched_schemas, "AssistantToolsFileSearch")
           matched <- matched + 1
         },
         error = function(err) err
       )
 
-      if (!is.null(`AssistantToolsRetrieval_result`["error"])) {
-        error_messages <- append(error_messages, `AssistantToolsRetrieval_result`["message"])
+      if (!is.null(`AssistantToolsFileSearch_result`["error"])) {
+        error_messages <- append(error_messages, `AssistantToolsFileSearch_result`["message"])
       }
 
       `AssistantToolsFunction_result` <- tryCatch({
@@ -114,11 +114,11 @@ AssistantObjectToolsInner <- R6::R6Class(
         self$actual_type <- instance_type
       } else if (matched > 1) {
         # more than 1 match
-        stop(paste("Multiple matches found when deserializing the input into AssistantObjectToolsInner with oneOf schemas AssistantToolsCode, AssistantToolsFunction, AssistantToolsRetrieval. Matched schemas: ",
+        stop(paste("Multiple matches found when deserializing the input into AssistantObjectToolsInner with oneOf schemas AssistantToolsCode, AssistantToolsFileSearch, AssistantToolsFunction. Matched schemas: ",
                    paste(matched_schemas, collapse = ", ")))
       } else {
         # no match
-        stop(paste("No match found when deserializing the input into AssistantObjectToolsInner with oneOf schemas AssistantToolsCode, AssistantToolsFunction, AssistantToolsRetrieval. Details: >>",
+        stop(paste("No match found when deserializing the input into AssistantObjectToolsInner with oneOf schemas AssistantToolsCode, AssistantToolsFileSearch, AssistantToolsFunction. Details: >>",
                    paste(error_messages, collapse = " >> ")))
       }
 

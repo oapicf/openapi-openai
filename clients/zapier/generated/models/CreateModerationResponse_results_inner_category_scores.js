@@ -29,6 +29,18 @@ module.exports = {
                 type: 'number',
             },
             {
+                key: `${keyPrefix}illicit`,
+                label: `The score for the category 'illicit'. - [${labelPrefix}illicit]`,
+                required: true,
+                type: 'number',
+            },
+            {
+                key: `${keyPrefix}illicit/violent`,
+                label: `The score for the category 'illicit/violent'. - [${labelPrefix}illicit/violent]`,
+                required: true,
+                type: 'number',
+            },
+            {
                 key: `${keyPrefix}self-harm`,
                 label: `The score for the category 'self-harm'. - [${labelPrefix}self-harm]`,
                 required: true,
@@ -79,6 +91,8 @@ module.exports = {
             'hate/threatening': bundle.inputData?.[`${keyPrefix}hate/threatening`],
             'harassment': bundle.inputData?.[`${keyPrefix}harassment`],
             'harassment/threatening': bundle.inputData?.[`${keyPrefix}harassment/threatening`],
+            'illicit': bundle.inputData?.[`${keyPrefix}illicit`],
+            'illicit/violent': bundle.inputData?.[`${keyPrefix}illicit/violent`],
             'self-harm': bundle.inputData?.[`${keyPrefix}self-harm`],
             'self-harm/intent': bundle.inputData?.[`${keyPrefix}self-harm/intent`],
             'self-harm/instructions': bundle.inputData?.[`${keyPrefix}self-harm/instructions`],

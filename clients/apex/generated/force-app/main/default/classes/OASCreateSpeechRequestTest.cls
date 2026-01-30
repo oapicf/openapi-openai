@@ -80,7 +80,7 @@ private class OASCreateSpeechRequestTest {
     private static void defaultValuesPopulated() {
         OASCreateSpeechRequest createSpeechRequest = new OASCreateSpeechRequest();
         System.assertEquals(ResponseFormatEnum.MP3, createSpeechRequest.responseFormat);
-        System.assertEquals(1.0, createSpeechRequest.speed);
+        System.assertEquals(1, createSpeechRequest.speed);
         System.assertEquals(null, createSpeechRequest.model);
         System.assertEquals(null, createSpeechRequest.input);
         System.assertEquals(null, createSpeechRequest.voice);

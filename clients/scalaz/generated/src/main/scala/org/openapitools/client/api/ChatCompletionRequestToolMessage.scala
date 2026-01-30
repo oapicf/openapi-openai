@@ -14,8 +14,7 @@ import ChatCompletionRequestToolMessage._
 case class ChatCompletionRequestToolMessage (
   /* The role of the messages author, in this case `tool`. */
   role: Role,
-/* The contents of the tool message. */
-  content: String,
+content: ChatCompletionRequestToolMessageContent,
 /* Tool call that this message is responding to. */
   toolCallId: String)
 

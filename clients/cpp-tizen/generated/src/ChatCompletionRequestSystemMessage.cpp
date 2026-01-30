@@ -23,7 +23,7 @@ ChatCompletionRequestSystemMessage::~ChatCompletionRequestSystemMessage()
 void
 ChatCompletionRequestSystemMessage::__init()
 {
-	//content = std::string();
+	//content = new ChatCompletionRequestSystemMessage_content();
 	//role = std::string();
 	//name = std::string();
 }
@@ -59,9 +59,12 @@ ChatCompletionRequestSystemMessage::fromJson(char* jsonStr)
 	if (node !=NULL) {
 	
 
-		if (isprimitive("std::string")) {
-			jsonToValue(&content, node, "std::string", "");
+		if (isprimitive("ChatCompletionRequestSystemMessage_content")) {
+			jsonToValue(&content, node, "ChatCompletionRequestSystemMessage_content", "ChatCompletionRequestSystemMessage_content");
 		} else {
+			
+			ChatCompletionRequestSystemMessage_content* obj = static_cast<ChatCompletionRequestSystemMessage_content*> (&content);
+			obj->fromJson(json_to_string(node, false));
 			
 		}
 	}
@@ -99,11 +102,16 @@ ChatCompletionRequestSystemMessage::toJson()
 {
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;
-	if (isprimitive("std::string")) {
-		std::string obj = getContent();
-		node = converttoJson(&obj, "std::string", "");
+	if (isprimitive("ChatCompletionRequestSystemMessage_content")) {
+		ChatCompletionRequestSystemMessage_content obj = getContent();
+		node = converttoJson(&obj, "ChatCompletionRequestSystemMessage_content", "");
 	}
 	else {
+		
+		ChatCompletionRequestSystemMessage_content obj = static_cast<ChatCompletionRequestSystemMessage_content> (getContent());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
 		
 	}
 	const gchar *contentKey = "content";
@@ -134,14 +142,14 @@ ChatCompletionRequestSystemMessage::toJson()
 	return ret;
 }
 
-std::string
+ChatCompletionRequestSystemMessage_content
 ChatCompletionRequestSystemMessage::getContent()
 {
 	return content;
 }
 
 void
-ChatCompletionRequestSystemMessage::setContent(std::string  content)
+ChatCompletionRequestSystemMessage::setContent(ChatCompletionRequestSystemMessage_content  content)
 {
 	this->content = content;
 }

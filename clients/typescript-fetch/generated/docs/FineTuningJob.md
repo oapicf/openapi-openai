@@ -23,6 +23,8 @@ Name | Type
 `validationFile` | string
 `integrations` | [Array&lt;FineTuningJobIntegrationsInner&gt;](FineTuningJobIntegrationsInner.md)
 `seed` | number
+`estimatedFinish` | number
+`method` | [FineTuneMethod](FineTuneMethod.md)
 
 ## Example
 
@@ -47,6 +49,8 @@ const example = {
   "validationFile": null,
   "integrations": null,
   "seed": null,
+  "estimatedFinish": null,
+  "method": null,
 } satisfies FineTuningJob
 
 console.log(example)

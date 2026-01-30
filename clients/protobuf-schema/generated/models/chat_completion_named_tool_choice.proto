@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -14,7 +14,7 @@ syntax = "proto3";
 
 package openapitools;
 
-import public "models/chat_completion_named_tool_choice_function.proto";
+import public "models/assistants_named_tool_choice_function.proto";
 
 message ChatCompletionNamedToolChoice {
 
@@ -25,7 +25,7 @@ message ChatCompletionNamedToolChoice {
 
   Type type = 3575610;
 
-  ChatCompletionNamedToolChoiceFunction function = 307196890;
+  AssistantsNamedToolChoiceFunction function = 307196890;
 
 }
 

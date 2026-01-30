@@ -3,6 +3,7 @@
             [spec-tools.data-spec :as ds]
             [open-ai-api.specs.create-moderation-response-results-inner-categories :refer :all]
             [open-ai-api.specs.create-moderation-response-results-inner-category-scores :refer :all]
+            [open-ai-api.specs.create-moderation-response-results-inner-category-applied-input-types :refer :all]
             )
   (:import (java.io File)))
 
@@ -12,6 +13,7 @@
    (ds/req :flagged) boolean?
    (ds/req :categories) create-moderation-response-results-inner-categories-spec
    (ds/req :category_scores) create-moderation-response-results-inner-category-scores-spec
+   (ds/req :category_applied_input_types) create-moderation-response-results-inner-category-applied-input-types-spec
    })
 
 (def create-moderation-response-results-inner-spec

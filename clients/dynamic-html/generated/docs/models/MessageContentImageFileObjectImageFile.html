@@ -2,6 +2,18 @@
 <h2>MessageContentImageFileObjectImageFile</h2>
 <ul class="parameter">
   <li class="param-required-true">fileUnderscoreid : String
-    <br/>The [File](/docs/api-reference/files) ID of the image in the message content.
+    <br/>The [File](/docs/api-reference/files) ID of the image in the message content. Set &#x60;purpose&#x3D;\&quot;vision\&quot;&#x60; when uploading the File if you need to later display the file content.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">detail : String
+    <br/>Specifies the detail level of the image if specified by the user. &#x60;low&#x60; uses fewer tokens, you can opt in to high resolution using &#x60;high&#x60;.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>auto</dd>
+            <dd>low</dd>
+            <dd>high</dd>
+        </dt>
+      </dl>
   </li>
 </ul>

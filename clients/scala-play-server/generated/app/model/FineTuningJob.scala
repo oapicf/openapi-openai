@@ -18,8 +18,9 @@ import play.api.libs.json._
   * @param validationFile The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents).
   * @param integrations A list of integrations to enable for this fine-tuning job.
   * @param seed The seed used for the fine-tuning job.
+  * @param estimatedFinish The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T10:48:27.489746113Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 case class FineTuningJob(
   id: String,
   createdAt: Int,
@@ -36,7 +37,9 @@ case class FineTuningJob(
   trainingFile: String,
   validationFile: String,
   integrations: Option[List[FineTuningJobIntegrationsInner]],
-  seed: Int
+  seed: Int,
+  estimatedFinish: Option[Int],
+  method: Option[FineTuneMethod]
 )
 
 object FineTuningJob {

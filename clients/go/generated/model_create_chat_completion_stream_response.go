@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -24,16 +24,19 @@ var _ MappedNullable = &CreateChatCompletionStreamResponse{}
 type CreateChatCompletionStreamResponse struct {
 	// A unique identifier for the chat completion. Each chunk has the same ID.
 	Id string `json:"id"`
-	// A list of chat completion choices. Can be more than one if `n` is greater than 1.
+	// A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. 
 	Choices []CreateChatCompletionStreamResponseChoicesInner `json:"choices"`
 	// The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
 	Created int32 `json:"created"`
 	// The model to generate the completion.
 	Model string `json:"model"`
+	// The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+	ServiceTier NullableString `json:"service_tier,omitempty"`
 	// This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
 	SystemFingerprint *string `json:"system_fingerprint,omitempty"`
 	// The object type, which is always `chat.completion.chunk`.
 	Object string `json:"object"`
+	Usage NullableCreateChatCompletionStreamResponseUsage `json:"usage,omitempty"`
 }
 
 type _CreateChatCompletionStreamResponse CreateChatCompletionStreamResponse
@@ -156,6 +159,48 @@ func (o *CreateChatCompletionStreamResponse) SetModel(v string) {
 	o.Model = v
 }
 
+// GetServiceTier returns the ServiceTier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateChatCompletionStreamResponse) GetServiceTier() string {
+	if o == nil || IsNil(o.ServiceTier.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ServiceTier.Get()
+}
+
+// GetServiceTierOk returns a tuple with the ServiceTier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateChatCompletionStreamResponse) GetServiceTierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ServiceTier.Get(), o.ServiceTier.IsSet()
+}
+
+// HasServiceTier returns a boolean if a field has been set.
+func (o *CreateChatCompletionStreamResponse) HasServiceTier() bool {
+	if o != nil && o.ServiceTier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceTier gets a reference to the given NullableString and assigns it to the ServiceTier field.
+func (o *CreateChatCompletionStreamResponse) SetServiceTier(v string) {
+	o.ServiceTier.Set(&v)
+}
+// SetServiceTierNil sets the value for ServiceTier to be an explicit nil
+func (o *CreateChatCompletionStreamResponse) SetServiceTierNil() {
+	o.ServiceTier.Set(nil)
+}
+
+// UnsetServiceTier ensures that no value is present for ServiceTier, not even an explicit nil
+func (o *CreateChatCompletionStreamResponse) UnsetServiceTier() {
+	o.ServiceTier.Unset()
+}
+
 // GetSystemFingerprint returns the SystemFingerprint field value if set, zero value otherwise.
 func (o *CreateChatCompletionStreamResponse) GetSystemFingerprint() string {
 	if o == nil || IsNil(o.SystemFingerprint) {
@@ -212,6 +257,48 @@ func (o *CreateChatCompletionStreamResponse) SetObject(v string) {
 	o.Object = v
 }
 
+// GetUsage returns the Usage field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateChatCompletionStreamResponse) GetUsage() CreateChatCompletionStreamResponseUsage {
+	if o == nil || IsNil(o.Usage.Get()) {
+		var ret CreateChatCompletionStreamResponseUsage
+		return ret
+	}
+	return *o.Usage.Get()
+}
+
+// GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateChatCompletionStreamResponse) GetUsageOk() (*CreateChatCompletionStreamResponseUsage, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Usage.Get(), o.Usage.IsSet()
+}
+
+// HasUsage returns a boolean if a field has been set.
+func (o *CreateChatCompletionStreamResponse) HasUsage() bool {
+	if o != nil && o.Usage.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUsage gets a reference to the given NullableCreateChatCompletionStreamResponseUsage and assigns it to the Usage field.
+func (o *CreateChatCompletionStreamResponse) SetUsage(v CreateChatCompletionStreamResponseUsage) {
+	o.Usage.Set(&v)
+}
+// SetUsageNil sets the value for Usage to be an explicit nil
+func (o *CreateChatCompletionStreamResponse) SetUsageNil() {
+	o.Usage.Set(nil)
+}
+
+// UnsetUsage ensures that no value is present for Usage, not even an explicit nil
+func (o *CreateChatCompletionStreamResponse) UnsetUsage() {
+	o.Usage.Unset()
+}
+
 func (o CreateChatCompletionStreamResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -226,10 +313,16 @@ func (o CreateChatCompletionStreamResponse) ToMap() (map[string]interface{}, err
 	toSerialize["choices"] = o.Choices
 	toSerialize["created"] = o.Created
 	toSerialize["model"] = o.Model
+	if o.ServiceTier.IsSet() {
+		toSerialize["service_tier"] = o.ServiceTier.Get()
+	}
 	if !IsNil(o.SystemFingerprint) {
 		toSerialize["system_fingerprint"] = o.SystemFingerprint
 	}
 	toSerialize["object"] = o.Object
+	if o.Usage.IsSet() {
+		toSerialize["usage"] = o.Usage.Get()
+	}
 	return toSerialize, nil
 }
 

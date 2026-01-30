@@ -2,6 +2,9 @@ package org.openapitools.model;
 
 import org.openapitools.model.MessageContentImageFileObject;
 import org.openapitools.model.MessageContentImageFileObjectImageFile;
+import org.openapitools.model.MessageContentImageUrlObject;
+import org.openapitools.model.MessageContentImageUrlObjectImageUrl;
+import org.openapitools.model.MessageContentRefusalObject;
 import org.openapitools.model.MessageContentTextObject;
 import org.openapitools.model.MessageContentTextObjectText;
 
@@ -14,7 +17,7 @@ public class MessageObjectContentInner  {
   
 public enum TypeEnum {
 
-IMAGE_FILE(String.valueOf("image_file")), TEXT(String.valueOf("text"));
+IMAGE_FILE(String.valueOf("image_file")), IMAGE_URL(String.valueOf("image_url")), TEXT(String.valueOf("text")), REFUSAL(String.valueOf("refusal"));
 
 
     private String value;
@@ -55,7 +58,15 @@ IMAGE_FILE(String.valueOf("image_file")), TEXT(String.valueOf("text"));
 
   @ApiModelProperty(required = true, value = "")
 
+  private MessageContentImageUrlObjectImageUrl imageUrl;
+
+  @ApiModelProperty(required = true, value = "")
+
   private MessageContentTextObjectText text;
+
+  @ApiModelProperty(required = true, value = "")
+
+  private String refusal;
  /**
    * Always &#x60;image_file&#x60;.
    * @return type
@@ -96,6 +107,24 @@ IMAGE_FILE(String.valueOf("image_file")), TEXT(String.valueOf("text"));
   }
 
  /**
+   * Get imageUrl
+   * @return imageUrl
+  **/
+  @JsonProperty("image_url")
+  public MessageContentImageUrlObjectImageUrl getImageUrl() {
+    return imageUrl;
+  }
+
+  public void setImageUrl(MessageContentImageUrlObjectImageUrl imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
+  public MessageObjectContentInner imageUrl(MessageContentImageUrlObjectImageUrl imageUrl) {
+    this.imageUrl = imageUrl;
+    return this;
+  }
+
+ /**
    * Get text
    * @return text
   **/
@@ -113,6 +142,24 @@ IMAGE_FILE(String.valueOf("image_file")), TEXT(String.valueOf("text"));
     return this;
   }
 
+ /**
+   * Get refusal
+   * @return refusal
+  **/
+  @JsonProperty("refusal")
+  public String getRefusal() {
+    return refusal;
+  }
+
+  public void setRefusal(String refusal) {
+    this.refusal = refusal;
+  }
+
+  public MessageObjectContentInner refusal(String refusal) {
+    this.refusal = refusal;
+    return this;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -124,12 +171,14 @@ IMAGE_FILE(String.valueOf("image_file")), TEXT(String.valueOf("text"));
     MessageObjectContentInner messageObjectContentInner = (MessageObjectContentInner) o;
     return Objects.equals(this.type, messageObjectContentInner.type) &&
         Objects.equals(this.imageFile, messageObjectContentInner.imageFile) &&
-        Objects.equals(this.text, messageObjectContentInner.text);
+        Objects.equals(this.imageUrl, messageObjectContentInner.imageUrl) &&
+        Objects.equals(this.text, messageObjectContentInner.text) &&
+        Objects.equals(this.refusal, messageObjectContentInner.refusal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, imageFile, text);
+    return Objects.hash(type, imageFile, imageUrl, text, refusal);
   }
 
   @Override
@@ -139,7 +188,9 @@ IMAGE_FILE(String.valueOf("image_file")), TEXT(String.valueOf("text"));
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    imageFile: ").append(toIndentedString(imageFile)).append("\n");
+    sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
     sb.append("}");
     return sb.toString();
   }

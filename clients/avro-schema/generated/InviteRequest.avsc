@@ -1,0 +1,35 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "InviteRequest",
+  "fields": [
+    {
+      "name": "email",
+      "type": "string",
+      "doc": "Send an email to this address"
+    },
+    {
+      "name": "role",
+      "type": {
+        "type": "enum",
+        "name": "InviteRequest_role",
+        "symbols": [
+          "reader",
+          "owner"
+        ]
+      },
+      "doc": "`owner` or `reader`"
+    },
+    {
+      "name": "projects",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.InviteRequestProjectsInner"
+      }],
+      "doc": "An array of projects to which membership is granted at the same time the org invite is accepted. If omitted, the user will be invited to the default project for compatibility with legacy behavior.",
+      "default": null
+    }
+  ]
+
+}

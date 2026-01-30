@@ -12,6 +12,7 @@
     "model": "properties",
     "children": [
       {"model": "file_id" },
+      {"model": "detail" },
     ]
   }]
 }

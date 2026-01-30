@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.model.CompletionUsageCompletionTokensDetails;
+import org.openapitools.model.CompletionUsagePromptTokensDetails;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -23,6 +25,10 @@ public class CompletionUsage   {
   private Integer promptTokens;
 
   private Integer totalTokens;
+
+  private CompletionUsageCompletionTokensDetails completionTokensDetails;
+
+  private CompletionUsagePromptTokensDetails promptTokensDetails;
 
   /**
    * Number of tokens in the generated completion.
@@ -84,6 +90,42 @@ public class CompletionUsage   {
   }
 
 
+  /**
+   **/
+  public CompletionUsage completionTokensDetails(CompletionUsageCompletionTokensDetails completionTokensDetails) {
+    this.completionTokensDetails = completionTokensDetails;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("completion_tokens_details")
+  public CompletionUsageCompletionTokensDetails getCompletionTokensDetails() {
+    return completionTokensDetails;
+  }
+  public void setCompletionTokensDetails(CompletionUsageCompletionTokensDetails completionTokensDetails) {
+    this.completionTokensDetails = completionTokensDetails;
+  }
+
+
+  /**
+   **/
+  public CompletionUsage promptTokensDetails(CompletionUsagePromptTokensDetails promptTokensDetails) {
+    this.promptTokensDetails = promptTokensDetails;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("prompt_tokens_details")
+  public CompletionUsagePromptTokensDetails getPromptTokensDetails() {
+    return promptTokensDetails;
+  }
+  public void setPromptTokensDetails(CompletionUsagePromptTokensDetails promptTokensDetails) {
+    this.promptTokensDetails = promptTokensDetails;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -96,12 +138,14 @@ public class CompletionUsage   {
     CompletionUsage completionUsage = (CompletionUsage) o;
     return Objects.equals(this.completionTokens, completionUsage.completionTokens) &&
         Objects.equals(this.promptTokens, completionUsage.promptTokens) &&
-        Objects.equals(this.totalTokens, completionUsage.totalTokens);
+        Objects.equals(this.totalTokens, completionUsage.totalTokens) &&
+        Objects.equals(this.completionTokensDetails, completionUsage.completionTokensDetails) &&
+        Objects.equals(this.promptTokensDetails, completionUsage.promptTokensDetails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(completionTokens, promptTokens, totalTokens);
+    return Objects.hash(completionTokens, promptTokens, totalTokens, completionTokensDetails, promptTokensDetails);
   }
 
   @Override
@@ -112,6 +156,8 @@ public class CompletionUsage   {
     sb.append("    completionTokens: ").append(toIndentedString(completionTokens)).append("\n");
     sb.append("    promptTokens: ").append(toIndentedString(promptTokens)).append("\n");
     sb.append("    totalTokens: ").append(toIndentedString(totalTokens)).append("\n");
+    sb.append("    completionTokensDetails: ").append(toIndentedString(completionTokensDetails)).append("\n");
+    sb.append("    promptTokensDetails: ").append(toIndentedString(promptTokensDetails)).append("\n");
     sb.append("}");
     return sb.toString();
   }

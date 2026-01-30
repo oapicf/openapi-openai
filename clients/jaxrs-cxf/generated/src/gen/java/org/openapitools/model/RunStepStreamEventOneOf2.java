@@ -13,9 +13,9 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Occurs when parts of a [run step](/docs/api-reference/runs/step-object) are being streamed.
+ * Occurs when parts of a [run step](/docs/api-reference/run-steps/step-object) are being streamed.
  */
-@ApiModel(description="Occurs when parts of a [run step](/docs/api-reference/runs/step-object) are being streamed.")
+@ApiModel(description="Occurs when parts of a [run step](/docs/api-reference/run-steps/step-object) are being streamed.")
 
 public class RunStepStreamEventOneOf2  {
   

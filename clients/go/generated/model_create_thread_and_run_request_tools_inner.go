@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -20,8 +20,8 @@ import (
 // CreateThreadAndRunRequestToolsInner - struct for CreateThreadAndRunRequestToolsInner
 type CreateThreadAndRunRequestToolsInner struct {
 	AssistantToolsCode *AssistantToolsCode
+	AssistantToolsFileSearch *AssistantToolsFileSearch
 	AssistantToolsFunction *AssistantToolsFunction
-	AssistantToolsRetrieval *AssistantToolsRetrieval
 }
 
 // AssistantToolsCodeAsCreateThreadAndRunRequestToolsInner is a convenience function that returns AssistantToolsCode wrapped in CreateThreadAndRunRequestToolsInner
@@ -31,17 +31,17 @@ func AssistantToolsCodeAsCreateThreadAndRunRequestToolsInner(v *AssistantToolsCo
 	}
 }
 
+// AssistantToolsFileSearchAsCreateThreadAndRunRequestToolsInner is a convenience function that returns AssistantToolsFileSearch wrapped in CreateThreadAndRunRequestToolsInner
+func AssistantToolsFileSearchAsCreateThreadAndRunRequestToolsInner(v *AssistantToolsFileSearch) CreateThreadAndRunRequestToolsInner {
+	return CreateThreadAndRunRequestToolsInner{
+		AssistantToolsFileSearch: v,
+	}
+}
+
 // AssistantToolsFunctionAsCreateThreadAndRunRequestToolsInner is a convenience function that returns AssistantToolsFunction wrapped in CreateThreadAndRunRequestToolsInner
 func AssistantToolsFunctionAsCreateThreadAndRunRequestToolsInner(v *AssistantToolsFunction) CreateThreadAndRunRequestToolsInner {
 	return CreateThreadAndRunRequestToolsInner{
 		AssistantToolsFunction: v,
-	}
-}
-
-// AssistantToolsRetrievalAsCreateThreadAndRunRequestToolsInner is a convenience function that returns AssistantToolsRetrieval wrapped in CreateThreadAndRunRequestToolsInner
-func AssistantToolsRetrievalAsCreateThreadAndRunRequestToolsInner(v *AssistantToolsRetrieval) CreateThreadAndRunRequestToolsInner {
-	return CreateThreadAndRunRequestToolsInner{
-		AssistantToolsRetrieval: v,
 	}
 }
 
@@ -67,6 +67,23 @@ func (dst *CreateThreadAndRunRequestToolsInner) UnmarshalJSON(data []byte) error
 		dst.AssistantToolsCode = nil
 	}
 
+	// try to unmarshal data into AssistantToolsFileSearch
+	err = newStrictDecoder(data).Decode(&dst.AssistantToolsFileSearch)
+	if err == nil {
+		jsonAssistantToolsFileSearch, _ := json.Marshal(dst.AssistantToolsFileSearch)
+		if string(jsonAssistantToolsFileSearch) == "{}" { // empty struct
+			dst.AssistantToolsFileSearch = nil
+		} else {
+			if err = validator.Validate(dst.AssistantToolsFileSearch); err != nil {
+				dst.AssistantToolsFileSearch = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.AssistantToolsFileSearch = nil
+	}
+
 	// try to unmarshal data into AssistantToolsFunction
 	err = newStrictDecoder(data).Decode(&dst.AssistantToolsFunction)
 	if err == nil {
@@ -84,28 +101,11 @@ func (dst *CreateThreadAndRunRequestToolsInner) UnmarshalJSON(data []byte) error
 		dst.AssistantToolsFunction = nil
 	}
 
-	// try to unmarshal data into AssistantToolsRetrieval
-	err = newStrictDecoder(data).Decode(&dst.AssistantToolsRetrieval)
-	if err == nil {
-		jsonAssistantToolsRetrieval, _ := json.Marshal(dst.AssistantToolsRetrieval)
-		if string(jsonAssistantToolsRetrieval) == "{}" { // empty struct
-			dst.AssistantToolsRetrieval = nil
-		} else {
-			if err = validator.Validate(dst.AssistantToolsRetrieval); err != nil {
-				dst.AssistantToolsRetrieval = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.AssistantToolsRetrieval = nil
-	}
-
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.AssistantToolsCode = nil
+		dst.AssistantToolsFileSearch = nil
 		dst.AssistantToolsFunction = nil
-		dst.AssistantToolsRetrieval = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(CreateThreadAndRunRequestToolsInner)")
 	} else if match == 1 {
@@ -121,12 +121,12 @@ func (src CreateThreadAndRunRequestToolsInner) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.AssistantToolsCode)
 	}
 
-	if src.AssistantToolsFunction != nil {
-		return json.Marshal(&src.AssistantToolsFunction)
+	if src.AssistantToolsFileSearch != nil {
+		return json.Marshal(&src.AssistantToolsFileSearch)
 	}
 
-	if src.AssistantToolsRetrieval != nil {
-		return json.Marshal(&src.AssistantToolsRetrieval)
+	if src.AssistantToolsFunction != nil {
+		return json.Marshal(&src.AssistantToolsFunction)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -141,12 +141,12 @@ func (obj *CreateThreadAndRunRequestToolsInner) GetActualInstance() (interface{}
 		return obj.AssistantToolsCode
 	}
 
-	if obj.AssistantToolsFunction != nil {
-		return obj.AssistantToolsFunction
+	if obj.AssistantToolsFileSearch != nil {
+		return obj.AssistantToolsFileSearch
 	}
 
-	if obj.AssistantToolsRetrieval != nil {
-		return obj.AssistantToolsRetrieval
+	if obj.AssistantToolsFunction != nil {
+		return obj.AssistantToolsFunction
 	}
 
 	// all schemas are nil
@@ -159,12 +159,12 @@ func (obj CreateThreadAndRunRequestToolsInner) GetActualInstanceValue() (interfa
 		return *obj.AssistantToolsCode
 	}
 
-	if obj.AssistantToolsFunction != nil {
-		return *obj.AssistantToolsFunction
+	if obj.AssistantToolsFileSearch != nil {
+		return *obj.AssistantToolsFileSearch
 	}
 
-	if obj.AssistantToolsRetrieval != nil {
-		return *obj.AssistantToolsRetrieval
+	if obj.AssistantToolsFunction != nil {
+		return *obj.AssistantToolsFunction
 	}
 
 	// all schemas are nil

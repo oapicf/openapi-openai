@@ -4,7 +4,7 @@ All URIs are relative to *https://api.openai.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createModeration**](ModerationsAPI.md#createmoderation) | **POST** /moderations | Classifies if text is potentially harmful.
+[**createModeration**](ModerationsAPI.md#createmoderation) | **POST** /moderations | Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 
 # **createModeration**
@@ -12,7 +12,7 @@ Method | HTTP request | Description
     open class func createModeration(createModerationRequest: CreateModerationRequest, completion: @escaping (_ data: CreateModerationResponse?, _ error: Error?) -> Void)
 ```
 
-Classifies if text is potentially harmful.
+Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 ### Example
 ```swift
@@ -21,7 +21,7 @@ import OpenAPIClient
 
 let createModerationRequest = CreateModerationRequest(input: CreateModerationRequest_input(), model: CreateModerationRequest_model()) // CreateModerationRequest | 
 
-// Classifies if text is potentially harmful.
+// Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 ModerationsAPI.createModeration(createModerationRequest: createModerationRequest) { (response, error) in
     guard error == nil else {
         print(error)

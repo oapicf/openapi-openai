@@ -47,7 +47,7 @@ test_that("assistant_id", {
 
 test_that("status", {
   # tests for the property `status` (character)
-  # The status of the run, which can be either &#x60;queued&#x60;, &#x60;in_progress&#x60;, &#x60;requires_action&#x60;, &#x60;cancelling&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, or &#x60;expired&#x60;.
+  # The status of the run, which can be either &#x60;queued&#x60;, &#x60;in_progress&#x60;, &#x60;requires_action&#x60;, &#x60;cancelling&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, &#x60;incomplete&#x60;, or &#x60;expired&#x60;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`status`, "EXPECTED_RESULT")
@@ -138,17 +138,9 @@ test_that("tools", {
   #expect_equal(model.instance$`tools`, "EXPECTED_RESULT")
 })
 
-test_that("file_ids", {
-  # tests for the property `file_ids` (array[character])
-  # The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`file_ids`, "EXPECTED_RESULT")
-})
-
 test_that("metadata", {
   # tests for the property `metadata` (object)
-  # Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+  # Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
 
   # uncomment below to test the property
   #expect_equal(model.instance$`metadata`, "EXPECTED_RESULT")
@@ -167,6 +159,14 @@ test_that("temperature", {
 
   # uncomment below to test the property
   #expect_equal(model.instance$`temperature`, "EXPECTED_RESULT")
+})
+
+test_that("top_p", {
+  # tests for the property `top_p` (numeric)
+  # The nucleus sampling value used for this run. If not set, defaults to 1.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`top_p`, "EXPECTED_RESULT")
 })
 
 test_that("max_prompt_tokens", {
@@ -197,6 +197,14 @@ test_that("tool_choice", {
 
   # uncomment below to test the property
   #expect_equal(model.instance$`tool_choice`, "EXPECTED_RESULT")
+})
+
+test_that("parallel_tool_calls", {
+  # tests for the property `parallel_tool_calls` (character)
+  # Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`parallel_tool_calls`, "EXPECTED_RESULT")
 })
 
 test_that("response_format", {

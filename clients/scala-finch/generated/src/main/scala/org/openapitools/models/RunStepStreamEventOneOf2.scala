@@ -8,7 +8,7 @@ import org.openapitools._
 import org.openapitools.models.RunStepDeltaObject
 
 /**
- * Occurs when parts of a [run step](/docs/api-reference/runs/step-object) are being streamed.
+ * Occurs when parts of a [run step](/docs/api-reference/run-steps/step-object) are being streamed.
  * @param event 
  * @param data 
  */

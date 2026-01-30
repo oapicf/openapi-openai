@@ -1,0 +1,54 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FineTuneDPOMethodHyperparameters"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FineTuneDPOMethodHyperparameters"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  FineTuneDPOMethodHyperparametersBatchSize = openapi_server.resourceTypes.FineTuneDPOMethodHyperparametersBatchSize
+  FineTuneDPOMethodHyperparametersBeta = openapi_server.resourceTypes.FineTuneDPOMethodHyperparametersBeta
+  FineTuneDPOMethodHyperparametersLearningRateMultiplier = openapi_server.resourceTypes.FineTuneDPOMethodHyperparametersLearningRateMultiplier
+  FineTuneDPOMethodHyperparametersNEpochs = openapi_server.resourceTypes.FineTuneDPOMethodHyperparametersNEpochs
+}
+resourceTypes {
+
+  FineTuneDPOMethodHyperparameters {
+    title = FineTuneDPOMethodHyperparameters
+    description = FineTuneDPOMethodHyperparameters
+    derivedFrom = Root
+    properties {
+        beta {
+          type = FineTuneDPOMethodHyperparametersBeta
+          description = ""
+          optional = false
+        }
+        batch_size {
+          type = FineTuneDPOMethodHyperparametersBatchSize
+          description = ""
+          optional = false
+        }
+        learning_rate_multiplier {
+          type = FineTuneDPOMethodHyperparametersLearningRateMultiplier
+          description = ""
+          optional = false
+        }
+        n_epochs {
+          type = FineTuneDPOMethodHyperparametersNEpochs
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  FineTuneDPOMethodHyperparameters {
+    title = FineTuneDPOMethodHyperparameters
+    description = FineTuneDPOMethodHyperparameters
+    implements = openapi_server.resourceTypes.FineTuneDPOMethodHyperparameters
+
+  }
+}

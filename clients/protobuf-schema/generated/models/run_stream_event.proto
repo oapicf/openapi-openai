@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -24,6 +24,7 @@ import public "models/run_stream_event_one_of5.proto";
 import public "models/run_stream_event_one_of6.proto";
 import public "models/run_stream_event_one_of7.proto";
 import public "models/run_stream_event_one_of8.proto";
+import public "models/run_stream_event_one_of9.proto";
 
 message RunStreamEvent {
 
@@ -37,6 +38,7 @@ message RunStreamEvent {
         RunStreamEventOneOf6 run_stream_event_one_of6 = 357843469;
         RunStreamEventOneOf7 run_stream_event_one_of7 = 357843468;
         RunStreamEventOneOf8 run_stream_event_one_of8 = 357843467;
+        RunStreamEventOneOf9 run_stream_event_one_of9 = 357843466;
     }
 }
 

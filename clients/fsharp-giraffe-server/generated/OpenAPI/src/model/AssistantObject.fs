@@ -2,7 +2,10 @@ namespace OpenAPI.Model
 
 open System
 open System.Collections.Generic
+open OpenAPI.Model.AssistantObjectToolResources
 open OpenAPI.Model.AssistantObjectToolsInner
+open OpenAPI.Model.AssistantsApiResponseFormatOption
+open OpenAPI.Model.decimal option
 open OpenAPI.Model.string option
 
 module AssistantObject =
@@ -22,7 +25,10 @@ module AssistantObject =
     Model : string;
     Instructions : string option;
     Tools : AssistantObjectToolsInner[];
-    FileIds : string[];
+    ToolResources : AssistantObjectToolResources;
     Metadata : obj;
+    Temperature : decimal option;
+    TopP : decimal option;
+    ResponseFormat : AssistantsApiResponseFormatOption;
   }
   //#endregion

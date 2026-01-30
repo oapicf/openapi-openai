@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -17,6 +17,9 @@ package openapitools;
 import public "models/thread_object.proto";
 
 message ThreadStreamEvent {
+
+  // Whether to enable input audio transcription.
+  bool enabled = 535852225;
 
   enum Event {
     EVENT_THREAD_CREATED = 0;

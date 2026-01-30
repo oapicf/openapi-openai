@@ -15,10 +15,10 @@ class ListAssistantsResponse
 
     /**
      * @DTA\Data(field="data")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection34::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection34::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection3::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection3::class})
      */
-    public ?\App\DTO\Collection34 $data = null;
+    public ?\App\DTO\Collection3 $data = null;
 
     /**
      * @DTA\Data(field="first_id")

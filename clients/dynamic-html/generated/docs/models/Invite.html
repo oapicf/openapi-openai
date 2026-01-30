@@ -1,0 +1,65 @@
+
+<h2>Invite</h2>
+<ul class="parameter">
+  <li class="param-required-true">object : String
+    <br/>The object type, which is always &#x60;organization.invite&#x60;
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>organization.invite</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">id : String
+    <br/>The identifier, which can be referenced in API endpoints
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">email : String
+    <br/>The email address of the individual to whom the invite was sent
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">role : String
+    <br/>&#x60;owner&#x60; or &#x60;reader&#x60;
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>owner</dd>
+            <dd>reader</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">status : String
+    <br/>&#x60;accepted&#x60;,&#x60;expired&#x60;, or &#x60;pending&#x60;
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>accepted</dd>
+            <dd>expired</dd>
+            <dd>pending</dd>
+        </dt>
+      </dl>
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">invitedUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) of when the invite was sent.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">expiresUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) of when the invite expires.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">acceptedUnderscoreat : Integer
+    <br/>The Unix timestamp (in seconds) of when the invite was accepted.
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">projects : List
+    <br/>The projects that were granted membership upon acceptance of the invite.
+  </li>
+</ul>

@@ -19,7 +19,7 @@ import org.wso2.msf4j.formparam.FileInfo;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FilesApiServiceImpl extends FilesApiService {
     @Override
     public Response createFile(InputStream _fileInputStream, FileInfo _fileDetail
@@ -42,6 +42,9 @@ public class FilesApiServiceImpl extends FilesApiService {
     }
     @Override
     public Response listFiles(String purpose
+, Integer limit
+, String order
+, String after
  ) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

@@ -11,11 +11,10 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T10:45:28.938980301Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T14:09:21.247747647Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
   
   private String fileId;
-  private String quote;
 
   /**
    * The ID of the specific File the citation is from.
@@ -31,20 +30,6 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
     this.fileId = fileId;
   }
 
-  /**
-   * The specific quote in the file.
-   **/
-  
-  @ApiModelProperty(required = true, value = "The specific quote in the file.")
-  @JsonProperty("quote")
-  @NotNull
-  public String getQuote() {
-    return quote;
-  }
-  public void setQuote(String quote) {
-    this.quote = quote;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -55,13 +40,12 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
       return false;
     }
     MessageContentTextAnnotationsFileCitationObjectFileCitation messageContentTextAnnotationsFileCitationObjectFileCitation = (MessageContentTextAnnotationsFileCitationObjectFileCitation) o;
-    return Objects.equals(this.fileId, messageContentTextAnnotationsFileCitationObjectFileCitation.fileId) &&
-        Objects.equals(this.quote, messageContentTextAnnotationsFileCitationObjectFileCitation.quote);
+    return Objects.equals(this.fileId, messageContentTextAnnotationsFileCitationObjectFileCitation.fileId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileId, quote);
+    return Objects.hash(fileId);
   }
 
   @Override
@@ -70,7 +54,6 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
     sb.append("class MessageContentTextAnnotationsFileCitationObjectFileCitation {\n");
     
     sb.append("    fileId: ").append(toIndentedString(fileId)).append("\n");
-    sb.append("    quote: ").append(toIndentedString(quote)).append("\n");
     sb.append("}");
     return sb.toString();
   }

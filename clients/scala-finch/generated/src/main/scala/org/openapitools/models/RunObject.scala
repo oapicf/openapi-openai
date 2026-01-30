@@ -23,7 +23,7 @@ import scala.collection.immutable.Seq
  * @param createdUnderscoreat The Unix timestamp (in seconds) for when the run was created.
  * @param threadUnderscoreid The ID of the [thread](/docs/api-reference/threads) that was executed on as a part of this run.
  * @param assistantUnderscoreid The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run.
- * @param status The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, or `expired`.
+ * @param status The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
  * @param requiredUnderscoreaction 
  * @param lastUnderscoreerror 
  * @param expiresUnderscoreat The Unix timestamp (in seconds) for when the run will expire.
@@ -35,14 +35,15 @@ import scala.collection.immutable.Seq
  * @param model The model that the [assistant](/docs/api-reference/assistants) used for this run.
  * @param instructions The instructions that the [assistant](/docs/api-reference/assistants) used for this run.
  * @param tools The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
- * @param fileUnderscoreids The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run.
- * @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. 
+ * @param metadata Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
  * @param usage 
  * @param temperature The sampling temperature used for this run. If not set, defaults to 1.
+ * @param topUnderscorep The nucleus sampling value used for this run. If not set, defaults to 1.
  * @param maxUnderscorepromptUnderscoretokens The maximum number of prompt tokens specified to have been used over the course of the run. 
  * @param maxUnderscorecompletionUnderscoretokens The maximum number of completion tokens specified to have been used over the course of the run. 
  * @param truncationUnderscorestrategy 
  * @param toolUnderscorechoice 
+ * @param parallelUnderscoretoolUnderscorecalls Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
  * @param responseUnderscoreformat 
  */
 case class RunObject(id: String,
@@ -62,14 +63,15 @@ case class RunObject(id: String,
                 model: String,
                 instructions: String,
                 tools: Seq[AssistantObjectToolsInner],
-                fileUnderscoreids: Seq[String],
                 metadata: Object,
                 usage: RunCompletionUsage,
                 temperature: Option[BigDecimal],
+                topUnderscorep: Option[BigDecimal],
                 maxUnderscorepromptUnderscoretokens: Int,
                 maxUnderscorecompletionUnderscoretokens: Int,
                 truncationUnderscorestrategy: TruncationObject,
                 toolUnderscorechoice: AssistantsApiToolChoiceOption,
+                parallelUnderscoretoolUnderscorecalls: Boolean,
                 responseUnderscoreformat: AssistantsApiResponseFormatOption
                 )
 

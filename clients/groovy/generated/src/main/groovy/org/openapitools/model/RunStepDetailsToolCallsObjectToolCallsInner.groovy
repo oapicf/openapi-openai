@@ -5,9 +5,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.RunStepDetailsToolCallsCodeObject;
 import org.openapitools.model.RunStepDetailsToolCallsCodeObjectCodeInterpreter;
+import org.openapitools.model.RunStepDetailsToolCallsFileSearchObject;
+import org.openapitools.model.RunStepDetailsToolCallsFileSearchObjectFileSearch;
 import org.openapitools.model.RunStepDetailsToolCallsFunctionObject;
 import org.openapitools.model.RunStepDetailsToolCallsFunctionObjectFunction;
-import org.openapitools.model.RunStepDetailsToolCallsRetrievalObject;
 
 @Canonical
 class RunStepDetailsToolCallsObjectToolCallsInner {
@@ -18,7 +19,7 @@ class RunStepDetailsToolCallsObjectToolCallsInner {
     
         CODE_INTERPRETER("code_interpreter"),
         
-        RETRIEVAL("retrieval"),
+        FILE_SEARCH("file_search"),
         
         FUNCTION("function")
     
@@ -42,8 +43,8 @@ class RunStepDetailsToolCallsObjectToolCallsInner {
     TypeEnum type
     
     RunStepDetailsToolCallsCodeObjectCodeInterpreter codeInterpreter
-    /* For now, this is always going to be an empty object. */
-    Object retrieval
+    
+    RunStepDetailsToolCallsFileSearchObjectFileSearch fileSearch
     
     RunStepDetailsToolCallsFunctionObjectFunction function
 }

@@ -7,24 +7,19 @@ open FSharp.Control.Tasks.V2.ContextInsensitive
 open AssistantsApiHandlerParams
 open AssistantsApiServiceInterface
 open AssistantsApiServiceImplementation
-open OpenAPI.Model.AssistantFileObject
 open OpenAPI.Model.AssistantObject
-open OpenAPI.Model.CreateAssistantFileRequest
 open OpenAPI.Model.CreateAssistantRequest
 open OpenAPI.Model.CreateMessageRequest
 open OpenAPI.Model.CreateRunRequest
 open OpenAPI.Model.CreateThreadAndRunRequest
 open OpenAPI.Model.CreateThreadRequest
-open OpenAPI.Model.DeleteAssistantFileResponse
 open OpenAPI.Model.DeleteAssistantResponse
+open OpenAPI.Model.DeleteMessageResponse
 open OpenAPI.Model.DeleteThreadResponse
-open OpenAPI.Model.ListAssistantFilesResponse
 open OpenAPI.Model.ListAssistantsResponse
-open OpenAPI.Model.ListMessageFilesResponse
 open OpenAPI.Model.ListMessagesResponse
 open OpenAPI.Model.ListRunStepsResponse
 open OpenAPI.Model.ListRunsResponse
-open OpenAPI.Model.MessageFileObject
 open OpenAPI.Model.MessageObject
 open OpenAPI.Model.ModifyAssistantRequest
 open OpenAPI.Model.ModifyMessageRequest
@@ -77,25 +72,6 @@ module AssistantsApiHandler =
         }
     //#endregion
 
-    //#region CreateAssistantFile
-    /// <summary>
-    /// Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-    /// </summary>
-
-    let CreateAssistantFile (pathParams:CreateAssistantFilePathParams) : HttpHandler =
-      fun (next : HttpFunc) (ctx : HttpContext) ->
-        task {
-          let! bodyParams =
-            ctx.BindJsonAsync<CreateAssistantFileBodyParams>()
-          let serviceArgs = {    pathParams=pathParams; bodyParams=bodyParams } : CreateAssistantFileArgs
-          let result = AssistantsApiService.CreateAssistantFile ctx serviceArgs
-          return! (match result with
-                      | CreateAssistantFileStatusCode200 resolved ->
-                            setStatusCode 200 >=> json resolved.content
-          ) next ctx
-        }
-    //#endregion
-
     //#region CreateMessage
     /// <summary>
     /// Create a message.
@@ -123,9 +99,10 @@ module AssistantsApiHandler =
     let CreateRun (pathParams:CreateRunPathParams) : HttpHandler =
       fun (next : HttpFunc) (ctx : HttpContext) ->
         task {
+          let queryParams = ctx.TryBindQueryString<CreateRunQueryParams>()
           let! bodyParams =
             ctx.BindJsonAsync<CreateRunBodyParams>()
-          let serviceArgs = {    pathParams=pathParams; bodyParams=bodyParams } : CreateRunArgs
+          let serviceArgs = {  queryParams=queryParams;  pathParams=pathParams; bodyParams=bodyParams } : CreateRunArgs
           let result = AssistantsApiService.CreateRun ctx serviceArgs
           return! (match result with
                       | CreateRunStatusCode200 resolved ->
@@ -189,18 +166,18 @@ module AssistantsApiHandler =
         }
     //#endregion
 
-    //#region DeleteAssistantFile
+    //#region DeleteMessage
     /// <summary>
-    /// Delete an assistant file.
+    /// Deletes a message.
     /// </summary>
 
-    let DeleteAssistantFile (pathParams:DeleteAssistantFilePathParams) : HttpHandler =
+    let DeleteMessage (pathParams:DeleteMessagePathParams) : HttpHandler =
       fun (next : HttpFunc) (ctx : HttpContext) ->
         task {
-          let serviceArgs = {    pathParams=pathParams;  } : DeleteAssistantFileArgs
-          let result = AssistantsApiService.DeleteAssistantFile ctx serviceArgs
+          let serviceArgs = {    pathParams=pathParams;  } : DeleteMessageArgs
+          let result = AssistantsApiService.DeleteMessage ctx serviceArgs
           return! (match result with
-                      | DeleteAssistantFileStatusCode200 resolved ->
+                      | DeleteMessageStatusCode200 resolved ->
                             setStatusCode 200 >=> json resolved.content
           ) next ctx
         }
@@ -240,23 +217,6 @@ module AssistantsApiHandler =
         }
     //#endregion
 
-    //#region GetAssistantFile
-    /// <summary>
-    /// Retrieves an AssistantFile.
-    /// </summary>
-
-    let GetAssistantFile (pathParams:GetAssistantFilePathParams) : HttpHandler =
-      fun (next : HttpFunc) (ctx : HttpContext) ->
-        task {
-          let serviceArgs = {    pathParams=pathParams;  } : GetAssistantFileArgs
-          let result = AssistantsApiService.GetAssistantFile ctx serviceArgs
-          return! (match result with
-                      | GetAssistantFileStatusCode200 resolved ->
-                            setStatusCode 200 >=> json resolved.content
-          ) next ctx
-        }
-    //#endregion
-
     //#region GetMessage
     /// <summary>
     /// Retrieve a message.
@@ -269,23 +229,6 @@ module AssistantsApiHandler =
           let result = AssistantsApiService.GetMessage ctx serviceArgs
           return! (match result with
                       | GetMessageStatusCode200 resolved ->
-                            setStatusCode 200 >=> json resolved.content
-          ) next ctx
-        }
-    //#endregion
-
-    //#region GetMessageFile
-    /// <summary>
-    /// Retrieves a message file.
-    /// </summary>
-
-    let GetMessageFile (pathParams:GetMessageFilePathParams) : HttpHandler =
-      fun (next : HttpFunc) (ctx : HttpContext) ->
-        task {
-          let serviceArgs = {    pathParams=pathParams;  } : GetMessageFileArgs
-          let result = AssistantsApiService.GetMessageFile ctx serviceArgs
-          return! (match result with
-                      | GetMessageFileStatusCode200 resolved ->
                             setStatusCode 200 >=> json resolved.content
           ) next ctx
         }
@@ -316,7 +259,8 @@ module AssistantsApiHandler =
     let GetRunStep (pathParams:GetRunStepPathParams) : HttpHandler =
       fun (next : HttpFunc) (ctx : HttpContext) ->
         task {
-          let serviceArgs = {    pathParams=pathParams;  } : GetRunStepArgs
+          let queryParams = ctx.TryBindQueryString<GetRunStepQueryParams>()
+          let serviceArgs = {  queryParams=queryParams;  pathParams=pathParams;  } : GetRunStepArgs
           let result = AssistantsApiService.GetRunStep ctx serviceArgs
           return! (match result with
                       | GetRunStepStatusCode200 resolved ->
@@ -342,24 +286,6 @@ module AssistantsApiHandler =
         }
     //#endregion
 
-    //#region ListAssistantFiles
-    /// <summary>
-    /// Returns a list of assistant files.
-    /// </summary>
-
-    let ListAssistantFiles (pathParams:ListAssistantFilesPathParams) : HttpHandler =
-      fun (next : HttpFunc) (ctx : HttpContext) ->
-        task {
-          let queryParams = ctx.TryBindQueryString<ListAssistantFilesQueryParams>()
-          let serviceArgs = {  queryParams=queryParams;  pathParams=pathParams;  } : ListAssistantFilesArgs
-          let result = AssistantsApiService.ListAssistantFiles ctx serviceArgs
-          return! (match result with
-                      | ListAssistantFilesStatusCode200 resolved ->
-                            setStatusCode 200 >=> json resolved.content
-          ) next ctx
-        }
-    //#endregion
-
     //#region ListAssistants
     /// <summary>
     /// Returns a list of assistants.
@@ -373,24 +299,6 @@ module AssistantsApiHandler =
           let result = AssistantsApiService.ListAssistants ctx serviceArgs
           return! (match result with
                       | ListAssistantsStatusCode200 resolved ->
-                            setStatusCode 200 >=> json resolved.content
-          ) next ctx
-        }
-    //#endregion
-
-    //#region ListMessageFiles
-    /// <summary>
-    /// Returns a list of message files.
-    /// </summary>
-
-    let ListMessageFiles (pathParams:ListMessageFilesPathParams) : HttpHandler =
-      fun (next : HttpFunc) (ctx : HttpContext) ->
-        task {
-          let queryParams = ctx.TryBindQueryString<ListMessageFilesQueryParams>()
-          let serviceArgs = {  queryParams=queryParams;  pathParams=pathParams;  } : ListMessageFilesArgs
-          let result = AssistantsApiService.ListMessageFiles ctx serviceArgs
-          return! (match result with
-                      | ListMessageFilesStatusCode200 resolved ->
                             setStatusCode 200 >=> json resolved.content
           ) next ctx
         }

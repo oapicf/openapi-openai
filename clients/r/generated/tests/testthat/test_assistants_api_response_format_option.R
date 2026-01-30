@@ -7,8 +7,15 @@ model_instance <- AssistantsApiResponseFormatOption$new()
 
 test_that("type", {
   # tests for the property `type` (character)
-  # Must be one of &#x60;text&#x60; or &#x60;json_object&#x60;.
+  # The type of response format being defined: &#x60;text&#x60;
 
   # uncomment below to test the property
   #expect_equal(model.instance$`type`, "EXPECTED_RESULT")
+})
+
+test_that("json_schema", {
+  # tests for the property `json_schema` (ResponseFormatJsonSchemaJsonSchema)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`json_schema`, "EXPECTED_RESULT")
 })

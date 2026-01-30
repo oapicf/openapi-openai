@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -20,7 +20,7 @@ import (
 // checks if the MessageContentTextAnnotationsFileCitationObject type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MessageContentTextAnnotationsFileCitationObject{}
 
-// MessageContentTextAnnotationsFileCitationObject A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \"retrieval\" tool to search files.
+// MessageContentTextAnnotationsFileCitationObject A citation within the message that points to a specific quote from a specific File associated with the assistant or the message. Generated when the assistant uses the \"file_search\" tool to search files.
 type MessageContentTextAnnotationsFileCitationObject struct {
 	// Always `file_citation`.
 	Type string `json:"type"`

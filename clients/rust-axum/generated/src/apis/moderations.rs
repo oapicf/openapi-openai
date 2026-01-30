@@ -25,7 +25,7 @@ pub enum CreateModerationResponse {
 pub trait Moderations<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::ErrorHandler<E> {
     type Claims;
 
-    /// Classifies if text is potentially harmful..
+    /// Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). .
     ///
     /// CreateModeration - POST /v1/moderations
     async fn create_moderation(

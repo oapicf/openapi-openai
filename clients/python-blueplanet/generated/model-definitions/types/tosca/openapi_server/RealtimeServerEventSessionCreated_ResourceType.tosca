@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventSessionCreated"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventSessionCreated"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  RealtimeSession = openapi_server.resourceTypes.RealtimeSession
+}
+resourceTypes {
+
+  RealtimeServerEventSessionCreated {
+    title = RealtimeServerEventSessionCreated
+    description = RealtimeServerEventSessionCreated
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "The unique ID of the server event."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;session.created&#x60;."
+          enum = ["session.created"]
+          optional = true
+        }
+        session {
+          type = RealtimeSession
+          description = ""
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventSessionCreated {
+    title = RealtimeServerEventSessionCreated
+    description = RealtimeServerEventSessionCreated
+    implements = openapi_server.resourceTypes.RealtimeServerEventSessionCreated
+
+  }
+}

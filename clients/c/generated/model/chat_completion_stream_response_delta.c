@@ -26,7 +26,8 @@ static chat_completion_stream_response_delta_t *chat_completion_stream_response_
     char *content,
     chat_completion_stream_response_delta_function_call_t *function_call,
     list_t *tool_calls,
-    openai_api_chat_completion_stream_response_delta_ROLE_e role
+    openai_api_chat_completion_stream_response_delta_ROLE_e role,
+    char *refusal
     ) {
     chat_completion_stream_response_delta_t *chat_completion_stream_response_delta_local_var = malloc(sizeof(chat_completion_stream_response_delta_t));
     if (!chat_completion_stream_response_delta_local_var) {
@@ -36,6 +37,7 @@ static chat_completion_stream_response_delta_t *chat_completion_stream_response_
     chat_completion_stream_response_delta_local_var->function_call = function_call;
     chat_completion_stream_response_delta_local_var->tool_calls = tool_calls;
     chat_completion_stream_response_delta_local_var->role = role;
+    chat_completion_stream_response_delta_local_var->refusal = refusal;
 
     chat_completion_stream_response_delta_local_var->_library_owned = 1;
     return chat_completion_stream_response_delta_local_var;
@@ -45,13 +47,15 @@ __attribute__((deprecated)) chat_completion_stream_response_delta_t *chat_comple
     char *content,
     chat_completion_stream_response_delta_function_call_t *function_call,
     list_t *tool_calls,
-    openai_api_chat_completion_stream_response_delta_ROLE_e role
+    openai_api_chat_completion_stream_response_delta_ROLE_e role,
+    char *refusal
     ) {
     return chat_completion_stream_response_delta_create_internal (
         content,
         function_call,
         tool_calls,
-        role
+        role,
+        refusal
         );
 }
 
@@ -78,6 +82,10 @@ void chat_completion_stream_response_delta_free(chat_completion_stream_response_
         }
         list_freeList(chat_completion_stream_response_delta->tool_calls);
         chat_completion_stream_response_delta->tool_calls = NULL;
+    }
+    if (chat_completion_stream_response_delta->refusal) {
+        free(chat_completion_stream_response_delta->refusal);
+        chat_completion_stream_response_delta->refusal = NULL;
     }
     free(chat_completion_stream_response_delta);
 }
@@ -131,6 +139,14 @@ cJSON *chat_completion_stream_response_delta_convertToJSON(chat_completion_strea
     if(cJSON_AddStringToObject(item, "role", chat_completion_stream_response_delta_role_ToString(chat_completion_stream_response_delta->role)) == NULL)
     {
     goto fail; //Enum
+    }
+    }
+
+
+    // chat_completion_stream_response_delta->refusal
+    if(chat_completion_stream_response_delta->refusal) {
+    if(cJSON_AddStringToObject(item, "refusal", chat_completion_stream_response_delta->refusal) == NULL) {
+    goto fail; //String
     }
     }
 
@@ -211,12 +227,25 @@ chat_completion_stream_response_delta_t *chat_completion_stream_response_delta_p
     roleVariable = chat_completion_stream_response_delta_role_FromString(role->valuestring);
     }
 
+    // chat_completion_stream_response_delta->refusal
+    cJSON *refusal = cJSON_GetObjectItemCaseSensitive(chat_completion_stream_response_deltaJSON, "refusal");
+    if (cJSON_IsNull(refusal)) {
+        refusal = NULL;
+    }
+    if (refusal) { 
+    if(!cJSON_IsString(refusal) && !cJSON_IsNull(refusal))
+    {
+    goto end; //String
+    }
+    }
+
 
     chat_completion_stream_response_delta_local_var = chat_completion_stream_response_delta_create_internal (
         content && !cJSON_IsNull(content) ? strdup(content->valuestring) : NULL,
         function_call ? function_call_local_nonprim : NULL,
         tool_calls ? tool_callsList : NULL,
-        role ? roleVariable : openai_api_chat_completion_stream_response_delta_ROLE_NULL
+        role ? roleVariable : openai_api_chat_completion_stream_response_delta_ROLE_NULL,
+        refusal && !cJSON_IsNull(refusal) ? strdup(refusal->valuestring) : NULL
         );
 
     return chat_completion_stream_response_delta_local_var;

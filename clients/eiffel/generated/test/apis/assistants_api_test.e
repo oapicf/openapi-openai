@@ -28,23 +28,6 @@ feature -- Test routines
             assert ("not_implemented", False)
         end
 
-    test_assistant_file
-            -- Retrieves an AssistantFile.
-            --
-            -- 
-        local
-            l_response: ASSISTANT_FILE_OBJECT
-            l_assistant_id: STRING_32
-            l_file_id: STRING_32
-        do
-            -- TODO: Initialize required params.
-            -- l_assistant_id
-            -- l_file_id
-
-            -- l_response := api.assistant_file(l_assistant_id, l_file_id)
-            assert ("not_implemented", False)
-        end
-
     test_cancel_run
             -- Cancels a run that is &#x60;in_progress&#x60;.
             --
@@ -77,23 +60,6 @@ feature -- Test routines
             assert ("not_implemented", False)
         end
 
-    test_create_assistant_file
-            -- Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants).
-            --
-            -- 
-        local
-            l_response: ASSISTANT_FILE_OBJECT
-            l_assistant_id: STRING_32
-            l_create_assistant_file_request: CREATE_ASSISTANT_FILE_REQUEST
-        do
-            -- TODO: Initialize required params.
-            -- l_assistant_id
-            -- l_create_assistant_file_request
-
-            -- l_response := api.create_assistant_file(l_assistant_id, l_create_assistant_file_request)
-            assert ("not_implemented", False)
-        end
-
     test_create_message
             -- Create a message.
             --
@@ -119,12 +85,13 @@ feature -- Test routines
             l_response: RUN_OBJECT
             l_thread_id: STRING_32
             l_create_run_request: CREATE_RUN_REQUEST
+            l_include: LIST [STRING_32]
         do
             -- TODO: Initialize required params.
             -- l_thread_id
             -- l_create_run_request
 
-            -- l_response := api.create_run(l_thread_id, l_create_run_request)
+            -- l_response := api.create_run(l_thread_id, l_create_run_request, l_include)
             assert ("not_implemented", False)
         end
 
@@ -172,20 +139,20 @@ feature -- Test routines
             assert ("not_implemented", False)
         end
 
-    test_delete_assistant_file
-            -- Delete an assistant file.
+    test_delete_message
+            -- Deletes a message.
             --
             -- 
         local
-            l_response: DELETE_ASSISTANT_FILE_RESPONSE
-            l_assistant_id: STRING_32
-            l_file_id: STRING_32
+            l_response: DELETE_MESSAGE_RESPONSE
+            l_thread_id: STRING_32
+            l_message_id: STRING_32
         do
             -- TODO: Initialize required params.
-            -- l_assistant_id
-            -- l_file_id
+            -- l_thread_id
+            -- l_message_id
 
-            -- l_response := api.delete_assistant_file(l_assistant_id, l_file_id)
+            -- l_response := api.delete_message(l_thread_id, l_message_id)
             assert ("not_implemented", False)
         end
 
@@ -204,25 +171,6 @@ feature -- Test routines
             assert ("not_implemented", False)
         end
 
-    test_list_assistant_files
-            -- Returns a list of assistant files.
-            --
-            -- 
-        local
-            l_response: LIST_ASSISTANT_FILES_RESPONSE
-            l_assistant_id: STRING_32
-            l_limit: INTEGER_32
-            l_order: STRING_32
-            l_after: STRING_32
-            l_before: STRING_32
-        do
-            -- TODO: Initialize required params.
-            -- l_assistant_id
-
-            -- l_response := api.list_assistant_files(l_assistant_id, l_limit, l_order, l_after, l_before)
-            assert ("not_implemented", False)
-        end
-
     test_list_assistants
             -- Returns a list of assistants.
             --
@@ -237,27 +185,6 @@ feature -- Test routines
             -- TODO: Initialize required params.
 
             -- l_response := api.list_assistants(l_limit, l_order, l_after, l_before)
-            assert ("not_implemented", False)
-        end
-
-    test_list_message_files
-            -- Returns a list of message files.
-            --
-            -- 
-        local
-            l_response: LIST_MESSAGE_FILES_RESPONSE
-            l_thread_id: STRING_32
-            l_message_id: STRING_32
-            l_limit: INTEGER_32
-            l_order: STRING_32
-            l_after: STRING_32
-            l_before: STRING_32
-        do
-            -- TODO: Initialize required params.
-            -- l_thread_id
-            -- l_message_id
-
-            -- l_response := api.list_message_files(l_thread_id, l_message_id, l_limit, l_order, l_after, l_before)
             assert ("not_implemented", False)
         end
 
@@ -293,12 +220,13 @@ feature -- Test routines
             l_order: STRING_32
             l_after: STRING_32
             l_before: STRING_32
+            l_include: LIST [STRING_32]
         do
             -- TODO: Initialize required params.
             -- l_thread_id
             -- l_run_id
 
-            -- l_response := api.list_run_steps(l_thread_id, l_run_id, l_limit, l_order, l_after, l_before)
+            -- l_response := api.list_run_steps(l_thread_id, l_run_id, l_limit, l_order, l_after, l_before, l_include)
             assert ("not_implemented", False)
         end
 
@@ -335,25 +263,6 @@ feature -- Test routines
             -- l_message_id
 
             -- l_response := api.message(l_thread_id, l_message_id)
-            assert ("not_implemented", False)
-        end
-
-    test_message_file
-            -- Retrieves a message file.
-            --
-            -- 
-        local
-            l_response: MESSAGE_FILE_OBJECT
-            l_thread_id: STRING_32
-            l_message_id: STRING_32
-            l_file_id: STRING_32
-        do
-            -- TODO: Initialize required params.
-            -- l_thread_id
-            -- l_message_id
-            -- l_file_id
-
-            -- l_response := api.message_file(l_thread_id, l_message_id, l_file_id)
             assert ("not_implemented", False)
         end
 
@@ -455,13 +364,14 @@ feature -- Test routines
             l_thread_id: STRING_32
             l_run_id: STRING_32
             l_step_id: STRING_32
+            l_include: LIST [STRING_32]
         do
             -- TODO: Initialize required params.
             -- l_thread_id
             -- l_run_id
             -- l_step_id
 
-            -- l_response := api.run_step(l_thread_id, l_run_id, l_step_id)
+            -- l_response := api.run_step(l_thread_id, l_run_id, l_step_id, l_include)
             assert ("not_implemented", False)
         end
 

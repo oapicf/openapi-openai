@@ -61,18 +61,10 @@ public:
 	/*! \brief Set The content of the message in array of text and/or images.
 	 */
 	void setContent(std::list <MessageDeltaObject_delta_content_inner> content);
-	/*! \brief Get A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-	 */
-	std::list<std::string> getFileIds();
-
-	/*! \brief Set A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-	 */
-	void setFileIds(std::list <std::string> file_ids);
 
 private:
 	std::string role;
 	std::list <MessageDeltaObject_delta_content_inner>content;
-	std::list <std::string>file_ids;
 	void __init();
 	void __cleanup();
 

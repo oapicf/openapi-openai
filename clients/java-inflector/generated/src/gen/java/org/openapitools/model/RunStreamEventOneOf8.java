@@ -12,17 +12,17 @@ import org.openapitools.model.RunObject;
 
 
 /**
- * Occurs when a [run](/docs/api-reference/runs/object) expires.
+ * Occurs when a [run](/docs/api-reference/runs/object) is cancelled.
  **/
 
-@ApiModel(description = "Occurs when a [run](/docs/api-reference/runs/object) expires.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T10:44:48.545388249Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description = "Occurs when a [run](/docs/api-reference/runs/object) is cancelled.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-01-29T14:07:47.634062747Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class RunStreamEventOneOf8   {
   /**
    * Gets or Sets event
    */
   public enum EventEnum {
-    THREAD_RUN_EXPIRED("thread.run.expired");
+    THREAD_RUN_CANCELLED("thread.run.cancelled");
 
     private String value;
 

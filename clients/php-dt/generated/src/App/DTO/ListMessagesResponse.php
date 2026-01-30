@@ -15,10 +15,10 @@ class ListMessagesResponse
 
     /**
      * @DTA\Data(field="data")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection43::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection43::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection137::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection137::class})
      */
-    public ?\App\DTO\Collection43 $data = null;
+    public ?\App\DTO\Collection137 $data = null;
 
     /**
      * @DTA\Data(field="first_id")

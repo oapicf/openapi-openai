@@ -13,6 +13,8 @@
   | {'hate_threatening', integer() }
   | {'harassment', integer() }
   | {'harassment_threatening', integer() }
+  | {'illicit', integer() }
+  | {'illicit_violent', integer() }
   | {'self_harm', integer() }
   | {'self_harm_intent', integer() }
   | {'self_harm_instructions', integer() }
@@ -31,6 +33,8 @@ openapi_create_moderation_response_results_inner_category_scores(Fields) ->
             , {'hate/threatening', integer() }
             , {'harassment', integer() }
             , {'harassment/threatening', integer() }
+            , {'illicit', integer() }
+            , {'illicit/violent', integer() }
             , {'self-harm', integer() }
             , {'self-harm/intent', integer() }
             , {'self-harm/instructions', integer() }

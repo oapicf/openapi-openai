@@ -8,8 +8,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.CompletionUsage;
 import org.openapitools.model.CreateChatCompletionResponseChoicesInner;
+import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -25,7 +27,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "CreateChatCompletionResponse", description = "Represents a chat completion response returned by model, based on the provided input.")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CreateChatCompletionResponse {
 
   private String id;
@@ -36,6 +38,43 @@ public class CreateChatCompletionResponse {
   private Integer created;
 
   private String model;
+
+  /**
+   * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+   */
+  public enum ServiceTierEnum {
+    SCALE("scale"),
+    
+    DEFAULT("default");
+
+    private final String value;
+
+    ServiceTierEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ServiceTierEnum fromValue(String value) {
+      for (ServiceTierEnum b : ServiceTierEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  private JsonNullable<ServiceTierEnum> serviceTier = JsonNullable.<ServiceTierEnum>undefined();
 
   private String systemFingerprint;
 
@@ -179,6 +218,26 @@ public class CreateChatCompletionResponse {
     this.model = model;
   }
 
+  public CreateChatCompletionResponse serviceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = JsonNullable.of(serviceTier);
+    return this;
+  }
+
+  /**
+   * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+   * @return serviceTier
+   */
+  
+  @Schema(name = "service_tier", example = "scale", description = "The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("service_tier")
+  public JsonNullable<ServiceTierEnum> getServiceTier() {
+    return serviceTier;
+  }
+
+  public void setServiceTier(JsonNullable<ServiceTierEnum> serviceTier) {
+    this.serviceTier = serviceTier;
+  }
+
   public CreateChatCompletionResponse systemFingerprint(String systemFingerprint) {
     this.systemFingerprint = systemFingerprint;
     return this;
@@ -252,14 +311,26 @@ public class CreateChatCompletionResponse {
         Objects.equals(this.choices, createChatCompletionResponse.choices) &&
         Objects.equals(this.created, createChatCompletionResponse.created) &&
         Objects.equals(this.model, createChatCompletionResponse.model) &&
+        equalsNullable(this.serviceTier, createChatCompletionResponse.serviceTier) &&
         Objects.equals(this.systemFingerprint, createChatCompletionResponse.systemFingerprint) &&
         Objects.equals(this._object, createChatCompletionResponse._object) &&
         Objects.equals(this.usage, createChatCompletionResponse.usage);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, choices, created, model, systemFingerprint, _object, usage);
+    return Objects.hash(id, choices, created, model, hashCodeNullable(serviceTier), systemFingerprint, _object, usage);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -270,6 +341,7 @@ public class CreateChatCompletionResponse {
     sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    serviceTier: ").append(toIndentedString(serviceTier)).append("\n");
     sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");

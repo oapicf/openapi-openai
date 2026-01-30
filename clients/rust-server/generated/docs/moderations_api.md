@@ -4,12 +4,12 @@ All URIs are relative to *https://api.openai.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-**createModeration**](moderations_api.md#createModeration) | **POST** /moderations | Classifies if text is potentially harmful.
+**createModeration**](moderations_api.md#createModeration) | **POST** /moderations | Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 
 # **createModeration**
 > models::CreateModerationResponse createModeration(ctx, create_moderation_request)
-Classifies if text is potentially harmful.
+Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 ### Required Parameters
 

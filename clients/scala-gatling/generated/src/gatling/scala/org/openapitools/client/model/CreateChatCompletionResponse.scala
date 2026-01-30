@@ -11,6 +11,8 @@ case class CreateChatCompletionResponse (
     _created: Integer,
     /* The model used for the chat completion. */
     _model: String,
+    /* The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request. */
+    _serviceTier: Option[String],
     /* This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.  */
     _systemFingerprint: Option[String],
     /* The object type, which is always `chat.completion`. */
@@ -18,10 +20,10 @@ case class CreateChatCompletionResponse (
     _usage: Option[CompletionUsage]
 )
 object CreateChatCompletionResponse {
-    def toStringBody(var_id: Object, var_choices: Object, var_created: Object, var_model: Object, var_systemFingerprint: Object, var_object: Object, var_usage: Object) =
+    def toStringBody(var_id: Object, var_choices: Object, var_created: Object, var_model: Object, var_serviceTier: Object, var_systemFingerprint: Object, var_object: Object, var_usage: Object) =
         s"""
         | {
-        | "id":$var_id,"choices":$var_choices,"created":$var_created,"model":$var_model,"systemFingerprint":$var_systemFingerprint,"object":$var_object,"usage":$var_usage
+        | "id":$var_id,"choices":$var_choices,"created":$var_created,"model":$var_model,"serviceTier":$var_serviceTier,"systemFingerprint":$var_systemFingerprint,"object":$var_object,"usage":$var_usage
         | }
         """.stripMargin
 }

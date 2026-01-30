@@ -18,8 +18,6 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
   
   private String fileId;
 
-  private String quote;
-
   /**
    * The ID of the specific File the citation is from.
    **/
@@ -40,26 +38,6 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
   }
 
 
-  /**
-   * The specific quote in the file.
-   **/
-  public MessageContentTextAnnotationsFileCitationObjectFileCitation quote(String quote) {
-    this.quote = quote;
-    return this;
-  }
-
-  
-  @ApiModelProperty(required = true, value = "The specific quote in the file.")
-  @JsonProperty("quote")
-  @NotNull
-  public String getQuote() {
-    return quote;
-  }
-  public void setQuote(String quote) {
-    this.quote = quote;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -70,13 +48,12 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
       return false;
     }
     MessageContentTextAnnotationsFileCitationObjectFileCitation messageContentTextAnnotationsFileCitationObjectFileCitation = (MessageContentTextAnnotationsFileCitationObjectFileCitation) o;
-    return Objects.equals(this.fileId, messageContentTextAnnotationsFileCitationObjectFileCitation.fileId) &&
-        Objects.equals(this.quote, messageContentTextAnnotationsFileCitationObjectFileCitation.quote);
+    return Objects.equals(this.fileId, messageContentTextAnnotationsFileCitationObjectFileCitation.fileId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileId, quote);
+    return Objects.hash(fileId);
   }
 
   @Override
@@ -85,7 +62,6 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
     sb.append("class MessageContentTextAnnotationsFileCitationObjectFileCitation {\n");
     
     sb.append("    fileId: ").append(toIndentedString(fileId)).append("\n");
-    sb.append("    quote: ").append(toIndentedString(quote)).append("\n");
     sb.append("}");
     return sb.toString();
   }

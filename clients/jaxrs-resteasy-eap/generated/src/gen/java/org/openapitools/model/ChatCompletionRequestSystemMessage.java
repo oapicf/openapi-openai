@@ -7,14 +7,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.model.ChatCompletionRequestSystemMessageContent;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T10:45:31.742862961Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description="Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. ")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-01-29T14:09:29.020322047Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestSystemMessage   {
   
-  private String content;
+  private ChatCompletionRequestSystemMessageContent content;
 
   /**
    * The role of the messages author, in this case &#x60;system&#x60;.
@@ -38,16 +39,15 @@ public class ChatCompletionRequestSystemMessage   {
   private String name;
 
   /**
-   * The contents of the system message.
    **/
   
-  @ApiModelProperty(required = true, value = "The contents of the system message.")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty("content")
   @NotNull
-  public String getContent() {
+  public ChatCompletionRequestSystemMessageContent getContent() {
     return content;
   }
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestSystemMessageContent content) {
     this.content = content;
   }
 

@@ -9,7 +9,6 @@ Name | Type
 ------------ | -------------
 `role` | string
 `content` | [Array&lt;MessageDeltaObjectDeltaContentInner&gt;](MessageDeltaObjectDeltaContentInner.md)
-`fileIds` | Array&lt;string&gt;
 
 ## Example
 
@@ -20,7 +19,6 @@ import type { MessageDeltaObjectDelta } from ''
 const example = {
   "role": null,
   "content": null,
-  "fileIds": null,
 } satisfies MessageDeltaObjectDelta
 
 console.log(example)

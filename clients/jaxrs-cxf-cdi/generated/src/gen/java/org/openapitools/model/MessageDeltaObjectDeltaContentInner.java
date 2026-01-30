@@ -7,6 +7,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.MessageDeltaContentImageFileObject;
 import org.openapitools.model.MessageDeltaContentImageFileObjectImageFile;
+import org.openapitools.model.MessageDeltaContentImageUrlObject;
+import org.openapitools.model.MessageDeltaContentImageUrlObjectImageUrl;
+import org.openapitools.model.MessageDeltaContentRefusalObject;
 import org.openapitools.model.MessageDeltaContentTextObject;
 import org.openapitools.model.MessageDeltaContentTextObjectText;
 import javax.validation.constraints.*;
@@ -25,7 +28,7 @@ public class MessageDeltaObjectDeltaContentInner   {
 
 public enum TypeEnum {
 
-    @JsonProperty("image_file") IMAGE_FILE(String.valueOf("image_file")), @JsonProperty("text") TEXT(String.valueOf("text"));
+    @JsonProperty("image_file") IMAGE_FILE(String.valueOf("image_file")), @JsonProperty("text") TEXT(String.valueOf("text")), @JsonProperty("refusal") REFUSAL(String.valueOf("refusal")), @JsonProperty("image_url") IMAGE_URL(String.valueOf("image_url"));
 
 
     private String value;
@@ -58,6 +61,10 @@ public enum TypeEnum {
   private MessageDeltaContentImageFileObjectImageFile imageFile;
 
   private MessageDeltaContentTextObjectText text;
+
+  private String refusal;
+
+  private MessageDeltaContentImageUrlObjectImageUrl imageUrl;
 
   /**
    * The index of the content part in the message.
@@ -135,6 +142,42 @@ public enum TypeEnum {
   }
 
 
+  /**
+   **/
+  public MessageDeltaObjectDeltaContentInner refusal(String refusal) {
+    this.refusal = refusal;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("refusal")
+  public String getRefusal() {
+    return refusal;
+  }
+  public void setRefusal(String refusal) {
+    this.refusal = refusal;
+  }
+
+
+  /**
+   **/
+  public MessageDeltaObjectDeltaContentInner imageUrl(MessageDeltaContentImageUrlObjectImageUrl imageUrl) {
+    this.imageUrl = imageUrl;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("image_url")
+  public MessageDeltaContentImageUrlObjectImageUrl getImageUrl() {
+    return imageUrl;
+  }
+  public void setImageUrl(MessageDeltaContentImageUrlObjectImageUrl imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -148,12 +191,14 @@ public enum TypeEnum {
     return Objects.equals(this.index, messageDeltaObjectDeltaContentInner.index) &&
         Objects.equals(this.type, messageDeltaObjectDeltaContentInner.type) &&
         Objects.equals(this.imageFile, messageDeltaObjectDeltaContentInner.imageFile) &&
-        Objects.equals(this.text, messageDeltaObjectDeltaContentInner.text);
+        Objects.equals(this.text, messageDeltaObjectDeltaContentInner.text) &&
+        Objects.equals(this.refusal, messageDeltaObjectDeltaContentInner.refusal) &&
+        Objects.equals(this.imageUrl, messageDeltaObjectDeltaContentInner.imageUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(index, type, imageFile, text);
+    return Objects.hash(index, type, imageFile, text, refusal, imageUrl);
   }
 
   @Override
@@ -165,6 +210,8 @@ public enum TypeEnum {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    imageFile: ").append(toIndentedString(imageFile)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    refusal: ").append(toIndentedString(refusal)).append("\n");
+    sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

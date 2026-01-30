@@ -1,35 +1,142 @@
-#' Create a new CreateChatCompletionRequestResponseFormat
-#'
-#' @description
-#' An object specifying the format that the model must output. Compatible with [GPT-4 Turbo](/docs/models/gpt-4-and-gpt-4-turbo) and all GPT-3.5 Turbo models newer than `gpt-3.5-turbo-1106`.  Setting to `{ \"type\": \"json_object\" }` enables JSON mode, which guarantees the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \"stuck\" request. Also note that the message content may be partially cut off if `finish_reason=\"length\"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. 
-#'
 #' @docType class
 #' @title CreateChatCompletionRequestResponseFormat
+#'
 #' @description CreateChatCompletionRequestResponseFormat Class
+#'
 #' @format An \code{R6Class} generator object
-#' @field type Must be one of `text` or `json_object`. character [optional]
+#'
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
 CreateChatCompletionRequestResponseFormat <- R6::R6Class(
   "CreateChatCompletionRequestResponseFormat",
   public = list(
-    `type` = NULL,
+    #' @field actual_instance the object stored in this instance.
+    actual_instance = NULL,
+    #' @field actual_type the type of the object stored in this instance.
+    actual_type = NULL,
+    #' @field one_of  a list of types defined in the oneOf schema.
+    one_of = list("ResponseFormatJsonObject", "ResponseFormatJsonSchema", "ResponseFormatText"),
 
     #' @description
-    #' Initialize a new CreateChatCompletionRequestResponseFormat class.
+    #' Initialize a new CreateChatCompletionRequestResponseFormat.
     #'
-    #' @param type Must be one of `text` or `json_object`.. Default to "text".
-    #' @param ... Other optional arguments.
-    initialize = function(`type` = "text", ...) {
-      if (!is.null(`type`)) {
-        if (!(`type` %in% c("text", "json_object"))) {
-          stop(paste("Error! \"", `type`, "\" cannot be assigned to `type`. Must be \"text\", \"json_object\".", sep = ""))
-        }
-        if (!(is.character(`type`) && length(`type`) == 1)) {
-          stop(paste("Error! Invalid data for `type`. Must be a string:", `type`))
-        }
-        self$`type` <- `type`
+    #' @param instance an instance of the object defined in the oneOf schemas: "ResponseFormatJsonObject", "ResponseFormatJsonSchema", "ResponseFormatText"
+    initialize = function(instance = NULL) {
+      if (is.null(instance)) {
+        # do nothing
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "ResponseFormatJsonObject") {
+        self$actual_instance <- instance
+        self$actual_type <- "ResponseFormatJsonObject"
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "ResponseFormatJsonSchema") {
+        self$actual_instance <- instance
+        self$actual_type <- "ResponseFormatJsonSchema"
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "ResponseFormatText") {
+        self$actual_instance <- instance
+        self$actual_type <- "ResponseFormatText"
+      } else {
+        stop(paste("Failed to initialize CreateChatCompletionRequestResponseFormat with oneOf schemas ResponseFormatJsonObject, ResponseFormatJsonSchema, ResponseFormatText. Provided class name: ",
+                   get(class(instance)[[1]], pos = -1)$classname))
+      }
+    },
+
+    #' @description
+    #' Deserialize JSON string into an instance of CreateChatCompletionRequestResponseFormat.
+    #' An alias to the method `fromJSON` .
+    #'
+    #' @param input The input JSON.
+    #'
+    #' @return An instance of CreateChatCompletionRequestResponseFormat.
+    fromJSONString = function(input) {
+      self$fromJSON(input)
+    },
+
+    #' @description
+    #' Deserialize JSON string into an instance of CreateChatCompletionRequestResponseFormat.
+    #'
+    #' @param input The input JSON.
+    #'
+    #' @return An instance of CreateChatCompletionRequestResponseFormat.
+    fromJSON = function(input) {
+      matched <- 0 # match counter
+      matched_schemas <- list() #names of matched schemas
+      error_messages <- list()
+      instance <- NULL
+
+      `ResponseFormatText_result` <- tryCatch({
+          `ResponseFormatText`$public_methods$validateJSON(input)
+          `ResponseFormatText_instance` <- `ResponseFormatText`$new()
+          instance <- `ResponseFormatText_instance`$fromJSON(input)
+          instance_type <- "ResponseFormatText"
+          matched_schemas <- append(matched_schemas, "ResponseFormatText")
+          matched <- matched + 1
+        },
+        error = function(err) err
+      )
+
+      if (!is.null(`ResponseFormatText_result`["error"])) {
+        error_messages <- append(error_messages, `ResponseFormatText_result`["message"])
+      }
+
+      `ResponseFormatJsonObject_result` <- tryCatch({
+          `ResponseFormatJsonObject`$public_methods$validateJSON(input)
+          `ResponseFormatJsonObject_instance` <- `ResponseFormatJsonObject`$new()
+          instance <- `ResponseFormatJsonObject_instance`$fromJSON(input)
+          instance_type <- "ResponseFormatJsonObject"
+          matched_schemas <- append(matched_schemas, "ResponseFormatJsonObject")
+          matched <- matched + 1
+        },
+        error = function(err) err
+      )
+
+      if (!is.null(`ResponseFormatJsonObject_result`["error"])) {
+        error_messages <- append(error_messages, `ResponseFormatJsonObject_result`["message"])
+      }
+
+      `ResponseFormatJsonSchema_result` <- tryCatch({
+          `ResponseFormatJsonSchema`$public_methods$validateJSON(input)
+          `ResponseFormatJsonSchema_instance` <- `ResponseFormatJsonSchema`$new()
+          instance <- `ResponseFormatJsonSchema_instance`$fromJSON(input)
+          instance_type <- "ResponseFormatJsonSchema"
+          matched_schemas <- append(matched_schemas, "ResponseFormatJsonSchema")
+          matched <- matched + 1
+        },
+        error = function(err) err
+      )
+
+      if (!is.null(`ResponseFormatJsonSchema_result`["error"])) {
+        error_messages <- append(error_messages, `ResponseFormatJsonSchema_result`["message"])
+      }
+
+      if (matched == 1) {
+        # successfully match exactly 1 schema specified in oneOf
+        self$actual_instance <- instance
+        self$actual_type <- instance_type
+      } else if (matched > 1) {
+        # more than 1 match
+        stop(paste("Multiple matches found when deserializing the input into CreateChatCompletionRequestResponseFormat with oneOf schemas ResponseFormatJsonObject, ResponseFormatJsonSchema, ResponseFormatText. Matched schemas: ",
+                   paste(matched_schemas, collapse = ", ")))
+      } else {
+        # no match
+        stop(paste("No match found when deserializing the input into CreateChatCompletionRequestResponseFormat with oneOf schemas ResponseFormatJsonObject, ResponseFormatJsonSchema, ResponseFormatText. Details: >>",
+                   paste(error_messages, collapse = " >> ")))
+      }
+
+      self
+    },
+
+    #' @description
+    #' Serialize CreateChatCompletionRequestResponseFormat to JSON string.
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
+    #' @return JSON string representation of the CreateChatCompletionRequestResponseFormat.
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      if (!is.null(self$actual_instance)) {
+        json <- jsonlite::toJSON(simple, auto_unbox = TRUE, ...)
+        return(as.character(jsonlite::minify(json)))
+      } else {
+        return(NULL)
       }
     },
 
@@ -41,108 +148,47 @@ CreateChatCompletionRequestResponseFormat <- R6::R6Class(
     },
 
     #' @description
-    #' Convert to a List
-    #'
-    #' Convert the R6 object to a list to work more easily with other tooling.
-    #'
-    #' @return CreateChatCompletionRequestResponseFormat as a base R list.
-    #' @examples
-    #' # convert array of CreateChatCompletionRequestResponseFormat (x) to a data frame
-    #' \dontrun{
-    #' library(purrr)
-    #' library(tibble)
-    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
-    #' df
-    #' }
-    toList = function() {
-      return(self$toSimpleType())
-    },
-
-    #' @description
     #' Convert CreateChatCompletionRequestResponseFormat to a base R type
     #'
     #' @return A base R type, e.g. a list or numeric/character array.
     toSimpleType = function() {
-      CreateChatCompletionRequestResponseFormatObject <- list()
-      if (!is.null(self$`type`)) {
-        CreateChatCompletionRequestResponseFormatObject[["type"]] <-
-          self$`type`
+      if (!is.null(self$actual_instance)) {
+        return(self$actual_instance$toSimpleType())
+      } else {
+        return(NULL)
       }
-      return(CreateChatCompletionRequestResponseFormatObject)
     },
 
     #' @description
-    #' Deserialize JSON string into an instance of CreateChatCompletionRequestResponseFormat
+    #' Validate the input JSON with respect to CreateChatCompletionRequestResponseFormat and
+    #' throw exception if invalid.
     #'
-    #' @param input_json the JSON input
-    #' @return the instance of CreateChatCompletionRequestResponseFormat
-    fromJSON = function(input_json) {
-      this_object <- jsonlite::fromJSON(input_json)
-      if (!is.null(this_object$`type`)) {
-        if (!is.null(this_object$`type`) && !(this_object$`type` %in% c("text", "json_object"))) {
-          stop(paste("Error! \"", this_object$`type`, "\" cannot be assigned to `type`. Must be \"text\", \"json_object\".", sep = ""))
-        }
-        self$`type` <- this_object$`type`
-      }
-      self
-    },
-
-    #' @description
-    #' To JSON String
-    #' 
-    #' @param ... Parameters passed to `jsonlite::toJSON`
-    #' @return CreateChatCompletionRequestResponseFormat in JSON format
-    toJSONString = function(...) {
-      simple <- self$toSimpleType()
-      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
-      return(as.character(jsonlite::minify(json)))
-    },
-
-    #' @description
-    #' Deserialize JSON string into an instance of CreateChatCompletionRequestResponseFormat
-    #'
-    #' @param input_json the JSON input
-    #' @return the instance of CreateChatCompletionRequestResponseFormat
-    fromJSONString = function(input_json) {
-      this_object <- jsonlite::fromJSON(input_json)
-      if (!is.null(this_object$`type`) && !(this_object$`type` %in% c("text", "json_object"))) {
-        stop(paste("Error! \"", this_object$`type`, "\" cannot be assigned to `type`. Must be \"text\", \"json_object\".", sep = ""))
-      }
-      self$`type` <- this_object$`type`
-      self
-    },
-
-    #' @description
-    #' Validate JSON input with respect to CreateChatCompletionRequestResponseFormat and throw an exception if invalid
-    #'
-    #' @param input the JSON input
+    #' @param input The input JSON.
     validateJSON = function(input) {
-      input_json <- jsonlite::fromJSON(input)
+      # backup current values
+      actual_instance_bak <- self$actual_instance
+      actual_type_bak <- self$actual_type
+
+      # if it's not valid, an error will be thrown
+      self$fromJSON(input)
+
+      # no error thrown, restore old values
+      self$actual_instance <- actual_instance_bak
+      self$actual_type <- actual_type_bak
     },
 
     #' @description
-    #' To string (JSON format)
+    #' Returns the string representation of the instance.
     #'
-    #' @return String representation of CreateChatCompletionRequestResponseFormat
+    #' @return The string representation of the instance.
     toString = function() {
-      self$toJSONString()
-    },
-
-    #' @description
-    #' Return true if the values in all fields are valid.
-    #'
-    #' @return true if the values in all fields are valid.
-    isValid = function() {
-      TRUE
-    },
-
-    #' @description
-    #' Return a list of invalid fields (if any).
-    #'
-    #' @return A list of invalid fields (if any).
-    getInvalidFields = function() {
-      invalid_fields <- list()
-      invalid_fields
+      jsoncontent <- c(
+        sprintf('"actual_instance": %s', if (is.null(self$actual_instance)) NULL else self$actual_instance$toJSONString()),
+        sprintf('"actual_type": "%s"', self$actual_type),
+        sprintf('"one_of": "%s"', paste(unlist(self$one_of), collapse = ", "))
+      )
+      jsoncontent <- paste(jsoncontent, collapse = ",")
+      as.character(jsonlite::prettify(paste("{", jsoncontent, "}", sep = "")))
     },
 
     #' @description
@@ -156,13 +202,13 @@ CreateChatCompletionRequestResponseFormat <- R6::R6Class(
   lock_class = TRUE
 )
 ## Uncomment below to unlock the class to allow modifications of the method or field
-# CreateChatCompletionRequestResponseFormat$unlock()
+#CreateChatCompletionRequestResponseFormat$unlock()
 #
 ## Below is an example to define the print function
-# CreateChatCompletionRequestResponseFormat$set("public", "print", function(...) {
-#   print(jsonlite::prettify(self$toJSONString()))
-#   invisible(self)
-# })
+#CreateChatCompletionRequestResponseFormat$set("public", "print", function(...) {
+#  print(jsonlite::prettify(self$toJSONString()))
+#  invisible(self)
+#})
 ## Uncomment below to lock the class to prevent modifications to the method or field
-# CreateChatCompletionRequestResponseFormat$lock()
+#CreateChatCompletionRequestResponseFormat$lock()
 

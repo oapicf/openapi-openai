@@ -15,7 +15,9 @@
 
 typedef struct assistant_object_t assistant_object_t;
 
+#include "assistant_object_tool_resources.h"
 #include "assistant_object_tools_inner.h"
+#include "assistants_api_response_format_option.h"
 #include "object.h"
 
 // Enum OBJECT for assistant_object
@@ -37,8 +39,11 @@ typedef struct assistant_object_t {
     char *model; // string
     char *instructions; // string
     list_t *tools; //nonprimitive container
-    list_t *file_ids; //primitive container
+    struct assistant_object_tool_resources_t *tool_resources; //model
     object_t *metadata; //object
+    double temperature; //numeric
+    double top_p; //numeric
+    struct assistants_api_response_format_option_t *response_format; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } assistant_object_t;
@@ -52,8 +57,11 @@ __attribute__((deprecated)) assistant_object_t *assistant_object_create(
     char *model,
     char *instructions,
     list_t *tools,
-    list_t *file_ids,
-    object_t *metadata
+    assistant_object_tool_resources_t *tool_resources,
+    object_t *metadata,
+    double temperature,
+    double top_p,
+    assistants_api_response_format_option_t *response_format
 );
 
 void assistant_object_free(assistant_object_t *assistant_object);

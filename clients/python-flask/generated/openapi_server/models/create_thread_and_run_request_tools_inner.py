@@ -4,14 +4,16 @@ from typing import List, Dict  # noqa: F401
 
 from openapi_server.models.base_model import Model
 from openapi_server.models.assistant_tools_code import AssistantToolsCode
+from openapi_server.models.assistant_tools_file_search import AssistantToolsFileSearch
+from openapi_server.models.assistant_tools_file_search_file_search import AssistantToolsFileSearchFileSearch
 from openapi_server.models.assistant_tools_function import AssistantToolsFunction
-from openapi_server.models.assistant_tools_retrieval import AssistantToolsRetrieval
 from openapi_server.models.function_object import FunctionObject
 from openapi_server import util
 
 from openapi_server.models.assistant_tools_code import AssistantToolsCode  # noqa: E501
+from openapi_server.models.assistant_tools_file_search import AssistantToolsFileSearch  # noqa: E501
+from openapi_server.models.assistant_tools_file_search_file_search import AssistantToolsFileSearchFileSearch  # noqa: E501
 from openapi_server.models.assistant_tools_function import AssistantToolsFunction  # noqa: E501
-from openapi_server.models.assistant_tools_retrieval import AssistantToolsRetrieval  # noqa: E501
 from openapi_server.models.function_object import FunctionObject  # noqa: E501
 
 class CreateThreadAndRunRequestToolsInner(Model):
@@ -20,25 +22,30 @@ class CreateThreadAndRunRequestToolsInner(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, type=None, function=None):  # noqa: E501
+    def __init__(self, type=None, file_search=None, function=None):  # noqa: E501
         """CreateThreadAndRunRequestToolsInner - a model defined in OpenAPI
 
         :param type: The type of this CreateThreadAndRunRequestToolsInner.  # noqa: E501
         :type type: str
+        :param file_search: The file_search of this CreateThreadAndRunRequestToolsInner.  # noqa: E501
+        :type file_search: AssistantToolsFileSearchFileSearch
         :param function: The function of this CreateThreadAndRunRequestToolsInner.  # noqa: E501
         :type function: FunctionObject
         """
         self.openapi_types = {
             'type': str,
+            'file_search': AssistantToolsFileSearchFileSearch,
             'function': FunctionObject
         }
 
         self.attribute_map = {
             'type': 'type',
+            'file_search': 'file_search',
             'function': 'function'
         }
 
         self._type = type
+        self._file_search = file_search
         self._function = function
 
     @classmethod
@@ -72,7 +79,7 @@ class CreateThreadAndRunRequestToolsInner(Model):
         :param type: The type of this CreateThreadAndRunRequestToolsInner.
         :type type: str
         """
-        allowed_values = ["code_interpreter", "retrieval", "function"]  # noqa: E501
+        allowed_values = ["code_interpreter", "file_search", "function"]  # noqa: E501
         if type not in allowed_values:
             raise ValueError(
                 "Invalid value for `type` ({0}), must be one of {1}"
@@ -80,6 +87,27 @@ class CreateThreadAndRunRequestToolsInner(Model):
             )
 
         self._type = type
+
+    @property
+    def file_search(self) -> AssistantToolsFileSearchFileSearch:
+        """Gets the file_search of this CreateThreadAndRunRequestToolsInner.
+
+
+        :return: The file_search of this CreateThreadAndRunRequestToolsInner.
+        :rtype: AssistantToolsFileSearchFileSearch
+        """
+        return self._file_search
+
+    @file_search.setter
+    def file_search(self, file_search: AssistantToolsFileSearchFileSearch):
+        """Sets the file_search of this CreateThreadAndRunRequestToolsInner.
+
+
+        :param file_search: The file_search of this CreateThreadAndRunRequestToolsInner.
+        :type file_search: AssistantToolsFileSearchFileSearch
+        """
+
+        self._file_search = file_search
 
     @property
     def function(self) -> FunctionObject:

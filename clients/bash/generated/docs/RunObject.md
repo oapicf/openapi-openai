@@ -20,14 +20,15 @@ Name | Type | Description | Notes
 **model** | **string** |  | [default to null]
 **instructions** | **string** |  | [default to null]
 **tools** | [**array[AssistantObjectToolsInner]**](AssistantObjectToolsInner.md) |  | [default to []]
-**fileUnderscoreids** | **array[string]** |  | [default to []]
 **metadata** | **map** |  | [default to null]
 **usage** | [**RunCompletionUsage**](RunCompletionUsage.md) |  | [default to null]
 **temperature** | **integer** |  | [optional] [default to null]
+**topUnderscorep** | **integer** |  | [optional] [default to null]
 **maxUnderscorepromptUnderscoretokens** | **integer** |  | [default to null]
 **maxUnderscorecompletionUnderscoretokens** | **integer** |  | [default to null]
 **truncationUnderscorestrategy** | [**TruncationObject**](TruncationObject.md) |  | [default to null]
 **toolUnderscorechoice** | [**AssistantsApiToolChoiceOption**](AssistantsApiToolChoiceOption.md) |  | [default to null]
+**parallelUnderscoretoolUnderscorecalls** | **boolean** |  | [default to true]
 **responseUnderscoreformat** | [**AssistantsApiResponseFormatOption**](AssistantsApiResponseFormatOption.md) |  | [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

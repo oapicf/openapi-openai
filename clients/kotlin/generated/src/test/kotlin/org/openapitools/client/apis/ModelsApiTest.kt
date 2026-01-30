@@ -31,7 +31,7 @@ class ModelsApiTest : ShouldSpec() {
         // to test deleteModel
         should("test deleteModel") {
             // uncomment below to test deleteModel
-            //val model : kotlin.String = ft:gpt-3.5-turbo:acemeco:suffix:abc123 // kotlin.String | The model to delete
+            //val model : kotlin.String = ft:gpt-4o-mini:acemeco:suffix:abc123 // kotlin.String | The model to delete
             //val result : DeleteModelResponse = apiInstance.deleteModel(model)
             //result shouldBe ("TODO")
         }
@@ -46,7 +46,7 @@ class ModelsApiTest : ShouldSpec() {
         // to test retrieveModel
         should("test retrieveModel") {
             // uncomment below to test retrieveModel
-            //val model : kotlin.String = gpt-3.5-turbo // kotlin.String | The ID of the model to use for this request
+            //val model : kotlin.String = gpt-4o-mini // kotlin.String | The ID of the model to use for this request
             //val result : Model = apiInstance.retrieveModel(model)
             //result shouldBe ("TODO")
         }

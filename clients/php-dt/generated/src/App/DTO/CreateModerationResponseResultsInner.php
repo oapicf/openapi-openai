@@ -28,4 +28,11 @@ class CreateModerationResponseResultsInner
      */
     public ?\App\DTO\CreateModerationResponseResultsInnerCategoryScores $category_scores = null;
 
+    /**
+     * @DTA\Data(field="category_applied_input_types")
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\CreateModerationResponseResultsInnerCategoryAppliedInputTypes::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\CreateModerationResponseResultsInnerCategoryAppliedInputTypes::class})
+     */
+    public ?\App\DTO\CreateModerationResponseResultsInnerCategoryAppliedInputTypes $category_applied_input_types = null;
+
 }

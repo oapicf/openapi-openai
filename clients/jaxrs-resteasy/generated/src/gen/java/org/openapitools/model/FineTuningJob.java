@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.model.FineTuneMethod;
 import org.openapitools.model.FineTuningJobError;
 import org.openapitools.model.FineTuningJobHyperparameters;
 import org.openapitools.model.FineTuningJobIntegrationsInner;
@@ -18,7 +19,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="The `fine_tuning.job` object represents a fine-tuning job that has been created through the API. ")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T10:45:28.938980301Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description="The `fine_tuning.job` object represents a fine-tuning job that has been created through the API. ")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-01-29T14:09:21.247747647Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FineTuningJob   {
   
   private String id;
@@ -85,6 +86,8 @@ public class FineTuningJob   {
   private String validationFile;
   private List<FineTuningJobIntegrationsInner> integrations;
   private Integer seed;
+  private Integer estimatedFinish;
+  private FineTuneMethod method;
 
   /**
    * The object identifier, which can be referenced in the API endpoints.
@@ -310,6 +313,32 @@ public class FineTuningJob   {
     this.seed = seed;
   }
 
+  /**
+   * The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+   **/
+  
+  @ApiModelProperty(value = "The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.")
+  @JsonProperty("estimated_finish")
+  public Integer getEstimatedFinish() {
+    return estimatedFinish;
+  }
+  public void setEstimatedFinish(Integer estimatedFinish) {
+    this.estimatedFinish = estimatedFinish;
+  }
+
+  /**
+   **/
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("method")
+  @Valid
+  public FineTuneMethod getMethod() {
+    return method;
+  }
+  public void setMethod(FineTuneMethod method) {
+    this.method = method;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -335,12 +364,14 @@ public class FineTuningJob   {
         Objects.equals(this.trainingFile, fineTuningJob.trainingFile) &&
         Objects.equals(this.validationFile, fineTuningJob.validationFile) &&
         Objects.equals(this.integrations, fineTuningJob.integrations) &&
-        Objects.equals(this.seed, fineTuningJob.seed);
+        Objects.equals(this.seed, fineTuningJob.seed) &&
+        Objects.equals(this.estimatedFinish, fineTuningJob.estimatedFinish) &&
+        Objects.equals(this.method, fineTuningJob.method);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, createdAt, error, fineTunedModel, finishedAt, hyperparameters, model, _object, organizationId, resultFiles, status, trainedTokens, trainingFile, validationFile, integrations, seed);
+    return Objects.hash(id, createdAt, error, fineTunedModel, finishedAt, hyperparameters, model, _object, organizationId, resultFiles, status, trainedTokens, trainingFile, validationFile, integrations, seed, estimatedFinish, method);
   }
 
   @Override
@@ -364,6 +395,8 @@ public class FineTuningJob   {
     sb.append("    validationFile: ").append(toIndentedString(validationFile)).append("\n");
     sb.append("    integrations: ").append(toIndentedString(integrations)).append("\n");
     sb.append("    seed: ").append(toIndentedString(seed)).append("\n");
+    sb.append("    estimatedFinish: ").append(toIndentedString(estimatedFinish)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("}");
     return sb.toString();
   }

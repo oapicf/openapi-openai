@@ -51,8 +51,8 @@ resourceTypes {
         }
         status {
           type =  string
-          description = "The status of the run, which can be either &#x60;queued&#x60;, &#x60;in_progress&#x60;, &#x60;requires_action&#x60;, &#x60;cancelling&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, or &#x60;expired&#x60;."
-          enum = ["queued", "in_progress", "requires_action", "cancelling", "cancelled", "failed", "completed", "expired"]
+          description = "The status of the run, which can be either &#x60;queued&#x60;, &#x60;in_progress&#x60;, &#x60;requires_action&#x60;, &#x60;cancelling&#x60;, &#x60;cancelled&#x60;, &#x60;failed&#x60;, &#x60;completed&#x60;, &#x60;incomplete&#x60;, or &#x60;expired&#x60;."
+          enum = ["queued", "in_progress", "requires_action", "cancelling", "cancelled", "failed", "completed", "incomplete", "expired"]
           optional = true
         }
         required_action {
@@ -111,15 +111,9 @@ resourceTypes {
           description = "The list of tools that the [assistant](/docs/api-reference/assistants) used for this run."
           optional = true
         }
-        file_ids {
-          type = array
-          items.type =  string
-          description = "The list of [File](/docs/api-reference/files) IDs the [assistant](/docs/api-reference/assistants) used for this run."
-          optional = true
-        }
         metadata {
           type =  
-          description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long. "
+          description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. "
           optional = true
         }
         usage {
@@ -130,6 +124,11 @@ resourceTypes {
         temperature {
           type =  
           description = "The sampling temperature used for this run. If not set, defaults to 1."
+          optional = false
+        }
+        top_p {
+          type =  
+          description = "The nucleus sampling value used for this run. If not set, defaults to 1."
           optional = false
         }
         max_prompt_tokens {
@@ -150,6 +149,11 @@ resourceTypes {
         tool_choice {
           type = AssistantsApiToolChoiceOption
           description = ""
+          optional = true
+        }
+        parallel_tool_calls {
+          type =  boolean
+          description = "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use."
           optional = true
         }
         response_format {

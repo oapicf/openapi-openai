@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -16,6 +16,9 @@ package openapitools;
 
 import public "models/message_content_image_file_object.proto";
 import public "models/message_content_image_file_object_image_file.proto";
+import public "models/message_content_image_url_object.proto";
+import public "models/message_content_image_url_object_image_url.proto";
+import public "models/message_content_refusal_object.proto";
 import public "models/message_content_text_object.proto";
 import public "models/message_content_text_object_text.proto";
 
@@ -23,7 +26,9 @@ message MessageObjectContentInner {
 
     oneof message_object_content_inner {
         MessageContentImageFileObject message_content_image_file_object = 179256833;
+        MessageContentImageUrlObject message_content_image_url_object = 153686610;
         MessageContentTextObject message_content_text_object = 466385006;
+        MessageContentRefusalObject message_content_refusal_object = 52346434;
     }
 }
 

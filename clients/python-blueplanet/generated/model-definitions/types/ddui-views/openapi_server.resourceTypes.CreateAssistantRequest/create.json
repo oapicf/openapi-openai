@@ -16,8 +16,11 @@
       {"model": "description" },
       {"model": "instructions" },
       {"model": "tools" },
-      {"model": "file_ids" },
+      {"model": "tool_resources" },
       {"model": "metadata" },
+      {"model": "temperature" },
+      {"model": "top_p" },
+      {"model": "response_format" },
     ]
   }]
 }

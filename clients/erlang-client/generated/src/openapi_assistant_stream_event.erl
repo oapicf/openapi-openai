@@ -5,13 +5,16 @@
 -export_type([openapi_assistant_stream_event/0]).
 
 -type openapi_assistant_stream_event() ::
-    #{ 'event' := binary(),
+    #{ 'enabled' => boolean(),
+       'event' := binary(),
        'data' := binary()
      }.
 
-encode(#{ 'event' := Event,
+encode(#{ 'enabled' := Enabled,
+          'event' := Event,
           'data' := Data
         }) ->
-    #{ 'event' => Event,
+    #{ 'enabled' => Enabled,
+       'event' => Event,
        'data' => Data
      }.

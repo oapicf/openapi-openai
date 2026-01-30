@@ -49,16 +49,17 @@ run_object_t* instantiate_run_object(int include_optional) {
       "0",
       "0",
       list_createList(),
-      list_createList(),
       0,
        // false, not to have infinite recursion
       instantiate_run_completion_usage(0),
+      1.337,
       1.337,
       256,
       256,
        // false, not to have infinite recursion
       instantiate_truncation_object(0),
       null,
+      1,
       null
     );
   } else {
@@ -80,14 +81,15 @@ run_object_t* instantiate_run_object(int include_optional) {
       "0",
       "0",
       list_createList(),
-      list_createList(),
       0,
       NULL,
+      1.337,
       1.337,
       256,
       256,
       NULL,
       null,
+      1,
       null
     );
   }

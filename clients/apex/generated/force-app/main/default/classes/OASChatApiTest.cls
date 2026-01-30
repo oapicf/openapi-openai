@@ -1,7 +1,7 @@
 @isTest
 private class OASChatApiTest {
     /**
-     * Creates a model response for the given chat conversation.
+     * Creates a model response for the given chat conversation. Learn more in the\n[text generation](/docs/guides/text-generation), [vision](/docs/guides/vision),\nand [audio](/docs/guides/audio) guides.\n\nParameter support can differ depending on the model used to generate the\nresponse, particularly for newer reasoning models. Parameters that are only\nsupported for reasoning models are noted below. For the current state of \nunsupported parameters in reasoning models, \n[refer to the reasoning guide](/docs/guides/reasoning).\n
      *
      * 
      */

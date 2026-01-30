@@ -7,12 +7,15 @@ from typing import List, Dict, Type
 from openapi_server.models.base_model import Model
 from openapi_server.models.chat_completion_functions import ChatCompletionFunctions
 from openapi_server.models.chat_completion_request_message import ChatCompletionRequestMessage
+from openapi_server.models.chat_completion_stream_options import ChatCompletionStreamOptions
 from openapi_server.models.chat_completion_tool import ChatCompletionTool
 from openapi_server.models.chat_completion_tool_choice_option import ChatCompletionToolChoiceOption
+from openapi_server.models.create_chat_completion_request_audio import CreateChatCompletionRequestAudio
 from openapi_server.models.create_chat_completion_request_function_call import CreateChatCompletionRequestFunctionCall
 from openapi_server.models.create_chat_completion_request_model import CreateChatCompletionRequestModel
 from openapi_server.models.create_chat_completion_request_response_format import CreateChatCompletionRequestResponseFormat
 from openapi_server.models.create_chat_completion_request_stop import CreateChatCompletionRequestStop
+from openapi_server.models.prediction_content import PredictionContent
 from openapi_server import util
 
 
@@ -22,26 +25,36 @@ class CreateChatCompletionRequest(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, messages: List[ChatCompletionRequestMessage]=None, model: CreateChatCompletionRequestModel=None, frequency_penalty: float=0, logit_bias: Dict[str, int]=None, logprobs: bool=False, top_logprobs: int=None, max_tokens: int=None, n: int=1, presence_penalty: float=0, response_format: CreateChatCompletionRequestResponseFormat=None, seed: int=None, stop: CreateChatCompletionRequestStop=None, stream: bool=False, temperature: float=1, top_p: float=1, tools: List[ChatCompletionTool]=None, tool_choice: ChatCompletionToolChoiceOption=None, user: str=None, function_call: CreateChatCompletionRequestFunctionCall=None, functions: List[ChatCompletionFunctions]=None):
+    def __init__(self, messages: List[ChatCompletionRequestMessage]=None, model: CreateChatCompletionRequestModel=None, store: bool=False, reasoning_effort: str='medium', metadata: Dict[str, str]=None, frequency_penalty: float=0, logit_bias: Dict[str, int]=None, logprobs: bool=False, top_logprobs: int=None, max_tokens: int=None, max_completion_tokens: int=None, n: int=1, modalities: List[str]=None, prediction: PredictionContent=None, audio: CreateChatCompletionRequestAudio=None, presence_penalty: float=0, response_format: CreateChatCompletionRequestResponseFormat=None, seed: int=None, service_tier: str='auto', stop: CreateChatCompletionRequestStop=None, stream: bool=False, stream_options: ChatCompletionStreamOptions=None, temperature: float=1, top_p: float=1, tools: List[ChatCompletionTool]=None, tool_choice: ChatCompletionToolChoiceOption=None, parallel_tool_calls: bool=True, user: str=None, function_call: CreateChatCompletionRequestFunctionCall=None, functions: List[ChatCompletionFunctions]=None):
         """CreateChatCompletionRequest - a model defined in OpenAPI
 
         :param messages: The messages of this CreateChatCompletionRequest.
         :param model: The model of this CreateChatCompletionRequest.
+        :param store: The store of this CreateChatCompletionRequest.
+        :param reasoning_effort: The reasoning_effort of this CreateChatCompletionRequest.
+        :param metadata: The metadata of this CreateChatCompletionRequest.
         :param frequency_penalty: The frequency_penalty of this CreateChatCompletionRequest.
         :param logit_bias: The logit_bias of this CreateChatCompletionRequest.
         :param logprobs: The logprobs of this CreateChatCompletionRequest.
         :param top_logprobs: The top_logprobs of this CreateChatCompletionRequest.
         :param max_tokens: The max_tokens of this CreateChatCompletionRequest.
+        :param max_completion_tokens: The max_completion_tokens of this CreateChatCompletionRequest.
         :param n: The n of this CreateChatCompletionRequest.
+        :param modalities: The modalities of this CreateChatCompletionRequest.
+        :param prediction: The prediction of this CreateChatCompletionRequest.
+        :param audio: The audio of this CreateChatCompletionRequest.
         :param presence_penalty: The presence_penalty of this CreateChatCompletionRequest.
         :param response_format: The response_format of this CreateChatCompletionRequest.
         :param seed: The seed of this CreateChatCompletionRequest.
+        :param service_tier: The service_tier of this CreateChatCompletionRequest.
         :param stop: The stop of this CreateChatCompletionRequest.
         :param stream: The stream of this CreateChatCompletionRequest.
+        :param stream_options: The stream_options of this CreateChatCompletionRequest.
         :param temperature: The temperature of this CreateChatCompletionRequest.
         :param top_p: The top_p of this CreateChatCompletionRequest.
         :param tools: The tools of this CreateChatCompletionRequest.
         :param tool_choice: The tool_choice of this CreateChatCompletionRequest.
+        :param parallel_tool_calls: The parallel_tool_calls of this CreateChatCompletionRequest.
         :param user: The user of this CreateChatCompletionRequest.
         :param function_call: The function_call of this CreateChatCompletionRequest.
         :param functions: The functions of this CreateChatCompletionRequest.
@@ -49,21 +62,31 @@ class CreateChatCompletionRequest(Model):
         self.openapi_types = {
             'messages': List[ChatCompletionRequestMessage],
             'model': CreateChatCompletionRequestModel,
+            'store': bool,
+            'reasoning_effort': str,
+            'metadata': Dict[str, str],
             'frequency_penalty': float,
             'logit_bias': Dict[str, int],
             'logprobs': bool,
             'top_logprobs': int,
             'max_tokens': int,
+            'max_completion_tokens': int,
             'n': int,
+            'modalities': List[str],
+            'prediction': PredictionContent,
+            'audio': CreateChatCompletionRequestAudio,
             'presence_penalty': float,
             'response_format': CreateChatCompletionRequestResponseFormat,
             'seed': int,
+            'service_tier': str,
             'stop': CreateChatCompletionRequestStop,
             'stream': bool,
+            'stream_options': ChatCompletionStreamOptions,
             'temperature': float,
             'top_p': float,
             'tools': List[ChatCompletionTool],
             'tool_choice': ChatCompletionToolChoiceOption,
+            'parallel_tool_calls': bool,
             'user': str,
             'function_call': CreateChatCompletionRequestFunctionCall,
             'functions': List[ChatCompletionFunctions]
@@ -72,21 +95,31 @@ class CreateChatCompletionRequest(Model):
         self.attribute_map = {
             'messages': 'messages',
             'model': 'model',
+            'store': 'store',
+            'reasoning_effort': 'reasoning_effort',
+            'metadata': 'metadata',
             'frequency_penalty': 'frequency_penalty',
             'logit_bias': 'logit_bias',
             'logprobs': 'logprobs',
             'top_logprobs': 'top_logprobs',
             'max_tokens': 'max_tokens',
+            'max_completion_tokens': 'max_completion_tokens',
             'n': 'n',
+            'modalities': 'modalities',
+            'prediction': 'prediction',
+            'audio': 'audio',
             'presence_penalty': 'presence_penalty',
             'response_format': 'response_format',
             'seed': 'seed',
+            'service_tier': 'service_tier',
             'stop': 'stop',
             'stream': 'stream',
+            'stream_options': 'stream_options',
             'temperature': 'temperature',
             'top_p': 'top_p',
             'tools': 'tools',
             'tool_choice': 'tool_choice',
+            'parallel_tool_calls': 'parallel_tool_calls',
             'user': 'user',
             'function_call': 'function_call',
             'functions': 'functions'
@@ -94,21 +127,31 @@ class CreateChatCompletionRequest(Model):
 
         self._messages = messages
         self._model = model
+        self._store = store
+        self._reasoning_effort = reasoning_effort
+        self._metadata = metadata
         self._frequency_penalty = frequency_penalty
         self._logit_bias = logit_bias
         self._logprobs = logprobs
         self._top_logprobs = top_logprobs
         self._max_tokens = max_tokens
+        self._max_completion_tokens = max_completion_tokens
         self._n = n
+        self._modalities = modalities
+        self._prediction = prediction
+        self._audio = audio
         self._presence_penalty = presence_penalty
         self._response_format = response_format
         self._seed = seed
+        self._service_tier = service_tier
         self._stop = stop
         self._stream = stream
+        self._stream_options = stream_options
         self._temperature = temperature
         self._top_p = top_p
         self._tools = tools
         self._tool_choice = tool_choice
+        self._parallel_tool_calls = parallel_tool_calls
         self._user = user
         self._function_call = function_call
         self._functions = functions
@@ -126,7 +169,7 @@ class CreateChatCompletionRequest(Model):
     def messages(self):
         """Gets the messages of this CreateChatCompletionRequest.
 
-        A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).
+        A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
 
         :return: The messages of this CreateChatCompletionRequest.
         :rtype: List[ChatCompletionRequestMessage]
@@ -137,7 +180,7 @@ class CreateChatCompletionRequest(Model):
     def messages(self, messages):
         """Sets the messages of this CreateChatCompletionRequest.
 
-        A list of messages comprising the conversation so far. [Example Python code](https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models).
+        A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
 
         :param messages: The messages of this CreateChatCompletionRequest.
         :type messages: List[ChatCompletionRequestMessage]
@@ -173,10 +216,85 @@ class CreateChatCompletionRequest(Model):
         self._model = model
 
     @property
+    def store(self):
+        """Gets the store of this CreateChatCompletionRequest.
+
+        Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. 
+
+        :return: The store of this CreateChatCompletionRequest.
+        :rtype: bool
+        """
+        return self._store
+
+    @store.setter
+    def store(self, store):
+        """Sets the store of this CreateChatCompletionRequest.
+
+        Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. 
+
+        :param store: The store of this CreateChatCompletionRequest.
+        :type store: bool
+        """
+
+        self._store = store
+
+    @property
+    def reasoning_effort(self):
+        """Gets the reasoning_effort of this CreateChatCompletionRequest.
+
+        **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
+
+        :return: The reasoning_effort of this CreateChatCompletionRequest.
+        :rtype: str
+        """
+        return self._reasoning_effort
+
+    @reasoning_effort.setter
+    def reasoning_effort(self, reasoning_effort):
+        """Sets the reasoning_effort of this CreateChatCompletionRequest.
+
+        **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
+
+        :param reasoning_effort: The reasoning_effort of this CreateChatCompletionRequest.
+        :type reasoning_effort: str
+        """
+        allowed_values = ["low", "medium", "high"]  # noqa: E501
+        if reasoning_effort not in allowed_values:
+            raise ValueError(
+                "Invalid value for `reasoning_effort` ({0}), must be one of {1}"
+                .format(reasoning_effort, allowed_values)
+            )
+
+        self._reasoning_effort = reasoning_effort
+
+    @property
+    def metadata(self):
+        """Gets the metadata of this CreateChatCompletionRequest.
+
+        Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). 
+
+        :return: The metadata of this CreateChatCompletionRequest.
+        :rtype: Dict[str, str]
+        """
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """Sets the metadata of this CreateChatCompletionRequest.
+
+        Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). 
+
+        :param metadata: The metadata of this CreateChatCompletionRequest.
+        :type metadata: Dict[str, str]
+        """
+
+        self._metadata = metadata
+
+    @property
     def frequency_penalty(self):
         """Gets the frequency_penalty of this CreateChatCompletionRequest.
 
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. 
 
         :return: The frequency_penalty of this CreateChatCompletionRequest.
         :rtype: float
@@ -187,7 +305,7 @@ class CreateChatCompletionRequest(Model):
     def frequency_penalty(self, frequency_penalty):
         """Sets the frequency_penalty of this CreateChatCompletionRequest.
 
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. 
 
         :param frequency_penalty: The frequency_penalty of this CreateChatCompletionRequest.
         :type frequency_penalty: float
@@ -226,7 +344,7 @@ class CreateChatCompletionRequest(Model):
     def logprobs(self):
         """Gets the logprobs of this CreateChatCompletionRequest.
 
-        Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.
+        Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. 
 
         :return: The logprobs of this CreateChatCompletionRequest.
         :rtype: bool
@@ -237,7 +355,7 @@ class CreateChatCompletionRequest(Model):
     def logprobs(self, logprobs):
         """Sets the logprobs of this CreateChatCompletionRequest.
 
-        Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`.
+        Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. 
 
         :param logprobs: The logprobs of this CreateChatCompletionRequest.
         :type logprobs: bool
@@ -249,7 +367,7 @@ class CreateChatCompletionRequest(Model):
     def top_logprobs(self):
         """Gets the top_logprobs of this CreateChatCompletionRequest.
 
-        An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.
+        An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. 
 
         :return: The top_logprobs of this CreateChatCompletionRequest.
         :rtype: int
@@ -260,7 +378,7 @@ class CreateChatCompletionRequest(Model):
     def top_logprobs(self, top_logprobs):
         """Sets the top_logprobs of this CreateChatCompletionRequest.
 
-        An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used.
+        An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. 
 
         :param top_logprobs: The top_logprobs of this CreateChatCompletionRequest.
         :type top_logprobs: int
@@ -276,7 +394,7 @@ class CreateChatCompletionRequest(Model):
     def max_tokens(self):
         """Gets the max_tokens of this CreateChatCompletionRequest.
 
-        The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
+        The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). 
 
         :return: The max_tokens of this CreateChatCompletionRequest.
         :rtype: int
@@ -287,13 +405,36 @@ class CreateChatCompletionRequest(Model):
     def max_tokens(self, max_tokens):
         """Sets the max_tokens of this CreateChatCompletionRequest.
 
-        The maximum number of [tokens](/tokenizer) that can be generated in the chat completion.  The total length of input tokens and generated tokens is limited by the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. 
+        The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). 
 
         :param max_tokens: The max_tokens of this CreateChatCompletionRequest.
         :type max_tokens: int
         """
 
         self._max_tokens = max_tokens
+
+    @property
+    def max_completion_tokens(self):
+        """Gets the max_completion_tokens of this CreateChatCompletionRequest.
+
+        An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). 
+
+        :return: The max_completion_tokens of this CreateChatCompletionRequest.
+        :rtype: int
+        """
+        return self._max_completion_tokens
+
+    @max_completion_tokens.setter
+    def max_completion_tokens(self, max_completion_tokens):
+        """Sets the max_completion_tokens of this CreateChatCompletionRequest.
+
+        An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). 
+
+        :param max_completion_tokens: The max_completion_tokens of this CreateChatCompletionRequest.
+        :type max_completion_tokens: int
+        """
+
+        self._max_completion_tokens = max_completion_tokens
 
     @property
     def n(self):
@@ -323,10 +464,82 @@ class CreateChatCompletionRequest(Model):
         self._n = n
 
     @property
+    def modalities(self):
+        """Gets the modalities of this CreateChatCompletionRequest.
+
+        Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
+
+        :return: The modalities of this CreateChatCompletionRequest.
+        :rtype: List[str]
+        """
+        return self._modalities
+
+    @modalities.setter
+    def modalities(self, modalities):
+        """Sets the modalities of this CreateChatCompletionRequest.
+
+        Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` 
+
+        :param modalities: The modalities of this CreateChatCompletionRequest.
+        :type modalities: List[str]
+        """
+        allowed_values = [None,"text", "audio"]  # noqa: E501
+        if not set(modalities).issubset(set(allowed_values)):
+            raise ValueError(
+                "Invalid values for `modalities` [{0}], must be a subset of [{1}]"
+                .format(", ".join(map(str, set(modalities) - set(allowed_values))),
+                        ", ".join(map(str, allowed_values)))
+            )
+
+        self._modalities = modalities
+
+    @property
+    def prediction(self):
+        """Gets the prediction of this CreateChatCompletionRequest.
+
+
+        :return: The prediction of this CreateChatCompletionRequest.
+        :rtype: PredictionContent
+        """
+        return self._prediction
+
+    @prediction.setter
+    def prediction(self, prediction):
+        """Sets the prediction of this CreateChatCompletionRequest.
+
+
+        :param prediction: The prediction of this CreateChatCompletionRequest.
+        :type prediction: PredictionContent
+        """
+
+        self._prediction = prediction
+
+    @property
+    def audio(self):
+        """Gets the audio of this CreateChatCompletionRequest.
+
+
+        :return: The audio of this CreateChatCompletionRequest.
+        :rtype: CreateChatCompletionRequestAudio
+        """
+        return self._audio
+
+    @audio.setter
+    def audio(self, audio):
+        """Sets the audio of this CreateChatCompletionRequest.
+
+
+        :param audio: The audio of this CreateChatCompletionRequest.
+        :type audio: CreateChatCompletionRequestAudio
+        """
+
+        self._audio = audio
+
+    @property
     def presence_penalty(self):
         """Gets the presence_penalty of this CreateChatCompletionRequest.
 
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. 
 
         :return: The presence_penalty of this CreateChatCompletionRequest.
         :rtype: float
@@ -337,7 +550,7 @@ class CreateChatCompletionRequest(Model):
     def presence_penalty(self, presence_penalty):
         """Sets the presence_penalty of this CreateChatCompletionRequest.
 
-        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation/parameter-details) 
+        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. 
 
         :param presence_penalty: The presence_penalty of this CreateChatCompletionRequest.
         :type presence_penalty: float
@@ -390,12 +603,41 @@ class CreateChatCompletionRequest(Model):
         :param seed: The seed of this CreateChatCompletionRequest.
         :type seed: int
         """
-        if seed is not None and seed > 9223372036854775807:
-            raise ValueError("Invalid value for `seed`, must be a value less than or equal to `9223372036854775807`")
-        if seed is not None and seed < -9223372036854775808:
-            raise ValueError("Invalid value for `seed`, must be a value greater than or equal to `-9223372036854775808`")
+        if seed is not None and seed > 9223372036854776000:
+            raise ValueError("Invalid value for `seed`, must be a value less than or equal to `9223372036854776000`")
+        if seed is not None and seed < -9223372036854776000:
+            raise ValueError("Invalid value for `seed`, must be a value greater than or equal to `-9223372036854776000`")
 
         self._seed = seed
+
+    @property
+    def service_tier(self):
+        """Gets the service_tier of this CreateChatCompletionRequest.
+
+        Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. 
+
+        :return: The service_tier of this CreateChatCompletionRequest.
+        :rtype: str
+        """
+        return self._service_tier
+
+    @service_tier.setter
+    def service_tier(self, service_tier):
+        """Sets the service_tier of this CreateChatCompletionRequest.
+
+        Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. 
+
+        :param service_tier: The service_tier of this CreateChatCompletionRequest.
+        :type service_tier: str
+        """
+        allowed_values = [None,"auto", "default"]  # noqa: E501
+        if service_tier not in allowed_values:
+            raise ValueError(
+                "Invalid value for `service_tier` ({0}), must be one of {1}"
+                .format(service_tier, allowed_values)
+            )
+
+        self._service_tier = service_tier
 
     @property
     def stop(self):
@@ -442,10 +684,31 @@ class CreateChatCompletionRequest(Model):
         self._stream = stream
 
     @property
+    def stream_options(self):
+        """Gets the stream_options of this CreateChatCompletionRequest.
+
+
+        :return: The stream_options of this CreateChatCompletionRequest.
+        :rtype: ChatCompletionStreamOptions
+        """
+        return self._stream_options
+
+    @stream_options.setter
+    def stream_options(self, stream_options):
+        """Sets the stream_options of this CreateChatCompletionRequest.
+
+
+        :param stream_options: The stream_options of this CreateChatCompletionRequest.
+        :type stream_options: ChatCompletionStreamOptions
+        """
+
+        self._stream_options = stream_options
+
+    @property
     def temperature(self):
         """Gets the temperature of this CreateChatCompletionRequest.
 
-        What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both. 
+        What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. 
 
         :return: The temperature of this CreateChatCompletionRequest.
         :rtype: float
@@ -456,7 +719,7 @@ class CreateChatCompletionRequest(Model):
     def temperature(self, temperature):
         """Sets the temperature of this CreateChatCompletionRequest.
 
-        What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both. 
+        What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. 
 
         :param temperature: The temperature of this CreateChatCompletionRequest.
         :type temperature: float
@@ -540,10 +803,33 @@ class CreateChatCompletionRequest(Model):
         self._tool_choice = tool_choice
 
     @property
+    def parallel_tool_calls(self):
+        """Gets the parallel_tool_calls of this CreateChatCompletionRequest.
+
+        Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+
+        :return: The parallel_tool_calls of this CreateChatCompletionRequest.
+        :rtype: bool
+        """
+        return self._parallel_tool_calls
+
+    @parallel_tool_calls.setter
+    def parallel_tool_calls(self, parallel_tool_calls):
+        """Sets the parallel_tool_calls of this CreateChatCompletionRequest.
+
+        Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+
+        :param parallel_tool_calls: The parallel_tool_calls of this CreateChatCompletionRequest.
+        :type parallel_tool_calls: bool
+        """
+
+        self._parallel_tool_calls = parallel_tool_calls
+
+    @property
     def user(self):
         """Gets the user of this CreateChatCompletionRequest.
 
-        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 
         :return: The user of this CreateChatCompletionRequest.
         :rtype: str
@@ -554,7 +840,7 @@ class CreateChatCompletionRequest(Model):
     def user(self, user):
         """Sets the user of this CreateChatCompletionRequest.
 
-        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
 
         :param user: The user of this CreateChatCompletionRequest.
         :type user: str

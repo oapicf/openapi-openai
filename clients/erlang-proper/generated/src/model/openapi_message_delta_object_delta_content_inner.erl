@@ -13,6 +13,8 @@
   | {'type', binary() }
   | {'image_file', openapi_message_delta_content_image_file_object_image_file:openapi_message_delta_content_image_file_object_image_file() }
   | {'text', openapi_message_delta_content_text_object_text:openapi_message_delta_content_text_object_text() }
+  | {'refusal', binary() }
+  | {'image_url', openapi_message_delta_content_image_url_object_image_url:openapi_message_delta_content_image_url_object_image_url() }
   ].
 
 
@@ -21,9 +23,11 @@ openapi_message_delta_object_delta_content_inner() ->
 
 openapi_message_delta_object_delta_content_inner(Fields) ->
   Default = [ {'index', integer() }
-            , {'type', elements([<<"image_file">>, <<"text">>]) }
+            , {'type', elements([<<"image_file">>, <<"text">>, <<"refusal">>, <<"image_url">>]) }
             , {'image_file', openapi_message_delta_content_image_file_object_image_file:openapi_message_delta_content_image_file_object_image_file() }
             , {'text', openapi_message_delta_content_text_object_text:openapi_message_delta_content_text_object_text() }
+            , {'refusal', binary() }
+            , {'image_url', openapi_message_delta_content_image_url_object_image_url:openapi_message_delta_content_image_url_object_image_url() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

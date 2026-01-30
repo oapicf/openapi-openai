@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsCodeObject
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
+import org.openapitools.model.RunStepDeltaStepDetailsToolCallsFileSearchObject
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsFunctionObject
 import org.openapitools.model.RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
-import org.openapitools.model.RunStepDeltaStepDetailsToolCallsRetrievalObject
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -24,9 +24,9 @@ import io.swagger.v3.oas.annotations.media.Schema
  * 
  * @param index The index of the tool call in the tool calls array.
  * @param type The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
+ * @param fileSearch For now, this is always going to be an empty object.
  * @param id The ID of the tool call object.
  * @param codeInterpreter 
- * @param retrieval For now, this is always going to be an empty object.
  * @param function 
  */
 data class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner(
@@ -37,6 +37,10 @@ data class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner(
     @Schema(example = "null", required = true, description = "The type of tool call. This is always going to be `code_interpreter` for this type of tool call.")
     @get:JsonProperty("type", required = true) val type: RunStepDeltaStepDetailsToolCallsObjectToolCallsInner.Type,
 
+    @field:Valid
+    @Schema(example = "null", required = true, description = "For now, this is always going to be an empty object.")
+    @get:JsonProperty("file_search", required = true) val fileSearch: kotlin.Any,
+
     @Schema(example = "null", description = "The ID of the tool call object.")
     @get:JsonProperty("id") val id: kotlin.String? = null,
 
@@ -45,22 +49,18 @@ data class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner(
     @get:JsonProperty("code_interpreter") val codeInterpreter: RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "For now, this is always going to be an empty object.")
-    @get:JsonProperty("retrieval") val retrieval: kotlin.Any? = null,
-
-    @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("function") val function: RunStepDeltaStepDetailsToolCallsFunctionObjectFunction? = null
 ) {
 
     /**
     * The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
-    * Values: code_interpreter,retrieval,function
+    * Values: code_interpreter,file_search,function
     */
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         code_interpreter("code_interpreter"),
-        retrieval("retrieval"),
+        file_search("file_search"),
         function("function");
 
         companion object {

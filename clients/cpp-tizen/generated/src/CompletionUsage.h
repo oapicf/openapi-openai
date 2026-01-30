@@ -9,6 +9,8 @@
 
 
 #include <string>
+#include "CompletionUsage_completion_tokens_details.h"
+#include "CompletionUsage_prompt_tokens_details.h"
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API
@@ -66,11 +68,27 @@ public:
 	/*! \brief Set Total number of tokens used in the request (prompt + completion).
 	 */
 	void setTotalTokens(int  total_tokens);
+	/*! \brief Get 
+	 */
+	CompletionUsage_completion_tokens_details getCompletionTokensDetails();
+
+	/*! \brief Set 
+	 */
+	void setCompletionTokensDetails(CompletionUsage_completion_tokens_details  completion_tokens_details);
+	/*! \brief Get 
+	 */
+	CompletionUsage_prompt_tokens_details getPromptTokensDetails();
+
+	/*! \brief Set 
+	 */
+	void setPromptTokensDetails(CompletionUsage_prompt_tokens_details  prompt_tokens_details);
 
 private:
 	int completion_tokens;
 	int prompt_tokens;
 	int total_tokens;
+	CompletionUsage_completion_tokens_details completion_tokens_details;
+	CompletionUsage_prompt_tokens_details prompt_tokens_details;
 	void __init();
 	void __cleanup();
 

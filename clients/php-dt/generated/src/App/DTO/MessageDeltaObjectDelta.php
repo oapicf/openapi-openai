@@ -25,12 +25,4 @@ class MessageDeltaObjectDelta
      */
     public ?array $content = null;
 
-    /**
-     * A list of [file](/docs/api-reference/files) IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
-     * @DTA\Data(field="file_ids", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":::class})
-     */
-    public ?array $file_ids = null;
-
 }

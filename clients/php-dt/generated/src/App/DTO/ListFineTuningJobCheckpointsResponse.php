@@ -9,10 +9,10 @@ class ListFineTuningJobCheckpointsResponse
 {
     /**
      * @DTA\Data(field="data")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection29::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection29::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection45::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection45::class})
      */
-    public ?\App\DTO\Collection29 $data = null;
+    public ?\App\DTO\Collection45 $data = null;
 
     /**
      * @DTA\Data(field="object")

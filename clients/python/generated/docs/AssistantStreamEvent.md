@@ -6,6 +6,7 @@ Represents an event emitted when streaming a Run.  Each event in a server-sent e
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**enabled** | **bool** | Whether to enable input audio transcription. | [optional] 
 **event** | **str** |  | 
 **data** | **str** |  | 
 

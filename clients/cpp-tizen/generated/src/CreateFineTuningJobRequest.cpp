@@ -30,6 +30,7 @@ CreateFineTuningJobRequest::__init()
 	//validation_file = std::string();
 	//new std::list()std::list> integrations;
 	//seed = int(0);
+	//method = new FineTuneMethod();
 }
 
 void
@@ -69,6 +70,11 @@ CreateFineTuningJobRequest::__cleanup()
 	//
 	//delete seed;
 	//seed = NULL;
+	//}
+	//if(method != NULL) {
+	//
+	//delete method;
+	//method = NULL;
 	//}
 	//
 }
@@ -174,6 +180,20 @@ CreateFineTuningJobRequest::fromJson(char* jsonStr)
 			
 		}
 	}
+	const gchar *methodKey = "method";
+	node = json_object_get_member(pJsonObject, methodKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("FineTuneMethod")) {
+			jsonToValue(&method, node, "FineTuneMethod", "FineTuneMethod");
+		} else {
+			
+			FineTuneMethod* obj = static_cast<FineTuneMethod*> (&method);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
 }
 
 CreateFineTuningJobRequest::CreateFineTuningJobRequest(char* json)
@@ -275,6 +295,20 @@ CreateFineTuningJobRequest::toJson()
 	}
 	const gchar *seedKey = "seed";
 	json_object_set_member(pJsonObject, seedKey, node);
+	if (isprimitive("FineTuneMethod")) {
+		FineTuneMethod obj = getMethod();
+		node = converttoJson(&obj, "FineTuneMethod", "");
+	}
+	else {
+		
+		FineTuneMethod obj = static_cast<FineTuneMethod> (getMethod());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *methodKey = "method";
+	json_object_set_member(pJsonObject, methodKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -365,6 +399,18 @@ void
 CreateFineTuningJobRequest::setSeed(int  seed)
 {
 	this->seed = seed;
+}
+
+FineTuneMethod
+CreateFineTuningJobRequest::getMethod()
+{
+	return method;
+}
+
+void
+CreateFineTuningJobRequest::setMethod(FineTuneMethod  method)
+{
+	this->method = method;
 }
 
 

@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -26,6 +26,7 @@ type CreateModerationResponseResultsInner struct {
 	Flagged bool `json:"flagged"`
 	Categories CreateModerationResponseResultsInnerCategories `json:"categories"`
 	CategoryScores CreateModerationResponseResultsInnerCategoryScores `json:"category_scores"`
+	CategoryAppliedInputTypes CreateModerationResponseResultsInnerCategoryAppliedInputTypes `json:"category_applied_input_types"`
 }
 
 type _CreateModerationResponseResultsInner CreateModerationResponseResultsInner
@@ -34,11 +35,12 @@ type _CreateModerationResponseResultsInner CreateModerationResponseResultsInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateModerationResponseResultsInner(flagged bool, categories CreateModerationResponseResultsInnerCategories, categoryScores CreateModerationResponseResultsInnerCategoryScores) *CreateModerationResponseResultsInner {
+func NewCreateModerationResponseResultsInner(flagged bool, categories CreateModerationResponseResultsInnerCategories, categoryScores CreateModerationResponseResultsInnerCategoryScores, categoryAppliedInputTypes CreateModerationResponseResultsInnerCategoryAppliedInputTypes) *CreateModerationResponseResultsInner {
 	this := CreateModerationResponseResultsInner{}
 	this.Flagged = flagged
 	this.Categories = categories
 	this.CategoryScores = categoryScores
+	this.CategoryAppliedInputTypes = categoryAppliedInputTypes
 	return &this
 }
 
@@ -122,6 +124,30 @@ func (o *CreateModerationResponseResultsInner) SetCategoryScores(v CreateModerat
 	o.CategoryScores = v
 }
 
+// GetCategoryAppliedInputTypes returns the CategoryAppliedInputTypes field value
+func (o *CreateModerationResponseResultsInner) GetCategoryAppliedInputTypes() CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
+	if o == nil {
+		var ret CreateModerationResponseResultsInnerCategoryAppliedInputTypes
+		return ret
+	}
+
+	return o.CategoryAppliedInputTypes
+}
+
+// GetCategoryAppliedInputTypesOk returns a tuple with the CategoryAppliedInputTypes field value
+// and a boolean to check if the value has been set.
+func (o *CreateModerationResponseResultsInner) GetCategoryAppliedInputTypesOk() (*CreateModerationResponseResultsInnerCategoryAppliedInputTypes, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CategoryAppliedInputTypes, true
+}
+
+// SetCategoryAppliedInputTypes sets field value
+func (o *CreateModerationResponseResultsInner) SetCategoryAppliedInputTypes(v CreateModerationResponseResultsInnerCategoryAppliedInputTypes) {
+	o.CategoryAppliedInputTypes = v
+}
+
 func (o CreateModerationResponseResultsInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -135,6 +161,7 @@ func (o CreateModerationResponseResultsInner) ToMap() (map[string]interface{}, e
 	toSerialize["flagged"] = o.Flagged
 	toSerialize["categories"] = o.Categories
 	toSerialize["category_scores"] = o.CategoryScores
+	toSerialize["category_applied_input_types"] = o.CategoryAppliedInputTypes
 	return toSerialize, nil
 }
 
@@ -146,6 +173,7 @@ func (o *CreateModerationResponseResultsInner) UnmarshalJSON(data []byte) (err e
 		"flagged",
 		"categories",
 		"category_scores",
+		"category_applied_input_types",
 	}
 
 	allProperties := make(map[string]interface{})

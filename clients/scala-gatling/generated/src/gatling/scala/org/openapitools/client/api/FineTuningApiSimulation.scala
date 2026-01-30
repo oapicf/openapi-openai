@@ -109,8 +109,8 @@ class FineTuningApiSimulation extends Simulation {
         .feed(listFineTuningEventsPATHFeeder)
         .exec(http("listFineTuningEvents")
         .httpRequest("GET","/fine_tuning/jobs/${fine_tuning_job_id}/events")
-        .queryParam("limit","${limit}")
         .queryParam("after","${after}")
+        .queryParam("limit","${limit}")
 )
 
     // Run scnlistFineTuningEvents with warm up and reach a constant rate for entire duration
@@ -126,8 +126,8 @@ class FineTuningApiSimulation extends Simulation {
         .feed(listFineTuningJobCheckpointsPATHFeeder)
         .exec(http("listFineTuningJobCheckpoints")
         .httpRequest("GET","/fine_tuning/jobs/${fine_tuning_job_id}/checkpoints")
-        .queryParam("limit","${limit}")
         .queryParam("after","${after}")
+        .queryParam("limit","${limit}")
 )
 
     // Run scnlistFineTuningJobCheckpoints with warm up and reach a constant rate for entire duration
@@ -142,8 +142,8 @@ class FineTuningApiSimulation extends Simulation {
         .feed(listPaginatedFineTuningJobsQUERYFeeder)
         .exec(http("listPaginatedFineTuningJobs")
         .httpRequest("GET","/fine_tuning/jobs")
-        .queryParam("limit","${limit}")
         .queryParam("after","${after}")
+        .queryParam("limit","${limit}")
 )
 
     // Run scnlistPaginatedFineTuningJobs with warm up and reach a constant rate for entire duration

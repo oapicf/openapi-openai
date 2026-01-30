@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -26,8 +26,10 @@ type FunctionObject struct {
 	Description *string `json:"description,omitempty"`
 	// The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
 	Name string `json:"name"`
-	// The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
+	// The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
 	Parameters map[string]interface{} `json:"parameters,omitempty"`
+	// Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).
+	Strict NullableBool `json:"strict,omitempty"`
 }
 
 type _FunctionObject FunctionObject
@@ -39,6 +41,8 @@ type _FunctionObject FunctionObject
 func NewFunctionObject(name string) *FunctionObject {
 	this := FunctionObject{}
 	this.Name = name
+	var strict bool = false
+	this.Strict = *NewNullableBool(&strict)
 	return &this
 }
 
@@ -47,6 +51,8 @@ func NewFunctionObject(name string) *FunctionObject {
 // but it doesn't guarantee that properties required by API are set
 func NewFunctionObjectWithDefaults() *FunctionObject {
 	this := FunctionObject{}
+	var strict bool = false
+	this.Strict = *NewNullableBool(&strict)
 	return &this
 }
 
@@ -138,6 +144,48 @@ func (o *FunctionObject) SetParameters(v map[string]interface{}) {
 	o.Parameters = v
 }
 
+// GetStrict returns the Strict field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FunctionObject) GetStrict() bool {
+	if o == nil || IsNil(o.Strict.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.Strict.Get()
+}
+
+// GetStrictOk returns a tuple with the Strict field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FunctionObject) GetStrictOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Strict.Get(), o.Strict.IsSet()
+}
+
+// HasStrict returns a boolean if a field has been set.
+func (o *FunctionObject) HasStrict() bool {
+	if o != nil && o.Strict.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStrict gets a reference to the given NullableBool and assigns it to the Strict field.
+func (o *FunctionObject) SetStrict(v bool) {
+	o.Strict.Set(&v)
+}
+// SetStrictNil sets the value for Strict to be an explicit nil
+func (o *FunctionObject) SetStrictNil() {
+	o.Strict.Set(nil)
+}
+
+// UnsetStrict ensures that no value is present for Strict, not even an explicit nil
+func (o *FunctionObject) UnsetStrict() {
+	o.Strict.Unset()
+}
+
 func (o FunctionObject) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -154,6 +202,9 @@ func (o FunctionObject) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Parameters) {
 		toSerialize["parameters"] = o.Parameters
+	}
+	if o.Strict.IsSet() {
+		toSerialize["strict"] = o.Strict.Get()
 	}
 	return toSerialize, nil
 }

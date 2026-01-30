@@ -16,6 +16,7 @@
 #include "../model/thread_object.h"
 thread_object_t* instantiate_thread_object(int include_optional);
 
+#include "test_modify_thread_request_tool_resources.c"
 
 
 thread_object_t* instantiate_thread_object(int include_optional) {
@@ -25,6 +26,8 @@ thread_object_t* instantiate_thread_object(int include_optional) {
       "0",
       openai_api_thread_object_OBJECT_thread,
       56,
+       // false, not to have infinite recursion
+      instantiate_modify_thread_request_tool_resources(0),
       0
     );
   } else {
@@ -32,6 +35,7 @@ thread_object_t* instantiate_thread_object(int include_optional) {
       "0",
       openai_api_thread_object_OBJECT_thread,
       56,
+      NULL,
       0
     );
   }

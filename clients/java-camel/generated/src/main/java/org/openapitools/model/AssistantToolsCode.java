@@ -20,8 +20,8 @@ import javax.annotation.Generated;
  * AssistantToolsCode
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T10:45:13.353144236Z[Etc/UTC]", comments = "Generator version: 7.18.0")
-public class AssistantToolsCode implements AssistantObjectToolsInner, CreateThreadAndRunRequestToolsInner {
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-01-29T14:08:43.241169944Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+public class AssistantToolsCode implements AssistantObjectToolsInner, CreateMessageRequestAttachmentsInnerToolsInner, CreateThreadAndRunRequestToolsInner {
 
   /**
    * The type of tool being defined: `code_interpreter`

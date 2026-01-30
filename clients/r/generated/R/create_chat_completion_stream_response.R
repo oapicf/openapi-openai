@@ -8,11 +8,13 @@
 #' @description CreateChatCompletionStreamResponse Class
 #' @format An \code{R6Class} generator object
 #' @field id A unique identifier for the chat completion. Each chunk has the same ID. character
-#' @field choices A list of chat completion choices. Can be more than one if `n` is greater than 1. list(\link{CreateChatCompletionStreamResponseChoicesInner})
+#' @field choices A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. list(\link{CreateChatCompletionStreamResponseChoicesInner})
 #' @field created The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp. integer
 #' @field model The model to generate the completion. character
+#' @field service_tier The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request. character [optional]
 #' @field system_fingerprint This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. character [optional]
 #' @field object The object type, which is always `chat.completion.chunk`. character
+#' @field usage  \link{CreateChatCompletionStreamResponseUsage} [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -23,20 +25,24 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
     `choices` = NULL,
     `created` = NULL,
     `model` = NULL,
+    `service_tier` = NULL,
     `system_fingerprint` = NULL,
     `object` = NULL,
+    `usage` = NULL,
 
     #' @description
     #' Initialize a new CreateChatCompletionStreamResponse class.
     #'
     #' @param id A unique identifier for the chat completion. Each chunk has the same ID.
-    #' @param choices A list of chat completion choices. Can be more than one if `n` is greater than 1.
+    #' @param choices A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`.
     #' @param created The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
     #' @param model The model to generate the completion.
     #' @param object The object type, which is always `chat.completion.chunk`.
+    #' @param service_tier The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
     #' @param system_fingerprint This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.
+    #' @param usage usage
     #' @param ... Other optional arguments.
-    initialize = function(`id`, `choices`, `created`, `model`, `object`, `system_fingerprint` = NULL, ...) {
+    initialize = function(`id`, `choices`, `created`, `model`, `object`, `service_tier` = NULL, `system_fingerprint` = NULL, `usage` = NULL, ...) {
       if (!missing(`id`)) {
         if (!(is.character(`id`) && length(`id`) == 1)) {
           stop(paste("Error! Invalid data for `id`. Must be a string:", `id`))
@@ -69,11 +75,24 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
         }
         self$`object` <- `object`
       }
+      if (!is.null(`service_tier`)) {
+        if (!(`service_tier` %in% c("scale", "default"))) {
+          stop(paste("Error! \"", `service_tier`, "\" cannot be assigned to `service_tier`. Must be \"scale\", \"default\".", sep = ""))
+        }
+        if (!(is.character(`service_tier`) && length(`service_tier`) == 1)) {
+          stop(paste("Error! Invalid data for `service_tier`. Must be a string:", `service_tier`))
+        }
+        self$`service_tier` <- `service_tier`
+      }
       if (!is.null(`system_fingerprint`)) {
         if (!(is.character(`system_fingerprint`) && length(`system_fingerprint`) == 1)) {
           stop(paste("Error! Invalid data for `system_fingerprint`. Must be a string:", `system_fingerprint`))
         }
         self$`system_fingerprint` <- `system_fingerprint`
+      }
+      if (!is.null(`usage`)) {
+        stopifnot(R6::is.R6(`usage`))
+        self$`usage` <- `usage`
       }
     },
 
@@ -124,6 +143,10 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
         CreateChatCompletionStreamResponseObject[["model"]] <-
           self$`model`
       }
+      if (!is.null(self$`service_tier`)) {
+        CreateChatCompletionStreamResponseObject[["service_tier"]] <-
+          self$`service_tier`
+      }
       if (!is.null(self$`system_fingerprint`)) {
         CreateChatCompletionStreamResponseObject[["system_fingerprint"]] <-
           self$`system_fingerprint`
@@ -131,6 +154,10 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
       if (!is.null(self$`object`)) {
         CreateChatCompletionStreamResponseObject[["object"]] <-
           self$`object`
+      }
+      if (!is.null(self$`usage`)) {
+        CreateChatCompletionStreamResponseObject[["usage"]] <-
+          self$`usage`$toSimpleType()
       }
       return(CreateChatCompletionStreamResponseObject)
     },
@@ -154,6 +181,12 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
       if (!is.null(this_object$`model`)) {
         self$`model` <- this_object$`model`
       }
+      if (!is.null(this_object$`service_tier`)) {
+        if (!is.null(this_object$`service_tier`) && !(this_object$`service_tier` %in% c("scale", "default"))) {
+          stop(paste("Error! \"", this_object$`service_tier`, "\" cannot be assigned to `service_tier`. Must be \"scale\", \"default\".", sep = ""))
+        }
+        self$`service_tier` <- this_object$`service_tier`
+      }
       if (!is.null(this_object$`system_fingerprint`)) {
         self$`system_fingerprint` <- this_object$`system_fingerprint`
       }
@@ -162,6 +195,11 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
           stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"chat.completion.chunk\".", sep = ""))
         }
         self$`object` <- this_object$`object`
+      }
+      if (!is.null(this_object$`usage`)) {
+        `usage_object` <- CreateChatCompletionStreamResponseUsage$new()
+        `usage_object`$fromJSON(jsonlite::toJSON(this_object$`usage`, auto_unbox = TRUE, digits = NA))
+        self$`usage` <- `usage_object`
       }
       self
     },
@@ -188,11 +226,16 @@ CreateChatCompletionStreamResponse <- R6::R6Class(
       self$`choices` <- ApiClient$new()$deserializeObj(this_object$`choices`, "array[CreateChatCompletionStreamResponseChoicesInner]", loadNamespace("openapi"))
       self$`created` <- this_object$`created`
       self$`model` <- this_object$`model`
+      if (!is.null(this_object$`service_tier`) && !(this_object$`service_tier` %in% c("scale", "default"))) {
+        stop(paste("Error! \"", this_object$`service_tier`, "\" cannot be assigned to `service_tier`. Must be \"scale\", \"default\".", sep = ""))
+      }
+      self$`service_tier` <- this_object$`service_tier`
       self$`system_fingerprint` <- this_object$`system_fingerprint`
       if (!is.null(this_object$`object`) && !(this_object$`object` %in% c("chat.completion.chunk"))) {
         stop(paste("Error! \"", this_object$`object`, "\" cannot be assigned to `object`. Must be \"chat.completion.chunk\".", sep = ""))
       }
       self$`object` <- this_object$`object`
+      self$`usage` <- CreateChatCompletionStreamResponseUsage$new()$fromJSON(jsonlite::toJSON(this_object$`usage`, auto_unbox = TRUE, digits = NA))
       self
     },
 

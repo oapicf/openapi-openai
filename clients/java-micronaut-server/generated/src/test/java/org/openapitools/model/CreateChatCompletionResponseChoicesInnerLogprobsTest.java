@@ -32,4 +32,12 @@ public class CreateChatCompletionResponseChoicesInnerLogprobsTest {
         // TODO: test content
     }
 
+    /**
+     * Test the property 'refusal'
+     */
+    @Test
+    public void refusalTest() {
+        // TODO: test refusal
+    }
+
 }

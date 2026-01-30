@@ -14,6 +14,7 @@
       {"model": "id" },
       {"model": "object" },
       {"model": "created_at" },
+      {"model": "tool_resources" },
       {"model": "metadata" },
     ]
   }]

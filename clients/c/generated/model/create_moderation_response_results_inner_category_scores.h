@@ -23,6 +23,8 @@ typedef struct create_moderation_response_results_inner_category_scores_t {
     double hate_threatening; //numeric
     double harassment; //numeric
     double harassment_threatening; //numeric
+    double illicit; //numeric
+    double illicit_violent; //numeric
     double self_harm; //numeric
     double self_harm_intent; //numeric
     double self_harm_instructions; //numeric
@@ -39,6 +41,8 @@ __attribute__((deprecated)) create_moderation_response_results_inner_category_sc
     double hate_threatening,
     double harassment,
     double harassment_threatening,
+    double illicit,
+    double illicit_violent,
     double self_harm,
     double self_harm_intent,
     double self_harm_instructions,

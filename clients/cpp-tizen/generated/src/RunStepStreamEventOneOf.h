@@ -1,7 +1,7 @@
 /*
  * RunStepStreamEvent_oneOf.h
  *
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is created.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is created.
  */
 
 #ifndef _RunStepStreamEvent_oneOf_H_
@@ -21,7 +21,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief Occurs when a [run step](/docs/api-reference/runs/step-object) is created.
+/*! \brief Occurs when a [run step](/docs/api-reference/run-steps/step-object) is created.
  *
  *  \ingroup Models
  *

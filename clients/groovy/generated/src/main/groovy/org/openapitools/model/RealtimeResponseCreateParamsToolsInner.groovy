@@ -1,0 +1,38 @@
+package org.openapitools.model;
+
+import groovy.transform.Canonical
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@Canonical
+class RealtimeResponseCreateParamsToolsInner {
+
+    enum TypeEnum {
+    
+        FUNCTION("function")
+    
+        private final String value
+    
+        TypeEnum(String value) {
+            this.value = value
+        }
+    
+        String getValue() {
+            value
+        }
+    
+        @Override
+        String toString() {
+            String.valueOf(value)
+        }
+    }
+
+    /* The type of the tool, i.e. `function`. */
+    TypeEnum type
+    /* The name of the function. */
+    String name
+    /* The description of the function, including guidance on when and how  to call it, and guidance about what to tell the user when calling  (if anything).  */
+    String description
+    /* Parameters of the function in JSON Schema. */
+    Object parameters
+}

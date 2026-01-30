@@ -7,7 +7,7 @@ from openapi_server import util
 
 
 async def create_moderation(request: web.Request, body) -> web.Response:
-    """Classifies if text is potentially harmful.
+    """Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
     
 

@@ -15,6 +15,12 @@ type CreateModerationResponseResultsInnerCategories struct {
 	// Harassment content that also includes violence or serious harm towards any target.
 	HarassmentThreatening bool `json:"harassment/threatening"`
 
+	// Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.
+	Illicit bool `json:"illicit"`
+
+	// Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.
+	IllicitViolent bool `json:"illicit/violent"`
+
 	// Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.
 	SelfHarm bool `json:"self-harm"`
 

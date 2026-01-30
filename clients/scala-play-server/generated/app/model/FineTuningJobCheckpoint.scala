@@ -11,7 +11,7 @@ import play.api.libs.json._
   * @param fineTuningJobId The name of the fine-tuning job that this checkpoint was created from.
   * @param `object` The object type, which is always \"fine_tuning.job.checkpoint\".
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T10:48:27.489746113Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-01-29T14:17:05.516820397Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 case class FineTuningJobCheckpoint(
   id: String,
   createdAt: Int,

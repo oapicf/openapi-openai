@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **validationFile** | **String** | The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents). | [default to null]
 **integrations** | [**FineTuningJobIntegrationsInner**](FineTuningJob_integrations_inner.md) | A list of integrations to enable for this fine-tuning job. | [optional] [default to null]
 **seed** | **Int!** | The seed used for the fine-tuning job. | [default to null]
+**estimatedFinish** | **Int** | The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running. | [optional] [default to null]
+**method** | [***FineTuneMethod**](FineTuneMethod.md) |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

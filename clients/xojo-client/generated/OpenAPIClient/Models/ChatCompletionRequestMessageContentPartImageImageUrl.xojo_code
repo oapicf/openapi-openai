@@ -11,7 +11,7 @@ Protected Class ChatCompletionRequestMessageContentPartImageImageUrl
 
 	#tag Property, Flags = &h0
 		#tag Note
-			Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+			Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
 		#tag EndNote
 		detail As Xoson.O.OptionalString
 	#tag EndProperty

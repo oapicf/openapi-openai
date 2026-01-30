@@ -28,15 +28,6 @@ pub enum CreateAssistantResponse {
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
 #[allow(clippy::large_enum_variant)]
-pub enum CreateAssistantFileResponse {
-    /// OK
-    Status200_OK
-    (models::AssistantFileObject)
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-#[allow(clippy::large_enum_variant)]
 pub enum CreateMessageResponse {
     /// OK
     Status200_OK
@@ -82,10 +73,10 @@ pub enum DeleteAssistantResponse {
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
 #[allow(clippy::large_enum_variant)]
-pub enum DeleteAssistantFileResponse {
+pub enum DeleteMessageResponse {
     /// OK
     Status200_OK
-    (models::DeleteAssistantFileResponse)
+    (models::DeleteMessageResponse)
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
@@ -109,28 +100,10 @@ pub enum GetAssistantResponse {
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
 #[allow(clippy::large_enum_variant)]
-pub enum GetAssistantFileResponse {
-    /// OK
-    Status200_OK
-    (models::AssistantFileObject)
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-#[allow(clippy::large_enum_variant)]
 pub enum GetMessageResponse {
     /// OK
     Status200_OK
     (models::MessageObject)
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-#[allow(clippy::large_enum_variant)]
-pub enum GetMessageFileResponse {
-    /// OK
-    Status200_OK
-    (models::MessageFileObject)
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
@@ -163,28 +136,10 @@ pub enum GetThreadResponse {
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
 #[allow(clippy::large_enum_variant)]
-pub enum ListAssistantFilesResponse {
-    /// OK
-    Status200_OK
-    (models::ListAssistantFilesResponse)
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-#[allow(clippy::large_enum_variant)]
 pub enum ListAssistantsResponse {
     /// OK
     Status200_OK
     (models::ListAssistantsResponse)
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-#[allow(clippy::large_enum_variant)]
-pub enum ListMessageFilesResponse {
-    /// OK
-    Status200_OK
-    (models::ListMessageFilesResponse)
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
@@ -294,20 +249,6 @@ pub trait Assistants<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Er
             body: &models::CreateAssistantRequest,
     ) -> Result<CreateAssistantResponse, E>;
 
-    /// Create an assistant file by attaching a [File](/docs/api-reference/files) to an [assistant](/docs/api-reference/assistants)..
-    ///
-    /// CreateAssistantFile - POST /v1/assistants/{assistant_id}/files
-    async fn create_assistant_file(
-    &self,
-    
-    method: &Method,
-    host: &Host,
-    cookies: &CookieJar,
-        claims: &Self::Claims,
-      path_params: &models::CreateAssistantFilePathParams,
-            body: &models::CreateAssistantFileRequest,
-    ) -> Result<CreateAssistantFileResponse, E>;
-
     /// Create a message..
     ///
     /// CreateMessage - POST /v1/threads/{thread_id}/messages
@@ -333,6 +274,7 @@ pub trait Assistants<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Er
     cookies: &CookieJar,
         claims: &Self::Claims,
       path_params: &models::CreateRunPathParams,
+      query_params: &models::CreateRunQueryParams,
             body: &models::CreateRunRequest,
     ) -> Result<CreateRunResponse, E>;
 
@@ -375,18 +317,18 @@ pub trait Assistants<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Er
       path_params: &models::DeleteAssistantPathParams,
     ) -> Result<DeleteAssistantResponse, E>;
 
-    /// Delete an assistant file..
+    /// Deletes a message..
     ///
-    /// DeleteAssistantFile - DELETE /v1/assistants/{assistant_id}/files/{file_id}
-    async fn delete_assistant_file(
+    /// DeleteMessage - DELETE /v1/threads/{thread_id}/messages/{message_id}
+    async fn delete_message(
     &self,
     
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
         claims: &Self::Claims,
-      path_params: &models::DeleteAssistantFilePathParams,
-    ) -> Result<DeleteAssistantFileResponse, E>;
+      path_params: &models::DeleteMessagePathParams,
+    ) -> Result<DeleteMessageResponse, E>;
 
     /// Delete a thread..
     ///
@@ -414,19 +356,6 @@ pub trait Assistants<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Er
       path_params: &models::GetAssistantPathParams,
     ) -> Result<GetAssistantResponse, E>;
 
-    /// Retrieves an AssistantFile..
-    ///
-    /// GetAssistantFile - GET /v1/assistants/{assistant_id}/files/{file_id}
-    async fn get_assistant_file(
-    &self,
-    
-    method: &Method,
-    host: &Host,
-    cookies: &CookieJar,
-        claims: &Self::Claims,
-      path_params: &models::GetAssistantFilePathParams,
-    ) -> Result<GetAssistantFileResponse, E>;
-
     /// Retrieve a message..
     ///
     /// GetMessage - GET /v1/threads/{thread_id}/messages/{message_id}
@@ -439,19 +368,6 @@ pub trait Assistants<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Er
         claims: &Self::Claims,
       path_params: &models::GetMessagePathParams,
     ) -> Result<GetMessageResponse, E>;
-
-    /// Retrieves a message file..
-    ///
-    /// GetMessageFile - GET /v1/threads/{thread_id}/messages/{message_id}/files/{file_id}
-    async fn get_message_file(
-    &self,
-    
-    method: &Method,
-    host: &Host,
-    cookies: &CookieJar,
-        claims: &Self::Claims,
-      path_params: &models::GetMessageFilePathParams,
-    ) -> Result<GetMessageFileResponse, E>;
 
     /// Retrieves a run..
     ///
@@ -477,6 +393,7 @@ pub trait Assistants<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Er
     cookies: &CookieJar,
         claims: &Self::Claims,
       path_params: &models::GetRunStepPathParams,
+      query_params: &models::GetRunStepQueryParams,
     ) -> Result<GetRunStepResponse, E>;
 
     /// Retrieves a thread..
@@ -492,20 +409,6 @@ pub trait Assistants<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Er
       path_params: &models::GetThreadPathParams,
     ) -> Result<GetThreadResponse, E>;
 
-    /// Returns a list of assistant files..
-    ///
-    /// ListAssistantFiles - GET /v1/assistants/{assistant_id}/files
-    async fn list_assistant_files(
-    &self,
-    
-    method: &Method,
-    host: &Host,
-    cookies: &CookieJar,
-        claims: &Self::Claims,
-      path_params: &models::ListAssistantFilesPathParams,
-      query_params: &models::ListAssistantFilesQueryParams,
-    ) -> Result<ListAssistantFilesResponse, E>;
-
     /// Returns a list of assistants..
     ///
     /// ListAssistants - GET /v1/assistants
@@ -518,20 +421,6 @@ pub trait Assistants<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Er
         claims: &Self::Claims,
       query_params: &models::ListAssistantsQueryParams,
     ) -> Result<ListAssistantsResponse, E>;
-
-    /// Returns a list of message files..
-    ///
-    /// ListMessageFiles - GET /v1/threads/{thread_id}/messages/{message_id}/files
-    async fn list_message_files(
-    &self,
-    
-    method: &Method,
-    host: &Host,
-    cookies: &CookieJar,
-        claims: &Self::Claims,
-      path_params: &models::ListMessageFilesPathParams,
-      query_params: &models::ListMessageFilesQueryParams,
-    ) -> Result<ListMessageFilesResponse, E>;
 
     /// Returns a list of messages for a given thread..
     ///

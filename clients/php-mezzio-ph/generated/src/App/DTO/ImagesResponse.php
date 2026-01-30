@@ -18,9 +18,9 @@ class ImagesResponse
 
     /**
      * @DTA\Data(field="data")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection18::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection18::class})
-     * @var \App\DTO\Collection18|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection47::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection47::class})
+     * @var \App\DTO\Collection47|null
      */
     public $data;
 

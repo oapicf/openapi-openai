@@ -3,7 +3,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * OpenAPI document version: 2.0.0
+ * OpenAPI document version: 2.3.0
  * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -16,23 +16,27 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.model.AssistantsApiResponseFormat;
+import org.openapitools.model.ResponseFormatJsonObject;
+import org.openapitools.model.ResponseFormatJsonSchema;
+import org.openapitools.model.ResponseFormatJsonSchemaJsonSchema;
+import org.openapitools.model.ResponseFormatText;
 
 
 
 /**
- * Specifies the format that the model must output. Compatible with [GPT-4 Turbo](/docs/models/gpt-4-and-gpt-4-turbo) and all GPT-3.5 Turbo models newer than `gpt-3.5-turbo-1106`.  Setting to `{ \"type\": \"json_object\" }` enables JSON mode, which guarantees the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \"stuck\" request. Also note that the message content may be partially cut off if `finish_reason=\"length\"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. 
+ * Specifies the format that the model must output. Compatible with [GPT-4o](/docs/models#gpt-4o), [GPT-4 Turbo](/docs/models#gpt-4-turbo-and-gpt-4), and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`.  Setting to `{ \"type\": \"json_schema\", \"json_schema\": {...} }` enables Structured Outputs which ensures the model will match your supplied JSON schema. Learn more in the [Structured Outputs guide](/docs/guides/structured-outputs).  Setting to `{ \"type\": \"json_object\" }` enables JSON mode, which ensures the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \"stuck\" request. Also note that the message content may be partially cut off if `finish_reason=\"length\"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. 
  */
 
-@ApiModel(description = "Specifies the format that the model must output. Compatible with [GPT-4 Turbo](/docs/models/gpt-4-and-gpt-4-turbo) and all GPT-3.5 Turbo models newer than `gpt-3.5-turbo-1106`.  Setting to `{ \"type\": \"json_object\" }` enables JSON mode, which guarantees the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \"stuck\" request. Also note that the message content may be partially cut off if `finish_reason=\"length\"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T10:45:08.090000084Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@ApiModel(description = "Specifies the format that the model must output. Compatible with [GPT-4o](/docs/models#gpt-4o), [GPT-4 Turbo](/docs/models#gpt-4-turbo-and-gpt-4), and all GPT-3.5 Turbo models since `gpt-3.5-turbo-1106`.  Setting to `{ \"type\": \"json_schema\", \"json_schema\": {...} }` enables Structured Outputs which ensures the model will match your supplied JSON schema. Learn more in the [Structured Outputs guide](/docs/guides/structured-outputs).  Setting to `{ \"type\": \"json_object\" }` enables JSON mode, which ensures the message the model generates is valid JSON.  **Important:** when using JSON mode, you **must** also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly \"stuck\" request. Also note that the message content may be partially cut off if `finish_reason=\"length\"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. ")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-01-29T14:08:32.184840743Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class AssistantsApiResponseFormatOption   {
   
 
 
   public enum TypeEnum {
     TEXT("text"),
-    JSON_OBJECT("json_object");
+    JSON_OBJECT("json_object"),
+    JSON_SCHEMA("json_schema");
 
     private String value;
 
@@ -47,10 +51,11 @@ public class AssistantsApiResponseFormatOption   {
     }
   }
 
-  private TypeEnum type = TypeEnum.TEXT;
+  private TypeEnum type;
+  private ResponseFormatJsonSchemaJsonSchema jsonSchema;
 
   /**
-   * Must be one of `text` or `json_object`.
+   * The type of response format being defined: `text`
    */
   public AssistantsApiResponseFormatOption type(TypeEnum type) {
     this.type = type;
@@ -58,13 +63,30 @@ public class AssistantsApiResponseFormatOption   {
   }
 
   
-  @ApiModelProperty(example = "json_object", value = "Must be one of `text` or `json_object`.")
+  @ApiModelProperty(required = true, value = "The type of response format being defined: `text`")
   @JsonProperty("type")
   public TypeEnum getType() {
     return type;
   }
   public void setType(TypeEnum type) {
     this.type = type;
+  }
+
+  /**
+   */
+  public AssistantsApiResponseFormatOption jsonSchema(ResponseFormatJsonSchemaJsonSchema jsonSchema) {
+    this.jsonSchema = jsonSchema;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty("json_schema")
+  public ResponseFormatJsonSchemaJsonSchema getJsonSchema() {
+    return jsonSchema;
+  }
+  public void setJsonSchema(ResponseFormatJsonSchemaJsonSchema jsonSchema) {
+    this.jsonSchema = jsonSchema;
   }
 
 
@@ -77,12 +99,13 @@ public class AssistantsApiResponseFormatOption   {
       return false;
     }
     AssistantsApiResponseFormatOption assistantsApiResponseFormatOption = (AssistantsApiResponseFormatOption) o;
-    return Objects.equals(type, assistantsApiResponseFormatOption.type);
+    return Objects.equals(type, assistantsApiResponseFormatOption.type) &&
+        Objects.equals(jsonSchema, assistantsApiResponseFormatOption.jsonSchema);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type);
+    return Objects.hash(type, jsonSchema);
   }
 
   @Override
@@ -91,6 +114,7 @@ public class AssistantsApiResponseFormatOption   {
     sb.append("class AssistantsApiResponseFormatOption {\n");
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    jsonSchema: ").append(toIndentedString(jsonSchema)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **choices** | [**array[CreateChatCompletionResponseChoicesInner]**](CreateChatCompletionResponseChoicesInner.md) |  | [default to null]
 **created** | **integer** |  | [default to null]
 **model** | **string** |  | [default to null]
+**serviceUnderscoretier** | **string** |  | [optional] [default to null]
 **systemUnderscorefingerprint** | **string** |  | [optional] [default to null]
 **object** | **string** |  | [default to null]
 **usage** | [**CompletionUsage**](CompletionUsage.md) |  | [optional] [default to null]

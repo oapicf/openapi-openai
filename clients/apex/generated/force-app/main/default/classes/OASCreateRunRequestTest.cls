@@ -76,10 +76,12 @@ private class OASCreateRunRequestTest {
         System.assertEquals('assistantId', x-property-mappings.get('assistant_id'));
         System.assertEquals('additionalInstructions', x-property-mappings.get('additional_instructions'));
         System.assertEquals('additionalMessages', x-property-mappings.get('additional_messages'));
+        System.assertEquals('topP', x-property-mappings.get('top_p'));
         System.assertEquals('maxPromptTokens', x-property-mappings.get('max_prompt_tokens'));
         System.assertEquals('maxCompletionTokens', x-property-mappings.get('max_completion_tokens'));
         System.assertEquals('truncationStrategy', x-property-mappings.get('truncation_strategy'));
         System.assertEquals('toolChoice', x-property-mappings.get('tool_choice'));
+        System.assertEquals('parallelToolCalls', x-property-mappings.get('parallel_tool_calls'));
         System.assertEquals('responseFormat', x-property-mappings.get('response_format'));
     }
 
@@ -89,6 +91,8 @@ private class OASCreateRunRequestTest {
         System.assertEquals(new List<OASCreateMessageRequest>(), createRunRequest.additionalMessages);
         System.assertEquals(new List<OASAssistantObjectToolsInner>(), createRunRequest.tools);
         System.assertEquals(1, createRunRequest.temperature);
+        System.assertEquals(1, createRunRequest.topP);
+        System.assertEquals(true, createRunRequest.parallelToolCalls);
         System.assertEquals(null, createRunRequest.assistantId);
         System.assertEquals(null, createRunRequest.model);
         System.assertEquals(null, createRunRequest.instructions);

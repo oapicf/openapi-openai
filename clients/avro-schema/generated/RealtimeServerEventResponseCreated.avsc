@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when a new Response is created. The first event of response creation, where the response is in an initial state of `in_progress`. ",
+  "name": "RealtimeServerEventResponseCreated",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventResponseCreated_type",
+        "symbols": [
+          "response_created"
+        ]
+      },
+      "doc": "The event type, must be `response.created`."
+    },
+    {
+      "name": "response",
+      "type": "model.RealtimeResponse",
+      "doc": ""
+    }
+  ]
+
+}

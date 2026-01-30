@@ -15,22 +15,26 @@ class ThreadStreamEvent(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, event: str=None, data: ThreadObject=None):
+    def __init__(self, enabled: bool=None, event: str=None, data: ThreadObject=None):
         """ThreadStreamEvent - a model defined in OpenAPI
 
+        :param enabled: The enabled of this ThreadStreamEvent.
         :param event: The event of this ThreadStreamEvent.
         :param data: The data of this ThreadStreamEvent.
         """
         self.openapi_types = {
+            'enabled': bool,
             'event': str,
             'data': ThreadObject
         }
 
         self.attribute_map = {
+            'enabled': 'enabled',
             'event': 'event',
             'data': 'data'
         }
 
+        self._enabled = enabled
         self._event = event
         self._data = data
 
@@ -42,6 +46,29 @@ class ThreadStreamEvent(Model):
         :return: The ThreadStreamEvent of this ThreadStreamEvent.
         """
         return util.deserialize_model(dikt, cls)
+
+    @property
+    def enabled(self):
+        """Gets the enabled of this ThreadStreamEvent.
+
+        Whether to enable input audio transcription.
+
+        :return: The enabled of this ThreadStreamEvent.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """Sets the enabled of this ThreadStreamEvent.
+
+        Whether to enable input audio transcription.
+
+        :param enabled: The enabled of this ThreadStreamEvent.
+        :type enabled: bool
+        """
+
+        self._enabled = enabled
 
     @property
     def event(self):

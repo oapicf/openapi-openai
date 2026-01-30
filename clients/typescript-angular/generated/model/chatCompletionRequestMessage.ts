@@ -7,8 +7,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ChatCompletionRequestAssistantMessageAudio } from './chatCompletionRequestAssistantMessageAudio';
 import { ChatCompletionRequestUserMessage } from './chatCompletionRequestUserMessage';
 import { ChatCompletionRequestAssistantMessage } from './chatCompletionRequestAssistantMessage';
+import { ChatCompletionRequestDeveloperMessage } from './chatCompletionRequestDeveloperMessage';
 import { ChatCompletionRequestAssistantMessageFunctionCall } from './chatCompletionRequestAssistantMessageFunctionCall';
 import { ChatCompletionRequestFunctionMessage } from './chatCompletionRequestFunctionMessage';
 import { ChatCompletionRequestToolMessage } from './chatCompletionRequestToolMessage';
@@ -20,5 +22,5 @@ import { ChatCompletionRequestSystemMessage } from './chatCompletionRequestSyste
  * @type ChatCompletionRequestMessage
  * @export
  */
-export type ChatCompletionRequestMessage = ChatCompletionRequestAssistantMessage | ChatCompletionRequestFunctionMessage | ChatCompletionRequestSystemMessage | ChatCompletionRequestToolMessage | ChatCompletionRequestUserMessage;
+export type ChatCompletionRequestMessage = ChatCompletionRequestAssistantMessage | ChatCompletionRequestDeveloperMessage | ChatCompletionRequestFunctionMessage | ChatCompletionRequestSystemMessage | ChatCompletionRequestToolMessage | ChatCompletionRequestUserMessage;
 

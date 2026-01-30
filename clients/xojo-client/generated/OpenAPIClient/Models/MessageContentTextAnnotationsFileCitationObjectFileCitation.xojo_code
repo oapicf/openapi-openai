@@ -9,14 +9,6 @@ Protected Class MessageContentTextAnnotationsFileCitationObjectFileCitation
 	#tag EndProperty
 
 
-	#tag Property, Flags = &h0
-		#tag Note
-			The specific quote in the file.
-		#tag EndNote
-		quote As String
-	#tag EndProperty
-
-
 
 
 
@@ -55,14 +47,6 @@ Protected Class MessageContentTextAnnotationsFileCitationObjectFileCitation
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="file_id"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="quote"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

@@ -23,22 +23,40 @@ ListFilesResponse::~ListFilesResponse()
 void
 ListFilesResponse::__init()
 {
-	//new std::list()std::list> data;
 	//object = std::string();
+	//new std::list()std::list> data;
+	//first_id = std::string();
+	//last_id = std::string();
+	//has_more = bool(false);
 }
 
 void
 ListFilesResponse::__cleanup()
 {
+	//if(object != NULL) {
+	//
+	//delete object;
+	//object = NULL;
+	//}
 	//if(data != NULL) {
 	//data.RemoveAll(true);
 	//delete data;
 	//data = NULL;
 	//}
-	//if(object != NULL) {
+	//if(first_id != NULL) {
 	//
-	//delete object;
-	//object = NULL;
+	//delete first_id;
+	//first_id = NULL;
+	//}
+	//if(last_id != NULL) {
+	//
+	//delete last_id;
+	//last_id = NULL;
+	//}
+	//if(has_more != NULL) {
+	//
+	//delete has_more;
+	//has_more = NULL;
 	//}
 	//
 }
@@ -48,6 +66,17 @@ ListFilesResponse::fromJson(char* jsonStr)
 {
 	JsonObject *pJsonObject = json_node_get_object(json_from_string(jsonStr,NULL));
 	JsonNode *node;
+	const gchar *objectKey = "object";
+	node = json_object_get_member(pJsonObject, objectKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&object, node, "std::string", "");
+		} else {
+			
+		}
+	}
 	const gchar *dataKey = "data";
 	node = json_object_get_member(pJsonObject, dataKey);
 	if (node !=NULL) {
@@ -72,13 +101,35 @@ ListFilesResponse::fromJson(char* jsonStr)
 		}
 		
 	}
-	const gchar *objectKey = "object";
-	node = json_object_get_member(pJsonObject, objectKey);
+	const gchar *first_idKey = "first_id";
+	node = json_object_get_member(pJsonObject, first_idKey);
 	if (node !=NULL) {
 	
 
 		if (isprimitive("std::string")) {
-			jsonToValue(&object, node, "std::string", "");
+			jsonToValue(&first_id, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *last_idKey = "last_id";
+	node = json_object_get_member(pJsonObject, last_idKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&last_id, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *has_moreKey = "has_more";
+	node = json_object_get_member(pJsonObject, has_moreKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("bool")) {
+			jsonToValue(&has_more, node, "bool", "");
 		} else {
 			
 		}
@@ -95,6 +146,15 @@ ListFilesResponse::toJson()
 {
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;
+	if (isprimitive("std::string")) {
+		std::string obj = getObject();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *objectKey = "object";
+	json_object_set_member(pJsonObject, objectKey, node);
 	if (isprimitive("OpenAIFile")) {
 		list<OpenAIFile> new_list = static_cast<list <OpenAIFile> > (getData());
 		node = converttoJson(&new_list, "OpenAIFile", "array");
@@ -121,20 +181,50 @@ ListFilesResponse::toJson()
 	const gchar *dataKey = "data";
 	json_object_set_member(pJsonObject, dataKey, node);
 	if (isprimitive("std::string")) {
-		std::string obj = getObject();
+		std::string obj = getFirstId();
 		node = converttoJson(&obj, "std::string", "");
 	}
 	else {
 		
 	}
-	const gchar *objectKey = "object";
-	json_object_set_member(pJsonObject, objectKey, node);
+	const gchar *first_idKey = "first_id";
+	json_object_set_member(pJsonObject, first_idKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getLastId();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *last_idKey = "last_id";
+	json_object_set_member(pJsonObject, last_idKey, node);
+	if (isprimitive("bool")) {
+		bool obj = getHasMore();
+		node = converttoJson(&obj, "bool", "");
+	}
+	else {
+		
+	}
+	const gchar *has_moreKey = "has_more";
+	json_object_set_member(pJsonObject, has_moreKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
 	char * ret = json_to_string(node, false);
 	json_node_free(node);
 	return ret;
+}
+
+std::string
+ListFilesResponse::getObject()
+{
+	return object;
+}
+
+void
+ListFilesResponse::setObject(std::string  object)
+{
+	this->object = object;
 }
 
 std::list<OpenAIFile>
@@ -150,15 +240,39 @@ ListFilesResponse::setData(std::list <OpenAIFile> data)
 }
 
 std::string
-ListFilesResponse::getObject()
+ListFilesResponse::getFirstId()
 {
-	return object;
+	return first_id;
 }
 
 void
-ListFilesResponse::setObject(std::string  object)
+ListFilesResponse::setFirstId(std::string  first_id)
 {
-	this->object = object;
+	this->first_id = first_id;
+}
+
+std::string
+ListFilesResponse::getLastId()
+{
+	return last_id;
+}
+
+void
+ListFilesResponse::setLastId(std::string  last_id)
+{
+	this->last_id = last_id;
+}
+
+bool
+ListFilesResponse::getHasMore()
+{
+	return has_more;
+}
+
+void
+ListFilesResponse::setHasMore(bool  has_more)
+{
+	this->has_more = has_more;
 }
 
 

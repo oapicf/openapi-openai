@@ -1,7 +1,7 @@
 /*
  * create_chat_completion_request_model.h
  *
- * ID of the model to use. See the [model endpoint compatibility](/docs/models/model-endpoint-compatibility) table for details on which models work with the Chat API.
+ * ID of the model to use. See the [model endpoint compatibility](/docs/models#model-endpoint-compatibility) table for details on which models work with the Chat API.
  */
 
 #ifndef _create_chat_completion_request_model_H_

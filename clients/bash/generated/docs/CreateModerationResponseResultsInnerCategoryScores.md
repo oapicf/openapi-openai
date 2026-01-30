@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **hateSlashthreatening** | **integer** |  | [default to null]
 **harassment** | **integer** |  | [default to null]
 **harassmentSlashthreatening** | **integer** |  | [default to null]
+**illicit** | **integer** |  | [default to null]
+**illicitSlashviolent** | **integer** |  | [default to null]
 **selfMinusharm** | **integer** |  | [default to null]
 **selfMinusharmSlashintent** | **integer** |  | [default to null]
 **selfMinusharmSlashinstructions** | **integer** |  | [default to null]

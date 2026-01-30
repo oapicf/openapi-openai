@@ -4,14 +4,14 @@ All URIs are relative to *https://api.openai.com/v1*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**create_moderation**](ModerationsApi.md#create_moderation) | **POST** /moderations | Classifies if text is potentially harmful. |
+| [**create_moderation**](ModerationsApi.md#create_moderation) | **POST** /moderations | Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation).  |
 
 
 ## create_moderation
 
 > <CreateModerationResponse> create_moderation(create_moderation_request)
 
-Classifies if text is potentially harmful.
+Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 
 ### Examples
 
@@ -28,7 +28,7 @@ api_instance = OpenApiOpenAIClient::ModerationsApi.new
 create_moderation_request = OpenApiOpenAIClient::CreateModerationRequest.new({input: nil}) # CreateModerationRequest | 
 
 begin
-  # Classifies if text is potentially harmful.
+  # Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
   result = api_instance.create_moderation(create_moderation_request)
   p result
 rescue OpenApiOpenAIClient::ApiError => e
@@ -44,7 +44,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Classifies if text is potentially harmful.
+  # Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
   data, status_code, headers = api_instance.create_moderation_with_http_info(create_moderation_request)
   p status_code # => 2xx
   p headers # => { ... }

@@ -1,0 +1,66 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server UsageAudioSpeechesResult"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a UsageAudioSpeechesResult"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  UsageAudioSpeechesResult {
+    title = UsageAudioSpeechesResult
+    description = UsageAudioSpeechesResult
+    derivedFrom = Root
+    properties {
+        object {
+          type =  string
+          description = ""
+          enum = ["organization.usage.audio_speeches.result"]
+          optional = true
+        }
+        characters {
+          type =  integer
+          description = "The number of characters processed."
+          optional = true
+        }
+        num_model_requests {
+          type =  integer
+          description = "The count of requests made to the model."
+          optional = true
+        }
+        project_id {
+          type =  string
+          description = "When &#x60;group_by&#x3D;project_id&#x60;, this field provides the project ID of the grouped usage result."
+          optional = false
+        }
+        user_id {
+          type =  string
+          description = "When &#x60;group_by&#x3D;user_id&#x60;, this field provides the user ID of the grouped usage result."
+          optional = false
+        }
+        api_key_id {
+          type =  string
+          description = "When &#x60;group_by&#x3D;api_key_id&#x60;, this field provides the API key ID of the grouped usage result."
+          optional = false
+        }
+        model {
+          type =  string
+          description = "When &#x60;group_by&#x3D;model&#x60;, this field provides the model name of the grouped usage result."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  UsageAudioSpeechesResult {
+    title = UsageAudioSpeechesResult
+    description = UsageAudioSpeechesResult
+    implements = openapi_server.resourceTypes.UsageAudioSpeechesResult
+
+  }
+}

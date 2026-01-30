@@ -63,7 +63,7 @@ bool createImageAsync(char * accessToken,
  * \param n The number of images to generate. Must be between 1 and 10.
  * \param size The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
  * \param responseFormat The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
- * \param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+ * \param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
@@ -83,7 +83,7 @@ bool createImageEditSync(char * accessToken,
  * \param n The number of images to generate. Must be between 1 and 10.
  * \param size The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
  * \param responseFormat The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
- * \param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+ * \param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
@@ -102,7 +102,7 @@ bool createImageEditAsync(char * accessToken,
  * \param n The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
  * \param responseFormat The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
  * \param size The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
- * \param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+ * \param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
@@ -120,7 +120,7 @@ bool createImageVariationSync(char * accessToken,
  * \param n The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
  * \param responseFormat The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
  * \param size The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
- * \param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+ * \param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.

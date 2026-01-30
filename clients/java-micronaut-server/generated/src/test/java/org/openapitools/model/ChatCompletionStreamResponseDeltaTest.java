@@ -57,4 +57,12 @@ public class ChatCompletionStreamResponseDeltaTest {
         // TODO: test role
     }
 
+    /**
+     * Test the property 'refusal'
+     */
+    @Test
+    public void refusalTest() {
+        // TODO: test refusal
+    }
+
 }

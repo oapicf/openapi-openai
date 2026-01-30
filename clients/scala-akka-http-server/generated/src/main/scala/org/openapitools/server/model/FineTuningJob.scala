@@ -22,6 +22,8 @@ package org.openapitools.server.model
  * @param validationFile The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents). for example: ''null''
  * @param integrations A list of integrations to enable for this fine-tuning job. for example: ''null''
  * @param seed The seed used for the fine-tuning job. for example: ''null''
+ * @param estimatedFinish The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running. for example: ''null''
+ * @param method  for example: ''null''
 */
 final case class FineTuningJob (
   id: String,
@@ -39,6 +41,8 @@ final case class FineTuningJob (
   trainingFile: String,
   validationFile: String,
   integrations: Option[Seq[FineTuningJobIntegrationsInner]] = None,
-  seed: Int
+  seed: Int,
+  estimatedFinish: Option[Int] = None,
+  method: Option[FineTuneMethod] = None
 )
 

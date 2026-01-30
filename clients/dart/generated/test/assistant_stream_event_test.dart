@@ -16,6 +16,12 @@ void main() {
   // final instance = AssistantStreamEvent();
 
   group('test AssistantStreamEvent', () {
+    // Whether to enable input audio transcription.
+    // bool enabled
+    test('to test the property `enabled`', () async {
+      // TODO
+    });
+
     // String event
     test('to test the property `event`', () async {
       // TODO

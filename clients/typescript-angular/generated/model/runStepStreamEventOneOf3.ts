@@ -11,7 +11,7 @@ import { RunStepObject } from './runStepObject';
 
 
 /**
- * Occurs when a [run step](/docs/api-reference/runs/step-object) is completed.
+ * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is completed.
  */
 export interface RunStepStreamEventOneOf3 { 
     event: RunStepStreamEventOneOf3.EventEnum;

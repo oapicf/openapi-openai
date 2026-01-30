@@ -1,7 +1,7 @@
 {
   "namespace": "model",
   "type": "record",
-  "doc": "Occurs when a [run step](/docs/api-reference/runs/step-object) is cancelled.",
+  "doc": "Occurs when a [run step](/docs/api-reference/run-steps/step-object) is cancelled.",
   "name": "RunStepStreamEventOneOf5",
   "fields": [
     {

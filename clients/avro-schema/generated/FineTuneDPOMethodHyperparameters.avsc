@@ -1,0 +1,33 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "The hyperparameters used for the fine-tuning job.",
+  "name": "FineTuneDPOMethodHyperparameters",
+  "fields": [
+    {
+      "name": "beta",
+      "type": ["null", "model.FineTuneDPOMethodHyperparametersBeta"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "batch_size",
+      "type": ["null", "model.FineTuneDPOMethodHyperparametersBatchSize"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "learning_rate_multiplier",
+      "type": ["null", "model.FineTuneDPOMethodHyperparametersLearningRateMultiplier"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "n_epochs",
+      "type": ["null", "model.FineTuneDPOMethodHyperparametersNEpochs"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

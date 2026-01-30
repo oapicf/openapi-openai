@@ -17,8 +17,8 @@
     },
     {
       "name": "content",
-      "type": "string",
-      "doc": "The contents of the tool message."
+      "type": "model.ChatCompletionRequestToolMessageContent",
+      "doc": ""
     },
     {
       "name": "tool_call_id",

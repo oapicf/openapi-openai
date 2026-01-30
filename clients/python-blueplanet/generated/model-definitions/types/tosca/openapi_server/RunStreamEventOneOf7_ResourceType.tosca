@@ -19,7 +19,7 @@ resourceTypes {
         event {
           type =  string
           description = ""
-          enum = ["thread.run.cancelled"]
+          enum = ["thread.run.cancelling"]
           optional = true
         }
         data {

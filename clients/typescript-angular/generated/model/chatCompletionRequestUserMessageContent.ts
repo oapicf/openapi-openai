@@ -7,7 +7,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ChatCompletionRequestMessageContentPart } from './chatCompletionRequestMessageContentPart';
+import { ChatCompletionRequestUserMessageContentPart } from './chatCompletionRequestUserMessageContentPart';
 
 
 /**
@@ -18,5 +18,5 @@ import { ChatCompletionRequestMessageContentPart } from './chatCompletionRequest
  * The contents of the user message. 
  * @export
  */
-export type ChatCompletionRequestUserMessageContent = Array<ChatCompletionRequestMessageContentPart> | string;
+export type ChatCompletionRequestUserMessageContent = Array<ChatCompletionRequestUserMessageContentPart> | string;
 

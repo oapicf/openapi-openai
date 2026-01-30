@@ -1,0 +1,40 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when a new Item is created during Response generation.",
+  "name": "RealtimeServerEventResponseOutputItemAdded",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventResponseOutputItemAdded_type",
+        "symbols": [
+          "response_output_item_added"
+        ]
+      },
+      "doc": "The event type, must be `response.output_item.added`."
+    },
+    {
+      "name": "response_id",
+      "type": "string",
+      "doc": "The ID of the Response to which the item belongs."
+    },
+    {
+      "name": "output_index",
+      "type": "int",
+      "doc": "The index of the output item in the Response."
+    },
+    {
+      "name": "item",
+      "type": "model.RealtimeConversationItem",
+      "doc": ""
+    }
+  ]
+
+}

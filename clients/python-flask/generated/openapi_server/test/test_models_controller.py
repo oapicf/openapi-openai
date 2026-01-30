@@ -21,7 +21,7 @@ class TestModelsController(BaseTestCase):
             'Authorization': 'Bearer special-key',
         }
         response = self.client.open(
-            '/v1/models/{model}'.format(model='ft:gpt-3.5-turbo:acemeco:suffix:abc123'),
+            '/v1/models/{model}'.format(model='ft:gpt-4o-mini:acemeco:suffix:abc123'),
             method='DELETE',
             headers=headers)
         self.assert200(response,
@@ -53,7 +53,7 @@ class TestModelsController(BaseTestCase):
             'Authorization': 'Bearer special-key',
         }
         response = self.client.open(
-            '/v1/models/{model}'.format(model='gpt-3.5-turbo'),
+            '/v1/models/{model}'.format(model='gpt-4o-mini'),
             method='GET',
             headers=headers)
         self.assert200(response,

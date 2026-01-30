@@ -6,6 +6,7 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from app.openapi_server.models.base_model import Model
+from app.openapi_server.models.chat_completion_request_tool_message_content import ChatCompletionRequestToolMessageContent  # noqa: F401,E501
 from openapi_server import util
 
 
@@ -15,19 +16,19 @@ class ChatCompletionRequestToolMessage(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, role: str=None, content: str=None, tool_call_id: str=None):  # noqa: E501
+    def __init__(self, role: str=None, content: ChatCompletionRequestToolMessageContent=None, tool_call_id: str=None):  # noqa: E501
         """ChatCompletionRequestToolMessage - a model defined in Swagger
 
         :param role: The role of this ChatCompletionRequestToolMessage.  # noqa: E501
         :type role: str
         :param content: The content of this ChatCompletionRequestToolMessage.  # noqa: E501
-        :type content: str
+        :type content: ChatCompletionRequestToolMessageContent
         :param tool_call_id: The tool_call_id of this ChatCompletionRequestToolMessage.  # noqa: E501
         :type tool_call_id: str
         """
         self.swagger_types = {
             'role': str,
-            'content': str,
+            'content': ChatCompletionRequestToolMessageContent,
             'tool_call_id': str
         }
 
@@ -82,24 +83,22 @@ class ChatCompletionRequestToolMessage(Model):
         self._role = role
 
     @property
-    def content(self) -> str:
+    def content(self) -> ChatCompletionRequestToolMessageContent:
         """Gets the content of this ChatCompletionRequestToolMessage.
 
-        The contents of the tool message.  # noqa: E501
 
         :return: The content of this ChatCompletionRequestToolMessage.
-        :rtype: str
+        :rtype: ChatCompletionRequestToolMessageContent
         """
         return self._content
 
     @content.setter
-    def content(self, content: str):
+    def content(self, content: ChatCompletionRequestToolMessageContent):
         """Sets the content of this ChatCompletionRequestToolMessage.
 
-        The contents of the tool message.  # noqa: E501
 
         :param content: The content of this ChatCompletionRequestToolMessage.
-        :type content: str
+        :type content: ChatCompletionRequestToolMessageContent
         """
         if content is None:
             raise ValueError("Invalid value for `content`, must not be `None`")  # noqa: E501

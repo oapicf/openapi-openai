@@ -11,8 +11,10 @@ Name | Type
 `choices` | [Array&lt;CreateChatCompletionStreamResponseChoicesInner&gt;](CreateChatCompletionStreamResponseChoicesInner.md)
 `created` | number
 `model` | string
+`serviceTier` | string
 `systemFingerprint` | string
 `object` | string
+`usage` | [CreateChatCompletionStreamResponseUsage](CreateChatCompletionStreamResponseUsage.md)
 
 ## Example
 
@@ -25,8 +27,10 @@ const example = {
   "choices": null,
   "created": null,
   "model": null,
+  "serviceTier": scale,
   "systemFingerprint": null,
   "object": null,
+  "usage": null,
 } satisfies CreateChatCompletionStreamResponse
 
 console.log(example)

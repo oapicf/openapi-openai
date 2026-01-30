@@ -6,6 +6,7 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from app.openapi_server.models.base_model import Model
+from app.openapi_server.models.modify_thread_request_tool_resources import ModifyThreadRequestToolResources  # noqa: F401,E501
 from openapi_server import util
 
 
@@ -15,7 +16,7 @@ class ThreadObject(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, object: str=None, created_at: int=None, metadata: object=None):  # noqa: E501
+    def __init__(self, id: str=None, object: str=None, created_at: int=None, tool_resources: ModifyThreadRequestToolResources=None, metadata: object=None):  # noqa: E501
         """ThreadObject - a model defined in Swagger
 
         :param id: The id of this ThreadObject.  # noqa: E501
@@ -24,6 +25,8 @@ class ThreadObject(Model):
         :type object: str
         :param created_at: The created_at of this ThreadObject.  # noqa: E501
         :type created_at: int
+        :param tool_resources: The tool_resources of this ThreadObject.  # noqa: E501
+        :type tool_resources: ModifyThreadRequestToolResources
         :param metadata: The metadata of this ThreadObject.  # noqa: E501
         :type metadata: object
         """
@@ -31,6 +34,7 @@ class ThreadObject(Model):
             'id': str,
             'object': str,
             'created_at': int,
+            'tool_resources': ModifyThreadRequestToolResources,
             'metadata': object
         }
 
@@ -38,12 +42,14 @@ class ThreadObject(Model):
             'id': 'id',
             'object': 'object',
             'created_at': 'created_at',
+            'tool_resources': 'tool_resources',
             'metadata': 'metadata'
         }
 
         self._id = id
         self._object = object
         self._created_at = created_at
+        self._tool_resources = tool_resources
         self._metadata = metadata
 
     @classmethod
@@ -137,10 +143,33 @@ class ThreadObject(Model):
         self._created_at = created_at
 
     @property
+    def tool_resources(self) -> ModifyThreadRequestToolResources:
+        """Gets the tool_resources of this ThreadObject.
+
+
+        :return: The tool_resources of this ThreadObject.
+        :rtype: ModifyThreadRequestToolResources
+        """
+        return self._tool_resources
+
+    @tool_resources.setter
+    def tool_resources(self, tool_resources: ModifyThreadRequestToolResources):
+        """Sets the tool_resources of this ThreadObject.
+
+
+        :param tool_resources: The tool_resources of this ThreadObject.
+        :type tool_resources: ModifyThreadRequestToolResources
+        """
+        if tool_resources is None:
+            raise ValueError("Invalid value for `tool_resources`, must not be `None`")  # noqa: E501
+
+        self._tool_resources = tool_resources
+
+    @property
     def metadata(self) -> object:
         """Gets the metadata of this ThreadObject.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.   # noqa: E501
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.   # noqa: E501
 
         :return: The metadata of this ThreadObject.
         :rtype: object
@@ -151,7 +180,7 @@ class ThreadObject(Model):
     def metadata(self, metadata: object):
         """Sets the metadata of this ThreadObject.
 
-        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.   # noqa: E501
+        Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.   # noqa: E501
 
         :param metadata: The metadata of this ThreadObject.
         :type metadata: object

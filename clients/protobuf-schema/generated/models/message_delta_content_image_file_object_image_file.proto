@@ -3,7 +3,7 @@
 
   The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-  The version of the OpenAPI document: 2.0.0
+  The version of the OpenAPI document: 2.3.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -17,8 +17,17 @@ package openapitools;
 
 message MessageDeltaContentImageFileObjectImageFile {
 
-  // The [File](/docs/api-reference/files) ID of the image in the message content.
+  // The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose=\"vision\"` when uploading the File if you need to later display the file content.
   string file_id = 318129475;
+
+  // Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
+  enum Detail {
+    DETAIL_AUTO = 0;
+    DETAIL_LOW = 1;
+    DETAIL_HIGH = 2;
+  }
+
+  Detail detail = 261482417;
 
 }
 

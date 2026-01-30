@@ -6,8 +6,7 @@ context("Test ChatCompletionRequestSystemMessage")
 model_instance <- ChatCompletionRequestSystemMessage$new()
 
 test_that("content", {
-  # tests for the property `content` (character)
-  # The contents of the system message.
+  # tests for the property `content` (ChatCompletionRequestSystemMessageContent)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`content`, "EXPECTED_RESULT")

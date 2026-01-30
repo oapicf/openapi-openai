@@ -82,7 +82,7 @@ let model: CreateImageEditRequestModel; // (optional) (default to undefined)
 let n: number; //The number of images to generate. Must be between 1 and 10. (optional) (default to 1)
 let size: string; //The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. (optional) (default to '1024x1024')
 let responseFormat: string; //The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. (optional) (default to 'url')
-let user: string; //A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (optional) (default to undefined)
+let user: string; //A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional) (default to undefined)
 
 const { status, data } = await apiInstance.createImageEdit(
     image,
@@ -107,7 +107,7 @@ const { status, data } = await apiInstance.createImageEdit(
 | **n** | [**number**] | The number of images to generate. Must be between 1 and 10. | (optional) defaults to 1|
 | **size** | [**string**]**Array<&#39;256x256&#39; &#124; &#39;512x512&#39; &#124; &#39;1024x1024&#39;>** | The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | (optional) defaults to '1024x1024'|
 | **responseFormat** | [**string**]**Array<&#39;url&#39; &#124; &#39;b64_json&#39;>** | The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | (optional) defaults to 'url'|
-| **user** | [**string**] | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  | (optional) defaults to undefined|
+| **user** | [**string**] | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  | (optional) defaults to undefined|
 
 
 ### Return type
@@ -152,7 +152,7 @@ let model: CreateImageEditRequestModel; // (optional) (default to undefined)
 let n: number; //The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. (optional) (default to 1)
 let responseFormat: string; //The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. (optional) (default to 'url')
 let size: string; //The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. (optional) (default to '1024x1024')
-let user: string; //A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  (optional) (default to undefined)
+let user: string; //A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional) (default to undefined)
 
 const { status, data } = await apiInstance.createImageVariation(
     image,
@@ -173,7 +173,7 @@ const { status, data } = await apiInstance.createImageVariation(
 | **n** | [**number**] | The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported. | (optional) defaults to 1|
 | **responseFormat** | [**string**]**Array<&#39;url&#39; &#124; &#39;b64_json&#39;>** | The format in which the generated images are returned. Must be one of &#x60;url&#x60; or &#x60;b64_json&#x60;. URLs are only valid for 60 minutes after the image has been generated. | (optional) defaults to 'url'|
 | **size** | [**string**]**Array<&#39;256x256&#39; &#124; &#39;512x512&#39; &#124; &#39;1024x1024&#39;>** | The size of the generated images. Must be one of &#x60;256x256&#x60;, &#x60;512x512&#x60;, or &#x60;1024x1024&#x60;. | (optional) defaults to '1024x1024'|
-| **user** | [**string**] | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).  | (optional) defaults to undefined|
+| **user** | [**string**] | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  | (optional) defaults to undefined|
 
 
 ### Return type

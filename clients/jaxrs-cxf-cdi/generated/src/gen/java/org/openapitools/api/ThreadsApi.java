@@ -4,12 +4,11 @@ import org.openapitools.model.CreateMessageRequest;
 import org.openapitools.model.CreateRunRequest;
 import org.openapitools.model.CreateThreadAndRunRequest;
 import org.openapitools.model.CreateThreadRequest;
+import org.openapitools.model.DeleteMessageResponse;
 import org.openapitools.model.DeleteThreadResponse;
-import org.openapitools.model.ListMessageFilesResponse;
 import org.openapitools.model.ListMessagesResponse;
 import org.openapitools.model.ListRunStepsResponse;
 import org.openapitools.model.ListRunsResponse;
-import org.openapitools.model.MessageFileObject;
 import org.openapitools.model.MessageObject;
 import org.openapitools.model.ModifyMessageRequest;
 import org.openapitools.model.ModifyRunRequest;
@@ -44,7 +43,7 @@ import javax.validation.Valid;
 @Api
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-01-29T10:45:22.438122430Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-01-29T14:09:03.843054404Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 
 public class ThreadsApi  {
 
@@ -91,8 +90,8 @@ public class ThreadsApi  {
          }, tags={ "Assistants" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = RunObject.class) })
-    public Response createRun(@ApiParam(value = "The ID of the thread to run.",required=true) @PathParam("thread_id") String threadId, @ApiParam(value = "" ,required=true) CreateRunRequest createRunRequest) {
-        return delegate.createRun(threadId, createRunRequest, securityContext);
+    public Response createRun(@ApiParam(value = "The ID of the thread to run.",required=true) @PathParam("thread_id") String threadId, @ApiParam(value = "" ,required=true) CreateRunRequest createRunRequest, @ApiParam(value = "A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")  @QueryParam("include[]") List<String> include) {
+        return delegate.createRun(threadId, createRunRequest, include, securityContext);
     }
 
     @POST
@@ -124,6 +123,20 @@ public class ThreadsApi  {
     }
 
     @DELETE
+    @Path("/{thread_id}/messages/{message_id}")
+    
+    @Produces({ "application/json" })
+    @ApiOperation(value = "Deletes a message.", notes = "", response = DeleteMessageResponse.class, authorizations = {
+        
+        @Authorization(value = "ApiKeyAuth")
+         }, tags={ "Assistants" })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = DeleteMessageResponse.class) })
+    public Response deleteMessage(@ApiParam(value = "The ID of the thread to which this message belongs.",required=true) @PathParam("thread_id") String threadId, @ApiParam(value = "The ID of the message to delete.",required=true) @PathParam("message_id") String messageId) {
+        return delegate.deleteMessage(threadId, messageId, securityContext);
+    }
+
+    @DELETE
     @Path("/{thread_id}")
     
     @Produces({ "application/json" })
@@ -152,20 +165,6 @@ public class ThreadsApi  {
     }
 
     @GET
-    @Path("/{thread_id}/messages/{message_id}/files/{file_id}")
-    
-    @Produces({ "application/json" })
-    @ApiOperation(value = "Retrieves a message file.", notes = "", response = MessageFileObject.class, authorizations = {
-        
-        @Authorization(value = "ApiKeyAuth")
-         }, tags={ "Assistants" })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = MessageFileObject.class) })
-    public Response getMessageFile(@ApiParam(value = "The ID of the thread to which the message and File belong.",required=true) @PathParam("thread_id") String threadId, @ApiParam(value = "The ID of the message the file belongs to.",required=true) @PathParam("message_id") String messageId, @ApiParam(value = "The ID of the file being retrieved.",required=true) @PathParam("file_id") String fileId) {
-        return delegate.getMessageFile(threadId, messageId, fileId, securityContext);
-    }
-
-    @GET
     @Path("/{thread_id}/runs/{run_id}")
     
     @Produces({ "application/json" })
@@ -189,8 +188,8 @@ public class ThreadsApi  {
          }, tags={ "Assistants" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = RunStepObject.class) })
-    public Response getRunStep(@ApiParam(value = "The ID of the thread to which the run and run step belongs.",required=true) @PathParam("thread_id") String threadId, @ApiParam(value = "The ID of the run to which the run step belongs.",required=true) @PathParam("run_id") String runId, @ApiParam(value = "The ID of the run step to retrieve.",required=true) @PathParam("step_id") String stepId) {
-        return delegate.getRunStep(threadId, runId, stepId, securityContext);
+    public Response getRunStep(@ApiParam(value = "The ID of the thread to which the run and run step belongs.",required=true) @PathParam("thread_id") String threadId, @ApiParam(value = "The ID of the run to which the run step belongs.",required=true) @PathParam("run_id") String runId, @ApiParam(value = "The ID of the run step to retrieve.",required=true) @PathParam("step_id") String stepId, @ApiParam(value = "A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")  @QueryParam("include[]") List<String> include) {
+        return delegate.getRunStep(threadId, runId, stepId, include, securityContext);
     }
 
     @GET
@@ -208,20 +207,6 @@ public class ThreadsApi  {
     }
 
     @GET
-    @Path("/{thread_id}/messages/{message_id}/files")
-    
-    @Produces({ "application/json" })
-    @ApiOperation(value = "Returns a list of message files.", notes = "", response = ListMessageFilesResponse.class, authorizations = {
-        
-        @Authorization(value = "ApiKeyAuth")
-         }, tags={ "Assistants" })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = ListMessageFilesResponse.class) })
-    public Response listMessageFiles(@ApiParam(value = "The ID of the thread that the message and files belong to.",required=true) @PathParam("thread_id") String threadId, @ApiParam(value = "The ID of the message that the files belongs to.",required=true) @PathParam("message_id") String messageId, @ApiParam(value = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", defaultValue="20") @DefaultValue("20")  @QueryParam("limit") Integer limit, @ApiParam(value = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", allowableValues="asc, desc", defaultValue="desc") @DefaultValue("desc")  @QueryParam("order") String order, @ApiParam(value = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")  @QueryParam("after") String after, @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @QueryParam("before") String before) {
-        return delegate.listMessageFiles(threadId, messageId, limit, order, after, before, securityContext);
-    }
-
-    @GET
     @Path("/{thread_id}/messages")
     
     @Produces({ "application/json" })
@@ -231,7 +216,7 @@ public class ThreadsApi  {
          }, tags={ "Assistants" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ListMessagesResponse.class) })
-    public Response listMessages(@ApiParam(value = "The ID of the [thread](/docs/api-reference/threads) the messages belong to.",required=true) @PathParam("thread_id") String threadId, @ApiParam(value = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", defaultValue="20") @DefaultValue("20")  @QueryParam("limit") Integer limit, @ApiParam(value = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", allowableValues="asc, desc", defaultValue="desc") @DefaultValue("desc")  @QueryParam("order") String order, @ApiParam(value = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")  @QueryParam("after") String after, @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @QueryParam("before") String before, @ApiParam(value = "Filter messages by the run ID that generated them. ")  @QueryParam("run_id") String runId) {
+    public Response listMessages(@ApiParam(value = "The ID of the [thread](/docs/api-reference/threads) the messages belong to.",required=true) @PathParam("thread_id") String threadId, @ApiParam(value = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", defaultValue="20") @DefaultValue("20")  @QueryParam("limit") Integer limit, @ApiParam(value = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", allowableValues="asc, desc", defaultValue="desc") @DefaultValue("desc")  @QueryParam("order") String order, @ApiParam(value = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")  @QueryParam("after") String after, @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @QueryParam("before") String before, @ApiParam(value = "Filter messages by the run ID that generated them. ")  @QueryParam("run_id") String runId) {
         return delegate.listMessages(threadId, limit, order, after, before, runId, securityContext);
     }
 
@@ -245,8 +230,8 @@ public class ThreadsApi  {
          }, tags={ "Assistants" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ListRunStepsResponse.class) })
-    public Response listRunSteps(@ApiParam(value = "The ID of the thread the run and run steps belong to.",required=true) @PathParam("thread_id") String threadId, @ApiParam(value = "The ID of the run the run steps belong to.",required=true) @PathParam("run_id") String runId, @ApiParam(value = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", defaultValue="20") @DefaultValue("20")  @QueryParam("limit") Integer limit, @ApiParam(value = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", allowableValues="asc, desc", defaultValue="desc") @DefaultValue("desc")  @QueryParam("order") String order, @ApiParam(value = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")  @QueryParam("after") String after, @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @QueryParam("before") String before) {
-        return delegate.listRunSteps(threadId, runId, limit, order, after, before, securityContext);
+    public Response listRunSteps(@ApiParam(value = "The ID of the thread the run and run steps belong to.",required=true) @PathParam("thread_id") String threadId, @ApiParam(value = "The ID of the run the run steps belong to.",required=true) @PathParam("run_id") String runId, @ApiParam(value = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", defaultValue="20") @DefaultValue("20")  @QueryParam("limit") Integer limit, @ApiParam(value = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", allowableValues="asc, desc", defaultValue="desc") @DefaultValue("desc")  @QueryParam("order") String order, @ApiParam(value = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")  @QueryParam("after") String after, @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @QueryParam("before") String before, @ApiParam(value = "A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")  @QueryParam("include[]") List<String> include) {
+        return delegate.listRunSteps(threadId, runId, limit, order, after, before, include, securityContext);
     }
 
     @GET
@@ -259,7 +244,7 @@ public class ThreadsApi  {
          }, tags={ "Assistants" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ListRunsResponse.class) })
-    public Response listRuns(@ApiParam(value = "The ID of the thread the run belongs to.",required=true) @PathParam("thread_id") String threadId, @ApiParam(value = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", defaultValue="20") @DefaultValue("20")  @QueryParam("limit") Integer limit, @ApiParam(value = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", allowableValues="asc, desc", defaultValue="desc") @DefaultValue("desc")  @QueryParam("order") String order, @ApiParam(value = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")  @QueryParam("after") String after, @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @QueryParam("before") String before) {
+    public Response listRuns(@ApiParam(value = "The ID of the thread the run belongs to.",required=true) @PathParam("thread_id") String threadId, @ApiParam(value = "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", defaultValue="20") @DefaultValue("20")  @QueryParam("limit") Integer limit, @ApiParam(value = "Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ", allowableValues="asc, desc", defaultValue="desc") @DefaultValue("desc")  @QueryParam("order") String order, @ApiParam(value = "A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")  @QueryParam("after") String after, @ApiParam(value = "A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")  @QueryParam("before") String before) {
         return delegate.listRuns(threadId, limit, order, after, before, securityContext);
     }
 

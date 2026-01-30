@@ -1,0 +1,56 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server RealtimeServerEventConversationItemTruncated"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a RealtimeServerEventConversationItemTruncated"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  RealtimeServerEventConversationItemTruncated {
+    title = RealtimeServerEventConversationItemTruncated
+    description = RealtimeServerEventConversationItemTruncated
+    derivedFrom = Root
+    properties {
+        event_id {
+          type =  string
+          description = "The unique ID of the server event."
+          optional = true
+        }
+        type {
+          type =  string
+          description = "The event type, must be &#x60;conversation.item.truncated&#x60;."
+          enum = ["conversation.item.truncated"]
+          optional = true
+        }
+        item_id {
+          type =  string
+          description = "The ID of the assistant message item that was truncated."
+          optional = true
+        }
+        content_index {
+          type =  integer
+          description = "The index of the content part that was truncated."
+          optional = true
+        }
+        audio_end_ms {
+          type =  integer
+          description = "The duration up to which the audio was truncated, in milliseconds. "
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  RealtimeServerEventConversationItemTruncated {
+    title = RealtimeServerEventConversationItemTruncated
+    description = RealtimeServerEventConversationItemTruncated
+    implements = openapi_server.resourceTypes.RealtimeServerEventConversationItemTruncated
+
+  }
+}

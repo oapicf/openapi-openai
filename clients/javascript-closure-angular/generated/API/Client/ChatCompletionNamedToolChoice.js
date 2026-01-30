@@ -14,7 +14,7 @@ API.Client.ChatCompletionNamedToolChoice = function() {}
 API.Client.ChatCompletionNamedToolChoice.prototype.type;
 
 /**
- * @type {!API.Client.ChatCompletionNamedToolChoice_function}
+ * @type {!API.Client.AssistantsNamedToolChoice_function}
  * @export
  */
 API.Client.ChatCompletionNamedToolChoice.prototype.function;

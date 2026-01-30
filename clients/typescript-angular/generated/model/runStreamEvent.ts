@@ -10,6 +10,7 @@
 import { RunObject } from './runObject';
 import { RunStreamEventOneOf7 } from './runStreamEventOneOf7';
 import { RunStreamEventOneOf6 } from './runStreamEventOneOf6';
+import { RunStreamEventOneOf9 } from './runStreamEventOneOf9';
 import { RunStreamEventOneOf8 } from './runStreamEventOneOf8';
 import { RunStreamEventOneOf3 } from './runStreamEventOneOf3';
 import { RunStreamEventOneOf2 } from './runStreamEventOneOf2';
@@ -23,5 +24,5 @@ import { RunStreamEventOneOf1 } from './runStreamEventOneOf1';
  * @type RunStreamEvent
  * @export
  */
-export type RunStreamEvent = RunStreamEventOneOf | RunStreamEventOneOf1 | RunStreamEventOneOf2 | RunStreamEventOneOf3 | RunStreamEventOneOf4 | RunStreamEventOneOf5 | RunStreamEventOneOf6 | RunStreamEventOneOf7 | RunStreamEventOneOf8;
+export type RunStreamEvent = RunStreamEventOneOf | RunStreamEventOneOf1 | RunStreamEventOneOf2 | RunStreamEventOneOf3 | RunStreamEventOneOf4 | RunStreamEventOneOf5 | RunStreamEventOneOf6 | RunStreamEventOneOf7 | RunStreamEventOneOf8 | RunStreamEventOneOf9;
 

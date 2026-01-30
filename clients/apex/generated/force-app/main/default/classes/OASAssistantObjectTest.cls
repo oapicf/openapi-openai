@@ -75,14 +75,17 @@ private class OASAssistantObjectTest {
         Map<String, String> x-property-mappings = assistantObject.getx-property-mappings();
         System.assertEquals('r_object', x-property-mappings.get('object'));
         System.assertEquals('createdAt', x-property-mappings.get('created_at'));
-        System.assertEquals('fileIds', x-property-mappings.get('file_ids'));
+        System.assertEquals('toolResources', x-property-mappings.get('tool_resources'));
+        System.assertEquals('topP', x-property-mappings.get('top_p'));
+        System.assertEquals('responseFormat', x-property-mappings.get('response_format'));
     }
 
     @isTest
     private static void defaultValuesPopulated() {
         OASAssistantObject assistantObject = new OASAssistantObject();
         System.assertEquals(new List<OASAssistantObjectToolsInner>(), assistantObject.tools);
-        System.assertEquals(new List<String>(), assistantObject.fileIds);
+        System.assertEquals(1, assistantObject.temperature);
+        System.assertEquals(1, assistantObject.topP);
         System.assertEquals(null, assistantObject.id);
         System.assertEquals(null, assistantObject.r_object);
         System.assertEquals(null, assistantObject.createdAt);
@@ -90,6 +93,8 @@ private class OASAssistantObjectTest {
         System.assertEquals(null, assistantObject.description);
         System.assertEquals(null, assistantObject.model);
         System.assertEquals(null, assistantObject.instructions);
+        System.assertEquals(null, assistantObject.toolResources);
         System.assertEquals(null, assistantObject.metadata);
+        System.assertEquals(null, assistantObject.responseFormat);
     }
 }

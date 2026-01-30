@@ -5,6 +5,7 @@ import io.finch.circe._
 import io.circe.generic.semiauto._
 import io.circe.java8.time._
 import org.openapitools._
+import org.openapitools.models.FineTuneMethod
 import org.openapitools.models.FineTuningJobError
 import org.openapitools.models.FineTuningJobHyperparameters
 import org.openapitools.models.FineTuningJobIntegrationsInner
@@ -28,6 +29,8 @@ import scala.collection.immutable.Seq
  * @param validationUnderscorefile The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents).
  * @param integrations A list of integrations to enable for this fine-tuning job.
  * @param seed The seed used for the fine-tuning job.
+ * @param estimatedUnderscorefinish The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
+ * @param method 
  */
 case class FineTuningJob(id: String,
                 createdUnderscoreat: Int,
@@ -44,7 +47,9 @@ case class FineTuningJob(id: String,
                 trainingUnderscorefile: String,
                 validationUnderscorefile: String,
                 integrations: Option[Seq[FineTuningJobIntegrationsInner]],
-                seed: Int
+                seed: Int,
+                estimatedUnderscorefinish: Option[Int],
+                method: Option[FineTuneMethod]
                 )
 
 object FineTuningJob {

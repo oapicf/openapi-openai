@@ -10,13 +10,10 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * MessageContentTextAnnotationsFileCitationObjectFileCitation
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T10:44:59.856749186Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-01-29T14:08:14.730511815Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
   @JsonProperty("file_id")
   private String fileId;
-
-  @JsonProperty("quote")
-  private String quote;
 
   public MessageContentTextAnnotationsFileCitationObjectFileCitation fileId(String fileId) {
     this.fileId = fileId;
@@ -36,24 +33,6 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
     this.fileId = fileId;
   }
 
-  public MessageContentTextAnnotationsFileCitationObjectFileCitation quote(String quote) {
-    this.quote = quote;
-    return this;
-  }
-
-   /**
-   * The specific quote in the file.
-   * @return quote
-  **/
-  @ApiModelProperty(required = true, value = "The specific quote in the file.")
-  public String getQuote() {
-    return quote;
-  }
-
-  public void setQuote(String quote) {
-    this.quote = quote;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -64,13 +43,12 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
       return false;
     }
     MessageContentTextAnnotationsFileCitationObjectFileCitation messageContentTextAnnotationsFileCitationObjectFileCitation = (MessageContentTextAnnotationsFileCitationObjectFileCitation) o;
-    return Objects.equals(this.fileId, messageContentTextAnnotationsFileCitationObjectFileCitation.fileId) &&
-        Objects.equals(this.quote, messageContentTextAnnotationsFileCitationObjectFileCitation.quote);
+    return Objects.equals(this.fileId, messageContentTextAnnotationsFileCitationObjectFileCitation.fileId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileId, quote);
+    return Objects.hash(fileId);
   }
 
   @Override
@@ -79,7 +57,6 @@ public class MessageContentTextAnnotationsFileCitationObjectFileCitation   {
     sb.append("class MessageContentTextAnnotationsFileCitationObjectFileCitation {\n");
     
     sb.append("    fileId: ").append(toIndentedString(fileId)).append("\n");
-    sb.append("    quote: ").append(toIndentedString(quote)).append("\n");
     sb.append("}");
     return sb.toString();
   }

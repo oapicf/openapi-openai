@@ -68,4 +68,11 @@ private class OASCreateThreadAndRunRequestToolsInnTest {
         System.assertEquals(createThreadAndRunRequestToolsInner1.hashCode(), createThreadAndRunRequestToolsInner2.hashCode());
         System.assertEquals(createThreadAndRunRequestToolsInner3.hashCode(), createThreadAndRunRequestToolsInner4.hashCode());
     }
+
+    @isTest
+    private static void maintainRenamedProperties() {
+        OASCreateThreadAndRunRequestToolsInn createThreadAndRunRequestToolsInner = new OASCreateThreadAndRunRequestToolsInn();
+        Map<String, String> x-property-mappings = createThreadAndRunRequestToolsInner.getx-property-mappings();
+        System.assertEquals('fileSearch', x-property-mappings.get('file_search'));
+    }
 }

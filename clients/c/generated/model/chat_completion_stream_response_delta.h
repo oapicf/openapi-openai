@@ -33,6 +33,7 @@ typedef struct chat_completion_stream_response_delta_t {
     struct chat_completion_stream_response_delta_function_call_t *function_call; //model
     list_t *tool_calls; //nonprimitive container
     openai_api_chat_completion_stream_response_delta_ROLE_e role; //enum
+    char *refusal; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } chat_completion_stream_response_delta_t;
@@ -41,7 +42,8 @@ __attribute__((deprecated)) chat_completion_stream_response_delta_t *chat_comple
     char *content,
     chat_completion_stream_response_delta_function_call_t *function_call,
     list_t *tool_calls,
-    openai_api_chat_completion_stream_response_delta_ROLE_e role
+    openai_api_chat_completion_stream_response_delta_ROLE_e role,
+    char *refusal
 );
 
 void chat_completion_stream_response_delta_free(chat_completion_stream_response_delta_t *chat_completion_stream_response_delta);

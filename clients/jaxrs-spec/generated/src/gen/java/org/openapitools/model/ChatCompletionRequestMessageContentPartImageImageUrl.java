@@ -18,7 +18,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("ChatCompletionRequestMessageContentPartImage_image_url")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T10:45:34.459631427Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-01-29T14:09:36.506419692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ChatCompletionRequestMessageContentPartImageImageUrl   {
   private URI url;
   public enum DetailEnum {
@@ -101,7 +101,7 @@ public class ChatCompletionRequestMessageContentPartImageImageUrl   {
   }
 
   /**
-   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).
+   * Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
    **/
   public ChatCompletionRequestMessageContentPartImageImageUrl detail(DetailEnum detail) {
     this.detail = detail;
@@ -109,7 +109,7 @@ public class ChatCompletionRequestMessageContentPartImageImageUrl   {
   }
 
   
-  @ApiModelProperty(value = "Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding).")
+  @ApiModelProperty(value = "Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).")
   @JsonProperty("detail")
   public DetailEnum getDetail() {
     return detail;

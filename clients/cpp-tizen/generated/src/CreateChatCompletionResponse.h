@@ -76,6 +76,13 @@ public:
 	/*! \brief Set The model used for the chat completion.
 	 */
 	void setModel(std::string  model);
+	/*! \brief Get The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+	 */
+	std::string getServiceTier();
+
+	/*! \brief Set The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+	 */
+	void setServiceTier(std::string  service_tier);
 	/*! \brief Get This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
 	 */
 	std::string getSystemFingerprint();
@@ -103,6 +110,7 @@ private:
 	std::list <CreateChatCompletionResponse_choices_inner>choices;
 	int created;
 	std::string model;
+	std::string service_tier;
 	std::string system_fingerprint;
 	std::string object;
 	CompletionUsage usage;

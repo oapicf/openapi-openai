@@ -4,11 +4,15 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.openapitools.vertxweb.server.model.ChatCompletionRequestSystemMessageContent;
 
+/**
+ * Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use &#x60;developer&#x60; messages for this purpose instead. 
+ **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ChatCompletionRequestSystemMessage   {
   
-  private String content;
+  private ChatCompletionRequestSystemMessageContent content;
 
 
   public enum RoleEnum {
@@ -34,7 +38,7 @@ public class ChatCompletionRequestSystemMessage   {
 
   }
 
-  public ChatCompletionRequestSystemMessage (String content, RoleEnum role, String name) {
+  public ChatCompletionRequestSystemMessage (ChatCompletionRequestSystemMessageContent content, RoleEnum role, String name) {
     this.content = content;
     this.role = role;
     this.name = name;
@@ -42,10 +46,10 @@ public class ChatCompletionRequestSystemMessage   {
 
     
   @JsonProperty("content")
-  public String getContent() {
+  public ChatCompletionRequestSystemMessageContent getContent() {
     return content;
   }
-  public void setContent(String content) {
+  public void setContent(ChatCompletionRequestSystemMessageContent content) {
     this.content = content;
   }
 

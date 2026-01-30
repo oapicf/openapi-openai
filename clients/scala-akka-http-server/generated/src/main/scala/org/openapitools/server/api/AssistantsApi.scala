@@ -7,24 +7,19 @@ import akka.http.scaladsl.marshalling.ToEntityMarshaller
 import akka.http.scaladsl.unmarshalling.FromEntityUnmarshaller
 import akka.http.scaladsl.unmarshalling.FromStringUnmarshaller
 import org.openapitools.server.AkkaHttpHelper._
-import org.openapitools.server.model.AssistantFileObject
 import org.openapitools.server.model.AssistantObject
-import org.openapitools.server.model.CreateAssistantFileRequest
 import org.openapitools.server.model.CreateAssistantRequest
 import org.openapitools.server.model.CreateMessageRequest
 import org.openapitools.server.model.CreateRunRequest
 import org.openapitools.server.model.CreateThreadAndRunRequest
 import org.openapitools.server.model.CreateThreadRequest
-import org.openapitools.server.model.DeleteAssistantFileResponse
 import org.openapitools.server.model.DeleteAssistantResponse
+import org.openapitools.server.model.DeleteMessageResponse
 import org.openapitools.server.model.DeleteThreadResponse
-import org.openapitools.server.model.ListAssistantFilesResponse
 import org.openapitools.server.model.ListAssistantsResponse
-import org.openapitools.server.model.ListMessageFilesResponse
 import org.openapitools.server.model.ListMessagesResponse
 import org.openapitools.server.model.ListRunStepsResponse
 import org.openapitools.server.model.ListRunsResponse
-import org.openapitools.server.model.MessageFileObject
 import org.openapitools.server.model.MessageObject
 import org.openapitools.server.model.ModifyAssistantRequest
 import org.openapitools.server.model.ModifyMessageRequest
@@ -57,13 +52,6 @@ class AssistantsApi(
             }
       }
     } ~
-    path("assistants" / Segment / "files") { (assistantId) => 
-      post {  
-            entity(as[CreateAssistantFileRequest]){ createAssistantFileRequest =>
-              assistantsService.createAssistantFile(assistantId = assistantId, createAssistantFileRequest = createAssistantFileRequest)
-            }
-      }
-    } ~
     path("threads" / Segment / "messages") { (threadId) => 
       post {  
             entity(as[CreateMessageRequest]){ createMessageRequest =>
@@ -72,10 +60,12 @@ class AssistantsApi(
       }
     } ~
     path("threads" / Segment / "runs") { (threadId) => 
-      post {  
+      post { 
+        parameters("include[]".as[String].?) { (includeLeft_Square_BracketRight_Square_Bracket) => 
             entity(as[CreateRunRequest]){ createRunRequest =>
-              assistantsService.createRun(threadId = threadId, createRunRequest = createRunRequest)
+              assistantsService.createRun(threadId = threadId, createRunRequest = createRunRequest, includeLeft_Square_BracketRight_Square_Bracket = includeLeft_Square_BracketRight_Square_Bracket)
             }
+        }
       }
     } ~
     path("threads") { 
@@ -97,9 +87,9 @@ class AssistantsApi(
             assistantsService.deleteAssistant(assistantId = assistantId)
       }
     } ~
-    path("assistants" / Segment / "files" / Segment) { (assistantId, fileId) => 
+    path("threads" / Segment / "messages" / Segment) { (threadId, messageId) => 
       delete {  
-            assistantsService.deleteAssistantFile(assistantId = assistantId, fileId = fileId)
+            assistantsService.deleteMessage(threadId = threadId, messageId = messageId)
       }
     } ~
     path("threads" / Segment) { (threadId) => 
@@ -112,19 +102,9 @@ class AssistantsApi(
             assistantsService.getAssistant(assistantId = assistantId)
       }
     } ~
-    path("assistants" / Segment / "files" / Segment) { (assistantId, fileId) => 
-      get {  
-            assistantsService.getAssistantFile(assistantId = assistantId, fileId = fileId)
-      }
-    } ~
     path("threads" / Segment / "messages" / Segment) { (threadId, messageId) => 
       get {  
             assistantsService.getMessage(threadId = threadId, messageId = messageId)
-      }
-    } ~
-    path("threads" / Segment / "messages" / Segment / "files" / Segment) { (threadId, messageId, fileId) => 
-      get {  
-            assistantsService.getMessageFile(threadId = threadId, messageId = messageId, fileId = fileId)
       }
     } ~
     path("threads" / Segment / "runs" / Segment) { (threadId, runId) => 
@@ -133,8 +113,10 @@ class AssistantsApi(
       }
     } ~
     path("threads" / Segment / "runs" / Segment / "steps" / Segment) { (threadId, runId, stepId) => 
-      get {  
-            assistantsService.getRunStep(threadId = threadId, runId = runId, stepId = stepId)
+      get { 
+        parameters("include[]".as[String].?) { (includeLeft_Square_BracketRight_Square_Bracket) => 
+            assistantsService.getRunStep(threadId = threadId, runId = runId, stepId = stepId, includeLeft_Square_BracketRight_Square_Bracket = includeLeft_Square_BracketRight_Square_Bracket)
+        }
       }
     } ~
     path("threads" / Segment) { (threadId) => 
@@ -142,24 +124,10 @@ class AssistantsApi(
             assistantsService.getThread(threadId = threadId)
       }
     } ~
-    path("assistants" / Segment / "files") { (assistantId) => 
-      get { 
-        parameters("limit".as[Int].?(20), "order".as[String].?("desc"), "after".as[String].?, "before".as[String].?) { (limit, order, after, before) => 
-            assistantsService.listAssistantFiles(assistantId = assistantId, limit = limit, order = order, after = after, before = before)
-        }
-      }
-    } ~
     path("assistants") { 
       get { 
         parameters("limit".as[Int].?(20), "order".as[String].?("desc"), "after".as[String].?, "before".as[String].?) { (limit, order, after, before) => 
             assistantsService.listAssistants(limit = limit, order = order, after = after, before = before)
-        }
-      }
-    } ~
-    path("threads" / Segment / "messages" / Segment / "files") { (threadId, messageId) => 
-      get { 
-        parameters("limit".as[Int].?(20), "order".as[String].?("desc"), "after".as[String].?, "before".as[String].?) { (limit, order, after, before) => 
-            assistantsService.listMessageFiles(threadId = threadId, messageId = messageId, limit = limit, order = order, after = after, before = before)
         }
       }
     } ~
@@ -172,8 +140,8 @@ class AssistantsApi(
     } ~
     path("threads" / Segment / "runs" / Segment / "steps") { (threadId, runId) => 
       get { 
-        parameters("limit".as[Int].?(20), "order".as[String].?("desc"), "after".as[String].?, "before".as[String].?) { (limit, order, after, before) => 
-            assistantsService.listRunSteps(threadId = threadId, runId = runId, limit = limit, order = order, after = after, before = before)
+        parameters("limit".as[Int].?(20), "order".as[String].?("desc"), "after".as[String].?, "before".as[String].?, "include[]".as[String].?) { (limit, order, after, before, includeLeft_Square_BracketRight_Square_Bracket) => 
+            assistantsService.listRunSteps(threadId = threadId, runId = runId, limit = limit, order = order, after = after, before = before, includeLeft_Square_BracketRight_Square_Bracket = includeLeft_Square_BracketRight_Square_Bracket)
         }
       }
     } ~
@@ -240,14 +208,6 @@ trait AssistantsApiService {
   def createAssistant(createAssistantRequest: CreateAssistantRequest)
       (implicit toEntityMarshallerAssistantObject: ToEntityMarshaller[AssistantObject]): Route
 
-  def createAssistantFile200(responseAssistantFileObject: AssistantFileObject)(implicit toEntityMarshallerAssistantFileObject: ToEntityMarshaller[AssistantFileObject]): Route =
-    complete((200, responseAssistantFileObject))
-  /**
-   * Code: 200, Message: OK, DataType: AssistantFileObject
-   */
-  def createAssistantFile(assistantId: String, createAssistantFileRequest: CreateAssistantFileRequest)
-      (implicit toEntityMarshallerAssistantFileObject: ToEntityMarshaller[AssistantFileObject]): Route
-
   def createMessage200(responseMessageObject: MessageObject)(implicit toEntityMarshallerMessageObject: ToEntityMarshaller[MessageObject]): Route =
     complete((200, responseMessageObject))
   /**
@@ -261,7 +221,7 @@ trait AssistantsApiService {
   /**
    * Code: 200, Message: OK, DataType: RunObject
    */
-  def createRun(threadId: String, createRunRequest: CreateRunRequest)
+  def createRun(threadId: String, createRunRequest: CreateRunRequest, includeLeft_Square_BracketRight_Square_Bracket: Option[String])
       (implicit toEntityMarshallerRunObject: ToEntityMarshaller[RunObject]): Route
 
   def createThread200(responseThreadObject: ThreadObject)(implicit toEntityMarshallerThreadObject: ToEntityMarshaller[ThreadObject]): Route =
@@ -288,13 +248,13 @@ trait AssistantsApiService {
   def deleteAssistant(assistantId: String)
       (implicit toEntityMarshallerDeleteAssistantResponse: ToEntityMarshaller[DeleteAssistantResponse]): Route
 
-  def deleteAssistantFile200(responseDeleteAssistantFileResponse: DeleteAssistantFileResponse)(implicit toEntityMarshallerDeleteAssistantFileResponse: ToEntityMarshaller[DeleteAssistantFileResponse]): Route =
-    complete((200, responseDeleteAssistantFileResponse))
+  def deleteMessage200(responseDeleteMessageResponse: DeleteMessageResponse)(implicit toEntityMarshallerDeleteMessageResponse: ToEntityMarshaller[DeleteMessageResponse]): Route =
+    complete((200, responseDeleteMessageResponse))
   /**
-   * Code: 200, Message: OK, DataType: DeleteAssistantFileResponse
+   * Code: 200, Message: OK, DataType: DeleteMessageResponse
    */
-  def deleteAssistantFile(assistantId: String, fileId: String)
-      (implicit toEntityMarshallerDeleteAssistantFileResponse: ToEntityMarshaller[DeleteAssistantFileResponse]): Route
+  def deleteMessage(threadId: String, messageId: String)
+      (implicit toEntityMarshallerDeleteMessageResponse: ToEntityMarshaller[DeleteMessageResponse]): Route
 
   def deleteThread200(responseDeleteThreadResponse: DeleteThreadResponse)(implicit toEntityMarshallerDeleteThreadResponse: ToEntityMarshaller[DeleteThreadResponse]): Route =
     complete((200, responseDeleteThreadResponse))
@@ -312,14 +272,6 @@ trait AssistantsApiService {
   def getAssistant(assistantId: String)
       (implicit toEntityMarshallerAssistantObject: ToEntityMarshaller[AssistantObject]): Route
 
-  def getAssistantFile200(responseAssistantFileObject: AssistantFileObject)(implicit toEntityMarshallerAssistantFileObject: ToEntityMarshaller[AssistantFileObject]): Route =
-    complete((200, responseAssistantFileObject))
-  /**
-   * Code: 200, Message: OK, DataType: AssistantFileObject
-   */
-  def getAssistantFile(assistantId: String, fileId: String)
-      (implicit toEntityMarshallerAssistantFileObject: ToEntityMarshaller[AssistantFileObject]): Route
-
   def getMessage200(responseMessageObject: MessageObject)(implicit toEntityMarshallerMessageObject: ToEntityMarshaller[MessageObject]): Route =
     complete((200, responseMessageObject))
   /**
@@ -327,14 +279,6 @@ trait AssistantsApiService {
    */
   def getMessage(threadId: String, messageId: String)
       (implicit toEntityMarshallerMessageObject: ToEntityMarshaller[MessageObject]): Route
-
-  def getMessageFile200(responseMessageFileObject: MessageFileObject)(implicit toEntityMarshallerMessageFileObject: ToEntityMarshaller[MessageFileObject]): Route =
-    complete((200, responseMessageFileObject))
-  /**
-   * Code: 200, Message: OK, DataType: MessageFileObject
-   */
-  def getMessageFile(threadId: String, messageId: String, fileId: String)
-      (implicit toEntityMarshallerMessageFileObject: ToEntityMarshaller[MessageFileObject]): Route
 
   def getRun200(responseRunObject: RunObject)(implicit toEntityMarshallerRunObject: ToEntityMarshaller[RunObject]): Route =
     complete((200, responseRunObject))
@@ -349,7 +293,7 @@ trait AssistantsApiService {
   /**
    * Code: 200, Message: OK, DataType: RunStepObject
    */
-  def getRunStep(threadId: String, runId: String, stepId: String)
+  def getRunStep(threadId: String, runId: String, stepId: String, includeLeft_Square_BracketRight_Square_Bracket: Option[String])
       (implicit toEntityMarshallerRunStepObject: ToEntityMarshaller[RunStepObject]): Route
 
   def getThread200(responseThreadObject: ThreadObject)(implicit toEntityMarshallerThreadObject: ToEntityMarshaller[ThreadObject]): Route =
@@ -360,14 +304,6 @@ trait AssistantsApiService {
   def getThread(threadId: String)
       (implicit toEntityMarshallerThreadObject: ToEntityMarshaller[ThreadObject]): Route
 
-  def listAssistantFiles200(responseListAssistantFilesResponse: ListAssistantFilesResponse)(implicit toEntityMarshallerListAssistantFilesResponse: ToEntityMarshaller[ListAssistantFilesResponse]): Route =
-    complete((200, responseListAssistantFilesResponse))
-  /**
-   * Code: 200, Message: OK, DataType: ListAssistantFilesResponse
-   */
-  def listAssistantFiles(assistantId: String, limit: Int, order: String, after: Option[String], before: Option[String])
-      (implicit toEntityMarshallerListAssistantFilesResponse: ToEntityMarshaller[ListAssistantFilesResponse]): Route
-
   def listAssistants200(responseListAssistantsResponse: ListAssistantsResponse)(implicit toEntityMarshallerListAssistantsResponse: ToEntityMarshaller[ListAssistantsResponse]): Route =
     complete((200, responseListAssistantsResponse))
   /**
@@ -375,14 +311,6 @@ trait AssistantsApiService {
    */
   def listAssistants(limit: Int, order: String, after: Option[String], before: Option[String])
       (implicit toEntityMarshallerListAssistantsResponse: ToEntityMarshaller[ListAssistantsResponse]): Route
-
-  def listMessageFiles200(responseListMessageFilesResponse: ListMessageFilesResponse)(implicit toEntityMarshallerListMessageFilesResponse: ToEntityMarshaller[ListMessageFilesResponse]): Route =
-    complete((200, responseListMessageFilesResponse))
-  /**
-   * Code: 200, Message: OK, DataType: ListMessageFilesResponse
-   */
-  def listMessageFiles(threadId: String, messageId: String, limit: Int, order: String, after: Option[String], before: Option[String])
-      (implicit toEntityMarshallerListMessageFilesResponse: ToEntityMarshaller[ListMessageFilesResponse]): Route
 
   def listMessages200(responseListMessagesResponse: ListMessagesResponse)(implicit toEntityMarshallerListMessagesResponse: ToEntityMarshaller[ListMessagesResponse]): Route =
     complete((200, responseListMessagesResponse))
@@ -397,7 +325,7 @@ trait AssistantsApiService {
   /**
    * Code: 200, Message: OK, DataType: ListRunStepsResponse
    */
-  def listRunSteps(threadId: String, runId: String, limit: Int, order: String, after: Option[String], before: Option[String])
+  def listRunSteps(threadId: String, runId: String, limit: Int, order: String, after: Option[String], before: Option[String], includeLeft_Square_BracketRight_Square_Bracket: Option[String])
       (implicit toEntityMarshallerListRunStepsResponse: ToEntityMarshaller[ListRunStepsResponse]): Route
 
   def listRuns200(responseListRunsResponse: ListRunsResponse)(implicit toEntityMarshallerListRunsResponse: ToEntityMarshaller[ListRunsResponse]): Route =
@@ -451,8 +379,6 @@ trait AssistantsApiService {
 }
 
 trait AssistantsApiMarshaller {
-  implicit def fromEntityUnmarshallerCreateAssistantFileRequest: FromEntityUnmarshaller[CreateAssistantFileRequest]
-
   implicit def fromEntityUnmarshallerCreateRunRequest: FromEntityUnmarshaller[CreateRunRequest]
 
   implicit def fromEntityUnmarshallerSubmitToolOutputsRunRequest: FromEntityUnmarshaller[SubmitToolOutputsRunRequest]
@@ -475,27 +401,15 @@ trait AssistantsApiMarshaller {
 
 
 
-  implicit def toEntityMarshallerListMessageFilesResponse: ToEntityMarshaller[ListMessageFilesResponse]
-
-  implicit def toEntityMarshallerRunObject: ToEntityMarshaller[RunObject]
-
-  implicit def toEntityMarshallerAssistantFileObject: ToEntityMarshaller[AssistantFileObject]
-
-  implicit def toEntityMarshallerDeleteAssistantFileResponse: ToEntityMarshaller[DeleteAssistantFileResponse]
-
-  implicit def toEntityMarshallerListAssistantFilesResponse: ToEntityMarshaller[ListAssistantFilesResponse]
-
-  implicit def toEntityMarshallerMessageObject: ToEntityMarshaller[MessageObject]
-
-  implicit def toEntityMarshallerDeleteAssistantResponse: ToEntityMarshaller[DeleteAssistantResponse]
-
-  implicit def toEntityMarshallerMessageFileObject: ToEntityMarshaller[MessageFileObject]
-
   implicit def toEntityMarshallerAssistantObject: ToEntityMarshaller[AssistantObject]
+
+  implicit def toEntityMarshallerDeleteMessageResponse: ToEntityMarshaller[DeleteMessageResponse]
 
   implicit def toEntityMarshallerDeleteThreadResponse: ToEntityMarshaller[DeleteThreadResponse]
 
   implicit def toEntityMarshallerListMessagesResponse: ToEntityMarshaller[ListMessagesResponse]
+
+  implicit def toEntityMarshallerRunObject: ToEntityMarshaller[RunObject]
 
   implicit def toEntityMarshallerListRunStepsResponse: ToEntityMarshaller[ListRunStepsResponse]
 
@@ -506,6 +420,10 @@ trait AssistantsApiMarshaller {
   implicit def toEntityMarshallerRunStepObject: ToEntityMarshaller[RunStepObject]
 
   implicit def toEntityMarshallerThreadObject: ToEntityMarshaller[ThreadObject]
+
+  implicit def toEntityMarshallerMessageObject: ToEntityMarshaller[MessageObject]
+
+  implicit def toEntityMarshallerDeleteAssistantResponse: ToEntityMarshaller[DeleteAssistantResponse]
 
 }
 

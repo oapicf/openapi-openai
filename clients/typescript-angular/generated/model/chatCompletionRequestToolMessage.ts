@@ -7,6 +7,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ChatCompletionRequestToolMessageContent } from './chatCompletionRequestToolMessageContent';
 
 
 export interface ChatCompletionRequestToolMessage { 
@@ -14,10 +15,7 @@ export interface ChatCompletionRequestToolMessage {
      * The role of the messages author, in this case `tool`.
      */
     role: ChatCompletionRequestToolMessage.RoleEnum;
-    /**
-     * The contents of the tool message.
-     */
-    content: string;
+    content: ChatCompletionRequestToolMessageContent;
     /**
      * Tool call that this message is responding to.
      */

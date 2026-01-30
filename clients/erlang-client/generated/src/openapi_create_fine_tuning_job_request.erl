@@ -11,7 +11,8 @@
        'suffix' => binary(),
        'validation_file' => binary(),
        'integrations' => list(),
-       'seed' => integer()
+       'seed' => integer(),
+       'method' => openapi_fine_tune_method:openapi_fine_tune_method()
      }.
 
 encode(#{ 'model' := Model,
@@ -20,7 +21,8 @@ encode(#{ 'model' := Model,
           'suffix' := Suffix,
           'validation_file' := ValidationFile,
           'integrations' := Integrations,
-          'seed' := Seed
+          'seed' := Seed,
+          'method' := Method
         }) ->
     #{ 'model' => Model,
        'training_file' => TrainingFile,
@@ -28,5 +30,6 @@ encode(#{ 'model' := Model,
        'suffix' => Suffix,
        'validation_file' => ValidationFile,
        'integrations' => Integrations,
-       'seed' => Seed
+       'seed' => Seed,
+       'method' => Method
      }.

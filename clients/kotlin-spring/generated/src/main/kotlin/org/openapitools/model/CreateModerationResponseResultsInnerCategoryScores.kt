@@ -19,6 +19,8 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param hateThreatening The score for the category 'hate/threatening'.
  * @param harassment The score for the category 'harassment'.
  * @param harassmentThreatening The score for the category 'harassment/threatening'.
+ * @param illicit The score for the category 'illicit'.
+ * @param illicitViolent The score for the category 'illicit/violent'.
  * @param selfHarm The score for the category 'self-harm'.
  * @param selfHarmIntent The score for the category 'self-harm/intent'.
  * @param selfHarmInstructions The score for the category 'self-harm/instructions'.
@@ -40,6 +42,12 @@ data class CreateModerationResponseResultsInnerCategoryScores(
 
     @Schema(example = "null", required = true, description = "The score for the category 'harassment/threatening'.")
     @get:JsonProperty("harassment/threatening", required = true) val harassmentThreatening: java.math.BigDecimal,
+
+    @Schema(example = "null", required = true, description = "The score for the category 'illicit'.")
+    @get:JsonProperty("illicit", required = true) val illicit: java.math.BigDecimal,
+
+    @Schema(example = "null", required = true, description = "The score for the category 'illicit/violent'.")
+    @get:JsonProperty("illicit/violent", required = true) val illicitViolent: java.math.BigDecimal,
 
     @Schema(example = "null", required = true, description = "The score for the category 'self-harm'.")
     @get:JsonProperty("self-harm", required = true) val selfHarm: java.math.BigDecimal,

@@ -17,8 +17,11 @@
 create_chat_completion_request_t* instantiate_create_chat_completion_request(int include_optional);
 
 #include "test_create_chat_completion_request_model.c"
+#include "test_prediction_content.c"
+#include "test_create_chat_completion_request_audio.c"
 #include "test_create_chat_completion_request_response_format.c"
 #include "test_create_chat_completion_request_stop.c"
+#include "test_chat_completion_stream_options.c"
 #include "test_chat_completion_tool_choice_option.c"
 #include "test_create_chat_completion_request_function_call.c"
 
@@ -28,23 +31,35 @@ create_chat_completion_request_t* instantiate_create_chat_completion_request(int
   if (include_optional) {
     create_chat_completion_request = create_chat_completion_request_create(
       list_createList(),
-      gpt-4-turbo,
+      gpt-4o,
+      1,
+      openai_api_create_chat_completion_request_REASONINGEFFORT_"medium",
+      list_createList(),
       -2,
       list_createList(),
       1,
       0,
       56,
+      56,
       1,
-      -2,
+      list_createList(),
        // false, not to have infinite recursion
-      instantiate_create_chat_completion_request_response_format(0),
-      -9223372036854775808,
+      instantiate_prediction_content(0),
+       // false, not to have infinite recursion
+      instantiate_create_chat_completion_request_audio(0),
+      -2,
+      null,
+      -9223372036854776000,
+      openai_api_create_chat_completion_request_SERVICETIER_"auto",
       null,
       1,
+       // false, not to have infinite recursion
+      instantiate_chat_completion_stream_options(0),
       1,
       1,
       list_createList(),
       null,
+      1,
       "user-1234",
       null,
       list_createList()
@@ -52,22 +67,32 @@ create_chat_completion_request_t* instantiate_create_chat_completion_request(int
   } else {
     create_chat_completion_request = create_chat_completion_request_create(
       list_createList(),
-      gpt-4-turbo,
+      gpt-4o,
+      1,
+      openai_api_create_chat_completion_request_REASONINGEFFORT_"medium",
+      list_createList(),
       -2,
       list_createList(),
       1,
       0,
       56,
+      56,
       1,
-      -2,
+      list_createList(),
       NULL,
-      -9223372036854775808,
+      NULL,
+      -2,
+      null,
+      -9223372036854776000,
+      openai_api_create_chat_completion_request_SERVICETIER_"auto",
       null,
       1,
+      NULL,
       1,
       1,
       list_createList(),
       null,
+      1,
       "user-1234",
       null,
       list_createList()

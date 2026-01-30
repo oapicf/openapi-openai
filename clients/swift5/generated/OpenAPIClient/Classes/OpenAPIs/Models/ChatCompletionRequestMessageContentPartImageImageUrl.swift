@@ -19,7 +19,7 @@ public struct ChatCompletionRequestMessageContentPartImageImageUrl: Codable, JSO
     }
     /** Either a URL of the image or the base64 encoded image data. */
     public var url: String
-    /** Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision/low-or-high-fidelity-image-understanding). */
+    /** Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding). */
     public var detail: Detail? = .auto
 
     public init(url: String, detail: Detail? = .auto) {

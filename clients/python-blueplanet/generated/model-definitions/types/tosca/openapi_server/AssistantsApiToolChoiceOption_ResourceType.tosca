@@ -7,8 +7,8 @@ authors     = ["F. Bar (foo@bar.baz)"]
 
 imports {
   Root = tosca.resourceTypes.Root
-  AssistantsApiNamedToolChoice = openapi_server.resourceTypes.AssistantsApiNamedToolChoice
-  ChatCompletionNamedToolChoiceFunction = openapi_server.resourceTypes.ChatCompletionNamedToolChoiceFunction
+  AssistantsNamedToolChoice = openapi_server.resourceTypes.AssistantsNamedToolChoice
+  AssistantsNamedToolChoiceFunction = openapi_server.resourceTypes.AssistantsNamedToolChoiceFunction
 }
 resourceTypes {
 
@@ -20,11 +20,11 @@ resourceTypes {
         type {
           type =  string
           description = "The type of the tool. If type is &#x60;function&#x60;, the function name must be set"
-          enum = ["function", "code_interpreter", "retrieval"]
+          enum = ["function", "code_interpreter", "file_search"]
           optional = true
         }
         function {
-          type = ChatCompletionNamedToolChoiceFunction
+          type = AssistantsNamedToolChoiceFunction
           description = ""
           optional = false
         }

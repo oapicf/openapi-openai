@@ -28,12 +28,11 @@ test_that("code_interpreter", {
   #expect_equal(model.instance$`code_interpreter`, "EXPECTED_RESULT")
 })
 
-test_that("retrieval", {
-  # tests for the property `retrieval` (object)
-  # For now, this is always going to be an empty object.
+test_that("file_search", {
+  # tests for the property `file_search` (RunStepDetailsToolCallsFileSearchObjectFileSearch)
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`retrieval`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`file_search`, "EXPECTED_RESULT")
 })
 
 test_that("function", {

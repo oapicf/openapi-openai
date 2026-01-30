@@ -16,6 +16,7 @@ open TestHelper
 open AudioApiHandlerTestsHelper
 open OpenAPI.AudioApiHandler
 open OpenAPI.AudioApiHandlerParams
+open OpenAPI.Model.AudioResponseFormat
 open OpenAPI.Model.CreateSpeechRequest
 open OpenAPI.Model.CreateTranscription200Response
 open OpenAPI.Model.CreateTranscriptionRequestModel

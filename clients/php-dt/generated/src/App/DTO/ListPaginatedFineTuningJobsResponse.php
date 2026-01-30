@@ -9,10 +9,10 @@ class ListPaginatedFineTuningJobsResponse
 {
     /**
      * @DTA\Data(field="data")
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection25::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection25::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection42::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection42::class})
      */
-    public ?\App\DTO\Collection25 $data = null;
+    public ?\App\DTO\Collection42 $data = null;
 
     /**
      * @DTA\Data(field="has_more")

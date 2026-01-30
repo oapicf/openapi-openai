@@ -9,9 +9,10 @@ imports {
   Root = tosca.resourceTypes.Root
   RunStepDetailsToolCallsCodeObject = openapi_server.resourceTypes.RunStepDetailsToolCallsCodeObject
   RunStepDetailsToolCallsCodeObjectCodeInterpreter = openapi_server.resourceTypes.RunStepDetailsToolCallsCodeObjectCodeInterpreter
+  RunStepDetailsToolCallsFileSearchObject = openapi_server.resourceTypes.RunStepDetailsToolCallsFileSearchObject
+  RunStepDetailsToolCallsFileSearchObjectFileSearch = openapi_server.resourceTypes.RunStepDetailsToolCallsFileSearchObjectFileSearch
   RunStepDetailsToolCallsFunctionObject = openapi_server.resourceTypes.RunStepDetailsToolCallsFunctionObject
   RunStepDetailsToolCallsFunctionObjectFunction = openapi_server.resourceTypes.RunStepDetailsToolCallsFunctionObjectFunction
-  RunStepDetailsToolCallsRetrievalObject = openapi_server.resourceTypes.RunStepDetailsToolCallsRetrievalObject
 }
 resourceTypes {
 
@@ -28,7 +29,7 @@ resourceTypes {
         type {
           type =  string
           description = "The type of tool call. This is always going to be &#x60;code_interpreter&#x60; for this type of tool call."
-          enum = ["code_interpreter", "retrieval", "function"]
+          enum = ["code_interpreter", "file_search", "function"]
           optional = true
         }
         code_interpreter {
@@ -36,9 +37,9 @@ resourceTypes {
           description = ""
           optional = true
         }
-        retrieval {
-          type =  
-          description = "For now, this is always going to be an empty object."
+        file_search {
+          type = RunStepDetailsToolCallsFileSearchObjectFileSearch
+          description = ""
           optional = true
         }
         function {

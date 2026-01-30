@@ -15,7 +15,7 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ChatCompletionNamedToolChoiceFunction
+import org.openapitools.client.models.AssistantsNamedToolChoiceFunction
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -35,7 +35,7 @@ data class ChatCompletionNamedToolChoice (
     val type: ChatCompletionNamedToolChoice.Type,
 
     @Json(name = "function")
-    val function: ChatCompletionNamedToolChoiceFunction
+    val function: AssistantsNamedToolChoiceFunction
 
 ) {
 

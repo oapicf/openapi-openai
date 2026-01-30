@@ -1,0 +1,134 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server Batch"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a Batch"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  BatchErrors = openapi_server.resourceTypes.BatchErrors
+  BatchRequestCounts = openapi_server.resourceTypes.BatchRequestCounts
+}
+resourceTypes {
+
+  Batch {
+    title = Batch
+    description = Batch
+    derivedFrom = Root
+    properties {
+        id {
+          type =  string
+          description = ""
+          optional = true
+        }
+        object {
+          type =  string
+          description = "The object type, which is always &#x60;batch&#x60;."
+          enum = ["batch"]
+          optional = true
+        }
+        endpoint {
+          type =  string
+          description = "The OpenAI API endpoint used by the batch."
+          optional = true
+        }
+        errors {
+          type = BatchErrors
+          description = ""
+          optional = false
+        }
+        input_file_id {
+          type =  string
+          description = "The ID of the input file for the batch."
+          optional = true
+        }
+        completion_window {
+          type =  string
+          description = "The time frame within which the batch should be processed."
+          optional = true
+        }
+        status {
+          type =  string
+          description = "The current status of the batch."
+          enum = ["validating", "failed", "in_progress", "finalizing", "completed", "expired", "cancelling", "cancelled"]
+          optional = true
+        }
+        output_file_id {
+          type =  string
+          description = "The ID of the file containing the outputs of successfully executed requests."
+          optional = false
+        }
+        error_file_id {
+          type =  string
+          description = "The ID of the file containing the outputs of requests with errors."
+          optional = false
+        }
+        created_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the batch was created."
+          optional = true
+        }
+        in_progress_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the batch started processing."
+          optional = false
+        }
+        expires_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the batch will expire."
+          optional = false
+        }
+        finalizing_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the batch started finalizing."
+          optional = false
+        }
+        completed_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the batch was completed."
+          optional = false
+        }
+        failed_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the batch failed."
+          optional = false
+        }
+        expired_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the batch expired."
+          optional = false
+        }
+        cancelling_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the batch started cancelling."
+          optional = false
+        }
+        cancelled_at {
+          type =  integer
+          description = "The Unix timestamp (in seconds) for when the batch was cancelled."
+          optional = false
+        }
+        request_counts {
+          type = BatchRequestCounts
+          description = ""
+          optional = false
+        }
+        metadata {
+          type =  
+          description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. "
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  Batch {
+    title = Batch
+    description = Batch
+    implements = openapi_server.resourceTypes.Batch
+
+  }
+}

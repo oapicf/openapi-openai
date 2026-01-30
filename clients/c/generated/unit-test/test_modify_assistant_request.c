@@ -16,6 +16,8 @@
 #include "../model/modify_assistant_request.h"
 modify_assistant_request_t* instantiate_modify_assistant_request(int include_optional);
 
+#include "test_modify_assistant_request_tool_resources.c"
+#include "test_assistants_api_response_format_option.c"
 
 
 modify_assistant_request_t* instantiate_modify_assistant_request(int include_optional) {
@@ -27,8 +29,12 @@ modify_assistant_request_t* instantiate_modify_assistant_request(int include_opt
       "0",
       "0",
       list_createList(),
-      list_createList(),
-      0
+       // false, not to have infinite recursion
+      instantiate_modify_assistant_request_tool_resources(0),
+      0,
+      1,
+      1,
+      null
     );
   } else {
     modify_assistant_request = modify_assistant_request_create(
@@ -37,8 +43,11 @@ modify_assistant_request_t* instantiate_modify_assistant_request(int include_opt
       "0",
       "0",
       list_createList(),
-      list_createList(),
-      0
+      NULL,
+      0,
+      1,
+      1,
+      null
     );
   }
 

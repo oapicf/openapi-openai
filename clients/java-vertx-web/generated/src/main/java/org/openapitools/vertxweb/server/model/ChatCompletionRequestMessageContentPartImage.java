@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.vertxweb.server.model.ChatCompletionRequestMessageContentPartImageImageUrl;
 
+/**
+ * Learn about [image inputs](/docs/guides/vision). 
+ **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ChatCompletionRequestMessageContentPartImage   {
   

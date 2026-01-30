@@ -35,6 +35,14 @@ Protected Class CreateChatCompletionResponse
 
 	#tag Property, Flags = &h0
 		#tag Note
+			The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+		#tag EndNote
+		service_tier As Xoson.O.OptionalString
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
 			This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
 		#tag EndNote
 		system_fingerprint As Xoson.O.OptionalString
@@ -54,6 +62,13 @@ Protected Class CreateChatCompletionResponse
 	#tag EndProperty
 
 
+    #tag Enum, Name = Service_tierEnum, Type = Integer, Flags = &h0
+        
+        Scale
+        Default
+        
+    #tag EndEnum
+
     #tag Enum, Name = ObjectEnum, Type = Integer, Flags = &h0
         
         ChatPeriodCompletion
@@ -61,6 +76,19 @@ Protected Class CreateChatCompletionResponse
     #tag EndEnum
 
 
+	#tag Method, Flags = &h0
+		Shared Function Service_tierEnumToString(value As Service_tierEnum) As String
+		  Select Case value
+		    
+		    Case Service_tierEnum.Scale
+		      Return "scale"
+		    Case Service_tierEnum.Default
+		      Return "default"
+		    
+		  End Select
+		  Return ""
+		End Function
+	#tag EndMethod
 	#tag Method, Flags = &h0
 		Shared Function ObjectEnumToString(value As ObjectEnum) As String
 		  Select Case value

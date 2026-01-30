@@ -1,0 +1,30 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "Returned when a Response is done streaming. Always emitted, no matter the  final state. The Response object included in the `response.done` event will  include all output Items in the Response but will omit the raw audio data. ",
+  "name": "RealtimeServerEventResponseDone",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "The unique ID of the server event."
+    },
+    {
+      "name": "type",
+      "type": {
+        "type": "enum",
+        "name": "RealtimeServerEventResponseDone_type",
+        "symbols": [
+          "response_done"
+        ]
+      },
+      "doc": "The event type, must be `response.done`."
+    },
+    {
+      "name": "response",
+      "type": "model.RealtimeResponse",
+      "doc": ""
+    }
+  ]
+
+}

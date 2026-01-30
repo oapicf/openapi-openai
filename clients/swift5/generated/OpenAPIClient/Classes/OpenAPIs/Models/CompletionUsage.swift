@@ -19,17 +19,23 @@ public struct CompletionUsage: Codable, JSONEncodable, Hashable {
     public var promptTokens: Int
     /** Total number of tokens used in the request (prompt + completion). */
     public var totalTokens: Int
+    public var completionTokensDetails: CompletionUsageCompletionTokensDetails?
+    public var promptTokensDetails: CompletionUsagePromptTokensDetails?
 
-    public init(completionTokens: Int, promptTokens: Int, totalTokens: Int) {
+    public init(completionTokens: Int, promptTokens: Int, totalTokens: Int, completionTokensDetails: CompletionUsageCompletionTokensDetails? = nil, promptTokensDetails: CompletionUsagePromptTokensDetails? = nil) {
         self.completionTokens = completionTokens
         self.promptTokens = promptTokens
         self.totalTokens = totalTokens
+        self.completionTokensDetails = completionTokensDetails
+        self.promptTokensDetails = promptTokensDetails
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case completionTokens = "completion_tokens"
         case promptTokens = "prompt_tokens"
         case totalTokens = "total_tokens"
+        case completionTokensDetails = "completion_tokens_details"
+        case promptTokensDetails = "prompt_tokens_details"
     }
 
     // Encodable protocol methods
@@ -39,6 +45,8 @@ public struct CompletionUsage: Codable, JSONEncodable, Hashable {
         try container.encode(completionTokens, forKey: .completionTokens)
         try container.encode(promptTokens, forKey: .promptTokens)
         try container.encode(totalTokens, forKey: .totalTokens)
+        try container.encodeIfPresent(completionTokensDetails, forKey: .completionTokensDetails)
+        try container.encodeIfPresent(promptTokensDetails, forKey: .promptTokensDetails)
     }
 }
 

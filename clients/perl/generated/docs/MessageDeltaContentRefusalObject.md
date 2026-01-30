@@ -1,0 +1,17 @@
+# WWW::OpenAPIClient::Object::MessageDeltaContentRefusalObject
+
+## Load the model package
+```perl
+use WWW::OpenAPIClient::Object::MessageDeltaContentRefusalObject;
+```
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**index** | **int** | The index of the refusal part in the message. | 
+**type** | **string** | Always &#x60;refusal&#x60;. | 
+**refusal** | **string** |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

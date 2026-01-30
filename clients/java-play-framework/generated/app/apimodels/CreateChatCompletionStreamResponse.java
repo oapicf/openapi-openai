@@ -1,9 +1,11 @@
 package apimodels;
 
 import apimodels.CreateChatCompletionStreamResponseChoicesInner;
+import apimodels.CreateChatCompletionStreamResponseUsage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
@@ -13,7 +15,7 @@ import javax.validation.Valid;
 /**
  * Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T10:45:05.350526304Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-01-29T14:08:26.021556086Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateChatCompletionStreamResponse   {
   @JsonProperty("id")
@@ -36,6 +38,41 @@ public class CreateChatCompletionStreamResponse   {
   @NotNull
 
   private String model;
+
+  /**
+   * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+   */
+  public enum ServiceTierEnum {
+    SCALE("scale"),
+    
+    DEFAULT("default");
+
+    private final String value;
+
+    ServiceTierEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ServiceTierEnum fromValue(String value) {
+      for (ServiceTierEnum b : ServiceTierEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  @JsonProperty("service_tier")
+  
+  private ServiceTierEnum serviceTier;
 
   @JsonProperty("system_fingerprint")
   
@@ -75,6 +112,11 @@ public class CreateChatCompletionStreamResponse   {
 
   private ObjectEnum _object;
 
+  @JsonProperty("usage")
+  @Valid
+
+  private CreateChatCompletionStreamResponseUsage usage;
+
   public CreateChatCompletionStreamResponse id(String id) {
     this.id = id;
     return this;
@@ -106,7 +148,7 @@ public class CreateChatCompletionStreamResponse   {
   }
 
    /**
-   * A list of chat completion choices. Can be more than one if `n` is greater than 1.
+   * A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. 
    * @return choices
   **/
   public List<@Valid CreateChatCompletionStreamResponseChoicesInner> getChoices() {
@@ -151,6 +193,23 @@ public class CreateChatCompletionStreamResponse   {
     this.model = model;
   }
 
+  public CreateChatCompletionStreamResponse serviceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
+    return this;
+  }
+
+   /**
+   * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
+   * @return serviceTier
+  **/
+  public ServiceTierEnum getServiceTier() {
+    return serviceTier;
+  }
+
+  public void setServiceTier(ServiceTierEnum serviceTier) {
+    this.serviceTier = serviceTier;
+  }
+
   public CreateChatCompletionStreamResponse systemFingerprint(String systemFingerprint) {
     this.systemFingerprint = systemFingerprint;
     return this;
@@ -185,6 +244,23 @@ public class CreateChatCompletionStreamResponse   {
     this._object = _object;
   }
 
+  public CreateChatCompletionStreamResponse usage(CreateChatCompletionStreamResponseUsage usage) {
+    this.usage = usage;
+    return this;
+  }
+
+   /**
+   * Get usage
+   * @return usage
+  **/
+  public CreateChatCompletionStreamResponseUsage getUsage() {
+    return usage;
+  }
+
+  public void setUsage(CreateChatCompletionStreamResponseUsage usage) {
+    this.usage = usage;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -199,13 +275,15 @@ public class CreateChatCompletionStreamResponse   {
         Objects.equals(choices, createChatCompletionStreamResponse.choices) &&
         Objects.equals(created, createChatCompletionStreamResponse.created) &&
         Objects.equals(model, createChatCompletionStreamResponse.model) &&
+        Objects.equals(serviceTier, createChatCompletionStreamResponse.serviceTier) &&
         Objects.equals(systemFingerprint, createChatCompletionStreamResponse.systemFingerprint) &&
-        Objects.equals(_object, createChatCompletionStreamResponse._object);
+        Objects.equals(_object, createChatCompletionStreamResponse._object) &&
+        Objects.equals(usage, createChatCompletionStreamResponse.usage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, choices, created, model, systemFingerprint, _object);
+    return Objects.hash(id, choices, created, model, serviceTier, systemFingerprint, _object, usage);
   }
 
   @SuppressWarnings("StringBufferReplaceableByString")
@@ -218,8 +296,10 @@ public class CreateChatCompletionStreamResponse   {
     sb.append("    choices: ").append(toIndentedString(choices)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    model: ").append(toIndentedString(model)).append("\n");
+    sb.append("    serviceTier: ").append(toIndentedString(serviceTier)).append("\n");
     sb.append("    systemFingerprint: ").append(toIndentedString(systemFingerprint)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("}");
     return sb.toString();
   }

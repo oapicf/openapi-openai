@@ -16,6 +16,8 @@
 #include "../model/assistant_object.h"
 assistant_object_t* instantiate_assistant_object(int include_optional);
 
+#include "test_assistant_object_tool_resources.c"
+#include "test_assistants_api_response_format_option.c"
 
 
 assistant_object_t* instantiate_assistant_object(int include_optional) {
@@ -30,8 +32,12 @@ assistant_object_t* instantiate_assistant_object(int include_optional) {
       "0",
       "0",
       list_createList(),
-      list_createList(),
-      0
+       // false, not to have infinite recursion
+      instantiate_assistant_object_tool_resources(0),
+      0,
+      1,
+      1,
+      null
     );
   } else {
     assistant_object = assistant_object_create(
@@ -43,8 +49,11 @@ assistant_object_t* instantiate_assistant_object(int include_optional) {
       "0",
       "0",
       list_createList(),
-      list_createList(),
-      0
+      NULL,
+      0,
+      1,
+      1,
+      null
     );
   }
 

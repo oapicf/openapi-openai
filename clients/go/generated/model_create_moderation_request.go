@@ -3,7 +3,7 @@ OpenAI API
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
-API version: 2.0.0
+API version: 2.3.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -35,7 +35,7 @@ type _CreateModerationRequest CreateModerationRequest
 func NewCreateModerationRequest(input CreateModerationRequestInput) *CreateModerationRequest {
 	this := CreateModerationRequest{}
 	this.Input = input
-	var model CreateModerationRequestModel = text-moderation-latest
+	var model CreateModerationRequestModel = omni-moderation-latest
 	this.Model = &model
 	return &this
 }
@@ -45,7 +45,7 @@ func NewCreateModerationRequest(input CreateModerationRequestInput) *CreateModer
 // but it doesn't guarantee that properties required by API are set
 func NewCreateModerationRequestWithDefaults() *CreateModerationRequest {
 	this := CreateModerationRequest{}
-	var model CreateModerationRequestModel = text-moderation-latest
+	var model CreateModerationRequestModel = omni-moderation-latest
 	this.Model = &model
 	return &this
 }

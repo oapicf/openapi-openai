@@ -11,7 +11,7 @@ package org.openapitools.server.model
  * @param createdAt The Unix timestamp (in seconds) for when the file was created. for example: ''null''
  * @param filename The name of the file. for example: ''null''
  * @param `object` The object type, which is always `file`. for example: ''null''
- * @param purpose The intended purpose of the file. Supported values are `fine-tune`, `fine-tune-results`, `assistants`, and `assistants_output`. for example: ''null''
+ * @param purpose The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`. for example: ''null''
  * @param status Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`. for example: ''null''
  * @param statusDetails Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`. for example: ''null''
 */

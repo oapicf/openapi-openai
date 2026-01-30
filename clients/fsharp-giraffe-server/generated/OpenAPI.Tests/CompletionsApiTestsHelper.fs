@@ -39,6 +39,9 @@ module CompletionsApiHandlerTestsHelper =
   &quot;stream&quot; : false,
   &quot;temperature&quot; : 1,
   &quot;model&quot; : &quot;CreateCompletionRequest_model&quot;,
+  &quot;stream_options&quot; : {
+    &quot;include_usage&quot; : true
+  },
   &quot;prompt&quot; : &quot;This is a test.&quot;,
   &quot;user&quot; : &quot;user-1234&quot;
 }"

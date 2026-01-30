@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **id** | **string** | The ID of the tool call object. | [optional] [default to undefined]
 **type** | **string** | The type of tool call. This is always going to be &#x60;code_interpreter&#x60; for this type of tool call. | [default to undefined]
 **code_interpreter** | [**RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter**](RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.md) |  | [optional] [default to undefined]
-**retrieval** | **object** | For now, this is always going to be an empty object. | [optional] [default to undefined]
+**file_search** | **object** | For now, this is always going to be an empty object. | [default to undefined]
 **_function** | [**RunStepDeltaStepDetailsToolCallsFunctionObjectFunction**](RunStepDeltaStepDetailsToolCallsFunctionObjectFunction.md) |  | [optional] [default to undefined]
 
 ## Example
@@ -22,7 +22,7 @@ const instance: RunStepDeltaStepDetailsToolCallsObjectToolCallsInner = {
     id,
     type,
     code_interpreter,
-    retrieval,
+    file_search,
     _function,
 };
 ```

@@ -1,0 +1,39 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "RealtimeResponseCreateParamsToolsInner",
+  "fields": [
+    {
+      "name": "type",
+      "type": ["null", {
+        "type": "enum",
+        "name": "RealtimeResponseCreateParamsToolsInner_type",
+        "symbols": [
+          "function"
+        ]
+      }],
+      "doc": "The type of the tool, i.e. `function`.",
+      "default": null
+    },
+    {
+      "name": "name",
+      "type": ["null", "string"],
+      "doc": "The name of the function.",
+      "default": null
+    },
+    {
+      "name": "description",
+      "type": ["null", "string"],
+      "doc": "The description of the function, including guidance on when and how  to call it, and guidance about what to tell the user when calling  (if anything). ",
+      "default": null
+    },
+    {
+      "name": "parameters",
+      "type": ["null", "model.object"],
+      "doc": "Parameters of the function in JSON Schema.",
+      "default": null
+    }
+  ]
+
+}

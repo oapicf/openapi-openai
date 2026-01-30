@@ -35,7 +35,7 @@ public class Example {
     ApiKeyAuth.setBearerToken("BEARER TOKEN");
 
     ModelsApi apiInstance = new ModelsApi(defaultClient);
-    String model = "ft:gpt-3.5-turbo:acemeco:suffix:abc123"; // String | The model to delete
+    String model = "ft:gpt-4o-mini:acemeco:suffix:abc123"; // String | The model to delete
     try {
       DeleteModelResponse result = apiInstance.deleteModel(model);
       System.out.println(result);
@@ -161,7 +161,7 @@ public class Example {
     ApiKeyAuth.setBearerToken("BEARER TOKEN");
 
     ModelsApi apiInstance = new ModelsApi(defaultClient);
-    String model = "gpt-3.5-turbo"; // String | The ID of the model to use for this request
+    String model = "gpt-4o-mini"; // String | The ID of the model to use for this request
     try {
       Model result = apiInstance.retrieveModel(model);
       System.out.println(result);

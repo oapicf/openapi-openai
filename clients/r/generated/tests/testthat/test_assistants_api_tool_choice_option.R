@@ -14,7 +14,7 @@ test_that("type", {
 })
 
 test_that("function", {
-  # tests for the property `function` (ChatCompletionNamedToolChoiceFunction)
+  # tests for the property `function` (AssistantsNamedToolChoiceFunction)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`function`, "EXPECTED_RESULT")

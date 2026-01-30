@@ -16,6 +16,7 @@
 package org.openapitools.client.models
 
 import org.openapitools.client.models.CreateModerationResponseResultsInnerCategories
+import org.openapitools.client.models.CreateModerationResponseResultsInnerCategoryAppliedInputTypes
 import org.openapitools.client.models.CreateModerationResponseResultsInnerCategoryScores
 
 import com.squareup.moshi.Json
@@ -27,6 +28,7 @@ import com.squareup.moshi.JsonClass
  * @param flagged Whether any of the below categories are flagged.
  * @param categories 
  * @param categoryScores 
+ * @param categoryAppliedInputTypes 
  */
 
 
@@ -40,7 +42,10 @@ data class CreateModerationResponseResultsInner (
     val categories: CreateModerationResponseResultsInnerCategories,
 
     @Json(name = "category_scores")
-    val categoryScores: CreateModerationResponseResultsInnerCategoryScores
+    val categoryScores: CreateModerationResponseResultsInnerCategoryScores,
+
+    @Json(name = "category_applied_input_types")
+    val categoryAppliedInputTypes: CreateModerationResponseResultsInnerCategoryAppliedInputTypes
 
 ) {
 

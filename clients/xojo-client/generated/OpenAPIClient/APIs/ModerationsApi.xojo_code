@@ -3,7 +3,7 @@ Protected Class ModerationsApi
 	#tag Method, Flags = &h0
 		Sub CreateModeration(, createModerationRequest As OpenAPIClient.Models.CreateModerationRequest)
 		  // Operation createModeration
-		  // Classifies if text is potentially harmful.
+		  // Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
 		  // - 
 		  // - parameter createModerationRequest: (body)  
 		  //

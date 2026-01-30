@@ -8,6 +8,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import org.openapitools.model.AssistantsApiResponseFormatOption;
 import org.openapitools.model.AssistantsApiToolChoiceOption;
 import org.openapitools.model.CreateRunRequestModel;
+import org.openapitools.model.CreateThreadAndRunRequestToolResources;
 import org.openapitools.model.CreateThreadAndRunRequestToolsInner;
 import org.openapitools.model.CreateThreadRequest;
 import org.openapitools.model.TruncationObject;
@@ -71,6 +72,14 @@ public class CreateThreadAndRunRequestTest {
     }
 
     /**
+     * Test the property 'toolResources'
+     */
+    @Test
+    public void toolResourcesTest() {
+        // TODO: test toolResources
+    }
+
+    /**
      * Test the property 'metadata'
      */
     @Test
@@ -84,6 +93,14 @@ public class CreateThreadAndRunRequestTest {
     @Test
     public void temperatureTest() {
         // TODO: test temperature
+    }
+
+    /**
+     * Test the property 'topP'
+     */
+    @Test
+    public void topPTest() {
+        // TODO: test topP
     }
 
     /**
@@ -124,6 +141,14 @@ public class CreateThreadAndRunRequestTest {
     @Test
     public void toolChoiceTest() {
         // TODO: test toolChoice
+    }
+
+    /**
+     * Test the property 'parallelToolCalls'
+     */
+    @Test
+    public void parallelToolCallsTest() {
+        // TODO: test parallelToolCalls
     }
 
     /**

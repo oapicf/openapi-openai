@@ -1,5 +1,5 @@
 # Org.OpenAPITools.Model.RunStreamEventOneOf5
-Occurs when a [run](/docs/api-reference/runs/object) fails.
+Occurs when a [run](/docs/api-reference/runs/object) ends with status `incomplete`.
 
 ## Properties
 

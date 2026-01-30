@@ -51,7 +51,7 @@ class CreateEmbeddingRequestTest : ShouldSpec() {
             //modelInstance.dimensions shouldBe ("TODO")
         }
 
-        // to test the property `user` - A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids). 
+        // to test the property `user` - A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
         should("test user") {
             // uncomment below to test the property
             //modelInstance.user shouldBe ("TODO")

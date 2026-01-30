@@ -68,4 +68,11 @@ private class OASAssistantObjectToolsInnerTest {
         System.assertEquals(assistantObjectToolsInner1.hashCode(), assistantObjectToolsInner2.hashCode());
         System.assertEquals(assistantObjectToolsInner3.hashCode(), assistantObjectToolsInner4.hashCode());
     }
+
+    @isTest
+    private static void maintainRenamedProperties() {
+        OASAssistantObjectToolsInner assistantObjectToolsInner = new OASAssistantObjectToolsInner();
+        Map<String, String> x-property-mappings = assistantObjectToolsInner.getx-property-mappings();
+        System.assertEquals('fileSearch', x-property-mappings.get('file_search'));
+    }
 }

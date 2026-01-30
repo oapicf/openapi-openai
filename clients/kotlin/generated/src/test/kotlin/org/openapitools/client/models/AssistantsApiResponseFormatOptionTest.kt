@@ -19,17 +19,26 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.AssistantsApiResponseFormatOption
-import org.openapitools.client.models.AssistantsApiResponseFormat
+import org.openapitools.client.models.ResponseFormatJsonObject
+import org.openapitools.client.models.ResponseFormatJsonSchema
+import org.openapitools.client.models.ResponseFormatJsonSchemaJsonSchema
+import org.openapitools.client.models.ResponseFormatText
 
 class AssistantsApiResponseFormatOptionTest : ShouldSpec() {
     init {
         // uncomment below to create an instance of AssistantsApiResponseFormatOption
         //val modelInstance = AssistantsApiResponseFormatOption()
 
-        // to test the property `type` - Must be one of `text` or `json_object`.
+        // to test the property `type` - The type of response format being defined: `text`
         should("test type") {
             // uncomment below to test the property
             //modelInstance.type shouldBe ("TODO")
+        }
+
+        // to test the property `jsonSchema`
+        should("test jsonSchema") {
+            // uncomment below to test the property
+            //modelInstance.jsonSchema shouldBe ("TODO")
         }
 
     }

@@ -5,7 +5,7 @@
  *
  * The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
  *
- * API version: 2.0.0
+ * API version: 2.3.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -27,11 +27,20 @@ func main() {
 	AudioAPIService := openapi.NewAudioAPIService()
 	AudioAPIController := openapi.NewAudioAPIController(AudioAPIService)
 
+	AuditLogsAPIService := openapi.NewAuditLogsAPIService()
+	AuditLogsAPIController := openapi.NewAuditLogsAPIController(AuditLogsAPIService)
+
+	BatchAPIService := openapi.NewBatchAPIService()
+	BatchAPIController := openapi.NewBatchAPIController(BatchAPIService)
+
 	ChatAPIService := openapi.NewChatAPIService()
 	ChatAPIController := openapi.NewChatAPIController(ChatAPIService)
 
 	CompletionsAPIService := openapi.NewCompletionsAPIService()
 	CompletionsAPIController := openapi.NewCompletionsAPIController(CompletionsAPIService)
+
+	DefaultAPIService := openapi.NewDefaultAPIService()
+	DefaultAPIController := openapi.NewDefaultAPIController(DefaultAPIService)
 
 	EmbeddingsAPIService := openapi.NewEmbeddingsAPIService()
 	EmbeddingsAPIController := openapi.NewEmbeddingsAPIController(EmbeddingsAPIService)
@@ -45,13 +54,34 @@ func main() {
 	ImagesAPIService := openapi.NewImagesAPIService()
 	ImagesAPIController := openapi.NewImagesAPIController(ImagesAPIService)
 
+	InvitesAPIService := openapi.NewInvitesAPIService()
+	InvitesAPIController := openapi.NewInvitesAPIController(InvitesAPIService)
+
 	ModelsAPIService := openapi.NewModelsAPIService()
 	ModelsAPIController := openapi.NewModelsAPIController(ModelsAPIService)
 
 	ModerationsAPIService := openapi.NewModerationsAPIService()
 	ModerationsAPIController := openapi.NewModerationsAPIController(ModerationsAPIService)
 
-	router := openapi.NewRouter(AssistantsAPIController, AudioAPIController, ChatAPIController, CompletionsAPIController, EmbeddingsAPIController, FilesAPIController, FineTuningAPIController, ImagesAPIController, ModelsAPIController, ModerationsAPIController)
+	ProjectsAPIService := openapi.NewProjectsAPIService()
+	ProjectsAPIController := openapi.NewProjectsAPIController(ProjectsAPIService)
+
+	RealtimeAPIService := openapi.NewRealtimeAPIService()
+	RealtimeAPIController := openapi.NewRealtimeAPIController(RealtimeAPIService)
+
+	UploadsAPIService := openapi.NewUploadsAPIService()
+	UploadsAPIController := openapi.NewUploadsAPIController(UploadsAPIService)
+
+	UsageAPIService := openapi.NewUsageAPIService()
+	UsageAPIController := openapi.NewUsageAPIController(UsageAPIService)
+
+	UsersAPIService := openapi.NewUsersAPIService()
+	UsersAPIController := openapi.NewUsersAPIController(UsersAPIService)
+
+	VectorStoresAPIService := openapi.NewVectorStoresAPIService()
+	VectorStoresAPIController := openapi.NewVectorStoresAPIController(VectorStoresAPIService)
+
+	router := openapi.NewRouter(AssistantsAPIController, AudioAPIController, AuditLogsAPIController, BatchAPIController, ChatAPIController, CompletionsAPIController, DefaultAPIController, EmbeddingsAPIController, FilesAPIController, FineTuningAPIController, ImagesAPIController, InvitesAPIController, ModelsAPIController, ModerationsAPIController, ProjectsAPIController, RealtimeAPIController, UploadsAPIController, UsageAPIController, UsersAPIController, VectorStoresAPIController)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

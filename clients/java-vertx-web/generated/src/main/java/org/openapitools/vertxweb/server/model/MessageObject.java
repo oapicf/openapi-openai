@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.vertxweb.server.model.CreateMessageRequestAttachmentsInner;
 import org.openapitools.vertxweb.server.model.MessageObjectContentInner;
 import org.openapitools.vertxweb.server.model.MessageObjectIncompleteDetails;
 
@@ -85,14 +86,14 @@ public class MessageObject   {
   private List<MessageObjectContentInner> content = new ArrayList<>();
   private String assistantId;
   private String runId;
-  private List<String> fileIds = new ArrayList<>();
+  private List<CreateMessageRequestAttachmentsInner> attachments;
   private Object metadata;
 
   public MessageObject () {
 
   }
 
-  public MessageObject (String id, ObjectEnum _object, Integer createdAt, String threadId, StatusEnum status, MessageObjectIncompleteDetails incompleteDetails, Integer completedAt, Integer incompleteAt, RoleEnum role, List<MessageObjectContentInner> content, String assistantId, String runId, List<String> fileIds, Object metadata) {
+  public MessageObject (String id, ObjectEnum _object, Integer createdAt, String threadId, StatusEnum status, MessageObjectIncompleteDetails incompleteDetails, Integer completedAt, Integer incompleteAt, RoleEnum role, List<MessageObjectContentInner> content, String assistantId, String runId, List<CreateMessageRequestAttachmentsInner> attachments, Object metadata) {
     this.id = id;
     this._object = _object;
     this.createdAt = createdAt;
@@ -105,7 +106,7 @@ public class MessageObject   {
     this.content = content;
     this.assistantId = assistantId;
     this.runId = runId;
-    this.fileIds = fileIds;
+    this.attachments = attachments;
     this.metadata = metadata;
   }
 
@@ -218,12 +219,12 @@ public class MessageObject   {
   }
 
     
-  @JsonProperty("file_ids")
-  public List<String> getFileIds() {
-    return fileIds;
+  @JsonProperty("attachments")
+  public List<CreateMessageRequestAttachmentsInner> getAttachments() {
+    return attachments;
   }
-  public void setFileIds(List<String> fileIds) {
-    this.fileIds = fileIds;
+  public void setAttachments(List<CreateMessageRequestAttachmentsInner> attachments) {
+    this.attachments = attachments;
   }
 
     
@@ -257,13 +258,13 @@ public class MessageObject   {
         Objects.equals(content, messageObject.content) &&
         Objects.equals(assistantId, messageObject.assistantId) &&
         Objects.equals(runId, messageObject.runId) &&
-        Objects.equals(fileIds, messageObject.fileIds) &&
+        Objects.equals(attachments, messageObject.attachments) &&
         Objects.equals(metadata, messageObject.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, threadId, status, incompleteDetails, completedAt, incompleteAt, role, content, assistantId, runId, fileIds, metadata);
+    return Objects.hash(id, _object, createdAt, threadId, status, incompleteDetails, completedAt, incompleteAt, role, content, assistantId, runId, attachments, metadata);
   }
 
   @Override
@@ -283,7 +284,7 @@ public class MessageObject   {
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    assistantId: ").append(toIndentedString(assistantId)).append("\n");
     sb.append("    runId: ").append(toIndentedString(runId)).append("\n");
-    sb.append("    fileIds: ").append(toIndentedString(fileIds)).append("\n");
+    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

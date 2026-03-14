@@ -18,5 +18,5 @@ jobs:
       - run: make deps init-spec doc-latest doc-version
       - run: >-
           CACHE_DIR=/tmp gh-pages --dist doc/ --user "pakkunbot
-          <blah+pakkun@cliffano.com>" --repo "https://${{
+          <pakkunbot@users.noreply.github.com>" --repo "https://${{
           secrets.OAPICF_GITHUB_TOKEN }}@github.com/oapicf/openapi-openai.git"

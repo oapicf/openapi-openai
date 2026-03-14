@@ -1,0 +1,12 @@
+# Fix OpenAPI Generator bug where 'auto' default value is not quoted as a string
+# https://github.com/oapicf/openapi-openai/issues/3
+x-build-python:
+	sed -i 's/StrictStr\] = auto$$/StrictStr] = "auto"/g' clients/python/generated/openapiopenai/models/realtime_response_create_params_conversation.py || true
+	cd clients/python/generated/ && \
+	  python3 -m venv .venv && \
+	  $(call python_venv,pip install twine wheel pytest setuptools) && \
+	  $(call python_venv,pip install -r requirements.txt) && \
+	  $(call python_venv,python3 setup.py sdist bdist_wheel) && \
+	  $(call python_venv,python3 setup.py install --single-version-externally-managed --record record.txt)
+
+.PHONY: x-build-python

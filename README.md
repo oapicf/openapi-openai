@@ -1,15 +1,17 @@
+<!-- BEGIN:AVATAR -->
 <img align="right" src="https://raw.github.com/oapicf/openapi-openai/main/avatar.jpg" alt="Avatar"/>
+<!-- END:AVATAR -->
 
+<!-- BEGIN:BADGES -->
 [![Build Status](https://github.com/oapicf/openapi-openai/actions/workflows/ci-workflow.yaml/badge.svg)](https://github.com/oapicf/openapi-openai/actions/workflows/ci-workflow.yaml)
 <br/>
+<!-- END:BADGES -->
 
-OpenAPI OpenAI
---------------
+# OpenAPI OpenAI
 
 OpenAPI openai is a set of API client libraries for [OpenAI service](https://beta.openai.com/docs/api-reference/introduction) generated using [OpenAPI Generator](https://openapi-generator.tech/).
 
-Published packages
-------------------
+## Published packages
 
 | Language | Package | Status | Documentation |
 |----------|---------|--------|---------------|
@@ -17,8 +19,7 @@ Published packages
 | Python | [openapiopenai]((https://pypi.python.org/pypi/openapiopenai)) | [![Published Version](https://img.shields.io/pypi/v/openapiopenai.svg)](https://pypi.python.org/pypi/openapiopenai) | [README](https://github.com/oapicf/openapi-openai/blob/main/clients/python/generated/README.md) |
 | Ruby | [openapi_openai]((https://rubygems.org/gems/openapi_openai)) | [![Published Version](https://img.shields.io/gem/v/openapi_openai.svg)](https://rubygems.org/gems/openapi_openai) | [README](https://github.com/oapicf/openapi-openai/blob/main/clients/ruby/generated/README.md) |
 
-Version matrix
---------------
+## Version matrix
 
 | OpenAPI OpenAI Version | OpenAI OpenAPI Spec Version | OpenAPI Version | OpenAPI Generator Version |
 |------------------------|-----------------------------|-----------------|---------------------------|
@@ -26,8 +27,7 @@ Version matrix
 | 1.1.0 | 6d5c7a0e038beebaa24c9371ecf6ef060eafeb5a | 3.0.0 | 7.4.0 |
 | 1.0.0 | 2.0.0 | 3.0.0 | 7.4.0 |
 
-Installation
-------------
+## Installation
 
 You can either use the generated clients from `clients/<lang>/generated/` directory.
 
@@ -35,17 +35,24 @@ Or you can use the published packages like below:
 
 Install JavaScript client:
 
-    npm install openapi-openai
+```shell
+npm install openapi-openai
+```
 
 Install Python client:
 
-    pip install openapiopenai
+```shell
+pip install openapiopenai
+```
 
 Install Ruby client:
 
-    gem install openapi_openai
+```shell
+gem install openapi_openai
+```
 
-Colophon
---------
+## Colophon
 
+<!-- BEGIN:BUILD_REPORTS -->
 * [API Documentation](http://cliffano.github.io/openapi-openai/api/latest/)
+<!-- END:BUILD_REPORTS -->

@@ -1,0 +1,72 @@
+
+/*
+ * AssistantsApiToolChoiceOption.h
+ *
+ * Controls which (if any) tool is called by the model. &#x60;none&#x60; means the model will not call any tools and instead generates a message. &#x60;auto&#x60; is the default value and means the model can pick between generating a message or calling one or more tools. &#x60;required&#x60; means the model must call one or more tools before responding to the user. Specifying a particular tool like &#x60;{\&quot;type\&quot;: \&quot;file_search\&quot;}&#x60; or &#x60;{\&quot;type\&quot;: \&quot;function\&quot;, \&quot;function\&quot;: {\&quot;name\&quot;: \&quot;my_function\&quot;}}&#x60; forces the model to call that tool. 
+ */
+
+#ifndef TINY_CPP_CLIENT_AssistantsApiToolChoiceOption_H_
+#define TINY_CPP_CLIENT_AssistantsApiToolChoiceOption_H_
+
+
+#include <string>
+#include "bourne/json.hpp"
+#include "Helpers.h"
+#include "AssistantsNamedToolChoice.h"
+#include "AssistantsNamedToolChoice_function.h"
+
+namespace Tiny {
+
+
+/*! \brief Controls which (if any) tool is called by the model. `none` means the model will not call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling one or more tools. `required` means the model must call one or more tools before responding to the user. Specifying a particular tool like `{\"type\": \"file_search\"}` or `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool. 
+ *
+ *  \ingroup Models
+ *
+ */
+
+class AssistantsApiToolChoiceOption{
+public:
+
+    /*! \brief Constructor.
+	 */
+    AssistantsApiToolChoiceOption();
+    AssistantsApiToolChoiceOption(std::string jsonString);
+
+
+    /*! \brief Destructor.
+	 */
+    virtual ~AssistantsApiToolChoiceOption();
+
+
+    /*! \brief Retrieve a bourne JSON representation of this class.
+	 */
+    bourne::json toJson();
+
+
+    /*! \brief Fills in members of this class from bourne JSON object representing it.
+	 */
+    void fromJson(std::string jsonObj);
+
+	/*! \brief Get The type of the tool. If type is `function`, the function name must be set
+	 */
+	std::string getType();
+
+	/*! \brief Set The type of the tool. If type is `function`, the function name must be set
+	 */
+	void setType(std::string  type);
+	/*! \brief Get 
+	 */
+	AssistantsNamedToolChoice_function getFunction();
+
+	/*! \brief Set 
+	 */
+	void setFunction(AssistantsNamedToolChoice_function  function);
+
+
+    private:
+    std::string type{};
+    AssistantsNamedToolChoice_function function;
+};
+}
+
+#endif /* TINY_CPP_CLIENT_AssistantsApiToolChoiceOption_H_ */

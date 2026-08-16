@@ -1,0 +1,168 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+
+// ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'function_object.g.dart';
+
+/// FunctionObject
+///
+/// Properties:
+/// * [description] - A description of what the function does, used by the model to choose when and how to call the function.
+/// * [name] - The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
+/// * [parameters] - The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
+/// * [strict] - Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).
+@BuiltValue()
+abstract class FunctionObject implements Built<FunctionObject, FunctionObjectBuilder> {
+  /// A description of what the function does, used by the model to choose when and how to call the function.
+  @BuiltValueField(wireName: r'description')
+  String? get description;
+
+  /// The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
+  @BuiltValueField(wireName: r'name')
+  String get name;
+
+  /// The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.   Omitting `parameters` defines a function with an empty parameter list.
+  @BuiltValueField(wireName: r'parameters')
+  BuiltMap<String, JsonObject?>? get parameters;
+
+  /// Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).
+  @BuiltValueField(wireName: r'strict')
+  bool? get strict;
+
+  FunctionObject._();
+
+  factory FunctionObject([void updates(FunctionObjectBuilder b)]) = _$FunctionObject;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(FunctionObjectBuilder b) => b
+      ..strict = false;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<FunctionObject> get serializer => _$FunctionObjectSerializer();
+}
+
+class _$FunctionObjectSerializer implements PrimitiveSerializer<FunctionObject> {
+  @override
+  final Iterable<Type> types = const [FunctionObject, _$FunctionObject];
+
+  @override
+  final String wireName = r'FunctionObject';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    FunctionObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.description != null) {
+      yield r'description';
+      yield serializers.serialize(
+        object.description,
+        specifiedType: const FullType(String),
+      );
+    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
+    if (object.parameters != null) {
+      yield r'parameters';
+      yield serializers.serialize(
+        object.parameters,
+        specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+      );
+    }
+    if (object.strict != null) {
+      yield r'strict';
+      yield serializers.serialize(
+        object.strict,
+        specifiedType: const FullType.nullable(bool),
+      );
+    }
+  }
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    FunctionObject object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required FunctionObjectBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'description':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.description = valueDes;
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
+        case r'parameters':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+          ) as BuiltMap<String, JsonObject?>;
+          result.parameters.replace(valueDes);
+          break;
+        case r'strict':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
+          result.strict = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  FunctionObject deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = FunctionObjectBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
+}
+

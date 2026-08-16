@@ -1,0 +1,191 @@
+
+/*
+ * CreateThreadAndRunRequest.h
+ *
+ * 
+ */
+
+#ifndef TINY_CPP_CLIENT_CreateThreadAndRunRequest_H_
+#define TINY_CPP_CLIENT_CreateThreadAndRunRequest_H_
+
+
+#include <string>
+#include "bourne/json.hpp"
+#include "Helpers.h"
+#include "AssistantsApiResponseFormatOption.h"
+#include "AssistantsApiToolChoiceOption.h"
+#include "CreateRunRequest_model.h"
+#include "CreateThreadAndRunRequest_tool_resources.h"
+#include "CreateThreadAndRunRequest_tools_inner.h"
+#include "CreateThreadRequest.h"
+#include "Object.h"
+#include "TruncationObject.h"
+#include <list>
+
+namespace Tiny {
+
+
+/*! \brief 
+ *
+ *  \ingroup Models
+ *
+ */
+
+class CreateThreadAndRunRequest{
+public:
+
+    /*! \brief Constructor.
+	 */
+    CreateThreadAndRunRequest();
+    CreateThreadAndRunRequest(std::string jsonString);
+
+
+    /*! \brief Destructor.
+	 */
+    virtual ~CreateThreadAndRunRequest();
+
+
+    /*! \brief Retrieve a bourne JSON representation of this class.
+	 */
+    bourne::json toJson();
+
+
+    /*! \brief Fills in members of this class from bourne JSON object representing it.
+	 */
+    void fromJson(std::string jsonObj);
+
+	/*! \brief Get The ID of the [assistant](/docs/api-reference/assistants) to use to execute this run.
+	 */
+	std::string getAssistantId();
+
+	/*! \brief Set The ID of the [assistant](/docs/api-reference/assistants) to use to execute this run.
+	 */
+	void setAssistantId(std::string  assistant_id);
+	/*! \brief Get 
+	 */
+	CreateThreadRequest getThread();
+
+	/*! \brief Set 
+	 */
+	void setThread(CreateThreadRequest  thread);
+	/*! \brief Get 
+	 */
+	CreateRunRequest_model getModel();
+
+	/*! \brief Set 
+	 */
+	void setModel(CreateRunRequest_model  model);
+	/*! \brief Get Override the default system message of the assistant. This is useful for modifying the behavior on a per-run basis.
+	 */
+	std::string getInstructions();
+
+	/*! \brief Set Override the default system message of the assistant. This is useful for modifying the behavior on a per-run basis.
+	 */
+	void setInstructions(std::string  instructions);
+	/*! \brief Get Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
+	 */
+	std::list<CreateThreadAndRunRequest_tools_inner> getTools();
+
+	/*! \brief Set Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
+	 */
+	void setTools(std::list <CreateThreadAndRunRequest_tools_inner> tools);
+	/*! \brief Get 
+	 */
+	CreateThreadAndRunRequest_tool_resources getToolResources();
+
+	/*! \brief Set 
+	 */
+	void setToolResources(CreateThreadAndRunRequest_tool_resources  tool_resources);
+	/*! \brief Get Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
+	 */
+	Object getMetadata();
+
+	/*! \brief Set Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
+	 */
+	void setMetadata(Object  metadata);
+	/*! \brief Get What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+	 */
+	long getTemperature();
+
+	/*! \brief Set What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. 
+	 */
+	void setTemperature(long  temperature);
+	/*! \brief Get An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+	 */
+	long getTopP();
+
+	/*! \brief Set An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. 
+	 */
+	void setTopP(long  top_p);
+	/*! \brief Get If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. 
+	 */
+	bool isStream();
+
+	/*! \brief Set If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. 
+	 */
+	void setStream(bool  stream);
+	/*! \brief Get The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
+	 */
+	int getMaxPromptTokens();
+
+	/*! \brief Set The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
+	 */
+	void setMaxPromptTokens(int  max_prompt_tokens);
+	/*! \brief Get The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
+	 */
+	int getMaxCompletionTokens();
+
+	/*! \brief Set The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. 
+	 */
+	void setMaxCompletionTokens(int  max_completion_tokens);
+	/*! \brief Get 
+	 */
+	TruncationObject getTruncationStrategy();
+
+	/*! \brief Set 
+	 */
+	void setTruncationStrategy(TruncationObject  truncation_strategy);
+	/*! \brief Get 
+	 */
+	AssistantsApiToolChoiceOption getToolChoice();
+
+	/*! \brief Set 
+	 */
+	void setToolChoice(AssistantsApiToolChoiceOption  tool_choice);
+	/*! \brief Get Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+	 */
+	bool isParallelToolCalls();
+
+	/*! \brief Set Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
+	 */
+	void setParallelToolCalls(bool  parallel_tool_calls);
+	/*! \brief Get 
+	 */
+	AssistantsApiResponseFormatOption getResponseFormat();
+
+	/*! \brief Set 
+	 */
+	void setResponseFormat(AssistantsApiResponseFormatOption  response_format);
+
+
+    private:
+    std::string assistant_id{};
+    CreateThreadRequest thread;
+    CreateRunRequest_model model;
+    std::string instructions{};
+    std::list<CreateThreadAndRunRequest_tools_inner> tools;
+    CreateThreadAndRunRequest_tool_resources tool_resources;
+    Object metadata;
+    long temperature{};
+    long top_p{};
+    bool stream{};
+    int max_prompt_tokens{};
+    int max_completion_tokens{};
+    TruncationObject truncation_strategy;
+    AssistantsApiToolChoiceOption tool_choice;
+    bool parallel_tool_calls{};
+    AssistantsApiResponseFormatOption response_format;
+};
+}
+
+#endif /* TINY_CPP_CLIENT_CreateThreadAndRunRequest_H_ */

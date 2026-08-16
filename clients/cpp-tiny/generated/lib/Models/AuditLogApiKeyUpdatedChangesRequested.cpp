@@ -1,0 +1,91 @@
+
+
+#include "AuditLog_api_key_updated_changes_requested.h"
+
+using namespace Tiny;
+
+AuditLog_api_key_updated_changes_requested::AuditLog_api_key_updated_changes_requested()
+{
+	scopes = std::list<std::string>();
+}
+
+AuditLog_api_key_updated_changes_requested::AuditLog_api_key_updated_changes_requested(std::string jsonString)
+{
+	this->fromJson(jsonString);
+}
+
+AuditLog_api_key_updated_changes_requested::~AuditLog_api_key_updated_changes_requested()
+{
+
+}
+
+void
+AuditLog_api_key_updated_changes_requested::fromJson(std::string jsonObj)
+{
+    bourne::json object = bourne::json::parse(jsonObj);
+
+    const char *scopesKey = "scopes";
+
+    if(object.has_key(scopesKey))
+    {
+        bourne::json value = object[scopesKey];
+
+
+        std::list<std::string> scopes_list;
+        std::string element;
+        for(auto& var : value.array_range())
+        {
+
+            jsonToValue(&element, var, "std::string");
+
+
+            scopes_list.push_back(element);
+        }
+        scopes = scopes_list;
+
+
+    }
+
+
+}
+
+bourne::json
+AuditLog_api_key_updated_changes_requested::toJson()
+{
+    bourne::json object = bourne::json::object();
+
+
+
+
+    std::list<std::string> scopes_list = getScopes();
+    bourne::json scopes_arr = bourne::json::array();
+
+    for(auto& var : scopes_list)
+    {
+        scopes_arr.append(var);
+    }
+    object["scopes"] = scopes_arr;
+
+
+
+
+
+
+    return object;
+
+}
+
+std::list<std::string>
+AuditLog_api_key_updated_changes_requested::getScopes()
+{
+	return scopes;
+}
+
+void
+AuditLog_api_key_updated_changes_requested::setScopes(std::list <std::string> scopes)
+{
+	this->scopes = scopes;
+}
+
+
+

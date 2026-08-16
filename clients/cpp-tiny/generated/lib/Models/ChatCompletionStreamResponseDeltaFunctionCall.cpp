@@ -1,0 +1,106 @@
+
+
+#include "ChatCompletionStreamResponseDelta_function_call.h"
+
+using namespace Tiny;
+
+ChatCompletionStreamResponseDelta_function_call::ChatCompletionStreamResponseDelta_function_call()
+{
+	arguments = std::string();
+	name = std::string();
+}
+
+ChatCompletionStreamResponseDelta_function_call::ChatCompletionStreamResponseDelta_function_call(std::string jsonString)
+{
+	this->fromJson(jsonString);
+}
+
+ChatCompletionStreamResponseDelta_function_call::~ChatCompletionStreamResponseDelta_function_call()
+{
+
+}
+
+void
+ChatCompletionStreamResponseDelta_function_call::fromJson(std::string jsonObj)
+{
+    bourne::json object = bourne::json::parse(jsonObj);
+
+    const char *argumentsKey = "arguments";
+
+    if(object.has_key(argumentsKey))
+    {
+        bourne::json value = object[argumentsKey];
+
+
+
+        jsonToValue(&arguments, value, "std::string");
+
+
+    }
+
+    const char *nameKey = "name";
+
+    if(object.has_key(nameKey))
+    {
+        bourne::json value = object[nameKey];
+
+
+
+        jsonToValue(&name, value, "std::string");
+
+
+    }
+
+
+}
+
+bourne::json
+ChatCompletionStreamResponseDelta_function_call::toJson()
+{
+    bourne::json object = bourne::json::object();
+
+
+
+
+
+    object["arguments"] = getArguments();
+
+
+
+
+
+
+    object["name"] = getName();
+
+
+
+    return object;
+
+}
+
+std::string
+ChatCompletionStreamResponseDelta_function_call::getArguments()
+{
+	return arguments;
+}
+
+void
+ChatCompletionStreamResponseDelta_function_call::setArguments(std::string  arguments)
+{
+	this->arguments = arguments;
+}
+
+std::string
+ChatCompletionStreamResponseDelta_function_call::getName()
+{
+	return name;
+}
+
+void
+ChatCompletionStreamResponseDelta_function_call::setName(std::string  name)
+{
+	this->name = name;
+}
+
+
+

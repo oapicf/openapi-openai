@@ -53,6 +53,10 @@ gem install openapi_openai
 
 ## Colophon
 
+<!-- BEGIN:DEVELOPERS_GUIDE -->
+[Developer's Guide](https://oapicf.github.io/developers-guide-openapi-generator.html)
+<!-- END:DEVELOPERS_GUIDE -->
+
 <!-- BEGIN:BUILD_REPORTS -->
 * [API Documentation](http://cliffano.github.io/openapi-openai/api/latest/)
 <!-- END:BUILD_REPORTS -->

@@ -1,10 +1,9 @@
 <!-- BEGIN:AVATAR -->
-<img align="right" src="https://raw.github.com/oapicf/openapi-openai/main/avatar.jpg" alt="Avatar"/>
+![Avatar](avatar.jpg)
 <!-- END:AVATAR -->
 
 <!-- BEGIN:BADGES -->
 [![Build Status](https://github.com/oapicf/openapi-openai/actions/workflows/ci-workflow.yaml/badge.svg)](https://github.com/oapicf/openapi-openai/actions/workflows/ci-workflow.yaml)
-<br/>
 <!-- END:BADGES -->
 
 # OpenAPI OpenAI
@@ -58,5 +57,5 @@ gem install openapi_openai
 <!-- END:DEVELOPERS_GUIDE -->
 
 <!-- BEGIN:BUILD_REPORTS -->
-* [API Documentation](http://cliffano.github.io/openapi-openai/api/latest/)
+* [API Documentation](https://oapicf.github.io/openapi-openai/api/latest/)
 <!-- END:BUILD_REPORTS -->

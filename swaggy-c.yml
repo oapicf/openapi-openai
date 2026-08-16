@@ -11,3 +11,15 @@ base_dir:
   local: /Users/cliffano/dev/workspace-oapicf/openapi-openai
   custom: >-
     /home/runner/work/generator-openapi-generator/generator-openapi-generator/stage/swaggy-c/
+generator:
+  component: oag-url-spec
+  inputs:
+    project_id: openapi-openai
+    project_name: OpenAPI OpenAI
+    project_desc: A set of API client libraries for OpenAI service generated using OpenAPI Generator
+    author_name: OpenAPI Clients Factory
+    author_email: blah+oapicf@cliffano.com
+    author_url: https://github.com/oapicf
+    github_id: oapicf
+    github_repo: openapi-openai
+    github_token_prefix: OAPICF

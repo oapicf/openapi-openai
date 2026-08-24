@@ -17,7 +17,7 @@ import CreateModerationRequestInputOneOfInner from './CreateModerationRequestInp
 /**
  * The CreateModerationRequestInput model module.
  * @module model/CreateModerationRequestInput
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateModerationRequestInput {
     /**
@@ -67,7 +67,7 @@ class CreateModerationRequestInput {
 
         // An array of multi-modal inputs to the moderation model.
         try {
-            if (typeof instance === "[CreateModerationRequestInputOneOfInner]") {
+            if (instance instanceof [CreateModerationRequestInputOneOfInner]) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

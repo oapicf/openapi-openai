@@ -38,7 +38,7 @@ import ProjectUserUpdateRequest from '../model/ProjectUserUpdateRequest';
 /**
 * Projects service.
 * @module api/ProjectsApi
-* @version 1.1.1-pre.0
+* @version 1.2.1-pre.0
 */
 export default class ProjectsApi {
 

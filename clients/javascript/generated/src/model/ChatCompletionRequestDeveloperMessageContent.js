@@ -17,7 +17,7 @@ import ChatCompletionRequestMessageContentPartText from './ChatCompletionRequest
 /**
  * The ChatCompletionRequestDeveloperMessageContent model module.
  * @module model/ChatCompletionRequestDeveloperMessageContent
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ChatCompletionRequestDeveloperMessageContent {
     /**
@@ -48,7 +48,7 @@ class ChatCompletionRequestDeveloperMessageContent {
 
         // An array of content parts with a defined type. For developer messages, only type `text` is supported.
         try {
-            if (typeof instance === "[ChatCompletionRequestMessageContentPartText]") {
+            if (instance instanceof [ChatCompletionRequestMessageContentPartText]) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

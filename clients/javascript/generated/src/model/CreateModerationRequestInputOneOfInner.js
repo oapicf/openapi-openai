@@ -19,7 +19,7 @@ import CreateModerationRequestInputOneOfInnerOneOfImageUrl from './CreateModerat
 /**
  * The CreateModerationRequestInputOneOfInner model module.
  * @module model/CreateModerationRequestInputOneOfInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateModerationRequestInputOneOfInner {
     /**
@@ -35,7 +35,7 @@ class CreateModerationRequestInputOneOfInner {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "CreateModerationRequestInputOneOfInnerOneOf") {
+            if (instance instanceof CreateModerationRequestInputOneOfInnerOneOf) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -51,7 +51,7 @@ class CreateModerationRequestInputOneOfInner {
         }
 
         try {
-            if (typeof instance === "CreateModerationRequestInputOneOfInnerOneOf1") {
+            if (instance instanceof CreateModerationRequestInputOneOfInnerOneOf1) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

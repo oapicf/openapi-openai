@@ -17,7 +17,7 @@ import RunObjectRequiredActionSubmitToolOutputs from './RunObjectRequiredActionS
 /**
  * The RunObjectRequiredAction model module.
  * @module model/RunObjectRequiredAction
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunObjectRequiredAction {
     /**

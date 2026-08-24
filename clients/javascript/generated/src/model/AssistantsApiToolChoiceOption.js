@@ -18,7 +18,7 @@ import AssistantsNamedToolChoiceFunction from './AssistantsNamedToolChoiceFuncti
 /**
  * The AssistantsApiToolChoiceOption model module.
  * @module model/AssistantsApiToolChoiceOption
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class AssistantsApiToolChoiceOption {
     /**
@@ -48,7 +48,7 @@ class AssistantsApiToolChoiceOption {
         }
 
         try {
-            if (typeof instance === "AssistantsNamedToolChoice") {
+            if (instance instanceof AssistantsNamedToolChoice) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

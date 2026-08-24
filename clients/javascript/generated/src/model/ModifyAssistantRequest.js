@@ -19,7 +19,7 @@ import ModifyAssistantRequestToolResources from './ModifyAssistantRequestToolRes
 /**
  * The ModifyAssistantRequest model module.
  * @module model/ModifyAssistantRequest
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ModifyAssistantRequest {
     /**
@@ -136,6 +136,7 @@ class ModifyAssistantRequest {
 
 
 /**
+ * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
  * @member {String} model
  */
 ModifyAssistantRequest.prototype['model'] = undefined;

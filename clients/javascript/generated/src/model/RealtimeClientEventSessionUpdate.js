@@ -17,7 +17,7 @@ import RealtimeSessionCreateRequest from './RealtimeSessionCreateRequest';
 /**
  * The RealtimeClientEventSessionUpdate model module.
  * @module model/RealtimeClientEventSessionUpdate
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeClientEventSessionUpdate {
     /**

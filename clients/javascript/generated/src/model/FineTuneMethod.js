@@ -18,7 +18,7 @@ import FineTuneSupervisedMethod from './FineTuneSupervisedMethod';
 /**
  * The FineTuneMethod model module.
  * @module model/FineTuneMethod
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class FineTuneMethod {
     /**
@@ -72,6 +72,14 @@ class FineTuneMethod {
         // ensure the json data is a string
         if (data['type'] && !(typeof data['type'] === 'string' || data['type'] instanceof String)) {
             throw new Error("Expected the field `type` to be a primitive type in the JSON string but got " + data['type']);
+        }
+        // validate the optional field `supervised`
+        if (data['supervised']) { // data not null
+          FineTuneSupervisedMethod.validateJSON(data['supervised']);
+        }
+        // validate the optional field `dpo`
+        if (data['dpo']) { // data not null
+          FineTuneDPOMethod.validateJSON(data['dpo']);
         }
 
         return true;

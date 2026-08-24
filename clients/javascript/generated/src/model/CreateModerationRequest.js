@@ -13,12 +13,11 @@
 
 import ApiClient from '../ApiClient';
 import CreateModerationRequestInput from './CreateModerationRequestInput';
-import CreateModerationRequestModel from './CreateModerationRequestModel';
 
 /**
  * The CreateModerationRequest model module.
  * @module model/CreateModerationRequest
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateModerationRequest {
     /**
@@ -38,6 +37,7 @@ class CreateModerationRequest {
      */
     static initialize(obj, input) { 
         obj['input'] = input;
+        obj['model'] = 'omni-moderation-latest';
     }
 
     /**
@@ -55,7 +55,7 @@ class CreateModerationRequest {
                 obj['input'] = CreateModerationRequestInput.constructFromObject(data['input']);
             }
             if (data.hasOwnProperty('model')) {
-                obj['model'] = CreateModerationRequestModel.constructFromObject(data['model']);
+                obj['model'] = ApiClient.convertToType(data['model'], 'String');
             }
         }
         return obj;
@@ -77,9 +77,9 @@ class CreateModerationRequest {
         if (data['input']) { // data not null
           CreateModerationRequestInput.validateJSON(data['input']);
         }
-        // validate the optional field `model`
-        if (data['model']) { // data not null
-          CreateModerationRequestModel.validateJSON(data['model']);
+        // ensure the json data is a string
+        if (data['model'] && !(typeof data['model'] === 'string' || data['model'] instanceof String)) {
+            throw new Error("Expected the field `model` to be a primitive type in the JSON string but got " + data['model']);
         }
 
         return true;
@@ -96,12 +96,46 @@ CreateModerationRequest.RequiredProperties = ["input"];
 CreateModerationRequest.prototype['input'] = undefined;
 
 /**
- * @member {module:model/CreateModerationRequestModel} model
+ * @member {module:model/CreateModerationRequest.ModelEnum} model
+ * @default 'omni-moderation-latest'
  */
-CreateModerationRequest.prototype['model'] = undefined;
+CreateModerationRequest.prototype['model'] = 'omni-moderation-latest';
 
 
 
+
+
+/**
+ * Allowed values for the <code>model</code> property.
+ * @enum {String}
+ * @readonly
+ */
+CreateModerationRequest['ModelEnum'] = {
+
+    /**
+     * value: "omni-moderation-latest"
+     * @const
+     */
+    "omni-moderation-latest": "omni-moderation-latest",
+
+    /**
+     * value: "omni-moderation-2024-09-26"
+     * @const
+     */
+    "omni-moderation-2024-09-26": "omni-moderation-2024-09-26",
+
+    /**
+     * value: "text-moderation-latest"
+     * @const
+     */
+    "text-moderation-latest": "text-moderation-latest",
+
+    /**
+     * value: "text-moderation-stable"
+     * @const
+     */
+    "text-moderation-stable": "text-moderation-stable"
+};
 
 
 

@@ -17,7 +17,7 @@ import ProjectRateLimit from './ProjectRateLimit';
 /**
  * The ProjectRateLimitListResponse model module.
  * @module model/ProjectRateLimitListResponse
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ProjectRateLimitListResponse {
     /**

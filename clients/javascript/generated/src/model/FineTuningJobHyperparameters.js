@@ -19,7 +19,7 @@ import CreateFineTuningJobRequestHyperparametersNEpochs from './CreateFineTuning
 /**
  * The FineTuningJobHyperparameters model module.
  * @module model/FineTuningJobHyperparameters
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class FineTuningJobHyperparameters {
     /**

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **messages** | [**[ChatCompletionRequestMessage]**](ChatCompletionRequestMessage.md) | A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio).  | 
-**model** | [**CreateChatCompletionRequestModel**](CreateChatCompletionRequestModel.md) |  | 
+**model** | **String** |  | 
 **store** | **Boolean** | Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products.  | [optional] [default to false]
 **reasoningEffort** | **String** | **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are &#x60;low&#x60;, &#x60;medium&#x60;, and &#x60;high&#x60;. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.  | [optional] [default to &#39;medium&#39;]
 **metadata** | **{String: String}** | Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions).  | [optional] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **maxCompletionTokens** | **Number** | An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning).  | [optional] 
 **n** | **Number** | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep &#x60;n&#x60; as &#x60;1&#x60; to minimize costs. | [optional] [default to 1]
 **modalities** | **[String]** | Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  &#x60;[\&quot;text\&quot;]&#x60;  The &#x60;gpt-4o-audio-preview&#x60; model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  &#x60;[\&quot;text\&quot;, \&quot;audio\&quot;]&#x60;  | [optional] 
-**prediction** | [**PredictionContent**](PredictionContent.md) |  | [optional] 
+**prediction** | [**PredictionContent**](PredictionContent.md) | Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content.  | [optional] 
 **audio** | [**CreateChatCompletionRequestAudio**](CreateChatCompletionRequestAudio.md) |  | [optional] 
 **presencePenalty** | **Number** | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model&#39;s likelihood to talk about new topics.  | [optional] [default to 0]
 **responseFormat** | [**CreateChatCompletionRequestResponseFormat**](CreateChatCompletionRequestResponseFormat.md) |  | [optional] 
@@ -34,6 +34,87 @@ Name | Type | Description | Notes
 **user** | **String** | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  | [optional] 
 **functionCall** | [**CreateChatCompletionRequestFunctionCall**](CreateChatCompletionRequestFunctionCall.md) |  | [optional] 
 **functions** | [**[ChatCompletionFunctions]**](ChatCompletionFunctions.md) | Deprecated in favor of &#x60;tools&#x60;.  A list of functions the model may generate JSON inputs for.  | [optional] 
+
+
+
+## Enum: ModelEnum
+
+
+* `o1` (value: `"o1"`)
+
+* `o1-2024-12-17` (value: `"o1-2024-12-17"`)
+
+* `o1-preview` (value: `"o1-preview"`)
+
+* `o1-preview-2024-09-12` (value: `"o1-preview-2024-09-12"`)
+
+* `o1-mini` (value: `"o1-mini"`)
+
+* `o1-mini-2024-09-12` (value: `"o1-mini-2024-09-12"`)
+
+* `gpt-4o` (value: `"gpt-4o"`)
+
+* `gpt-4o-2024-11-20` (value: `"gpt-4o-2024-11-20"`)
+
+* `gpt-4o-2024-08-06` (value: `"gpt-4o-2024-08-06"`)
+
+* `gpt-4o-2024-05-13` (value: `"gpt-4o-2024-05-13"`)
+
+* `gpt-4o-audio-preview` (value: `"gpt-4o-audio-preview"`)
+
+* `gpt-4o-audio-preview-2024-10-01` (value: `"gpt-4o-audio-preview-2024-10-01"`)
+
+* `gpt-4o-audio-preview-2024-12-17` (value: `"gpt-4o-audio-preview-2024-12-17"`)
+
+* `gpt-4o-mini-audio-preview` (value: `"gpt-4o-mini-audio-preview"`)
+
+* `gpt-4o-mini-audio-preview-2024-12-17` (value: `"gpt-4o-mini-audio-preview-2024-12-17"`)
+
+* `chatgpt-4o-latest` (value: `"chatgpt-4o-latest"`)
+
+* `gpt-4o-mini` (value: `"gpt-4o-mini"`)
+
+* `gpt-4o-mini-2024-07-18` (value: `"gpt-4o-mini-2024-07-18"`)
+
+* `gpt-4-turbo` (value: `"gpt-4-turbo"`)
+
+* `gpt-4-turbo-2024-04-09` (value: `"gpt-4-turbo-2024-04-09"`)
+
+* `gpt-4-0125-preview` (value: `"gpt-4-0125-preview"`)
+
+* `gpt-4-turbo-preview` (value: `"gpt-4-turbo-preview"`)
+
+* `gpt-4-1106-preview` (value: `"gpt-4-1106-preview"`)
+
+* `gpt-4-vision-preview` (value: `"gpt-4-vision-preview"`)
+
+* `gpt-4` (value: `"gpt-4"`)
+
+* `gpt-4-0314` (value: `"gpt-4-0314"`)
+
+* `gpt-4-0613` (value: `"gpt-4-0613"`)
+
+* `gpt-4-32k` (value: `"gpt-4-32k"`)
+
+* `gpt-4-32k-0314` (value: `"gpt-4-32k-0314"`)
+
+* `gpt-4-32k-0613` (value: `"gpt-4-32k-0613"`)
+
+* `gpt-3.5-turbo` (value: `"gpt-3.5-turbo"`)
+
+* `gpt-3.5-turbo-16k` (value: `"gpt-3.5-turbo-16k"`)
+
+* `gpt-3.5-turbo-0301` (value: `"gpt-3.5-turbo-0301"`)
+
+* `gpt-3.5-turbo-0613` (value: `"gpt-3.5-turbo-0613"`)
+
+* `gpt-3.5-turbo-1106` (value: `"gpt-3.5-turbo-1106"`)
+
+* `gpt-3.5-turbo-0125` (value: `"gpt-3.5-turbo-0125"`)
+
+* `gpt-3.5-turbo-16k-0613` (value: `"gpt-3.5-turbo-16k-0613"`)
+
+
 
 
 

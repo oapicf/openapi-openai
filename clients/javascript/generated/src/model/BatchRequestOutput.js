@@ -18,7 +18,7 @@ import BatchRequestOutputResponse from './BatchRequestOutputResponse';
 /**
  * The BatchRequestOutput model module.
  * @module model/BatchRequestOutput
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class BatchRequestOutput {
     /**

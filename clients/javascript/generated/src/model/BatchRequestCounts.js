@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The BatchRequestCounts model module.
  * @module model/BatchRequestCounts
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class BatchRequestCounts {
     /**

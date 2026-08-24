@@ -18,7 +18,7 @@ import ModifyAssistantRequestToolResourcesFileSearch from './ModifyAssistantRequ
 /**
  * The ModifyAssistantRequestToolResources model module.
  * @module model/ModifyAssistantRequestToolResources
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ModifyAssistantRequestToolResources {
     /**

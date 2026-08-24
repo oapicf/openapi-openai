@@ -17,7 +17,7 @@ import ChatCompletionFunctionCallOption from './ChatCompletionFunctionCallOption
 /**
  * The CreateChatCompletionRequestFunctionCall model module.
  * @module model/CreateChatCompletionRequestFunctionCall
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateChatCompletionRequestFunctionCall {
     /**
@@ -47,7 +47,7 @@ class CreateChatCompletionRequestFunctionCall {
         }
 
         try {
-            if (typeof instance === "ChatCompletionFunctionCallOption") {
+            if (instance instanceof ChatCompletionFunctionCallOption) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

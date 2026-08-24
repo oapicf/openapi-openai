@@ -20,7 +20,7 @@ import TranscriptionWord from './TranscriptionWord';
 /**
  * The CreateTranscription200Response model module.
  * @module model/CreateTranscription200Response
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateTranscription200Response {
     /**
@@ -36,7 +36,7 @@ class CreateTranscription200Response {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "CreateTranscriptionResponseJson") {
+            if (instance instanceof CreateTranscriptionResponseJson) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -52,7 +52,7 @@ class CreateTranscription200Response {
         }
 
         try {
-            if (typeof instance === "CreateTranscriptionResponseVerboseJson") {
+            if (instance instanceof CreateTranscriptionResponseVerboseJson) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

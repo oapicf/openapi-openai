@@ -18,7 +18,7 @@ import AuditLogActorUser from './AuditLogActorUser';
 /**
  * The AuditLogActorApiKey model module.
  * @module model/AuditLogActorApiKey
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class AuditLogActorApiKey {
     /**

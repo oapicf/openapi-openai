@@ -27,7 +27,7 @@ import RunStreamEventOneOf9 from './RunStreamEventOneOf9';
 /**
  * The RunStreamEvent model module.
  * @module model/RunStreamEvent
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunStreamEvent {
     /**
@@ -43,7 +43,7 @@ class RunStreamEvent {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "RunStreamEventOneOf") {
+            if (instance instanceof RunStreamEventOneOf) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -59,7 +59,7 @@ class RunStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStreamEventOneOf1") {
+            if (instance instanceof RunStreamEventOneOf1) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -75,7 +75,7 @@ class RunStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStreamEventOneOf2") {
+            if (instance instanceof RunStreamEventOneOf2) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -91,7 +91,7 @@ class RunStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStreamEventOneOf3") {
+            if (instance instanceof RunStreamEventOneOf3) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -107,7 +107,7 @@ class RunStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStreamEventOneOf4") {
+            if (instance instanceof RunStreamEventOneOf4) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -123,7 +123,7 @@ class RunStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStreamEventOneOf5") {
+            if (instance instanceof RunStreamEventOneOf5) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -139,7 +139,7 @@ class RunStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStreamEventOneOf6") {
+            if (instance instanceof RunStreamEventOneOf6) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -155,7 +155,7 @@ class RunStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStreamEventOneOf7") {
+            if (instance instanceof RunStreamEventOneOf7) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -171,7 +171,7 @@ class RunStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStreamEventOneOf8") {
+            if (instance instanceof RunStreamEventOneOf8) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -187,7 +187,7 @@ class RunStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStreamEventOneOf9") {
+            if (instance instanceof RunStreamEventOneOf9) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

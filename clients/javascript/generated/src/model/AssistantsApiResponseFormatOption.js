@@ -20,7 +20,7 @@ import ResponseFormatText from './ResponseFormatText';
 /**
  * The AssistantsApiResponseFormatOption model module.
  * @module model/AssistantsApiResponseFormatOption
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class AssistantsApiResponseFormatOption {
     /**
@@ -50,7 +50,7 @@ class AssistantsApiResponseFormatOption {
         }
 
         try {
-            if (typeof instance === "ResponseFormatText") {
+            if (instance instanceof ResponseFormatText) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -66,7 +66,7 @@ class AssistantsApiResponseFormatOption {
         }
 
         try {
-            if (typeof instance === "ResponseFormatJsonObject") {
+            if (instance instanceof ResponseFormatJsonObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -82,7 +82,7 @@ class AssistantsApiResponseFormatOption {
         }
 
         try {
-            if (typeof instance === "ResponseFormatJsonSchema") {
+            if (instance instanceof ResponseFormatJsonSchema) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

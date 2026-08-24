@@ -19,7 +19,7 @@ import RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject from './RunStepDelta
 /**
  * The RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner model module.
  * @module model/RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
     /**
@@ -35,7 +35,7 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject") {
+            if (instance instanceof RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -51,7 +51,7 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
         }
 
         try {
-            if (typeof instance === "RunStepDeltaStepDetailsToolCallsCodeOutputImageObject") {
+            if (instance instanceof RunStepDeltaStepDetailsToolCallsCodeOutputImageObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

@@ -23,7 +23,7 @@ import MessageContentTextObjectText from './MessageContentTextObjectText';
 /**
  * The MessageObjectContentInner model module.
  * @module model/MessageObjectContentInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class MessageObjectContentInner {
     /**
@@ -39,7 +39,7 @@ class MessageObjectContentInner {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "MessageContentImageFileObject") {
+            if (instance instanceof MessageContentImageFileObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -55,7 +55,7 @@ class MessageObjectContentInner {
         }
 
         try {
-            if (typeof instance === "MessageContentImageUrlObject") {
+            if (instance instanceof MessageContentImageUrlObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -71,7 +71,7 @@ class MessageObjectContentInner {
         }
 
         try {
-            if (typeof instance === "MessageContentTextObject") {
+            if (instance instanceof MessageContentTextObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -87,7 +87,7 @@ class MessageObjectContentInner {
         }
 
         try {
-            if (typeof instance === "MessageContentRefusalObject") {
+            if (instance instanceof MessageContentRefusalObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

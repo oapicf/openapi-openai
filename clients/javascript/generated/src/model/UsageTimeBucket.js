@@ -17,7 +17,7 @@ import UsageTimeBucketResultInner from './UsageTimeBucketResultInner';
 /**
  * The UsageTimeBucket model module.
  * @module model/UsageTimeBucket
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class UsageTimeBucket {
     /**

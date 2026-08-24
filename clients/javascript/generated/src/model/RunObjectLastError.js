@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The RunObjectLastError model module.
  * @module model/RunObjectLastError
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunObjectLastError {
     /**

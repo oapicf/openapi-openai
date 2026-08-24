@@ -17,7 +17,7 @@ import VectorStoreObject from './VectorStoreObject';
 /**
  * The ListVectorStoresResponse model module.
  * @module model/ListVectorStoresResponse
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ListVectorStoresResponse {
     /**

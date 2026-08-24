@@ -17,7 +17,7 @@ import RealtimeSession from './RealtimeSession';
 /**
  * The RealtimeServerEventSessionUpdated model module.
  * @module model/RealtimeServerEventSessionUpdated
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeServerEventSessionUpdated {
     /**

@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The RealtimeClientEventInputAudioBufferClear model module.
  * @module model/RealtimeClientEventInputAudioBufferClear
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeClientEventInputAudioBufferClear {
     /**

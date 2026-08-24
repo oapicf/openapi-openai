@@ -17,7 +17,7 @@ import ResponseFormatJsonSchemaJsonSchema from './ResponseFormatJsonSchemaJsonSc
 /**
  * The ResponseFormatJsonSchema model module.
  * @module model/ResponseFormatJsonSchema
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ResponseFormatJsonSchema {
     /**

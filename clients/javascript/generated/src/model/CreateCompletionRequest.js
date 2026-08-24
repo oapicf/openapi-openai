@@ -13,20 +13,19 @@
 
 import ApiClient from '../ApiClient';
 import ChatCompletionStreamOptions from './ChatCompletionStreamOptions';
-import CreateCompletionRequestModel from './CreateCompletionRequestModel';
 import CreateCompletionRequestPrompt from './CreateCompletionRequestPrompt';
 import CreateCompletionRequestStop from './CreateCompletionRequestStop';
 
 /**
  * The CreateCompletionRequest model module.
  * @module model/CreateCompletionRequest
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateCompletionRequest {
     /**
      * Constructs a new <code>CreateCompletionRequest</code>.
      * @alias module:model/CreateCompletionRequest
-     * @param model {module:model/CreateCompletionRequestModel} 
+     * @param model {module:model/CreateCompletionRequest.ModelEnum} 
      * @param prompt {module:model/CreateCompletionRequestPrompt} 
      */
     constructor(model, prompt) { 
@@ -65,7 +64,7 @@ class CreateCompletionRequest {
             obj = obj || new CreateCompletionRequest();
 
             if (data.hasOwnProperty('model')) {
-                obj['model'] = CreateCompletionRequestModel.constructFromObject(data['model']);
+                obj['model'] = ApiClient.convertToType(data['model'], 'String');
             }
             if (data.hasOwnProperty('prompt')) {
                 obj['prompt'] = CreateCompletionRequestPrompt.constructFromObject(data['prompt']);
@@ -134,9 +133,9 @@ class CreateCompletionRequest {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
         }
-        // validate the optional field `model`
-        if (data['model']) { // data not null
-          CreateCompletionRequestModel.validateJSON(data['model']);
+        // ensure the json data is a string
+        if (data['model'] && !(typeof data['model'] === 'string' || data['model'] instanceof String)) {
+            throw new Error("Expected the field `model` to be a primitive type in the JSON string but got " + data['model']);
         }
         // validate the optional field `prompt`
         if (data['prompt']) { // data not null
@@ -168,7 +167,7 @@ class CreateCompletionRequest {
 CreateCompletionRequest.RequiredProperties = ["model", "prompt"];
 
 /**
- * @member {module:model/CreateCompletionRequestModel} model
+ * @member {module:model/CreateCompletionRequest.ModelEnum} model
  */
 CreateCompletionRequest.prototype['model'] = undefined;
 
@@ -282,6 +281,33 @@ CreateCompletionRequest.prototype['user'] = undefined;
 
 
 
+
+
+/**
+ * Allowed values for the <code>model</code> property.
+ * @enum {String}
+ * @readonly
+ */
+CreateCompletionRequest['ModelEnum'] = {
+
+    /**
+     * value: "gpt-3.5-turbo-instruct"
+     * @const
+     */
+    "gpt-3.5-turbo-instruct": "gpt-3.5-turbo-instruct",
+
+    /**
+     * value: "davinci-002"
+     * @const
+     */
+    "davinci-002": "davinci-002",
+
+    /**
+     * value: "babbage-002"
+     * @const
+     */
+    "babbage-002": "babbage-002"
+};
 
 
 

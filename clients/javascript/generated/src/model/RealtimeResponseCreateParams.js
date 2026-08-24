@@ -20,7 +20,7 @@ import RealtimeResponseCreateParamsToolsInner from './RealtimeResponseCreatePara
 /**
  * The RealtimeResponseCreateParams model module.
  * @module model/RealtimeResponseCreateParams
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeResponseCreateParams {
     /**

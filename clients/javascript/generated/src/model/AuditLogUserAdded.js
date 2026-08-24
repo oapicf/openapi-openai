@@ -17,7 +17,7 @@ import AuditLogUserAddedData from './AuditLogUserAddedData';
 /**
  * The AuditLogUserAdded model module.
  * @module model/AuditLogUserAdded
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class AuditLogUserAdded {
     /**

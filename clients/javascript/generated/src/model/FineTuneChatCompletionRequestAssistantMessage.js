@@ -21,7 +21,7 @@ import ChatCompletionRequestAssistantMessageFunctionCall from './ChatCompletionR
 /**
  * The FineTuneChatCompletionRequestAssistantMessage model module.
  * @module model/FineTuneChatCompletionRequestAssistantMessage
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class FineTuneChatCompletionRequestAssistantMessage {
     /**

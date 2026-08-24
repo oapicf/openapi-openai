@@ -17,7 +17,7 @@ import ProjectServiceAccountApiKey from './ProjectServiceAccountApiKey';
 /**
  * The ProjectServiceAccountCreateResponse model module.
  * @module model/ProjectServiceAccountCreateResponse
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ProjectServiceAccountCreateResponse {
     /**

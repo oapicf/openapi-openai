@@ -17,7 +17,7 @@ import PredictionContentContent from './PredictionContentContent';
 /**
  * The PredictionContent model module.
  * @module model/PredictionContent
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class PredictionContent {
     /**

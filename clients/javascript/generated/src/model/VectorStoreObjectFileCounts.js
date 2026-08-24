@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The VectorStoreObjectFileCounts model module.
  * @module model/VectorStoreObjectFileCounts
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class VectorStoreObjectFileCounts {
     /**

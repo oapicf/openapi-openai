@@ -19,7 +19,7 @@ import StaticChunkingStrategyRequestParam from './StaticChunkingStrategyRequestP
 /**
  * The CreateVectorStoreRequestChunkingStrategy model module.
  * @module model/CreateVectorStoreRequestChunkingStrategy
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateVectorStoreRequestChunkingStrategy {
     /**
@@ -36,7 +36,7 @@ class CreateVectorStoreRequestChunkingStrategy {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "AutoChunkingStrategyRequestParam") {
+            if (instance instanceof AutoChunkingStrategyRequestParam) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -52,7 +52,7 @@ class CreateVectorStoreRequestChunkingStrategy {
         }
 
         try {
-            if (typeof instance === "StaticChunkingStrategyRequestParam") {
+            if (instance instanceof StaticChunkingStrategyRequestParam) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

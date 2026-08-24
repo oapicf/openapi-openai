@@ -18,7 +18,7 @@ import AuditLogActorSession from './AuditLogActorSession';
 /**
  * The AuditLogActor model module.
  * @module model/AuditLogActor
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class AuditLogActor {
     /**
@@ -72,6 +72,14 @@ class AuditLogActor {
         // ensure the json data is a string
         if (data['type'] && !(typeof data['type'] === 'string' || data['type'] instanceof String)) {
             throw new Error("Expected the field `type` to be a primitive type in the JSON string but got " + data['type']);
+        }
+        // validate the optional field `session`
+        if (data['session']) { // data not null
+          AuditLogActorSession.validateJSON(data['session']);
+        }
+        // validate the optional field `api_key`
+        if (data['api_key']) { // data not null
+          AuditLogActorApiKey.validateJSON(data['api_key']);
         }
 
         return true;

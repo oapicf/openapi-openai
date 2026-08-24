@@ -22,7 +22,7 @@ import ListPaginatedFineTuningJobsResponse from '../model/ListPaginatedFineTunin
 /**
 * FineTuning service.
 * @module api/FineTuningApi
-* @version 1.1.1-pre.0
+* @version 1.2.1-pre.0
 */
 export default class FineTuningApi {
 

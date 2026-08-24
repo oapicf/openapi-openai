@@ -20,7 +20,7 @@ import MessageDeltaContentTextAnnotationsFilePathObjectFilePath from './MessageD
 /**
  * The MessageDeltaContentTextObjectTextAnnotationsInner model module.
  * @module model/MessageDeltaContentTextObjectTextAnnotationsInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class MessageDeltaContentTextObjectTextAnnotationsInner {
     /**
@@ -36,7 +36,7 @@ class MessageDeltaContentTextObjectTextAnnotationsInner {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "MessageDeltaContentTextAnnotationsFileCitationObject") {
+            if (instance instanceof MessageDeltaContentTextAnnotationsFileCitationObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -52,7 +52,7 @@ class MessageDeltaContentTextObjectTextAnnotationsInner {
         }
 
         try {
-            if (typeof instance === "MessageDeltaContentTextAnnotationsFilePathObject") {
+            if (instance instanceof MessageDeltaContentTextAnnotationsFilePathObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

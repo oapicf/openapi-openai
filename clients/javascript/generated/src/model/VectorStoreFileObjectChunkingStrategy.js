@@ -14,19 +14,19 @@
 import ApiClient from '../ApiClient';
 import OtherChunkingStrategyResponseParam from './OtherChunkingStrategyResponseParam';
 import StaticChunkingStrategy from './StaticChunkingStrategy';
-import StaticChunkingStrategyResponseParam from './StaticChunkingStrategyResponseParam';
+import StaticChunkingStrategyRequestParam from './StaticChunkingStrategyRequestParam';
 
 /**
  * The VectorStoreFileObjectChunkingStrategy model module.
  * @module model/VectorStoreFileObjectChunkingStrategy
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class VectorStoreFileObjectChunkingStrategy {
     /**
      * Constructs a new <code>VectorStoreFileObjectChunkingStrategy</code>.
      * The strategy used to chunk the file.
      * @alias module:model/VectorStoreFileObjectChunkingStrategy
-     * @param {(module:model/OtherChunkingStrategyResponseParam|module:model/StaticChunkingStrategyResponseParam)} instance The actual instance to initialize VectorStoreFileObjectChunkingStrategy.
+     * @param {(module:model/OtherChunkingStrategyResponseParam|module:model/StaticChunkingStrategyRequestParam)} instance The actual instance to initialize VectorStoreFileObjectChunkingStrategy.
      */
     constructor(instance = null) {
         if (instance === null) {
@@ -36,23 +36,23 @@ class VectorStoreFileObjectChunkingStrategy {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "StaticChunkingStrategyResponseParam") {
+            if (instance instanceof StaticChunkingStrategyRequestParam) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
                 // validate the object
-                StaticChunkingStrategyResponseParam.validateJSON(instance); // throw an exception if no match
-                // create StaticChunkingStrategyResponseParam from JS object
-                this.actualInstance = StaticChunkingStrategyResponseParam.constructFromObject(instance);
+                StaticChunkingStrategyRequestParam.validateJSON(instance); // throw an exception if no match
+                // create StaticChunkingStrategyRequestParam from JS object
+                this.actualInstance = StaticChunkingStrategyRequestParam.constructFromObject(instance);
             }
             match++;
         } catch(err) {
-            // json data failed to deserialize into StaticChunkingStrategyResponseParam
-            errorMessages.push("Failed to construct StaticChunkingStrategyResponseParam: " + err)
+            // json data failed to deserialize into StaticChunkingStrategyRequestParam
+            errorMessages.push("Failed to construct StaticChunkingStrategyRequestParam: " + err)
         }
 
         try {
-            if (typeof instance === "OtherChunkingStrategyResponseParam") {
+            if (instance instanceof OtherChunkingStrategyResponseParam) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -68,10 +68,10 @@ class VectorStoreFileObjectChunkingStrategy {
         }
 
         if (match > 1) {
-            throw new Error("Multiple matches found constructing `VectorStoreFileObjectChunkingStrategy` with oneOf schemas OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam. Input: " + JSON.stringify(instance));
+            throw new Error("Multiple matches found constructing `VectorStoreFileObjectChunkingStrategy` with oneOf schemas OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam. Input: " + JSON.stringify(instance));
         } else if (match === 0) {
             this.actualInstance = null; // clear the actual instance in case there are multiple matches
-            throw new Error("No match found constructing `VectorStoreFileObjectChunkingStrategy` with oneOf schemas OtherChunkingStrategyResponseParam, StaticChunkingStrategyResponseParam. Details: " +
+            throw new Error("No match found constructing `VectorStoreFileObjectChunkingStrategy` with oneOf schemas OtherChunkingStrategyResponseParam, StaticChunkingStrategyRequestParam. Details: " +
                             errorMessages.join(", "));
         } else { // only 1 match
             // the input is valid
@@ -90,16 +90,16 @@ class VectorStoreFileObjectChunkingStrategy {
     }
 
     /**
-     * Gets the actual instance, which can be <code>OtherChunkingStrategyResponseParam</code>, <code>StaticChunkingStrategyResponseParam</code>.
-     * @return {(module:model/OtherChunkingStrategyResponseParam|module:model/StaticChunkingStrategyResponseParam)} The actual instance.
+     * Gets the actual instance, which can be <code>OtherChunkingStrategyResponseParam</code>, <code>StaticChunkingStrategyRequestParam</code>.
+     * @return {(module:model/OtherChunkingStrategyResponseParam|module:model/StaticChunkingStrategyRequestParam)} The actual instance.
      */
     getActualInstance() {
         return this.actualInstance;
     }
 
     /**
-     * Sets the actual instance, which can be <code>OtherChunkingStrategyResponseParam</code>, <code>StaticChunkingStrategyResponseParam</code>.
-     * @param {(module:model/OtherChunkingStrategyResponseParam|module:model/StaticChunkingStrategyResponseParam)} obj The actual instance.
+     * Sets the actual instance, which can be <code>OtherChunkingStrategyResponseParam</code>, <code>StaticChunkingStrategyRequestParam</code>.
+     * @param {(module:model/OtherChunkingStrategyResponseParam|module:model/StaticChunkingStrategyRequestParam)} obj The actual instance.
      */
     setActualInstance(obj) {
        this.actualInstance = VectorStoreFileObjectChunkingStrategy.constructFromObject(obj).getActualInstance();
@@ -135,7 +135,7 @@ VectorStoreFileObjectChunkingStrategy.prototype['type'] = undefined;
 VectorStoreFileObjectChunkingStrategy.prototype['static'] = undefined;
 
 
-VectorStoreFileObjectChunkingStrategy.OneOf = ["OtherChunkingStrategyResponseParam", "StaticChunkingStrategyResponseParam"];
+VectorStoreFileObjectChunkingStrategy.OneOf = ["OtherChunkingStrategyResponseParam", "StaticChunkingStrategyRequestParam"];
 
 export default VectorStoreFileObjectChunkingStrategy;
 

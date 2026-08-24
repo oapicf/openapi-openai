@@ -17,7 +17,7 @@ import ProjectApiKeyOwner from './ProjectApiKeyOwner';
 /**
  * The ProjectApiKey model module.
  * @module model/ProjectApiKey
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ProjectApiKey {
     /**

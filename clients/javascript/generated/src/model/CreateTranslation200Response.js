@@ -19,7 +19,7 @@ import TranscriptionSegment from './TranscriptionSegment';
 /**
  * The CreateTranslation200Response model module.
  * @module model/CreateTranslation200Response
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateTranslation200Response {
     /**
@@ -35,7 +35,7 @@ class CreateTranslation200Response {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "CreateTranslationResponseJson") {
+            if (instance instanceof CreateTranslationResponseJson) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -51,7 +51,7 @@ class CreateTranslation200Response {
         }
 
         try {
-            if (typeof instance === "CreateTranslationResponseVerboseJson") {
+            if (instance instanceof CreateTranslationResponseVerboseJson) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

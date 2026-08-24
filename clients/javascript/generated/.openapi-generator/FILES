@@ -66,7 +66,6 @@ docs/AuditLogUserDeleted.md
 docs/AuditLogUserUpdated.md
 docs/AuditLogUserUpdatedChangesRequested.md
 docs/AuditLogsApi.md
-docs/AutoChunkingStrategy.md
 docs/AutoChunkingStrategyRequestParam.md
 docs/Batch.md
 docs/BatchApi.md
@@ -127,7 +126,6 @@ docs/CompletionsApi.md
 docs/CostsResult.md
 docs/CostsResultAmount.md
 docs/CreateAssistantRequest.md
-docs/CreateAssistantRequestModel.md
 docs/CreateAssistantRequestToolResources.md
 docs/CreateAssistantRequestToolResourcesCodeInterpreter.md
 docs/CreateAssistantRequestToolResourcesFileSearch.md
@@ -139,7 +137,6 @@ docs/CreateChatCompletionFunctionResponseChoicesInner.md
 docs/CreateChatCompletionRequest.md
 docs/CreateChatCompletionRequestAudio.md
 docs/CreateChatCompletionRequestFunctionCall.md
-docs/CreateChatCompletionRequestModel.md
 docs/CreateChatCompletionRequestResponseFormat.md
 docs/CreateChatCompletionRequestStop.md
 docs/CreateChatCompletionResponse.md
@@ -149,7 +146,6 @@ docs/CreateChatCompletionStreamResponse.md
 docs/CreateChatCompletionStreamResponseChoicesInner.md
 docs/CreateChatCompletionStreamResponseUsage.md
 docs/CreateCompletionRequest.md
-docs/CreateCompletionRequestModel.md
 docs/CreateCompletionRequestPrompt.md
 docs/CreateCompletionRequestStop.md
 docs/CreateCompletionResponse.md
@@ -157,7 +153,6 @@ docs/CreateCompletionResponseChoicesInner.md
 docs/CreateCompletionResponseChoicesInnerLogprobs.md
 docs/CreateEmbeddingRequest.md
 docs/CreateEmbeddingRequestInput.md
-docs/CreateEmbeddingRequestModel.md
 docs/CreateEmbeddingResponse.md
 docs/CreateEmbeddingResponseUsage.md
 docs/CreateFineTuningJobRequest.md
@@ -167,10 +162,7 @@ docs/CreateFineTuningJobRequestHyperparametersLearningRateMultiplier.md
 docs/CreateFineTuningJobRequestHyperparametersNEpochs.md
 docs/CreateFineTuningJobRequestIntegrationsInner.md
 docs/CreateFineTuningJobRequestIntegrationsInnerWandb.md
-docs/CreateFineTuningJobRequestModel.md
-docs/CreateImageEditRequestModel.md
 docs/CreateImageRequest.md
-docs/CreateImageRequestModel.md
 docs/CreateMessageRequest.md
 docs/CreateMessageRequestAttachmentsInner.md
 docs/CreateMessageRequestAttachmentsInnerToolsInner.md
@@ -181,16 +173,13 @@ docs/CreateModerationRequestInputOneOfInner.md
 docs/CreateModerationRequestInputOneOfInnerOneOf.md
 docs/CreateModerationRequestInputOneOfInnerOneOf1.md
 docs/CreateModerationRequestInputOneOfInnerOneOfImageUrl.md
-docs/CreateModerationRequestModel.md
 docs/CreateModerationResponse.md
 docs/CreateModerationResponseResultsInner.md
 docs/CreateModerationResponseResultsInnerCategories.md
 docs/CreateModerationResponseResultsInnerCategoryAppliedInputTypes.md
 docs/CreateModerationResponseResultsInnerCategoryScores.md
 docs/CreateRunRequest.md
-docs/CreateRunRequestModel.md
 docs/CreateSpeechRequest.md
-docs/CreateSpeechRequestModel.md
 docs/CreateThreadAndRunRequest.md
 docs/CreateThreadAndRunRequestToolResources.md
 docs/CreateThreadAndRunRequestToolsInner.md
@@ -199,7 +188,6 @@ docs/CreateThreadRequestToolResources.md
 docs/CreateThreadRequestToolResourcesFileSearch.md
 docs/CreateThreadRequestToolResourcesFileSearchVectorStoresInner.md
 docs/CreateTranscription200Response.md
-docs/CreateTranscriptionRequestModel.md
 docs/CreateTranscriptionResponseJson.md
 docs/CreateTranscriptionResponseVerboseJson.md
 docs/CreateTranslation200Response.md
@@ -417,7 +405,6 @@ docs/RealtimeSessionCreateResponse.md
 docs/RealtimeSessionCreateResponseClientSecret.md
 docs/RealtimeSessionCreateResponseTurnDetection.md
 docs/RealtimeSessionInputAudioTranscription.md
-docs/RealtimeSessionModel.md
 docs/RealtimeSessionTurnDetection.md
 docs/ResponseFormatJsonObject.md
 docs/ResponseFormatJsonSchema.md
@@ -489,7 +476,6 @@ docs/RunToolCallObject.md
 docs/RunToolCallObjectFunction.md
 docs/StaticChunkingStrategy.md
 docs/StaticChunkingStrategyRequestParam.md
-docs/StaticChunkingStrategyResponseParam.md
 docs/StaticChunkingStrategyStatic.md
 docs/SubmitToolOutputsRunRequest.md
 docs/SubmitToolOutputsRunRequestToolOutputsInner.md
@@ -613,7 +599,6 @@ src/model/AuditLogUserAddedData.js
 src/model/AuditLogUserDeleted.js
 src/model/AuditLogUserUpdated.js
 src/model/AuditLogUserUpdatedChangesRequested.js
-src/model/AutoChunkingStrategy.js
 src/model/AutoChunkingStrategyRequestParam.js
 src/model/Batch.js
 src/model/BatchErrors.js
@@ -671,7 +656,6 @@ src/model/CompletionUsagePromptTokensDetails.js
 src/model/CostsResult.js
 src/model/CostsResultAmount.js
 src/model/CreateAssistantRequest.js
-src/model/CreateAssistantRequestModel.js
 src/model/CreateAssistantRequestToolResources.js
 src/model/CreateAssistantRequestToolResourcesCodeInterpreter.js
 src/model/CreateAssistantRequestToolResourcesFileSearch.js
@@ -683,7 +667,6 @@ src/model/CreateChatCompletionFunctionResponseChoicesInner.js
 src/model/CreateChatCompletionRequest.js
 src/model/CreateChatCompletionRequestAudio.js
 src/model/CreateChatCompletionRequestFunctionCall.js
-src/model/CreateChatCompletionRequestModel.js
 src/model/CreateChatCompletionRequestResponseFormat.js
 src/model/CreateChatCompletionRequestStop.js
 src/model/CreateChatCompletionResponse.js
@@ -693,7 +676,6 @@ src/model/CreateChatCompletionStreamResponse.js
 src/model/CreateChatCompletionStreamResponseChoicesInner.js
 src/model/CreateChatCompletionStreamResponseUsage.js
 src/model/CreateCompletionRequest.js
-src/model/CreateCompletionRequestModel.js
 src/model/CreateCompletionRequestPrompt.js
 src/model/CreateCompletionRequestStop.js
 src/model/CreateCompletionResponse.js
@@ -701,7 +683,6 @@ src/model/CreateCompletionResponseChoicesInner.js
 src/model/CreateCompletionResponseChoicesInnerLogprobs.js
 src/model/CreateEmbeddingRequest.js
 src/model/CreateEmbeddingRequestInput.js
-src/model/CreateEmbeddingRequestModel.js
 src/model/CreateEmbeddingResponse.js
 src/model/CreateEmbeddingResponseUsage.js
 src/model/CreateFineTuningJobRequest.js
@@ -711,10 +692,7 @@ src/model/CreateFineTuningJobRequestHyperparametersLearningRateMultiplier.js
 src/model/CreateFineTuningJobRequestHyperparametersNEpochs.js
 src/model/CreateFineTuningJobRequestIntegrationsInner.js
 src/model/CreateFineTuningJobRequestIntegrationsInnerWandb.js
-src/model/CreateFineTuningJobRequestModel.js
-src/model/CreateImageEditRequestModel.js
 src/model/CreateImageRequest.js
-src/model/CreateImageRequestModel.js
 src/model/CreateMessageRequest.js
 src/model/CreateMessageRequestAttachmentsInner.js
 src/model/CreateMessageRequestAttachmentsInnerToolsInner.js
@@ -725,16 +703,13 @@ src/model/CreateModerationRequestInputOneOfInner.js
 src/model/CreateModerationRequestInputOneOfInnerOneOf.js
 src/model/CreateModerationRequestInputOneOfInnerOneOf1.js
 src/model/CreateModerationRequestInputOneOfInnerOneOfImageUrl.js
-src/model/CreateModerationRequestModel.js
 src/model/CreateModerationResponse.js
 src/model/CreateModerationResponseResultsInner.js
 src/model/CreateModerationResponseResultsInnerCategories.js
 src/model/CreateModerationResponseResultsInnerCategoryAppliedInputTypes.js
 src/model/CreateModerationResponseResultsInnerCategoryScores.js
 src/model/CreateRunRequest.js
-src/model/CreateRunRequestModel.js
 src/model/CreateSpeechRequest.js
-src/model/CreateSpeechRequestModel.js
 src/model/CreateThreadAndRunRequest.js
 src/model/CreateThreadAndRunRequestToolResources.js
 src/model/CreateThreadAndRunRequestToolsInner.js
@@ -743,7 +718,6 @@ src/model/CreateThreadRequestToolResources.js
 src/model/CreateThreadRequestToolResourcesFileSearch.js
 src/model/CreateThreadRequestToolResourcesFileSearchVectorStoresInner.js
 src/model/CreateTranscription200Response.js
-src/model/CreateTranscriptionRequestModel.js
 src/model/CreateTranscriptionResponseJson.js
 src/model/CreateTranscriptionResponseVerboseJson.js
 src/model/CreateTranslation200Response.js
@@ -951,7 +925,6 @@ src/model/RealtimeSessionCreateResponse.js
 src/model/RealtimeSessionCreateResponseClientSecret.js
 src/model/RealtimeSessionCreateResponseTurnDetection.js
 src/model/RealtimeSessionInputAudioTranscription.js
-src/model/RealtimeSessionModel.js
 src/model/RealtimeSessionTurnDetection.js
 src/model/ResponseFormatJsonObject.js
 src/model/ResponseFormatJsonSchema.js
@@ -1023,7 +996,6 @@ src/model/RunToolCallObject.js
 src/model/RunToolCallObjectFunction.js
 src/model/StaticChunkingStrategy.js
 src/model/StaticChunkingStrategyRequestParam.js
-src/model/StaticChunkingStrategyResponseParam.js
 src/model/StaticChunkingStrategyStatic.js
 src/model/SubmitToolOutputsRunRequest.js
 src/model/SubmitToolOutputsRunRequestToolOutputsInner.js
@@ -1138,7 +1110,6 @@ test/model/AuditLogUserAddedData.spec.js
 test/model/AuditLogUserDeleted.spec.js
 test/model/AuditLogUserUpdated.spec.js
 test/model/AuditLogUserUpdatedChangesRequested.spec.js
-test/model/AutoChunkingStrategy.spec.js
 test/model/AutoChunkingStrategyRequestParam.spec.js
 test/model/Batch.spec.js
 test/model/BatchErrors.spec.js
@@ -1196,7 +1167,6 @@ test/model/CompletionUsagePromptTokensDetails.spec.js
 test/model/CostsResult.spec.js
 test/model/CostsResultAmount.spec.js
 test/model/CreateAssistantRequest.spec.js
-test/model/CreateAssistantRequestModel.spec.js
 test/model/CreateAssistantRequestToolResources.spec.js
 test/model/CreateAssistantRequestToolResourcesCodeInterpreter.spec.js
 test/model/CreateAssistantRequestToolResourcesFileSearch.spec.js
@@ -1208,7 +1178,6 @@ test/model/CreateChatCompletionFunctionResponseChoicesInner.spec.js
 test/model/CreateChatCompletionRequest.spec.js
 test/model/CreateChatCompletionRequestAudio.spec.js
 test/model/CreateChatCompletionRequestFunctionCall.spec.js
-test/model/CreateChatCompletionRequestModel.spec.js
 test/model/CreateChatCompletionRequestResponseFormat.spec.js
 test/model/CreateChatCompletionRequestStop.spec.js
 test/model/CreateChatCompletionResponse.spec.js
@@ -1218,7 +1187,6 @@ test/model/CreateChatCompletionStreamResponse.spec.js
 test/model/CreateChatCompletionStreamResponseChoicesInner.spec.js
 test/model/CreateChatCompletionStreamResponseUsage.spec.js
 test/model/CreateCompletionRequest.spec.js
-test/model/CreateCompletionRequestModel.spec.js
 test/model/CreateCompletionRequestPrompt.spec.js
 test/model/CreateCompletionRequestStop.spec.js
 test/model/CreateCompletionResponse.spec.js
@@ -1226,7 +1194,6 @@ test/model/CreateCompletionResponseChoicesInner.spec.js
 test/model/CreateCompletionResponseChoicesInnerLogprobs.spec.js
 test/model/CreateEmbeddingRequest.spec.js
 test/model/CreateEmbeddingRequestInput.spec.js
-test/model/CreateEmbeddingRequestModel.spec.js
 test/model/CreateEmbeddingResponse.spec.js
 test/model/CreateEmbeddingResponseUsage.spec.js
 test/model/CreateFineTuningJobRequest.spec.js
@@ -1236,10 +1203,7 @@ test/model/CreateFineTuningJobRequestHyperparametersLearningRateMultiplier.spec.
 test/model/CreateFineTuningJobRequestHyperparametersNEpochs.spec.js
 test/model/CreateFineTuningJobRequestIntegrationsInner.spec.js
 test/model/CreateFineTuningJobRequestIntegrationsInnerWandb.spec.js
-test/model/CreateFineTuningJobRequestModel.spec.js
-test/model/CreateImageEditRequestModel.spec.js
 test/model/CreateImageRequest.spec.js
-test/model/CreateImageRequestModel.spec.js
 test/model/CreateMessageRequest.spec.js
 test/model/CreateMessageRequestAttachmentsInner.spec.js
 test/model/CreateMessageRequestAttachmentsInnerToolsInner.spec.js
@@ -1250,16 +1214,13 @@ test/model/CreateModerationRequestInputOneOfInner.spec.js
 test/model/CreateModerationRequestInputOneOfInnerOneOf.spec.js
 test/model/CreateModerationRequestInputOneOfInnerOneOf1.spec.js
 test/model/CreateModerationRequestInputOneOfInnerOneOfImageUrl.spec.js
-test/model/CreateModerationRequestModel.spec.js
 test/model/CreateModerationResponse.spec.js
 test/model/CreateModerationResponseResultsInner.spec.js
 test/model/CreateModerationResponseResultsInnerCategories.spec.js
 test/model/CreateModerationResponseResultsInnerCategoryAppliedInputTypes.spec.js
 test/model/CreateModerationResponseResultsInnerCategoryScores.spec.js
 test/model/CreateRunRequest.spec.js
-test/model/CreateRunRequestModel.spec.js
 test/model/CreateSpeechRequest.spec.js
-test/model/CreateSpeechRequestModel.spec.js
 test/model/CreateThreadAndRunRequest.spec.js
 test/model/CreateThreadAndRunRequestToolResources.spec.js
 test/model/CreateThreadAndRunRequestToolsInner.spec.js
@@ -1268,7 +1229,6 @@ test/model/CreateThreadRequestToolResources.spec.js
 test/model/CreateThreadRequestToolResourcesFileSearch.spec.js
 test/model/CreateThreadRequestToolResourcesFileSearchVectorStoresInner.spec.js
 test/model/CreateTranscription200Response.spec.js
-test/model/CreateTranscriptionRequestModel.spec.js
 test/model/CreateTranscriptionResponseJson.spec.js
 test/model/CreateTranscriptionResponseVerboseJson.spec.js
 test/model/CreateTranslation200Response.spec.js
@@ -1476,7 +1436,6 @@ test/model/RealtimeSessionCreateResponse.spec.js
 test/model/RealtimeSessionCreateResponseClientSecret.spec.js
 test/model/RealtimeSessionCreateResponseTurnDetection.spec.js
 test/model/RealtimeSessionInputAudioTranscription.spec.js
-test/model/RealtimeSessionModel.spec.js
 test/model/RealtimeSessionTurnDetection.spec.js
 test/model/ResponseFormatJsonObject.spec.js
 test/model/ResponseFormatJsonSchema.spec.js
@@ -1548,7 +1507,6 @@ test/model/RunToolCallObject.spec.js
 test/model/RunToolCallObjectFunction.spec.js
 test/model/StaticChunkingStrategy.spec.js
 test/model/StaticChunkingStrategyRequestParam.spec.js
-test/model/StaticChunkingStrategyResponseParam.spec.js
 test/model/StaticChunkingStrategyStatic.spec.js
 test/model/SubmitToolOutputsRunRequest.spec.js
 test/model/SubmitToolOutputsRunRequestToolOutputsInner.spec.js

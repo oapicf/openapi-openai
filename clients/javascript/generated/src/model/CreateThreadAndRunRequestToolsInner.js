@@ -21,7 +21,7 @@ import FunctionObject from './FunctionObject';
 /**
  * The CreateThreadAndRunRequestToolsInner model module.
  * @module model/CreateThreadAndRunRequestToolsInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateThreadAndRunRequestToolsInner {
     /**
@@ -37,7 +37,7 @@ class CreateThreadAndRunRequestToolsInner {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "AssistantToolsCode") {
+            if (instance instanceof AssistantToolsCode) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -53,7 +53,7 @@ class CreateThreadAndRunRequestToolsInner {
         }
 
         try {
-            if (typeof instance === "AssistantToolsFileSearch") {
+            if (instance instanceof AssistantToolsFileSearch) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -69,7 +69,7 @@ class CreateThreadAndRunRequestToolsInner {
         }
 
         try {
-            if (typeof instance === "AssistantToolsFunction") {
+            if (instance instanceof AssistantToolsFunction) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

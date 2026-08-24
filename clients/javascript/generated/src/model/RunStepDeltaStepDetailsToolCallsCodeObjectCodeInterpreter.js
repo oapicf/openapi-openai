@@ -17,7 +17,7 @@ import RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner fro
 /**
  * The RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter model module.
  * @module model/RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter {
     /**

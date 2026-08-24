@@ -17,7 +17,7 @@ import RunObject from './RunObject';
 /**
  * The RunStreamEventOneOf model module.
  * @module model/RunStreamEventOneOf
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunStreamEventOneOf {
     /**

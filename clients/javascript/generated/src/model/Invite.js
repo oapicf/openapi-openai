@@ -17,7 +17,7 @@ import InviteProjectsInner from './InviteProjectsInner';
 /**
  * The Invite model module.
  * @module model/Invite
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class Invite {
     /**

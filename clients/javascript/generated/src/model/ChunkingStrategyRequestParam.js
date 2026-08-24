@@ -19,7 +19,7 @@ import StaticChunkingStrategyRequestParam from './StaticChunkingStrategyRequestP
 /**
  * The ChunkingStrategyRequestParam model module.
  * @module model/ChunkingStrategyRequestParam
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ChunkingStrategyRequestParam {
     /**
@@ -36,7 +36,7 @@ class ChunkingStrategyRequestParam {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "AutoChunkingStrategyRequestParam") {
+            if (instance instanceof AutoChunkingStrategyRequestParam) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -52,7 +52,7 @@ class ChunkingStrategyRequestParam {
         }
 
         try {
-            if (typeof instance === "StaticChunkingStrategyRequestParam") {
+            if (instance instanceof StaticChunkingStrategyRequestParam) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

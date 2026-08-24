@@ -14,19 +14,18 @@
 import ApiClient from '../ApiClient';
 import AssistantObjectToolsInner from './AssistantObjectToolsInner';
 import AssistantsApiResponseFormatOption from './AssistantsApiResponseFormatOption';
-import CreateAssistantRequestModel from './CreateAssistantRequestModel';
 import CreateAssistantRequestToolResources from './CreateAssistantRequestToolResources';
 
 /**
  * The CreateAssistantRequest model module.
  * @module model/CreateAssistantRequest
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateAssistantRequest {
     /**
      * Constructs a new <code>CreateAssistantRequest</code>.
      * @alias module:model/CreateAssistantRequest
-     * @param model {module:model/CreateAssistantRequestModel} 
+     * @param model {module:model/CreateAssistantRequest.ModelEnum} 
      */
     constructor(model) { 
         
@@ -56,7 +55,7 @@ class CreateAssistantRequest {
             obj = obj || new CreateAssistantRequest();
 
             if (data.hasOwnProperty('model')) {
-                obj['model'] = CreateAssistantRequestModel.constructFromObject(data['model']);
+                obj['model'] = ApiClient.convertToType(data['model'], 'String');
             }
             if (data.hasOwnProperty('name')) {
                 obj['name'] = ApiClient.convertToType(data['name'], 'String');
@@ -101,9 +100,9 @@ class CreateAssistantRequest {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
         }
-        // validate the optional field `model`
-        if (data['model']) { // data not null
-          CreateAssistantRequestModel.validateJSON(data['model']);
+        // ensure the json data is a string
+        if (data['model'] && !(typeof data['model'] === 'string' || data['model'] instanceof String)) {
+            throw new Error("Expected the field `model` to be a primitive type in the JSON string but got " + data['model']);
         }
         // ensure the json data is a string
         if (data['name'] && !(typeof data['name'] === 'string' || data['name'] instanceof String)) {
@@ -145,7 +144,7 @@ class CreateAssistantRequest {
 CreateAssistantRequest.RequiredProperties = ["model"];
 
 /**
- * @member {module:model/CreateAssistantRequestModel} model
+ * @member {module:model/CreateAssistantRequest.ModelEnum} model
  */
 CreateAssistantRequest.prototype['model'] = undefined;
 
@@ -205,6 +204,159 @@ CreateAssistantRequest.prototype['response_format'] = undefined;
 
 
 
+
+
+/**
+ * Allowed values for the <code>model</code> property.
+ * @enum {String}
+ * @readonly
+ */
+CreateAssistantRequest['ModelEnum'] = {
+
+    /**
+     * value: "gpt-4o"
+     * @const
+     */
+    "gpt-4o": "gpt-4o",
+
+    /**
+     * value: "gpt-4o-2024-11-20"
+     * @const
+     */
+    "gpt-4o-2024-11-20": "gpt-4o-2024-11-20",
+
+    /**
+     * value: "gpt-4o-2024-08-06"
+     * @const
+     */
+    "gpt-4o-2024-08-06": "gpt-4o-2024-08-06",
+
+    /**
+     * value: "gpt-4o-2024-05-13"
+     * @const
+     */
+    "gpt-4o-2024-05-13": "gpt-4o-2024-05-13",
+
+    /**
+     * value: "gpt-4o-mini"
+     * @const
+     */
+    "gpt-4o-mini": "gpt-4o-mini",
+
+    /**
+     * value: "gpt-4o-mini-2024-07-18"
+     * @const
+     */
+    "gpt-4o-mini-2024-07-18": "gpt-4o-mini-2024-07-18",
+
+    /**
+     * value: "gpt-4-turbo"
+     * @const
+     */
+    "gpt-4-turbo": "gpt-4-turbo",
+
+    /**
+     * value: "gpt-4-turbo-2024-04-09"
+     * @const
+     */
+    "gpt-4-turbo-2024-04-09": "gpt-4-turbo-2024-04-09",
+
+    /**
+     * value: "gpt-4-0125-preview"
+     * @const
+     */
+    "gpt-4-0125-preview": "gpt-4-0125-preview",
+
+    /**
+     * value: "gpt-4-turbo-preview"
+     * @const
+     */
+    "gpt-4-turbo-preview": "gpt-4-turbo-preview",
+
+    /**
+     * value: "gpt-4-1106-preview"
+     * @const
+     */
+    "gpt-4-1106-preview": "gpt-4-1106-preview",
+
+    /**
+     * value: "gpt-4-vision-preview"
+     * @const
+     */
+    "gpt-4-vision-preview": "gpt-4-vision-preview",
+
+    /**
+     * value: "gpt-4"
+     * @const
+     */
+    "gpt-4": "gpt-4",
+
+    /**
+     * value: "gpt-4-0314"
+     * @const
+     */
+    "gpt-4-0314": "gpt-4-0314",
+
+    /**
+     * value: "gpt-4-0613"
+     * @const
+     */
+    "gpt-4-0613": "gpt-4-0613",
+
+    /**
+     * value: "gpt-4-32k"
+     * @const
+     */
+    "gpt-4-32k": "gpt-4-32k",
+
+    /**
+     * value: "gpt-4-32k-0314"
+     * @const
+     */
+    "gpt-4-32k-0314": "gpt-4-32k-0314",
+
+    /**
+     * value: "gpt-4-32k-0613"
+     * @const
+     */
+    "gpt-4-32k-0613": "gpt-4-32k-0613",
+
+    /**
+     * value: "gpt-3.5-turbo"
+     * @const
+     */
+    "gpt-3.5-turbo": "gpt-3.5-turbo",
+
+    /**
+     * value: "gpt-3.5-turbo-16k"
+     * @const
+     */
+    "gpt-3.5-turbo-16k": "gpt-3.5-turbo-16k",
+
+    /**
+     * value: "gpt-3.5-turbo-0613"
+     * @const
+     */
+    "gpt-3.5-turbo-0613": "gpt-3.5-turbo-0613",
+
+    /**
+     * value: "gpt-3.5-turbo-1106"
+     * @const
+     */
+    "gpt-3.5-turbo-1106": "gpt-3.5-turbo-1106",
+
+    /**
+     * value: "gpt-3.5-turbo-0125"
+     * @const
+     */
+    "gpt-3.5-turbo-0125": "gpt-3.5-turbo-0125",
+
+    /**
+     * value: "gpt-3.5-turbo-16k-0613"
+     * @const
+     */
+    "gpt-3.5-turbo-16k-0613": "gpt-3.5-turbo-16k-0613"
+};
 
 
 

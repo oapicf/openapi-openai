@@ -17,7 +17,7 @@ import RealtimeResponseCreateParams from './RealtimeResponseCreateParams';
 /**
  * The RealtimeClientEventResponseCreate model module.
  * @module model/RealtimeClientEventResponseCreate
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeClientEventResponseCreate {
     /**

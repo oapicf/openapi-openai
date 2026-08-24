@@ -22,7 +22,7 @@ import ThreadStreamEvent from './ThreadStreamEvent';
 /**
  * The AssistantStreamEvent model module.
  * @module model/AssistantStreamEvent
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class AssistantStreamEvent {
     /**
@@ -39,7 +39,7 @@ class AssistantStreamEvent {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "ThreadStreamEvent") {
+            if (instance instanceof ThreadStreamEvent) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -55,7 +55,7 @@ class AssistantStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStreamEvent") {
+            if (instance instanceof RunStreamEvent) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -71,7 +71,7 @@ class AssistantStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStepStreamEvent") {
+            if (instance instanceof RunStepStreamEvent) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -87,7 +87,7 @@ class AssistantStreamEvent {
         }
 
         try {
-            if (typeof instance === "MessageStreamEvent") {
+            if (instance instanceof MessageStreamEvent) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -103,7 +103,7 @@ class AssistantStreamEvent {
         }
 
         try {
-            if (typeof instance === "ErrorEvent") {
+            if (instance instanceof ErrorEvent) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -119,7 +119,7 @@ class AssistantStreamEvent {
         }
 
         try {
-            if (typeof instance === "DoneEvent") {
+            if (instance instanceof DoneEvent) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

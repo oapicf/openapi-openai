@@ -20,7 +20,7 @@ import MessageContentTextAnnotationsFilePathObjectFilePath from './MessageConten
 /**
  * The MessageContentTextObjectTextAnnotationsInner model module.
  * @module model/MessageContentTextObjectTextAnnotationsInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class MessageContentTextObjectTextAnnotationsInner {
     /**
@@ -36,7 +36,7 @@ class MessageContentTextObjectTextAnnotationsInner {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "MessageContentTextAnnotationsFileCitationObject") {
+            if (instance instanceof MessageContentTextAnnotationsFileCitationObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -52,7 +52,7 @@ class MessageContentTextObjectTextAnnotationsInner {
         }
 
         try {
-            if (typeof instance === "MessageContentTextAnnotationsFilePathObject") {
+            if (instance instanceof MessageContentTextAnnotationsFilePathObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

@@ -25,7 +25,7 @@ import ChatCompletionRequestUserMessage from './ChatCompletionRequestUserMessage
 /**
  * The ChatCompletionRequestMessage model module.
  * @module model/ChatCompletionRequestMessage
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ChatCompletionRequestMessage {
     /**
@@ -41,7 +41,7 @@ class ChatCompletionRequestMessage {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "ChatCompletionRequestDeveloperMessage") {
+            if (instance instanceof ChatCompletionRequestDeveloperMessage) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -57,7 +57,7 @@ class ChatCompletionRequestMessage {
         }
 
         try {
-            if (typeof instance === "ChatCompletionRequestSystemMessage") {
+            if (instance instanceof ChatCompletionRequestSystemMessage) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -73,7 +73,7 @@ class ChatCompletionRequestMessage {
         }
 
         try {
-            if (typeof instance === "ChatCompletionRequestUserMessage") {
+            if (instance instanceof ChatCompletionRequestUserMessage) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -89,7 +89,7 @@ class ChatCompletionRequestMessage {
         }
 
         try {
-            if (typeof instance === "ChatCompletionRequestAssistantMessage") {
+            if (instance instanceof ChatCompletionRequestAssistantMessage) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -105,7 +105,7 @@ class ChatCompletionRequestMessage {
         }
 
         try {
-            if (typeof instance === "ChatCompletionRequestToolMessage") {
+            if (instance instanceof ChatCompletionRequestToolMessage) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -121,7 +121,7 @@ class ChatCompletionRequestMessage {
         }
 
         try {
-            if (typeof instance === "ChatCompletionRequestFunctionMessage") {
+            if (instance instanceof ChatCompletionRequestFunctionMessage) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

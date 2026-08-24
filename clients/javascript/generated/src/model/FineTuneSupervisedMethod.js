@@ -17,7 +17,7 @@ import FineTuneSupervisedMethodHyperparameters from './FineTuneSupervisedMethodH
 /**
  * The FineTuneSupervisedMethod model module.
  * @module model/FineTuneSupervisedMethod
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class FineTuneSupervisedMethod {
     /**

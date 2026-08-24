@@ -17,7 +17,7 @@ import AssistantObject from './AssistantObject';
 /**
  * The ListAssistantsResponse model module.
  * @module model/ListAssistantsResponse
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ListAssistantsResponse {
     /**

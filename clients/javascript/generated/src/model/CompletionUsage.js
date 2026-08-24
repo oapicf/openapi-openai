@@ -18,7 +18,7 @@ import CompletionUsagePromptTokensDetails from './CompletionUsagePromptTokensDet
 /**
  * The CompletionUsage model module.
  * @module model/CompletionUsage
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CompletionUsage {
     /**

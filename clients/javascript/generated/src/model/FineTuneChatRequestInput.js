@@ -19,7 +19,7 @@ import FineTuneChatRequestInputMessagesInner from './FineTuneChatRequestInputMes
 /**
  * The FineTuneChatRequestInput model module.
  * @module model/FineTuneChatRequestInput
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class FineTuneChatRequestInput {
     /**

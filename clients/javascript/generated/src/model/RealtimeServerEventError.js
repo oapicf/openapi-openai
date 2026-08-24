@@ -17,7 +17,7 @@ import RealtimeServerEventErrorError from './RealtimeServerEventErrorError';
 /**
  * The RealtimeServerEventError model module.
  * @module model/RealtimeServerEventError
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeServerEventError {
     /**

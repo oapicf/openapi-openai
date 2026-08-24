@@ -18,7 +18,7 @@ import ChatCompletionNamedToolChoice from './ChatCompletionNamedToolChoice';
 /**
  * The ChatCompletionToolChoiceOption model module.
  * @module model/ChatCompletionToolChoiceOption
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ChatCompletionToolChoiceOption {
     /**
@@ -48,7 +48,7 @@ class ChatCompletionToolChoiceOption {
         }
 
         try {
-            if (typeof instance === "ChatCompletionNamedToolChoice") {
+            if (instance instanceof ChatCompletionNamedToolChoice) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

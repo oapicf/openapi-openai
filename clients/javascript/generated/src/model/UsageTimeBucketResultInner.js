@@ -26,7 +26,7 @@ import UsageVectorStoresResult from './UsageVectorStoresResult';
 /**
  * The UsageTimeBucketResultInner model module.
  * @module model/UsageTimeBucketResultInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class UsageTimeBucketResultInner {
     /**
@@ -42,7 +42,7 @@ class UsageTimeBucketResultInner {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "UsageCompletionsResult") {
+            if (instance instanceof UsageCompletionsResult) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -58,7 +58,7 @@ class UsageTimeBucketResultInner {
         }
 
         try {
-            if (typeof instance === "UsageEmbeddingsResult") {
+            if (instance instanceof UsageEmbeddingsResult) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -74,7 +74,7 @@ class UsageTimeBucketResultInner {
         }
 
         try {
-            if (typeof instance === "UsageModerationsResult") {
+            if (instance instanceof UsageModerationsResult) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -90,7 +90,7 @@ class UsageTimeBucketResultInner {
         }
 
         try {
-            if (typeof instance === "UsageImagesResult") {
+            if (instance instanceof UsageImagesResult) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -106,7 +106,7 @@ class UsageTimeBucketResultInner {
         }
 
         try {
-            if (typeof instance === "UsageAudioSpeechesResult") {
+            if (instance instanceof UsageAudioSpeechesResult) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -122,7 +122,7 @@ class UsageTimeBucketResultInner {
         }
 
         try {
-            if (typeof instance === "UsageAudioTranscriptionsResult") {
+            if (instance instanceof UsageAudioTranscriptionsResult) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -138,7 +138,7 @@ class UsageTimeBucketResultInner {
         }
 
         try {
-            if (typeof instance === "UsageVectorStoresResult") {
+            if (instance instanceof UsageVectorStoresResult) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -154,7 +154,7 @@ class UsageTimeBucketResultInner {
         }
 
         try {
-            if (typeof instance === "UsageCodeInterpreterSessionsResult") {
+            if (instance instanceof UsageCodeInterpreterSessionsResult) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -170,7 +170,7 @@ class UsageTimeBucketResultInner {
         }
 
         try {
-            if (typeof instance === "CostsResult") {
+            if (instance instanceof CostsResult) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

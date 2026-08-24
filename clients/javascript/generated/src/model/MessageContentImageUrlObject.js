@@ -17,7 +17,7 @@ import MessageContentImageUrlObjectImageUrl from './MessageContentImageUrlObject
 /**
  * The MessageContentImageUrlObject model module.
  * @module model/MessageContentImageUrlObject
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class MessageContentImageUrlObject {
     /**

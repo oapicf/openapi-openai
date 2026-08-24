@@ -14,7 +14,6 @@
 import ApiClient from '../ApiClient';
 import AssistantsApiResponseFormatOption from './AssistantsApiResponseFormatOption';
 import AssistantsApiToolChoiceOption from './AssistantsApiToolChoiceOption';
-import CreateRunRequestModel from './CreateRunRequestModel';
 import CreateThreadAndRunRequestToolResources from './CreateThreadAndRunRequestToolResources';
 import CreateThreadAndRunRequestToolsInner from './CreateThreadAndRunRequestToolsInner';
 import CreateThreadRequest from './CreateThreadRequest';
@@ -23,7 +22,7 @@ import TruncationObject from './TruncationObject';
 /**
  * The CreateThreadAndRunRequest model module.
  * @module model/CreateThreadAndRunRequest
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateThreadAndRunRequest {
     /**
@@ -66,7 +65,7 @@ class CreateThreadAndRunRequest {
                 obj['thread'] = CreateThreadRequest.constructFromObject(data['thread']);
             }
             if (data.hasOwnProperty('model')) {
-                obj['model'] = CreateRunRequestModel.constructFromObject(data['model']);
+                obj['model'] = ApiClient.convertToType(data['model'], 'String');
             }
             if (data.hasOwnProperty('instructions')) {
                 obj['instructions'] = ApiClient.convertToType(data['instructions'], 'String');
@@ -131,9 +130,9 @@ class CreateThreadAndRunRequest {
         if (data['thread']) { // data not null
           CreateThreadRequest.validateJSON(data['thread']);
         }
-        // validate the optional field `model`
-        if (data['model']) { // data not null
-          CreateRunRequestModel.validateJSON(data['model']);
+        // ensure the json data is a string
+        if (data['model'] && !(typeof data['model'] === 'string' || data['model'] instanceof String)) {
+            throw new Error("Expected the field `model` to be a primitive type in the JSON string but got " + data['model']);
         }
         // ensure the json data is a string
         if (data['instructions'] && !(typeof data['instructions'] === 'string' || data['instructions'] instanceof String)) {
@@ -186,7 +185,7 @@ CreateThreadAndRunRequest.prototype['assistant_id'] = undefined;
 CreateThreadAndRunRequest.prototype['thread'] = undefined;
 
 /**
- * @member {module:model/CreateRunRequestModel} model
+ * @member {module:model/CreateThreadAndRunRequest.ModelEnum} model
  */
 CreateThreadAndRunRequest.prototype['model'] = undefined;
 
@@ -269,6 +268,159 @@ CreateThreadAndRunRequest.prototype['response_format'] = undefined;
 
 
 
+
+
+/**
+ * Allowed values for the <code>model</code> property.
+ * @enum {String}
+ * @readonly
+ */
+CreateThreadAndRunRequest['ModelEnum'] = {
+
+    /**
+     * value: "gpt-4o"
+     * @const
+     */
+    "gpt-4o": "gpt-4o",
+
+    /**
+     * value: "gpt-4o-2024-11-20"
+     * @const
+     */
+    "gpt-4o-2024-11-20": "gpt-4o-2024-11-20",
+
+    /**
+     * value: "gpt-4o-2024-08-06"
+     * @const
+     */
+    "gpt-4o-2024-08-06": "gpt-4o-2024-08-06",
+
+    /**
+     * value: "gpt-4o-2024-05-13"
+     * @const
+     */
+    "gpt-4o-2024-05-13": "gpt-4o-2024-05-13",
+
+    /**
+     * value: "gpt-4o-mini"
+     * @const
+     */
+    "gpt-4o-mini": "gpt-4o-mini",
+
+    /**
+     * value: "gpt-4o-mini-2024-07-18"
+     * @const
+     */
+    "gpt-4o-mini-2024-07-18": "gpt-4o-mini-2024-07-18",
+
+    /**
+     * value: "gpt-4-turbo"
+     * @const
+     */
+    "gpt-4-turbo": "gpt-4-turbo",
+
+    /**
+     * value: "gpt-4-turbo-2024-04-09"
+     * @const
+     */
+    "gpt-4-turbo-2024-04-09": "gpt-4-turbo-2024-04-09",
+
+    /**
+     * value: "gpt-4-0125-preview"
+     * @const
+     */
+    "gpt-4-0125-preview": "gpt-4-0125-preview",
+
+    /**
+     * value: "gpt-4-turbo-preview"
+     * @const
+     */
+    "gpt-4-turbo-preview": "gpt-4-turbo-preview",
+
+    /**
+     * value: "gpt-4-1106-preview"
+     * @const
+     */
+    "gpt-4-1106-preview": "gpt-4-1106-preview",
+
+    /**
+     * value: "gpt-4-vision-preview"
+     * @const
+     */
+    "gpt-4-vision-preview": "gpt-4-vision-preview",
+
+    /**
+     * value: "gpt-4"
+     * @const
+     */
+    "gpt-4": "gpt-4",
+
+    /**
+     * value: "gpt-4-0314"
+     * @const
+     */
+    "gpt-4-0314": "gpt-4-0314",
+
+    /**
+     * value: "gpt-4-0613"
+     * @const
+     */
+    "gpt-4-0613": "gpt-4-0613",
+
+    /**
+     * value: "gpt-4-32k"
+     * @const
+     */
+    "gpt-4-32k": "gpt-4-32k",
+
+    /**
+     * value: "gpt-4-32k-0314"
+     * @const
+     */
+    "gpt-4-32k-0314": "gpt-4-32k-0314",
+
+    /**
+     * value: "gpt-4-32k-0613"
+     * @const
+     */
+    "gpt-4-32k-0613": "gpt-4-32k-0613",
+
+    /**
+     * value: "gpt-3.5-turbo"
+     * @const
+     */
+    "gpt-3.5-turbo": "gpt-3.5-turbo",
+
+    /**
+     * value: "gpt-3.5-turbo-16k"
+     * @const
+     */
+    "gpt-3.5-turbo-16k": "gpt-3.5-turbo-16k",
+
+    /**
+     * value: "gpt-3.5-turbo-0613"
+     * @const
+     */
+    "gpt-3.5-turbo-0613": "gpt-3.5-turbo-0613",
+
+    /**
+     * value: "gpt-3.5-turbo-1106"
+     * @const
+     */
+    "gpt-3.5-turbo-1106": "gpt-3.5-turbo-1106",
+
+    /**
+     * value: "gpt-3.5-turbo-0125"
+     * @const
+     */
+    "gpt-3.5-turbo-0125": "gpt-3.5-turbo-0125",
+
+    /**
+     * value: "gpt-3.5-turbo-16k-0613"
+     * @const
+     */
+    "gpt-3.5-turbo-16k-0613": "gpt-3.5-turbo-16k-0613"
+};
 
 
 

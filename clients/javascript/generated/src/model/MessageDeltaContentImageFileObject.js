@@ -17,7 +17,7 @@ import MessageDeltaContentImageFileObjectImageFile from './MessageDeltaContentIm
 /**
  * The MessageDeltaContentImageFileObject model module.
  * @module model/MessageDeltaContentImageFileObject
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class MessageDeltaContentImageFileObject {
     /**

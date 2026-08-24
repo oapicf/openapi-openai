@@ -20,7 +20,7 @@ import RunStepDetailsToolCallsObjectToolCallsInner from './RunStepDetailsToolCal
 /**
  * The RunStepObjectStepDetails model module.
  * @module model/RunStepObjectStepDetails
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunStepObjectStepDetails {
     /**
@@ -37,7 +37,7 @@ class RunStepObjectStepDetails {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "RunStepDetailsMessageCreationObject") {
+            if (instance instanceof RunStepDetailsMessageCreationObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -53,7 +53,7 @@ class RunStepObjectStepDetails {
         }
 
         try {
-            if (typeof instance === "RunStepDetailsToolCallsObject") {
+            if (instance instanceof RunStepDetailsToolCallsObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

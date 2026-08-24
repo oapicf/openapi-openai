@@ -17,7 +17,7 @@ import AuditLogApiKeyUpdatedChangesRequested from './AuditLogApiKeyUpdatedChange
 /**
  * The AuditLogApiKeyUpdated model module.
  * @module model/AuditLogApiKeyUpdated
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class AuditLogApiKeyUpdated {
     /**

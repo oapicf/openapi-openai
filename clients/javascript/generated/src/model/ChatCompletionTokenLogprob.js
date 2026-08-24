@@ -17,7 +17,7 @@ import ChatCompletionTokenLogprobTopLogprobsInner from './ChatCompletionTokenLog
 /**
  * The ChatCompletionTokenLogprob model module.
  * @module model/ChatCompletionTokenLogprob
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ChatCompletionTokenLogprob {
     /**

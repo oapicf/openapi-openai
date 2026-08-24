@@ -17,7 +17,7 @@ import RealtimeResponseStatusDetailsError from './RealtimeResponseStatusDetailsE
 /**
  * The RealtimeResponseStatusDetails model module.
  * @module model/RealtimeResponseStatusDetails
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeResponseStatusDetails {
     /**

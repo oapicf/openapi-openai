@@ -21,7 +21,7 @@ import ChatCompletionRequestMessageContentPartText from './ChatCompletionRequest
 /**
  * The ChatCompletionRequestUserMessageContentPart model module.
  * @module model/ChatCompletionRequestUserMessageContentPart
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ChatCompletionRequestUserMessageContentPart {
     /**
@@ -37,7 +37,7 @@ class ChatCompletionRequestUserMessageContentPart {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "ChatCompletionRequestMessageContentPartText") {
+            if (instance instanceof ChatCompletionRequestMessageContentPartText) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -53,7 +53,7 @@ class ChatCompletionRequestUserMessageContentPart {
         }
 
         try {
-            if (typeof instance === "ChatCompletionRequestMessageContentPartImage") {
+            if (instance instanceof ChatCompletionRequestMessageContentPartImage) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -69,7 +69,7 @@ class ChatCompletionRequestUserMessageContentPart {
         }
 
         try {
-            if (typeof instance === "ChatCompletionRequestMessageContentPartAudio") {
+            if (instance instanceof ChatCompletionRequestMessageContentPartAudio) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

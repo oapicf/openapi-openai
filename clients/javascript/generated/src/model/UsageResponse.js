@@ -17,7 +17,7 @@ import UsageTimeBucket from './UsageTimeBucket';
 /**
  * The UsageResponse model module.
  * @module model/UsageResponse
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class UsageResponse {
     /**

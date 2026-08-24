@@ -17,7 +17,7 @@ import ChatCompletionRequestUserMessageContentPart from './ChatCompletionRequest
 /**
  * The ChatCompletionRequestUserMessageContent model module.
  * @module model/ChatCompletionRequestUserMessageContent
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ChatCompletionRequestUserMessageContent {
     /**
@@ -48,7 +48,7 @@ class ChatCompletionRequestUserMessageContent {
 
         // An array of content parts with a defined type. Supported options differ based on the [model](/docs/models) being used to generate the response. Can contain text, image, or audio inputs.
         try {
-            if (typeof instance === "[ChatCompletionRequestUserMessageContentPart]") {
+            if (instance instanceof [ChatCompletionRequestUserMessageContentPart]) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

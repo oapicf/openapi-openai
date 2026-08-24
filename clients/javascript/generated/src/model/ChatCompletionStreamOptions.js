@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The ChatCompletionStreamOptions model module.
  * @module model/ChatCompletionStreamOptions
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ChatCompletionStreamOptions {
     /**

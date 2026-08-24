@@ -17,7 +17,7 @@ import CreateModerationResponseResultsInner from './CreateModerationResponseResu
 /**
  * The CreateModerationResponse model module.
  * @module model/CreateModerationResponse
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateModerationResponse {
     /**

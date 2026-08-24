@@ -16,13 +16,12 @@ import ApiClient from "../ApiClient";
 import AudioResponseFormat from '../model/AudioResponseFormat';
 import CreateSpeechRequest from '../model/CreateSpeechRequest';
 import CreateTranscription200Response from '../model/CreateTranscription200Response';
-import CreateTranscriptionRequestModel from '../model/CreateTranscriptionRequestModel';
 import CreateTranslation200Response from '../model/CreateTranslation200Response';
 
 /**
 * Audio service.
 * @module api/AudioApi
-* @version 1.1.1-pre.0
+* @version 1.2.1-pre.0
 */
 export default class AudioApi {
 
@@ -90,7 +89,7 @@ export default class AudioApi {
     /**
      * Transcribes audio into the input language.
      * @param {File} file The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
-     * @param {module:model/CreateTranscriptionRequestModel} model 
+     * @param {module:model/String} model 
      * @param {Object} opts Optional parameters
      * @param {String} [language] The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
      * @param {String} [prompt] An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language. 
@@ -150,7 +149,7 @@ export default class AudioApi {
     /**
      * Translates audio into English.
      * @param {File} file The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
-     * @param {module:model/CreateTranscriptionRequestModel} model 
+     * @param {module:model/String} model 
      * @param {Object} opts Optional parameters
      * @param {String} [prompt] An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. 
      * @param {module:model/AudioResponseFormat} [responseFormat] 

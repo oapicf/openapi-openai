@@ -22,7 +22,7 @@ import MessageStreamEventOneOf4 from './MessageStreamEventOneOf4';
 /**
  * The MessageStreamEvent model module.
  * @module model/MessageStreamEvent
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class MessageStreamEvent {
     /**
@@ -38,7 +38,7 @@ class MessageStreamEvent {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "MessageStreamEventOneOf") {
+            if (instance instanceof MessageStreamEventOneOf) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -54,7 +54,7 @@ class MessageStreamEvent {
         }
 
         try {
-            if (typeof instance === "MessageStreamEventOneOf1") {
+            if (instance instanceof MessageStreamEventOneOf1) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -70,7 +70,7 @@ class MessageStreamEvent {
         }
 
         try {
-            if (typeof instance === "MessageStreamEventOneOf2") {
+            if (instance instanceof MessageStreamEventOneOf2) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -86,7 +86,7 @@ class MessageStreamEvent {
         }
 
         try {
-            if (typeof instance === "MessageStreamEventOneOf3") {
+            if (instance instanceof MessageStreamEventOneOf3) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -102,7 +102,7 @@ class MessageStreamEvent {
         }
 
         try {
-            if (typeof instance === "MessageStreamEventOneOf4") {
+            if (instance instanceof MessageStreamEventOneOf4) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

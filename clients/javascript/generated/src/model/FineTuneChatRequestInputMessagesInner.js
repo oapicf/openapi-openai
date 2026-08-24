@@ -24,7 +24,7 @@ import FineTuneChatCompletionRequestAssistantMessage from './FineTuneChatComplet
 /**
  * The FineTuneChatRequestInputMessagesInner model module.
  * @module model/FineTuneChatRequestInputMessagesInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class FineTuneChatRequestInputMessagesInner {
     /**
@@ -40,7 +40,7 @@ class FineTuneChatRequestInputMessagesInner {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "ChatCompletionRequestSystemMessage") {
+            if (instance instanceof ChatCompletionRequestSystemMessage) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -56,7 +56,7 @@ class FineTuneChatRequestInputMessagesInner {
         }
 
         try {
-            if (typeof instance === "ChatCompletionRequestUserMessage") {
+            if (instance instanceof ChatCompletionRequestUserMessage) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -72,7 +72,7 @@ class FineTuneChatRequestInputMessagesInner {
         }
 
         try {
-            if (typeof instance === "FineTuneChatCompletionRequestAssistantMessage") {
+            if (instance instanceof FineTuneChatCompletionRequestAssistantMessage) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -88,7 +88,7 @@ class FineTuneChatRequestInputMessagesInner {
         }
 
         try {
-            if (typeof instance === "ChatCompletionRequestToolMessage") {
+            if (instance instanceof ChatCompletionRequestToolMessage) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -104,7 +104,7 @@ class FineTuneChatRequestInputMessagesInner {
         }
 
         try {
-            if (typeof instance === "ChatCompletionRequestFunctionMessage") {
+            if (instance instanceof ChatCompletionRequestFunctionMessage) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

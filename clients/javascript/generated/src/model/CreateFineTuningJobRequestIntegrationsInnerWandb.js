@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The CreateFineTuningJobRequestIntegrationsInnerWandb model module.
  * @module model/CreateFineTuningJobRequestIntegrationsInnerWandb
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateFineTuningJobRequestIntegrationsInnerWandb {
     /**

@@ -17,7 +17,7 @@ import RunStepDeltaStepDetailsMessageCreationObjectMessageCreation from './RunSt
 /**
  * The RunStepDeltaStepDetailsMessageCreationObject model module.
  * @module model/RunStepDeltaStepDetailsMessageCreationObject
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunStepDeltaStepDetailsMessageCreationObject {
     /**

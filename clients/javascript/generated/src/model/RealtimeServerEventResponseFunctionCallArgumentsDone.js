@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The RealtimeServerEventResponseFunctionCallArgumentsDone model module.
  * @module model/RealtimeServerEventResponseFunctionCallArgumentsDone
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeServerEventResponseFunctionCallArgumentsDone {
     /**

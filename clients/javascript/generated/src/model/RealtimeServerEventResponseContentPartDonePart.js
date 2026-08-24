@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The RealtimeServerEventResponseContentPartDonePart model module.
  * @module model/RealtimeServerEventResponseContentPartDonePart
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeServerEventResponseContentPartDonePart {
     /**

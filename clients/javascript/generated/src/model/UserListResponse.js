@@ -17,7 +17,7 @@ import User from './User';
 /**
  * The UserListResponse model module.
  * @module model/UserListResponse
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class UserListResponse {
     /**

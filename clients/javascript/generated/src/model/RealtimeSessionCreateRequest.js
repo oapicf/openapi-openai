@@ -20,7 +20,7 @@ import RealtimeSessionInputAudioTranscription from './RealtimeSessionInputAudioT
 /**
  * The RealtimeSessionCreateRequest model module.
  * @module model/RealtimeSessionCreateRequest
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeSessionCreateRequest {
     /**

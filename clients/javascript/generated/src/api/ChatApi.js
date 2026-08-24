@@ -19,7 +19,7 @@ import CreateChatCompletionResponse from '../model/CreateChatCompletionResponse'
 /**
 * Chat service.
 * @module api/ChatApi
-* @version 1.1.1-pre.0
+* @version 1.2.1-pre.0
 */
 export default class ChatApi {
 

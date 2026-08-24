@@ -18,7 +18,7 @@ import ChatCompletionStreamResponseDeltaFunctionCall from './ChatCompletionStrea
 /**
  * The ChatCompletionStreamResponseDelta model module.
  * @module model/ChatCompletionStreamResponseDelta
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ChatCompletionStreamResponseDelta {
     /**

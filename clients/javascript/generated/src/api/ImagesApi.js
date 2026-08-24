@@ -13,14 +13,13 @@
 
 
 import ApiClient from "../ApiClient";
-import CreateImageEditRequestModel from '../model/CreateImageEditRequestModel';
 import CreateImageRequest from '../model/CreateImageRequest';
 import ImagesResponse from '../model/ImagesResponse';
 
 /**
 * Images service.
 * @module api/ImagesApi
-* @version 1.1.1-pre.0
+* @version 1.2.1-pre.0
 */
 export default class ImagesApi {
 
@@ -91,7 +90,7 @@ export default class ImagesApi {
      * @param {String} prompt A text description of the desired image(s). The maximum length is 1000 characters.
      * @param {Object} opts Optional parameters
      * @param {File} [mask] An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as `image`.
-     * @param {module:model/CreateImageEditRequestModel} [model] 
+     * @param {module:model/String} [model = 'dall-e-2')] 
      * @param {Number} [n = 1)] The number of images to generate. Must be between 1 and 10.
      * @param {module:model/String} [size = '1024x1024')] The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
      * @param {module:model/String} [responseFormat = 'url')] The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
@@ -151,7 +150,7 @@ export default class ImagesApi {
      * Creates a variation of a given image.
      * @param {File} image The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
      * @param {Object} opts Optional parameters
-     * @param {module:model/CreateImageEditRequestModel} [model] 
+     * @param {module:model/String} [model = 'dall-e-2')] 
      * @param {Number} [n = 1)] The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
      * @param {module:model/String} [responseFormat = 'url')] The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
      * @param {module:model/String} [size = '1024x1024')] The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.

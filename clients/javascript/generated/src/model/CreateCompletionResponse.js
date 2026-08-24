@@ -18,7 +18,7 @@ import CreateCompletionResponseChoicesInner from './CreateCompletionResponseChoi
 /**
  * The CreateCompletionResponse model module.
  * @module model/CreateCompletionResponse
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateCompletionResponse {
     /**

@@ -21,7 +21,7 @@ import UploadPart from '../model/UploadPart';
 /**
 * Uploads service.
 * @module api/UploadsApi
-* @version 1.1.1-pre.0
+* @version 1.2.1-pre.0
 */
 export default class UploadsApi {
 

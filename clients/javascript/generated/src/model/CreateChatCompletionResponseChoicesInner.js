@@ -18,7 +18,7 @@ import CreateChatCompletionResponseChoicesInnerLogprobs from './CreateChatComple
 /**
  * The CreateChatCompletionResponseChoicesInner model module.
  * @module model/CreateChatCompletionResponseChoicesInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateChatCompletionResponseChoicesInner {
     /**

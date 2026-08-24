@@ -18,7 +18,7 @@ import ChatCompletionRequestMessageContentPartText from './ChatCompletionRequest
 /**
  * The ChatCompletionRequestAssistantMessageContentPart model module.
  * @module model/ChatCompletionRequestAssistantMessageContentPart
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ChatCompletionRequestAssistantMessageContentPart {
     /**
@@ -34,7 +34,7 @@ class ChatCompletionRequestAssistantMessageContentPart {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "ChatCompletionRequestMessageContentPartText") {
+            if (instance instanceof ChatCompletionRequestMessageContentPartText) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -50,7 +50,7 @@ class ChatCompletionRequestAssistantMessageContentPart {
         }
 
         try {
-            if (typeof instance === "ChatCompletionRequestMessageContentPartRefusal") {
+            if (instance instanceof ChatCompletionRequestMessageContentPartRefusal) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

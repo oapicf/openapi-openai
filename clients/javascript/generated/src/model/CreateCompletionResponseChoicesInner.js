@@ -17,7 +17,7 @@ import CreateCompletionResponseChoicesInnerLogprobs from './CreateCompletionResp
 /**
  * The CreateCompletionResponseChoicesInner model module.
  * @module model/CreateCompletionResponseChoicesInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateCompletionResponseChoicesInner {
     /**

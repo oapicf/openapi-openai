@@ -18,7 +18,7 @@ import CreateAssistantRequestToolResourcesFileSearch from './CreateAssistantRequ
 /**
  * The CreateAssistantRequestToolResources model module.
  * @module model/CreateAssistantRequestToolResources
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateAssistantRequestToolResources {
     /**

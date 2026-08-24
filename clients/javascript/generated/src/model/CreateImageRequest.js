@@ -12,12 +12,11 @@
  */
 
 import ApiClient from '../ApiClient';
-import CreateImageRequestModel from './CreateImageRequestModel';
 
 /**
  * The CreateImageRequest model module.
  * @module model/CreateImageRequest
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateImageRequest {
     /**
@@ -37,6 +36,7 @@ class CreateImageRequest {
      */
     static initialize(obj, prompt) { 
         obj['prompt'] = prompt;
+        obj['model'] = 'dall-e-2';
         obj['n'] = 1;
         obj['quality'] = 'standard';
         obj['response_format'] = 'url';
@@ -59,7 +59,7 @@ class CreateImageRequest {
                 obj['prompt'] = ApiClient.convertToType(data['prompt'], 'String');
             }
             if (data.hasOwnProperty('model')) {
-                obj['model'] = CreateImageRequestModel.constructFromObject(data['model']);
+                obj['model'] = ApiClient.convertToType(data['model'], 'String');
             }
             if (data.hasOwnProperty('n')) {
                 obj['n'] = ApiClient.convertToType(data['n'], 'Number');
@@ -99,9 +99,9 @@ class CreateImageRequest {
         if (data['prompt'] && !(typeof data['prompt'] === 'string' || data['prompt'] instanceof String)) {
             throw new Error("Expected the field `prompt` to be a primitive type in the JSON string but got " + data['prompt']);
         }
-        // validate the optional field `model`
-        if (data['model']) { // data not null
-          CreateImageRequestModel.validateJSON(data['model']);
+        // ensure the json data is a string
+        if (data['model'] && !(typeof data['model'] === 'string' || data['model'] instanceof String)) {
+            throw new Error("Expected the field `model` to be a primitive type in the JSON string but got " + data['model']);
         }
         // ensure the json data is a string
         if (data['quality'] && !(typeof data['quality'] === 'string' || data['quality'] instanceof String)) {
@@ -139,9 +139,10 @@ CreateImageRequest.RequiredProperties = ["prompt"];
 CreateImageRequest.prototype['prompt'] = undefined;
 
 /**
- * @member {module:model/CreateImageRequestModel} model
+ * @member {module:model/CreateImageRequest.ModelEnum} model
+ * @default 'dall-e-2'
  */
-CreateImageRequest.prototype['model'] = undefined;
+CreateImageRequest.prototype['model'] = 'dall-e-2';
 
 /**
  * The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
@@ -186,6 +187,27 @@ CreateImageRequest.prototype['user'] = undefined;
 
 
 
+
+
+/**
+ * Allowed values for the <code>model</code> property.
+ * @enum {String}
+ * @readonly
+ */
+CreateImageRequest['ModelEnum'] = {
+
+    /**
+     * value: "dall-e-2"
+     * @const
+     */
+    "dall-e-2": "dall-e-2",
+
+    /**
+     * value: "dall-e-3"
+     * @const
+     */
+    "dall-e-3": "dall-e-3"
+};
 
 
 /**

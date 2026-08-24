@@ -18,7 +18,7 @@ import AssistantToolsFileSearchTypeOnly from './AssistantToolsFileSearchTypeOnly
 /**
  * The CreateMessageRequestAttachmentsInnerToolsInner model module.
  * @module model/CreateMessageRequestAttachmentsInnerToolsInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateMessageRequestAttachmentsInnerToolsInner {
     /**
@@ -34,7 +34,7 @@ class CreateMessageRequestAttachmentsInnerToolsInner {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "AssistantToolsCode") {
+            if (instance instanceof AssistantToolsCode) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -50,7 +50,7 @@ class CreateMessageRequestAttachmentsInnerToolsInner {
         }
 
         try {
-            if (typeof instance === "AssistantToolsFileSearchTypeOnly") {
+            if (instance instanceof AssistantToolsFileSearchTypeOnly) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

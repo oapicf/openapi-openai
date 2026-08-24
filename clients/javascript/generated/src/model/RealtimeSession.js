@@ -15,13 +15,12 @@ import ApiClient from '../ApiClient';
 import RealtimeResponseCreateParamsMaxResponseOutputTokens from './RealtimeResponseCreateParamsMaxResponseOutputTokens';
 import RealtimeResponseCreateParamsToolsInner from './RealtimeResponseCreateParamsToolsInner';
 import RealtimeSessionInputAudioTranscription from './RealtimeSessionInputAudioTranscription';
-import RealtimeSessionModel from './RealtimeSessionModel';
 import RealtimeSessionTurnDetection from './RealtimeSessionTurnDetection';
 
 /**
  * The RealtimeSession model module.
  * @module model/RealtimeSession
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeSession {
     /**
@@ -60,7 +59,7 @@ class RealtimeSession {
                 obj['modalities'] = ApiClient.convertToType(data['modalities'], ['String']);
             }
             if (data.hasOwnProperty('model')) {
-                obj['model'] = RealtimeSessionModel.constructFromObject(data['model']);
+                obj['model'] = ApiClient.convertToType(data['model'], 'String');
             }
             if (data.hasOwnProperty('instructions')) {
                 obj['instructions'] = ApiClient.convertToType(data['instructions'], 'String');
@@ -110,9 +109,9 @@ class RealtimeSession {
         if (!Array.isArray(data['modalities'])) {
             throw new Error("Expected the field `modalities` to be an array in the JSON data but got " + data['modalities']);
         }
-        // validate the optional field `model`
-        if (data['model']) { // data not null
-          RealtimeSessionModel.validateJSON(data['model']);
+        // ensure the json data is a string
+        if (data['model'] && !(typeof data['model'] === 'string' || data['model'] instanceof String)) {
+            throw new Error("Expected the field `model` to be a primitive type in the JSON string but got " + data['model']);
         }
         // ensure the json data is a string
         if (data['instructions'] && !(typeof data['instructions'] === 'string' || data['instructions'] instanceof String)) {
@@ -178,7 +177,7 @@ RealtimeSession.prototype['id'] = undefined;
 RealtimeSession.prototype['modalities'] = undefined;
 
 /**
- * @member {module:model/RealtimeSessionModel} model
+ * @member {module:model/RealtimeSession.ModelEnum} model
  */
 RealtimeSession.prototype['model'] = undefined;
 
@@ -261,6 +260,45 @@ RealtimeSession['ModalitiesEnum'] = {
      * @const
      */
     "audio": "audio"
+};
+
+
+/**
+ * Allowed values for the <code>model</code> property.
+ * @enum {String}
+ * @readonly
+ */
+RealtimeSession['ModelEnum'] = {
+
+    /**
+     * value: "gpt-4o-realtime-preview"
+     * @const
+     */
+    "gpt-4o-realtime-preview": "gpt-4o-realtime-preview",
+
+    /**
+     * value: "gpt-4o-realtime-preview-2024-10-01"
+     * @const
+     */
+    "gpt-4o-realtime-preview-2024-10-01": "gpt-4o-realtime-preview-2024-10-01",
+
+    /**
+     * value: "gpt-4o-realtime-preview-2024-12-17"
+     * @const
+     */
+    "gpt-4o-realtime-preview-2024-12-17": "gpt-4o-realtime-preview-2024-12-17",
+
+    /**
+     * value: "gpt-4o-mini-realtime-preview"
+     * @const
+     */
+    "gpt-4o-mini-realtime-preview": "gpt-4o-mini-realtime-preview",
+
+    /**
+     * value: "gpt-4o-mini-realtime-preview-2024-12-17"
+     * @const
+     */
+    "gpt-4o-mini-realtime-preview-2024-12-17": "gpt-4o-mini-realtime-preview-2024-12-17"
 };
 
 

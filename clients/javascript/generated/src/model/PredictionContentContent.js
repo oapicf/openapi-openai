@@ -17,7 +17,7 @@ import ChatCompletionRequestMessageContentPartText from './ChatCompletionRequest
 /**
  * The PredictionContentContent model module.
  * @module model/PredictionContentContent
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class PredictionContentContent {
     /**
@@ -48,7 +48,7 @@ class PredictionContentContent {
 
         // An array of content parts with a defined type. Supported options differ based on the [model](/docs/models) being used to generate the response. Can contain text inputs.
         try {
-            if (typeof instance === "[ChatCompletionRequestMessageContentPartText]") {
+            if (instance instanceof [ChatCompletionRequestMessageContentPartText]) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

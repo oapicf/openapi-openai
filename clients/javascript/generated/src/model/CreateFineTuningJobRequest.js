@@ -14,19 +14,18 @@
 import ApiClient from '../ApiClient';
 import CreateFineTuningJobRequestHyperparameters from './CreateFineTuningJobRequestHyperparameters';
 import CreateFineTuningJobRequestIntegrationsInner from './CreateFineTuningJobRequestIntegrationsInner';
-import CreateFineTuningJobRequestModel from './CreateFineTuningJobRequestModel';
 import FineTuneMethod from './FineTuneMethod';
 
 /**
  * The CreateFineTuningJobRequest model module.
  * @module model/CreateFineTuningJobRequest
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateFineTuningJobRequest {
     /**
      * Constructs a new <code>CreateFineTuningJobRequest</code>.
      * @alias module:model/CreateFineTuningJobRequest
-     * @param model {module:model/CreateFineTuningJobRequestModel} 
+     * @param model {module:model/CreateFineTuningJobRequest.ModelEnum} 
      * @param trainingFile {String} The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. 
      */
     constructor(model, trainingFile) { 
@@ -56,7 +55,7 @@ class CreateFineTuningJobRequest {
             obj = obj || new CreateFineTuningJobRequest();
 
             if (data.hasOwnProperty('model')) {
-                obj['model'] = CreateFineTuningJobRequestModel.constructFromObject(data['model']);
+                obj['model'] = ApiClient.convertToType(data['model'], 'String');
             }
             if (data.hasOwnProperty('training_file')) {
                 obj['training_file'] = ApiClient.convertToType(data['training_file'], 'String');
@@ -95,9 +94,9 @@ class CreateFineTuningJobRequest {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
         }
-        // validate the optional field `model`
-        if (data['model']) { // data not null
-          CreateFineTuningJobRequestModel.validateJSON(data['model']);
+        // ensure the json data is a string
+        if (data['model'] && !(typeof data['model'] === 'string' || data['model'] instanceof String)) {
+            throw new Error("Expected the field `model` to be a primitive type in the JSON string but got " + data['model']);
         }
         // ensure the json data is a string
         if (data['training_file'] && !(typeof data['training_file'] === 'string' || data['training_file'] instanceof String)) {
@@ -139,7 +138,7 @@ class CreateFineTuningJobRequest {
 CreateFineTuningJobRequest.RequiredProperties = ["model", "training_file"];
 
 /**
- * @member {module:model/CreateFineTuningJobRequestModel} model
+ * @member {module:model/CreateFineTuningJobRequest.ModelEnum} model
  */
 CreateFineTuningJobRequest.prototype['model'] = undefined;
 
@@ -185,6 +184,39 @@ CreateFineTuningJobRequest.prototype['method'] = undefined;
 
 
 
+
+
+/**
+ * Allowed values for the <code>model</code> property.
+ * @enum {String}
+ * @readonly
+ */
+CreateFineTuningJobRequest['ModelEnum'] = {
+
+    /**
+     * value: "babbage-002"
+     * @const
+     */
+    "babbage-002": "babbage-002",
+
+    /**
+     * value: "davinci-002"
+     * @const
+     */
+    "davinci-002": "davinci-002",
+
+    /**
+     * value: "gpt-3.5-turbo"
+     * @const
+     */
+    "gpt-3.5-turbo": "gpt-3.5-turbo",
+
+    /**
+     * value: "gpt-4o-mini"
+     * @const
+     */
+    "gpt-4o-mini": "gpt-4o-mini"
+};
 
 
 

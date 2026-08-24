@@ -18,7 +18,7 @@ import CreateAssistantRequestToolResourcesCodeInterpreter from './CreateAssistan
 /**
  * The CreateThreadAndRunRequestToolResources model module.
  * @module model/CreateThreadAndRunRequestToolResources
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateThreadAndRunRequestToolResources {
     /**

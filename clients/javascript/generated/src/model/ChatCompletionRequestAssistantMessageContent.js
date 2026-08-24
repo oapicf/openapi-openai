@@ -17,7 +17,7 @@ import ChatCompletionRequestAssistantMessageContentPart from './ChatCompletionRe
 /**
  * The ChatCompletionRequestAssistantMessageContent model module.
  * @module model/ChatCompletionRequestAssistantMessageContent
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ChatCompletionRequestAssistantMessageContent {
     /**
@@ -48,7 +48,7 @@ class ChatCompletionRequestAssistantMessageContent {
 
         // An array of content parts with a defined type. Can be one or more of type `text`, or exactly one of type `refusal`.
         try {
-            if (typeof instance === "[ChatCompletionRequestAssistantMessageContentPart]") {
+            if (instance instanceof [ChatCompletionRequestAssistantMessageContentPart]) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

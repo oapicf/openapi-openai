@@ -20,7 +20,7 @@ import RunStepDeltaStepDetailsToolCallsObjectToolCallsInner from './RunStepDelta
 /**
  * The RunStepDeltaObjectDeltaStepDetails model module.
  * @module model/RunStepDeltaObjectDeltaStepDetails
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunStepDeltaObjectDeltaStepDetails {
     /**
@@ -37,7 +37,7 @@ class RunStepDeltaObjectDeltaStepDetails {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "RunStepDeltaStepDetailsMessageCreationObject") {
+            if (instance instanceof RunStepDeltaStepDetailsMessageCreationObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -53,7 +53,7 @@ class RunStepDeltaObjectDeltaStepDetails {
         }
 
         try {
-            if (typeof instance === "RunStepDeltaStepDetailsToolCallsObject") {
+            if (instance instanceof RunStepDeltaStepDetailsToolCallsObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

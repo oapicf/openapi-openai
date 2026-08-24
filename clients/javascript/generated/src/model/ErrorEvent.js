@@ -17,7 +17,7 @@ import Error from './Error';
 /**
  * The ErrorEvent model module.
  * @module model/ErrorEvent
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ErrorEvent {
     /**

@@ -17,7 +17,7 @@ import OpenAIFile from './OpenAIFile';
 /**
  * The Upload model module.
  * @module model/Upload
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class Upload {
     /**

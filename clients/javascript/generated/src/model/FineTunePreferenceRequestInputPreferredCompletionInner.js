@@ -21,7 +21,7 @@ import ChatCompletionRequestAssistantMessageFunctionCall from './ChatCompletionR
 /**
  * The FineTunePreferenceRequestInputPreferredCompletionInner model module.
  * @module model/FineTunePreferenceRequestInputPreferredCompletionInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class FineTunePreferenceRequestInputPreferredCompletionInner {
     /**
@@ -37,7 +37,7 @@ class FineTunePreferenceRequestInputPreferredCompletionInner {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "ChatCompletionRequestAssistantMessage") {
+            if (instance instanceof ChatCompletionRequestAssistantMessage) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

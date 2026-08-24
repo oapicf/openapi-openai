@@ -18,7 +18,7 @@ import CreateMessageRequestContent from './CreateMessageRequestContent';
 /**
  * The CreateMessageRequest model module.
  * @module model/CreateMessageRequest
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateMessageRequest {
     /**

@@ -17,7 +17,7 @@ import Model from './Model';
 /**
  * The ListModelsResponse model module.
  * @module model/ListModelsResponse
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ListModelsResponse {
     /**

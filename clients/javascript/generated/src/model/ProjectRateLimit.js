@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The ProjectRateLimit model module.
  * @module model/ProjectRateLimit
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ProjectRateLimit {
     /**

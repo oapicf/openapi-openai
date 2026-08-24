@@ -17,7 +17,7 @@ import RealtimeServerEventResponseContentPartAddedPart from './RealtimeServerEve
 /**
  * The RealtimeServerEventResponseContentPartAdded model module.
  * @module model/RealtimeServerEventResponseContentPartAdded
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeServerEventResponseContentPartAdded {
     /**

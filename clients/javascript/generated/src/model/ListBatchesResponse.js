@@ -17,7 +17,7 @@ import Batch from './Batch';
 /**
  * The ListBatchesResponse model module.
  * @module model/ListBatchesResponse
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ListBatchesResponse {
     /**

@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The FineTuneDPOMethodHyperparametersNEpochs model module.
  * @module model/FineTuneDPOMethodHyperparametersNEpochs
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class FineTuneDPOMethodHyperparametersNEpochs {
     /**

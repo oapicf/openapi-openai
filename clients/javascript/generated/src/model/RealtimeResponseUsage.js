@@ -18,7 +18,7 @@ import RealtimeResponseUsageOutputTokenDetails from './RealtimeResponseUsageOutp
 /**
  * The RealtimeResponseUsage model module.
  * @module model/RealtimeResponseUsage
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeResponseUsage {
     /**

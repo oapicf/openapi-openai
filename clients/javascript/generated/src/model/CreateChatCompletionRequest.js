@@ -19,7 +19,6 @@ import ChatCompletionTool from './ChatCompletionTool';
 import ChatCompletionToolChoiceOption from './ChatCompletionToolChoiceOption';
 import CreateChatCompletionRequestAudio from './CreateChatCompletionRequestAudio';
 import CreateChatCompletionRequestFunctionCall from './CreateChatCompletionRequestFunctionCall';
-import CreateChatCompletionRequestModel from './CreateChatCompletionRequestModel';
 import CreateChatCompletionRequestResponseFormat from './CreateChatCompletionRequestResponseFormat';
 import CreateChatCompletionRequestStop from './CreateChatCompletionRequestStop';
 import PredictionContent from './PredictionContent';
@@ -27,14 +26,14 @@ import PredictionContent from './PredictionContent';
 /**
  * The CreateChatCompletionRequest model module.
  * @module model/CreateChatCompletionRequest
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateChatCompletionRequest {
     /**
      * Constructs a new <code>CreateChatCompletionRequest</code>.
      * @alias module:model/CreateChatCompletionRequest
      * @param messages {Array.<module:model/ChatCompletionRequestMessage>} A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
-     * @param model {module:model/CreateChatCompletionRequestModel} 
+     * @param model {module:model/CreateChatCompletionRequest.ModelEnum} 
      */
     constructor(messages, model) { 
         
@@ -77,7 +76,7 @@ class CreateChatCompletionRequest {
                 obj['messages'] = ApiClient.convertToType(data['messages'], [ChatCompletionRequestMessage]);
             }
             if (data.hasOwnProperty('model')) {
-                obj['model'] = CreateChatCompletionRequestModel.constructFromObject(data['model']);
+                obj['model'] = ApiClient.convertToType(data['model'], 'String');
             }
             if (data.hasOwnProperty('store')) {
                 obj['store'] = ApiClient.convertToType(data['store'], 'Boolean');
@@ -189,9 +188,9 @@ class CreateChatCompletionRequest {
                 ChatCompletionRequestMessage.validateJSON(item);
             };
         }
-        // validate the optional field `model`
-        if (data['model']) { // data not null
-          CreateChatCompletionRequestModel.validateJSON(data['model']);
+        // ensure the json data is a string
+        if (data['model'] && !(typeof data['model'] === 'string' || data['model'] instanceof String)) {
+            throw new Error("Expected the field `model` to be a primitive type in the JSON string but got " + data['model']);
         }
         // ensure the json data is a string
         if (data['reasoning_effort'] && !(typeof data['reasoning_effort'] === 'string' || data['reasoning_effort'] instanceof String)) {
@@ -273,7 +272,7 @@ CreateChatCompletionRequest.RequiredProperties = ["messages", "model"];
 CreateChatCompletionRequest.prototype['messages'] = undefined;
 
 /**
- * @member {module:model/CreateChatCompletionRequestModel} model
+ * @member {module:model/CreateChatCompletionRequest.ModelEnum} model
  */
 CreateChatCompletionRequest.prototype['model'] = undefined;
 
@@ -349,6 +348,7 @@ CreateChatCompletionRequest.prototype['n'] = 1;
 CreateChatCompletionRequest.prototype['modalities'] = undefined;
 
 /**
+ * Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. 
  * @member {module:model/PredictionContent} prediction
  */
 CreateChatCompletionRequest.prototype['prediction'] = undefined;
@@ -451,6 +451,237 @@ CreateChatCompletionRequest.prototype['functions'] = undefined;
 
 
 
+
+
+/**
+ * Allowed values for the <code>model</code> property.
+ * @enum {String}
+ * @readonly
+ */
+CreateChatCompletionRequest['ModelEnum'] = {
+
+    /**
+     * value: "o1"
+     * @const
+     */
+    "o1": "o1",
+
+    /**
+     * value: "o1-2024-12-17"
+     * @const
+     */
+    "o1-2024-12-17": "o1-2024-12-17",
+
+    /**
+     * value: "o1-preview"
+     * @const
+     */
+    "o1-preview": "o1-preview",
+
+    /**
+     * value: "o1-preview-2024-09-12"
+     * @const
+     */
+    "o1-preview-2024-09-12": "o1-preview-2024-09-12",
+
+    /**
+     * value: "o1-mini"
+     * @const
+     */
+    "o1-mini": "o1-mini",
+
+    /**
+     * value: "o1-mini-2024-09-12"
+     * @const
+     */
+    "o1-mini-2024-09-12": "o1-mini-2024-09-12",
+
+    /**
+     * value: "gpt-4o"
+     * @const
+     */
+    "gpt-4o": "gpt-4o",
+
+    /**
+     * value: "gpt-4o-2024-11-20"
+     * @const
+     */
+    "gpt-4o-2024-11-20": "gpt-4o-2024-11-20",
+
+    /**
+     * value: "gpt-4o-2024-08-06"
+     * @const
+     */
+    "gpt-4o-2024-08-06": "gpt-4o-2024-08-06",
+
+    /**
+     * value: "gpt-4o-2024-05-13"
+     * @const
+     */
+    "gpt-4o-2024-05-13": "gpt-4o-2024-05-13",
+
+    /**
+     * value: "gpt-4o-audio-preview"
+     * @const
+     */
+    "gpt-4o-audio-preview": "gpt-4o-audio-preview",
+
+    /**
+     * value: "gpt-4o-audio-preview-2024-10-01"
+     * @const
+     */
+    "gpt-4o-audio-preview-2024-10-01": "gpt-4o-audio-preview-2024-10-01",
+
+    /**
+     * value: "gpt-4o-audio-preview-2024-12-17"
+     * @const
+     */
+    "gpt-4o-audio-preview-2024-12-17": "gpt-4o-audio-preview-2024-12-17",
+
+    /**
+     * value: "gpt-4o-mini-audio-preview"
+     * @const
+     */
+    "gpt-4o-mini-audio-preview": "gpt-4o-mini-audio-preview",
+
+    /**
+     * value: "gpt-4o-mini-audio-preview-2024-12-17"
+     * @const
+     */
+    "gpt-4o-mini-audio-preview-2024-12-17": "gpt-4o-mini-audio-preview-2024-12-17",
+
+    /**
+     * value: "chatgpt-4o-latest"
+     * @const
+     */
+    "chatgpt-4o-latest": "chatgpt-4o-latest",
+
+    /**
+     * value: "gpt-4o-mini"
+     * @const
+     */
+    "gpt-4o-mini": "gpt-4o-mini",
+
+    /**
+     * value: "gpt-4o-mini-2024-07-18"
+     * @const
+     */
+    "gpt-4o-mini-2024-07-18": "gpt-4o-mini-2024-07-18",
+
+    /**
+     * value: "gpt-4-turbo"
+     * @const
+     */
+    "gpt-4-turbo": "gpt-4-turbo",
+
+    /**
+     * value: "gpt-4-turbo-2024-04-09"
+     * @const
+     */
+    "gpt-4-turbo-2024-04-09": "gpt-4-turbo-2024-04-09",
+
+    /**
+     * value: "gpt-4-0125-preview"
+     * @const
+     */
+    "gpt-4-0125-preview": "gpt-4-0125-preview",
+
+    /**
+     * value: "gpt-4-turbo-preview"
+     * @const
+     */
+    "gpt-4-turbo-preview": "gpt-4-turbo-preview",
+
+    /**
+     * value: "gpt-4-1106-preview"
+     * @const
+     */
+    "gpt-4-1106-preview": "gpt-4-1106-preview",
+
+    /**
+     * value: "gpt-4-vision-preview"
+     * @const
+     */
+    "gpt-4-vision-preview": "gpt-4-vision-preview",
+
+    /**
+     * value: "gpt-4"
+     * @const
+     */
+    "gpt-4": "gpt-4",
+
+    /**
+     * value: "gpt-4-0314"
+     * @const
+     */
+    "gpt-4-0314": "gpt-4-0314",
+
+    /**
+     * value: "gpt-4-0613"
+     * @const
+     */
+    "gpt-4-0613": "gpt-4-0613",
+
+    /**
+     * value: "gpt-4-32k"
+     * @const
+     */
+    "gpt-4-32k": "gpt-4-32k",
+
+    /**
+     * value: "gpt-4-32k-0314"
+     * @const
+     */
+    "gpt-4-32k-0314": "gpt-4-32k-0314",
+
+    /**
+     * value: "gpt-4-32k-0613"
+     * @const
+     */
+    "gpt-4-32k-0613": "gpt-4-32k-0613",
+
+    /**
+     * value: "gpt-3.5-turbo"
+     * @const
+     */
+    "gpt-3.5-turbo": "gpt-3.5-turbo",
+
+    /**
+     * value: "gpt-3.5-turbo-16k"
+     * @const
+     */
+    "gpt-3.5-turbo-16k": "gpt-3.5-turbo-16k",
+
+    /**
+     * value: "gpt-3.5-turbo-0301"
+     * @const
+     */
+    "gpt-3.5-turbo-0301": "gpt-3.5-turbo-0301",
+
+    /**
+     * value: "gpt-3.5-turbo-0613"
+     * @const
+     */
+    "gpt-3.5-turbo-0613": "gpt-3.5-turbo-0613",
+
+    /**
+     * value: "gpt-3.5-turbo-1106"
+     * @const
+     */
+    "gpt-3.5-turbo-1106": "gpt-3.5-turbo-1106",
+
+    /**
+     * value: "gpt-3.5-turbo-0125"
+     * @const
+     */
+    "gpt-3.5-turbo-0125": "gpt-3.5-turbo-0125",
+
+    /**
+     * value: "gpt-3.5-turbo-16k-0613"
+     * @const
+     */
+    "gpt-3.5-turbo-16k-0613": "gpt-3.5-turbo-16k-0613"
+};
 
 
 /**

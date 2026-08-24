@@ -17,7 +17,7 @@ import MessageDeltaContentTextObjectTextAnnotationsInner from './MessageDeltaCon
 /**
  * The MessageDeltaContentTextObjectText model module.
  * @module model/MessageDeltaContentTextObjectText
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class MessageDeltaContentTextObjectText {
     /**

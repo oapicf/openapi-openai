@@ -17,7 +17,7 @@ import RunStepObject from './RunStepObject';
 /**
  * The RunStepStreamEventOneOf4 model module.
  * @module model/RunStepStreamEventOneOf4
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunStepStreamEventOneOf4 {
     /**

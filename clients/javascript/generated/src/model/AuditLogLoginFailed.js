@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The AuditLogLoginFailed model module.
  * @module model/AuditLogLoginFailed
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class AuditLogLoginFailed {
     /**

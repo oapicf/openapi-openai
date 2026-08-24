@@ -21,7 +21,7 @@ import RunStepDeltaStepDetailsToolCallsFunctionObjectFunction from './RunStepDel
 /**
  * The RunStepDeltaStepDetailsToolCallsObjectToolCallsInner model module.
  * @module model/RunStepDeltaStepDetailsToolCallsObjectToolCallsInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner {
     /**
@@ -37,7 +37,7 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "RunStepDeltaStepDetailsToolCallsCodeObject") {
+            if (instance instanceof RunStepDeltaStepDetailsToolCallsCodeObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -53,7 +53,7 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner {
         }
 
         try {
-            if (typeof instance === "RunStepDeltaStepDetailsToolCallsFileSearchObject") {
+            if (instance instanceof RunStepDeltaStepDetailsToolCallsFileSearchObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -69,7 +69,7 @@ class RunStepDeltaStepDetailsToolCallsObjectToolCallsInner {
         }
 
         try {
-            if (typeof instance === "RunStepDeltaStepDetailsToolCallsFunctionObject") {
+            if (instance instanceof RunStepDeltaStepDetailsToolCallsFunctionObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

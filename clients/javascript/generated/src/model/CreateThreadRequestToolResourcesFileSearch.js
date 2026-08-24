@@ -17,7 +17,7 @@ import CreateThreadRequestToolResourcesFileSearchVectorStoresInner from './Creat
 /**
  * The CreateThreadRequestToolResourcesFileSearch model module.
  * @module model/CreateThreadRequestToolResourcesFileSearch
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateThreadRequestToolResourcesFileSearch {
     /**

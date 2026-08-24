@@ -17,13 +17,13 @@ import CreateFineTuningJobRequestIntegrationsInnerWandb from './CreateFineTuning
 /**
  * The CreateFineTuningJobRequestIntegrationsInner model module.
  * @module model/CreateFineTuningJobRequestIntegrationsInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateFineTuningJobRequestIntegrationsInner {
     /**
      * Constructs a new <code>CreateFineTuningJobRequestIntegrationsInner</code>.
      * @alias module:model/CreateFineTuningJobRequestIntegrationsInner
-     * @param type {module:model/CreateFineTuningJobRequestIntegrationsInner.TypeEnum} 
+     * @param type {module:model/CreateFineTuningJobRequestIntegrationsInner.TypeEnum} The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
      * @param wandb {module:model/CreateFineTuningJobRequestIntegrationsInnerWandb} 
      */
     constructor(type, wandb) { 
@@ -92,6 +92,7 @@ class CreateFineTuningJobRequestIntegrationsInner {
 CreateFineTuningJobRequestIntegrationsInner.RequiredProperties = ["type", "wandb"];
 
 /**
+ * The type of integration to enable. Currently, only \"wandb\" (Weights and Biases) is supported. 
  * @member {module:model/CreateFineTuningJobRequestIntegrationsInner.TypeEnum} type
  */
 CreateFineTuningJobRequestIntegrationsInner.prototype['type'] = undefined;

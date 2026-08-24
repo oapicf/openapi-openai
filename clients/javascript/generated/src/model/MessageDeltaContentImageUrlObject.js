@@ -17,7 +17,7 @@ import MessageDeltaContentImageUrlObjectImageUrl from './MessageDeltaContentImag
 /**
  * The MessageDeltaContentImageUrlObject model module.
  * @module model/MessageDeltaContentImageUrlObject
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class MessageDeltaContentImageUrlObject {
     /**

@@ -13,19 +13,18 @@
 
 import ApiClient from '../ApiClient';
 import CreateEmbeddingRequestInput from './CreateEmbeddingRequestInput';
-import CreateEmbeddingRequestModel from './CreateEmbeddingRequestModel';
 
 /**
  * The CreateEmbeddingRequest model module.
  * @module model/CreateEmbeddingRequest
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateEmbeddingRequest {
     /**
      * Constructs a new <code>CreateEmbeddingRequest</code>.
      * @alias module:model/CreateEmbeddingRequest
      * @param input {module:model/CreateEmbeddingRequestInput} 
-     * @param model {module:model/CreateEmbeddingRequestModel} 
+     * @param model {module:model/CreateEmbeddingRequest.ModelEnum} 
      */
     constructor(input, model) { 
         
@@ -58,7 +57,7 @@ class CreateEmbeddingRequest {
                 obj['input'] = CreateEmbeddingRequestInput.constructFromObject(data['input']);
             }
             if (data.hasOwnProperty('model')) {
-                obj['model'] = CreateEmbeddingRequestModel.constructFromObject(data['model']);
+                obj['model'] = ApiClient.convertToType(data['model'], 'String');
             }
             if (data.hasOwnProperty('encoding_format')) {
                 obj['encoding_format'] = ApiClient.convertToType(data['encoding_format'], 'String');
@@ -89,9 +88,9 @@ class CreateEmbeddingRequest {
         if (data['input']) { // data not null
           CreateEmbeddingRequestInput.validateJSON(data['input']);
         }
-        // validate the optional field `model`
-        if (data['model']) { // data not null
-          CreateEmbeddingRequestModel.validateJSON(data['model']);
+        // ensure the json data is a string
+        if (data['model'] && !(typeof data['model'] === 'string' || data['model'] instanceof String)) {
+            throw new Error("Expected the field `model` to be a primitive type in the JSON string but got " + data['model']);
         }
         // ensure the json data is a string
         if (data['encoding_format'] && !(typeof data['encoding_format'] === 'string' || data['encoding_format'] instanceof String)) {
@@ -116,7 +115,7 @@ CreateEmbeddingRequest.RequiredProperties = ["input", "model"];
 CreateEmbeddingRequest.prototype['input'] = undefined;
 
 /**
- * @member {module:model/CreateEmbeddingRequestModel} model
+ * @member {module:model/CreateEmbeddingRequest.ModelEnum} model
  */
 CreateEmbeddingRequest.prototype['model'] = undefined;
 
@@ -141,6 +140,33 @@ CreateEmbeddingRequest.prototype['user'] = undefined;
 
 
 
+
+
+/**
+ * Allowed values for the <code>model</code> property.
+ * @enum {String}
+ * @readonly
+ */
+CreateEmbeddingRequest['ModelEnum'] = {
+
+    /**
+     * value: "text-embedding-ada-002"
+     * @const
+     */
+    "text-embedding-ada-002": "text-embedding-ada-002",
+
+    /**
+     * value: "text-embedding-3-small"
+     * @const
+     */
+    "text-embedding-3-small": "text-embedding-3-small",
+
+    /**
+     * value: "text-embedding-3-large"
+     * @const
+     */
+    "text-embedding-3-large": "text-embedding-3-large"
+};
 
 
 /**

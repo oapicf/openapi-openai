@@ -2,5 +2,8 @@
   "projectName": "openapi_openai",
   "projectVersion": "1.2.1-pre.0",
   "gitUserId": "oapicf",
-  "gitRepoId": "openapi-openai"
+  "gitRepoId": "openapi-openai",
+  "openapiNormalizer": {
+    "SIMPLIFY_ANYOF_STRING_AND_ENUM_STRING": "true"
+  }
 }

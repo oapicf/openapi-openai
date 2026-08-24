@@ -17,7 +17,7 @@ import FunctionObject from './FunctionObject';
 /**
  * The ChatCompletionTool model module.
  * @module model/ChatCompletionTool
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ChatCompletionTool {
     /**

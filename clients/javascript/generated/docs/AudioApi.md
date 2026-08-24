@@ -74,7 +74,7 @@ ApiKeyAuth.accessToken = "YOUR ACCESS TOKEN"
 
 let apiInstance = new OpenapiOpenai.AudioApi();
 let file = "/path/to/file"; // File | The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
-let model = new OpenapiOpenai.CreateTranscriptionRequestModel(); // CreateTranscriptionRequestModel | 
+let model = "model_example"; // String | 
 let opts = {
   'language': "language_example", // String | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. 
   'prompt': "prompt_example", // String | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language. 
@@ -97,7 +97,7 @@ apiInstance.createTranscription(file, model, opts, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file** | **File**| The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  | 
- **model** | [**CreateTranscriptionRequestModel**](CreateTranscriptionRequestModel.md)|  | 
+ **model** | **String**|  | 
  **language** | **String**| The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.  | [optional] 
  **prompt** | **String**| An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language.  | [optional] 
  **responseFormat** | [**AudioResponseFormat**](AudioResponseFormat.md)|  | [optional] 
@@ -135,7 +135,7 @@ ApiKeyAuth.accessToken = "YOUR ACCESS TOKEN"
 
 let apiInstance = new OpenapiOpenai.AudioApi();
 let file = "/path/to/file"; // File | The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. 
-let model = new OpenapiOpenai.CreateTranscriptionRequestModel(); // CreateTranscriptionRequestModel | 
+let model = "model_example"; // String | 
 let opts = {
   'prompt': "prompt_example", // String | An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. 
   'responseFormat': new OpenapiOpenai.AudioResponseFormat(), // AudioResponseFormat | 
@@ -156,7 +156,7 @@ apiInstance.createTranslation(file, model, opts, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file** | **File**| The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.  | 
- **model** | [**CreateTranscriptionRequestModel**](CreateTranscriptionRequestModel.md)|  | 
+ **model** | **String**|  | 
  **prompt** | **String**| An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English.  | [optional] 
  **responseFormat** | [**AudioResponseFormat**](AudioResponseFormat.md)|  | [optional] 
  **temperature** | **Number**| The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  | [optional] [default to 0]

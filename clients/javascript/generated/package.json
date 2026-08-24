@@ -1,6 +1,6 @@
 {
   "name": "openapi_openai",
-  "version": "1.1.1-pre.0",
+  "version": "1.2.1-pre.0",
   "description": "The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.",
   "license": "MIT",
   "main": "dist/index.js",

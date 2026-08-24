@@ -18,7 +18,7 @@ import RunStepDetailsToolCallsFileSearchResultObject from './RunStepDetailsToolC
 /**
  * The RunStepDetailsToolCallsFileSearchObjectFileSearch model module.
  * @module model/RunStepDetailsToolCallsFileSearchObjectFileSearch
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunStepDetailsToolCallsFileSearchObjectFileSearch {
     /**

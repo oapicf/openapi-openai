@@ -23,7 +23,7 @@ import MessageDeltaContentTextObjectText from './MessageDeltaContentTextObjectTe
 /**
  * The MessageDeltaObjectDeltaContentInner model module.
  * @module model/MessageDeltaObjectDeltaContentInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class MessageDeltaObjectDeltaContentInner {
     /**
@@ -39,7 +39,7 @@ class MessageDeltaObjectDeltaContentInner {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "MessageDeltaContentImageFileObject") {
+            if (instance instanceof MessageDeltaContentImageFileObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -55,7 +55,7 @@ class MessageDeltaObjectDeltaContentInner {
         }
 
         try {
-            if (typeof instance === "MessageDeltaContentTextObject") {
+            if (instance instanceof MessageDeltaContentTextObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -71,7 +71,7 @@ class MessageDeltaObjectDeltaContentInner {
         }
 
         try {
-            if (typeof instance === "MessageDeltaContentRefusalObject") {
+            if (instance instanceof MessageDeltaContentRefusalObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -87,7 +87,7 @@ class MessageDeltaObjectDeltaContentInner {
         }
 
         try {
-            if (typeof instance === "MessageDeltaContentImageUrlObject") {
+            if (instance instanceof MessageDeltaContentImageUrlObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

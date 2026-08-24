@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The CreateAssistantRequestToolResourcesCodeInterpreter model module.
  * @module model/CreateAssistantRequestToolResourcesCodeInterpreter
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateAssistantRequestToolResourcesCodeInterpreter {
     /**

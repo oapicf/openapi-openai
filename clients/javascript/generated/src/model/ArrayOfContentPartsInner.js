@@ -21,7 +21,7 @@ import MessageRequestContentTextObject from './MessageRequestContentTextObject';
 /**
  * The ArrayOfContentPartsInner model module.
  * @module model/ArrayOfContentPartsInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class ArrayOfContentPartsInner {
     /**
@@ -37,7 +37,7 @@ class ArrayOfContentPartsInner {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "MessageContentImageFileObject") {
+            if (instance instanceof MessageContentImageFileObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -53,7 +53,7 @@ class ArrayOfContentPartsInner {
         }
 
         try {
-            if (typeof instance === "MessageContentImageUrlObject") {
+            if (instance instanceof MessageContentImageUrlObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -69,7 +69,7 @@ class ArrayOfContentPartsInner {
         }
 
         try {
-            if (typeof instance === "MessageRequestContentTextObject") {
+            if (instance instanceof MessageRequestContentTextObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

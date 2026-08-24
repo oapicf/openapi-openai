@@ -17,7 +17,7 @@ import RealtimeConversationItem from './RealtimeConversationItem';
 /**
  * The RealtimeServerEventResponseOutputItemAdded model module.
  * @module model/RealtimeServerEventResponseOutputItemAdded
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeServerEventResponseOutputItemAdded {
     /**

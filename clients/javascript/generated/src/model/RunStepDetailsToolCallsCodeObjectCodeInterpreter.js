@@ -17,7 +17,7 @@ import RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner from './RunS
 /**
  * The RunStepDetailsToolCallsCodeObjectCodeInterpreter model module.
  * @module model/RunStepDetailsToolCallsCodeObjectCodeInterpreter
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunStepDetailsToolCallsCodeObjectCodeInterpreter {
     /**

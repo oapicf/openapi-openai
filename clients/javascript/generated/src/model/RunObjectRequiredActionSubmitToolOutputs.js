@@ -17,7 +17,7 @@ import RunToolCallObject from './RunToolCallObject';
 /**
  * The RunObjectRequiredActionSubmitToolOutputs model module.
  * @module model/RunObjectRequiredActionSubmitToolOutputs
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunObjectRequiredActionSubmitToolOutputs {
     /**

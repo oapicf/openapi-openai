@@ -17,7 +17,7 @@ import ArrayOfContentPartsInner from './ArrayOfContentPartsInner';
 /**
  * The CreateMessageRequestContent model module.
  * @module model/CreateMessageRequestContent
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateMessageRequestContent {
     /**
@@ -47,7 +47,7 @@ class CreateMessageRequestContent {
 
         // An array of content parts with a defined type, each can be of type `text` or images can be passed with `image_url` or `image_file`. Image types are only supported on [Vision-compatible models](/docs/models).
         try {
-            if (typeof instance === "[ArrayOfContentPartsInner]") {
+            if (instance instanceof [ArrayOfContentPartsInner]) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

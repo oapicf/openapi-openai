@@ -17,7 +17,7 @@ import StaticChunkingStrategyStatic from './StaticChunkingStrategyStatic';
 /**
  * The StaticChunkingStrategy model module.
  * @module model/StaticChunkingStrategy
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class StaticChunkingStrategy {
     /**

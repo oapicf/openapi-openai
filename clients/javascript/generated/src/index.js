@@ -73,7 +73,6 @@ import AuditLogUserAddedData from './model/AuditLogUserAddedData';
 import AuditLogUserDeleted from './model/AuditLogUserDeleted';
 import AuditLogUserUpdated from './model/AuditLogUserUpdated';
 import AuditLogUserUpdatedChangesRequested from './model/AuditLogUserUpdatedChangesRequested';
-import AutoChunkingStrategy from './model/AutoChunkingStrategy';
 import AutoChunkingStrategyRequestParam from './model/AutoChunkingStrategyRequestParam';
 import Batch from './model/Batch';
 import BatchErrors from './model/BatchErrors';
@@ -131,7 +130,6 @@ import CompletionUsagePromptTokensDetails from './model/CompletionUsagePromptTok
 import CostsResult from './model/CostsResult';
 import CostsResultAmount from './model/CostsResultAmount';
 import CreateAssistantRequest from './model/CreateAssistantRequest';
-import CreateAssistantRequestModel from './model/CreateAssistantRequestModel';
 import CreateAssistantRequestToolResources from './model/CreateAssistantRequestToolResources';
 import CreateAssistantRequestToolResourcesCodeInterpreter from './model/CreateAssistantRequestToolResourcesCodeInterpreter';
 import CreateAssistantRequestToolResourcesFileSearch from './model/CreateAssistantRequestToolResourcesFileSearch';
@@ -143,7 +141,6 @@ import CreateChatCompletionFunctionResponseChoicesInner from './model/CreateChat
 import CreateChatCompletionRequest from './model/CreateChatCompletionRequest';
 import CreateChatCompletionRequestAudio from './model/CreateChatCompletionRequestAudio';
 import CreateChatCompletionRequestFunctionCall from './model/CreateChatCompletionRequestFunctionCall';
-import CreateChatCompletionRequestModel from './model/CreateChatCompletionRequestModel';
 import CreateChatCompletionRequestResponseFormat from './model/CreateChatCompletionRequestResponseFormat';
 import CreateChatCompletionRequestStop from './model/CreateChatCompletionRequestStop';
 import CreateChatCompletionResponse from './model/CreateChatCompletionResponse';
@@ -153,7 +150,6 @@ import CreateChatCompletionStreamResponse from './model/CreateChatCompletionStre
 import CreateChatCompletionStreamResponseChoicesInner from './model/CreateChatCompletionStreamResponseChoicesInner';
 import CreateChatCompletionStreamResponseUsage from './model/CreateChatCompletionStreamResponseUsage';
 import CreateCompletionRequest from './model/CreateCompletionRequest';
-import CreateCompletionRequestModel from './model/CreateCompletionRequestModel';
 import CreateCompletionRequestPrompt from './model/CreateCompletionRequestPrompt';
 import CreateCompletionRequestStop from './model/CreateCompletionRequestStop';
 import CreateCompletionResponse from './model/CreateCompletionResponse';
@@ -161,7 +157,6 @@ import CreateCompletionResponseChoicesInner from './model/CreateCompletionRespon
 import CreateCompletionResponseChoicesInnerLogprobs from './model/CreateCompletionResponseChoicesInnerLogprobs';
 import CreateEmbeddingRequest from './model/CreateEmbeddingRequest';
 import CreateEmbeddingRequestInput from './model/CreateEmbeddingRequestInput';
-import CreateEmbeddingRequestModel from './model/CreateEmbeddingRequestModel';
 import CreateEmbeddingResponse from './model/CreateEmbeddingResponse';
 import CreateEmbeddingResponseUsage from './model/CreateEmbeddingResponseUsage';
 import CreateFineTuningJobRequest from './model/CreateFineTuningJobRequest';
@@ -171,10 +166,7 @@ import CreateFineTuningJobRequestHyperparametersLearningRateMultiplier from './m
 import CreateFineTuningJobRequestHyperparametersNEpochs from './model/CreateFineTuningJobRequestHyperparametersNEpochs';
 import CreateFineTuningJobRequestIntegrationsInner from './model/CreateFineTuningJobRequestIntegrationsInner';
 import CreateFineTuningJobRequestIntegrationsInnerWandb from './model/CreateFineTuningJobRequestIntegrationsInnerWandb';
-import CreateFineTuningJobRequestModel from './model/CreateFineTuningJobRequestModel';
-import CreateImageEditRequestModel from './model/CreateImageEditRequestModel';
 import CreateImageRequest from './model/CreateImageRequest';
-import CreateImageRequestModel from './model/CreateImageRequestModel';
 import CreateMessageRequest from './model/CreateMessageRequest';
 import CreateMessageRequestAttachmentsInner from './model/CreateMessageRequestAttachmentsInner';
 import CreateMessageRequestAttachmentsInnerToolsInner from './model/CreateMessageRequestAttachmentsInnerToolsInner';
@@ -185,16 +177,13 @@ import CreateModerationRequestInputOneOfInner from './model/CreateModerationRequ
 import CreateModerationRequestInputOneOfInnerOneOf from './model/CreateModerationRequestInputOneOfInnerOneOf';
 import CreateModerationRequestInputOneOfInnerOneOf1 from './model/CreateModerationRequestInputOneOfInnerOneOf1';
 import CreateModerationRequestInputOneOfInnerOneOfImageUrl from './model/CreateModerationRequestInputOneOfInnerOneOfImageUrl';
-import CreateModerationRequestModel from './model/CreateModerationRequestModel';
 import CreateModerationResponse from './model/CreateModerationResponse';
 import CreateModerationResponseResultsInner from './model/CreateModerationResponseResultsInner';
 import CreateModerationResponseResultsInnerCategories from './model/CreateModerationResponseResultsInnerCategories';
 import CreateModerationResponseResultsInnerCategoryAppliedInputTypes from './model/CreateModerationResponseResultsInnerCategoryAppliedInputTypes';
 import CreateModerationResponseResultsInnerCategoryScores from './model/CreateModerationResponseResultsInnerCategoryScores';
 import CreateRunRequest from './model/CreateRunRequest';
-import CreateRunRequestModel from './model/CreateRunRequestModel';
 import CreateSpeechRequest from './model/CreateSpeechRequest';
-import CreateSpeechRequestModel from './model/CreateSpeechRequestModel';
 import CreateThreadAndRunRequest from './model/CreateThreadAndRunRequest';
 import CreateThreadAndRunRequestToolResources from './model/CreateThreadAndRunRequestToolResources';
 import CreateThreadAndRunRequestToolsInner from './model/CreateThreadAndRunRequestToolsInner';
@@ -203,7 +192,6 @@ import CreateThreadRequestToolResources from './model/CreateThreadRequestToolRes
 import CreateThreadRequestToolResourcesFileSearch from './model/CreateThreadRequestToolResourcesFileSearch';
 import CreateThreadRequestToolResourcesFileSearchVectorStoresInner from './model/CreateThreadRequestToolResourcesFileSearchVectorStoresInner';
 import CreateTranscription200Response from './model/CreateTranscription200Response';
-import CreateTranscriptionRequestModel from './model/CreateTranscriptionRequestModel';
 import CreateTranscriptionResponseJson from './model/CreateTranscriptionResponseJson';
 import CreateTranscriptionResponseVerboseJson from './model/CreateTranscriptionResponseVerboseJson';
 import CreateTranslation200Response from './model/CreateTranslation200Response';
@@ -411,7 +399,6 @@ import RealtimeSessionCreateResponse from './model/RealtimeSessionCreateResponse
 import RealtimeSessionCreateResponseClientSecret from './model/RealtimeSessionCreateResponseClientSecret';
 import RealtimeSessionCreateResponseTurnDetection from './model/RealtimeSessionCreateResponseTurnDetection';
 import RealtimeSessionInputAudioTranscription from './model/RealtimeSessionInputAudioTranscription';
-import RealtimeSessionModel from './model/RealtimeSessionModel';
 import RealtimeSessionTurnDetection from './model/RealtimeSessionTurnDetection';
 import ResponseFormatJsonObject from './model/ResponseFormatJsonObject';
 import ResponseFormatJsonSchema from './model/ResponseFormatJsonSchema';
@@ -483,7 +470,6 @@ import RunToolCallObject from './model/RunToolCallObject';
 import RunToolCallObjectFunction from './model/RunToolCallObjectFunction';
 import StaticChunkingStrategy from './model/StaticChunkingStrategy';
 import StaticChunkingStrategyRequestParam from './model/StaticChunkingStrategyRequestParam';
-import StaticChunkingStrategyResponseParam from './model/StaticChunkingStrategyResponseParam';
 import StaticChunkingStrategyStatic from './model/StaticChunkingStrategyStatic';
 import SubmitToolOutputsRunRequest from './model/SubmitToolOutputsRunRequest';
 import SubmitToolOutputsRunRequestToolOutputsInner from './model/SubmitToolOutputsRunRequestToolOutputsInner';
@@ -569,7 +555,7 @@ import VectorStoresApi from './api/VectorStoresApi';
 * </pre>
 * </p>
 * @module index
-* @version 1.1.1-pre.0
+* @version 1.2.1-pre.0
 */
 export {
     /**
@@ -939,12 +925,6 @@ export {
     AuditLogUserUpdatedChangesRequested,
 
     /**
-     * The AutoChunkingStrategy model constructor.
-     * @property {module:model/AutoChunkingStrategy}
-     */
-    AutoChunkingStrategy,
-
-    /**
      * The AutoChunkingStrategyRequestParam model constructor.
      * @property {module:model/AutoChunkingStrategyRequestParam}
      */
@@ -1287,12 +1267,6 @@ export {
     CreateAssistantRequest,
 
     /**
-     * The CreateAssistantRequestModel model constructor.
-     * @property {module:model/CreateAssistantRequestModel}
-     */
-    CreateAssistantRequestModel,
-
-    /**
      * The CreateAssistantRequestToolResources model constructor.
      * @property {module:model/CreateAssistantRequestToolResources}
      */
@@ -1359,12 +1333,6 @@ export {
     CreateChatCompletionRequestFunctionCall,
 
     /**
-     * The CreateChatCompletionRequestModel model constructor.
-     * @property {module:model/CreateChatCompletionRequestModel}
-     */
-    CreateChatCompletionRequestModel,
-
-    /**
      * The CreateChatCompletionRequestResponseFormat model constructor.
      * @property {module:model/CreateChatCompletionRequestResponseFormat}
      */
@@ -1419,12 +1387,6 @@ export {
     CreateCompletionRequest,
 
     /**
-     * The CreateCompletionRequestModel model constructor.
-     * @property {module:model/CreateCompletionRequestModel}
-     */
-    CreateCompletionRequestModel,
-
-    /**
      * The CreateCompletionRequestPrompt model constructor.
      * @property {module:model/CreateCompletionRequestPrompt}
      */
@@ -1465,12 +1427,6 @@ export {
      * @property {module:model/CreateEmbeddingRequestInput}
      */
     CreateEmbeddingRequestInput,
-
-    /**
-     * The CreateEmbeddingRequestModel model constructor.
-     * @property {module:model/CreateEmbeddingRequestModel}
-     */
-    CreateEmbeddingRequestModel,
 
     /**
      * The CreateEmbeddingResponse model constructor.
@@ -1527,28 +1483,10 @@ export {
     CreateFineTuningJobRequestIntegrationsInnerWandb,
 
     /**
-     * The CreateFineTuningJobRequestModel model constructor.
-     * @property {module:model/CreateFineTuningJobRequestModel}
-     */
-    CreateFineTuningJobRequestModel,
-
-    /**
-     * The CreateImageEditRequestModel model constructor.
-     * @property {module:model/CreateImageEditRequestModel}
-     */
-    CreateImageEditRequestModel,
-
-    /**
      * The CreateImageRequest model constructor.
      * @property {module:model/CreateImageRequest}
      */
     CreateImageRequest,
-
-    /**
-     * The CreateImageRequestModel model constructor.
-     * @property {module:model/CreateImageRequestModel}
-     */
-    CreateImageRequestModel,
 
     /**
      * The CreateMessageRequest model constructor.
@@ -1611,12 +1549,6 @@ export {
     CreateModerationRequestInputOneOfInnerOneOfImageUrl,
 
     /**
-     * The CreateModerationRequestModel model constructor.
-     * @property {module:model/CreateModerationRequestModel}
-     */
-    CreateModerationRequestModel,
-
-    /**
      * The CreateModerationResponse model constructor.
      * @property {module:model/CreateModerationResponse}
      */
@@ -1653,22 +1585,10 @@ export {
     CreateRunRequest,
 
     /**
-     * The CreateRunRequestModel model constructor.
-     * @property {module:model/CreateRunRequestModel}
-     */
-    CreateRunRequestModel,
-
-    /**
      * The CreateSpeechRequest model constructor.
      * @property {module:model/CreateSpeechRequest}
      */
     CreateSpeechRequest,
-
-    /**
-     * The CreateSpeechRequestModel model constructor.
-     * @property {module:model/CreateSpeechRequestModel}
-     */
-    CreateSpeechRequestModel,
 
     /**
      * The CreateThreadAndRunRequest model constructor.
@@ -1717,12 +1637,6 @@ export {
      * @property {module:model/CreateTranscription200Response}
      */
     CreateTranscription200Response,
-
-    /**
-     * The CreateTranscriptionRequestModel model constructor.
-     * @property {module:model/CreateTranscriptionRequestModel}
-     */
-    CreateTranscriptionRequestModel,
 
     /**
      * The CreateTranscriptionResponseJson model constructor.
@@ -2967,12 +2881,6 @@ export {
     RealtimeSessionInputAudioTranscription,
 
     /**
-     * The RealtimeSessionModel model constructor.
-     * @property {module:model/RealtimeSessionModel}
-     */
-    RealtimeSessionModel,
-
-    /**
      * The RealtimeSessionTurnDetection model constructor.
      * @property {module:model/RealtimeSessionTurnDetection}
      */
@@ -3397,12 +3305,6 @@ export {
      * @property {module:model/StaticChunkingStrategyRequestParam}
      */
     StaticChunkingStrategyRequestParam,
-
-    /**
-     * The StaticChunkingStrategyResponseParam model constructor.
-     * @property {module:model/StaticChunkingStrategyResponseParam}
-     */
-    StaticChunkingStrategyResponseParam,
 
     /**
      * The StaticChunkingStrategyStatic model constructor.

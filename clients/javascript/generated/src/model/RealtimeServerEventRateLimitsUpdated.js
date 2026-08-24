@@ -17,7 +17,7 @@ import RealtimeServerEventRateLimitsUpdatedRateLimitsInner from './RealtimeServe
 /**
  * The RealtimeServerEventRateLimitsUpdated model module.
  * @module model/RealtimeServerEventRateLimitsUpdated
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeServerEventRateLimitsUpdated {
     /**

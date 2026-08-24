@@ -19,7 +19,7 @@ import FineTuneDPOMethodHyperparametersNEpochs from './FineTuneDPOMethodHyperpar
 /**
  * The FineTuneSupervisedMethodHyperparameters model module.
  * @module model/FineTuneSupervisedMethodHyperparameters
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class FineTuneSupervisedMethodHyperparameters {
     /**

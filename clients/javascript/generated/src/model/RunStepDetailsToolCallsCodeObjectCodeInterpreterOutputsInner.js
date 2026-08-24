@@ -19,7 +19,7 @@ import RunStepDetailsToolCallsCodeOutputLogsObject from './RunStepDetailsToolCal
 /**
  * The RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner model module.
  * @module model/RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
     /**
@@ -35,7 +35,7 @@ class RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "RunStepDetailsToolCallsCodeOutputLogsObject") {
+            if (instance instanceof RunStepDetailsToolCallsCodeOutputLogsObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -51,7 +51,7 @@ class RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
         }
 
         try {
-            if (typeof instance === "RunStepDetailsToolCallsCodeOutputImageObject") {
+            if (instance instanceof RunStepDetailsToolCallsCodeOutputImageObject) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

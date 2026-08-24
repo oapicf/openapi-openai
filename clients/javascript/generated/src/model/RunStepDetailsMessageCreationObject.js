@@ -17,7 +17,7 @@ import RunStepDetailsMessageCreationObjectMessageCreation from './RunStepDetails
 /**
  * The RunStepDetailsMessageCreationObject model module.
  * @module model/RunStepDetailsMessageCreationObject
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunStepDetailsMessageCreationObject {
     /**

@@ -19,7 +19,7 @@ import RealtimeResponseUsage from './RealtimeResponseUsage';
 /**
  * The RealtimeResponse model module.
  * @module model/RealtimeResponse
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeResponse {
     /**

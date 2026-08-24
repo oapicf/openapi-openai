@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The AuditLogUserAddedData model module.
  * @module model/AuditLogUserAddedData
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class AuditLogUserAddedData {
     /**

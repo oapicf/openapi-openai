@@ -19,7 +19,7 @@ import CreateCompletionResponse from '../model/CreateCompletionResponse';
 /**
 * Completions service.
 * @module api/CompletionsApi
-* @version 1.1.1-pre.0
+* @version 1.2.1-pre.0
 */
 export default class CompletionsApi {
 

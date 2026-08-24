@@ -37,7 +37,7 @@ import AuditLogUserUpdated from './AuditLogUserUpdated';
 /**
  * The AuditLog model module.
  * @module model/AuditLog
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class AuditLog {
     /**

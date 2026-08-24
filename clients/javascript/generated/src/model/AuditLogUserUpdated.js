@@ -17,7 +17,7 @@ import AuditLogUserUpdatedChangesRequested from './AuditLogUserUpdatedChangesReq
 /**
  * The AuditLogUserUpdated model module.
  * @module model/AuditLogUserUpdated
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class AuditLogUserUpdated {
     /**

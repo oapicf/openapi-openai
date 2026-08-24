@@ -21,7 +21,7 @@ import RealtimeSessionInputAudioTranscription from './RealtimeSessionInputAudioT
 /**
  * The RealtimeSessionCreateResponse model module.
  * @module model/RealtimeSessionCreateResponse
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RealtimeSessionCreateResponse {
     /**

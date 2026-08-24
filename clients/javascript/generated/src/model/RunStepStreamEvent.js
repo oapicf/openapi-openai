@@ -24,7 +24,7 @@ import RunStepStreamEventOneOf6 from './RunStepStreamEventOneOf6';
 /**
  * The RunStepStreamEvent model module.
  * @module model/RunStepStreamEvent
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class RunStepStreamEvent {
     /**
@@ -40,7 +40,7 @@ class RunStepStreamEvent {
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "RunStepStreamEventOneOf") {
+            if (instance instanceof RunStepStreamEventOneOf) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -56,7 +56,7 @@ class RunStepStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStepStreamEventOneOf1") {
+            if (instance instanceof RunStepStreamEventOneOf1) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -72,7 +72,7 @@ class RunStepStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStepStreamEventOneOf2") {
+            if (instance instanceof RunStepStreamEventOneOf2) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -88,7 +88,7 @@ class RunStepStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStepStreamEventOneOf3") {
+            if (instance instanceof RunStepStreamEventOneOf3) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -104,7 +104,7 @@ class RunStepStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStepStreamEventOneOf4") {
+            if (instance instanceof RunStepStreamEventOneOf4) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -120,7 +120,7 @@ class RunStepStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStepStreamEventOneOf5") {
+            if (instance instanceof RunStepStreamEventOneOf5) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -136,7 +136,7 @@ class RunStepStreamEvent {
         }
 
         try {
-            if (typeof instance === "RunStepStreamEventOneOf6") {
+            if (instance instanceof RunStepStreamEventOneOf6) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

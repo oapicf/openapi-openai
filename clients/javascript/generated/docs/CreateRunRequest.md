@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **assistantId** | **String** | The ID of the [assistant](/docs/api-reference/assistants) to use to execute this run. | 
-**model** | [**CreateRunRequestModel**](CreateRunRequestModel.md) |  | [optional] 
+**model** | **String** |  | [optional] 
 **instructions** | **String** | Overrides the [instructions](/docs/api-reference/assistants/createAssistant) of the assistant. This is useful for modifying the behavior on a per-run basis. | [optional] 
 **additionalInstructions** | **String** | Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions. | [optional] 
 **additionalMessages** | [**[CreateMessageRequest]**](CreateMessageRequest.md) | Adds additional messages to the thread before creating the run. | [optional] 
@@ -20,5 +20,60 @@ Name | Type | Description | Notes
 **toolChoice** | [**AssistantsApiToolChoiceOption**](AssistantsApiToolChoiceOption.md) |  | [optional] 
 **parallelToolCalls** | **Boolean** | Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use. | [optional] [default to true]
 **responseFormat** | [**AssistantsApiResponseFormatOption**](AssistantsApiResponseFormatOption.md) |  | [optional] 
+
+
+
+## Enum: ModelEnum
+
+
+* `gpt-4o` (value: `"gpt-4o"`)
+
+* `gpt-4o-2024-11-20` (value: `"gpt-4o-2024-11-20"`)
+
+* `gpt-4o-2024-08-06` (value: `"gpt-4o-2024-08-06"`)
+
+* `gpt-4o-2024-05-13` (value: `"gpt-4o-2024-05-13"`)
+
+* `gpt-4o-mini` (value: `"gpt-4o-mini"`)
+
+* `gpt-4o-mini-2024-07-18` (value: `"gpt-4o-mini-2024-07-18"`)
+
+* `gpt-4-turbo` (value: `"gpt-4-turbo"`)
+
+* `gpt-4-turbo-2024-04-09` (value: `"gpt-4-turbo-2024-04-09"`)
+
+* `gpt-4-0125-preview` (value: `"gpt-4-0125-preview"`)
+
+* `gpt-4-turbo-preview` (value: `"gpt-4-turbo-preview"`)
+
+* `gpt-4-1106-preview` (value: `"gpt-4-1106-preview"`)
+
+* `gpt-4-vision-preview` (value: `"gpt-4-vision-preview"`)
+
+* `gpt-4` (value: `"gpt-4"`)
+
+* `gpt-4-0314` (value: `"gpt-4-0314"`)
+
+* `gpt-4-0613` (value: `"gpt-4-0613"`)
+
+* `gpt-4-32k` (value: `"gpt-4-32k"`)
+
+* `gpt-4-32k-0314` (value: `"gpt-4-32k-0314"`)
+
+* `gpt-4-32k-0613` (value: `"gpt-4-32k-0613"`)
+
+* `gpt-3.5-turbo` (value: `"gpt-3.5-turbo"`)
+
+* `gpt-3.5-turbo-16k` (value: `"gpt-3.5-turbo-16k"`)
+
+* `gpt-3.5-turbo-0613` (value: `"gpt-3.5-turbo-0613"`)
+
+* `gpt-3.5-turbo-1106` (value: `"gpt-3.5-turbo-1106"`)
+
+* `gpt-3.5-turbo-0125` (value: `"gpt-3.5-turbo-0125"`)
+
+* `gpt-3.5-turbo-16k-0613` (value: `"gpt-3.5-turbo-16k-0613"`)
+
+
 
 

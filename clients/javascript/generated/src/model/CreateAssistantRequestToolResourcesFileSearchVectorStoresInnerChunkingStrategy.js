@@ -12,21 +12,21 @@
  */
 
 import ApiClient from '../ApiClient';
-import AutoChunkingStrategy from './AutoChunkingStrategy';
+import AutoChunkingStrategyRequestParam from './AutoChunkingStrategyRequestParam';
 import StaticChunkingStrategy from './StaticChunkingStrategy';
 import StaticChunkingStrategyStatic from './StaticChunkingStrategyStatic';
 
 /**
  * The CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy model module.
  * @module model/CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
     /**
      * Constructs a new <code>CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy</code>.
      * The chunking strategy used to chunk the file(s). If not set, will use the &#x60;auto&#x60; strategy.
      * @alias module:model/CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
-     * @param {(module:model/AutoChunkingStrategy|module:model/StaticChunkingStrategy)} instance The actual instance to initialize CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.
+     * @param {(module:model/AutoChunkingStrategyRequestParam|module:model/StaticChunkingStrategy)} instance The actual instance to initialize CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.
      */
     constructor(instance = null) {
         if (instance === null) {
@@ -36,23 +36,23 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
         var match = 0;
         var errorMessages = [];
         try {
-            if (typeof instance === "AutoChunkingStrategy") {
+            if (instance instanceof AutoChunkingStrategyRequestParam) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
                 // validate the object
-                AutoChunkingStrategy.validateJSON(instance); // throw an exception if no match
-                // create AutoChunkingStrategy from JS object
-                this.actualInstance = AutoChunkingStrategy.constructFromObject(instance);
+                AutoChunkingStrategyRequestParam.validateJSON(instance); // throw an exception if no match
+                // create AutoChunkingStrategyRequestParam from JS object
+                this.actualInstance = AutoChunkingStrategyRequestParam.constructFromObject(instance);
             }
             match++;
         } catch(err) {
-            // json data failed to deserialize into AutoChunkingStrategy
-            errorMessages.push("Failed to construct AutoChunkingStrategy: " + err)
+            // json data failed to deserialize into AutoChunkingStrategyRequestParam
+            errorMessages.push("Failed to construct AutoChunkingStrategyRequestParam: " + err)
         }
 
         try {
-            if (typeof instance === "StaticChunkingStrategy") {
+            if (instance instanceof StaticChunkingStrategy) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
@@ -68,10 +68,10 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
         }
 
         if (match > 1) {
-            throw new Error("Multiple matches found constructing `CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy` with oneOf schemas AutoChunkingStrategy, StaticChunkingStrategy. Input: " + JSON.stringify(instance));
+            throw new Error("Multiple matches found constructing `CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy` with oneOf schemas AutoChunkingStrategyRequestParam, StaticChunkingStrategy. Input: " + JSON.stringify(instance));
         } else if (match === 0) {
             this.actualInstance = null; // clear the actual instance in case there are multiple matches
-            throw new Error("No match found constructing `CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy` with oneOf schemas AutoChunkingStrategy, StaticChunkingStrategy. Details: " +
+            throw new Error("No match found constructing `CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy` with oneOf schemas AutoChunkingStrategyRequestParam, StaticChunkingStrategy. Details: " +
                             errorMessages.join(", "));
         } else { // only 1 match
             // the input is valid
@@ -90,16 +90,16 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStra
     }
 
     /**
-     * Gets the actual instance, which can be <code>AutoChunkingStrategy</code>, <code>StaticChunkingStrategy</code>.
-     * @return {(module:model/AutoChunkingStrategy|module:model/StaticChunkingStrategy)} The actual instance.
+     * Gets the actual instance, which can be <code>AutoChunkingStrategyRequestParam</code>, <code>StaticChunkingStrategy</code>.
+     * @return {(module:model/AutoChunkingStrategyRequestParam|module:model/StaticChunkingStrategy)} The actual instance.
      */
     getActualInstance() {
         return this.actualInstance;
     }
 
     /**
-     * Sets the actual instance, which can be <code>AutoChunkingStrategy</code>, <code>StaticChunkingStrategy</code>.
-     * @param {(module:model/AutoChunkingStrategy|module:model/StaticChunkingStrategy)} obj The actual instance.
+     * Sets the actual instance, which can be <code>AutoChunkingStrategyRequestParam</code>, <code>StaticChunkingStrategy</code>.
+     * @param {(module:model/AutoChunkingStrategyRequestParam|module:model/StaticChunkingStrategy)} obj The actual instance.
      */
     setActualInstance(obj) {
        this.actualInstance = CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.constructFromObject(obj).getActualInstance();
@@ -135,7 +135,7 @@ CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.p
 CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.prototype['static'] = undefined;
 
 
-CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.OneOf = ["AutoChunkingStrategy", "StaticChunkingStrategy"];
+CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy.OneOf = ["AutoChunkingStrategyRequestParam", "StaticChunkingStrategy"];
 
 export default CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy;
 

@@ -12,18 +12,17 @@
  */
 
 import ApiClient from '../ApiClient';
-import CreateSpeechRequestModel from './CreateSpeechRequestModel';
 
 /**
  * The CreateSpeechRequest model module.
  * @module model/CreateSpeechRequest
- * @version 1.1.1-pre.0
+ * @version 1.2.1-pre.0
  */
 class CreateSpeechRequest {
     /**
      * Constructs a new <code>CreateSpeechRequest</code>.
      * @alias module:model/CreateSpeechRequest
-     * @param model {module:model/CreateSpeechRequestModel} 
+     * @param model {module:model/CreateSpeechRequest.ModelEnum} 
      * @param input {String} The text to generate audio for. The maximum length is 4096 characters.
      * @param voice {module:model/CreateSpeechRequest.VoiceEnum} The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
      */
@@ -57,7 +56,7 @@ class CreateSpeechRequest {
             obj = obj || new CreateSpeechRequest();
 
             if (data.hasOwnProperty('model')) {
-                obj['model'] = CreateSpeechRequestModel.constructFromObject(data['model']);
+                obj['model'] = ApiClient.convertToType(data['model'], 'String');
             }
             if (data.hasOwnProperty('input')) {
                 obj['input'] = ApiClient.convertToType(data['input'], 'String');
@@ -87,9 +86,9 @@ class CreateSpeechRequest {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
         }
-        // validate the optional field `model`
-        if (data['model']) { // data not null
-          CreateSpeechRequestModel.validateJSON(data['model']);
+        // ensure the json data is a string
+        if (data['model'] && !(typeof data['model'] === 'string' || data['model'] instanceof String)) {
+            throw new Error("Expected the field `model` to be a primitive type in the JSON string but got " + data['model']);
         }
         // ensure the json data is a string
         if (data['input'] && !(typeof data['input'] === 'string' || data['input'] instanceof String)) {
@@ -113,7 +112,7 @@ class CreateSpeechRequest {
 CreateSpeechRequest.RequiredProperties = ["model", "input", "voice"];
 
 /**
- * @member {module:model/CreateSpeechRequestModel} model
+ * @member {module:model/CreateSpeechRequest.ModelEnum} model
  */
 CreateSpeechRequest.prototype['model'] = undefined;
 
@@ -145,6 +144,27 @@ CreateSpeechRequest.prototype['speed'] = 1;
 
 
 
+
+
+/**
+ * Allowed values for the <code>model</code> property.
+ * @enum {String}
+ * @readonly
+ */
+CreateSpeechRequest['ModelEnum'] = {
+
+    /**
+     * value: "tts-1"
+     * @const
+     */
+    "tts-1": "tts-1",
+
+    /**
+     * value: "tts-1-hd"
+     * @const
+     */
+    "tts-1-hd": "tts-1-hd"
+};
 
 
 /**
